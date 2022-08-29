@@ -1,0 +1,1894 @@
+fileFormatVersion: 2
+guid: ac6ae9564d2084441b4d9a69333dd4b7
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bip02
+    100002: Bip02_Head
+    100004: Bip02_L_Calf
+    100006: Bip02_L_Foot
+    100008: Bip02_L_HorseLink
+    100010: Bip02_L_Thigh
+    100012: Bip02_L_Toe0
+    100014: Bip02_Neck
+    100016: Bip02_Pelvis
+    100018: Bip02_Ponytail1
+    100020: Bip02_Ponytail2
+    100022: Bip02_R_Calf
+    100024: Bip02_R_Foot
+    100026: Bip02_R_HorseLink
+    100028: Bip02_R_Thigh
+    100030: Bip02_R_Toe0
+    100032: Bip02_Spine
+    100034: Bip02_Tail
+    100036: Bip02_Tail1
+    100038: Bip02_Tail2
+    100040: Bip02_Xtra01
+    100042: root
+    100044: //RootNode
+    100046: sandrat
+    100048: sandrat_mat
+    400000: Bip02
+    400002: Bip02_Head
+    400004: Bip02_L_Calf
+    400006: Bip02_L_Foot
+    400008: Bip02_L_HorseLink
+    400010: Bip02_L_Thigh
+    400012: Bip02_L_Toe0
+    400014: Bip02_Neck
+    400016: Bip02_Pelvis
+    400018: Bip02_Ponytail1
+    400020: Bip02_Ponytail2
+    400022: Bip02_R_Calf
+    400024: Bip02_R_Foot
+    400026: Bip02_R_HorseLink
+    400028: Bip02_R_Thigh
+    400030: Bip02_R_Toe0
+    400032: Bip02_Spine
+    400034: Bip02_Tail
+    400036: Bip02_Tail1
+    400038: Bip02_Tail2
+    400040: Bip02_Xtra01
+    400042: root
+    400044: //RootNode
+    400046: sandrat
+    400048: sandrat_mat
+    4300000: sandrat_mat
+    7400000: attack1
+    7400002: attack2
+    7400004: attack3
+    7400006: death_flight
+    7400008: death_land
+    7400010: Desert_Spawn1
+    7400012: Desert_Spawn2
+    7400014: Desert_Spawn3
+    7400016: die1
+    7400018: die2
+    7400020: die3
+    7400022: fidget1
+    7400024: fidget2
+    7400026: hit1
+    7400028: hit2
+    7400030: idle
+    7400032: Jump_Down
+    7400034: Jump_Land
+    7400036: run
+    7400038: Special_LeapBack
+    7400040: stunned
+    7400042: walk
+    9500000: //RootNode
+    13700000: sandrat_mat
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: sandrat_mat
+    second: {fileID: 2100000, guid: ae227f669dc9b344d80b4afb342dda89, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: attack1
+      takeName: attack1
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: attack2
+      takeName: attack2
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: attack3
+      takeName: attack3
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.50588816
+        functionName: AIAct
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: death_flight
+      takeName: death_flight
+      firstFrame: 0
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: death_land
+      takeName: death_land
+      firstFrame: 0
+      lastFrame: 27
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Desert_Spawn1
+      takeName: Desert_Spawn1
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Desert_Spawn2
+      takeName: Desert_Spawn2
+      firstFrame: 0
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Desert_Spawn3
+      takeName: Desert_Spawn3
+      firstFrame: 0
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: die1
+      takeName: die1
+      firstFrame: 0
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: die2
+      takeName: die2
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: die3
+      takeName: die3
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: fidget1
+      takeName: fidget1
+      firstFrame: 0
+      lastFrame: 58
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: fidget2
+      takeName: fidget2
+      firstFrame: 0
+      lastFrame: 87
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: hit1
+      takeName: hit1
+      firstFrame: 0
+      lastFrame: 13
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: hit2
+      takeName: hit2
+      firstFrame: 0
+      lastFrame: 13
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: idle
+      takeName: idle
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Jump_Down
+      takeName: Jump_Down
+      firstFrame: 0
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Jump_Land
+      takeName: Jump_Land
+      firstFrame: 0
+      lastFrame: 13
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: run
+      takeName: run
+      firstFrame: 0
+      lastFrame: 55
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_LeapBack
+      takeName: Special_LeapBack
+      firstFrame: 0
+      lastFrame: 28
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: stunned
+      takeName: stunned
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: walk
+      takeName: walk
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: sandrat
+        weight: 1
+      - path: sandrat/root
+        weight: 1
+      - path: sandrat/root/Bip02
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_L_Thigh/Bip02_L_Calf/Bip02_L_HorseLink/Bip02_L_Foot/Bip02_L_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Ponytail2
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Neck/Bip02_Head/Bip02_Xtra01
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_R_Thigh/Bip02_R_Calf/Bip02_R_HorseLink/Bip02_R_Foot/Bip02_R_Toe0
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1
+        weight: 1
+      - path: sandrat/root/Bip02/Bip02_Pelvis/Bip02_Spine/Bip02_Tail/Bip02_Tail1/Bip02_Tail2
+        weight: 1
+      - path: sandrat/sandrat_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

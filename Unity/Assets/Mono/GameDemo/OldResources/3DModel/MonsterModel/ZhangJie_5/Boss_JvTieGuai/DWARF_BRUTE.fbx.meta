@@ -1,0 +1,2365 @@
+fileFormatVersion: 2
+guid: 9437cc474cec89144acebb891efd61d3
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bip01
+    100002: Bip01_Head
+    100004: Bip01_L_Calf
+    100006: Bip01_L_Clavicle
+    100008: Bip01_L_Finger0
+    100010: Bip01_L_Finger01
+    100012: Bip01_L_Finger1
+    100014: Bip01_L_Finger11
+    100016: Bip01_L_Finger2
+    100018: Bip01_L_Finger21
+    100020: Bip01_L_Foot
+    100022: Bip01_L_Forearm
+    100024: Bip01_L_Hand
+    100026: Bip01_L_Lower_Pipe
+    100028: Bip01_L_Lower_Pipe02
+    100030: Bip01_L_Middle_Pipe
+    100032: Bip01_L_Middle_Pipe02
+    100034: Bip01_L_Middle_Pipe03
+    100036: Bip01_L_Thigh
+    100038: Bip01_L_Toe0
+    100040: Bip01_L_Upper_Pipe
+    100042: Bip01_L_Upper_Pipe02
+    100044: Bip01_L_Upper_Pipe03
+    100046: Bip01_L_UpperArm
+    100048: Bip01_Neck
+    100050: Bip01_Pelvis
+    100052: Bip01_R_Calf
+    100054: Bip01_R_Clavicle
+    100056: Bip01_R_Finger0
+    100058: Bip01_R_Finger01
+    100060: Bip01_R_Finger1
+    100062: Bip01_R_Finger11
+    100064: Bip01_R_Finger2
+    100066: Bip01_R_Finger21
+    100068: Bip01_R_Foot
+    100070: Bip01_R_Forearm
+    100072: Bip01_R_Hand
+    100074: Bip01_R_Lower_Pipe
+    100076: Bip01_R_Lower_Pipe02
+    100078: Bip01_R_Middle_Pipe
+    100080: Bip01_R_Middle_Pipe02
+    100082: Bip01_R_Middle_Pipe03
+    100084: Bip01_R_Thigh
+    100086: Bip01_R_Toe0
+    100088: Bip01_R_Upper_Pipe
+    100090: Bip01_R_Upper_Pipe02
+    100092: Bip01_R_Upper_Pipe03
+    100094: Bip01_R_UpperArm
+    100096: Bip01_Smoke_Pipe
+    100098: Bip01_Spine
+    100100: //RootNode
+    100102: dwarf_brute
+    100104: dwarf_brute_mat
+    100106: root
+    100108: tag_leftarm
+    100110: tag_lefthand
+    100112: tag_righthand
+    400000: Bip01
+    400002: Bip01_Head
+    400004: Bip01_L_Calf
+    400006: Bip01_L_Clavicle
+    400008: Bip01_L_Finger0
+    400010: Bip01_L_Finger01
+    400012: Bip01_L_Finger1
+    400014: Bip01_L_Finger11
+    400016: Bip01_L_Finger2
+    400018: Bip01_L_Finger21
+    400020: Bip01_L_Foot
+    400022: Bip01_L_Forearm
+    400024: Bip01_L_Hand
+    400026: Bip01_L_Lower_Pipe
+    400028: Bip01_L_Lower_Pipe02
+    400030: Bip01_L_Middle_Pipe
+    400032: Bip01_L_Middle_Pipe02
+    400034: Bip01_L_Middle_Pipe03
+    400036: Bip01_L_Thigh
+    400038: Bip01_L_Toe0
+    400040: Bip01_L_Upper_Pipe
+    400042: Bip01_L_Upper_Pipe02
+    400044: Bip01_L_Upper_Pipe03
+    400046: Bip01_L_UpperArm
+    400048: Bip01_Neck
+    400050: Bip01_Pelvis
+    400052: Bip01_R_Calf
+    400054: Bip01_R_Clavicle
+    400056: Bip01_R_Finger0
+    400058: Bip01_R_Finger01
+    400060: Bip01_R_Finger1
+    400062: Bip01_R_Finger11
+    400064: Bip01_R_Finger2
+    400066: Bip01_R_Finger21
+    400068: Bip01_R_Foot
+    400070: Bip01_R_Forearm
+    400072: Bip01_R_Hand
+    400074: Bip01_R_Lower_Pipe
+    400076: Bip01_R_Lower_Pipe02
+    400078: Bip01_R_Middle_Pipe
+    400080: Bip01_R_Middle_Pipe02
+    400082: Bip01_R_Middle_Pipe03
+    400084: Bip01_R_Thigh
+    400086: Bip01_R_Toe0
+    400088: Bip01_R_Upper_Pipe
+    400090: Bip01_R_Upper_Pipe02
+    400092: Bip01_R_Upper_Pipe03
+    400094: Bip01_R_UpperArm
+    400096: Bip01_Smoke_Pipe
+    400098: Bip01_Spine
+    400100: //RootNode
+    400102: dwarf_brute
+    400104: dwarf_brute_mat
+    400106: root
+    400108: tag_leftarm
+    400110: tag_lefthand
+    400112: tag_righthand
+    4300000: dwarf_brute_mat
+    7400000: Die1
+    7400002: Die2
+    7400004: Die3
+    7400006: Idle
+    7400008: Lslash1
+    7400010: Lslash2
+    7400012: Lslash3
+    7400014: Rslash1
+    7400016: Rslash2
+    7400018: Rslash3
+    7400020: Run
+    7400022: Special_Slam
+    7400024: Special_Whirlwind
+    7400026: Walk
+    7400028: Wall_Spawn1
+    9500000: //RootNode
+    13700000: dwarf_brute_mat
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: dwarf_brute_mat
+    second: {fileID: 2100000, guid: d7a5de4be8cb26945899489d411854bb, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Die1
+      takeName: Die1
+      firstFrame: 0
+      lastFrame: 47
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Die2
+      takeName: Die2
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Die3
+      takeName: Die3
+      firstFrame: 0
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Lslash1
+      takeName: Lslash1
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.59686965
+        functionName: AIAct
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Lslash2
+      takeName: Lslash2
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Lslash3
+      takeName: Lslash3
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Rslash1
+      takeName: Rslash1
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Rslash2
+      takeName: Rslash2
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Rslash3
+      takeName: Rslash3
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run
+      takeName: Run
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_Slam
+      takeName: Special_Slam
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_Whirlwind
+      takeName: Special_Whirlwind
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Wall_Spawn1
+      takeName: Wall_Spawn1
+      firstFrame: 0
+      lastFrame: 33
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: dwarf_brute
+        weight: 1
+      - path: dwarf_brute/dwarf_brute_mat
+        weight: 1
+      - path: dwarf_brute/root
+        weight: 1
+      - path: dwarf_brute/root/Bip01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Lower_Pipe/Bip01_L_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Middle_Pipe/Bip01_L_Middle_Pipe02/Bip01_L_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Thigh/Bip01_L_Calf/Bip01_L_Foot/Bip01_L_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_L_Upper_Pipe/Bip01_L_Upper_Pipe02/Bip01_L_Upper_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_Head/Bip01_Smoke_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger0/Bip01_L_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger1/Bip01_L_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/Bip01_L_Finger2/Bip01_L_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/Bip01_L_Hand/tag_lefthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_L_Clavicle/Bip01_L_UpperArm/Bip01_L_Forearm/tag_leftarm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger0/Bip01_R_Finger01
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger1/Bip01_R_Finger11
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/Bip01_R_Finger2/Bip01_R_Finger21
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_Neck/Bip01_R_Clavicle/Bip01_R_UpperArm/Bip01_R_Forearm/Bip01_R_Hand/tag_righthand
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Lower_Pipe/Bip01_R_Lower_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Middle_Pipe/Bip01_R_Middle_Pipe02/Bip01_R_Middle_Pipe03
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Thigh/Bip01_R_Calf/Bip01_R_Foot/Bip01_R_Toe0
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02
+        weight: 1
+      - path: dwarf_brute/root/Bip01/Bip01_Pelvis/Bip01_Spine/Bip01_R_Upper_Pipe/Bip01_R_Upper_Pipe02/Bip01_R_Upper_Pipe03
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

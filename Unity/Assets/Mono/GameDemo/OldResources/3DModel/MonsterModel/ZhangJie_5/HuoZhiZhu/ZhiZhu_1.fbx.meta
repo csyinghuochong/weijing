@@ -1,0 +1,2365 @@
+fileFormatVersion: 2
+guid: 34c04ac7520cef74da830d80b29aef9f
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: abdomen
+    100002: body_root
+    100004: fang
+    100006: head
+    100008: L_Knee_A_Point
+    100010: L_Knee_B_Point
+    100012: L_Knee_C_Point
+    100014: L_Knee_D_Point
+    100016: L_Leg_A_01
+    100018: L_Leg_A_01_Dummy
+    100020: L_Leg_A_02
+    100022: L_Leg_A_02_Dummy
+    100024: L_Leg_A_03
+    100026: L_Leg_B_01
+    100028: L_Leg_B_01_Dummy
+    100030: L_Leg_B_02
+    100032: L_Leg_B_02_Dummy
+    100034: L_Leg_B_03
+    100036: L_Leg_C_01
+    100038: L_Leg_C_01_Dummy
+    100040: L_Leg_C_02
+    100042: L_Leg_C_02_Dummy
+    100044: L_Leg_C_03
+    100046: L_Leg_C_04
+    100048: L_Leg_D_01
+    100050: L_Leg_D_01_Dummy
+    100052: L_Leg_D_02
+    100054: L_Leg_D_02_Dummy
+    100056: L_Leg_D_03
+    100058: master_root
+    100060: R_Knee_A_Point
+    100062: R_Knee_B_Point
+    100064: R_Knee_C_Point
+    100066: R_Knee_D_Point
+    100068: R_Leg_A_01
+    100070: R_Leg_A_01_Dummy
+    100072: R_Leg_A_02
+    100074: R_Leg_A_02_Dummy
+    100076: R_Leg_A_03
+    100078: R_Leg_B_01
+    100080: R_Leg_B_01_Dummy
+    100082: R_Leg_B_02
+    100084: R_Leg_B_02_Dummy
+    100086: R_Leg_B_03
+    100088: R_Leg_C_01
+    100090: R_Leg_C_01_Dummy
+    100092: R_Leg_C_02
+    100094: R_Leg_C_02_Dummy
+    100096: R_Leg_C_03
+    100098: R_Leg_D_01
+    100100: R_Leg_D_01_Dummy
+    100102: R_Leg_D_02
+    100104: R_Leg_D_02_Dummy
+    100106: R_Leg_D_03
+    100108: //RootNode
+    100110: tarantula
+    100112: tarantula_mat
+    400000: abdomen
+    400002: body_root
+    400004: fang
+    400006: head
+    400008: L_Knee_A_Point
+    400010: L_Knee_B_Point
+    400012: L_Knee_C_Point
+    400014: L_Knee_D_Point
+    400016: L_Leg_A_01
+    400018: L_Leg_A_01_Dummy
+    400020: L_Leg_A_02
+    400022: L_Leg_A_02_Dummy
+    400024: L_Leg_A_03
+    400026: L_Leg_B_01
+    400028: L_Leg_B_01_Dummy
+    400030: L_Leg_B_02
+    400032: L_Leg_B_02_Dummy
+    400034: L_Leg_B_03
+    400036: L_Leg_C_01
+    400038: L_Leg_C_01_Dummy
+    400040: L_Leg_C_02
+    400042: L_Leg_C_02_Dummy
+    400044: L_Leg_C_03
+    400046: L_Leg_C_04
+    400048: L_Leg_D_01
+    400050: L_Leg_D_01_Dummy
+    400052: L_Leg_D_02
+    400054: L_Leg_D_02_Dummy
+    400056: L_Leg_D_03
+    400058: master_root
+    400060: R_Knee_A_Point
+    400062: R_Knee_B_Point
+    400064: R_Knee_C_Point
+    400066: R_Knee_D_Point
+    400068: R_Leg_A_01
+    400070: R_Leg_A_01_Dummy
+    400072: R_Leg_A_02
+    400074: R_Leg_A_02_Dummy
+    400076: R_Leg_A_03
+    400078: R_Leg_B_01
+    400080: R_Leg_B_01_Dummy
+    400082: R_Leg_B_02
+    400084: R_Leg_B_02_Dummy
+    400086: R_Leg_B_03
+    400088: R_Leg_C_01
+    400090: R_Leg_C_01_Dummy
+    400092: R_Leg_C_02
+    400094: R_Leg_C_02_Dummy
+    400096: R_Leg_C_03
+    400098: R_Leg_D_01
+    400100: R_Leg_D_01_Dummy
+    400102: R_Leg_D_02
+    400104: R_Leg_D_02_Dummy
+    400106: R_Leg_D_03
+    400108: //RootNode
+    400110: tarantula
+    400112: tarantula_mat
+    4300000: tarantula_mat
+    7400000: Attack1
+    7400002: Attack2
+    7400004: Attack3
+    7400006: Die
+    7400008: Hit
+    7400010: Idle
+    7400012: Run
+    7400014: Spawn1
+    7400016: Special_Breath
+    7400018: Special_Egg_Break
+    7400020: Special_Gen_Aoe
+    7400022: Special_Gen_Cast
+    7400024: Special_Spit
+    7400026: Special_Web
+    7400028: Walk
+    9500000: //RootNode
+    13700000: tarantula_mat
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tarantula_mat
+    second: {fileID: 2100000, guid: 229498dadaa71234c8de879cfa3a94bf, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Attack1
+      takeName: Attack1
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack2
+      takeName: Attack2
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: 0.5487036
+        functionName: AIAct
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack3
+      takeName: Attack3
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Die
+      takeName: Die
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Hit
+      takeName: Hit
+      firstFrame: 0
+      lastFrame: 13
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: 0
+      lastFrame: 83
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run
+      takeName: Run
+      firstFrame: 0
+      lastFrame: 13
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Spawn1
+      takeName: Spawn1
+      firstFrame: 0
+      lastFrame: 62
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_Breath
+      takeName: Special_Breath
+      firstFrame: 0
+      lastFrame: 62
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_Egg_Break
+      takeName: Special_Egg_Break
+      firstFrame: 0
+      lastFrame: 83
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_Gen_Aoe
+      takeName: Special_Gen_Aoe
+      firstFrame: 0
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_Gen_Cast
+      takeName: Special_Gen_Cast
+      firstFrame: 0
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_Spit
+      takeName: Special_Spit
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_Web
+      takeName: Special_Web
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: 0
+      lastFrame: 33
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: tarantula
+        weight: 1
+      - path: tarantula/master_root
+        weight: 1
+      - path: tarantula/master_root/body_root
+        weight: 1
+      - path: tarantula/master_root/body_root/abdomen
+        weight: 1
+      - path: tarantula/master_root/body_root/head
+        weight: 1
+      - path: tarantula/master_root/body_root/head/fang
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: tarantula/master_root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: tarantula/master_root/L_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/L_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_A_02_Dummy/L_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_B_02_Dummy/L_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_C_02_Dummy/L_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/L_Leg_D_02_Dummy/L_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Knee_A_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_B_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_C_Point
+        weight: 1
+      - path: tarantula/master_root/R_Knee_D_Point
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_A_02_Dummy/R_Leg_A_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_B_02_Dummy/R_Leg_B_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_C_02_Dummy/R_Leg_C_01_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy
+        weight: 1
+      - path: tarantula/master_root/R_Leg_D_02_Dummy/R_Leg_D_01_Dummy
+        weight: 1
+      - path: tarantula/tarantula_mat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
