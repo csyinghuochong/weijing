@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<resources>
+
+    <!-- 下面两行需要替换为游戏自己的参数 -->
+    <string name="product_code">07130809825780777317606191871142</string>
+    <string name="product_key">96694692</string>
+
+</resources>
