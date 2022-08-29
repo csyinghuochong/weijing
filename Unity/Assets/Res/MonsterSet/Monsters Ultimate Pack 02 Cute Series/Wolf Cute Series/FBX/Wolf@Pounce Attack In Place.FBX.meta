@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: 34c516df3bf9c4f4da62ee76f8320fdc
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Dummy001
+    100002: Rig
+    100004: RigHead
+    100006: RigJaw
+    100008: RigLBLeg1
+    100010: RigLBLeg2
+    100012: RigLBLegAnkle
+    100014: RigLBLegPlatform
+    100016: RigLBLegToes1
+    100018: RigLBLegToes2
+    100020: RigLFLeg1
+    100022: RigLFLeg2
+    100024: RigLFLegAnkle
+    100026: RigLFLegPlatform
+    100028: RigLFLegToes1
+    100030: RigLFLegToes2
+    100032: RigNeck
+    100034: RigPelvis
+    100036: RigRBLeg1
+    100038: RigRBLeg2
+    100040: RigRBLegAnkle
+    100042: RigRBLegPlatform
+    100044: RigRBLegToes1
+    100046: RigRBLegToes2
+    100048: RigRFLeg1
+    100050: RigRFLeg2
+    100052: RigRFLegAnkle
+    100054: RigRFLegPlatform
+    100056: RigRFLegToes1
+    100058: RigRFLegToes2
+    100060: RigRibcage
+    100062: RigSpine1
+    100064: RigSpine2
+    100066: RigTail1
+    100068: RigTail2
+    100070: RigTail3
+    100072: RigTail4
+    100074: RigTail5
+    100076: Wolf
+    100078: //RootNode
+    400000: Dummy001
+    400002: Rig
+    400004: RigHead
+    400006: RigJaw
+    400008: RigLBLeg1
+    400010: RigLBLeg2
+    400012: RigLBLegAnkle
+    400014: RigLBLegPlatform
+    400016: RigLBLegToes1
+    400018: RigLBLegToes2
+    400020: RigLFLeg1
+    400022: RigLFLeg2
+    400024: RigLFLegAnkle
+    400026: RigLFLegPlatform
+    400028: RigLFLegToes1
+    400030: RigLFLegToes2
+    400032: RigNeck
+    400034: RigPelvis
+    400036: RigRBLeg1
+    400038: RigRBLeg2
+    400040: RigRBLegAnkle
+    400042: RigRBLegPlatform
+    400044: RigRBLegToes1
+    400046: RigRBLegToes2
+    400048: RigRFLeg1
+    400050: RigRFLeg2
+    400052: RigRFLegAnkle
+    400054: RigRFLegPlatform
+    400056: RigRFLegToes1
+    400058: RigRFLegToes2
+    400060: RigRibcage
+    400062: RigSpine1
+    400064: RigSpine2
+    400066: RigTail1
+    400068: RigTail2
+    400070: RigTail3
+    400072: RigTail4
+    400074: RigTail5
+    400076: Wolf
+    400078: //RootNode
+    2100000: 02 - Default
+    4300000: Wolf
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Wolf
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,249 @@
+fileFormatVersion: 2
+guid: bdfcb7d4799abbe4cabd50fd1145ef5d
+labels:
+- SDRPGPack2
+- SDRPGPack5
+- Vegebi
+- toy
+- pet
+- dog
+- cat
+- sheep
+- monster
+- cute
+- mobile
+- lowpoly
+- SD
+- toon
+- SDRPGPack4
+- SDRPGPack3
+- SDRPGPack1
+- Ami
+- Akane
+timeCreated: 1455703349
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: cat1:boxcat_poly:pCube2
+    100002: cat1:boxcat_poly:pCube6
+    100004: cat1:boxcat_poly:pCube7
+    100006: cat1:boxcat_poly:pCube8
+    100008: cat1:boxcat_poly:pCube9
+    100010: cat1:cat
+    100012: cat1:joint1
+    100014: cat1:joint10
+    100016: cat1:joint11
+    100018: cat1:joint2
+    100020: cat1:joint3
+    100022: cat1:joint5
+    100024: cat1:joint7
+    100026: cat1:joint9
+    100028: //RootNode
+    100030: Mesh
+    100032: boxcat_poly:pCube2
+    100034: boxcat_poly:pCube6
+    100036: boxcat_poly:pCube7
+    100038: boxcat_poly:pCube8
+    100040: boxcat_poly:pCube9
+    100042: cat
+    100044: joint1
+    100046: joint10
+    100048: joint11
+    100050: joint2
+    100052: joint3
+    100054: joint5
+    100056: joint7
+    100058: joint9
+    400000: cat1:boxcat_poly:pCube2
+    400002: cat1:boxcat_poly:pCube6
+    400004: cat1:boxcat_poly:pCube7
+    400006: cat1:boxcat_poly:pCube8
+    400008: cat1:boxcat_poly:pCube9
+    400010: cat1:cat
+    400012: cat1:joint1
+    400014: cat1:joint10
+    400016: cat1:joint11
+    400018: cat1:joint2
+    400020: cat1:joint3
+    400022: cat1:joint5
+    400024: cat1:joint7
+    400026: cat1:joint9
+    400028: //RootNode
+    400030: Mesh
+    400032: boxcat_poly:pCube2
+    400034: boxcat_poly:pCube6
+    400036: boxcat_poly:pCube7
+    400038: boxcat_poly:pCube8
+    400040: boxcat_poly:pCube9
+    400042: cat
+    400044: joint1
+    400046: joint10
+    400048: joint11
+    400050: joint2
+    400052: joint3
+    400054: joint5
+    400056: joint7
+    400058: joint9
+    2300000: boxcat_poly:pCube2
+    2300002: boxcat_poly:pCube6
+    2300004: boxcat_poly:pCube7
+    2300006: boxcat_poly:pCube8
+    2300008: boxcat_poly:pCube9
+    2300010: cat
+    3300000: boxcat_poly:pCube2
+    3300002: boxcat_poly:pCube6
+    3300004: boxcat_poly:pCube7
+    3300006: boxcat_poly:pCube8
+    3300008: boxcat_poly:pCube9
+    3300010: cat
+    4300000: cat1:boxcat_poly:pCube2
+    4300002: cat1:boxcat_poly:pCube6
+    4300004: cat1:boxcat_poly:pCube7
+    4300006: cat1:boxcat_poly:pCube8
+    4300008: cat1:boxcat_poly:pCube9
+    4300010: cat1:cat
+    4300012: boxcat_poly:pCube2
+    4300014: boxcat_poly:pCube6
+    4300016: boxcat_poly:pCube7
+    4300018: boxcat_poly:pCube8
+    4300020: boxcat_poly:pCube9
+    4300022: cat
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: cat1:boxcat_poly:pCube2
+    13700002: cat1:boxcat_poly:pCube6
+    13700004: cat1:boxcat_poly:pCube7
+    13700006: cat1:boxcat_poly:pCube8
+    13700008: cat1:boxcat_poly:pCube9
+    13700010: cat1:cat
+    13700012: boxcat_poly:pCube2
+    13700014: boxcat_poly:pCube6
+    13700016: boxcat_poly:pCube7
+    13700018: boxcat_poly:pCube8
+    13700020: boxcat_poly:pCube9
+    13700022: cat
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Take 001
+      takeName: Take 001
+      firstFrame: 1
+      lastFrame: 187.5
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: cat1:joint1
+        weight: 1
+      - path: cat1:joint1/cat1:joint2
+        weight: 1
+      - path: cat1:joint1/cat1:joint2/cat1:joint3
+        weight: 1
+      - path: cat1:joint1/cat1:joint2/cat1:joint5
+        weight: 1
+      - path: cat1:joint1/cat1:joint2/cat1:joint7
+        weight: 1
+      - path: cat1:joint1/cat1:joint2/cat1:joint9
+        weight: 1
+      - path: cat1:joint10
+        weight: 1
+      - path: cat1:joint10/cat1:joint11
+        weight: 1
+      - path: Mesh
+        weight: 1
+      - path: Mesh/cat1:boxcat_poly:pCube2
+        weight: 1
+      - path: Mesh/cat1:boxcat_poly:pCube6
+        weight: 1
+      - path: Mesh/cat1:boxcat_poly:pCube7
+        weight: 1
+      - path: Mesh/cat1:boxcat_poly:pCube8
+        weight: 1
+      - path: Mesh/cat1:boxcat_poly:pCube9
+        weight: 1
+      - path: Mesh/cat1:cat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 30
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

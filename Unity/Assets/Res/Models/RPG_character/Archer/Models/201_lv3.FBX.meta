@@ -1,0 +1,239 @@
+fileFormatVersion: 2
+guid: da697355092983148af02c90822d9cd8
+timeCreated: 1529858468
+licenseType: Store
+ModelImporter:
+  serializedVersion: 21
+  fileIDToRecycleName:
+    100000: 201_archer_hestia
+    100002: 201_archer_hestia_01
+    100004: 201_archer_hestia_02
+    100006: 201_archer_hestia_03
+    100008: 201_archer_hestia_arrow
+    100010: 201_archer_hestia_bow
+    100012: //RootNode
+    100014: Bip001
+    100016: Bip001 Head
+    100018: Bip001 L Calf
+    100020: Bip001 L Clavicle
+    100022: Bip001 L Finger0
+    100024: Bip001 L Finger01
+    100026: Bip001 L Finger1
+    100028: Bip001 L Finger11
+    100030: Bip001 L Finger2
+    100032: Bip001 L Finger21
+    100034: Bip001 L Foot
+    100036: Bip001 L Forearm
+    100038: Bip001 L Hand
+    100040: Bip001 L Thigh
+    100042: Bip001 L Toe0
+    100044: Bip001 L UpperArm
+    100046: Bip001 Neck
+    100048: Bip001 Pelvis
+    100050: Bip001 R Calf
+    100052: Bip001 R Clavicle
+    100054: Bip001 R Finger0
+    100056: Bip001 R Finger01
+    100058: Bip001 R Finger1
+    100060: Bip001 R Finger11
+    100062: Bip001 R Finger2
+    100064: Bip001 R Finger21
+    100066: Bip001 R Foot
+    100068: Bip001 R Forearm
+    100070: Bip001 R Hand
+    100072: Bip001 R Thigh
+    100074: Bip001 R Toe0
+    100076: Bip001 R UpperArm
+    100078: Bip001 Spine
+    100080: Bip001 Spine1
+    100082: Point005
+    100084: Point006
+    100086: Point007
+    100088: Point008
+    100090: Point009
+    100092: Point010
+    100094: Weapon_L
+    100096: Weapon_L_Nub
+    100098: Weapon_R
+    100100: Weapon_R_Nub
+    100102: 201_arrow_lv3
+    100104: 201_bow_lv3
+    100106: 201_face_01
+    100108: 201_face_02
+    100110: 201_face_03
+    100112: 201_lv3
+    100114: Bip001 HeadNub
+    100116: Bip001 L Finger0Nub
+    100118: Bip001 L Finger1Nub
+    100120: Bip001 L Finger2Nub
+    100122: Bip001 L Toe0Nub
+    100124: Bip001 R Finger0Nub
+    100126: Bip001 R Finger1Nub
+    100128: Bip001 R Finger2Nub
+    100130: Bip001 R Toe0Nub
+    400000: 201_archer_hestia
+    400002: 201_archer_hestia_01
+    400004: 201_archer_hestia_02
+    400006: 201_archer_hestia_03
+    400008: 201_archer_hestia_arrow
+    400010: 201_archer_hestia_bow
+    400012: //RootNode
+    400014: Bip001
+    400016: Bip001 Head
+    400018: Bip001 L Calf
+    400020: Bip001 L Clavicle
+    400022: Bip001 L Finger0
+    400024: Bip001 L Finger01
+    400026: Bip001 L Finger1
+    400028: Bip001 L Finger11
+    400030: Bip001 L Finger2
+    400032: Bip001 L Finger21
+    400034: Bip001 L Foot
+    400036: Bip001 L Forearm
+    400038: Bip001 L Hand
+    400040: Bip001 L Thigh
+    400042: Bip001 L Toe0
+    400044: Bip001 L UpperArm
+    400046: Bip001 Neck
+    400048: Bip001 Pelvis
+    400050: Bip001 R Calf
+    400052: Bip001 R Clavicle
+    400054: Bip001 R Finger0
+    400056: Bip001 R Finger01
+    400058: Bip001 R Finger1
+    400060: Bip001 R Finger11
+    400062: Bip001 R Finger2
+    400064: Bip001 R Finger21
+    400066: Bip001 R Foot
+    400068: Bip001 R Forearm
+    400070: Bip001 R Hand
+    400072: Bip001 R Thigh
+    400074: Bip001 R Toe0
+    400076: Bip001 R UpperArm
+    400078: Bip001 Spine
+    400080: Bip001 Spine1
+    400082: Point005
+    400084: Point006
+    400086: Point007
+    400088: Point008
+    400090: Point009
+    400092: Point010
+    400094: Weapon_L
+    400096: Weapon_L_Nub
+    400098: Weapon_R
+    400100: Weapon_R_Nub
+    400102: 201_arrow_lv3
+    400104: 201_bow_lv3
+    400106: 201_face_01
+    400108: 201_face_02
+    400110: 201_face_03
+    400112: 201_lv3
+    400114: Bip001 HeadNub
+    400116: Bip001 L Finger0Nub
+    400118: Bip001 L Finger1Nub
+    400120: Bip001 L Finger2Nub
+    400122: Bip001 L Toe0Nub
+    400124: Bip001 R Finger0Nub
+    400126: Bip001 R Finger1Nub
+    400128: Bip001 R Finger2Nub
+    400130: Bip001 R Toe0Nub
+    4300000: 201_archer_hestia
+    4300002: 201_archer_hestia_bow
+    4300004: 201_archer_hestia_arrow
+    4300006: 201_archer_hestia_01
+    4300008: 201_archer_hestia_02
+    4300010: 201_archer_hestia_03
+    4300012: 201_lv3
+    4300014: 201_bow_lv3
+    4300016: 201_arrow_lv3
+    4300018: 201_face_01
+    4300020: 201_face_02
+    4300022: 201_face_03
+    9500000: //RootNode
+    13700000: 201_archer_hestia
+    13700002: 201_archer_hestia_01
+    13700004: 201_archer_hestia_02
+    13700006: 201_archer_hestia_03
+    13700008: 201_archer_hestia_arrow
+    13700010: 201_archer_hestia_bow
+    13700012: 201_arrow_lv3
+    13700014: 201_bow_lv3
+    13700016: 201_face_01
+    13700018: 201_face_02
+    13700020: 201_face_03
+    13700022: 201_lv3
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
