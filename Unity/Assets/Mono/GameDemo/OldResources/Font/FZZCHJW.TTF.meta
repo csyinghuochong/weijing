@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 3720186ff40c0ae418a2043e428562b9
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: FZZhengHeiS-B-GB
+  fontNames:
+  - FZZhengHeiS-B-GB
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 7127b91b90734214a9c6c39afa412f3a, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
