@@ -1,0 +1,41 @@
+//apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
+//application是以APK的形式进行打包,最终可以在安卓上直接运行 plugin以插件的形式进行编译打包,最终为aar格式,与jar包一样都可以嵌入到Unity中
+
+android {
+    compileSdkVersion 26//定义应用程序编译选择哪个Android SDK版本
+    defaultConfig {
+        //applicationId "com.mafeng.mfcomponents"
+            minSdkVersion 16 //最低兼容的API版本
+        targetSdkVersion 26 //目标API作用：不同版本有不同的API接口，越高的版本使用的接口越多，但是兼容的设备就越少
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+
+        //testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner" //测试相关 注释掉即可
+    }
+    sourceSets {
+        main.jniLibs.srcDirs = ['libs']
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    //限定libs文件夹下的jar包 仅仅可以在内部访问  无法在外部其他module调用
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //implementation 'com.android.support:appcompat-v7:26.1.0'
+    //implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    //estImplementation 'junit:junit:4.12'
+    //androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    //androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation files('libs/libammsdk.jar')
+    implementation files('libs/classes.jar')
+    implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
+    implementation files('libs/android-support-v4.jar')
+}
