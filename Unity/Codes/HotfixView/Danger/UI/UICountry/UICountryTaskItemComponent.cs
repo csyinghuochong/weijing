@@ -1,0 +1,94 @@
+﻿using UnityEngine;
+using UnityEngine.UI;
+
+namespace ET
+{
+    public class UICountryTaskItemComponent : Entity, IAwake
+    {
+        public GameObject ButtonComplete;
+        public GameObject ButtonReceive;
+        public GameObject TextHuoyueValue;
+        public GameObject TextTaskProgress;
+        public GameObject TextTaskDesc;
+        public GameObject TextTaskName;
+        public GameObject ImageIcon;
+        public GameObject ItemNumber;
+
+
+        public TaskPro TaskPro;
+    }
+
+    [ObjectSystem]
+    public class UICountryTaskItemComponentAwakeSystem : AwakeSystem<UICountryTaskItemComponent>
+    {
+
+        public override void Awake(UICountryTaskItemComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            self.ButtonComplete = rc.Get<GameObject>("ButtonComplete");
+            self.ButtonReceive = rc.Get<GameObject>("ButtonReceive");
+            //self.ButtonReceive.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Receive(); });
+            ButtonHelp.AddListenerEx(self.ButtonReceive, () => { self.OnBtn_Receive(); });
+
+            self.TextHuoyueValue = rc.Get<GameObject>("TextHuoyueValue");
+            self.TextTaskProgress = rc.Get<GameObject>("TextTaskProgress");
+            self.TextTaskDesc = rc.Get<GameObject>("TextTaskDesc");
+            self.TextTaskName = rc.Get<GameObject>("TextTaskName");
+            self.ImageIcon = rc.Get<GameObject>("ImageIcon");
+            self.ItemNumber = rc.Get<GameObject>("ItemNumber");
+        }
+    }
+
+
+    public static class UICountryTaskItemComponentSystem
+    {
+
+        public static void OnUpdateData(this UICountryTaskItemComponent self, TaskPro taskPro)
+        {
+            self.TaskPro = taskPro;
+            TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPro.taskID);
+
+            self.TextTaskName.GetComponent<Text>().text = taskConfig.TaskName;
+            self.TextTaskDesc.GetComponent<Text>().text = taskConfig.TaskDes;
+
+            taskPro.taskTargetNum_1 = taskPro.taskTargetNum_1 > taskConfig.TargetValue ? taskConfig.TargetValue : taskPro.taskTargetNum_1;
+            self.TextTaskProgress.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("进度值") + ": " + string.Format("{0}/{1}", taskPro.taskTargetNum_1, taskConfig.TargetValue);
+
+            //更新图标
+            self.ImageIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.TaskIcon, taskConfig.TaskIcon.ToString());
+            //self.ImageIcon.GetComponent<Image>()
+
+            //更新金币
+            self.ItemNumber.GetComponent<Text>().text = " +" + taskConfig.RewardGold;
+
+            //活跃度
+            self.TextHuoyueValue.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("活跃度") + " +" + taskConfig.EveryTaskRewardNum;
+
+            self.ButtonComplete.SetActive(taskPro.taskStatus == (int)TaskStatuEnum.Commited);
+            self.ButtonReceive.SetActive(taskPro.taskStatus != (int)TaskStatuEnum.Commited);
+
+        }
+
+        public static void OnBtn_Receive(this UICountryTaskItemComponent self)
+        {
+            if (self.TaskPro.taskStatus < (int)TaskStatuEnum.Completed)
+            {
+                FloatTipManager.Instance.ShowFloatTip("任务还没有完成！");
+                return;
+            }
+            if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Commited)
+            {
+                FloatTipManager.Instance.ShowFloatTip("已经领取过奖励！");
+                return;
+            }
+
+            //发送奖励
+            self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID).Coroutine();
+
+            //显示领取
+            //self.ButtonComplete.SetActive(true);
+            //self.ButtonReceive.SetActive(false);
+        }
+    }
+}

@@ -1,0 +1,75 @@
+﻿using UnityEngine;
+using System.Collections.Generic;
+using UnityEngine.UI;
+
+namespace ET
+{
+
+    public class UIMainTeamItemComponent : Entity, IAwake
+    {
+        public GameObject DamageValue;
+        public GameObject ImageBooldValue;
+        public GameObject PlayerName;
+        public GameObject PlayerLv;
+        public GameObject ImageHead;
+
+        public TeamPlayerInfo TeamPlayerInfo;
+
+        public long PlayerID { get { return TeamPlayerInfo.UserID;  } }
+    }
+
+    [ObjectSystem]
+    public class UIMainTeamItemComponentAwakeSystem : AwakeSystem<UIMainTeamItemComponent>
+    {
+        public override void Awake(UIMainTeamItemComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            self.DamageValue = rc.Get<GameObject>("DamageValue");
+            self.ImageBooldValue = rc.Get<GameObject>("ImageBooldValue");
+            self.PlayerName = rc.Get<GameObject>("PlayerName");
+            self.PlayerLv = rc.Get<GameObject>("PlayerLv");
+            self.ImageHead = rc.Get<GameObject>("ImageHead");
+
+            self.DamageValue.GetComponent<Text>().text = "";
+        }
+    }
+
+    public static class UIMainTeamItemComponentSystem
+    {
+
+        public static void OnUpdateDamage(this UIMainTeamItemComponent self, long value)
+        {
+            string str = value.ToString();
+            if (value >= 1000) {
+                str = ((float)value / 1000.0f).ToString("F2") + "千";
+            }
+            self.DamageValue.GetComponent<Text>().text = "输出:" + str;
+        }
+
+        public static void OnReset(this UIMainTeamItemComponent self)
+        {
+            self.DamageValue.GetComponent<Text>().text = "";
+        }
+
+        public static void OnUpdateHP(this UIMainTeamItemComponent self, Unit unit)
+        {
+            if (unit.GetComponent<UnitInfoComponent>().UserID != self.TeamPlayerInfo.UserID)
+                return;
+
+            float curhp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp); 
+            float blood = curhp / unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
+            blood = Mathf.Clamp01(blood);
+            self.ImageBooldValue.transform.localScale = new Vector3(blood, 1,1);
+        }
+
+        public static void OnUpdateItem(this UIMainTeamItemComponent self, TeamPlayerInfo teamPlayerInfo)
+        {
+            self.TeamPlayerInfo = teamPlayerInfo;
+            self.PlayerName.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
+            self.PlayerLv.GetComponent<Text>().text = $"{teamPlayerInfo.PlayerLv}级";
+            UICommonHelper.ShowOccIcon(self.ImageHead, teamPlayerInfo.Occ);
+        }
+
+    }
+}

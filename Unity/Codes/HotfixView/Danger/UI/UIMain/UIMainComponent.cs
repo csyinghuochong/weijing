@@ -1,0 +1,1263 @@
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
+namespace ET
+{
+    public class UIMainComponent : Entity, IAwake, IUpdate, IDestroy
+    {
+        public GameObject Button_WorldLv;
+        public GameObject Button_ZhenYing;
+        public GameObject Button_Tower;
+        public GameObject Button_HongBao;
+        public GameObject Btn_PetFormation;
+        public GameObject Btn_GM;
+        public GameObject Btn_Task;
+        public GameObject UITiaoZhan;
+        public GameObject UISinging;
+        public GameObject TextPing;
+        public GameObject MailHintTip;
+        public GameObject Btn_Union;
+        public GameObject MainCityShow;
+        public GameObject UIStall;
+        public GameObject Btn_Friend;
+        public GameObject TeamDungeonBtn;
+        public GameObject Fps;
+        public GameObject Button_Energy;
+        public GameObject JoystickMove;
+        public GameObject JoystickFixed;
+        public GameObject LeftBottomBtns;
+        public GameObject Btn_PaiHang;
+        public GameObject Btn_PaiMaiHang;
+        public GameObject Button_Learn;
+        public GameObject Btn_EveryTask;
+        public GameObject Button_ChouKa;
+        public GameObject Button_Recharge;
+        public GameObject Button_RealName;
+        public GameObject taskButton;
+        public GameObject bagButton;
+        public GameObject jiayuanButton;
+        public GameObject homeButtons;
+        public GameObject skillButtons;
+        public GameObject buttonReturn;
+        public GameObject zhaohuanButton;
+        public GameObject chengjiuButton;
+        public GameObject adventureBtn;
+        public GameObject duihuaButton;
+        public GameObject shiquButton;
+        public GameObject petButton;
+        public GameObject roleSkillBtn;
+        public GameObject miniMap;
+        public GameObject LevelGuideMini;
+        public GameObject Obj_Img_ExpPro;
+        public GameObject Obj_Lab_ExpValue;
+        public GameObject Obj_Lab_MapName;
+        public GameObject Obj_Btn_ShouSuo;
+        public GameObject Btn_Email;
+        public GameObject Btn_MakeItem;
+
+        public UI UIMainTeam;
+        public UI UIMainTask;
+        public UI UILevelGuideMini;
+        public UI UIMainChat;
+        public UI UIRoleHead;
+        public UI UIMainHpBar;
+        public UI UIMailHintTip;
+
+        public UIPageButtonComponent UIPageButtonComponent;
+        public UIMainBuffComponent UIMainBuffComponent;
+        public UIJoystickComponent UIJoystickComponent;
+        public UIJoystickMoveComponent UIJoystickMoveComponent;
+        public UIMainSkillComponent UIMainSkillComponent;
+        public UIOpenBoxComponent UIOpenBoxComponent;
+        public UISingingComponent UISingingComponent;
+        public UITiaoZhanComponent UITiaoZhanComponent;
+        public UIDigTreasureComponent UIDigTreasureComponent;
+    }
+
+    [ObjectSystem]
+    public class UIMainComponentAwakeSystem : AwakeSystem<UIMainComponent>
+    {
+
+        public override void Awake(UIMainComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            self.Btn_PetFormation = rc.Get<GameObject>("Btn_PetFormation");
+            ButtonHelp.AddListenerEx(self.Btn_PetFormation, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPetSet).Coroutine(); });
+
+            self.Btn_GM = rc.Get<GameObject>("Btn_GM");
+            self.Btn_GM.SetActive(GlobalHelp.IsBanHaoMode);
+            ButtonHelp.AddListenerEx(self.Btn_GM, () => { UIHelper.Create(self.ZoneScene(), UIType.UICommand).Coroutine(); });
+
+            self.Btn_Task = rc.Get<GameObject>("Btn_Task");
+            ButtonHelp.AddListenerEx(self.Btn_Task, () => { self.OnOpenTask(); });
+
+            self.UITiaoZhan = rc.Get<GameObject>("UITiaoZhan");
+            self.UITiaoZhanComponent = self.AddChild<UITiaoZhanComponent, GameObject>(self.UITiaoZhan);
+
+            self.UIStall = rc.Get<GameObject>("UIStall");
+            GameObject buttonStallOpen = rc.Get<GameObject>("ButtonStallOpen");
+            ButtonHelp.AddListenerEx(buttonStallOpen, () => { self.OnButtonStallOpen().Coroutine(); });
+
+            GameObject buttonStallCancel = rc.Get<GameObject>("ButtonStallCancel");
+            ButtonHelp.AddListenerEx(buttonStallCancel, () => { self.OnButtonStallCancel(); });
+
+            self.Btn_Friend = rc.Get<GameObject>("Btn_Friend");
+            ButtonHelp.AddListenerEx(self.Btn_Friend, () => { self.OnBtn_Friend(); });
+
+            self.Button_HongBao = rc.Get<GameObject>("Button_HongBao");
+            ButtonHelp.AddListenerEx(self.Button_HongBao, () => { self.OnButton_HongBao(); });
+            self.Button_HongBao.SetActive(!GlobalHelp.IsBanHaoMode && self.IsHaveHongBao());
+
+            self.Button_Tower = rc.Get<GameObject>("Button_Tower");
+            ButtonHelp.AddListenerEx(self.Button_Tower, () => { self.OnButton_Tower(); });
+            self.Button_Tower.SetActive(!GlobalHelp.IsBanHaoMode);
+
+            self.Button_ZhenYing = rc.Get<GameObject>("Button_ZhenYing");
+            ButtonHelp.AddListenerEx(self.Button_ZhenYing, () => { self.OnButton_ZhenYing(); });
+            self.Button_ZhenYing.SetActive(!GlobalHelp.IsBanHaoMode);
+
+            self.Button_WorldLv = rc.Get<GameObject>("Button_WorldLv");
+            ButtonHelp.AddListenerEx(self.Button_WorldLv, () => { self.OnButton_WorldLv(); });
+            self.Button_WorldLv.SetActive(!GlobalHelp.IsBanHaoMode);
+
+            self.MailHintTip = rc.Get<GameObject>("MailHintTip");
+            ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
+            UI mailHintTipUI = self.AddChild<UI, string, GameObject>("MailHintTip", self.MailHintTip);
+            self.UIMailHintTip = mailHintTipUI;
+
+            self.Fps = rc.Get<GameObject>("Fps");
+            self.Fps.SetActive(false);
+
+            //获取相关组件
+            self.Obj_Img_ExpPro = rc.Get<GameObject>("Img_ExpPro");
+            self.Obj_Lab_ExpValue = rc.Get<GameObject>("Lab_ExpValue");
+            self.Obj_Lab_MapName = rc.Get<GameObject>("Lab_MapName");
+            self.MainCityShow = rc.Get<GameObject>("MainCityShow");
+
+            self.bagButton = rc.Get<GameObject>("Btn_RoseEquip");
+            //self.bagButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBag(); });
+            ButtonHelp.AddListenerEx(self.bagButton, () => { self.OnOpenBag(); });
+
+            self.jiayuanButton = rc.Get<GameObject>("Btn_MyJiaYuan");
+            self.TextPing = rc.Get<GameObject>("TextPing");
+
+            self.buttonReturn = rc.Get<GameObject>("Btn_RerurnBuilding");
+            //self.buttonReturn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickReturnButton(); });
+            ButtonHelp.AddListenerEx(self.buttonReturn, () => { self.OnClickReturnButton(); });
+
+            self.zhaohuanButton = rc.Get<GameObject>("Btn_ZhaoHuan");
+            //self.zhaohuanButton.GetComponent<Button>().onClick.AddListener(() => { self.OnZhaoHuan(); });
+            ButtonHelp.AddListenerEx(self.zhaohuanButton, () => { self.OnZhaoHuan(); });
+
+            self.taskButton = rc.Get<GameObject>("Btn_RoseTask");
+            //self.taskButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenTask(); });
+            ButtonHelp.AddListenerEx(self.taskButton, () => { self.OnOpenTask(); });
+
+            self.chengjiuButton = rc.Get<GameObject>("Btn_ChengJiu");
+            //self.chengjiuButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenChengjiu(); });
+            ButtonHelp.AddListenerEx(self.chengjiuButton, () => { self.OnOpenChengjiu(); });
+            self.adventureBtn = rc.Get<GameObject>("AdventureBtn");
+            //self.adventureBtn.GetComponent<Button>().onClick.AddListener();
+            ButtonHelp.AddListenerEx(self.adventureBtn, () => { self.OnEnterChapter().Coroutine(); });
+
+            self.duihuaButton = rc.Get<GameObject>("Btn_NpcDuiHua");
+            //self.duihuaButton.GetComponent<Button>().onClick.AddListener(() => { self.MoveToNpcDialog(); });
+            ButtonHelp.AddListenerEx(self.duihuaButton, () => { self.MoveToNpcDialog(); });
+
+            self.shiquButton = rc.Get<GameObject>("Btn_ShiQu");
+            self.shiquButton.GetComponent<Button>().onClick.AddListener(() => { self.OnShiquItem(); });
+            //ButtonHelp.AddListenerEx(self.shiquButton, () => { self.OnShiquItem(); });
+
+            self.petButton = rc.Get<GameObject>("Btn_Pet");
+            //self.petButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickPetButton(); });
+            self.petButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickPetButton(); });
+
+            self.roleSkillBtn = rc.Get<GameObject>("Btn_RoseSkill");
+            //self.roleSkillBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickSkillButton(); });
+            ButtonHelp.AddListenerEx(self.roleSkillBtn, () => { self.OnClickSkillButton(); });
+
+            self.miniMap = rc.Get<GameObject>("MiniMapButton");
+            //self.miniMap.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenMap(); });
+            ButtonHelp.AddListenerEx(self.miniMap, () => { self.OnOpenMap(); });
+
+            self.Obj_Btn_ShouSuo = rc.Get<GameObject>("Btn_ShouSuo");
+            self.Obj_Btn_ShouSuo.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenShouSuo(); });
+            //ButtonHelp.AddListenerEx(self.Obj_Btn_ShouSuo, () => { self.OnOpenShouSuo(); });
+
+            self.Btn_Email = rc.Get<GameObject>("Btn_Email");
+            //self.Btn_Email.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Email(); });
+            ButtonHelp.AddListenerEx(self.Btn_Email, () => { self.OnBtn_Email(); });
+
+            self.Btn_MakeItem = rc.Get<GameObject>("Btn_MakeItem");
+            //self.Btn_MakeItem.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Btn_MakeItem(); });
+            ButtonHelp.AddListenerEx(self.Btn_MakeItem, () => { self.OnBtn_Btn_MakeItem(); });
+
+            self.Button_RealName = rc.Get<GameObject>("Button_RealName");
+            //self.Button_RealName.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_RealName(); });
+            ButtonHelp.AddListenerEx(self.Button_RealName, () => { self.OnButton_RealName(); });
+
+            self.Button_Recharge = rc.Get<GameObject>("Button_Recharge");
+            //self.Button_Recharge.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Recharge(); });
+            ButtonHelp.AddListenerEx(self.Button_Recharge, () => { self.OnButton_Recharge(); });
+
+            self.Button_ChouKa = rc.Get<GameObject>("Button_ChouKa");
+            self.Button_ChouKa.SetActive(!GlobalHelp.IsBanHaoMode);
+            //self.Button_ChouKa.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_ChouKa(); });
+            ButtonHelp.AddListenerEx(self.Button_ChouKa, () => { self.OnButton_ChouKa(); });
+
+            self.Btn_EveryTask = rc.Get<GameObject>("Btn_EveryTask");
+            //self.Btn_EveryTask.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_EveryTask(); });
+            ButtonHelp.AddListenerEx(self.Btn_EveryTask, () => { self.OnBtn_EveryTask(); });
+
+            self.Button_Learn = rc.Get<GameObject>("Button_Learn");
+            //self.Button_Learn.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Learn(); });
+            ButtonHelp.AddListenerEx(self.Button_Learn, () => { self.OnButton_Learn(); });
+
+            self.Btn_PaiHang = rc.Get<GameObject>("Btn_PaiHang");
+            //self.Btn_PaiHang.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PaiHang(); });
+            ButtonHelp.AddListenerEx(self.Btn_PaiHang, () => { self.OnBtn_PaiHang(); });
+
+            self.Btn_PaiMaiHang = rc.Get<GameObject>("Btn_PaiMaiHang");
+            //self.Btn_PaiMaiHang.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PaiMaiHang(); });
+            ButtonHelp.AddListenerEx(self.Btn_PaiMaiHang, () => { self.OnBtn_PaiMaiHang(); });
+
+            self.Button_Energy = rc.Get<GameObject>("Button_Energy");
+            //self.Button_Energy.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Energy(); });
+            ButtonHelp.AddListenerEx(self.Button_Energy, () => { self.OnButton_Energy(); });
+
+            self.TeamDungeonBtn = rc.Get<GameObject>("TeamDungeonBtn");
+            ButtonHelp.AddListenerEx(self.TeamDungeonBtn, () => { self.OnTeamDungeonBtn(); });
+
+            GameObject Btn_HuoDong = rc.Get<GameObject>("Btn_HuoDong");
+            ButtonHelp.AddListenerEx(Btn_HuoDong, () => { self.OnBtn_HuoDong(); });
+
+            GameObject Button_ZhanQu = rc.Get<GameObject>("Button_ZhanQu");
+            ButtonHelp.AddListenerEx(Button_ZhanQu, () => { self.OnButton_ZhanQu(); });
+            Button_ZhanQu.SetActive(!GlobalHelp.IsBanHaoMode);
+
+            self.LeftBottomBtns = rc.Get<GameObject>("LeftBottomBtns");
+            GameObject ShrinkBtn = rc.Get<GameObject>("ShrinkBtn");
+            //ShrinkBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnShrinkBtn(); });
+            ButtonHelp.AddListenerEx(ShrinkBtn, () => { self.OnShrinkBtn(); });
+
+            self.homeButtons = rc.Get<GameObject>("HomeButton");
+            self.skillButtons = rc.Get<GameObject>("SkillButtons");
+
+            //初始化子UI
+            self.initSubUI();
+
+            //初始化基础属性
+            self.InitShow();
+
+            self.OnSettingUpdate();
+
+            self.OnEnterScene(SceneTypeEnum.MainCityScene);
+
+            self.RegisterReddot();
+
+            self.ZoneScene().GetComponent<GuideComponent>().FirstEnter();
+
+            DataUpdateComponent.Instance.AddListener(DataType.SkillSetting, self);
+            DataUpdateComponent.Instance.AddListener(DataType.SkillReset, self);
+            DataUpdateComponent.Instance.AddListener(DataType.EquipWear, self);
+            DataUpdateComponent.Instance.AddListener(DataType.TaskUpdate, self);
+            DataUpdateComponent.Instance.AddListener(DataType.TaskTrace, self);
+            DataUpdateComponent.Instance.AddListener(DataType.TaskGet, self);
+            DataUpdateComponent.Instance.AddListener(DataType.TaskComplete, self);
+            DataUpdateComponent.Instance.AddListener(DataType.OnRecvChat, self);
+            DataUpdateComponent.Instance.AddListener(DataType.HorseNotice, self);
+            DataUpdateComponent.Instance.AddListener(DataType.OnPetFightSet, self);
+            DataUpdateComponent.Instance.AddListener(DataType.UpdateRoleData, self);
+            DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
+            DataUpdateComponent.Instance.AddListener(DataType.SettingUpdate, self);
+            DataUpdateComponent.Instance.AddListener(DataType.BagItemAdd, self);
+            DataUpdateComponent.Instance.AddListener(DataType.TaskGiveUp, self);
+            DataUpdateComponent.Instance.AddListener(DataType.TeamUpdate, self);
+            DataUpdateComponent.Instance.AddListener(DataType.OnActiveTianFu, self);
+
+            //self.Btn_PetFormation.SetActive(GlobalHelp.IsBanHaoMode);
+
+        }
+    }
+
+    //通用提示事件
+    [Event]
+    public class CommonHintEvent : AEventClass<EventType.CommonHint>
+    {
+        protected override void Run(object cls)
+        {
+            EventType.CommonHint args = cls as EventType.CommonHint;
+            FloatTipManager.Instance.ShowFloatTipDi(args.HintText);
+        }
+    }
+
+    //通用提示事件
+    [Event]
+    public class CommonHintErrorEvent : AEventClass<EventType.CommonHintError>
+    {
+        protected override void Run(object cls)
+        {
+            EventType.CommonHintError args = cls as EventType.CommonHintError;
+            ErrorHelp.Instance.ErrorHint(args.errorValue);
+        }
+    }
+
+
+    [ObjectSystem]
+    public class UIMainComponentDestroySystem : DestroySystem<UIMainComponent>
+    {
+        public override void Destroy(UIMainComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.SkillSetting, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.SkillReset, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.EquipWear, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.TaskUpdate, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.TaskTrace, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.TaskGet, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.TaskComplete, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.OnRecvChat, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.HorseNotice, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.OnPetFightSet, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.UpdateRoleData, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.BagItemUpdate, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.SettingUpdate, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.BagItemAdd, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.TaskGiveUp, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.TeamUpdate, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.OnActiveTianFu, self);
+
+            self.UnRegisterRedot();
+        }
+    }
+
+    [ObjectSystem]
+    public class UIMainComponentUpdateSystem : UpdateSystem<UIMainComponent>
+    {
+        public override void Update(UIMainComponent self)
+        {
+            self.UIJoystickMoveComponent.OnUpdate();
+        }
+    }
+
+    public static class UIMainComponentSystem
+    {
+
+        public static bool IsHaveHongBao(this UIMainComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            return unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0;
+        }
+
+        public static void OnUpdateCombat(this UIMainComponent self)
+        {
+            self.UIRoleHead.GetComponent<UIRoleHeadComponent>().OnUpdateCombat();
+        }
+
+        public static async ETTask ShowPing(this UIMainComponent self)
+        {
+            if (self.Fps.activeSelf)
+            {
+                return;
+            }
+            self.Fps.SetActive(true);
+            long instanceid = self.InstanceId;
+            for (int i = 0; i < 1000; i++)
+            {
+                await TimerComponent.Instance.WaitAsync(2000);
+                if (instanceid != self.InstanceId)
+                {
+                    break;
+                }
+                self.TextPing.GetComponent<Text>().text = $"延迟: {self.ZoneScene().GetComponent<SessionComponent>().Session.GetComponent<PingComponent>().Ping}";
+            }
+        }
+
+        public static void OnBagItemAdd(this UIMainComponent self, string dataPaams)
+        {
+            string[] iteminfo = dataPaams.Split('_');
+            int itemId = int.Parse(iteminfo[0]);
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
+            FloatTipManager.Instance.ShowFloatTip($"获得物品 {itemConfig.ItemName} x{iteminfo[1]}");
+        }
+
+        public static void OnUpdateHP(this UIMainComponent self, Unit unit)
+        {
+            self.UIMainTeam.GetComponent<UIMainTeamComponent>().OnUpdateHP(unit);
+            self.UIMainHpBar.GetComponent<UIMainHpBarComponent>().OnChangeHp(unit);
+        }
+
+        public static void OnUpdateDamage(this UIMainComponent self, Unit unit)
+        {
+            self.UIMainTeam.GetComponent<UIMainTeamComponent>().OnUpdateDamage(unit);
+        }
+
+        public static void OnTeamUpdate(this UIMainComponent self)
+        {
+            self.UIMainTeam.GetComponent<UIMainTeamComponent>().OnUpdateUI();
+        }
+
+        public static void OnUpdateRoleData(this UIMainComponent self, string updateType)
+        {
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            UserDataType userDataType = (UserDataType)int.Parse(updateType.Split('_')[0]);
+
+            string updateValue = updateType.Split('_')[1];
+            if (userDataType == UserDataType.Exp)
+            {
+                self.UpdateShowRoleExp();
+            }
+            //更新等级实例化特效
+            if (userDataType == UserDataType.Lv)
+            {
+                FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), 60000002);
+                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("恭喜你!等级提升至:") + userInfo.Lv);
+
+                self.UpdateShowRoleExp();
+
+                self.UIRoleHead.GetComponent<UIRoleHeadComponent>().UpdateShowRoleExp();
+
+                self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.GuideTriggerLevel, userInfo.Lv);
+            }
+            if (userDataType == UserDataType.Name)
+            {
+                self.UIRoleHead.GetComponent<UIRoleHeadComponent>().UpdateShowRoleName();
+            }
+            if (userDataType == UserDataType.PiLao)
+            {
+                self.UIRoleHead.GetComponent<UIRoleHeadComponent>().UpdateShowRolePiLao();
+            }
+            if (userDataType == UserDataType.Gold)
+            {
+                if (int.Parse(updateValue) > 0)
+                {
+                    FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 金币");
+                }
+                if (int.Parse(updateValue) < 0)
+                {
+                    FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 金币");
+                }
+            }
+            if (userDataType == UserDataType.RongYu)
+            {
+                if (int.Parse(updateValue) > 0)
+                {
+                    FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 荣誉");
+                }
+                if (int.Parse(updateValue) < 0)
+                {
+                    FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 荣誉");
+                }
+            }
+            if (userDataType == UserDataType.Diamond)
+            {
+                UI uIRechage = UIHelper.GetUI(self.ZoneScene(), UIType.UIRecharge);
+                if (uIRechage != null)
+                {
+                    uIRechage.GetComponent<UIRechargeComponent>().OnRechageSucess();
+                }
+            }
+            if (userDataType == UserDataType.Combat)
+            {
+                self.OnUpdateCombat();
+
+                UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIRole);
+                if (ui != null)
+                {
+                    ui.GetComponent<UIRoleComponent>().UpdateShowComBat();
+                }
+            }
+            if (userDataType == UserDataType.Union)
+            {
+                long unionId = userInfo.UnionId;
+                UI uifriend = UIHelper.GetUI(self.ZoneScene(), UIType.UIFriend);
+                if (uifriend!=null && unionId > 0)
+                {
+                    uifriend.GetComponent<UIFriendComponent>().OnCreateUnion();
+                }
+                if (uifriend != null && unionId== 0)
+                {
+                    uifriend.GetComponent<UIFriendComponent>().OnLeaveUnion();
+                }
+            }
+        }
+        public static void OnSettingUpdate(this UIMainComponent self)
+        {
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            self.JoystickMove.SetActive(userInfoComponent.GetGameSettingValue(GameSettingEnum.YanGan) == "1");
+            self.JoystickFixed.SetActive(userInfoComponent.GetGameSettingValue(GameSettingEnum.YanGan) == "2");
+        }
+
+        public static void ShowMainUI(this UIMainComponent self, bool show)
+        {
+            self.GetParent<UI>().GameObject.SetActive(show);
+            if (show)
+            {
+                self.UIMainChat.GetComponent<UIMainChatComponent>().UpdatePosition().Coroutine();
+            }
+            else
+            {
+                self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>()?.ClearnsShow();
+                self.UIJoystickMoveComponent.HideUI();
+            }
+        }
+
+        public static void OnBagItemUpdate(this UIMainComponent self)
+        {
+            self.UIMainSkillComponent.OnBagItemUpdate();
+        }
+
+        public static void OnEquipWear(this UIMainComponent self, string DataParams)
+        {
+            //装备武器
+            self.OnSkillSetUpdate();
+        }
+
+        public static void OnRecvTaskUpdate(this UIMainComponent self)
+        {
+            self.UIMainTask.GetComponent<UIMainTaskComponent>().OnUpdateUI();
+
+            self.UpdateNpcTaskUI();
+        }
+
+        public static void UpdateNpcTaskUI(this UIMainComponent self)
+        {
+            Entity[] allunit = self.DomainScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunit.Length; i++)
+            {
+                Unit unit = allunit[i] as Unit;
+                if (unit.GetComponent<UnitInfoComponent>().Type != UnitType.Npc)
+                {
+                    continue;
+                }
+                if (unit.GetComponent<NpcHeadBarComponent>() != null)
+                {
+                    unit.GetComponent<NpcHeadBarComponent>().OnRecvTaskUpdate();
+                }
+            }
+        }
+
+        public static void OnTaskGiveUp(this UIMainComponent self)
+        {
+            self.UIMainTask.GetComponent<UIMainTaskComponent>().OnUpdateUI();
+        }
+
+        public static void OnRecvTaskTrace(this UIMainComponent self)
+        {
+            self.UIMainTask.GetComponent<UIMainTaskComponent>().OnUpdateUI();
+        }
+
+        public static void OnSkillSetUpdate(this UIMainComponent self)
+        {
+            self.UIMainSkillComponent.OnSkillSetUpdate();
+        }
+
+        public static async ETTask OnServerStop(this UIMainComponent self)
+        {
+            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "停服维护", "一分钟后停服维护，请暂时退出游戏！",
+               () =>
+               {
+               }).Coroutine();
+
+            long instanceId = self.InstanceId;
+            await TimerComponent.Instance.WaitAsync(60000);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
+            EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
+            Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
+        }
+
+        public static async ETTask OnHorseNotice(this UIMainComponent self)
+        {
+            M2C_HorseNoticeInfo m2C_HorseNoticeInfo = self.ZoneScene().GetComponent<ChatComponent>().HorseNoticeInfo;
+            if (m2C_HorseNoticeInfo.NoticeType == HorseType.StopSever)
+            {
+                self.OnServerStop().Coroutine();
+                return;
+            }
+            UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIHorseNotice);
+            if (uI == null)
+            {
+                uI = await UIHelper.Create(self.DomainScene(), UIType.UIHorseNotice);
+            }
+            uI.GetComponent<UIHorseNoticeComponent>().OnRecvHorseNotice(self.ZoneScene().GetComponent<ChatComponent>().HorseNoticeInfo);
+        }
+
+        public static void OnRecvChat(this UIMainComponent self)
+        {
+            self.UIMainChat.GetComponent<UIMainChatComponent>().OnRecvChat(self.ZoneScene().GetComponent<ChatComponent>().LastChatInfo);
+        }
+
+        public static void OnPetFightSet(this UIMainComponent self)
+        {
+            self.UIRoleHead.GetComponent<UIRoleHeadComponent>().OnPetFightSet();
+        }
+
+        public static void OnUpdateRoleName(this UIMainComponent self)
+        {
+            self.UIRoleHead.GetComponent<UIRoleHeadComponent>().UpdateShowRoleName();
+        }
+
+        public static void OnClickPageButton(this UIMainComponent self, int page)
+        {
+            //self.UIMainTask.GameObject.SetActive(page == 0);
+            //self.UIMainTeam.GameObject.SetActive(page == 1);
+            if (self.Obj_Btn_ShouSuo.transform.localScale.x > 0.9f)
+            {
+                self.UIMainTask.GameObject.SetActive(page == 0);
+                self.UIMainTeam.GameObject.SetActive(page == 1);
+            }
+            else
+            {
+                self.UIMainTask.GameObject.SetActive(false);
+                self.UIMainTeam.GameObject.SetActive(false);
+            }
+        }
+
+        public static void OnOpenShouSuo(this UIMainComponent self)
+        {
+            if (self.Obj_Btn_ShouSuo.transform.localScale.x > 0.9f)
+            {
+                self.Obj_Btn_ShouSuo.transform.localScale = new Vector3(-1, 1, 1);
+                self.UIMainTask.GameObject.SetActive(false);
+                self.UIMainTeam.GameObject.SetActive(false);
+            }
+            else
+            {
+                self.Obj_Btn_ShouSuo.transform.localScale = new Vector3(1, 1, 1);
+                int page = self.UIPageButtonComponent.CurrentIndex;
+                self.UIMainTask.GameObject.SetActive(page == 0);
+                self.UIMainTeam.GameObject.SetActive(page == 1);
+            }
+        }
+
+        public static void initSubUI(this UIMainComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            //技能
+            GameObject mainSkill = rc.Get<GameObject>("SkillButtons");
+            UI uiskill = self.AddChild<UI, string, GameObject>("SubMainSkill", mainSkill);
+            self.UIMainSkillComponent = uiskill.AddComponent<UIMainSkillComponent>();
+
+            //摇杆
+            self.JoystickMove = rc.Get<GameObject>("JoystickMove");
+            UI uiJoystick = self.AddChild<UI, string, GameObject>("NewJoystick1", self.JoystickMove);
+            self.UIJoystickMoveComponent = uiJoystick.AddComponent<UIJoystickMoveComponent>();
+
+            self.JoystickFixed = rc.Get<GameObject>("JoystickFixed");
+            UI fixedJoystickUI = self.AddChild<UI, string, GameObject>("NewJoystick2", self.JoystickFixed);
+            self.UIJoystickComponent = fixedJoystickUI.AddComponent<UIJoystickComponent>();
+
+            GameObject UIMainBuff = rc.Get<GameObject>("UIMainBuff");
+            UI ui_mainbuff = self.AddChild<UI, string, GameObject>("UIMainBuff", UIMainBuff);
+            self.UIMainBuffComponent = ui_mainbuff.AddComponent<UIMainBuffComponent>();
+
+            GameObject UIOpenBox = rc.Get<GameObject>("UIOpenBox");
+            UI uiopenbox = self.AddChild<UI, string, GameObject>("UIMainBuff", UIOpenBox);
+            self.UIOpenBoxComponent = uiopenbox.AddComponent<UIOpenBoxComponent>();
+
+            GameObject uisinging = rc.Get<GameObject>("UISinging");
+            self.UISingingComponent = self.AddChild<UISingingComponent, GameObject>(uisinging);
+
+            //任务
+            GameObject taskShowSet = rc.Get<GameObject>("UIMainTask");
+            self.UIMainTask = self.AddChild<UI, string, GameObject>("SubTaskShow", taskShowSet);
+            self.UIMainTask.AddComponent<UIMainTaskComponent>();
+
+            //组队
+            GameObject mainTeamSet = rc.Get<GameObject>("UIMainTeam");
+            self.UIMainTeam = self.AddChild<UI, string, GameObject>("mainTeamSet", mainTeamSet);
+            self.UIMainTeam.AddComponent<UIMainTeamComponent>();
+
+            //关卡小地图
+            self.LevelGuideMini = rc.Get<GameObject>("LevelGuideMini");
+            self.UILevelGuideMini = self.AddChild<UI, string, GameObject>("LevelGuideMini", self.LevelGuideMini);
+            self.UILevelGuideMini.AddComponent<UICellDungeonCellMiniComponent>();
+
+            //聊天
+            GameObject MainChat = rc.Get<GameObject>("UIMainChat");
+            self.UIMainChat = self.AddChild<UI, string, GameObject>("MainChat", MainChat);
+            self.UIMainChat.AddComponent<UIMainChatComponent>();
+
+            GameObject DigTreasure = rc.Get<GameObject>("UIDigTreasure");
+            self.UIDigTreasureComponent = self.AddChild<UIDigTreasureComponent, GameObject>(DigTreasure);
+            self.UIDigTreasureComponent.GameObject.SetActive(false);
+
+            //左上角头像
+            GameObject RoleHead = rc.Get<GameObject>("UIRoleHead");
+            self.UIRoleHead = self.AddChild<UI, string, GameObject>("UIRoleHead", RoleHead);
+            self.UIRoleHead.AddComponent<UIRoleHeadComponent>();
+
+            GameObject UIMainHpBar = rc.Get<GameObject>("UIMainHpBar");
+            UI ui_hpbar = self.AddChild<UI, string, GameObject>("UIMainHpBar", UIMainHpBar);
+            ui_hpbar.AddComponent<UIMainHpBarComponent>();
+            self.UIMainHpBar = ui_hpbar;
+
+            GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
+            UI buttonSet = self.AddChild<UI, string, GameObject>("FunctionBtnSet", BtnItemTypeSet);
+            UIPageButtonComponent uIPageViewComponent = buttonSet.AddComponent<UIPageButtonComponent>();
+            uIPageViewComponent.SetClickHandler((int page) =>
+            {
+                self.OnClickPageButton(page);
+            });
+            uIPageViewComponent.OnSelectIndex(0);
+            self.UIPageButtonComponent = uIPageViewComponent;
+
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            if (userInfoComponent.GetGameSettingValue(GameSettingEnum.FenBianlLv) == "1")
+            {
+                self.SetFenBianLv1();
+            }
+            if (userInfoComponent.GetGameSettingValue(GameSettingEnum.FenBianlLv) == "2")
+            {
+                self.SetFenBianLv2();
+            }
+
+            //更新小地图显示相关
+            self.UpdateShowMapData();
+        }
+
+        public static void SetFenBianLv1(this UIMainComponent self)
+        {
+            Screen.SetResolution((int)(UIComponent.Instance.ResolutionWidth), (int)(UIComponent.Instance.ResolutionHeight), true);
+        }
+
+        public static void SetFenBianLv2(this UIMainComponent self)
+        {
+            Screen.SetResolution((int)(UIComponent.Instance.ResolutionWidth * 0.6f), (int)(UIComponent.Instance.ResolutionHeight * 0.6f), true);
+        }
+
+        public static void RegisterReddot(this UIMainComponent self)
+        {
+            ReddotViewComponent redPointComponent = self.ZoneScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.RegisterReddot(ReddotType.Friend, self.Reddot_Frined);
+            redPointComponent.RegisterReddot(ReddotType.Team, self.Reddot_Team);
+            redPointComponent.RegisterReddot(ReddotType.Email, self.Reddot_Email);
+
+            FriendComponent friendComponent = self.ZoneScene().GetComponent<FriendComponent>();
+            ReddotComponent reddotComponent = self.ZoneScene().GetComponent<ReddotComponent>();
+            if (friendComponent.ApplyList.Count > 0)
+            {
+                reddotComponent.AddReddont(ReddotType.FriendApply);
+            }
+            if (reddotComponent.GetReddot(ReddotType.UnionApply) > 0)
+            {
+                reddotComponent.AddReddont(ReddotType.UnionApply);
+            }
+            if (reddotComponent.GetReddot(ReddotType.Email) > 0)
+            {
+                reddotComponent.AddReddont(ReddotType.Email);
+            }
+        }
+
+        public static void BeginWaterMove(this UIMainComponent self)
+        {
+            GameObject water = GameObject.Find("zhucheng_dimianshuimian/zhucheng_shui");
+            Material material = water.GetComponent<MeshRenderer>().materials[0];
+            Vector2 vector2 = material.GetTextureOffset("_MainTex");
+            material.SetTextureOffset("_MainTex", new Vector2(1, 1));
+            Log.ILog.Debug(water.name);
+        }
+
+        public static void UnRegisterRedot(this UIMainComponent self)
+        {
+            ReddotViewComponent redPointComponent = self.DomainScene().GetComponent<ReddotViewComponent>();
+            redPointComponent.UnRegisterReddot(ReddotType.Friend, self.Reddot_Frined);
+        }
+
+        public static void Reddot_Frined(this UIMainComponent self, int num)
+        {
+            self.Btn_Friend.transform.Find("Reddot").gameObject.SetActive(num > 0);
+        }
+
+        public static void Reddot_Team(this UIMainComponent self, int num)
+        {
+            self.UIPageButtonComponent.SetButtonReddot(1, num > 0);
+        }
+
+        public static void Reddot_Email(this UIMainComponent self, int num)
+        {
+            self.MailHintTip.SetActive(num > 0);
+            //if (num > 0)
+            //{
+            //    self.UIMailHintTip.RemoveComponent<UIFadeComponent>();
+            //    self.UIMailHintTip.AddComponent<UIFadeComponent>();
+            //}
+            //else
+            //{
+            //    self.UIMailHintTip.RemoveComponent<UIFadeComponent>();
+            //}
+        }
+
+        public static void BeginChangeScene(this UIMainComponent self)
+        {
+            self.UIJoystickMoveComponent.draging = false;
+        }
+
+        public static void OnEnterScene(this UIMainComponent self, int sceneTypeEnum)
+        {
+            self.UITiaoZhan.SetActive(sceneTypeEnum == SceneTypeEnum.Tower);
+            self.homeButtons.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
+            self.skillButtons.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene
+                && sceneTypeEnum != SceneTypeEnum.PetTianTi
+                && sceneTypeEnum != SceneTypeEnum.PetDungeon);
+            self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
+            self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
+            self.MainCityShow.SetActive(UICommonHelper.ShowBigMap((int)sceneTypeEnum));
+            self.UIMainSkillComponent.ResetUI(sceneTypeEnum == SceneTypeEnum.MainCityScene);
+            self.UpdateShadow();
+            self.UpdateNpcTaskUI();
+
+            //更新小地图显示相关
+            self.UpdateShowMapData();
+
+            //进入主城默认不显示目标
+            if (sceneTypeEnum == SceneTypeEnum.MainCityScene)
+            {
+                self.UIMainHpBar.GetComponent<UIMainHpBarComponent>().MonsterNode.SetActive(false);
+                self.UIMainHpBar.GetComponent<UIMainHpBarComponent>().BossNode.SetActive(false);
+                self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-128f, 380f);
+            }
+            else
+            {
+                self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-95.7f, 738f);
+            }
+
+            self.UIMainTeam.GetComponent<UIMainTeamComponent>().OnReset();
+        }
+
+        public static async ETTask OnButtonStallOpen(this UIMainComponent self)
+        {
+            UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPaiMaiStall);
+            uI.GetComponent<UIPaiMaiStallComponent>().OnUpdateUI(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()));
+        }
+
+        public static void OnButtonStallCancel(this UIMainComponent self)
+        {
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), "摊位提示", "是否收起自己的摊位?",
+                       () =>
+                       {
+                           NetHelper.PaiMaiStallRequest(self.DomainScene(), 0).Coroutine();
+                           //界面存在就销毁界面
+                           UIHelper.Remove(self.DomainScene(), UIType.UIPaiMaiStall).Coroutine();
+                           //弹出提示
+                           FloatTipManager.Instance.ShowFloatTipDi("摊位已收起!");
+                       }).Coroutine();
+        }
+
+        public static void OnMailHintTip(this UIMainComponent self)
+        {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
+            {
+                FloatTipManager.Instance.ShowFloatTipDi("请前往主城!");
+                return;
+            }
+            self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(1000008);
+        }
+
+        public static void OnBtn_Friend(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIFriend).Coroutine();
+        }
+
+        public static void OnButton_HongBao(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIHongBao).Coroutine();
+        }
+
+        public static void OnButton_Tower(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIRandomTower).Coroutine();
+        }
+
+        public static void OnButton_ZhenYing(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UICamp).Coroutine();
+        }
+
+        public static void OnButton_WorldLv(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIWorldLv).Coroutine();
+        }
+
+        public static void OnOpenBag(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIRole).Coroutine();
+        }
+
+        public static void OnOpenChengjiu(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIChengJiu).Coroutine();
+            //self.DomainScene().GetComponent<SessionComponent>().Session.Dispose();
+            //FloatTipManager.Instance.ShowFloatTip("test111");
+            //FloatTipManager.Instance.ShowFloatTipDi("test222");
+            //PopupTipHelp.OpenPopupTip(self.DomainScene(), "", "",
+            //delegate ()
+            //{
+            //    self.OnConfirHandler_Chengjiu();
+            //},
+            //delegate ()
+            //{
+            //    self.OnCancelHandler_Chengjiu();
+            //}).Coroutine();
+        }
+
+        public static void OnConfirHandler_Chengjiu(this UIMainComponent self)
+        {
+            Log.Debug("OnConfirHandler_Chengjiu");
+        }
+
+        public static void OnCancelHandler_Chengjiu(this UIMainComponent self)
+        {
+            Log.Debug("OnCancelHandler_Chengjiu");
+        }
+
+        public static void OnOpenTask(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UITask).Coroutine();
+        }
+
+        public static void OnClickReturnButton(this UIMainComponent self)
+        {
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("确定返回主城？"),
+                () =>
+                {
+                    EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
+                },
+                null).Coroutine();
+        }
+
+        //初始化界面基础信息
+        public static void InitShow(this UIMainComponent self)
+        {
+            self.UpdateShowRoleExp();
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            self.UIStall.SetActive(unit.GetComponent<NumericComponent>().GetAsInt((int)NumericType.Now_Stall) == 1);
+        }
+
+        //角色经验更新
+        public static void UpdateShowRoleExp(this UIMainComponent self)
+        {
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            self.Obj_Lab_ExpValue.GetComponent<Text>().text = userInfo.Exp.ToString() + "/" + ExpConfigCategory.Instance.Get(userInfo.Lv).UpExp;
+            self.Obj_Img_ExpPro.GetComponent<Image>().fillAmount = (float)userInfo.Exp / (float)ExpConfigCategory.Instance.Get(userInfo.Lv).UpExp;
+        }
+
+        //更新当前地图信息
+        public static void UpdateShowMapData(this UIMainComponent self)
+        {
+            int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
+            int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
+            //显示地图名称
+            if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
+            {
+                //显示地图名称
+                self.Obj_Lab_MapName.GetComponent<Text>().text = ChapterConfigCategory.Instance.Get(sceneId).ChapterName;
+                self.UILevelGuideMini.GetComponent<UICellDungeonCellMiniComponent>().OnUpdateUI();
+            }
+            if (sceneTypeEnum == (int)SceneTypeEnum.MainCityScene
+                || sceneTypeEnum == (int)SceneTypeEnum.TeamDungeon
+                || sceneTypeEnum == (int)SceneTypeEnum.YeWaiScene
+                || sceneTypeEnum == (int)SceneTypeEnum.Tower)
+            {
+                //显示地图名称
+                self.Obj_Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).Name;
+            }
+            if (sceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+            {
+                self.Obj_Lab_MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(sceneId).ChapterName;
+            }
+        }
+
+        public static void OnZhaoHuan(this UIMainComponent self)
+        {
+            MapHelper.SendZhaoHuan(self.DomainScene()).Coroutine();
+        }
+
+        public static async ETTask OnEnterChapter(this UIMainComponent self)
+        {
+            self.adventureBtn.SetActive(false);
+            await UIHelper.Create(self.DomainScene(), UIType.UIDungeon);
+            self.adventureBtn.SetActive(true);
+        }
+
+        public static void MoveToNpcDialog(this UIMainComponent self)
+        {
+            float distance = 20f;
+            Unit npc = null;
+            Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Entity[] units = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
+            UnitInfoComponent unitInfoComponent;
+            for (int i = 0; i < units.Length; i++)
+            {
+                unitInfoComponent = units[i].GetComponent<UnitInfoComponent>();
+                if (unitInfoComponent.Type != UnitType.Npc)
+                {
+                    continue;
+                }
+
+                float t_distance = PositionHelper.Distance2D(main, units[i] as Unit);
+                if (t_distance < distance)
+                {
+                    distance = t_distance;
+                    npc = units[i] as Unit;
+                }
+            }
+
+            if (npc == null)
+            {
+                return;
+            }
+            self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc.GetComponent<UnitInfoComponent>().UnitCondigID);
+        }
+
+        public static void OnShowFubenIndex(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UICellDungeonCell).Coroutine();
+        }
+
+        public static void OnShiquItem(this UIMainComponent self)
+        {
+            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() == 0)
+            {
+                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_BagIsFull);
+                return;
+            }
+            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
+            if (ids.Count > 0)
+            {
+                self.RequestShiQu(ids).Coroutine();
+                return;
+            }
+            else
+            {
+                Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                Unit unit = MapHelper.GetNearItem(self.ZoneScene());
+                if (unit != null)
+                {
+                    Vector3 dir = (main.Position - unit.Position).normalized;
+                    Vector3 tar = unit.Position + dir * 1f;
+                    self.MoveToShiQu(tar).Coroutine();
+                    return;
+                }
+            }
+
+            long chestId = MapHelper.GetChestBox(self.ZoneScene());
+            if (chestId != 0)
+            {
+                self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickChest(chestId);
+            }
+        }
+
+        public static async ETTask RequestShiQu(this UIMainComponent self, List<DropInfo> ids)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmShiQuItem);
+            MapHelper.SendShiquItem(self.ZoneScene(), ids).Coroutine();
+
+            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeData.SkillRigidity);
+            await TimerComponent.Instance.WaitAsync(500);
+            unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeData.SkillRigidity);
+            unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
+        }
+
+        public static async ETTask MoveToShiQu(this UIMainComponent self, Vector3 position)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int value = await unit.MoveToAsync2(position, false);
+            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
+            if (value == 0 && ids.Count > 0)
+            {
+                self.RequestShiQu(ids).Coroutine();
+            }
+        }
+
+        public static void OnClickSkillButton(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UISkill).Coroutine();
+        }
+
+        public static void OnOpenBigMap(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIMapBig).Coroutine();
+        }
+
+        public static void OnOpenMap(this UIMainComponent self)
+        {
+            int sceneType = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
+            int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
+            switch (sceneType)
+            {
+                case (int)SceneTypeEnum.MainCityScene:
+                case (int)SceneTypeEnum.LocalDungeon:
+                    self.OnOpenBigMap();        //打开主城
+                    break;
+                case (int)SceneTypeEnum.TeamDungeon:
+                case (int)SceneTypeEnum.YeWaiScene:
+                case (int)SceneTypeEnum.Tower:
+                    SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
+                    if (sceneConfig.ifShowMinMap == 1)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前场景不支持查看小地图"));
+                    }
+                    else
+                    {
+                        self.OnOpenBigMap();        //打开主城
+                    }
+                    break;
+                case (int)SceneTypeEnum.CellDungeon:
+                    self.OnShowFubenIndex();        //打开副本小地图
+                    break;
+            }
+        }
+
+        public static async void OnChapterOpen(this UIMainComponent self)
+        {
+            await ETTask.CompletedTask;
+            var BaseObj = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("Chapter/UIChapterOpen"));
+            UI uiskillButton = self.AddChild<UI, string, GameObject>("UIChapterOpen", GameObject.Instantiate(BaseObj));
+            uiskillButton.AddComponent<UICellChapterOpenComponent>().OnUpdateUI();
+            UICommonHelper.SetParent(uiskillButton.GameObject, UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject);
+
+            self.UILevelGuideMini.GetComponent<UICellDungeonCellMiniComponent>().OnChapterOpen(true);
+        }
+
+        public static async void OnTowerOpen(this UIMainComponent self, int towerId)
+        {
+            await ETTask.CompletedTask;
+            var BaseObj = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("Chapter/UITowerOpen"));
+            UI uiskillButton = self.AddChild<UI, string, GameObject>("UITowerOpen", GameObject.Instantiate(BaseObj));
+            uiskillButton.AddComponent<UITowerOpenComponent>().OnUpdateUI(towerId);
+            UICommonHelper.SetParent(uiskillButton.GameObject, UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject);
+
+            self.UITiaoZhanComponent.OnUpdateUI(towerId);
+        }
+
+        public static  void OnCellDungeonEnterShow(this UIMainComponent self, int chapterId)
+        {
+            if (chapterId == 0)
+                return;
+
+            var BaseObj = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("CellDungeon/UICellDungeonEnterShow"));
+            UI uiskillButton = self.AddChild<UI, string, GameObject>("ChapterEnterShow", GameObject.Instantiate(BaseObj));
+            uiskillButton.AddComponent<UICellDungeonEnterShowComponent>().OnUpdateUI(chapterId);
+
+            UICommonHelper.SetParent(uiskillButton.GameObject, UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject);
+        }
+
+
+        public static void OnBtn_Email(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIMail).Coroutine();
+        }
+
+        public static void OnBtn_Btn_MakeItem(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIMake).Coroutine();
+        }
+
+        public static void OnButton_RealName(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIRealName).Coroutine();
+        }
+
+        public static void OnButton_Recharge(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIRecharge).Coroutine();
+        }
+
+        public static void OnButton_ChouKa(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIChouKa).Coroutine();
+        }
+
+        public static void OnBtn_EveryTask(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UICountry).Coroutine();
+        }
+
+        public static void OnButton_Learn(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIMakeLearn).Coroutine();
+        }
+
+        public static void OnBtn_PaiHang(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIRank).Coroutine();
+        }
+
+        public static void OnBtn_PaiMaiHang(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIPaiMai).Coroutine();
+        }
+
+        public static void OnButton_Energy(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIEnergy).Coroutine();
+        }
+
+        public static void OnTeamDungeonBtn(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UITeamDungeon).Coroutine();
+        }
+
+        public static void OnBtn_HuoDong(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIActivity).Coroutine();
+        }
+
+        public static void OnButton_ZhanQu(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIZhanQu).Coroutine();
+        }
+
+
+        public static void OnShrinkBtn(this UIMainComponent self)
+        {
+            self.LeftBottomBtns.SetActive(!self.LeftBottomBtns.activeSelf);
+        }
+
+        public static void OnClickPetButton(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIPet).Coroutine();
+        }
+
+        public static void OnMoveStart(this UIMainComponent self)
+        {
+            if (self.UIOpenBoxComponent != null && self.UIOpenBoxComponent.BoxUnitId> 0)
+            {
+                self.UIOpenBoxComponent.OnOpenBox(0);
+            }
+            self.UIMainSkillComponent.UIAttackGrid.GetComponent<UIAttackGridComponent>().OnMoveStart();
+        }
+
+        public static void UpdateShadow(this UIMainComponent self, string usevalue = "")
+        {
+            GameObject gameObject = GameObject.Find("Directional Light");
+            if (gameObject == null)
+            {
+                return;
+            }
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            string value = usevalue != "" ? usevalue :  userInfoComponent.GetGameSettingValue(GameSettingEnum.Shadow);
+            Light light = gameObject.GetComponent<Light>();
+            light.shadows = value == "0" ? LightShadows.None : LightShadows.Soft;
+        }
+
+        public static void OnSpellStart(this UIMainComponent self)
+        {
+            if (self.UIOpenBoxComponent != null && self.UIOpenBoxComponent.BoxUnitId > 0)
+            {
+                self.UIOpenBoxComponent.OnOpenBox(0);
+            }
+        }
+    }
+}

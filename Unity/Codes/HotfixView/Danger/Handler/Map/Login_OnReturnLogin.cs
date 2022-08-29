@@ -1,0 +1,51 @@
+﻿namespace ET
+{
+    [Event]
+    public class Login_OnReturnLogin : AEventClass<EventType.ReturnLogin>
+    {
+
+        protected override  void Run(object cls)
+        {
+            RunAsync(cls as EventType.ReturnLogin).Coroutine();
+        }
+
+        private async ETTask RunAsync2(EventType.ReturnLogin args)
+        {
+            await Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.LoginScene, 1);
+            args.ZoneScene.Dispose();
+            GameObjectPool.Instance.DisposeAll();
+            Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
+
+            EventType.AppStartInitFinish.Instance.ZoneScene = zoneScene;
+            Game.EventSystem.PublishClass(EventType.AppStartInitFinish.Instance);
+        }
+
+        private async ETTask RunAsync(EventType.ReturnLogin args)
+        {
+            UIHelper.Clear();
+            UnitHelper.LoadingScene = false;
+            MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
+            mapComponent.SceneTypeEnum = (int)SceneTypeEnum.LoginScene;
+
+            if (args.ErrorCode == ErrorCore.ERR_OtherAccountLogin)
+            {
+                PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "异地登录", "账号异地登录！",
+                  () =>
+                  {
+                  }).Coroutine();
+                long instanceId = args.ZoneScene.InstanceId;
+                await TimerComponent.Instance.WaitAsync(2000);
+                if (instanceId != args.ZoneScene.InstanceId)
+                {
+                    return;
+                }
+                RunAsync2(args).Coroutine();
+            }
+            else
+            {
+                RunAsync2(args).Coroutine();
+            }
+
+        }
+    }
+}
