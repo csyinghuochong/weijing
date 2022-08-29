@@ -1,0 +1,91 @@
+﻿using System;
+using System.Linq;
+
+namespace ET
+{
+    [Timer(TimerType.TowerTimer)]
+    public class TowerTimer : ATimer<TowerComponent>
+    {
+        public override void Run(TowerComponent self)
+        {
+            try
+            {
+                self.OnTimer();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"playerOffline timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+    [ObjectSystem]
+    public class TowerComponentAwakeSystem : AwakeSystem<TowerComponent>
+    {
+        public override void Awake(TowerComponent self)
+        {
+            self.TowerId = 0;
+        }
+    }
+
+    [ObjectSystem]
+    public class TowerComponentDestroySystem : DestroySystem<TowerComponent>
+    {
+        public override void Destroy(TowerComponent self)
+        {
+            TimerComponent.Instance.Remove(ref self.Timer);
+        }
+    }
+
+    public  static class TowerComponentSystem
+    {
+
+        public static void OnKillEvent(this TowerComponent self)
+        {
+            if (!FubenHelp.IsAllMonsterDead(self.DomainScene()))
+            {
+                return;
+            }
+            self.OnTimer();
+        }
+
+        public static void OnTimer(this TowerComponent self)
+        {
+            TimerComponent.Instance.Remove(ref self.Timer);
+            if (!TowerConfigCategory.Instance.Contain(self.TowerId + 1))
+            {
+                return;
+            }
+            self.TowerId++;
+            self.CreateMonster().Coroutine();
+        }
+
+        public static async ETTask CreateMonster(this TowerComponent self)
+        {
+            long instanceId = self.InstanceId;
+            await TimerComponent.Instance.WaitAsync(2000);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
+            if (self.MainUnit == null || self.MainUnit.IsDisposed)
+            {
+                return;
+            }
+            self.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Tower_ID, self.TowerId, true);
+            Scene scene = self.DomainScene();
+            TowerConfig towerConfig = TowerConfigCategory.Instance.Get(self.TowerId);
+            self.WaveTime = towerConfig.NextTime * 1000;
+            FubenHelp.CreateMonsterList(scene, towerConfig.MonsterSet, FubenDifficulty.Tower).Coroutine();
+
+            TimerComponent.Instance.Remove(ref self.Timer);
+            self.Timer = TimerComponent.Instance.NewOnceTimer( TimeHelper.ServerNow() + self.WaveTime, TimerType.TowerTimer, self );
+        }
+
+        public static void BeginTower(this TowerComponent self, int sceneId)
+        {
+            self.TowerId = TowerConfigCategory.Instance.GetAll().Values.ToList()[0].Id;
+            self.CreateMonster().Coroutine();
+        }
+    }
+}

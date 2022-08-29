@@ -1,0 +1,132 @@
+using UnityEngine;
+
+namespace ET
+{
+
+    //所有属性都会进来这个事件
+    //发送客户端数值更新消息   EventType.NumericApplyChangeValue
+    public static class SendNumbericChange 
+    {
+        public static  void Broadcast(EventType.NumbericChange args)
+        {
+ 
+            MessageHelper.Broadcast(args.Parent, new M2C_UnitNumbericUpdate()
+            {
+                UnitId = args.Parent.Id,
+                NumericType = args.NumericType,
+                NewValue = args.NewValue,
+                OldValue = args.OldValue,
+                SkillId = args.SkillId,
+                DamgeType = args.DamgeType
+            });
+        }
+
+        public static void  SendToClient(EventType.NumbericChange args)
+        {
+            if (args.Parent.IsDisposed)
+            {
+                return;
+            }
+            if (args.Parent.GetComponent<UnitGateComponent>() == null)
+            {
+                Log.Info($"unit.GetComponent<UnitGateComponent>()  {args.Parent.Type}  {(int)args.NumericType}");
+                return;
+            }
+            MessageHelper.SendToClient(args.Parent, new M2C_UnitNumbericUpdate()
+            {
+                UnitId = args.Parent.Id,
+                NumericType = (int)args.NumericType,
+                NewValue = args.NewValue,
+                OldValue = args.OldValue,
+                SkillId = args.SkillId,
+                DamgeType = args.DamgeType
+            });
+        }
+    }
+
+    //击杀事件
+    [Event]
+    public class KillEvent_NotifyUnit : AEvent<EventType.KillEvent>
+    {
+        protected override void Run(EventType.KillEvent args)
+        {
+            long reviveTime = 0;
+            Unit defendUnit = args.UnitDefend;
+            if (defendUnit.Type == UnitType.Monster)
+            {
+                reviveTime = defendUnit.GetComponent<HeroDataComponent>().OnWaitRevive();
+            }
+            defendUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
+            
+            if (args.UnitAttack != null && !args.UnitAttack.IsDisposed)
+            {
+                Unit player = null;
+                if (args.UnitAttack.Type == UnitType.Player)
+                {
+                    player = args.UnitAttack;
+                }
+                if (args.UnitAttack.Type == UnitType.Pet)
+                {
+                    long master = args.UnitAttack.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
+                    player = args.UnitAttack.GetParent<UnitComponent>().Get(master);
+                }
+                if (player != null)
+                {
+                    player.GetComponent<TaskComponent>().OnKillUnit(defendUnit);
+                    player.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
+                    player.GetComponent<PetComponent>().OnKillUnit(defendUnit);
+                    player.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit);
+                    UnitFactory.CreateDropItems(defendUnit, player);
+                }
+                int sceneTypeEnum = args.UnitAttack.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+                switch (sceneTypeEnum)
+                {
+                    case (int)SceneTypeEnum.PetDungeon:
+                        args.UnitAttack.DomainScene().GetComponent<PetFubenSceneComponent>().OnKillEvent();
+                        break;
+                    case (int)SceneTypeEnum.CellDungeon:
+                        args.UnitAttack.DomainScene().GetComponent<CellDungeonComponent>().OnKillEvent();
+                        break;
+                    case (int)SceneTypeEnum.PetTianTi:
+                        args.UnitAttack.DomainScene().GetComponent<PetTianTiComponent>().OnKillEvent();
+                        break;
+                    case (int)SceneTypeEnum.TeamDungeon:
+                        args.UnitAttack.DomainScene().GetComponent<TeamDungeonComponent>().OnKillEvent(args.UnitDefend);
+                        break;
+                    case (int)SceneTypeEnum.YeWaiScene:
+                        args.UnitAttack.DomainScene().GetComponent<RefreshMonsterComponent>().OnKillEvent(args.UnitDefend);
+                        break;
+                    case (int)SceneTypeEnum.Tower:
+                        args.UnitAttack.DomainScene().GetComponent<TowerComponent>().OnKillEvent();
+                        break;
+                    case (int)SceneTypeEnum.RandomTower:
+                        args.UnitAttack.DomainScene().GetComponent<RandomTowerComponent>().OnKillEvent(args.UnitDefend);
+                        break;
+                    case (int)SceneTypeEnum.LocalDungeon:
+                        args.UnitAttack.DomainScene().GetComponent<LocalDungeonComponent>().OnKillEvent(args.UnitDefend);
+                        break;
+                }
+            }
+
+            if (defendUnit.Type == UnitType.Monster)
+            {
+                if (reviveTime > 0)
+                {
+                    NumericComponent numericComponent = defendUnit.GetComponent<NumericComponent>();
+                    defendUnit.Position = new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),
+                        numericComponent.GetAsFloat(NumericType.Born_Y),
+                        numericComponent.GetAsFloat(NumericType.Born_Z));
+                    return;
+                }
+                //下一帧移除defend
+                defendUnit.RemoveComponent<DeathTimeComponent>();
+                defendUnit.GetParent<UnitComponent>().Remove(defendUnit.Id);
+            }
+            else if (defendUnit.Type != UnitType.Player)
+            {
+                defendUnit.GetParent<UnitComponent>().Remove(defendUnit.Id);
+            }
+            //RunAsync(args).Coroutine();
+        }
+    }
+}

@@ -1,0 +1,44 @@
+﻿using System;
+
+namespace ET
+{
+
+    [ActorMessageHandler]
+    public class C2M_PaiMaiSellHandler : AMActorLocationRpcHandler<Unit, C2M_PaiMaiSellRequest, M2C_PaiMaiSellResponse>
+    {
+
+		protected override async ETTask Run(Unit unit, C2M_PaiMaiSellRequest request, M2C_PaiMaiSellResponse response, Action reply)
+		{
+
+			//获取出售数据
+			request.PaiMaiItemInfo.Id = IdGenerater.Instance.GenerateId();
+			request.PaiMaiItemInfo.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+			request.PaiMaiItemInfo.UserId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
+
+			//获取时间戳
+			long currentTime = TimeHelper.ServerNow();
+			request.PaiMaiItemInfo.SellTime = currentTime;
+
+			//对比出售数量和道具是否匹配
+			if (request.PaiMaiItemInfo.BagInfo.ItemNum <= unit.GetComponent<BagComponent>().GetItemNumber(request.PaiMaiItemInfo.BagInfo.ItemID))
+			{
+				//扣除对应道具
+				unit.GetComponent<BagComponent>().OnCostItemData(request.PaiMaiItemInfo.BagInfo.BagInfoID, request.PaiMaiItemInfo.BagInfo.ItemNum);
+				response.PaiMaiItemInfo = request.PaiMaiItemInfo;
+
+				//发送对应拍卖行信息
+				long paimaiServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.PaiMai)).InstanceId;
+				P2M_PaiMaiSellResponse r_GameStatusResponse = (P2M_PaiMaiSellResponse)await ActorMessageSenderComponent.Instance.Call
+					(paimaiServerId, new M2P_PaiMaiSellRequest()
+					{
+						PaiMaiItemInfo = request.PaiMaiItemInfo
+					});
+			}
+			else
+			{
+				response.Error = ErrorCore.ERR_ItemNotEnoughError;		//道具不足
+			}
+			reply();
+		}
+	}
+}

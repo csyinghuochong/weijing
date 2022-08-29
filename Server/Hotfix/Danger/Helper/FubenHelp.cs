@@ -1,0 +1,151 @@
+﻿
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace ET
+{ 
+    public static class FubenHelp
+	{
+	
+		/// <summary>
+		/// 寻找一个可通行的随机位置
+		/// </summary>
+		/// <param name="unit"></param>
+		/// <param name="from"></param>
+		/// <param name="target"></param>
+		/// <returns></returns>
+		public static bool GetCanReachPath(Scene scene, int navMeshId, Vector3 from, Vector3 target)
+		{
+			var list = ListComponent<Vector3>.Create();
+			//scene.GetComponent<PathfindingComponent>().Find(from, target, list);
+			List<Vector3> path = list;
+			if (path.Count >= 2)
+				return true;
+
+			return false;
+		}
+
+		public static async ETTask CreateMonsterList(Scene scene, string createMonster, int fubenDifficulty)
+		{
+			long instanceId = scene.InstanceId;
+			string[] monsters = createMonster.Split('@');
+			List<int> energySkills = new List<int>() { 64000001, 64000002, 64000003, 64000004, 64000005, 64000006, 64000007, 64000008 };
+
+			//1;37.65,0,3.2;70005005;1@138.43,0,0.06;70005010;1
+			for (int i = 0; i < monsters.Length; i++)
+			{
+				if (monsters[i] == "0")
+				{
+					continue;
+				}
+				//1;37.65,0,3.2;70005005;1
+				string[] mondels = monsters[i].Split(';');
+				string[] mtype = mondels[0].Split(',');
+				string[] position = mondels[1].Split(',');
+				string[] monsterid = mondels[2].Split(',');
+				string[] mcount = mondels[3].Split(',');
+
+				if (mtype[0] == "1")    //固定位置刷怪
+				{
+					for (int c = 0; c < int.Parse(mcount[0]); c++)
+					{
+						await TimerComponent.Instance.WaitAsync(100);
+						if (instanceId != scene.InstanceId)
+						{
+							return;
+						}
+
+						MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(int.Parse(monsterid[0]));
+						Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
+
+						//51 场景怪 有AI 不显示名称
+						//52 能量台子 无AI
+						//54 场景怪 有AI 显示名称
+						//55 宝箱类 无AI
+						if (monsterConfig.MonsterSonType == 52)
+						{
+							int skillId = energySkills[RandomHelper.RandomNumber(0, energySkills.Count)];
+							energySkills.Remove(skillId);
+							UnitFactory.CreateMonster(scene, vector3, fubenDifficulty,  monsterConfig.Id,new CreateMonsterInfo() { SkillId = skillId});
+						}
+						else
+						{
+							UnitFactory.CreateMonster(scene, vector3, fubenDifficulty, monsterConfig.Id,new CreateMonsterInfo());
+						}
+					}
+				}
+				if (mtype[0] == "2")
+				{
+					int cmcount = int.Parse(mcount[0]);
+					for (int c = 0; c < cmcount; c++)
+					{
+						await TimerComponent.Instance.WaitAsync(100);
+						if (instanceId != scene.InstanceId)
+						{
+							return;
+						}
+
+						float range = float.Parse(mcount[1]);
+						Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
+						Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
+						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
+						
+						UnitFactory.CreateMonster(scene, vector3, fubenDifficulty,  int.Parse(monsterid[0]), new CreateMonsterInfo());
+					}
+				}
+				if (mtype[0] == "4")
+				{
+					//4; 0,0,0; 71020001; 2,2; 2, 2
+					int playerLv = 1;
+					if (fubenDifficulty == FubenDifficulty.Tower)
+					{
+						Unit mainUnit = scene.GetComponent<TowerComponent>().MainUnit;
+						playerLv = mainUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+					}
+					int cmcount = int.Parse(mcount[0]);
+					for (int c = 0; c < cmcount; c++)
+					{
+						await TimerComponent.Instance.WaitAsync(1);
+
+						float range = float.Parse(mcount[1]);
+						Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
+						Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
+						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
+
+						UnitFactory.CreateMonster(scene, vector3, fubenDifficulty, int.Parse(monsterid[0]), new CreateMonsterInfo() {  PlayerLevel = playerLv, AttributeParams = mondels[4] + ";" + mondels[5] });
+					}
+				}
+			}
+		}
+
+		public static bool IsAllMonsterDead(Scene scene)
+		{
+			foreach ((long id, Entity value) in scene.GetComponent<UnitComponent>().Children)
+			{
+				UnitInfoComponent unitInfoComponent = value.GetComponent<UnitInfoComponent>();
+				if (unitInfoComponent.IsMonster() && unitInfoComponent.IsCanBeAttack()
+					 && value.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+
+		public static int GetAlivePetNumber(Scene scene)
+		{
+			int petNumber = 0;
+			foreach ((long id, Entity value) in scene.GetComponent<UnitComponent>().Children)
+			{
+				UnitInfoComponent unitInfoComponent = value.GetComponent<UnitInfoComponent>();
+				if (unitInfoComponent.IsPet() && value.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
+				{
+					petNumber++;
+				}
+			}
+
+			return petNumber;
+		}
+	}
+}

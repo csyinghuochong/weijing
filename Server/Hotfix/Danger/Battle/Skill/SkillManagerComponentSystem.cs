@@ -1,0 +1,507 @@
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace ET
+{
+
+    [Timer(TimerType.SkillTimer)]
+    public class SkillTimer : ATimer<SkillManagerComponent>
+    {
+        public override void Run(SkillManagerComponent self)
+        {
+            try
+            {
+                self.Check();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+    [ObjectSystem]
+    public class SkillManagerComponentAwakeSystem : AwakeSystem<SkillManagerComponent>
+    {
+        public override void Awake(SkillManagerComponent self)
+        {
+            self.FangunSkillId = int.Parse(GlobalValueConfigCategory.Instance.Get(2).Value);
+            self.DelaySkillList = new List<SkillInfo>();
+            self.SkillCDs = new Dictionary<int, SkillCDList>();
+            self.Skills = new List<SkillHandler>();
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.SkillTimer, self);
+        }
+    }
+
+    [ObjectSystem]
+    public class SkillManagerComponentDestroySystem : DestroySystem<SkillManagerComponent>
+    {
+        public override void Destroy(SkillManagerComponent self)
+        {
+            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            {
+                SkillHandler skillHandler = self.Skills[i];
+                self.Skills.RemoveAt(i);
+                skillHandler.OnFinished();
+                ObjectPool.Instance.Recycle(skillHandler);
+            }
+            self.SkillCDs.Clear();
+            TimerComponent.Instance?.Remove(ref self.Timer);
+        }
+    }
+
+    /// <summary>
+    /// 技能管理
+    /// </summary>
+    public static class SkillManagerComponentSystem
+    {
+
+        public static List<SkillInfo> GetRandomSkills(this SkillManagerComponent self, C2M_SkillCmd skillcmd, int weaponSkill)
+        {
+
+            Unit unit = self.GetParent<Unit>();
+            List<SkillInfo> skillInfos = new List<SkillInfo>();
+
+            SkillInfo skillInfo = new SkillInfo();
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+
+            Unit target = self.DomainScene().GetComponent<UnitComponent>().Get(skillcmd.TargetID);
+            string[] randomInfos = skillConfig.GameObjectParameter.Split(';');
+
+            switch (skillConfig.SkillTargetType)
+            {
+                case (int)SkillTargetType.SelfPosition:
+                    skillInfo = new SkillInfo();
+                    skillInfo.WeaponSkillID = weaponSkill;
+                    skillInfo.PosX = unit.Position.x;
+                    skillInfo.PosY = unit.Position.y;
+                    skillInfo.PosZ = unit.Position.z;
+                    skillInfo.TargetID = skillcmd.TargetID;
+                    skillInfo.TargetAngle = skillcmd.TargetAngle;
+                    skillInfos.Add(skillInfo);
+                    break;
+                case (int)SkillTargetType.TargetPositon:
+                    skillInfo = new SkillInfo();
+                    skillInfo.WeaponSkillID = weaponSkill;
+                    skillInfo.PosX = target!= null? target.Position.x : unit.Position.x;
+                    skillInfo.PosY = target != null ? target.Position.y : unit.Position.y;
+                    skillInfo.PosZ = target != null ? target.Position.z : unit.Position.z;
+                    skillInfo.TargetID = skillcmd.TargetID;
+                    skillInfo.TargetAngle = skillcmd.TargetAngle;
+                    skillInfos.Add(skillInfo);
+                    break;
+                case (int)SkillTargetType.FixedPosition:            //定点位置
+                    Vector3 sourcePoint = unit.Position;
+                    Quaternion rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
+                    Vector3 targetPoint = sourcePoint + rotation * Vector3.forward * skillcmd.TargetDistance;
+                    skillInfo.WeaponSkillID = weaponSkill;
+                    skillInfo.PosX = targetPoint.x;
+                    skillInfo.PosY = targetPoint.y;
+                    skillInfo.PosZ = targetPoint.z;
+                    skillInfo.TargetID = skillcmd.TargetID;
+                    skillInfo.TargetAngle = skillcmd.TargetAngle;
+                    skillInfos.Add(skillInfo);
+                    break;
+                case (int)SkillTargetType.SelfRandom:                   //自身中心点随机
+                    int randomSkillId = int.Parse(randomInfos[0]);
+                    int randomNumber = int.Parse(randomInfos[1]);
+                    int randomRange = int.Parse(randomInfos[2]);
+                    int skillNumber = RandomHelper.RandomNumber(1, randomNumber);
+                    for (int i = 0; i < skillNumber; i++)
+                    {
+                        skillInfo = new SkillInfo();
+                        skillInfo.WeaponSkillID = randomSkillId;
+                        skillInfo.TargetID = skillcmd.TargetID;
+                        skillInfo.PosX = unit.Position.x + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
+                        skillInfo.PosY = unit.Position.y;
+                        skillInfo.PosZ = unit.Position.z + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
+                        skillInfo.TargetID = skillcmd.TargetID;
+                        skillInfo.TargetAngle = skillcmd.TargetAngle;
+                        skillInfos.Add(skillInfo);
+                    }
+                    break;
+                case (int)SkillTargetType.TargetRandom:                 //目标中心点随机
+                    randomSkillId = int.Parse(randomInfos[0]);
+                    randomNumber = int.Parse(randomInfos[1]);
+                    randomRange = int.Parse(randomInfos[2]);
+                    skillNumber = RandomHelper.RandomNumber(1, randomNumber);
+
+                    for (int i = 0; i < skillNumber; i++)
+                    {
+                        skillInfo = new SkillInfo();
+                        skillInfo.WeaponSkillID = randomSkillId;
+                        skillInfo.PosX = target==null? unit.Position.x : target.Position.x + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
+                        skillInfo.PosY = target == null ? unit.Position.y : target.Position.y;
+                        skillInfo.PosZ = target == null ? unit.Position.z : target.Position.z + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
+                        skillInfo.TargetID = skillcmd.TargetID;
+                        skillInfo.TargetAngle = skillcmd.TargetAngle;
+                        skillInfos.Add(skillInfo);
+                    }
+                    break;
+                case (int)SkillTargetType.PositionRandom:       //定点位置随机
+                    randomSkillId = int.Parse(randomInfos[0]);
+                    randomNumber = int.Parse(randomInfos[1]);
+                    randomRange = int.Parse(randomInfos[2]);
+                    skillNumber = RandomHelper.RandomNumber(1, randomNumber);
+                    sourcePoint = unit.Position;
+                    rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
+                    targetPoint = sourcePoint + rotation * Vector3.forward * skillcmd.TargetDistance;
+                    for (int i = 0; i < skillNumber; i++)
+                    {
+                        skillInfo = new SkillInfo();
+                        skillInfo.WeaponSkillID = randomSkillId;
+                        skillInfo.PosX = targetPoint.x + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
+                        skillInfo.PosY = targetPoint.y;
+                        skillInfo.PosZ = targetPoint.z + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
+                        skillInfo.TargetID = skillcmd.TargetID;
+                        skillInfo.TargetAngle = skillcmd.TargetAngle;
+                        skillInfos.Add(skillInfo);
+                    }
+                    break;
+                case (int)SkillTargetType.TargetFollow:         //跟随目标随机
+                    randomSkillId = int.Parse(randomInfos[0]);
+                    float intervalTime = float.Parse(randomInfos[1]);
+                    skillNumber = Mathf.FloorToInt(float.Parse(randomInfos[2]) / intervalTime);
+                    for (int i = 0; i < skillNumber; i++)
+                    {
+                        skillInfo = new SkillInfo();
+                        skillInfo.WeaponSkillID = randomSkillId;
+                        skillInfo.PosX = target.Position.x;
+                        skillInfo.PosY = target.Position.y;
+                        skillInfo.PosZ = target.Position.z;
+                        skillInfo.TargetID = skillcmd.TargetID;
+                        skillInfo.TargetAngle = skillcmd.TargetAngle;
+                        skillInfo.BeginTime = TimeHelper.ServerNow();
+                        skillInfo.DelayTime = (long)(i * intervalTime * 1000);
+
+                        if (i == 0)
+                        {
+                            skillInfos.Add(skillInfo);
+                            continue;
+                        }
+                        self.DelaySkillList.Add(skillInfo);
+                    }
+                    break;
+                case (int)SkillTargetType.SelfOnly:
+                    skillInfo = new SkillInfo();
+                    skillInfo.WeaponSkillID = weaponSkill;
+                    skillInfo.PosX = unit.Position.x;
+                    skillInfo.PosY = unit.Position.y;
+                    skillInfo.PosZ = unit.Position.z;
+                    skillInfos.Add(skillInfo);
+                    break;
+                case (int)SkillTargetType.TargetOnly:
+                    if (target != null)
+                    {
+                        skillInfo = new SkillInfo();
+                        skillInfo.WeaponSkillID = weaponSkill;
+                        skillInfo.PosX = target.Position.x;
+                        skillInfo.PosY = target.Position.y;
+                        skillInfo.PosZ = target.Position.z;
+                        skillInfo.TargetID = skillcmd.TargetID;
+                        skillInfo.TargetAngle = skillcmd.TargetAngle;
+                        skillInfos.Add(skillInfo);
+                    }
+                    else if (target == null && skillConfig.SkillActType == 0)
+                    {
+                        skillInfo = new SkillInfo();
+                        skillInfo.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+                        SkillConfig skillConfig1 = SkillConfigCategory.Instance.Get(weaponSkill); 
+                        Vector3 targetPosition = unit.Position + unit.Rotation * Vector3.forward * (float)skillConfig1.SkillRangeSize;
+                        skillInfo.WeaponSkillID = weaponSkill;
+                        skillInfo.PosX = targetPosition.x;
+                        skillInfo.PosY = targetPosition.y;
+                        skillInfo.PosZ = targetPosition.z;
+                        skillInfo.TargetID = skillcmd.TargetID;
+                       
+                        skillInfos.Add(skillInfo);
+                    }
+                    else
+                    {
+                        Log.Info($"target == null:  {weaponSkill}");
+                    }
+                    break;
+            }
+
+            return skillInfos;
+        }
+
+        public static void OnDispose(this SkillManagerComponent self)
+        {
+            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            {
+                SkillHandler skillHandler = self.Skills[i];
+                self.Skills.RemoveAt(i);
+                skillHandler.OnFinished();
+                ObjectPool.Instance.Recycle(skillHandler);
+            }
+        }
+
+        public static (int, long) OnUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd)
+        {
+            Unit unit = self.GetParent<Unit>();
+
+            //判断技能是否可以释放
+            int errorCode = self.IfCanUseSkill(skillcmd.SkillID);
+            if (errorCode != ErrorCore.ERR_Success)
+            {
+                return (errorCode, 0);
+            }
+            self.InterruptSkill();
+
+            //执行技能逻辑
+            unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
+            BagComponent bagComponent = unit.GetComponent<BagComponent>();
+            ItemEquipType EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;
+            int weaponSkill = SkillHelp.GetWeaponSkillID(skillcmd.SkillID, EquipType);
+            //Log.ILog.Info("weaponSkill = " + weaponSkill);
+            SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
+            int tianfuSkill = skillSetComponent != null ? skillSetComponent.GetReplaceSkillId(skillcmd.SkillID) : 0;
+            if (tianfuSkill != 0)
+            {
+                weaponSkill = tianfuSkill;
+            }
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+            //发送客户端协议,告诉客户端开始释放技能
+            List<SkillInfo> skillList = self.GetRandomSkills(skillcmd, weaponSkill);
+            if (skillList.Count == 0)
+            {
+                return (ErrorCore.ERR_UseSkillError, 0);
+            }
+
+            //如果是闪现技能，并且目标点不能到达
+            if (skillConfig.GameObjectName == "Skill_ShanXian_1")
+            {
+                Vector3 vector3 = new Vector3(skillList[0].PosX, skillList[0].PosY, skillList[0].PosZ);
+                Vector3 target = self.DomainScene().GetComponent<MapComponent>().GetCanReachPath(unit.Position, vector3);
+                skillList[0].PosX = target.x;
+                skillList[0].PosY = target.y;
+                skillList[0].PosZ = target.z;
+            }
+
+            M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill() {
+                UnitId = unit.Id,
+                SkillID = skillcmd.SkillID,
+                TargetAngle = skillcmd.TargetAngle,
+                SkillInfos = skillList
+            };
+
+            //移除互斥技能
+            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            {
+                if (skillcmd.SkillID == self.FangunSkillId && self.Skills[i].SkillConf.Id == skillcmd.SkillID)
+                {
+                    ObjectPool.Instance.Recycle(self.Skills[i]);
+                    self.Skills[i].OnFinished();
+                    self.Skills.RemoveAt(i);
+                }
+            }
+            MessageHelper.Broadcast(unit, useSkill);
+            for (int i = 0; i < skillList.Count; i++)
+            {
+                SkillHandler skillAction = self.SkillFactory(skillList[i], unit);
+                self.Skills.Add(skillAction);
+            }
+
+            //添加技能CD列表
+            SkillCDList skillCd = null;
+            if (skillConfig.SkillActType == 0)
+            {
+                skillCd = null;
+            }
+            else if (skillcmd.SkillID == self.FangunSkillId)
+            {
+                skillCd = self.UpdateFangunSkillCD();
+            }
+            else
+            {
+                skillCd = self.UpdateSkillCD(skillcmd.SkillID, weaponSkill);
+            }
+            unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(skillConfig.SkillActType == 0?  SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7 );
+
+            return (ErrorCore.ERR_Success, skillCd !=null ? skillCd.CDEndTime : 0);
+        }
+
+        public static SkillCDList UpdateSkillCD(this SkillManagerComponent self, int skillId, int weaponSkill)
+        {
+            float reduceCD = 0f;
+            SkillSetComponent skillSetComponent = self.GetParent<Unit>().GetComponent<SkillSetComponent>();
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+            Dictionary<int, float> keyValuePairs = skillSetComponent != null ? skillSetComponent.GetSkillPropertyAdd(weaponSkill) : null;
+            if (keyValuePairs != null)
+                keyValuePairs.TryGetValue((int)SkillAttributeEnum.ReduceSkillCD, out reduceCD);
+            SkillCDList skillcd = new SkillCDList();
+            skillcd.SkillID = skillId;
+            skillcd.CDStartTime = TimeHelper.ServerNow();
+            skillcd.CDEndTime = skillcd.CDStartTime + (skillConfig.SkillCD - (int)reduceCD) * 1000;
+
+            if (self.SkillCDs.ContainsKey(skillId))
+            {
+                self.SkillCDs.Remove(skillId);
+            }
+            self.SkillCDs.Add(skillId, skillcd);
+            if (skillConfig.IfPublicSkillCD == 0)
+            {
+                //添加技能公共CD
+                self.SkillPublicCDTime = skillcd.CDStartTime + 1000;  //公共1秒CD  
+            }
+            return skillcd;
+        }
+
+        //冲锋逻辑
+        //1.连续释放3次技能,进入冷却状态
+        //2.每次释放之间有5秒间隔时间,未超过间隔时间触发连击，如果超过时间重置为初始状态
+        //初始状态 最开始的0次连击
+        //冷却状态 10秒钟
+        public static SkillCDList UpdateFangunSkillCD(this SkillManagerComponent self)
+        {
+            SkillCDList skillcd = null;
+            long newTime = TimeHelper.ServerNow();
+            if (newTime - self.FangunLastTime <= 5000)
+            {
+                self.FangunComboNumber++;
+            }
+            else
+            {
+                self.FangunComboNumber = 1;
+            }
+
+            if (self.FangunComboNumber >= 3)
+            {
+                self.FangunComboNumber = 0;
+
+                skillcd = new SkillCDList();
+                skillcd.SkillID = self.FangunSkillId;
+                skillcd.CDStartTime = newTime;
+                skillcd.CDEndTime = newTime + 10000;
+                self.SkillCDs.Add(self.FangunSkillId, skillcd);
+            }
+
+            self.FangunLastTime = newTime;
+            return skillcd;
+        }
+
+        //技能是否可以使用
+        public static int IfCanUseSkill(this SkillManagerComponent self, int nowSkillID)
+        {
+            Unit unit = self.GetParent<Unit>();
+
+            //判断技能是否再冷却中
+            if (self.SkillCDs.ContainsKey(nowSkillID))
+            {
+                return ErrorCore.ERR_UseSkillInCD1;
+            }
+
+            //判定是否再公共冷却时间
+            if (TimeHelper.ServerNow() < self.SkillPublicCDTime)
+            {
+                return ErrorCore.ERR_UseSkillInCD2;
+            }
+
+            //判断当前眩晕状态
+            if (!unit.GetComponent<StateComponent>().CanUseSkill())
+            {
+                return ErrorCore.ERR_UseSkillInCD3;
+            }
+
+            return ErrorCore.ERR_Success;
+        }
+        
+        public static SkillHandler SkillFactory(this SkillManagerComponent self, SkillInfo skillcmd, Unit from)
+        {
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
+            SkillHandler skillHandler = (SkillHandler)ObjectPool.Instance.Fetch(SkillDispatcherComponent.Instance.SkillTypes[skillConfig.GameObjectName]);
+            skillHandler.OnInit(skillcmd, from);
+            return skillHandler;
+        }
+
+        public static void InterruptSkill(this SkillManagerComponent self)
+        {
+            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            {
+                SkillHandler skillHandler = self.Skills[i];
+                if (skillHandler.SkillConf.SkillSingTime == 0)
+                {
+                    continue;
+                }
+                skillHandler.SetSkillState(SkillState.Finished);
+                self.GetParent<Unit>().GetComponent<StateComponent>().StateTypeAdd(StateTypeData.Interrupt, skillHandler.SkillConf.Id.ToString());
+            }
+        }
+
+        public static void Check(this SkillManagerComponent self)
+        {
+            for ( int i = self.Skills.Count - 1; i >= 0; i-- )
+            {
+                if (self.Skills[i].GetSkillState() == SkillState.Finished)
+                {
+                    SkillHandler skillHandler = self.Skills[i];
+                    ObjectPool.Instance.Recycle(skillHandler);
+                    skillHandler.OnFinished();
+                    self.Skills.RemoveAt(i);
+                    continue;
+                }
+                self.Skills[i].OnUpdate();
+            }
+
+            for (int i = self.DelaySkillList.Count - 1; i >= 0; i--)
+            {
+                SkillInfo skillInfo = self.DelaySkillList[i];
+                skillInfo.PassTime = TimeHelper.ServerNow() - skillInfo.BeginTime;
+
+                Unit target = self.DomainScene().GetComponent<UnitComponent>().Get(skillInfo.TargetID);
+                if (target != null && !target.IsDisposed)
+                {
+                    skillInfo.PosX = target.Position.x;
+                    skillInfo.PosY = target.Position.y;
+                    skillInfo.PosZ = target.Position.z;
+                }
+                if (skillInfo.PassTime < skillInfo.DelayTime)
+                {
+                    continue;
+                }
+
+                Unit from = self.GetParent<Unit>();
+                SkillHandler skillAction = self.SkillFactory( skillInfo, from);
+                self.Skills.Add(skillAction);
+
+                M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill()
+                {
+                    UnitId = from.Id,
+                    SkillID = 0,
+                    TargetAngle = 0,
+                    SkillInfos = new List<SkillInfo>() { skillInfo }
+                };
+
+                MessageHelper.Broadcast(from, useSkill);
+                self.DelaySkillList.RemoveAt(i);
+            }
+
+            //循环检查冷却CD的技能
+            if (self.SkillCDs.Count >= 1)
+            {
+                long nowTime = TimeHelper.ServerNow();
+                List<int> removeList = new List<int>();
+                foreach (SkillCDList skillcd in self.SkillCDs.Values)
+                {
+                    if (nowTime >= skillcd.CDEndTime)
+                    {
+                        removeList.Add(skillcd.SkillID);
+                    }
+                }
+
+                //移除技能cd结束的技能
+                if (removeList != null)
+                {
+                    foreach (int removeID in removeList)
+                    {
+                        self.SkillCDs.Remove(removeID);
+                    }
+                }
+            }
+        }
+    }
+
+
+}

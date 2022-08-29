@@ -1,0 +1,72 @@
+using System;
+using System.Linq;
+using UnityEngine;
+
+namespace ET
+{
+
+    public static class RobotManagerComponentSystem
+    {
+
+        public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone)
+        {
+            Scene zoneScene = null;
+            try
+            {
+                bool release = false;
+                zoneScene = SceneFactory.CreateZoneScene(zone, "Robot", self);
+                
+                int registerCode = await LoginHelper.Register(zoneScene, release, zone.ToString(), ComHelp.RobotPassWord);
+                int errorCode = await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(1, release), zone.ToString(), ComHelp.RobotPassWord);
+
+                if (registerCode == ErrorCore.ERR_Success)
+                {
+                    A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());
+                    AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
+                    playerComponent.CurrentServerId = 1;
+                    playerComponent.CurrentRoleId = g2cCreateRole.createRoleInfo.UserID;
+
+                    errorCode = await LoginHelper.GetRealmKey(zoneScene);
+                    errorCode = await LoginHelper.EnterGame(zoneScene);
+                }
+                if (registerCode == ErrorCore.ERR_AccountAlreadyRegister)
+                {
+                    AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
+                    playerComponent.CurrentServerId = 1;
+                    playerComponent.CurrentRoleId = playerComponent.CreateRoleList[0].UserID;
+
+                    errorCode = await LoginHelper.GetRealmKey(zoneScene);
+                    errorCode = await LoginHelper.EnterGame(zoneScene);
+                }
+                Log.Debug($"create robot ok: {zone}");
+                return errorCode == ErrorCore.ERR_Success ?  zoneScene : null;
+            }
+            catch (Exception e)
+            {
+                zoneScene?.Dispose();
+                throw new Exception($"RobotSceneManagerComponent create robot fail, zone: {zone}", e);
+            }
+        }
+
+        public static void RemoveAll(this RobotManagerComponent self)
+        {
+            foreach (Entity robot in self.Children.Values.ToArray())        
+            {
+                robot.Dispose();
+            }
+        }
+        
+        public static void Remove(this RobotManagerComponent self, long id)
+        {
+            self.GetChild<Scene>(id)?.Dispose();
+        }
+
+        public static void Clear(this RobotManagerComponent self)
+        {
+            foreach (Entity entity in self.Children.Values.ToArray())
+            {
+                entity.Dispose();
+            }
+        }
+    }
+}

@@ -1,0 +1,78 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>ET</RootNamespace>
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DefineConstants>TRACE2_0;NOT_UNITY;SERVER;</DefineConstants>
+    <OutputPath>..\..\Bin\</OutputPath>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DefineConstants>TRACE2_0;SERVER;NOT_UNITY</DefineConstants>
+    <OutputPath>..\..\Bin\</OutputPath>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="..\..\Unity\Codes\Hotfix\Demo\Move\MoveComponentSystem.cs">
+      <Link>Demo\Move\MoveComponentSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Codes\Hotfix\Module\Config\ConfigComponentSystem.cs">
+      <Link>Module\Config\ConfigComponentSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Codes\Hotfix\Module\Numeric\NumericChangeEvent_NotifyWatcher.cs">
+      <Link>Module\Numeric\NumericChangeEvent_NotifyWatcher.cs</Link>
+    </Compile>
+    <Compile Include="..\..\Unity\Codes\Hotfix\Module\Numeric\NumericWatcher_Hp_ShowUI.cs">
+      <Link>Module\Numeric\NumericWatcher_Hp_ShowUI.cs</Link>
+    </Compile>
+	  <Compile Include="..\..\Unity\Codes\Hotfix\Module\Numeric\NumericWatcher_Update.cs">
+		  <Link>Module\Numeric\NumericWatcher_Update.cs</Link>
+	  </Compile>
+	  <Compile Include="..\..\Unity\Codes\Hotfix\Module\Numeric\NumericWatcherComponentSystem.cs">
+		  <Link>Module\Numeric\NumericWatcherComponentSystem.cs</Link>
+	  </Compile>
+	  
+    <Compile Include="..\..\Unity\Codes\Hotfix\Module\AI\**\*.cs">
+      <Link>Module\AI\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Codes\Hotfix\Module\Recast\**\*.cs">
+      <Link>Module\Recast\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Compile>
+
+    <Compile Include="..\..\Unity\Codes\Hotfix\Module\Message\**\*.cs">
+      <Link>Module\Message\%(RecursiveDir)%(FileName)%(Extension)</Link>
+    </Compile>
+
+	  <Compile Include="..\..\Unity\Codes\Hotfix\Danger\AI\**\*.cs">
+		  <Link>Danger\AI\%(RecursiveDir)%(FileName)%(Extension)</Link>
+	  </Compile>
+	  <Compile Include="..\..\Unity\Codes\Hotfix\Danger\HeroData\**\*.cs">
+		  <Link>Danger\HeroData\%(RecursiveDir)%(FileName)%(Extension)</Link>
+	  </Compile>
+	  <Compile Include="..\..\Unity\Codes\Hotfix\Danger\ReferencePool\**\*.cs">
+		  <Link>Danger\ReferencePool\%(RecursiveDir)%(FileName)%(Extension)</Link>
+	  </Compile>
+	  <Compile Include="..\..\Unity\Codes\Hotfix\Danger\Common\**\*.cs">
+		  <Link>Danger\Common\%(RecursiveDir)%(FileName)%(Extension)</Link>
+	  </Compile>
+
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Model\Server.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Danger\Handler\Realm\" />
+    <Folder Include="Demo\AI\" />
+    <Folder Include="Module\Function\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Alipay.AopSdk.Core" Version="2.5.0.1" />
+  </ItemGroup>
+</Project>

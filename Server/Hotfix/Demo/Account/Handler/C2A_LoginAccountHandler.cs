@@ -1,0 +1,224 @@
+﻿using System;
+using System.Collections.Generic;
+
+namespace ET
+{
+    public class C2A_LoginAccountHandler : AMRpcHandler<C2A_LoginAccount, A2C_LoginAccount>
+    {
+        protected override async ETTask Run(Session session, C2A_LoginAccount request, A2C_LoginAccount response, Action reply)
+        {
+            if (session.DomainScene().SceneType != SceneType.Account)
+            {
+                Log.Error($"请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+                session.Dispose();
+                return;
+            }
+            session.RemoveComponent<SessionAcceptTimeoutComponent>();
+
+            if (session.GetComponent<SessionLockingComponent>() != null)
+            {
+                response.Error = ErrorCore.ERR_RequestRepeatedly;
+                reply();
+                session.Disconnect().Coroutine();
+                return;
+            }
+            
+
+            if (string.IsNullOrEmpty(request.AccountName) || string.IsNullOrEmpty(request.Password))
+            {
+                response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                reply();
+                session.Disconnect().Coroutine();
+                return;
+            }
+
+            //密码要md5
+            //if (!Regex.IsMatch(request.AccountName.Trim(),@"^(?=.*[0-9].*)(?=.*[A-Z].*)(?=.*[a-z].*).{6,15}$"))
+            //{
+            //    response.Error = ErrorCode.ERR_AccountNameFormError;
+            //    reply();
+            //    session.Disconnect().Coroutine();
+            //    return;
+            //}
+
+            //if (!Regex.IsMatch(request.Password.Trim(),@"^[A-Za-z0-9]+$"))
+            //{
+            //    response.Error = ErrorCode.ERR_PasswordFormError;
+            //    reply();
+            //    session.Disconnect().Coroutine();
+            //    return;
+            //}
+
+            //先检测一下QQ和微信登录
+            if (!string.IsNullOrEmpty(request.ThirdLogin) && request.ThirdLogin.Length > 0)
+            {
+                using (session.AddComponent<SessionLockingComponent>())
+                {
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountName.Trim().GetHashCode()))
+                    {
+                        long accountZone = DBHelper.GetAccountCenter();
+                        Center2A_LoginAccount centerAccount = (Center2A_LoginAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_LoginAccount() { AccountName = request.AccountName, Password = request.Password });
+                        PlayerInfo playerInfo = centerAccount.PlayerInfo != null ? centerAccount.PlayerInfo : null;
+
+                        if (centerAccount.PlayerInfo == null)
+                        {
+                            Center2A_RegisterAccount saveAccount = (Center2A_RegisterAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_RegisterAccount()
+                            {
+                                AccountName = request.AccountName,
+                                Password = request.Password
+                            });
+                        }
+                    }
+                }
+            }
+            
+            using (session.AddComponent<SessionLockingComponent>())
+            {
+                using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountName.Trim().GetHashCode()))
+                {
+                    List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Account == request.AccountName&&d.Password == request.Password);
+                    DBAccountInfo account = accountInfoList != null && accountInfoList.Count > 0 ? accountInfoList[0] : null;
+
+                    long accountZone = DBHelper.GetAccountCenter();
+                    Center2A_LoginAccount centerAccount = (Center2A_LoginAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_LoginAccount() { AccountName = request.AccountName, Password = request.Password });
+                    PlayerInfo playerInfo = centerAccount.PlayerInfo != null ? centerAccount.PlayerInfo :null;
+
+                    if (centerAccount.PlayerInfo == null)
+                    {
+                        response.Error = ErrorCore.ERR_LoginInfoIsNull;
+                        reply();
+                        session.Disconnect().Coroutine();
+                        return;
+                    }
+                    if (account == null)
+                    {
+                        //创建一条数据库信息,创建账号信息
+                        account = session.AddChildWithId<DBAccountInfo>(centerAccount.AccountId);
+                        account.Account = request.AccountName;
+                        account.Password = request.Password;
+                        account.PlayerInfo = playerInfo;
+                        await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(session.DomainZone(), account);
+                    }
+                    //if (centerAccount.PlayerInfo == null)    //兼容老账号
+                    //{
+                    //    Center2A_SaveAccount saveAccount = (Center2A_SaveAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_SaveAccount()
+                    //    {
+                    //         AccountId = account.Id,
+                    //         PlayerInfo = account.PlayerInfo,
+                    //         AccountName = account.Account,
+                    //         Password = account.Password
+                    //    });
+                    //    playerInfo = account.PlayerInfo;
+                    //}
+
+                    if (playerInfo.RealName == 0 )
+                    {
+                        response.Error = ErrorCore.ERR_NotRealName;
+                        response.AccountId = account.Id;
+                        reply();
+                        session.Disconnect().Coroutine();
+                        account?.Dispose();
+                        return;
+                    }
+       
+                    //if (!account.Password.Equals(request.Password))
+                    //{
+                    //    response.Error = ErrorCore.ERR_AccountOrPasswordError;
+                    //    reply();
+                    //    session.Disconnect().Coroutine();
+                    //    account?.Dispose();
+                    //    return;
+                    //}
+                    //防沉迷相关
+                    string idCardNo = playerInfo.IdCardNo;
+                    int canLogin = ComHelp.CanLogin(idCardNo, session.DomainScene().GetComponent<FangChenMiComponent>().IsHoliday);
+                    if (canLogin != ErrorCode.ERR_Success)
+                    {
+                        response.Error = canLogin;
+                        reply();
+                        session.Disconnect().Coroutine();
+                        account?.Dispose();
+                        return;
+                    }
+
+                    string queueToken = session.DomainScene().GetComponent<TokenComponent>().Get(account.Id);
+                    long onlineNumber = session.DomainScene().GetComponent<AccountSessionsComponent>().GetAll().Values.Count;
+                    int maxNumber = int.Parse( GlobalValueConfigCategory.Instance.Get(25).Value);
+                    if (session.DomainScene().GetComponent<AccountSessionsComponent>().Get(account.Id) == 0 &&
+                        onlineNumber >= maxNumber && (string.IsNullOrEmpty(queueToken) || queueToken != request.Token) )
+                    {
+                        queueToken = TimeHelper.ServerNow().ToString() + RandomHelper.RandomNumber(int.MinValue, int.MaxValue).ToString();
+                        session.DomainScene().GetComponent<TokenComponent>().Remove(account.Id);
+                        session.DomainScene().GetComponent<TokenComponent>().Add(account.Id, queueToken, true);
+
+                        long queueServerId = DBHelper.GetQueueServerId(session.DomainZone());
+                        Q2A_EnterQueue d2GGetUnit = (Q2A_EnterQueue)await ActorMessageSenderComponent.Instance.Call(queueServerId, new A2Q_EnterQueue()
+                        {
+                            AccountId = account.Id,
+                            Token = queueToken
+                        });
+
+                        //进入排队
+                        response.Error = ErrorCore.ERR_EnterQueue;
+                        response.AccountId = account.Id;
+                        response.QueueNumber = d2GGetUnit.QueueNumber;
+                        response.QueueAddres = StartSceneConfigCategory.Instance.Queues[session.DomainZone()].OuterIPPort.ToString();
+                        reply();
+                        session.Disconnect().Coroutine();
+                        account?.Dispose();
+                        return;
+                    }
+                    session.DomainScene().GetComponent<TokenComponent>().Remove(account.Id);
+
+                    //请求登录中心服查询有没有同账号玩家登录[uwa]
+                    //StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), "LoginCenter");
+                    //long loginCenterInstanceId = startSceneConfig.InstanceId;
+                    long loginCenterInstanceId = StartSceneConfigCategory.Instance.LoginCenterConfig.InstanceId;//踢掉进入gate的玩家
+                    var loginAccountResponse = (L2A_LoginAccountResponse)await ActorMessageSenderComponent.Instance.Call(loginCenterInstanceId, new A2L_LoginAccountRequest() { AccountId = account.Id });
+
+                    if (loginAccountResponse.Error != ErrorCode.ERR_Success)
+                    {
+                        response.Error = loginAccountResponse.Error;
+
+                        reply();
+                        session?.Disconnect().Coroutine();
+                        account?.Dispose();
+                        return;
+                    }
+                    //AccountSessionsComponent.Remove 需要在适当的时候移除
+                    long accountSessionInstanceId = session.DomainScene().GetComponent<AccountSessionsComponent>().Get(account.Id);
+                    Session otherSession = Game.EventSystem.Get(accountSessionInstanceId) as Session;
+                    if (otherSession != null)
+                    {
+                        Log.Info($"ErrorCore.ERR_OtherAccountLogin1 {account.Id}");
+                    } 
+                    otherSession?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_OtherAccountLogin });                 //踢accout服的玩家下线
+                    otherSession?.Disconnect().Coroutine();
+                    session.DomainScene().GetComponent<AccountSessionsComponent>().Add(account.Id, session.InstanceId);
+                    session.AddComponent<AccountCheckOutTimeComponent, long>(account.Id);   //自己在登录服只能停留60秒
+
+                    string Token = TimeHelper.ServerNow().ToString() + RandomHelper.RandomNumber(int.MinValue, int.MaxValue).ToString();
+                    session.DomainScene().GetComponent<TokenComponent>().Remove(account.Id);
+                    session.DomainScene().GetComponent<TokenComponent>().Add(account.Id, Token);
+                   
+                    long dbCacheId = DBHelper.GetDbCacheId(session.DomainZone());
+                    for (int i = 0; i < account.UserList.Count; i++)
+                    {
+                        CreateRoleListInfo roleList = new CreateRoleListInfo();
+                        D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = account.UserList[i], Component = DBHelper.UserInfoComponent });
+                        UserInfoComponent userinfo = d2GGetUnit.Component as UserInfoComponent;
+                        roleList = Function_Role.GetInstance().GetRoleListInfo(userinfo.UserInfo, i, account.UserList[i]);
+                        response.RoleLists.Add(roleList);
+                    }
+                    response.PlayerInfo = account.PlayerInfo;
+                    response.AccountId = account.Id;
+                    response.Token = Token;
+                    reply();
+                    account?.Dispose();
+
+                }
+            }
+
+        }
+    }
+}

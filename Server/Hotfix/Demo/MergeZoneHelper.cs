@@ -1,0 +1,199 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ET
+{
+    public static class MergeZoneHelper
+    {
+
+        public static async ETTask MergeZone(int oldzone, int newzone)
+        {
+            ListComponent<int> mergezones = new ListComponent<int>() { oldzone, newzone };
+            for (int i = 0; i < mergezones.Count; i++)
+            {
+                var startZoneConfig = StartZoneConfigCategory.Instance.Get(mergezones[i]);
+                Game.Scene.GetComponent<DBComponent>().InitDatabase(startZoneConfig);
+            }
+
+            //ActivityComponent
+            List<ActivityComponent> activityComponents = await Game.Scene.GetComponent<DBComponent>().Query<ActivityComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in activityComponents)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<ActivityComponent>(newzone, entity);
+            }
+
+            //BagComponent
+            List<BagComponent> bagComponents = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in bagComponents)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<BagComponent>(newzone, entity);
+            }
+
+            //ChengJiuComponent
+            List<ChengJiuComponent> chengJiuComponents = await Game.Scene.GetComponent<DBComponent>().Query<ChengJiuComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in chengJiuComponents)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<ChengJiuComponent>(newzone, entity);
+            }
+
+            //DBAccountInfo.  问清楚规则 不能全部合并
+            List<DBAccountInfo> dBAccountInfos_old = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(oldzone, d => d.Id > 0);
+            List<DBAccountInfo> dBAccountInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(newzone, d => d.Id > 0);
+            foreach (var entity in dBAccountInfos_old)
+            {
+                List<DBAccountInfo> dBAccountInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(newzone, d => d.Id == entity.Id);
+                //有相同账号.. 
+                //充值记录是否要合并？
+                if (dBAccountInfos.Count > 0)
+                {
+                    dBAccountInfos[0].UserList.AddRange(entity.UserList);
+                    await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(newzone, dBAccountInfos[0]);
+                }
+                else
+                {
+                    await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(newzone, entity);
+                }
+            }
+
+            //DBDayActivityInfo  活动相关也要特殊处理
+            List<DBDayActivityInfo> dBDayActivityInfos_old = await Game.Scene.GetComponent<DBComponent>().Query<DBDayActivityInfo>(oldzone, d => d.Id > 0);
+            List<DBDayActivityInfo> dBDayActivityInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBDayActivityInfo>(newzone, d => d.Id > 0);
+            foreach (var entity in dBDayActivityInfos_new)
+            {
+                if (entity.Id != newzone)
+                {
+                    continue;
+                }
+                entity.ZhanQuReveives.AddRange(dBDayActivityInfos_old[0].ZhanQuReveives);
+                await Game.Scene.GetComponent<DBComponent>().Save<DBDayActivityInfo>(newzone, entity);
+            }
+
+            //DBFriendInfo
+            List<DBFriendInfo> dBFriendInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBFriendInfo>(oldzone, d => d.Id > 0);
+            foreach (var entity in dBFriendInfos)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<DBFriendInfo>(newzone, entity);
+            }
+
+            //DBMailInfo 邮件
+            List<DBMailInfo> dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(oldzone, d => d.Id > 0);
+            foreach (var entity in dBMailInfos)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<DBMailInfo>(newzone, entity);
+            }
+
+            //DBPaiMainInfo 拍卖，也合并过来，要着重测试
+            List<DBPaiMainInfo> dBPaiMainInfos_old = await Game.Scene.GetComponent<DBComponent>().Query<DBPaiMainInfo>(oldzone, d => d.Id > 0);
+            List<DBPaiMainInfo> dBPaiMainInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBPaiMainInfo>(newzone, d => d.Id > 0);
+            foreach (var entity in dBPaiMainInfos_new)
+            {
+                if (entity.Id != newzone)
+                {
+                    continue;
+                }
+                entity.PaiMaiItemInfos.AddRange(dBPaiMainInfos_old[0].PaiMaiItemInfos);
+                await Game.Scene.GetComponent<DBComponent>().Save<DBPaiMainInfo>(newzone, entity);
+            }
+
+            //DBRankInfo 排行榜 。 
+            List<DBRankInfo> dBRankInfos_old = await Game.Scene.GetComponent<DBComponent>().Query<DBRankInfo>(oldzone, d => d.Id > 0);
+            List<DBRankInfo> dBRankInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBRankInfo>(newzone, d => d.Id > 0);
+            foreach (var entity in dBRankInfos_new)
+            {
+                if (entity.Id != newzone)
+                {
+                    continue;
+                }
+
+                List<RankingInfo> rankingInfos_new = entity.rankingInfos;
+                List<RankingInfo> rankingInfos_old = dBRankInfos_old[0].rankingInfos;
+                rankingInfos_new.AddRange(rankingInfos_old);
+                rankingInfos_new.Sort(delegate (RankingInfo a, RankingInfo b)
+                {
+                    return (int)b.Combat - (int)a.Combat;
+                });
+                entity.rankingInfos = rankingInfos_new.GetRange(0, rankingInfos_new.Count > 30 ? 30 : rankingInfos_new.Count);
+
+                await Game.Scene.GetComponent<DBComponent>().Save<DBRankInfo>(newzone, entity);
+            }
+
+            //DBServerInfo   服务器的一些公用内容
+            List<DBServerInfo> dBServerInfos_old = await Game.Scene.GetComponent<DBComponent>().Query<DBServerInfo>(oldzone, d => d.Id > 0);
+            List<DBServerInfo> dBServerInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBServerInfo>(newzone, d => d.Id > 0);
+            foreach (var entity in dBServerInfos_new)
+            {
+                if (entity.Id != newzone)
+                {
+                    continue;
+                }
+                await Game.Scene.GetComponent<DBComponent>().Save<DBServerInfo>(newzone, entity);
+            }
+
+            //EnergyComponent 正能量组件
+            List<EnergyComponent> db_energyComponents = await Game.Scene.GetComponent<DBComponent>().Query<EnergyComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in db_energyComponents)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<EnergyComponent>(newzone, entity);
+            }
+
+            //NumericComponent  数值组件
+            List<NumericComponent> numericComponents = await Game.Scene.GetComponent<DBComponent>().Query<NumericComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in numericComponents)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<NumericComponent>(newzone, entity);
+            }
+
+            //PetComponent  宠物组件
+            List<PetComponent> petComponents = await Game.Scene.GetComponent<DBComponent>().Query<PetComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in petComponents)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<PetComponent>(newzone, entity);
+            }
+
+            //RechargeComponent  充值记录组件
+            List<RechargeComponent> rechargeComponents = await Game.Scene.GetComponent<DBComponent>().Query<RechargeComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in rechargeComponents)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<RechargeComponent>(newzone, entity);
+            }
+
+            //ReddotComponent  红点组件
+            List<ReddotComponent> reddotComponents = await Game.Scene.GetComponent<DBComponent>().Query<ReddotComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in reddotComponents)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<ReddotComponent>(newzone, entity);
+            }
+
+            //ShoujiComponent  收集大厅
+            List<ShoujiComponent> shoujiComponents = await Game.Scene.GetComponent<DBComponent>().Query<ShoujiComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in shoujiComponents)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<ShoujiComponent>(newzone, entity);
+            }
+
+            //SkillSetComponent  技能
+            List<SkillSetComponent> skillSetComponents = await Game.Scene.GetComponent<DBComponent>().Query<SkillSetComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in skillSetComponents)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<SkillSetComponent>(newzone, entity);
+            }
+
+            //TaskComponent  renw组件
+            List<TaskComponent> taskComponents = await Game.Scene.GetComponent<DBComponent>().Query<TaskComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in taskComponents)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<TaskComponent>(newzone, entity);
+            }
+            
+            //UserInfoComponent  玩家信息
+            List<UserInfoComponent> userInfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in userInfoComponents)
+            {
+                await Game.Scene.GetComponent<DBComponent>().Save<UserInfoComponent>(newzone, entity);
+            }
+        }
+    }
+}

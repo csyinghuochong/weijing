@@ -1,0 +1,894 @@
+﻿using ET;
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace ET
+{
+    //[MessageHandler(AppType.Gate)]
+    public class Function_Fight
+    {
+        private static readonly object obj = new object();
+        //实例化自身
+        private static Function_Fight _instance;
+        public static Function_Fight GetInstance()
+        {
+            lock (obj)
+            {
+                if (_instance == null)
+                {
+                    _instance = new Function_Fight();
+                }
+            }
+            return _instance;
+        }
+
+        /// <summary>
+        /// 执行战斗
+        /// </summary>
+        /// <param name="attackUnit"></param>
+        /// <param name="defendUnit"></param>
+        public void Fight(Unit attackUnit, Unit defendUnit, SkillHandler skillHandler)
+        {
+            SkillConfig skillconfig = skillHandler.SkillConf;
+
+            //技能伤害为0则不进行伤害计算
+            if (skillconfig.ActDamge == 0 && skillconfig.DamgeValue == 0) {
+                return;
+            }
+
+            //无敌buff，不受伤害
+            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeData.WuDi))
+            {
+                return;
+            }
+
+            if (attackUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeData.MiaoSha))
+            {
+                long hp = defendUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp)+1;
+                defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, hp * -1, skillconfig.Id);
+                return;
+            }
+            int DamgeType = 0;      //伤害类型
+
+            defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.BeHurt_3, attackUnit.Id);
+
+            //获取攻击方属性
+            NumericComponent numericComponentAttack = attackUnit.GetComponent<NumericComponent>();
+            long attack_Hp = numericComponentAttack.GetAsLong(NumericType.Now_Hp);
+            long attack_MaxHp = numericComponentAttack.GetAsLong(NumericType.Now_MaxHp);
+            long attack_MinAct = numericComponentAttack.GetAsLong(NumericType.Now_MinAct);
+            long attack_MaxAct = numericComponentAttack.GetAsLong(NumericType.Now_MaxAct);
+            long attack_MinDef = numericComponentAttack.GetAsLong(NumericType.Now_MinDef);
+            long attack_MaxDef = numericComponentAttack.GetAsLong(NumericType.Now_MaxDef);
+
+            long attack_Act = (long)RandomHelper.RandomNumberFloat(attack_MinAct, attack_MaxAct);
+            long attack_def = (long)RandomHelper.RandomNumberFloat(attack_MinDef, attack_MaxDef);
+
+            //获取受击方属性
+            NumericComponent numericComponentDefend = defendUnit.GetComponent<NumericComponent>();
+            long defend_Hp = numericComponentDefend.GetAsLong(NumericType.Now_Hp);
+            long defend_MaxHp = numericComponentDefend.GetAsLong(NumericType.Now_MaxHp);
+            long defend_MinAct = numericComponentDefend.GetAsLong(NumericType.Now_MinAct);
+            long defend_MaxAct = numericComponentDefend.GetAsLong(NumericType.Now_MaxAct);
+            long defend_MinDef = numericComponentDefend.GetAsLong(NumericType.Now_MinDef);
+            long defend_MaxDef = numericComponentDefend.GetAsLong(NumericType.Now_MaxDef);
+            long defend_MinAdf = numericComponentDefend.GetAsLong(NumericType.Now_MinAdf);
+            long defend_MaxAdf = numericComponentDefend.GetAsLong(NumericType.Now_MaxAdf);
+
+            //忽视防御
+            defend_MinDef = (long)((float)defend_MinDef * (1.0f - numericComponentAttack.GetAsFloat(NumericType.Now_HuShiActPro)) - numericComponentAttack.GetAsLong(NumericType.Now_HuShiDef));
+            defend_MaxDef = (long)((float)defend_MaxDef * (1.0f - numericComponentAttack.GetAsFloat(NumericType.Now_HuShiActPro)) - numericComponentAttack.GetAsLong(NumericType.Now_HuShiDef));
+            defend_MinAdf = (long)((float)defend_MinAdf * (1.0f - numericComponentAttack.GetAsFloat(NumericType.Now_HuShiMagePro)) - numericComponentAttack.GetAsLong(NumericType.Now_HuShiAdf));
+            defend_MaxAdf = (long)((float)defend_MaxAdf * (1.0f - numericComponentAttack.GetAsFloat(NumericType.Now_HuShiMagePro)) - numericComponentAttack.GetAsLong(NumericType.Now_HuShiAdf));
+
+            //限制
+            defend_MinDef = defend_MinDef < 0 ? 0 : defend_MinDef;
+            defend_MaxDef = defend_MaxDef < 0 ? 0 : defend_MaxDef;
+            defend_MinAdf = defend_MinAdf < 0 ? 0 : defend_MinAdf;
+            defend_MaxAdf = defend_MaxAdf < 0 ? 0 : defend_MaxAdf;
+
+
+            long defend_Act = (long)RandomHelper.RandomNumberFloat(defend_MinAct, defend_MaxAct);
+            long defend_def = (long)RandomHelper.RandomNumberFloat(defend_MinDef, defend_MaxDef);
+
+            bool ifMonsterBoss_Act = false;
+            bool ifMonsterBoss_Def = false;
+            //计算是否闪避
+            int defendUnitLv = 0;
+            switch (defendUnit.GetComponent<UnitInfoComponent>().Type) 
+            {
+                //怪物
+                case UnitType.Monster:
+                    defendUnit.GetComponent<StateComponent>().BeAttacking(attackUnit);
+                    defendUnit.GetComponent<AIComponent>().BeAttack(attackUnit);
+                    MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(defendUnit.GetComponent<UnitInfoComponent>().UnitCondigID);
+                    defendUnitLv = monsterCof.Lv;
+                    if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
+                    {
+                        ifMonsterBoss_Act = true;
+                    }
+                    break;
+                //宠物
+                case UnitType.Pet:
+                    PetConfig petCof = PetConfigCategory.Instance.Get(defendUnit.GetComponent<UnitInfoComponent>().UnitCondigID);
+                    defendUnitLv = petCof.PetLv;
+                    break;
+                //玩家
+                case UnitType.Player:
+                    defendUnit.GetComponent<StateComponent>().BeAttacking(attackUnit);
+                    defendUnitLv = defendUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+                    break;
+            }
+
+            int attackUnitLv = 0;
+            switch (attackUnit.GetComponent<UnitInfoComponent>().Type)
+            {
+                //怪物
+                case UnitType.Monster:
+                    MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(attackUnit.GetComponent<UnitInfoComponent>().UnitCondigID);
+                    attackUnitLv = monsterCof.Lv;
+                    if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
+                        ifMonsterBoss_Def = true;
+                    break;
+                //宠物
+                case UnitType.Pet:
+                    PetConfig petCof = PetConfigCategory.Instance.Get(attackUnit.GetComponent<UnitInfoComponent>().UnitCondigID);
+                    attackUnitLv = petCof.PetLv;
+                    break;
+                //玩家
+                case UnitType.Player:
+                    attackUnitLv = attackUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+                    break;
+            }
+
+            float addHitPro = numericComponentAttack.GetAsFloat(NumericType.Now_Hit) + LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_Hit), defendUnitLv);
+            float addDodgePro = numericComponentDefend.GetAsFloat(NumericType.Now_Dodge) + LvProChange(numericComponentDefend.GetAsLong(NumericType.Now_Dodge), attackUnitLv);
+
+            //等级差命中
+            float addHitLvPro = (attackUnitLv - defendUnitLv) * 0.02f;
+            if (addHitLvPro <= 0) {
+                addHitLvPro = 0;
+            }
+            if (addHitLvPro >= 0.1f) {
+                addHitLvPro = 0.1f;
+            }
+
+            //等级差闪避
+            float addDodgeLvPro = (attackUnitLv - defendUnitLv) * 0.02f;
+            if (addDodgeLvPro <= 0)
+            {
+                addDodgeLvPro = 0;
+            }
+            if (addDodgeLvPro >= 0.1f)
+            {
+                addDodgeLvPro = 0.1f;
+            }
+
+            float initHitPro = 0.9f;
+            
+            float HitPro = initHitPro + addHitLvPro + addHitPro - (addDodgePro + addDodgeLvPro);
+            //最低命中
+            if (HitPro <= 0.75f) {
+                HitPro = 0.75f;
+            }
+
+            //闪避概率..
+            bool ifHit = true;
+            if (RandomHelper.RandFloat() >= HitPro)
+            {
+                ifHit = false;
+            }
+
+            if (ifHit)
+            {
+
+                //判定是否触发重击
+                long actValue = attack_Act;
+                long defValue = defend_def;
+                float zhongJiPro = numericComponentAttack.GetAsFloat(NumericType.Now_ZhongJiPro);
+                if (RandomHelper.RandFloat() <= zhongJiPro) {
+                    defValue = 0;
+                    actValue += numericComponentAttack.GetAsLong(NumericType.Now_ZhongJi);
+                }
+
+                //计算战斗公式
+                long damge = (actValue - defValue);
+
+                //获取技能相关系数
+                damge = (long)(damge * ( skillconfig.ActDamge  + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) )) + skillconfig.DamgeValue;
+
+                float damgePro = 1;
+                //伤害加成
+                damge = (long)((float)damge * (1 + numericComponentAttack.GetAsFloat(NumericType.Now_DamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_DamgeSubPro)));
+
+                //物理伤害
+                if (skillconfig.DamgeType == 1) {
+
+                    damgePro = damgePro + numericComponentAttack.GetAsFloat(NumericType.Now_ActDamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_ActDamgeSubPro);
+
+                    if (ifMonsterBoss_Act)
+                    {
+                        damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_ActBossPro);
+                    }
+
+                    if (ifMonsterBoss_Def) 
+                    {
+                        damgePro -= numericComponentAttack.GetAsFloat(NumericType.Now_ActBossSubPro);
+                    }
+ 
+                }
+
+                //技能伤害
+                if (skillconfig.DamgeType == 1)
+                {
+
+                    damgePro = damgePro + numericComponentAttack.GetAsFloat(NumericType.Now_MageDamgeAddPro) - numericComponentDefend.GetAsFloat(NumericType.Now_MageDamgeSubPro);
+
+                    if (ifMonsterBoss_Act)
+                    {
+                        damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_MageBossPro);
+                    }
+
+                    if (ifMonsterBoss_Def)
+                    {
+                        damgePro -= numericComponentAttack.GetAsFloat(NumericType.Now_MageBossSubPro);
+                    }
+
+                }
+
+                //抗性
+                switch (skillconfig.DamgeElementType) {
+                    //光     神圣抗性
+                    case 1:
+                        damgePro = damgePro - numericComponentDefend.GetAsFloat(NumericType.Now_Resistance_Shine_Pro);
+                        break;
+                    //暗     暗影抗性
+                    case 2:
+                        damgePro = damgePro - numericComponentDefend.GetAsFloat(NumericType.Now_Resistance_Shadow_Pro);
+                        break;
+                    //火     火焰抗性
+                    case 3:
+                        damgePro = damgePro - numericComponentDefend.GetAsFloat(NumericType.Now_ResistIcece_Ice_Pro);
+                        break;
+                    //水     冰霜抗性
+                    case 4:
+                        damgePro = damgePro - numericComponentDefend.GetAsFloat(NumericType.Now_ResistFirece_Fire_Pro);
+                        break;
+                    //电     闪电抗性
+                    case 5:
+                        damgePro = damgePro - numericComponentDefend.GetAsFloat(NumericType.Now_ResistThunderce_Thunder_Pro);
+                        break;
+                }
+
+                //种族抗性
+                if (ifMonsterBoss_Act) {
+                    switch (MonsterConfigCategory.Instance.Get(defendUnit.GetComponent<UnitInfoComponent>().UnitCondigID).MonsterRace) {
+                        //通用
+                        case 0:
+                            break;
+                        //野兽
+                        case 1:
+                            damgePro = damgePro - numericComponentDefend.GetAsFloat(NumericType.Now_Resistance_Beast_Pro);
+                            break;
+                        //人类
+                        case 2:
+                            damgePro = damgePro - numericComponentDefend.GetAsFloat(NumericType.Now_Resistance_Hum_Pro);
+                            break;
+                        //恶魔
+                        case 3:
+                            damgePro = damgePro - numericComponentDefend.GetAsFloat(NumericType.Now_Resistance_Demon_Pro);
+                            break;
+                    }
+                }
+
+                //种族伤害
+                if (ifMonsterBoss_Def) {
+                    switch (MonsterConfigCategory.Instance.Get(attackUnit.GetComponent<UnitInfoComponent>().UnitCondigID).MonsterRace)
+                    {
+                        //通用
+                        case 0:
+                            break;
+                        //野兽
+                        case 1:
+                            damgePro = damgePro + numericComponentAttack.GetAsFloat(NumericType.Now_Damge_Beast_Pro);
+                            break;
+                        //人类
+                        case 2:
+                            damgePro = damgePro + numericComponentAttack.GetAsFloat(NumericType.Now_Damge_Hum_Pro);
+                            break;
+                        //恶魔
+                        case 3:
+                            damgePro = damgePro + numericComponentAttack.GetAsFloat(NumericType.Now_Damge_Demon_Pro);
+                            break;
+                    }
+                }
+
+                damgePro = damgePro < 0 ? 0 : damgePro;
+                //Log.Info("damge = " + damge + " damgePro = " + damgePro);
+                damge = (int)(damge * damgePro);
+
+                //格挡值抵消
+                damge = damge - numericComponentDefend.GetAsLong(NumericType.Now_GeDang);
+
+                if (damge < 1)
+                {
+                    damge = 1;
+                }
+
+                //真实伤害
+                damge += numericComponentAttack.GetAsLong(NumericType.Now_ZhenShi);
+
+                damge += (long)skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageValue);
+
+                //二次限定
+                if (damge < 1)
+                {
+                    damge = 1;
+                }
+
+                //存储是为万为单位的
+                //damge = (damge / 10000 * 10000);
+                if (damge > 0)
+                {
+                    //等级换算最终属性
+                    float addCriPro = numericComponentAttack.GetAsFloat(NumericType.Now_Cri) + LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_CriLv), defendUnitLv);
+                    float addResPro = numericComponentDefend.GetAsFloat(NumericType.Now_Res) + LvProChange(numericComponentDefend.GetAsLong(NumericType.Now_Res), attackUnitLv);
+
+                    float CriPro = addCriPro - addResPro;
+
+                    if (CriPro <= 0f)
+                    {
+                        CriPro = 0;
+                    }
+
+                    //暴击概率..
+                    if (RandomHelper.RandFloat() <= CriPro)
+                    {
+                        DamgeType = 1;
+                        damge = damge * 2;
+                        //Log.Debug("暴击了!");
+
+                        //闪避触发被动技能
+                        attackUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.Critical_4, defendUnit.Id);
+                    }
+
+                    float shield_Hp = 0;
+                    int shield_Type = 0;    //1百分比  2固定值
+                    if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeData.Shield))
+                    {
+                        shield_Hp = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_HP);
+                        shield_Type = numericComponentDefend.GetAsInt(NumericType.Now_Shield_Type);
+                    }
+                    if (shield_Type == 1)
+                    {
+                        long maxHp = numericComponentDefend.GetAsLong(NumericType.Now_MaxHp);
+                        damge -= (int)(maxHp * shield_Hp);
+                        damge = Math.Max(0, damge);
+                    }
+                    if (shield_Type == 2)
+                    {
+                        damge -= (int)shield_Hp;
+                        numericComponentDefend.ApplyChange(attackUnit, NumericType.Now_Shield_HP, (int)shield_Hp - damge, skillconfig.Id, false, DamgeType);
+                        damge = Math.Max(0, damge);
+                    }
+
+                    damge *= -1;
+                    //Now_HuShiMagePro吸血
+                    float hushi = numericComponentAttack.GetAsFloat(NumericType.Now_XiXuePro);
+                    if (hushi > 0f)
+                    {
+                        int addHp =  (int)(numericComponentDefend.GetAsInt(NumericType.Now_MaxHp) * hushi);
+                        numericComponentAttack.ApplyChange( null, NumericType.Now_Hp, addHp, 0);
+                    }
+                }
+
+                //即将死亡
+                if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) + damge <= 0)
+                {
+                    defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WillDead_6, attackUnit.Id);
+                }
+                //设置目标当前
+                defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, damge, skillconfig.Id, true, DamgeType);
+            }
+            else
+            {
+                //设置伤害为0,用于伤害飘字
+                defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, 0, skillconfig.Id, true, DamgeType);
+
+                //闪避触发被动技能
+                defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.ShanBi_5, attackUnit.Id);
+            }
+        }
+
+      
+        //暴击等级等属性转换成实际暴击率的方法
+        private float LvProChange(long value, int lv) {
+            float proValue = value / (10000 + lv * 500);
+            return proValue;
+        }
+
+        //字典是引用,进来的值会发生改变
+        public static void AddUpdateProDicList(int typeID, long typeValue, Dictionary<int, long> dic)
+        {
+            //缓存属性
+            if (dic.ContainsKey(typeID))
+            {
+                dic[typeID] += typeValue;
+            }
+            else
+            {
+                dic[typeID] = typeValue;
+            }
+
+        }
+
+        //是否是一级属性
+        public static bool ifNumTypeOnePro(int numericType)
+        {
+
+            if (numericType < (int)NumericType.Max)
+            {
+                numericType = numericType * 100;
+            }
+            int nowValue = (int)numericType / 100;
+            if (nowValue == NumericType.Now_Power || nowValue == NumericType.Now_Agility || nowValue == NumericType.Now_Intellect || nowValue == NumericType.Now_Stamina || nowValue == NumericType.Now_Constitution)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        //字典是引用,进来的值会发生改变
+        public static int GetOnePro(int typeID, Dictionary<int, long> dic)
+        {
+
+            if (ifNumTypeOnePro(typeID))
+            {
+                //缓存属性
+                int baseType = typeID * 100 +1;
+                int mulType = typeID * 100 + 2;
+                int addType = typeID * 100 + 3;
+                long baseValue = 0;
+                float mulValue = 0;
+                long addValue = 0;
+                if (dic.ContainsKey(baseType))
+                {
+                    baseValue = dic[baseType];
+                }
+                if (dic.ContainsKey(mulType))
+                {
+                    mulValue = (float)dic[mulType]/ 10000f;
+                }
+                if (dic.ContainsKey(addType))
+                {
+                    addValue = dic[addType];
+                }
+
+                return (int)(baseValue * (1 + mulValue) + addValue);
+
+            }
+
+            return 0;
+        }
+
+
+        /// <summary>
+        /// 更新基础的属性
+        /// </summary>
+        /// <param name="unit"></param>
+        public void UnitUpdateProperty_Base(Unit unit, bool notice = true)
+        {
+            //初始化属性
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            numericComponent.ResetProperty();
+
+            //缓存列表
+            Dictionary<int, long> UpdateProDicList = new Dictionary<int, long>();
+
+            //属性点
+            int liLiang =  numericComponent.GetAsInt(NumericType.PointLiLiang);
+
+
+            //基础职业属性
+            UserInfoComponent UnitInfoComponent = unit.GetComponent<UserInfoComponent>();
+            UserInfo userInfo = UnitInfoComponent.UserInfo;
+            int roleLv = userInfo.Lv;
+
+            OccupationConfig mOccupationConfig = OccupationConfigCategory.Instance.Get(1);
+
+            long occBaseHp = mOccupationConfig.BaseHp + roleLv * mOccupationConfig.LvUpHp;
+            long occBaseMinAct = mOccupationConfig.BaseMinAct + roleLv * mOccupationConfig.LvUpMinAct;
+            long occBaseMaxAct = mOccupationConfig.BaseMaxAct + roleLv * mOccupationConfig.LvUpMaxAct;
+            long occBaseMinMage = mOccupationConfig.LvUpMinMagAct + roleLv * mOccupationConfig.LvUpMinMagAct;
+            long occBaseMaxMage = mOccupationConfig.LvUpMaxMagAct + roleLv * mOccupationConfig.LvUpMaxMagAct;
+            long occBaseMinDef = mOccupationConfig.BaseMinDef + roleLv * mOccupationConfig.LvUpMinDef;
+            long occBaseMaxDef = mOccupationConfig.BaseMaxDef + roleLv * mOccupationConfig.LvUpMaxAdf;
+            long occBaseMinAdf = mOccupationConfig.BaseMinAdf + roleLv * mOccupationConfig.LvUpMinAdf;
+            long occBaseMaxAdf = mOccupationConfig.BaseMaxAdf + roleLv * mOccupationConfig.LvUpMaxAdf;
+
+            double occBaseMoveSpeed = mOccupationConfig.BaseMoveSpeed;
+            double occBaseCri = mOccupationConfig.BaseCri;
+            double occBaseHit = mOccupationConfig.BaseHit;
+            double occBaseDodge = mOccupationConfig.BaseDodge;
+            double occBaseDefSub = mOccupationConfig.BaseDefAdd;
+            double occBaseAdfSub = mOccupationConfig.BaseAdfAdd;
+            double occBaseDamgeSubAdd = mOccupationConfig.DamgeAdd;
+
+            //装备属性
+            List<int> equipIDList = new List<int>();
+            List<int> equipSuitIDList = new List<int>();
+            List<BagInfo> equipList = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip);
+            for (int i = 0; i < equipList.Count; i++)
+            {
+                BagInfo userBagInfo = equipList[i];
+                //存储装备ID
+                ItemConfig itemCof = ItemConfigCategory.Instance.Get(userBagInfo.ItemID);
+
+                bool ifAddHidePro = true;
+                int occTwoValue = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+                if (occTwoValue != 0)
+                {
+                    if (itemCof.EquipType == 11 || itemCof.EquipType == 12 || itemCof.EquipType == 13 && equipList[i].Loc == (int)ItemLocType.ItemLocEquip)
+                    {
+                        int selfMastery = OccupationTwoConfigCategory.Instance.Get(occTwoValue).ArmorMastery;
+                        if (selfMastery != itemCof.EquipType)
+                        {
+                            //护甲不匹配不添加专精数据
+                            ifAddHidePro = false;
+                        }
+                    }
+                }
+
+                if (ifAddHidePro)
+                {
+                    //存储装备精炼数值
+                    if (userBagInfo.HideProLists != null)
+                    {
+                        for (int y = 0; y < userBagInfo.HideProLists.Count; y++)
+                        {
+                            HideProList hidePro = userBagInfo.HideProLists[y];
+                            AddUpdateProDicList(hidePro.HideID, hidePro.HideValue, UpdateProDicList);
+                        }
+                    }
+                }
+
+                //存储洗炼数值
+                if (userBagInfo.XiLianHideProLists != null)
+                {
+                    for (int y = 0; y < userBagInfo.XiLianHideProLists.Count; y++)
+                    {
+                        HideProList hidePro = userBagInfo.XiLianHideProLists[y];
+                        AddUpdateProDicList(hidePro.HideID, hidePro.HideValue, UpdateProDicList);
+                    }
+                }
+
+                //存储装备ID
+                equipIDList.Add(itemCof.ItemEquipID);
+
+                //存储装备套装
+                EquipConfig equipCnf = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
+                if (equipCnf.EquipSuitID != 0)
+                {
+                    if (equipSuitIDList.Contains(equipCnf.EquipSuitID) == false)
+                    {
+                        equipSuitIDList.Add(equipCnf.EquipSuitID);
+                    }
+                }
+            }
+
+            long BaseHp_EquipSuit = 0;
+            long BaseMinAct_EquipSuit = 0;
+            long BaseMaxAct_EquipSuit = 0;
+            long BaseMinMage_EquipSuit = 0;
+            long BaseMaxMage_EquipSuit = 0;
+            long BaseMinDef_EquipSuit = 0;
+            long BaseMaxDef_EquipSuit = 0;
+            long BaseMinAdf_EquipSuit = 0;
+            long BaseMaxAdf_EquipSuit = 0;
+
+            double BaseMoveSpeed_EquipSuit = 0;
+            double BaseCri_EquipSuit = 0;
+            double BaseHit_EquipSuit = 0;
+            double BaseDodge_EquipSuit = 0;
+            double BaseDefSub_EquipSuit = 0;
+            double BaseAdfSub_EquipSuit = 0;
+            double BaseDamgeSubAdd_EquipSuit = 0;
+
+            //装备套装属性
+            for (int i = 0; i < equipSuitIDList.Count; i++)
+            {
+
+                EquipSuitConfig equipSuitCof = EquipSuitConfigCategory.Instance.Get(equipSuitIDList[i]);
+                string[] needEquipList = equipSuitCof.NeedEquipID.Split(';');
+                int num = 0;
+                for (int y = 0; y < needEquipList.Length; y++)
+                {
+                    int needEquipID = int.Parse(needEquipList[y]);
+                    if (equipIDList.Contains(needEquipID))
+                    {
+                        num = num + 1;
+                    }
+                }
+
+                string[] equipSuitProList = equipSuitCof.SuitPropertyID.Split(';');
+
+                for (int y = 0; y < equipSuitProList.Length; y++)
+                {
+
+                    int NeedNum = int.Parse(equipSuitProList[y].Split(',')[0]);
+                    int NeedID = int.Parse(equipSuitProList[y].Split(',')[1]);
+                    if (num >= NeedNum)
+                    {
+                        //激活对应套装属性
+                        EquipSuitPropertyConfig equipSuitProCof = EquipSuitPropertyConfigCategory.Instance.Get(NeedID);
+                        BaseHp_EquipSuit += equipSuitProCof.Equip_Hp;
+                        BaseMinAct_EquipSuit += equipSuitProCof.Equip_MinAct;
+                        BaseMaxAct_EquipSuit += equipSuitProCof.Equip_MaxAct;
+                        BaseMinMage_EquipSuit += equipSuitProCof.Equip_MinMagAct;
+                        BaseMaxMage_EquipSuit += equipSuitProCof.Equip_MaxMagAct;
+                        BaseMinDef_EquipSuit += equipSuitProCof.Equip_MinDef;
+                        BaseMaxDef_EquipSuit += equipSuitProCof.Equip_MaxDef;
+                        BaseMinAdf_EquipSuit += equipSuitProCof.Equip_MinAdf;
+                        BaseMaxAdf_EquipSuit += equipSuitProCof.Equip_MaxAdf;
+                        BaseMoveSpeed_EquipSuit += equipSuitProCof.Equip_Speed;
+                        BaseCri_EquipSuit += equipSuitProCof.Equip_Cri;
+                        BaseHit_EquipSuit += equipSuitProCof.Equip_Hit;
+                        BaseDodge_EquipSuit += equipSuitProCof.Equip_Dodge;
+                        BaseDefSub_EquipSuit += equipSuitProCof.Equip_DamgeSub;
+                        BaseAdfSub_EquipSuit += equipSuitProCof.Equip_DamgeAdd;
+                        BaseDamgeSubAdd_EquipSuit += equipSuitProCof.Equip_Hp;
+
+                        if (equipSuitProCof.AddPropreListStr != "0")
+                        {
+                            string[] AddPropreList = equipSuitProCof.AddPropreListStr.Split(';');
+                            for (int z = 0; z < AddPropreList.Length; z++)
+                            {
+                                int addProType = int.Parse(AddPropreList[z].Split(',')[0]);
+                                int addProValue = int.Parse(AddPropreList[z].Split(',')[1]);
+                                AddUpdateProDicList(addProType, addProValue, UpdateProDicList);
+                            }
+                        }
+                    }
+                }
+            }
+
+            int equipHpSum = 0;
+            int equipMinActSum = 0;
+            int equipMaxActSum = 0;
+            int equipMinMageSum = 0;
+            int equipMaxMageSum = 0;
+            int equipMinDefSum = 0;
+            int equipMaxDefSum = 0;
+            int equipMinAdfSum = 0;
+            int equipMaxAdfSum = 0;
+
+            for (int i = 0; i < equipIDList.Count; i++)
+            {
+                /*
+                if (equipIDList[i] == 0) {
+                    break;
+                }
+                */
+                EquipConfig mEquipCon = EquipConfigCategory.Instance.Get(equipIDList[i]);
+
+                //职业专精
+                float occMastery = 0f;
+                if (userInfo.OccTwo != 0)
+                {
+                    if (OccupationTwoConfigCategory.Instance.Get(userInfo.OccTwo).ArmorMastery == ItemConfigCategory.Instance.Get(equipIDList[i]).EquipType)
+                    {
+                        //occMastery = 0.2f;
+                        occMastery = 0f;
+                    }
+                }
+
+                //存储基础属性
+                equipHpSum = (int)(equipHpSum + mEquipCon.Equip_Hp * (1 + occMastery));
+                equipMinActSum = (int)(equipMinActSum + mEquipCon.Equip_MinAct * (1 + occMastery));
+                equipMaxActSum = (int)(equipMaxActSum + mEquipCon.Equip_MaxAct * (1 + occMastery));
+                equipMinMageSum = (int)(equipMinMageSum + mEquipCon.Equip_MinMagAct * (1 + occMastery));
+                equipMaxMageSum = (int)(equipMaxMageSum + mEquipCon.Equip_MaxMagAct * (1 + occMastery));
+                equipMinDefSum = (int)(equipMinDefSum + mEquipCon.Equip_MinDef * (1 + occMastery));
+                equipMaxDefSum = (int)(equipMaxDefSum + mEquipCon.Equip_MaxDef * (1 + occMastery));
+                equipMinAdfSum = (int)(equipMinAdfSum + mEquipCon.Equip_MinAdf * (1 + occMastery));
+                equipMaxAdfSum = (int)(equipMaxAdfSum + mEquipCon.Equip_MaxAdf * (1 + occMastery));
+
+                //存储特殊属性
+                for (int y = 0; y < mEquipCon.AddPropreListType.Length; y++)
+                {
+                    if (mEquipCon.AddPropreListType[y] != 0 && mEquipCon.AddPropreListValue.Length > y)
+                    {
+                        //记录属性
+                        AddUpdateProDicList(mEquipCon.AddPropreListType[y], (long)mEquipCon.AddPropreListValue[y], UpdateProDicList);
+                    }
+                }
+            }
+
+            //宝石属性
+            List<HideProList> gemProList = unit.GetComponent<BagComponent>().GetGemProLists();
+            for (int i = 0; i < gemProList.Count; i++)
+            {
+                AddUpdateProDicList(gemProList[i].HideID, gemProList[i].HideValue, UpdateProDicList);
+            }
+
+            //天赋属性
+            List<HideProList> tianfuProList = unit.GetComponent<SkillSetComponent>().GetTianfuRoleProLists();
+            for (int i = 0; i < tianfuProList.Count; i++)
+            {
+                AddUpdateProDicList(tianfuProList[i].HideID, tianfuProList[i].HideValue, UpdateProDicList);
+            }
+
+            //技能属性
+            List<HideProList> skillProList = unit.GetComponent<SkillSetComponent>().GetSkillRoleProLists();
+            for (int i = 0; i < skillProList.Count; i++)
+            {
+                AddUpdateProDicList(skillProList[i].HideID, skillProList[i].HideValue, UpdateProDicList);
+            }
+
+            //收集属性
+            List<HideProList> shoujiProList = unit.GetComponent<ShoujiComponent>().GetProList();
+            for (int i = 0; i < shoujiProList.Count; i++)
+            {
+                //AddUpdateProDicList(shoujiProList[i].HideID, shoujiProList[i].HideValue, UpdateProDicList);
+            }
+
+            //汇总属性
+            long BaseHp = occBaseHp + equipHpSum;
+            long BaseMinAct = occBaseMinAct + equipMinActSum;
+            long BaseMaxAct = occBaseMaxAct + equipMaxActSum;
+            long BaseMinMage = occBaseMinMage + equipMinMageSum;
+            long BaseMaxMage = occBaseMaxMage + equipMaxMageSum;
+            long BaseMinDef = occBaseMinDef + equipMinDefSum;
+            long BaseMaxDef = occBaseMaxDef + equipMaxDefSum;
+            long BaseMinAdf = occBaseMinAdf + equipMinAdfSum;
+            long BaseMaxAdf = occBaseMaxAdf + equipMaxAdfSum;
+            double BaseMoveSpeed = occBaseMoveSpeed;
+            double BaseCri = occBaseCri;
+            double BaseHit = occBaseHit;
+            double BaseDodge = occBaseDodge;
+            double BaseDefSub = occBaseDefSub;
+            double BaseAdfSub = occBaseAdfSub;
+            double BaseDamgeSubAdd = occBaseDamgeSubAdd;
+
+            //更新基础属性
+            /*
+            numericComponent.Set(NumericType.Base_MaxHp_Base, BaseHp, notice);
+            numericComponent.Set(NumericType.Base_MinAct_Base, BaseMinAct, notice);
+            numericComponent.Set(NumericType.Base_MaxAct_Base, BaseMaxAct, notice);
+            numericComponent.Set(NumericType.Base_MinDef_Base, BaseMinDef, notice);
+            numericComponent.Set(NumericType.Base_MaxDef_Base, BaseMaxDef, notice);
+            numericComponent.Set(NumericType.Base_MinAdf_Base, BaseMinAdf, notice);
+            numericComponent.Set(NumericType.Base_MaxAdf_Base, BaseMaxAdf, notice);
+            numericComponent.Set(NumericType.Base_Speed_Base, BaseMoveSpeed, notice);
+            numericComponent.Set(NumericType.Base_Cri_Base, BaseCri, notice);
+            numericComponent.Set(NumericType.Base_Hit_Base, BaseHit, notice);
+            numericComponent.Set(NumericType.Base_Dodge_Base, BaseDodge, notice);
+            numericComponent.Set(NumericType.Base_ActDamgeSubPro_Base, BaseDefSub, notice);
+            numericComponent.Set(NumericType.Base_MageDamgeSubPro_Base, BaseAdfSub, notice);
+            numericComponent.Set(NumericType.Base_DamgeSubPro_Base, BaseDamgeSubAdd, notice);
+            */
+
+            AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, BaseHp, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_MinAct_Base, BaseMinAct, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, BaseMaxAct, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_Mage_Base, BaseMaxMage, UpdateProDicList);
+            //AddUpdateProDicList((int)NumericType.Base_MaxMage_Base, BaseMaxMage, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_MinDef_Base, BaseMinDef, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, BaseMaxDef, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_MinAdf_Base, BaseMinAdf, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, BaseMaxAdf, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_Speed_Base, (int)(BaseMoveSpeed * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_Cri_Base, (int)(BaseCri * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_Hit_Base, (int)(BaseHit * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_Dodge_Base, (int)(BaseDodge * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_ActDamgeSubPro_Base, (int)(BaseDefSub * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_MageDamgeSubPro_Base, (int)(BaseAdfSub * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Base, (int)(BaseDamgeSubAdd * 10000), UpdateProDicList);
+
+
+            //缓存一级属性
+            long Power_value = GetOnePro(NumericType.Now_Power, UpdateProDicList);
+            long Agility_value = GetOnePro(NumericType.Now_Agility, UpdateProDicList);
+            long Intellect_value = GetOnePro(NumericType.Now_Intellect, UpdateProDicList);
+            long Stamina_value = GetOnePro(NumericType.Now_Stamina, UpdateProDicList);
+            long Constitution_value = GetOnePro(NumericType.Now_Constitution, UpdateProDicList);
+
+            //力量换算
+            if (Power_value > 0)
+            {
+                AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, Power_value * 3, UpdateProDicList);
+                AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, Power_value * 3, UpdateProDicList);
+                AddUpdateProDicList((int)NumericType.Base_HitLv_Base, Power_value * 3, UpdateProDicList);
+            }
+
+            //敏捷换算
+            if (Agility_value > 0)
+            {
+                AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, Agility_value * 6, UpdateProDicList);
+                AddUpdateProDicList((int)NumericType.Base_CriLv_Base, Agility_value * 5, UpdateProDicList);
+            }
+
+            //智力换算
+            if (Intellect_value > 0)
+            {
+                AddUpdateProDicList((int)NumericType.Base_Mage_Base, Intellect_value * 10, UpdateProDicList);
+                AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, Intellect_value * 3, UpdateProDicList);
+            }
+
+            //耐力换算
+            if (Stamina_value > 0)
+            {
+                AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, Stamina_value * 3, UpdateProDicList);
+                AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, Stamina_value * 3, UpdateProDicList);
+                AddUpdateProDicList((int)NumericType.Base_DodgeLv_Base, Stamina_value * 5, UpdateProDicList);
+            }
+
+            //体质换算
+            if (Constitution_value > 0)
+            {
+                AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, Constitution_value * 80, UpdateProDicList);
+                AddUpdateProDicList((int)NumericType.Base_ResLv_Base, Constitution_value * 5, UpdateProDicList);
+            }
+
+            //更新属性
+            foreach (int key in UpdateProDicList.Keys)
+            {
+                long setValue = numericComponent.GetAsLong(key) + UpdateProDicList[key];
+                numericComponent.Set(key, setValue, notice);
+            }
+
+            //战力计算
+
+            long ShiLi_Act  = 0;
+            float ShiLi_ActPro = 0f;
+            long ShiLi_Def = 0;
+            float ShiLi_DefPro = 0f;
+            long ShiLi_Hp = 0;
+            float ShiLi_HpPro = 0f;
+
+            //攻击部分
+            foreach (var Item in NumericHelp.ZhanLi_Act) {
+                ShiLi_Act += (int)((float)numericComponent.ReturnGetFightNumLong(Item.Key) * Item.Value);
+            }
+
+            foreach (var Item in NumericHelp.ZhanLi_ActPro)
+            {
+                ShiLi_ActPro += (int)((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
+            }
+
+            //防御部分
+            foreach (var Item in NumericHelp.ZhanLi_Def)
+            {
+                ShiLi_Def += (int)((float)numericComponent.ReturnGetFightNumLong(Item.Key) * Item.Value);
+            }
+
+            foreach (var Item in NumericHelp.ZhanLi_DefPro)
+            {
+                ShiLi_DefPro += (int)((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
+            }
+
+            //血量部分
+            foreach (var Item in NumericHelp.ZhanLi_Hp)
+            {
+                ShiLi_Hp += (int)((float)numericComponent.ReturnGetFightNumLong(Item.Key) * Item.Value);
+            }
+
+            foreach (var Item in NumericHelp.ZhanLi_HpPro)
+            {
+                ShiLi_HpPro += (int)((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
+            }
+
+            int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.25f) * (1 + ShiLi_HpPro));
+
+            //更新战力
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(  UserDataType.Combat, zhanliValue.ToString(), notice).Coroutine();
+        }
+    }
+
+
+}
