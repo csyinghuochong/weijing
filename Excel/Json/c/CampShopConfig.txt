@@ -1,0 +1,15 @@
+{"list":[
+{"_t":"CampShopConfig","_id":10001101,"SellItemID":10010001,"SellItemNum":1,"SellValue":100},
+{"_t":"CampShopConfig","_id":10001102,"SellItemID":10010011,"SellItemNum":1,"SellValue":30},
+{"_t":"CampShopConfig","_id":10001103,"SellItemID":10010001,"SellItemNum":1,"SellValue":100},
+{"_t":"CampShopConfig","_id":10001104,"SellItemID":10010011,"SellItemNum":1,"SellValue":30},
+{"_t":"CampShopConfig","_id":10001105,"SellItemID":10010051,"SellItemNum":1,"SellValue":100},
+{"_t":"CampShopConfig","_id":10001106,"SellItemID":10020016,"SellItemNum":1,"SellValue":234},
+{"_t":"CampShopConfig","_id":10001107,"SellItemID":10020017,"SellItemNum":1,"SellValue":410},
+{"_t":"CampShopConfig","_id":10001108,"SellItemID":10020016,"SellItemNum":1,"SellValue":234},
+{"_t":"CampShopConfig","_id":10001109,"SellItemID":10020017,"SellItemNum":1,"SellValue":234},
+{"_t":"CampShopConfig","_id":10001110,"SellItemID":10020058,"SellItemNum":1,"SellValue":369},
+{"_t":"CampShopConfig","_id":10001111,"SellItemID":10020059,"SellItemNum":1,"SellValue":369},
+{"_t":"CampShopConfig","_id":10001112,"SellItemID":10020158,"SellItemNum":1,"SellValue":639},
+{"_t":"CampShopConfig","_id":10001113,"SellItemID":10020159,"SellItemNum":1,"SellValue":639},
+]}

@@ -1,0 +1,16 @@
+{"list":[
+{"_t":"CampLieShouConfig","_id":10010000,"TaskName":"今日狩猎任意怪物数量达到10只","TargetType":5,"Target":[0],"TargetValue":[10]},
+{"_t":"CampLieShouConfig","_id":10010001,"TaskName":"今日狩猎任意怪物数量达到11只","TargetType":5,"Target":[0],"TargetValue":[11]},
+{"_t":"CampLieShouConfig","_id":10010002,"TaskName":"今日狩猎任意怪物数量达到12只","TargetType":5,"Target":[0],"TargetValue":[12]},
+{"_t":"CampLieShouConfig","_id":10010003,"TaskName":"今日狩猎任意怪物数量达到13只","TargetType":5,"Target":[0],"TargetValue":[13]},
+{"_t":"CampLieShouConfig","_id":10010004,"TaskName":"今日狩猎任意怪物数量达到14只","TargetType":5,"Target":[0],"TargetValue":[14]},
+{"_t":"CampLieShouConfig","_id":10010005,"TaskName":"今日狩猎任意怪物数量达到15只","TargetType":5,"Target":[0],"TargetValue":[15]},
+{"_t":"CampLieShouConfig","_id":10010006,"TaskName":"今日狩猎任意怪物数量达到16只","TargetType":5,"Target":[0],"TargetValue":[16]},
+{"_t":"CampLieShouConfig","_id":10010007,"TaskName":"今日狩猎任意怪物数量达到17只","TargetType":5,"Target":[0],"TargetValue":[17]},
+{"_t":"CampLieShouConfig","_id":10010008,"TaskName":"今日狩猎任意怪物数量达到18只","TargetType":5,"Target":[0],"TargetValue":[18]},
+{"_t":"CampLieShouConfig","_id":10010009,"TaskName":"今日狩猎任意怪物数量达到19只","TargetType":5,"Target":[0],"TargetValue":[19]},
+{"_t":"CampLieShouConfig","_id":10010010,"TaskName":"今日狩猎任意怪物数量达到20只","TargetType":5,"Target":[0],"TargetValue":[20]},
+{"_t":"CampLieShouConfig","_id":10010011,"TaskName":"今日狩猎任意怪物数量达到21只","TargetType":5,"Target":[0],"TargetValue":[21]},
+{"_t":"CampLieShouConfig","_id":10010012,"TaskName":"今日狩猎任意怪物数量达到22只","TargetType":5,"Target":[0],"TargetValue":[22]},
+{"_t":"CampLieShouConfig","_id":10010013,"TaskName":"今日狩猎任意怪物数量达到23只","TargetType":5,"Target":[0],"TargetValue":[23]},
+]}

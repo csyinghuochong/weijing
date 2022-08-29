@@ -1,0 +1,12 @@
+{"list":[
+{"_t":"AIConfig","_id":101,"AIConfigId":1,"Order":1,"Name":"AI_XunLuo","NodeParams":[0]},
+{"_t":"AIConfig","_id":102,"AIConfigId":1,"Order":2,"Name":"AI_Retreat","NodeParams":[0]},
+{"_t":"AIConfig","_id":103,"AIConfigId":1,"Order":3,"Name":"AI_ZhuiJi","NodeParams":[]},
+{"_t":"AIConfig","_id":104,"AIConfigId":1,"Order":4,"Name":"AI_Attack","NodeParams":[]},
+{"_t":"AIConfig","_id":201,"AIConfigId":2,"Order":1,"Name":"AI_Follow","NodeParams":[]},
+{"_t":"AIConfig","_id":202,"AIConfigId":2,"Order":2,"Name":"AI_PetZhuiJi","NodeParams":[]},
+{"_t":"AIConfig","_id":203,"AIConfigId":2,"Order":3,"Name":"AI_Attack","NodeParams":[]},
+{"_t":"AIConfig","_id":301,"AIConfigId":3,"Order":1,"Name":"AI_NPCXunLuo","NodeParams":[]},
+{"_t":"AIConfig","_id":401,"AIConfigId":4,"Order":1,"Name":"AI_Tower","NodeParams":[]},
+{"_t":"AIConfig","_id":501,"AIConfigId":5,"Order":1,"Name":"AI_SceneBuff","NodeParams":[]},
+]}

@@ -1,0 +1,12 @@
+{"list":[
+{"_t":"PetFubenRewardConfig","_id":1,"NeedStar":15,"RewardItems":"1;5000@10000132;10@10010098;5","Icon":10100001,"Desc":""},
+{"_t":"PetFubenRewardConfig","_id":2,"NeedStar":30,"RewardItems":"1;7500@10000132;10@10010098;5","Icon":10100002,"Desc":""},
+{"_t":"PetFubenRewardConfig","_id":3,"NeedStar":45,"RewardItems":"1;10000@10000132;10@10010098;10","Icon":10100003,"Desc":""},
+{"_t":"PetFubenRewardConfig","_id":4,"NeedStar":60,"RewardItems":"1;12500@10000132;20@10010098;10","Icon":10100003,"Desc":""},
+{"_t":"PetFubenRewardConfig","_id":5,"NeedStar":75,"RewardItems":"1;15000@10000132;20@10010098;15","Icon":10100003,"Desc":""},
+{"_t":"PetFubenRewardConfig","_id":6,"NeedStar":90,"RewardItems":"1;17500@10000132;20@10010098;15","Icon":10100003,"Desc":""},
+{"_t":"PetFubenRewardConfig","_id":7,"NeedStar":105,"RewardItems":"1;20000@10000132;30@10010098;20","Icon":10100003,"Desc":""},
+{"_t":"PetFubenRewardConfig","_id":8,"NeedStar":120,"RewardItems":"1;22500@10000132;30@10010098;20","Icon":10100003,"Desc":""},
+{"_t":"PetFubenRewardConfig","_id":9,"NeedStar":135,"RewardItems":"1;25000@10000132;30@10010098;20","Icon":10100003,"Desc":""},
+{"_t":"PetFubenRewardConfig","_id":10,"NeedStar":150,"RewardItems":"1;27500@10000132;30@10010098;20","Icon":10100003,"Desc":""},
+]}

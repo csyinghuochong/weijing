@@ -1,0 +1,5 @@
+{"list":[
+{"_t":"PetEggDuiHuanConfig","_id":1,"CostItems":"10000132;10","DropID":601700011},
+{"_t":"PetEggDuiHuanConfig","_id":2,"CostItems":"10000132;25","DropID":601700021},
+{"_t":"PetEggDuiHuanConfig","_id":3,"CostItems":"10000132;50","DropID":601700031},
+]}

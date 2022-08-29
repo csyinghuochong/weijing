@@ -1,0 +1,8 @@
+{"list":[
+{"_t":"ChengJiuRewardConfig","_id":1,"NeedPoint":100,"RewardItems":"1;50000@3;2000","Icon":10002,"Desc":"成就点数达到100可领取对应奖励"},
+{"_t":"ChengJiuRewardConfig","_id":2,"NeedPoint":200,"RewardItems":"1;100000@3;2000","Icon":10002,"Desc":"成就点数达到200可领取对应奖励"},
+{"_t":"ChengJiuRewardConfig","_id":3,"NeedPoint":300,"RewardItems":"1;150000@3;2000","Icon":10002,"Desc":"成就点数达到300可领取对应奖励"},
+{"_t":"ChengJiuRewardConfig","_id":4,"NeedPoint":400,"RewardItems":"1;200000@3;2000","Icon":10003,"Desc":"成就点数达到400可领取对应奖励"},
+{"_t":"ChengJiuRewardConfig","_id":5,"NeedPoint":500,"RewardItems":"1;250000@3;2000","Icon":10003,"Desc":"成就点数达到500可领取对应奖励"},
+{"_t":"ChengJiuRewardConfig","_id":6,"NeedPoint":600,"RewardItems":"1;300000@3;2000","Icon":10003,"Desc":"成就点数达到600可领取对应奖励"},
+]}

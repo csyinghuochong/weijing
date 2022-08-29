@@ -1,0 +1,6 @@
+{"list":[
+{"_t":"RandomTowerRewardConfig","_id":10001,"Name":"挑战之地1波","CengNum":[1,5],"RewardList":"3;500@10010075;1@10010077;1"},
+{"_t":"RandomTowerRewardConfig","_id":10002,"Name":"挑战之地2波","CengNum":[6,10],"RewardList":"3;500@10010075;1@10010077;1"},
+{"_t":"RandomTowerRewardConfig","_id":10003,"Name":"挑战之地3波","CengNum":[11,15],"RewardList":"3;500@10010075;1@10010077;1"},
+{"_t":"RandomTowerRewardConfig","_id":10004,"Name":"挑战之地4波","CengNum":[16,20],"RewardList":"3;500"},
+]}

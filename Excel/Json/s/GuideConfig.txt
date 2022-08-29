@@ -1,0 +1,10 @@
+{"list":[
+{"_t":"GuideConfig","_id":10001,"NextID":0,"Save":0,"Triger":[1,5,0],"Button":"Global/UI/Low/UIMain(Clone)/Bottom/LeftBottomBtns/Btn_RoseSkill","Force":0,"Text":"学习技能指引","TextPosition":0},
+{"_t":"GuideConfig","_id":11001,"NextID":11002,"Save":0,"Triger":[1,8,0],"Button":"Global/UI/Low/UIMain(Clone)/Bottom/LeftBottomBtns/Btn_RoseEquip","Force":0,"Text":"回收装备指引","TextPosition":0},
+{"_t":"GuideConfig","_id":11002,"NextID":0,"Save":0,"Triger":[0],"Button":"Global/UI/Low/UIRole(Clone)/FunctionSetBtn/Btn_HuiShow/Button","Force":0,"Text":"","TextPosition":0},
+{"_t":"GuideConfig","_id":12001,"NextID":12002,"Save":0,"Triger":[1,10,0],"Button":"Global/UI/Low/UIMain(Clone)/Bottom/LeftBottomBtns/Btn_RoseEquip","Force":0,"Text":"重铸系统指引","TextPosition":0},
+{"_t":"GuideConfig","_id":12002,"NextID":0,"Save":0,"Triger":[0],"Button":"Global/UI/Low/UIRole(Clone)/FunctionSetBtn/Btn_XiLian/Button","Force":0,"Text":"","TextPosition":0},
+{"_t":"GuideConfig","_id":13001,"NextID":0,"Save":0,"Triger":[1,12,0],"Button":"Global/UI/Low/UIMain(Clone)/Bottom/LeftBottomBtns/Btn_MakeItem","Force":0,"Text":"制造系统指引","TextPosition":0},
+{"_t":"GuideConfig","_id":14001,"NextID":14002,"Save":0,"Triger":[1,15,0],"Button":"Global/UI/Low/UIMain(Clone)/Bottom/LeftBottomBtns/Btn_RoseSkill","Force":0,"Text":"专精系统开启","TextPosition":0},
+{"_t":"GuideConfig","_id":14002,"NextID":0,"Save":0,"Triger":[0],"Button":"Global/UI/Low/UISkill(Clone)/FunctionSetBtn/Btn_TianFu/Button","Force":0,"Text":"","TextPosition":0},
+]}

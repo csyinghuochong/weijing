@@ -1,0 +1,6 @@
+{"list":[
+{"_t":"RandowTowerRewardConfig","_id":10001,"Name":"挑战之地1波","CengNum":[1,10],"RewardList":"3;500@10010075;1@10010077;1"},
+{"_t":"RandowTowerRewardConfig","_id":10002,"Name":"挑战之地2波","CengNum":[11,20],"RewardList":"3;500@10010075;1@10010077;1"},
+{"_t":"RandowTowerRewardConfig","_id":10003,"Name":"挑战之地3波","CengNum":[21,30],"RewardList":"3;500@10010075;1@10010077;1"},
+{"_t":"RandowTowerRewardConfig","_id":10004,"Name":"挑战之地4波","CengNum":[31,40],"RewardList":"3;500"},
+]}

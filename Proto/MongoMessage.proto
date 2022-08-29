@@ -1,0 +1,92 @@
+syntax = "proto3";
+package ET;
+
+message ObjectQueryResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	Entity entity = 1;
+}
+
+//ResponseType M2M_UnitTransferResponse
+message M2M_UnitTransferRequest // IActorRequest
+{
+	int32 RpcId = 1;
+	Unit Unit = 2;
+	repeated Entity Entitys = 3;
+	int32 SceneType = 4;
+	int32 ChapterId = 6;
+	int32 SonId = 7;
+	int32 TransferId = 8;
+}
+
+//ResponseType D2G_GetComponent
+message G2D_GetComponent // IDBCacheActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    string Component = 1;
+    int64 CharacterId = 2;
+}
+
+message D2G_GetComponent // IDBCacheActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+    Entity Component = 1;
+}
+
+//ResponseType D2G_GetUnit
+message G2D_GetUnit // IDBCacheActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    string Component = 1;
+    int64 CharacterId = 2;
+}
+
+message D2G_GetUnit // IDBCacheActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+    repeated Entity Components = 1;
+}
+
+
+//ResponseType D2M_SaveComponent
+message M2D_SaveComponent // IDBCacheActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    Entity Component = 1;
+    int64 CharacterId = 2;
+    string ComponentType = 3;
+}
+
+message D2M_SaveComponent // IDBCacheActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
+//ResponseType D2M_SaveUnit
+message M2D_SaveUnit // IDBCacheActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    repeated Entity Components = 1;
+    int64 CharacterId = 2;
+}
+
+message D2M_SaveUnit // IDBCacheActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
