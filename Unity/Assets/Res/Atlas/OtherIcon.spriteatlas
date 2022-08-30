@@ -32,7 +32,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: c233435c73ad9a241b46c99e878926c5, type: 3}
-    totalSpriteSurfaceArea: 545166
+    totalSpriteSurfaceArea: 1341958
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -60,6 +60,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f9656389ba660054b843b3da2e1214ca, type: 3}
   - {fileID: 21300000, guid: c8b15e99cb5bdd94281654a2e07a1280, type: 3}
   - {fileID: 21300000, guid: c56502d968105c844b93edc899cf9ee0, type: 3}
+  - {fileID: 21300000, guid: 0bd1327adb06c3f43aefeeba1ab42ae2, type: 3}
   - {fileID: 21300000, guid: 99e7c9aada10e3e46ba86cdf1c72cd2d, type: 3}
   - {fileID: 21300000, guid: fcae9dca07d288240956ea7c42fa5a0a, type: 3}
   - {fileID: 21300000, guid: 22c6795be870ac0429584139cd7d4808, type: 3}
@@ -94,6 +95,7 @@ SpriteAtlas:
   - Img_hole_101a
   - OccTwo_202
   - WuQi_3
+  - WuQi_4
   - WuQi_2
   - OccTwo_101
   - OccTwo_203
