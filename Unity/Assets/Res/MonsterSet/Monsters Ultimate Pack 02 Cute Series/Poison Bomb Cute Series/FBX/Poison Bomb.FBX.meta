@@ -1,0 +1,350 @@
+fileFormatVersion: 2
+guid: 4ba425608ff1f3b48b97c5847ed9671e
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Poison Bomb
+  - first:
+      1: 100002
+    second: //RootNode
+  - first:
+      1: 100004
+    second: Rig
+  - first:
+      1: 100006
+    second: RigFuse1
+  - first:
+      1: 100008
+    second: RigFuse1Gizmo
+  - first:
+      1: 100010
+    second: RigFuse2
+  - first:
+      1: 100012
+    second: RigFuse2Gizmo
+  - first:
+      1: 100014
+    second: RigFuse3
+  - first:
+      1: 100016
+    second: RigFuse3Gizmo
+  - first:
+      1: 100018
+    second: RigFuse4
+  - first:
+      1: 100020
+    second: RigFuse4Gizmo
+  - first:
+      1: 100022
+    second: RigHub
+  - first:
+      1: 100024
+    second: RigHubGizmo
+  - first:
+      1: 100026
+    second: RigJaw Down
+  - first:
+      1: 100028
+    second: RigJaw DownGizmo
+  - first:
+      1: 100030
+    second: RigLArm1
+  - first:
+      1: 100032
+    second: RigLArm1Gizmo
+  - first:
+      1: 100034
+    second: RigLArm2
+  - first:
+      1: 100036
+    second: RigLArm2Gizmo
+  - first:
+      1: 100038
+    second: RigRArm1
+  - first:
+      1: 100040
+    second: RigRArm1Gizmo
+  - first:
+      1: 100042
+    second: RigRArm2
+  - first:
+      1: 100044
+    second: RigRArm2Gizmo
+  - first:
+      1: 100046
+    second: Sphere007
+  - first:
+      1: 100048
+    second: Object001
+  - first:
+      1: 100050
+    second: Object002
+  - first:
+      1: 100052
+    second: Poison Bomb Glass
+  - first:
+      1: 100054
+    second: RigCrossbone
+  - first:
+      1: 100056
+    second: RigCrossboneGizmo
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: Poison Bomb
+  - first:
+      4: 400004
+    second: Rig
+  - first:
+      4: 400006
+    second: RigFuse1
+  - first:
+      4: 400008
+    second: RigFuse1Gizmo
+  - first:
+      4: 400010
+    second: RigFuse2
+  - first:
+      4: 400012
+    second: RigFuse2Gizmo
+  - first:
+      4: 400014
+    second: RigFuse3
+  - first:
+      4: 400016
+    second: RigFuse3Gizmo
+  - first:
+      4: 400018
+    second: RigFuse4
+  - first:
+      4: 400020
+    second: RigFuse4Gizmo
+  - first:
+      4: 400022
+    second: RigHub
+  - first:
+      4: 400024
+    second: RigHubGizmo
+  - first:
+      4: 400026
+    second: RigJaw Down
+  - first:
+      4: 400028
+    second: RigJaw DownGizmo
+  - first:
+      4: 400030
+    second: RigLArm1
+  - first:
+      4: 400032
+    second: RigLArm1Gizmo
+  - first:
+      4: 400034
+    second: RigLArm2
+  - first:
+      4: 400036
+    second: RigLArm2Gizmo
+  - first:
+      4: 400038
+    second: RigRArm1
+  - first:
+      4: 400040
+    second: RigRArm1Gizmo
+  - first:
+      4: 400042
+    second: RigRArm2
+  - first:
+      4: 400044
+    second: RigRArm2Gizmo
+  - first:
+      4: 400046
+    second: Sphere007
+  - first:
+      4: 400048
+    second: Object001
+  - first:
+      4: 400050
+    second: Object002
+  - first:
+      4: 400052
+    second: Poison Bomb Glass
+  - first:
+      4: 400054
+    second: RigCrossbone
+  - first:
+      4: 400056
+    second: RigCrossboneGizmo
+  - first:
+      21: 2100000
+    second: 01 - Default
+  - first:
+      21: 2100002
+    second: No Name
+  - first:
+      23: 2300000
+    second: Poison Bomb
+  - first:
+      23: 2300002
+    second: Sphere007
+  - first:
+      23: 2300004
+    second: Object001
+  - first:
+      23: 2300006
+    second: Object002
+  - first:
+      23: 2300008
+    second: Poison Bomb Glass
+  - first:
+      33: 3300000
+    second: Poison Bomb
+  - first:
+      33: 3300002
+    second: Sphere007
+  - first:
+      33: 3300004
+    second: Object001
+  - first:
+      33: 3300006
+    second: Object002
+  - first:
+      33: 3300008
+    second: Poison Bomb Glass
+  - first:
+      43: 4300000
+    second: Poison Bomb
+  - first:
+      43: 4300002
+    second: Sphere007
+  - first:
+      43: 4300004
+    second: Object001
+  - first:
+      43: 4300006
+    second: Object002
+  - first:
+      43: 4300008
+    second: Poison Bomb Glass
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Poison Bomb
+  - first:
+      137: 13700002
+    second: Poison Bomb Glass
+  externalObjects: {}
+  materials:
+    materialImportMode: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips:
+  - f065427d80e15ec46ac54a60d5a161dd
+  - 98d065de31221cf41be443355f89de7c
+  - 891caad37d3711849b61d8c2b117a9bb
+  - fea483ff0b3695f40ac495f668daef07
+  - e915e9fb3ae8a6c4bb9de936b9d96ae9
+  - 40e647d79bd8c8448a66b44a4057be72
+  - 14e0ae5344eb08a448a4c57fcea3229b
+  - 4f6794717455b3b4ea870d2d8811e593
+  - 4f8830b9af8597b4aafbb09df190a743
+  - 26f2080c7988eeb41b49ee5ae85291d2
+  - b2ec24b2a47519c428327b20cdb1c61a
+  - 7afef511519a0114781307bf6976338c
+  - 06ef8556daec33043bf4b85edc7deba9
+  - 02bad669ff9097743b5e91eceea6b64c
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

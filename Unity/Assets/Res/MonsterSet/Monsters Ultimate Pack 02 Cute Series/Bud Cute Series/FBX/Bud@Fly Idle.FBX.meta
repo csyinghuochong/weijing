@@ -1,0 +1,188 @@
+fileFormatVersion: 2
+guid: 4fc504f5e054158458cdd2c02798cff3
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Bud
+    100002: //RootNode
+    100004: Rig
+    100006: RigHead
+    100008: RigHeadCannon01
+    100010: RigHeadCannon01Gizmo
+    100012: RigHeadCannon02
+    100014: RigHeadCannon02Gizmo
+    100016: RigHeadCannon03
+    100018: RigHeadCannon03Gizmo
+    100020: RigHeadCannon04
+    100022: RigHeadCannon04Gizmo
+    100024: RigHeadCannon05
+    100026: RigHeadCannon05Gizmo
+    100028: RigHeadGizmo
+    100030: RigLArm1
+    100032: RigLArm2
+    100034: RigLArm3
+    100036: RigNec
+    100038: RigPelvis
+    100040: RigPelvisGizmo
+    100042: RigRArm1
+    100044: RigRArm2
+    100046: RigRArm3
+    100048: RigEyes
+    100050: RigEyesGizmo
+    100052: RigLArm1Gizmo
+    100054: RigLArm2Gizmo
+    100056: RigLArm3Gizmo
+    100058: RigRArm1Gizmo
+    100060: RigRArm2Gizmo
+    100062: RigRArm3Gizmo
+    400000: Bud
+    400002: //RootNode
+    400004: Rig
+    400006: RigHead
+    400008: RigHeadCannon01
+    400010: RigHeadCannon01Gizmo
+    400012: RigHeadCannon02
+    400014: RigHeadCannon02Gizmo
+    400016: RigHeadCannon03
+    400018: RigHeadCannon03Gizmo
+    400020: RigHeadCannon04
+    400022: RigHeadCannon04Gizmo
+    400024: RigHeadCannon05
+    400026: RigHeadCannon05Gizmo
+    400028: RigHeadGizmo
+    400030: RigLArm1
+    400032: RigLArm2
+    400034: RigLArm3
+    400036: RigNec
+    400038: RigPelvis
+    400040: RigPelvisGizmo
+    400042: RigRArm1
+    400044: RigRArm2
+    400046: RigRArm3
+    400048: RigEyes
+    400050: RigEyesGizmo
+    400052: RigLArm1Gizmo
+    400054: RigLArm2Gizmo
+    400056: RigLArm3Gizmo
+    400058: RigRArm1Gizmo
+    400060: RigRArm2Gizmo
+    400062: RigRArm3Gizmo
+    2100000: 01 - Default
+    4300000: Bud
+    7400000: Fly Idle
+    9500000: //RootNode
+    13700000: Bud
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Fly Idle
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

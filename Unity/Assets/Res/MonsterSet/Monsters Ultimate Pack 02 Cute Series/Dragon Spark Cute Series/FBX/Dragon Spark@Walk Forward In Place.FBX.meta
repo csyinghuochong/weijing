@@ -1,0 +1,212 @@
+fileFormatVersion: 2
+guid: 963c233313c949a42ae0f8abeba24547
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Dragon Spark
+    100002: //RootNode
+    100004: Rig
+    100006: RigHead
+    100008: RigHeadGizmo
+    100010: RigJaw
+    100012: RigJawGizmo
+    100014: RigLArm1
+    100016: RigLArm1Gizmo
+    100018: RigLArm2
+    100020: RigLArm2Gizmo
+    100022: RigLArmPalm
+    100024: RigLArmPalmGizmo
+    100026: RigLLeg1
+    100028: RigLLeg2
+    100030: RigLLegAnkle
+    100032: RigLLegFoot1
+    100034: RigLLegFoot2
+    100036: RigLLegPlatform
+    100038: RigNeck
+    100040: RigPelvis
+    100042: RigPelvisGizmo
+    100044: RigRArm1
+    100046: RigRArm1Gizmo
+    100048: RigRArm2
+    100050: RigRArm2Gizmo
+    100052: RigRArmPalm
+    100054: RigRArmPalmGizmo
+    100056: RigRibcage
+    100058: RigRibcageGizmo
+    100060: RigRLeg1
+    100062: RigRLeg2
+    100064: RigRLegAnkle
+    100066: RigRLegFoot1
+    100068: RigRLegFoot2
+    100070: RigRLegPlatform
+    100072: RigSpine1
+    100074: RigSpine2
+    100076: RigTail1
+    100078: RigTail1Gizmo
+    100080: RigTail2
+    100082: RigTail2Gizmo
+    100084: RigTail3
+    100086: RigTail3Gizmo
+    400000: Dragon Spark
+    400002: //RootNode
+    400004: Rig
+    400006: RigHead
+    400008: RigHeadGizmo
+    400010: RigJaw
+    400012: RigJawGizmo
+    400014: RigLArm1
+    400016: RigLArm1Gizmo
+    400018: RigLArm2
+    400020: RigLArm2Gizmo
+    400022: RigLArmPalm
+    400024: RigLArmPalmGizmo
+    400026: RigLLeg1
+    400028: RigLLeg2
+    400030: RigLLegAnkle
+    400032: RigLLegFoot1
+    400034: RigLLegFoot2
+    400036: RigLLegPlatform
+    400038: RigNeck
+    400040: RigPelvis
+    400042: RigPelvisGizmo
+    400044: RigRArm1
+    400046: RigRArm1Gizmo
+    400048: RigRArm2
+    400050: RigRArm2Gizmo
+    400052: RigRArmPalm
+    400054: RigRArmPalmGizmo
+    400056: RigRibcage
+    400058: RigRibcageGizmo
+    400060: RigRLeg1
+    400062: RigRLeg2
+    400064: RigRLegAnkle
+    400066: RigRLegFoot1
+    400068: RigRLegFoot2
+    400070: RigRLegPlatform
+    400072: RigSpine1
+    400074: RigSpine2
+    400076: RigTail1
+    400078: RigTail1Gizmo
+    400080: RigTail2
+    400082: RigTail2Gizmo
+    400084: RigTail3
+    400086: RigTail3Gizmo
+    2100000: 'Material #2'
+    4300000: Dragon Spark
+    7400000: Walk Forward In Place
+    9500000: //RootNode
+    13700000: Dragon Spark
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Walk Forward In Place
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

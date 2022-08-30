@@ -1,0 +1,196 @@
+fileFormatVersion: 2
+guid: e4bd9670321093e4799dc6563df6c572
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Dummy001
+    100002: Rig
+    100004: RigHub
+    100006: RigHubGizmo
+    100008: RigLArm1
+    100010: RigLArm2
+    100012: RigLArmPalm
+    100014: RigLBLeg1
+    100016: RigLBLeg2
+    100018: RigLBLegAnkle
+    100020: RigLBLegPlatform
+    100022: RigLEye01
+    100024: RigLEye02
+    100026: RigLEye03
+    100028: RigLFLeg1
+    100030: RigLFLeg2
+    100032: RigLFLegAnkle
+    100034: RigLFLegPlatform
+    100036: RigRArm1
+    100038: RigRArm2
+    100040: RigRArmPalm
+    100042: RigRBLeg1
+    100044: RigRBLeg2
+    100046: RigRBLegAnkle
+    100048: RigRBLegPlatform
+    100050: RigREye01
+    100052: RigREye02
+    100054: RigREye03
+    100056: RigRFLeg1
+    100058: RigRFLeg2
+    100060: RigRFLegAnkle
+    100062: RigRFLegPlatform
+    100064: RigShell
+    100066: RigShellGizmo
+    100068: Spike
+    100070: //RootNode
+    400000: Dummy001
+    400002: Rig
+    400004: RigHub
+    400006: RigHubGizmo
+    400008: RigLArm1
+    400010: RigLArm2
+    400012: RigLArmPalm
+    400014: RigLBLeg1
+    400016: RigLBLeg2
+    400018: RigLBLegAnkle
+    400020: RigLBLegPlatform
+    400022: RigLEye01
+    400024: RigLEye02
+    400026: RigLEye03
+    400028: RigLFLeg1
+    400030: RigLFLeg2
+    400032: RigLFLegAnkle
+    400034: RigLFLegPlatform
+    400036: RigRArm1
+    400038: RigRArm2
+    400040: RigRArmPalm
+    400042: RigRBLeg1
+    400044: RigRBLeg2
+    400046: RigRBLegAnkle
+    400048: RigRBLegPlatform
+    400050: RigREye01
+    400052: RigREye02
+    400054: RigREye03
+    400056: RigRFLeg1
+    400058: RigRFLeg2
+    400060: RigRFLegAnkle
+    400062: RigRFLegPlatform
+    400064: RigShell
+    400066: RigShellGizmo
+    400068: Spike
+    400070: //RootNode
+    2100000: 01 - Default
+    4300000: Spike
+    7400000: Hide and Spin Attack In Place
+    9500000: //RootNode
+    13700000: Spike
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Hide and Spin Attack In Place
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

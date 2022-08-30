@@ -1,0 +1,186 @@
+fileFormatVersion: 2
+guid: dbbfc68adfb668f4e922938255b5d502
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: Dragon Spark
+    100002: //RootNode
+    100004: Dummy001
+    100006: Rig
+    100008: RigHead
+    100010: RigHeadGizmo
+    100012: RigJaw
+    100014: RigJawGizmo
+    100016: RigLArm1
+    100018: RigLArm1Gizmo
+    100020: RigLArm2
+    100022: RigLArm2Gizmo
+    100024: RigLArmPalm
+    100026: RigLArmPalmGizmo
+    100028: RigLLeg1
+    100030: RigLLeg2
+    100032: RigLLegAnkle
+    100034: RigLLegFoot1
+    100036: RigLLegFoot2
+    100038: RigLLegPlatform
+    100040: RigNeck
+    100042: RigPelvis
+    100044: RigPelvisGizmo
+    100046: RigRArm1
+    100048: RigRArm1Gizmo
+    100050: RigRArm2
+    100052: RigRArm2Gizmo
+    100054: RigRArmPalm
+    100056: RigRArmPalmGizmo
+    100058: RigRibcage
+    100060: RigRibcageGizmo
+    100062: RigRLeg1
+    100064: RigRLeg2
+    100066: RigRLegAnkle
+    100068: RigRLegFoot1
+    100070: RigRLegFoot2
+    100072: RigRLegPlatform
+    100074: RigSpine1
+    100076: RigSpine2
+    100078: RigTail1
+    100080: RigTail1Gizmo
+    100082: RigTail2
+    100084: RigTail2Gizmo
+    100086: RigTail3
+    100088: RigTail3Gizmo
+    400000: Dragon Spark
+    400002: //RootNode
+    400004: Dummy001
+    400006: Rig
+    400008: RigHead
+    400010: RigHeadGizmo
+    400012: RigJaw
+    400014: RigJawGizmo
+    400016: RigLArm1
+    400018: RigLArm1Gizmo
+    400020: RigLArm2
+    400022: RigLArm2Gizmo
+    400024: RigLArmPalm
+    400026: RigLArmPalmGizmo
+    400028: RigLLeg1
+    400030: RigLLeg2
+    400032: RigLLegAnkle
+    400034: RigLLegFoot1
+    400036: RigLLegFoot2
+    400038: RigLLegPlatform
+    400040: RigNeck
+    400042: RigPelvis
+    400044: RigPelvisGizmo
+    400046: RigRArm1
+    400048: RigRArm1Gizmo
+    400050: RigRArm2
+    400052: RigRArm2Gizmo
+    400054: RigRArmPalm
+    400056: RigRArmPalmGizmo
+    400058: RigRibcage
+    400060: RigRibcageGizmo
+    400062: RigRLeg1
+    400064: RigRLeg2
+    400066: RigRLegAnkle
+    400068: RigRLegFoot1
+    400070: RigRLegFoot2
+    400072: RigRLegPlatform
+    400074: RigSpine1
+    400076: RigSpine2
+    400078: RigTail1
+    400080: RigTail1Gizmo
+    400082: RigTail2
+    400084: RigTail2Gizmo
+    400086: RigTail3
+    400088: RigTail3Gizmo
+    2100000: 'Material #2'
+    4300000: Dragon Spark
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Dragon Spark
+  externalObjects: {}
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
