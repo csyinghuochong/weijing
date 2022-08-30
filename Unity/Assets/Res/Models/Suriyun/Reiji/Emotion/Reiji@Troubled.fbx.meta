@@ -1,0 +1,1833 @@
+fileFormatVersion: 2
+guid: 22d29bba8af583c4d91cf42ad511ca94
+timeCreated: 1453560283
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: AimEye1
+    100002: AimEye1_L
+    100004: AimEye1_M
+    100006: AimEye1_R
+    100008: AimFollowEye1
+    100010: AimFollowOffEye1
+    100012: AimFollowOnEye1
+    100014: AimOffsetEye1
+    100016: AimOffsetEye1_L
+    100018: AimOffsetEye1_R
+    100020: AimSystem
+    100022: AlignIKToAnkle_L
+    100024: AlignIKToAnkle_R
+    100026: AlignIKToChest_M
+    100028: AlignIKToWrist_L
+    100030: AlignIKToWrist_R
+    100032: Ankle
+    100034: Ankle_L
+    100036: Ankle_L 1
+    100038: Ankle_R
+    100040: Ankle_R 1
+    100042: BendSystem
+    100044: blen1
+    100046: blend01
+    100048: blend010
+    100050: blend02
+    100052: blend03
+    100054: blend04
+    100056: blend05
+    100058: blend06
+    100060: blend07
+    100062: blend08
+    100064: blend09
+    100066: blendshape
+    100068: BLW_ANG
+    100070: BLW_ANG 1
+    100072: body_swim1
+    100074: cheek
+    100076: cheek 1
+    100078: cheek2
+    100080: cheek3
+    100082: cheek4
+    100084: cheek5
+    100086: cheek6
+    100088: cheek6 1
+    100090: cheek7
+    100092: cheek7 1
+    100094: cheek8
+    100096: Chest
+    100098: Chest_M
+    100100: Chest_M 1
+    100102: ConstraintSystem
+    100104: Cup
+    100106: Cup_L
+    100108: Cup_L 1
+    100110: Cup_R
+    100112: Cup_R 1
+    100114: DeformationSystem
+    100116: DrivingSystem
+    100118: DynamicSystem
+    100120: EB_L
+    100122: EB_L 1
+    100124: EB_L1
+    100126: EB_L12
+    100128: EB_L2
+    100130: EB_L3
+    100132: EB_L4
+    100134: EB_L5
+    100136: EB_L6
+    100138: EB_L7
+    100140: EB_L8
+    100142: EB_R
+    100144: EB_R 1
+    100146: EB_R1
+    100148: EB_R12
+    100150: EB_R2
+    100152: EB_R3
+    100154: EB_R4
+    100156: EB_R5
+    100158: EB_R6
+    100160: EB_R7
+    100162: EB_R8
+    100164: EL_
+    100166: EL_ANG
+    100168: EL_ANG 1
+    100170: Elbow
+    100172: Elbow_L
+    100174: Elbow_L 1
+    100176: Elbow_R
+    100178: Elbow_R 1
+    100180: eye
+    100182: eye 1
+    100184: Eye1
+    100186: eye11
+    100188: Eye1_L
+    100190: Eye1_L 1
+    100192: Eye1_R
+    100194: Eye1_R 1
+    100196: eye7
+    100198: eye_ang
+    100200: eye_ang2
+    100202: eye_close
+    100204: eye_cross
+    100206: eye_down
+    100208: eye_down 1
+    100210: Eye_fearful
+    100212: eye_frightened
+    100214: eye_L
+    100216: eye_R
+    100218: eye_sad3
+    100220: eye_smile1
+    100222: eye_top
+    100224: EyeEnd
+    100226: EyeEnd_L
+    100228: EyeEnd_L 1
+    100230: EyeEnd_R
+    100232: EyeEnd_R 1
+    100234: FaceA
+    100236: FaceA 1
+    100238: FaceB
+    100240: FaceB 1
+    100242: Fingers_L
+    100244: Fingers_R
+    100246: FitSkeleton
+    100248: FKAimEye1_L
+    100250: FKAimEye1_R
+    100252: FKAnkle_L
+    100254: FKAnkle_R
+    100256: FKChest_M
+    100258: FKCup_L
+    100260: FKCup_R
+    100262: FKElbow_L
+    100264: FKElbow_R
+    100266: FKExtraAnkle_L
+    100268: FKExtraAnkle_R
+    100270: FKExtraChest_M
+    100272: FKExtraCup_L
+    100274: FKExtraCup_R
+    100276: FKExtraElbow_L
+    100278: FKExtraElbow_R
+    100280: FKExtraEye1_L
+    100282: FKExtraEye1_R
+    100284: FKExtraHead_M
+    100286: FKExtraHip_L
+    100288: FKExtraHip_R
+    100290: FKExtraIndexFinger1_L
+    100292: FKExtraIndexFinger1_R
+    100294: FKExtraIndexFinger2_L
+    100296: FKExtraIndexFinger2_R
+    100298: FKExtraIndexFinger3_L
+    100300: FKExtraIndexFinger3_R
+    100302: FKExtraJaw_M
+    100304: FKExtraKnee_L
+    100306: FKExtraKnee_R
+    100308: FKExtraMiddleFinger1_L
+    100310: FKExtraMiddleFinger1_R
+    100312: FKExtraMiddleFinger2_L
+    100314: FKExtraMiddleFinger2_R
+    100316: FKExtraMiddleFinger3_L
+    100318: FKExtraMiddleFinger3_R
+    100320: FKExtraNeck_M
+    100322: FKExtraNeckPart1_M
+    100324: FKExtraPinkyFinger1_L
+    100326: FKExtraPinkyFinger1_R
+    100328: FKExtraPinkyFinger2_L
+    100330: FKExtraPinkyFinger2_R
+    100332: FKExtraPinkyFinger3_L
+    100334: FKExtraPinkyFinger3_R
+    100336: FKExtraRingFinger1_L
+    100338: FKExtraRingFinger1_R
+    100340: FKExtraRingFinger2_L
+    100342: FKExtraRingFinger2_R
+    100344: FKExtraRingFinger3_L
+    100346: FKExtraRingFinger3_R
+    100348: FKExtraRoot_M
+    100350: FKExtraScapula_L
+    100352: FKExtraScapula_R
+    100354: FKExtraShoulder_L
+    100356: FKExtraShoulder_R
+    100358: FKExtraSpine1_M
+    100360: FKExtraThumbFinger1_L
+    100362: FKExtraThumbFinger1_R
+    100364: FKExtraThumbFinger2_L
+    100366: FKExtraThumbFinger2_R
+    100368: FKExtraThumbFinger3_L
+    100370: FKExtraThumbFinger3_R
+    100372: FKExtraToes_L
+    100374: FKExtraToes_R
+    100376: FKExtraWrist_L
+    100378: FKExtraWrist_R
+    100380: FKEye1_L
+    100382: FKEye1_R
+    100384: FKFootRollIKStaticToes_L
+    100386: FKFootRollIKStaticToes_R
+    100388: FKFootRollIKToes_L
+    100390: FKFootRollIKToes_R
+    100392: FKGlobalHead_M
+    100394: FKGlobalStaticHead_M
+    100396: FKHead_M
+    100398: FKHip_L
+    100400: FKHip_R
+    100402: FKIKArm_L
+    100404: FKIKArm_R
+    100406: FKIKLeg_L
+    100408: FKIKLeg_R
+    100410: FKIKParentConstraintArm_L
+    100412: FKIKParentConstraintArm_R
+    100414: FKIKParentConstraintLeg_L
+    100416: FKIKParentConstraintLeg_R
+    100418: FKIKParentConstraintSpine_M
+    100420: FKIKSpine_M
+    100422: FKIKSystem
+    100424: FKIndexFinger1_L
+    100426: FKIndexFinger1_R
+    100428: FKIndexFinger2_L
+    100430: FKIndexFinger2_R
+    100432: FKIndexFinger3_L
+    100434: FKIndexFinger3_R
+    100436: FKJaw_M
+    100438: FKKnee_L
+    100440: FKKnee_R
+    100442: FKMiddleFinger1_L
+    100444: FKMiddleFinger1_R
+    100446: FKMiddleFinger2_L
+    100448: FKMiddleFinger2_R
+    100450: FKMiddleFinger3_L
+    100452: FKMiddleFinger3_R
+    100454: FKNeck_M
+    100456: FKNeckPart1_M
+    100458: FKOffsetAnkle_L
+    100460: FKOffsetAnkle_R
+    100462: FKOffsetChest_M
+    100464: FKOffsetCup_L
+    100466: FKOffsetCup_R
+    100468: FKOffsetElbow_L
+    100470: FKOffsetElbow_R
+    100472: FKOffsetEye1_L
+    100474: FKOffsetEye1_R
+    100476: FKOffsetHead_M
+    100478: FKOffsetHip_L
+    100480: FKOffsetHip_R
+    100482: FKOffsetIndexFinger1_L
+    100484: FKOffsetIndexFinger1_R
+    100486: FKOffsetIndexFinger2_L
+    100488: FKOffsetIndexFinger2_R
+    100490: FKOffsetIndexFinger3_L
+    100492: FKOffsetIndexFinger3_R
+    100494: FKOffsetJaw_M
+    100496: FKOffsetKnee_L
+    100498: FKOffsetKnee_R
+    100500: FKOffsetMiddleFinger1_L
+    100502: FKOffsetMiddleFinger1_R
+    100504: FKOffsetMiddleFinger2_L
+    100506: FKOffsetMiddleFinger2_R
+    100508: FKOffsetMiddleFinger3_L
+    100510: FKOffsetMiddleFinger3_R
+    100512: FKOffsetNeck_M
+    100514: FKOffsetNeckPart1_M
+    100516: FKOffsetPinkyFinger1_L
+    100518: FKOffsetPinkyFinger1_R
+    100520: FKOffsetPinkyFinger2_L
+    100522: FKOffsetPinkyFinger2_R
+    100524: FKOffsetPinkyFinger3_L
+    100526: FKOffsetPinkyFinger3_R
+    100528: FKOffsetRingFinger1_L
+    100530: FKOffsetRingFinger1_R
+    100532: FKOffsetRingFinger2_L
+    100534: FKOffsetRingFinger2_R
+    100536: FKOffsetRingFinger3_L
+    100538: FKOffsetRingFinger3_R
+    100540: FKOffsetRoot_M
+    100542: FKOffsetScapula_L
+    100544: FKOffsetScapula_R
+    100546: FKOffsetShoulder_L
+    100548: FKOffsetShoulder_R
+    100550: FKOffsetSpine1_M
+    100552: FKOffsetThumbFinger1_L
+    100554: FKOffsetThumbFinger1_R
+    100556: FKOffsetThumbFinger2_L
+    100558: FKOffsetThumbFinger2_R
+    100560: FKOffsetThumbFinger3_L
+    100562: FKOffsetThumbFinger3_R
+    100564: FKOffsetToes_L
+    100566: FKOffsetToes_R
+    100568: FKOffsetWrist_L
+    100570: FKOffsetWrist_R
+    100572: FKParentConstraintToAnkle_L
+    100574: FKParentConstraintToAnkle_R
+    100576: FKParentConstraintToChest_M
+    100578: FKParentConstraintToRoot_M
+    100580: FKParentConstraintToScapula_L
+    100582: FKParentConstraintToScapula_R
+    100584: FKParentConstraintToWrist_L
+    100586: FKParentConstraintToWrist_R
+    100588: FKPinkyFinger1_L
+    100590: FKPinkyFinger1_R
+    100592: FKPinkyFinger2_L
+    100594: FKPinkyFinger2_R
+    100596: FKPinkyFinger3_L
+    100598: FKPinkyFinger3_R
+    100600: FKRingFinger1_L
+    100602: FKRingFinger1_R
+    100604: FKRingFinger2_L
+    100606: FKRingFinger2_R
+    100608: FKRingFinger3_L
+    100610: FKRingFinger3_R
+    100612: FKRoot_M
+    100614: FKScapula_L
+    100616: FKScapula_R
+    100618: FKShoulder_L
+    100620: FKShoulder_R
+    100622: FKSpine1_M
+    100624: FKSystem
+    100626: FKThumbFinger1_L
+    100628: FKThumbFinger1_R
+    100630: FKThumbFinger2_L
+    100632: FKThumbFinger2_R
+    100634: FKThumbFinger3_L
+    100636: FKThumbFinger3_R
+    100638: FKToes_L
+    100640: FKToes_R
+    100642: FKWrist_L
+    100644: FKWrist_R
+    100646: FKXAnkle_L
+    100648: FKXAnkle_R
+    100650: FKXChest_M
+    100652: FKXCup_L
+    100654: FKXCup_R
+    100656: FKXElbow_L
+    100658: FKXElbow_R
+    100660: FKXEye1_L
+    100662: FKXEye1_R
+    100664: FKXHead_M
+    100666: FKXHip_L
+    100668: FKXHip_R
+    100670: FKXIndexFinger1_L
+    100672: FKXIndexFinger1_R
+    100674: FKXIndexFinger2_L
+    100676: FKXIndexFinger2_R
+    100678: FKXIndexFinger3_L
+    100680: FKXIndexFinger3_R
+    100682: FKXJaw_M
+    100684: FKXKnee_L
+    100686: FKXKnee_R
+    100688: FKXMiddleFinger1_L
+    100690: FKXMiddleFinger1_R
+    100692: FKXMiddleFinger2_L
+    100694: FKXMiddleFinger2_R
+    100696: FKXMiddleFinger3_L
+    100698: FKXMiddleFinger3_R
+    100700: FKXNeck_M
+    100702: FKXNeckPart1_M
+    100704: FKXPinkyFinger1_L
+    100706: FKXPinkyFinger1_R
+    100708: FKXPinkyFinger2_L
+    100710: FKXPinkyFinger2_R
+    100712: FKXPinkyFinger3_L
+    100714: FKXPinkyFinger3_R
+    100716: FKXRingFinger1_L
+    100718: FKXRingFinger1_R
+    100720: FKXRingFinger2_L
+    100722: FKXRingFinger2_R
+    100724: FKXRingFinger3_L
+    100726: FKXRingFinger3_R
+    100728: FKXRoot_M
+    100730: FKXScapula_L
+    100732: FKXScapula_R
+    100734: FKXShoulder_L
+    100736: FKXShoulder_R
+    100738: FKXSpine1_M
+    100740: FKXThumbFinger1_L
+    100742: FKXThumbFinger1_R
+    100744: FKXThumbFinger2_L
+    100746: FKXThumbFinger2_R
+    100748: FKXThumbFinger3_L
+    100750: FKXThumbFinger3_R
+    100752: FKXToes_L
+    100754: FKXToes_R
+    100756: FKXWrist_L
+    100758: FKXWrist_R
+    100760: FootSideInner
+    100762: FootSideOuter
+    100764: Geometry
+    100766: GlobalHead_M
+    100768: GlobalOffsetHead_M
+    100770: GlobalSystem
+    100772: Group
+    100774: Head
+    100776: Head_M
+    100778: Head_M 1
+    100780: HeadEnd
+    100782: HeadEnd_M
+    100784: HeadEnd_M 1
+    100786: Heel
+    100788: Hip
+    100790: Hip_L
+    100792: Hip_L 1
+    100794: Hip_R
+    100796: Hip_R 1
+    100798: HipSwinger_M
+    100800: HipSwingerOffset_M
+    100802: HipSwingerStabilizer
+    100804: HipSwingerStabilizerTarget
+    100806: HipSwingReverse
+    100808: HipSwingReverseNeg
+    100810: HipSwingReverseSpine1
+    100812: IKArm_L
+    100814: IKArm_R
+    100816: IKArmHandle_L
+    100818: IKArmHandle_R
+    100820: IKCurve
+    100822: IKdistanceArm_L
+    100824: IKdistanceArm_R
+    100826: IKdistanceLeg_L
+    100828: IKdistanceLeg_R
+    100830: IKExtraArm_L
+    100832: IKExtraArm_R
+    100834: IKExtraLeg_L
+    100836: IKExtraLeg_R
+    100838: IKExtraSpine1_M
+    100840: IKExtraSpine2_M
+    100842: IKfake0Spine_M
+    100844: IKfake1Spine_M
+    100846: IKFake1UpLocSpine_M
+    100848: IKfake2Spine_M
+    100850: IKfake3Spine_M
+    100852: IKFKAlignedArm_L
+    100854: IKFKAlignedArm_R
+    100856: IKFKAlignedLeg_L
+    100858: IKFKAlignedLeg_R
+    100860: IKFKAlignedOffsetArm_L
+    100862: IKFKAlignedOffsetArm_R
+    100864: IKFKAlignedOffsetLeg_L
+    100866: IKFKAlignedOffsetLeg_R
+    100868: IKFootRollToes_L
+    100870: IKFootRollToes_R
+    100872: IKHandle
+    100874: IKJoints
+    100876: IKLeg_L
+    100878: IKLeg_R
+    100880: IKLegFootRockInnerPivot_L
+    100882: IKLegFootRockInnerPivot_R
+    100884: IKLegFootRockOuterPivot_L
+    100886: IKLegFootRockOuterPivot_R
+    100888: IKLegFootRockReverse_L
+    100890: IKLegFootRockReverse_R
+    100892: IKLegFootRoll_L
+    100894: IKLegFootRoll_R
+    100896: IKLegHandle_L
+    100898: IKLegHandle_R
+    100900: IKLegLiftToe_L
+    100902: IKLegLiftToe_R
+    100904: IKMessure
+    100906: IKmessureConstrainToArm_L
+    100908: IKmessureConstrainToArm_R
+    100910: IKmessureConstrainToLeg_L
+    100912: IKmessureConstrainToLeg_R
+    100914: IKMessureFromHip_L
+    100916: IKMessureFromHip_R
+    100918: IKMessureFromShoulder_L
+    100920: IKMessureFromShoulder_R
+    100922: IKmessureLoc1Arm_L
+    100924: IKmessureLoc1Arm_R
+    100926: IKmessureLoc1Leg_L
+    100928: IKmessureLoc1Leg_R
+    100930: IKmessureLoc2Arm_L
+    100932: IKmessureLoc2Arm_R
+    100934: IKmessureLoc2Leg_L
+    100936: IKmessureLoc2Leg_R
+    100938: IKOffsetArm_L
+    100940: IKOffsetArm_LStatic
+    100942: IKOffsetArm_R
+    100944: IKOffsetArm_RStatic
+    100946: IKOffsetLeg_L
+    100948: IKOffsetLeg_R
+    100950: IKOffsetSpine1_M
+    100952: IKOffsetSpine2_M
+    100954: IKParentConstraintHip_L
+    100956: IKParentConstraintHip_R
+    100958: IKParentConstraintRoot_M
+    100960: IKParentConstraintShoulder_L
+    100962: IKParentConstraintShoulder_R
+    100964: IKRootConstraint
+    100966: IKScalerChest_M
+    100968: IKScalerRoot_M
+    100970: IKScalerSpine1_M
+    100972: IKSpChest_M
+    100974: IKSpChestFollowOffset_M
+    100976: IKSpine0AlignTo_M
+    100978: IKSpine1_M
+    100980: IKSpine2_M
+    100982: IKSpine2AlignTo_M
+    100984: IKSpine2AlignUnIKTwistTo_M
+    100986: IKSpine2AlignUnIKTwistToOffset_M
+    100988: IKSpine2ConstraintHolder_M
+    100990: IKSpineCurve_M
+    100992: IKSpineHandle_M
+    100994: IKSpineLocator0_M
+    100996: IKSpineLocator1_M
+    100998: IKSpineLocator2_M
+    101000: IKSpineLocator3_M
+    101002: IKSpRoot_M
+    101004: IKSpRootFollowOffset_M
+    101006: IKSpSpine1_M
+    101008: IKSpSpine1FollowOffset_M
+    101010: IKSpSpineOffset_M
+    101012: IKStatic
+    101014: IKStiffOrientSpine1_M
+    101016: IKStiffOrientSpine2_M
+    101018: IKSystem
+    101020: IKToesEndHandle_L
+    101022: IKToesEndHandle_R
+    101024: IKToesHandle_L
+    101026: IKToesHandle_R
+    101028: IKXAnkle_L
+    101030: IKXAnkle_R
+    101032: IKXChest_M
+    101034: IKXElbow_L
+    101036: IKXElbow_R
+    101038: IKXHip_L
+    101040: IKXHip_R
+    101042: IKXKnee_L
+    101044: IKXKnee_R
+    101046: IKXOffsetHip_L
+    101048: IKXOffsetHip_R
+    101050: IKXOffsetRoot_M
+    101052: IKXOffsetShoulder_L
+    101054: IKXOffsetShoulder_R
+    101056: IKXRoot_M
+    101058: IKXShoulder_L
+    101060: IKXShoulder_R
+    101062: IKXSpine1_M
+    101064: IKXToes_L
+    101066: IKXToes_R
+    101068: IKXToesEnd_L
+    101070: IKXToesEnd_R
+    101072: IKXWrist_L
+    101074: IKXWrist_R
+    101076: IndexFinger1
+    101078: IndexFinger1_L
+    101080: IndexFinger1_L 1
+    101082: IndexFinger1_R
+    101084: IndexFinger1_R 1
+    101086: IndexFinger2
+    101088: IndexFinger2_L
+    101090: IndexFinger2_L 1
+    101092: IndexFinger2_R
+    101094: IndexFinger2_R 1
+    101096: IndexFinger3
+    101098: IndexFinger3_L
+    101100: IndexFinger3_L 1
+    101102: IndexFinger3_R
+    101104: IndexFinger3_R 1
+    101106: IndexFinger4
+    101108: IndexFinger4_L
+    101110: IndexFinger4_L 1
+    101112: IndexFinger4_R
+    101114: IndexFinger4_R 1
+    101116: Jaw
+    101118: Jaw_M
+    101120: Jaw_M 1
+    101122: JawEnd
+    101124: JawEnd_M
+    101126: JawEnd_M 1
+    101128: Knee
+    101130: Knee_L
+    101132: Knee_L 1
+    101134: Knee_R
+    101136: Knee_R 1
+    101138: Main
+    101140: mesh
+    101142: MiddleFinger1
+    101144: MiddleFinger1_L
+    101146: MiddleFinger1_L 1
+    101148: MiddleFinger1_R
+    101150: MiddleFinger1_R 1
+    101152: MiddleFinger2
+    101154: MiddleFinger2_L
+    101156: MiddleFinger2_L 1
+    101158: MiddleFinger2_R
+    101160: MiddleFinger2_R 1
+    101162: MiddleFinger3
+    101164: MiddleFinger3_L
+    101166: MiddleFinger3_L 1
+    101168: MiddleFinger3_R
+    101170: MiddleFinger3_R 1
+    101172: MiddleFinger4
+    101174: MiddleFinger4_L
+    101176: MiddleFinger4_L 1
+    101178: MiddleFinger4_R
+    101180: MiddleFinger4_R 1
+    101182: MotionSystem
+    101184: Neck
+    101186: Neck_M
+    101188: Neck_M 1
+    101190: NeckPart1_M
+    101192: NeckPart1_M 1
+    101194: PinkyFinger1
+    101196: PinkyFinger1_L
+    101198: PinkyFinger1_L 1
+    101200: PinkyFinger1_R
+    101202: PinkyFinger1_R 1
+    101204: PinkyFinger2
+    101206: PinkyFinger2_L
+    101208: PinkyFinger2_L 1
+    101210: PinkyFinger2_R
+    101212: PinkyFinger2_R 1
+    101214: PinkyFinger3
+    101216: PinkyFinger3_L
+    101218: PinkyFinger3_L 1
+    101220: PinkyFinger3_R
+    101222: PinkyFinger3_R 1
+    101224: PinkyFinger4
+    101226: PinkyFinger4_L
+    101228: PinkyFinger4_L 1
+    101230: PinkyFinger4_R
+    101232: PinkyFinger4_R 1
+    101234: PoleAimLeg_L
+    101236: PoleAimLeg_R
+    101238: PoleAnnotationArm_L
+    101240: PoleAnnotationArm_R
+    101242: PoleAnnotationLeg_L
+    101244: PoleAnnotationLeg_R
+    101246: PoleArm_L
+    101248: PoleArm_R
+    101250: PoleExtraArm_L
+    101252: PoleExtraArm_R
+    101254: PoleExtraLeg_L
+    101256: PoleExtraLeg_R
+    101258: PoleLeg_L
+    101260: PoleLeg_R
+    101262: PoleOffsetArm_L
+    101264: PoleOffsetArm_LStatic
+    101266: PoleOffsetArm_R
+    101268: PoleOffsetArm_RStatic
+    101270: PoleOffsetLeg_L
+    101272: PoleOffsetLeg_LStatic
+    101274: PoleOffsetLeg_R
+    101276: PoleOffsetLeg_RStatic
+    101278: //RootNode
+    101280: RingFinger1
+    101282: RingFinger1_L
+    101284: RingFinger1_L 1
+    101286: RingFinger1_R
+    101288: RingFinger1_R 1
+    101290: RingFinger2
+    101292: RingFinger2_L
+    101294: RingFinger2_L 1
+    101296: RingFinger2_R
+    101298: RingFinger2_R 1
+    101300: RingFinger3
+    101302: RingFinger3_L
+    101304: RingFinger3_L 1
+    101306: RingFinger3_R
+    101308: RingFinger3_R 1
+    101310: RingFinger4
+    101312: RingFinger4_L
+    101314: RingFinger4_L 1
+    101316: RingFinger4_R
+    101318: RingFinger4_R 1
+    101320: RollExtraHeel_L
+    101322: RollExtraHeel_R
+    101324: RollExtraToes_L
+    101326: RollExtraToes_R
+    101328: RollExtraToesEnd_L
+    101330: RollExtraToesEnd_R
+    101332: RollHeel_L
+    101334: RollHeel_R
+    101336: RollOffsetHeel_L
+    101338: RollOffsetHeel_R
+    101340: RollOffsetToes_L
+    101342: RollOffsetToes_R
+    101344: RollOffsetToesEnd_L
+    101346: RollOffsetToesEnd_R
+    101348: RollToes_L
+    101350: RollToes_R
+    101352: RollToesEnd_L
+    101354: RollToesEnd_R
+    101356: Root
+    101358: Root_M
+    101360: Root_M1
+    101362: RootCenter_M
+    101364: RootCenterBtwLegs_M
+    101366: RootCenterBtwLegsBlended_M
+    101368: RootCenterBtwLegsOffset_M
+    101370: RootExtraX_M
+    101372: RootOffsetX_M
+    101374: RootSystem
+    101376: RootX_M
+    101378: RootZeroXform
+    101380: Scapula
+    101382: Scapula_L
+    101384: Scapula_L 1
+    101386: Scapula_R
+    101388: Scapula_R 1
+    101390: SDK1FKCup_L
+    101392: SDK1FKCup_R
+    101394: SDK1FKIndexFinger1_L
+    101396: SDK1FKIndexFinger1_R
+    101398: SDK1FKIndexFinger2_L
+    101400: SDK1FKIndexFinger2_R
+    101402: SDK1FKIndexFinger3_L
+    101404: SDK1FKIndexFinger3_R
+    101406: SDK1FKMiddleFinger1_L
+    101408: SDK1FKMiddleFinger1_R
+    101410: SDK1FKMiddleFinger2_L
+    101412: SDK1FKMiddleFinger2_R
+    101414: SDK1FKMiddleFinger3_L
+    101416: SDK1FKMiddleFinger3_R
+    101418: SDK1FKPinkyFinger1_L
+    101420: SDK1FKPinkyFinger1_R
+    101422: SDK1FKPinkyFinger2_L
+    101424: SDK1FKPinkyFinger2_R
+    101426: SDK1FKPinkyFinger3_L
+    101428: SDK1FKPinkyFinger3_R
+    101430: SDK1FKRingFinger1_L
+    101432: SDK1FKRingFinger1_R
+    101434: SDK1FKRingFinger2_L
+    101436: SDK1FKRingFinger2_R
+    101438: SDK1FKRingFinger3_L
+    101440: SDK1FKRingFinger3_R
+    101442: SDK1FKThumbFinger2_L
+    101444: SDK1FKThumbFinger2_R
+    101446: SDK1FKThumbFinger3_L
+    101448: SDK1FKThumbFinger3_R
+    101450: SDK2FKIndexFinger1_L
+    101452: SDK2FKIndexFinger1_R
+    101454: SDK2FKPinkyFinger1_L
+    101456: SDK2FKPinkyFinger1_R
+    101458: SDK2FKRingFinger1_L
+    101460: SDK2FKRingFinger1_R
+    101462: seye_down1
+    101464: seye_L1
+    101466: seye_R1
+    101468: seye_top1
+    101470: Shoulder
+    101472: Shoulder_L
+    101474: Shoulder_L 1
+    101476: Shoulder_R
+    101478: Shoulder_R 1
+    101480: Spine1
+    101482: Spine1_M
+    101484: Spine1_M 1
+    101486: ThumbFinger1
+    101488: ThumbFinger1_L
+    101490: ThumbFinger1_L 1
+    101492: ThumbFinger1_R
+    101494: ThumbFinger1_R 1
+    101496: ThumbFinger2
+    101498: ThumbFinger2_L
+    101500: ThumbFinger2_L 1
+    101502: ThumbFinger2_R
+    101504: ThumbFinger2_R 1
+    101506: ThumbFinger3
+    101508: ThumbFinger3_L
+    101510: ThumbFinger3_L 1
+    101512: ThumbFinger3_R
+    101514: ThumbFinger3_R 1
+    101516: ThumbFinger4
+    101518: ThumbFinger4_L
+    101520: ThumbFinger4_L 1
+    101522: ThumbFinger4_R
+    101524: ThumbFinger4_R 1
+    101526: Toes
+    101528: Toes_L
+    101530: Toes_L 1
+    101532: Toes_R
+    101534: Toes_R 1
+    101536: ToesEnd
+    101538: ToesEnd_L
+    101540: ToesEnd_L 1
+    101542: ToesEnd_R
+    101544: ToesEnd_R 1
+    101546: TwistBalancerChest_M
+    101548: TwistBalancerHead_M
+    101550: TwistFollowChest_M
+    101552: TwistFollowHead_M
+    101554: TwistFollowOffsetChest_M
+    101556: TwistFollowOffsetHead_M
+    101558: TwistFollowParentChest_M
+    101560: TwistFollowParentHead_M
+    101562: TwistFollowParentOffsetChest_M
+    101564: TwistFollowParentOffsetHead_M
+    101566: TwistSystem
+    101568: UnTwistChest_M
+    101570: UnTwistEndChest_M
+    101572: UnTwistEndHead_M
+    101574: UnTwistHead_M
+    101576: UnTwistIKChest_M
+    101578: UnTwistIKHead_M
+    101580: Wrist
+    101582: Wrist_L
+    101584: Wrist_L 1
+    101586: Wrist_R
+    101588: Wrist_R 1
+    400000: AimEye1
+    400002: AimEye1_L
+    400004: AimEye1_M
+    400006: AimEye1_R
+    400008: AimFollowEye1
+    400010: AimFollowOffEye1
+    400012: AimFollowOnEye1
+    400014: AimOffsetEye1
+    400016: AimOffsetEye1_L
+    400018: AimOffsetEye1_R
+    400020: AimSystem
+    400022: AlignIKToAnkle_L
+    400024: AlignIKToAnkle_R
+    400026: AlignIKToChest_M
+    400028: AlignIKToWrist_L
+    400030: AlignIKToWrist_R
+    400032: Ankle
+    400034: Ankle_L
+    400036: Ankle_L 1
+    400038: Ankle_R
+    400040: Ankle_R 1
+    400042: BendSystem
+    400044: blen1
+    400046: blend01
+    400048: blend010
+    400050: blend02
+    400052: blend03
+    400054: blend04
+    400056: blend05
+    400058: blend06
+    400060: blend07
+    400062: blend08
+    400064: blend09
+    400066: blendshape
+    400068: BLW_ANG
+    400070: BLW_ANG 1
+    400072: body_swim1
+    400074: cheek
+    400076: cheek 1
+    400078: cheek2
+    400080: cheek3
+    400082: cheek4
+    400084: cheek5
+    400086: cheek6
+    400088: cheek6 1
+    400090: cheek7
+    400092: cheek7 1
+    400094: cheek8
+    400096: Chest
+    400098: Chest_M
+    400100: Chest_M 1
+    400102: ConstraintSystem
+    400104: Cup
+    400106: Cup_L
+    400108: Cup_L 1
+    400110: Cup_R
+    400112: Cup_R 1
+    400114: DeformationSystem
+    400116: DrivingSystem
+    400118: DynamicSystem
+    400120: EB_L
+    400122: EB_L 1
+    400124: EB_L1
+    400126: EB_L12
+    400128: EB_L2
+    400130: EB_L3
+    400132: EB_L4
+    400134: EB_L5
+    400136: EB_L6
+    400138: EB_L7
+    400140: EB_L8
+    400142: EB_R
+    400144: EB_R 1
+    400146: EB_R1
+    400148: EB_R12
+    400150: EB_R2
+    400152: EB_R3
+    400154: EB_R4
+    400156: EB_R5
+    400158: EB_R6
+    400160: EB_R7
+    400162: EB_R8
+    400164: EL_
+    400166: EL_ANG
+    400168: EL_ANG 1
+    400170: Elbow
+    400172: Elbow_L
+    400174: Elbow_L 1
+    400176: Elbow_R
+    400178: Elbow_R 1
+    400180: eye
+    400182: eye 1
+    400184: Eye1
+    400186: eye11
+    400188: Eye1_L
+    400190: Eye1_L 1
+    400192: Eye1_R
+    400194: Eye1_R 1
+    400196: eye7
+    400198: eye_ang
+    400200: eye_ang2
+    400202: eye_close
+    400204: eye_cross
+    400206: eye_down
+    400208: eye_down 1
+    400210: Eye_fearful
+    400212: eye_frightened
+    400214: eye_L
+    400216: eye_R
+    400218: eye_sad3
+    400220: eye_smile1
+    400222: eye_top
+    400224: EyeEnd
+    400226: EyeEnd_L
+    400228: EyeEnd_L 1
+    400230: EyeEnd_R
+    400232: EyeEnd_R 1
+    400234: FaceA
+    400236: FaceA 1
+    400238: FaceB
+    400240: FaceB 1
+    400242: Fingers_L
+    400244: Fingers_R
+    400246: FitSkeleton
+    400248: FKAimEye1_L
+    400250: FKAimEye1_R
+    400252: FKAnkle_L
+    400254: FKAnkle_R
+    400256: FKChest_M
+    400258: FKCup_L
+    400260: FKCup_R
+    400262: FKElbow_L
+    400264: FKElbow_R
+    400266: FKExtraAnkle_L
+    400268: FKExtraAnkle_R
+    400270: FKExtraChest_M
+    400272: FKExtraCup_L
+    400274: FKExtraCup_R
+    400276: FKExtraElbow_L
+    400278: FKExtraElbow_R
+    400280: FKExtraEye1_L
+    400282: FKExtraEye1_R
+    400284: FKExtraHead_M
+    400286: FKExtraHip_L
+    400288: FKExtraHip_R
+    400290: FKExtraIndexFinger1_L
+    400292: FKExtraIndexFinger1_R
+    400294: FKExtraIndexFinger2_L
+    400296: FKExtraIndexFinger2_R
+    400298: FKExtraIndexFinger3_L
+    400300: FKExtraIndexFinger3_R
+    400302: FKExtraJaw_M
+    400304: FKExtraKnee_L
+    400306: FKExtraKnee_R
+    400308: FKExtraMiddleFinger1_L
+    400310: FKExtraMiddleFinger1_R
+    400312: FKExtraMiddleFinger2_L
+    400314: FKExtraMiddleFinger2_R
+    400316: FKExtraMiddleFinger3_L
+    400318: FKExtraMiddleFinger3_R
+    400320: FKExtraNeck_M
+    400322: FKExtraNeckPart1_M
+    400324: FKExtraPinkyFinger1_L
+    400326: FKExtraPinkyFinger1_R
+    400328: FKExtraPinkyFinger2_L
+    400330: FKExtraPinkyFinger2_R
+    400332: FKExtraPinkyFinger3_L
+    400334: FKExtraPinkyFinger3_R
+    400336: FKExtraRingFinger1_L
+    400338: FKExtraRingFinger1_R
+    400340: FKExtraRingFinger2_L
+    400342: FKExtraRingFinger2_R
+    400344: FKExtraRingFinger3_L
+    400346: FKExtraRingFinger3_R
+    400348: FKExtraRoot_M
+    400350: FKExtraScapula_L
+    400352: FKExtraScapula_R
+    400354: FKExtraShoulder_L
+    400356: FKExtraShoulder_R
+    400358: FKExtraSpine1_M
+    400360: FKExtraThumbFinger1_L
+    400362: FKExtraThumbFinger1_R
+    400364: FKExtraThumbFinger2_L
+    400366: FKExtraThumbFinger2_R
+    400368: FKExtraThumbFinger3_L
+    400370: FKExtraThumbFinger3_R
+    400372: FKExtraToes_L
+    400374: FKExtraToes_R
+    400376: FKExtraWrist_L
+    400378: FKExtraWrist_R
+    400380: FKEye1_L
+    400382: FKEye1_R
+    400384: FKFootRollIKStaticToes_L
+    400386: FKFootRollIKStaticToes_R
+    400388: FKFootRollIKToes_L
+    400390: FKFootRollIKToes_R
+    400392: FKGlobalHead_M
+    400394: FKGlobalStaticHead_M
+    400396: FKHead_M
+    400398: FKHip_L
+    400400: FKHip_R
+    400402: FKIKArm_L
+    400404: FKIKArm_R
+    400406: FKIKLeg_L
+    400408: FKIKLeg_R
+    400410: FKIKParentConstraintArm_L
+    400412: FKIKParentConstraintArm_R
+    400414: FKIKParentConstraintLeg_L
+    400416: FKIKParentConstraintLeg_R
+    400418: FKIKParentConstraintSpine_M
+    400420: FKIKSpine_M
+    400422: FKIKSystem
+    400424: FKIndexFinger1_L
+    400426: FKIndexFinger1_R
+    400428: FKIndexFinger2_L
+    400430: FKIndexFinger2_R
+    400432: FKIndexFinger3_L
+    400434: FKIndexFinger3_R
+    400436: FKJaw_M
+    400438: FKKnee_L
+    400440: FKKnee_R
+    400442: FKMiddleFinger1_L
+    400444: FKMiddleFinger1_R
+    400446: FKMiddleFinger2_L
+    400448: FKMiddleFinger2_R
+    400450: FKMiddleFinger3_L
+    400452: FKMiddleFinger3_R
+    400454: FKNeck_M
+    400456: FKNeckPart1_M
+    400458: FKOffsetAnkle_L
+    400460: FKOffsetAnkle_R
+    400462: FKOffsetChest_M
+    400464: FKOffsetCup_L
+    400466: FKOffsetCup_R
+    400468: FKOffsetElbow_L
+    400470: FKOffsetElbow_R
+    400472: FKOffsetEye1_L
+    400474: FKOffsetEye1_R
+    400476: FKOffsetHead_M
+    400478: FKOffsetHip_L
+    400480: FKOffsetHip_R
+    400482: FKOffsetIndexFinger1_L
+    400484: FKOffsetIndexFinger1_R
+    400486: FKOffsetIndexFinger2_L
+    400488: FKOffsetIndexFinger2_R
+    400490: FKOffsetIndexFinger3_L
+    400492: FKOffsetIndexFinger3_R
+    400494: FKOffsetJaw_M
+    400496: FKOffsetKnee_L
+    400498: FKOffsetKnee_R
+    400500: FKOffsetMiddleFinger1_L
+    400502: FKOffsetMiddleFinger1_R
+    400504: FKOffsetMiddleFinger2_L
+    400506: FKOffsetMiddleFinger2_R
+    400508: FKOffsetMiddleFinger3_L
+    400510: FKOffsetMiddleFinger3_R
+    400512: FKOffsetNeck_M
+    400514: FKOffsetNeckPart1_M
+    400516: FKOffsetPinkyFinger1_L
+    400518: FKOffsetPinkyFinger1_R
+    400520: FKOffsetPinkyFinger2_L
+    400522: FKOffsetPinkyFinger2_R
+    400524: FKOffsetPinkyFinger3_L
+    400526: FKOffsetPinkyFinger3_R
+    400528: FKOffsetRingFinger1_L
+    400530: FKOffsetRingFinger1_R
+    400532: FKOffsetRingFinger2_L
+    400534: FKOffsetRingFinger2_R
+    400536: FKOffsetRingFinger3_L
+    400538: FKOffsetRingFinger3_R
+    400540: FKOffsetRoot_M
+    400542: FKOffsetScapula_L
+    400544: FKOffsetScapula_R
+    400546: FKOffsetShoulder_L
+    400548: FKOffsetShoulder_R
+    400550: FKOffsetSpine1_M
+    400552: FKOffsetThumbFinger1_L
+    400554: FKOffsetThumbFinger1_R
+    400556: FKOffsetThumbFinger2_L
+    400558: FKOffsetThumbFinger2_R
+    400560: FKOffsetThumbFinger3_L
+    400562: FKOffsetThumbFinger3_R
+    400564: FKOffsetToes_L
+    400566: FKOffsetToes_R
+    400568: FKOffsetWrist_L
+    400570: FKOffsetWrist_R
+    400572: FKParentConstraintToAnkle_L
+    400574: FKParentConstraintToAnkle_R
+    400576: FKParentConstraintToChest_M
+    400578: FKParentConstraintToRoot_M
+    400580: FKParentConstraintToScapula_L
+    400582: FKParentConstraintToScapula_R
+    400584: FKParentConstraintToWrist_L
+    400586: FKParentConstraintToWrist_R
+    400588: FKPinkyFinger1_L
+    400590: FKPinkyFinger1_R
+    400592: FKPinkyFinger2_L
+    400594: FKPinkyFinger2_R
+    400596: FKPinkyFinger3_L
+    400598: FKPinkyFinger3_R
+    400600: FKRingFinger1_L
+    400602: FKRingFinger1_R
+    400604: FKRingFinger2_L
+    400606: FKRingFinger2_R
+    400608: FKRingFinger3_L
+    400610: FKRingFinger3_R
+    400612: FKRoot_M
+    400614: FKScapula_L
+    400616: FKScapula_R
+    400618: FKShoulder_L
+    400620: FKShoulder_R
+    400622: FKSpine1_M
+    400624: FKSystem
+    400626: FKThumbFinger1_L
+    400628: FKThumbFinger1_R
+    400630: FKThumbFinger2_L
+    400632: FKThumbFinger2_R
+    400634: FKThumbFinger3_L
+    400636: FKThumbFinger3_R
+    400638: FKToes_L
+    400640: FKToes_R
+    400642: FKWrist_L
+    400644: FKWrist_R
+    400646: FKXAnkle_L
+    400648: FKXAnkle_R
+    400650: FKXChest_M
+    400652: FKXCup_L
+    400654: FKXCup_R
+    400656: FKXElbow_L
+    400658: FKXElbow_R
+    400660: FKXEye1_L
+    400662: FKXEye1_R
+    400664: FKXHead_M
+    400666: FKXHip_L
+    400668: FKXHip_R
+    400670: FKXIndexFinger1_L
+    400672: FKXIndexFinger1_R
+    400674: FKXIndexFinger2_L
+    400676: FKXIndexFinger2_R
+    400678: FKXIndexFinger3_L
+    400680: FKXIndexFinger3_R
+    400682: FKXJaw_M
+    400684: FKXKnee_L
+    400686: FKXKnee_R
+    400688: FKXMiddleFinger1_L
+    400690: FKXMiddleFinger1_R
+    400692: FKXMiddleFinger2_L
+    400694: FKXMiddleFinger2_R
+    400696: FKXMiddleFinger3_L
+    400698: FKXMiddleFinger3_R
+    400700: FKXNeck_M
+    400702: FKXNeckPart1_M
+    400704: FKXPinkyFinger1_L
+    400706: FKXPinkyFinger1_R
+    400708: FKXPinkyFinger2_L
+    400710: FKXPinkyFinger2_R
+    400712: FKXPinkyFinger3_L
+    400714: FKXPinkyFinger3_R
+    400716: FKXRingFinger1_L
+    400718: FKXRingFinger1_R
+    400720: FKXRingFinger2_L
+    400722: FKXRingFinger2_R
+    400724: FKXRingFinger3_L
+    400726: FKXRingFinger3_R
+    400728: FKXRoot_M
+    400730: FKXScapula_L
+    400732: FKXScapula_R
+    400734: FKXShoulder_L
+    400736: FKXShoulder_R
+    400738: FKXSpine1_M
+    400740: FKXThumbFinger1_L
+    400742: FKXThumbFinger1_R
+    400744: FKXThumbFinger2_L
+    400746: FKXThumbFinger2_R
+    400748: FKXThumbFinger3_L
+    400750: FKXThumbFinger3_R
+    400752: FKXToes_L
+    400754: FKXToes_R
+    400756: FKXWrist_L
+    400758: FKXWrist_R
+    400760: FootSideInner
+    400762: FootSideOuter
+    400764: Geometry
+    400766: GlobalHead_M
+    400768: GlobalOffsetHead_M
+    400770: GlobalSystem
+    400772: Group
+    400774: Head
+    400776: Head_M
+    400778: Head_M 1
+    400780: HeadEnd
+    400782: HeadEnd_M
+    400784: HeadEnd_M 1
+    400786: Heel
+    400788: Hip
+    400790: Hip_L
+    400792: Hip_L 1
+    400794: Hip_R
+    400796: Hip_R 1
+    400798: HipSwinger_M
+    400800: HipSwingerOffset_M
+    400802: HipSwingerStabilizer
+    400804: HipSwingerStabilizerTarget
+    400806: HipSwingReverse
+    400808: HipSwingReverseNeg
+    400810: HipSwingReverseSpine1
+    400812: IKArm_L
+    400814: IKArm_R
+    400816: IKArmHandle_L
+    400818: IKArmHandle_R
+    400820: IKCurve
+    400822: IKdistanceArm_L
+    400824: IKdistanceArm_R
+    400826: IKdistanceLeg_L
+    400828: IKdistanceLeg_R
+    400830: IKExtraArm_L
+    400832: IKExtraArm_R
+    400834: IKExtraLeg_L
+    400836: IKExtraLeg_R
+    400838: IKExtraSpine1_M
+    400840: IKExtraSpine2_M
+    400842: IKfake0Spine_M
+    400844: IKfake1Spine_M
+    400846: IKFake1UpLocSpine_M
+    400848: IKfake2Spine_M
+    400850: IKfake3Spine_M
+    400852: IKFKAlignedArm_L
+    400854: IKFKAlignedArm_R
+    400856: IKFKAlignedLeg_L
+    400858: IKFKAlignedLeg_R
+    400860: IKFKAlignedOffsetArm_L
+    400862: IKFKAlignedOffsetArm_R
+    400864: IKFKAlignedOffsetLeg_L
+    400866: IKFKAlignedOffsetLeg_R
+    400868: IKFootRollToes_L
+    400870: IKFootRollToes_R
+    400872: IKHandle
+    400874: IKJoints
+    400876: IKLeg_L
+    400878: IKLeg_R
+    400880: IKLegFootRockInnerPivot_L
+    400882: IKLegFootRockInnerPivot_R
+    400884: IKLegFootRockOuterPivot_L
+    400886: IKLegFootRockOuterPivot_R
+    400888: IKLegFootRockReverse_L
+    400890: IKLegFootRockReverse_R
+    400892: IKLegFootRoll_L
+    400894: IKLegFootRoll_R
+    400896: IKLegHandle_L
+    400898: IKLegHandle_R
+    400900: IKLegLiftToe_L
+    400902: IKLegLiftToe_R
+    400904: IKMessure
+    400906: IKmessureConstrainToArm_L
+    400908: IKmessureConstrainToArm_R
+    400910: IKmessureConstrainToLeg_L
+    400912: IKmessureConstrainToLeg_R
+    400914: IKMessureFromHip_L
+    400916: IKMessureFromHip_R
+    400918: IKMessureFromShoulder_L
+    400920: IKMessureFromShoulder_R
+    400922: IKmessureLoc1Arm_L
+    400924: IKmessureLoc1Arm_R
+    400926: IKmessureLoc1Leg_L
+    400928: IKmessureLoc1Leg_R
+    400930: IKmessureLoc2Arm_L
+    400932: IKmessureLoc2Arm_R
+    400934: IKmessureLoc2Leg_L
+    400936: IKmessureLoc2Leg_R
+    400938: IKOffsetArm_L
+    400940: IKOffsetArm_LStatic
+    400942: IKOffsetArm_R
+    400944: IKOffsetArm_RStatic
+    400946: IKOffsetLeg_L
+    400948: IKOffsetLeg_R
+    400950: IKOffsetSpine1_M
+    400952: IKOffsetSpine2_M
+    400954: IKParentConstraintHip_L
+    400956: IKParentConstraintHip_R
+    400958: IKParentConstraintRoot_M
+    400960: IKParentConstraintShoulder_L
+    400962: IKParentConstraintShoulder_R
+    400964: IKRootConstraint
+    400966: IKScalerChest_M
+    400968: IKScalerRoot_M
+    400970: IKScalerSpine1_M
+    400972: IKSpChest_M
+    400974: IKSpChestFollowOffset_M
+    400976: IKSpine0AlignTo_M
+    400978: IKSpine1_M
+    400980: IKSpine2_M
+    400982: IKSpine2AlignTo_M
+    400984: IKSpine2AlignUnIKTwistTo_M
+    400986: IKSpine2AlignUnIKTwistToOffset_M
+    400988: IKSpine2ConstraintHolder_M
+    400990: IKSpineCurve_M
+    400992: IKSpineHandle_M
+    400994: IKSpineLocator0_M
+    400996: IKSpineLocator1_M
+    400998: IKSpineLocator2_M
+    401000: IKSpineLocator3_M
+    401002: IKSpRoot_M
+    401004: IKSpRootFollowOffset_M
+    401006: IKSpSpine1_M
+    401008: IKSpSpine1FollowOffset_M
+    401010: IKSpSpineOffset_M
+    401012: IKStatic
+    401014: IKStiffOrientSpine1_M
+    401016: IKStiffOrientSpine2_M
+    401018: IKSystem
+    401020: IKToesEndHandle_L
+    401022: IKToesEndHandle_R
+    401024: IKToesHandle_L
+    401026: IKToesHandle_R
+    401028: IKXAnkle_L
+    401030: IKXAnkle_R
+    401032: IKXChest_M
+    401034: IKXElbow_L
+    401036: IKXElbow_R
+    401038: IKXHip_L
+    401040: IKXHip_R
+    401042: IKXKnee_L
+    401044: IKXKnee_R
+    401046: IKXOffsetHip_L
+    401048: IKXOffsetHip_R
+    401050: IKXOffsetRoot_M
+    401052: IKXOffsetShoulder_L
+    401054: IKXOffsetShoulder_R
+    401056: IKXRoot_M
+    401058: IKXShoulder_L
+    401060: IKXShoulder_R
+    401062: IKXSpine1_M
+    401064: IKXToes_L
+    401066: IKXToes_R
+    401068: IKXToesEnd_L
+    401070: IKXToesEnd_R
+    401072: IKXWrist_L
+    401074: IKXWrist_R
+    401076: IndexFinger1
+    401078: IndexFinger1_L
+    401080: IndexFinger1_L 1
+    401082: IndexFinger1_R
+    401084: IndexFinger1_R 1
+    401086: IndexFinger2
+    401088: IndexFinger2_L
+    401090: IndexFinger2_L 1
+    401092: IndexFinger2_R
+    401094: IndexFinger2_R 1
+    401096: IndexFinger3
+    401098: IndexFinger3_L
+    401100: IndexFinger3_L 1
+    401102: IndexFinger3_R
+    401104: IndexFinger3_R 1
+    401106: IndexFinger4
+    401108: IndexFinger4_L
+    401110: IndexFinger4_L 1
+    401112: IndexFinger4_R
+    401114: IndexFinger4_R 1
+    401116: Jaw
+    401118: Jaw_M
+    401120: Jaw_M 1
+    401122: JawEnd
+    401124: JawEnd_M
+    401126: JawEnd_M 1
+    401128: Knee
+    401130: Knee_L
+    401132: Knee_L 1
+    401134: Knee_R
+    401136: Knee_R 1
+    401138: Main
+    401140: mesh
+    401142: MiddleFinger1
+    401144: MiddleFinger1_L
+    401146: MiddleFinger1_L 1
+    401148: MiddleFinger1_R
+    401150: MiddleFinger1_R 1
+    401152: MiddleFinger2
+    401154: MiddleFinger2_L
+    401156: MiddleFinger2_L 1
+    401158: MiddleFinger2_R
+    401160: MiddleFinger2_R 1
+    401162: MiddleFinger3
+    401164: MiddleFinger3_L
+    401166: MiddleFinger3_L 1
+    401168: MiddleFinger3_R
+    401170: MiddleFinger3_R 1
+    401172: MiddleFinger4
+    401174: MiddleFinger4_L
+    401176: MiddleFinger4_L 1
+    401178: MiddleFinger4_R
+    401180: MiddleFinger4_R 1
+    401182: MotionSystem
+    401184: Neck
+    401186: Neck_M
+    401188: Neck_M 1
+    401190: NeckPart1_M
+    401192: NeckPart1_M 1
+    401194: PinkyFinger1
+    401196: PinkyFinger1_L
+    401198: PinkyFinger1_L 1
+    401200: PinkyFinger1_R
+    401202: PinkyFinger1_R 1
+    401204: PinkyFinger2
+    401206: PinkyFinger2_L
+    401208: PinkyFinger2_L 1
+    401210: PinkyFinger2_R
+    401212: PinkyFinger2_R 1
+    401214: PinkyFinger3
+    401216: PinkyFinger3_L
+    401218: PinkyFinger3_L 1
+    401220: PinkyFinger3_R
+    401222: PinkyFinger3_R 1
+    401224: PinkyFinger4
+    401226: PinkyFinger4_L
+    401228: PinkyFinger4_L 1
+    401230: PinkyFinger4_R
+    401232: PinkyFinger4_R 1
+    401234: PoleAimLeg_L
+    401236: PoleAimLeg_R
+    401238: PoleAnnotationArm_L
+    401240: PoleAnnotationArm_R
+    401242: PoleAnnotationLeg_L
+    401244: PoleAnnotationLeg_R
+    401246: PoleArm_L
+    401248: PoleArm_R
+    401250: PoleExtraArm_L
+    401252: PoleExtraArm_R
+    401254: PoleExtraLeg_L
+    401256: PoleExtraLeg_R
+    401258: PoleLeg_L
+    401260: PoleLeg_R
+    401262: PoleOffsetArm_L
+    401264: PoleOffsetArm_LStatic
+    401266: PoleOffsetArm_R
+    401268: PoleOffsetArm_RStatic
+    401270: PoleOffsetLeg_L
+    401272: PoleOffsetLeg_LStatic
+    401274: PoleOffsetLeg_R
+    401276: PoleOffsetLeg_RStatic
+    401278: //RootNode
+    401280: RingFinger1
+    401282: RingFinger1_L
+    401284: RingFinger1_L 1
+    401286: RingFinger1_R
+    401288: RingFinger1_R 1
+    401290: RingFinger2
+    401292: RingFinger2_L
+    401294: RingFinger2_L 1
+    401296: RingFinger2_R
+    401298: RingFinger2_R 1
+    401300: RingFinger3
+    401302: RingFinger3_L
+    401304: RingFinger3_L 1
+    401306: RingFinger3_R
+    401308: RingFinger3_R 1
+    401310: RingFinger4
+    401312: RingFinger4_L
+    401314: RingFinger4_L 1
+    401316: RingFinger4_R
+    401318: RingFinger4_R 1
+    401320: RollExtraHeel_L
+    401322: RollExtraHeel_R
+    401324: RollExtraToes_L
+    401326: RollExtraToes_R
+    401328: RollExtraToesEnd_L
+    401330: RollExtraToesEnd_R
+    401332: RollHeel_L
+    401334: RollHeel_R
+    401336: RollOffsetHeel_L
+    401338: RollOffsetHeel_R
+    401340: RollOffsetToes_L
+    401342: RollOffsetToes_R
+    401344: RollOffsetToesEnd_L
+    401346: RollOffsetToesEnd_R
+    401348: RollToes_L
+    401350: RollToes_R
+    401352: RollToesEnd_L
+    401354: RollToesEnd_R
+    401356: Root
+    401358: Root_M
+    401360: Root_M1
+    401362: RootCenter_M
+    401364: RootCenterBtwLegs_M
+    401366: RootCenterBtwLegsBlended_M
+    401368: RootCenterBtwLegsOffset_M
+    401370: RootExtraX_M
+    401372: RootOffsetX_M
+    401374: RootSystem
+    401376: RootX_M
+    401378: RootZeroXform
+    401380: Scapula
+    401382: Scapula_L
+    401384: Scapula_L 1
+    401386: Scapula_R
+    401388: Scapula_R 1
+    401390: SDK1FKCup_L
+    401392: SDK1FKCup_R
+    401394: SDK1FKIndexFinger1_L
+    401396: SDK1FKIndexFinger1_R
+    401398: SDK1FKIndexFinger2_L
+    401400: SDK1FKIndexFinger2_R
+    401402: SDK1FKIndexFinger3_L
+    401404: SDK1FKIndexFinger3_R
+    401406: SDK1FKMiddleFinger1_L
+    401408: SDK1FKMiddleFinger1_R
+    401410: SDK1FKMiddleFinger2_L
+    401412: SDK1FKMiddleFinger2_R
+    401414: SDK1FKMiddleFinger3_L
+    401416: SDK1FKMiddleFinger3_R
+    401418: SDK1FKPinkyFinger1_L
+    401420: SDK1FKPinkyFinger1_R
+    401422: SDK1FKPinkyFinger2_L
+    401424: SDK1FKPinkyFinger2_R
+    401426: SDK1FKPinkyFinger3_L
+    401428: SDK1FKPinkyFinger3_R
+    401430: SDK1FKRingFinger1_L
+    401432: SDK1FKRingFinger1_R
+    401434: SDK1FKRingFinger2_L
+    401436: SDK1FKRingFinger2_R
+    401438: SDK1FKRingFinger3_L
+    401440: SDK1FKRingFinger3_R
+    401442: SDK1FKThumbFinger2_L
+    401444: SDK1FKThumbFinger2_R
+    401446: SDK1FKThumbFinger3_L
+    401448: SDK1FKThumbFinger3_R
+    401450: SDK2FKIndexFinger1_L
+    401452: SDK2FKIndexFinger1_R
+    401454: SDK2FKPinkyFinger1_L
+    401456: SDK2FKPinkyFinger1_R
+    401458: SDK2FKRingFinger1_L
+    401460: SDK2FKRingFinger1_R
+    401462: seye_down1
+    401464: seye_L1
+    401466: seye_R1
+    401468: seye_top1
+    401470: Shoulder
+    401472: Shoulder_L
+    401474: Shoulder_L 1
+    401476: Shoulder_R
+    401478: Shoulder_R 1
+    401480: Spine1
+    401482: Spine1_M
+    401484: Spine1_M 1
+    401486: ThumbFinger1
+    401488: ThumbFinger1_L
+    401490: ThumbFinger1_L 1
+    401492: ThumbFinger1_R
+    401494: ThumbFinger1_R 1
+    401496: ThumbFinger2
+    401498: ThumbFinger2_L
+    401500: ThumbFinger2_L 1
+    401502: ThumbFinger2_R
+    401504: ThumbFinger2_R 1
+    401506: ThumbFinger3
+    401508: ThumbFinger3_L
+    401510: ThumbFinger3_L 1
+    401512: ThumbFinger3_R
+    401514: ThumbFinger3_R 1
+    401516: ThumbFinger4
+    401518: ThumbFinger4_L
+    401520: ThumbFinger4_L 1
+    401522: ThumbFinger4_R
+    401524: ThumbFinger4_R 1
+    401526: Toes
+    401528: Toes_L
+    401530: Toes_L 1
+    401532: Toes_R
+    401534: Toes_R 1
+    401536: ToesEnd
+    401538: ToesEnd_L
+    401540: ToesEnd_L 1
+    401542: ToesEnd_R
+    401544: ToesEnd_R 1
+    401546: TwistBalancerChest_M
+    401548: TwistBalancerHead_M
+    401550: TwistFollowChest_M
+    401552: TwistFollowHead_M
+    401554: TwistFollowOffsetChest_M
+    401556: TwistFollowOffsetHead_M
+    401558: TwistFollowParentChest_M
+    401560: TwistFollowParentHead_M
+    401562: TwistFollowParentOffsetChest_M
+    401564: TwistFollowParentOffsetHead_M
+    401566: TwistSystem
+    401568: UnTwistChest_M
+    401570: UnTwistEndChest_M
+    401572: UnTwistEndHead_M
+    401574: UnTwistHead_M
+    401576: UnTwistIKChest_M
+    401578: UnTwistIKHead_M
+    401580: Wrist
+    401582: Wrist_L
+    401584: Wrist_L 1
+    401586: Wrist_R
+    401588: Wrist_R 1
+    2300000: BLW_ANG 1
+    2300002: cheek 1
+    2300004: cheek2
+    2300006: cheek3
+    2300008: cheek4
+    2300010: cheek5
+    2300012: cheek6
+    2300014: cheek6 1
+    2300016: cheek7
+    2300018: cheek7 1
+    2300020: cheek8
+    2300022: EB_L
+    2300024: EB_L 1
+    2300026: EB_L1
+    2300028: EB_L12
+    2300030: EB_L2
+    2300032: EB_L3
+    2300034: EB_L4
+    2300036: EB_L5
+    2300038: EB_L6
+    2300040: EB_L7
+    2300042: EB_L8
+    2300044: EB_R
+    2300046: EB_R 1
+    2300048: EB_R1
+    2300050: EB_R12
+    2300052: EB_R2
+    2300054: EB_R3
+    2300056: EB_R4
+    2300058: EB_R5
+    2300060: EB_R6
+    2300062: EB_R7
+    2300064: EB_R8
+    2300066: EL_
+    2300068: EL_ANG 1
+    2300070: eye 1
+    2300072: eye11
+    2300074: eye7
+    2300076: eye_ang
+    2300078: eye_ang2
+    2300080: eye_cross
+    2300082: eye_down 1
+    2300084: Eye_fearful
+    2300086: eye_frightened
+    2300088: eye_sad3
+    2300090: eye_smile1
+    2300092: FaceA 1
+    2300094: FaceB 1
+    2300096: BLW_ANG
+    2300098: cheek
+    2300100: EL_ANG
+    2300102: eye
+    2300104: FaceA
+    2300106: FaceB
+    3300000: BLW_ANG 1
+    3300002: cheek 1
+    3300004: cheek2
+    3300006: cheek3
+    3300008: cheek4
+    3300010: cheek5
+    3300012: cheek6
+    3300014: cheek6 1
+    3300016: cheek7
+    3300018: cheek7 1
+    3300020: cheek8
+    3300022: EB_L
+    3300024: EB_L 1
+    3300026: EB_L1
+    3300028: EB_L12
+    3300030: EB_L2
+    3300032: EB_L3
+    3300034: EB_L4
+    3300036: EB_L5
+    3300038: EB_L6
+    3300040: EB_L7
+    3300042: EB_L8
+    3300044: EB_R
+    3300046: EB_R 1
+    3300048: EB_R1
+    3300050: EB_R12
+    3300052: EB_R2
+    3300054: EB_R3
+    3300056: EB_R4
+    3300058: EB_R5
+    3300060: EB_R6
+    3300062: EB_R7
+    3300064: EB_R8
+    3300066: EL_
+    3300068: EL_ANG 1
+    3300070: eye 1
+    3300072: eye11
+    3300074: eye7
+    3300076: eye_ang
+    3300078: eye_ang2
+    3300080: eye_cross
+    3300082: eye_down 1
+    3300084: Eye_fearful
+    3300086: eye_frightened
+    3300088: eye_sad3
+    3300090: eye_smile1
+    3300092: FaceA 1
+    3300094: FaceB 1
+    3300096: BLW_ANG
+    3300098: cheek
+    3300100: EL_ANG
+    3300102: eye
+    3300104: FaceA
+    3300106: FaceB
+    4300000: body_swim1
+    4300002: eye
+    4300004: BLW_ANG
+    4300006: EB_R
+    4300008: EB_L
+    4300010: cheek
+    4300012: FaceA
+    4300014: FaceB
+    4300016: EL_ANG
+    4300018: eye
+    4300020: BLW_ANG
+    4300022: EB_R
+    4300024: EB_L
+    4300026: cheek
+    4300028: FaceA
+    4300030: FaceB
+    4300032: EL_ANG
+    4300034: EL_
+    4300036: cheek6
+    4300038: eye_down
+    4300040: cheek7
+    4300042: cheek8
+    4300044: EB_L12
+    4300046: EB_R12
+    4300048: eye11
+    4300050: eye_ang2
+    4300052: EB_R3
+    4300054: EB_L3
+    4300056: cheek2
+    4300058: cheek6
+    4300060: EB_L7
+    4300062: EB_R7
+    4300064: eye_sad3
+    4300066: eye7
+    4300068: EB_R8
+    4300070: EB_L8
+    4300072: cheek7
+    4300074: eye_smile1
+    4300076: EB_R6
+    4300078: EB_L6
+    4300080: cheek5
+    4300082: eye_ang
+    4300084: EB_R5
+    4300086: EB_L5
+    4300088: cheek4
+    4300090: eye_cross
+    4300092: EB_R4
+    4300094: EB_L4
+    4300096: cheek3
+    4300098: Eye_fearful
+    4300100: EB_R1
+    4300102: EB_L1
+    4300104: EB_R2
+    4300106: EB_L2
+    4300108: eye_frightened
+    7400000: Reiji@Troubled
+    9500000: //RootNode
+    13700000: BLW_ANG
+    13700002: body_swim1
+    13700004: cheek
+    13700006: EL_ANG
+    13700008: eye
+    13700010: FaceA
+    13700012: FaceB
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 14
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

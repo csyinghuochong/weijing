@@ -1,0 +1,2605 @@
+fileFormatVersion: 2
+guid: 64b383e0e1b37be49810b4f828bacfa0
+timeCreated: 1450799153
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip04
+    100002: Bip04_Head
+    100004: Bip04_L_Calf
+    100006: Bip04_L_Clavicle
+    100008: Bip04_L_Finger0
+    100010: Bip04_L_Finger1
+    100012: Bip04_L_Finger2
+    100014: Bip04_L_Foot
+    100016: Bip04_L_Forearm
+    100018: Bip04_L_Hand
+    100020: Bip04_L_Thigh
+    100022: Bip04_L_Toe0
+    100024: Bip04_L_Toe1
+    100026: Bip04_L_Toe2
+    100028: Bip04_L_UpperArm
+    100030: Bip04_Neck
+    100032: Bip04_Pelvis
+    100034: Bip04_Ponytail1
+    100036: Bip04_Ponytail2
+    100038: Bip04_R_Calf
+    100040: Bip04_R_Clavicle
+    100042: Bip04_R_Finger0
+    100044: Bip04_R_Finger1
+    100046: Bip04_R_Finger2
+    100048: Bip04_R_Foot
+    100050: Bip04_R_Forearm
+    100052: Bip04_R_Hand
+    100054: Bip04_R_Thigh
+    100056: Bip04_R_Toe0
+    100058: Bip04_R_Toe1
+    100060: Bip04_R_Toe2
+    100062: Bip04_R_UpperArm
+    100064: Bip04_Spine
+    100066: Bip04_Spine1
+    100068: Bip04_Xtra01
+    100070: Bip04_Xtra02
+    100072: Bip04_Xtra0202
+    100074: Bip04_Xtra0203
+    100076: //RootNode
+    100078: molebeast
+    100080: Molebeast_mat
+    100082: root
+    400000: Bip04
+    400002: Bip04_Head
+    400004: Bip04_L_Calf
+    400006: Bip04_L_Clavicle
+    400008: Bip04_L_Finger0
+    400010: Bip04_L_Finger1
+    400012: Bip04_L_Finger2
+    400014: Bip04_L_Foot
+    400016: Bip04_L_Forearm
+    400018: Bip04_L_Hand
+    400020: Bip04_L_Thigh
+    400022: Bip04_L_Toe0
+    400024: Bip04_L_Toe1
+    400026: Bip04_L_Toe2
+    400028: Bip04_L_UpperArm
+    400030: Bip04_Neck
+    400032: Bip04_Pelvis
+    400034: Bip04_Ponytail1
+    400036: Bip04_Ponytail2
+    400038: Bip04_R_Calf
+    400040: Bip04_R_Clavicle
+    400042: Bip04_R_Finger0
+    400044: Bip04_R_Finger1
+    400046: Bip04_R_Finger2
+    400048: Bip04_R_Foot
+    400050: Bip04_R_Forearm
+    400052: Bip04_R_Hand
+    400054: Bip04_R_Thigh
+    400056: Bip04_R_Toe0
+    400058: Bip04_R_Toe1
+    400060: Bip04_R_Toe2
+    400062: Bip04_R_UpperArm
+    400064: Bip04_Spine
+    400066: Bip04_Spine1
+    400068: Bip04_Xtra01
+    400070: Bip04_Xtra02
+    400072: Bip04_Xtra0202
+    400074: Bip04_Xtra0203
+    400076: //RootNode
+    400078: molebeast
+    400080: Molebeast_mat
+    400082: root
+    4300000: Molebeast_mat
+    7400000: AggWalk
+    7400002: Attack1
+    7400004: Attack2
+    7400006: Attack3
+    7400008: Attack4
+    7400010: Attack5
+    7400012: Attack6
+    7400014: Die1
+    7400016: Die2
+    7400018: Die3
+    7400020: Hit1
+    7400022: Hit2
+    7400024: Hit3
+    7400026: Idle
+    7400028: Jump_Down
+    7400030: Jump_Land
+    7400032: Run
+    7400034: Spawn1
+    7400036: Special_Breath
+    7400038: Special_Call
+    7400040: Special_Spikes
+    7400042: Walk
+    9500000: //RootNode
+    13700000: Molebeast_mat
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: AggWalk
+      takeName: AggWalk
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Attack1
+      takeName: Attack1
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: .399350226
+        functionName: AIAct
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Attack2
+      takeName: Attack2
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Attack3
+      takeName: Attack3
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Attack4
+      takeName: Attack4
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Attack5
+      takeName: Attack5
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Attack6
+      takeName: Attack6
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Die1
+      takeName: Die1
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Die2
+      takeName: Die2
+      firstFrame: 0
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Die3
+      takeName: Die3
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Hit1
+      takeName: Hit1
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Hit2
+      takeName: Hit2
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Hit3
+      takeName: Hit3
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: 0
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Jump_Down
+      takeName: Jump_Down
+      firstFrame: 0
+      lastFrame: 11
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Jump_Land
+      takeName: Jump_Land
+      firstFrame: 0
+      lastFrame: 8
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Run
+      takeName: Run
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Spawn1
+      takeName: Spawn1
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Special_Breath
+      takeName: Special_Breath
+      firstFrame: 0
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Special_Call
+      takeName: Special_Call
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Special_Spikes
+      takeName: Special_Spikes
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: molebeast
+        weight: 1
+      - path: molebeast/Molebeast_mat
+        weight: 1
+      - path: molebeast/root
+        weight: 1
+      - path: molebeast/root/Bip04
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_L_Thigh/Bip04_L_Calf/Bip04_L_Foot/Bip04_L_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_R_Thigh/Bip04_R_Calf/Bip04_R_Foot/Bip04_R_Toe2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_L_Clavicle/Bip04_L_UpperArm/Bip04_L_Forearm/Bip04_L_Hand/Bip04_L_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Ponytail2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_Neck/Bip04_Head/Bip04_Xtra01
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger0
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger1
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Spine/Bip04_Spine1/Bip04_R_Clavicle/Bip04_R_UpperArm/Bip04_R_Forearm/Bip04_R_Hand/Bip04_R_Finger2
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202
+        weight: 1
+      - path: molebeast/root/Bip04/Bip04_Pelvis/Bip04_Xtra02/Bip04_Xtra0202/Bip04_Xtra0203
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,227 @@
+fileFormatVersion: 2
+guid: 1cf32f2e023b452428a2d018375aca71
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Bone001
+    100004: Bone003
+    100006: Bone004
+    100008: Bone005
+    100010: Bone006
+    100012: Bone007
+    100014: Bone009
+    100016: Bone009(mirrored)
+    100018: Bone010
+    100020: Bone010(mirrored)
+    100022: Bone011
+    100024: Bone011(mirrored)
+    100026: Bone012
+    100028: Bone012(mirrored)
+    100030: Bone014
+    100032: Bone014(mirrored)
+    100034: Bone015
+    100036: Bone015(mirrored)
+    100038: Bone016
+    100040: Bone016(mirrored)
+    100042: Bone018
+    100044: Bone018(mirrored)
+    100046: Bone019
+    100048: Bone019(mirrored)
+    100050: Bone020
+    100052: Bone020(mirrored)
+    100054: Bone022
+    100056: Bone022(mirrored)
+    100058: Bone023
+    100060: Bone023(mirrored)
+    400000: //RootNode
+    400002: Bone001
+    400004: Bone003
+    400006: Bone004
+    400008: Bone005
+    400010: Bone006
+    400012: Bone007
+    400014: Bone009
+    400016: Bone009(mirrored)
+    400018: Bone010
+    400020: Bone010(mirrored)
+    400022: Bone011
+    400024: Bone011(mirrored)
+    400026: Bone012
+    400028: Bone012(mirrored)
+    400030: Bone014
+    400032: Bone014(mirrored)
+    400034: Bone015
+    400036: Bone015(mirrored)
+    400038: Bone016
+    400040: Bone016(mirrored)
+    400042: Bone018
+    400044: Bone018(mirrored)
+    400046: Bone019
+    400048: Bone019(mirrored)
+    400050: Bone020
+    400052: Bone020(mirrored)
+    400054: Bone022
+    400056: Bone022(mirrored)
+    400058: Bone023
+    400060: Bone023(mirrored)
+    7400000: attack
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: attack
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 1
+      loopBlendPositionY: 1
+      loopBlendPositionXZ: 1
+      keepOriginalOrientation: 1
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 1
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: .568711698
+        functionName: AIAct
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Bone001
+        weight: 1
+      - path: Bone001/Bone003
+        weight: 1
+      - path: Bone001/Bone003/Bone004
+        weight: 1
+      - path: Bone001/Bone003/Bone004/Bone005
+        weight: 1
+      - path: Bone001/Bone003/Bone004/Bone005/Bone006
+        weight: 1
+      - path: Bone001/Bone003/Bone004/Bone005/Bone006/Bone007
+        weight: 1
+      - path: Bone001/Bone009
+        weight: 1
+      - path: Bone001/Bone009/Bone010
+        weight: 1
+      - path: Bone001/Bone009/Bone010/Bone011
+        weight: 1
+      - path: Bone001/Bone009/Bone010/Bone011/Bone012
+        weight: 1
+      - path: Bone001/Bone009(mirrored)
+        weight: 1
+      - path: Bone001/Bone009(mirrored)/Bone010(mirrored)
+        weight: 1
+      - path: Bone001/Bone009(mirrored)/Bone010(mirrored)/Bone011(mirrored)
+        weight: 1
+      - path: Bone001/Bone009(mirrored)/Bone010(mirrored)/Bone011(mirrored)/Bone012(mirrored)
+        weight: 1
+      - path: Bone001/Bone014
+        weight: 1
+      - path: Bone001/Bone014/Bone015
+        weight: 1
+      - path: Bone001/Bone014/Bone015/Bone016
+        weight: 1
+      - path: Bone001/Bone014(mirrored)
+        weight: 1
+      - path: Bone001/Bone014(mirrored)/Bone015(mirrored)
+        weight: 1
+      - path: Bone001/Bone014(mirrored)/Bone015(mirrored)/Bone016(mirrored)
+        weight: 1
+      - path: Bone001/Bone018
+        weight: 1
+      - path: Bone001/Bone018/Bone019
+        weight: 1
+      - path: Bone001/Bone018/Bone019/Bone020
+        weight: 1
+      - path: Bone001/Bone018(mirrored)
+        weight: 1
+      - path: Bone001/Bone018(mirrored)/Bone019(mirrored)
+        weight: 1
+      - path: Bone001/Bone018(mirrored)/Bone019(mirrored)/Bone020(mirrored)
+        weight: 1
+      - path: Bone001/Bone022
+        weight: 1
+      - path: Bone001/Bone022/Bone023
+        weight: 1
+      - path: Bone001/Bone022(mirrored)
+        weight: 1
+      - path: Bone001/Bone022(mirrored)/Bone023(mirrored)
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 1
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: Bone001
+  lastHumanDescriptionAvatarSource: {fileID: 9000000, guid: 087f62ab9d2751e439194064a5ee6476,
+    type: 3}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

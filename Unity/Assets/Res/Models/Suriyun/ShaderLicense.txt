@@ -1,0 +1,4 @@
+﻿Asset uses Unitychan Shader under © UTJ/UCL
+Read more http://unity-chan.com/contents/guideline_en/
+
+
