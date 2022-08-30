@@ -57,9 +57,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Res\Effect\Weapon\PigeonCoopToolkit1\Effects\Trails\Editor\ExecutionOrderSetter.cs" />
-    <Compile Include="Assets\TileWorldCreator\_Core\Editor\TileWorldConfigurationEditor.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Models\VignetteModelEditor.cs" />
-    <Compile Include="Assets\TileWorldCreator\_Core\Editor\TileWorldObjectScatterEditor.cs" />
     <Compile Include="Assets\Res\SD Unity-Chan Haon Custom\Shader\Unity-chan Toon Shader Ver 2.0.6\Editor\RemoveUnusedMaterialProperties.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Models\MotionBlurModelEditor.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Models\UserLutModelEditor.cs" />
@@ -68,12 +66,9 @@
     <Compile Include="Assets\Res\Effect\Weapon\PigeonCoopToolkit1\Shared\Generic\Editor\InfoDialogue.cs" />
     <Compile Include="Assets\BMFont\Editor\BMFont.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Utils\EditorGUIHelper.cs" />
-    <Compile Include="Assets\TileWorldCreator\_Core\Editor\TileWorldCreatorEditor.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Utils\EditorResources.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Models\BloomModelEditor.cs" />
     <Compile Include="Assets\BMFont\Editor\ByteReader.cs" />
-    <Compile Include="Assets\TileWorldCreator\_Core\Editor\TileWorldCreatorRTEeditor.cs" />
-    <Compile Include="Assets\TileWorldCreator\_Core\Editor\TileWorldCreatorEditorPresetsWindow.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Monitors\HistogramMonitor.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Models\ScreenSpaceReflectionModelEditor.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Models\BuiltinDebugViewsEditor.cs" />
@@ -102,7 +97,6 @@
     <Compile Include="Assets\Role\PostProcessing\Editor\Utils\FxStyles.cs" />
     <Compile Include="Assets\Res\SD Unity-Chan Haon Custom\Shader\Unity-chan Toon Shader Ver 2.0.6\Editor\CopyMaterialParameter.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\PostProcessingInspector.cs" />
-    <Compile Include="Assets\TileWorldCreator\_Core\Editor\TileWorldObjectScatterConfigEditor.cs" />
     <Compile Include="Assets\Res\Effect\Weapon\PigeonCoopToolkit1\Effects\Trails\Editor\SmoothTrailEditor.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Monitors\ParadeMonitor.cs" />
     <Compile Include="Assets\Res\Models\_Gloomy_Wizard_Costume\Shaders\Editor\CustomMaterialEditor.cs" />
@@ -113,9 +107,7 @@
     <Compile Include="Assets\Role\PostProcessing\Editor\Models\AmbientOcclusionModelEditor.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\PostProcessingFactory.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Utils\ReflectionUtils.cs" />
-    <Compile Include="Assets\TileWorldCreator\_Core\Editor\TileWorldCreatorEditorSettingsWindow.cs" />
     <Compile Include="Assets\Res\Effect\Weapon\PigeonCoopToolkit1\Effects\Trails\Editor\InfoDialogueSpawner.cs" />
-    <Compile Include="Assets\TileWorldCreator\_Core\Editor\TileWorldCreatorEditorEditMapWindow.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Models\DitheringModelEditor.cs" />
     <Compile Include="Assets\Role\PostProcessing\Editor\Monitors\VectorscopeMonitor.cs" />
   </ItemGroup>
