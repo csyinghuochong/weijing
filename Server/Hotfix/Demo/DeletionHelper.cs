@@ -20,8 +20,6 @@ namespace ET
             {
                 //删除的账号在中心区做个记录
                 List<DBCenterAccountInfo> dBAccountInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == entity.Id);
-
-                entity.PlayerInfo.
             }
 
             await ETTask.CompletedTask;
