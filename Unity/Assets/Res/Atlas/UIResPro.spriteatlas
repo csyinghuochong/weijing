@@ -1,0 +1,90 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: UIResPro
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 1
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 24fb96b9ecd6ebb40bbe145af10514d6, type: 3}
+    totalSpriteSurfaceArea: 432884
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: 3bcf5d40b1ff8074fa75bd99b2383dad, type: 3}
+  - {fileID: 21300000, guid: a48545700471bcb4c9b6f93dac73a79f, type: 3}
+  - {fileID: 21300000, guid: 35632c700dfaada41bf0bdba889f24bd, type: 3}
+  - {fileID: 21300000, guid: 33c6e3d0c7e02484a87f7b64e2f39221, type: 3}
+  - {fileID: 21300000, guid: 5e9e9d71706a5894cb10478c5374aaad, type: 3}
+  - {fileID: 21300000, guid: dedac662c987bd34ca8e503f48c8a21c, type: 3}
+  - {fileID: 21300000, guid: 74e14903fa0cb444fb67518fee87e764, type: 3}
+  - {fileID: 21300000, guid: 1699f8331e7a52a418cb1037cfeb2a57, type: 3}
+  - {fileID: 21300000, guid: a1b01463ef206a446b6d49b318046039, type: 3}
+  - {fileID: 21300000, guid: a8a6de5400b61ed4fb61cf69e8cb68b7, type: 3}
+  - {fileID: 21300000, guid: d83742e5f0aa67343b5ae3a7759fba17, type: 3}
+  - {fileID: 21300000, guid: 46eaa747be728d04596093d93bdaa1e1, type: 3}
+  - {fileID: 21300000, guid: fef637f7bac99264bbb61778f55b6209, type: 3}
+  - {fileID: 21300000, guid: 87012e187fae53a448282f216b0afc2b, type: 3}
+  - {fileID: 21300000, guid: bb6fe3d8a41d85b4fa4f470e86105208, type: 3}
+  - {fileID: 21300000, guid: a9521459d5ab48143923da587f7209bb, type: 3}
+  - {fileID: 21300000, guid: 9138de3a323af8f48abec90076e84e7f, type: 3}
+  - {fileID: 21300000, guid: 0602db4b512a675459f4c4197efbf8eb, type: 3}
+  - {fileID: 21300000, guid: 30e0a9dbe7a8952459ca5991d25801fc, type: 3}
+  - {fileID: 21300000, guid: 06498d0ce2928884d98e6052b9059e16, type: 3}
+  - {fileID: 21300000, guid: d05e5b1e91ccf5e4b9e70e454d186217, type: 3}
+  - {fileID: 21300000, guid: b5e5ed6ed6c2e3843b88241c32b76169, type: 3}
+  - {fileID: 21300000, guid: 3d2feacf7ff12a7468306cc8ea79857c, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - Pro_18
+  - Pro_5
+  - Pro_13
+  - Pro_16
+  - Pro_6_2
+  - Pro_15
+  - Pro_6
+  - EmojiOne
+  - Pro_6_1
+  - Pro_14
+  - Pro_1
+  - Pro_7_1
+  - Pro_10
+  - Pro_12
+  - Pro_2
+  - Pro_9_1
+  - Pro_17
+  - Pro_8_1
+  - Pro_4
+  - Pro_4_1
+  - Pro_6_3
+  - Pro_11
+  - Pro_3
+  m_RenderDataMap: {}
+  m_Tag: UIResPro
+  m_IsVariant: 0

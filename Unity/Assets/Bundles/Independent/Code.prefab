@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3074655348142280061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8999105231521305568}
+  - component: {fileID: -1586209626401363971}
+  m_Layer: 0
+  m_Name: Code
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8999105231521305568
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074655348142280061}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-1586209626401363971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3074655348142280061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Code.pdb
+    gameObject: {fileID: 4900000, guid: 17982d6d67fcef048b3b8719f073185c, type: 3}
+  - key: Code.dll
+    gameObject: {fileID: 4900000, guid: dca09a6829a8fdf4f98522f59c578bb4, type: 3}
+  - key: mscorlib.dll
+    gameObject: {fileID: 4900000, guid: a8620b3073d0650468fbc870eedfe286, type: 3}
+  - key: System.Core.dll
+    gameObject: {fileID: 4900000, guid: cae30c6d4d0c92e4b98ec2fb480a4af2, type: 3}
+  - key: System.dll
+    gameObject: {fileID: 4900000, guid: 5fb2112a2e7bb8945a0e38c014fb3c17, type: 3}
+  - key: Unity.Mono.dll
+    gameObject: {fileID: 4900000, guid: 8526d853baab7ed4daba451132493e78, type: 3}
+  - key: Unity.ThirdParty.dll
+    gameObject: {fileID: 4900000, guid: 5df167b395a8dbd46ab87d03d30b8f07, type: 3}

@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: RechageIcon
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 0
+      enableTightPacking: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: 33630ad2b12044c45bc97d5984fdfde3, type: 3}
+    totalSpriteSurfaceArea: 654624
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: be1659f09fbb31f4c89bd5b033ef559f, type: 3}
+  - {fileID: 21300000, guid: ca3f1ab117cab0a488101d9505098895, type: 3}
+  - {fileID: 21300000, guid: 3189ee06e83e9554fae723acf93e6bd9, type: 3}
+  - {fileID: 21300000, guid: 5721fc89d6a74b5428b2408c3be8f533, type: 3}
+  - {fileID: 21300000, guid: f13f457b8582f6c4083eac5f832d2e0c, type: 3}
+  - {fileID: 21300000, guid: d881a1cb65375a94b9d02dfde5d6b136, type: 3}
+  - {fileID: 21300000, guid: c7cf83cdb5d2cd84bb9725ce6ef2b473, type: 3}
+  - {fileID: 21300000, guid: c5a783ffc271cd448b3518f921ab7ffd, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - UI_Image_Recharge_30
+  - UI_Image_Recharge_298
+  - UI_Image_Recharge_488
+  - UI_Image_Recharge_6
+  - UI_Image_Recharge_98
+  - UI_Image_Recharge_50
+  - UI_Image_Recharge_198
+  - UI_Image_Recharge_648
+  m_RenderDataMap: {}
+  m_Tag: RechageIcon
+  m_IsVariant: 0
