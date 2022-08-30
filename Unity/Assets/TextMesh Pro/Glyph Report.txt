@@ -1,0 +1,22 @@
+Font: Alibaba PuHuiTi  Style: Bold
+Point Size: 32   SP/PD Ratio: 28.1%
+
+Characters included: 6903/6913
+Missing characters: 10
+Excluded characters: 0
+
+Characters missing from font file:
+----------------------------------------
+ID: 12928	Hex: 3280	Char [㊀]
+ID: 12929	Hex: 3281	Char [㊁]
+ID: 12930	Hex: 3282	Char [㊂]
+ID: 12931	Hex: 3283	Char [㊃]
+ID: 12932	Hex: 3284	Char [㊄]
+ID: 12933	Hex: 3285	Char [㊅]
+ID: 12934	Hex: 3286	Char [㊆]
+ID: 12935	Hex: 3287	Char [㊇]
+ID: 12936	Hex: 3288	Char [㊈]
+ID: 12937	Hex: 3289	Char [㊉]
+
+Characters excluded from packing:
+----------------------------------------
