@@ -1,0 +1,144 @@
+fileFormatVersion: 2
+guid: 3a20a86249bf57f429959de0af98ae92
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Rig
+    100002: RigBase
+    100004: RigBaseGizmo
+    100006: RigCore
+    100008: RigCoreGizmo
+    100010: RigHead
+    100012: RigHeadGizmo
+    100014: RigJawDown
+    100016: RigJawDownGizmo
+    100018: RigJawUp
+    100020: RigJawUpGizmo
+    100022: RigNeck1
+    100024: RigNeck2
+    100026: RigNeck3
+    100028: RigNeck4
+    100030: RigNeck5
+    100032: RigNeck6
+    100034: RigNeck7
+    100036: RigNeck8
+    100038: RigNeck9
+    100040: RigPetalL01
+    100042: RigPetalL01Gizmo
+    100044: RigPetalL02
+    100046: RigPetalL02Gizmo
+    100048: RigPetalL03
+    100050: RigPetalL03Gizmo
+    100052: RigPetalR01
+    100054: RigPetalR01Gizmo
+    100056: RigPetalR02
+    100058: RigPetalR02Gizmo
+    100060: RigPetalR03
+    100062: RigPetalR03Gizmo
+    100064: RigSpine1
+    100066: RigSpine2
+    100068: Tentacle Monster
+    100070: //RootNode
+    400000: Rig
+    400002: RigBase
+    400004: RigBaseGizmo
+    400006: RigCore
+    400008: RigCoreGizmo
+    400010: RigHead
+    400012: RigHeadGizmo
+    400014: RigJawDown
+    400016: RigJawDownGizmo
+    400018: RigJawUp
+    400020: RigJawUpGizmo
+    400022: RigNeck1
+    400024: RigNeck2
+    400026: RigNeck3
+    400028: RigNeck4
+    400030: RigNeck5
+    400032: RigNeck6
+    400034: RigNeck7
+    400036: RigNeck8
+    400038: RigNeck9
+    400040: RigPetalL01
+    400042: RigPetalL01Gizmo
+    400044: RigPetalL02
+    400046: RigPetalL02Gizmo
+    400048: RigPetalL03
+    400050: RigPetalL03Gizmo
+    400052: RigPetalR01
+    400054: RigPetalR01Gizmo
+    400056: RigPetalR02
+    400058: RigPetalR02Gizmo
+    400060: RigPetalR03
+    400062: RigPetalR03Gizmo
+    400064: RigSpine1
+    400066: RigSpine2
+    400068: Tentacle Monster
+    400070: //RootNode
+    4300000: Tentacle Monster
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Tentacle Monster
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

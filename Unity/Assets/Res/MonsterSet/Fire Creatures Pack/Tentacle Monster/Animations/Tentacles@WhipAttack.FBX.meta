@@ -1,0 +1,127 @@
+fileFormatVersion: 2
+guid: 97ef8077a08f9ee4e8b6a025e1a62fbe
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Rig
+    100002: RigBase
+    100004: RigBaseGizmo
+    100006: RigCore
+    100008: RigCoreGizmo
+    100010: RigSpine
+    100012: RigTentacles1
+    100014: RigTentacles10
+    100016: RigTentacles10Gizmo
+    100018: RigTentacles1Gizmo
+    100020: RigTentacles2
+    100022: RigTentacles2Gizmo
+    100024: RigTentacles3
+    100026: RigTentacles3Gizmo
+    100028: RigTentacles4
+    100030: RigTentacles4Gizmo
+    100032: RigTentacles5
+    100034: RigTentacles5Gizmo
+    100036: RigTentacles6
+    100038: RigTentacles6Gizmo
+    100040: RigTentacles7
+    100042: RigTentacles7Gizmo
+    100044: RigTentacles8
+    100046: RigTentacles8Gizmo
+    100048: RigTentacles9
+    100050: RigTentacles9Gizmo
+    100052: Tentacle
+    100054: //RootNode
+    400000: Rig
+    400002: RigBase
+    400004: RigBaseGizmo
+    400006: RigCore
+    400008: RigCoreGizmo
+    400010: RigSpine
+    400012: RigTentacles1
+    400014: RigTentacles10
+    400016: RigTentacles10Gizmo
+    400018: RigTentacles1Gizmo
+    400020: RigTentacles2
+    400022: RigTentacles2Gizmo
+    400024: RigTentacles3
+    400026: RigTentacles3Gizmo
+    400028: RigTentacles4
+    400030: RigTentacles4Gizmo
+    400032: RigTentacles5
+    400034: RigTentacles5Gizmo
+    400036: RigTentacles6
+    400038: RigTentacles6Gizmo
+    400040: RigTentacles7
+    400042: RigTentacles7Gizmo
+    400044: RigTentacles8
+    400046: RigTentacles8Gizmo
+    400048: RigTentacles9
+    400050: RigTentacles9Gizmo
+    400052: Tentacle
+    400054: //RootNode
+    4300000: Tentacle
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Tentacle
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

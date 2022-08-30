@@ -1,0 +1,204 @@
+fileFormatVersion: 2
+guid: f539fe4a2d9079d488d1271df8ffa153
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Hell Creeper
+    100002: //RootNode
+    100004: Rig
+    100006: RigHead
+    100008: RigHeadGizmo
+    100010: RigL1Arm1
+    100012: RigL1Arm1Gizmo
+    100014: RigL1Arm2
+    100016: RigL1Arm2Gizmo
+    100018: RigL2Arm1
+    100020: RigL2Arm1Gizmo
+    100022: RigL2Arm2
+    100024: RigL2Arm2Gizmo
+    100026: RigL3Arm1
+    100028: RigL3Arm1Gizmo
+    100030: RigL3Arm2
+    100032: RigL3Arm2Gizmo
+    100034: RigLBackLeg1
+    100036: RigLBackLeg2
+    100038: RigLBackLeg3
+    100040: RigLBackLeg4
+    100042: RigLBackLegAnkle
+    100044: RigLBackLegPlatform
+    100046: RigLFrontLeg1
+    100048: RigLFrontLeg2
+    100050: RigLFrontLeg3
+    100052: RigLFrontLeg4
+    100054: RigLFrontLegAnkle
+    100056: RigLFrontLegPlatform
+    100058: RigMouth
+    100060: RigMouthGizmo
+    100062: RigNeck1
+    100064: RigNeck2
+    100066: RigPelvis
+    100068: RigPelvisGizmo
+    100070: RigR1Arm1
+    100072: RigR1Arm1Gizmo
+    100074: RigR1Arm2
+    100076: RigR1Arm2Gizmo
+    100078: RigR2Arm1
+    100080: RigR2Arm1Gizmo
+    100082: RigR2Arm2
+    100084: RigR2Arm2Gizmo
+    100086: RigR3Arm1
+    100088: RigR3Arm1Gizmo
+    100090: RigR3Arm2
+    100092: RigR3Arm2Gizmo
+    100094: RigRBackLeg1
+    100096: RigRBackLeg2
+    100098: RigRBackLeg3
+    100100: RigRBackLeg4
+    100102: RigRBackLegAnkle
+    100104: RigRBackLegPlatform
+    100106: RigRFrontLeg1
+    100108: RigRFrontLeg2
+    100110: RigRFrontLeg3
+    100112: RigRFrontLeg4
+    100114: RigRFrontLegAnkle
+    100116: RigRFrontLegPlatform
+    100118: RigRibcage
+    100120: RigRibcageGizmo
+    100122: RigSpine1
+    100124: RigSpine2
+    100126: RigSpine3
+    100128: RigSpine4
+    100130: RigSpine5
+    400000: Hell Creeper
+    400002: //RootNode
+    400004: Rig
+    400006: RigHead
+    400008: RigHeadGizmo
+    400010: RigL1Arm1
+    400012: RigL1Arm1Gizmo
+    400014: RigL1Arm2
+    400016: RigL1Arm2Gizmo
+    400018: RigL2Arm1
+    400020: RigL2Arm1Gizmo
+    400022: RigL2Arm2
+    400024: RigL2Arm2Gizmo
+    400026: RigL3Arm1
+    400028: RigL3Arm1Gizmo
+    400030: RigL3Arm2
+    400032: RigL3Arm2Gizmo
+    400034: RigLBackLeg1
+    400036: RigLBackLeg2
+    400038: RigLBackLeg3
+    400040: RigLBackLeg4
+    400042: RigLBackLegAnkle
+    400044: RigLBackLegPlatform
+    400046: RigLFrontLeg1
+    400048: RigLFrontLeg2
+    400050: RigLFrontLeg3
+    400052: RigLFrontLeg4
+    400054: RigLFrontLegAnkle
+    400056: RigLFrontLegPlatform
+    400058: RigMouth
+    400060: RigMouthGizmo
+    400062: RigNeck1
+    400064: RigNeck2
+    400066: RigPelvis
+    400068: RigPelvisGizmo
+    400070: RigR1Arm1
+    400072: RigR1Arm1Gizmo
+    400074: RigR1Arm2
+    400076: RigR1Arm2Gizmo
+    400078: RigR2Arm1
+    400080: RigR2Arm1Gizmo
+    400082: RigR2Arm2
+    400084: RigR2Arm2Gizmo
+    400086: RigR3Arm1
+    400088: RigR3Arm1Gizmo
+    400090: RigR3Arm2
+    400092: RigR3Arm2Gizmo
+    400094: RigRBackLeg1
+    400096: RigRBackLeg2
+    400098: RigRBackLeg3
+    400100: RigRBackLeg4
+    400102: RigRBackLegAnkle
+    400104: RigRBackLegPlatform
+    400106: RigRFrontLeg1
+    400108: RigRFrontLeg2
+    400110: RigRFrontLeg3
+    400112: RigRFrontLeg4
+    400114: RigRFrontLegAnkle
+    400116: RigRFrontLegPlatform
+    400118: RigRibcage
+    400120: RigRibcageGizmo
+    400122: RigSpine1
+    400124: RigSpine2
+    400126: RigSpine3
+    400128: RigSpine4
+    400130: RigSpine5
+    4300000: Hell Creeper
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Hell Creeper
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
