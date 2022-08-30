@@ -214,7 +214,7 @@ namespace ET
 
             if (!have)
             {
-                if (self.DBRankInfo.rankingInfos.Count < self.RankNumber)
+                if (self.DBRankInfo.rankingInfos.Count < ComHelp.RankNumber)
                 {
                     self.DBRankInfo.rankingInfos.Add(rankingInfo);
                 }
@@ -264,7 +264,7 @@ namespace ET
 
             if (!have)
             {
-                if (rankList.Count < self.CampRankNumber)
+                if (rankList.Count < ComHelp.CampRankNumber)
                 {
                     rankList.Add(rankingInfo);
                 }
@@ -316,7 +316,7 @@ namespace ET
 
         public static void InitRankPetList(this RankSceneComponent self)
         {
-            if (self.DBRankInfo.rankingPets.Count >= self.PetRankNumber)
+            if (self.DBRankInfo.rankingPets.Count >= ComHelp.PetRankNumber)
             {
                 return;
             }

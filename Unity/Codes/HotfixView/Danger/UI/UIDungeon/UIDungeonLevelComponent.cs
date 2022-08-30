@@ -93,6 +93,12 @@ namespace ET
         public static void OnInitData(this UIDungeonLevelComponent self, int chapterId)
         {
             self.ChapterId = chapterId;
+
+            int[] openLv = DungeonSectionConfigCategory.Instance.Get(self.ChapterId).OpenLevel;
+            self.NanDu_1_Button.transform.Find("TextOpenLevel").GetComponent<Text>().text = $"激活等级:{openLv[0]}级";
+            self.NanDu_2_Button.transform.Find("TextOpenLevel").GetComponent<Text>().text = $"激活等级:{openLv[1]}级";
+            self.NanDu_3_Button.transform.Find("TextOpenLevel").GetComponent<Text>().text = $"激活等级:{openLv[2]}级";
+
             self.OnNanDu_Button(PlayerPrefsHelp.GetChapterDifficulty(self.ChapterId));
             self.UpdateLevelList(chapterId).Coroutine();
         }

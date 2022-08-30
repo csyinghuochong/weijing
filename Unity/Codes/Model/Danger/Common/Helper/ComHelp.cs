@@ -41,6 +41,11 @@ namespace ET
         }
 
         public const int PetHeXinMax = 60;
+
+        public const int RankNumber = 30;
+        public const int CampRankNumber = 50;
+        public const int PetRankNumber = 100;
+
         public static int BagMaxCapacity()
         {
             return GlobalValueConfigCategory.Instance.Get(3).Value2;

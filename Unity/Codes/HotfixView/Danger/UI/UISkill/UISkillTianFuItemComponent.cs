@@ -83,7 +83,7 @@ namespace ET
             self.ImageIcon3.GetComponent<Image>().sprite = sp;
             self.TextName3.GetComponent<Text>().text = skillConfig.Name;
 
-            self.TextLv.GetComponent<Text>().text = skillConfig.LearnRoseLv.ToString() + "级";
+            self.TextLv.GetComponent<Text>().text = skillConfig.LearnRoseLv.ToString() + "级激活此天赋";
 
             self.OnActiveTianFu();
         }

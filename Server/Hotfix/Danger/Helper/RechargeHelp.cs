@@ -21,7 +21,8 @@ namespace ET
             });
 
             D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = accountInfo.Id, Component = accountInfo, ComponentType = DBHelper.DBAccountInfo });
-            await unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString());
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString()).Coroutine();
+            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0);
         }
 
         public static async ETTask OnPaySucessToUnit(Scene scene,  long userId, int rechargeNumber)

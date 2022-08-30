@@ -97,6 +97,7 @@ namespace ET
 		public const string UIPetHeXinHeCheng = "Main/Pet/UIPetHeXinHeCheng";
 		public const string UICamp = "Main/Camp/UICamp";
 		public const string UIWorldLv = "Main/WorldLv/UIWorldLv";
+		public const string UIBuChang = "Main/BuChang/UIBuChang";
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
 		{
@@ -119,7 +120,8 @@ namespace ET
 			{ "UILingDiReward", UILingDiReward},
 			{ "UIXiuLian", UIXiuLian},
 			{ "UIPetEgg", UIPetEgg},
-			{ "UIChouKa", UIChouKa}
+			{ "UIChouKa", UIChouKa},
+			{ "UIBuChang", UIBuChang}
 		};
 	}
 }

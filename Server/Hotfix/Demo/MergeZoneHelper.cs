@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace ET
 {
+
+    //合区
     public static class MergeZoneHelper
     {
 
@@ -115,8 +113,9 @@ namespace ET
                 {
                     return (int)b.Combat - (int)a.Combat;
                 });
-                entity.rankingInfos = rankingInfos_new.GetRange(0, rankingInfos_new.Count > 30 ? 30 : rankingInfos_new.Count);
-
+                entity.rankingInfos = rankingInfos_new.GetRange(0, rankingInfos_new.Count > ComHelp.RankNumber ? ComHelp.RankNumber : rankingInfos_new.Count);
+                
+                //阵营相关的都要重置
                 await Game.Scene.GetComponent<DBComponent>().Save<DBRankInfo>(newzone, entity);
             }
 

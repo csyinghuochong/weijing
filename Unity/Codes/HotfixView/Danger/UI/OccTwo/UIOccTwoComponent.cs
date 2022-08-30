@@ -178,9 +178,10 @@ namespace ET
             self.OccNengLi_2.transform.Find("Text_NengLiValue").GetComponent<Text>().text = occupationTwoConfig.Capacitys[1].ToString();
             self.OccNengLi_3.transform.Find("Text_NengLiValue").GetComponent<Text>().text = occupationTwoConfig.Capacitys[2].ToString();
 
-            self.OccNengLi_1.transform.Find("ImageProgress").GetComponent<Image>().fillAmount = occupationTwoConfig.Capacitys[0] * 1f / 100;
-            self.OccNengLi_2.transform.Find("ImageProgress").GetComponent<Image>().fillAmount = occupationTwoConfig.Capacitys[1] * 1f / 100;
-            self.OccNengLi_3.transform.Find("ImageProgress").GetComponent<Image>().fillAmount = occupationTwoConfig.Capacitys[2] * 1f / 100;
+            Log.Info("(float)occupationTwoConfig.Capacitys[0] * 1f / 100f = " + (float)occupationTwoConfig.Capacitys[0] * 1f / 100f);
+            self.OccNengLi_1.transform.Find("ImageProgress").GetComponent<Image>().fillAmount = (float)occupationTwoConfig.Capacitys[0] * 1f / 100f;
+            self.OccNengLi_2.transform.Find("ImageProgress").GetComponent<Image>().fillAmount = occupationTwoConfig.Capacitys[1] * 1f / 100f;
+            self.OccNengLi_3.transform.Find("ImageProgress").GetComponent<Image>().fillAmount = occupationTwoConfig.Capacitys[2] * 1f / 100f;
 
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkillItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);

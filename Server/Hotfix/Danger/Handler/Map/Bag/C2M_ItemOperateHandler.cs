@@ -57,7 +57,29 @@ namespace ET
                     ItemConfig itemConf = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
                     bool bagIsFull = false;
                     List<RewardItem> droplist = new List<RewardItem>();
-                    if (itemConf.ItemSubType == 102 || (itemConf.ItemSubType == 103))
+
+                    if (itemCof.ItemSubType == 8)
+                    {
+                        string[] duihuanparams = itemConf.ItemUsePar.Split(';');
+                        int neednum = int.Parse(duihuanparams[0]);
+                        if (unit.GetComponent<BagComponent>().GetItemNumber(itemCof.Id) < neednum)
+                        {
+                            response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                            reply();
+                            return;
+                        }
+                    }
+                    if (itemCof.ItemSubType == 9)
+                    { 
+                        string[] itemPar = itemConf.ItemUsePar.Split(';');
+                        if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RechargeNumber) < long.Parse(itemPar[0]))
+                        {
+                            response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                            reply();
+                            return;
+                        }
+                    }
+                     if (itemConf.ItemSubType == 102 || (itemConf.ItemSubType == 103))
                     {
                         if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
                         {
@@ -79,17 +101,6 @@ namespace ET
                         response.Error = ErrorCore.ERR_ItemOnlyUseMiJing;
                         reply();
                         return;
-                    }
-                    if (itemCof.ItemSubType == 8)
-                    {
-                        string[] duihuanparams = itemConf.ItemUsePar.Split(';');
-                        int neednum = int.Parse(duihuanparams[0]);
-                        if (unit.GetComponent<BagComponent>().GetItemNumber(itemCof.Id) < neednum)
-                        {
-                            response.Error = ErrorCore.ERR_ItemNotEnoughError;
-                            reply();
-                            return;
-                        }
                     }
                     if (itemCof.ItemSubType == 14      //召唤卷轴
                         || itemCof.ItemSubType == 114) //宝石
@@ -147,6 +158,12 @@ namespace ET
 
                                 unit.GetComponent<BagComponent>().OnCostItemData($"{itemConf.Id};{neednum - 1}");
                                 unit.GetComponent<BagComponent>().OnAddItem(newItem, 1);
+                                break;
+                            case 9:
+                                rewardItems = new List<RewardItem>();
+                                string[] rewardInfos = itemCof.ItemUsePar.Split(';');
+                                DropHelper.DropIDToDropItem_2(int.Parse(rewardInfos[1]), rewardItems);
+                                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems);
                                 break;
                             //冷却时间清空卷轴"
                             case 12:

@@ -1,0 +1,5 @@
+1 合区。 先备份要合的区，用bson的export.    
+   执行    1_merge_zone， 传入要合并的两个区
+
+2  删档，  先备份要合的区，用bson的export.    
+   

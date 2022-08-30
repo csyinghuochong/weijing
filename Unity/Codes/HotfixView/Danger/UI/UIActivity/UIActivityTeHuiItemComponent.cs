@@ -58,11 +58,12 @@ namespace ET
             ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(activityId);
             self.ActivityConfig = activityConfig;
             self.ImageReceived.SetActive(received);
+            self.ButtonBuy.SetActive(!received);
             self.TextPrice.GetComponent<Text>().text = activityConfig.Par_2.Split(';')[1];
             self.TextType.GetComponent<Text>().text = activityConfig.Par_4;
 
             UICommonHelper.DestoryChild(self.ItemListNode);
-            UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemListNode, self, 1f, false).Coroutine();
+            UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemListNode, self, 1f, true).Coroutine();
         }
     }
 }
