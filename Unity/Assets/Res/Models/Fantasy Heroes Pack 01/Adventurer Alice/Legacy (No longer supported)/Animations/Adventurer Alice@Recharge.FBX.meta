@@ -1,0 +1,294 @@
+fileFormatVersion: 2
+guid: 99573b5a30009534380d2bb741541f1e
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Adventurer Alice
+    100002: //RootNode
+    100004: DummyLWeapon
+    100006: DummyRWeapon
+    100008: Magic Wand
+    100010: Rig
+    100012: Rig Pelvis
+    100014: Rig PelvisGizmo
+    100016: RigCape1
+    100018: RigCape1Gizmo
+    100020: RigCape2
+    100022: RigCape2Gizmo
+    100024: RigCape3
+    100026: RigCape3Gizmo
+    100028: RigCape4
+    100030: RigCape4Gizmo
+    100032: RigCape5
+    100034: RigCape5Gizmo
+    100036: RigHead
+    100038: RigHeadGizmo
+    100040: RigHeadHairLside01
+    100042: RigHeadHairLside01Gizmo
+    100044: RigHeadHairLside02
+    100046: RigHeadHairLside02Gizmo
+    100048: RigHeadHairLside03
+    100050: RigHeadHairLside03Gizmo
+    100052: RigHeadHairLside04
+    100054: RigHeadHairLside04Gizmo
+    100056: RigHeadHairRside004Gizmo
+    100058: RigHeadHairRside01
+    100060: RigHeadHairRside01Gizmo
+    100062: RigHeadHairRside02
+    100064: RigHeadHairRside02Gizmo
+    100066: RigHeadHairRside03
+    100068: RigHeadHairRside03Gizmo
+    100070: RigHeadHairRside04
+    100072: RigLArm1
+    100074: RigLArm1Gizmo
+    100076: RigLArm2
+    100078: RigLArm2Gizmo
+    100080: RigLArmCollarbone
+    100082: RigLArmIndex1
+    100084: RigLArmIndex2
+    100086: RigLArmIndex3
+    100088: RigLArmPalm
+    100090: RigLArmPalmGizmo
+    100092: RigLArmRest1
+    100094: RigLArmRest2
+    100096: RigLArmRest3
+    100098: RigLArmThumb1
+    100100: RigLArmThumb2
+    100102: RigLLeg1
+    100104: RigLLeg2
+    100106: RigLLegAnkle
+    100108: RigLLegFoot1
+    100110: RigLLegFoot2
+    100112: RigLLegPlatform
+    100114: RigNeck1
+    100116: RigNeck2
+    100118: RigPonyTail1
+    100120: RigPonyTail1Gizmo
+    100122: RigPonyTail2
+    100124: RigPonyTail2Gizmo
+    100126: RigPonyTail3
+    100128: RigPonyTail3Gizmo
+    100130: RigPonyTail4
+    100132: RigPonyTail4Gizmo
+    100134: RigPonyTail5
+    100136: RigPonyTail5Gizmo
+    100138: RigPonyTail6
+    100140: RigPonyTail6Gizmo
+    100142: RigRArm1
+    100144: RigRArm1Gizmo
+    100146: RigRArm2
+    100148: RigRArm2Gizmo
+    100150: RigRArmCollarbone
+    100152: RigRArmIndex1
+    100154: RigRArmIndex2
+    100156: RigRArmIndex3
+    100158: RigRArmPalm
+    100160: RigRArmPalmGizmo
+    100162: RigRArmRest1
+    100164: RigRArmRest2
+    100166: RigRArmRest3
+    100168: RigRArmThumb1
+    100170: RigRArmThumb2
+    100172: RigRibcage
+    100174: RigRibcageGizmo
+    100176: RigRLeg1
+    100178: RigRLeg2
+    100180: RigRLegAnkle
+    100182: RigRLegFoot1
+    100184: RigRLegFoot2
+    100186: RigRLegPlatform
+    100188: RigSpine1
+    100190: RigSpine2
+    100192: RigSpine3
+    100194: RigSpine4
+    100196: RigSpine5
+    400000: Adventurer Alice
+    400002: //RootNode
+    400004: DummyLWeapon
+    400006: DummyRWeapon
+    400008: Magic Wand
+    400010: Rig
+    400012: Rig Pelvis
+    400014: Rig PelvisGizmo
+    400016: RigCape1
+    400018: RigCape1Gizmo
+    400020: RigCape2
+    400022: RigCape2Gizmo
+    400024: RigCape3
+    400026: RigCape3Gizmo
+    400028: RigCape4
+    400030: RigCape4Gizmo
+    400032: RigCape5
+    400034: RigCape5Gizmo
+    400036: RigHead
+    400038: RigHeadGizmo
+    400040: RigHeadHairLside01
+    400042: RigHeadHairLside01Gizmo
+    400044: RigHeadHairLside02
+    400046: RigHeadHairLside02Gizmo
+    400048: RigHeadHairLside03
+    400050: RigHeadHairLside03Gizmo
+    400052: RigHeadHairLside04
+    400054: RigHeadHairLside04Gizmo
+    400056: RigHeadHairRside004Gizmo
+    400058: RigHeadHairRside01
+    400060: RigHeadHairRside01Gizmo
+    400062: RigHeadHairRside02
+    400064: RigHeadHairRside02Gizmo
+    400066: RigHeadHairRside03
+    400068: RigHeadHairRside03Gizmo
+    400070: RigHeadHairRside04
+    400072: RigLArm1
+    400074: RigLArm1Gizmo
+    400076: RigLArm2
+    400078: RigLArm2Gizmo
+    400080: RigLArmCollarbone
+    400082: RigLArmIndex1
+    400084: RigLArmIndex2
+    400086: RigLArmIndex3
+    400088: RigLArmPalm
+    400090: RigLArmPalmGizmo
+    400092: RigLArmRest1
+    400094: RigLArmRest2
+    400096: RigLArmRest3
+    400098: RigLArmThumb1
+    400100: RigLArmThumb2
+    400102: RigLLeg1
+    400104: RigLLeg2
+    400106: RigLLegAnkle
+    400108: RigLLegFoot1
+    400110: RigLLegFoot2
+    400112: RigLLegPlatform
+    400114: RigNeck1
+    400116: RigNeck2
+    400118: RigPonyTail1
+    400120: RigPonyTail1Gizmo
+    400122: RigPonyTail2
+    400124: RigPonyTail2Gizmo
+    400126: RigPonyTail3
+    400128: RigPonyTail3Gizmo
+    400130: RigPonyTail4
+    400132: RigPonyTail4Gizmo
+    400134: RigPonyTail5
+    400136: RigPonyTail5Gizmo
+    400138: RigPonyTail6
+    400140: RigPonyTail6Gizmo
+    400142: RigRArm1
+    400144: RigRArm1Gizmo
+    400146: RigRArm2
+    400148: RigRArm2Gizmo
+    400150: RigRArmCollarbone
+    400152: RigRArmIndex1
+    400154: RigRArmIndex2
+    400156: RigRArmIndex3
+    400158: RigRArmPalm
+    400160: RigRArmPalmGizmo
+    400162: RigRArmRest1
+    400164: RigRArmRest2
+    400166: RigRArmRest3
+    400168: RigRArmThumb1
+    400170: RigRArmThumb2
+    400172: RigRibcage
+    400174: RigRibcageGizmo
+    400176: RigRLeg1
+    400178: RigRLeg2
+    400180: RigRLegAnkle
+    400182: RigRLegFoot1
+    400184: RigRLegFoot2
+    400186: RigRLegPlatform
+    400188: RigSpine1
+    400190: RigSpine2
+    400192: RigSpine3
+    400194: RigSpine4
+    400196: RigSpine5
+    2300000: Magic Wand
+    3300000: Magic Wand
+    4300000: Adventurer Alice
+    4300002: Magic Wand
+    7400000: Recharge
+    9500000: //RootNode
+    13700000: Adventurer Alice
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Recharge
+      takeName: Take 001
+      firstFrame: 0
+      lastFrame: 60
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
