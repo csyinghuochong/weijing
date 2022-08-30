@@ -15546,6 +15546,7 @@ GameObject:
   - component: {fileID: 5333679578691622056}
   - component: {fileID: 3197065658196173602}
   - component: {fileID: 7084142415686335243}
+  - component: {fileID: 8187687028731721890}
   m_Layer: 5
   m_Name: Image_WuQi_Zhuan
   m_TagString: Untagged
@@ -15610,6 +15611,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &8187687028731721890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2353875481917695130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97cdb235702b63d488f2d37137469d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTypeEnum: 2
+  moveDistance: 30
+  isLoop: 1
+  MoveToTime: 1.5
 --- !u!1 &2466229911154094532
 GameObject:
   m_ObjectHideFlags: 0
@@ -23025,6 +23042,7 @@ GameObject:
   - component: {fileID: 4533418571127347402}
   - component: {fileID: 8910963910214355637}
   - component: {fileID: 4269081915856793287}
+  - component: {fileID: 7984926959115229175}
   m_Layer: 5
   m_Name: Image_WuQi_Type
   m_TagString: Untagged
@@ -23089,6 +23107,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &7984926959115229175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6678594809480878981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97cdb235702b63d488f2d37137469d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTypeEnum: 2
+  moveDistance: 30
+  isLoop: 1
+  MoveToTime: 1.5
 --- !u!1 &6735109266027615394
 GameObject:
   m_ObjectHideFlags: 0
