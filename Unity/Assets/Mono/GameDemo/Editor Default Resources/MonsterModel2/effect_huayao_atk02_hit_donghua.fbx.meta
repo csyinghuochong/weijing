@@ -1,0 +1,197 @@
+fileFormatVersion: 2
+guid: 302d0fd105989b046a43f3d4da25e57d
+timeCreated: 1537687848
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 120010101
+    100002: 120010101 1
+    100004: 120010101 2
+    100006: Bone001
+    100008: Bone001 1
+    100010: Bone001 2
+    100012: Bone002
+    100014: Bone002 1
+    100016: Bone002 2
+    100018: Bone003
+    100020: Bone003 1
+    100022: Bone003 2
+    100024: Bone004
+    100026: Bone004 1
+    100028: Bone004 2
+    100030: Bone005
+    100032: Bone005 1
+    100034: Bone005 2
+    100036: Bone006
+    100038: Bone006 1
+    100040: Bone006 2
+    100042: Bone007
+    100044: Bone007 1
+    100046: Bone007 2
+    100048: Bone008
+    100050: Bone008 1
+    100052: Bone008 2
+    100054: Bone009
+    100056: Bone009 1
+    100058: Bone009 2
+    100060: Bone010
+    100062: Bone010 1
+    100064: Bone010 2
+    100066: Bone011
+    100068: Bone011 1
+    100070: Bone011 2
+    100072: Bone012
+    100074: Bone012 1
+    100076: Bone012 2
+    100078: Bone013
+    100080: Bone013 1
+    100082: Bone013 2
+    100084: Bone014
+    100086: Bone014 1
+    100088: Bone014 2
+    100090: Cylinder001
+    100092: Cylinder001 1
+    100094: Cylinder001 2
+    100096: Cylinder001_0
+    100098: Cylinder001_0 1
+    100100: Cylinder001_0 2
+    100102: //RootNode
+    100104: effect_huayao_atk02_hit_donghua
+    100106: effect_huayao_atk02_hit_pre_lod3
+    100108: jingji_01
+    100110: jingji_01 (1)
+    100112: jingji_01 (2)
+    400000: 120010101
+    400002: 120010101 1
+    400004: 120010101 2
+    400006: Bone001
+    400008: Bone001 1
+    400010: Bone001 2
+    400012: Bone002
+    400014: Bone002 1
+    400016: Bone002 2
+    400018: Bone003
+    400020: Bone003 1
+    400022: Bone003 2
+    400024: Bone004
+    400026: Bone004 1
+    400028: Bone004 2
+    400030: Bone005
+    400032: Bone005 1
+    400034: Bone005 2
+    400036: Bone006
+    400038: Bone006 1
+    400040: Bone006 2
+    400042: Bone007
+    400044: Bone007 1
+    400046: Bone007 2
+    400048: Bone008
+    400050: Bone008 1
+    400052: Bone008 2
+    400054: Bone009
+    400056: Bone009 1
+    400058: Bone009 2
+    400060: Bone010
+    400062: Bone010 1
+    400064: Bone010 2
+    400066: Bone011
+    400068: Bone011 1
+    400070: Bone011 2
+    400072: Bone012
+    400074: Bone012 1
+    400076: Bone012 2
+    400078: Bone013
+    400080: Bone013 1
+    400082: Bone013 2
+    400084: Bone014
+    400086: Bone014 1
+    400088: Bone014 2
+    400090: Cylinder001
+    400092: Cylinder001 1
+    400094: Cylinder001 2
+    400096: Cylinder001_0
+    400098: Cylinder001_0 1
+    400100: Cylinder001_0 2
+    400102: //RootNode
+    400104: effect_huayao_atk02_hit_donghua
+    400106: effect_huayao_atk02_hit_pre_lod3
+    400108: jingji_01
+    400110: jingji_01 (1)
+    400112: jingji_01 (2)
+    4300000: Cylinder001_0
+    4300002: Cylinder001_0
+    4300004: Cylinder001_0
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Cylinder001_0
+    13700002: Cylinder001_0 1
+    13700004: Cylinder001_0 2
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

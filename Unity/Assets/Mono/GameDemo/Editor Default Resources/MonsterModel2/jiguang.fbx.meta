@@ -1,0 +1,185 @@
+fileFormatVersion: 2
+guid: 14b9296d86316454cb09fa2b3d7e6f47
+timeCreated: 1537687739
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 02
+    100002: 02 1
+    100004: 02_0
+    100006: 02_0 1
+    100008: donghua_L
+    100010: donghua_R
+    100012: effect_jxz_atk03_hit
+    100014: fx-lianhua01
+    100016: fx-lianhua01 1
+    100018: fx-lianhua01 2
+    100020: fx-lianhua01 3
+    100022: fx-lianhua01_0
+    100024: fx-lianhua01_0 1
+    100026: fx-lianhua01_0 2
+    100028: fx-lianhua01_0 3
+    100030: fx-lianhua02
+    100032: fx-lianhua02 1
+    100034: fx-lianhua02_0
+    100036: fx-lianhua02_0 1
+    100038: fx-lianhua03
+    100040: fx-lianhua03 1
+    100042: fx-lianhua03 2
+    100044: fx-lianhua03 3
+    100046: fx-lianhua03_0
+    100048: fx-lianhua03_0 1
+    100050: fx-lianhua03_0 2
+    100052: fx-lianhua03_0 3
+    100054: fx-lianhua04
+    100056: fx-lianhua04 1
+    100058: fx-lianhua04_0
+    100060: fx-lianhua04_0 1
+    100062: jiguang
+    100064: //RootNode
+    400000: 02
+    400002: 02 1
+    400004: 02_0
+    400006: 02_0 1
+    400008: donghua_L
+    400010: donghua_R
+    400012: effect_jxz_atk03_hit
+    400014: fx-lianhua01
+    400016: fx-lianhua01 1
+    400018: fx-lianhua01 2
+    400020: fx-lianhua01 3
+    400022: fx-lianhua01_0
+    400024: fx-lianhua01_0 1
+    400026: fx-lianhua01_0 2
+    400028: fx-lianhua01_0 3
+    400030: fx-lianhua02
+    400032: fx-lianhua02 1
+    400034: fx-lianhua02_0
+    400036: fx-lianhua02_0 1
+    400038: fx-lianhua03
+    400040: fx-lianhua03 1
+    400042: fx-lianhua03 2
+    400044: fx-lianhua03 3
+    400046: fx-lianhua03_0
+    400048: fx-lianhua03_0 1
+    400050: fx-lianhua03_0 2
+    400052: fx-lianhua03_0 3
+    400054: fx-lianhua04
+    400056: fx-lianhua04 1
+    400058: fx-lianhua04_0
+    400060: fx-lianhua04_0 1
+    400062: jiguang
+    400064: //RootNode
+    2300000: 02_0
+    2300002: 02_0 1
+    2300004: fx-lianhua01_0
+    2300006: fx-lianhua01_0 1
+    2300008: fx-lianhua01_0 2
+    2300010: fx-lianhua01_0 3
+    2300012: fx-lianhua02_0
+    2300014: fx-lianhua02_0 1
+    2300016: fx-lianhua03_0
+    2300018: fx-lianhua03_0 1
+    2300020: fx-lianhua03_0 2
+    2300022: fx-lianhua03_0 3
+    2300024: fx-lianhua04_0
+    2300026: fx-lianhua04_0 1
+    3300000: 02_0
+    3300002: 02_0 1
+    3300004: fx-lianhua01_0
+    3300006: fx-lianhua01_0 1
+    3300008: fx-lianhua01_0 2
+    3300010: fx-lianhua01_0 3
+    3300012: fx-lianhua02_0
+    3300014: fx-lianhua02_0 1
+    3300016: fx-lianhua03_0
+    3300018: fx-lianhua03_0 1
+    3300020: fx-lianhua03_0 2
+    3300022: fx-lianhua03_0 3
+    3300024: fx-lianhua04_0
+    3300026: fx-lianhua04_0 1
+    4300000: fx-lianhua04_0
+    4300002: fx-lianhua03_0
+    4300004: fx-lianhua01_0
+    4300006: fx-lianhua02_0
+    4300008: fx-lianhua03_0
+    4300010: 02_0
+    4300012: fx-lianhua01_0
+    4300014: fx-lianhua04_0
+    4300016: fx-lianhua03_0
+    4300018: fx-lianhua01_0
+    4300020: fx-lianhua02_0
+    4300022: fx-lianhua03_0
+    4300024: 02_0
+    4300026: fx-lianhua01_0
+    7400000: effect_jxz_atk03_hit
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

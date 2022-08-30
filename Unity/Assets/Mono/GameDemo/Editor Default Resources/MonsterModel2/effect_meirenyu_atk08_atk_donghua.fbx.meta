@@ -1,0 +1,125 @@
+fileFormatVersion: 2
+guid: d23dd18005d45a44883e86bf05ba6df8
+timeCreated: 1537688609
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: effect_aolabeibei_baoqi_01
+    100002: effect_aolabeibei_baoqi_01_0
+    100004: effect_jmws_luoxuanxian_mo
+    100006: effect_jmws_luoxuanxian_mo (1)
+    100008: effect_jmws_luoxuanxian_mo (1)_0
+    100010: effect_jmws_luoxuanxian_mo_0
+    100012: //RootNode
+    100014: effect_meirenyu_atk08_atk_donghua
+    100016: effect_meirenyu_atk08_atk_pre_lod3
+    100018: effect_trails_mry_mo01
+    100020: effect_trails_mry_mo01 (1)
+    100022: effect_trails_mry_mo01 (1)_0
+    100024: effect_trails_mry_mo01 (2)
+    100026: effect_trails_mry_mo01 (2)_0
+    100028: effect_trails_mry_mo01_0
+    400000: effect_aolabeibei_baoqi_01
+    400002: effect_aolabeibei_baoqi_01_0
+    400004: effect_jmws_luoxuanxian_mo
+    400006: effect_jmws_luoxuanxian_mo (1)
+    400008: effect_jmws_luoxuanxian_mo (1)_0
+    400010: effect_jmws_luoxuanxian_mo_0
+    400012: //RootNode
+    400014: effect_meirenyu_atk08_atk_donghua
+    400016: effect_meirenyu_atk08_atk_pre_lod3
+    400018: effect_trails_mry_mo01
+    400020: effect_trails_mry_mo01 (1)
+    400022: effect_trails_mry_mo01 (1)_0
+    400024: effect_trails_mry_mo01 (2)
+    400026: effect_trails_mry_mo01 (2)_0
+    400028: effect_trails_mry_mo01_0
+    2300000: effect_aolabeibei_baoqi_01_0
+    2300002: effect_jmws_luoxuanxian_mo (1)_0
+    2300004: effect_jmws_luoxuanxian_mo_0
+    2300006: effect_trails_mry_mo01 (1)_0
+    2300008: effect_trails_mry_mo01 (2)_0
+    2300010: effect_trails_mry_mo01_0
+    3300000: effect_aolabeibei_baoqi_01_0
+    3300002: effect_jmws_luoxuanxian_mo (1)_0
+    3300004: effect_jmws_luoxuanxian_mo_0
+    3300006: effect_trails_mry_mo01 (1)_0
+    3300008: effect_trails_mry_mo01 (2)_0
+    3300010: effect_trails_mry_mo01_0
+    4300000: effect_trails_mry_mo01_0
+    4300002: effect_trails_mry_mo01 (1)_0
+    4300004: effect_jmws_luoxuanxian_mo_0
+    4300006: effect_trails_mry_mo01 (2)_0
+    4300008: effect_aolabeibei_baoqi_01_0
+    4300010: effect_jmws_luoxuanxian_mo (1)_0
+    7400000: effect_meirenyu_atk08_atk_donghua
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

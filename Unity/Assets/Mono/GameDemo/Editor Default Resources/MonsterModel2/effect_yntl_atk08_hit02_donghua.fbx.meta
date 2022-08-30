@@ -1,0 +1,162 @@
+fileFormatVersion: 2
+guid: 4d056eac255e66a488fc2078dbf5310e
+timeCreated: 1537687997
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Cylinder001
+    100002: Cylinder001 (1)
+    100004: Cylinder001 (1)_0
+    100006: Cylinder001 (10)
+    100008: Cylinder001 (10)_0
+    100010: Cylinder001 (2)
+    100012: Cylinder001 (2)_0
+    100014: Cylinder001 (3)
+    100016: Cylinder001 (3)_0
+    100018: Cylinder001 (4)
+    100020: Cylinder001 (4)_0
+    100022: Cylinder001 (5)
+    100024: Cylinder001 (5)_0
+    100026: Cylinder001 (6)
+    100028: Cylinder001 (6)_0
+    100030: Cylinder001 (7)
+    100032: Cylinder001 (7)_0
+    100034: Cylinder001 (8)
+    100036: Cylinder001 (8)_0
+    100038: Cylinder001 (9)
+    100040: Cylinder001 (9)_0
+    100042: Cylinder001_0
+    100044: //RootNode
+    100046: effect_yntl_atk08_hit02_donghua
+    100048: effect_yntl_atk08_hit02_pre_lod3
+    100050: shu
+    400000: Cylinder001
+    400002: Cylinder001 (1)
+    400004: Cylinder001 (1)_0
+    400006: Cylinder001 (10)
+    400008: Cylinder001 (10)_0
+    400010: Cylinder001 (2)
+    400012: Cylinder001 (2)_0
+    400014: Cylinder001 (3)
+    400016: Cylinder001 (3)_0
+    400018: Cylinder001 (4)
+    400020: Cylinder001 (4)_0
+    400022: Cylinder001 (5)
+    400024: Cylinder001 (5)_0
+    400026: Cylinder001 (6)
+    400028: Cylinder001 (6)_0
+    400030: Cylinder001 (7)
+    400032: Cylinder001 (7)_0
+    400034: Cylinder001 (8)
+    400036: Cylinder001 (8)_0
+    400038: Cylinder001 (9)
+    400040: Cylinder001 (9)_0
+    400042: Cylinder001_0
+    400044: effect_yntl_atk08_hit02_donghua
+    400046: //RootNode
+    400048: effect_yntl_atk08_hit02_pre_lod3
+    400050: shu
+    2300000: Cylinder001 (1)_0
+    2300002: Cylinder001 (10)_0
+    2300004: Cylinder001 (2)_0
+    2300006: Cylinder001 (3)_0
+    2300008: Cylinder001 (4)_0
+    2300010: Cylinder001 (5)_0
+    2300012: Cylinder001 (6)_0
+    2300014: Cylinder001 (7)_0
+    2300016: Cylinder001 (8)_0
+    2300018: Cylinder001 (9)_0
+    2300020: Cylinder001_0
+    3300000: Cylinder001 (1)_0
+    3300002: Cylinder001 (10)_0
+    3300004: Cylinder001 (2)_0
+    3300006: Cylinder001 (3)_0
+    3300008: Cylinder001 (4)_0
+    3300010: Cylinder001 (5)_0
+    3300012: Cylinder001 (6)_0
+    3300014: Cylinder001 (7)_0
+    3300016: Cylinder001 (8)_0
+    3300018: Cylinder001 (9)_0
+    3300020: Cylinder001_0
+    4300000: Cylinder001_0
+    4300002: Cylinder001 (1)_0
+    4300004: Cylinder001 (2)_0
+    4300006: Cylinder001 (3)_0
+    4300008: Cylinder001 (4)_0
+    4300010: Cylinder001 (5)_0
+    4300012: Cylinder001 (6)_0
+    4300014: Cylinder001 (7)_0
+    4300016: Cylinder001 (8)_0
+    4300018: Cylinder001 (9)_0
+    4300020: Cylinder001 (10)_0
+    7400000: effect_yntl_atk08_hit02_donghua
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

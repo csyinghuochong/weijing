@@ -1,0 +1,219 @@
+fileFormatVersion: 2
+guid: 2475e904877de33449688ea604244700
+timeCreated: 1537687797
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bone001
+    100002: Bone002
+    100004: Bone003
+    100006: Bone004
+    100008: Bone005
+    100010: Bone006
+    100012: Bone011
+    100014: Bone011(mirrored)
+    100016: Bone012
+    100018: Bone012(mirrored)
+    100020: Bone013
+    100022: Bone013(mirrored)
+    100024: Bone014
+    100026: Bone014(mirrored)
+    100028: Bone015
+    100030: Bone015(mirrored)
+    100032: Bone016
+    100034: Bone016(mirrored)
+    100036: Bone017
+    100038: Bone017(mirrored)
+    100040: Bone018
+    100042: Bone018(mirrored)
+    100044: Bone019
+    100046: Bone019(mirrored)
+    100048: Bone020
+    100050: Bone020(mirrored)
+    100052: Bone021
+    100054: Bone021(mirrored)
+    100056: Bone022
+    100058: Bone022(mirrored)
+    100060: Bone023
+    100062: Bone024
+    100064: Bone025
+    100066: Bone026
+    100068: Bone027
+    100070: Bone028
+    100072: Bone029
+    100074: Bone030
+    100076: effect_aolabeibei_baoqi_01
+    100078: effect_aolabeibei_baoqi_01_0
+    100080: //RootNode
+    100082: effect_meirenyu_atk08_hit_donghua
+    100084: effect_meirenyu_atk08_hit_pre_lod3
+    100086: effect_meirenyu_atk08_hit_pre_lod3 1
+    100088: effect_yanwu_trails_mo
+    100090: effect_yanwu_trails_mo (1)
+    100092: effect_yanwu_trails_mo (1)_0
+    100094: effect_yanwu_trails_mo (2)
+    100096: effect_yanwu_trails_mo (2)_0
+    100098: effect_yanwu_trails_mo (3)
+    100100: effect_yanwu_trails_mo (3)_0
+    100102: effect_yanwu_trails_mo (4)
+    100104: effect_yanwu_trails_mo (4)_0
+    100106: effect_yanwu_trails_mo (5)
+    100108: effect_yanwu_trails_mo (5)_0
+    100110: effect_yanwu_trails_mo_0
+    100112: effect_zhangyu_mo
+    100114: effect_zhangyu_mo 1
+    100116: effect_zhangyu_mo_0
+    400000: Bone001
+    400002: Bone002
+    400004: Bone003
+    400006: Bone004
+    400008: Bone005
+    400010: Bone006
+    400012: Bone011
+    400014: Bone011(mirrored)
+    400016: Bone012
+    400018: Bone012(mirrored)
+    400020: Bone013
+    400022: Bone013(mirrored)
+    400024: Bone014
+    400026: Bone014(mirrored)
+    400028: Bone015
+    400030: Bone015(mirrored)
+    400032: Bone016
+    400034: Bone016(mirrored)
+    400036: Bone017
+    400038: Bone017(mirrored)
+    400040: Bone018
+    400042: Bone018(mirrored)
+    400044: Bone019
+    400046: Bone019(mirrored)
+    400048: Bone020
+    400050: Bone020(mirrored)
+    400052: Bone021
+    400054: Bone021(mirrored)
+    400056: Bone022
+    400058: Bone022(mirrored)
+    400060: Bone023
+    400062: Bone024
+    400064: Bone025
+    400066: Bone026
+    400068: Bone027
+    400070: Bone028
+    400072: Bone029
+    400074: Bone030
+    400076: effect_aolabeibei_baoqi_01
+    400078: effect_aolabeibei_baoqi_01_0
+    400080: //RootNode
+    400082: effect_meirenyu_atk08_hit_donghua
+    400084: effect_meirenyu_atk08_hit_pre_lod3
+    400086: effect_meirenyu_atk08_hit_pre_lod3 1
+    400088: effect_yanwu_trails_mo
+    400090: effect_yanwu_trails_mo (1)
+    400092: effect_yanwu_trails_mo (1)_0
+    400094: effect_yanwu_trails_mo (2)
+    400096: effect_yanwu_trails_mo (2)_0
+    400098: effect_yanwu_trails_mo (3)
+    400100: effect_yanwu_trails_mo (3)_0
+    400102: effect_yanwu_trails_mo (4)
+    400104: effect_yanwu_trails_mo (4)_0
+    400106: effect_yanwu_trails_mo (5)
+    400108: effect_yanwu_trails_mo (5)_0
+    400110: effect_yanwu_trails_mo_0
+    400112: effect_zhangyu_mo
+    400114: effect_zhangyu_mo 1
+    400116: effect_zhangyu_mo_0
+    2300000: effect_aolabeibei_baoqi_01_0
+    2300002: effect_yanwu_trails_mo (1)_0
+    2300004: effect_yanwu_trails_mo (2)_0
+    2300006: effect_yanwu_trails_mo (3)_0
+    2300008: effect_yanwu_trails_mo (4)_0
+    2300010: effect_yanwu_trails_mo (5)_0
+    2300012: effect_yanwu_trails_mo_0
+    3300000: effect_aolabeibei_baoqi_01_0
+    3300002: effect_yanwu_trails_mo (1)_0
+    3300004: effect_yanwu_trails_mo (2)_0
+    3300006: effect_yanwu_trails_mo (3)_0
+    3300008: effect_yanwu_trails_mo (4)_0
+    3300010: effect_yanwu_trails_mo (5)_0
+    3300012: effect_yanwu_trails_mo_0
+    4300000: effect_yanwu_trails_mo_0
+    4300002: effect_yanwu_trails_mo (1)_0
+    4300004: effect_yanwu_trails_mo (2)_0
+    4300006: effect_yanwu_trails_mo (3)_0
+    4300008: effect_aolabeibei_baoqi_01_0
+    4300010: effect_yanwu_trails_mo (4)_0
+    4300012: effect_yanwu_trails_mo (5)_0
+    4300014: effect_zhangyu_mo_0
+    7400000: Take 001
+    7400002: effect_meirenyu_atk08_hit_donghua
+    9500000: //RootNode
+    13700000: effect_zhangyu_mo_0
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

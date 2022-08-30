@@ -1,0 +1,377 @@
+fileFormatVersion: 2
+guid: 6d351a4c9d8375d4fad242bb244a586c
+timeCreated: 1537688149
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bone001
+    100002: Bone001 1
+    100004: Bone001 2
+    100006: Bone001 3
+    100008: Bone001 4
+    100010: Bone001 5
+    100012: Bone001 6
+    100014: Bone002
+    100016: Bone002 1
+    100018: Bone002 2
+    100020: Bone002 3
+    100022: Bone002 4
+    100024: Bone002 5
+    100026: Bone002 6
+    100028: Bone003
+    100030: Bone003 1
+    100032: Bone003 2
+    100034: Bone003 3
+    100036: Bone003 4
+    100038: Bone003 5
+    100040: Bone003 6
+    100042: Bone004
+    100044: Bone004 1
+    100046: Bone004 2
+    100048: Bone004 3
+    100050: Bone004 4
+    100052: Bone004 5
+    100054: Bone004 6
+    100056: Bone005
+    100058: Bone005 1
+    100060: Bone005 2
+    100062: Bone005 3
+    100064: Bone005 4
+    100066: Bone005 5
+    100068: Bone005 6
+    100070: Bone006
+    100072: Bone006 1
+    100074: Bone006 2
+    100076: Bone006 3
+    100078: Bone006 4
+    100080: Bone006 5
+    100082: Bone006 6
+    100084: Bone007
+    100086: Bone007 1
+    100088: Bone007 2
+    100090: Bone007 3
+    100092: Bone007 4
+    100094: Bone007 5
+    100096: Bone007 6
+    100098: Bone008
+    100100: Bone008 1
+    100102: Bone008 2
+    100104: Bone008 3
+    100106: Bone008 4
+    100108: Bone008 5
+    100110: Bone008 6
+    100112: Bone009
+    100114: Bone009 1
+    100116: Bone009 2
+    100118: Bone009 3
+    100120: Bone009 4
+    100122: Bone009 5
+    100124: Bone009 6
+    100126: Bone010
+    100128: Bone010 1
+    100130: Bone010 2
+    100132: Bone010 3
+    100134: Bone010 4
+    100136: Bone010 5
+    100138: Bone010 6
+    100140: Bone011
+    100142: Bone011 1
+    100144: Bone011 2
+    100146: Bone011 3
+    100148: Bone011 4
+    100150: Bone011 5
+    100152: Bone011 6
+    100154: Bone012
+    100156: Bone012 1
+    100158: Bone012 2
+    100160: Bone012 3
+    100162: Bone012 4
+    100164: Bone012 5
+    100166: Bone012 6
+    100168: Bone013
+    100170: Bone013 1
+    100172: Bone013 2
+    100174: Bone013 3
+    100176: Bone013 4
+    100178: Bone013 5
+    100180: Bone013 6
+    100182: Bone014
+    100184: Bone014 1
+    100186: Bone014 2
+    100188: Bone014 3
+    100190: Bone014 4
+    100192: Bone014 5
+    100194: Bone014 6
+    100196: Bone015
+    100198: Bone015 1
+    100200: Bone015 2
+    100202: Bone015 3
+    100204: Bone015 4
+    100206: Bone015 5
+    100208: Bone015 6
+    100210: Bone016
+    100212: Bone016 1
+    100214: Bone016 2
+    100216: Bone016 3
+    100218: Bone016 4
+    100220: Bone016 5
+    100222: Bone016 6
+    100224: Bone017
+    100226: Bone017 1
+    100228: Bone017 2
+    100230: Bone017 3
+    100232: Bone017 4
+    100234: Bone017 5
+    100236: Bone017 6
+    100238: Cylinder001
+    100240: Cylinder001 1
+    100242: Cylinder001_0
+    100244: Cylinder001_0 1
+    100246: effect_huayao_atk05_hit_donghua
+    100248: //RootNode
+    100250: effect_huayao_atk05_hit_pre_lod3
+    100252: effect_huayao_jingjitengman02_mo
+    100254: effect_huayao_jingjitengman02_mo 1
+    100256: effect_huayao_jingjitengman02_mo 2
+    100258: effect_huayao_jingjitengman02_mo 3
+    100260: effect_huayao_jingjitengman02_mo 4
+    100262: effect_huayao_jingjitengman02_mo_0
+    100264: effect_huayao_jingjitengman02_mo_0 1
+    100266: effect_huayao_jingjitengman02_mo_0 2
+    100268: effect_huayao_jingjitengman02_mo_0 3
+    100270: effect_huayao_jingjitengman02_mo_0 4
+    100272: effect_huayao_jingjitengman04_mo
+    100274: effect_huayao_jingjitengman04_mo (1)
+    100276: effect_huayao_jingjitengman04_mo (2)
+    100278: effect_huayao_jingjitengman04_mo (3)
+    100280: effect_huayao_jingjitengman04_mo (4)
+    100282: effect_huayao_jingjitengman05_mo
+    100284: effect_huayao_jingjitengman05_mo (1)
+    400000: Bone001
+    400002: Bone001 1
+    400004: Bone001 2
+    400006: Bone001 3
+    400008: Bone001 4
+    400010: Bone001 5
+    400012: Bone001 6
+    400014: Bone002
+    400016: Bone002 1
+    400018: Bone002 2
+    400020: Bone002 3
+    400022: Bone002 4
+    400024: Bone002 5
+    400026: Bone002 6
+    400028: Bone003
+    400030: Bone003 1
+    400032: Bone003 2
+    400034: Bone003 3
+    400036: Bone003 4
+    400038: Bone003 5
+    400040: Bone003 6
+    400042: Bone004
+    400044: Bone004 1
+    400046: Bone004 2
+    400048: Bone004 3
+    400050: Bone004 4
+    400052: Bone004 5
+    400054: Bone004 6
+    400056: Bone005
+    400058: Bone005 1
+    400060: Bone005 2
+    400062: Bone005 3
+    400064: Bone005 4
+    400066: Bone005 5
+    400068: Bone005 6
+    400070: Bone006
+    400072: Bone006 1
+    400074: Bone006 2
+    400076: Bone006 3
+    400078: Bone006 4
+    400080: Bone006 5
+    400082: Bone006 6
+    400084: Bone007
+    400086: Bone007 1
+    400088: Bone007 2
+    400090: Bone007 3
+    400092: Bone007 4
+    400094: Bone007 5
+    400096: Bone007 6
+    400098: Bone008
+    400100: Bone008 1
+    400102: Bone008 2
+    400104: Bone008 3
+    400106: Bone008 4
+    400108: Bone008 5
+    400110: Bone008 6
+    400112: Bone009
+    400114: Bone009 1
+    400116: Bone009 2
+    400118: Bone009 3
+    400120: Bone009 4
+    400122: Bone009 5
+    400124: Bone009 6
+    400126: Bone010
+    400128: Bone010 1
+    400130: Bone010 2
+    400132: Bone010 3
+    400134: Bone010 4
+    400136: Bone010 5
+    400138: Bone010 6
+    400140: Bone011
+    400142: Bone011 1
+    400144: Bone011 2
+    400146: Bone011 3
+    400148: Bone011 4
+    400150: Bone011 5
+    400152: Bone011 6
+    400154: Bone012
+    400156: Bone012 1
+    400158: Bone012 2
+    400160: Bone012 3
+    400162: Bone012 4
+    400164: Bone012 5
+    400166: Bone012 6
+    400168: Bone013
+    400170: Bone013 1
+    400172: Bone013 2
+    400174: Bone013 3
+    400176: Bone013 4
+    400178: Bone013 5
+    400180: Bone013 6
+    400182: Bone014
+    400184: Bone014 1
+    400186: Bone014 2
+    400188: Bone014 3
+    400190: Bone014 4
+    400192: Bone014 5
+    400194: Bone014 6
+    400196: Bone015
+    400198: Bone015 1
+    400200: Bone015 2
+    400202: Bone015 3
+    400204: Bone015 4
+    400206: Bone015 5
+    400208: Bone015 6
+    400210: Bone016
+    400212: Bone016 1
+    400214: Bone016 2
+    400216: Bone016 3
+    400218: Bone016 4
+    400220: Bone016 5
+    400222: Bone016 6
+    400224: Bone017
+    400226: Bone017 1
+    400228: Bone017 2
+    400230: Bone017 3
+    400232: Bone017 4
+    400234: Bone017 5
+    400236: Bone017 6
+    400238: Cylinder001
+    400240: Cylinder001 1
+    400242: Cylinder001_0
+    400244: Cylinder001_0 1
+    400246: //RootNode
+    400248: effect_huayao_atk05_hit_donghua
+    400250: effect_huayao_atk05_hit_pre_lod3
+    400252: effect_huayao_jingjitengman02_mo
+    400254: effect_huayao_jingjitengman02_mo 1
+    400256: effect_huayao_jingjitengman02_mo 2
+    400258: effect_huayao_jingjitengman02_mo 3
+    400260: effect_huayao_jingjitengman02_mo 4
+    400262: effect_huayao_jingjitengman02_mo_0
+    400264: effect_huayao_jingjitengman02_mo_0 1
+    400266: effect_huayao_jingjitengman02_mo_0 2
+    400268: effect_huayao_jingjitengman02_mo_0 3
+    400270: effect_huayao_jingjitengman02_mo_0 4
+    400272: effect_huayao_jingjitengman04_mo
+    400274: effect_huayao_jingjitengman04_mo (1)
+    400276: effect_huayao_jingjitengman04_mo (2)
+    400278: effect_huayao_jingjitengman04_mo (3)
+    400280: effect_huayao_jingjitengman04_mo (4)
+    400282: effect_huayao_jingjitengman05_mo
+    400284: effect_huayao_jingjitengman05_mo (1)
+    4300000: Cylinder001_0
+    4300002: effect_huayao_jingjitengman02_mo_0
+    4300004: effect_huayao_jingjitengman02_mo_0
+    4300006: effect_huayao_jingjitengman02_mo_0
+    4300008: effect_huayao_jingjitengman02_mo_0
+    4300010: effect_huayao_jingjitengman02_mo_0
+    4300012: Cylinder001_0
+    7400000: Take 001
+    9500000: //RootNode
+    13700000: Cylinder001_0
+    13700002: Cylinder001_0 1
+    13700004: effect_huayao_jingjitengman02_mo_0
+    13700006: effect_huayao_jingjitengman02_mo_0 1
+    13700008: effect_huayao_jingjitengman02_mo_0 2
+    13700010: effect_huayao_jingjitengman02_mo_0 3
+    13700012: effect_huayao_jingjitengman02_mo_0 4
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

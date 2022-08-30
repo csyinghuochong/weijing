@@ -1,0 +1,298 @@
+fileFormatVersion: 2
+guid: d68a484965bb52b48a184fa343c32fba
+timeCreated: 1537688638
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: dongzuo_01
+    100002: dongzuo_01 (1)
+    100004: dongzuo_01 (1) 1
+    100006: dongzuo_01 (1) 2
+    100008: dongzuo_01 (2)
+    100010: dongzuo_01 (2) 1
+    100012: dongzuo_01 (2) 2
+    100014: dongzuo_01 1
+    100016: dongzuo_01 2
+    100018: dongzuo_01 3
+    100020: dongzuo_02
+    100022: dongzuo_03
+    100024: effect_lr_atk08_atk
+    100026: fx
+    100028: zhua_01
+    100030: zhua_01 1
+    100032: zhua_01 2
+    100034: zhua_01 3
+    100036: zhua_01 4
+    100038: zhua_01 5
+    100040: zhua_01 6
+    100042: zhua_01 7
+    100044: zhua_01 8
+    100046: zhua_01_0
+    100048: zhua_01_0 1
+    100050: zhua_01_0 2
+    100052: zhua_01_0 3
+    100054: zhua_01_0 4
+    100056: zhua_01_0 5
+    100058: zhua_01_0 6
+    100060: zhua_01_0 7
+    100062: zhua_01_0 8
+    100064: zhua_01_01
+    100066: zhua_01_01 1
+    100068: zhua_01_01 2
+    100070: zhua_01_01 3
+    100072: zhua_01_01 4
+    100074: zhua_01_01 5
+    100076: zhua_01_01 6
+    100078: zhua_01_01 7
+    100080: zhua_01_01 8
+    100082: zhua_01_01_0
+    100084: zhua_01_01_0 1
+    100086: zhua_01_01_0 2
+    100088: zhua_01_01_0 3
+    100090: zhua_01_01_0 4
+    100092: zhua_01_01_0 5
+    100094: zhua_01_01_0 6
+    100096: zhua_01_01_0 7
+    100098: zhua_01_01_0 8
+    100100: zhua_01_02
+    100102: zhua_01_02 1
+    100104: zhua_01_02 2
+    100106: zhua_01_02 3
+    100108: zhua_01_02 4
+    100110: zhua_01_02 5
+    100112: zhua_01_02 6
+    100114: zhua_01_02 7
+    100116: zhua_01_02 8
+    100118: zhua_01_02_0
+    100120: zhua_01_02_0 1
+    100122: zhua_01_02_0 2
+    100124: zhua_01_02_0 3
+    100126: zhua_01_02_0 4
+    100128: zhua_01_02_0 5
+    100130: zhua_01_02_0 6
+    100132: zhua_01_02_0 7
+    100134: zhua_01_02_0 8
+    100136: zhuahen
+    100138: //RootNode
+    400000: dongzuo_01
+    400002: dongzuo_01 (1)
+    400004: dongzuo_01 (1) 1
+    400006: dongzuo_01 (1) 2
+    400008: dongzuo_01 (2)
+    400010: dongzuo_01 (2) 1
+    400012: dongzuo_01 (2) 2
+    400014: dongzuo_01 1
+    400016: dongzuo_01 2
+    400018: dongzuo_01 3
+    400020: dongzuo_02
+    400022: dongzuo_03
+    400024: effect_lr_atk08_atk
+    400026: fx
+    400028: zhua_01
+    400030: zhua_01 1
+    400032: zhua_01 2
+    400034: zhua_01 3
+    400036: zhua_01 4
+    400038: zhua_01 5
+    400040: zhua_01 6
+    400042: zhua_01 7
+    400044: zhua_01 8
+    400046: zhua_01_0
+    400048: zhua_01_0 1
+    400050: zhua_01_0 2
+    400052: zhua_01_0 3
+    400054: zhua_01_0 4
+    400056: zhua_01_0 5
+    400058: zhua_01_0 6
+    400060: zhua_01_0 7
+    400062: zhua_01_0 8
+    400064: zhua_01_01
+    400066: zhua_01_01 1
+    400068: zhua_01_01 2
+    400070: zhua_01_01 3
+    400072: zhua_01_01 4
+    400074: zhua_01_01 5
+    400076: zhua_01_01 6
+    400078: zhua_01_01 7
+    400080: zhua_01_01 8
+    400082: zhua_01_01_0
+    400084: zhua_01_01_0 1
+    400086: zhua_01_01_0 2
+    400088: zhua_01_01_0 3
+    400090: zhua_01_01_0 4
+    400092: zhua_01_01_0 5
+    400094: zhua_01_01_0 6
+    400096: zhua_01_01_0 7
+    400098: zhua_01_01_0 8
+    400100: zhua_01_02
+    400102: zhua_01_02 1
+    400104: zhua_01_02 2
+    400106: zhua_01_02 3
+    400108: zhua_01_02 4
+    400110: zhua_01_02 5
+    400112: zhua_01_02 6
+    400114: zhua_01_02 7
+    400116: zhua_01_02 8
+    400118: zhua_01_02_0
+    400120: zhua_01_02_0 1
+    400122: zhua_01_02_0 2
+    400124: zhua_01_02_0 3
+    400126: zhua_01_02_0 4
+    400128: zhua_01_02_0 5
+    400130: zhua_01_02_0 6
+    400132: zhua_01_02_0 7
+    400134: zhua_01_02_0 8
+    400136: zhuahen
+    400138: //RootNode
+    2300000: zhua_01_0
+    2300002: zhua_01_0 1
+    2300004: zhua_01_0 2
+    2300006: zhua_01_0 3
+    2300008: zhua_01_0 4
+    2300010: zhua_01_0 5
+    2300012: zhua_01_0 6
+    2300014: zhua_01_0 7
+    2300016: zhua_01_0 8
+    2300018: zhua_01_01_0
+    2300020: zhua_01_01_0 1
+    2300022: zhua_01_01_0 2
+    2300024: zhua_01_01_0 3
+    2300026: zhua_01_01_0 4
+    2300028: zhua_01_01_0 5
+    2300030: zhua_01_01_0 6
+    2300032: zhua_01_01_0 7
+    2300034: zhua_01_01_0 8
+    2300036: zhua_01_02_0
+    2300038: zhua_01_02_0 1
+    2300040: zhua_01_02_0 2
+    2300042: zhua_01_02_0 3
+    2300044: zhua_01_02_0 4
+    2300046: zhua_01_02_0 5
+    2300048: zhua_01_02_0 6
+    2300050: zhua_01_02_0 7
+    2300052: zhua_01_02_0 8
+    3300000: zhua_01_0
+    3300002: zhua_01_0 1
+    3300004: zhua_01_0 2
+    3300006: zhua_01_0 3
+    3300008: zhua_01_0 4
+    3300010: zhua_01_0 5
+    3300012: zhua_01_0 6
+    3300014: zhua_01_0 7
+    3300016: zhua_01_0 8
+    3300018: zhua_01_01_0
+    3300020: zhua_01_01_0 1
+    3300022: zhua_01_01_0 2
+    3300024: zhua_01_01_0 3
+    3300026: zhua_01_01_0 4
+    3300028: zhua_01_01_0 5
+    3300030: zhua_01_01_0 6
+    3300032: zhua_01_01_0 7
+    3300034: zhua_01_01_0 8
+    3300036: zhua_01_02_0
+    3300038: zhua_01_02_0 1
+    3300040: zhua_01_02_0 2
+    3300042: zhua_01_02_0 3
+    3300044: zhua_01_02_0 4
+    3300046: zhua_01_02_0 5
+    3300048: zhua_01_02_0 6
+    3300050: zhua_01_02_0 7
+    3300052: zhua_01_02_0 8
+    4300000: zhua_01_0
+    4300002: zhua_01_01_0
+    4300004: zhua_01_02_0
+    4300006: zhua_01_0
+    4300008: zhua_01_01_0
+    4300010: zhua_01_02_0
+    4300012: zhua_01_0
+    4300014: zhua_01_01_0
+    4300016: zhua_01_02_0
+    4300018: zhua_01_0
+    4300020: zhua_01_01_0
+    4300022: zhua_01_02_0
+    4300024: zhua_01_0
+    4300026: zhua_01_01_0
+    4300028: zhua_01_02_0
+    4300030: zhua_01_0
+    4300032: zhua_01_01_0
+    4300034: zhua_01_02_0
+    4300036: zhua_01_0
+    4300038: zhua_01_01_0
+    4300040: zhua_01_02_0
+    4300042: zhua_01_0
+    4300044: zhua_01_01_0
+    4300046: zhua_01_02_0
+    4300048: zhua_01_0
+    4300050: zhua_01_01_0
+    4300052: zhua_01_02_0
+    7400000: effect_lr_atk08_atk
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

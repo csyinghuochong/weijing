@@ -1,0 +1,140 @@
+fileFormatVersion: 2
+guid: 9dfceabf7458d4f4d8482f3b41710271
+timeCreated: 1537688369
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: donghua
+    100002: //RootNode
+    100004: effect_sngjs_atk07_atk
+    100006: fx
+    100008: trail_01
+    100010: trail_01_0
+    100012: trail_02
+    100014: trail_02_0
+    100016: trail_03
+    100018: trail_03_0
+    100020: trail_04
+    100022: trail_04_0
+    100024: trail_05
+    100026: trail_05_0
+    100028: trail_06
+    100030: trail_06_0
+    100032: trail_07
+    100034: trail_07_0
+    100036: trail_08
+    100038: trail_08_0
+    400000: donghua
+    400002: //RootNode
+    400004: effect_sngjs_atk07_atk
+    400006: fx
+    400008: trail_01
+    400010: trail_01_0
+    400012: trail_02
+    400014: trail_02_0
+    400016: trail_03
+    400018: trail_03_0
+    400020: trail_04
+    400022: trail_04_0
+    400024: trail_05
+    400026: trail_05_0
+    400028: trail_06
+    400030: trail_06_0
+    400032: trail_07
+    400034: trail_07_0
+    400036: trail_08
+    400038: trail_08_0
+    2300000: trail_01_0
+    2300002: trail_02_0
+    2300004: trail_03_0
+    2300006: trail_04_0
+    2300008: trail_05_0
+    2300010: trail_06_0
+    2300012: trail_07_0
+    2300014: trail_08_0
+    3300000: trail_01_0
+    3300002: trail_02_0
+    3300004: trail_03_0
+    3300006: trail_04_0
+    3300008: trail_05_0
+    3300010: trail_06_0
+    3300012: trail_07_0
+    3300014: trail_08_0
+    4300000: trail_01_0
+    4300002: trail_02_0
+    4300004: trail_03_0
+    4300006: trail_04_0
+    4300008: trail_05_0
+    4300010: trail_06_0
+    4300012: trail_07_0
+    4300014: trail_08_0
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

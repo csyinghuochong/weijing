@@ -1,0 +1,195 @@
+fileFormatVersion: 2
+guid: 577ca45bd5f350448aec6609e60d59ab
+timeCreated: 1537688041
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: flzt_01_wujian02
+    100002: flzt_01_wujian02_0
+    100004: flzt_01_wujian03 (1)
+    100006: flzt_01_wujian03 (1)_0
+    100008: flzt_01_wujian06
+    100010: flzt_01_wujian06 (11)
+    100012: flzt_01_wujian06 (11)_0
+    100014: flzt_01_wujian06 (12)
+    100016: flzt_01_wujian06 (12)_0
+    100018: flzt_01_wujian06 (3)
+    100020: flzt_01_wujian06 (3)_0
+    100022: flzt_01_wujian06 (4)
+    100024: flzt_01_wujian06 (4)_0
+    100026: flzt_01_wujian06 (5)
+    100028: flzt_01_wujian06 (5)_0
+    100030: flzt_01_wujian06 (6)
+    100032: flzt_01_wujian06 (6)_0
+    100034: flzt_01_wujian06 (7)
+    100036: flzt_01_wujian06 (7)_0
+    100038: flzt_01_wujian06 (8)
+    100040: flzt_01_wujian06 (8)_0
+    100042: flzt_01_wujian06_0
+    100044: flzt_sl_01
+    100046: flzt_sl_01_0
+    100048: flzt_sl_02
+    100050: flzt_sl_02 (2)
+    100052: flzt_sl_02 (2)_0
+    100054: flzt_sl_02 (3)
+    100056: flzt_sl_02 (3)_0
+    100058: flzt_sl_02 (4)
+    100060: flzt_sl_02 (4)_0
+    100062: flzt_sl_02_0
+    100064: Sene_effect
+    100066: //RootNode
+    100068: Sene_effect_fuluzhita_dongzuo
+    400000: flzt_01_wujian02
+    400002: flzt_01_wujian02_0
+    400004: flzt_01_wujian03 (1)
+    400006: flzt_01_wujian03 (1)_0
+    400008: flzt_01_wujian06
+    400010: flzt_01_wujian06 (11)
+    400012: flzt_01_wujian06 (11)_0
+    400014: flzt_01_wujian06 (12)
+    400016: flzt_01_wujian06 (12)_0
+    400018: flzt_01_wujian06 (3)
+    400020: flzt_01_wujian06 (3)_0
+    400022: flzt_01_wujian06 (4)
+    400024: flzt_01_wujian06 (4)_0
+    400026: flzt_01_wujian06 (5)
+    400028: flzt_01_wujian06 (5)_0
+    400030: flzt_01_wujian06 (6)
+    400032: flzt_01_wujian06 (6)_0
+    400034: flzt_01_wujian06 (7)
+    400036: flzt_01_wujian06 (7)_0
+    400038: flzt_01_wujian06 (8)
+    400040: flzt_01_wujian06 (8)_0
+    400042: flzt_01_wujian06_0
+    400044: flzt_sl_01
+    400046: flzt_sl_01_0
+    400048: flzt_sl_02
+    400050: flzt_sl_02 (2)
+    400052: flzt_sl_02 (2)_0
+    400054: flzt_sl_02 (3)
+    400056: flzt_sl_02 (3)_0
+    400058: flzt_sl_02 (4)
+    400060: flzt_sl_02 (4)_0
+    400062: flzt_sl_02_0
+    400064: Sene_effect
+    400066: //RootNode
+    400068: Sene_effect_fuluzhita_dongzuo
+    2300000: flzt_01_wujian02_0
+    2300002: flzt_01_wujian03 (1)_0
+    2300004: flzt_01_wujian06 (11)_0
+    2300006: flzt_01_wujian06 (12)_0
+    2300008: flzt_01_wujian06 (3)_0
+    2300010: flzt_01_wujian06 (4)_0
+    2300012: flzt_01_wujian06 (5)_0
+    2300014: flzt_01_wujian06 (6)_0
+    2300016: flzt_01_wujian06 (7)_0
+    2300018: flzt_01_wujian06 (8)_0
+    2300020: flzt_01_wujian06_0
+    2300022: flzt_sl_01_0
+    2300024: flzt_sl_02 (2)_0
+    2300026: flzt_sl_02 (3)_0
+    2300028: flzt_sl_02 (4)_0
+    2300030: flzt_sl_02_0
+    3300000: flzt_01_wujian02_0
+    3300002: flzt_01_wujian03 (1)_0
+    3300004: flzt_01_wujian06 (11)_0
+    3300006: flzt_01_wujian06 (12)_0
+    3300008: flzt_01_wujian06 (3)_0
+    3300010: flzt_01_wujian06 (4)_0
+    3300012: flzt_01_wujian06 (5)_0
+    3300014: flzt_01_wujian06 (6)_0
+    3300016: flzt_01_wujian06 (7)_0
+    3300018: flzt_01_wujian06 (8)_0
+    3300020: flzt_01_wujian06_0
+    3300022: flzt_sl_01_0
+    3300024: flzt_sl_02 (2)_0
+    3300026: flzt_sl_02 (3)_0
+    3300028: flzt_sl_02 (4)_0
+    3300030: flzt_sl_02_0
+    4300000: flzt_sl_02_0
+    4300002: flzt_sl_01_0
+    4300004: flzt_sl_02 (4)_0
+    4300006: flzt_01_wujian06_0
+    4300008: flzt_sl_02 (2)_0
+    4300010: flzt_sl_02 (3)_0
+    4300012: flzt_01_wujian06 (8)_0
+    4300014: flzt_01_wujian06 (12)_0
+    4300016: flzt_01_wujian06 (11)_0
+    4300018: flzt_01_wujian02_0
+    4300020: flzt_01_wujian06 (4)_0
+    4300022: flzt_01_wujian06 (5)_0
+    4300024: flzt_01_wujian06 (6)_0
+    4300026: flzt_01_wujian06 (3)_0
+    4300028: flzt_01_wujian03 (1)_0
+    4300030: flzt_01_wujian06 (7)_0
+    7400000: Sene_effect_fuluzhita_dongzuo 1
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

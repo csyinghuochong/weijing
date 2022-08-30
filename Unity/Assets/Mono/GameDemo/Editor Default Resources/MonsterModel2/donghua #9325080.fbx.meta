@@ -1,0 +1,181 @@
+fileFormatVersion: 2
+guid: 89ffad30c806b8c42a04d4ff2d6dcac7
+timeCreated: 1537688273
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 01
+    100002: 02
+    100004: 03
+    100006: 04
+    100008: 05
+    100010: 06
+    100012: 07
+    100014: donghua
+    100016: //RootNode
+    100018: effect_jxz_atk07_atk_02
+    100020: pian_01
+    100022: pian_01_0
+    100024: pian_02
+    100026: pian_02_0
+    100028: pian_03
+    100030: pian_03_0
+    100032: pian_04
+    100034: pian_04_0
+    100036: pian_05
+    100038: pian_05_0
+    100040: shang_03
+    100042: shang_03 1
+    100044: shang_03 2
+    100046: shang_03 3
+    100048: shang_03 4
+    100050: shang_03 5
+    100052: shang_03 6
+    100054: shang_03_0
+    100056: shang_03_0 1
+    100058: shang_03_0 2
+    100060: shang_03_0 3
+    100062: shang_03_0 4
+    100064: shang_03_0 5
+    100066: shang_03_0 6
+    400000: 01
+    400002: 02
+    400004: 03
+    400006: 04
+    400008: 05
+    400010: 06
+    400012: 07
+    400014: donghua
+    400016: //RootNode
+    400018: effect_jxz_atk07_atk_02
+    400020: pian_01
+    400022: pian_01_0
+    400024: pian_02
+    400026: pian_02_0
+    400028: pian_03
+    400030: pian_03_0
+    400032: pian_04
+    400034: pian_04_0
+    400036: pian_05
+    400038: pian_05_0
+    400040: shang_03
+    400042: shang_03 1
+    400044: shang_03 2
+    400046: shang_03 3
+    400048: shang_03 4
+    400050: shang_03 5
+    400052: shang_03 6
+    400054: shang_03_0
+    400056: shang_03_0 1
+    400058: shang_03_0 2
+    400060: shang_03_0 3
+    400062: shang_03_0 4
+    400064: shang_03_0 5
+    400066: shang_03_0 6
+    2300000: pian_01_0
+    2300002: pian_02_0
+    2300004: pian_03_0
+    2300006: pian_04_0
+    2300008: pian_05_0
+    2300010: shang_03_0
+    2300012: shang_03_0 1
+    2300014: shang_03_0 2
+    2300016: shang_03_0 3
+    2300018: shang_03_0 4
+    2300020: shang_03_0 5
+    2300022: shang_03_0 6
+    3300000: pian_01_0
+    3300002: pian_02_0
+    3300004: pian_03_0
+    3300006: pian_04_0
+    3300008: pian_05_0
+    3300010: shang_03_0
+    3300012: shang_03_0 1
+    3300014: shang_03_0 2
+    3300016: shang_03_0 3
+    3300018: shang_03_0 4
+    3300020: shang_03_0 5
+    3300022: shang_03_0 6
+    4300000: pian_01_0
+    4300002: pian_02_0
+    4300004: pian_03_0
+    4300006: pian_04_0
+    4300008: pian_05_0
+    4300010: shang_03_0
+    4300012: shang_03_0
+    4300014: shang_03_0
+    4300016: shang_03_0
+    4300018: shang_03_0
+    4300020: shang_03_0
+    4300022: shang_03_0
+    7400000: effect_jxz_atk07_atk_02
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

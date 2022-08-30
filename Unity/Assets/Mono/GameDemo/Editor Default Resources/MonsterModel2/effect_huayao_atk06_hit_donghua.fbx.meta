@@ -1,0 +1,197 @@
+fileFormatVersion: 2
+guid: b557f7f564377004690298d7890fe6a8
+timeCreated: 1537688487
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Bone001
+    100002: Bone002
+    100004: Bone003
+    100006: Bone004
+    100008: Bone005
+    100010: Bone008
+    100012: Bone009
+    100014: Bone010
+    100016: Bone011
+    100018: Bone012
+    100020: Bone013
+    100022: Bone014
+    100024: Bone015
+    100026: Bone016
+    100028: Bone017
+    100030: Bone018
+    100032: Bone019
+    100034: Bone020
+    100036: Bone021
+    100038: Bone022
+    100040: Bone023
+    100042: Bone024
+    100044: Bone025
+    100046: Bone026
+    100048: Bone027
+    100050: Bone028
+    100052: Bone029
+    100054: Bone030
+    100056: Bone031
+    100058: Bone032
+    100060: Bone033
+    100062: Bone034
+    100064: Bone035
+    100066: Bone036
+    100068: Bone037
+    100070: Bone040
+    100072: Bone041
+    100074: Bone042
+    100076: Bone043
+    100078: Bone044
+    100080: Bone045
+    100082: effect_huayao_
+    100084: //RootNode
+    100086: effect_huayao_atk06_hit_donghua
+    100088: effect_huayao_atk06_hit_pre_lod3
+    100090: effect_huayao_qianniuhua_mo
+    100092: effect_huayao_qianniuhua_mo 1
+    100094: effect_huayao_qianniuhua_mo_0
+    100096: effect_jmws_luoxuanxian_mo
+    100098: effect_jmws_luoxuanxian_mo (1)
+    100100: effect_jmws_luoxuanxian_mo (1)_0
+    100102: effect_jmws_luoxuanxian_mo_0
+    100104: effect_renzhe_wenli_mo
+    100106: effect_renzhe_wenli_mo_0
+    400000: Bone001
+    400002: Bone002
+    400004: Bone003
+    400006: Bone004
+    400008: Bone005
+    400010: Bone008
+    400012: Bone009
+    400014: Bone010
+    400016: Bone011
+    400018: Bone012
+    400020: Bone013
+    400022: Bone014
+    400024: Bone015
+    400026: Bone016
+    400028: Bone017
+    400030: Bone018
+    400032: Bone019
+    400034: Bone020
+    400036: Bone021
+    400038: Bone022
+    400040: Bone023
+    400042: Bone024
+    400044: Bone025
+    400046: Bone026
+    400048: Bone027
+    400050: Bone028
+    400052: Bone029
+    400054: Bone030
+    400056: Bone031
+    400058: Bone032
+    400060: Bone033
+    400062: Bone034
+    400064: Bone035
+    400066: Bone036
+    400068: Bone037
+    400070: Bone040
+    400072: Bone041
+    400074: Bone042
+    400076: Bone043
+    400078: Bone044
+    400080: Bone045
+    400082: effect_huayao_
+    400084: //RootNode
+    400086: effect_huayao_atk06_hit_donghua
+    400088: effect_huayao_atk06_hit_pre_lod3
+    400090: effect_huayao_qianniuhua_mo
+    400092: effect_huayao_qianniuhua_mo 1
+    400094: effect_huayao_qianniuhua_mo_0
+    400096: effect_jmws_luoxuanxian_mo
+    400098: effect_jmws_luoxuanxian_mo (1)
+    400100: effect_jmws_luoxuanxian_mo (1)_0
+    400102: effect_jmws_luoxuanxian_mo_0
+    400104: effect_renzhe_wenli_mo
+    400106: effect_renzhe_wenli_mo_0
+    2300000: effect_jmws_luoxuanxian_mo (1)_0
+    2300002: effect_jmws_luoxuanxian_mo_0
+    2300004: effect_renzhe_wenli_mo_0
+    3300000: effect_jmws_luoxuanxian_mo (1)_0
+    3300002: effect_jmws_luoxuanxian_mo_0
+    3300004: effect_renzhe_wenli_mo_0
+    4300000: effect_renzhe_wenli_mo_0
+    4300002: effect_jmws_luoxuanxian_mo_0
+    4300004: effect_jmws_luoxuanxian_mo (1)_0
+    4300006: effect_huayao_qianniuhua_mo_0
+    7400000: qianniuhua_ack2
+    7400002: effect_huayao_atk06_hit_donghua
+    9500000: //RootNode
+    13700000: effect_huayao_qianniuhua_mo_0
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

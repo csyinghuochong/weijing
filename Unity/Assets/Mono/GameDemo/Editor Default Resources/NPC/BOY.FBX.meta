@@ -1,0 +1,139 @@
+fileFormatVersion: 2
+guid: f6576ed354bcd6745be1230b4751f7be
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: 04_-_Default
+    100002: Bip01
+    100004: Bip01_Head
+    100006: Bip01_L_Calf
+    100008: Bip01_L_Clavicle
+    100010: Bip01_L_Finger0
+    100012: Bip01_L_Finger01
+    100014: Bip01_L_Finger1
+    100016: Bip01_L_Finger11
+    100018: Bip01_L_Foot
+    100020: Bip01_L_Forearm
+    100022: Bip01_L_Hand
+    100024: Bip01_L_Thigh
+    100026: Bip01_L_Toe0
+    100028: Bip01_L_UpperArm
+    100030: Bip01_Neck
+    100032: Bip01_Pelvis
+    100034: Bip01_R_Calf
+    100036: Bip01_R_Clavicle
+    100038: Bip01_R_Finger0
+    100040: Bip01_R_Finger01
+    100042: Bip01_R_Finger1
+    100044: Bip01_R_Finger11
+    100046: Bip01_R_Foot
+    100048: Bip01_R_Forearm
+    100050: Bip01_R_Hand
+    100052: Bip01_R_Thigh
+    100054: Bip01_R_Toe0
+    100056: Bip01_R_UpperArm
+    100058: Bip01_Spine
+    100060: Bip01_Spine1
+    100062: //RootNode
+    100064: boy
+    100066: root
+    100068: tag_leftarm
+    100070: tag_lefthand
+    100072: tag_righthand
+    400000: 04_-_Default
+    400002: Bip01
+    400004: Bip01_Head
+    400006: Bip01_L_Calf
+    400008: Bip01_L_Clavicle
+    400010: Bip01_L_Finger0
+    400012: Bip01_L_Finger01
+    400014: Bip01_L_Finger1
+    400016: Bip01_L_Finger11
+    400018: Bip01_L_Foot
+    400020: Bip01_L_Forearm
+    400022: Bip01_L_Hand
+    400024: Bip01_L_Thigh
+    400026: Bip01_L_Toe0
+    400028: Bip01_L_UpperArm
+    400030: Bip01_Neck
+    400032: Bip01_Pelvis
+    400034: Bip01_R_Calf
+    400036: Bip01_R_Clavicle
+    400038: Bip01_R_Finger0
+    400040: Bip01_R_Finger01
+    400042: Bip01_R_Finger1
+    400044: Bip01_R_Finger11
+    400046: Bip01_R_Foot
+    400048: Bip01_R_Forearm
+    400050: Bip01_R_Hand
+    400052: Bip01_R_Thigh
+    400054: Bip01_R_Toe0
+    400056: Bip01_R_UpperArm
+    400058: Bip01_Spine
+    400060: Bip01_Spine1
+    400062: //RootNode
+    400064: boy
+    400066: root
+    400068: tag_leftarm
+    400070: tag_lefthand
+    400072: tag_righthand
+    4300000: 04_-_Default
+    7400000: Fidget1
+    7400002: Idle
+    7400004: Run
+    9500000: //RootNode
+    13700000: 04_-_Default
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

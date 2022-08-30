@@ -1,0 +1,166 @@
+fileFormatVersion: 2
+guid: 3fcb5290c0e49b04ab35099b018d1889
+timeCreated: 1537687928
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 011
+    100002: 011_0
+    100004: 012
+    100006: 012_0
+    100008: 01_add
+    100010: 01_add 1
+    100012: 01_add_0
+    100014: 01_add_0 1
+    100016: 04_add
+    100018: 04_add 1
+    100020: 04_add 2
+    100022: 04_add_0
+    100024: 04_add_0 1
+    100026: 04_add_0 2
+    100028: 05_alp
+    100030: 05_alp 1
+    100032: 05_alp 2
+    100034: 05_alp_0
+    100036: 05_alp_0 1
+    100038: 05_alp_0 2
+    100040: 07_add
+    100042: 07_add_0
+    100044: daoguang
+    100046: //RootNode
+    100048: DG_1
+    100050: DG_2
+    100052: DG_3
+    100054: effect_libai_atk07_atk
+    400000: 011
+    400002: 011_0
+    400004: 012
+    400006: 012_0
+    400008: 01_add
+    400010: 01_add 1
+    400012: 01_add_0
+    400014: 01_add_0 1
+    400016: 04_add
+    400018: 04_add 1
+    400020: 04_add 2
+    400022: 04_add_0
+    400024: 04_add_0 1
+    400026: 04_add_0 2
+    400028: 05_alp
+    400030: 05_alp 1
+    400032: 05_alp 2
+    400034: 05_alp_0
+    400036: 05_alp_0 1
+    400038: 05_alp_0 2
+    400040: 07_add
+    400042: 07_add_0
+    400044: daoguang
+    400046: //RootNode
+    400048: DG_1
+    400050: DG_2
+    400052: DG_3
+    400054: effect_libai_atk07_atk
+    2300000: 011_0
+    2300002: 012_0
+    2300004: 01_add_0
+    2300006: 01_add_0 1
+    2300008: 04_add_0
+    2300010: 04_add_0 1
+    2300012: 04_add_0 2
+    2300014: 05_alp_0
+    2300016: 05_alp_0 1
+    2300018: 05_alp_0 2
+    2300020: 07_add_0
+    3300000: 011_0
+    3300002: 012_0
+    3300004: 01_add_0
+    3300006: 01_add_0 1
+    3300008: 04_add_0
+    3300010: 04_add_0 1
+    3300012: 04_add_0 2
+    3300014: 05_alp_0
+    3300016: 05_alp_0 1
+    3300018: 05_alp_0 2
+    3300020: 07_add_0
+    4300000: 01_add_0
+    4300002: 04_add_0
+    4300004: 05_alp_0
+    4300006: 01_add_0
+    4300008: 04_add_0
+    4300010: 05_alp_0
+    4300012: 04_add_0
+    4300014: 05_alp_0
+    4300016: 07_add_0
+    4300018: 011_0
+    4300020: 012_0
+    7400000: effect_libai_atk07_atk
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

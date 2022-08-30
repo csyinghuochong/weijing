@@ -1,0 +1,113 @@
+fileFormatVersion: 2
+guid: 663629fa7429e3441a46dbb96608c495
+timeCreated: 1537688119
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Battle
+    100002: Battle_0
+    100004: Battle_add
+    100006: Battle_add_0
+    100008: effect_UI_RESULT
+    100010: effect_UI_VICTORY
+    100012: effect_UI_VICTORY_dongzuo
+    100014: //RootNode
+    100016: glow_1
+    100018: glow_1_0
+    100020: guang
+    100022: guang_0
+    400000: Battle
+    400002: Battle_0
+    400004: Battle_add
+    400006: Battle_add_0
+    400008: effect_UI_RESULT
+    400010: effect_UI_VICTORY
+    400012: effect_UI_VICTORY_dongzuo
+    400014: //RootNode
+    400016: glow_1
+    400018: glow_1_0
+    400020: guang
+    400022: guang_0
+    2300000: Battle_0
+    2300002: Battle_add_0
+    2300004: glow_1_0
+    2300006: guang_0
+    3300000: Battle_0
+    3300002: Battle_add_0
+    3300004: glow_1_0
+    3300006: guang_0
+    4300000: guang_0
+    4300002: Battle_add_0
+    4300004: Battle_0
+    4300006: glow_1_0
+    7400000: effect_UI_VICTORY_dongzuo
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
