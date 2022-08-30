@@ -1,0 +1,124 @@
+fileFormatVersion: 2
+guid: 3d68b1cf3cc52464099f59c53902abb8
+timeCreated: 1476944082
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: objpolySurface28_frag_011
+    100002: objpolySurface28_frag_012
+    100004: objpolySurface28_frag_013
+    100006: objpolySurface28_frag_014
+    100008: objpolySurface28_frag_015
+    100010: objpolySurface28_frag_016
+    100012: objpolySurface28_frag_017
+    100014: objpolySurface28_frag_018
+    100016: objpolySurface28_frag_019
+    100018: objpolySurface28_frag_020
+    100020: //RootNode
+    400000: objpolySurface28_frag_011
+    400002: objpolySurface28_frag_012
+    400004: objpolySurface28_frag_013
+    400006: objpolySurface28_frag_014
+    400008: objpolySurface28_frag_015
+    400010: objpolySurface28_frag_016
+    400012: objpolySurface28_frag_017
+    400014: objpolySurface28_frag_018
+    400016: objpolySurface28_frag_019
+    400018: objpolySurface28_frag_020
+    400020: //RootNode
+    2300000: objpolySurface28_frag_011
+    2300002: objpolySurface28_frag_012
+    2300004: objpolySurface28_frag_013
+    2300006: objpolySurface28_frag_014
+    2300008: objpolySurface28_frag_015
+    2300010: objpolySurface28_frag_016
+    2300012: objpolySurface28_frag_017
+    2300014: objpolySurface28_frag_018
+    2300016: objpolySurface28_frag_019
+    2300018: objpolySurface28_frag_020
+    3300000: objpolySurface28_frag_011
+    3300002: objpolySurface28_frag_012
+    3300004: objpolySurface28_frag_013
+    3300006: objpolySurface28_frag_014
+    3300008: objpolySurface28_frag_015
+    3300010: objpolySurface28_frag_016
+    3300012: objpolySurface28_frag_017
+    3300014: objpolySurface28_frag_018
+    3300016: objpolySurface28_frag_019
+    3300018: objpolySurface28_frag_020
+    4300000: objpolySurface28_frag_011
+    4300002: objpolySurface28_frag_012
+    4300004: objpolySurface28_frag_013
+    4300006: objpolySurface28_frag_014
+    4300008: objpolySurface28_frag_015
+    4300010: objpolySurface28_frag_016
+    4300012: objpolySurface28_frag_017
+    4300014: objpolySurface28_frag_018
+    4300016: objpolySurface28_frag_019
+    4300018: objpolySurface28_frag_020
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

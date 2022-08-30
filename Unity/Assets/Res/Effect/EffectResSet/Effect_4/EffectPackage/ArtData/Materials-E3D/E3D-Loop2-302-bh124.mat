@@ -1,0 +1,52 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: E3D-Loop2-302-bh124
+  m_Shader: {fileID: 4800000, guid: acf43e6f7323984439ee18dc36aa2628, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseRGBA:
+        m_Texture: {fileID: 2800000, guid: f6c2705ef69ae2340b050c96da20f87c, type: 3}
+        m_Scale: {x: 10, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 6c0be9abbf0e1eb47aa1dbd1ab5f833b, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShapeRGB:
+        m_Texture: {fileID: 2800000, guid: e7218942aabad15498cbc5133e414cfa, type: 3}
+        m_Scale: {x: 4, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _2uvBase: 0
+    - _2uvShape: 0
+    - _Alpha: 0.217
+    - _AlphaCutoff: 0.5
+    - _Progess: -0.05
+    - _Width: 0.05
+    - __dirty: 0
+    m_Colors:
+    - _BaseColor: {r: 0.40403894, g: 0.66176474, b: 0.19463667, a: 1}
+    - _EdgeColor: {r: 1, g: 0, b: 0, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _MainColor: {r: 0.705, g: 0.42185596, b: 0.23845585, a: 1}
+    - _TintColor: {r: 1, g: 0.51724136, b: 0, a: 1}
+  m_BuildTextureStacks: []

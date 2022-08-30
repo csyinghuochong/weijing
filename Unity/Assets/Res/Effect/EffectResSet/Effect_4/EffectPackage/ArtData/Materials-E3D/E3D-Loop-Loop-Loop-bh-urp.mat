@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: E3D-Loop-Loop-Loop-bh-urp
+  m_Shader: {fileID: 4800000, guid: 24bd7cce90b92f74f844e0e59a39c4fe, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _BaseMap:
+        m_Texture: {fileID: 2800000, guid: 52c2cd4cb5be9364cbe09fa89b6d77c7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseMaskMap:
+        m_Texture: {fileID: 2800000, guid: 914fb5b30de6d66499aae988fdbe0579, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseRGBA:
+        m_Texture: {fileID: 2800000, guid: 52c2cd4cb5be9364cbe09fa89b6d77c7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0.4, y: 1.4}
+    - _DetailMap:
+        m_Texture: {fileID: 2800000, guid: 369739b1c48cd0c419d645b40e7fa815, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 406a5cfdcf9b4ac4cb79e10acae20140, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskMap:
+        m_Texture: {fileID: 2800000, guid: 914fb5b30de6d66499aae988fdbe0579, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _NoiseMap:
+        m_Texture: {fileID: 2800000, guid: f7ea8107336364645bca7369b150800c, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShapeRGB:
+        m_Texture: {fileID: 2800000, guid: 914fb5b30de6d66499aae988fdbe0579, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: -0.4, y: -0.4}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _2uvBase: 0
+    - _2uvShape: 0
+    - _Alpha: 8.2
+    - _AlphaCutoff: 0.5
+    - _Diss: 1.01
+    - _EdgeIntensity: 0.2
+    - _FaceBaseColor: 1
+    - _FaceEdgeColor: 1
+    - _Glow: 1
+    - __dirty: 0
+    m_Colors:
+    - _BaseColor: {r: 0.26470578, g: 0.57403636, b: 1, a: 1}
+    - _EdgeColor: {r: 1, g: 1, b: 1, a: 1}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
+    - _TintColor: {r: 1, g: 0.3517241, b: 0, a: 0.3137255}
+  m_BuildTextureStacks: []

@@ -1,0 +1,144 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: E3D-Shader69
+  m_Shader: {fileID: 4800000, guid: 6a6ce813832ee634d8c95bd31eebae7b, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 5
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: 3000
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _AlphaClipRGBA:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseRGB:
+        m_Texture: {fileID: 2800000, guid: f82d3484bee3f584e986c876e1b95cf8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _BaseRGBA:
+        m_Texture: {fileID: 2800000, guid: 463f3e17448c6f147a7b7811acdfb56f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0.48, y: 0}
+    - _Blend_Texture:
+        m_Texture: {fileID: 2800000, guid: bc3dfd76817635345adb209beb6384a8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 3.69, y: 0}
+    - _Blend_Texture01:
+        m_Texture: {fileID: 2800000, guid: 5d4d17d8d390f0a44a0f3566ff14e555, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DarkRGB:
+        m_Texture: {fileID: 2800000, guid: f82d3484bee3f584e986c876e1b95cf8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DarkRGBA:
+        m_Texture: {fileID: 2800000, guid: f82d3484bee3f584e986c876e1b95cf8, type: 3}
+        m_Scale: {x: 1, y: 2}
+        m_Offset: {x: 0, y: 0}
+    - _Deffuse:
+        m_Texture: {fileID: 2800000, guid: 91c065324dbd6a2429cb80df0d785fc6, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _DissolveSrc:
+        m_Texture: {fileID: 2800000, guid: 23341e545a8e6144392bf1f05bf447ed, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: db2e5e2c225db5b49ab7883a65728ae5, type: 3}
+        m_Scale: {x: 1.68, y: 0.2}
+        m_Offset: {x: -1.4, y: -22.66}
+    - _Mask:
+        m_Texture: {fileID: 2800000, guid: 369739b1c48cd0c419d645b40e7fa815, type: 3}
+        m_Scale: {x: 1.85, y: 0.2}
+        m_Offset: {x: 0, y: 0}
+    - _MaskMap:
+        m_Texture: {fileID: 2800000, guid: 5d4d17d8d390f0a44a0f3566ff14e555, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _MaskTex:
+        m_Texture: {fileID: 2800000, guid: fe98bb0636b1e6a4487b7af24e7caba7, type: 3}
+        m_Scale: {x: 0.45, y: 0.47}
+        m_Offset: {x: 0, y: 0.24}
+    - _NoiseTex:
+        m_Texture: {fileID: 2800000, guid: d1b49ea0ffdaa434f812ec454929af13, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Normal:
+        m_Texture: {fileID: 2800000, guid: eb01d52e1528ae244bbd6d0f8eebac53, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShapeAlphaR:
+        m_Texture: {fileID: 2800000, guid: f82d3484bee3f584e986c876e1b95cf8, type: 3}
+        m_Scale: {x: 1, y: -0.95}
+        m_Offset: {x: 0, y: 0}
+    - _ShapeAlphaRGBA:
+        m_Texture: {fileID: 2800000, guid: f82d3484bee3f584e986c876e1b95cf8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _ShapeRGB:
+        m_Texture: {fileID: 2800000, guid: f82d3484bee3f584e986c876e1b95cf8, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _AllPower: 3.3
+    - _Alpha: 1
+    - _AlphaPower: 2.29
+    - _Ambient: 1.26
+    - _Amount: 0
+    - _AutoSpeed: -1.09
+    - _Base2uv: 0
+    - _BaseAlphaAdd: 0.5
+    - _BaseClipMul: 9.1
+    - _Contrast: 0.657
+    - _Cull: 2
+    - _Cutoff: 0.5
+    - _DisableFog: 0
+    - _EdgeClip: 2.59
+    - _EnableRim: 0
+    - _ForceX: 0
+    - _ForceY: 0.104
+    - _Fre: 0.34
+    - _Frelength: 1.03
+    - _Gloss: 2.83
+    - _HeatTime: -0.76
+    - _InnerColorPower: 0.35
+    - _InvFade: 1.28
+    - _LightMul: 8
+    - _Lighten: 1
+    - _LightenMain: 3.45
+    - _Progess: 0.39
+    - _RimPower: 1.07
+    - _RimSpeed: 4.5
+    - _Shape2uv: 0
+    - _Speed00: 0
+    - _Speed01: 7.43
+    - _Speed02: 5
+    - _Width: 0.05
+    - _node_1719: 0.369
+    m_Colors:
+    - _AddColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _BaseColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _Color: {r: 0.2881965, g: 0.24653979, b: 0.41911763, a: 0.278}
+    - _Color01: {r: 0.45588237, g: 0.45588237, b: 0.45588237, a: 1}
+    - _Color02: {r: 0.99264705, g: 0.99264705, b: 0.99264705, a: 1}
+    - _Color03: {r: 1, g: 1, b: 1, a: 1}
+    - _EdgeColor: {r: 1, g: 0, b: 0, a: 1}
+    - _FreC: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _InnerColor: {r: 0.4726167, g: 0.2647059, b: 1, a: 0.5}
+    - _MainColor: {r: 1, g: 1, b: 1, a: 1}
+    - _RimColor: {r: 1, g: 1, b: 1, a: 0.5}
+    - _SpecularC: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    - _TintColor: {r: 1, g: 0.46672806, b: 0, a: 1}
+  m_BuildTextureStacks: []
