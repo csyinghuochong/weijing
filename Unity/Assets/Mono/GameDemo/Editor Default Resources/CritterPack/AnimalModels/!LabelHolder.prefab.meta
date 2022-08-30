@@ -1,0 +1,29 @@
+fileFormatVersion: 2
+guid: 33c962621e88fed4a8a584ac3ec81c01
+labels:
+- 3d
+- animated
+- creature
+- rpg
+- mmorpg
+- pack
+- rat
+- pet
+- monster
+- animal
+- critter
+- small
+- frog
+- snail
+- snake
+- butterfly
+- bee
+- spider
+- worm
+- bat
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

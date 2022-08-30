@@ -1,0 +1,114 @@
+fileFormatVersion: 2
+guid: 6599ded4ba50db9429fa5aae7cf2444f
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: fb7_chao01_019
+    100002: fb7_chao01_020
+    100004: fb7_chao01_021
+    100006: //RootNode
+    100008: fb7_shikuai01_001
+    100010: fb7_shikuai01_002
+    100012: fb7_shikuai01_002 1
+    100014: fb7_shu01_001
+    100016: fb7_chao01_022
+    100018: ______008
+    100020: fb7_shikuai01_003
+    100022: fb7_shikuai01_004
+    400000: fb7_chao01_019
+    400002: fb7_chao01_020
+    400004: fb7_chao01_021
+    400006: //RootNode
+    400008: fb7_shikuai01_001
+    400010: fb7_shikuai01_002
+    400012: fb7_shikuai01_002 1
+    400014: fb7_shu01_001
+    400016: fb7_chao01_022
+    400018: ______008
+    400020: fb7_shikuai01_003
+    400022: fb7_shikuai01_004
+    2300000: fb7_chao01_019
+    2300002: fb7_chao01_020
+    2300004: fb7_chao01_021
+    2300006: fb7_shikuai01_001
+    2300008: fb7_shikuai01_002
+    2300010: fb7_shikuai01_002 1
+    2300012: fb7_shu01_001
+    2300014: fb7_chao01_022
+    2300016: fb7_shikuai01_003
+    2300018: fb7_shikuai01_004
+    3300000: fb7_chao01_019
+    3300002: fb7_chao01_020
+    3300004: fb7_chao01_021
+    3300006: fb7_shikuai01_001
+    3300008: fb7_shikuai01_002
+    3300010: fb7_shikuai01_002 1
+    3300012: fb7_shu01_001
+    3300014: fb7_chao01_022
+    3300016: fb7_shikuai01_003
+    3300018: fb7_shikuai01_004
+    4300000: fb7_chao01_019
+    4300002: fb7_chao01_020
+    4300004: fb7_chao01_021
+    4300006: fb7_shikuai01_002
+    4300008: fb7_shikuai01_001
+    4300010: fb7_shikuai01_002
+    4300012: fb7_shu01_001
+    4300014: fb7_chao01_022
+    4300016: fb7_shikuai01_003
+    4300018: fb7_shikuai01_004
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

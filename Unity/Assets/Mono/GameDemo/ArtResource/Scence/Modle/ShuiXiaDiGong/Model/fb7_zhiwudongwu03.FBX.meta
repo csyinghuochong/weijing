@@ -1,0 +1,127 @@
+fileFormatVersion: 2
+guid: f4fb0cdcd6909754492ba41e556ff500
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: FB7_beike01_001
+    100002: FB7_shanhu01_001
+    100004: FB7_shuimu01_001
+    100006: FB7_shuizhao01_001
+    100008: FB7_shuizhao01_002
+    100010: FB7_shuizhao01_003
+    100012: FB7_shuizhao01_004
+    100014: FB7_zhenzhu01_001
+    100016: //RootNode
+    100018: Plane194
+    100020: FB7_junlei 01_001
+    100022: FB7_shanhu01_002
+    100024: FB7_shanhu01_003
+    100026: FB7_shanhu01_004
+    400000: FB7_beike01_001
+    400002: FB7_shanhu01_001
+    400004: FB7_shuimu01_001
+    400006: FB7_shuizhao01_001
+    400008: FB7_shuizhao01_002
+    400010: FB7_shuizhao01_003
+    400012: FB7_shuizhao01_004
+    400014: FB7_zhenzhu01_001
+    400016: //RootNode
+    400018: Plane194
+    400020: FB7_junlei 01_001
+    400022: FB7_shanhu01_002
+    400024: FB7_shanhu01_003
+    400026: FB7_shanhu01_004
+    2300000: FB7_beike01_001
+    2300002: FB7_shanhu01_001
+    2300004: FB7_shuimu01_001
+    2300006: FB7_shuizhao01_001
+    2300008: FB7_shuizhao01_002
+    2300010: FB7_shuizhao01_003
+    2300012: FB7_shuizhao01_004
+    2300014: FB7_zhenzhu01_001
+    2300016: Plane194
+    2300018: FB7_junlei 01_001
+    2300020: FB7_shanhu01_002
+    2300022: FB7_shanhu01_003
+    2300024: FB7_shanhu01_004
+    3300000: FB7_beike01_001
+    3300002: FB7_shanhu01_001
+    3300004: FB7_shuimu01_001
+    3300006: FB7_shuizhao01_001
+    3300008: FB7_shuizhao01_002
+    3300010: FB7_shuizhao01_003
+    3300012: FB7_shuizhao01_004
+    3300014: FB7_zhenzhu01_001
+    3300016: Plane194
+    3300018: FB7_junlei 01_001
+    3300020: FB7_shanhu01_002
+    3300022: FB7_shanhu01_003
+    3300024: FB7_shanhu01_004
+    4300000: Plane194
+    4300002: FB7_shuimu01_001
+    4300004: FB7_beike01_001
+    4300006: FB7_zhenzhu01_001
+    4300008: FB7_shuizhao01_001
+    4300010: FB7_shuizhao01_002
+    4300012: FB7_shuizhao01_004
+    4300014: FB7_shuizhao01_003
+    4300016: FB7_shanhu01_001
+    4300018: FB7_junlei 01_001
+    4300020: FB7_shanhu01_002
+    4300022: FB7_shanhu01_003
+    4300024: FB7_shanhu01_004
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

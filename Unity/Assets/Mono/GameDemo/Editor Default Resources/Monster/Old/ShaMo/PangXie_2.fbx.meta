@@ -1,0 +1,1975 @@
+fileFormatVersion: 2
+guid: 6f42e04a18a834344ab6bf6bd528540c
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bone01
+  - first:
+      1: 100002
+    second: Bone02
+  - first:
+      1: 100004
+    second: Bone03
+  - first:
+      1: 100006
+    second: Bone04
+  - first:
+      1: 100008
+    second: Bone05
+  - first:
+      1: 100010
+    second: Bone06
+  - first:
+      1: 100012
+    second: Bone07
+  - first:
+      1: 100014
+    second: Bone08
+  - first:
+      1: 100016
+    second: Bone09
+  - first:
+      1: 100018
+    second: Bone10
+  - first:
+      1: 100020
+    second: Bone11
+  - first:
+      1: 100022
+    second: Bone13
+  - first:
+      1: 100024
+    second: Bone14
+  - first:
+      1: 100026
+    second: Bone16
+  - first:
+      1: 100028
+    second: Bone17
+  - first:
+      1: 100030
+    second: Bone28
+  - first:
+      1: 100032
+    second: Bone29
+  - first:
+      1: 100034
+    second: Bone30
+  - first:
+      1: 100036
+    second: Bone31
+  - first:
+      1: 100038
+    second: Bone32
+  - first:
+      1: 100040
+    second: Bone33
+  - first:
+      1: 100042
+    second: Bone36
+  - first:
+      1: 100044
+    second: Bone37
+  - first:
+      1: 100046
+    second: Bone39
+  - first:
+      1: 100048
+    second: Bone40
+  - first:
+      1: 100050
+    second: Bone42
+  - first:
+      1: 100052
+    second: Bone43
+  - first:
+      1: 100054
+    second: //RootNode
+  - first:
+      1: 100056
+    second: crab02
+  - first:
+      1: 100058
+    second: Crab_01_mat
+  - first:
+      1: 100060
+    second: Dummy07
+  - first:
+      1: 100062
+    second: Dummy08
+  - first:
+      1: 100064
+    second: root
+  - first:
+      4: 400000
+    second: Bone01
+  - first:
+      4: 400002
+    second: Bone02
+  - first:
+      4: 400004
+    second: Bone03
+  - first:
+      4: 400006
+    second: Bone04
+  - first:
+      4: 400008
+    second: Bone05
+  - first:
+      4: 400010
+    second: Bone06
+  - first:
+      4: 400012
+    second: Bone07
+  - first:
+      4: 400014
+    second: Bone08
+  - first:
+      4: 400016
+    second: Bone09
+  - first:
+      4: 400018
+    second: Bone10
+  - first:
+      4: 400020
+    second: Bone11
+  - first:
+      4: 400022
+    second: Bone13
+  - first:
+      4: 400024
+    second: Bone14
+  - first:
+      4: 400026
+    second: Bone16
+  - first:
+      4: 400028
+    second: Bone17
+  - first:
+      4: 400030
+    second: Bone28
+  - first:
+      4: 400032
+    second: Bone29
+  - first:
+      4: 400034
+    second: Bone30
+  - first:
+      4: 400036
+    second: Bone31
+  - first:
+      4: 400038
+    second: Bone32
+  - first:
+      4: 400040
+    second: Bone33
+  - first:
+      4: 400042
+    second: Bone36
+  - first:
+      4: 400044
+    second: Bone37
+  - first:
+      4: 400046
+    second: Bone39
+  - first:
+      4: 400048
+    second: Bone40
+  - first:
+      4: 400050
+    second: Bone42
+  - first:
+      4: 400052
+    second: Bone43
+  - first:
+      4: 400054
+    second: //RootNode
+  - first:
+      4: 400056
+    second: crab02
+  - first:
+      4: 400058
+    second: Crab_01_mat
+  - first:
+      4: 400060
+    second: Dummy07
+  - first:
+      4: 400062
+    second: Dummy08
+  - first:
+      4: 400064
+    second: root
+  - first:
+      43: 4300000
+    second: Crab_01_mat
+  - first:
+      74: 7400000
+    second: Attack1
+  - first:
+      74: 7400002
+    second: Attack2
+  - first:
+      74: 7400004
+    second: Attack3
+  - first:
+      74: 7400006
+    second: Burst_Spawn1
+  - first:
+      74: 7400008
+    second: Death_Flight
+  - first:
+      74: 7400010
+    second: Death_Land
+  - first:
+      74: 7400012
+    second: Die1
+  - first:
+      74: 7400014
+    second: Die2
+  - first:
+      74: 7400016
+    second: Envi_Idle3_Chant
+  - first:
+      74: 7400018
+    second: Fidget1
+  - first:
+      74: 7400020
+    second: Gate_Spawn_King
+  - first:
+      74: 7400022
+    second: Hit1
+  - first:
+      74: 7400024
+    second: Hit2
+  - first:
+      74: 7400026
+    second: Idle
+  - first:
+      74: 7400028
+    second: Run
+  - first:
+      74: 7400030
+    second: Special_Burrow
+  - first:
+      74: 7400032
+    second: Walk
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Crab_01_mat
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Attack1
+      takeName: Attack1
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack2
+      takeName: Attack2
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Attack3
+      takeName: Attack3
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Burst_Spawn1
+      takeName: Burst_Spawn1
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Death_Flight
+      takeName: Death_Flight
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 13
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Death_Land
+      takeName: Death_Land
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 24
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Die1
+      takeName: Die1
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Die2
+      takeName: Die2
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 50
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Envi_Idle3_Chant
+      takeName: Envi_Idle3_Chant
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 33
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Fidget1
+      takeName: Fidget1
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 133
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Gate_Spawn_King
+      takeName: Gate_Spawn_King
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 82
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Hit1
+      takeName: Hit1
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Hit2
+      takeName: Hit2
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 133
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Run
+      takeName: Run
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_Burrow
+      takeName: Special_Burrow
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 36
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: crab02
+        weight: 1
+      - path: crab02/Crab_01_mat
+        weight: 1
+      - path: crab02/root
+        weight: 1
+      - path: crab02/root/Bone01
+        weight: 1
+      - path: crab02/root/Bone01/Bone02
+        weight: 1
+      - path: crab02/root/Bone01/Bone02/Bone03
+        weight: 1
+      - path: crab02/root/Bone01/Bone04
+        weight: 1
+      - path: crab02/root/Bone01/Bone04/Bone05
+        weight: 1
+      - path: crab02/root/Bone01/Bone06
+        weight: 1
+      - path: crab02/root/Bone01/Bone06/Bone07
+        weight: 1
+      - path: crab02/root/Bone01/Bone08
+        weight: 1
+      - path: crab02/root/Bone01/Bone08/Bone09
+        weight: 1
+      - path: crab02/root/Bone01/Bone10
+        weight: 1
+      - path: crab02/root/Bone01/Bone10/Bone11
+        weight: 1
+      - path: crab02/root/Bone01/Bone13
+        weight: 1
+      - path: crab02/root/Bone01/Bone13/Bone14
+        weight: 1
+      - path: crab02/root/Bone01/Bone16
+        weight: 1
+      - path: crab02/root/Bone01/Bone16/Bone17
+        weight: 1
+      - path: crab02/root/Bone01/Bone28
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29
+        weight: 1
+      - path: crab02/root/Bone01/Bone28/Bone29/Bone30
+        weight: 1
+      - path: crab02/root/Bone01/Bone31
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Bone33
+        weight: 1
+      - path: crab02/root/Bone01/Bone31/Bone32/Dummy08
+        weight: 1
+      - path: crab02/root/Bone01/Bone36
+        weight: 1
+      - path: crab02/root/Bone01/Bone36/Bone37
+        weight: 1
+      - path: crab02/root/Bone01/Bone39
+        weight: 1
+      - path: crab02/root/Bone01/Bone39/Bone40
+        weight: 1
+      - path: crab02/root/Bone01/Bone42
+        weight: 1
+      - path: crab02/root/Bone01/Bone42/Bone43
+        weight: 1
+      - path: crab02/root/Bone01/Dummy07
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

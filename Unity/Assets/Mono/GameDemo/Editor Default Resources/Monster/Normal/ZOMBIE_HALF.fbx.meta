@@ -1,0 +1,165 @@
+fileFormatVersion: 2
+guid: fa7f7ee6d25a6ed48aa323563402bec3
+timeCreated: 1451674166
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip01
+    100002: Bip01_Head
+    100004: Bip01_Jaw
+    100006: Bip01_L_Clavicle
+    100008: Bip01_L_Finger0
+    100010: Bip01_L_Finger01
+    100012: Bip01_L_Finger1
+    100014: Bip01_L_Finger11
+    100016: Bip01_L_Finger2
+    100018: Bip01_L_Finger21
+    100020: Bip01_L_Finger3
+    100022: Bip01_L_Finger31
+    100024: Bip01_L_Forearm
+    100026: Bip01_L_Hand
+    100028: Bip01_L_Thigh
+    100030: Bip01_L_UpperArm
+    100032: Bip01_Neck
+    100034: Bip01_Pelvis
+    100036: Bip01_R_Clavicle
+    100038: Bip01_R_Finger0
+    100040: Bip01_R_Finger01
+    100042: Bip01_R_Finger1
+    100044: Bip01_R_Finger11
+    100046: Bip01_R_Finger2
+    100048: Bip01_R_Finger21
+    100050: Bip01_R_Finger3
+    100052: Bip01_R_Finger31
+    100054: Bip01_R_Forearm
+    100056: Bip01_R_Hand
+    100058: Bip01_R_Thigh
+    100060: Bip01_R_UpperArm
+    100062: Bip01_Spine
+    100064: Bip01_Spine1
+    100066: Bip01_Spine2
+    100068: root
+    100070: tag_leftarm
+    100072: tag_lefthand
+    100074: tag_righthand
+    100076: zombie_desert_half_ma
+    100078: //RootNode
+    100080: zombie_half
+    400000: Bip01
+    400002: Bip01_Head
+    400004: Bip01_Jaw
+    400006: Bip01_L_Clavicle
+    400008: Bip01_L_Finger0
+    400010: Bip01_L_Finger01
+    400012: Bip01_L_Finger1
+    400014: Bip01_L_Finger11
+    400016: Bip01_L_Finger2
+    400018: Bip01_L_Finger21
+    400020: Bip01_L_Finger3
+    400022: Bip01_L_Finger31
+    400024: Bip01_L_Forearm
+    400026: Bip01_L_Hand
+    400028: Bip01_L_Thigh
+    400030: Bip01_L_UpperArm
+    400032: Bip01_Neck
+    400034: Bip01_Pelvis
+    400036: Bip01_R_Clavicle
+    400038: Bip01_R_Finger0
+    400040: Bip01_R_Finger01
+    400042: Bip01_R_Finger1
+    400044: Bip01_R_Finger11
+    400046: Bip01_R_Finger2
+    400048: Bip01_R_Finger21
+    400050: Bip01_R_Finger3
+    400052: Bip01_R_Finger31
+    400054: Bip01_R_Forearm
+    400056: Bip01_R_Hand
+    400058: Bip01_R_Thigh
+    400060: Bip01_R_UpperArm
+    400062: Bip01_Spine
+    400064: Bip01_Spine1
+    400066: Bip01_Spine2
+    400068: root
+    400070: tag_leftarm
+    400072: tag_lefthand
+    400074: tag_righthand
+    400076: zombie_desert_half_ma
+    400078: //RootNode
+    400080: zombie_half
+    4300000: zombie_desert_half_ma
+    7400000: Attack1
+    7400002: Attack2
+    7400004: Die1
+    7400006: Die2
+    7400008: Envi_Alert11_Dead1
+    7400010: Hit1
+    7400012: Hit2
+    7400014: Idle
+    7400016: Loot_Spawn1
+    7400018: On
+    7400020: Run
+    9500000: //RootNode
+    13700000: zombie_desert_half_ma
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

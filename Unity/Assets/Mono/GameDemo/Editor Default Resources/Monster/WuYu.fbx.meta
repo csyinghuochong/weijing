@@ -1,0 +1,877 @@
+fileFormatVersion: 2
+guid: 525cd83c72193e64b8ffc9c32231ec1c
+timeCreated: 1451668116
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: B_L_Tent01
+    100002: B_L_Tent02
+    100004: B_R_Tent01
+    100006: B_R_Tent02
+    100008: B_Tent01
+    100010: B_Tent02
+    100012: Body01
+    100014: F_L_Tent01
+    100016: F_L_Tent02
+    100018: F_R_Tent01
+    100020: F_R_Tent02
+    100022: F_Tent01
+    100024: F_Tent02
+    100026: Head01
+    100028: Jaw_Lower
+    100030: Jaw_Upper
+    100032: L_Tent01
+    100034: L_Tent02
+    100036: //RootNode
+    100038: netherim_lesser01
+    100040: netherim_popcorn01_ma
+    100042: R_Tent01
+    100044: R_Tent02
+    100046: root
+    400000: B_L_Tent01
+    400002: B_L_Tent02
+    400004: B_R_Tent01
+    400006: B_R_Tent02
+    400008: B_Tent01
+    400010: B_Tent02
+    400012: Body01
+    400014: F_L_Tent01
+    400016: F_L_Tent02
+    400018: F_R_Tent01
+    400020: F_R_Tent02
+    400022: F_Tent01
+    400024: F_Tent02
+    400026: Head01
+    400028: Jaw_Lower
+    400030: Jaw_Upper
+    400032: L_Tent01
+    400034: L_Tent02
+    400036: //RootNode
+    400038: netherim_lesser01
+    400040: netherim_popcorn01_ma
+    400042: R_Tent01
+    400044: R_Tent02
+    400046: root
+    4300000: netherim_popcorn01_ma
+    7400000: Attack1
+    7400002: Death_Flight
+    7400004: Death_Land
+    7400006: Die1
+    7400008: Die2
+    7400010: Hit1
+    7400012: Idle
+    7400014: Run
+    7400016: Stunned
+    7400018: Walk
+    9500000: //RootNode
+    13700000: netherim_popcorn01_ma
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Attack1
+      takeName: Attack1
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events:
+      - time: .628877699
+        functionName: AIAct
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      transformMask:
+      - path: 
+        weight: 1
+      - path: netherim_lesser01
+        weight: 1
+      - path: netherim_lesser01/netherim_popcorn01_ma
+        weight: 1
+      - path: netherim_lesser01/root
+        weight: 1
+      - path: netherim_lesser01/root/Body01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01/B_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01/B_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01/B_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01/F_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01/F_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01/F_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Lower
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Upper
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01/L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01/R_Tent02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Death_Flight
+      takeName: Death_Flight
+      firstFrame: 0
+      lastFrame: 14
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: netherim_lesser01
+        weight: 1
+      - path: netherim_lesser01/netherim_popcorn01_ma
+        weight: 1
+      - path: netherim_lesser01/root
+        weight: 1
+      - path: netherim_lesser01/root/Body01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01/B_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01/B_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01/B_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01/F_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01/F_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01/F_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Lower
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Upper
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01/L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01/R_Tent02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Death_Land
+      takeName: Death_Land
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: netherim_lesser01
+        weight: 1
+      - path: netherim_lesser01/netherim_popcorn01_ma
+        weight: 1
+      - path: netherim_lesser01/root
+        weight: 1
+      - path: netherim_lesser01/root/Body01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01/B_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01/B_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01/B_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01/F_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01/F_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01/F_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Lower
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Upper
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01/L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01/R_Tent02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Die1
+      takeName: Die1
+      firstFrame: 0
+      lastFrame: 28
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: netherim_lesser01
+        weight: 1
+      - path: netherim_lesser01/netherim_popcorn01_ma
+        weight: 1
+      - path: netherim_lesser01/root
+        weight: 1
+      - path: netherim_lesser01/root/Body01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01/B_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01/B_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01/B_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01/F_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01/F_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01/F_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Lower
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Upper
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01/L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01/R_Tent02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Die2
+      takeName: Die2
+      firstFrame: 0
+      lastFrame: 32
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: netherim_lesser01
+        weight: 1
+      - path: netherim_lesser01/netherim_popcorn01_ma
+        weight: 1
+      - path: netherim_lesser01/root
+        weight: 1
+      - path: netherim_lesser01/root/Body01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01/B_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01/B_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01/B_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01/F_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01/F_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01/F_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Lower
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Upper
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01/L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01/R_Tent02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Hit1
+      takeName: Hit1
+      firstFrame: 0
+      lastFrame: 13
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: netherim_lesser01
+        weight: 1
+      - path: netherim_lesser01/netherim_popcorn01_ma
+        weight: 1
+      - path: netherim_lesser01/root
+        weight: 1
+      - path: netherim_lesser01/root/Body01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01/B_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01/B_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01/B_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01/F_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01/F_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01/F_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Lower
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Upper
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01/L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01/R_Tent02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Idle
+      takeName: Idle
+      firstFrame: 0
+      lastFrame: 75
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: netherim_lesser01
+        weight: 1
+      - path: netherim_lesser01/netherim_popcorn01_ma
+        weight: 1
+      - path: netherim_lesser01/root
+        weight: 1
+      - path: netherim_lesser01/root/Body01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01/B_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01/B_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01/B_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01/F_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01/F_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01/F_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Lower
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Upper
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01/L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01/R_Tent02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Run
+      takeName: Run
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: netherim_lesser01
+        weight: 1
+      - path: netherim_lesser01/netherim_popcorn01_ma
+        weight: 1
+      - path: netherim_lesser01/root
+        weight: 1
+      - path: netherim_lesser01/root/Body01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01/B_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01/B_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01/B_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01/F_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01/F_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01/F_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Lower
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Upper
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01/L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01/R_Tent02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Stunned
+      takeName: Stunned
+      firstFrame: 0
+      lastFrame: 100
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: netherim_lesser01
+        weight: 1
+      - path: netherim_lesser01/netherim_popcorn01_ma
+        weight: 1
+      - path: netherim_lesser01/root
+        weight: 1
+      - path: netherim_lesser01/root/Body01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01/B_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01/B_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01/B_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01/F_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01/F_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01/F_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Lower
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Upper
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01/L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01/R_Tent02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    - serializedVersion: 16
+      name: Walk
+      takeName: Walk
+      firstFrame: 0
+      lastFrame: 40
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: netherim_lesser01
+        weight: 1
+      - path: netherim_lesser01/netherim_popcorn01_ma
+        weight: 1
+      - path: netherim_lesser01/root
+        weight: 1
+      - path: netherim_lesser01/root/Body01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_L_Tent01/B_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_R_Tent01/B_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/B_Tent01/B_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_L_Tent01/F_L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_R_Tent01/F_R_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/F_Tent01/F_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Lower
+        weight: 1
+      - path: netherim_lesser01/root/Body01/Head01/Jaw_Upper
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/L_Tent01/L_Tent02
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01
+        weight: 1
+      - path: netherim_lesser01/root/Body01/R_Tent01/R_Tent02
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

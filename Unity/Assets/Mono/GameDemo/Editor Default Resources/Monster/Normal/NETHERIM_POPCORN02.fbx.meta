@@ -1,0 +1,139 @@
+fileFormatVersion: 2
+guid: e0fe364825eddad409932eebcca08da0
+timeCreated: 1451668126
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip01
+    100002: Bip01_Head
+    100004: Bip01_L_Calf
+    100006: Bip01_L_Clavicle
+    100008: Bip01_L_Forearm
+    100010: Bip01_L_Hand
+    100012: Bip01_L_HorseLink
+    100014: Bip01_L_Thigh
+    100016: Bip01_L_UpperArm
+    100018: Bip01_Neck
+    100020: Bip01_Pelvis
+    100022: Bip01_R_Calf
+    100024: Bip01_R_Clavicle
+    100026: Bip01_R_Forearm
+    100028: Bip01_R_Hand
+    100030: Bip01_R_HorseLink
+    100032: Bip01_R_Thigh
+    100034: Bip01_R_UpperArm
+    100036: Bip01_Spine
+    100038: Bip01_Tail
+    100040: Bip01_Tail1
+    100042: netherim_02_mat
+    100044: //RootNode
+    100046: netherim_popcorn02
+    100048: root
+    400000: Bip01
+    400002: Bip01_Head
+    400004: Bip01_L_Calf
+    400006: Bip01_L_Clavicle
+    400008: Bip01_L_Forearm
+    400010: Bip01_L_Hand
+    400012: Bip01_L_HorseLink
+    400014: Bip01_L_Thigh
+    400016: Bip01_L_UpperArm
+    400018: Bip01_Neck
+    400020: Bip01_Pelvis
+    400022: Bip01_R_Calf
+    400024: Bip01_R_Clavicle
+    400026: Bip01_R_Forearm
+    400028: Bip01_R_Hand
+    400030: Bip01_R_HorseLink
+    400032: Bip01_R_Thigh
+    400034: Bip01_R_UpperArm
+    400036: Bip01_Spine
+    400038: Bip01_Tail
+    400040: Bip01_Tail1
+    400042: netherim_02_mat
+    400044: //RootNode
+    400046: netherim_popcorn02
+    400048: root
+    4300000: netherim_02_mat
+    7400000: Attack1
+    7400002: Attack2
+    7400004: Attack3
+    7400006: Death_Flight
+    7400008: Death_Land
+    7400010: Die1
+    7400012: Die2
+    7400014: Die3
+    7400016: Fidget1
+    7400018: Hit1
+    7400020: Idle
+    7400022: Jump_Down
+    7400024: Jump_Land
+    7400026: Run
+    7400028: Spawn1
+    7400030: Stunned
+    7400032: Walk
+    9500000: //RootNode
+    13700000: netherim_02_mat
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

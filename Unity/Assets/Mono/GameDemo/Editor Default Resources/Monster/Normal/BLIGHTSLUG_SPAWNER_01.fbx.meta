@@ -1,0 +1,106 @@
+fileFormatVersion: 2
+guid: 604b79efc295f6144bf9525614a194a5
+timeCreated: 1450713885
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Base
+    100002: //RootNode
+    100004: blightslug_spawner_01
+    100006: forest_blightslug_spa
+    100008: Pustule_01
+    100010: Pustule_02
+    100012: Pustule_03
+    100014: root
+    100016: Side_Bulge
+    100018: Tunnel_01
+    100020: Tunnel_02
+    100022: Tunnel_03
+    100024: Tunnel_04
+    100026: Tunnel_05
+    100028: Tunnel_06
+    400000: Base
+    400002: //RootNode
+    400004: blightslug_spawner_01
+    400006: forest_blightslug_spa
+    400008: Pustule_01
+    400010: Pustule_02
+    400012: Pustule_03
+    400014: root
+    400016: Side_Bulge
+    400018: Tunnel_01
+    400020: Tunnel_02
+    400022: Tunnel_03
+    400024: Tunnel_04
+    400026: Tunnel_05
+    400028: Tunnel_06
+    4300000: forest_blightslug_spa
+    7400000: Die1
+    7400002: Hit1
+    7400004: Idle
+    7400006: Special_Spawner
+    9500000: //RootNode
+    13700000: forest_blightslug_spa
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

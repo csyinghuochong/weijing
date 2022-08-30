@@ -1,0 +1,3039 @@
+fileFormatVersion: 2
+guid: 860fe46d25e96dd44913bcee3ca3dc77
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: abdomen
+  - first:
+      1: 100002
+    second: body_root
+  - first:
+      1: 100004
+    second: fang
+  - first:
+      1: 100006
+    second: head
+  - first:
+      1: 100008
+    second: L_Leg_A_01
+  - first:
+      1: 100010
+    second: L_Leg_A_02
+  - first:
+      1: 100012
+    second: L_Leg_A_03
+  - first:
+      1: 100014
+    second: L_Leg_B_01
+  - first:
+      1: 100016
+    second: L_Leg_B_02
+  - first:
+      1: 100018
+    second: L_Leg_B_03
+  - first:
+      1: 100020
+    second: L_Leg_B_04
+  - first:
+      1: 100022
+    second: L_Leg_C_01
+  - first:
+      1: 100024
+    second: L_Leg_C_02
+  - first:
+      1: 100026
+    second: L_Leg_C_03
+  - first:
+      1: 100028
+    second: L_Leg_C_04
+  - first:
+      1: 100030
+    second: L_Leg_D_01
+  - first:
+      1: 100032
+    second: L_Leg_D_02
+  - first:
+      1: 100034
+    second: L_Leg_D_03
+  - first:
+      1: 100036
+    second: L_Leg_D_04
+  - first:
+      1: 100038
+    second: R_Leg_A_01
+  - first:
+      1: 100040
+    second: R_Leg_A_02
+  - first:
+      1: 100042
+    second: R_Leg_A_03
+  - first:
+      1: 100044
+    second: R_Leg_A_04
+  - first:
+      1: 100046
+    second: R_Leg_B_01
+  - first:
+      1: 100048
+    second: R_Leg_B_02
+  - first:
+      1: 100050
+    second: R_Leg_B_03
+  - first:
+      1: 100052
+    second: R_Leg_B_04
+  - first:
+      1: 100054
+    second: R_Leg_C_01
+  - first:
+      1: 100056
+    second: R_Leg_C_02
+  - first:
+      1: 100058
+    second: R_Leg_C_03
+  - first:
+      1: 100060
+    second: R_Leg_C_04
+  - first:
+      1: 100062
+    second: R_Leg_D_01
+  - first:
+      1: 100064
+    second: R_Leg_D_02
+  - first:
+      1: 100066
+    second: R_Leg_D_03
+  - first:
+      1: 100068
+    second: R_Leg_D_04
+  - first:
+      1: 100070
+    second: root
+  - first:
+      1: 100072
+    second: //RootNode
+  - first:
+      1: 100074
+    second: spider_ice
+  - first:
+      1: 100076
+    second: spider_ice.001
+  - first:
+      1: 100078
+    second: stinger
+  - first:
+      4: 400000
+    second: abdomen
+  - first:
+      4: 400002
+    second: body_root
+  - first:
+      4: 400004
+    second: fang
+  - first:
+      4: 400006
+    second: head
+  - first:
+      4: 400008
+    second: L_Leg_A_01
+  - first:
+      4: 400010
+    second: L_Leg_A_02
+  - first:
+      4: 400012
+    second: L_Leg_A_03
+  - first:
+      4: 400014
+    second: L_Leg_B_01
+  - first:
+      4: 400016
+    second: L_Leg_B_02
+  - first:
+      4: 400018
+    second: L_Leg_B_03
+  - first:
+      4: 400020
+    second: L_Leg_B_04
+  - first:
+      4: 400022
+    second: L_Leg_C_01
+  - first:
+      4: 400024
+    second: L_Leg_C_02
+  - first:
+      4: 400026
+    second: L_Leg_C_03
+  - first:
+      4: 400028
+    second: L_Leg_C_04
+  - first:
+      4: 400030
+    second: L_Leg_D_01
+  - first:
+      4: 400032
+    second: L_Leg_D_02
+  - first:
+      4: 400034
+    second: L_Leg_D_03
+  - first:
+      4: 400036
+    second: L_Leg_D_04
+  - first:
+      4: 400038
+    second: R_Leg_A_01
+  - first:
+      4: 400040
+    second: R_Leg_A_02
+  - first:
+      4: 400042
+    second: R_Leg_A_03
+  - first:
+      4: 400044
+    second: R_Leg_A_04
+  - first:
+      4: 400046
+    second: R_Leg_B_01
+  - first:
+      4: 400048
+    second: R_Leg_B_02
+  - first:
+      4: 400050
+    second: R_Leg_B_03
+  - first:
+      4: 400052
+    second: R_Leg_B_04
+  - first:
+      4: 400054
+    second: R_Leg_C_01
+  - first:
+      4: 400056
+    second: R_Leg_C_02
+  - first:
+      4: 400058
+    second: R_Leg_C_03
+  - first:
+      4: 400060
+    second: R_Leg_C_04
+  - first:
+      4: 400062
+    second: R_Leg_D_01
+  - first:
+      4: 400064
+    second: R_Leg_D_02
+  - first:
+      4: 400066
+    second: R_Leg_D_03
+  - first:
+      4: 400068
+    second: R_Leg_D_04
+  - first:
+      4: 400070
+    second: root
+  - first:
+      4: 400072
+    second: //RootNode
+  - first:
+      4: 400074
+    second: spider_ice
+  - first:
+      4: 400076
+    second: spider_ice.001
+  - first:
+      4: 400078
+    second: stinger
+  - first:
+      43: 4300000
+    second: spider_ice.001
+  - first:
+      74: 7400000
+    second: attack1
+  - first:
+      74: 7400002
+    second: attack2
+  - first:
+      74: 7400004
+    second: Ceiling_Spawn1
+  - first:
+      74: 7400006
+    second: Ceiling_Spawn2
+  - first:
+      74: 7400008
+    second: Ceiling_Spawn3
+  - first:
+      74: 7400010
+    second: death_flight
+  - first:
+      74: 7400012
+    second: death_land
+  - first:
+      74: 7400014
+    second: die
+  - first:
+      74: 7400016
+    second: Ground_Spawn1
+  - first:
+      74: 7400018
+    second: idle
+  - first:
+      74: 7400020
+    second: Mound_Spawn1
+  - first:
+      74: 7400022
+    second: Pit_Spawn1
+  - first:
+      74: 7400024
+    second: run
+  - first:
+      74: 7400026
+    second: spawn1
+  - first:
+      74: 7400028
+    second: spawn2
+  - first:
+      74: 7400030
+    second: Special_eat
+  - first:
+      74: 7400032
+    second: Special_Egg_Break
+  - first:
+      74: 7400034
+    second: Special_Hop
+  - first:
+      74: 7400036
+    second: special_spit
+  - first:
+      74: 7400038
+    second: special_web
+  - first:
+      74: 7400040
+    second: Spider_Spawn2_Explosi
+  - first:
+      74: 7400042
+    second: Spider_Spawn_Explode
+  - first:
+      74: 7400044
+    second: stunned
+  - first:
+      74: 7400046
+    second: walk
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: spider_ice.001
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: attack1
+      takeName: attack1
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: attack2
+      takeName: attack2
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Ceiling_Spawn1
+      takeName: Ceiling_Spawn1
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 30
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Ceiling_Spawn2
+      takeName: Ceiling_Spawn2
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Ceiling_Spawn3
+      takeName: Ceiling_Spawn3
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 45
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: death_flight
+      takeName: death_flight
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 12
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: death_land
+      takeName: death_land
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: die
+      takeName: die
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 37
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Ground_Spawn1
+      takeName: Ground_Spawn1
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 46
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: idle
+      takeName: idle
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Mound_Spawn1
+      takeName: Mound_Spawn1
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 46
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Pit_Spawn1
+      takeName: Pit_Spawn1
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: run
+      takeName: run
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 10
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: spawn1
+      takeName: spawn1
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: spawn2
+      takeName: spawn2
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 29
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_eat
+      takeName: Special_eat
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 65
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_Egg_Break
+      takeName: Special_Egg_Break
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 83
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Special_Hop
+      takeName: Special_Hop
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 25
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: special_spit
+      takeName: special_spit
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: special_web
+      takeName: special_web
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Spider_Spawn2_Explosi
+      takeName: Spider_Spawn2_Explosi
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 21
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Spider_Spawn_Explode
+      takeName: Spider_Spawn_Explode
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 22
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: stunned
+      takeName: stunned
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 41
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: walk
+      takeName: walk
+      internalID: 0
+      firstFrame: 0
+      lastFrame: 20
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: spider_ice
+        weight: 1
+      - path: spider_ice/root
+        weight: 1
+      - path: spider_ice/root/body_root
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen
+        weight: 1
+      - path: spider_ice/root/body_root/abdomen/stinger
+        weight: 1
+      - path: spider_ice/root/body_root/head
+        weight: 1
+      - path: spider_ice/root/body_root/head/fang
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_A_01/L_Leg_A_02/L_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_B_01/L_Leg_B_02/L_Leg_B_03/L_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_C_01/L_Leg_C_02/L_Leg_C_03/L_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/L_Leg_D_01/L_Leg_D_02/L_Leg_D_03/L_Leg_D_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_A_01/R_Leg_A_02/R_Leg_A_03/R_Leg_A_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_B_01/R_Leg_B_02/R_Leg_B_03/R_Leg_B_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_C_01/R_Leg_C_02/R_Leg_C_03/R_Leg_C_04
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03
+        weight: 1
+      - path: spider_ice/root/body_root/head/R_Leg_D_01/R_Leg_D_02/R_Leg_D_03/R_Leg_D_04
+        weight: 1
+      - path: spider_ice/spider_ice.001
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

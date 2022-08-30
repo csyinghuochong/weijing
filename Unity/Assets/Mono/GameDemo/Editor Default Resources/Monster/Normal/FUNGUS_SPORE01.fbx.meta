@@ -1,0 +1,117 @@
+fileFormatVersion: 2
+guid: 11ea7721ee2f3ef4ead9e0af2353362e
+timeCreated: 1450980408
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip01
+    100002: Bip01_Body_B
+    100004: Bip01_Body_F
+    100006: Bip01_Body_L
+    100008: Bip01_Body_R
+    100010: Bip01_Body_T
+    100012: Bip01_Pelvis
+    100014: Bip01_Spine
+    100016: Bip01_Tent1
+    100018: Bip01_Tent2
+    100020: Bip01_Tent3
+    100022: Bip01_Tent4
+    100024: //RootNode
+    100026: fungus_spore01
+    100028: fungus_spore_mat
+    100030: Root
+    400000: Bip01
+    400002: Bip01_Body_B
+    400004: Bip01_Body_F
+    400006: Bip01_Body_L
+    400008: Bip01_Body_R
+    400010: Bip01_Body_T
+    400012: Bip01_Pelvis
+    400014: Bip01_Spine
+    400016: Bip01_Tent1
+    400018: Bip01_Tent2
+    400020: Bip01_Tent3
+    400022: Bip01_Tent4
+    400024: //RootNode
+    400026: fungus_spore01
+    400028: fungus_spore_mat
+    400030: Root
+    4300000: fungus_spore_mat
+    7400000: Descend_Spawn1
+    7400002: Descend_Spawn2
+    7400004: Descend_Spawn3
+    7400006: Die1
+    7400008: Idle
+    7400010: Jump_Down
+    7400012: Jump_Land
+    7400014: Run
+    7400016: Spawn1
+    7400018: Spawn2
+    7400020: Spawn3
+    7400022: Special_Explode
+    7400024: Walk
+    9500000: //RootNode
+    13700000: fungus_spore_mat
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

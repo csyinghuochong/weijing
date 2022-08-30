@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &1103752862613767275
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 977411923367464793, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 977746739751834949, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 978154444986250913, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: LightsModule.light
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098944934264002071, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098944934264002071, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098944934264002071, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.68
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098944934264002071, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098944934264002071, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098944934264002071, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098944934264002071, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098944934264002071, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098944934264002071, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098944934264002071, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1098944934264002071, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1104585814929879417, guid: 6f2bfb3ec46dee64eb10dacc9ac72337,
+        type: 3}
+      propertyPath: m_Name
+      value: vfx_Hit_FireBlue
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6f2bfb3ec46dee64eb10dacc9ac72337, type: 3}

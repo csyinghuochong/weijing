@@ -1,0 +1,168 @@
+fileFormatVersion: 2
+guid: d1a31d8823c3ae74fb5e460129a0380a
+timeCreated: 1450798146
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip01
+    100002: Bip01_Head
+    100004: Bip01_Jaw
+    100006: Bip01_L_Calf
+    100008: Bip01_L_Clavicle
+    100010: Bip01_L_Ear
+    100012: Bip01_L_Finger0
+    100014: Bip01_L_Foot
+    100016: Bip01_L_Forearm
+    100018: Bip01_L_Hand
+    100020: Bip01_L_HorseLink
+    100022: Bip01_L_Thigh
+    100024: Bip01_L_Toe0
+    100026: Bip01_L_UpperArm
+    100028: Bip01_Neck
+    100030: Bip01_Pelvis
+    100032: Bip01_R_Calf
+    100034: Bip01_R_Clavicle
+    100036: Bip01_R_Ear
+    100038: Bip01_R_Finger0
+    100040: Bip01_R_Foot
+    100042: Bip01_R_Forearm
+    100044: Bip01_R_Hand
+    100046: Bip01_R_HorseLink
+    100048: Bip01_R_Thigh
+    100050: Bip01_R_Toe0
+    100052: Bip01_R_UpperArm
+    100054: Bip01_Spine
+    100056: Bip01_Spine1
+    100058: Bip01_Tail
+    100060: Bip01_Tail1
+    100062: //RootNode
+    100064: jackalbeast
+    100066: Jackalbeast_notes_mat
+    100068: root
+    400000: Bip01
+    400002: Bip01_Head
+    400004: Bip01_Jaw
+    400006: Bip01_L_Calf
+    400008: Bip01_L_Clavicle
+    400010: Bip01_L_Ear
+    400012: Bip01_L_Finger0
+    400014: Bip01_L_Foot
+    400016: Bip01_L_Forearm
+    400018: Bip01_L_Hand
+    400020: Bip01_L_HorseLink
+    400022: Bip01_L_Thigh
+    400024: Bip01_L_Toe0
+    400026: Bip01_L_UpperArm
+    400028: Bip01_Neck
+    400030: Bip01_Pelvis
+    400032: Bip01_R_Calf
+    400034: Bip01_R_Clavicle
+    400036: Bip01_R_Ear
+    400038: Bip01_R_Finger0
+    400040: Bip01_R_Foot
+    400042: Bip01_R_Forearm
+    400044: Bip01_R_Hand
+    400046: Bip01_R_HorseLink
+    400048: Bip01_R_Thigh
+    400050: Bip01_R_Toe0
+    400052: Bip01_R_UpperArm
+    400054: Bip01_Spine
+    400056: Bip01_Spine1
+    400058: Bip01_Tail
+    400060: Bip01_Tail1
+    400062: //RootNode
+    400064: jackalbeast
+    400066: Jackalbeast_notes_mat
+    400068: root
+    4300000: Jackalbeast_notes_mat
+    7400000: Attack1
+    7400002: Attack2
+    7400004: Attack3
+    7400006: Attack4
+    7400008: Den_Spawn1
+    7400010: Die1
+    7400012: Die2
+    7400014: Die3
+    7400016: Envi_Alert2_Sleep
+    7400018: Envi_Idle2_Sleep
+    7400020: Envi_Idle8_Eat1
+    7400022: Envi_Idle9_Eat2
+    7400024: Fidget1
+    7400026: Hit1
+    7400028: Hit2
+    7400030: Hit3
+    7400032: Idle
+    7400034: Jump_Down
+    7400036: Jump_Land
+    7400038: Run
+    7400040: Spawn_Den1
+    7400042: Spawn_Den2
+    7400044: Spawn_Den3
+    7400046: Spawn_Den4
+    7400048: Special_Dash
+    7400050: Walk
+    9500000: //RootNode
+    13700000: Jackalbeast_notes_mat
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

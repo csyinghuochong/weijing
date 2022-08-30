@@ -1,0 +1,122 @@
+fileFormatVersion: 2
+guid: dc270b99f9c96e04f86373a41498e298
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: dunpai
+    100002: fazhang
+    100004: //RootNode
+    100006: jianjia_L
+    100008: jianjia_R
+    100010: jizuo
+    100012: shenti
+    100014: shou_L
+    100016: shou_R
+    100018: shoubi_L
+    100020: shuijing
+    100022: toukui
+    100024: weiba
+    400000: dunpai
+    400002: fazhang
+    400004: //RootNode
+    400006: jianjia_L
+    400008: jianjia_R
+    400010: jizuo
+    400012: shenti
+    400014: shou_L
+    400016: shou_R
+    400018: shoubi_L
+    400020: shuijing
+    400022: toukui
+    400024: weiba
+    2300000: dunpai
+    2300002: fazhang
+    2300004: jianjia_L
+    2300006: jianjia_R
+    2300008: jizuo
+    2300010: shenti
+    2300012: shou_L
+    2300014: shou_R
+    2300016: shoubi_L
+    2300018: shuijing
+    2300020: toukui
+    2300022: weiba
+    3300000: dunpai
+    3300002: fazhang
+    3300004: jianjia_L
+    3300006: jianjia_R
+    3300008: jizuo
+    3300010: shenti
+    3300012: shou_L
+    3300014: shou_R
+    3300016: shoubi_L
+    3300018: shuijing
+    3300020: toukui
+    3300022: weiba
+    4300000: shenti
+    4300002: dunpai
+    4300004: jizuo
+    4300006: toukui
+    4300008: jianjia_L
+    4300010: jianjia_R
+    4300012: shou_R
+    4300014: shou_L
+    4300016: fazhang
+    4300018: weiba
+    4300020: shoubi_L
+    4300022: shuijing
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 3
+    addColliders: 0
+    importBlendShapes: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 0
+    normalImportMode: 2
+    tangentImportMode: 2
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  additionalBone: 0
+  userData: 

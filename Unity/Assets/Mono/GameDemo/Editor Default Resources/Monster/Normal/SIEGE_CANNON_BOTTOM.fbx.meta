@@ -1,0 +1,121 @@
+fileFormatVersion: 2
+guid: 9f1b0328ade2e774cac93f6432191e4d
+timeCreated: 1450974597
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: B_L_leg_01
+    100002: B_L_leg_02
+    100004: B_L_leg_03
+    100006: B_L_nub_01
+    100008: B_R_leg_01
+    100010: B_R_leg_02
+    100012: B_R_leg_03
+    100014: B_R_nub_01
+    100016: Body_01
+    100018: F_L_leg_01
+    100020: F_L_leg_02
+    100022: F_L_leg_03
+    100024: F_L_nub_01
+    100026: F_R_leg_01
+    100028: F_R_leg_02
+    100030: F_R_leg_03
+    100032: F_R_nub_01
+    100034: root
+    100036: siege_cannon_01_mat
+    100038: //RootNode
+    100040: siege_cannon_bottom
+    100042: top_connector
+    400000: B_L_leg_01
+    400002: B_L_leg_02
+    400004: B_L_leg_03
+    400006: B_L_nub_01
+    400008: B_R_leg_01
+    400010: B_R_leg_02
+    400012: B_R_leg_03
+    400014: B_R_nub_01
+    400016: Body_01
+    400018: F_L_leg_01
+    400020: F_L_leg_02
+    400022: F_L_leg_03
+    400024: F_L_nub_01
+    400026: F_R_leg_01
+    400028: F_R_leg_02
+    400030: F_R_leg_03
+    400032: F_R_nub_01
+    400034: root
+    400036: siege_cannon_01_mat
+    400038: //RootNode
+    400040: siege_cannon_bottom
+    400042: top_connector
+    4300000: siege_cannon_01_mat
+    7400000: Die1
+    7400002: Envi_Alert1_Sleep
+    7400004: Idle
+    7400006: Run
+    7400008: Walk
+    9500000: //RootNode
+    13700000: siege_cannon_01_mat
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

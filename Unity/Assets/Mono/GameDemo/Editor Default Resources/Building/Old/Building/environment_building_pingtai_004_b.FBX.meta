@@ -1,0 +1,103 @@
+fileFormatVersion: 2
+guid: edf61e3f08115e649827ddd08cca4716
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: environment_building_pingtai_004_b3
+    100002: environment_building_pingtai_004_b1
+    100004: environment_building_pingtai_004_b06
+    100006: environment_building_pingtai_004_b2
+    100008: //RootNode
+    100010: environment_building_pingtai_004_b05
+    100012: environment_building_pingtai_004_b04
+    400000: environment_building_pingtai_004_b3
+    400002: environment_building_pingtai_004_b1
+    400004: environment_building_pingtai_004_b06
+    400006: environment_building_pingtai_004_b2
+    400008: //RootNode
+    400010: environment_building_pingtai_004_b05
+    400012: environment_building_pingtai_004_b04
+    2300000: environment_building_pingtai_004_b3
+    2300002: environment_building_pingtai_004_b1
+    2300004: environment_building_pingtai_004_b06
+    2300006: environment_building_pingtai_004_b2
+    2300008: environment_building_pingtai_004_b05
+    2300010: environment_building_pingtai_004_b04
+    3300000: environment_building_pingtai_004_b3
+    3300002: environment_building_pingtai_004_b1
+    3300004: environment_building_pingtai_004_b06
+    3300006: environment_building_pingtai_004_b2
+    3300008: environment_building_pingtai_004_b05
+    3300010: environment_building_pingtai_004_b04
+    4300000: environment_building_pingtai_004_b1
+    4300002: environment_building_pingtai_004_b2
+    4300004: environment_building_pingtai_004_b3
+    4300006: environment_building_pingtai_004_b4
+    4300008: environment_building_pingtai_004_b5
+    4300010: environment_building_pingtai_004_b6
+    4300012: environment_building_pingtai_004_b04
+    4300014: environment_building_pingtai_004_b05
+    4300016: environment_building_pingtai_004_b06
+    11100000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 3
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

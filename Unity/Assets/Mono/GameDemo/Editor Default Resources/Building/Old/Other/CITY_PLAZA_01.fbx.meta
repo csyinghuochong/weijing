@@ -1,0 +1,142 @@
+fileFormatVersion: 2
+guid: 44e13ad43120771449680b400883c06f
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: _city_plaza_02_shadow
+    100002: _city_plaza_04_shadow
+    100004: _city_plaza_09_shadow
+    100006: _city_plaza_10_shadow
+    100008: _teleporter_01_shadow
+    100010: cit_city_plaza_03_mat
+    100012: cit_city_plaza_05_mat
+    100014: cit_city_plaza_06_mat
+    100016: cit_city_plaza_08_mat
+    100018: cit_city_plaza_09_mat
+    100020: cit_city_plaza_11_mat
+    100022: //RootNode
+    100024: city_plaza_multi_
+    100026: city_plaza_multi_.001
+    100028: city_plaza_multi_.002
+    100030: city_plaza_multi_city
+    100032: city_plaza_multi_tele
+    400000: _city_plaza_02_shadow
+    400002: _city_plaza_04_shadow
+    400004: _city_plaza_09_shadow
+    400006: _city_plaza_10_shadow
+    400008: _teleporter_01_shadow
+    400010: cit_city_plaza_03_mat
+    400012: cit_city_plaza_05_mat
+    400014: cit_city_plaza_06_mat
+    400016: cit_city_plaza_08_mat
+    400018: cit_city_plaza_09_mat
+    400020: cit_city_plaza_11_mat
+    400022: //RootNode
+    400024: city_plaza_multi_
+    400026: city_plaza_multi_.001
+    400028: city_plaza_multi_.002
+    400030: city_plaza_multi_city
+    400032: city_plaza_multi_tele
+    2300000: _city_plaza_02_shadow
+    2300002: _city_plaza_04_shadow
+    2300004: _city_plaza_09_shadow
+    2300006: _city_plaza_10_shadow
+    2300008: _teleporter_01_shadow
+    2300010: cit_city_plaza_03_mat
+    2300012: cit_city_plaza_05_mat
+    2300014: cit_city_plaza_06_mat
+    2300016: cit_city_plaza_08_mat
+    2300018: cit_city_plaza_09_mat
+    2300020: cit_city_plaza_11_mat
+    2300022: city_plaza_multi_
+    2300024: city_plaza_multi_.001
+    2300026: city_plaza_multi_.002
+    2300028: city_plaza_multi_city
+    2300030: city_plaza_multi_tele
+    3300000: _city_plaza_02_shadow
+    3300002: _city_plaza_04_shadow
+    3300004: _city_plaza_09_shadow
+    3300006: _city_plaza_10_shadow
+    3300008: _teleporter_01_shadow
+    3300010: cit_city_plaza_03_mat
+    3300012: cit_city_plaza_05_mat
+    3300014: cit_city_plaza_06_mat
+    3300016: cit_city_plaza_08_mat
+    3300018: cit_city_plaza_09_mat
+    3300020: cit_city_plaza_11_mat
+    3300022: city_plaza_multi_
+    3300024: city_plaza_multi_.001
+    3300026: city_plaza_multi_.002
+    3300028: city_plaza_multi_city
+    3300030: city_plaza_multi_tele
+    4300000: city_plaza_multi_.002
+    4300002: _teleporter_01_shadow
+    4300004: city_plaza_multi_tele
+    4300006: city_plaza_multi_.001
+    4300008: city_plaza_multi_
+    4300010: city_plaza_multi_city
+    4300012: _city_plaza_09_shadow
+    4300014: _city_plaza_10_shadow
+    4300016: cit_city_plaza_11_mat
+    4300018: cit_city_plaza_09_mat
+    4300020: cit_city_plaza_08_mat
+    4300022: cit_city_plaza_06_mat
+    4300024: cit_city_plaza_05_mat
+    4300026: _city_plaza_04_shadow
+    4300028: cit_city_plaza_03_mat
+    4300030: _city_plaza_02_shadow
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

@@ -1,0 +1,182 @@
+fileFormatVersion: 2
+guid: 1355910ca844f26448aaf0a6f0ad30d7
+timeCreated: 1451801339
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip01
+    100002: Bip01_Cloth
+    100004: Bip01_Cloth02
+    100006: Bip01_Head
+    100008: Bip01_Jaw
+    100010: Bip01_L_Calf
+    100012: Bip01_L_Clavicle
+    100014: Bip01_L_Finger0
+    100016: Bip01_L_Finger1
+    100018: Bip01_L_Finger2
+    100020: Bip01_L_Finger3
+    100022: Bip01_L_Foot
+    100024: Bip01_L_Forearm
+    100026: Bip01_L_Hand
+    100028: Bip01_L_Thigh
+    100030: Bip01_L_Toe0
+    100032: Bip01_L_UpperArm
+    100034: Bip01_Neck
+    100036: Bip01_Pelvis
+    100038: Bip01_R_Calf
+    100040: Bip01_R_Clavicle
+    100042: Bip01_R_Finger0
+    100044: Bip01_R_Finger1
+    100046: Bip01_R_Finger2
+    100048: Bip01_R_Finger3
+    100050: Bip01_R_Foot
+    100052: Bip01_R_Forearm
+    100054: Bip01_R_Hand
+    100056: Bip01_R_Thigh
+    100058: Bip01_R_Toe0
+    100060: Bip01_R_UpperArm
+    100062: Bip01_Spine
+    100064: Bip01_Spine1
+    100066: Bip01_Tail
+    100068: Bip01_Tail1
+    100070: Mt__24_tutara_gho
+    100072: Mt__24_tutara_ghost_b
+    100074: root
+    100076: tag_leftarm
+    100078: tag_lefthand
+    100080: tag_righthand
+    100082: //RootNode
+    100084: tutara_ghost_brute
+    400000: Bip01
+    400002: Bip01_Cloth
+    400004: Bip01_Cloth02
+    400006: Bip01_Head
+    400008: Bip01_Jaw
+    400010: Bip01_L_Calf
+    400012: Bip01_L_Clavicle
+    400014: Bip01_L_Finger0
+    400016: Bip01_L_Finger1
+    400018: Bip01_L_Finger2
+    400020: Bip01_L_Finger3
+    400022: Bip01_L_Foot
+    400024: Bip01_L_Forearm
+    400026: Bip01_L_Hand
+    400028: Bip01_L_Thigh
+    400030: Bip01_L_Toe0
+    400032: Bip01_L_UpperArm
+    400034: Bip01_Neck
+    400036: Bip01_Pelvis
+    400038: Bip01_R_Calf
+    400040: Bip01_R_Clavicle
+    400042: Bip01_R_Finger0
+    400044: Bip01_R_Finger1
+    400046: Bip01_R_Finger2
+    400048: Bip01_R_Finger3
+    400050: Bip01_R_Foot
+    400052: Bip01_R_Forearm
+    400054: Bip01_R_Hand
+    400056: Bip01_R_Thigh
+    400058: Bip01_R_Toe0
+    400060: Bip01_R_UpperArm
+    400062: Bip01_Spine
+    400064: Bip01_Spine1
+    400066: Bip01_Tail
+    400068: Bip01_Tail1
+    400070: Mt__24_tutara_gho
+    400072: Mt__24_tutara_ghost_b
+    400074: root
+    400076: tag_leftarm
+    400078: tag_lefthand
+    400080: tag_righthand
+    400082: //RootNode
+    400084: tutara_ghost_brute
+    4300000: Mt__24_tutara_gho
+    4300002: Mt__24_tutara_ghost_b
+    7400000: Attack1
+    7400002: Attack2
+    7400004: Attack3
+    7400006: Climb_Up_Spawn1
+    7400008: Die1
+    7400010: Die2
+    7400012: Envi_Alert1_Sit
+    7400014: Envi_Alert2_Sleep
+    7400016: Envi_Alert3_Cheer
+    7400018: Envi_Idle1_Sit
+    7400020: Envi_Idle2_Sleep
+    7400022: Envi_Idle3_Cheer
+    7400024: Hit1
+    7400026: Idle
+    7400028: L_Slash1
+    7400030: R_Slash1
+    7400032: Run
+    7400034: Special_Dash
+    7400036: Special_Enrage
+    7400038: Special_Slam
+    7400040: Stunned
+    7400042: Walk
+    9500000: //RootNode
+    13700000: Mt__24_tutara_gho
+    13700002: Mt__24_tutara_ghost_b
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

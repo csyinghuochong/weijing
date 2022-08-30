@@ -1,0 +1,168 @@
+fileFormatVersion: 2
+guid: 81db155c9410bd5478242c67be7048b7
+timeCreated: 1450716252
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip01
+    100002: Bip01_Cloth
+    100004: Bip01_Head
+    100006: Bip01_Jaw
+    100008: Bip01_L_Calf
+    100010: Bip01_L_Clavicle
+    100012: Bip01_L_Ear
+    100014: Bip01_L_Foot
+    100016: Bip01_L_Forearm
+    100018: Bip01_L_Hand
+    100020: Bip01_L_HorseLink
+    100022: Bip01_L_Thigh
+    100024: Bip01_L_Toe0
+    100026: Bip01_L_UpperArm
+    100028: Bip01_L_Wing
+    100030: Bip01_Neck
+    100032: Bip01_Pelvis
+    100034: Bip01_R_Calf
+    100036: Bip01_R_Clavicle
+    100038: Bip01_R_Ear
+    100040: Bip01_R_Foot
+    100042: Bip01_R_Forearm
+    100044: Bip01_R_Hand
+    100046: Bip01_R_HorseLink
+    100048: Bip01_R_Thigh
+    100050: Bip01_R_Toe0
+    100052: Bip01_R_UpperArm
+    100054: Bip01_R_Wing
+    100056: Bip01_Spine
+    100058: Bip01_Spine1
+    100060: Bip01_Tail
+    100062: Bip01_Tail1
+    100064: Bip01_Tail2
+    100066: Bip01_Tail3
+    100068: //RootNode
+    100070: dark_fairy02
+    100072: dark_fairy_mat
+    100074: root
+    100076: tag_leftarm
+    100078: tag_lefthand
+    100080: tag_righthand
+    400000: Bip01
+    400002: Bip01_Cloth
+    400004: Bip01_Head
+    400006: Bip01_Jaw
+    400008: Bip01_L_Calf
+    400010: Bip01_L_Clavicle
+    400012: Bip01_L_Ear
+    400014: Bip01_L_Foot
+    400016: Bip01_L_Forearm
+    400018: Bip01_L_Hand
+    400020: Bip01_L_HorseLink
+    400022: Bip01_L_Thigh
+    400024: Bip01_L_Toe0
+    400026: Bip01_L_UpperArm
+    400028: Bip01_L_Wing
+    400030: Bip01_Neck
+    400032: Bip01_Pelvis
+    400034: Bip01_R_Calf
+    400036: Bip01_R_Clavicle
+    400038: Bip01_R_Ear
+    400040: Bip01_R_Foot
+    400042: Bip01_R_Forearm
+    400044: Bip01_R_Hand
+    400046: Bip01_R_HorseLink
+    400048: Bip01_R_Thigh
+    400050: Bip01_R_Toe0
+    400052: Bip01_R_UpperArm
+    400054: Bip01_R_Wing
+    400056: Bip01_Spine
+    400058: Bip01_Spine1
+    400060: Bip01_Tail
+    400062: Bip01_Tail1
+    400064: Bip01_Tail2
+    400066: Bip01_Tail3
+    400068: //RootNode
+    400070: dark_fairy02
+    400072: dark_fairy_mat
+    400074: root
+    400076: tag_leftarm
+    400078: tag_lefthand
+    400080: tag_righthand
+    4300000: dark_fairy_mat
+    7400000: attack1
+    7400002: attack2
+    7400004: attack3
+    7400006: death_flight
+    7400008: death_land
+    7400010: die1
+    7400012: die2
+    7400014: fidget1
+    7400016: hit1
+    7400018: Idle
+    7400020: Jump_Down
+    7400022: Jump_Land
+    7400024: Run
+    7400026: stunned
+    9500000: //RootNode
+    13700000: dark_fairy_mat
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

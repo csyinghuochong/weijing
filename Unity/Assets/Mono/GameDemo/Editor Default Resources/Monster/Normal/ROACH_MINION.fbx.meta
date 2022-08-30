@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: 93d3b9beb23a8a6418790fb31a6c5025
+timeCreated: 1450973755
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip01
+    100002: Bip01_Head
+    100004: Bip01_L_Calf
+    100006: Bip01_L_Clavicle
+    100008: Bip01_L_Forearm
+    100010: Bip01_L_Leg
+    100012: Bip01_L_Leg02
+    100014: Bip01_L_Tenna
+    100016: Bip01_L_Tenna02
+    100018: Bip01_L_Thigh
+    100020: Bip01_L_UpperArm
+    100022: Bip01_Neck
+    100024: Bip01_Pelvis
+    100026: Bip01_R_Calf
+    100028: Bip01_R_Clavicle
+    100030: Bip01_R_Forearm
+    100032: Bip01_R_Leg
+    100034: Bip01_R_Leg02
+    100036: Bip01_R_Tenna
+    100038: Bip01_R_Tenna02
+    100040: Bip01_R_Thigh
+    100042: Bip01_R_UpperArm
+    100044: Bip01_Spine
+    100046: roach__mat
+    100048: //RootNode
+    100050: roach_minion
+    100052: root
+    400000: Bip01
+    400002: Bip01_Head
+    400004: Bip01_L_Calf
+    400006: Bip01_L_Clavicle
+    400008: Bip01_L_Forearm
+    400010: Bip01_L_Leg
+    400012: Bip01_L_Leg02
+    400014: Bip01_L_Tenna
+    400016: Bip01_L_Tenna02
+    400018: Bip01_L_Thigh
+    400020: Bip01_L_UpperArm
+    400022: Bip01_Neck
+    400024: Bip01_Pelvis
+    400026: Bip01_R_Calf
+    400028: Bip01_R_Clavicle
+    400030: Bip01_R_Forearm
+    400032: Bip01_R_Leg
+    400034: Bip01_R_Leg02
+    400036: Bip01_R_Tenna
+    400038: Bip01_R_Tenna02
+    400040: Bip01_R_Thigh
+    400042: Bip01_R_UpperArm
+    400044: Bip01_Spine
+    400046: roach__mat
+    400048: //RootNode
+    400050: roach_minion
+    400052: root
+    4300000: roach__mat
+    7400000: Attack1
+    7400002: Desert_Spawn1
+    7400004: Desert_Spawn2
+    7400006: Desert_Spawn3
+    7400008: Die1
+    7400010: Die2
+    7400012: Idle
+    7400014: run
+    7400016: Walk
+    9500000: //RootNode
+    13700000: roach__mat
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

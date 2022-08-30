@@ -1,0 +1,122 @@
+fileFormatVersion: 2
+guid: 714d9fb6ef2d02048b2065d2661a42b3
+timeCreated: 1450980788
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip01
+    100002: Bip01_Pelvis
+    100004: Bip01_Spine
+    100006: Bip01_Spine1
+    100008: Bip01_Spine2
+    100010: Bip01_Spore1
+    100012: Bip01_Spore2
+    100014: Bip01_Spore3
+    100016: Bip01_Spore4
+    100018: Bip01_Spore5
+    100020: Bip01_Spore6
+    100022: Bip01_Spore_Body_B
+    100024: Bip01_Spore_Body_F
+    100026: Bip01_Spore_Body_L
+    100028: Bip01_Spore_Body_R
+    100030: Bip01_Spore_Head_B
+    100032: Bip01_Spore_Head_F
+    100034: Bip01_Spore_Head_L
+    100036: Bip01_Spore_Head_R
+    100038: forest_spore_laun
+    100040: forest_spore_launcher
+    100042: //RootNode
+    100044: Root
+    400000: Bip01
+    400002: Bip01_Pelvis
+    400004: Bip01_Spine
+    400006: Bip01_Spine1
+    400008: Bip01_Spine2
+    400010: Bip01_Spore1
+    400012: Bip01_Spore2
+    400014: Bip01_Spore3
+    400016: Bip01_Spore4
+    400018: Bip01_Spore5
+    400020: Bip01_Spore6
+    400022: Bip01_Spore_Body_B
+    400024: Bip01_Spore_Body_F
+    400026: Bip01_Spore_Body_L
+    400028: Bip01_Spore_Body_R
+    400030: Bip01_Spore_Head_B
+    400032: Bip01_Spore_Head_F
+    400034: Bip01_Spore_Head_L
+    400036: Bip01_Spore_Head_R
+    400038: forest_spore_laun
+    400040: forest_spore_launcher
+    400042: //RootNode
+    400044: Root
+    4300000: forest_spore_laun
+    7400000: Die1
+    7400002: Hit1
+    7400004: Idle
+    7400006: Special_Spawn
+    9500000: //RootNode
+    13700000: forest_spore_laun
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

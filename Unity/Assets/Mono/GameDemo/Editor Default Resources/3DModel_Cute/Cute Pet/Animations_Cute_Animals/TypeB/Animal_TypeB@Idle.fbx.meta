@@ -1,0 +1,417 @@
+fileFormatVersion: 2
+guid: 75a5863a536f9314fa51531888b1f6f2
+ModelImporter:
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: //RootNode
+  - first:
+      1: 100002
+    second: backAnkle_L
+  - first:
+      1: 100004
+    second: backAnkle_R
+  - first:
+      1: 100006
+    second: backHip_L
+  - first:
+      1: 100008
+    second: backHip_R
+  - first:
+      1: 100010
+    second: backKnee_L
+  - first:
+      1: 100012
+    second: backKnee_R
+  - first:
+      1: 100014
+    second: backRump_L
+  - first:
+      1: 100016
+    second: backRump_R
+  - first:
+      1: 100018
+    second: backToes_L
+  - first:
+      1: 100020
+    second: backToes_R
+  - first:
+      1: 100022
+    second: backToesEnd_L
+  - first:
+      1: 100024
+    second: backToesEnd_R
+  - first:
+      1: 100026
+    second: Chest
+  - first:
+      1: 100028
+    second: frontAnkle_L
+  - first:
+      1: 100030
+    second: frontAnkle_R
+  - first:
+      1: 100032
+    second: frontHip_L
+  - first:
+      1: 100034
+    second: frontHip_R
+  - first:
+      1: 100036
+    second: frontKnee_L
+  - first:
+      1: 100038
+    second: frontKnee_R
+  - first:
+      1: 100040
+    second: frontRump_L
+  - first:
+      1: 100042
+    second: frontRump_R
+  - first:
+      1: 100044
+    second: frontToes_L
+  - first:
+      1: 100046
+    second: frontToes_R
+  - first:
+      1: 100048
+    second: frontToesEnd_L
+  - first:
+      1: 100050
+    second: frontToesEnd_R
+  - first:
+      1: 100052
+    second: Head
+  - first:
+      1: 100054
+    second: HeadEnd
+  - first:
+      1: 100056
+    second: Neck
+  - first:
+      1: 100058
+    second: Root
+  - first:
+      1: 100060
+    second: Spine1
+  - first:
+      1: 100062
+    second: Tail0
+  - first:
+      1: 100064
+    second: Tail1
+  - first:
+      1: 100066
+    second: Tail2
+  - first:
+      1: 100068
+    second: Tail3
+  - first:
+      4: 400000
+    second: //RootNode
+  - first:
+      4: 400002
+    second: backAnkle_L
+  - first:
+      4: 400004
+    second: backAnkle_R
+  - first:
+      4: 400006
+    second: backHip_L
+  - first:
+      4: 400008
+    second: backHip_R
+  - first:
+      4: 400010
+    second: backKnee_L
+  - first:
+      4: 400012
+    second: backKnee_R
+  - first:
+      4: 400014
+    second: backRump_L
+  - first:
+      4: 400016
+    second: backRump_R
+  - first:
+      4: 400018
+    second: backToes_L
+  - first:
+      4: 400020
+    second: backToes_R
+  - first:
+      4: 400022
+    second: backToesEnd_L
+  - first:
+      4: 400024
+    second: backToesEnd_R
+  - first:
+      4: 400026
+    second: Chest
+  - first:
+      4: 400028
+    second: frontAnkle_L
+  - first:
+      4: 400030
+    second: frontAnkle_R
+  - first:
+      4: 400032
+    second: frontHip_L
+  - first:
+      4: 400034
+    second: frontHip_R
+  - first:
+      4: 400036
+    second: frontKnee_L
+  - first:
+      4: 400038
+    second: frontKnee_R
+  - first:
+      4: 400040
+    second: frontRump_L
+  - first:
+      4: 400042
+    second: frontRump_R
+  - first:
+      4: 400044
+    second: frontToes_L
+  - first:
+      4: 400046
+    second: frontToes_R
+  - first:
+      4: 400048
+    second: frontToesEnd_L
+  - first:
+      4: 400050
+    second: frontToesEnd_R
+  - first:
+      4: 400052
+    second: Head
+  - first:
+      4: 400054
+    second: HeadEnd
+  - first:
+      4: 400056
+    second: Neck
+  - first:
+      4: 400058
+    second: Root
+  - first:
+      4: 400060
+    second: Spine1
+  - first:
+      4: 400062
+    second: Tail0
+  - first:
+      4: 400064
+    second: Tail1
+  - first:
+      4: 400066
+    second: Tail2
+  - first:
+      4: 400068
+    second: Tail3
+  - first:
+      74: 7400000
+    second: Idle
+  - first:
+      95: 9500000
+    second: //RootNode
+  externalObjects: {}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Idle
+      takeName: Take 001
+      internalID: 0
+      firstFrame: 231
+      lastFrame: 253
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Root
+        weight: 1
+      - path: Root/backRump_L
+        weight: 1
+      - path: Root/backRump_L/backHip_L
+        weight: 1
+      - path: Root/backRump_L/backHip_L/backKnee_L
+        weight: 1
+      - path: Root/backRump_L/backHip_L/backKnee_L/backAnkle_L
+        weight: 1
+      - path: Root/backRump_L/backHip_L/backKnee_L/backAnkle_L/backToes_L
+        weight: 1
+      - path: Root/backRump_L/backHip_L/backKnee_L/backAnkle_L/backToes_L/backToesEnd_L
+        weight: 1
+      - path: Root/backRump_R
+        weight: 1
+      - path: Root/backRump_R/backHip_R
+        weight: 1
+      - path: Root/backRump_R/backHip_R/backKnee_R
+        weight: 1
+      - path: Root/backRump_R/backHip_R/backKnee_R/backAnkle_R
+        weight: 1
+      - path: Root/backRump_R/backHip_R/backKnee_R/backAnkle_R/backToes_R
+        weight: 1
+      - path: Root/backRump_R/backHip_R/backKnee_R/backAnkle_R/backToes_R/backToesEnd_R
+        weight: 1
+      - path: Root/Spine1
+        weight: 1
+      - path: Root/Spine1/Chest
+        weight: 1
+      - path: Root/Spine1/Chest/frontRump_L
+        weight: 1
+      - path: Root/Spine1/Chest/frontRump_L/frontHip_L
+        weight: 1
+      - path: Root/Spine1/Chest/frontRump_L/frontHip_L/frontKnee_L
+        weight: 1
+      - path: Root/Spine1/Chest/frontRump_L/frontHip_L/frontKnee_L/frontAnkle_L
+        weight: 1
+      - path: Root/Spine1/Chest/frontRump_L/frontHip_L/frontKnee_L/frontAnkle_L/frontToes_L
+        weight: 1
+      - path: Root/Spine1/Chest/frontRump_L/frontHip_L/frontKnee_L/frontAnkle_L/frontToes_L/frontToesEnd_L
+        weight: 1
+      - path: Root/Spine1/Chest/frontRump_R
+        weight: 1
+      - path: Root/Spine1/Chest/frontRump_R/frontHip_R
+        weight: 1
+      - path: Root/Spine1/Chest/frontRump_R/frontHip_R/frontKnee_R
+        weight: 1
+      - path: Root/Spine1/Chest/frontRump_R/frontHip_R/frontKnee_R/frontAnkle_R
+        weight: 1
+      - path: Root/Spine1/Chest/frontRump_R/frontHip_R/frontKnee_R/frontAnkle_R/frontToes_R
+        weight: 1
+      - path: Root/Spine1/Chest/frontRump_R/frontHip_R/frontKnee_R/frontAnkle_R/frontToes_R/frontToesEnd_R
+        weight: 1
+      - path: Root/Spine1/Chest/Neck
+        weight: 1
+      - path: Root/Spine1/Chest/Neck/Head
+        weight: 1
+      - path: Root/Spine1/Chest/Neck/Head/HeadEnd
+        weight: 1
+      - path: Root/Tail0
+        weight: 1
+      - path: Root/Tail0/Tail1
+        weight: 1
+      - path: Root/Tail0/Tail1/Tail2
+        weight: 1
+      - path: Root/Tail0/Tail1/Tail2/Tail3
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

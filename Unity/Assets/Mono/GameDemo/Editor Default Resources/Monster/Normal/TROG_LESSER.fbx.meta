@@ -1,0 +1,186 @@
+fileFormatVersion: 2
+guid: fb5f2ad52b6a373408c3f2034727ec11
+timeCreated: 1451669384
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: 01_-_Default
+    100002: Bip01
+    100004: Bip01_Head
+    100006: Bip01_Jaw
+    100008: Bip01_L_Calf
+    100010: Bip01_L_Clavicle
+    100012: Bip01_L_Finger0
+    100014: Bip01_L_Finger01
+    100016: Bip01_L_Finger1
+    100018: Bip01_L_Finger11
+    100020: Bip01_L_Finger2
+    100022: Bip01_L_Finger21
+    100024: Bip01_L_Finger3
+    100026: Bip01_L_Finger31
+    100028: Bip01_L_Foot
+    100030: Bip01_L_Forearm
+    100032: Bip01_L_Hand
+    100034: Bip01_L_Thigh
+    100036: Bip01_L_Toe0
+    100038: Bip01_L_UpperArm
+    100040: Bip01_Neck
+    100042: Bip01_Pelvis
+    100044: Bip01_R_Calf
+    100046: Bip01_R_Clavicle
+    100048: Bip01_R_Finger0
+    100050: Bip01_R_Finger01
+    100052: Bip01_R_Finger1
+    100054: Bip01_R_Finger11
+    100056: Bip01_R_Finger2
+    100058: Bip01_R_Finger21
+    100060: Bip01_R_Finger3
+    100062: Bip01_R_Finger31
+    100064: Bip01_R_Foot
+    100066: Bip01_R_Forearm
+    100068: Bip01_R_Hand
+    100070: Bip01_R_Thigh
+    100072: Bip01_R_Toe0
+    100074: Bip01_R_UpperArm
+    100076: Bip01_Spine
+    100078: Bip01_Spine1
+    100080: Bip01_Spine2
+    100082: root
+    100084: tag_leftarm
+    100086: tag_lefthand
+    100088: tag_righthand
+    100090: //RootNode
+    100092: trog_lesser
+    400000: 01_-_Default
+    400002: Bip01
+    400004: Bip01_Head
+    400006: Bip01_Jaw
+    400008: Bip01_L_Calf
+    400010: Bip01_L_Clavicle
+    400012: Bip01_L_Finger0
+    400014: Bip01_L_Finger01
+    400016: Bip01_L_Finger1
+    400018: Bip01_L_Finger11
+    400020: Bip01_L_Finger2
+    400022: Bip01_L_Finger21
+    400024: Bip01_L_Finger3
+    400026: Bip01_L_Finger31
+    400028: Bip01_L_Foot
+    400030: Bip01_L_Forearm
+    400032: Bip01_L_Hand
+    400034: Bip01_L_Thigh
+    400036: Bip01_L_Toe0
+    400038: Bip01_L_UpperArm
+    400040: Bip01_Neck
+    400042: Bip01_Pelvis
+    400044: Bip01_R_Calf
+    400046: Bip01_R_Clavicle
+    400048: Bip01_R_Finger0
+    400050: Bip01_R_Finger01
+    400052: Bip01_R_Finger1
+    400054: Bip01_R_Finger11
+    400056: Bip01_R_Finger2
+    400058: Bip01_R_Finger21
+    400060: Bip01_R_Finger3
+    400062: Bip01_R_Finger31
+    400064: Bip01_R_Foot
+    400066: Bip01_R_Forearm
+    400068: Bip01_R_Hand
+    400070: Bip01_R_Thigh
+    400072: Bip01_R_Toe0
+    400074: Bip01_R_UpperArm
+    400076: Bip01_Spine
+    400078: Bip01_Spine1
+    400080: Bip01_Spine2
+    400082: root
+    400084: tag_leftarm
+    400086: tag_lefthand
+    400088: tag_righthand
+    400090: //RootNode
+    400092: trog_lesser
+    4300000: 01_-_Default
+    7400000: Attack1
+    7400002: Attack2
+    7400004: Die1
+    7400006: Die2
+    7400008: Die3
+    7400010: Envi_Alert8_Eat1
+    7400012: Envi_Idle8_Eat1
+    7400014: Hit1
+    7400016: Hit2
+    7400018: Hit3
+    7400020: Idle
+    7400022: Jump_Down
+    7400024: Jump_Land
+    7400026: Run
+    7400028: Special_Eat1
+    7400030: Special_Gen_AOE1
+    7400032: Special_Gen_Buff1
+    7400034: Special_Gen_Cast1
+    7400036: Swamp_Spawn1
+    7400038: Walk
+    9500000: //RootNode
+    13700000: 01_-_Default
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

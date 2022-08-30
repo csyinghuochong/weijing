@@ -1,0 +1,170 @@
+fileFormatVersion: 2
+guid: 75623c23f2a1c374ea13c06737c6f7e4
+timeCreated: 1450803763
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip01
+    100002: Bip01_Head
+    100004: Bip01_Jaw
+    100006: Bip01_L_Calf
+    100008: Bip01_L_Clavicle
+    100010: Bip01_L_Finger0
+    100012: Bip01_L_Foot
+    100014: Bip01_L_Forearm
+    100016: Bip01_L_Hand
+    100018: Bip01_L_HorseLink
+    100020: Bip01_L_Thigh
+    100022: Bip01_L_Toe0
+    100024: Bip01_L_UpperArm
+    100026: Bip01_Neck
+    100028: Bip01_Pelvis
+    100030: Bip01_R_Calf
+    100032: Bip01_R_Clavicle
+    100034: Bip01_R_Finger0
+    100036: Bip01_R_Foot
+    100038: Bip01_R_Forearm
+    100040: Bip01_R_Hand
+    100042: Bip01_R_HorseLink
+    100044: Bip01_R_Thigh
+    100046: Bip01_R_Toe0
+    100048: Bip01_R_UpperArm
+    100050: Bip01_Spine
+    100052: Bip01_Spine1
+    100054: Bip01_Tail
+    100056: Bip01_Tail1
+    100058: Bip01_Tail2
+    100060: Bip01_Tail3
+    100062: root
+    100064: //RootNode
+    100066: warbeast_boss
+    100068: warbeast_boss.001
+    400000: Bip01
+    400002: Bip01_Head
+    400004: Bip01_Jaw
+    400006: Bip01_L_Calf
+    400008: Bip01_L_Clavicle
+    400010: Bip01_L_Finger0
+    400012: Bip01_L_Foot
+    400014: Bip01_L_Forearm
+    400016: Bip01_L_Hand
+    400018: Bip01_L_HorseLink
+    400020: Bip01_L_Thigh
+    400022: Bip01_L_Toe0
+    400024: Bip01_L_UpperArm
+    400026: Bip01_Neck
+    400028: Bip01_Pelvis
+    400030: Bip01_R_Calf
+    400032: Bip01_R_Clavicle
+    400034: Bip01_R_Finger0
+    400036: Bip01_R_Foot
+    400038: Bip01_R_Forearm
+    400040: Bip01_R_Hand
+    400042: Bip01_R_HorseLink
+    400044: Bip01_R_Thigh
+    400046: Bip01_R_Toe0
+    400048: Bip01_R_UpperArm
+    400050: Bip01_Spine
+    400052: Bip01_Spine1
+    400054: Bip01_Tail
+    400056: Bip01_Tail1
+    400058: Bip01_Tail2
+    400060: Bip01_Tail3
+    400062: root
+    400064: //RootNode
+    400066: warbeast_boss
+    400068: warbeast_boss.001
+    4300000: warbeast_boss.001
+    7400000: Armored_Spawn1
+    7400002: attack1
+    7400004: attack2
+    7400006: attack3
+    7400008: attack4
+    7400010: death_flight
+    7400012: death_land
+    7400014: die1
+    7400016: die2
+    7400018: Die_Boss
+    7400020: Envi_Alert10_CaveDen_
+    7400022: Envi_Alert2_Sleep
+    7400024: Envi_Idle10_CaveDen_D
+    7400026: Envi_Idle2_Sleep
+    7400028: Fidget1
+    7400030: Fidget2
+    7400032: hit1
+    7400034: hit2
+    7400036: hit3
+    7400038: idle
+    7400040: Jump_Down
+    7400042: Jump_Land
+    7400044: run
+    7400046: spawn1
+    7400048: Spawn2
+    7400050: Spawn3
+    7400052: special_howl
+    7400054: walk
+    9500000: //RootNode
+    13700000: warbeast_boss.001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

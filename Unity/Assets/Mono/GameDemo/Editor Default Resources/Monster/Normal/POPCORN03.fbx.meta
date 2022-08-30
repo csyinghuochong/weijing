@@ -1,0 +1,116 @@
+fileFormatVersion: 2
+guid: 64ad11a2d47d38e4386c6a4cd6efdec1
+timeCreated: 1450980788
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: B_Leg
+    100002: Base
+    100004: Body01
+    100006: F_Leg
+    100008: fungus_popcorn2a_mat
+    100010: Head01
+    100012: Head02
+    100014: L_Leg
+    100016: //RootNode
+    100018: popcorn03
+    100020: R_Leg
+    100022: root
+    400000: B_Leg
+    400002: Base
+    400004: Body01
+    400006: F_Leg
+    400008: fungus_popcorn2a_mat
+    400010: Head01
+    400012: Head02
+    400014: L_Leg
+    400016: //RootNode
+    400018: popcorn03
+    400020: R_Leg
+    400022: root
+    4300000: fungus_popcorn2a_mat
+    7400000: attack1
+    7400002: attack2
+    7400004: attack3
+    7400006: death_flight
+    7400008: death_land
+    7400010: die1
+    7400012: die2
+    7400014: envi_alert5_spawn
+    7400016: envi_idle5_spawn
+    7400018: Hit1
+    7400020: Idle
+    7400022: Jump_Down
+    7400024: Jump_Land
+    7400026: Jump_Up_Spawn
+    7400028: run
+    7400030: Spawn1
+    7400032: Special_Explode
+    7400034: Special_Spawn
+    7400036: stunned
+    7400038: walk
+    9500000: //RootNode
+    13700000: fungus_popcorn2a_mat
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

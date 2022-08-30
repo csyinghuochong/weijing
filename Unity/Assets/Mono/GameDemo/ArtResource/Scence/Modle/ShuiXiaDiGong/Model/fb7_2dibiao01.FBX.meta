@@ -1,0 +1,137 @@
+fileFormatVersion: 2
+guid: 8cf42ca7fd1408b4c89229392c8c9fd1
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: fb7_2dibiao01_001
+    100004: fb7_2dibiao01_002
+    100006: fb7_2dibiao01_003
+    100008: fb7_2dibiao01_004
+    100010: fb7_2dibiao01_005
+    100012: fb7_2dibiao01_006
+    100014: fb7_2dibiao01_007
+    100016: fb7_2dibiao01_008
+    100018: fb7_2dibiao01_009
+    100020: fb7_2dibiao01_0010
+    100022: Plane002
+    100024: fb7_2dibiao01_011
+    100026: fb7_shibi01_001
+    100028: fb7_shibi01_002
+    100030: fb7_shibi01_003
+    400000: //RootNode
+    400002: fb7_2dibiao01_001
+    400004: fb7_2dibiao01_002
+    400006: fb7_2dibiao01_003
+    400008: fb7_2dibiao01_004
+    400010: fb7_2dibiao01_005
+    400012: fb7_2dibiao01_006
+    400014: fb7_2dibiao01_007
+    400016: fb7_2dibiao01_008
+    400018: fb7_2dibiao01_009
+    400020: fb7_2dibiao01_0010
+    400022: Plane002
+    400024: fb7_2dibiao01_011
+    400026: fb7_shibi01_001
+    400028: fb7_shibi01_002
+    400030: fb7_shibi01_003
+    2300000: fb7_2dibiao01_001
+    2300002: fb7_2dibiao01_002
+    2300004: fb7_2dibiao01_003
+    2300006: fb7_2dibiao01_004
+    2300008: fb7_2dibiao01_005
+    2300010: fb7_2dibiao01_006
+    2300012: fb7_2dibiao01_007
+    2300014: fb7_2dibiao01_008
+    2300016: fb7_2dibiao01_009
+    2300018: fb7_2dibiao01_0010
+    2300020: Plane002
+    2300022: fb7_2dibiao01_011
+    2300024: fb7_shibi01_001
+    2300026: fb7_shibi01_002
+    2300028: fb7_shibi01_003
+    3300000: fb7_2dibiao01_001
+    3300002: fb7_2dibiao01_002
+    3300004: fb7_2dibiao01_003
+    3300006: fb7_2dibiao01_004
+    3300008: fb7_2dibiao01_005
+    3300010: fb7_2dibiao01_006
+    3300012: fb7_2dibiao01_007
+    3300014: fb7_2dibiao01_008
+    3300016: fb7_2dibiao01_009
+    3300018: fb7_2dibiao01_0010
+    3300020: Plane002
+    3300022: fb7_2dibiao01_011
+    3300024: fb7_shibi01_001
+    3300026: fb7_shibi01_002
+    3300028: fb7_shibi01_003
+    4300000: fb7_2dibiao01_006
+    4300002: fb7_2dibiao01_005
+    4300004: fb7_2dibiao01_008
+    4300006: fb7_2dibiao01_009
+    4300008: fb7_2dibiao01_007
+    4300010: fb7_2dibiao01_001
+    4300012: fb7_2dibiao01_004
+    4300014: fb7_2dibiao01_003
+    4300016: fb7_2dibiao01_002
+    4300018: fb7_2dibiao01_0010
+    4300020: Plane002
+    4300022: fb7_2dibiao01_011
+    4300024: fb7_shibi01_003
+    4300026: fb7_shibi01_001
+    4300028: fb7_shibi01_002
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

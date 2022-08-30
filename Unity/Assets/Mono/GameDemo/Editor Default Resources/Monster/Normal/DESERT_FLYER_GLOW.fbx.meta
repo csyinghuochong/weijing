@@ -1,0 +1,173 @@
+fileFormatVersion: 2
+guid: 99e03ebac9e4e7e4ea9cb83375deb703
+timeCreated: 1450717304
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip01
+    100002: Bip01_Finger2Opp
+    100004: Bip01_Finger2Opp02
+    100006: Bip01_Head
+    100008: Bip01_L_Calf
+    100010: Bip01_L_Clavicle
+    100012: Bip01_L_Finger1
+    100014: Bip01_L_Finger102
+    100016: Bip01_L_Finger2
+    100018: Bip01_L_Finger202
+    100020: Bip01_L_Foot
+    100022: Bip01_L_Forearm
+    100024: Bip01_L_Hand
+    100026: Bip01_L_Thigh
+    100028: Bip01_L_Toe0
+    100030: Bip01_L_UpperArm
+    100032: Bip01_L_Wing
+    100034: Bip01_Neck
+    100036: Bip01_Pelvis
+    100038: Bip01_R_Calf
+    100040: Bip01_R_Clavicle
+    100042: Bip01_R_Finger1
+    100044: Bip01_R_Finger102
+    100046: Bip01_R_Foot
+    100048: Bip01_R_Forearm
+    100050: Bip01_R_Hand
+    100052: Bip01_R_Thigh
+    100054: Bip01_R_Toe0
+    100056: Bip01_R_UpperArm
+    100058: Bip01_R_Wing
+    100060: Bip01_Spine
+    100062: Bip01_Spine1
+    100064: Bip01_Spine2
+    100066: Bip01_Tail
+    100068: Bip01_Tail1
+    100070: Bip01_Tail2
+    100072: Bip01_Tail3
+    100074: Bip01_Tail4
+    100076: Bip01_Tail5
+    100078: //RootNode
+    100080: desert_flyer_glow
+    100082: desertflyerglow
+    100084: root
+    400000: Bip01
+    400002: Bip01_Finger2Opp
+    400004: Bip01_Finger2Opp02
+    400006: Bip01_Head
+    400008: Bip01_L_Calf
+    400010: Bip01_L_Clavicle
+    400012: Bip01_L_Finger1
+    400014: Bip01_L_Finger102
+    400016: Bip01_L_Finger2
+    400018: Bip01_L_Finger202
+    400020: Bip01_L_Foot
+    400022: Bip01_L_Forearm
+    400024: Bip01_L_Hand
+    400026: Bip01_L_Thigh
+    400028: Bip01_L_Toe0
+    400030: Bip01_L_UpperArm
+    400032: Bip01_L_Wing
+    400034: Bip01_Neck
+    400036: Bip01_Pelvis
+    400038: Bip01_R_Calf
+    400040: Bip01_R_Clavicle
+    400042: Bip01_R_Finger1
+    400044: Bip01_R_Finger102
+    400046: Bip01_R_Foot
+    400048: Bip01_R_Forearm
+    400050: Bip01_R_Hand
+    400052: Bip01_R_Thigh
+    400054: Bip01_R_Toe0
+    400056: Bip01_R_UpperArm
+    400058: Bip01_R_Wing
+    400060: Bip01_Spine
+    400062: Bip01_Spine1
+    400064: Bip01_Spine2
+    400066: Bip01_Tail
+    400068: Bip01_Tail1
+    400070: Bip01_Tail2
+    400072: Bip01_Tail3
+    400074: Bip01_Tail4
+    400076: Bip01_Tail5
+    400078: //RootNode
+    400080: desert_flyer_glow
+    400082: desertflyerglow
+    400084: root
+    4300000: desertflyerglow
+    7400000: Attack1
+    7400002: Attack2
+    7400004: Die1
+    7400006: Die2
+    7400008: Idle
+    7400010: Jump_Down
+    7400012: Jump_Land
+    7400014: Mesh_Spawn1
+    7400016: Run
+    7400018: Sky_Spawn1
+    7400020: Special_Cast
+    7400022: Special_Divebomb
+    7400024: special_phase
+    7400026: Special_Teleport
+    7400028: Walk
+    9500000: //RootNode
+    13700000: desertflyerglow
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

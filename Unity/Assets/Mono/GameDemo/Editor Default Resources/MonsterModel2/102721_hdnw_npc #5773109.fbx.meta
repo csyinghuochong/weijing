@@ -1,0 +1,226 @@
+fileFormatVersion: 2
+guid: 6cac926f83894b446aace1236a1eaaa3
+timeCreated: 1537688148
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: 1
+    100002: 102700_hdnw_npc_mo_low
+    100004: 102700_hdnw_npc_mo_low_0
+    100006: 102721_hdnw_npc
+    100008: //RootNode
+    100010: Bip001
+    100012: Bip001 Head
+    100014: Bip001 L Calf
+    100016: Bip001 L Clavicle
+    100018: Bip001 L Finger0
+    100020: Bip001 L Finger01
+    100022: Bip001 L Finger1
+    100024: Bip001 L Finger11
+    100026: Bip001 L Finger2
+    100028: Bip001 L Finger21
+    100030: Bip001 L Foot
+    100032: Bip001 L Forearm
+    100034: Bip001 L Hand
+    100036: Bip001 L Thigh
+    100038: Bip001 L Toe0
+    100040: Bip001 L UpperArm
+    100042: Bip001 Neck
+    100044: Bip001 Pelvis
+    100046: Bip001 Prop1
+    100048: Bip001 Prop2
+    100050: Bip001 R Calf
+    100052: Bip001 R Clavicle
+    100054: Bip001 R Finger0
+    100056: Bip001 R Finger01
+    100058: Bip001 R Finger1
+    100060: Bip001 R Finger11
+    100062: Bip001 R Finger2
+    100064: Bip001 R Finger21
+    100066: Bip001 R Foot
+    100068: Bip001 R Forearm
+    100070: Bip001 R Hand
+    100072: Bip001 R Thigh
+    100074: Bip001 R Toe0
+    100076: Bip001 R UpperArm
+    100078: Bip001 Spine
+    100080: Bip001 Spine1
+    100082: Bone001
+    100084: Bone002
+    100086: Bone003
+    100088: Bone005
+    100090: Bone006
+    100092: Bone007
+    100094: Bone009
+    100096: Bone010
+    100098: Bone011
+    100100: Bone012
+    100102: Bone013
+    100104: Bone015
+    100106: D_Foot
+    100108: effect_haidaonvwang_juexing_jiaodi_shui
+    100110: effect_juexing_haidaonvhuang_shayu
+    100112: effect_juexing_haidaonvhuang_shayu 1
+    100114: effect_juexing_haidaonvhuang_shayu 2
+    100116: effect_juexing_haidaonvhuang_shayu_0
+    100118: effect_juexing_haidaonvhuang_shayu_0 1
+    100120: effect_juexing_haidaonvhuang_shayu_0 2
+    400000: 1
+    400002: 102700_hdnw_npc_mo_low
+    400004: 102700_hdnw_npc_mo_low_0
+    400006: 102721_hdnw_npc
+    400008: //RootNode
+    400010: Bip001
+    400012: Bip001 Head
+    400014: Bip001 L Calf
+    400016: Bip001 L Clavicle
+    400018: Bip001 L Finger0
+    400020: Bip001 L Finger01
+    400022: Bip001 L Finger1
+    400024: Bip001 L Finger11
+    400026: Bip001 L Finger2
+    400028: Bip001 L Finger21
+    400030: Bip001 L Foot
+    400032: Bip001 L Forearm
+    400034: Bip001 L Hand
+    400036: Bip001 L Thigh
+    400038: Bip001 L Toe0
+    400040: Bip001 L UpperArm
+    400042: Bip001 Neck
+    400044: Bip001 Pelvis
+    400046: Bip001 Prop1
+    400048: Bip001 Prop2
+    400050: Bip001 R Calf
+    400052: Bip001 R Clavicle
+    400054: Bip001 R Finger0
+    400056: Bip001 R Finger01
+    400058: Bip001 R Finger1
+    400060: Bip001 R Finger11
+    400062: Bip001 R Finger2
+    400064: Bip001 R Finger21
+    400066: Bip001 R Foot
+    400068: Bip001 R Forearm
+    400070: Bip001 R Hand
+    400072: Bip001 R Thigh
+    400074: Bip001 R Toe0
+    400076: Bip001 R UpperArm
+    400078: Bip001 Spine
+    400080: Bip001 Spine1
+    400082: Bone001
+    400084: Bone002
+    400086: Bone003
+    400088: Bone005
+    400090: Bone006
+    400092: Bone007
+    400094: Bone009
+    400096: Bone010
+    400098: Bone011
+    400100: Bone012
+    400102: Bone013
+    400104: Bone015
+    400106: D_Foot
+    400108: effect_haidaonvwang_juexing_jiaodi_shui
+    400110: effect_juexing_haidaonvhuang_shayu
+    400112: effect_juexing_haidaonvhuang_shayu 1
+    400114: effect_juexing_haidaonvhuang_shayu 2
+    400116: effect_juexing_haidaonvhuang_shayu_0
+    400118: effect_juexing_haidaonvhuang_shayu_0 1
+    400120: effect_juexing_haidaonvhuang_shayu_0 2
+    2300000: effect_juexing_haidaonvhuang_shayu_0
+    2300002: effect_juexing_haidaonvhuang_shayu_0 1
+    2300004: effect_juexing_haidaonvhuang_shayu_0 2
+    3300000: effect_juexing_haidaonvhuang_shayu_0
+    3300002: effect_juexing_haidaonvhuang_shayu_0 1
+    3300004: effect_juexing_haidaonvhuang_shayu_0 2
+    4300000: 102700_hdnw_npc_mo_low_0
+    4300002: effect_juexing_haidaonvhuang_shayu_0
+    4300004: effect_juexing_haidaonvhuang_shayu_0
+    4300006: effect_juexing_haidaonvhuang_shayu_0
+    7400000: idle
+    7400002: hurt
+    7400004: atk01
+    7400006: atk02
+    7400008: atk03
+    7400010: atk05
+    7400012: atk06
+    7400014: atk07
+    7400016: atk08
+    7400018: mv_tar21
+    7400020: mv_tar22
+    7400022: ready12
+    7400024: win
+    7400026: enter
+    7400028: yunxuan
+    7400030: shuimian
+    7400032: bigshow
+    9500000: //RootNode
+    13700000: 102700_hdnw_npc_mo_low_0
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

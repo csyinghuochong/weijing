@@ -1,0 +1,176 @@
+fileFormatVersion: 2
+guid: f29b9b4ed5382324e95b4a876099a9c1
+timeCreated: 1450801501
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: abdomen
+    100002: body_root
+    100004: fang
+    100006: head
+    100008: L_Leg_A_01
+    100010: L_Leg_A_02
+    100012: L_Leg_A_03
+    100014: L_Leg_B_01
+    100016: L_Leg_B_02
+    100018: L_Leg_B_03
+    100020: L_Leg_B_04
+    100022: L_Leg_C_01
+    100024: L_Leg_C_02
+    100026: L_Leg_C_03
+    100028: L_Leg_C_04
+    100030: L_Leg_D_01
+    100032: L_Leg_D_02
+    100034: L_Leg_D_03
+    100036: L_Leg_D_04
+    100038: R_Leg_A_01
+    100040: R_Leg_A_02
+    100042: R_Leg_A_03
+    100044: R_Leg_A_04
+    100046: R_Leg_B_01
+    100048: R_Leg_B_02
+    100050: R_Leg_B_03
+    100052: R_Leg_B_04
+    100054: R_Leg_C_01
+    100056: R_Leg_C_02
+    100058: R_Leg_C_03
+    100060: R_Leg_C_04
+    100062: R_Leg_D_01
+    100064: R_Leg_D_02
+    100066: R_Leg_D_03
+    100068: R_Leg_D_04
+    100070: root
+    100072: //RootNode
+    100074: spider
+    100076: spider.001
+    100078: stinger
+    400000: abdomen
+    400002: body_root
+    400004: fang
+    400006: head
+    400008: L_Leg_A_01
+    400010: L_Leg_A_02
+    400012: L_Leg_A_03
+    400014: L_Leg_B_01
+    400016: L_Leg_B_02
+    400018: L_Leg_B_03
+    400020: L_Leg_B_04
+    400022: L_Leg_C_01
+    400024: L_Leg_C_02
+    400026: L_Leg_C_03
+    400028: L_Leg_C_04
+    400030: L_Leg_D_01
+    400032: L_Leg_D_02
+    400034: L_Leg_D_03
+    400036: L_Leg_D_04
+    400038: R_Leg_A_01
+    400040: R_Leg_A_02
+    400042: R_Leg_A_03
+    400044: R_Leg_A_04
+    400046: R_Leg_B_01
+    400048: R_Leg_B_02
+    400050: R_Leg_B_03
+    400052: R_Leg_B_04
+    400054: R_Leg_C_01
+    400056: R_Leg_C_02
+    400058: R_Leg_C_03
+    400060: R_Leg_C_04
+    400062: R_Leg_D_01
+    400064: R_Leg_D_02
+    400066: R_Leg_D_03
+    400068: R_Leg_D_04
+    400070: root
+    400072: //RootNode
+    400074: spider
+    400076: spider.001
+    400078: stinger
+    4300000: spider.001
+    7400000: attack1
+    7400002: attack2
+    7400004: Ceiling_Spawn1
+    7400006: Ceiling_Spawn2
+    7400008: Ceiling_Spawn3
+    7400010: death_flight
+    7400012: death_land
+    7400014: die
+    7400016: Ground_Spawn1
+    7400018: idle
+    7400020: Mound_Spawn1
+    7400022: Pit_Spawn1
+    7400024: run
+    7400026: spawn1
+    7400028: spawn2
+    7400030: Special_eat
+    7400032: Special_Egg_Break
+    7400034: Special_Hop
+    7400036: special_spit
+    7400038: special_web
+    7400040: Spider_Spawn2_Explosi
+    7400042: Spider_Spawn_Explode
+    7400044: stunned
+    7400046: walk
+    9500000: //RootNode
+    13700000: spider.001
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

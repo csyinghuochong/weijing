@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: 8780146f8977c7f45af6d914123d69b4
+timeCreated: 1451500144
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: Bip01
+    100002: Bip01_Head
+    100004: Bip01_L_Calf
+    100006: Bip01_L_Clavicle
+    100008: Bip01_L_Finger0
+    100010: Bip01_L_Finger01
+    100012: Bip01_L_Finger1
+    100014: Bip01_L_Finger11
+    100016: Bip01_L_Foot
+    100018: Bip01_L_Forearm
+    100020: Bip01_L_Hand
+    100022: Bip01_L_Thigh
+    100024: Bip01_L_Toe0
+    100026: Bip01_L_UpperArm
+    100028: Bip01_Neck
+    100030: Bip01_Pelvis
+    100032: Bip01_R_Calf
+    100034: Bip01_R_Clavicle
+    100036: Bip01_R_Finger0
+    100038: Bip01_R_Finger01
+    100040: Bip01_R_Finger1
+    100042: Bip01_R_Finger11
+    100044: Bip01_R_Foot
+    100046: Bip01_R_Forearm
+    100048: Bip01_R_Hand
+    100050: Bip01_R_Thigh
+    100052: Bip01_R_Toe0
+    100054: Bip01_R_UpperArm
+    100056: Bip01_Spine
+    100058: Bip01_Spine1
+    100060: Bone01
+    100062: Bone02
+    100064: Bone03
+    100066: Bone04
+    100068: Bone05
+    100070: Bone06
+    100072: Bone07
+    100074: Bone14
+    100076: Bone16
+    100078: Bone18
+    100080: Bone19
+    100082: Bone20
+    100084: Bone21
+    100086: dwarves_undead_02
+    100088: root
+    100090: tag_leftarm
+    100092: tag_lefthand
+    100094: tag_righthand
+    100096: //RootNode
+    100098: undead_dwarf_general
+    400000: Bip01
+    400002: Bip01_Head
+    400004: Bip01_L_Calf
+    400006: Bip01_L_Clavicle
+    400008: Bip01_L_Finger0
+    400010: Bip01_L_Finger01
+    400012: Bip01_L_Finger1
+    400014: Bip01_L_Finger11
+    400016: Bip01_L_Foot
+    400018: Bip01_L_Forearm
+    400020: Bip01_L_Hand
+    400022: Bip01_L_Thigh
+    400024: Bip01_L_Toe0
+    400026: Bip01_L_UpperArm
+    400028: Bip01_Neck
+    400030: Bip01_Pelvis
+    400032: Bip01_R_Calf
+    400034: Bip01_R_Clavicle
+    400036: Bip01_R_Finger0
+    400038: Bip01_R_Finger01
+    400040: Bip01_R_Finger1
+    400042: Bip01_R_Finger11
+    400044: Bip01_R_Foot
+    400046: Bip01_R_Forearm
+    400048: Bip01_R_Hand
+    400050: Bip01_R_Thigh
+    400052: Bip01_R_Toe0
+    400054: Bip01_R_UpperArm
+    400056: Bip01_Spine
+    400058: Bip01_Spine1
+    400060: Bone01
+    400062: Bone02
+    400064: Bone03
+    400066: Bone04
+    400068: Bone05
+    400070: Bone06
+    400072: Bone07
+    400074: Bone14
+    400076: Bone16
+    400078: Bone18
+    400080: Bone19
+    400082: Bone20
+    400084: Bone21
+    400086: dwarves_undead_02
+    400088: root
+    400090: tag_leftarm
+    400092: tag_lefthand
+    400094: tag_righthand
+    400096: //RootNode
+    400098: undead_dwarf_general
+    4300000: dwarves_undead_02
+    7400000: Die
+    7400002: Hit
+    7400004: Idle
+    7400006: Lslash1
+    7400008: Lslash2
+    7400010: Rslash1
+    7400012: Rslash2
+    7400014: Run
+    7400016: Stunned
+    7400018: Throw
+    7400020: Walk
+    9500000: //RootNode
+    13700000: dwarves_undead_02
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

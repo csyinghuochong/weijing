@@ -1,0 +1,110 @@
+fileFormatVersion: 2
+guid: b3e4eb2df5f768045bc9506d70d3e721
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: environment_Building_fenghuotai_f01
+    100004: environment_Building_fenghuotai_f02
+    100006: environment_Building_fenghuotai_f03
+    100008: environment_Building_fenghuotai_f04
+    100010: environment_Building_fenghuotai_f05
+    100012: environment_Building_fenghuotai_f06
+    100014: environment_Building_fenghuotai_f07
+    100016: environment_Building_fenghuotai_f08
+    400000: //RootNode
+    400002: environment_Building_fenghuotai_f01
+    400004: environment_Building_fenghuotai_f02
+    400006: environment_Building_fenghuotai_f03
+    400008: environment_Building_fenghuotai_f04
+    400010: environment_Building_fenghuotai_f05
+    400012: environment_Building_fenghuotai_f06
+    400014: environment_Building_fenghuotai_f07
+    400016: environment_Building_fenghuotai_f08
+    2300000: environment_Building_fenghuotai_f01
+    2300002: environment_Building_fenghuotai_f02
+    2300004: environment_Building_fenghuotai_f03
+    2300006: environment_Building_fenghuotai_f04
+    2300008: environment_Building_fenghuotai_f05
+    2300010: environment_Building_fenghuotai_f06
+    2300012: environment_Building_fenghuotai_f07
+    2300014: environment_Building_fenghuotai_f08
+    3300000: environment_Building_fenghuotai_f01
+    3300002: environment_Building_fenghuotai_f02
+    3300004: environment_Building_fenghuotai_f03
+    3300006: environment_Building_fenghuotai_f04
+    3300008: environment_Building_fenghuotai_f05
+    3300010: environment_Building_fenghuotai_f06
+    3300012: environment_Building_fenghuotai_f07
+    3300014: environment_Building_fenghuotai_f08
+    4300000: environment_Building_fenghuotai_f01
+    4300002: environment_Building_fenghuotai_f02
+    4300004: environment_Building_fenghuotai_f03
+    4300006: environment_Building_fenghuotai_f08
+    4300008: environment_Building_fenghuotai_f04
+    4300010: environment_Building_fenghuotai_f05
+    4300012: environment_Building_fenghuotai_f06
+    4300014: environment_Building_fenghuotai_f07
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .100000001
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 1
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
