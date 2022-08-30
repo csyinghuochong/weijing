@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: 8561ee9b3676f0e438a3ad29b9e27a1b
+labels:
+- SDRPGPack1
+- SDRPGPack3
+- SDRPGPack4
+- SDRPGPack2
+- SDRPGPack5
+- toon
+- Ami
+- SD
+- Akane
+- mobile
+- cute
+- lowpoly
+- monster
+- sheep
+- cat
+- pet
+- dog
+- toy
+- SDDragon
+- Faye
+- Tree
+- dragon
+timeCreated: 1455372797
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: ikHandle1
+    100002: ikHandle2
+    100004: ikHandle3
+    100006: ikHandle4
+    100008: ikHandle5
+    100010: ikHandle6
+    100012: joint1
+    100014: joint10
+    100016: joint11
+    100018: joint12
+    100020: joint13
+    100022: joint14
+    100024: joint15
+    100026: joint16
+    100028: joint17
+    100030: joint18
+    100032: joint19
+    100034: joint2
+    100036: joint20
+    100038: joint3
+    100040: joint4
+    100042: joint5
+    100044: joint6
+    100046: joint7
+    100048: joint8
+    100050: joint9
+    100052: //RootNode
+    100054: magictree
+    100056: nurbsCircle1
+    100058: nurbsCircle2
+    100060: nurbsCircle3
+    100062: nurbsCircle4
+    100064: nurbsCircle5
+    100066: nurbsCircle6
+    100068: nurbsCircle7
+    100070: nurbsCircle8
+    100072: nurbsCircle9
+    400000: ikHandle1
+    400002: ikHandle2
+    400004: ikHandle3
+    400006: ikHandle4
+    400008: ikHandle5
+    400010: ikHandle6
+    400012: joint1
+    400014: joint10
+    400016: joint11
+    400018: joint12
+    400020: joint13
+    400022: joint14
+    400024: joint15
+    400026: joint16
+    400028: joint17
+    400030: joint18
+    400032: joint19
+    400034: joint2
+    400036: joint20
+    400038: joint3
+    400040: joint4
+    400042: joint5
+    400044: joint6
+    400046: joint7
+    400048: joint8
+    400050: joint9
+    400052: //RootNode
+    400054: magictree
+    400056: nurbsCircle1
+    400058: nurbsCircle2
+    400060: nurbsCircle3
+    400062: nurbsCircle4
+    400064: nurbsCircle5
+    400066: nurbsCircle6
+    400068: nurbsCircle7
+    400070: nurbsCircle8
+    400072: nurbsCircle9
+    4300000: magictree
+    9500000: //RootNode
+    13700000: magictree
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 60
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

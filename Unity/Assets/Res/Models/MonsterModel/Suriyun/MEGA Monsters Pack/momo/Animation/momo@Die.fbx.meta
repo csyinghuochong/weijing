@@ -1,0 +1,145 @@
+fileFormatVersion: 2
+guid: 66e5d6044fd45f44a9dd3ea410cb3a10
+timeCreated: 1450499549
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: joint10
+    100002: joint11
+    100004: joint13
+    100006: joint14
+    100008: joint4
+    100010: joint5
+    100012: joint6
+    100014: joint7
+    100016: joint8
+    100018: joint9
+    100020: momo1
+    100022: //RootNode
+    400000: joint10
+    400002: joint11
+    400004: joint13
+    400006: joint14
+    400008: joint4
+    400010: joint5
+    400012: joint6
+    400014: joint7
+    400016: joint8
+    400018: joint9
+    400020: momo1
+    400022: //RootNode
+    7400000: Die
+    9500000: //RootNode
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 3
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Die
+      takeName: Take 001
+      firstFrame: 30
+      lastFrame: 49
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: momo1
+        weight: 1
+      - path: momo1/joint13
+        weight: 1
+      - path: momo1/joint13/joint4
+        weight: 1
+      - path: momo1/joint13/joint4/joint5
+        weight: 1
+      - path: momo1/joint13/joint8
+        weight: 1
+      - path: momo1/joint13/joint8/joint9
+        weight: 1
+      - path: momo1/joint14
+        weight: 1
+      - path: momo1/joint14/joint6
+        weight: 1
+      - path: momo1/joint14/joint6/joint7
+        weight: 1
+      - path: momo1/joint14/joint10
+        weight: 1
+      - path: momo1/joint14/joint10/joint11
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 14
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

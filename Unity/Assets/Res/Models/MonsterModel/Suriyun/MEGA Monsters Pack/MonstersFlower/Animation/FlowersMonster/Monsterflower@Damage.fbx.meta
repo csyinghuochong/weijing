@@ -1,0 +1,173 @@
+fileFormatVersion: 2
+guid: 07199f3b23d53694c903c14e9c835022
+timeCreated: 1460086369
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Flower_monster
+    100002: joint1
+    100004: joint10
+    100006: joint11
+    100008: joint12
+    100010: joint2
+    100012: joint3
+    100014: joint4
+    100016: joint5
+    100018: joint6
+    100020: joint7
+    100022: joint8
+    100024: joint9
+    100026: //RootNode
+    100028: nurbsCircle1
+    100030: nurbsCircle4
+    100032: nurbsCircle5
+    100034: nurbsCircle6
+    400000: Flower_monster
+    400002: joint1
+    400004: joint10
+    400006: joint11
+    400008: joint12
+    400010: joint2
+    400012: joint3
+    400014: joint4
+    400016: joint5
+    400018: joint6
+    400020: joint7
+    400022: joint8
+    400024: joint9
+    400026: //RootNode
+    400028: nurbsCircle1
+    400030: nurbsCircle4
+    400032: nurbsCircle5
+    400034: nurbsCircle6
+    4300000: Flower_monster
+    7400000: Damage
+    9500000: //RootNode
+    13700000: Flower_monster
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Damage
+      takeName: Monsterflower@Damage
+      firstFrame: 70
+      lastFrame: 90
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: nurbsCircle1
+        weight: 1
+      - path: nurbsCircle1/joint10
+        weight: 1
+      - path: nurbsCircle1/joint10/joint11
+        weight: 1
+      - path: nurbsCircle1/joint10/joint11/joint12
+        weight: 1
+      - path: nurbsCircle1/joint10/joint11/joint12/joint1
+        weight: 1
+      - path: nurbsCircle1/joint10/joint11/joint12/joint1/joint2
+        weight: 1
+      - path: nurbsCircle1/joint10/joint11/joint12/joint1/joint3
+        weight: 1
+      - path: nurbsCircle1/joint10/joint11/joint12/joint1/joint4
+        weight: 1
+      - path: nurbsCircle1/joint10/joint11/joint12/joint1/joint5
+        weight: 1
+      - path: nurbsCircle1/joint10/joint11/joint12/joint1/joint6
+        weight: 1
+      - path: nurbsCircle1/joint10/joint11/joint12/joint1/joint7
+        weight: 1
+      - path: nurbsCircle1/joint10/joint11/joint12/joint1/joint8
+        weight: 1
+      - path: nurbsCircle1/joint10/joint11/joint12/joint1/joint9
+        weight: 1
+      - path: nurbsCircle1/nurbsCircle5
+        weight: 1
+      - path: nurbsCircle1/nurbsCircle5/nurbsCircle6
+        weight: 1
+      - path: nurbsCircle1/nurbsCircle5/nurbsCircle6/nurbsCircle4
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 70
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 30
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

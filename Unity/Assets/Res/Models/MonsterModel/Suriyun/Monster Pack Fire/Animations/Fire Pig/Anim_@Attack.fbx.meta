@@ -1,0 +1,183 @@
+fileFormatVersion: 2
+guid: 3b7d72dea1fb5ce4b93feb3bec79814c
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Center
+    100004: Foot_L1
+    100006: Foot_L2
+    100008: Foot_R1
+    100010: Foot_R2
+    100012: Head
+    100014: Head_end
+    100016: Hip_L1
+    100018: Hip_L2
+    100020: Hip_R1
+    100022: Hip_R2
+    100024: Horn1
+    100026: Horn2
+    100028: Horn3
+    100030: Knee_L1
+    100032: Knee_L2
+    100034: Knee_R1
+    100036: Knee_R2
+    100038: Neck
+    100040: Root
+    100042: Spine1
+    100044: Spine2
+    100046: Tail1
+    100048: Tail2
+    100050: Tail3
+    100052: Tail4
+    100054: Toes_L1
+    100056: Toes_L2
+    100058: Toes_R1
+    100060: Toes_R2
+    400000: //RootNode
+    400002: Center
+    400004: Foot_L1
+    400006: Foot_L2
+    400008: Foot_R1
+    400010: Foot_R2
+    400012: Head
+    400014: Head_end
+    400016: Hip_L1
+    400018: Hip_L2
+    400020: Hip_R1
+    400022: Hip_R2
+    400024: Horn1
+    400026: Horn2
+    400028: Horn3
+    400030: Knee_L1
+    400032: Knee_L2
+    400034: Knee_R1
+    400036: Knee_R2
+    400038: Neck
+    400040: Root
+    400042: Spine1
+    400044: Spine2
+    400046: Tail1
+    400048: Tail2
+    400050: Tail3
+    400052: Tail4
+    400054: Toes_L1
+    400056: Toes_L2
+    400058: Toes_R1
+    400060: Toes_R2
+    7400000: Attack
+    9500000: //RootNode
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: Attack
+      takeName: Anim_@Attack
+      firstFrame: 241
+      lastFrame: 254
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

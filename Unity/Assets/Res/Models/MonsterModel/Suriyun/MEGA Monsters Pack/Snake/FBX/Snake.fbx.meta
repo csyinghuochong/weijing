@@ -1,0 +1,135 @@
+fileFormatVersion: 2
+guid: e9805b93a8b527c44a33040db1da8e20
+labels:
+- SDRPGPack1
+- SDRPGPack2
+- SDRPGPack3
+- toon
+- SDRPGPack4
+- SDRPGPack5
+- Ami
+- Akane
+- SD
+- lowpoly
+- mobile
+- cute
+- monster
+- cat
+- sheep
+- pet
+- dog
+- toy
+- Sheeps
+- Snake
+timeCreated: 1458376182
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: nurbsCircle1
+    100002: s:ikHandle1
+    100004: s:ikHandle2
+    100006: s:joint10
+    100008: s:joint2
+    100010: s:joint3
+    100012: s:joint4
+    100014: s:joint5
+    100016: s:joint6
+    100018: s:joint7
+    100020: s:joint8
+    100022: s:joint9
+    100024: s:nurbsCircle1
+    100026: s:nurbsCircle2
+    100028: sjoint1
+    100030: snake 1
+    100032: snake1
+    100034: //RootNode
+    100036: Snake
+    400000: nurbsCircle1
+    400002: s:ikHandle1
+    400004: s:ikHandle2
+    400006: s:joint10
+    400008: s:joint2
+    400010: s:joint3
+    400012: s:joint4
+    400014: s:joint5
+    400016: s:joint6
+    400018: s:joint7
+    400020: s:joint8
+    400022: s:joint9
+    400024: s:nurbsCircle1
+    400026: s:nurbsCircle2
+    400028: sjoint1
+    400030: snake 1
+    400032: snake1
+    400034: //RootNode
+    400036: Snake
+    4300000: snake1
+    4300002: Snake
+    9500000: //RootNode
+    13700000: snake1
+    13700002: Snake
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 50
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 0
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

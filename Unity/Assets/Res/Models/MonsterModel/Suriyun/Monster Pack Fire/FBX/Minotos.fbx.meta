@@ -1,0 +1,153 @@
+fileFormatVersion: 2
+guid: 708083241c993cb428442bfa07d61be4
+ModelImporter:
+  serializedVersion: 23
+  fileIDToRecycleName:
+    100000: center
+    100002: claw_l1
+    100004: claw_l2
+    100006: claw_l3
+    100008: claw_l4
+    100010: claw_l5
+    100012: claw_l6
+    100014: claw_r1
+    100016: claw_r2
+    100018: claw_r3
+    100020: claw_r4
+    100022: claw_r5
+    100024: claw_r6
+    100026: finger_l1
+    100028: finger_l2
+    100030: finger_l3
+    100032: finger_r1
+    100034: finger_r2
+    100036: finger_r3
+    100038: hand_l
+    100040: hand_r
+    100042: head
+    100044: head_end
+    100046: //RootNode
+    100048: Minotos
+    100050: root
+    100052: spine1
+    100054: spine2
+    100056: spine3
+    400000: center
+    400002: claw_l1
+    400004: claw_l2
+    400006: claw_l3
+    400008: claw_l4
+    400010: claw_l5
+    400012: claw_l6
+    400014: claw_r1
+    400016: claw_r2
+    400018: claw_r3
+    400020: claw_r4
+    400022: claw_r5
+    400024: claw_r6
+    400026: finger_l1
+    400028: finger_l2
+    400030: finger_l3
+    400032: finger_r1
+    400034: finger_r2
+    400036: finger_r3
+    400038: hand_l
+    400040: hand_r
+    400042: head
+    400044: head_end
+    400046: //RootNode
+    400048: Minotos
+    400050: root
+    400052: spine1
+    400054: spine2
+    400056: spine3
+    2100000: M_Minotos
+    4300000: Minotos
+    9500000: //RootNode
+    13700000: Minotos
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 2
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    previousCalculatedGlobalScale: 0.01
+    hasPreviousCalculatedGlobalScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

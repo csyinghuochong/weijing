@@ -1,0 +1,177 @@
+fileFormatVersion: 2
+guid: afa68a8c93e4a324992ded732af571b9
+timeCreated: 1456972504
+licenseType: Store
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: boxcat_poly:pCube2
+    100002: boxcat_poly:pCube6
+    100004: boxcat_poly:pCube7
+    100006: boxcat_poly:pCube8
+    100008: boxcat_poly:pCube9
+    100010: cat
+    100012: //RootNode
+    100014: joint1
+    100016: joint10
+    100018: joint11
+    100020: joint2
+    100022: joint3
+    100024: joint5
+    100026: joint7
+    100028: joint9
+    100030: Mesh
+    400000: boxcat_poly:pCube2
+    400002: boxcat_poly:pCube6
+    400004: boxcat_poly:pCube7
+    400006: boxcat_poly:pCube8
+    400008: boxcat_poly:pCube9
+    400010: cat
+    400012: //RootNode
+    400014: joint1
+    400016: joint10
+    400018: joint11
+    400020: joint2
+    400022: joint3
+    400024: joint5
+    400026: joint7
+    400028: joint9
+    400030: Mesh
+    4300000: boxcat_poly:pCube2
+    4300002: boxcat_poly:pCube6
+    4300004: boxcat_poly:pCube7
+    4300006: boxcat_poly:pCube8
+    4300008: boxcat_poly:pCube9
+    4300010: cat
+    7400000: idle
+    9500000: //RootNode
+    13700000: boxcat_poly:pCube2
+    13700002: boxcat_poly:pCube6
+    13700004: boxcat_poly:pCube7
+    13700006: boxcat_poly:pCube8
+    13700008: boxcat_poly:pCube9
+    13700010: cat
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations:
+    - serializedVersion: 16
+      name: idle
+      takeName: CatBox@idle
+      firstFrame: 31
+      lastFrame: 95
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: joint1
+        weight: 1
+      - path: joint1/joint2
+        weight: 1
+      - path: joint1/joint2/joint3
+        weight: 1
+      - path: joint1/joint2/joint5
+        weight: 1
+      - path: joint1/joint2/joint7
+        weight: 1
+      - path: joint1/joint2/joint9
+        weight: 1
+      - path: joint10
+        weight: 1
+      - path: joint10/joint11
+        weight: 1
+      - path: Mesh
+        weight: 1
+      - path: Mesh/boxcat_poly:pCube2
+        weight: 1
+      - path: Mesh/boxcat_poly:pCube6
+        weight: 1
+      - path: Mesh/boxcat_poly:pCube7
+        weight: 1
+      - path: Mesh/boxcat_poly:pCube8
+        weight: 1
+      - path: Mesh/boxcat_poly:pCube9
+        weight: 1
+      - path: Mesh/cat
+        weight: 1
+      maskType: 0
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 31
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 30
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
