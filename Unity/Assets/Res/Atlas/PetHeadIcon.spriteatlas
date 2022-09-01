@@ -7,6 +7,7 @@ SpriteAtlas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PetHeadIcon
+  serializedVersion: 2
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -32,7 +33,6 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: a7e0869737ba5bd4ba94e8e531fe0d42, type: 3}
-    totalSpriteSurfaceArea: 762800
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -206,3 +206,4 @@ SpriteAtlas:
   m_RenderDataMap: {}
   m_Tag: PetHeadIcon
   m_IsVariant: 0
+  m_IsPlaceholder: 0
