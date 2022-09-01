@@ -24,6 +24,7 @@ _ReSharper.CSharp/
 *.sdf
 /CSharp/CSharp.sln.ide
 /Unity/Library
+/Unity/AndroidTarget
 /Unity/CSharp60Support/compilation log.txt
 /CSharp/CSharp.VC.opendb
 /Server/Server.VC.opendb
