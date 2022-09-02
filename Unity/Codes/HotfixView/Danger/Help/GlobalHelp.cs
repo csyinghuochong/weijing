@@ -12,7 +12,7 @@ namespace ET
 
         public static bool IsBanHaoMode
         {
-            get { return GameObject.Find("Global").GetComponent<Init>().BanHaoMode; }
+            get { return GameObject.Find("Global").GetComponent<Init>().VersionMode == VersionMode.BanHao; }
         }
 
         public static bool IsOutNetMode

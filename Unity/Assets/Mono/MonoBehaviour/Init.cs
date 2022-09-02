@@ -15,15 +15,22 @@ namespace ET
 		HuaTuo = 4,
 	}
 
+	public enum VersionMode
+	{
+		Dev = 1,
+		Test = 2,
+		BanHao = 3,
+	}
+
 	public class Init : MonoBehaviour
 	{
 
 		public bool Development;
 		public bool EditorMode;
-		public bool BanHaoMode;
 		public bool OueNetMode;
 		public int BigVersion = 1;
 		public GameObject Updater;
+		public VersionMode VersionMode;
 		public Action<bool> OnShareHandler;
 		public Action<string> OnAuthorizeHandler;
 		public Action<string> OnGetUserInfoHandler;

@@ -287,28 +287,22 @@ namespace ILRuntime.Runtime.Generated
 
         static object get_BanHaoMode_2(ref object o)
         {
-            return ((ET.Init)o).BanHaoMode;
+            return null;
         }
 
         static StackObject* CopyToStack_BanHaoMode_2(ref object o, ILIntepreter __intp, StackObject* __ret, IList<object> __mStack)
         {
-            var result_of_this_method = ((ET.Init)o).BanHaoMode;
-            __ret->ObjectType = ObjectTypes.Integer;
-            __ret->Value = result_of_this_method ? 1 : 0;
-            return __ret + 1;
+            return null;
         }
 
         static void set_BanHaoMode_2(ref object o, object v)
         {
-            ((ET.Init)o).BanHaoMode = (System.Boolean)v;
+           
         }
 
         static StackObject* AssignFromStack_BanHaoMode_2(ref object o, ILIntepreter __intp, StackObject* ptr_of_this_method, IList<object> __mStack)
         {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            System.Boolean @BanHaoMode = ptr_of_this_method->Value == 1;
-            ((ET.Init)o).BanHaoMode = @BanHaoMode;
-            return ptr_of_this_method;
+            return null;
         }
 
         static object get_OueNetMode_3(ref object o)
