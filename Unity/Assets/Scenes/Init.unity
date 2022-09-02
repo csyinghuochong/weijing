@@ -827,10 +827,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Development: 1
   EditorMode: 1
-  BanHaoMode: 0
   OueNetMode: 0
   BigVersion: 3
   Updater: {fileID: 2018631435}
+  VersionMode: 0
   FenXiang_Title: 
   FenXiang_Text: 
   FenXiang_ImageUrl: 
