@@ -17,8 +17,8 @@ namespace ET
 
 	public enum VersionMode
 	{
-		Test = 0,
-		Dev = 1,
+		Alpha = 0,              //仅内部人员使用。一般不向外部发布
+		Beta = 1,               //公开测试版
 		BanHao = 2,
 	}
 
@@ -82,7 +82,7 @@ namespace ET
 		public string javaActiveStr = "currentActivity";
 
 		public CodeMode CodeMode = CodeMode.Mono;
-		public VersionMode VersionMode = VersionMode.Test;
+		public VersionMode VersionMode = VersionMode.Alpha;
 
 		private void Awake()
 		{
