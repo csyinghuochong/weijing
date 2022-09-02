@@ -17,9 +17,9 @@ namespace ET
 
 	public enum VersionMode
 	{
+		Test = 0,
 		Dev = 1,
-		Test = 2,
-		BanHao = 3,
+		BanHao = 2,
 	}
 
 	public class Init : MonoBehaviour
@@ -30,7 +30,6 @@ namespace ET
 		public bool OueNetMode;
 		public int BigVersion = 1;
 		public GameObject Updater;
-		public VersionMode VersionMode;
 		public Action<bool> OnShareHandler;
 		public Action<string> OnAuthorizeHandler;
 		public Action<string> OnGetUserInfoHandler;
@@ -83,6 +82,7 @@ namespace ET
 		public string javaActiveStr = "currentActivity";
 
 		public CodeMode CodeMode = CodeMode.Mono;
+		public VersionMode VersionMode = VersionMode.Test;
 
 		private void Awake()
 		{
