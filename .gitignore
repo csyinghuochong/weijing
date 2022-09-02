@@ -19,6 +19,7 @@ Opt/
 bin/
 Bin/
 obj/
+Release/
 _ReSharper.CSharp/
 *.opensdf
 *.sdf

@@ -7,6 +7,7 @@ SpriteAtlas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ChengJiuIcon
+  serializedVersion: 2
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -32,7 +33,6 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: b1c47757b66bb2b4db3bdad36106a0c8, type: 3}
-    totalSpriteSurfaceArea: 1133504
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -100,3 +100,4 @@ SpriteAtlas:
   m_RenderDataMap: {}
   m_Tag: ChengJiuIcon
   m_IsVariant: 0
+  m_IsPlaceholder: 0

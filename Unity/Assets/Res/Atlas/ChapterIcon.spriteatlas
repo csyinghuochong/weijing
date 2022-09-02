@@ -7,6 +7,7 @@ SpriteAtlas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ChapterIcon
+  serializedVersion: 2
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -31,7 +32,6 @@ SpriteAtlas:
     secondaryTextureSettings: {}
     variantMultiplier: 1
     packables: []
-    totalSpriteSurfaceArea: 0
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -41,3 +41,4 @@ SpriteAtlas:
   m_RenderDataMap: {}
   m_Tag: ChapterIcon
   m_IsVariant: 0
+  m_IsPlaceholder: 0

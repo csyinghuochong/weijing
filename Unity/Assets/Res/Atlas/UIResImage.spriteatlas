@@ -7,6 +7,7 @@ SpriteAtlas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: UIResImage
+  serializedVersion: 2
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -44,7 +45,6 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: b7053586a6aff3348a9cc635a0f190c6, type: 3}
-    totalSpriteSurfaceArea: 10770760
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -912,3 +912,4 @@ SpriteAtlas:
   m_RenderDataMap: {}
   m_Tag: UIResImage
   m_IsVariant: 0
+  m_IsPlaceholder: 0
