@@ -66,7 +66,7 @@ namespace libx
         [SerializeField] private Step _step;
         //[SerializeField] private string gameScene = "Game.unity";
 
-        private string baseURL = "http://39.96.194.143/weijing/DLC/";
+        private string baseURL = "http://39.96.194.143/weijing1/DLC/";
         private bool development;
         private bool enableVFS = true;
 
@@ -119,8 +119,11 @@ namespace libx
                     dlcPath = "DLCBanHao";
                     break;
             }
-            baseURL = "http://39.96.194.143/weijing/" + dlcPath + "/";
+            baseURL = "http://39.96.194.143/weijing1/" + dlcPath + "/";
             baseURL = baseURL.EndsWith("/") ? baseURL : baseURL + "/";
+
+            UnityEngine.Debug.Log(baseURL);
+
             _downloader = gameObject.GetComponent<Downloader>();
             _downloader.onUpdate = OnUpdate;
             _downloader.onFinished = OnComplete;

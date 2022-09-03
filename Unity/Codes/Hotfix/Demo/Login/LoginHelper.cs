@@ -314,7 +314,7 @@ namespace ET
             {
                 // 创建一个ETModel层的Session
                 Center2C_Register r2CRegister;
-                IPAddress[] xxc = Dns.GetHostEntry("weijinggame.com").AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry("weijinggame.weijinggame.com").AddressList;
                 //走的中心服
                 string address = outNet ? $"{xxc[0]}:20304" : "127.0.0.1:20304";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
@@ -365,7 +365,7 @@ namespace ET
         {
             try
             {
-                IPAddress[] xxc = Dns.GetHostEntry("weijinggame.com").AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry("weijinggame.weijinggame.com").AddressList;
                 string address = $"{xxc[0]}:20305";
                 A2C_ServerList r2CSelectServer;
 

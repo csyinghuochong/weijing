@@ -272,7 +272,7 @@ namespace ET
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
             for (int i = 0; i < rolePetInfo.Ks.Count; i++)
             {
-                numericComponent.Set(rolePetInfo.Ks[i], rolePetInfo.Vs[i] * 100, notice);
+                numericComponent.Set(rolePetInfo.Ks[i], rolePetInfo.Vs[i], notice);
             }
         }
 
