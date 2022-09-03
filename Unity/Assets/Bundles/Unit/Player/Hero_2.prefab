@@ -4056,7 +4056,7 @@ Transform:
   m_GameObject: {fileID: 5408801491504486664}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_Children:
   - {fileID: 5528041564945626756}
   - {fileID: 4859395945381531683}
@@ -6129,13 +6129,7 @@ Animator:
   m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
-  m_WarningMessage: "\nBinding warning: Some generic clip(s) animate transforms that
-    are already bound by a Humanoid avatar. These transforms can only be changed
-    by Humanoid clips.\n\tTransform 'Hand_R'\n\tTransform 'Head'\n\tTransform 'Upper_Arm_L'\n\tTransform
-    'Foot_L'\n\tTransform 'center'\n\tTransform 'Finger_L_Thumb_Distal'\n\tTransform
-    'Lower_Leg_L'\n\tTransform 'Upper_Leg_R'\n\tTransform 'Spine'\n\tTransform 'Finger_R_Pinky_Intermediate'\n\tand
-    more ...\n\tFrom animation clip 'WGS_attackA3'\n\tFrom animation clip 'WGS_attackA1'\n\tFrom
-    animation clip 'WGS_attackA2'\n\tFrom animation clip 'WGS_attackA3'"
+  m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0

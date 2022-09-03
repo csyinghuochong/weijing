@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 98
+  version: 99
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -872,16 +872,20 @@ MonoBehaviour:
     path: Assets/Bundles/Effect/UIFightHintEffect.prefab
   - bundle: 55ef7382f5a509040b488a114573722e.unity3d
     path: Assets/Bundles/Independent/Code.prefab
-  - bundle: 5d5ed2f27bb0921a832546a343cf0fc1.unity3d
-    path: Assets/Bundles/Jpg/Back_3.jpg
-  - bundle: c7473273cda02d06f15b09e8d23d510e.unity3d
-    path: Assets/Bundles/Jpg/Back_4.jpg
+  - bundle: c0626a2a0659a7ac701da0c3f4834847.unity3d
+    path: Assets/Bundles/Jpg/Back_11.jpg
+  - bundle: c78b2ec0d6b77ead45c20f18adff1e23.unity3d
+    path: Assets/Bundles/Jpg/Back_12.jpg
+  - bundle: ef1c62ef3ead6bb50076780523dcdc0c.unity3d
+    path: Assets/Bundles/Jpg/Back_13.jpg
+  - bundle: 656dd1d5a88eb27aff1a83f8c0b2f0e6.unity3d
+    path: Assets/Bundles/Jpg/Back_14.jpg
+  - bundle: a26e030a2464376f89f8b13c2f1a1d4c.unity3d
+    path: Assets/Bundles/Jpg/Back_15.jpg
   - bundle: e0e09898e755094e47304d6f5d6b2a7e.unity3d
     path: Assets/Bundles/Jpg/Back_5.jpg
   - bundle: 474802fa950a8aebdb0b8d9f58114ffb.unity3d
     path: Assets/Bundles/Jpg/Back_7.jpg
-  - bundle: 18edb045051000e31c162388113d9baa.unity3d
-    path: Assets/Bundles/Jpg/Back_8.jpg
   - bundle: a575910516f77dd9fceeac75747da220.unity3d
     path: Assets/Bundles/Material/UI_Hui.mat
   - bundle: e16a1e2472be084e257bec59ed3b03c0.unity3d
@@ -1928,12 +1932,16 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Player/DropItem.prefab
   - bundle: e3ab81d7fa4ce4e2feefe9af4597699c.unity3d
     path: Assets/Bundles/Unit/Player/Hero_1.prefab
+  - bundle: d890eaf810e974fc7428cbb7a1f4517d.unity3d
+    path: Assets/Bundles/Unit/Player/Hero_1a.prefab
   - bundle: fbab36047f32a61103ddea02c94a1a8f.unity3d
     path: Assets/Bundles/Unit/Player/Hero_2.prefab
   - bundle: a4b9a4d1259e254af934c4ab9bc4845c.unity3d
     path: Assets/Bundles/Unit/Player/Hero_222.prefab
   - bundle: b09b23c0f2b8dd2b619ea17d80a503d8.unity3d
     path: Assets/Bundles/Unit/Player/Hero_2_BeiFen1.prefab
+  - bundle: 497e4cb9f8594a5407bf25029cdc8463.unity3d
+    path: Assets/Bundles/Unit/Player/Hero_2a.prefab
   - bundle: c9d864381ac46e8099d91da5d42db33f.unity3d
     path: Assets/Bundles/Unit/Player/Hero_copy_1.prefab
   - bundle: c72dd49d39e997a37f25e65b716ad045.unity3d
@@ -3145,12 +3153,18 @@ MonoBehaviour:
   - name: e3ab81d7fa4ce4e2feefe9af4597699c.unity3d
     assets:
     - Assets/Bundles/Unit/Player/Hero_1.prefab
+  - name: d890eaf810e974fc7428cbb7a1f4517d.unity3d
+    assets:
+    - Assets/Bundles/Unit/Player/Hero_1a.prefab
   - name: fbab36047f32a61103ddea02c94a1a8f.unity3d
     assets:
     - Assets/Bundles/Unit/Player/Hero_2.prefab
   - name: a4b9a4d1259e254af934c4ab9bc4845c.unity3d
     assets:
     - Assets/Bundles/Unit/Player/Hero_222.prefab
+  - name: 497e4cb9f8594a5407bf25029cdc8463.unity3d
+    assets:
+    - Assets/Bundles/Unit/Player/Hero_2a.prefab
   - name: b09b23c0f2b8dd2b619ea17d80a503d8.unity3d
     assets:
     - Assets/Bundles/Unit/Player/Hero_2_BeiFen1.prefab
@@ -3232,21 +3246,27 @@ MonoBehaviour:
   - name: 2ee7ad09f302976306a838dfcd5f9c87.unity3d
     assets:
     - Assets/Bundles/Atlas/UIResPro.prefab
-  - name: 5d5ed2f27bb0921a832546a343cf0fc1.unity3d
+  - name: c0626a2a0659a7ac701da0c3f4834847.unity3d
     assets:
-    - Assets/Bundles/Jpg/Back_3.jpg
-  - name: c7473273cda02d06f15b09e8d23d510e.unity3d
+    - Assets/Bundles/Jpg/Back_11.jpg
+  - name: c78b2ec0d6b77ead45c20f18adff1e23.unity3d
     assets:
-    - Assets/Bundles/Jpg/Back_4.jpg
+    - Assets/Bundles/Jpg/Back_12.jpg
+  - name: ef1c62ef3ead6bb50076780523dcdc0c.unity3d
+    assets:
+    - Assets/Bundles/Jpg/Back_13.jpg
+  - name: 656dd1d5a88eb27aff1a83f8c0b2f0e6.unity3d
+    assets:
+    - Assets/Bundles/Jpg/Back_14.jpg
+  - name: a26e030a2464376f89f8b13c2f1a1d4c.unity3d
+    assets:
+    - Assets/Bundles/Jpg/Back_15.jpg
   - name: e0e09898e755094e47304d6f5d6b2a7e.unity3d
     assets:
     - Assets/Bundles/Jpg/Back_5.jpg
   - name: 474802fa950a8aebdb0b8d9f58114ffb.unity3d
     assets:
     - Assets/Bundles/Jpg/Back_7.jpg
-  - name: 18edb045051000e31c162388113d9baa.unity3d
-    assets:
-    - Assets/Bundles/Jpg/Back_8.jpg
   - name: e152e539ac6ce2d6448b497da3a19350.unity3d
     assets:
     - Assets/Bundles/UI/UIHelp.prefab
@@ -6098,99 +6118,42 @@ MonoBehaviour:
   - name: 7ca84aa87bf4f5ab6b8baea5940734e4.unity3d
     assets:
     - Assets/Res/Effect/Other/Materials/34be2599.mat
-  - name: ac64cf699606e6fb105184aab0763fe2.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Effects/Attack.png
-  - name: 9d8578a1ff4c8a7e3b96651fb242d0ab.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Materials/Skin.mat
-  - name: 01c45b2ff02967f548838a31729eb098.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Textures/HairHighLight.png
-  - name: ab0bfb4a28e493611c959d02ac03d57d.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Textures/Skin.png
   - name: 08fe0097f28966aee502e0d7402d381b.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/tga/Main.mat
-  - name: 80c688a216ac78d280dff089429f061f.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Textures/Hair.png
-  - name: a2817d2eeaab9935e29f0c507f62685e.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Materials/Hair.mat
-  - name: b132566e053bf4724338904be88fa11c.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Textures/HairShadow.png
-  - name: 128395e31b48e68d8463f75f9a2c27cb.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Shion.fbx
-  - name: 0bcf06e5e22ea3b3440a785b05322864.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Textures/Body.png
-  - name: b9a5ddedfa678b6fcf9d43049e426256.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Effects/Attack.mat
-  - name: ce97eb3ef8fedd59fc4e077fae674894.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Materials/Body.mat
-  - name: efafe8c35f9582618acf3d623aebb776.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Textures/SkinShadow.png
-  - name: 99b767de54afed397d903a934b88c238.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Textures/SkinOutline.png
   - name: d82b847850be9d9660cf4910d4f19d14.unity3d
     assets:
     - Assets/Res/Models/Occ/RoseModel/MoFaShi/D_mofashi_3.png
   - name: f6d8e1e30303bdeff65513e5ba6e9ecc.unity3d
     assets:
     - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_dead.FBX
-  - name: c4654eab22dfbd9a39803ca7fbc0719c.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_Idle.FBX
-  - name: 4e76c087fb9f8aadbaff266480ce0cff.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_skill_1.FBX
-  - name: ffb5cc43157e4546eb32f012b6b682ea.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_run.FBX
-  - name: 10288c63ee518df8c28be82c99642d65.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/RoseMoFaShi.controller
-  - name: 9c31c910cbbf92f34e39576a8c8510a8.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_skill_2.FBX
-  - name: cbbb3092638e582990fd1802a8e93330.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Materials/Hero10002_nvfashiwuqi.mat
-  - name: be48fe54dbcb87d64042429901c07a4b.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_attack_Idle.FBX
-  - name: 7c5f4b32f4d87801194e2101cfe83edb.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_attack.FBX
-  - name: 243d75d11cc43d972d01b10fa9323e76.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Materials/D_mofashi.mat
-  - name: a2bfc558956efbb57752039c981e08ba.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/wuqi.jpg
   - name: 6d28f831dc88584c87597d012c06b7b6.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_02_R.prefab
+  - name: ac64cf699606e6fb105184aab0763fe2.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Effects/Attack.png
   - name: a13f0e80c67cce394476d64f8033cd3f.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_02_R.fbx
   - name: b309dcd0514eadd7eb3b90ae6c89771e.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Costume/Costume_01_00.mat
+  - name: 9d8578a1ff4c8a7e3b96651fb242d0ab.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Models/Materials/Skin.mat
+  - name: 10288c63ee518df8c28be82c99642d65.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/RoseMoFaShi.controller
   - name: b1e2e85ad1b6aa51f30a285373b0c8df.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/Eye-EyeBall_00_00.mat
   - name: 327b30e18be122f0d6282542f41edf6a.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_01_R.fbx
+  - name: 01c45b2ff02967f548838a31729eb098.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Models/Textures/HairHighLight.png
   - name: 6609a978e4e7a8e4728a3064c597fbee.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eye/eyeball_eyelight_TextureGuide.png
@@ -6209,21 +6172,24 @@ MonoBehaviour:
   - name: e8d5681a871d1198fc5f0f269570c815.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Eye_00_L.fbx
-  - name: 09aba95171974dbd261befd1b773c1d3.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Prefabs/Shion.prefab
   - name: 0532c314aec30db6a3d58d3851fd0a69.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Costume_01.fbx
   - name: 77e2660af71c9699049f1fbadeed613c.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eye/Eye_00_00.png
+  - name: ab0bfb4a28e493611c959d02ac03d57d.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Models/Textures/Skin.png
   - name: a8b095edd8729aa05f73408ec57b1b58.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/accessory/Hair_00_subAB_00.png
   - name: b95943454f980d7c943ac24fe208ab1d.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Hair/Hair_00/Hair_00_00.mat
+  - name: c4654eab22dfbd9a39803ca7fbc0719c.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_Idle.FBX
   - name: 7ade82881bcf37e697928eb16cd37bd5.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/_Bundle/Dummy Motions.controller
@@ -6245,6 +6211,9 @@ MonoBehaviour:
   - name: 2add8d236fcc862516ae790347584ee1.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Eye_00_R.fbx
+  - name: 80c688a216ac78d280dff089429f061f.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Models/Textures/Hair.png
   - name: 5ea67627ed684a78711c7a2b808accbc.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/RunA_Front.FBX
@@ -6257,9 +6226,18 @@ MonoBehaviour:
   - name: 6d3b8e87991b44f217fb734c66b54423.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Hair/Hair_00_Front.prefab
+  - name: a2817d2eeaab9935e29f0c507f62685e.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Models/Materials/Hair.mat
+  - name: b132566e053bf4724338904be88fa11c.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Models/Textures/HairShadow.png
   - name: 2f5edf59932cac2a5d34afa89d230972.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandC.FBX
+  - name: a2bfc558956efbb57752039c981e08ba.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/wuqi.jpg
   - name: 477c3bcac83803c5751acf4d7f030b65.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_02_L.fbx
@@ -6269,24 +6247,33 @@ MonoBehaviour:
   - name: cd357699746145ec22b79060bd518c8f.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Face/Face_00 BlendShapes.prefab
+  - name: 128395e31b48e68d8463f75f9a2c27cb.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Models/Shion.fbx
   - name: 066732bcd3716a66803fdbd7513ceaaa.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Hair/Hair_00_Base.prefab
   - name: f51ad62312eb5828cf277facf30f0033.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Accessory_00.fbx
+  - name: 0bcf06e5e22ea3b3440a785b05322864.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Models/Textures/Body.png
+  - name: 4e76c087fb9f8aadbaff266480ce0cff.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_skill_1.FBX
   - name: 40e1bd563e2cfa2aae064fd3336065db.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Hair_00_Front.fbx
   - name: 561b9f64200930d32a3821b933108c87.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Accessory/Accessory_00_00.mat
-  - name: 725a332e90cb3c5d9dcd30c4c877fbd6.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Animators/Shion.controller
   - name: 649e0e9534dec0499979e8d5f788c24f.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Hair/Hair_00/Hair_00_subAB_00.mat
+  - name: 7c5f4b32f4d87801194e2101cfe83edb.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_attack.FBX
   - name: ab5da315d2406138dd517e10324dde57.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/Eye_00_L.prefab
@@ -6296,36 +6283,69 @@ MonoBehaviour:
   - name: 59f79ecceb740741127cfffb6ecf5fa6.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Emotion 1.controller
+  - name: b9a5ddedfa678b6fcf9d43049e426256.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Effects/Attack.mat
   - name: 81784648cf126cfa001c30607e1028f2.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Squat A.controller
   - name: 1e924a807c0dc7345b678cc11d31a7fa.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/EyeLight_00.mat
+  - name: ffb5cc43157e4546eb32f012b6b682ea.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_run.FBX
   - name: 569a45b7ba403880949b337a49978f91.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Set/Set Costume_01 SD Unity-Chan.prefab
   - name: 0be0bf0cb0a3bdfa5ea5c7ee9e156245.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eyeblow/Eyeblow_00_00.png
+  - name: 9c31c910cbbf92f34e39576a8c8510a8.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_skill_2.FBX
   - name: 1ae33eacf7db74c1456ee4e2751f1d75.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Setting/_Humanoid And Add-Bone.mask
+  - name: ce97eb3ef8fedd59fc4e077fae674894.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Models/Materials/Body.mat
   - name: b84f7beee5fa5d461f879ff78f7a8ce7.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Hair_00_Base.fbx
-  - name: a702684dbe5cc2856cda04acc7f79828.unity3d
+  - name: efafe8c35f9582618acf3d623aebb776.unity3d
     assets:
-    - Assets/Res/Models/Warrior/Role_FaShi_2.controller
+    - Assets/Res/Models/Shion/Models/Textures/SkinShadow.png
+  - name: 99b767de54afed397d903a934b88c238.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Models/Textures/SkinOutline.png
+  - name: cbbb3092638e582990fd1802a8e93330.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Materials/Hero10002_nvfashiwuqi.mat
   - name: 17f5e9c0602b6d0c7f37856de522bcc4.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/Eye_00_R.prefab
+  - name: be48fe54dbcb87d64042429901c07a4b.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_attack_Idle.FBX
+  - name: 243d75d11cc43d972d01b10fa9323e76.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Materials/D_mofashi.mat
   - name: 6f9523615e9fe176102cf766a840f6bc.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_01_L.prefab
   - name: ad32c5c035064d8f6fc797244339b657.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Faceskin/FaceSkin_00_00.mat
+  - name: 09aba95171974dbd261befd1b773c1d3.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Prefabs/Shion.prefab
+  - name: 725a332e90cb3c5d9dcd30c4c877fbd6.unity3d
+    assets:
+    - Assets/Res/Models/Shion/Animators/Shion.controller
+  - name: a702684dbe5cc2856cda04acc7f79828.unity3d
+    assets:
+    - Assets/Res/Models/Warrior/Role_FaShi_2.controller
   - name: 8fbc3244159feeecd0abaef044a2020c.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Prop/Prop_03_GreatSword.FBX
@@ -6668,18 +6688,15 @@ MonoBehaviour:
   - name: 959622d2107afd80da5b1505fc409301.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_17.png
+  - name: 50252a38f6861313c929fe3056e798a6.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_3A.png
   - name: b37c2a6a93bccaa6af5a54a7e1ad0e11.unity3d
     assets:
     - Assets/Mono/ThirdRes/GUI Pro Kit Fantasy RPG/Particles/Textures/fx_glow2.png
-  - name: c7381305f1790e60a8edbd24394888ec.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_259.png
   - name: 93af8d8260129fee9473a577e455a553.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_247.png
-  - name: efe97ac75900eb267ccc37a497936b61.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_260.png
   - name: 320ba508dca749795fb00dfa6d88cda5.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_385.png
@@ -6956,9 +6973,6 @@ MonoBehaviour:
   - name: 938b7f57808043369a0ff0f79875f9c7.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_406.png
-  - name: 50252a38f6861313c929fe3056e798a6.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_3A.png
   - name: 5c8ab17af442f2c668dc3fd5a2da2dab.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_129.png
@@ -7109,6 +7123,9 @@ MonoBehaviour:
   - name: 694912983c83343fad5d526f4f3bb21e.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/GameUI/Img/UI_Image_206.jpg
+  - name: c7381305f1790e60a8edbd24394888ec.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_259.png
   - name: e9a5ef77cc4620206220ce20d6a39a62.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/GameUI/Img/Img_131.png
@@ -7250,6 +7267,9 @@ MonoBehaviour:
   - name: 5eaf3e4376a3e7769c55f454781bd675.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/Pro_17.png
+  - name: efe97ac75900eb267ccc37a497936b61.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_260.png
   - name: 5f6abd24902b28b8bf2db96cd38e4437.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Image/UI_Image_114.png
@@ -7259,9 +7279,6 @@ MonoBehaviour:
   - name: 2e45f63350462b2ae9170698facdc071.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_4.png
-  - name: 5b79e1907d302139005e0c88da53df26.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Button/Btn_61.png
   - name: 62bdcb08bded0364f170cf9c0133a90c.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_299.Png
@@ -7547,6 +7564,9 @@ MonoBehaviour:
   - name: d86d5235f17e35a72aab759d9ae7aab2.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_374.png
+  - name: 5b79e1907d302139005e0c88da53df26.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Button/Btn_61.png
   - name: 562147e9e1153c0cd7f6c6d17b3f8a15.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_372.png
@@ -7661,9 +7681,6 @@ MonoBehaviour:
   - name: bfae711853b031ed4529d95284b15e8e.unity3d
     assets:
     - Assets/Res/UI/UIRes/Back/Back_9.jpg
-  - name: c83ca77c8ac438600c528fd502e71914.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Back/t1.jpg
   - name: 4f4e572624b1499f85a36263f9416739.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_13.png
@@ -7838,9 +7855,6 @@ MonoBehaviour:
   - name: b88b07e83d709f2711682433b420b801.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_292.png
-  - name: 6344881f3908c177b62416ca65c764cc.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Back/t3.png
   - name: 054de3cfba17c760ec9d1fc67debcb92.unity3d
     assets:
     - Assets/Res/RenderTexture/RoleRenderTexture3.renderTexture
