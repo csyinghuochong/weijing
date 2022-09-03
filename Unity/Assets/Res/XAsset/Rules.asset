@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 99
+  version: 103
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -1938,22 +1938,14 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Player/Hero_2.prefab
   - bundle: a4b9a4d1259e254af934c4ab9bc4845c.unity3d
     path: Assets/Bundles/Unit/Player/Hero_222.prefab
-  - bundle: b09b23c0f2b8dd2b619ea17d80a503d8.unity3d
-    path: Assets/Bundles/Unit/Player/Hero_2_BeiFen1.prefab
-  - bundle: 497e4cb9f8594a5407bf25029cdc8463.unity3d
-    path: Assets/Bundles/Unit/Player/Hero_2a.prefab
   - bundle: c9d864381ac46e8099d91da5d42db33f.unity3d
     path: Assets/Bundles/Unit/Player/Hero_copy_1.prefab
   - bundle: c72dd49d39e997a37f25e65b716ad045.unity3d
     path: Assets/Bundles/Unit/Player/Rose.prefab
   - bundle: 7bfebca54c590cc4d2a3091a591a6e76.unity3d
     path: Assets/Bundles/Unit/Player/Set Costume 01 SD Unity-Chan (1).prefab
-  - bundle: 9a98e26ab5231f7cfd2e87a6f4e92f0c.unity3d
-    path: Assets/Bundles/Unit/Player/Warrior.prefab
   - bundle: 36a3573b9df81a88b3a3b2b9d52e2a0b.unity3d
     path: Assets/Bundles/Unit/Player/ZuoQiShowSet.prefab
-  - bundle: 2d1de22062b4d1a650d5af082dca3295.unity3d
-    path: Assets/Bundles/Unit/Player/zhanshi123/GameObject.prefab
   - bundle: 95893c91049bf797ea499153dd6d559f.unity3d
     path: Assets/Bundles/Unit/Player/zhanshi_jian.prefab
   - bundle: 2efc619c3f96e68cc7eaeffd09addad3.unity3d
@@ -3162,12 +3154,6 @@ MonoBehaviour:
   - name: a4b9a4d1259e254af934c4ab9bc4845c.unity3d
     assets:
     - Assets/Bundles/Unit/Player/Hero_222.prefab
-  - name: 497e4cb9f8594a5407bf25029cdc8463.unity3d
-    assets:
-    - Assets/Bundles/Unit/Player/Hero_2a.prefab
-  - name: b09b23c0f2b8dd2b619ea17d80a503d8.unity3d
-    assets:
-    - Assets/Bundles/Unit/Player/Hero_2_BeiFen1.prefab
   - name: c9d864381ac46e8099d91da5d42db33f.unity3d
     assets:
     - Assets/Bundles/Unit/Player/Hero_copy_1.prefab
@@ -3177,18 +3163,12 @@ MonoBehaviour:
   - name: 7bfebca54c590cc4d2a3091a591a6e76.unity3d
     assets:
     - Assets/Bundles/Unit/Player/Set Costume 01 SD Unity-Chan (1).prefab
-  - name: 9a98e26ab5231f7cfd2e87a6f4e92f0c.unity3d
-    assets:
-    - Assets/Bundles/Unit/Player/Warrior.prefab
   - name: 95893c91049bf797ea499153dd6d559f.unity3d
     assets:
     - Assets/Bundles/Unit/Player/zhanshi_jian.prefab
   - name: 36a3573b9df81a88b3a3b2b9d52e2a0b.unity3d
     assets:
     - Assets/Bundles/Unit/Player/ZuoQiShowSet.prefab
-  - name: 2d1de22062b4d1a650d5af082dca3295.unity3d
-    assets:
-    - Assets/Bundles/Unit/Player/zhanshi123/GameObject.prefab
   - name: 896b77adb10b81f028316a4d264e87c1.unity3d
     assets:
     - Assets/Bundles/Atlas/BuffIcon.prefab
@@ -5014,11 +4994,10 @@ MonoBehaviour:
     - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonBasicOutline.shader
     - Assets/Res/MonsterModel/Monster/M09001/texture/ToonBasicOutline.shader
     - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonLitOutline.shader
-    - Assets/Bundles/Unit/Player/zhanshi123/Toony-BasicOutline.shader
+    - Assets/Res/Models/Occ/zhanshi123/Toony-BasicOutline.shader
     - Assets/Res/Models/Warrior/Suriyun/UnityChanShader/Shader/Unitychan_chara_hada.shader
     - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/Toon_ShadingGradeMap.shader
     - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/ToonColor_ShadingGradeMap.shader
-    - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonBasicOutlineRose.shader
     - Assets/TextMesh Pro/Shaders/TMP_SDF.shader
     - Assets/Res/Effect/BackBlur/BackBlur.shader
     - Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
@@ -5067,21 +5046,16 @@ MonoBehaviour:
     - Assets/T4M/Shaders/ShaderModel2/Diffuse/T4M 4 Textures.shader
     - Assets/Mono/GameDemo/OldResources/Water (Basic)/Sources/Shaders/FX-Water Simple.shader
     - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonBasic.shader
-  - name: 5231d2c9c63e2fce9aca92e9cb9e2577.unity3d
+    - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/Toon_ShadingGradeMap_Mobile.shader
+  - name: f25cddffc2bb2503ef64e3bf9f053512.unity3d
     assets:
-    - Assets/Res/Models/Warrior/Role_ZhanShi.controller
-  - name: 5f3b8b1a66069b2fe9569bb70ab34f5f.unity3d
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/Act_Dao_2.fbx
+  - name: 6729dc8dc9aba75781c1a58ce96dc8ba.unity3d
     assets:
-    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/SkillTaiShou2.fbx
-  - name: 9a47478c625461dea0ae13f5c156417f.unity3d
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/Run.fbx
+  - name: 88b398cdbb836ee57c954639f583565c.unity3d
     assets:
-    - Assets/Bundles/Unit/Player/zhanshi/tga/zhanshi_jian.tga
-  - name: 2cf7b42b66e86329a5edac6868b2ade4.unity3d
-    assets:
-    - Assets/Bundles/Unit/Player/zhanshi/tga/zhanshi_meimao.tga
-  - name: ac41e4bd6d549a4acb1f5a5a4b693438.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/ZhanShi/Swordman_Animation.FBX
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/WeaponMaster Greatsword(WGS)/WGS_AttackA_set.FBX
   - name: f62168b45bf603d7e5c55bc82e7e1e2d.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/SkillChongji3.fbx
@@ -5091,48 +5065,111 @@ MonoBehaviour:
   - name: 83f717190b560ec3413ee1eef410b64a.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/tga/Lian.mat
-  - name: 77839bb8758aae5f80f33d1f14c9594a.unity3d
+  - name: a40a8db4670af3e77809cba11b68482c.unity3d
     assets:
-    - Assets/Bundles/Unit/Player/zhanshi/tga/zhanshi_yanjing.tga
-  - name: fd6a881b292070f733d3ff65de81e898.unity3d
+    - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_yanjing.tga
+  - name: 94047d328648bb0f8484b509e51afe8e.unity3d
     assets:
-    - Assets/Bundles/Unit/Player/zhanshi/tga/zhanshi_toufa.tga
-  - name: 03e03da0b2c51f959a7c2ed416bb8ae8.unity3d
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/ShiQu.fbx
+  - name: 7678a0a0e8f7c4b6b146213b1d52e9c4.unity3d
     assets:
-    - Assets/Bundles/Unit/Player/zhanshi/tga/zhanshi_shangyi.tga
-  - name: 0458fc11ee74a17380284b0c46fbc14a.unity3d
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/Skill_XuLi.fbx
+  - name: 5a140b59cd97108d87eb009d69d42e4e.unity3d
     assets:
-    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/BaseModel.FBX
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/Act_Dao_1.fbx
   - name: fc57fd3c177629ff0e0f1f8ccc013276.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/JumpAct2.fbx
-  - name: 289f3825b5df1220d1cf0c35bca27887.unity3d
+  - name: a643a1898ce00864ab626fb0d0f0b996.unity3d
     assets:
-    - Assets/Bundles/Unit/Player/zhanshi/tga/zhanshi_xiezi.tga
+    - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_xiezi.tga
   - name: 00d46a79e856a261ef7dc0ae72348d74.unity3d
     assets:
     - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@Rest.fbx
-  - name: fc43ac3edcc9c29104678af6bbd70fbc.unity3d
+  - name: 5a844e755b09610c40c9d7271bc3fa02.unity3d
     assets:
-    - Assets/Bundles/Unit/Player/zhanshi/tga/zhanshi_xiashen.tga
-  - name: c2f613053fd7991939263fa9172b2251.unity3d
+    - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_pifeng.tga
+  - name: be1b806ac21b81dcd0bc742021269c03.unity3d
     assets:
-    - Assets/Bundles/Unit/Player/zhanshi/tga/zhanshi_lian.tga
-  - name: ec0de237cfb026fbb627624ac2b031c1.unity3d
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/Idle5.fbx
+  - name: 09b4756a2d773b08d182b151ba1c2bf6.unity3d
     assets:
-    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/SkillHuiXuanJi5.fbx
-  - name: a56802893a9abe9adfbf55d8c307a0e0.unity3d
-    assets:
-    - Assets/Bundles/Unit/Player/zhanshi/tga/zhanshi_pifeng.tga
-  - name: e2228111673d6fc1b8ad250e548839ac.unity3d
-    assets:
-    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/SkillPenTu.fbx
-  - name: 063b1d375fc60f398487df1d2aefa388.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/Avatar_SD.fbx
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/Act_Jian_3.fbx
   - name: 322271888c7a7787d000699385939f67.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/SkillXuanFengZhan.fbx
+  - name: 063b1d375fc60f398487df1d2aefa388.unity3d
+    assets:
+    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/Avatar_SD.fbx
+  - name: cf22228312f4d56fe77f71b54227a011.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/Death.fbx
+  - name: 0d3edfde22cbb0a7968c54b5e2ee5570.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/Speak.fbx
+  - name: a58bf8f69eac418307ab163bf54bf9c8.unity3d
+    assets:
+    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@IdleB.fbx
+  - name: 6a96f2b65fe6350f68173837863276bd.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/Act_Dao_3.fbx
+  - name: 5231d2c9c63e2fce9aca92e9cb9e2577.unity3d
+    assets:
+    - Assets/Res/Models/Warrior/Role_ZhanShi.controller
+  - name: 5f3b8b1a66069b2fe9569bb70ab34f5f.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/SkillTaiShou2.fbx
+  - name: 0d536a6b4529dc5a383a89524d8c9c65.unity3d
+    assets:
+    - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_jian.tga
+  - name: 0f746d00c56cc65202e08cf2ef28c3ab.unity3d
+    assets:
+    - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_meimao.tga
+  - name: 7ac8ca3da2dadb931dd01a422302a869.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/idle4.fbx
+  - name: 0f5fd85e198bb9a07876d1c1c839980f.unity3d
+    assets:
+    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@Walk.fbx
+  - name: 60e0769bda4f0b769529fae656fa417f.unity3d
+    assets:
+    - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_toufa.tga
+  - name: 1ae33eacf7db74c1456ee4e2751f1d75.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animation Setting/_Humanoid And Add-Bone.mask
+  - name: 06c899daf4e635c1d693fdac401e430b.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/SkillTaiShou.fbx
+  - name: 636e76737fe1e2b97584cc4310907509.unity3d
+    assets:
+    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@Dash.fbx
+  - name: 46a8a412bd2a689eb399acedc137289f.unity3d
+    assets:
+    - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_shangyi.tga
+  - name: 0458fc11ee74a17380284b0c46fbc14a.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/BaseModel.FBX
+  - name: 21a0cd5ddfb48d6fa44d677183c1b97e.unity3d
+    assets:
+    - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_xiashen.tga
+  - name: 2d35fd346bf563ab57ed8aa1eed73d42.unity3d
+    assets:
+    - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_lian.tga
+  - name: ec0de237cfb026fbb627624ac2b031c1.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/SkillHuiXuanJi5.fbx
+  - name: 30831073fa110b9c8e5f5b795230e1f2.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/act1.fbx
+  - name: d4fde9fd8c9b04b043d3168280d46a2c.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/JumpAct.fbx
+  - name: e2228111673d6fc1b8ad250e548839ac.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/SkillPenTu.fbx
+  - name: f05064d1de3f72933db89b4b743e9872.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/SkillHuiJi.fbx
   - name: 65d8c280e125a353f3bc44deeb551a14.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/SkillJianChongji.fbx
@@ -5148,9 +5185,9 @@ MonoBehaviour:
   - name: 684477dd4d2b3cd1246e4878d563b691.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/tga/TouFa.mat
-  - name: 8232e4e6e095fcfeb639146d75140c33.unity3d
+  - name: 22fb17b2b5f6c24b01b3aad77ac2cb18.unity3d
     assets:
-    - Assets/Bundles/Unit/Player/zhanshi/tga/Tui.mat
+    - Assets/Res/Models/Occ/zhanshi/tga/Tui.mat
   - name: 81e1756d7d16e904365a150eef505590.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/tga/Xie.mat
@@ -6121,75 +6158,33 @@ MonoBehaviour:
   - name: 08fe0097f28966aee502e0d7402d381b.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/tga/Main.mat
-  - name: d82b847850be9d9660cf4910d4f19d14.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/D_mofashi_3.png
-  - name: f6d8e1e30303bdeff65513e5ba6e9ecc.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_dead.FBX
   - name: 6d28f831dc88584c87597d012c06b7b6.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_02_R.prefab
-  - name: ac64cf699606e6fb105184aab0763fe2.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Effects/Attack.png
-  - name: a13f0e80c67cce394476d64f8033cd3f.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_02_R.fbx
-  - name: b309dcd0514eadd7eb3b90ae6c89771e.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Costume/Costume_01_00.mat
-  - name: 9d8578a1ff4c8a7e3b96651fb242d0ab.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Materials/Skin.mat
-  - name: 10288c63ee518df8c28be82c99642d65.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/RoseMoFaShi.controller
   - name: b1e2e85ad1b6aa51f30a285373b0c8df.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/Eye-EyeBall_00_00.mat
-  - name: 327b30e18be122f0d6282542f41edf6a.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_01_R.fbx
-  - name: 01c45b2ff02967f548838a31729eb098.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Textures/HairHighLight.png
-  - name: 6609a978e4e7a8e4728a3064c597fbee.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eye/eyeball_eyelight_TextureGuide.png
   - name: 7ef4b0bf8687ba9ad0dde3324624ca1d.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Emotion 2.controller
   - name: ce11661be4f9218e0f792634f7ac439b.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eyeblow/Eyeblow_00_00.mat
-  - name: e6e2ddb1e0777e859db79e72742baf3f.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_01_R.prefab
   - name: cd5a510bda0f49312fccd5e2281fe3c6.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/Eye_00/Eye_00_00.mat
-  - name: e8d5681a871d1198fc5f0f269570c815.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Eye_00_L.fbx
-  - name: 0532c314aec30db6a3d58d3851fd0a69.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Costume_01.fbx
   - name: 77e2660af71c9699049f1fbadeed613c.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eye/Eye_00_00.png
-  - name: ab0bfb4a28e493611c959d02ac03d57d.unity3d
+  - name: 0532c314aec30db6a3d58d3851fd0a69.unity3d
     assets:
-    - Assets/Res/Models/Shion/Models/Textures/Skin.png
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Costume_01.fbx
   - name: a8b095edd8729aa05f73408ec57b1b58.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/accessory/Hair_00_subAB_00.png
   - name: b95943454f980d7c943ac24fe208ab1d.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Hair/Hair_00/Hair_00_00.mat
-  - name: c4654eab22dfbd9a39803ca7fbc0719c.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_Idle.FBX
   - name: 7ade82881bcf37e697928eb16cd37bd5.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/_Bundle/Dummy Motions.controller
@@ -6199,159 +6194,114 @@ MonoBehaviour:
   - name: a86baeed0fe713390899f89dcc522468.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/Faceskin/FaceSkin_00_00.png
-  - name: 1e78c7ed322e238b78d66f0794bee19d.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Hair/Hair_00_00.png
-  - name: 0137ad5c8cc8f1258683123216b1ce22.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_02_L.prefab
   - name: 7a17b82b36ae722d2c422e9decca4c74.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/Costume/Costume_01_00.png
-  - name: 2add8d236fcc862516ae790347584ee1.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Eye_00_R.fbx
-  - name: 80c688a216ac78d280dff089429f061f.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Textures/Hair.png
   - name: 5ea67627ed684a78711c7a2b808accbc.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/RunA_Front.FBX
-  - name: 918e9a653f890296482dae0bf4191965.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Accessory/Accessory_00.prefab
   - name: ed5071eff6fbdb3026f7c6c5b8851ceb.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Face_00.fbx
-  - name: 6d3b8e87991b44f217fb734c66b54423.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Hair/Hair_00_Front.prefab
-  - name: a2817d2eeaab9935e29f0c507f62685e.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Materials/Hair.mat
-  - name: b132566e053bf4724338904be88fa11c.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Textures/HairShadow.png
   - name: 2f5edf59932cac2a5d34afa89d230972.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandC.FBX
-  - name: a2bfc558956efbb57752039c981e08ba.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/wuqi.jpg
-  - name: 477c3bcac83803c5751acf4d7f030b65.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_02_L.fbx
   - name: 2559c9c554ce4517b258e5e11a389536.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_01_L.fbx
   - name: cd357699746145ec22b79060bd518c8f.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Face/Face_00 BlendShapes.prefab
-  - name: 128395e31b48e68d8463f75f9a2c27cb.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Shion.fbx
-  - name: 066732bcd3716a66803fdbd7513ceaaa.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Hair/Hair_00_Base.prefab
   - name: f51ad62312eb5828cf277facf30f0033.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Accessory_00.fbx
-  - name: 0bcf06e5e22ea3b3440a785b05322864.unity3d
+  - name: 649e0e9534dec0499979e8d5f788c24f.unity3d
     assets:
-    - Assets/Res/Models/Shion/Models/Textures/Body.png
-  - name: 4e76c087fb9f8aadbaff266480ce0cff.unity3d
+    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Hair/Hair_00/Hair_00_subAB_00.mat
+  - name: ffa542384dfc7e62dd4fefeb8cf87c6c.unity3d
     assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_skill_1.FBX
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandB.FBX
+  - name: 0be0bf0cb0a3bdfa5ea5c7ee9e156245.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eyeblow/Eyeblow_00_00.png
+  - name: 17f5e9c0602b6d0c7f37856de522bcc4.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/Eye_00_R.prefab
+  - name: ad32c5c035064d8f6fc797244339b657.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Faceskin/FaceSkin_00_00.mat
+  - name: a13f0e80c67cce394476d64f8033cd3f.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_02_R.fbx
+  - name: b309dcd0514eadd7eb3b90ae6c89771e.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Costume/Costume_01_00.mat
+  - name: 327b30e18be122f0d6282542f41edf6a.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_01_R.fbx
+  - name: e4fc831fe65642cadd94202e644a3970.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandA.FBX
+  - name: 6609a978e4e7a8e4728a3064c597fbee.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eye/eyeball_eyelight_TextureGuide.png
+  - name: e6e2ddb1e0777e859db79e72742baf3f.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_01_R.prefab
+  - name: e8d5681a871d1198fc5f0f269570c815.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Eye_00_L.fbx
+  - name: 1e78c7ed322e238b78d66f0794bee19d.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Hair/Hair_00_00.png
+  - name: 0137ad5c8cc8f1258683123216b1ce22.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_02_L.prefab
+  - name: 2add8d236fcc862516ae790347584ee1.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Eye_00_R.fbx
+  - name: 918e9a653f890296482dae0bf4191965.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Accessory/Accessory_00.prefab
+  - name: 6d3b8e87991b44f217fb734c66b54423.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Hair/Hair_00_Front.prefab
+  - name: 477c3bcac83803c5751acf4d7f030b65.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_02_L.fbx
+  - name: 066732bcd3716a66803fdbd7513ceaaa.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Hair/Hair_00_Base.prefab
   - name: 40e1bd563e2cfa2aae064fd3336065db.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Hair_00_Front.fbx
   - name: 561b9f64200930d32a3821b933108c87.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Accessory/Accessory_00_00.mat
-  - name: 649e0e9534dec0499979e8d5f788c24f.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Hair/Hair_00/Hair_00_subAB_00.mat
-  - name: 7c5f4b32f4d87801194e2101cfe83edb.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_attack.FBX
   - name: ab5da315d2406138dd517e10324dde57.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/Eye_00_L.prefab
-  - name: ffa542384dfc7e62dd4fefeb8cf87c6c.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandB.FBX
   - name: 59f79ecceb740741127cfffb6ecf5fa6.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Emotion 1.controller
-  - name: b9a5ddedfa678b6fcf9d43049e426256.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Effects/Attack.mat
-  - name: 81784648cf126cfa001c30607e1028f2.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Squat A.controller
   - name: 1e924a807c0dc7345b678cc11d31a7fa.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/EyeLight_00.mat
-  - name: ffb5cc43157e4546eb32f012b6b682ea.unity3d
+  - name: 81784648cf126cfa001c30607e1028f2.unity3d
     assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_run.FBX
+    - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Squat A.controller
   - name: 569a45b7ba403880949b337a49978f91.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Set/Set Costume_01 SD Unity-Chan.prefab
-  - name: 0be0bf0cb0a3bdfa5ea5c7ee9e156245.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eyeblow/Eyeblow_00_00.png
-  - name: 9c31c910cbbf92f34e39576a8c8510a8.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_skill_2.FBX
-  - name: 1ae33eacf7db74c1456ee4e2751f1d75.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animation Setting/_Humanoid And Add-Bone.mask
-  - name: ce97eb3ef8fedd59fc4e077fae674894.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Materials/Body.mat
   - name: b84f7beee5fa5d461f879ff78f7a8ce7.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Hair_00_Base.fbx
-  - name: efafe8c35f9582618acf3d623aebb776.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Textures/SkinShadow.png
-  - name: 99b767de54afed397d903a934b88c238.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Models/Textures/SkinOutline.png
-  - name: cbbb3092638e582990fd1802a8e93330.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Materials/Hero10002_nvfashiwuqi.mat
-  - name: 17f5e9c0602b6d0c7f37856de522bcc4.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/Eye_00_R.prefab
-  - name: be48fe54dbcb87d64042429901c07a4b.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_attack_Idle.FBX
-  - name: 243d75d11cc43d972d01b10fa9323e76.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Materials/D_mofashi.mat
   - name: 6f9523615e9fe176102cf766a840f6bc.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_01_L.prefab
-  - name: ad32c5c035064d8f6fc797244339b657.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Faceskin/FaceSkin_00_00.mat
-  - name: 09aba95171974dbd261befd1b773c1d3.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Prefabs/Shion.prefab
-  - name: 725a332e90cb3c5d9dcd30c4c877fbd6.unity3d
-    assets:
-    - Assets/Res/Models/Shion/Animators/Shion.controller
-  - name: a702684dbe5cc2856cda04acc7f79828.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Role_FaShi_2.controller
   - name: 8fbc3244159feeecd0abaef044a2020c.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Prop/Prop_03_GreatSword.FBX
-  - name: e4fc831fe65642cadd94202e644a3970.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandA.FBX
   - name: 57e702cd7ecb6335cf1a936ecc8add81.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/Prop/Prop_03_Manteau_00_00.png
@@ -6361,111 +6311,9 @@ MonoBehaviour:
   - name: 994ebd0d8d354d5bdfcac05af14c7176.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/C StandA.controller
-  - name: 0afa8cfb756f9767867024ea21693c6d.unity3d
+  - name: a566b135e8bd8361f3c22e47ba61700f.unity3d
     assets:
-    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@ATK1.fbx
-  - name: c1bec5fafe45d0ad4881946ca069efbf.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/UnityChanShader/FO_SKIN1.tga
-  - name: c21d16f1f4e68bc03cc47d3b2db2623c.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/Materials/Skin&Hair&Face/Hair05.mat
-  - name: 4ea8874510cdca5b9cddb8f7c6683128.unity3d
-    assets:
-    - Assets/Res/Effect/Weapon/PigeonCoopToolkit1/Effects/Trails/Icons/SmokeTrailIcon.psd
-  - name: 31c0b209d78452f92100e82d9448a618.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/Texture/Skin&Hair&Face/Face/Skin.png
-  - name: ea6005ffc117fc313a4455c427145431.unity3d
-    assets:
-    - Assets/Res/Effect/Weapon/PigeonCoopToolkit1/__Effects (Trails) Examples/Textures/swingFX.psd
-  - name: f47bb5416e4a97e9e66a3fa872d416fd.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@ATK2.fbx
-  - name: ed81c6d0550000fe8a060b12f6fbdf50.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/FBX/Weapon/Sword_M05.fbx
-  - name: f5c3fa9d72a9d8a7876c11dd15e7ace7.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/Texture/Skin&Hair&Face/Face/face02.png
-  - name: 00404a17b0447bcafe1012a1c0999119.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/Texture/M05/M05.png
-  - name: 8f3cf3f72de55319f5009bf38a9935f4.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/FBX/Characters/M05.fbx
-  - name: da32e9d4fdde1db398831254ed381fb8.unity3d
-    assets:
-    - Assets/Res/Effect/Weapon/PigeonCoopToolkit1/__Effects (Trails) Examples/Textures/SmokePlume.psd
-  - name: 74809756526c6717166eda83556ce975.unity3d
-    assets:
-    - Assets/Res/Effect/Weapon/PigeonCoopToolkit1/__Effects (Trails) Examples/Materials/FlameSwordTrail.mat
-  - name: b066b622e5bd152efbdec06086bce1d5.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@Aert.fbx
-  - name: 27c3abeeba53ccdf15caec29217491ca.unity3d
-    assets:
-    - Assets/Res/Effect/Weapon/PigeonCoopToolkit1/__Effects (Trails) Examples/Materials/SwordSwingMat.mat
-  - name: f296daae966a46220d867f62b57890fc.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/Texture/M05/Hair05.png
-  - name: 394de468ecad25300a5b9dfb2adf31fb.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/Materials/Skin&Hair&Face/Face/face02.mat
-  - name: f54d2831fa2e9293060e36c9b0e09c25.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@Die0.fbx
-  - name: 8ba91a78b85c5e205d771b53b1ea61e4.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/UnityChanShader/FO_RIM1.tga
-  - name: c19dbddd98679393cb2a46294a2a84d3.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@ATK3.fbx
-  - name: a58bf8f69eac418307ab163bf54bf9c8.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@IdleB.fbx
-  - name: 2b729e4f15598f36dd449e76763fffbe.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@ATK4.fbx
-  - name: 0f5fd85e198bb9a07876d1c1c839980f.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@Walk.fbx
-  - name: 561c8f2bfb7c5eaa0c6542d50ab3eb2e.unity3d
-    assets:
-    - Assets/Res/Effect/Weapon/PigeonCoopToolkit1/Effects/Trails/Icons/TrailIcon.psd
-  - name: 65bb6e9e57a9f68d85cac6de87e6b84c.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/Materials/Skin&Hair&Face/skin.mat
-  - name: 8b969b16f0e2669ed7160f21c6de5560.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/Texture/Weapon/SwordM05.png
-  - name: 636e76737fe1e2b97584cc4310907509.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@Dash.fbx
-  - name: d35d6298b76063fff5da47d26b81b4a8.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@Run.fbx
-  - name: 758006d5e7b1ee8f7829f097d8d5c0c5.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/UnityChanShader/FO_CLOTH1.tga
-  - name: 9759ae23f5b0422cd1d5c63278719efd.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/Texture/Skin&Hair&Face/Face/Face.png
-  - name: af047e4eebe4ecf9ba7723ed113a3ce9.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/Materials/Weapon/SwordM05.mat
-  - name: b06082caa098c24869c35ddbad7175bf.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/Materials/Skin&Hair&Face/Face/Face.mat
-  - name: fb5344e6ca63db3a5cd8bacf4295b2df.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/RedKnight/Materials/Characters/M05.mat
-  - name: 30df83f8a9c73e416731eb322e05dc60.unity3d
-    assets:
-    - Assets/Bundles/Unit/Player/zhanshi/tga/WuQi.mat
-  - name: d9631eaa63cd08ccac39bff0f74d5ed7.unity3d
-    assets:
-    - Assets/Bundles/Unit/Player/zhanshi/FBX/zhanshi_jian.FBX
+    - Assets/Res/Models/Occ/zhanshi/tga/WuQi.mat
   - name: 5becca8f232758648eaf149c35173c0a.unity3d
     assets:
     - "Assets/Res/UI/Font/\u963F\u91CC\u5DF4\u5DF4\u666E\u60E0\u4F53M.ttf"
@@ -13665,30 +13513,53 @@ MonoBehaviour:
   - name: 09f68d03c0f84aee7a552b07953810b3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/RongYan/Boss_FeiLong.controller
+  - name: e9f553612cc9013b173e2abd98b6add6.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandA_idleA.FBX
   - name: bd9af3087062e30ecdc296a80a7cc0c6.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_mogu_02.FBX
   - name: 0032dd82de56bd1d07b8e754610bbf10.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cao_01.FBX
+  - name: 11e5bef665afa65cc061a02e4243010a.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/_Guide/Texture/_DummyMesh.png
+  - name: ccadf587dbebfe70b22789ddd297f5de.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/_Guide/Materials/_maskGuide.mat
   - name: bd2b6558254ada274e0a7d2b19918472.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/G_Tree_06.prefab
+  - name: 137344cba5f9f1ae3eb02713c859d803.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandA_idleAXiuGai.FBX
   - name: 2d1ccb64fae2afdc911ed241201e4ff0.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shitou_05.FBX
   - name: c3d1f88ffa36b01a52e46fffdb52c733.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/texture/build/stsm_build_002.tga
+  - name: 30c32fdb45f3d4c326ad7682e48cfa01.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/WalkA_Front.FBX
+  - name: 6d98b66c0849d225b4cd46a1a855481b.unity3d
+    assets:
+    - Assets/Res/Models/Warrior/Role_FaShi.controller
   - name: 075f87de3e5a1b36e1707a665e5074e5.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cigu_01.FBX
+  - name: 2fca4170f1dd667c9249995e9f210cbd.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animation Setting/_Humanoid and Add-Bone
+      Mask Base.FBX
   - name: 4fc16e3af1356ffbc261bed7269e938d.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/objectB/scene/build/stsm_build_diaoxiang_001.FBX
-  - name: c871892f67e238e349988306f2406f86.unity3d
+  - name: de1cb27617903d1d2a6fa6014bec70b2.unity3d
     assets:
-    - Assets/Res/Models/Occ/RoseModel/ZhanShi/Materials/sword_Texture.mat
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/WeaponMaster Twin dagger(WTD)/WTD_AttackA
+      np.FBX
   - name: 0af28a43e0b3c82d4d9fec72d905b2ee.unity3d
     assets:
     - Assets/Res/TerrainTieTuSet/Textures/Ground/Ground18.tga
@@ -13707,18 +13578,24 @@ MonoBehaviour:
   - name: 7f2b5408c4f4cd9a7b9274c9fc88cd2a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Mushroom3A.fbx
+  - name: 5fd2314245a14527deab3baf001573fd.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/WeaponMaster Twin dagger(WTD)/WTD_Run_Front.FBX
+  - name: 676ac023f2248940e6306477f6b34dec.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/_Guide/Materials/_DummyMesh00.mat
   - name: 2ccf1b69b29b115622646b4fe90562a9.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cigu_02.FBX
-  - name: ace8c2a6081973f10d8a934a909c4cc2.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/ZhanShi/Swordman_No_Animation.FBX
   - name: 7197d726d6d6b4475870e799fb5bf5c3.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shu_01.FBX
   - name: 509ff7904340965f67661ac3b1cc5ee8.unity3d
     assets:
     - Assets/Res/TerrainTieTuSet/Textures/Grass/Grass5.tga
+  - name: 3cb411ac4add3c68e46a8fe06df513c6.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Action Adventure(Adv)/Emotion_Clap(StandC).FBX
   - name: fc708012501f5f985433bd4e79fa46ce.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cao_02.FBX
@@ -13740,15 +13617,12 @@ MonoBehaviour:
   - name: 45868f5be65d39d6f395c3884357e516.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/prefab/objectB/build/stsm_build_diaoxiang_001.prefab
+  - name: 4189f7401f0eae9b333fb1ef14c91d7c.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/_Guide/Texture/_maskGuide.png
   - name: 81d4db9f38596a7b4f056a4102e73cb8.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/Materials/city_pla_stone_03_mat.mat
-  - name: 28cb13b6cb30d92af896bf6d6fcd11db.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/ZhanShi/zsd2.png
-  - name: 6d98b66c0849d225b4cd46a1a855481b.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Role_FaShi.controller
   - name: 7c32e4432e0f237df57a341504bf6cbb.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/Texture/STONE_03.png
@@ -13767,6 +13641,9 @@ MonoBehaviour:
   - name: 539a129cdbe54694a2ff6cf57c57655e.unity3d
     assets:
     - Assets/Res/UI/UIRes/Back/Back_12.jpg
+  - name: d82b847850be9d9660cf4910d4f19d14.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/D_mofashi_3.png
   - name: e7d6a1acb107ba0bdee9e14586fcf3ff.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/LvUp/LvUp_Feather.png
@@ -13779,24 +13656,39 @@ MonoBehaviour:
   - name: dc4810d0135f31951e3a66f352f2760d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A13.FBX
+  - name: a2bfc558956efbb57752039c981e08ba.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/wuqi.jpg
   - name: 89548d759051ebbf3d518f1e07196b75.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_B1.FBX
   - name: 6c574aa3d6770e45db75f091472241b9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/Materials/GRASS_TUNDRA01.mat
+  - name: 4e76c087fb9f8aadbaff266480ce0cff.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_skill_1.FBX
   - name: 27e22890dea3f4e1cdc521075f25da75.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/LvUp/Text.mat
+  - name: 7c5f4b32f4d87801194e2101cfe83edb.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_attack.FBX
   - name: a58200e750fbae9e67fc81c5bc85a362.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Tree/Materials/grass_mat.007.mat
+  - name: c871892f67e238e349988306f2406f86.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/ZhanShi/Materials/sword_Texture.mat
   - name: 451986244bffc53c8695bb6e49def15e.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Tree/Materials/grass_mat.002.mat
   - name: 72bb83ceeff00221a9ee93df71b5675a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Image/UI_Image_88.png
+  - name: 243d75d11cc43d972d01b10fa9323e76.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Materials/D_mofashi.mat
   - name: c1ec33bfa8df99fb260a592fd498d567.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Image/UI_Image_137.png
@@ -13809,6 +13701,15 @@ MonoBehaviour:
   - name: 933e08ff27efb2eabdbd19865a0316c8.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_A13.prefab
+  - name: 10288c63ee518df8c28be82c99642d65.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/RoseMoFaShi.controller
+  - name: f6d8e1e30303bdeff65513e5ba6e9ecc.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_dead.FBX
+  - name: ace8c2a6081973f10d8a934a909c4cc2.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/ZhanShi/Swordman_No_Animation.FBX
   - name: 43aa4f2eda839178e1684d71d582d5ad.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/UGUI/UISet/Create/Create_ZhanShi.renderTexture
@@ -13819,6 +13720,9 @@ MonoBehaviour:
   - name: a6a37101e700aaacdc7cf7cf837f25b9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/LvUp/LvUp_Pillar.png
+  - name: c4654eab22dfbd9a39803ca7fbc0719c.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_Idle.FBX
   - name: 3c2dcc6ca9450e061184a46a3e2b926a.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Tree/Model/GRASS_03.fbx
@@ -13834,12 +13738,27 @@ MonoBehaviour:
   - name: c93f20b8328bb73d0c2d1530e87ad6d3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Button/UI_Btn_2_1.png
+  - name: ffb5cc43157e4546eb32f012b6b682ea.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_run.FBX
   - name: 3e3b9affee17e25a1bbf5a09fcd2467b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_B1.prefab
+  - name: 28cb13b6cb30d92af896bf6d6fcd11db.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/ZhanShi/zsd2.png
+  - name: 9c31c910cbbf92f34e39576a8c8510a8.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_skill_2.FBX
+  - name: cbbb3092638e582990fd1802a8e93330.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Materials/Hero10002_nvfashiwuqi.mat
   - name: a23e260ae36ee22ceb27bed7b1ae01e7.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/LvUp/Feather.mat
+  - name: be48fe54dbcb87d64042429901c07a4b.unity3d
+    assets:
+    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_attack_Idle.FBX
   - name: 1e54f55bbfee0a135699883e3e4e2935.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/LvUp/Materials/WarpGround.mat
