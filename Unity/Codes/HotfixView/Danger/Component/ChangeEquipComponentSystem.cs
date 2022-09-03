@@ -36,10 +36,10 @@ namespace ET
 
         public static void InitWeapon(this ChangeEquipComponent self, int equipId = 0)
         {
-            //if (UnitHelper.IsCanChangeEquip(self.GetParent<Unit>()))
-            //{
-            //    self.AddComponent<ChangeEquipHelper>().LoadEquipment(self.target);
-            //}
+            if (UnitHelper.IsCanChangeEquip(self.GetParent<Unit>()))
+            {
+                self.AddComponent<ChangeEquipHelper>().LoadEquipment(self.target);
+            }
 
             if (equipId != 0)
             {
