@@ -42,6 +42,8 @@ _ReSharper.CSharp/
 .idea/
 /Unity/Logs
 /Unity/Assets/StreamingAssets/
+/Unity/Assets/Bundles/Independent/Code.prefab
+/Unity/Assets/Bundles/Independent/Code.prefab.meta
 /netcoreapp2.0
 /Unity/Assets/StreamingAssets.meta
 .DS_Store
