@@ -157,7 +157,6 @@ namespace ET
             }
             
             LoginHelper.EnterGame(self.ZoneScene()).Coroutine();
-            self.ImageDi.SetActive(true);
         }
 
         //删除角色
