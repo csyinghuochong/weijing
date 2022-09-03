@@ -53,10 +53,10 @@ namespace ILRuntime.Runtime.Generated
             app.RegisterCLRFieldGetter(field, get_EditorMode_1);
             app.RegisterCLRFieldSetter(field, set_EditorMode_1);
             app.RegisterCLRFieldBinding(field, CopyToStack_EditorMode_1, AssignFromStack_EditorMode_1);
-            field = type.GetField("BanHaoMode", flag);
-            app.RegisterCLRFieldGetter(field, get_BanHaoMode_2);
-            app.RegisterCLRFieldSetter(field, set_BanHaoMode_2);
-            app.RegisterCLRFieldBinding(field, CopyToStack_BanHaoMode_2, AssignFromStack_BanHaoMode_2);
+            field = type.GetField("VersionMode", flag);
+            app.RegisterCLRFieldGetter(field, get_VersionMode_2);
+            app.RegisterCLRFieldSetter(field, set_VersionMode_2);
+            app.RegisterCLRFieldBinding(field, CopyToStack_VersionMode_2, AssignFromStack_VersionMode_2);
             field = type.GetField("OueNetMode", flag);
             app.RegisterCLRFieldGetter(field, get_OueNetMode_3);
             app.RegisterCLRFieldSetter(field, set_OueNetMode_3);
@@ -285,24 +285,28 @@ namespace ILRuntime.Runtime.Generated
             return ptr_of_this_method;
         }
 
-        static object get_BanHaoMode_2(ref object o)
+        static object get_VersionMode_2(ref object o)
         {
-            return null;
+            return ((ET.Init)o).VersionMode;
         }
 
-        static StackObject* CopyToStack_BanHaoMode_2(ref object o, ILIntepreter __intp, StackObject* __ret, IList<object> __mStack)
+        static StackObject* CopyToStack_VersionMode_2(ref object o, ILIntepreter __intp, StackObject* __ret, IList<object> __mStack)
         {
-            return null;
+            var result_of_this_method = ((ET.Init)o).VersionMode;
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static void set_BanHaoMode_2(ref object o, object v)
+        static void set_VersionMode_2(ref object o, object v)
         {
-           
+            ((ET.Init)o).VersionMode = (ET.VersionMode)v;
         }
 
-        static StackObject* AssignFromStack_BanHaoMode_2(ref object o, ILIntepreter __intp, StackObject* ptr_of_this_method, IList<object> __mStack)
+        static StackObject* AssignFromStack_VersionMode_2(ref object o, ILIntepreter __intp, StackObject* ptr_of_this_method, IList<object> __mStack)
         {
-            return null;
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            ET.VersionMode @VersionMode = (ET.VersionMode)typeof(ET.VersionMode).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)20);
+            ((ET.Init)o).VersionMode = @VersionMode;
+            return ptr_of_this_method;
         }
 
         static object get_OueNetMode_3(ref object o)

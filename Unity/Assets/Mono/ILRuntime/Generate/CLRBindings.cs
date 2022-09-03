@@ -89,6 +89,7 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_KeyValuePair_2_Int32_ILTypeInstance_Binding.Register(app);
             UnityEngine_Mathf_Binding.Register(app);
             ET_ETAsyncTaskMethodBuilder_1_ILTypeInstance_Binding.Register(app);
+            System_Collections_Generic_Dictionary_2_Int32_String_Binding.Register(app);
             ET_NetworkHelper_Binding.Register(app);
             System_Net_Dns_Binding.Register(app);
             System_Net_IPHostEntry_Binding.Register(app);
@@ -188,7 +189,6 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_List_1_Transform_Binding_Enumerator_Binding.Register(app);
             UnityEngine_Texture_Binding.Register(app);
             System_Collections_Generic_List_1_GameObject_Binding_Enumerator_Binding.Register(app);
-            System_Collections_Generic_Dictionary_2_Int32_String_Binding.Register(app);
             UnityEngine_RectTransformUtility_Binding.Register(app);
             UnityEngine_Camera_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_String_Binding.Register(app);
@@ -209,6 +209,9 @@ namespace ILRuntime.Runtime.Generated
             System_Text_RegularExpressions_Regex_Binding.Register(app);
             System_Collections_Generic_ICollection_1_String_Binding.Register(app);
             UnityEngine_PlayerPrefs_Binding.Register(app);
+            System_Collections_Generic_Dictionary_2_Int32_Int32_Binding.Register(app);
+            System_Collections_Generic_Dictionary_2_Int32_Int32_Binding_Enumerator_Binding.Register(app);
+            System_Collections_Generic_KeyValuePair_2_Int32_Int32_Binding.Register(app);
             UnityEngine_Animator_Binding.Register(app);
             ET_ETTask_1_SceneAssetRequest_Binding.Register(app);
             AdditiveHide_Binding.Register(app);
@@ -249,9 +252,6 @@ namespace ILRuntime.Runtime.Generated
             System_Action_2_ILTypeInstance_PointerEventData_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int64_GameObject_Binding.Register(app);
             ET_DoTweenHelp_Binding.Register(app);
-            System_Collections_Generic_Dictionary_2_Int32_Int32_Binding.Register(app);
-            System_Collections_Generic_Dictionary_2_Int32_Int32_Binding_Enumerator_Binding.Register(app);
-            System_Collections_Generic_KeyValuePair_2_Int32_Int32_Binding.Register(app);
             System_Action_1_Int64_Binding.Register(app);
             UnityEngine_UI_Slider_Binding.Register(app);
             UnityEngine_Events_UnityEvent_1_Single_Binding.Register(app);

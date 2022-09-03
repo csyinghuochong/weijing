@@ -275,9 +275,8 @@ namespace ET
 			//请求服务器列表信息s
 			try
 			{
-				bool IsReleaseMode = GameObject.Find("Global").GetComponent<Init>().OueNetMode;
 				int erroCode = ErrorCore.ERR_Success;
-				if (IsReleaseMode)
+				if (GlobalHelp.IsOutNetMode)
 				{
 					erroCode = await LoginHelper.OnServerListAsyncRelease(self.DomainScene(), GlobalHelp.VersionMode);
 				}

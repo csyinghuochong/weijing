@@ -122,7 +122,7 @@ namespace libx
             baseURL = "http://39.96.194.143/weijing1/" + dlcPath + "/";
             baseURL = baseURL.EndsWith("/") ? baseURL : baseURL + "/";
 
-            UnityEngine.Debug.Log(baseURL);
+            UnityEngine.Debug.Log("baseURL  " +  baseURL);
 
             _downloader = gameObject.GetComponent<Downloader>();
             _downloader.onUpdate = OnUpdate;

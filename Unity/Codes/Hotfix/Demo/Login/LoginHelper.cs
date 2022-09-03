@@ -316,7 +316,7 @@ namespace ET
                 Center2C_Register r2CRegister;
                 IPAddress[] xxc = Dns.GetHostEntry("weijinggame.weijinggame.com").AddressList;
                 //走的中心服
-                string address = outNet ? $"{xxc[0]}:20304" : "127.0.0.1:20304";
+                string address = outNet ? $"{xxc[0]}:{GetRegisterPort(versionCode)}" : $"127.0.0.1:{GetRegisterPort(versionCode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CRegister = (Center2C_Register)await session.Call(new C2Center_Register() { Account = account, Password = password });
@@ -360,13 +360,23 @@ namespace ET
             }
         }
 
+        public static int GetRegisterPort(VersionMode versionMode)
+        {
+            return 20304;
+        }
+
+        public static int GetLoginPort(VersionMode versionMode)
+        {
+            return 20305;
+        }
+
         //请求服务器列表【外网】
         public static async ETTask<int> OnServerListAsyncRelease(Scene zoneScene,VersionMode versionMode)
         {
             try
             {
                 IPAddress[] xxc = Dns.GetHostEntry("weijinggame.weijinggame.com").AddressList;
-                string address = $"{xxc[0]}:20305";
+                string address = $"{xxc[0]}:{GetLoginPort(versionMode)}";
                 A2C_ServerList r2CSelectServer;
 
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
@@ -427,7 +437,8 @@ namespace ET
             try
             {
                 A2C_ServerList r2CSelectServer;
-                Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint("127.0.0.1:20305"));
+                string address = $"127.0.0.1:{GetLoginPort(versionMode)}";
+                Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { });
                     CheckServerList(r2CSelectServer.ServerItems, versionMode);

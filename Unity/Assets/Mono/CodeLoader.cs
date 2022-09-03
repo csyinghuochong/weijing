@@ -146,9 +146,11 @@ namespace ET
                             this.hotfixTypes[type.FullName] = type;
                         }
 
+						Log.ILog.Debug("InitILRuntime_111");
                         ILHelper.InitILRuntime(appDomain);
+						Log.ILog.Debug("InitILRuntime_222");
 
-                        IStaticMethod start = new ILStaticMethod(appDomain, "ET.Entry", "Start", 0);
+						IStaticMethod start = new ILStaticMethod(appDomain, "ET.Entry", "Start", 0);
                         start.Run();
                         break;
                     }
