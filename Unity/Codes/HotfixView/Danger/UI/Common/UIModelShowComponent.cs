@@ -25,7 +25,7 @@ namespace ET
             self.ClickHandler = null;
             self.ModelParent = self.GetParent<UI>().GameObject.transform.Find("Model");
             self.ParentImage = parentImage;
-            //self.AddComponent<ChangeEquipHelper>();
+            self.AddComponent<ChangeEquipHelper>();
 
             ButtonHelp.AddEventTriggers(self.ParentImage, (PointerEventData pdata) => { self.Draging(pdata); }, EventTriggerType.Drag);
             ButtonHelp.AddEventTriggers(self.ParentImage, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
@@ -121,10 +121,7 @@ namespace ET
             await ETTask.CompletedTask;
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            if (occ == 1)
-            {
-                //self.GetComponent<ChangeEquipHelper>().LoadEquipment(go);
-            }
+            self.GetComponent<ChangeEquipHelper>().LoadEquipment(go);
             self.UnitModel = go;
             Animator animator = self.UnitModel.GetComponentInChildren<Animator>();
             if ( animator != null)

@@ -6,6 +6,8 @@ using System;
 using System.IO;
 using UnityEditor.Build.Reporting;
 using System.Reflection;
+using libx;
+using ET;
 
 //监听Unity启动，一启动就执行
 [InitializeOnLoad]
@@ -287,9 +289,12 @@ public class MyEditorScript
 		}
 		else
 		{
-			CopyLibs("guanfang"); //com.guangying.weijing2
+			CopyLibs("guanfang"); 
 			app_name = "危境";
 		}
+		int version = EditorRuntimeInitializeOnLoad.GetVersion();
+		VersionMode versionMode = (VersionMode)version;
+		app_name = app_name + versionMode.ToString();
 
 		string target_dir = Application.dataPath + "/TargetAndroid";
 		string target_name = app_name + ".apk";
