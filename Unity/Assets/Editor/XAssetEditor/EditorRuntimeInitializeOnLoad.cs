@@ -82,7 +82,7 @@ namespace libx
                 case VersionMode.Beta:
                     BuildScript.outputPath = "../Release/DLCBeta/" + BuildScript.GetPlatformName();
                     break;
-                case VersionMode.BanHao:
+                case VersionMode.BanHao: 
                     BuildScript.outputPath = "../Release/DLCBanHao/" + BuildScript.GetPlatformName();
                     break;
             }
