@@ -27,8 +27,8 @@ namespace ET
         {
             await ETTask.CompletedTask;
             UnitHelper.LoadingScene = true;
-            string loadResName = "Back_2";
-            List<string> backpngs = new List<string>() { "Back_4", "Back_7" };
+            string loadResName = "Back_1";
+            List<string> backpngs = new List<string>() { "Back_1", "Back_2", "Back_3", "Back_4", "Back_5" };
             int index = RandomHelper.RandomNumber(0, backpngs.Count);
             self.StartLoadAssets = false;
             switch (sceneTypeEnum)
@@ -36,7 +36,7 @@ namespace ET
                 case (int)SceneTypeEnum.MainCityScene:
                     self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath(UIType.UIRole));
                     self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath(UIType.UIPet));
-                    loadResName = "Back_8";
+                    loadResName = "MainCity";
                     break;
                 case (int)SceneTypeEnum.CellDungeon:
                 case (int)SceneTypeEnum.TeamDungeon:
