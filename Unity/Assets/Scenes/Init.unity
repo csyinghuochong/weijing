@@ -827,7 +827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Development: 1
   EditorMode: 1
-  OueNetMode: 1
+  OueNetMode: 0
   BigVersion: 3
   Updater: {fileID: 2018631435}
   FenXiang_Title: 
@@ -841,7 +841,7 @@ MonoBehaviour:
   javaClassStr: com.example.alinewsdk.AliSDKActivity
   javaActiveStr: currentActivity
   CodeMode: 1
-  VersionMode: 0
+  VersionMode: 1
 --- !u!4 &575235020
 Transform:
   m_ObjectHideFlags: 0
@@ -2884,8 +2884,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _step: 0
-  baseURL: http://39.96.194.143/weijing1/DLC/
-  gameScene: Game.unity
 --- !u!114 &2018631438
 MonoBehaviour:
   m_ObjectHideFlags: 0

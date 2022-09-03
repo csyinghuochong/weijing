@@ -4,7 +4,8 @@
 {"_t":"StartProcessConfig","_id":3,"MachineId":1,"InnerPort":20194,"AppName":"Server"},
 {"_t":"StartProcessConfig","_id":4,"MachineId":1,"InnerPort":20195,"AppName":"Server"},
 {"_t":"StartProcessConfig","_id":5,"MachineId":1,"InnerPort":20196,"AppName":"Server"},
-{"_t":"StartProcessConfig","_id":201,"MachineId":1,"InnerPort":20197,"AppName":"BanHao"},
-{"_t":"StartProcessConfig","_id":202,"MachineId":1,"InnerPort":20198,"AppName":"Center"},
-{"_t":"StartProcessConfig","_id":203,"MachineId":1,"InnerPort":20199,"AppName":"Robot"},
+{"_t":"StartProcessConfig","_id":200,"MachineId":1,"InnerPort":20197,"AppName":"Alpha"},
+{"_t":"StartProcessConfig","_id":201,"MachineId":1,"InnerPort":20198,"AppName":"BanHao"},
+{"_t":"StartProcessConfig","_id":202,"MachineId":1,"InnerPort":20199,"AppName":"Center"},
+{"_t":"StartProcessConfig","_id":203,"MachineId":1,"InnerPort":20200,"AppName":"Robot"},
 ]}

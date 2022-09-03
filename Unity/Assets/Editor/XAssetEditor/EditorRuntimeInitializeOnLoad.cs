@@ -24,22 +24,55 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+using ET;
+using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Reflection;
 //using JEngine.Core;
 //using JEngine.Editor;
 using UnityEditor;
-using UnityEditor.Build.Content;
 using UnityEngine;
+
 
 namespace libx
 {
     public static class EditorRuntimeInitializeOnLoad
     {
+
+        public static int GetVersion()
+        {
+            int version = 0;
+
+            UnityEngine.SceneManagement.Scene curScene = UnityEditor.SceneManagement.EditorSceneManager.GetSceneByPath("Assets/Scenes/Init.unity");
+            GameObject[] gos = curScene.GetRootGameObjects();
+            foreach (var go in gos)
+            {
+                if (go.name != "Global")
+                {
+                    continue;
+                }
+
+                Init ai_1 = go.GetComponent<Init>();
+                FieldInfo[] allFieldInfo = (ai_1.GetType()).GetFields(BindingFlags.NonPublic | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Public | BindingFlags.DeclaredOnly | BindingFlags.Static);
+
+                for (int f = 0; f < allFieldInfo.Length; f++)
+                {
+                    if (allFieldInfo[f].Name == "VersionMode")
+                    {
+                        version = Convert.ToInt32(allFieldInfo[f].GetValue(ai_1));
+                        break;
+                    }
+                }
+            }
+
+            return version;
+        }
+
         [RuntimeInitializeOnLoadMethod()]
         public static void OnInitialize()
         {
+           
             Assets.basePath = BuildScript.outputPath + Path.DirectorySeparatorChar;
             Assets.loadDelegate = AssetDatabase.LoadAssetAtPath; 
 

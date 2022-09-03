@@ -29,6 +29,7 @@ using System.Diagnostics;
 using System.IO;
 using UnityEditor;
 using UnityEngine;
+using ET;
 
 namespace libx
 {
@@ -80,6 +81,8 @@ namespace libx
             watch.Stop();
             UnityEngine.Debug.LogError("BundleResourceList in: " + watch.ElapsedMilliseconds + " ms.");
         }
+
+
 
        [MenuItem(KBundleResourceList)]
         public static void BuildAssetList()

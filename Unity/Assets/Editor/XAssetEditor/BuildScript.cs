@@ -75,6 +75,21 @@ namespace libx
 
         internal static void ApplyBuildRules(bool hash = true)
         {
+            int version = EditorRuntimeInitializeOnLoad.GetVersion();
+            VersionMode versionMode = (VersionMode)version;
+            switch (versionMode)
+            {
+                case VersionMode.Alpha:
+                    outputPath = "../Release/DLCAlpha/" + GetPlatformName();
+                    break;
+                case VersionMode.Beta:
+                    outputPath = "../Release/DLCBeta/" + GetPlatformName();
+                    break;
+                case VersionMode.BanHao:
+                    outputPath = "../Release/DLCBanHao/" + GetPlatformName();
+                    break;
+            }
+
             var rules = GetBuildRules();
             BuildRules.nameByHash = hash;
             rules.Apply();

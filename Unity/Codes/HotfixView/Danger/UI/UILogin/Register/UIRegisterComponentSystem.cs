@@ -55,8 +55,7 @@ namespace ET
                 return;
             }
 
-            bool release = GlobalHelp.IsOutNetMode;
-            int errorCode = await LoginHelper.Register(self.DomainScene(), release, account, password);
+            int errorCode = await LoginHelper.Register(self.DomainScene(),GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode, account, password);
             if (errorCode == ErrorCore.ERR_Success)
             {
                 FloatTipManager.Instance.ShowFloatTipDi("注册成功！");

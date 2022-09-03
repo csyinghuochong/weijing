@@ -13,11 +13,10 @@ namespace ET
             Scene zoneScene = null;
             try
             {
-                bool release = false;
                 zoneScene = SceneFactory.CreateZoneScene(zone, "Robot", self);
                 
-                int registerCode = await LoginHelper.Register(zoneScene, release, zone.ToString(), ComHelp.RobotPassWord);
-                int errorCode = await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(1, release), zone.ToString(), ComHelp.RobotPassWord);
+                int registerCode = await LoginHelper.Register(zoneScene,true, VersionMode.Beta, zone.ToString(), ComHelp.RobotPassWord);
+                int errorCode = await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(1, 1), zone.ToString(), ComHelp.RobotPassWord);
 
                 if (registerCode == ErrorCore.ERR_Success)
                 {

@@ -243,24 +243,6 @@ namespace ET
             return ErrorCore.ERR_Success;
         }
 
-#if NOT_UNITY
-        public static string GetServerIpList(int serverid, bool release)
-        {
-            Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
-            if (release)
-            {
-                keyValuePairs.Add(1, "39.96.194.143:20105");
-                keyValuePairs.Add(2, "39.96.194.143:20115");
-            }
-            else
-            {
-                keyValuePairs.Add(1, "127.0.0.1:20105");
-                keyValuePairs.Add(2, "127.0.0.1:20115");
-            }
-            return keyValuePairs[serverid];
-        }
-#endif
-
         public static async ETTask<bool> RealName(Scene zoneScene, string address, long accountId, string name, string idCardNO)
         {
             try
@@ -303,15 +285,38 @@ namespace ET
             }
         }
 
+        //Alpha = 0,              //仅内部人员使用。一般不向外部发布
+        //Beta = 1,               //公开测试版
+        //BanHao = 2,
+        public static string GetServerIpList(int serverid, int version)
+        {
+            Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
+            switch (version)
+            {
+                case 0:
+                    keyValuePairs.Add(1, "127.0.0.1:20105");
+                    keyValuePairs.Add(2, "127.0.0.1:20115");
+                    break;
+                case 1:
+                    keyValuePairs.Add(1, "39.96.194.143:20105");
+                    keyValuePairs.Add(2, "39.96.194.143:20115");
+                    break;
+                case 2:
+                    break;
+            }
+            return keyValuePairs[serverid];
+        }
+
         //注册账号
-        public static async ETTask<int> Register(Scene zoneScene, bool release, string account, string password)
+        public static async ETTask<int> Register(Scene zoneScene, bool outNet,  VersionMode versionCode, string account, string password)
         {
             try
             {
                 // 创建一个ETModel层的Session
                 Center2C_Register r2CRegister;
                 IPAddress[] xxc = Dns.GetHostEntry("mengjing.weijinggame.com").AddressList;
-                string address = release ? $"{xxc[0]}:20104" : "127.0.0.1:20104";
+                //走的中心服
+                string address = outNet ? $"{xxc[0]}:20104" : "127.0.0.1:20104";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CRegister = (Center2C_Register)await session.Call(new C2Center_Register() { Account = account, Password = password });
@@ -356,7 +361,7 @@ namespace ET
         }
 
         //请求服务器列表【外网】
-        public static async ETTask<int> OnServerListAsyncRelease(Scene zoneScene, bool banhao)
+        public static async ETTask<int> OnServerListAsyncRelease(Scene zoneScene,VersionMode versionMode)
         {
             try
             {
@@ -368,20 +373,7 @@ namespace ET
                 {
 
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { });
-
-                    for (int i = r2CSelectServer.ServerItems.Count - 1; i >= 0; i--)
-                    {
-                        if (banhao && r2CSelectServer.ServerItems[i].ServerId != 201)
-                        {
-                            r2CSelectServer.ServerItems.RemoveAt(i);
-                            continue;
-                        }
-                        if (!banhao && r2CSelectServer.ServerItems[i].ServerId == 201)
-                        {
-                            r2CSelectServer.ServerItems.RemoveAt(i);
-                            continue;
-                        }
-                    }
+                    CheckServerList(r2CSelectServer.ServerItems, versionMode);
 
                     //存储列表
                     zoneScene.GetComponent<AccountInfoComponent>().MyServerList = r2CSelectServer.MyServers;
@@ -397,7 +389,39 @@ namespace ET
             }
         }
 
-        public static async ETTask<int> OnServerListAsyncDebug(Scene zoneScene, bool banhao)
+        public static void CheckServerList(List<ServerItem> serverItems, VersionMode versionMode)
+        {
+            for (int i = serverItems.Count - 1; i >= 0; i--)
+            {
+                if (versionMode == VersionMode.BanHao)
+                {
+                    if (!ComHelp.IsBanHaoZone(serverItems[i].ServerId))
+                    {
+                        serverItems.RemoveAt(i);
+                    }
+                    continue;
+                }
+                if (versionMode == VersionMode.Alpha)
+                {
+                    if (!ComHelp.IsAlphaZone(serverItems[i].ServerId))
+                    {
+                        serverItems.RemoveAt(i);
+                    }
+                    continue;
+                }
+                if (versionMode == VersionMode.Beta)
+                {
+                    if (ComHelp.IsBanHaoZone(serverItems[i].ServerId)
+                    || ComHelp.IsAlphaZone(serverItems[i].ServerId))
+                    {
+                        serverItems.RemoveAt(i);
+                    }
+                    continue;
+                }
+            }
+        }
+
+        public static async ETTask<int> OnServerListAsyncDebug(Scene zoneScene, VersionMode versionMode)
         {
 
             try
@@ -406,19 +430,8 @@ namespace ET
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint("127.0.0.1:20105"));
                 {
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { });
-                    for (int i = r2CSelectServer.ServerItems.Count - 1; i >= 0; i--)
-                    {
-                        if (banhao && r2CSelectServer.ServerItems[i].ServerId != 201)
-                        {
-                            r2CSelectServer.ServerItems.RemoveAt(i);
-                            continue;
-                        }
-                        if (!banhao && r2CSelectServer.ServerItems[i].ServerId == 201)
-                        {
-                            r2CSelectServer.ServerItems.RemoveAt(i);
-                            continue;
-                        }
-                    }
+                    CheckServerList(r2CSelectServer.ServerItems, versionMode);
+
                     //存储列表
                     zoneScene.GetComponent<AccountInfoComponent>().MyServerList = r2CSelectServer.MyServers;
                     zoneScene.GetComponent<AccountInfoComponent>().AllServerList = r2CSelectServer.ServerItems;

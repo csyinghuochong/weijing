@@ -20,6 +20,11 @@ namespace ET
             get { return GameObject.Find("Global").GetComponent<Init>().OueNetMode; }
         }
 
+        public static VersionMode VersionMode
+        {
+            get { return GameObject.Find("Global").GetComponent<Init>().VersionMode; }
+        }
+
         public static CodeMode GetCodeMode
         {
             get { return GameObject.Find("Global").GetComponent<Init>().CodeMode; }

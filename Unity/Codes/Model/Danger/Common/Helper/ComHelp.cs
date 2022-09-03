@@ -14,7 +14,7 @@ namespace ET
     public static class ComHelp
     {
 
-        public const int MaxZone = 201;
+        public const int MaxZone = 202;
 
         //1000015[神秘商人,全服刷新]1000016[魔能商人，副本刷新]
         public const int ShenMiNpcId = 1000015;
@@ -182,9 +182,16 @@ namespace ET
 
 #endif
 
+        //版号专区
         public static bool IsBanHaoZone(int zone)
         {
             return zone == 201;
+        }
+
+        //内部专区
+        public static bool IsAlphaZone(int zone)
+        {
+            return zone == 200;
         }
 
         public static bool IfNull(string value) {

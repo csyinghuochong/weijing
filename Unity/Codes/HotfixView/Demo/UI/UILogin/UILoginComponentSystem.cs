@@ -279,11 +279,11 @@ namespace ET
 				int erroCode = ErrorCore.ERR_Success;
 				if (IsReleaseMode)
 				{
-					erroCode = await LoginHelper.OnServerListAsyncRelease(self.DomainScene(), GlobalHelp.IsBanHaoMode);
+					erroCode = await LoginHelper.OnServerListAsyncRelease(self.DomainScene(), GlobalHelp.VersionMode);
 				}
 				else
 				{
-					erroCode = await LoginHelper.OnServerListAsyncDebug(self.DomainScene(), GlobalHelp.IsBanHaoMode);
+					erroCode = await LoginHelper.OnServerListAsyncDebug(self.DomainScene(), GlobalHelp.VersionMode);
 				}
 				if (erroCode != ErrorCore.ERR_Success)
 				{

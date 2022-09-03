@@ -64,10 +64,9 @@ namespace libx
         }
 
         [SerializeField] private Step _step;
+        //[SerializeField] private string gameScene = "Game.unity";
 
-        [SerializeField] private string baseURL = "http://39.96.194.143/weijing/DLC/";
-        [SerializeField] private string gameScene = "Game.unity";
-
+        private string baseURL = "http://39.96.194.143/weijing/DLC/";
         private bool development;
         private bool enableVFS = true;
 
@@ -106,8 +105,22 @@ namespace libx
 
         private void Start()
         {
+            VersionMode versionMode = GameObject.Find("Global").GetComponent<Init>().VersionMode;
+            string dlcPath = "";
+            switch(versionMode)
+            {
+                case VersionMode.Alpha:
+                    dlcPath = "DLCAlpha";
+                    break;
+                case VersionMode.Beta:
+                    dlcPath = "DLCBeta";
+                    break;
+                case VersionMode.BanHao:
+                    dlcPath = "DLCBanHao";
+                    break;
+            }
+            baseURL = "http://39.96.194.143/weijing/" + dlcPath + "/";
             baseURL = baseURL.EndsWith("/") ? baseURL : baseURL + "/";
-            
             _downloader = gameObject.GetComponent<Downloader>();
             _downloader.onUpdate = OnUpdate;
             _downloader.onFinished = OnComplete;
