@@ -294,12 +294,12 @@ namespace ET
             switch (version)
             {
                 case 0:
-                    keyValuePairs.Add(1, "127.0.0.1:20105");
-                    keyValuePairs.Add(2, "127.0.0.1:20115");
+                    keyValuePairs.Add(1, "127.0.0.1:20305");
+                    keyValuePairs.Add(2, "127.0.0.1:20315");
                     break;
                 case 1:
-                    keyValuePairs.Add(1, "39.96.194.143:20105");
-                    keyValuePairs.Add(2, "39.96.194.143:20115");
+                    keyValuePairs.Add(1, "39.96.194.143:20305");
+                    keyValuePairs.Add(2, "39.96.194.143:20315");
                     break;
                 case 2:
                     break;
@@ -314,9 +314,9 @@ namespace ET
             {
                 // 创建一个ETModel层的Session
                 Center2C_Register r2CRegister;
-                IPAddress[] xxc = Dns.GetHostEntry("mengjing.weijinggame.com").AddressList;
+                IPAddress[] xxc = Dns.GetHostEntry("weijinggame.com").AddressList;
                 //走的中心服
-                string address = outNet ? $"{xxc[0]}:20104" : "127.0.0.1:20104";
+                string address = outNet ? $"{xxc[0]}:20304" : "127.0.0.1:20304";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CRegister = (Center2C_Register)await session.Call(new C2Center_Register() { Account = account, Password = password });
@@ -365,8 +365,8 @@ namespace ET
         {
             try
             {
-                IPAddress[] xxc = Dns.GetHostEntry("mengjing.weijinggame.com").AddressList;
-                string address = $"{xxc[0]}:20105";
+                IPAddress[] xxc = Dns.GetHostEntry("weijinggame.com").AddressList;
+                string address = $"{xxc[0]}:20305";
                 A2C_ServerList r2CSelectServer;
 
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
@@ -427,7 +427,7 @@ namespace ET
             try
             {
                 A2C_ServerList r2CSelectServer;
-                Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint("127.0.0.1:20105"));
+                Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint("127.0.0.1:20305"));
                 {
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { });
                     CheckServerList(r2CSelectServer.ServerItems, versionMode);

@@ -1,7 +1,5 @@
 
-(mongodb://localhost:27017/WeiJing1
-(mongodb://localhost:27017/WeiJing2
-2Èmongodb://localhost:27017/WeiJing201(alpha)
-3Émongodb://localhost:27017/WeiJing201(banhao)
-3Êmongodb://localhost:27017/WeiJing202(center)
-2Ëmongodb://localhost:27017/WeiJing203(robot)
+'mongodb://localhost:27017/WJBeta1
+'mongodb://localhost:27017/WJBeta2
+2Êmongodb://localhost:27017/WJBeta202(center)
+1Ëmongodb://localhost:27017/WJBeta203(robot)

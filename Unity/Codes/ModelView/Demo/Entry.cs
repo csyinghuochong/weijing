@@ -75,7 +75,7 @@ namespace ET
             //    }
             //}
 
-            IPAddress[] xxc = Dns.GetHostEntry("mengjing.weijinggame.com").AddressList;
+            IPAddress[] xxc = Dns.GetHostEntry("weijinggame.com").AddressList;
             //{
             //    byte[] dllBytes = LoadHelper.LoadCodeBytes("Code.dll");
             //    fixed (byte* ptr = dllBytes)
