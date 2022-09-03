@@ -72,7 +72,20 @@ namespace libx
         [RuntimeInitializeOnLoadMethod()]
         public static void OnInitialize()
         {
-           
+            int version = EditorRuntimeInitializeOnLoad.GetVersion();
+            VersionMode versionMode = (VersionMode)version;
+            switch (versionMode)
+            {
+                case VersionMode.Alpha:
+                    BuildScript.outputPath = "../Release/DLCAlpha/" + BuildScript.GetPlatformName();
+                    break;
+                case VersionMode.Beta:
+                    BuildScript.outputPath = "../Release/DLCBeta/" + BuildScript.GetPlatformName();
+                    break;
+                case VersionMode.BanHao:
+                    BuildScript.outputPath = "../Release/DLCBanHao/" + BuildScript.GetPlatformName();
+                    break;
+            }
             Assets.basePath = BuildScript.outputPath + Path.DirectorySeparatorChar;
             Assets.loadDelegate = AssetDatabase.LoadAssetAtPath; 
 
