@@ -8,8 +8,10 @@ namespace ET
 #if SERVER
         public static List<string> GmAccount = new List<string>()
         {
+            "tcg01",
             "test01",
-            "testcn01"
+            "testcn01",
+            "QQ13302053296"
         };
 #endif
 

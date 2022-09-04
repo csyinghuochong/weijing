@@ -118,7 +118,7 @@ namespace ET
             switch (sceneTypeEnum)
             {
                 case (int)SceneTypeEnum.MainCityScene:
-                    paramss = "1";
+                    paramss = chapterId.ToString();
                     break;
                 case (int)SceneTypeEnum.LoginScene:
                     paramss = "Login";
