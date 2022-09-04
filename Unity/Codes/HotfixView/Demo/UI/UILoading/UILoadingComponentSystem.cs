@@ -35,7 +35,12 @@ namespace ET
             {
                 case (int)SceneTypeEnum.MainCityScene:
                     self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath(UIType.UIRole));
+                    self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Main/Role/UIRoleBag"));
+                    self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Common/UIModelShow1"));
+                    self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Main/Role/UIItem"));
                     self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath(UIType.UIPet));
+                    self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Main/Pet/UIPetList"));
+                    self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Main/Pet/UIPetListItem"));
                     loadResName = "MainCity";
                     break;
                 case (int)SceneTypeEnum.CellDungeon:

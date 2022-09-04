@@ -60,16 +60,12 @@ namespace ET
             self.UpdateBagUI(page);
         }
 
-        public static async ETTask InitBagUIList(this UIRoleBagComponent self)
+        public static async ETTask  InitBagUIList(this UIRoleBagComponent self)
         {
             //Log.Debug("page:   " + page);
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
+            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByType(0);
             int maxCount = ComHelp.BagMaxCapacity();
             for (int i = 0; i < maxCount; i++)

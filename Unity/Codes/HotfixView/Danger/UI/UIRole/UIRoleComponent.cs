@@ -146,8 +146,6 @@ namespace ET
 		{
 			UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
 
-			ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-
 			//显示基本信息
 			self.ObjLabRoleLv.GetComponent<Text>().text = userInfo.Lv.ToString();
 			self.ObjLabRoleName.GetComponent<Text>().text = userInfo.Name;
@@ -159,10 +157,6 @@ namespace ET
 			BagInfo bagInfo = bagComponent.GetEquipByWeizhi((int)ItemSubTypeEnum.Wuqi);
 
 			self.UIEquipSetComponent.ShowPlayerModel(bagInfo, userInfo.Occ).Coroutine();
-
-			//显示职业 
-			Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-
 			int occTwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
 			if (occTwo != 0) 
 			{
@@ -182,7 +176,6 @@ namespace ET
 		public static void UpdateShowComBat(this UIRoleComponent self) 
 		{
 			//显示战力
-			Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 			long combat = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Combat;
 			self.ObjLab_RoseComBat.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("战力") + ": " + combat;
 		}

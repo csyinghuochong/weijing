@@ -383,7 +383,7 @@ namespace ET
             //模型展示界面
             long instanceId = self.InstanceId;
             string path = ABPathHelper.GetUGUIPath("Common/UIModelShow2");
-            await TimerComponent.Instance.WaitAsync(500);
+            await TimerComponent.Instance.WaitAsync(1000);
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceId != self.InstanceId)
             {
