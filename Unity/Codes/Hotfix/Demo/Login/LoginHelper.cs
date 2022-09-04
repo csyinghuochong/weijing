@@ -362,11 +362,27 @@ namespace ET
 
         public static int GetRegisterPort(VersionMode versionMode)
         {
+            if (versionMode == VersionMode.BanHao)
+            {
+                return 20104;
+            }
+            if (versionMode == VersionMode.Alpha)
+            {
+                return 20204;
+            }
             return 20304;
         }
 
         public static int GetLoginPort(VersionMode versionMode)
         {
+            if (versionMode == VersionMode.BanHao)
+            {
+                return 20105;
+            }
+            if (versionMode == VersionMode.Alpha)
+            {
+                return 20205;
+            }
             return 20305;
         }
 
