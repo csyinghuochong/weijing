@@ -12,23 +12,14 @@ EditorBuildSettings:
     path: Assets/Scenes/Login.unity
     guid: e9b29943465241b499795419699e2803
   - enabled: 1
-    path: Assets/OldScenes/Map1.unity
-    guid: a5294483f20f40d449699101bb428cda
-  - enabled: 1
-    path: Assets/OldScenes/Map2.unity
-    guid: 064123f1e5067b249a9fd8967ddbde09
-  - enabled: 1
     path: Assets/Scenes/CreateRole.unity
     guid: 4932be37e44cee84493c96a52a1f3054
   - enabled: 1
     path: Assets/Scenes/1.unity
+    guid: c6a7a942428f8b74687e4477c1809f63
+  - enabled: 1
+    path: Assets/Scenes/101.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
-    path: Assets/OldScenes/101.unity
-    guid: 892f71de0871f954e8d1ed4b0157d246
-  - enabled: 1
-    path: Assets/OldScenes/102.unity
-    guid: 377e282567540224aaf76d501b6b716c
   - enabled: 1
     path: Assets/Scenes/10001.unity
     guid: 40fc92faa67a97342afbe5621948109c

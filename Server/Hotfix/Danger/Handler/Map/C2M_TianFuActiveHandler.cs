@@ -12,7 +12,11 @@ namespace ET
             int oldId = skillSetComponent.HaveSameTianFu(request.TianFuId);
             if (oldId != 0 && oldId != request.TianFuId)
             {
+<<<<<<< .merge_file_a31876
+                GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(30);
+=======
                 GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(48);
+>>>>>>> .merge_file_a05736
                 if (!unit.GetComponent<BagComponent>().OnCostItemData(globalValueConfig.Value))
                 {
                     response.Error = ErrorCore.ERR_ItemNotEnoughError;

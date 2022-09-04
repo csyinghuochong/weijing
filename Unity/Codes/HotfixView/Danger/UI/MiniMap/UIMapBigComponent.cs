@@ -97,7 +97,7 @@ namespace ET
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MainCityScene)
             {
-                SceneConfig dungeonConfig = SceneConfigCategory.Instance.Get(1);
+                SceneConfig dungeonConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());
                 mapCamera.transform.position = new Vector3((float)dungeonConfig.CameraPos[0], (float)dungeonConfig.CameraPos[1], (float)dungeonConfig.CameraPos[2]);
                 mapCamera.transform.eulerAngles = new Vector3(90, 0, (float)dungeonConfig.CameraPos[3]);
                 camera.orthographicSize = (float)dungeonConfig.CameraPos[4];

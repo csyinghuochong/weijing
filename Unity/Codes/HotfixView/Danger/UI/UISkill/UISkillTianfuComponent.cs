@@ -165,7 +165,11 @@ namespace ET
             int oldId = skillSetComponent.HaveSameTianFu(self.TianFuId);
             if (oldId!=0 && oldId!= self.TianFuId)
             {
+<<<<<<< .merge_file_a10908
+                GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(30);
+=======
                 GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(48);
+>>>>>>> .merge_file_a29296
                 string itemdesc = UICommonHelper.GetNeedItemDesc(globalValueConfig.Value);
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "重置专精",
                $"是否花费{itemdesc}重置专精",
