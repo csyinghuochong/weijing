@@ -29,9 +29,9 @@ namespace ET
 			string map = scene.Name.Substring(3, scene.Name.Length - 3);
 			int sceneId = int.Parse(map);
 			SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
-			if (sceneId == 1)
+			if (sceneId == 1)	//主城
 			{
-				self.SetMapInfo((int)SceneTypeEnum.MainCityScene, sceneConfig.MapID, 0);
+				self.SetMapInfo((int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);
 				self.NavMeshId = sceneConfig.MapID.ToString();
 			}
 			else

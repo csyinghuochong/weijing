@@ -79,7 +79,7 @@ namespace ET
 
         public static void OnActiveTianFu(this UISkillComponent self)
         {
-            //self.UIPageView.UISubViewList[(int)SkillPageEnum.SkillTianFu].GetComponent<UISkillTianFuComponent>().OnActiveTianFu();
+            self.UIPageView.UISubViewList[(int)SkillPageEnum.SkillTianFu].GetComponent<UISkillTianFuComponent>().OnActiveTianFu();
         }
 
         public static void OnSkillReset(this UISkillComponent self)
