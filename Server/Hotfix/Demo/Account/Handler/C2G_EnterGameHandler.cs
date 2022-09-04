@@ -151,7 +151,7 @@ namespace ET
 						reply();
 						StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), "Map1");
 						//await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, startSceneConfig.Name);
-						await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, (int)SceneTypeEnum.MainCityScene, 1, 0);
+						await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);
 
 						SessionStateComponent SessionStateComponent = session.GetComponent<SessionStateComponent>();
 						if (SessionStateComponent == null)

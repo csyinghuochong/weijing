@@ -11,7 +11,7 @@
             long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), "Map1").InstanceId;
             long oldsceneid = unit.DomainScene().Id;
             TransferHelper.BeforeReturnMainScene(unit);
-            await  TransferHelper.Transfer(unit, mapInstanceId, (int)SceneTypeEnum.MainCityScene, 1, 0);
+            await  TransferHelper.Transfer(unit, mapInstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);
             //动态删除副本
             Scene scene = Game.Scene.Get(oldsceneid);
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)

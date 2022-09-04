@@ -44,4 +44,5 @@
 {"_t":"GlobalValueConfig","_id":44,"Value":"20","Value2":20},
 {"_t":"GlobalValueConfig","_id":45,"Value":"10000","Value2":10000},
 {"_t":"GlobalValueConfig","_id":46,"Value":"500","Value2":500},
+{"_t":"GlobalValueConfig","_id":47,"Value":"1","Value2":1},
 ]}

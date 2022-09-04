@@ -119,7 +119,7 @@ namespace ET
 
         public static void RequestQuitFuben(Scene zoneScene)
         {
-             RequestTransfer(zoneScene, (int)SceneTypeEnum.MainCityScene, 1).Coroutine();
+             RequestTransfer(zoneScene, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID()).Coroutine();
         }
     }
 }

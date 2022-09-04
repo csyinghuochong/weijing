@@ -77,6 +77,10 @@ namespace ET
             return petNumber;
         }
 
+        public static int MainCityID()
+        {
+            return GlobalValueConfigCategory.Instance.Get(47).Value2;
+        }
 
         /// <summary>
         /// 经验加成
