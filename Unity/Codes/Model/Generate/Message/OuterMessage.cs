@@ -614,6 +614,9 @@ namespace ET
 		[ProtoMember(28)]
 		public List<int> ChouKaRewardIds = new List<int>();
 
+		[ProtoMember(29)]
+		public List<int> XiLianRewardIds = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
@@ -7986,6 +7989,37 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<FirstWinInfo> FirstWinInfos = new List<FirstWinInfo>();
+
+	}
+
+	[ResponseType(nameof(M2C_ItemXiLianRewardResponse))]
+	[Message(OuterOpcode.C2M_ItemXiLianRewardRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemXiLianRewardRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int XiLianId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemXiLianRewardResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemXiLianRewardResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
 
 	}
 

@@ -33,6 +33,10 @@ namespace ET
 
                     unit.GetComponent<ChengJiuComponent>().OnEquipXiLian();
                     unit.GetComponent<TaskComponent>().OnEquipXiLian();
+
+                    string[] xiliandu = GlobalValueConfigCategory.Instance.Get(49).Value.Split(";");
+                    int addXilian = RandomHelper.RandomNumber(int.Parse(xiliandu[0]), int.Parse(xiliandu[1]));
+                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ItemXiLianDu, addXilian, 0, true);
                     //unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.Now_XiLian,1, 0, true);
                 }
 

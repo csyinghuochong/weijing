@@ -69,7 +69,8 @@ namespace ET
         public static void OnUpdateUI(this UIRoleXiLianLevelComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int xilianLevel = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.XiLianLevel);
+            int xiliandu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu);
+            int xilianLevel = XiLianHelper.GetXiLianLevel(xiliandu);
             xilianLevel = xilianLevel != 0 ? xilianLevel : EquipXiLianConfigCategory.Instance.EquipXiLianLevelList[0].Id;
             self.OnUpdateButton(xilianLevel);
             self.UIRoleXiLianLevels[1].OnUpdateUI(xilianLevel);
@@ -115,26 +116,23 @@ namespace ET
             }
         }
 
+        public static void MoveToPositon(this UIRoleXiLianLevelComponent self, GameObject gameObject, float movedis)
+        {
+            gameObject.transform.localPosition = new Vector3(
+              gameObject.transform.localPosition.x + movedis,
+              gameObject.transform.localPosition.y,
+              gameObject.transform.localPosition.z
+              );
+        }
+
         public static void OnUpdate(this UIRoleXiLianLevelComponent self)
         {
             float offset = self.UIRoleXiLianLevels[1].GameObject.transform.localPosition.x;
             float movedis = offset < 0 ? self.MoveSpeed : -self.MoveSpeed;
 
-            self.UIRoleXiLianLevels[0].GameObject.transform.localPosition = new Vector3(
-                self.UIRoleXiLianLevels[0].GameObject.transform.localPosition.x + movedis,
-                self.UIRoleXiLianLevels[0].GameObject.transform.localPosition.y,
-                self.UIRoleXiLianLevels[0].GameObject.transform.localPosition.z
-                );
-            self.UIRoleXiLianLevels[1].GameObject.transform.localPosition = new Vector3(
-               self.UIRoleXiLianLevels[1].GameObject.transform.localPosition.x + movedis,
-               self.UIRoleXiLianLevels[1].GameObject.transform.localPosition.y,
-               self.UIRoleXiLianLevels[1].GameObject.transform.localPosition.z
-               );
-            self.UIRoleXiLianLevels[2].GameObject.transform.localPosition = new Vector3(
-               self.UIRoleXiLianLevels[2].GameObject.transform.localPosition.x + movedis,
-               self.UIRoleXiLianLevels[2].GameObject.transform.localPosition.y,
-               self.UIRoleXiLianLevels[2].GameObject.transform.localPosition.z
-               );
+            self.MoveToPositon(self.UIRoleXiLianLevels[0].GameObject, movedis);
+            self.MoveToPositon(self.UIRoleXiLianLevels[1].GameObject, movedis);
+            self.MoveToPositon(self.UIRoleXiLianLevels[2].GameObject, movedis);
 
             if (Mathf.Abs(offset) < self.MoveSpeed +1f)
             {

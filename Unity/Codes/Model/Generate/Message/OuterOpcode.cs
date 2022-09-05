@@ -447,5 +447,7 @@ namespace ET
 		 public const ushort FirstWinInfo = 10444;
 		 public const ushort C2A_FirstWinInfoRequest = 10445;
 		 public const ushort A2C_FirstWinInfoResponse = 10446;
+		 public const ushort C2M_ItemXiLianRewardRequest = 10447;
+		 public const ushort M2C_ItemXiLianRewardResponse = 10448;
 	}
 }

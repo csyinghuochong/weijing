@@ -8,6 +8,7 @@ namespace ET
     {
         public static int GetXiLianLevel(int xilianDu)
         {
+            int xilianid = 0;
             List<EquipXiLianConfig> equipXiLians =  EquipXiLianConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < equipXiLians.Count; i++)
             {
@@ -17,10 +18,11 @@ namespace ET
                 }
                 if (xilianDu <= equipXiLians[i].NeedShuLianDu)
                 {
-                    return equipXiLians[i].Id;
+                    break;
                 }
+                xilianid = equipXiLians[i].Id;
             }
-            return 0;
+            return xilianid;
         }
     }
 }

@@ -304,6 +304,8 @@ message UserInfo
 	repeated int32 TowerRewardIds = 27;
 
 	repeated int32 ChouKaRewardIds = 28;
+
+	repeated int32 XiLianRewardIds = 29;
 }
 
 message KeyValuePair
@@ -3826,4 +3828,19 @@ message A2C_FirstWinInfoResponse // IActivityActorResponse
 	int32 Error = 91;
 	string Message = 92;
 	repeated FirstWinInfo FirstWinInfos = 1;
+}
+
+//ResponseType M2C_ItemXiLianRewardResponse
+message C2M_ItemXiLianRewardRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 XiLianId = 1;
+}
+
+message M2C_ItemXiLianRewardResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }
