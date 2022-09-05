@@ -23,7 +23,6 @@ namespace ET
     {
         public override void Awake(OperaComponent self)
         {
-            Log.ILog.Debug("OperaComponent AwakeSystem");
             self.mainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
             self.mapMask =
                 (1 << LayerMask.NameToLayer(LayerEnum.Drop.ToString())) |

@@ -7,7 +7,8 @@ namespace ET
     public enum RoleXiLianPageEnum : int
 	{
 		RoleXiLianShow = 0,
-		Number = 1,
+		RoleXiLianLevel = 1,
+		Number
 	}
 
 	public class UIRoleXiLianComponent : Entity, IAwake, IDestroy
@@ -32,6 +33,9 @@ namespace ET
 
 			pageViewComponent.UISubViewPath[(int)RoleXiLianPageEnum.RoleXiLianShow] = ABPathHelper.GetUGUIPath("Main/RoleXiLian/UIRoleXiLianShow");
 			pageViewComponent.UISubViewType[(int)RoleXiLianPageEnum.RoleXiLianShow] = typeof(UIRoleXiLianShowComponent);
+
+			pageViewComponent.UISubViewPath[(int)RoleXiLianPageEnum.RoleXiLianLevel] = ABPathHelper.GetUGUIPath("Main/RoleXiLian/UIRoleXiLianLevel");
+			pageViewComponent.UISubViewType[(int)RoleXiLianPageEnum.RoleXiLianLevel] = typeof(UIRoleXiLianLevelComponent);
 			self.UIPageView = pageViewComponent;
 
 			//单选组件

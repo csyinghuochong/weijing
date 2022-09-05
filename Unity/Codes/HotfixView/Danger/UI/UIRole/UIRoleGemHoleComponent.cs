@@ -74,8 +74,6 @@ namespace ET
         {
             self.Index = index;
             self.Image_SelectImg.SetActive(false);
-
-            Log.ILog.Debug($" {holeId}  {gemId} ");
             if (holeId == 0)
             {
                 self.Lab_HoleName.SetActive(false);
