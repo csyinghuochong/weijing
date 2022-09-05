@@ -2094,6 +2094,7 @@ message M2C_MakeEquipResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 	int32 ItemId = 1;
+	int32 NewMakeId = 2;
 }
 
 //ResponseType M2C_MakeLearnResponse
@@ -3800,6 +3801,7 @@ message M2C_MakeSelectResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	repeated int MakeList = 1;
 }
 
 message FirstWinInfo

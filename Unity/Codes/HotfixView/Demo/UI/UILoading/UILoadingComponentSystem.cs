@@ -23,9 +23,8 @@ namespace ET
 
     public static class UILoadingComponentSystem
     {
-        public static async ETTask OnInitUI(this UILoadingComponent self, int sceneTypeEnum, int chapterId)
+        public static void  OnInitUI(this UILoadingComponent self, int sceneTypeEnum, int chapterId)
         {
-            await ETTask.CompletedTask;
             UnitHelper.LoadingScene = true;
             string loadResName = "Back_1";
             List<string> backpngs = new List<string>() { "Back_1", "Back_2", "Back_3", "Back_4", "Back_5" };

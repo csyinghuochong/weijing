@@ -4428,6 +4428,9 @@ namespace ET
 		[ProtoMember(1)]
 		public int ItemId { get; set; }
 
+		[ProtoMember(2)]
+		public int NewMakeId { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_MakeLearnResponse))]
@@ -7928,6 +7931,9 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<int> MakeList = new List<int>();
 
 	}
 

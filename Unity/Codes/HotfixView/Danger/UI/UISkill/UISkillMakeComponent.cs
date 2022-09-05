@@ -177,6 +177,14 @@ namespace ET
             {
                 FloatTipManager.Instance.ShowFloatTip("制作失败！");
             }
+            if (r2c_roleEquip.NewMakeId != 0)
+            {
+                equipMakeConfig = EquipMakeConfigCategory.Instance.Get(r2c_roleEquip.NewMakeId);
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID);
+                FloatTipManager.Instance.ShowFloatTip($"恭喜你领悟到新的制作技能 {itemConfig.ItemName}");
+                self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(r2c_roleEquip.NewMakeId);
+                self.OnUpdateMakeType();
+            }
 
             self.UpdateShuLianDu();
             self.OnBagItemUpdate().Coroutine();
@@ -278,18 +286,6 @@ namespace ET
             }
         }
 
-        public static List<int> GetInitMakeList(this UISkillMakeComponent self, int makeType)
-        {
-            string[] initValue = GlobalValueConfigCategory.Instance.Get(43).Value.Split('@');
-            string[] makeValue = initValue[makeType - 1].Split(';');
-            List<int> makeList = new List<int>();
-            for (int i = 0; i < makeValue.Length; i++)
-            { 
-                makeList.Add( int.Parse(makeValue[i]) );
-            }
-            return makeList;
-        }
-
         public static async ETTask UpdateMakeList(this UISkillMakeComponent self, int makeType)
         {
             int number = 0;
@@ -298,7 +294,8 @@ namespace ET
             var bundleGameObject =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
             //List<EquipMakeConfig> equipConfigs = EquipMakeConfigCategory.Instance.GetAll().Values.ToList();
-            List<int> makeList = self.GetInitMakeList(makeType);    
+            List<int> makeList = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList;
+            
             for (int k = 0; k < self.MakeListUI.Count; k++)
             {
                 self.MakeListUI[k].GameObject.SetActive(false);

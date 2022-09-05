@@ -23,8 +23,9 @@ namespace ET
             }
 
             unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Clear();
+            unit.GetComponent<UserInfoComponent>().UserInfo.MakeList = MakeHelper.GetInitMakeList(makeType);
             unit.GetComponent<NumericComponent>().ApplyValue(  NumericType.MakeType, request.MakeType);
-
+            response.MakeList = MakeHelper.GetInitMakeList(request.MakeType);
             reply();
             await ETTask.CompletedTask;
         }
