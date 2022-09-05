@@ -103,6 +103,7 @@
     <Compile Include="Codes\Model\Danger\Common\Helper\DropHelper.cs" />
     <Compile Include="Codes\Model\Danger\Common\Helper\GettotalFeeTool.cs" />
     <Compile Include="Codes\Model\Danger\Common\Helper\GMHelp.cs" />
+    <Compile Include="Codes\Model\Danger\Common\Helper\XiLianHelper.cs" />
     <Compile Include="Codes\Model\Danger\Common\QiangHuaHelper.cs" />
     <Compile Include="Codes\Model\Danger\Component\ChatComponent.cs" />
     <Compile Include="Codes\Model\Danger\Common\Component\ChengJiuComponent.cs" />
@@ -161,6 +162,7 @@
     <Compile Include="Codes\Model\Demo\Unit\UnitComponent.cs" />
     <Compile Include="Codes\Model\Demo\Unit\UnitType.cs" />
     <Compile Include="Codes\Model\Demo\WaitType.cs" />
+    <Compile Include="Codes\Model\Generate\ConfigPartial\EquipXiLianConfig.cs" />
     <Compile Include="Codes\Model\Generate\ConfigPartial\MulLanguageConfig.cs" />
     <Compile Include="Codes\Model\Generate\Config\ActivityConfig.cs" />
     <Compile Include="Codes\Model\Generate\Config\AIConfig.cs" />
@@ -183,6 +185,7 @@
     <Compile Include="Codes\Model\Generate\Config\EquipQiangHuaConfig.cs" />
     <Compile Include="Codes\Model\Generate\Config\EquipSuitConfig.cs" />
     <Compile Include="Codes\Model\Generate\Config\EquipSuitPropertyConfig.cs" />
+    <Compile Include="Codes\Model\Generate\Config\EquipXiLianConfig.cs" />
     <Compile Include="Codes\Model\Generate\Config\ExpConfig.cs" />
     <Compile Include="Codes\Model\Generate\Config\FirstWinConfig.cs" />
     <Compile Include="Codes\Model\Generate\Config\FuntionConfig.cs" />

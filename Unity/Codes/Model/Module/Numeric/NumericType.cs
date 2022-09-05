@@ -14,7 +14,7 @@
         public const int Now_Stall = 3010;                                       //摆摊状态
         public const int Now_Weapon = 3011;
         public const int Now_Damage = 3012;
-        public const int Now_XiLian = 3013;
+        public const int Now_XiLian = 3013;                                         //今日洗练次数
         public const int MainCity_X = 3014;
         public const int MainCity_Y = 3015;
         public const int MainCity_Z = 3016;
@@ -56,6 +56,7 @@
         public const int ExpToGoldTimes = 3053;
         public const int MakeShuLianDu = 3054;
         public const int RechargeNumber = 3055;
+        public const int XiLianLevel = 3056;                                    //洗练家等级
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

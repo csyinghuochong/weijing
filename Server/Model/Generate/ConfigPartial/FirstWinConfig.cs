@@ -6,7 +6,7 @@ namespace ET
     public partial class FirstWinConfigCategory
     {
         public Dictionary<int, List<int>> FirstWinList = new Dictionary<int, List<int>>();
-
+        
         public override void AfterEndInit()
         {
             foreach (FirstWinConfig firstWinConfig in this.GetAll().Values)
