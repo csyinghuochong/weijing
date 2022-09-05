@@ -182,8 +182,6 @@ namespace ET
             List<EquipXiLianConfig> equipXiLianConfigs = EquipXiLianConfigCategory.Instance.EquipXiLianLevelList;
             self.Button_Left.SetActive(xilianLevel != equipXiLianConfigs[0].Id);
             self.Button_Right.SetActive(xilianLevel != equipXiLianConfigs[equipXiLianConfigs.Count - 1].Id);
-
-
         }
     }
 }
