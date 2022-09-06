@@ -9,6 +9,11 @@ namespace ET
 
     public class UIRechargeComponent: Entity, IAwake
     {
+        public GameObject ImageSelect2;
+        public GameObject ImageSelect1;
+        public GameObject ButtonAliPay;
+        public GameObject ButtonWeiXin;
+
         public GameObject ImageButton;
         public GameObject RechargeList;
 
@@ -24,6 +29,26 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.ImageSelect2 = rc.Get<GameObject>("ImageSelect2");
+            self.ImageSelect1 = rc.Get<GameObject>("ImageSelect1");
+
+            self.ButtonAliPay = rc.Get<GameObject>("ButtonAliPay");
+            self.ButtonAliPay.GetComponent<Button>().onClick.AddListener(() => 
+            {
+                self.ImageSelect1.SetActive(false);
+                self.ImageSelect2.SetActive(true);
+                self.PayType = 2;
+            } );
+            self.ButtonWeiXin = rc.Get<GameObject>("ButtonWeiXin");
+            self.ButtonWeiXin.GetComponent<Button>().onClick.AddListener(() =>
+            {
+                self.ImageSelect1.SetActive(true);
+                self.ImageSelect2.SetActive(false);
+                self.PayType = 1;
+            });
+            self.ImageSelect1.SetActive(true);
+            self.ImageSelect2.SetActive(false);
+            self.PayType = 1;
             self.RechargeList = rc.Get<GameObject>("RechargeList");
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
