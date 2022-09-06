@@ -85,7 +85,7 @@ namespace ET
             PetConfig petConfig = PetConfigCategory.Instance.Get( rolePetInfo.ConfigId );
             self.Text_Tip.GetComponent<Text>().text = $"{petConfig.PetName}";
             self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, true);
-            self.UIPetSkinIcon.SetActive(showSkin);
+            //self.UIPetSkinIcon.SetActive(showSkin);
             self.UpdateSkillList(rolePetInfo).Coroutine();
             self.UpdateAttribute(rolePetInfo);
         }
