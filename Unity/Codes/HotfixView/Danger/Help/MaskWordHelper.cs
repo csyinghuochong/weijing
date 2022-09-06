@@ -11,7 +11,7 @@ namespace ET
 
         public string MaskWord;
         public string[] sensitiveWordsArray = null;
-        public Dictionary<char, IList<string>> keyDict;
+        public Dictionary<char, IList<string>> keyDict = new Dictionary<char, IList<string>>();
 
 
         protected override  void InternalInit()
@@ -23,14 +23,20 @@ namespace ET
 
         public async ETTask InitMaskWord()
         {
-            var path = ABPathHelper.GetTextPath();
-            await ETTask.CompletedTask;
-            GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            TextAsset textAsset3 = prefab.Get<TextAsset>("MaskWord");
-            MaskWord = textAsset3.text;
-            sensitiveWordsArray = Regex.Split(MaskWord, "、", RegexOptions.IgnoreCase);
+            keyDict.Clear();
+            await InitMaskWordText("MaskWord", "、");
+            await InitMaskWordText("MaskWord2", "、\r\n");
+        }
 
-            keyDict = new Dictionary<char, IList<string>>();
+        public async ETTask InitMaskWordText(string maskword, string split)
+        {
+            var path = ABPathHelper.GetTextPath();
+            GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            TextAsset textAsset3 = prefab.Get<TextAsset>(maskword);
+            MaskWord = textAsset3.text;
+            sensitiveWordsArray = Regex.Split(MaskWord, split, RegexOptions.IgnoreCase);
+
+            Log.ILog.Debug($" xxx;   {sensitiveWordsArray.Length}  { sensitiveWordsArray[0]}   { sensitiveWordsArray[1]}  { sensitiveWordsArray[2]}");
             foreach (string s in sensitiveWordsArray)
             {
                 if (string.IsNullOrEmpty(s))

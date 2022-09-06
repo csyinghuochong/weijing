@@ -50,3 +50,5 @@ MonoBehaviour:
     gameObject: {fileID: 4900000, guid: 66030896001375c4c8ff916053205166, type: 3}
   - key: MaskWord
     gameObject: {fileID: 4900000, guid: 9a964ddd1bf941e4597f0e8e01f99161, type: 3}
+  - key: MaskWord2
+    gameObject: {fileID: 4900000, guid: ab3d44538b3ea164e98526d1724e89ed, type: 3}
