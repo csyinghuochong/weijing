@@ -220,6 +220,8 @@ MonoBehaviour:
     path: Assets/Bundles/Config/EquipSuitConfigCategory.bytes
   - bundle: 75e2f0ea2e94916a8b7055fe36017cad.unity3d
     path: Assets/Bundles/Config/EquipSuitPropertyConfigCategory.bytes
+  - bundle: 0aa4fefdb76673e06d31cb909d6e8be4.unity3d
+    path: Assets/Bundles/Config/EquipXiLianConfigCategory.bytes
   - bundle: 4079745fe00dc2f7ad364982c48cd0db.unity3d
     path: Assets/Bundles/Config/ExpConfigCategory.bytes
   - bundle: b54332f63de951db6fb874d1972c4149.unity3d
@@ -1318,6 +1320,10 @@ MonoBehaviour:
     path: Assets/Bundles/UI/Main/RoleStory/UIStorySpeak.prefab
   - bundle: 769fe6053c98628acae15d37c4609900.unity3d
     path: Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLian.prefab
+  - bundle: b80d56352ba0be8e0d8f681bd7a02f18.unity3d
+    path: Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianLevel.prefab
+  - bundle: d0c7309212993bfe451b696643c213f7.unity3d
+    path: Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianLevelItem.prefab
   - bundle: eeaf12bffee7dc08cd563810e6086b5d.unity3d
     path: Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianShow.prefab
   - bundle: b92270eac3fc2bae5abdf2b880f4f54c.unity3d
@@ -1932,22 +1938,14 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Player/DropItem.prefab
   - bundle: e3ab81d7fa4ce4e2feefe9af4597699c.unity3d
     path: Assets/Bundles/Unit/Player/Hero_1.prefab
-  - bundle: d890eaf810e974fc7428cbb7a1f4517d.unity3d
-    path: Assets/Bundles/Unit/Player/Hero_1a.prefab
   - bundle: fbab36047f32a61103ddea02c94a1a8f.unity3d
     path: Assets/Bundles/Unit/Player/Hero_2.prefab
-  - bundle: a4b9a4d1259e254af934c4ab9bc4845c.unity3d
-    path: Assets/Bundles/Unit/Player/Hero_222.prefab
   - bundle: c9d864381ac46e8099d91da5d42db33f.unity3d
     path: Assets/Bundles/Unit/Player/Hero_copy_1.prefab
   - bundle: c72dd49d39e997a37f25e65b716ad045.unity3d
     path: Assets/Bundles/Unit/Player/Rose.prefab
-  - bundle: 7bfebca54c590cc4d2a3091a591a6e76.unity3d
-    path: Assets/Bundles/Unit/Player/Set Costume 01 SD Unity-Chan (1).prefab
   - bundle: 36a3573b9df81a88b3a3b2b9d52e2a0b.unity3d
     path: Assets/Bundles/Unit/Player/ZuoQiShowSet.prefab
-  - bundle: 95893c91049bf797ea499153dd6d559f.unity3d
-    path: Assets/Bundles/Unit/Player/zhanshi_jian.prefab
   - bundle: 2efc619c3f96e68cc7eaeffd09addad3.unity3d
     path: Assets/Bundles/Unit/Unit.prefab
   - bundle: 21b0aaadfd4639283c913dd4d559ef89.unity3d
@@ -1980,6 +1978,8 @@ MonoBehaviour:
     path: Assets/Scenes/100101.unity
   - bundle: e7d0eaf699ce77f51ccbbee5be6313aa.unity3d
     path: Assets/Scenes/100102.unity
+  - bundle: 58a36d7696ea9b7f174ba8afd17c4146.unity3d
+    path: Assets/Scenes/101.unity
   - bundle: 54fd2ce6dee60a69f63ecad6d67a4db2.unity3d
     path: Assets/Scenes/2.unity
   - bundle: bdab3c00de37f18ae2a6372769878af5.unity3d
@@ -2221,6 +2221,9 @@ MonoBehaviour:
   - name: 75e2f0ea2e94916a8b7055fe36017cad.unity3d
     assets:
     - Assets/Bundles/Config/EquipSuitPropertyConfigCategory.bytes
+  - name: 0aa4fefdb76673e06d31cb909d6e8be4.unity3d
+    assets:
+    - Assets/Bundles/Config/EquipXiLianConfigCategory.bytes
   - name: 4079745fe00dc2f7ad364982c48cd0db.unity3d
     assets:
     - Assets/Bundles/Config/ExpConfigCategory.bytes
@@ -3145,27 +3148,15 @@ MonoBehaviour:
   - name: e3ab81d7fa4ce4e2feefe9af4597699c.unity3d
     assets:
     - Assets/Bundles/Unit/Player/Hero_1.prefab
-  - name: d890eaf810e974fc7428cbb7a1f4517d.unity3d
-    assets:
-    - Assets/Bundles/Unit/Player/Hero_1a.prefab
   - name: fbab36047f32a61103ddea02c94a1a8f.unity3d
     assets:
     - Assets/Bundles/Unit/Player/Hero_2.prefab
-  - name: a4b9a4d1259e254af934c4ab9bc4845c.unity3d
-    assets:
-    - Assets/Bundles/Unit/Player/Hero_222.prefab
   - name: c9d864381ac46e8099d91da5d42db33f.unity3d
     assets:
     - Assets/Bundles/Unit/Player/Hero_copy_1.prefab
   - name: c72dd49d39e997a37f25e65b716ad045.unity3d
     assets:
     - Assets/Bundles/Unit/Player/Rose.prefab
-  - name: 7bfebca54c590cc4d2a3091a591a6e76.unity3d
-    assets:
-    - Assets/Bundles/Unit/Player/Set Costume 01 SD Unity-Chan (1).prefab
-  - name: 95893c91049bf797ea499153dd6d559f.unity3d
-    assets:
-    - Assets/Bundles/Unit/Player/zhanshi_jian.prefab
   - name: 36a3573b9df81a88b3a3b2b9d52e2a0b.unity3d
     assets:
     - Assets/Bundles/Unit/Player/ZuoQiShowSet.prefab
@@ -3877,6 +3868,12 @@ MonoBehaviour:
   - name: 769fe6053c98628acae15d37c4609900.unity3d
     assets:
     - Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLian.prefab
+  - name: b80d56352ba0be8e0d8f681bd7a02f18.unity3d
+    assets:
+    - Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianLevel.prefab
+  - name: d0c7309212993bfe451b696643c213f7.unity3d
+    assets:
+    - Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianLevelItem.prefab
   - name: eeaf12bffee7dc08cd563810e6086b5d.unity3d
     assets:
     - Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianShow.prefab
@@ -4897,6 +4894,9 @@ MonoBehaviour:
   - name: e7d0eaf699ce77f51ccbbee5be6313aa.unity3d
     assets:
     - Assets/Scenes/100102.unity
+  - name: 58a36d7696ea9b7f174ba8afd17c4146.unity3d
+    assets:
+    - Assets/Scenes/101.unity
   - name: 54fd2ce6dee60a69f63ecad6d67a4db2.unity3d
     assets:
     - Assets/Scenes/2.unity
@@ -4996,8 +4996,6 @@ MonoBehaviour:
     - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonLitOutline.shader
     - Assets/Res/Models/Occ/zhanshi123/Toony-BasicOutline.shader
     - Assets/Res/Models/Warrior/Suriyun/UnityChanShader/Shader/Unitychan_chara_hada.shader
-    - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/Toon_ShadingGradeMap.shader
-    - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/ToonColor_ShadingGradeMap.shader
     - Assets/TextMesh Pro/Shaders/TMP_SDF.shader
     - Assets/Res/Effect/BackBlur/BackBlur.shader
     - Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
@@ -5044,8 +5042,11 @@ MonoBehaviour:
     - Assets/Res/Effect/SkillZhiShi/Effect/Shader/Particle Alpha Blend1.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Toony-Basic.shader
     - Assets/T4M/Shaders/ShaderModel2/Diffuse/T4M 4 Textures.shader
+    - Assets/Res/Models/RPG_character/Shader/Cartoon.shader
     - Assets/Mono/GameDemo/OldResources/Water (Basic)/Sources/Shaders/FX-Water Simple.shader
     - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonBasic.shader
+    - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/Toon_ShadingGradeMap.shader
+    - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/ToonColor_ShadingGradeMap.shader
     - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/Toon_ShadingGradeMap_Mobile.shader
   - name: f25cddffc2bb2503ef64e3bf9f053512.unity3d
     assets:
@@ -6158,162 +6159,6 @@ MonoBehaviour:
   - name: 08fe0097f28966aee502e0d7402d381b.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/tga/Main.mat
-  - name: 6d28f831dc88584c87597d012c06b7b6.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_02_R.prefab
-  - name: b1e2e85ad1b6aa51f30a285373b0c8df.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/Eye-EyeBall_00_00.mat
-  - name: 7ef4b0bf8687ba9ad0dde3324624ca1d.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Emotion 2.controller
-  - name: ce11661be4f9218e0f792634f7ac439b.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eyeblow/Eyeblow_00_00.mat
-  - name: cd5a510bda0f49312fccd5e2281fe3c6.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/Eye_00/Eye_00_00.mat
-  - name: 77e2660af71c9699049f1fbadeed613c.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eye/Eye_00_00.png
-  - name: 0532c314aec30db6a3d58d3851fd0a69.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Costume_01.fbx
-  - name: a8b095edd8729aa05f73408ec57b1b58.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/accessory/Hair_00_subAB_00.png
-  - name: b95943454f980d7c943ac24fe208ab1d.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Hair/Hair_00/Hair_00_00.mat
-  - name: 7ade82881bcf37e697928eb16cd37bd5.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/_Bundle/Dummy Motions.controller
-  - name: 2a040b39d9e8b088d1e7893d42273732.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/accessory/Accessory_00_00.png
-  - name: a86baeed0fe713390899f89dcc522468.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Faceskin/FaceSkin_00_00.png
-  - name: 7a17b82b36ae722d2c422e9decca4c74.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Costume/Costume_01_00.png
-  - name: 5ea67627ed684a78711c7a2b808accbc.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/RunA_Front.FBX
-  - name: ed5071eff6fbdb3026f7c6c5b8851ceb.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Face_00.fbx
-  - name: 2f5edf59932cac2a5d34afa89d230972.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandC.FBX
-  - name: 2559c9c554ce4517b258e5e11a389536.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_01_L.fbx
-  - name: cd357699746145ec22b79060bd518c8f.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Face/Face_00 BlendShapes.prefab
-  - name: f51ad62312eb5828cf277facf30f0033.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Accessory_00.fbx
-  - name: 649e0e9534dec0499979e8d5f788c24f.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Hair/Hair_00/Hair_00_subAB_00.mat
-  - name: ffa542384dfc7e62dd4fefeb8cf87c6c.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandB.FBX
-  - name: 0be0bf0cb0a3bdfa5ea5c7ee9e156245.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eyeblow/Eyeblow_00_00.png
-  - name: 17f5e9c0602b6d0c7f37856de522bcc4.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/Eye_00_R.prefab
-  - name: ad32c5c035064d8f6fc797244339b657.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Faceskin/FaceSkin_00_00.mat
-  - name: a13f0e80c67cce394476d64f8033cd3f.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_02_R.fbx
-  - name: b309dcd0514eadd7eb3b90ae6c89771e.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Costume/Costume_01_00.mat
-  - name: 327b30e18be122f0d6282542f41edf6a.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_01_R.fbx
-  - name: e4fc831fe65642cadd94202e644a3970.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandA.FBX
-  - name: 6609a978e4e7a8e4728a3064c597fbee.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eye/eyeball_eyelight_TextureGuide.png
-  - name: e6e2ddb1e0777e859db79e72742baf3f.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_01_R.prefab
-  - name: e8d5681a871d1198fc5f0f269570c815.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Eye_00_L.fbx
-  - name: 1e78c7ed322e238b78d66f0794bee19d.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Hair/Hair_00_00.png
-  - name: 0137ad5c8cc8f1258683123216b1ce22.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_02_L.prefab
-  - name: 2add8d236fcc862516ae790347584ee1.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Eye_00_R.fbx
-  - name: 918e9a653f890296482dae0bf4191965.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Accessory/Accessory_00.prefab
-  - name: 6d3b8e87991b44f217fb734c66b54423.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Hair/Hair_00_Front.prefab
-  - name: 477c3bcac83803c5751acf4d7f030b65.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_02_L.fbx
-  - name: 066732bcd3716a66803fdbd7513ceaaa.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Hair/Hair_00_Base.prefab
-  - name: 40e1bd563e2cfa2aae064fd3336065db.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Hair_00_Front.fbx
-  - name: 561b9f64200930d32a3821b933108c87.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Accessory/Accessory_00_00.mat
-  - name: ab5da315d2406138dd517e10324dde57.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/Eye_00_L.prefab
-  - name: 59f79ecceb740741127cfffb6ecf5fa6.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Emotion 1.controller
-  - name: 1e924a807c0dc7345b678cc11d31a7fa.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/EyeLight_00.mat
-  - name: 81784648cf126cfa001c30607e1028f2.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Squat A.controller
-  - name: 569a45b7ba403880949b337a49978f91.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Set/Set Costume_01 SD Unity-Chan.prefab
-  - name: b84f7beee5fa5d461f879ff78f7a8ce7.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Hair_00_Base.fbx
-  - name: 6f9523615e9fe176102cf766a840f6bc.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_01_L.prefab
-  - name: 8fbc3244159feeecd0abaef044a2020c.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Models/Prop/Prop_03_GreatSword.FBX
-  - name: 57e702cd7ecb6335cf1a936ecc8add81.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Prop/Prop_03_Manteau_00_00.png
-  - name: 26c6e8559d877023ccfc9edb1f47c0df.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Prop/Prop_03.mat
-  - name: 994ebd0d8d354d5bdfcac05af14c7176.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/C StandA.controller
-  - name: a566b135e8bd8361f3c22e47ba61700f.unity3d
-    assets:
-    - Assets/Res/Models/Occ/zhanshi/tga/WuQi.mat
   - name: 5becca8f232758648eaf149c35173c0a.unity3d
     assets:
     - "Assets/Res/UI/Font/\u963F\u91CC\u5DF4\u5DF4\u666E\u60E0\u4F53M.ttf"
@@ -7619,6 +7464,9 @@ MonoBehaviour:
   - name: dab79647875404df06a873c3d92ad3cb.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_304_2.png
+  - name: 3d9a11a05864bfedd929243ae3ce413f.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_154.png
   - name: be6d311f20f09a3185a4838a74e99874.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_294.png
@@ -7664,6 +7512,9 @@ MonoBehaviour:
   - name: bc5ceb848e028c1af4fe46c1a4844d4f.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/GameUI/Img/Img_66.png
+  - name: d4a04ca0dd9f2a36d19e4f489f6a499a.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/ImageBig/Img_111.png
   - name: 950cfcd61528246f30ed73e55a8ce7bc.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_365.png
@@ -10186,33 +10037,39 @@ MonoBehaviour:
   - name: 7e318b2f83d98f34796b9a317c235e97.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/portal_rays.png
-  - name: a41bc0ded7236b897beb18b023714c91.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_BuLiao/Props_C.mat
   - name: c78f58a2cd597b211649736898367dc6.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C13_2.FBX
-  - name: 45bb8fd03dd842d151e030926a2be4f5.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/UseModel/YaoDian.fbx
-  - name: b4e8668a488b23595a280eff16f1cc5e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/DDS/NPC_GAMBLER.png
   - name: 4e02260fcd14ca7ac3a7383d041bf56c.unity3d
     assets:
     - Assets/Res/Effect/Scenece/DoorWay.prefab
-  - name: 70777ce7515091fdb2c139818e0d32e0.unity3d
+  - name: 07acde07c754dbf641a7a26c9dea211b.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C13_1.FBX
-  - name: 0efbcbf1c5f6f9f49819493eed8c64b1.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/Materials/NPC_Gambler.mat
-  - name: 57a58c8ebcd8683687714412c5f29b67.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/UseModel/YaoDian.controller
+    - Assets/Res/ScenceModel/Hyper Casual Chests/Texture/Chest Color Palette.png
   - name: b43929757762c6104fbe579f48d5ba50.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_BuLiao/Props_C_1.jpg
+  - name: e5c1e3b1c68c4a4c84bfd2c13ff3cb64.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Hyper Casual Chests/Materials/Chest Material.mat
+  - name: b4e8668a488b23595a280eff16f1cc5e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/DDS/NPC_GAMBLER.png
+  - name: 57a58c8ebcd8683687714412c5f29b67.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/UseModel/YaoDian.controller
+  - name: 45bb8fd03dd842d151e030926a2be4f5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/UseModel/YaoDian.fbx
+  - name: 70777ce7515091fdb2c139818e0d32e0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C13_1.FBX
+  - name: a41bc0ded7236b897beb18b023714c91.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_BuLiao/Props_C.mat
+  - name: 0efbcbf1c5f6f9f49819493eed8c64b1.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/Materials/NPC_Gambler.mat
   - name: 7c74fce86b84c56516f92549dcfe5ed5.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelMushrooms.fbx
@@ -10360,247 +10217,2066 @@ MonoBehaviour:
   - name: aa8396eeea0652f432c67256c0215116.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_A10.prefab
-  - name: 999f57779fd2632641fba4ec355b7a28.unity3d
+  - name: 92906890e5dde5b6b98b234986294429.unity3d
     assets:
-    - Assets/Res/Models/fake shadow.prefab
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_B_Normal.png
+  - name: 979aa2c2d291a378752e7fb3b7f0e98d.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_potion.mat
+  - name: 59266c3f71268c288ff70727e87bf759.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_C_MaskMap.png
   - name: 3e08371f6e5902b9a93ca9c05dcabc1d.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/grass_texture_01.png
-  - name: 5193b3f5e6ed5f2c7b992c2183430ab7.unity3d
+  - name: 06ea3c5fb9307faa82bf75a76014a7e0.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_F3.FBX
-  - name: d25a69b3b3706fdf090bdd6753bf4b6d.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Pillar_E.prefab
+  - name: 3b0986e59472ac05127215f83f152733.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_A3.prefab
-  - name: f1f03efba9cbb21ed5069867eaf6d2c0.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_F3.prefab
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/MV_Leaf_B.mat
   - name: 61a24c6aebea08115f1dcdcd3720cd6b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Cloud/Cloud.png
+  - name: 1506adfd5068d6e6d8d2de20c2560559.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_382660.asset
+  - name: d010e58503b1cd3973b3dbd53d47297e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_408144.asset
+  - name: 1a0168092e75f73a484f039e1a754485.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Chair_A_AO.png
   - name: 0078e57f8a126ab4b120ed74188f48ad.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_F1.prefab
-  - name: 24064235829ea9585b5f085361d3f2d4.unity3d
+  - name: bf5e6f743b97c7044b72cb59ba643793.unity3d
     assets:
-    - Assets/OldScenes/All/Zhucheng/Material/zhucheng_yaoshuidian.mat
-  - name: f42979faccb723b888a7316c7cdfd5a0.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Store_F.prefab
+  - name: 06b3d1f86b5868849e4459ced56bb5c3.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Texture/EnterGame_Terrian.png
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_297308.asset
+  - name: 21b311376dd6e538ae4ef1093817f29e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_302644.asset
   - name: 43d3c31e59848a509f46c5979cdcb170.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Interiors_Props_Q2.prefab
-  - name: a5f65061686157e40866b51509fc90a3.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A18.prefab
   - name: 30fa0324692c8b1f8080424392f5cb49.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C24_5.FBX
+  - name: 7a72a3c3cb2b37c5b5818d1970c42808.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/etc_woodbox01.FBX
   - name: 8be7ffab07161783ba796f0e77ae9a58.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_H1.prefab
-  - name: 31f696e5865b7f79c09bfc5d134fde59.unity3d
+  - name: b4a679529dd3e3d14ff528019039f973.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_E2.prefab
+    - Assets/Res/Models/Fantasy upgrade building/building/building_inn_lv5.FBX
+  - name: 68c59061ba563df904e688ad44537f33.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_spell_lv1.FBX
+  - name: 562b4d0561093636dd9a1cbef11b21d7.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_C_Normal.png
+  - name: b121abffd45583fb6634e1e7cb418fd1.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_C_BaseColor.png
+  - name: 6e64fea8ba024530fe3591b8b984869a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Stair_A_BaseColor.tga
   - name: 6329596746b7d76b2c5df64b1ce74b20.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_Hua/Plant_A_1.jpg
-  - name: 6c2c357f0c19162ee8126d5396cd50b6.unity3d
+  - name: d342ff8375b710d74bb75b034467f1ac.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_grass
-      2.mat
-  - name: c954e3e6d56e2c984953be22e7776f2e.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/UModeler_Gray.mat
+  - name: 2070e189a3bbdd6a029a2c90368230b2.unity3d
     assets:
-    - Assets/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox2/toonyDay01_Back.bmp
-  - name: 391e064692678b9772821eb893752a20.unity3d
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Book and Paper/Book_Pile.prefab
+  - name: ebfdfeea9ceae2afc18f48d6665091d5.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_B2.FBX
-  - name: 583e22b23d9a2631c4cc398916d0a63d.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/building/building_potion_lv2.FBX
+  - name: b6f316118abb5d24d364cc2ebf803609.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_L2.FBX
-  - name: abf911df58879992bd5de95530609ae8.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_E2.FBX
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Material and Texture/Gradient.mat
   - name: 858d64d8d6e859bacbd3791531d00ba3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_A5.prefab
   - name: 31569378802dbc6603aa80bd1be973a9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_A2.FBX
-  - name: 83bc1d79cd1c411cf6a8f24bd45effb2.unity3d
+  - name: 1ad9874f9af16316e974e201a4d36cc2.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/CITY_PLAZA_ROAD_02.png
-  - name: dd0b66560d7b0778a8dc8ae612737d87.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_410850.asset
+  - name: 43143ac401637e9d91edc72a92d0f4fb.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/ZONE01_RIDGE01.fbx
-  - name: f314b95821b8988ce2a93d7d2cfd6cf9.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C4_2.prefab
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_weapon_roof.mat
   - name: ab8d6d36fe9dcb611d83b609989e4aab.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C2_1.prefab
-  - name: 9e8cd829b5c928e3911f5366832bc8a6.unity3d
+  - name: 00a0c2f5f65c8bcbfbe0907d70224c48.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Meshes/EnterGame_Terrian.obj
-  - name: a712ca93c4234a629677dfef31f416fd.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Accessories_lv1.FBX
+  - name: 7ff7b8de315b0ed9930f8fe372ec2d36.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Staircase2.jpg
-  - name: 6673fd72d274466cdca8c569a32940c7.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Wood_A_02.mat
+  - name: 4cd1a18b48a0b86c9a5dba1a1b7f7d7c.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_C1.FBX
-  - name: 602d5edfb11638693e48130476d55a69.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/GroundTile_B_01a.mat
+  - name: e606328d5600551b76d1d1df5faa4f1f.unity3d
     assets:
-    - Assets/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox2/CartoonSkybox2.mat
-  - name: 56e690b2bf5a5cbf31aad4b72d70d35a.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_spell.mat
+  - name: 143f86e8a627a1b66d6992a0a0da168e.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A16.prefab
-  - name: a2035cb2dbc4c020b2f6acd3c60f2874.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Ivy_B_01.prefab
+  - name: a1c92efb0ecbd3b4700d4db658f35774.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C4_3.prefab
-  - name: da5fd44755c8194dfe6d715c9e3f0bd9.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_423554.asset
+  - name: 8f3c34bf0a1ec79ec56f1270284477fc.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C26.FBX
-  - name: b4414671d4726437c7f7952f971eefb4.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_spell_lv4.prefab
+  - name: ed1119d751c665ed2ffc885da4d601e4.unity3d
     assets:
-    - Assets/Res/Sci-Fi VFX/Textures/Beam/AnimatedBeam.png
-  - name: 591fa3a092b4b848fb39e3e02d66323e.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/CastleWall_F.prefab
+  - name: 80c3b15174f0c966991c3a45f3a5ad1b.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_A7.FBX
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_400152.asset
+  - name: 4cd3e0db38380f4b60d7e993df49d515.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Stair_A_Normal.tga
   - name: 9a706ae9b92cc3969b75a0d45bce0737.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_F1.FBX
-  - name: 9f5f6b736f08541e9d2769115ea670a4.unity3d
+  - name: 46e435c8c2b60f00dc4cbd8f1f452f9d.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_F1.prefab
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Ivy Leaf_BaseColor.png
+  - name: 0fa608d2533658f082730e3cc5803ec1.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Building_D_01.prefab
+  - name: 05ccab775a7783401219a13cd6ee850b.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_89890.asset
+  - name: 5c39c84b3716123a777f0b2dda3ad01d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Flower_B.prefab
+  - name: 6eed5d99487e19b2ae8a1873a6edb243.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Herbal_sprout.FBX
+  - name: 365de0a30a500b8ac59918cb35fac516.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/GroundTile_B_02.mat
+  - name: 7712eee3644f5d6207bceb4996fe6821.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Stair_A_MetallicSmoothness.tga
+  - name: 10e46c605fd26e93af94abbd9bcfbd29.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/MV_Wagon_A_01.mat
   - name: 9978e913fb70d5a0a69e3f1151934e05.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A10.FBX
-  - name: c0b1c5cd6153455b63837d88b120552c.unity3d
+  - name: e10a2f0c6e879be5dfa3274801f528ad.unity3d
     assets:
-    - Assets/Scenes/1_2.terrainlayer
-  - name: 92047d1fc88f2ce4ccd3d61a548c9927.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_S.prefab
+  - name: 3a349024edff40084687bdc2454864d1.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A20.FBX
-  - name: d96e2fbb438b123903e5522b2a25c5f2.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/StatuePillar_A_AO.png
+  - name: d6c0cb93e5a7b5b6409a46305b4d7d5d.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B5_1.FBX
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_94538.asset
+  - name: d061b201b31a89df939d04556db8304b.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flag_B_01_MaskMap.png
+  - name: e11503a0f49d105eade7e4bd03cfb145.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flag_B_01_Normal.png
+  - name: d1b7cf14705cdc5254283f36bc512ffb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_238814.asset
   - name: a93aef11a97423f1eb5047c07f5e3bb9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_C29_2.prefab
-  - name: 55842052d399788b0fe496585ecfbb3f.unity3d
+  - name: 4576e91c0b9255bce4e437c13a297fef.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Interiors_Props_R1.FBX
-  - name: c7ca6861cbc5cf9d292bf45b77667ccd.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Building_A_06.prefab
+  - name: dc09e1aa2f9a2907e8ecd96f3416191d.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Materials/Zone01_riverbed_fring.mat
-  - name: b6375fed0751ae4f0d8072c9282f57d5.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flower_C_01_BaseColor.png
+  - name: 01ee6fa4adabc9b2a61902cdb3eefa79.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelCoconut.fbx
-  - name: be18054b733d8c8f25093e92e65f1038.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_A.prefab
+  - name: daba4198acf2680aca38d0b0c6205a54.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Materials/Interiors_Props.mat
-  - name: 6c04ef7f869476ca4e1d1ddb1b3445a6.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Herbal_lv4.FBX
+  - name: 9cd5f5edac316bc83652ccb470bd1edb.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A23.FBX
-  - name: 06a8257292571d8a1b36e136d469262e.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/CastleDoor_A_MetallicSmoothness.png
+  - name: 6b2b026a5f30fa22ecf9d1c07af96afd.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C4_2.FBX
-  - name: 0da9b2da5aa676bb9834452ec4fbc3fc.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_B5_1.prefab
-  - name: 9dee094486a6b97201bb719761d20bae.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_A5.FBX
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_213418.asset
   - name: 9c4be66121029329e6d7e6e2c0d707d1.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_J3_2.FBX
-  - name: 06098e1a0450b005e05393f277c34b27.unity3d
+  - name: 32d1b07bcafefe32f7bcc096773ec29e.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Building_PotionShop.mat
-  - name: ed5c0ef5310c9137dbbcfaf31d7041c4.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/GroundTile_C_01.mat
+  - name: 303b7b9d31ae589f76794a5ead396536.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Cloud/Cloud.mat
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/MV_Tree_B_04.prefab
+  - name: ccd9b9edfcdb5048164176b2c7977c63.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_299494.asset
   - name: ca9c6405c40382db513488e079b040e2.unity3d
     assets:
     - Assets/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox2/toonyDay01_Down.bmp
-  - name: 2fefe3885325437cd83bd4c15b9dab24.unity3d
+  - name: fe0a98a1b007e08899e6da502c34b1aa.unity3d
     assets:
-    - Assets/Scenes/1.asset
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_422450.asset
+  - name: c4974582b83251912b297d9611391504.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flag_A_01_AO.png
+  - name: 4d95be574d3ac01808ef026541725248.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_F.prefab
+  - name: 2eb3366f0c94902fde5b40e6c369e586.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_variety_lv2.FBX
+  - name: 9619589604b62e7def8a67b419cf3f8e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_318454.asset
   - name: e6fd59be6b3fb43f587a8b2ffd4604c0.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/RIVERBED_FRINGE.png
-  - name: e4672bf116e694130a21f0e56283431d.unity3d
+  - name: 9eeddd869f555ed5171607562fc0ea1d.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_F2.FBX
-  - name: 0352671adb1c4a57ddb710f3ed470b58.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Door_A_01_MetallicSmoothness.tga
+  - name: d2a7d5c1c0e76badaaa5999439885d6d.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_A1.FBX
-  - name: 587376d7c34878593a251b6be65e50fc.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/CastleWall_A.prefab
+  - name: 9f2a136b40368847035f45cd635fb07d.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelStaircase2_1.fbx
-  - name: 817f38b49ef869a95b143fd559d64439.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Ivy Leaf_A.mat
+  - name: 428bed0d4d3016451e56129f64780a98.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A15.FBX
-  - name: 1896a8e482d38bddd2e32b0f096103f9.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WallTile_C_02.mat
+  - name: 5c777648896e03f54e55701c981372ee.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Tree01.mat
-  - name: 7db0466d3f6ad4405ed6dfe42ef1d210.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_E2.prefab
-  - name: d49e86bacd1dccde85934d39c79beb8e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_A2.FBX
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Fabric_E.mat
   - name: 8badf3c6dafa6358da3c14c84d4b3041.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Bonfire.jpg
-  - name: 3d8f1939bea0c21754a08ec1a99febfd.unity3d
+  - name: 817f38b49ef869a95b143fd559d64439.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_K1.prefab
-  - name: 0b1a605a73ecef90c580cbdfcfd6b146.unity3d
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A15.FBX
+  - name: 4e42040a71c112d68c452b539bfa6a3f.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.FBX
-  - name: 02839a35bf610ce0a03bff9f0fe1466c.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_I.prefab
+  - name: 7b40438215c4d9edec7df7e5cf192627.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Staircase2.mat
-  - name: 9268a2fadd3cf2daf2aab8c95594d31c.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_113276.asset
+  - name: 560a84adc65af93fb295a1869a25ba36.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A16.FBX
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WoodTile_A_Normal.tga
+  - name: 7db0466d3f6ad4405ed6dfe42ef1d210.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_E2.prefab
+  - name: 0fd5a0a214b28efa077ca035e03b437a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BuildingWindow_D_02.prefab
+  - name: cadee7981ee7fe044f95437f553f8177.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/WoodFrame_A_01.prefab
+  - name: e16d3f18322b38f75c29a252014ae1a3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Hyper Casual Chests/Models/Crown B.fbx
+  - name: 799918a7f7ff92f23d9f42d953f6f03e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Fabric_A.mat
+  - name: ac150ecba4c2c5a0e58002e0cbff127c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BuildingPillar_A_01.prefab
+  - name: 7e15694bfd63be524cd91538d525140f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/CastleDoor_A_BaseColor.png
+  - name: f768b690ee9517febedce7bf398a3958.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flag_B_01_AO.png
   - name: 5859862143a5aced1c5c631c7e321587.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/BaoXiang_1/Materials/Tx_Chest.mat
   - name: 9703504eeb5408a5909b9b65e0dd7003.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Cloud/Cloud.prefab
-  - name: 7c67323bfb0d7795bedca05e45c8412b.unity3d
+  - name: 2a7e88b07218a30a77044887252ad127.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_A1.prefab
-  - name: e73a05dec78f4222a92e1c4da679a7f6.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_353434.asset
+  - name: 0d4d0e9bbf81cebbd7e4f70f35430065.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.png
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_B_MaskMap.png
+  - name: 94d3a16c28b15bae83e160a8d0895dfc.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_249272.asset
+  - name: b978c72c5e0d690753bbdb181dcf6b4c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Ivy_B_02.prefab
   - name: a14c01bb1b4f2bd12dec019f708b468d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone01_grass_tund.002.mat
-  - name: 3eef2f583e950af9fcb5deba361eb1ba.unity3d
+  - name: 87cc170abea6fe94c14132da0a85b426.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Material/EnterGame_Terrian.mat
-  - name: 03902cc2c2cf362a80143a7ca099606d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_I4.prefab
-  - name: a67d6ea40c426bad4b75e5472d0a5a40.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C2_3.prefab
-  - name: e43a94097d141d68ab1e97f54ab483c5.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_B21_2.prefab
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_potion.png
   - name: 29f7d335a6588f7dfd9b32e9cd9b1445.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_G1.FBX
+  - name: d6475f197b2d0bcc7f395edfbe0fcf35.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/RoofFrame_B_01.mat
+  - name: b2ccd7095755e16977068381c1f6c347.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_T.prefab
+  - name: 68764a32ff3b2f9d2055c20ad260fa77.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Models/Coins/Coins.fbx
   - name: 8a3d292da0ddcf4f3a48d4398d757ac7.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_F2.FBX
+  - name: 8991dd3ce231130fbe9a4c9c2ee44aff.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_garden01.FBX
+  - name: 43bbcbe2e58c89266fed06545881dad5.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_weapon_ground_lv5.mat
+  - name: 547ab5b8836ce7b2072cf7fbedb032bb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_A_AO.png
+  - name: 6def70b6be0a80414edbc34a3f91ddd0.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Furniture/Ladder.prefab
+  - name: 1b6a2864f7aba6dbb1a5eb5bad963c5b.unity3d
+    assets:
+    - Assets/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox2/toonyDay01_Right.bmp
+  - name: 1ab8260b95af15b005ecff0a34260428.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.prefab
+  - name: 362284cb2d0a9fa12ee89ad13768afa4.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Textures/Interiors_Props_1.jpg
+  - name: d37422d519766089d72b1b3de2b28526.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Cloth_A_01_Nomal.tga
+  - name: 7a0db1ef6323d9e6d47b788a94f1ab86.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Grass_A_01.mat
+  - name: 517115925ff5b9b6c749a2e32f9eda31.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/CastleWall_H.prefab
+  - name: f5f7ce8f521e402bbbf2e5445e1071e1.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Flower_D.prefab
+  - name: 2dc3b99d4aae2f6b52cadf9f8c5851e6.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_318182.asset
+  - name: ad82d2015df92a10c02b0035e7e8d9dc.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BilldingStair_C.prefab
+  - name: bf6d028ad2536304fc3a9b0ed53890e3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Flag_C_01.prefab
+  - name: 2c5b9f611df949180dd01d9b61002a5c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Building_B_04.prefab
+  - name: 148a49a0dba9607b1e89cfff653b1a6f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_317740.asset
+  - name: 30d7a7557353f9af6856403c1167b46b.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone0_riverbed_sh.001.mat
+  - name: bbbba27f347cc3f0349224626f5dd5d7.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Terrain/MV_Stone.terrainlayer
+  - name: ff2e23e017379a2b3211e6d49071cf12.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_105634.asset
+  - name: f111a3a3eb8df0b550c3f3ca22ced9cf.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/StatuePillar_A_Normal.png
+  - name: c5acf224c7763621f2685647e6c4bf70.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Lamp_A_BaseColor.png
+  - name: 47b2dc102ef6a9050d4b3be923051023.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_317350.asset
+  - name: 217c4e8fe62ffe64dfb475e237dbf527.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/TerrainTexture/NewLayer.terrainlayer
+  - name: 03efae2b516afdd71461838ac281d10a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_A2.prefab
+  - name: c360145669417c8e368986df4c472787.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_94700.asset
+  - name: abb0565d67a85089d4df50eeab4c2170.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_D_MetallicSmoothness.png
+  - name: 64830b5690ddd1d52065798e6a93f54f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WoodTile_B_MaskMap.tga
+  - name: 92ff9d4d1bc2c1b9b2bc4038fde3a0c5.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_114648.asset
+  - name: f7ae1ade4c59c5831313ba9a40afc98b.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Chimney_A_01.prefab
+  - name: d30fb3e34548e7239e938603bc7c794a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_B_BaseColor.png
+  - name: f6073a6d8b09313136f1f04deacdde26.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Fruit Basket_A.mat
+  - name: c314c9532fcb452eb13937280b06a4a3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/CastleDoor_A_MaskMap.png
+  - name: 471925b7aaefccb0168c04e0ce17b7e2.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Accessories_lv4.FBX
+  - name: 7595fc0e9677a64e0a95d4ee0c7fb28a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_421670.asset
+  - name: 8638051491a8e14ef2a50e6af7eb1c9b.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_411346.asset
+  - name: aa4adc15876b9936c9b5a7050fb7685f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/TownChair_A.mat
+  - name: c9d99249e41781528f16a258b460c879.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Pillar_G.prefab
+  - name: b2f6569711d0e36b2d2aa541006fc25d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/FX/Leaf_A_Particle_BaseColor.png
+  - name: 02db57c42d6b4219f96fba716665e400.unity3d
+    assets:
+    - Assets/Scenes/1_3.terrainlayer
+  - name: 05896dbd2136cc0348194e7dae7003cd.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Treasure/Treasure_Basic_lid.prefab
+  - name: d3de9dbc8882d56d235603cceef9edec.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Element_B.mat
+  - name: e87c5e8b67c8ad221bca43f22177e9c5.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Ivy_A_03.prefab
+  - name: 19f261c9ba619a3ff252f032169eac1d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C29_2.FBX
+  - name: 543dbc1fe002a1d7579bfec6fd8d6b83.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_86198.asset
+  - name: a28d5d76d066b75a4c83d8aef3873569.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_A_MaskMap.png
+  - name: 399f09fb4acdd8c7927a40915d54b671.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories_roof.mat
+  - name: c34d141e4ab935499285b341bf1bf001.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_weapon_ground_lv3.png
+  - name: b5083263efa9beaa1dfa5d5e2fcbe41a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/GroundTile_B_01.mat
+  - name: 55208bc8b032fb96c6426eecb54305fb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BuildingWindow_D_01.prefab
+  - name: 54b219911b825596fd38e8a022cb92e3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/MV_Trunk_A.mat
+  - name: 65d7262312874c101098525e42e23e23.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WoodTile_A_MetallicSmoothness.tga
+  - name: 4fc2e4a25566354631dc6887464edf38.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_D_Normal.png
+  - name: 248f6db6090abcc0cb4bc3630c59d1be.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow_A.mat
+  - name: b1a3d37ad725a3f0cae02da40b74125b.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_K.prefab
+  - name: 526bacfb7c35834a0f718d3896694940.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_E.prefab
+  - name: 02193914ff26fc4444a2688c31aabcad.unity3d
+    assets:
+    - Assets/OldScenes/1/NavMesh.asset
+  - name: c72621e607d36bc6998dfc0071e14dfc.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_C_MetallicSmoothness.png
+  - name: 9bb0d38692b1f47dbd429a7ef2ac76d3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_133462.asset
+  - name: 023b68f3d62dcceb35926e2fae513416.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/CastleDoor_A.mat
+  - name: d42d428bd7936c11edf3a66c59318db3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Chair_A_MaskMap.png
+  - name: 580a9af8c4c44830bf29a39dc71c830d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_P.prefab
+  - name: 1eca127e3b1e16b69fc3ab26cda24136.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_107490.asset
+  - name: 11a136c2ea009ba1af8064220501c4a5.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_D_MaskMap.png
+  - name: e33d06500be62e7a9cfeba5f4951a933.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_110400.asset
+  - name: e0d5dc0ff17eb522c7b68e4fa7af7a84.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_grass_patch
+      - Copy.fbx
+  - name: f533a23158488e1fea78d21a7279a4d7.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_weapon_lv4.prefab
+  - name: 994f650de1bf8fe42484fa65dfd8e247.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_U.prefab
+  - name: a151d0dc59ad4cc688ff8623b74e5029.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/No Name.mat
+  - name: fb5e3fb63d0ede00ba9d34a1dbf83806.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Lamp_A_MetallicSmoothness.png
+  - name: c881b3d774ee77db6e5fce6555eac569.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow.png
+  - name: 999752ef8a24e529a099e21f34ff6ed6.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_C.prefab
+  - name: 89258a645cbb2d3c367436be46f0ff40.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_O.prefab
+  - name: 38555b23eaad0ef2f01a8856ab4fbe87.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_Hua/Plant_A.mat
+  - name: 3271d05cece04fa1f3ef2da164a3d1d1.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_C.prefab
+  - name: 1ed5c8ff1178c30a8532186fb632b309.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_352386.asset
+  - name: 5ea1094a52d277ade2c245fcc304e342.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_295504.asset
+  - name: 7b0587684f12cd3b756ccb144cdb7eb0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_A3.FBX
+  - name: ca2af65d7e92d8e28f555e14ff1bb01a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Models/Dishes/Dishes.fbx
+  - name: ed33c7fd47f53402670d919d5efd1298.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_D.prefab
+  - name: c95ec6bc7b759afb200112bbb839c3c9.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/GroundTile_D_01.mat
+  - name: 2f4adf127bf7def09d3312958b5d11c8.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Glass_A_MaskMap.tga
+  - name: b0aa2241dd791c8cb55f4d8399c11a58.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Boxes and Barrel/Box.002.prefab
+  - name: ae5c73d2a72ffb74d20939a4306db7b2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_C_MetallicSmoothness.png
+  - name: 4dfb5b7a423bae2121b5804e9313292a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_F3.FBX
+  - name: 0bcda81b5d60417224a6d2b45e6ec274.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_82300.asset
+  - name: 41aa3e9a07d9ad985221a462de7fc72f.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Interiors_Props_R1.prefab
+  - name: 19a07ea07fa1740c143a18b0ad0a176d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C4_3.FBX
+  - name: 6f708a1bba446b1f82c8905172615996.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_D_BaseColor.png
+  - name: 379eb36f84041126bdd9879a264f942e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Building_B_01.prefab
+  - name: cc5e09bec76897531b4646d49b0561c5.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_164556.asset
+  - name: 033f67aee572d5f633e1b47d7e9f841c.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Armor_shield02.FBX
+  - name: f610d41e4587f8e35fe430a329e234ff.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_Commissioner_lv3.prefab
+  - name: fa213d98ea3f31fff593e596838f16d5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Tree_F1.prefab
+  - name: 51d19398bdfc224ecc9a03dc110ce9d7.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_inn.png
+  - name: 96a0569a9b8953d9c12295c06633573e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Terrain/MV_Soil.terrainlayer
+  - name: a07479df0f5fee00c42a4af5dd638c96.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flower_A_01_BaseColor.png
+  - name: 8c114fea76cd759a7acf631ea5d3fb9c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Basket_A_02.prefab
+  - name: 999f57779fd2632641fba4ec355b7a28.unity3d
+    assets:
+    - Assets/Res/Models/fake shadow.prefab
+  - name: 5193b3f5e6ed5f2c7b992c2183430ab7.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_F3.FBX
+  - name: d25a69b3b3706fdf090bdd6753bf4b6d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_A3.prefab
+  - name: 1e5edc6a3e2096fed9891c4c89ea2ba8.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_296350.asset
+  - name: e6e0d3ee37146f11e0446f6face89490.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Lamp_B.prefab
+  - name: fd1e1655e2befe2fb8469e62c0c16db2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_276596.asset
+  - name: e4a5bd56a6eb13849aabb02ea4f62b89.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Door_A_01.mat
+  - name: 31f696e5865b7f79c09bfc5d134fde59.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_E2.prefab
+  - name: 4a00aae3de37db948e1a28ab4c1d6b53.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_A_MetallicSmoothness.png
+  - name: f434cda3b1fbcc44566c0a4e4a07c9a4.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Ivy_B_03.prefab
+  - name: 430418ca35c8788fe3eca9e1f017f0a7.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/StoneStatue_A_BaceColor.png
+  - name: 717628767ab95d3b5c7fc544dc8577af.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/etc_Sword_shelves02.FBX
+  - name: 391e064692678b9772821eb893752a20.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_B2.FBX
+  - name: abf911df58879992bd5de95530609ae8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_E2.FBX
+  - name: ecd1f622579b559e5d34876603f772df.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/MV_Tree_A_04.prefab
+  - name: c49230f519ef34ae97d452c214662e32.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_83810.asset
+  - name: 658120190b9a1b7740c270409fedf1e3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_416582.asset
+  - name: 282cd36349e06f2786657cc728a359cb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Door_A_01_Normal.tga
+  - name: 602d5edfb11638693e48130476d55a69.unity3d
+    assets:
+    - Assets/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox2/CartoonSkybox2.mat
+  - name: ab42626db0ef58b670c0eb18d66063cf.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BilldingStair_D.prefab
+  - name: 3c2cae953683cc4f0032a6872137ce01.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WallTile_A_02.mat
+  - name: 5faad22ac366f53e88c85345042e278c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Roof_A_AO.tga
+  - name: 4dce0aee589eb6fba052bc84be19e9f7.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Coins/Coin.003.prefab
+  - name: 2414e660fb77e56ac2425b0c475ba06d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_82030.asset
+  - name: a2035cb2dbc4c020b2f6acd3c60f2874.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C4_3.prefab
+  - name: b4414671d4726437c7f7952f971eefb4.unity3d
+    assets:
+    - Assets/Res/Sci-Fi VFX/Textures/Beam/AnimatedBeam.png
+  - name: 591fa3a092b4b848fb39e3e02d66323e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_A7.FBX
+  - name: 4a12205e3d2ee00da3730c04cbc04726.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Pillar_D.prefab
+  - name: 9cf3f4c3cb4d81a88708775ff9b73a2a.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_Commissioner_lv1.prefab
+  - name: 8065bc6e1cc7e868ff8a50bceb465453.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WoodTile_A_AO.tga
+  - name: 689034b38245bd840fb4580d8dbde51f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_422060.asset
+  - name: e807b45bae17e92012b2e5d0e7795dab.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_294660.asset
+  - name: 334195557b353b0a38a5cf6b077575e5.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_105470.asset
+  - name: 92047d1fc88f2ce4ccd3d61a548c9927.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A20.FBX
+  - name: 19fb22ec881dd17e958e607a01f3d00e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_E_BaseColor.png
+  - name: d96e2fbb438b123903e5522b2a25c5f2.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B5_1.FBX
+  - name: c61640025984296f7e27291bbaea4692.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fruit Basket_BaseColor.png
+  - name: 4c3ef5ce5f62547e7a01e77c87516950.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/MV_Tree_A_01.prefab
+  - name: 55842052d399788b0fe496585ecfbb3f.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Interiors_Props_R1.FBX
+  - name: d0b3385e4075f2d7174ca02afe0b1a23.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Castle_A.prefab
+  - name: c464d602610d3359c5de80894d18b9ef.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/MV_Tree_B_02.prefab
+  - name: db4217e348f2c0f727bb432fd617004b.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/StoreBox_A_01.prefab
+  - name: 96a404fd12bddaf9d5dfc0729973ed54.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_430620.asset
+  - name: 3caa86bb5ae1040fce7f8e395d25ed22.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_404610.asset
+  - name: cf7ff5d0f421c8ea84d68e78b2c4ee2c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WallTile_C_01.mat
+  - name: 6596ded9ebdb19d25f635d061de6e0b0.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_282578.asset
+  - name: c643a6d519ad23fec6d009429db54c32.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_B_MetallicSmoothness.png
+  - name: 3310439f6f69f48389f2a37199393e30.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Bridge_A.prefab
+  - name: cd226b6dae2de9f5cbaa50929edf7ef4.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BilldingStair_H.prefab
+  - name: 75ae33990454b39c427ce71bff39028c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_114106.asset
+  - name: c0d264437f684e4e3aa1d5a71e9985dd.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Commissioner.mat
+  - name: 84cd2825bc26b8db3b69832627bafbf1.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_404882.asset
+  - name: d913a6b5db8a3ccdd15759651a615914.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Accessories_lv3.FBX
+  - name: 78e68a8dda6f32a09acbad2aadf7ddac.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WoodTile_B_Basecolor.tga
+  - name: 96271d7636c09b8494361d441f3b96ae.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Stair_A_01.mat
+  - name: 945aeadb7eb8d7fd60a66bd753b31507.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_spell.png
+  - name: c9fb5f6d60301462b5d78d8ebb85d480.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Flower_A_01.mat
+  - name: b41441fc64bed404512238e79568458a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Box_A_01.prefab
+  - name: 8ef53d33f822c4d9e2e6c892c375a505.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Building_A_05.prefab
+  - name: b23dd4eea316abc40f1a31f795661ade.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flag_B_01_MetallicSmoothness.png
+  - name: 6fe147405c42a81e272f2b2a99ba9bef.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/BuildingImage_A.png
+  - name: 0352671adb1c4a57ddb710f3ed470b58.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_A1.FBX
+  - name: 587376d7c34878593a251b6be65e50fc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelStaircase2_1.fbx
+  - name: 32c11d8048be5451b82f4616d5de83a9.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/CastleWall_E.prefab
+  - name: ccafdfe4222d494eee37e69e8da160c9.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/MV_Decal_A.mat
+  - name: 9fe56f3feb8125daca4ddd80724c7ce0.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_301918.asset
+  - name: 0f7c6e7e5744ede6e908c8b7cbb49d80.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_111184.asset
+  - name: 8919a764297c353f9040b1f6e10bf879.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_106914.asset
+  - name: 876faf8b325702c468a339aa0091b16c.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories_roof.png
+  - name: 5c8ee91138ddb6606df1c03d2dff352a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Pillar_A_MaskMap.tga
+  - name: 5de0c2bc93529e3dd0adcccc58e7bb47.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Chair_A_BaseColor.png
+  - name: 4e47999474082d1fa03dcf28d30689fc.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Accessories_lv5.FBX
+  - name: 924001deb4807f27a6f7513c29593e3b.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Herbal_roof.mat
+  - name: 02839a35bf610ce0a03bff9f0fe1466c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Staircase2.mat
+  - name: ba63047d9c49c0e51692996e22b0ec47.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Window_A_01.prefab
+  - name: fb5d900b0eacf80effa68f7ad140fc39.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_M.prefab
+  - name: 2549047baecb9942322585c234a12275.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Stair_B_MaskMap.tga
+  - name: 9f0757d9f64621a9d3dc040dfff1f716.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Basket_A_01.prefab
+  - name: 7aded15bb0769342bc93de94d27c3d78.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Models/Boxes and Barrel/Boxes
+      and Barrel.fbx
+  - name: a9ed855dc2966e44fa46dd0f908c567d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/CastleDoor_A_AO.png
+  - name: eb967d3776efafcf6bdb9a1f2bee8d40.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Castle_B.prefab
+  - name: 4b1533c3d48e27105c8594f143bab6c3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/CastleWall_D.prefab
+  - name: f57e1cd93d8f439c976bbc123fa3099c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Store_B.prefab
+  - name: 03902cc2c2cf362a80143a7ca099606d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_I4.prefab
+  - name: 9919829eccd96cb307bd118e928404d8.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Windmill_A_01.prefab
+  - name: a4d3d8a6154c39efdc5269aba6ed4333.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_198014.asset
+  - name: 793568b7c6dc3aeb08deeb8603a1581b.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_potion
+      1.mat
+  - name: 197ca50b9a0396e2464495a69e3e0ea0.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_109720.asset
+  - name: e43a94097d141d68ab1e97f54ab483c5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_B21_2.prefab
+  - name: f6a51b33ceb24ad9bcb0480ba93dd0a7.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flower_B_01_BaseColor.png
+  - name: c14a7a3d83d944c30e35b4fdae93e710.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Lamp_A.mat
+  - name: 4fe31d2179c127cd5a8b754da765018b.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Window_B_01_MetallicSmoothness.tga
+  - name: 5b539293eec078d63ab9755839defb7b.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_423002.asset
+  - name: 7efa1295970aef1585632dc59a7d23ef.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Flower_C.prefab
   - name: b08aa9af05f6fd97769a0353c0b8ed99.unity3d
     assets:
     - Assets/OldScenes/All/Zhucheng/Tga/zhucheng_yaoshuidian.tga
+  - name: 8485a5f113f3e405fe72b8cf838e4487.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Stair_A_MaskMap.tga
+  - name: 68fb5422451ac0d3bf702e516bd3d244.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Flag_A_01.mat
+  - name: 2c3da8ba63bb8d9dc6d445982cd91421.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc02.mat
+  - name: 0bca8dc72a8233ff77cccad0b6c2a3b7.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Fabric_D.mat
+  - name: 66537a6178298511fae0447753672c78.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_277096.asset
+  - name: 8922effa1068661cd987292f80d70245.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Material and Texture/Gradient.png
+  - name: 7f273223b43e5f6e7a13c68eeda47c29.unity3d
+    assets:
+    - Assets/OldScenes/All/Zhucheng/Fbx/zhucheng_yaoshuidian.FBX
+  - name: d8f6f5d7d0f6678cc0ba3df84fb7eef6.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_B.prefab
+  - name: a951702dcd0d79f3efddfffb5164d61f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/GroundTile_A_01.mat
+  - name: 7f043e5ee488c64adfc9c3a05cbd6732.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B21_2.FBX
+  - name: c900e5362ef6a3024e0e330f488e8044.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_A_Normal.png
+  - name: e8dd4f9d2f6eededede82fecfd527a98.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_82990.asset
+  - name: cf4f1b8686e7662a62db33ee86e9effb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Flower_A.prefab
+  - name: 9945bbce5c138d0c8948776a25492539.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_potion_lv1.prefab
+  - name: 4a553b8ada7f10100dce6d83114d9d2b.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_potion_ground_lv5.png
+  - name: dd15ab15fe5f906d529f075a5e845cdb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_L.prefab
+  - name: a92236148db705fd821b3b9f4a6d4916.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_C_MaskMap.png
+  - name: c8bf47aafb59b02a11a572254585b7be.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Commissioner.png
+  - name: 8400fed15f488c59f68a467468c26dac.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Store_H.prefab
+  - name: a16a2e6e4376c0d5b20346392d185a77.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C6_2.prefab
+  - name: ef9ed4313ae3decb4c9683e7440ec0cf.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Stair_A_03.mat
+  - name: 59684a821f7e720657eeec1a68516c71.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BuildingWindow_C_01.prefab
+  - name: 3cc9e34aaff44b3e494849e20a5cef3e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Lamp_A_Normal.png
+  - name: 1ee42385068a323e03a930b601d27d36.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Door_A_01.prefab
+  - name: 6d24b260704defaaf6d845a7efa9acc9.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_418374.asset
+  - name: db6a004635387bcc6f43e7692b59e9cf.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_I4.FBX
+  - name: f774ab2d8db08118c28e2de8a039a502.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_415306.asset
+  - name: a837a43c65649177e7c232240ec5679d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_A_BaseColor.png
+  - name: 39646623277f42dd29207f2d23c0863a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C3.FBX
+  - name: 19d468704e3d457fbdb514ac2640112a.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Lamp01.FBX
+  - name: 9a4d9e33a1ded12d4e92a5e4393d6a63.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Ivy Leaf_C.mat
+  - name: 06b19f68f63fe5b69e3c26b7b057353f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/MV_Tree_B_03.prefab
+  - name: 702b7beff0a6584d07f133e87094374e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Roof_B_BaseColor.tga
+  - name: 1769b4c4ae5fee17e0928eb59ac67dd8.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_285442.asset
+  - name: 40a9eec38c08fb0846843bdfef574730.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A6.FBX
+  - name: b36c72a0987088233d8564f9b17bcb71.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Meshes/Materials/defaultMat.mat
+  - name: 4e3f25e5eea4dc2ae4fc5e2745601f44.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Flower_G.prefab
+  - name: 3feb356d9435047224da62823c01be56.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Building_PotionShop.jpg
+  - name: b3ff1fc1b706f554d49bc10096e83f98.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Herbal_roof.png
+  - name: a4ab6c5783e3a6bf46cc89f9ff65bd45.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_405688.asset
+  - name: a7ab1affee5600664da3815924b420a6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_I6.prefab
+  - name: 6ece45372892c7c9559e71c0a653b61e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WallTile_B_01.mat
+  - name: ea3c61b07414e257344b801a728ece19.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_B_Normal.png
+  - name: 9ac5b0909f935be81065def6fc539bf7.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Models/Book and Paper/Books
+      and Paper.fbx
+  - name: 00c3cf5063a76d455b56ae8420868c11.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow_A.prefab
+  - name: 651657622f7dfb09db774fd591ae9fdc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Interiors_Props_P1.FBX
+  - name: b5fd7b5d0fd636f16fccec9be378b6be.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_spell_lv5.FBX
+  - name: b60260d205b36006e2fd1772f774a34d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/RIVERBED.png
+  - name: adde16439f539022c4e8d7133f68051c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BuildingWindow_B_01.prefab
+  - name: d63188aa6ca2ef31f0e5723a127d37f4.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/RIVERBED_MESA_03.fbx
+  - name: 66380f9aa40ab4bda179a0602130d92d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Door_A_01_AO.tga
+  - name: a6820e5c0bd1a93a5bbb0d014846da7f.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Materials/Plant_A.mat
+  - name: a751b717d676bcb1e175bf06288ffadf.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_421390.asset
+  - name: fe7aea5fea3a1845ff6cea0674d55c47.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_weapon_roof.png
+  - name: 07f9659649568cb0a419d9f960387d57.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_J3_1.FBX
+  - name: 6e388e4c0272d02c58a7721147c8e84f.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_I6.FBX
+  - name: 38331e1caf4b108c9fee7b3ea39478e5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_G1.prefab
+  - name: 6f28c17251d8f563265810bc4d3bf7e3.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Tree_AB5.prefab
+  - name: 9e7303190878aef88c43f191c5927452.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownChair_A.prefab
+  - name: 9f19c78cd7de9a1f1f6c90ae43eb0662.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_E2.FBX
+  - name: f615a8495ad9b5f94cf244dc6c12473e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_411514.asset
+  - name: f46912e0c60eb608b6f328c5bbe59df0.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_424622.asset
+  - name: 6d8a5b07215dc435285640ce97b9d484.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_407328.asset
+  - name: e7d91fb854831f3bbc14ec3deb42e6de.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Plaza_C.prefab
+  - name: 325c912751267f8199428f971ec31300.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Fabric_C.mat
+  - name: 6edecb53de44168f3e6ad6851f736a28.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WallTile_B_03.mat
+  - name: 5d17f9f622b6f14d7dffa18c0a0f3cf0.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_113554.asset
+  - name: 7411767a4558c5aee08a4dd92d64c3b3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Dishes/Jar_broken.002.prefab
+  - name: 7d0312a8e83218fdfd515a73d9de7f73.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A18.FBX
+  - name: e5acf1bffb279820cad082fa29f9c10a.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_garden02.FBX
+  - name: 6b70dd926b1a7676c0d9f0e65417b94e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_85918.asset
+  - name: 5087753ca404f48d50de2f1a51d362db.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Building_A_03.prefab
+  - name: ae4af17a9e908e84d34c96e431bc4083.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/MV_Tree_A_03.prefab
+  - name: f68ef611c6a990de13c7580a85825876.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/MV_Tree_A_02.prefab
+  - name: b390ba9baeeb93bb5841599e9d47e27c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Cloth_A_01_Basecolor.tga
+  - name: d06721c66e3ae8c7ce1163b89d29eb71.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Flag_D_01.prefab
+  - name: ae34bc76908d2099dfa71eadc2ef2547.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A20.prefab
+  - name: c1aaca187cb0ec030794f640e6d351c7.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/etc_Sword01.FBX
+  - name: 19b7261e404e7cefa8d6179f3c4bc2de.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/_Grass_ridge01_sh.mat
+  - name: 42a418995baa02dee8d3d6437ac918eb.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_weapon_ground_lv3.mat
+  - name: 961726bb5a9dbe4b9f968c3e01e568c8.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WoodTile_A_01.mat
+  - name: 85ed0f190a6dfe5648a46c6970698bcb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_194700.asset
+  - name: 87cb632637d456dc6d805236e175ca3f.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.mat
+  - name: b9287ca4b5e9969795b7ec200a9a2969.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Stair_A_AO.tga
+  - name: 5be933b8c5361644e4e1be845d4344bb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_93790.asset
+  - name: 9c9a058aed778b0ff15444059e0f509f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_92694.asset
+  - name: 5e307b0c801fb8a7e358cff2eeaa173c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Stair_B_BaseColor.tga
+  - name: 6d40c4dcd442d2cc48abdc386566a8f1.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_407872.asset
+  - name: 5f85da64acaae7b4f8b5c83f89d21f9e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Statue Pillar_A.prefab
+  - name: 24064235829ea9585b5f085361d3f2d4.unity3d
+    assets:
+    - Assets/OldScenes/All/Zhucheng/Material/zhucheng_yaoshuidian.mat
+  - name: 790a6b64b24f8066d9c7db2c6e455f1b.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Dishes/Jar_pieces.002.prefab
+  - name: f42979faccb723b888a7316c7cdfd5a0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Texture/EnterGame_Terrian.png
+  - name: fa86d774f39f6bda05f4c607aeb09daf.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flag_B_01_BaseColor.png
+  - name: 3224cb03b8cc04c8510efea8faa80fc2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_86548.asset
+  - name: db1e2fb2ecfbdc02d10c14ce8077408e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Flag_C_01.mat
+  - name: a172c410f287b71231a92987461f744b.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.png
+  - name: a8363802982ac629c7a42907cd579d6c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/MV_Wagon_A_Nomal.tga
+  - name: c34b6e0f66ff31b86a8f20cf3b0be76c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Glass_A_01.mat
+  - name: a7ccaf964cec2c30511291eda4139822.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_284498.asset
+  - name: 07405357ae5e363de58746b7001b6355.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_E_MetallicSmoothness.png
+  - name: 5f1436d7d29a5cf4d018eda8f01c9af2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Terrain/SoilTile_A_Basecolor.tga
+  - name: e642508cf37d168eaf4875a8b08a1b45.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WallTile_D_01.mat
+  - name: 6c2c357f0c19162ee8126d5396cd50b6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_grass
+      2.mat
+  - name: 1c3e038d4d885f0a46e554a1992de732.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flag_C_01_BaseColor.png
+  - name: c954e3e6d56e2c984953be22e7776f2e.unity3d
+    assets:
+    - Assets/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox2/toonyDay01_Back.bmp
+  - name: a1a899246aeb0a0bb77ecee2a1d6c825.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WoodTile_B_Normal.tga
+  - name: e47976539c636781cb8b73c2916761fb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_399008.asset
+  - name: 96faf346d0569ae2cc56efdef3052940.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_104358.asset
+  - name: 7ee0e55e23933319b20b570aa02ff0d2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Building_A_02.prefab
+  - name: d356d0f7348c7c5cedd9538b9415936a.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Commissioner_lv3.FBX
+  - name: aef878ef4d6f70a5239b8ea09b0f0461.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/MV_Wagon_A_BaseColor.tga
+  - name: 98952ea57e8e3f60beb4009a3644016a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Glass_A_Basecolor.tga
+  - name: baf33a5c4eb8a49331f4bf1a04bb6a56.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_spell_lv4.FBX
+  - name: dd0b66560d7b0778a8dc8ae612737d87.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/ZONE01_RIDGE01.fbx
+  - name: f314b95821b8988ce2a93d7d2cfd6cf9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C4_2.prefab
+  - name: a712ca93c4234a629677dfef31f416fd.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Staircase2.jpg
+  - name: f3a7c5668c41c4743d0c87194b5678b2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Hyper Casual Chests/Models/Goblet C.fbx
+  - name: 6f55cd87933f5e6f2c7111626aae916c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/StatuePillar_A_MetallicSmoothness.png
+  - name: 6673fd72d274466cdca8c569a32940c7.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_C1.FBX
+  - name: 4cd72276b7170777cf496d67d9d4828c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_83270.asset
+  - name: 58ecb95c3959e246c11c73d37fe22fe7.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/StoneStatue_A_Normal.png
+  - name: a5024b89e8c09edc073fd4baf35f3aca.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Dishes/Jar_broken.prefab
+  - name: ac05344f57cf8918cd27164360dfd370.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_B_Basecolor.tga
+  - name: 39a8c76548406bbe321667568fd51da2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flag_A_01_MetallicSmoothness.png
+  - name: d351758ddb62159626c7a83e6282b7eb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_353162.asset
+  - name: 582968ba5059c06501a9e654a6827fbc.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_armor.mat
+  - name: da5fd44755c8194dfe6d715c9e3f0bd9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C26.FBX
+  - name: 3853b3924734b7b1d8f4930ec8bd4268.unity3d
+    assets:
+    - Assets/New Terrain.asset
+  - name: a3cf7499a0e77c3c9e292321508b03b4.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Furniture/Mat.001.prefab
+  - name: 684c491a635364637b8252227b76be4d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_O.prefab
+  - name: f71ec65c32a9f4eec4173cb634328824.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_A_Basecolor.tga
+  - name: 1dc8b84d32ab06b4b51661bb208d7885.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Window_B_01_Normal.tga
+  - name: aacd899af6d569b9f6cc7a054ae17ab3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_C_Normal.png
+  - name: 3e69d471c4d55b3d9457dd207328e9de.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Leaf_BaseColor.png
+  - name: a03d39d5f8eb8feb9c939da3d6d3e444.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_422726.asset
+  - name: a1b4ba169c2892c4e797cca3ce79ac99.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Lamp_A_MaskMap.png
+  - name: c7ca6861cbc5cf9d292bf45b77667ccd.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Materials/Zone01_riverbed_fring.mat
+  - name: 36ba9cc5a9c4c56edf187f02072d3ad9.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_N.prefab
+  - name: 70ba4df774320e6f31d5b78548f67d14.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_197256.asset
+  - name: b6375fed0751ae4f0d8072c9282f57d5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelCoconut.fbx
+  - name: 90a9cd62070576cbe5549cb062dcb326.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_weapon_ground_lv5.FBX
+  - name: 06a8257292571d8a1b36e136d469262e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C4_2.FBX
+  - name: 0da9b2da5aa676bb9834452ec4fbc3fc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_B5_1.prefab
+  - name: 65b61e2eafecade0befd24075ce85709.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Terrain/Medieval Village Terrain Material.mat
+  - name: dab1e9e8526921e72e40f0aa5c7d793f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/LeafDecal_BaseColor.png
+  - name: ed5c0ef5310c9137dbbcfaf31d7041c4.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Cloud/Cloud.mat
+  - name: b2069f28beb60ce5727ed841517b8958.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BilldingStair_B.prefab
+  - name: 2fefe3885325437cd83bd4c15b9dab24.unity3d
+    assets:
+    - Assets/Scenes/1.asset
+  - name: 98c3362ad23df67415a0c46534c6ccf8.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_C_AO.png
+  - name: e4672bf116e694130a21f0e56283431d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_F2.FBX
+  - name: f586f119cb2906d8224b0a10e3e67ff8.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Windmill Wing_A_01.prefab
+  - name: c100527ded0c5569d471d66943ea83af.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_193912.asset
+  - name: 74227efc5253a88200e0ef433cd59a6e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_413960.asset
+  - name: b80d7eb2ac3bde46c58307efc518dd75.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_413340.asset
+  - name: 3927e6ae14f9f741c1052fcf85b59bf7.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_429544.asset
+  - name: cfc8828c6efdfe5c3a1213b249ab170d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WallTile_D_02.mat
+  - name: 1896a8e482d38bddd2e32b0f096103f9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Tree01.mat
+  - name: d1e8a4b4c94fb81da3a5c24d068b02ed.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Flag_B_01.prefab
+  - name: cfb90e640c5e68cf2b07e37361fcd37e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_279412.asset
+  - name: 76f3ced867c0b7e057b8088928193600.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_inn.mat
+  - name: d49e86bacd1dccde85934d39c79beb8e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_A2.FBX
+  - name: 9a97ddf826235dc6e8a2be15c7db5120.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Herbal_tree.FBX
+  - name: 3d8f1939bea0c21754a08ec1a99febfd.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_K1.prefab
+  - name: 0b1a605a73ecef90c580cbdfcfd6b146.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.FBX
+  - name: 9c6b43975b8d0f416a944b2dfb9fc664.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_inn_roof.mat
+  - name: 87f70dcbd97a6fc9d274c1c256b75254.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_weapon_ground_lv3.FBX
+  - name: 35cde3a591a8c1840e63b73cb490bff3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_B_MetallicSmoothness.png
+  - name: beb25a00c7514e64f1ba69939ed95cd4.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_105024.asset
+  - name: f4d1f4dbe3007ca824611f68fff417cb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Pillar_A_01.mat
+  - name: 778bef9b4b85cc9a95109ec059e9fa67.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_434578.asset
+  - name: 7c67323bfb0d7795bedca05e45c8412b.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_A1.prefab
+  - name: 6b6242b98fa681c351189b060b3e0e69.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Store_G.prefab
+  - name: db9c10c6f8d83f5d93e5db0be16e01b3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/StoreBox_A_02.prefab
+  - name: 4fe578c1fcb2940516e7f3967b6fb10c.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Commissioner_lv1.FBX
+  - name: 0dc68176e7671edb8dc3d07740859430.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Herbal_lv5.FBX
+  - name: 78b3e0f5965f4af996c64da574dce6b4.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WallTile_B_04.mat
+  - name: 47e16ca6e2ab8e17a9458151bcec2eb5.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_352776.asset
+  - name: a4ddafc642c45ded642f8f7e3c58324e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_H.prefab
+  - name: e81904407a95721c9b209ac6234d914e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_86508.asset
+  - name: 624a9e5c3a6b509729a4a91332647cf9.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Cloth_A_01_AO.tga
+  - name: 75b2077de9c92505154ccd388124673f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Store_E.prefab
+  - name: 1c36dc62175885c4872d27d98dfe1257.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_weapon_lv1.prefab
+  - name: a9b9f37fe5fa9cee1a27eb0728526733.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Interiors_Props_Q2.FBX
+  - name: 43df1d0263b96144b17dfd5329e34264.unity3d
+    assets:
+    - Assets/Scenes/1_1.terrainlayer
+  - name: d3f5704b3688d595c257d1042a461994.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_H.prefab
+  - name: 020148bdaee532f5fe57f3b2ab81b5db.unity3d
+    assets:
+    - Assets/OldScenes/zhucheng/LightingData.asset
+  - name: 05b0b60f889916d9c0202d652da345dd.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Cloth_A_01.mat
+  - name: 331ed84096b4b96c2cb9c38c210516b2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Ivy Leaf_B.mat
+  - name: 83046764ad088a721260c4f4a3dbb381.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C2_3.FBX
+  - name: a0f72aa9b7679751d84bf7b98a877961.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Book and Paper/Book_Open.001.prefab
+  - name: 0f232c4819146e9c4ca12d622e11d883.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Furniture/Shelf.001.prefab
+  - name: e0a06eaa3ba93ce07aab44c3d98eb913.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_89826.asset
+  - name: c89e49f14e9b6000f63a7db4bbf3897a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_109446.asset
+  - name: 9de8baa33f899d1ec1002c1e4c399c22.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Building_A_01.prefab
+  - name: 76311768b34995b33d673b911aa2b260.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Roof_A_MaskMap.tga
+  - name: 2cac68460e4fa509cfe32657464c5efa.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Windmill Door_A_01.prefab
+  - name: 86eb58432345f77d336e8a4f93f8664a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_Q.prefab
+  - name: f04811d18531aacb423598555a3d27ea.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_variety.mat
+  - name: 6759d7fd4582b43842db29a61acdc1de.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_A_MetallicSmoothness.tga
+  - name: 90d271829ea2802017ff19fabaa55b63.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/CastleDoor_A_Normal.png
+  - name: 557ddfc2501c88f6bf2cdb117ddae17c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_418988.asset
+  - name: b59a47e84559ba74abc2148533b96019.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Plaza_B.prefab
+  - name: 65f1bb8c084fd555e2487cdc790cfb5f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_411186.asset
+  - name: 2a52f1eff8062c6776b98529eff60c73.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C3.prefab
+  - name: 6c1428f3f1589d3d20f753c5f56183bc.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc02.png
+  - name: e9a96a0bdb6b826beabf03538ace4d78.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A15.prefab
+  - name: c96a681d0064057eb1989aa2bd002607.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Window_B_01_Basecolor.tga
+  - name: b9f163dd0f8c4e075d3990a967d1a586.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_300344.asset
+  - name: 77986e52a518781af4bae2a895f47010.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WoodTile_A_MaskMap.tga
+  - name: 299730a3fa17e8178cd04b00c65a6731.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_96308.asset
+  - name: 4e7edd7c7c151771d18fd0bb4c2dd2ff.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_106298.asset
+  - name: 7f8ff9138409a76f355d1e54e7a5e36c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Flower_F.prefab
+  - name: 364178d644ae52101ad1b4d5d273e766.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_351978.asset
+  - name: c58fd38c3ac29785e010e90599edea63.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Flower_E.prefab
+  - name: de741e5e8f141c08dc454939f2d56d67.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Fabric_B.mat
+  - name: 489ea9655fc1e974ad5482576ba570c8.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Models/Furniture/Furniture.fbx
+  - name: 91531926725b58cfe22319d9bd318b87.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_96144.asset
+  - name: 6894d67c0b8b41cc69a49ca8e6c26c87.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelTree01_1.fbx
+  - name: 45e3d1935f47c5ef9c5432a7827e3014.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_inn_roof.png
+  - name: 6cd32ef5b4b99acd33534e39ded5d690.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Building_C_02.prefab
+  - name: 9ff992a76c0f991e898dc99a262bde3d.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_inn_lv3.FBX
+  - name: 73fdd83c4158a097c6c92c8aae6ebd30.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_W.prefab
+  - name: b5ee1c5de0b184e2f19dd6ba1b37b8cc.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Window_B_01.prefab
+  - name: dd4935dbcf8b389e05945824f73ecf91.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Store_D.prefab
+  - name: a79b585df4d2d767180f7b53cdbef149.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_112584.asset
+  - name: 204af1f7008cd7ce1ad2e8db290a67ce.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_133540.asset
+  - name: fd5e0b9d7b45ba9725779c99f751a296.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_E_Normal.png
+  - name: 11f06b517f7a955d73948d51aa3bd05f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Frame_A.prefab
+  - name: 624453551d88cf4e1429a4710513ac67.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C26.prefab
+  - name: fbb5c3d41df45561b5bf3cc7f8f82752.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_I.prefab
+  - name: 3cfc9c259200a44a978d39ad274094e1.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_potion_ground_lv5.mat
+  - name: 8288363cbec3b437a3621fb924b4365d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WoodFrame_A_01.mat
+  - name: 094f6ee13c1eb8149732e9c4310567e6.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WoodTile_A_Basecolor.tga
+  - name: cc47a89dfef8b03b59533526f86736ec.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_283540.asset
+  - name: 7687da1c38bd61e0037343238c80e652.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/TerrainTexture/GRASS_RISE1.png
+  - name: 17a500c2d9ab248f850777a94c702ffe.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Glass_A_MetallicSmoothness.tga
+  - name: 2e2f4afbecf5117b9134e7568cda7c96.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Tree01.jpg
+  - name: 11b3667a10fd8adf63706754e2a9e52b.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/TerrainTexture/GRASS_TUNDRA01.png
+  - name: 4693d9af1e74d516a3c3cbfbcac3494d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_406508.asset
+  - name: b36d48c483983ad4fd498e56667f82b8.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_D_BaseColor.png
+  - name: f667816bc2e44bec45bd77866783cc9c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_412718.asset
+  - name: bc01b805b433f04062d56c0f890ee9f1.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Interiors_Props_P1.prefab
+  - name: 6be87976b6e2f5c403f6e9215a06f9e3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Door_A_01_Basecolor.tga
+  - name: cc884ea40d746dabd62221a09f042770.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.prefab
+  - name: faf7f265b8c3d9a6809d667252f3e8f2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_A_MaskMap.tga
+  - name: 9c55237c0bf6162942ae3fdebc6b41b9.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Window_B_01_MaskMap.tga
+  - name: daf815e71e319a75fd187664ece20d14.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Lamp_A_AO.png
+  - name: 630a2a6894942390721d8bfdc7b05528.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BilldingStair_A.prefab
+  - name: 89b28661907185ad0de16e3072d548dc.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_94374.asset
+  - name: 651029ee1c3ec2c79c4c9a26ebe164fb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_A_Normal.png
+  - name: e266a71ba73f54ab9e722e5eb6719c93.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Plaza_D.prefab
+  - name: 83ce6ac710099a8ddbcc0aebbf70aa77.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_403794.asset
+  - name: a094c85118659447e0e4e25564239b37.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_K.prefab
+  - name: 4af69b370fd76ff9c36b44b8bab65e8c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C24_5.prefab
+  - name: 6d410d5dfdbaf151e2b435ab130f6e46.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_variety_lv4.FBX
+  - name: 9b69b863db4b49bb53aa93d3bccb96ea.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/CITY_PLAZA_ROAD_01.png
+  - name: 370676a23e51961d4de5d997008854f1.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_B_Normal.tga
+  - name: 729238b04b82e839f4ecc0c97891e035.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_433092.asset
+  - name: 696694700b6e5474c08a78ae45edf4bc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_wenli_00245_A.tga
+  - name: 87be5c6f1ff649809eca2a6a79524a78.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Plaza_A.prefab
+  - name: 251a83e8207c1f09b9061848f9e185c9.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Terrain/MV_Grass.terrainlayer
+  - name: f913e5d67b012f3e4b07e46e981b19a3.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_F1.FBX
+  - name: 8666456565e1e91cdb477f317836ab76.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WoodTile_B_MetallicSmoothness.tga
+  - name: 0283640d65576819081ed6c94205ab54.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Treasure/Treasure.003.prefab
+  - name: 71ab0549ca57de5c95daf65e0602465c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Window_B_01.mat
+  - name: 124b57c56d898510e5afca2f128e36e6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_F3.prefab
+  - name: 36eab2a3356ae102aa38f784942a6b84.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B2_1.FBX
+  - name: 9ddfa4c8355867e3b36b77a890b331b8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Coconut.jpg
+  - name: d0740f7e20486f471b4bd0522d289ea7.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_A.prefab
+  - name: b1dc4aa523780f7e6c98d86fde4894e7.unity3d
+    assets:
+    - Assets/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox2/toonyDay01_Up.bmp
+  - name: 5dfa527a5ab7beea4e09922688eadc82.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_405964.asset
+  - name: 59eb518bec0f0d8ee5065bc8277a3a79.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Scenes_FX/Common_FB0_shuiwen.prefab
+  - name: 3e25b8da410c0e27353985378ee3134c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_298374.asset
+  - name: 89f64febb8f760b15a81a079e092defc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_wenli_00245_C.tga
+  - name: b71db7a96178265a21cba2a515a14707.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/MV_Decal_B.mat
+  - name: 5d3696bf5b7a2f4a7231f273d88b556f.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories.mat
+  - name: 30fc131b78ab6f25d83f7555b468d945.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Coconut.mat
+  - name: 8932361af4f2d6c162ae50ac86d08c2c.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_weapon_lv1.FBX
+  - name: e4ab8d4a20afd9ae6fb1cb131525c747.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_B_MaskMap.png
+  - name: 33854ddd28d66542d91941073fffde01.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_F2.prefab
+  - name: 526c0659f17aaae183d3d586278086c2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WallTile_A_01.mat
+  - name: d5036e9b30d1eec33a723c4d32e6c190.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/MV_Tree_B_01.prefab
+  - name: 9e476836c077ce716b15cd23f28fdb2f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/CastleWall_G.prefab
+  - name: d4817cad45348ce782cfa06e043bce7f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Tree branch_A.prefab
+  - name: 5cb6537882faf94a5e224fb2f87d82b2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_434084.asset
+  - name: e5bcae63cab1aaebd4b7cd5b6e38d89e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/GroundTile_A_02.mat
+  - name: f1f03efba9cbb21ed5069867eaf6d2c0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_F3.prefab
+  - name: a6925ddf6d9364eb23a16aa9d8ab1717.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BilldingStair_F.prefab
+  - name: 16c2c6eebe9e2d42a5d6a5b7472abb94.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Pillar_F.prefab
+  - name: f875619fc44be30325de8a8171663a11.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_399614.asset
+  - name: 7b83e729ee66ed84dc9b7a6e30170a80.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_potion_lv5.prefab
+  - name: 7a73df4df1c42e10e299f7aa787f1356.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Wood_A_01.mat
+  - name: 16295a4fd70d3677947cc1901f46e07e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Terrain/Medieval Village.asset
+  - name: 8d16197fdbdc3c8a1261a713b6318cbc.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/MV_Decal_C.mat
+  - name: a5f65061686157e40866b51509fc90a3.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A18.prefab
+  - name: 4b7da406535ea4913e3442a455b79b5d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Flag_B_01.mat
+  - name: a64a0a341ee003de6720dd1bf1f0c018.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_425674.asset
+  - name: 9af1b9acce8b7e6b92797cdd2cfb3a2b.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_414806.asset
+  - name: b4a4ca6646d9f0e8ec8c4c512d77cf4e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_C_Normal.png
+  - name: 0607c97bc0fbf1de05670c93d1f68edc.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/WoodFrame_E_01.prefab
+  - name: 60a485accbedfe80d6eb8a31ff5e01d6.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_R.prefab
+  - name: 2276e2827d8f9e55ebcc9fe7f561cd38.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_B_AO.tga
+  - name: 1c39bf9cd0363631c88a01f435d275da.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/etc_Sword_shelves01.FBX
+  - name: 583e22b23d9a2631c4cc398916d0a63d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_L2.FBX
+  - name: 60492ac89f154fc3ba3210756e0d1022.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_E.prefab
+  - name: 5a4583977853afc1fbc2e21ace51254e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Hyper Casual Chests/Prefabs/Goblet C.prefab
+  - name: d5a7be4beae7a0f27fdf7a5a2d90aec7.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_variety_lv5.FBX
+  - name: 7596fb8ef3f9b72ac41f168397e5bcbc.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_290558.asset
+  - name: 83bc1d79cd1c411cf6a8f24bd45effb2.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/CITY_PLAZA_ROAD_02.png
+  - name: 6e2d4796327ff892489cdc497639e36f.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_armor.png
+  - name: 300fda7bc7c3f9ae4f0224a652a27d22.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_L.prefab
+  - name: e1ef086a003ddb37f440ec0555330144.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_G.prefab
+  - name: 98341e092e36ecadca508e67aa1dea70.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_406236.asset
+  - name: 9e8cd829b5c928e3911f5366832bc8a6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Meshes/EnterGame_Terrian.obj
+  - name: a92877fe3d8abd82fdf12460fe15f80d.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_potion_lv3.FBX
+  - name: 8d1097b7620b5f5acde1fd454fbcf642.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_407052.asset
+  - name: 56e690b2bf5a5cbf31aad4b72d70d35a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A16.prefab
+  - name: 9b1d08ed6810e1e1cfc21a60a44933aa.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Flower_C_01.mat
+  - name: 7d67e4c19d67527571046c01546fb9fe.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_A_BaseColor.png
+  - name: 35e11f21dd14e8b3273c7e6f3c259b7b.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_potion_lv4.prefab
+  - name: 3857a602522e7d30895244caf81fcdf1.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_potion_lv5.FBX
+  - name: 82150272090c886d0812935399bd6479.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_408644.asset
+  - name: 4bbc11047cf1f49846493630c5da39d6.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Roof_A_02.mat
+  - name: aadbad9d0c09d6fa5994349fb1a64e87.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Flag_A_01.prefab
+  - name: 633053c2b5dee44833896fb6d5ff62a6.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_weapon_lv4.FBX
+  - name: 3b00a3dcf1c913d77551f3a33fc97ca2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_R.prefab
+  - name: 489d711ac3140127a61fda88b1d4e22d.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Armor_shield03.FBX
+  - name: 6f3c04a869af4213785b46afffb90b30.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Grass_A_Basecolor.png
+  - name: 9f5f6b736f08541e9d2769115ea670a4.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_F1.prefab
+  - name: c0b1c5cd6153455b63837d88b120552c.unity3d
+    assets:
+    - Assets/Scenes/1_2.terrainlayer
+  - name: 55739b2d077d86eaa89d96a3cd0334b6.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WoodTile_B_01.mat
+  - name: dd57d98882e9f33e2fb87026437f02f6.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/StoneStatue_A.mat
+  - name: d0a54e80e7fd7a914a0e08c16b9a237c.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/FX/Leaf_Particle.mat
+  - name: c5d6e9f13944b48d7f6a86290471cf72.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Roof_A_BaseColor.tga
+  - name: 8447d69ee863ea0d5562a1d4b724a3c4.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/WoodFrame_B_01.prefab
+  - name: 5e26c645507c97ec045062061eb1fffd.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_279928.asset
+  - name: f65ae7863434476cf894e8d2d2260529.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_B_AO.png
+  - name: 6c04ef7f869476ca4e1d1ddb1b3445a6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A23.FBX
+  - name: be18054b733d8c8f25093e92e65f1038.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Materials/Interiors_Props.mat
+  - name: 9dee094486a6b97201bb719761d20bae.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_A5.FBX
+  - name: c8ab0571c62bde44e33c60ffb3f11a24.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Roof_A_Normal.tga
+  - name: 40703e7ee05a9d7e0175b7b2e32bff90.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_114810.asset
+  - name: 15b94bb04e99894a275d0d300a170a2e.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/etc_Sword02.FBX
+  - name: 06098e1a0450b005e05393f277c34b27.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Building_PotionShop.mat
+  - name: d3dfab13e901bbe9af68572a3871f12a.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_potion_lv1.FBX
+  - name: 29fc62d961f6727408bfdcc4c7b48e76.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_109164.asset
+  - name: ab54ef35b8e26999ba5f0c25e78f6365.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_C_MetallicSmoothness.png
+  - name: 03353853e9407dfddc7205199f860dfe.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_280892.asset
+  - name: fffef137fde1b70f1e012dfd09e30f26.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_423278.asset
+  - name: 40c503dde9b85069b8fb156e9fbe9a3f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_A_MetallicSmoothness.png
+  - name: fa579e090cb0f101478ae557f7ae297a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Door_A_01_MaskMap.tga
+  - name: 62aa9d2ea67ae150567c13996c3df714.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_variety_lv3.FBX
+  - name: 46aab48be83f65f82bc97699853d87f2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_417756.asset
+  - name: 7ce16f87c73004a7ad0338d52f26a3c7.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Chair_A_MetallicSmoothness.png
+  - name: 8cb70f00ba13bc522660219d71e56209.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_D.prefab
+  - name: f86cc561428ba36e4b69c6825cef6b59.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flag_A_01_Normal.png
+  - name: 2f5a16aff55ea3623c0caf693c2c9917.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WoodTile_C_01.mat
+  - name: d3a64327cafa1263dc59f466f86300c9.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories.png
+  - name: cd92b6d0b4d159a039c3c8bdc6d5b775.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_B_BaseColor.png
+  - name: c296f698c018dae28f9eb1332f403991.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_inn_lv2.FBX
+  - name: 1f0e1071209e71f568bb360c7c4b4453.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_423830.asset
+  - name: b453f7b4e792bc7bba686424755ff7dc.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/StoneStatue_A_AO.png
+  - name: 3bda43f1852cde20505b3b79eb5ca612.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Chair_A_Normal.png
+  - name: e9734a80ac1f8a80246c36b49d396d7c.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_potion_lv2.prefab
+  - name: 7617a4316dc6b02adeb3938c0f718874.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_spell_lv2.FBX
+  - name: 9268a2fadd3cf2daf2aab8c95594d31c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A16.FBX
+  - name: 0ed2011d2706a1c20481a880b7824f70.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/StoneStatue_A_MetallicSmoothness.png
+  - name: e59fae9e26419098286a1681fc761517.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Armor_cloth01.FBX
+  - name: b473b3695e7eda5ad5f8cac1bb79c2d9.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_277868.asset
+  - name: 592dd3c326a7fa8680c3508af6c06bc6.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_B_MetallicSmoothness.png
+  - name: af2e97dcf578a7eb991380ff0e7569ad.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_301184.asset
+  - name: e73a05dec78f4222a92e1c4da679a7f6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.png
+  - name: 2ac42f0adab75dab5a854561a489fbdf.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_B.prefab
+  - name: e16a6d3717ab4f786c8a9ddda70bc6ed.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Roof_A_MetallicSmoothness.tga
+  - name: 3eef2f583e950af9fcb5deba361eb1ba.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Material/EnterGame_Terrian.mat
+  - name: 1c8335181db32144795d3e378f020cc5.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Decal_A.prefab
+  - name: a91fdf39e447ce4d3d8306732e405b4e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Building_B_05.prefab
+  - name: 5a7698db7cc57b6ac2c52177128cb9c0.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Hyper Casual Chests/Prefabs/Crown B.prefab
+  - name: 0b7ca612fe2834665aaff8819f332b81.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Treasure/Treasure_lid.003.prefab
+  - name: eddac64fe4cf457b4d638c3fa1e7a8a1.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/etc_woodOak01.FBX
+  - name: 2aeac032e32722a78e9e5340ce0e3afa.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_318022.asset
+  - name: a67d6ea40c426bad4b75e5472d0a5a40.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C2_3.prefab
+  - name: eca929304b1691237b68cd8a004006e9.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Store_C.prefab
+  - name: 74e1a0d6c040ff92c4e89725e1affa5f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_406780.asset
+  - name: 2a0554774928bff83cc9ced99155171f.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Terrain/StoneTile_A.tga
   - name: de7b0d4de77729933b50cc54dcb16db5.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_K1.FBX
@@ -10613,280 +12289,378 @@ MonoBehaviour:
   - name: f6885705bb9835a5d4444c3c5ee34efb.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone01_riverbed_f.001.mat
-  - name: a9b9f37fe5fa9cee1a27eb0728526733.unity3d
+  - name: d2b587cba5204a70c719aff07e6278fa.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Interiors_Props_Q2.FBX
-  - name: 1b6a2864f7aba6dbb1a5eb5bad963c5b.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Window_B_01_AO.tga
+  - name: 97dcf7ee113c946ebc787811dffdcac1.unity3d
     assets:
-    - Assets/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox2/toonyDay01_Right.bmp
-  - name: 1ab8260b95af15b005ecff0a34260428.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_weapon.png
+  - name: 0538e41c03fbaa1d697eed9de72f92cd.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.prefab
-  - name: 362284cb2d0a9fa12ee89ad13768afa4.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Flower_B_01.mat
+  - name: 826326a8f91c4679553f450c1b1acf73.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Textures/Interiors_Props_1.jpg
-  - name: 43df1d0263b96144b17dfd5329e34264.unity3d
-    assets:
-    - Assets/Scenes/1_1.terrainlayer
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Furniture/Table.prefab
   - name: 3f7b343d73cdf3e28db86e73d335ea41.unity3d
     assets:
     - Assets/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox2/toonyDay01_Left.bmp
-  - name: 020148bdaee532f5fe57f3b2ab81b5db.unity3d
+  - name: 3c75a3a75ac68635664cabd3fe78c851.unity3d
     assets:
-    - Assets/OldScenes/zhucheng/LightingData.asset
-  - name: 7f273223b43e5f6e7a13c68eeda47c29.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/MV_Leaf_C.mat
+  - name: cd59bbc845754f289758c9efecbc3fe8.unity3d
     assets:
-    - Assets/OldScenes/All/Zhucheng/Fbx/zhucheng_yaoshuidian.FBX
-  - name: 83046764ad088a721260c4f4a3dbb381.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/building/building_weapon_lv5.FBX
+  - name: be3693e5daf7b3523ffe0fb7c8ffb7e2.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C2_3.FBX
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_spell_roof.png
+  - name: abfa9c4ef012078b176184b743ba6b74.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Armor_shield01.FBX
+  - name: 5458fd5fb7d14abfa604e9db8171fa89.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Armor_shield04.FBX
+  - name: 744b3bbab321c9821d81819e5f57cfdb.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Ani/Windmill.anim
+  - name: 152f1d5020aa810528ba1945ccdbf99d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/StoreBox_A_03.prefab
+  - name: b62e3ad83a2cd76055e7feebdea3cbfa.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Models/Treasure/Treasure.fbx
   - name: 5bd50368ba29cf4fa1c8e67a67eda34e.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_wenli_00245_1.mat
-  - name: 7f043e5ee488c64adfc9c3a05cbd6732.unity3d
+  - name: aa90803e743396bade0ba2953bc4e1f0.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B21_2.FBX
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_C_BaseColor.png
+  - name: 3b0c622341b3a8123ee57286a3ca72d2.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Commissioner_lv2.FBX
+  - name: c887be2ef0d8eaf041cf3bcebfe59adb.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.mat
+  - name: 210245a93c72289ebc5c5d279f189165.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_404066.asset
   - name: 245cb5a8c43a02b1f4b621861449c6e0.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_H1.FBX
+  - name: ec44597f4315131ce9f526ba6dbceb10.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_403518.asset
+  - name: 95dda92f538784402461018e811af873.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_112080.asset
+  - name: 27959fc452d40c3c7490929cc2fd3eba.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Lamp_A.prefab
+  - name: 4d981fef6b4397093693f393ff857622.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/CastleDoor_A.prefab
+  - name: 6411d3c37657c9c728047228bd2a1edd.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/MV_Leaf_D.mat
   - name: 1ee4e1bb3a7bfca94b283693f83950ff.unity3d
     assets:
     - Assets/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox2/toonyDay01_Front.bmp
+  - name: 7ff0c04f98437f5a0b683af1328a6241.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Armor_lv4.FBX
+  - name: 9c25ba18a4946959b2d7ebefacd8e445.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_spell_roof.mat
   - name: 0782b6f0e7a82110797a5ee4b68b27c1.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/modelLog.fbx
-  - name: 30d7a7557353f9af6856403c1167b46b.unity3d
+  - name: de6a28481966445f33d0fa7375e4a4c2.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone0_riverbed_sh.001.mat
-  - name: 2a52f1eff8062c6776b98529eff60c73.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_404338.asset
+  - name: baa07878e114c359a95f66179b3facb8.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C3.prefab
-  - name: e9a96a0bdb6b826beabf03538ace4d78.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Ani/Windmill Wing_A_01.controller
+  - name: 9de4f7260a466adf061bad5e8f678ddf.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A15.prefab
-  - name: 217c4e8fe62ffe64dfb475e237dbf527.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_C_BaseColor.png
+  - name: a8cd22e95e8a5d37c4dc202950b29948.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/TerrainTexture/NewLayer.terrainlayer
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_F.prefab
+  - name: 45813c6585fd59f770dd46b7871927d8.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Barrel_A_01.prefab
   - name: dca27aa8526fce95dbb1187d86c09cd4.unity3d
     assets:
     - Assets/OldScenes/zhucheng/ReflectionProbe-0.exr
-  - name: 03efae2b516afdd71461838ac281d10a.unity3d
+  - name: 43d39afc5686f5f0e7bfed23d1885030.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_A2.prefab
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/StatuePillar_A.mat
   - name: 87e65982a96f8cc9254eb2ca8500f579.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C2_1.FBX
   - name: 31c81ecd5e73e442dea50ee98c94d4d2.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/Materials/Tx_Log.mat
-  - name: 6894d67c0b8b41cc69a49ca8e6c26c87.unity3d
+  - name: 01aa988d03fbb451a3cc4736aa13ee16.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelTree01_1.fbx
-  - name: a16a2e6e4376c0d5b20346392d185a77.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Chimney_A_01.mat
+  - name: 1f7803b3f54034860eda8a25a106d7bd.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C6_2.prefab
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_293538.asset
+  - name: f92a92f842e81ffb160f21dad403f539.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_407600.asset
+  - name: bc962642eae204e803aee26f981f75f3.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_A_Normal.tga
   - name: fb5f6689c6ce7a21d4f7b4141f197e12.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/GRASS_RIDGE01.png
-  - name: 624453551d88cf4e1429a4710513ac67.unity3d
+  - name: b7bc068fc4c48f590b9c982401ebfb6e.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C26.prefab
-  - name: db6a004635387bcc6f43e7692b59e9cf.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_Armor_lv4.prefab
+  - name: bdb2964009d538cdbbe6d9cbeef3331a.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_I4.FBX
-  - name: 02db57c42d6b4219f96fba716665e400.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_variety.png
+  - name: 0cc36727737cb67c8c93e128382715a7.unity3d
     assets:
-    - Assets/Scenes/1_3.terrainlayer
-  - name: d3de9dbc8882d56d235603cceef9edec.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/GroundTile_C_AO.png
+  - name: c2602fa3135e0161baab74e5caedfc29.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Element_B.mat
-  - name: 39646623277f42dd29207f2d23c0863a.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/CastleWall_C.prefab
+  - name: 793351b14088a10b4a84e96178a58c39.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C3.FBX
-  - name: 7687da1c38bd61e0037343238c80e652.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BilldingStair_G.prefab
+  - name: eeb9a3a32c56d7f37d9635d0b7a6682d.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/TerrainTexture/GRASS_RISE1.png
-  - name: 2e2f4afbecf5117b9134e7568cda7c96.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Ivy_A_02.prefab
+  - name: dd5ba37e7e6fe8c88b8e011783830ea8.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Tree01.jpg
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Pillar_A.prefab
+  - name: a9bf8e657e33471b2a18b10c8c7c5f6e.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_N.prefab
+  - name: 7b1a498827a05fb31d93be3ef20f873a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_417252.asset
+  - name: ddb89946ab3ce69a03b88eb377c157b8.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Stone Statue_A.prefab
+  - name: 200d37c17139d527213cb8acf7694d62.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Stair_A_02.mat
   - name: f5428512645a1c08347e86e5fd7a6ec7.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/Ice_5.png
-  - name: 19f261c9ba619a3ff252f032169eac1d.unity3d
+  - name: e77184762958f8b8f4c163fef2b6746d.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C29_2.FBX
-  - name: 11b3667a10fd8adf63706754e2a9e52b.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BuildingDoor_A_01.prefab
+  - name: 680af0e62bc3fb52d20ef6df583e4737.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/TerrainTexture/GRASS_TUNDRA01.png
-  - name: 40a9eec38c08fb0846843bdfef574730.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Tree_Trunk_BaseColor.tga
+  - name: 4076fb453f86ed024cc05ed781f4b68f.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A6.FBX
-  - name: b36c72a0987088233d8564f9b17bcb71.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Roof_A_01.mat
+  - name: 08cdb84a1c27c03d061312170905dd39.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Meshes/Materials/defaultMat.mat
-  - name: bc01b805b433f04062d56c0f890ee9f1.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WallTile_B_MaskMap.tga
+  - name: 57514cd48d19a8b1af3b3f0c7efa7fca.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Interiors_Props_P1.prefab
-  - name: 3feb356d9435047224da62823c01be56.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_potion_lv3.prefab
+  - name: 7d3a82b28fd47deb73a24a0e3e6c14b3.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Building_PotionShop.jpg
-  - name: cc884ea40d746dabd62221a09f042770.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.prefab
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_spell_lv1.prefab
   - name: 421f2d433fabec3b6a4b22322349d7f9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_A2.prefab
-  - name: a7ab1affee5600664da3815924b420a6.unity3d
+  - name: a3d778ebfa2469f92e7422b9c1def343.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_I6.prefab
-  - name: 248f6db6090abcc0cb4bc3630c59d1be.unity3d
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Book and Paper/Book_Pile.001.prefab
+  - name: 42d9e67fa7dff0e5f55c3a5dae6e530c.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow_A.mat
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_281738.asset
+  - name: 1ee6949bbf776a34015b3d4e2f887090.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Pillar_A_Normal.tga
+  - name: 3202abdd272b7de52ff7411adb4071dc.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/WoodTile_B_AO.tga
+  - name: 5ee63b6fac42bc8d53c900f3823c806b.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_potion_lv4.FBX
   - name: 5f4d50acff1bf740985b43a5c9ede825.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Materials/Zone0_riverbed_shadow.mat
-  - name: 00c3cf5063a76d455b56ae8420868c11.unity3d
+  - name: 2caa665706b02ad888ae0ca547daa1ec.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow_A.prefab
-  - name: 651657622f7dfb09db774fd591ae9fdc.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/BuildingWindow_A_01.prefab
+  - name: 53d38bf4e4e0bccd2c24b8c895013968.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Interiors_Props_P1.FBX
-  - name: 02193914ff26fc4444a2688c31aabcad.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_J.prefab
+  - name: 0bed7a04a5fbbc8fbe0e6f07d911c2b5.unity3d
     assets:
-    - Assets/OldScenes/1/NavMesh.asset
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_94068.asset
   - name: fa6e021af05cfd33577e9548bfb08491.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_grass_patch.prefab
-  - name: b60260d205b36006e2fd1772f774a34d.unity3d
+  - name: 8102d9595ba3c1d34adbcbc9e918eb86.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/RIVERBED.png
-  - name: 4af69b370fd76ff9c36b44b8bab65e8c.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/Prefab/building_Commissioner_lv2.prefab
+  - name: 7adb958d4cb441079f8cf4a8241be0f9.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C24_5.prefab
-  - name: d63188aa6ca2ef31f0e5723a127d37f4.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_111574.asset
+  - name: bf009d6e7e3a60fe45338ab1e230e69c.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/RIVERBED_MESA_03.fbx
-  - name: e0d5dc0ff17eb522c7b68e4fa7af7a84.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Stair_B_Normal.tga
+  - name: 5c4f375669ec2fca2c9e1ddb6be1bd28.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_grass_patch
-      - Copy.fbx
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Herbal.png
+  - name: 56319e1aaba026b9ed615ac5945b7336.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Building_A_04.prefab
+  - name: cbf6a8e9cd2f88bc4df250ecab79f632.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Building_C_01.prefab
+  - name: 993c7b1e5a2273de569c08f055919d1a.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_P.prefab
+  - name: b8a1a09f6d6a35e1d7fb7e58e4ea00b2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_411976.asset
   - name: b0cb235e048d2279ea27e3c671433e0e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone01_grass_tund.003.mat
-  - name: a6820e5c0bd1a93a5bbb0d014846da7f.unity3d
+  - name: c0f999fe8ae701ae4ff37d7886f6c6d5.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Materials/Plant_A.mat
-  - name: c881b3d774ee77db6e5fce6555eac569.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/MV_Leaf_A.mat
+  - name: a4682a1157bb593d7fe3dde9caea2612.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow.png
-  - name: 9b69b863db4b49bb53aa93d3bccb96ea.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_Q.prefab
+  - name: 8d3ccae17509e7f6210a9cfd99528255.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/CITY_PLAZA_ROAD_01.png
-  - name: 07f9659649568cb0a419d9f960387d57.unity3d
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Dishes/Bottle.003.prefab
+  - name: 5e492bba014cba51747f03e33a45a032.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_J3_1.FBX
-  - name: 38331e1caf4b108c9fee7b3ea39478e5.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/MV_Wagon_A.prefab
+  - name: 853645985716b63f02bcccf923742f14.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_G1.prefab
-  - name: 6f28c17251d8f563265810bc4d3bf7e3.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_weapon_ground_lv5.png
+  - name: 378a5a565cbe8b74a2c6f87eae6d4bfb.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Tree_AB5.prefab
-  - name: 6e388e4c0272d02c58a7721147c8e84f.unity3d
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.tga
+  - name: e529783f5876dff8bdc27f655cc3b609.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_I6.FBX
-  - name: 696694700b6e5474c08a78ae45edf4bc.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_wenli_00245_A.tga
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_J.prefab
   - name: 803d60a0f2c75a40b5e7a71c49e831cd.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A23.prefab
   - name: be38592dd226285d17480474ce088d1e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A6.prefab
+  - name: 932e202d94d7d4e287d2499d11cc6315.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_416192.asset
+  - name: 5d03fdf8a19087e1dd1d72f65bfc72d2.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/IvyTrunk_A.mat
   - name: 383b3f7f3a78c2f28db5154fab55650b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C6_2.FBX
-  - name: f913e5d67b012f3e4b07e46e981b19a3.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_F1.FBX
   - name: 6ca526c7108b49cba4790d2f9cb511af.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_F1.FBX
-  - name: 378a5a565cbe8b74a2c6f87eae6d4bfb.unity3d
+  - name: 3b8a9ccf7b88d40c4bb6992270511208.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.tga
-  - name: 38555b23eaad0ef2f01a8856ab4fbe87.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/Pillar_C.prefab
+  - name: afe161cc606d9aa4967efdb7f42beb24.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_Hua/Plant_A.mat
-  - name: 9f19c78cd7de9a1f1f6c90ae43eb0662.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_E_MaskMap .png
+  - name: 98299f7a80537d7ad0259da42b9237c4.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_E2.FBX
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/CastleWall_B.prefab
+  - name: 7b9bf36e277d7089a059450d3bb4f000.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_419532.asset
+  - name: 2c8e167c0945716e95e3b05b8f7b8032.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_110792.asset
+  - name: 67cbbb5022bd386cb5e6dc1f88eb1ca5.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/TownGroundTile_G.prefab
+  - name: cd352961745e511d711b51dd330c11b5.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Terrain/Tile_Grass_A_BaseColor.tga
+  - name: 9984ab62f050b524d7405e3b14881d12.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flag_A_01_BaseColor.png
+  - name: 86661f0c8fd9d5412140512534396152.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_419260.asset
+  - name: e38580b7d21afc94b49f88cf1303b7ee.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Herbal.mat
+  - name: 95181a1acc4dfbd0f7f7b76d6555c9cf.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flag_A_01_MaskMap.png
   - name: e8306f4ea58ec6fbf268454fa85fdc02.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBuilding_PotionShop.fbx
-  - name: 7d0312a8e83218fdfd515a73d9de7f73.unity3d
+  - name: cdc9df6341281abffa9ef13d646f609f.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A18.FBX
-  - name: 124b57c56d898510e5afca2f128e36e6.unity3d
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_weapon.mat
+  - name: 6f391050fb60caf8cf3a231286623fcf.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_F3.prefab
-  - name: b1dc4aa523780f7e6c98d86fde4894e7.unity3d
-    assets:
-    - Assets/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox2/toonyDay01_Up.bmp
-  - name: 7b0587684f12cd3b756ccb144cdb7eb0.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_A3.FBX
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Glass_A_Normal.tga
   - name: d65bd7e708aee1b7b75162b41bc86cd8.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.mat
-  - name: 36eab2a3356ae102aa38f784942a6b84.unity3d
+  - name: ecab250b4035e1d94737fe21920ed36a.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B2_1.FBX
-  - name: 9ddfa4c8355867e3b36b77a890b331b8.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/GrassTile_M.prefab
+  - name: 9a97efcec4c3de1f258b919354abcbdd.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Coconut.jpg
-  - name: 59eb518bec0f0d8ee5065bc8277a3a79.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_103194.asset
+  - name: 12b6642bce60b4f1c45174fbc04eb3c3.unity3d
     assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Scenes_FX/Common_FB0_shuiwen.prefab
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_113830.asset
   - name: d9e87de7db1b6a03081ddc21bceac5a8.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_B2_1.prefab
-  - name: 89f64febb8f760b15a81a079e092defc.unity3d
+  - name: 4f8190357d80baa37cf13e64ee23c684.unity3d
     assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_wenli_00245_C.tga
-  - name: 30fc131b78ab6f25d83f7555b468d945.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Pillar_A_AO.tga
+  - name: 65bd9dede61a36c3b1272f15f548d530.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Coconut.mat
-  - name: ae34bc76908d2099dfa71eadc2ef2547.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_276048.asset
+  - name: b41aead5d5b9b07571b35aad20b9395d.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A20.prefab
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/StatuePillar_A_BaceColor.png
   - name: 1685df754d06300e934a773f2a0885c9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_F2.prefab
   - name: 36ed7175f00d2ef2e9f9f179ede40739.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Buildings_L2.prefab
-  - name: 4dfb5b7a423bae2121b5804e9313292a.unity3d
+  - name: 1fc501252bbdd5f483f6086c94f46117.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_F3.FBX
-  - name: 19b7261e404e7cefa8d6179f3c4bc2de.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Prefabs/StoreBox_A_04.prefab
+  - name: 05e3614f9197184b4991da0260bb2dbc.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/_Grass_ridge01_sh.mat
-  - name: 41aa3e9a07d9ad985221a462de7fc72f.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/WallTile_B_02.mat
+  - name: febe52f5e0ea4a1af94c773e9b49f4cc.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Interiors_Props_R1.prefab
-  - name: 33854ddd28d66542d91941073fffde01.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Fabric_C_MaskMap.png
+  - name: 3354cf836735f9f492a933b98162635f.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_F2.prefab
-  - name: 19a07ea07fa1740c143a18b0ad0a176d.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/Wood_A_03.mat
+  - name: fba9c3d31124563e6c523715a06b5cab.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C4_3.FBX
-  - name: 87cb632637d456dc6d805236e175ca3f.unity3d
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Treasure/Treasure_Basic.prefab
+  - name: e7bb62d0613395237e6d203be81c0403.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.mat
-  - name: fa213d98ea3f31fff593e596838f16d5.unity3d
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Materials/BuildingImage_A.mat
+  - name: b89f165c07ca0b58d4c0786a6a15c465.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Tree_F1.prefab
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/MeshAssets/um_411808.asset
   - name: d4c38cc847e05a87e68b6eccf96433e2.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_C1.prefab
@@ -11682,18 +13456,9 @@ MonoBehaviour:
   - name: 73b38f22c238b56d59f4d22e8313166b.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_smallparts_BaseMap.png
-  - name: bf133dced7dba8e35dc3828c1e823fbc.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_rock_01.fbx
-  - name: 51e3ceae75498802e527dff897408f9e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/SM_woodenbeam_wooden_planklow_default_BaseMap.png
   - name: 597d16871a3c16b6fc7c0cf8d1566d44.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_woodenbeam.mat
-  - name: 35bb714e773c6a32e39e71821909b90e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_bush_01.fbx
   - name: 4e0a7b6dff8b784b0e228eb1dc332b45.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_flowers_01
@@ -11701,22 +13466,13 @@ MonoBehaviour:
   - name: 5ea3743713872baed0ee752317ac0adf.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_grass_small.fbx
-  - name: 38cb3aa56f7d9912ac05f8300def6508.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Buildings/SM_tower_attachment.fbx
   - name: 48cc14e3a7c6458db8583ae60c0ef981.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_flower
       1.mat
-  - name: ed61e2d7b1c2d5ecfa13dbc460e3bede.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Props/SM_fence_01.fbx
   - name: 9fa2f7d7763c925c7bc66d8db2f14981.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_smallparts.mat
-  - name: e8d31638d060d79866f4a528e42e691d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_dirttexture_stylized.png
   - name: ed03f206b1958a623cebcd075f67f0e5.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_grasstexture_stylized.png
@@ -11729,6 +13485,86 @@ MonoBehaviour:
   - name: 859a1d74b702b837d29efeb34ec5988f.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/tree_leaves_03.png
+  - name: a0a950c6dca21ebd21e08d8eeb4addc0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_rock_01.prefab
+  - name: e1df16908fb69b637c7bdbab967a4cc4.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/doorwayglow.mat
+  - name: b040487557c4c42bf0360b9eb5738eda.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rope_nrm.png
+  - name: 07f3b86365c5072d6635295e92c8c407.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/doorwayglow.png
+  - name: 277157a2725d111e0e154557d1fd858a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_woodenkit_02_BaseMap.png
+  - name: fd7474d79222f472724e90b810914b05.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_tree_01.fbx
+  - name: 9648681f88c32a15d5632d18d8262a71.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_woodenkit_02_Normal.png
+  - name: ad7daedbb76a3f8a28e8627b0be7fed8.unity3d
+    assets:
+    - Assets/OldScenes/100101_3.terrainlayer
+  - name: 796fd08bb7dcc4233b1e498b04f10c7e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_treebase.mat
+  - name: c672791a9dab39017fd4cd44abfdd87d.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/sparkle_mythical.png
+  - name: b5bcd9548ad81b86e82b96d58c3f9bd8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Modular
+      Pieces/SM_tower_attachment.prefab
+  - name: 65531aa4f1f9b2f45de5a6a813c50255.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_trees_base_BaseMap.png
+  - name: 7cbce0beb20bf8b41b500c8eb4763fe9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_windowglass.png
+  - name: 4af6ed0c3cfc429492805ec934104de6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_rooftiles.mat
+  - name: 537dbe7656e073270aa408de5408ca19.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rocks_kit_BaseMap.png
+  - name: fce9582443a7bde6098730e604e4fee7.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_leaves
+      1.mat
+  - name: afaf26f0bffbc82f3d7554b737bda409.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_bush_01.prefab
+  - name: 252dea9e1fe2f20137a7ac45274255e1.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/flower_texture_01.png
+  - name: 493e6c5378ac8c7d6bb34688ef7dd785.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_wall_01.mat
+  - name: dab6d8c52a4ee8e7f10e388e964982da.unity3d
+    assets:
+    - Assets/Res/TerrainTieTuSet/Textures/Ground/Ground24.png
+  - name: bf133dced7dba8e35dc3828c1e823fbc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_rock_01.fbx
+  - name: 51e3ceae75498802e527dff897408f9e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/SM_woodenbeam_wooden_planklow_default_BaseMap.png
+  - name: 35bb714e773c6a32e39e71821909b90e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_bush_01.fbx
+  - name: 38cb3aa56f7d9912ac05f8300def6508.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Buildings/SM_tower_attachment.fbx
+  - name: ed61e2d7b1c2d5ecfa13dbc460e3bede.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Props/SM_fence_01.fbx
+  - name: e8d31638d060d79866f4a528e42e691d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_dirttexture_stylized.png
   - name: f4fe143f7482786d1027867e771b6069.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_rocks.mat
@@ -11742,9 +13578,6 @@ MonoBehaviour:
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_grass
       1.mat
-  - name: a0a950c6dca21ebd21e08d8eeb4addc0.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_rock_01.prefab
   - name: b5f6c86b76b265be1d69bb643d341c98.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_windowglass
@@ -11755,21 +13588,9 @@ MonoBehaviour:
   - name: 41d1031377221bf0f500a33c199fcb89.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/NewLayer.terrainlayer
-  - name: e1df16908fb69b637c7bdbab967a4cc4.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/doorwayglow.mat
   - name: 934795ad155296edbf159372e6bbacb2.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_flowers_01.fbx
-  - name: b040487557c4c42bf0360b9eb5738eda.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rope_nrm.png
-  - name: 07f3b86365c5072d6635295e92c8c407.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/doorwayglow.png
-  - name: 277157a2725d111e0e154557d1fd858a.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_woodenkit_02_BaseMap.png
   - name: c2f6e158180977ee113319aaad855f17.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_grass_small
@@ -11780,59 +13601,24 @@ MonoBehaviour:
   - name: 7aa4aa795f5a5eadbb7b516e907e3e4f.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rocks_kit_Normal.png
-  - name: fd7474d79222f472724e90b810914b05.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_tree_01.fbx
-  - name: 9648681f88c32a15d5632d18d8262a71.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_woodenkit_02_Normal.png
-  - name: ad7daedbb76a3f8a28e8627b0be7fed8.unity3d
-    assets:
-    - Assets/OldScenes/100101_3.terrainlayer
   - name: 6c3b70b49bc4c798bfd6fcc36e9449eb.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Sparkles/sparkle_mythical.mat
-  - name: 796fd08bb7dcc4233b1e498b04f10c7e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_treebase.mat
   - name: 34e51294051f6e3b6a12b2560f4c3064.unity3d
     assets:
     - Assets/Scenes/Map/100001.asset
-  - name: c672791a9dab39017fd4cd44abfdd87d.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/sparkle_mythical.png
-  - name: b5bcd9548ad81b86e82b96d58c3f9bd8.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Modular
-      Pieces/SM_tower_attachment.prefab
-  - name: 65531aa4f1f9b2f45de5a6a813c50255.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_trees_base_BaseMap.png
   - name: 30750a5cad029fa885a0f1ffa63db12b.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rooftiles_BaseMap.png
-  - name: 7cbce0beb20bf8b41b500c8eb4763fe9.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_windowglass.png
-  - name: 4af6ed0c3cfc429492805ec934104de6.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_rooftiles.mat
   - name: c5afc46700c1489035508ae1bd0b5a36.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_tree_01.prefab
   - name: 2ac074d86a2973c5cfe5c66c642a0184.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_tree_02.fbx
-  - name: 537dbe7656e073270aa408de5408ca19.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rocks_kit_BaseMap.png
   - name: 420dc74b7f5838e0c78c944fe9baaeab.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_smallparts_Normal.png
-  - name: fce9582443a7bde6098730e604e4fee7.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_leaves
-      1.mat
   - name: e564363d6f904e26a53fcf5ae0762835.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Props/SM_fence_01
@@ -11844,24 +13630,12 @@ MonoBehaviour:
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/NewLayer
       4.terrainlayer
-  - name: afaf26f0bffbc82f3d7554b737bda409.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_bush_01.prefab
-  - name: 252dea9e1fe2f20137a7ac45274255e1.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/flower_texture_01.png
   - name: 75bf2352b70a41861b3a954d084c7037.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_woodenkit_02.mat
   - name: f08f3938f78f701cce024aeb9ed2a893.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_basetexture_stylized.png
-  - name: 493e6c5378ac8c7d6bb34688ef7dd785.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_wall_01.mat
-  - name: dab6d8c52a4ee8e7f10e388e964982da.unity3d
-    assets:
-    - Assets/Res/TerrainTieTuSet/Textures/Ground/Ground24.png
   - name: 5ecd2cd16a52a0a09d5b8472e672b01a.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_tengman_01.FBX
@@ -13516,15 +15290,36 @@ MonoBehaviour:
   - name: e9f553612cc9013b173e2abd98b6add6.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandA_idleA.FBX
+  - name: 6d28f831dc88584c87597d012c06b7b6.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_02_R.prefab
   - name: bd9af3087062e30ecdc296a80a7cc0c6.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_mogu_02.FBX
+  - name: b1e2e85ad1b6aa51f30a285373b0c8df.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/Eye-EyeBall_00_00.mat
   - name: 0032dd82de56bd1d07b8e754610bbf10.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cao_01.FBX
+  - name: 7ef4b0bf8687ba9ad0dde3324624ca1d.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Emotion 2.controller
+  - name: ce11661be4f9218e0f792634f7ac439b.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eyeblow/Eyeblow_00_00.mat
+  - name: cd5a510bda0f49312fccd5e2281fe3c6.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/Eye_00/Eye_00_00.mat
   - name: 11e5bef665afa65cc061a02e4243010a.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/_Guide/Texture/_DummyMesh.png
+  - name: 77e2660af71c9699049f1fbadeed613c.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eye/Eye_00_00.png
+  - name: 0532c314aec30db6a3d58d3851fd0a69.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Costume_01.fbx
   - name: ccadf587dbebfe70b22789ddd297f5de.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/_Guide/Materials/_maskGuide.mat
@@ -13534,15 +15329,51 @@ MonoBehaviour:
   - name: 137344cba5f9f1ae3eb02713c859d803.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandA_idleAXiuGai.FBX
+  - name: b95943454f980d7c943ac24fe208ab1d.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Hair/Hair_00/Hair_00_00.mat
+  - name: 7ade82881bcf37e697928eb16cd37bd5.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/_Bundle/Dummy Motions.controller
+  - name: 2a040b39d9e8b088d1e7893d42273732.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Texture/accessory/Accessory_00_00.png
+  - name: a86baeed0fe713390899f89dcc522468.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Faceskin/FaceSkin_00_00.png
   - name: 2d1ccb64fae2afdc911ed241201e4ff0.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shitou_05.FBX
+  - name: a8b095edd8729aa05f73408ec57b1b58.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Texture/accessory/Hair_00_subAB_00.png
+  - name: 7a17b82b36ae722d2c422e9decca4c74.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Costume/Costume_01_00.png
   - name: c3d1f88ffa36b01a52e46fffdb52c733.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/texture/build/stsm_build_002.tga
+  - name: 5ea67627ed684a78711c7a2b808accbc.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/RunA_Front.FBX
+  - name: ed5071eff6fbdb3026f7c6c5b8851ceb.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Face_00.fbx
+  - name: 2f5edf59932cac2a5d34afa89d230972.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandC.FBX
+  - name: 2559c9c554ce4517b258e5e11a389536.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_01_L.fbx
+  - name: cd357699746145ec22b79060bd518c8f.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Face/Face_00 BlendShapes.prefab
   - name: 30c32fdb45f3d4c326ad7682e48cfa01.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/WalkA_Front.FBX
+  - name: f51ad62312eb5828cf277facf30f0033.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Accessory_00.fbx
   - name: 6d98b66c0849d225b4cd46a1a855481b.unity3d
     assets:
     - Assets/Res/Models/Warrior/Role_FaShi.controller
@@ -13553,9 +15384,15 @@ MonoBehaviour:
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Setting/_Humanoid and Add-Bone
       Mask Base.FBX
+  - name: 649e0e9534dec0499979e8d5f788c24f.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Hair/Hair_00/Hair_00_subAB_00.mat
   - name: 4fc16e3af1356ffbc261bed7269e938d.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/objectB/scene/build/stsm_build_diaoxiang_001.FBX
+  - name: ffa542384dfc7e62dd4fefeb8cf87c6c.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandB.FBX
   - name: de1cb27617903d1d2a6fa6014bec70b2.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/WeaponMaster Twin dagger(WTD)/WTD_AttackA
@@ -13563,6 +15400,9 @@ MonoBehaviour:
   - name: 0af28a43e0b3c82d4d9fec72d905b2ee.unity3d
     assets:
     - Assets/Res/TerrainTieTuSet/Textures/Ground/Ground18.tga
+  - name: 0be0bf0cb0a3bdfa5ea5c7ee9e156245.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eyeblow/Eyeblow_00_00.png
   - name: 13bd62185f42baca51971e88760c0e06.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_xiaoshitou_03.FBX
@@ -13575,18 +15415,45 @@ MonoBehaviour:
   - name: e08e7e9767e5868a40be85a2b5a89b14.unity3d
     assets:
     - Assets/OldScenes/100101_4.terrainlayer
+  - name: 17f5e9c0602b6d0c7f37856de522bcc4.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/Eye_00_R.prefab
   - name: 7f2b5408c4f4cd9a7b9274c9fc88cd2a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Mushroom3A.fbx
+  - name: ad32c5c035064d8f6fc797244339b657.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Faceskin/FaceSkin_00_00.mat
+  - name: b309dcd0514eadd7eb3b90ae6c89771e.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Costume/Costume_01_00.mat
+  - name: a13f0e80c67cce394476d64f8033cd3f.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_02_R.fbx
   - name: 5fd2314245a14527deab3baf001573fd.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/WeaponMaster Twin dagger(WTD)/WTD_Run_Front.FBX
+  - name: 327b30e18be122f0d6282542f41edf6a.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_01_R.fbx
+  - name: e4fc831fe65642cadd94202e644a3970.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandA.FBX
+  - name: 6609a978e4e7a8e4728a3064c597fbee.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eye/eyeball_eyelight_TextureGuide.png
+  - name: e6e2ddb1e0777e859db79e72742baf3f.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_01_R.prefab
   - name: 676ac023f2248940e6306477f6b34dec.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/_Guide/Materials/_DummyMesh00.mat
   - name: 2ccf1b69b29b115622646b4fe90562a9.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cigu_02.FBX
+  - name: e8d5681a871d1198fc5f0f269570c815.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Eye_00_L.fbx
   - name: 7197d726d6d6b4475870e799fb5bf5c3.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shu_01.FBX
@@ -13596,36 +15463,84 @@ MonoBehaviour:
   - name: 3cb411ac4add3c68e46a8fe06df513c6.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/Action Adventure(Adv)/Emotion_Clap(StandC).FBX
+  - name: 1e78c7ed322e238b78d66f0794bee19d.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Texture/Hair/Hair_00_00.png
+  - name: 0137ad5c8cc8f1258683123216b1ce22.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_02_L.prefab
+  - name: 2add8d236fcc862516ae790347584ee1.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Eye_00_R.fbx
   - name: fc708012501f5f985433bd4e79fa46ce.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cao_02.FBX
+  - name: 918e9a653f890296482dae0bf4191965.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Accessory/Accessory_00.prefab
+  - name: 6d3b8e87991b44f217fb734c66b54423.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Hair/Hair_00_Front.prefab
   - name: 93564f0fda7a2657ecc3272ed3e6e827.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shu_02.FBX
+  - name: 477c3bcac83803c5751acf4d7f030b65.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_02_L.fbx
   - name: a11c10de01c475321902738296d7d1b1.unity3d
     assets:
     - Assets/OldScenes/100101_1.terrainlayer
   - name: 9540a93dfbf5b117b9d5a5268502ee09.unity3d
     assets:
     - Assets/OldScenes/100101_2.terrainlayer
+  - name: 066732bcd3716a66803fdbd7513ceaaa.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Hair/Hair_00_Base.prefab
+  - name: 40e1bd563e2cfa2aae064fd3336065db.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Hair_00_Front.fbx
+  - name: 561b9f64200930d32a3821b933108c87.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Accessory/Accessory_00_00.mat
   - name: e157e16dd545dcc7a26dba4035d05bb0.unity3d
     assets:
     - Assets/Res/TerrainTieTuSet/Textures/Ground/Ground13.tga
+  - name: ab5da315d2406138dd517e10324dde57.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/Eye_00_L.prefab
   - name: 16c92e5ea78811b6442fb3273744038f.unity3d
     assets:
     - Assets/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_xiaoshitou_01.FBX
+  - name: 59f79ecceb740741127cfffb6ecf5fa6.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Emotion 1.controller
+  - name: 1e924a807c0dc7345b678cc11d31a7fa.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/EyeLight_00.mat
+  - name: 81784648cf126cfa001c30607e1028f2.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Squat A.controller
   - name: 45868f5be65d39d6f395c3884357e516.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/prefab/objectB/build/stsm_build_diaoxiang_001.prefab
   - name: 4189f7401f0eae9b333fb1ef14c91d7c.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/_Guide/Texture/_maskGuide.png
+  - name: 569a45b7ba403880949b337a49978f91.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Set/Set Costume_01 SD Unity-Chan.prefab
   - name: 81d4db9f38596a7b4f056a4102e73cb8.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/Materials/city_pla_stone_03_mat.mat
+  - name: b84f7beee5fa5d461f879ff78f7a8ce7.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Hair_00_Base.fbx
   - name: 7c32e4432e0f237df57a341504bf6cbb.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/Texture/STONE_03.png
+  - name: 6f9523615e9fe176102cf766a840f6bc.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_01_L.prefab
   - name: de1629cafa9fd72223f7a6120f8dcd57.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/STONE_03.fbx
@@ -13641,9 +15556,6 @@ MonoBehaviour:
   - name: 539a129cdbe54694a2ff6cf57c57655e.unity3d
     assets:
     - Assets/Res/UI/UIRes/Back/Back_12.jpg
-  - name: d82b847850be9d9660cf4910d4f19d14.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/D_mofashi_3.png
   - name: e7d6a1acb107ba0bdee9e14586fcf3ff.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/LvUp/LvUp_Feather.png
@@ -13656,39 +15568,24 @@ MonoBehaviour:
   - name: dc4810d0135f31951e3a66f352f2760d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A13.FBX
-  - name: a2bfc558956efbb57752039c981e08ba.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/wuqi.jpg
   - name: 89548d759051ebbf3d518f1e07196b75.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_B1.FBX
   - name: 6c574aa3d6770e45db75f091472241b9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/Materials/GRASS_TUNDRA01.mat
-  - name: 4e76c087fb9f8aadbaff266480ce0cff.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_skill_1.FBX
   - name: 27e22890dea3f4e1cdc521075f25da75.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/LvUp/Text.mat
-  - name: 7c5f4b32f4d87801194e2101cfe83edb.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_attack.FBX
   - name: a58200e750fbae9e67fc81c5bc85a362.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Tree/Materials/grass_mat.007.mat
-  - name: c871892f67e238e349988306f2406f86.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/ZhanShi/Materials/sword_Texture.mat
   - name: 451986244bffc53c8695bb6e49def15e.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Tree/Materials/grass_mat.002.mat
   - name: 72bb83ceeff00221a9ee93df71b5675a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Image/UI_Image_88.png
-  - name: 243d75d11cc43d972d01b10fa9323e76.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Materials/D_mofashi.mat
   - name: c1ec33bfa8df99fb260a592fd498d567.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Image/UI_Image_137.png
@@ -13701,15 +15598,6 @@ MonoBehaviour:
   - name: 933e08ff27efb2eabdbd19865a0316c8.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_A13.prefab
-  - name: 10288c63ee518df8c28be82c99642d65.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/RoseMoFaShi.controller
-  - name: f6d8e1e30303bdeff65513e5ba6e9ecc.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_dead.FBX
-  - name: ace8c2a6081973f10d8a934a909c4cc2.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/ZhanShi/Swordman_No_Animation.FBX
   - name: 43aa4f2eda839178e1684d71d582d5ad.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/UGUI/UISet/Create/Create_ZhanShi.renderTexture
@@ -13720,9 +15608,6 @@ MonoBehaviour:
   - name: a6a37101e700aaacdc7cf7cf837f25b9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/LvUp/LvUp_Pillar.png
-  - name: c4654eab22dfbd9a39803ca7fbc0719c.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_Idle.FBX
   - name: 3c2dcc6ca9450e061184a46a3e2b926a.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Tree/Model/GRASS_03.fbx
@@ -13738,27 +15623,12 @@ MonoBehaviour:
   - name: c93f20b8328bb73d0c2d1530e87ad6d3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Button/UI_Btn_2_1.png
-  - name: ffb5cc43157e4546eb32f012b6b682ea.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_run.FBX
   - name: 3e3b9affee17e25a1bbf5a09fcd2467b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_B1.prefab
-  - name: 28cb13b6cb30d92af896bf6d6fcd11db.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/ZhanShi/zsd2.png
-  - name: 9c31c910cbbf92f34e39576a8c8510a8.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_skill_2.FBX
-  - name: cbbb3092638e582990fd1802a8e93330.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Materials/Hero10002_nvfashiwuqi.mat
   - name: a23e260ae36ee22ceb27bed7b1ae01e7.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/LvUp/Feather.mat
-  - name: be48fe54dbcb87d64042429901c07a4b.unity3d
-    assets:
-    - Assets/Res/Models/Occ/RoseModel/MoFaShi/Mofashi_attack_Idle.FBX
   - name: 1e54f55bbfee0a135699883e3e4e2935.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/LvUp/Materials/WarpGround.mat

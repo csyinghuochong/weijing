@@ -15,9 +15,6 @@ EditorBuildSettings:
     path: Assets/Scenes/CreateRole.unity
     guid: 4932be37e44cee84493c96a52a1f3054
   - enabled: 1
-    path: Assets/Scenes/1.unity
-    guid: c6a7a942428f8b74687e4477c1809f63
-  - enabled: 1
     path: Assets/Scenes/101.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   - enabled: 1
