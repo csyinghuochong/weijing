@@ -429,13 +429,33 @@ namespace libx
 
                 ResourceInfos.Add(  new ResourceInfo() {   Path = (strNum + builds[i].assetNames[0]) , Size = (int)fileSize } );
             }
+            List<ResourceInfo> resourceInfos_1 = new List<ResourceInfo>();
+            resourceInfos_1.AddRange(ResourceInfos);
+            resourceInfos_1.Sort(delegate (ResourceInfo a, ResourceInfo b)
+            {
+                //Assets/Bundles/Audio/Skill/baolie_3.mp3
+                string path_1 = a.Path;
+                string path_2 = b.Path;
+                string[] path1_list = path_1.Split('/');
+                string[] path2_list = path_2.Split('/');
+                path_1 = path_1.Substring(0, path_1.Length - path1_list[path1_list.Length - 1].Length);
+                path_2 = path_2.Substring(0, path_2.Length - path2_list[path2_list.Length - 1].Length);
 
-            SaveResourceList_1(ResourceInfos, "/Release/HotRes_1.txt");
-            ResourceInfos.Sort(delegate (ResourceInfo a, ResourceInfo b)
+                if (path_1 == path_2)
+                {
+                    return 0;
+                }
+                return path_1.Length - path_2.Length;
+            });
+            SaveResourceList_1(resourceInfos_1, "/Release/HotRes_1.txt");
+
+            List<ResourceInfo> resourceInfos_2 = new List<ResourceInfo>();
+            resourceInfos_2.AddRange(ResourceInfos);
+            resourceInfos_2.Sort(delegate (ResourceInfo a, ResourceInfo b)
             {
                 return b.Size - a.Size;
             });
-            SaveResourceList_1(ResourceInfos, "/Release/HotRes_2.txt");
+            SaveResourceList_1(resourceInfos_2, "/Release/HotRes_2.txt");
         }
 
         public static void BuildAssetBundles()

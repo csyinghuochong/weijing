@@ -725,7 +725,7 @@ PlayerSettings:
   scriptingDefineSymbols:
     1: ILRuntime;SUBSTANCE_PLUGIN_ENABLED
     4: NET452;ILRuntime
-    7: NET452;DISABLE_ILRUNTIME_DEBUG;ILRuntime:UNITY_EDITO:QQ
+    7: NET452;DISABLE_ILRUNTIME_DEBUG;ILRuntime:UNITY_EDITO:MuBao
     13: NET452;ILRuntime
   additionalCompilerArguments: {}
   platformArchitecture:

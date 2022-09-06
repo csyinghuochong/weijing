@@ -49,9 +49,10 @@ public class MyCamera_1 : MonoBehaviour
         colliderObject.Clear();//清空本次碰撞到的所有物体
         for (int i = 0; i < hit.Length; i++)//获取碰撞到的所有物体
         {
-            if (hit[i].collider.gameObject.name != "Npc"//护栏
-                && hit[i].collider.gameObject.name != "Map"//地面
-                && hit[i].collider.gameObject.tag != "Player")//角色
+            //if (hit[i].collider.gameObject.name != "Npc"//护栏
+            //    && hit[i].collider.gameObject.name != "Map"//地面
+            //    && hit[i].collider.gameObject.tag != "Player")//角色
+            if (hit[i].transform.gameObject.layer == LayerMask.NameToLayer("Building"))
             {
                 Debug.Log(hit[i].collider.gameObject.name);
                 colliderObject.Add(hit[i].collider.gameObject);
