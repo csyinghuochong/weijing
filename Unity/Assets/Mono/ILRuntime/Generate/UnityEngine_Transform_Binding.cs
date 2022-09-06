@@ -61,24 +61,24 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(UnityEngine.Transform)};
             method = type.GetMethod("set_parent", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, set_parent_12);
-            args = new Type[]{};
-            method = type.GetMethod("get_parent", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_parent_13);
             args = new Type[]{typeof(System.Int32)};
             method = type.GetMethod("GetChild", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetChild_14);
+            app.RegisterCLRMethodRedirection(method, GetChild_13);
             args = new Type[]{};
             method = type.GetMethod("get_childCount", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_childCount_15);
+            app.RegisterCLRMethodRedirection(method, get_childCount_14);
             args = new Type[]{};
             method = type.GetMethod("GetEnumerator", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetEnumerator_16);
+            app.RegisterCLRMethodRedirection(method, GetEnumerator_15);
             args = new Type[]{};
             method = type.GetMethod("get_localEulerAngles", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_localEulerAngles_17);
+            app.RegisterCLRMethodRedirection(method, get_localEulerAngles_16);
             args = new Type[]{typeof(UnityEngine.Vector3)};
             method = type.GetMethod("set_localEulerAngles", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, set_localEulerAngles_18);
+            app.RegisterCLRMethodRedirection(method, set_localEulerAngles_17);
+            args = new Type[]{};
+            method = type.GetMethod("get_parent", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, get_parent_18);
             args = new Type[]{typeof(System.Int32)};
             method = type.GetMethod("SetSiblingIndex", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, SetSiblingIndex_19);
@@ -385,22 +385,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* get_parent_13(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            UnityEngine.Transform instance_of_this_method = (UnityEngine.Transform)typeof(UnityEngine.Transform).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
-            __intp.Free(ptr_of_this_method);
-
-            var result_of_this_method = instance_of_this_method.parent;
-
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
-        }
-
-        static StackObject* GetChild_14(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* GetChild_13(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -418,7 +403,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* get_childCount_15(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_childCount_14(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -435,7 +420,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* GetEnumerator_16(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* GetEnumerator_15(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -450,7 +435,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* get_localEulerAngles_17(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_localEulerAngles_16(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -470,7 +455,7 @@ namespace ILRuntime.Runtime.Generated
             }
         }
 
-        static StackObject* set_localEulerAngles_18(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* set_localEulerAngles_17(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -492,6 +477,21 @@ namespace ILRuntime.Runtime.Generated
             instance_of_this_method.localEulerAngles = value;
 
             return __ret;
+        }
+
+        static StackObject* get_parent_18(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            UnityEngine.Transform instance_of_this_method = (UnityEngine.Transform)typeof(UnityEngine.Transform).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            __intp.Free(ptr_of_this_method);
+
+            var result_of_this_method = instance_of_this_method.parent;
+
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
         static StackObject* SetSiblingIndex_19(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)

@@ -6,8 +6,7 @@
 		protected override void Run(Session session, M2C_CreateUnits message)
 		{
 			Scene currentScene = session.ZoneScene().CurrentScene();
-			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
-			
+
 			foreach (UnitInfo unitInfo in message.Units)
 			{
 				Unit unit = UnitFactory.CreateUnit(currentScene, unitInfo);

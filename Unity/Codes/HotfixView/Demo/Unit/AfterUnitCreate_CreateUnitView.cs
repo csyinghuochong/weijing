@@ -58,13 +58,29 @@ namespace ET
                 Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
             }
 
-
             if (unit.MainHero)
             {
                 Transform targetTf = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head).transform;
                 Camera camera = UIComponent.Instance.MainCamera.gameObject.GetComponent<Camera>();
                 camera.GetComponent<MyCamera_1>().enabled = mapComponent.SceneTypeEnum == SceneTypeEnum.MainCityScene;
                 camera.GetComponent<MyCamera_1>().Target = targetTf;
+
+                GameObject shiBingSet = GameObject.Find("ShiBingSet");
+                string  path_2 = ABPathHelper.GetUGUIPath($"Battle/UINpcLocal");
+                GameObject npc_go = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path_2);
+                if (shiBingSet != null)
+                {
+                    for (int i = 0; i < shiBingSet.transform.childCount; i++)
+                    { 
+                        GameObject shiBingItem = shiBingSet.transform.GetChild(i).gameObject;
+                        NpcLocal npcLocal = shiBingItem.GetComponent<NpcLocal>();
+                        NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcLocal.NpcId);
+                        npcLocal.Target = go.transform;
+                        npcLocal.NpcName = npcConfig.Name;
+                        npcLocal.NpcSpeak = npcConfig.SpeakText;
+                        npcLocal.AssetBundle = npc_go;
+                    }
+                }
             }
         }
     }

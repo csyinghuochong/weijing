@@ -60,7 +60,7 @@ namespace ET
                 return;
             }
             Transform UIPosition = self.UIPosition;
-            Vector2 OldPosition = FunctionUI.GetInstance().WorldPosiToUIPosi(UIPosition.position, self.HeadBar, self.UICamera, self.MainCamera);
+            Vector2 OldPosition = WorldPosiToUIPos.WorldPosiToUIPosition(UIPosition.position, self.HeadBar, self.UICamera, self.MainCamera);
 
             Vector3 NewPosition = Vector3.zero;
             NewPosition.x = OldPosition.x;

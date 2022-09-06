@@ -22,12 +22,12 @@ namespace ILRuntime.Runtime.Generated
             MethodBase method;
             Type[] args;
             Type type = typeof(UnityEngine.Camera);
-            args = new Type[]{typeof(UnityEngine.Vector3)};
-            method = type.GetMethod("WorldToScreenPoint", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, WorldToScreenPoint_0);
             args = new Type[]{};
             method = type.GetMethod("get_main", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_main_1);
+            app.RegisterCLRMethodRedirection(method, get_main_0);
+            args = new Type[]{typeof(UnityEngine.Vector3)};
+            method = type.GetMethod("WorldToScreenPoint", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, WorldToScreenPoint_1);
             args = new Type[]{typeof(UnityEngine.Vector3)};
             method = type.GetMethod("ScreenToWorldPoint", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, ScreenToWorldPoint_2);
@@ -48,7 +48,18 @@ namespace ILRuntime.Runtime.Generated
         }
 
 
-        static StackObject* WorldToScreenPoint_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_main_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 0);
+
+
+            var result_of_this_method = UnityEngine.Camera.main;
+
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
+        }
+
+        static StackObject* WorldToScreenPoint_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -75,17 +86,6 @@ namespace ILRuntime.Runtime.Generated
             } else {
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
             }
-        }
-
-        static StackObject* get_main_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 0);
-
-
-            var result_of_this_method = UnityEngine.Camera.main;
-
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
         static StackObject* ScreenToWorldPoint_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)

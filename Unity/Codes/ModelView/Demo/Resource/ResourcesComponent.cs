@@ -28,7 +28,6 @@ namespace ET
         {
             Instance = this;
 
-
         }
         #region Assets
 
