@@ -364,12 +364,42 @@ namespace libx
             return outputPath;
         }
 
+        public static void SaveResourceList_1(List<ResourceInfo> ResourceInfos, string file)
+        {
+            string asssetName = "";
+            string dataPath = Application.dataPath;
+            dataPath = dataPath.Substring(0, dataPath.Length - 6);
+            for (int i = 0; i < ResourceInfos.Count; i++)
+            {
+                asssetName += ResourceInfos[i].Path;
+                asssetName += "\r\n";
+            }
+            //D:/weijingHot/trunk_2021_0808/Unity/
+            dataPath = dataPath.Substring(0, dataPath.Length - 6);
+            string filePath = dataPath + file;//这里是你的已知文件
+            if (!File.Exists(filePath))
+            {
+                File.Create(filePath);
+            }
+
+            FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite);
+            StreamWriter sw = new StreamWriter(fs);
+            fs.SetLength(0);//首先把文件清空了。
+            sw.Write(asssetName);//写你的字符串。
+            sw.Close();
+        }
+
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sort">1大小  2路径</param>
         public static void BundleResourceList()
         {
             var rules = GetBuildRules();
             var builds = rules.GetBuilds();
 
-            string asssetName = "";
             int mb = 1024 * 1024;
             int kb = 1024;
 
@@ -400,29 +430,12 @@ namespace libx
                 ResourceInfos.Add(  new ResourceInfo() {   Path = (strNum + builds[i].assetNames[0]) , Size = (int)fileSize } );
             }
 
+            SaveResourceList_1(ResourceInfos, "/Release/HotRes_1.txt");
             ResourceInfos.Sort(delegate (ResourceInfo a, ResourceInfo b)
             {
                 return b.Size - a.Size;
             });
-
-            for (int i = 0; i < ResourceInfos.Count; i++)
-            {
-                asssetName += ResourceInfos[i].Path;
-                asssetName += "\r\n";
-            }
-
-            //D:/weijingHot/trunk_2021_0808/Unity/
-            dataPath = dataPath.Substring(0, dataPath.Length - 6);
-            string filePath = dataPath + "/Release/HotRes.txt";//这里是你的已知文件
-
-            if (!File.Exists(filePath))
-                File.Create(filePath);
-
-            FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.ReadWrite);
-            StreamWriter sw = new StreamWriter(fs);
-            fs.SetLength(0);//首先把文件清空了。
-            sw.Write(asssetName);//写你的字符串。
-            sw.Close();
+            SaveResourceList_1(ResourceInfos, "/Release/HotRes_2.txt");
         }
 
         public static void BuildAssetBundles()
