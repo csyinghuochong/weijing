@@ -225,8 +225,7 @@ namespace ET
                 return;
             }
             var path = ABPathHelper.GetUGUIPath("Main/MiniMap/UIMapBigNpcItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             GameObject mapCamera = self.MapCamera;
             for (int i = 0; i < npcList.Length; i++)
             {
@@ -340,16 +339,26 @@ namespace ET
         {
             int N = self.MoveComponent.N;
             List<Vector3> target = self.MoveComponent.Targets;
+
+            Vector3 lastVector = Vector3.zero;
+            int showNumber = 0;
             for (int i = N; i < target.Count; i++)
             {
                 Vector3 temp = target[i];
-                GameObject go = self.GetPathPointObj(i-N);
-                go.SetActive(true);
                 Vector3 vector31 = new Vector3(temp.x, temp.z, 0f);
-                go.transform.localPosition = self.GetWordToUIPositon(vector31);
-                go.transform.localScale = Vector3.one * 2f;
+                vector31 = self.GetWordToUIPositon(vector31);
+
+                if (Vector3.Distance(vector31, lastVector) > 20f)
+                {
+                    GameObject go = self.GetPathPointObj(showNumber);
+                    showNumber++;
+                    go.SetActive(true);
+                    go.transform.localPosition = vector31;
+                    go.transform.localScale = Vector3.one * 2f;
+                    lastVector = vector31;
+                }
             }
-            for (int i = target.Count - N; i < self.PathPointList.Count; i++)
+            for (int i =  showNumber; i < self.PathPointList.Count; i++)
             {
                 self.PathPointList[i].SetActive(false);
             }
