@@ -28,7 +28,7 @@ AnimatorController:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "ShiBing_1 - \u526F\u672C"
+  m_Name: ShiBing_3
   serializedVersion: 5
   m_AnimatorParameters: []
   m_AnimatorLayers:
