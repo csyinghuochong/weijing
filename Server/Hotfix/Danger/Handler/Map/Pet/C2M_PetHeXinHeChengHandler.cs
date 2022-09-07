@@ -25,7 +25,7 @@ namespace ET
 
             using ListComponent<long> costids = new ListComponent<long>() { bagInfo_1.BagInfoID,bagInfo_2.BagInfoID };
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            bagComponent.OnAddItemData($"{itemConfig.PetHeXinHeChengID};1");
+            bagComponent.OnAddItemData($"{itemConfig.PetHeXinHeChengID};1", $"{ItemGetWay.PetHeXinHeCheng}_{TimeHelper.ServerNow()}");
             bagComponent.OnCostItemData(costids,ItemLocType.ItemPetHeXinBag);
 
             reply();

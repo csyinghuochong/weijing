@@ -12,7 +12,7 @@ namespace ET
             {
                 userInfoComponent.UserInfo.TowerRewardIds.Add(request.RewardId);
                 TowerRewardConfig towerRewardConfig = TowerRewardConfigCategory.Instance.Get(request.RewardId);
-                unit.GetComponent<BagComponent>().OnAddItemData(towerRewardConfig.RewardList);
+                unit.GetComponent<BagComponent>().OnAddItemData(towerRewardConfig.RewardList,$"{ItemGetWay.RandomTowerReward}_{TimeHelper.ServerNow()}");
             }
 
             reply();

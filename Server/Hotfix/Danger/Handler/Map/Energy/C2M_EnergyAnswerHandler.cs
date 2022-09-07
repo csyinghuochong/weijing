@@ -15,7 +15,7 @@ namespace ET
             if (request.AnswerIndex == 1)
             {
                 GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(15);
-                unit.GetComponent<BagComponent>().OnAddItemData(globalValueConfig.Value);
+                unit.GetComponent<BagComponent>().OnAddItemData(globalValueConfig.Value, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
             }
 
             reply();

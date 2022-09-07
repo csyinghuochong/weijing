@@ -1617,6 +1617,9 @@ namespace ET
 		[ProtoMember(15)]
 		public long MakeUserId { get; set; }
 
+		[ProtoMember(16)]
+		public string GetWay { get; set; }
+
 	}
 
 	[Message(OuterOpcode.HideProList)]
