@@ -62,7 +62,7 @@ namespace ET
 
         public static void OnRolePetEggOpen(this UIPetEggComponent self)
         {
-            self.UIPageView.UISubViewList[(int)PetEggEnum.PetEggList].GetComponent<UIPetEggListComponent>().OnUpdateUI();
+            self.UIPageView.UISubViewList[(int)PetEggEnum.PetEggList].GetComponent<UIPetEggListComponent>().UpdatePetEggUI();
         }
 
         public static void UpdateChouKaTime(this UIPetEggComponent self)
