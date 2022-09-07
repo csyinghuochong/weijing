@@ -339,10 +339,9 @@ namespace ET
         {
             int N = self.MoveComponent.N;
             List<Vector3> target = self.MoveComponent.Targets;
-
-            Vector3 lastVector = Vector3.zero;
+            Vector3 lastVector = new Vector3(-1000,-1000,0);
             int showNumber = 0;
-            for (int i = N; i < target.Count; i++)
+            for (int i = target.Count - 1; i >= N; i--)
             {
                 Vector3 temp = target[i];
                 Vector3 vector31 = new Vector3(temp.x, temp.z, 0f);
@@ -358,7 +357,7 @@ namespace ET
                     lastVector = vector31;
                 }
             }
-            for (int i =  showNumber; i < self.PathPointList.Count; i++)
+            for (int i = showNumber; i < self.PathPointList.Count; i++)
             {
                 self.PathPointList[i].SetActive(false);
             }
