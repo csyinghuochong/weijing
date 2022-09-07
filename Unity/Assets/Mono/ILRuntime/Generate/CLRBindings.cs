@@ -134,6 +134,7 @@ namespace ILRuntime.Runtime.Generated
             UnityEngine_Random_Binding.Register(app);
             System_Collections_Generic_List_1_Transform_Binding.Register(app);
             System_Runtime_CompilerServices_AsyncVoidMethodBuilder_Binding.Register(app);
+            WorldPosiToUIPos_Binding.Register(app);
             UnityEngine_Vector2_Binding.Register(app);
             ET_ETTask_1_GameObject_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_Int32_Transform_Binding.Register(app);
@@ -189,10 +190,9 @@ namespace ILRuntime.Runtime.Generated
             System_Collections_Generic_List_1_Transform_Binding_Enumerator_Binding.Register(app);
             UnityEngine_Texture_Binding.Register(app);
             System_Collections_Generic_List_1_GameObject_Binding_Enumerator_Binding.Register(app);
-            UnityEngine_RectTransformUtility_Binding.Register(app);
-            UnityEngine_Camera_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_String_Binding.Register(app);
             UnityEngine_Screen_Binding.Register(app);
+            UnityEngine_Camera_Binding.Register(app);
             UnityEngine_Color_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_List_1_GameObject_Binding.Register(app);
             ET_ETAsyncTaskMethodBuilder_1_GameObject_Binding.Register(app);
@@ -219,6 +219,7 @@ namespace ILRuntime.Runtime.Generated
             ET_SoundData_Binding.Register(app);
             UnityEngine_AudioSource_Binding.Register(app);
             UnityEngine_EventSystems_PointerEventData_Binding.Register(app);
+            UnityEngine_RectTransformUtility_Binding.Register(app);
             System_Func_2_Int32_Boolean_Binding.Register(app);
             System_Action_1_Int32_Binding.Register(app);
             UnityEngine_RectTransform_Binding.Register(app);
@@ -266,6 +267,8 @@ namespace ILRuntime.Runtime.Generated
             ET_UILayerScript_Binding.Register(app);
             libx_AssetRequest_Binding.Register(app);
             libx_Assets_Binding.Register(app);
+            MyCamera_1_Binding.Register(app);
+            NpcLocal_Binding.Register(app);
             UnityEngine_RuntimeAnimatorController_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_AnimationClip_Binding.Register(app);
             System_Collections_Generic_HashSet_1_String_Binding.Register(app);

@@ -91,13 +91,13 @@ namespace libx
             watch.Start();
             BuildScript.ApplyBuildRules();
             watch.Stop();
-            ET.Log.Error("BundleResourceList in: " + watch.ElapsedMilliseconds + " ms.");
+            //ET.Log.Error("BundleResourceList in: " + watch.ElapsedMilliseconds + " ms.");
 
             watch = new Stopwatch();
             watch.Start();
             BuildScript.BundleResourceList();
             watch.Stop();
-            ET.Log.Error("BundleResourceList in: " + watch.ElapsedMilliseconds + " ms.");
+            //ET.Log.Error("BundleResourceList in: " + watch.ElapsedMilliseconds + " ms.");
 
         }
 

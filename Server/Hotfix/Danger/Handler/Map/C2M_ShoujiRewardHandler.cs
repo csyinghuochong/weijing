@@ -36,7 +36,7 @@ namespace ET
             if (request.RewardIndex == 3) rewards = shouJiConfig.RewardList_3;
             if (request.RewardIndex == 2) rewards = shouJiConfig.RewardList_2;
             if (request.RewardIndex == 1) rewards = shouJiConfig.RewardList_1;
-            if (!unit.GetComponent<BagComponent>().OnAddItemData(rewards))
+            if (!unit.GetComponent<BagComponent>().OnAddItemData(rewards, $"{ItemGetWay.ShoujiReward}_{TimeHelper.ServerNow()}"))
             {
                 reply();
                 return;

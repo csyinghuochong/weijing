@@ -38,7 +38,7 @@ namespace ET
                     }
                     ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
                     activityComponent.ZhanQuReceiveIds.Add(request.ActivityId);
-                    unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3);
+                    unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     break;
                 default:
                     break;

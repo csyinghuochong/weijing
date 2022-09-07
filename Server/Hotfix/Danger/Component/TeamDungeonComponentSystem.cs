@@ -113,7 +113,7 @@ namespace ET
                 }
                 if (units[i].GetComponent<UserInfoComponent>().UserInfo.UserId == idExtra)
                 {
-                    units[i].GetComponent<BagComponent>().OnAddItemData(m2C_FubenSettlement.RewardExtraItem);
+                    units[i].GetComponent<BagComponent>().OnAddItemData(m2C_FubenSettlement.RewardExtraItem, 0, $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
                 }
                 MessageHelper.SendToClient(unit1, m2C_FubenSettlement);
             }

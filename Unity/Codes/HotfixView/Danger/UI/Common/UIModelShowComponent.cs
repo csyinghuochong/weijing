@@ -121,7 +121,10 @@ namespace ET
             await ETTask.CompletedTask;
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            self.GetComponent<ChangeEquipHelper>().LoadEquipment(go);
+            if (OccupationConfigCategory.Instance.Get(occ).ChangeEquip == 1)
+            {
+                self.GetComponent<ChangeEquipHelper>().LoadEquipment(go);
+            }
             self.UnitModel = go;
             Animator animator = self.UnitModel.GetComponentInChildren<Animator>();
             if ( animator != null)

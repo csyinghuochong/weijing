@@ -146,7 +146,7 @@ namespace ET
         /// <param name="getType">1购买</param>
         public static void JianDingFuItem(BagInfo bagInf0, int shulianValue, int getType)
         {
-            if (getType == 1)
+            if (ItemHelper.IsBuyItem(getType))
             {
                 bagInf0.ItemPar = GlobalValueConfigCategory.Instance.JianDingFuQulity.ToString();
                 return;

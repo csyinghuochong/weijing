@@ -36,7 +36,6 @@ namespace ET
             MaskWord = textAsset3.text;
             sensitiveWordsArray = Regex.Split(MaskWord, split, RegexOptions.IgnoreCase);
 
-            Log.ILog.Debug($" xxx;   {sensitiveWordsArray.Length}  { sensitiveWordsArray[0]}   { sensitiveWordsArray[1]}  { sensitiveWordsArray[2]}");
             foreach (string s in sensitiveWordsArray)
             {
                 if (string.IsNullOrEmpty(s))

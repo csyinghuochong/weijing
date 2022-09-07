@@ -123,7 +123,7 @@ namespace ET
             }
 
             ChengJiuRewardConfig chengJiuRewardConfig = ChengJiuRewardConfigCategory.Instance.Get(rewardId);
-            bool success = self.GetParent<Unit>().GetComponent<BagComponent>().OnAddItemData(chengJiuRewardConfig.RewardItems);
+            bool success = self.GetParent<Unit>().GetComponent<BagComponent>().OnAddItemData(chengJiuRewardConfig.RewardItems, $"{ItemGetWay.ChengJiuRward}_{TimeHelper.ServerNow()}");
             if (success)
             {
                 self.AlreadReceivedId.Add(rewardId);

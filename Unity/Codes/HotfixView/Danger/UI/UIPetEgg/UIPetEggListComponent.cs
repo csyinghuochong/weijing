@@ -22,6 +22,8 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
+
             self.TextTip = rc.Get<GameObject>("TextTip");
             self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");
             self.PetNodeList = rc.Get<GameObject>("PetNodeList");
@@ -39,8 +41,7 @@ namespace ET
                 uIPetEggListItem.DragingHandler = (int binfo, PointerEventData pdata) => { self.PetEggDraging(binfo, pdata); };
                 uIPetEggListItem.EndDragHandler = (int binfo, PointerEventData pdata) => { self.PetEggEndDrag(binfo, pdata); };
             }
-            self.UpdateEggItemUI().Coroutine();
-            self.UpdatePetEggUI();
+           
         }
     }
 
@@ -49,6 +50,7 @@ namespace ET
 
         public static void OnUpdateUI(this UIPetEggListComponent self)
         {
+            self.UpdateEggItemUI().Coroutine();
             self.UpdatePetEggUI();
         }
 

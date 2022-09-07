@@ -27,7 +27,7 @@ namespace ET
                         return;
                     }
                     activityComponent.ActivityReceiveIds.Add(request.ActivityId);
-                    unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3);
+                    unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     break;
                 case 23:    //签到
                     if (activityComponent.TotalSignNumber == 30)
@@ -46,7 +46,7 @@ namespace ET
                     activityComponent.TotalSignNumber++;
                     activityComponent.LastSignTime = TimeHelper.ServerNow();
                     activityComponent.ActivityReceiveIds.Add(request.ActivityId);
-                    unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3);
+                    unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     break;
                 case 24:    //令牌
                     List<TokenRecvive> zhanQuTokenRecvives = activityComponent.QuTokenRecvive;
@@ -66,7 +66,7 @@ namespace ET
                     if (request.ReceiveIndex == 1) rewards = activityConfig.Par_2;
                     if (request.ReceiveIndex == 2) rewards = activityConfig.Par_3;
                     if (request.ReceiveIndex == 3) rewards = activityConfig.Par_4;
-                    unit.GetComponent<BagComponent>().OnAddItemData(rewards);
+                    unit.GetComponent<BagComponent>().OnAddItemData(rewards, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     break;
                 case 31:    //登录奖励
                     serverNow = TimeHelper.ServerNow();
@@ -78,19 +78,19 @@ namespace ET
                     }
                     activityComponent.LastLoginTime = serverNow;
                     unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
-                    unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3);
+                    unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     break;
                 case 101:   //冒险家
                     //需要从dbaccountinfo中获取当前角色重置额度
                     unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
-                    unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3);
+                    unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     break;
                 default:
                     bool success = unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2);
                     if (success)
                     {
                         unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
-                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3);
+                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                     }
                     else
                     {

@@ -458,7 +458,7 @@ namespace ET
         public static async ETTask SendReward(this RankSceneComponent self)
         {
             await TimerComponent.Instance.WaitAsync(10000);
-
+            long serverTime = TimeHelper.ServerNow();
             List<RankingInfo> rankingInfos = self.DBRankInfo.rankingInfos;
             long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
             for (int i = 0; i < rankingInfos.Count; i++)
@@ -481,7 +481,7 @@ namespace ET
                     }
                     int itemId = int.Parse(itemInfo[0]);
                     int itemNum = int.Parse(itemInfo[1]);
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum });
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.RankReward}_{serverTime}" });
                 }
                 E2M_EMailSendResponse g_EMailSendResponse = (E2M_EMailSendResponse)await ActorMessageSenderComponent.Instance.Call
                       (mailServerId, new M2E_EMailSendRequest() 

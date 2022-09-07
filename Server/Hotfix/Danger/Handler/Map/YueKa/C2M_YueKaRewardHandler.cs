@@ -21,7 +21,7 @@ namespace ET
             }
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.YueKa_Award, 1);
             string reward = GlobalValueConfigCategory.Instance.Get(28).Value;
-            unit.GetComponent<BagComponent>().OnAddItemData(reward);
+            unit.GetComponent<BagComponent>().OnAddItemData(reward, $"{ItemGetWay.YueKaReward}_{TimeHelper.ServerNow()}");
 
             reply();
             await ETTask.CompletedTask;

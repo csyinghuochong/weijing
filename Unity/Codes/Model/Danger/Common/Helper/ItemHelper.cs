@@ -8,6 +8,11 @@ namespace ET
     public static class ItemHelper
     {
 
+        public static bool IsBuyItem(int getType) 
+        {
+            return getType == ItemGetWay.StoreBuy || getType == ItemGetWay.MysteryBuy || getType == ItemGetWay.PaiMaiShop;
+        }
+
         public static BagInfo GetEquipByWeizhi( List<BagInfo> bagInfos, int pos)
         {
             for (int i = 0; i < bagInfos.Count; i++)

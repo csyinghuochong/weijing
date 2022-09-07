@@ -255,7 +255,7 @@ namespace ET
             unitInfoComponent.UpdateRoleData(UserDataType.Gold, TaskCoin.ToString()).Coroutine();
 
             List<RewardItem> rewardItems = TaskHelp.Instance.GetTaskRewards(taskid, taskConfig);
-            self.GetParent<Unit>().GetComponent<BagComponent>().OnAddItemData(rewardItems);
+            self.GetParent<Unit>().GetComponent<BagComponent>().OnAddItemData(rewardItems,0, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
             return ErrorCore.ERR_Success;
         }
 

@@ -34,6 +34,8 @@ namespace ET
                 rewardList = firstWinConfig.RewardList_3;
             }
             string[] needList = rewardList.Split('@');
+
+            long serverTime = TimeHelper.ServerNow();
             for (int k = 0; k < needList.Length; k++)
             {
                 string[] itemInfo = needList[k].Split(';');
@@ -43,7 +45,7 @@ namespace ET
                 }
                 int itemId = int.Parse(itemInfo[0]);
                 int itemNum = int.Parse(itemInfo[1]);
-                mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum });
+                mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.FirstWin}_{serverTime}" });
             }
 
             dBFirstWinInfo.FirstWinInfos.Add(message.FirstWinInfo);
