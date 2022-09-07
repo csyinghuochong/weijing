@@ -23,7 +23,7 @@ SpriteAtlas:
     platformSettings:
     - serializedVersion: 3
       m_BuildTarget: DefaultTexturePlatform
-      m_MaxTextureSize: 2048
+      m_MaxTextureSize: 8192
       m_ResizeAlgorithm: 0
       m_TextureFormat: -1
       m_TextureCompression: 1
@@ -44,7 +44,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: b7053586a6aff3348a9cc635a0f190c6, type: 3}
-    totalSpriteSurfaceArea: 11636980
+    totalSpriteSurfaceArea: 11620596
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -438,7 +438,6 @@ SpriteAtlas:
   - {fileID: 21300000, guid: f6fdad6e349056247871ac133c8dedbc, type: 3}
   - {fileID: 21300000, guid: 2a54a18e52447094cb706b13272eeab5, type: 3}
   - {fileID: 21300000, guid: 6c26328eea236854d8ec9b6e89ebe7b0, type: 3}
-  - {fileID: 21300000, guid: 6bfb0f8e1ed04d1439544989276ca8b7, type: 3}
   - {fileID: 21300000, guid: 7d7f369e9bbace74590ac9a559bf6f16, type: 3}
   - {fileID: 21300000, guid: 4c6fb1ae5c9cf014c933026742fdd89e, type: 3}
   - {fileID: 21300000, guid: b0c0ebaeb0de8c441af772ce4c8a8cba, type: 3}
@@ -867,7 +866,6 @@ SpriteAtlas:
   - Img_252
   - Img_6
   - Img_193
-  - t1
   - Img_333
   - Img_10
   - Img_246
