@@ -15,7 +15,7 @@ namespace ET
                 return;
             }
             PetFubenRewardConfig rewardConfig = PetFubenRewardConfigCategory.Instance.Get(rewardId);
-            unit.GetComponent<BagComponent>().OnAddItemData(rewardConfig.RewardItems);
+            unit.GetComponent<BagComponent>().OnAddItemData(rewardConfig.RewardItems, $"{ItemGetWay.PetFubenReward}_{TimeHelper.ServerNow()}");
             unit.GetComponent<PetComponent>().PetFubeRewardId = rewardId;
 
             reply();

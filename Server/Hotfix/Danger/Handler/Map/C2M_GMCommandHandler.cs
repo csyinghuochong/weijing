@@ -120,7 +120,7 @@ namespace ET
 
 						List<RewardItem> rewardItems = new List<RewardItem>();
 						rewardItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNumber });
-						unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, 0, 0, true, true);
+						unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, 0, $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}", true, true);
 						break;
 					case 2:             //新增怪物2#2#0#-3#72001004#40
 						float posX = float.Parse(commands[1]);

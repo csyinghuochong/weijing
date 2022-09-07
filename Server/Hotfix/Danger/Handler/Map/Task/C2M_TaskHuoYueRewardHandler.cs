@@ -15,7 +15,7 @@ namespace ET
             {
                 taskComponent.ReceiveHuoYueIds.Add(request.HuoYueId);
                 HuoYueRewardConfig huoYueRewardConfig = HuoYueRewardConfigCategory.Instance.Get(request.HuoYueId);
-                unit.GetComponent<BagComponent>().OnAddItemData(huoYueRewardConfig.RewardItems);
+                unit.GetComponent<BagComponent>().OnAddItemData(huoYueRewardConfig.RewardItems, $"{ItemGetWay.TaskCountry}_{TimeHelper.ServerNow()}");
             }
             
             reply();

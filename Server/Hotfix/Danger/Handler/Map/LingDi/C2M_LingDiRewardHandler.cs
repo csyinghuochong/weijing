@@ -32,7 +32,7 @@ namespace ET
                 return;
             }
 
-            unit.GetComponent<BagComponent>().OnAddItemData($"{config.ItemID};1");
+            unit.GetComponent<BagComponent>().OnAddItemData($"{config.ItemID};1", $"{ItemGetWay.LingDiReward}_{TimeHelper.ServerNow()}");
 
             reply();
             await ETTask.CompletedTask;

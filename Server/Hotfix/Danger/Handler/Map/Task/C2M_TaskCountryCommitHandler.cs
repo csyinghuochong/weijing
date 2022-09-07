@@ -23,7 +23,7 @@ namespace ET
                 }
 
                 TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(request.TaskId);
-                unit.GetComponent<BagComponent>().OnAddItemData(taskCountryConfig.RewardItem);
+                unit.GetComponent<BagComponent>().OnAddItemData(taskCountryConfig.RewardItem, $"{ItemGetWay.TaskCountry}_{TimeHelper.ServerNow()}");
 
                 //添加金币
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, taskCountryConfig.RewardGold.ToString()).Coroutine();

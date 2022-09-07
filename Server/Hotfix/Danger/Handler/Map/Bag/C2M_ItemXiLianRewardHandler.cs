@@ -28,7 +28,7 @@ namespace ET
             }
 
             userInfoComponent.UserInfo.XiLianRewardIds.Add(request.XiLianId);
-            unit.GetComponent<BagComponent>().OnAddItemData(equipXiLianConfig.RewardList);
+            unit.GetComponent<BagComponent>().OnAddItemData(equipXiLianConfig.RewardList, $"{ItemGetWay.XiLianLevel}_{TimeHelper.ServerNow()}");
             reply();
             await ETTask.CompletedTask;
         }

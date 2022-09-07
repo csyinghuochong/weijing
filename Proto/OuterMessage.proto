@@ -763,6 +763,7 @@ message BagInfo
 	bool isBinging = 13;
 	repeated HideProList XiLianHideTeShuProLists = 14;
 	int64 MakeUserId = 15;
+	string GetWay = 16; //来源方式
 }
 
 message HideProList

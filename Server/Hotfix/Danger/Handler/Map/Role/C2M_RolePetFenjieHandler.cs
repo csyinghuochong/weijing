@@ -23,7 +23,7 @@ namespace ET
 			PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 			if (petCof.ReleaseReward != null && petCof.ReleaseReward.Length == 2)
 			{
-				unit.GetComponent<BagComponent>().OnAddItem(petCof.ReleaseReward[0], petCof.ReleaseReward[1]);
+				unit.GetComponent<BagComponent>().OnAddItemData($"{petCof.ReleaseReward[0]};{petCof.ReleaseReward[1]}", $"{ItemGetWay.PetFenjie}_{TimeHelper.ServerNow()}");
 			}
 
 			//移除宠物之核

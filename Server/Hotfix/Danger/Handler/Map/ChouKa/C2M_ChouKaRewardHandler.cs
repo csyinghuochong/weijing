@@ -18,7 +18,7 @@ namespace ET
             userInfoComponent.UserInfo.ChouKaRewardIds.Add(request.RewardId);
 
             int randomZuanshi = RandomHelper.RandomNumber(rewardConfig.RewardDiamond[0], rewardConfig.RewardDiamond[1]);
-            unit.GetComponent<BagComponent>().OnAddItemData(rewardConfig.RewardItems);
+            unit.GetComponent<BagComponent>().OnAddItemData(rewardConfig.RewardItems, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(  UserDataType.Diamond, randomZuanshi.ToString()).Coroutine();
 
             reply();

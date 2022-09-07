@@ -50,7 +50,8 @@ namespace ET
 
             MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(request.MysteryItemInfo.MysteryId);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (mysteryConfig.SellValue * -1).ToString()).Coroutine();
-            unit.GetComponent<BagComponent>().OnAddItemData($"{request.MysteryItemInfo.ItemID};{request.MysteryItemInfo.ItemNumber}");
+            unit.GetComponent<BagComponent>().OnAddItemData($"{request.MysteryItemInfo.ItemID};{request.MysteryItemInfo.ItemNumber}",
+                $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
             reply();
         }
     }

@@ -10,10 +10,10 @@ namespace ET
 
         public override void Awake(BagComponent self)
         {
-            self.OnAddItemData(GlobalValueConfigCategory.Instance.Get(9).Value, 0, false);
-            if (self.DomainZone() == 201)
+            self.OnAddItemData(GlobalValueConfigCategory.Instance.Get(9).Value, $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", false);
+            if (ComHelp.IsBanHaoZone(self.DomainZone()))
             {
-                self.OnAddItemData($"10030001;1", 0, false);
+                self.OnAddItemData($"10030001;1", $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", false);
             }
         }
     }
@@ -350,7 +350,7 @@ namespace ET
         }
 
         //字符串添加道具 
-        public static bool OnAddItemData(this BagComponent self, string rewardItems, int getType = 0, bool  notice = true)
+        public static bool OnAddItemData(this BagComponent self, string rewardItems, string getType, bool  notice = true)
         {
             List<RewardItem> costItems = new List<RewardItem>();
             string[] needList = rewardItems.Split('@');
@@ -365,7 +365,7 @@ namespace ET
                 int itemNum = int.Parse(itemInfo[1]);
                 costItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
             }
-            return self.OnAddItemData(costItems, 0,0, notice);
+            return self.OnAddItemData(costItems, 0, getType, notice);
         }
 
         public static void OnAddItemData(this BagComponent self, List<BagInfo> bagInfos)
@@ -383,7 +383,7 @@ namespace ET
 
             if (maxPileSum > 1 || bagInfo.BagInfoID == 0)
             {
-                self.OnAddItemData($"{bagInfo.ItemID};{bagInfo.ItemNum}");
+                self.OnAddItemData($"{bagInfo.ItemID};{bagInfo.ItemNum}", string.IsNullOrEmpty(bagInfo.GetWay) ? "0": bagInfo.GetWay);
             }
             else
             {
@@ -399,20 +399,12 @@ namespace ET
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="self"></param>
-        /// <param name="rewardItems"></param>
-        /// <param name="makeUserID"></param>
-        /// <param name="getType">1购买</param>
-        /// <param name="notice"></param>
-        /// <returns></returns>
         //添加背包道具道具[支持同时添加多个]
-        public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems,long makeUserID = 0, int getType = 0, bool notice = true, bool gm = false)
+        public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems, long makeUserID = 0, string getWay = "0", bool notice = true, bool gm = false)
         {
             int bagCellNumber = 0;
             int petHeXinNumber = 0;
+            int getType = int.Parse(getWay.Split('_')[0]);
             for (int i = rewardItems.Count - 1; i >= 0; i--)
             {
                 UserDataType userDataType = ComHelp.GetItemToUserDataType(rewardItems[i].ItemID);
@@ -526,10 +518,17 @@ namespace ET
                     useBagInfo.BagInfoID = IdGenerater.Instance.GenerateId();
                     useBagInfo.GemHole = "0_0_0_0";
                     useBagInfo.GemID = "0_0_0_0";
+                    useBagInfo.GetWay = getWay;
                     leftNum -= useBagInfo.ItemNum;
 
+                    //记录制造的玩家
+                    if (makeUserID != 0)
+                    {
+                        useBagInfo.MakeUserId = makeUserID;
+                    }
+                   
                     //蓝色品质的装备需要可以进行鉴定
-                    if (itemCof.ItemType == 3 && getType == 0)
+                    if (!ItemHelper.IsBuyItem(getType) && itemCof.ItemType == 3)
                     {
                         if (itemCof.ItemQuality >= 4)
                         {
@@ -563,18 +562,8 @@ namespace ET
                             useBagInfo.IfJianDing = false ;
                         }
                     }
-
-                    //记录制造的玩家
-                    if (makeUserID != 0)
-                    {
-                        useBagInfo.MakeUserId = makeUserID;
-                    }
-
-                    self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);
-                    m2c_bagUpdate.BagInfoAdd.Add(useBagInfo);
-
                     //默认洗练
-                    if (getType == 0 && itemCof.ItemEquipID != 0)
+                    if (!ItemHelper.IsBuyItem(getType) && itemCof.ItemEquipID != 0)
                     {
                         ComHelp.XiLianItem(useBagInfo);
                     }
@@ -589,6 +578,9 @@ namespace ET
                         int shuliandu = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
                         ComHelp.JianDingFuItem(useBagInfo, shuliandu, getType);
                     }
+
+                    self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);
+                    m2c_bagUpdate.BagInfoAdd.Add(useBagInfo);
                 }
                 //检测任务需求道具
                 ItemAddHelper.OnGetItem(self.GetParent<Unit>(), itemID);
@@ -601,17 +593,6 @@ namespace ET
             }
 
             return true;
-        }
-
-        //通过ID和数量直接添加道具数量
-        public static void OnAddItem(this BagComponent self, int itemID, int itemNum) {
-
-            List<RewardItem> lis = new List<RewardItem>();
-            RewardItem reward = new RewardItem();
-            reward.ItemID = itemID;
-            reward.ItemNum = itemNum;
-            lis.Add(reward);
-            self.OnAddItemData(lis);
         }
 
         //字符串删除道具

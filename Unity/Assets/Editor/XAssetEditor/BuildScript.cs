@@ -445,7 +445,27 @@ namespace libx
                 {
                     return 0;
                 }
-                return path_1.Length - path_2.Length;
+                else
+                {
+                    if (path_1.Length == path_2.Length)
+                    {
+                        //文件夹首字母
+                        char folder_1 = path1_list[path1_list.Length - 1].ToCharArray()[0];
+                        char folder_2 = path2_list[path2_list.Length - 1].ToCharArray()[0];
+                        if (folder_1 == folder_2)
+                        {
+                            return path1_list[path1_list.Length - 1].Length - path2_list[path2_list.Length - 1].Length;
+                        }
+                        else
+                        {
+                            return folder_1 - folder_2;
+                        }
+                    }
+                    else
+                    {
+                        return path_1.Length - path_2.Length;
+                    }
+                }
             });
             SaveResourceList_1(resourceInfos_1, "/Release/HotRes_1.txt");
 

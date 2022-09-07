@@ -1,6 +1,41 @@
 ﻿
 namespace ET
 {
+
+
+    /// <summary>
+    /// 道具获取方式[0系统默认1]
+    /// </summary>
+    public static class ItemGetWay
+    {
+        public const int System = 1;               //系统赠与
+        public const int FubenGetReward = 2;        //副本结算领取
+        public const int ChouKa = 3;                //抽卡
+        public const int Energy = 4;                //正能量
+        public const int GM = 5;                    //GM
+        public const int ItemBox = 6;               //道具盒子
+        public const int XiLianLevel = 7;           //洗练大师
+        public const int LingDiReward = 8;          //领地
+        public const int MysteryBuy = 9;            //神秘商店
+        public const int PetFubenReward = 10;       //宠物副本奖励
+        public const int PetHeXinHeCheng = 11;      //宠物之核合成
+        public const int RandomTowerReward = 12;    //随机塔奖励
+        public const int ShoujiReward = 13;         //收集奖励
+        public const int StoreBuy = 14;             //商店购买
+        public const int TaskCountry = 15;          //活跃任务
+        public const int YueKaReward = 16;          //月卡奖励
+        public const int ChengJiuRward = 17;        //成就奖励
+        public const int RankReward = 18;           //排行榜奖励
+        public const int FirstWin = 19;             //首胜
+        public const int PickItem = 20;             //拾取
+        public const int PaiMaiShop = 21;           //拍賣处购买
+        public const int PetEggDuiHuan = 22;        //宠物蛋兑换
+        public const int TaskReward = 23;           //宠物分解
+        public const int PetFenjie = 24;            //任务奖励
+
+        public const int Activity = 100;
+    }
+
     //道具类型
     //1：消耗性道具
     //2：材料
