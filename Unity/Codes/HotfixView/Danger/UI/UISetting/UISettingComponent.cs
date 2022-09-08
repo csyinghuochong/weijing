@@ -297,7 +297,8 @@ namespace ET
         public static async ETTask OnButtonRname(this UISettingComponent self)
         {
             string text = self.InputFieldCName.GetComponent<InputField>().text;
-            if (!StringHelper.IsSpecialChar(text))
+
+            if (text.Contains("*") || !StringHelper.IsSpecialChar(text))
             {
                 FloatTipManager.Instance.ShowFloatTip("名字不合法，请重新输入！");
                 return;
