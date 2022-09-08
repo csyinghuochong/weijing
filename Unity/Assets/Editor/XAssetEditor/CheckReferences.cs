@@ -12,7 +12,24 @@ namespace ET
         private const string KBuildAssetBundles = "XAsset/Bundles/Check Atlas References";
         private static string sCheckPath = "Assets/Bundles/UI";
 
-       // [MenuItem("Asset / ), false, 1]
+
+        // [MenuItem("Asset / ), false, 1]
+        [MenuItem("Assets/Custom/Check  Dependencies", false, 1)]//路径
+        public static void CheckDependencies()
+        {
+            string fontPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
+            UnityEngine.Debug.Log("KCheckDependencies: Begin");
+
+            string[] dependPathList = AssetDatabase.GetDependencies(new string[] { fontPath });
+            foreach (string path in dependPathList)
+            {
+                UnityEngine.Debug.Log(path);
+            }
+
+            UnityEngine.Debug.Log("KCheckDependencies: End");
+        }
+
+        // [MenuItem("Asset / ), false, 1]
         [MenuItem("Assets/Custom/Check  References", false, 1)]//路径
         public static void KCheckFontReferences()
         {
