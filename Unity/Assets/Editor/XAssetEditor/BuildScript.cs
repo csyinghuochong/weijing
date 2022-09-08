@@ -486,7 +486,7 @@ namespace libx
         public static void SaveAssetBundleList()
         {
             List<string> fileList = new List<string>();
-            fileList = CheckReferences.GetFile("H:/GitWeiJing/Release/DLCBeta/Android", fileList);
+            fileList = CheckReferences.GetFile("H:/GitWeiJing/Release/DLCBeta/Android/assets", fileList);
 
             List<ResourceInfo> ResourceInfos = new List<ResourceInfo>();
             for (var index = 0; index < fileList.Count; index++)
