@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using UnityEngine;
+
+namespace ET
 {
     [Event]
     public class Login_OnReturnLogin : AEventClass<EventType.ReturnLogin>
@@ -11,6 +13,9 @@
 
         private async ETTask RunAsync2(EventType.ReturnLogin args)
         {
+            Camera camera = UIComponent.Instance.MainCamera.gameObject.GetComponent<Camera>();
+            camera.GetComponent<MyCamera_1>().enabled = false;
+
             await Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.LoginScene, 1);
             args.ZoneScene.Dispose();
             GameObjectPool.Instance.DisposeAll();

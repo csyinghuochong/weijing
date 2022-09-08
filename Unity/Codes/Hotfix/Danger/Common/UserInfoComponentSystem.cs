@@ -408,7 +408,7 @@ namespace ET
                 case GameSettingEnum.FenBianlLv:
                     return "1";
                 case GameSettingEnum.Shadow:
-                    return "1";
+                    return "0";
                 default:
                     return "0";
             }

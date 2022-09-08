@@ -61,7 +61,7 @@ namespace ET
             if (unit.MainHero)
             {
                 Transform targetTf = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head).transform;
-                Camera camera = UIComponent.Instance.MainCamera.gameObject.GetComponent<Camera>();
+                Camera camera = UIComponent.Instance.MainCamera;
                 camera.GetComponent<MyCamera_1>().enabled = mapComponent.SceneTypeEnum == SceneTypeEnum.MainCityScene;
                 camera.GetComponent<MyCamera_1>().Target = targetTf;
 
