@@ -3845,3 +3845,21 @@ message M2C_ItemXiLianRewardResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//ResponseType M2C_BuChangeResponse
+message C2M_BuChangeRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 XiLianId = 1;
+
+	int64 BuChangId = 1;
+}
+
+message M2C_BuChangeResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated RechargeInfo RechargeInfos = 1;
+}

@@ -929,3 +929,38 @@ message M2A_FirstWinInfoMessage // IActorMessage
 	int64 ActorId = 93;
 	FirstWinInfo FirstWinInfo = 1;
 }
+
+//ResponseType Center2A_RechargeResponse
+message A2Center_RechargeRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    int64 AccountId = 1;
+    RechargeInfo RechargeInfo = 2;
+}
+
+message Center2A_RechargeResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}
+
+//ResponseType Center2M_BuChangeResponse
+message M2Center_BuChangeRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 XiLianId = 1;
+
+	int64 BuChangId = 1;
+	int64 UserId = 2;
+}
+
+message Center2M_BuChangeResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated RechargeInfo RechargeInfos = 1;
+}

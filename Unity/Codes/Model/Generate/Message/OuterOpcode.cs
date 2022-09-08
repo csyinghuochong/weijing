@@ -449,5 +449,7 @@ namespace ET
 		 public const ushort A2C_FirstWinInfoResponse = 10446;
 		 public const ushort C2M_ItemXiLianRewardRequest = 10447;
 		 public const ushort M2C_ItemXiLianRewardResponse = 10448;
+		 public const ushort C2M_BuChangeRequest = 10449;
+		 public const ushort M2C_BuChangeResponse = 10450;
 	}
 }

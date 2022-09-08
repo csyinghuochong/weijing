@@ -2,13 +2,94 @@
 using System.IO;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 namespace ET
 {
     public class CheckReferences : EditorWindow
     {
         private const string KBuildAssetBundles = "XAsset/Bundles/Check Atlas References";
+        private const string KCheckFontBundles = "";
         private static string sCheckPath = "Assets/Bundles/UI";
+
+       // [MenuItem("Asset / ), false, 1]
+        [MenuItem("Assets/Custom/Check Font References", false, 1)]//路径
+        public static void KCheckFontReferences()
+        {
+            string fontPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
+
+            string[] assetPath = fontPath.Split('/');
+            string fontAssetName = assetPath[assetPath.Length - 1];
+            if (fontAssetName.Contains("."))
+            {
+                fontAssetName = fontAssetName.Split('.')[0];
+            }
+
+            UnityEngine.Debug.Log("KCheckFontReferences: Begin");
+
+            string fontName = "阿里巴巴普惠体M.ttf";
+
+            List<string> fileList = new List<string>();
+            fileList = GetFile(sCheckPath, fileList);
+            string dataPath = Application.dataPath;
+            int pathLength = dataPath.Length - 6;
+            for (int i = 0; i < fileList.Count; i++)
+            {
+                string itemPath = fileList[i];
+                if (itemPath.Contains(".meta"))
+                {
+                    continue;
+                }
+
+                itemPath = itemPath.Remove(0, pathLength);
+                string[] dependPathList = AssetDatabase.GetDependencies(new string[] { itemPath });
+                foreach (string path in dependPathList)
+                {
+                    // string[] assetPath = path.Split('/');
+                    //if (assetPath[assetPath.Length-1] == fongPath)
+                    if (path == fontPath)
+                    {
+                        UnityEngine.Debug.Log($"以下文件有引用： {itemPath} ");
+
+                        //GameObject tmpObj = AssetDatabase.LoadAssetAtPath(itemPath, typeof(GameObject)) as GameObject;
+                        //Text[] tmpAr = tmpObj.GetComponentsInChildren<Text>();
+                        //for (int t = 0; t < tmpAr.Length; t++)
+                        //{
+                        //    Text textTemp = tmpAr[t];
+                        //    Font fontTemp = textTemp.font;
+                        //    if (fontTemp == null)
+                        //    {
+                        //        continue;
+                        //    }
+                        //    string assetName = fontTemp.name;
+                        //    if (fontAssetName == assetName)
+                        //    {
+                        //        UnityEngine.Debug.Log($" {textTemp.name}");
+                        //    }
+                        //}
+
+                        //TextMeshPro[] tmpProAr = tmpObj.GetComponentsInChildren<TextMeshPro>();
+                        //for (int t = 0; t < tmpProAr.Length; t++)
+                        //{
+                        //    TextMeshPro textTemp = tmpProAr[t];
+                        //    TMP_FontAsset fontTemp = textTemp.font;
+                        //    if (fontTemp == null)
+                        //    {
+                        //        continue;
+                        //    }
+                        //    string assetName = fontTemp.name;
+                        //    if (fontAssetName == assetName)
+                        //    {
+                        //        UnityEngine.Debug.Log($" {textTemp.name}");
+                        //    }
+                        //}
+                    }
+                }
+            }
+
+            UnityEngine.Debug.Log("KCheckFontReferences: End");
+        }
 
         [MenuItem(KBuildAssetBundles)]
         public static void CheckAtlasReferences()

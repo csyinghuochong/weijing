@@ -117,5 +117,9 @@ namespace ET
 		 public const ushort F2M_ServerInfoUpdateRequest = 20114;
 		 public const ushort M2F_ServerInfoUpdateResponse = 20115;
 		 public const ushort M2A_FirstWinInfoMessage = 20116;
+		 public const ushort A2Center_RechargeRequest = 20117;
+		 public const ushort Center2A_RechargeResponse = 20118;
+		 public const ushort M2Center_BuChangeRequest = 20119;
+		 public const ushort Center2M_BuChangeResponse = 20120;
 	}
 }

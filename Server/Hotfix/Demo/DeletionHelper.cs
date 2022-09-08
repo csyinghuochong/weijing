@@ -3,7 +3,9 @@
 namespace ET
 {
 
-    //删档
+    /// <summary>
+    /// 删档前先备份
+    /// </summary>
     public static class DeletionHelper
     {
         public static async ETTask DeletionZone(int zone)

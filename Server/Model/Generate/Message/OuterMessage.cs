@@ -8026,4 +8026,41 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_BuChangeResponse))]
+	[Message(OuterOpcode.C2M_BuChangeRequest)]
+	[ProtoContract]
+	public partial class C2M_BuChangeRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int XiLianId { get; set; }
+
+		[ProtoMember(1)]
+		public long BuChangId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_BuChangeResponse)]
+	[ProtoContract]
+	public partial class M2C_BuChangeResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<RechargeInfo> RechargeInfos = new List<RechargeInfo>();
+
+	}
+
 }

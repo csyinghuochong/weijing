@@ -8,7 +8,6 @@ namespace ET
 	[BsonIgnoreExtraElements]
 	public class DBAccountInfo : Entity, IAwake
 	{
-
 		//用户名
 		public string Account { get; set; }
 
@@ -20,8 +19,6 @@ namespace ET
 
 		//删除UserList列表
 		public List<long> DeleteUserList = new List<long>();
-
-		public PlayerInfo PlayerInfo { get; set; }
 
 		public int AccountType; //账号类型
 

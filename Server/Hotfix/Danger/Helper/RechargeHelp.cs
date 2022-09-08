@@ -9,20 +9,21 @@ namespace ET
         {
             int number = ComHelp.GetDiamondNumber(rechargeNumber);
             long accountId = unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID;
-
-            long dbCacheId = DBHelper.GetDbCacheId(unit.DomainZone());
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = accountId, Component = DBHelper.DBAccountInfo });
-            DBAccountInfo accountInfo = d2GGetUnit.Component as DBAccountInfo;
-            accountInfo.PlayerInfo.RechargeInfos.Add(new RechargeInfo()
+            A2Center_RechargeRequest rechargeRequest = new A2Center_RechargeRequest()
             {
-                Amount = rechargeNumber,
-                Time = TimeHelper.ServerNow(),
-                UserId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId,
-            });
-
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = accountInfo.Id, Component = accountInfo, ComponentType = DBHelper.DBAccountInfo });
+                AccountId = accountId,
+                RechargeInfo = new RechargeInfo()
+                {
+                    Amount = rechargeNumber,
+                    Time = TimeHelper.ServerNow(),
+                    UserId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId,
+                }
+            };
+            long accountZone = DBHelper.GetAccountCenter();
+            Center2A_RechargeResponse saveAccount = (Center2A_RechargeResponse)await ActorMessageSenderComponent.Instance.Call(accountZone, rechargeRequest);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString()).Coroutine();
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0);
+            await ETTask.CompletedTask;
         }
 
         public static async ETTask OnPaySucessToUnit(Scene scene,  long userId, int rechargeNumber)
@@ -37,14 +38,12 @@ namespace ET
             else
             {
                 //直接存数据库
-
             }
         }
 
         public static async ETTask OnPaySucessToScene(Scene scene, int zone, long userId, int rechargeNumber)
         {
             long gateServerId = DBHelper.GetGateServerId(zone);
-
             R2G_RechargeResultRequest r2M_RechargeRequest = new R2G_RechargeResultRequest() { RechargeNumber = rechargeNumber, UserID = userId };
             G2R_RechargeResultResponse m2G_RechargeResponse = (G2R_RechargeResultResponse)await ActorMessageSenderComponent.Instance.Call(gateServerId, r2M_RechargeRequest);
         }

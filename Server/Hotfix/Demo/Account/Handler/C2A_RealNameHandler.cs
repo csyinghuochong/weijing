@@ -34,11 +34,12 @@ namespace ET
                 }, Fangchenmi.EType.Check);
             }
 
+            PlayerInfo playerInfo = new PlayerInfo();
             if (result_check.errcode == 0)  //认证成功
             {
-                accountInfo.PlayerInfo.Name = request.Name;
-                accountInfo.PlayerInfo.IdCardNo = request.IdCardNO;
-                accountInfo.PlayerInfo.RealName = 1;
+                playerInfo.Name = request.Name;
+                playerInfo.IdCardNo = request.IdCardNO;
+                playerInfo.RealName = 1;
             }
             response.ErrorCode = result_check.errcode;
 
@@ -48,9 +49,9 @@ namespace ET
             Center2A_SaveAccount saveAccount = (Center2A_SaveAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_SaveAccount()
             {
                 AccountId = accountInfo.Id,
-                PlayerInfo = accountInfo.PlayerInfo,
                 AccountName = accountInfo.Account,
-                Password = accountInfo.Password
+                Password = accountInfo.Password,
+                PlayerInfo = playerInfo,
             });
 
             reply();

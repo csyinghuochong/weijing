@@ -1939,4 +1939,78 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(Center2A_RechargeResponse))]
+	[Message(InnerOpcode.A2Center_RechargeRequest)]
+	[ProtoContract]
+	public partial class A2Center_RechargeRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long AccountId { get; set; }
+
+		[ProtoMember(2)]
+		public RechargeInfo RechargeInfo { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Center2A_RechargeResponse)]
+	[ProtoContract]
+	public partial class Center2A_RechargeResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(Center2M_BuChangeResponse))]
+	[Message(InnerOpcode.M2Center_BuChangeRequest)]
+	[ProtoContract]
+	public partial class M2Center_BuChangeRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int XiLianId { get; set; }
+
+		[ProtoMember(1)]
+		public long BuChangId { get; set; }
+
+		[ProtoMember(2)]
+		public long UserId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Center2M_BuChangeResponse)]
+	[ProtoContract]
+	public partial class Center2M_BuChangeResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<RechargeInfo> RechargeInfos = new List<RechargeInfo>();
+
+	}
+
 }

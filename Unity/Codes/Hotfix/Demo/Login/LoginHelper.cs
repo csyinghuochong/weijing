@@ -169,7 +169,6 @@ namespace ET
                 return r2CLogin.Error;
             }
 
-            Log.Warning($"GateAddress :  {r2CLogin.GateAddress}");
             Session gateSession = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(r2CLogin.GateAddress));
             gateSession.AddComponent<PingComponent>();
             zoneScene.GetComponent<SessionComponent>().Session = gateSession;

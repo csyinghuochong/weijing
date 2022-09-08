@@ -410,7 +410,7 @@ namespace libx
 
         private void OnDownLoad(Download download)
         {
-            string md5 = "#" + download.id + "_" + download.name + "_" + download.hash + "_" + download.len;
+            string md5 = "\r\n" + download.id + "_" + download.hash + "_" + download.len;
             _localAssetList += md5;
         }
 
@@ -432,7 +432,7 @@ namespace libx
             for (int i = 0; i < _versions.Count; i++)
             {
                 VFile download = _versions[i];
-                md5 += ("#" + download.id + "_" + download.name + "_" + download.hash + "_" + download.len);
+                md5 += (System.Environment.NewLine + download.id +  "_" + download.hash + "_" + download.len);
             }
 
             FileStream fs = new FileStream(filePath, FileMode.Create);
@@ -446,14 +446,15 @@ namespace libx
             fs.Close();
         }
 
-        private void InitLocalAssets(string text)
+        private void InitLocalAssets(List<string> assetList)
         {
             _localAssets.Clear();
-            string[] assetList = text.Split('#');
-            for (int i = 0; i< assetList.Length; i++)
+
+            //string[] assetList =  text.Split(new string[] { "\r\n" }, StringSplitOptions.RemoveEmptyEntries);
+            for (int i = 0; i< assetList.Count; i++)
             {
                 string[] assetInfo = assetList[i].Split('_');
-                if (assetInfo.Length < 4)
+                if (assetInfo.Length < 3)
                 {
                     continue;
                 }
@@ -468,8 +469,8 @@ namespace libx
 
                 vFile.id = int.Parse(assetInfo[0]);
                 vFile.name = name;
-                vFile.hash = assetInfo[2];
-                vFile.len = int.Parse(assetInfo[3]);
+                vFile.hash = assetInfo[1];
+                vFile.len = int.Parse(assetInfo[2]);
 
             }
             UnityEngine.Debug.Log("_localAssets.Count: " + _localAssets.Count.ToString());
@@ -492,16 +493,16 @@ namespace libx
             }
             else
             {
+                List<string> assetList = new List<string>();
                 StreamReader sr = new StreamReader(filePath, Encoding.Default);
-                string strData = "";
                 string content;
                 while ((content = sr.ReadLine()) != null)
                 {
                     Console.WriteLine(content.ToString());
-                    strData = content;
+                    assetList.Add(content);
                 }
                 sr.Close();
-                InitLocalAssets(strData);
+                InitLocalAssets(assetList);
             }
 
             if (_step == Step.Wait)

@@ -23,7 +23,6 @@ namespace ET
                 return;
             }
             
-
             if (string.IsNullOrEmpty(request.AccountName) || string.IsNullOrEmpty(request.Password))
             {
                 response.Error = ErrorCore.ERR_LoginInfoIsNull;
@@ -48,7 +47,6 @@ namespace ET
             //    session.Disconnect().Coroutine();
             //    return;
             //}
-
             //先检测一下QQ和微信登录
             if (!string.IsNullOrEmpty(request.ThirdLogin) && request.ThirdLogin.Length > 0)
             {
@@ -81,9 +79,9 @@ namespace ET
 
                     long accountZone = DBHelper.GetAccountCenter();
                     Center2A_LoginAccount centerAccount = (Center2A_LoginAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_LoginAccount() { AccountName = request.AccountName, Password = request.Password });
-                    PlayerInfo playerInfo = centerAccount.PlayerInfo != null ? centerAccount.PlayerInfo :null;
+                    PlayerInfo centerPlayerInfo = centerAccount.PlayerInfo;
 
-                    if (centerAccount.PlayerInfo == null)
+                    if (centerPlayerInfo == null)
                     {
                         response.Error = ErrorCore.ERR_LoginInfoIsNull;
                         reply();
@@ -96,22 +94,10 @@ namespace ET
                         account = session.AddChildWithId<DBAccountInfo>(centerAccount.AccountId);
                         account.Account = request.AccountName;
                         account.Password = request.Password;
-                        account.PlayerInfo = playerInfo;
                         await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(session.DomainZone(), account);
                     }
-                    //if (centerAccount.PlayerInfo == null)    //兼容老账号
-                    //{
-                    //    Center2A_SaveAccount saveAccount = (Center2A_SaveAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_SaveAccount()
-                    //    {
-                    //         AccountId = account.Id,
-                    //         PlayerInfo = account.PlayerInfo,
-                    //         AccountName = account.Account,
-                    //         Password = account.Password
-                    //    });
-                    //    playerInfo = account.PlayerInfo;
-                    //}
 
-                    if (playerInfo.RealName == 0 )
+                    if (centerPlayerInfo.RealName == 0 )
                     {
                         response.Error = ErrorCore.ERR_NotRealName;
                         response.AccountId = account.Id;
@@ -130,7 +116,7 @@ namespace ET
                     //    return;
                     //}
                     //防沉迷相关
-                    string idCardNo = playerInfo.IdCardNo;
+                    string idCardNo = centerPlayerInfo.IdCardNo;
                     int canLogin = ComHelp.CanLogin(idCardNo, session.DomainScene().GetComponent<FangChenMiComponent>().IsHoliday);
                     if (canLogin != ErrorCode.ERR_Success)
                     {
@@ -210,7 +196,7 @@ namespace ET
                         roleList = Function_Role.GetInstance().GetRoleListInfo(userinfo.UserInfo, i, account.UserList[i]);
                         response.RoleLists.Add(roleList);
                     }
-                    response.PlayerInfo = account.PlayerInfo;
+                    response.PlayerInfo = centerPlayerInfo;
                     response.AccountId = account.Id;
                     response.Token = Token;
                     reply();

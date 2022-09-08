@@ -98,7 +98,6 @@ namespace libx
             BuildScript.BundleResourceList();
             watch.Stop();
             //ET.Log.Error("BundleResourceList in: " + watch.ElapsedMilliseconds + " ms.");
-
         }
 
         [MenuItem(KCleanData)]
