@@ -27,10 +27,10 @@ namespace ILRuntime.Runtime.Generated
             app.RegisterCLRFieldGetter(field, get_NpcId_0);
             app.RegisterCLRFieldSetter(field, set_NpcId_0);
             app.RegisterCLRFieldBinding(field, CopyToStack_NpcId_0, AssignFromStack_NpcId_0);
-            field = type.GetField("HeadPos", flag);
-            app.RegisterCLRFieldGetter(field, get_HeadPos_1);
-            app.RegisterCLRFieldSetter(field, set_HeadPos_1);
-            app.RegisterCLRFieldBinding(field, CopyToStack_HeadPos_1, AssignFromStack_HeadPos_1);
+            field = type.GetField("Target", flag);
+            app.RegisterCLRFieldGetter(field, get_Target_1);
+            app.RegisterCLRFieldSetter(field, set_Target_1);
+            app.RegisterCLRFieldBinding(field, CopyToStack_Target_1, AssignFromStack_Target_1);
             field = type.GetField("NpcName", flag);
             app.RegisterCLRFieldGetter(field, get_NpcName_2);
             app.RegisterCLRFieldSetter(field, set_NpcName_2);
@@ -75,27 +75,27 @@ namespace ILRuntime.Runtime.Generated
             return ptr_of_this_method;
         }
 
-        static object get_HeadPos_1(ref object o)
+        static object get_Target_1(ref object o)
         {
-            return ((global::NpcLocal)o).HeadPos;
+            return ((global::NpcLocal)o).Target;
         }
 
-        static StackObject* CopyToStack_HeadPos_1(ref object o, ILIntepreter __intp, StackObject* __ret, IList<object> __mStack)
+        static StackObject* CopyToStack_Target_1(ref object o, ILIntepreter __intp, StackObject* __ret, IList<object> __mStack)
         {
-            var result_of_this_method = ((global::NpcLocal)o).HeadPos;
+            var result_of_this_method = ((global::NpcLocal)o).Target;
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static void set_HeadPos_1(ref object o, object v)
+        static void set_Target_1(ref object o, object v)
         {
-            ((global::NpcLocal)o).HeadPos = (UnityEngine.Transform)v;
+            ((global::NpcLocal)o).Target = (UnityEngine.Transform)v;
         }
 
-        static StackObject* AssignFromStack_HeadPos_1(ref object o, ILIntepreter __intp, StackObject* ptr_of_this_method, IList<object> __mStack)
+        static StackObject* AssignFromStack_Target_1(ref object o, ILIntepreter __intp, StackObject* ptr_of_this_method, IList<object> __mStack)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            UnityEngine.Transform @HeadPos = (UnityEngine.Transform)typeof(UnityEngine.Transform).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
-            ((global::NpcLocal)o).HeadPos = @HeadPos;
+            UnityEngine.Transform @Target = (UnityEngine.Transform)typeof(UnityEngine.Transform).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            ((global::NpcLocal)o).Target = @Target;
             return ptr_of_this_method;
         }
 

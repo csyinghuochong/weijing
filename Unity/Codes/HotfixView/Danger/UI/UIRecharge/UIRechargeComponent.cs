@@ -107,7 +107,7 @@ namespace ET
             {
                 return;
             }
-            if (GlobalHelp.IsBanHaoMode)
+            if (GlobalHelp.IsBanHaoMode || string.IsNullOrEmpty(sendChatResponse.Message))
             {
                 return;
             }

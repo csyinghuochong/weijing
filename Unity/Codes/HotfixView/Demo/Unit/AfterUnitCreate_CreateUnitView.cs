@@ -66,14 +66,18 @@ namespace ET
                 camera.GetComponent<MyCamera_1>().Target = targetTf;
 
                 GameObject shiBingSet = GameObject.Find("ShiBingSet");
-                string  path_2 = ABPathHelper.GetUGUIPath($"Battle/UINpcLocal");
-                GameObject npc_go = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path_2);
                 if (shiBingSet != null)
                 {
+                    string path_2 = ABPathHelper.GetUGUIPath($"Battle/UINpcLocal");
+                    GameObject npc_go = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path_2);
                     for (int i = 0; i < shiBingSet.transform.childCount; i++)
                     { 
                         GameObject shiBingItem = shiBingSet.transform.GetChild(i).gameObject;
                         NpcLocal npcLocal = shiBingItem.GetComponent<NpcLocal>();
+                        if (npcLocal == null)
+                        {
+                            continue;
+                        }
                         NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcLocal.NpcId);
                         npcLocal.Target = go.transform;
                         npcLocal.NpcName = npcConfig.Name;
