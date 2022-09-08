@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 
@@ -64,7 +65,7 @@ namespace ET
         public static void SetHorseNoticeInfo(this UIHorseNoticeComponent self, M2C_HorseNoticeInfo m2C_HorseNoticeInfo)
         {
             self.NoticePosition.SetActive(true);
-            TextMeshProUGUI textMeshProUGUI = self.Text_TMP.GetComponent<TextMeshProUGUI>();
+            Text textMeshProUGUI = self.Text_TMP.GetComponent<Text>();
             textMeshProUGUI.text = m2C_HorseNoticeInfo.NoticeText;
 
             self.MovePassTime = 0f;

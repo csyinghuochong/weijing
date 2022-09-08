@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 110
+  version: 116
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -6043,10 +6043,16 @@ MonoBehaviour:
   - name: 929d260a7f8884070a3e4d0da58de47d.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/CuteMushrooms/Animations/Anim@Damage.fbx
+  - name: 5b8846ef51fe98f10d0d04d1ebf6310a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/Materials/104710_mnqs_npc_d_512.mat
   - name: 9f28b63c3d23392d05141bdb57097efe.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/model/104710_mnqs_npc
       #4960004.fbx
+  - name: 4298453de37212283b1091586900dde2.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/tex/104720_mnqs_npc_d_512.png
   - name: 10280feb8627a5c52ec62734e8e5d0ca.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/Penguins/Materials/penguin1.mat
@@ -6125,9 +6131,6 @@ MonoBehaviour:
   - name: 5becca8f232758648eaf149c35173c0a.unity3d
     assets:
     - "Assets/Res/UI/Font/\u963F\u91CC\u5DF4\u5DF4\u666E\u60E0\u4F53M.ttf"
-  - name: de738c4dc13e5404124ce20e20ab3155.unity3d
-    assets:
-    - "Assets/Res/UI/Font/\u963F\u91CC\u5DF4\u5DF4\u666E\u60E0\u4F53B.ttf"
   - name: 777dae2cebb5ad0c2749c3cd529dba0a.unity3d
     assets:
     - "Assets/Res/UI/Font/\u963F\u91CC\u5DF4\u5DF4\u666E\u60E0\u4F53M SDF.asset"
@@ -6383,21 +6386,18 @@ MonoBehaviour:
   - name: ba8744259bb3e9bab82210311b7d01eb.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_44.png
-  - name: 9bc980653071aa387d141b7b60fafd45.unity3d
-    assets:
-    - Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
   - name: caf55d071646e82a4ce3831d4de5e326.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_92.png
   - name: e92a2154877cc6a895631516bd18387a.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_33.png
+  - name: 9bc980653071aa387d141b7b60fafd45.unity3d
+    assets:
+    - Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
   - name: f16de81a2946d9fc789b5cc6833b5a2c.unity3d
     assets:
     - Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
-  - name: b6109a90825732ec34f95f8b9092c9a4.unity3d
-    assets:
-    - Assets/TextMesh Pro/Fonts/LiberationSans.ttf
   - name: 3fee61081d4e30121bdc822a28dbf69f.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/EmojiOne.png
@@ -6440,9 +6440,6 @@ MonoBehaviour:
   - name: f20faf0e7c55bf860c320300b0530a90.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_144.png
-  - name: c0e08591470ba8882f8b3a688c011d27.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/font/Old/zhunyuan.ttf
   - name: 7ec82ed3a08b100d52e1ec2a891300a1.unity3d
     assets:
     - Assets/Mono/ThirdRes/GUI Pro Kit Fantasy RPG/Particles/Textures/fx_circle_line1.png
@@ -6506,6 +6503,9 @@ MonoBehaviour:
   - name: e00872e46d05386ffa3d9fbe95301fcf.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_269.png
+  - name: e694d5d8b1657f29b947c926c2870a5e.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_201.png
   - name: 7db5112b76945e3fe7923185edb82149.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_132.png
@@ -9470,6 +9470,9 @@ MonoBehaviour:
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_grass
       2.mat
+  - name: cc063d9078c4282b224a16d385128534.unity3d
+    assets:
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Back.bmp
   - name: 391e064692678b9772821eb893752a20.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_B2.FBX
@@ -9506,6 +9509,9 @@ MonoBehaviour:
   - name: 6673fd72d274466cdca8c569a32940c7.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_C1.FBX
+  - name: 19d3e308a95ce50c7bbb8b0228cec712.unity3d
+    assets:
+    - Assets/Res/SkyBox/CartoonSkybox2/CartoonSkybox2.mat
   - name: 56e690b2bf5a5cbf31aad4b72d70d35a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A16.prefab
@@ -9575,6 +9581,9 @@ MonoBehaviour:
   - name: ed5c0ef5310c9137dbbcfaf31d7041c4.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Cloud/Cloud.mat
+  - name: 1cd2030cc8a13caef30bfaf9e88af8be.unity3d
+    assets:
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Down.bmp
   - name: 2fefe3885325437cd83bd4c15b9dab24.unity3d
     assets:
     - Assets/Scenes/1.asset
@@ -9665,6 +9674,9 @@ MonoBehaviour:
   - name: a9b9f37fe5fa9cee1a27eb0728526733.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Interiors_Props_Q2.FBX
+  - name: 4daf4696e1bef65028c8582a899d5191.unity3d
+    assets:
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Right.bmp
   - name: 1ab8260b95af15b005ecff0a34260428.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.prefab
@@ -9674,6 +9686,9 @@ MonoBehaviour:
   - name: 43df1d0263b96144b17dfd5329e34264.unity3d
     assets:
     - Assets/Scenes/1_1.terrainlayer
+  - name: 50ef439457e9d970617f608d50da14a9.unity3d
+    assets:
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Left.bmp
   - name: 83046764ad088a721260c4f4a3dbb381.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C2_3.FBX
@@ -9686,6 +9701,9 @@ MonoBehaviour:
   - name: 245cb5a8c43a02b1f4b621861449c6e0.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_H1.FBX
+  - name: 01f8ca24f2f332fd3daebba073411459.unity3d
+    assets:
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Front.bmp
   - name: 0782b6f0e7a82110797a5ee4b68b27c1.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/modelLog.fbx
@@ -9858,15 +9876,18 @@ MonoBehaviour:
   - name: 124b57c56d898510e5afca2f128e36e6.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_F3.prefab
-  - name: 36eab2a3356ae102aa38f784942a6b84.unity3d
+  - name: 8a30640b3f651baf6d13865c1c062d48.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B2_1.FBX
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Up.bmp
   - name: 7b0587684f12cd3b756ccb144cdb7eb0.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_A3.FBX
   - name: d65bd7e708aee1b7b75162b41bc86cd8.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.mat
+  - name: 36eab2a3356ae102aa38f784942a6b84.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B2_1.FBX
   - name: 9ddfa4c8355867e3b36b77a890b331b8.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Coconut.jpg
@@ -12700,9 +12721,6 @@ MonoBehaviour:
   - name: 1c5fb01ae99689cc9ba6ceeb8b721658.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/LvUp/Materials/LvUp_Pillar.mat
-  - name: f457032f182ff13d9e1e8eee87af04c0.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/font/Old/MFLIHEI_NONCOMMERCIAL-REGULAR.OTF
   - name: dc4810d0135f31951e3a66f352f2760d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A13.FBX
