@@ -93,9 +93,8 @@ namespace ET
         public static async ETTask OnBtnCreateRole(this UICreateRoleComponent self)
         {
             string createName = self.InputCreateRoleName.GetComponent<InputField>().text;
-            bool mask = MaskWordHelper.Instance.IsContainSensitiveWords(createName);
-
-            if (mask)
+            if (createName.Contains("*") 
+                || !StringHelper.IsSpecialChar(createName))
             {
                 FloatTipManager.Instance.ShowFloatTip("名字不合法!");
                 return;

@@ -17,7 +17,7 @@ namespace ET
                 case 1:     //充值是否开启
                     if (dBServerInfo.RechageDic.Contains(request.Zone))
                     {
-                        response.Value = "1";
+                        Log.Info($"{111} {response.Value}");
                     }
                     else
                     {
