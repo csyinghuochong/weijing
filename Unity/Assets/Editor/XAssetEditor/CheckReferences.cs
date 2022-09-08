@@ -10,11 +10,10 @@ namespace ET
     public class CheckReferences : EditorWindow
     {
         private const string KBuildAssetBundles = "XAsset/Bundles/Check Atlas References";
-        private const string KCheckFontBundles = "";
         private static string sCheckPath = "Assets/Bundles/UI";
 
        // [MenuItem("Asset / ), false, 1]
-        [MenuItem("Assets/Custom/Check Font References", false, 1)]//路径
+        [MenuItem("Assets/Custom/Check  References", false, 1)]//路径
         public static void KCheckFontReferences()
         {
             string fontPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
@@ -27,8 +26,6 @@ namespace ET
             }
 
             UnityEngine.Debug.Log("KCheckFontReferences: Begin");
-
-            string fontName = "阿里巴巴普惠体M.ttf";
 
             List<string> fileList = new List<string>();
             fileList = GetFile(sCheckPath, fileList);
@@ -52,38 +49,39 @@ namespace ET
                     {
                         UnityEngine.Debug.Log($"以下文件有引用： {itemPath} ");
 
-                        //GameObject tmpObj = AssetDatabase.LoadAssetAtPath(itemPath, typeof(GameObject)) as GameObject;
-                        //Text[] tmpAr = tmpObj.GetComponentsInChildren<Text>();
-                        //for (int t = 0; t < tmpAr.Length; t++)
-                        //{
-                        //    Text textTemp = tmpAr[t];
-                        //    Font fontTemp = textTemp.font;
-                        //    if (fontTemp == null)
-                        //    {
-                        //        continue;
-                        //    }
-                        //    string assetName = fontTemp.name;
-                        //    if (fontAssetName == assetName)
-                        //    {
-                        //        UnityEngine.Debug.Log($" {textTemp.name}");
-                        //    }
-                        //}
+                        GameObject tmpObj = AssetDatabase.LoadAssetAtPath(itemPath, typeof(GameObject)) as GameObject;
+                        //tmpObj = GameObject.Instantiate(tmpObj) as GameObject;
+                        Text[] tmpAr = tmpObj.GetComponentsInChildren<Text>();
+                        for (int t = 0; t < tmpAr.Length; t++)
+                        {
+                            Text textTemp = tmpAr[t];
+                            Font fontTemp = textTemp.font;
+                            if (fontTemp == null)
+                            {
+                                continue;
+                            }
+                            string assetName = fontTemp.name;
+                            if (fontAssetName == assetName)
+                            {
+                                UnityEngine.Debug.Log($" {textTemp.name}");
+                            }
+                        }
 
-                        //TextMeshPro[] tmpProAr = tmpObj.GetComponentsInChildren<TextMeshPro>();
-                        //for (int t = 0; t < tmpProAr.Length; t++)
-                        //{
-                        //    TextMeshPro textTemp = tmpProAr[t];
-                        //    TMP_FontAsset fontTemp = textTemp.font;
-                        //    if (fontTemp == null)
-                        //    {
-                        //        continue;
-                        //    }
-                        //    string assetName = fontTemp.name;
-                        //    if (fontAssetName == assetName)
-                        //    {
-                        //        UnityEngine.Debug.Log($" {textTemp.name}");
-                        //    }
-                        //}
+                        TextMeshPro[] tmpProAr = tmpObj.GetComponentsInChildren<TextMeshPro>();
+                        for (int t = 0; t < tmpProAr.Length; t++)
+                        {
+                            TextMeshPro textTemp = tmpProAr[t];
+                            TMP_FontAsset fontTemp = textTemp.font;
+                            if (fontTemp == null)
+                            {
+                                continue;
+                            }
+                            string assetName = fontTemp.name;
+                            if (fontAssetName == assetName)
+                            {
+                                UnityEngine.Debug.Log($" {textTemp.name}");
+                            }
+                        }
                     }
                 }
             }
