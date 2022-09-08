@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using libx;
 
 namespace ET
 {
@@ -23,7 +24,12 @@ namespace ET
             string[] dependPathList = AssetDatabase.GetDependencies(new string[] { fontPath });
             foreach (string path in dependPathList)
             {
-                UnityEngine.Debug.Log(path);
+                using (var stream = File.OpenRead(path))
+                {
+                    long fileSize = stream.Length;
+                    string strNum = BuildScript.GetSizeNum(fileSize);
+                    UnityEngine.Debug.Log(strNum + "   " + path);
+                }
             }
 
             UnityEngine.Debug.Log("KCheckDependencies: End");
