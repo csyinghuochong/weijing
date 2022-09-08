@@ -1,5 +1,4 @@
 
-'mongodb://localhost:27017/WJBeta1
-'mongodb://localhost:27017/WJBeta2
-2Êmongodb://localhost:27017/WJBeta202(center)
-1Ëmongodb://localhost:27017/WJBeta203(robot)
++Èmongodb://localhost:27017/
+WJAlpha200
+3Êmongodb://localhost:27017/WJAlpha202(center)
