@@ -344,7 +344,7 @@ namespace ET
             self.TriggerTaskEvent(TaskTargetType.PassFubenID_7, chapterid, 1);
             self.TriggerTaskCountryEvent(TaskCountryTargetType.PassFuben_4, 0, 1);
 
-            if ((int)difficulty >= (int)FubenDifficulty.TianZhan)  //挑战
+            if ((int)difficulty >= (int)FubenDifficulty.TiaoZhan)  //挑战
             {
                 self.TriggerTaskEvent(TaskTargetType.PassTianZhanFubenID_111, chapterid, 1);
             }
@@ -397,7 +397,7 @@ namespace ET
                     self.TriggerTaskEvent(TaskTargetType.KillDiYuBossNumber_132, 0, 1);
                 }
             }
-            if((int)fubenDifficulty >= (int)FubenDifficulty.TianZhan) //挑战
+            if((int)fubenDifficulty >= (int)FubenDifficulty.TiaoZhan) //挑战
             {
                 self.TriggerTaskEvent(TaskTargetType.KillTiaoZhanMonsterID_101, unitconfigId, 1);
                 self.TriggerTaskEvent(TaskTargetType.KillTianZhanMonsterNumber_121, 0, 1);

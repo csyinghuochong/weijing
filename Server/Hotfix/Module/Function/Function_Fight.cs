@@ -166,7 +166,6 @@ namespace ET
             }
 
             float initHitPro = 0.9f;
-            
             float HitPro = initHitPro + addHitLvPro + addHitPro - (addDodgePro + addDodgeLvPro);
             //最低命中
             if (HitPro <= 0.75f) {
@@ -179,10 +178,8 @@ namespace ET
             {
                 ifHit = false;
             }
-
             if (ifHit)
             {
-
                 //判定是否触发重击
                 long actValue = attack_Act;
                 long defValue = defend_def;

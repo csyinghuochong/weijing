@@ -83,7 +83,7 @@ namespace ET
             self.EnterBtnSet.GetComponent<Button>().onClick.AddListener(() => { self.OnEnterChapter().Coroutine(); });
 
             self.Nandu1_Button.GetComponent<Button>().onClick.AddListener(() => { self.OnSelectNandu(FubenDifficulty.Normal); });
-            self.Nandu2_Button.GetComponent<Button>().onClick.AddListener(() => { self.OnSelectNandu(FubenDifficulty.TianZhan); });
+            self.Nandu2_Button.GetComponent<Button>().onClick.AddListener(() => { self.OnSelectNandu(FubenDifficulty.TiaoZhan); });
             self.Nandu3_Button.GetComponent<Button>().onClick.AddListener(() => { self.OnSelectNandu(FubenDifficulty.DiYu); });
 
 
@@ -182,7 +182,7 @@ namespace ET
                 self.ErrorString = (userInfo.Lv < chapterConfig.EnterLv) ?  "等级不足！" : "";
                 selectParent = self.Nandu1_Button.transform.parent.gameObject;
             }
-            if (self.SelectDifficulty == FubenDifficulty.TianZhan)
+            if (self.SelectDifficulty == FubenDifficulty.TiaoZhan)
             {
                 self.EnterContion_1_Text.GetComponent<Text>().text = "普通模式通关副本";
                 self.EnterContion_1_OK.SetActive(fubenPassInfo != null && fubenPassInfo.Difficulty >= 1);
@@ -199,7 +199,7 @@ namespace ET
 
             UICommonHelper.SetImageGray(self.Nandu1_Button, self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv < chapterConfig.EnterLv);
             UICommonHelper.SetImageGray(self.Nandu2_Button, fubenPassInfo == null || fubenPassInfo.Difficulty < (int)FubenDifficulty.Normal); 
-            UICommonHelper.SetImageGray(self.Nandu3_Button, fubenPassInfo == null || fubenPassInfo.Difficulty < (int)FubenDifficulty.TianZhan);
+            UICommonHelper.SetImageGray(self.Nandu3_Button, fubenPassInfo == null || fubenPassInfo.Difficulty < (int)FubenDifficulty.TiaoZhan);
 
             UICommonHelper.SetParent(self.NanDuSelect_1, selectParent);
             self.NanDuSelect_1.transform.SetAsFirstSibling();

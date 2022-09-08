@@ -225,7 +225,7 @@ namespace ET
                     return ErrorCore.ERR_LevelNoEnough;
                 }
             }
-            if (difficulty == FubenDifficulty.TianZhan && (fubenPassInfo == null || fubenPassInfo.Difficulty < 1))
+            if (difficulty == FubenDifficulty.TiaoZhan && (fubenPassInfo == null || fubenPassInfo.Difficulty < 1))
             {
                 return ErrorCore.ERR_LevelNormalNoPass;
             }

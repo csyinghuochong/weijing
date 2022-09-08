@@ -61,7 +61,7 @@ namespace ET
                     self.Lab_ChapterName.GetComponent<Outline>().effectColor = new Color(88f / 255f, 120f / 255f, 10f / 255f);
                     break;
 
-                case FubenDifficulty.TianZhan:
+                case FubenDifficulty.TiaoZhan:
                     self.ObjNanDu_2.SetActive(true);
                     self.Lab_ChapterName.GetComponent<Outline>().effectColor = new Color(0f / 255f, 142f / 255f, 154f / 255f);
                     break;

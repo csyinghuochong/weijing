@@ -14,7 +14,7 @@ namespace ET
     {
         public const int None = 0;
         public const int Normal = 1;
-        public const int TianZhan = 2;
+        public const int TiaoZhan = 2;
         public const int DiYu = 3;
         public const int Tower = 4;         //塔
         public const int Teamdungeon = 5;   //组队副本

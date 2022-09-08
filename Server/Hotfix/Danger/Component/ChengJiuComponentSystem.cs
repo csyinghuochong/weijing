@@ -42,7 +42,7 @@ namespace ET
                 self.TriggerEvent(ChengJiuTargetEnum.KillTotalBoss_3, 0, 1);
                 self.TriggerEvent(ChengJiuTargetEnum.KillNormalBoss_4, 0, 1);
             }
-            if (fubenDifficulty >= (int)FubenDifficulty.TianZhan && isBoss) //挑战
+            if (fubenDifficulty >= (int)FubenDifficulty.TiaoZhan && isBoss) //挑战
             {
                 self.TriggerEvent(ChengJiuTargetEnum.KillChallengeBoss_5, 0, 1);
             }
@@ -55,7 +55,7 @@ namespace ET
         public static void OnPassFuben(this ChengJiuComponent self, int difficulty, int chapterid, int star)
         {
             self.TriggerEvent(ChengJiuTargetEnum.PassNormalFubenID_11, chapterid, 1);
-            if ((int)difficulty >= (int)FubenDifficulty.TianZhan)  //挑战
+            if ((int)difficulty >= (int)FubenDifficulty.TiaoZhan)  //挑战
             {
                 self.TriggerEvent(ChengJiuTargetEnum.PassChallengeFubenID_12, chapterid, 1);
             }

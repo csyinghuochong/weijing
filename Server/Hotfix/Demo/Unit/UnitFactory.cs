@@ -267,7 +267,7 @@ namespace ET
             }
             switch (fubenDifficulty)
             {
-                case FubenDifficulty.TianZhan:
+                case FubenDifficulty.TiaoZhan:
                     dropAdd_Pro += 0.3f;
                     break;
                 case FubenDifficulty.DiYu:

@@ -82,7 +82,7 @@ namespace ET
             FubenPassInfo fubenPassInfo = self.ZoneScene().GetComponent<UserInfoComponent>().GetPassInfoByID(levelId);
             self.ImagePutong.SetActive(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv >= chapterConfig.EnterLv);
             self.ImageTiaozhan.SetActive(fubenPassInfo != null && fubenPassInfo.Difficulty >= (int)FubenDifficulty.Normal);
-            self.ImageKunnan.SetActive(fubenPassInfo != null && fubenPassInfo.Difficulty >= (int)FubenDifficulty.TianZhan);
+            self.ImageKunnan.SetActive(fubenPassInfo != null && fubenPassInfo.Difficulty >= (int)FubenDifficulty.TiaoZhan);
 
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, chapterConfig.BossIcon.ToString());
             self.ImageBossIcon.GetComponent<Image>().sprite = sp;
