@@ -389,7 +389,24 @@ namespace libx
             sw.Close();
         }
 
-
+        public static string GetSizeNum(long fileSize)
+        {
+            string strNum;
+            int mb = 1024 * 1024;
+            int kb = 1024;
+            if (fileSize > kb)
+            {
+                float xx = fileSize * 1f / mb;
+                decimal num1 = (decimal)xx;
+                strNum = String.Format("{0:N3}", xx) + "mb    ";
+            }
+            else
+            {
+                float xx = fileSize * 1f / kb;
+                strNum = String.Format("{0:N3}", xx) + "kb    ";
+            }
+            return strNum;
+        }
 
         /// <summary>
         /// 
@@ -399,9 +416,6 @@ namespace libx
         {
             var rules = GetBuildRules();
             var builds = rules.GetBuilds();
-
-            int mb = 1024 * 1024;
-            int kb = 1024;
 
             string dataPath = Application.dataPath;
             dataPath = dataPath.Substring(  0, dataPath.Length - 6 );
@@ -414,19 +428,8 @@ namespace libx
                 string path = dataPath + builds[i].assetNames[0];
                 long fileSize = new FileInfo(path).Length;
 
-                string strNum = "";
-                if (fileSize > kb)
-                {
-                    float xx = fileSize * 1f / mb;
-                    decimal num1 = (decimal)xx;
-                    strNum = String.Format("{0:N3}", xx) + "mb    ";
-                }
-                else
-                {
-                    float xx = fileSize * 1f / kb;
-                    strNum = String.Format("{0:N3}", xx) + "kb    ";
-                }
-
+                string strNum = GetSizeNum(fileSize);
+               
                 ResourceInfos.Add(  new ResourceInfo() {   Path = (strNum + builds[i].assetNames[0]) , Size = (int)fileSize } );
             }
             List<ResourceInfo> resourceInfos_1 = new List<ResourceInfo>();
@@ -476,6 +479,32 @@ namespace libx
                 return b.Size - a.Size;
             });
             SaveResourceList_1(resourceInfos_2, "/Release/HotRes_2.txt");
+
+            SaveAssetBundleList();
+        }
+
+        public static void SaveAssetBundleList()
+        {
+            List<string> fileList = new List<string>();
+            fileList = CheckReferences.GetFile("H:/GitWeiJing/Release/DLCBeta/Android", fileList);
+
+            List<ResourceInfo> ResourceInfos = new List<ResourceInfo>();
+            for (var index = 0; index < fileList.Count; index++)
+            {
+                string path = fileList[index];
+
+                using (var stream = File.OpenRead(path))
+                {
+                    long fileSize = stream.Length;
+                    string strNum = GetSizeNum(fileSize);
+                    ResourceInfos.Add(new ResourceInfo() { Path = (strNum +"    " +path), Size = (int)fileSize });
+                }
+            }
+            ResourceInfos.Sort(delegate (ResourceInfo a, ResourceInfo b)
+            {
+                return b.Size - a.Size;
+            });
+            SaveResourceList_1(ResourceInfos, "/Release/HotRes_3.txt");
         }
 
         public static void BuildAssetBundles()
@@ -574,6 +603,11 @@ namespace libx
                     assetBundleName = manifestBundleName
                 }
             };
+
+            //resourceInfos_2.Sort(delegate (ResourceInfo a, ResourceInfo b)
+            //{
+            //    return b.Size - a.Size;
+            //});
 
             BuildPipeline.BuildAssetBundles(outputPath, builds, options, targetPlatform);
             ArrayUtility.Add(ref bundles, manifestBundleName);
