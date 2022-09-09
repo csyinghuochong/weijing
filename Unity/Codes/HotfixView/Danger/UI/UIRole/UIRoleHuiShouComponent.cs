@@ -67,7 +67,7 @@ namespace ET
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
             self.InitHuiShouList().Coroutine();
-            self.UpdateBagUI().Coroutine();
+            self.UpdateBagUI();
 
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
         }
@@ -111,7 +111,7 @@ namespace ET
         public static void OnUpdateUI(this UIRoleHuiShouComponent self) 
         {
             self.HuiShouInfos = new BagInfo[UIRoleHuiShouComponent.HuiShouMaxNumber];
-            self.UpdateBagUI().Coroutine();
+            self.UpdateBagUI();
             self.OnUpdateHuiShou();
             self.OnUpdateGetList().Coroutine();
             self.UpdateSelected();
@@ -226,11 +226,10 @@ namespace ET
             }
         }
 
-        public static async ETTask UpdateBagUI(this UIRoleHuiShouComponent self, int itemType = -1)
+        public static  void UpdateBagUI(this UIRoleHuiShouComponent self, int itemType = -1)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByType(ItemTypeEnum.Equipment);
             for (int i = 0; i < bagInfos.Count; i++)

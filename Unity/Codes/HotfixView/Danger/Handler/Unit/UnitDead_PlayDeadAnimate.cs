@@ -16,22 +16,22 @@ namespace ET
             if (unitInfoComponent.Type == UnitType.Player)
             {
                 unit.GetComponent<EffectViewComponent>()?.OnDispose();
-                args.Unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
-                ShowRevive(args.Unit, mapComponent).Coroutine();
+                unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
+                ShowRevive(unit, mapComponent).Coroutine();
             }
             else
             {
-                args.Unit.GetComponent<EffectViewComponent>()?.OnDispose();
-                args.Unit.ZoneScene().CurrentScene().GetComponent<LockTargetComponent>().OnUnitDead(args.Unit);
+                unit.GetComponent<EffectViewComponent>()?.OnDispose();
+                unit.ZoneScene().CurrentScene().GetComponent<LockTargetComponent>().OnUnitDead(unit);
             }
 
-            if (args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) > 0)
+            if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) > 0)
             {
-                RunAsync(args.Unit).Coroutine();
+                RunAsync(unit).Coroutine();
             }
             else
             {
-                args.Unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
+                unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
             }
 
             if (unitInfoComponent.Type == UnitType.Monster 

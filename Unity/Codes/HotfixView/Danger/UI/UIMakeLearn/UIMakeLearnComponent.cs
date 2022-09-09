@@ -273,6 +273,10 @@ namespace ET
 
         public static async ETTask OnButtonLearn(this UIMakeLearnComponent self)
         {
+            if (self.MakeId == 0)
+            {
+                return;
+            }
             if (self.userInfoComponent.UserInfo.MakeList.Contains(self.MakeId))
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已经学习过该道具!"));

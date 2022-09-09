@@ -111,8 +111,7 @@ namespace ET
 
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/TuZhiMake/UITuZhiMakeNeed");
-            await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
