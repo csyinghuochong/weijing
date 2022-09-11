@@ -34,6 +34,7 @@
         public long TotalOnLineTime;
         public int LingDiOnLine;
         public string RemoteAddress;
+        public string UserName;
         public UserInfo UserInfo = new UserInfo();
 #if SERVER
         public readonly M2C_RoleDataBroadcast m2C_RoleDataBroadcast  = new M2C_RoleDataBroadcast();

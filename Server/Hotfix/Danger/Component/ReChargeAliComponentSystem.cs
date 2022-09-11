@@ -50,7 +50,7 @@ namespace ET
             //请求参数对照：https://docs.open.alipay.com/204/105465/
             //AliPayOrderInfo AlipayTradeAppPayModel
             AliPayOrderInfo model = self.AddChild<AliPayOrderInfo>(true);
-            model.SetInfo("0.01", dingDanID);
+            model.SetInfo(request.RechargeNumber.ToString(), dingDanID);
             model.objID = request.RechargeNumber.ToString();
             self.OrderDic.Add(dingDanID, request.UserId.ToString());
 

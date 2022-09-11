@@ -43,7 +43,7 @@ namespace ET
             Session session = self.GetParent<Session>();
             long timeNow = TimeHelper.ClientNow();
 
-            if (timeNow - session.LastRecvTime < 30 * 1000 && timeNow - session.LastSendTime < 30 * 1000)
+            if (timeNow - session.LastRecvTime < 60 * 1000 && timeNow - session.LastSendTime < 60 * 1000)
             {
                 return;
             }

@@ -16,14 +16,18 @@ namespace ET
                 reply();
                 return;
             }
-
+            if (request.PayType != PayTypeEnum.AliPay)
+            {
+                reply();
+                return;
+            }
             if (ComHelp.IsBanHaoZone(unit.DomainZone()))
             {
                 RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber).Coroutine();
                 reply();
                 return;
             }
-
+            
             long rechareId = DBHelper.GetRechargeCenter();
             R2M_RechargeResponse r2M_RechargeResponse = (R2M_RechargeResponse)await ActorMessageSenderComponent.Instance.Call(rechareId, new M2R_RechargeRequest() { 
                 Zone = unit.DomainZone(), PayType = request.PayType, UserId = request.UserId , RechargeNumber = request.RechargeNumber});

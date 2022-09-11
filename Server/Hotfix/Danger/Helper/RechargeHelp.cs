@@ -38,6 +38,42 @@ namespace ET
             else
             {
                 //直接存数据库
+                int number = ComHelp.GetDiamondNumber(rechargeNumber);
+                long accountId = gateUnitInfo.AccountId;
+                A2Center_RechargeRequest rechargeRequest = new A2Center_RechargeRequest()
+                {
+                    AccountId = accountId,
+                    RechargeInfo = new RechargeInfo()
+                    {
+                        Amount = rechargeNumber,
+                        Time = TimeHelper.ServerNow(),
+                        UserId =userId
+                    }
+                };
+                long accountZone = DBHelper.GetAccountCenter();
+                Center2A_RechargeResponse saveAccount = (Center2A_RechargeResponse)await ActorMessageSenderComponent.Instance.Call(accountZone, rechargeRequest);
+                
+                long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
+                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId =userId, Component = DBHelper.UserInfoComponent });
+                UserInfoComponent userInfoComponent = (d2GGetUnit.Component as UserInfoComponent);
+                userInfoComponent.UserInfo.Diamond += number;
+                
+                d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userId, Component = DBHelper.NumericComponent });
+                NumericComponent numericComponent = (d2GGetUnit.Component as NumericComponent);
+                    numericComponent.ApplyChange(null, NumericType.RechargeNumber, number, 0, false);
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent()
+                {
+                    CharacterId = userId,
+                    Component = userInfoComponent,
+                    ComponentType = DBHelper.UserInfoComponent
+                });
+                d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent()
+                {
+                    CharacterId = userId,
+                    Component = numericComponent,
+                    ComponentType = DBHelper.NumericComponent
+                });
+                await ETTask.CompletedTask;
             }
         }
 

@@ -677,11 +677,11 @@ namespace ET
                 float occMastery = 0f;
                 if (userInfo.OccTwo != 0)
                 {
-                    if (OccupationTwoConfigCategory.Instance.Get(userInfo.OccTwo).ArmorMastery == ItemConfigCategory.Instance.Get(equipIDList[i]).EquipType)
-                    {
-                        //occMastery = 0.2f;
-                        occMastery = 0f;
-                    }
+                    //if (OccupationTwoConfigCategory.Instance.Get(userInfo.OccTwo).ArmorMastery == ItemConfigCategory.Instance.Get(equipIDList[i]).EquipType)
+                    //{
+                    //    //occMastery = 0.2f;
+                    //    occMastery = 0f;
+                    //}
                 }
 
                 //存储基础属性
