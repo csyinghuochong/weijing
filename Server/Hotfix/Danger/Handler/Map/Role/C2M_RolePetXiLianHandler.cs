@@ -266,7 +266,7 @@ namespace ET
 			if (ifCostStatus)
 			{
 				nowNum = nowNum + addPropretyNum;
-				petinfo.AddPropretyValue = nowChongZhiNumOne + ";" + nowChongZhiNumOne + ";" + nowChongZhiNumOne + ";" + nowChongZhiNumOne;
+				petinfo.AddPropretyValue = nowChongZhiNumOne + "_" + nowChongZhiNumOne + "_" + nowChongZhiNumOne + "_" + nowChongZhiNumOne;
 				petinfo.AddPropretyNum = nowNum;
 				//Game_PublicClassVar.Get_function_DataSet.DataSet_WriteData("AddPropretyValue", nowChongZhiNumOne + ";" + nowChongZhiNumOne + ";" + nowChongZhiNumOne + ";" + nowChongZhiNumOne, "ID", petSpaceID, "RosePet");
 				//Game_PublicClassVar.Get_function_DataSet.DataSet_WriteData("AddPropretyNum", nowNum.ToString(), "ID", petSpaceID, "RosePet");
