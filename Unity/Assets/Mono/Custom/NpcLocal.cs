@@ -37,11 +37,12 @@ public class NpcLocal : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Target == null)
         { 
             return;
         }
-
+        */
         float distance = Vector3.Distance(Target.position, this.transform.position);
         if (distance < 3f && this.HeadBar == null)
         {
