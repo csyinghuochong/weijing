@@ -63,7 +63,9 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("等级不足！");
                 return;
             }
-            int selfRechage = self.ZoneScene().GetComponent<AccountInfoComponent>().GetRechargeNumber(userInfoComponent.UserInfo.UserId);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int selfRechage = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
+            //int selfRechage = self.ZoneScene().GetComponent<AccountInfoComponent>().GetRechargeNumber(userInfoComponent.UserInfo.UserId);
             if (index == 3 && selfRechage < 198)
             {
                 FloatTipManager.Instance.ShowFloatTip("未达到领取条件！");

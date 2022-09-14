@@ -1985,13 +1985,13 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public int XiLianId { get; set; }
-
-		[ProtoMember(1)]
 		public long BuChangId { get; set; }
 
 		[ProtoMember(2)]
 		public long UserId { get; set; }
+
+		[ProtoMember(3)]
+		public long AccountId { get; set; }
 
 	}
 

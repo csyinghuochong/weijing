@@ -1117,6 +1117,9 @@ namespace ET
 		[ProtoMember(5)]
 		public List<RechargeInfo> RechargeInfos = new List<RechargeInfo>();
 
+		[ProtoMember(6)]
+		public List<KeyValuePair> DeleteUserList = new List<KeyValuePair>();
+
 	}
 
 	[ResponseType(nameof(M2C_TestActorResponse))]
@@ -6677,12 +6680,6 @@ namespace ET
 		[ProtoMember(3)]
 		public long UserId { get; set; }
 
-		[ProtoMember(4)]
-		public string Name { get; set; }
-
-		[ProtoMember(5)]
-		public int Zone { get; set; }
-
 	}
 
 	[Message(OuterOpcode.ShouJiChapterInfo)]
@@ -8045,9 +8042,6 @@ namespace ET
 
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public int XiLianId { get; set; }
 
 		[ProtoMember(1)]
 		public long BuChangId { get; set; }

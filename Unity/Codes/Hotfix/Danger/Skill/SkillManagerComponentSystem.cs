@@ -48,37 +48,37 @@ namespace ET
 
     public static class SkillManagerComponentSystem
     {
+        public static SkillCDList GetSkillCD(this SkillManagerComponent self, int skillId)
+        {
+            for (int i = 0; i < self.SkillCDs.Count; i++)
+            {
+                if (self.SkillCDs[i].SkillID == skillId)
+                {
+                    return self.SkillCDs[i];
+                }
+            }
+            return null;
+        }
+
         public static long GetCdTime(this SkillManagerComponent self, int skillId, long nowTime)
         {
-            SkillCDList skillCD = null;
-            if (self.SkillCDs.TryGetValue(skillId, out skillCD))
+            SkillCDList skillCD = self.GetSkillCD(skillId);
+            if (skillCD!=null)
             {
                 return skillCD.CDEndTime - nowTime;
             }
-            //foreach (var item in self.SkillCDs)
-            //{
-            //    if (item.Value.SkillID == skillId)
-            //    {
-            //        return item.Value.CDEndTime - nowTime;
-            //    }
-            //}
             return 0;
         }
 
         public static void OnUpdate(this SkillManagerComponent self)
         {
             long nowTime = TimeHelper.ServerNow();
-            int cdDelect = 0;
-            foreach (var item in self.SkillCDs)
+            for (int i = self.SkillCDs.Count - 1; i >= 0; i--)
             {
-                if (item.Value.CDEndTime < nowTime)
+                if (self.SkillCDs[i].CDEndTime < nowTime)
                 {
-                    cdDelect = item.Key;
+                    self.SkillCDs.RemoveAt(i);
                 }
-            }
-            if (cdDelect != 0)
-            {
-                self.SkillCDs.Remove(cdDelect);
             }
 
             for (int i = self.Skills.Count - 1; i >= 0; i--)
@@ -119,16 +119,16 @@ namespace ET
             {
                 return;
             }
-            if (self.SkillCDs.ContainsKey(skillId))
+
+            SkillCDList skillcd = self.GetSkillCD(skillId);
+            if (skillcd == null)
             {
-                self.SkillCDs.Remove(skillId);
+                skillcd = new SkillCDList();
+                self.SkillCDs.Add(skillcd);
             }
-            SkillCDList skillcd = new SkillCDList();
             skillcd.SkillID = skillId;
             skillcd.CDStartTime = TimeHelper.ServerNow();
             skillcd.CDEndTime = cdEndTime + 200;
-            self.SkillCDs.Add(skillcd.SkillID, skillcd);
-
             if (skillConfig.IfPublicSkillCD == 0)
             {
                 //添加技能公共CD /公共1秒CD  
@@ -213,14 +213,8 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
 
-            SkillCDList skillCDList = null;
-            self.SkillCDs.TryGetValue(skillId, out skillCDList);
-            if (skillCDList != null && TimeHelper.ServerNow() > skillCDList.CDEndTime)
-            {
-                self.SkillCDs.Remove(skillId);
-            }
-
-            if (self.SkillCDs.ContainsKey(skillId))
+            SkillCDList skillCDList = self.GetSkillCD(skillId);
+            if (skillCDList != null )
             {
                 return 1;
             }

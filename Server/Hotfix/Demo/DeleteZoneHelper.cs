@@ -22,9 +22,17 @@ namespace ET
             {
                 //删除的账号在中心区做个记录
                 List<DBCenterAccountInfo> dBAccountInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(202, d => d.Id == entity.Id);
-                dBAccountInfos[0].DeleteUserList.Clear();
-                dBAccountInfos[0].DeleteUserList.AddRange(entity.UserList);
+                dBAccountInfos[0].PlayerInfo.DeleteUserList.Clear();
 
+                for (int i = 0; i < entity.UserList.Count; i++)
+                {
+                    List<UserInfoComponent> dbuserinfo_old = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(zone, d => d.Id > 0);
+                    dBAccountInfos[0].PlayerInfo.DeleteUserList.Add(new KeyValuePair()
+                    {
+                        Value = dbuserinfo_old[0].Id.ToString(),
+                        Value2 = dbuserinfo_old[0].UserInfo.Name
+                    });
+                }
                 await Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(202, dBAccountInfos[0]);
             }
 

@@ -31,7 +31,7 @@ namespace ET
                 //if (args.Length == 0)
                 //{
                 //    args = new string[4];
-                //    args[0] = "--AppType=Deletion";
+                //    args[0] = "--AppType=DeleteZone";
                 //    args[1] = "--Console=1";
                 //    args[2] = "--Process=1";
                 //    args[3] = "--Parameters=1";

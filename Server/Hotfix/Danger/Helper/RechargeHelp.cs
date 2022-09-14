@@ -16,9 +16,7 @@ namespace ET
                 {
                     Amount = rechargeNumber,
                     Time = TimeHelper.ServerNow(),
-                    Name = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
                     UserId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId,
-                    Zone = unit.DomainZone()
                 }
             };
             long accountZone = DBHelper.GetAccountCenter();
@@ -69,10 +67,8 @@ namespace ET
                     RechargeInfo = new RechargeInfo()
                     {
                         Amount = rechargeNumber,
-                        Name = userInfoComponent.UserInfo.Name,
                         Time = TimeHelper.ServerNow(),
                         UserId =userId,
-                        Zone = scene.DomainZone(),
                     }
                 };
                 long accountZone = DBHelper.GetAccountCenter();

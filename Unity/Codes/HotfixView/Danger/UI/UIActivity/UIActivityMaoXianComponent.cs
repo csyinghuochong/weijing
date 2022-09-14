@@ -132,8 +132,8 @@ namespace ET
         public static int GetMaoXianExp(this UIActivityMaoXianComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
-            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            int rechargeNum = self.ZoneScene().GetComponent<AccountInfoComponent>().GetRechargeNumber(userInfo.UserId);
+            int rechargeNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
+            //self.ZoneScene().GetComponent<AccountInfoComponent>().GetRechargeNumber(userInfo.UserId);
             rechargeNum += unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MaoXianExp);
             return rechargeNum;
         }

@@ -129,9 +129,24 @@ namespace ET
                 {
                     GameObject go = GameObject.Instantiate(self.UITaskFubenItem);
                     go.SetActive(true);
-                    UICommonHelper.SetParent( go, self.TaskFubenList);
+                    UICommonHelper.SetParent(go, self.TaskFubenList);
                     UITaskFubenItemComponent uITaskFubenItemComponent = self.AddChild<UITaskFubenItemComponent, GameObject>(go);
                     uITaskFubenItemComponent.OnInitData((int fubenId) => { self.OnClickFubenItem(fubenId); }, fubenList[i]);
+                }
+            }
+            else if (npcID == 20000016) //补偿大师
+            {
+                self.TaskFubenList.SetActive(true);
+                UICommonHelper.DestoryChild(self.TaskFubenList);
+                AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                Log.ILog.Debug($"xxx  {accountInfo.PlayerInfo.DeleteUserList.Count}");
+                for (int i = 0; i < accountInfo.PlayerInfo.DeleteUserList.Count; i++)
+                {
+                    GameObject goitem = GameObject.Instantiate(self.UITaskFubenItem);
+                    goitem.SetActive(true);
+                    UICommonHelper.SetParent(goitem, self.TaskFubenList);
+                    UIBuChangItemComponent uIBuChangItem = self.AddChild<UIBuChangItemComponent, GameObject>(goitem);
+                    uIBuChangItem.OnInitUI((long userid)=> { self.OnClickBuChangItem(userid); }, accountInfo.PlayerInfo.DeleteUserList[i]);
                 }
             }
             else
@@ -139,6 +154,25 @@ namespace ET
                 self.ScrollView1.SetActive(true);
                 self.UpdataTask();
             }
+        }
+
+        public static  void OnClickBuChangItem(this UITaskGetComponent self, long userid)
+        {
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "补偿大师", "请求补偿",
+            () =>
+            {
+                self.RequestBuChangItem(userid).Coroutine();
+            }).Coroutine();
+        }
+
+        public static async ETTask RequestBuChangItem(this UITaskGetComponent self, long userid)
+        {
+            C2M_BuChangeRequest request = new C2M_BuChangeRequest() { BuChangId = userid };
+            M2C_BuChangeResponse response = (M2C_BuChangeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            accountInfoComponent.PlayerInfo.RechargeInfos = response.RechargeInfos;
+
+            UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet).Coroutine();
         }
 
         public static void OnClickFubenItem(this UITaskGetComponent self, int sceneId)
@@ -150,7 +184,6 @@ namespace ET
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
 
             string desStr = "是否进入" + sceneConfig.Name + "?";
-
             if (sceneConfig.DayEnterNum >= 1) {
                 desStr += "\n提示:每天只能进入" + sceneConfig.DayEnterNum + "次";
             }
