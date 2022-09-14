@@ -115,8 +115,8 @@ namespace ET
 
         public static void InitHpList(this UIPetMainComponent self)
         {
-            Entity[] entities = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < entities.Length; i++)
+            List<Unit> entities = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < entities.Count; i++)
             { 
                 UnitInfoComponent unitInfo = entities[i].GetComponent<UnitInfoComponent>();
                 if (unitInfo.Type == UnitType.Monster)

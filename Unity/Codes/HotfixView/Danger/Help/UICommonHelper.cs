@@ -98,10 +98,10 @@ namespace ET
         public static void UpdateAllNpcBar(Unit self)
         {
             float curTime = Time.time;
-            Entity[] units = self.GetParent<UnitComponent>().GetAll();
-            for (int i = 0; i < units.Length; i++)
+            List<Unit> units = self.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
             {
-                Unit unit = units[i] as Unit;
+                Unit unit = units[i];
                 if (curTime <= unit.UpdateUITime)
                 {
                     continue;

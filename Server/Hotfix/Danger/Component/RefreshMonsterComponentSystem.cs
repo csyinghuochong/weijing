@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -142,8 +143,8 @@ namespace ET
         {
             //防止无限刷宝箱
             int monsterNumber = 0;
-            Entity[] entities = self.GetParent<Scene>().GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < entities.Length; i++)
+            List<Unit>  entities = self.GetParent<Scene>().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < entities.Count; i++)
             {
                 if (entities[i].GetComponent<UnitInfoComponent>().Type == UnitType.Monster)
                 {

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Linq;
 using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -48,9 +49,9 @@ namespace ET
         public static void OnUpdate(this LockTargetComponent self)
         {
             Unit haveBoss = null;
-            Entity[] allUnit = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            List<Unit> allUnit = self.DomainScene().GetComponent<UnitComponent>().GetAll();
             Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            for (int i = 0; i < allUnit.Length; i++)
+            for (int i = 0; i < allUnit.Count; i++)
             {
                 Unit unit = allUnit[i] as Unit;
                 UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();

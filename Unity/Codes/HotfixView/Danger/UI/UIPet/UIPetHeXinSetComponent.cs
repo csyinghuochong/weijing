@@ -119,6 +119,7 @@ namespace ET
                 if (number < self.uIItems.Count)
                 {
                     uIItemComponent = self.uIItems[number];
+                    uIItemComponent.GameObject.SetActive(true);
                 }
                 else
                 {
@@ -158,7 +159,8 @@ namespace ET
 
             C2M_RolePetHeXin c2M_RolePetHeXin = new C2M_RolePetHeXin() { OperateType = 2, BagInfoId = bagInfo.BagInfoID, PetInfoId = self.RolePetInfo.Id, Position = self.Position };
             M2C_RolePetHeXin m2C_RolePetHeXin = (M2C_RolePetHeXin)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetHeXin);
-            self.RolePetInfo.PetHeXinList[self.Position] = 0;
+            self.ZoneScene().GetComponent<PetComponent>().OnRolePetUpdate(m2C_RolePetHeXin.RolePetInfo);
+            self.RolePetInfo = m2C_RolePetHeXin.RolePetInfo;
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIPet);
             uI.GetComponent<UIPetComponent>().OnEquipPetHeXin();
         }
@@ -184,8 +186,7 @@ namespace ET
             }
 
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            RolePetInfo rolePetInfo =  petComponent.GetPetInfoByID(self.RolePetInfo.Id);
-            rolePetInfo.PetHeXinList[self.Position] = bagInfoId;
+            petComponent.OnRolePetUpdate( m2C_RolePetHeXin.RolePetInfo);
 
             UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIPet );
             uI.GetComponent<UIPetComponent>().OnEquipPetHeXin();

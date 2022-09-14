@@ -60,8 +60,8 @@ namespace ET
             float distance = 10f;
             Unit unit = null;
             Unit main = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-            Entity[] units = zoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < units.Length; i++)
+            List<Unit> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
             {
                 Unit uu = units[i] as Unit;
                 if (uu.GetComponent<UnitInfoComponent>().Type != UnitType.DropItem)
@@ -80,10 +80,10 @@ namespace ET
 
         public static long GetChestBox(Scene zoneScene)
         {
-            Entity[] units = zoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < units.Length; i++)
+            List<Unit> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
             {
-                Unit uu = units[i] as Unit;
+                Unit uu = units[i];
                 if (!uu.GetComponent<UnitInfoComponent>().IsChest())
                 {
                     continue;

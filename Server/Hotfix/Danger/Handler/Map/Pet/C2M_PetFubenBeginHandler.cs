@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -11,8 +11,8 @@ namespace ET
         {
             int petfubenId = unit.DomainScene().GetComponent<MapComponent>().SonSceneId;
             //unit.DomainScene().GetComponent<PetFubenSceneComponent>().GeneratePetFuben(unit, petfubenId).Coroutine();
-            Entity[] allunits = unit.DomainScene().GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < allunits.Length; i++)
+            List<Unit> allunits = unit.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunits.Count; i++)
             {
                 UnitInfoComponent unitInfoComponent = allunits[i].GetComponent<UnitInfoComponent>();
                 if (unitInfoComponent.Type!= UnitType.Pet && unitInfoComponent.Type!= UnitType.Monster)

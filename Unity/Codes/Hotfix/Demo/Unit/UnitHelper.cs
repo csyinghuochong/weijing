@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using System.Collections.Generic;
+
+namespace ET
 {
     public static class UnitHelper
     {
@@ -54,10 +56,10 @@
 
         public static void ShowAllUnit(Scene zoneScene)
         {
-            Entity[] entities = zoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < entities.Length; i++)
+            List<Unit> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
             {
-                Unit unit = entities[i] as Unit;
+                Unit unit = units[i];
                 if (!unit.WaitLoad)
                 {
                     continue;

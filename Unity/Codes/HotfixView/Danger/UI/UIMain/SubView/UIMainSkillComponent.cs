@@ -127,10 +127,11 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
 
+            long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
                 UISkillGridComponent uISkillGridComponent = self.UISkillGirdList[i].GetComponent<UISkillGridComponent>();
-                uISkillGridComponent.OnUpdate(skillManagerComponent.GetCdTime(uISkillGridComponent.GetSkillId()), skillManagerComponent.SkillPublicCDTime);
+                uISkillGridComponent.OnUpdate(skillManagerComponent.GetCdTime(uISkillGridComponent.GetSkillId(), serverTime), skillManagerComponent.SkillPublicCDTime);
             }
             //UIFangunSkillComponent uIFangunSkillComponent = self.UIFangunComponet.GetComponent<UIFangunSkillComponent>();
             //uIFangunSkillComponent.OnUpdate(skillManagerComponent.GetCdTime(uIFangunSkillComponent.SkillId));

@@ -80,7 +80,7 @@ namespace ET
                 }
             }
 
-            if (self.Children.Count == 0)
+            if (self.Children.Count == 0 && self.Timer!=0)
             {
                 TimerComponent.Instance?.Remove(ref self.Timer);
             }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -95,10 +96,10 @@ namespace ET
 
         public static void OnCleanMonsterCD(this LocalDungeonComponent self)
         {
-            Entity[] entities = self.DomainScene().GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < entities.Length; i++)
+            List<Unit> entities = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < entities.Count; i++)
             {
-                Entity entity = entities[i];
+                Unit entity = entities[i];
                 if (entity.GetComponent<UnitInfoComponent>().Type != UnitType.Monster)
                 {
                     continue;

@@ -525,10 +525,10 @@ namespace ET
 
         public static void UpdateNpcTaskUI(this UIMainComponent self)
         {
-            Entity[] allunit = self.DomainScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < allunit.Length; i++)
+            List<Unit> allunit = self.DomainScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunit.Count; i++)
             {
-                Unit unit = allunit[i] as Unit;
+                Unit unit = allunit[i];
                 if (unit.GetComponent<UnitInfoComponent>().Type != UnitType.Npc)
                 {
                     continue;
@@ -994,9 +994,9 @@ namespace ET
             float distance = 20f;
             Unit npc = null;
             Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            Entity[] units = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
+            List<Unit> units = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
             UnitInfoComponent unitInfoComponent;
-            for (int i = 0; i < units.Length; i++)
+            for (int i = 0; i < units.Count; i++)
             {
                 unitInfoComponent = units[i].GetComponent<UnitInfoComponent>();
                 if (unitInfoComponent.Type != UnitType.Npc)

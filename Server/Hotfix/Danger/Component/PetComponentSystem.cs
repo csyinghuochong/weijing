@@ -268,6 +268,23 @@ namespace ET
             MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataUpdate() { UpdateType = (int)UserDataType.Exp, PetId = rolePetInfo.Id, UpdateTypeValue = rolePetInfo.PetExp.ToString() });
         }
 
+        public static long GetByKey(this PetComponent self, RolePetInfo rolePetInfo, int numericType)
+        {
+            for (int i = 0; i < rolePetInfo.Ks.Count; i++)
+            {
+                if (rolePetInfo.Ks[i] == numericType)
+                {
+                    return rolePetInfo.Vs[i];
+                }
+            }
+            return 0;
+        }
+
+        public static float GetAsFloat(this PetComponent self, RolePetInfo rolePetInfo, int numericType)
+        {
+            return (float)self.GetByKey(rolePetInfo, numericType) / 10000;
+        }
+
         public static void UpdatePetAttribute(this PetComponent self, RolePetInfo rolePetInfo, Unit petUnit = null)
         {
             //获取宠物资质
@@ -336,6 +353,31 @@ namespace ET
             rolePetInfo.Ks.Add((int)NumericType.Now_Dodge);
             rolePetInfo.Vs.Add(0);
 
+            //宠物之核
+            Dictionary<int, long> attriDic = new Dictionary<int, long>();
+            BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
+            for (int i = 0; i < rolePetInfo.PetHeXinList.Count; i++)
+            {
+                long baginfoId = rolePetInfo.PetHeXinList[i];
+                if (baginfoId == 0)
+                {
+                    continue;
+                }
+
+                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemPetHeXinEquip, baginfoId);
+                //100203;790
+                string attriStr = ItemConfigCategory.Instance.Get(bagInfo.ItemID).ItemUsePar;
+                string[] attriList = attriStr.Split(';');
+                int typeId = int.Parse(attriList[0]);
+                Function_Fight.AddUpdateProDicList(typeId, NumericHelp.GetNumericValueType(typeId) == 1 ? (long)(10000 * float.Parse(attriList[1])) : long.Parse(attriList[1]), attriDic);
+            }
+            foreach (var item in attriDic)
+            {
+                int numericType = item.Key;
+                int nowValue = (int)numericType / 100;
+                int attriIndex = rolePetInfo.Ks.IndexOf(nowValue);
+                rolePetInfo.Vs[attriIndex] += item.Value;
+            }
 
             //如果是出战的宠物。再广播一下属性
             if (petUnit == null)
@@ -343,9 +385,10 @@ namespace ET
                 return;
             }
             NumericComponent numericComponent = petUnit.GetComponent<NumericComponent>();
-            numericComponent.ApplyValue(NumericType.Now_Hp, hp_Now, true);
-            numericComponent.ApplyValue(NumericType.Now_MaxHp, hp_Now, true);
-            numericComponent.ApplyValue(NumericType.Pet_Skin, rolePetInfo.SkinId, true);
+            numericComponent.ApplyValue(NumericType.Now_Hp, self.GetByKey(rolePetInfo, NumericType.Now_Hp), true);
+            numericComponent.ApplyValue(NumericType.Now_MaxHp, self.GetByKey(rolePetInfo, NumericType.Now_MaxHp), true);
+            numericComponent.ApplyValue(NumericType.Now_MaxAct, self.GetByKey(rolePetInfo, NumericType.Now_MaxAct), true);
+            numericComponent.ApplyValue(NumericType.Now_MaxDef, self.GetByKey(rolePetInfo, NumericType.Now_MaxDef), true);
         }
 
         public static void RemovePet(this PetComponent self, long petId)

@@ -144,11 +144,10 @@ namespace ET
             {
                 //范围内对目标造成伤害
                 case 0:
-                    Entity[] entities = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll();
-                    for (int i = entities.Length - 1; i >= 0; i--)
+                    List<Unit> entities = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll();
+                    for (int i = entities.Count - 1; i >= 0; i--)
                     {
-                        Unit uu = entities[i] as Unit;
-
+                        Unit uu = entities[i];
                         //不对自己造成伤害和同一个目标不造成2次伤害
                         //if (uu.Id == self.TheUnitFrom.Id || self.HurtIds.Contains(uu.Id))
                         //{

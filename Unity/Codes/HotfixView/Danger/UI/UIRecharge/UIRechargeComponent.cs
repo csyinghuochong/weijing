@@ -37,23 +37,22 @@ namespace ET
             {
                 self.ImageSelect1.SetActive(false);
                 self.ImageSelect2.SetActive(true);
-                self.PayType = 2;
+                self.PayType = PayTypeEnum.AliPay;
             } );
             self.ButtonWeiXin = rc.Get<GameObject>("ButtonWeiXin");
             self.ButtonWeiXin.GetComponent<Button>().onClick.AddListener(() =>
             {
                 self.ImageSelect1.SetActive(true);
                 self.ImageSelect2.SetActive(false);
-                self.PayType = 1;
+                self.PayType = PayTypeEnum.WeiXinPay;
             });
             self.ImageSelect1.SetActive(true);
             self.ImageSelect2.SetActive(false);
-            self.PayType = 1;
             self.RechargeList = rc.Get<GameObject>("RechargeList");
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Close(); });
-            self.PayType = PayTypeEnum.AliPay;
+            self.PayType = PayTypeEnum.WeiXinPay;
 
             self.InitRechargeList().Coroutine();
         }
@@ -66,8 +65,7 @@ namespace ET
         public static async ETTask InitRechargeList(this UIRechargeComponent self)
         {
             string path = ABPathHelper.GetUGUIPath("Main/Recharge/UIRechargeItem");
-            await ETTask.CompletedTask;
-            GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject bundleObj =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
             foreach (var item in ComHelp.RechargeGive)
             {

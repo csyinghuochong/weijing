@@ -783,6 +783,7 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             self.LastSelectItem = petComponent.GetPetInfoByID(self.LastSelectItem.Id);
             self.UpdatePetHeXin(self.LastSelectItem);
+            self.UpdateAttribute(self.LastSelectItem);
             self.PetHeXinSetComponent.SelectItemHandlder(null);
             self.PetHeXinSetComponent.UpdatePetHexinItem();
             self.PetHeXinSetComponent.OnUpdateItemList().Coroutine();

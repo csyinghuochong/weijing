@@ -153,7 +153,11 @@ namespace ET
         };
 
 
-        // 2 标识整数  1表示浮点数
+        /// <summary>
+        /// 2 标识整数  1表示浮点数
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public static int GetNumericValueType(int key)
         {
             if (key == 1009)

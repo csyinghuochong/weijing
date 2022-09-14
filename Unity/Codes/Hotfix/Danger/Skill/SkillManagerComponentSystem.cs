@@ -48,16 +48,20 @@ namespace ET
 
     public static class SkillManagerComponentSystem
     {
-        public static long GetCdTime(this SkillManagerComponent self, int skillId)
+        public static long GetCdTime(this SkillManagerComponent self, int skillId, long nowTime)
         {
-            long nowTime = TimeHelper.ServerNow();
-            foreach (var item in self.SkillCDs)
+            SkillCDList skillCD = null;
+            if (self.SkillCDs.TryGetValue(skillId, out skillCD))
             {
-                if (item.Value.SkillID == skillId)
-                {
-                    return item.Value.CDEndTime - nowTime;
-                }
+                return skillCD.CDEndTime - nowTime;
             }
+            //foreach (var item in self.SkillCDs)
+            //{
+            //    if (item.Value.SkillID == skillId)
+            //    {
+            //        return item.Value.CDEndTime - nowTime;
+            //    }
+            //}
             return 0;
         }
 
@@ -90,7 +94,7 @@ namespace ET
                 self.Skills[i].OnUpdate();
             }
 
-            if (self.Skills.Count == 0 && self.SkillCDs.Count == 0)
+            if (self.Skills.Count == 0 && self.SkillCDs.Count == 0 && self.Timer!=0)
             {
                 TimerComponent.Instance?.Remove(ref self.Timer);
             }

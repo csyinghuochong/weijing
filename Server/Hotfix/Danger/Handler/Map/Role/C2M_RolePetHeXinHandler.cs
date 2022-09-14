@@ -29,7 +29,7 @@ namespace ET
                     m2c_bagUpdate.BagInfoUpdate.Add(oldBagInfo);
                     rolePetInfo.PetHeXinList[request.Position] = 0;
                 }
-                if (request.OperateType == 1) //1 装备  2卸下
+                if (request.OperateType == 1) //1 装备  2卸下[前面已经处理过了]
                 {
                     ItemLocType itemLocType = request.OperateType == 1 ? ItemLocType.ItemPetHeXinBag : ItemLocType.ItemPetHeXinEquip;
                     BagInfo bagInfo = bagComponent.GetItemByLoc(itemLocType, request.BagInfoId);
@@ -40,8 +40,11 @@ namespace ET
                     m2c_bagUpdate.BagInfoUpdate.Add(bagInfo);
                     rolePetInfo.PetHeXinList[request.Position] = request.BagInfoId;
                 }
+                Unit unitPet = unit.GetParent<UnitComponent>().Get(request.PetInfoId);
+                petComponent.UpdatePetAttribute(rolePetInfo, unitPet);
                 MessageHelper.SendToClient(unit, m2c_bagUpdate);
 
+                response.RolePetInfo = rolePetInfo;
                 reply();
                 await ETTask.CompletedTask;
             }

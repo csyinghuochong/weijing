@@ -271,7 +271,7 @@ namespace ET
             return 0;
         }
 
-        public static void OnRolePetJiadian(this PetComponent self, RolePetInfo rolePetInfo)
+        public static void OnRolePetUpdate(this PetComponent self, RolePetInfo rolePetInfo)
         {
             for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
             {

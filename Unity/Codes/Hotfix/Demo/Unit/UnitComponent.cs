@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
@@ -7,7 +8,7 @@ namespace ET
 	{
 		public override void Awake(UnitComponent self)
 		{
-
+			self.Units.Clear();
 		}
 	}
 	
@@ -16,7 +17,7 @@ namespace ET
 	{
 		public override void Destroy(UnitComponent self)
 		{
-
+			self.Units.Clear();
 		}
 	}
 	
@@ -24,6 +25,7 @@ namespace ET
 	{
 		public static void Add(this UnitComponent self, Unit unit)
 		{
+			self.Units.Add(unit);
 		}
 
 		public static Unit Get(this UnitComponent self, long id)
@@ -35,12 +37,14 @@ namespace ET
 		public static void Remove(this UnitComponent self, long id)
 		{
 			Unit unit = self.GetChild<Unit>(id);
+			self.Units.Remove(unit);
 			unit?.Dispose();
 		}
 
-		public static Entity[] GetAll(this UnitComponent self)
+		public static List<Unit> GetAll(this UnitComponent self)
 		{
-			return self.Children.Values.ToArray();
+			return self.Units;
+			//return self.Children.Values.ToArray();
 		}
 	}
 }

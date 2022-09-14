@@ -113,6 +113,7 @@ namespace ET
 
             self.LastLoginTime = currentTime;
             UserInfo userInfo = self.UserInfo;
+            self.UserName = self.UserInfo.Name;
             long gateSeesionId = unit.GetComponent<UnitGateComponent>().GateSessionActorId;
 
             //聊天服注册

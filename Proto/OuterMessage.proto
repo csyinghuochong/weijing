@@ -1642,6 +1642,7 @@ message M2C_RolePetHeXin // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;		
 	int32 Error = 92;
+	RolePetInfo RolePetInfo = 1;
 }
 
 //ResponseType M2C_RolePetEggPut

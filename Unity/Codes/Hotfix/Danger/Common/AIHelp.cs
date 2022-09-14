@@ -48,10 +48,10 @@ namespace ET
         {
             Unit nearest = null;
             float distance = -1f;
-            Entity[] units = unit.GetParent<UnitComponent>().GetAll();
-            for (int i = 0; i < units.Length; i++)
+            List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
             {
-                Unit uu = units[i] as Unit;
+                Unit uu = units[i];
                 if (unit.Id == uu.Id)
                     continue;
                 if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(unit))
@@ -70,10 +70,10 @@ namespace ET
         {
             Unit nearest = null;
             float distance = maxdis;
-            Entity[] units = unit.GetParent<UnitComponent>().GetAll();
-            for (int i = 0; i < units.Length; i++)
+            List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
             {
-                Unit uu = units[i] as Unit;
+                Unit uu = units[i];
                 if (uu.Id  == unit.Id || uu.Id == mainId || ids.Contains(uu.Id) )
                 {
                     continue;

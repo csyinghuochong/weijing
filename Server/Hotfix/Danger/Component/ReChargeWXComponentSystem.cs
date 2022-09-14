@@ -25,7 +25,6 @@ namespace ET
 
         public static async ETTask<string> WeChatPay(this ReChargeWXComponent self, M2R_RechargeRequest request)
         {
-            await ETTask.CompletedTask;
             string paramss = $"{request.RechargeNumber}_{request.RechargeNumber}_{request.RechargeNumber}";
             string[] msg = paramss.Split('_');
 

@@ -127,7 +127,7 @@ namespace ET
 			int pet_Lv = 1;
 			int pet_exp = 0;
 			int addPropertyNum = pet_Lv * 5 + 20;
-			string addPropertyValue = "0;0;0;0";
+			string addPropertyValue = "0_0_0_0";
 			bool baby = false;
 			bool baby_1 = petinfo_1.IfBaby;
 			bool baby_2 = petinfo_2.IfBaby;
@@ -147,7 +147,7 @@ namespace ET
 				addPropertyNum = (pet_Lv - 1) * 5 + 20;
 				//addPropertyValue = "15;15;15;15";
 				int writeProValue = 15 + (pet_Lv - 1) * 1;
-				addPropertyValue = writeProValue + ";" + writeProValue + ";" + writeProValue + ";" + writeProValue;
+				addPropertyValue = writeProValue + "_" + writeProValue + "_" + writeProValue + "_" + writeProValue;
 			}
 			else
 			{
@@ -160,8 +160,7 @@ namespace ET
 					pet_exp = 0;
 					addPropertyNum = (pet_Lv - 1) * 5 + 20;
 					int writeProValue = 15 + (pet_Lv - 1) * 1;
-					addPropertyValue = writeProValue + ";" + writeProValue + ";" + writeProValue + ";" + writeProValue;
-					//addPropertyValue = "15;15;15;15";
+					addPropertyValue = writeProValue + "_" + writeProValue + "_" + writeProValue + "_" + writeProValue;
 				}
 				else
 				{
@@ -172,7 +171,7 @@ namespace ET
 						pet_Lv = 1;
 						pet_exp = 0;
 						addPropertyNum = (pet_Lv - 1) * 5 + 20;
-						addPropertyValue = "0;0;0;0";
+						addPropertyValue = "0_0_0_0";
 						petID = 10001020;
 						savePetSkillID = new List<int>();
 
@@ -298,7 +297,7 @@ namespace ET
 			int add_3 = (int)(sumNum * ran_3);
 			int add_4 = (int)(sumNum * ran_4);
 
-			return add_1 + ";" + add_2 + ";" + add_3 + ";" + add_4;
+			return add_1 + "_" + add_2 + "_" + add_3 + "_" + add_4;
 		}
 
 		public float Pet_HeCheng_ZiZhi(float zizhiValue_1, float zizhiValue_2, float maxZiZhi = 99999, string ziZhiType = "0")

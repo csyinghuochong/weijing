@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -33,8 +34,8 @@ namespace ET
         public static int GetDropNumber(this DropUIComponent self)
         {
             int number = 0;
-            Entity[] units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < units.Length; i++)
+            List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
             {
                 if (units[i].GetComponent<UnitInfoComponent>().Type == UnitType.DropItem)
                 {

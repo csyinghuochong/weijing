@@ -23,26 +23,23 @@ public class NpcLocal : MonoBehaviour
 
     void Start()
     {
-        if (this.NpcId != 0)
-        {
-            return;
-        }
-        this.NpcId = int.Parse(this.gameObject.name);
         this.UiCamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
         this.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
         this.Blood = GameObject.Find("Global/UI/Blood");
         this.HeadPos = this.transform.Find("NamePoint");
+        if (this.HeadPos == null)
+        {
+            UnityEngine.Debug.LogError($"NamePoint==null {this.gameObject.name}");
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Target == null)
-        { 
+        if (this.Target == null)
+        {
             return;
         }
-        */
         float distance = Vector3.Distance(Target.position, this.transform.position);
         if (distance < 3f && this.HeadBar == null)
         {
