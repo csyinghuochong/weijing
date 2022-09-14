@@ -37,6 +37,10 @@ public class MyCamera_1 : MonoBehaviour
         //RaycastHit[] hit;
         //hit = Physics.RaycastAll(Target.position, aim, 100f);//起始位置、方向、距离
 
+        if (Target == null)
+        {
+            return;
+        }
         Vector3 m_CameraPos = new Vector3(this.transform.position.x, this.transform.position.y, this.transform.position.z - 5);
         RaycastHit[] hit = Physics.RaycastAll(m_CameraPos, Target.position - m_CameraPos, 13);
 
