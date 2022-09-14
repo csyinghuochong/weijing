@@ -11,7 +11,7 @@ namespace ET
         {
             List<DBCenterAccountInfo> resulets = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), d => d.Id == request.AccountId);
             resulets[0].PlayerInfo.RechargeInfos.Add(request.RechargeInfo);
-
+            Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(scene.DomainZone(), resulets[0]).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

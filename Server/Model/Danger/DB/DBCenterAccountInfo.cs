@@ -25,8 +25,5 @@ namespace ET
         public int AccountType; //账号类型
 
         public long CreateTime; //创建时间
-
-        //合区删除UserList列表
-        public List<long> DeleteUserList = new List<long>();
     }
 }

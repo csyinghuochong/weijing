@@ -23,6 +23,9 @@ namespace ET
 
             self.RoleListNode = rc.Get<GameObject>("RoleListNode");
             self.RoleItem = rc.Get<GameObject>("RoleItem");
+            self.RoleItem.SetActive(false);
+
+            self.OnInitUI();
         }
     }
 
@@ -30,10 +33,15 @@ namespace ET
     {
 
         public static void OnInitUI(this UIBuChangComponent self)
-        { 
-            
-
-
+        {
+            AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            for (int i = 0; i < accountInfo.PlayerInfo.DeleteUserList.Count; i++)
+            {
+                GameObject goitem = GameObject.Instantiate(self.RoleItem);
+                goitem.SetActive(true);
+                UICommonHelper.SetParent(goitem, self.RoleListNode );
+                self.AddChild<UIBuChangItemComponent, GameObject>(goitem).OnInitUI(accountInfo.PlayerInfo.DeleteUserList[i]);
+            }
         }
 
     }

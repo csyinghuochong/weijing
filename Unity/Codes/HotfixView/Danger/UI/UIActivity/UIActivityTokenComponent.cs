@@ -61,7 +61,9 @@ namespace ET
             }
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            int selfRechage = self.ZoneScene().GetComponent<AccountInfoComponent>().GetRechargeNumber(userInfoComponent.UserInfo.UserId);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int selfRechage = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
+            //self.ZoneScene().GetComponent<AccountInfoComponent>().GetRechargeNumber(userInfoComponent.UserInfo.UserId);
             self.TextRecharge.GetComponent<Text>().text = $"当前额度：{selfRechage}/298";
             self.TextRecharge.SetActive(selfRechage < 298);
         }

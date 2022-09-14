@@ -951,10 +951,10 @@ message M2Center_BuChangeRequest // IActorRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int32 XiLianId = 1;
 
 	int64 BuChangId = 1;
 	int64 UserId = 2;
+	 int64 AccountId = 3;
 }
 
 message Center2M_BuChangeResponse // IActorResponse

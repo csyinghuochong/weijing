@@ -536,6 +536,7 @@ message PlayerInfo
 	string IdCardNo = 3;
 	int32 RealNameReward = 4; //0 未领取 1已领取
 	repeated RechargeInfo RechargeInfos = 5;
+	repeated KeyValuePair DeleteUserList = 6;
 }
 
 //ResponseType M2C_TestActorResponse
@@ -3186,8 +3187,6 @@ message RechargeInfo
 	int32 Amount = 1;
 	int64 Time = 2;
 	int64 UserId = 3;
-	string Name = 4;
-	int32 Zone = 5;
 }
 
 message ShouJiChapterInfo
@@ -3854,8 +3853,6 @@ message C2M_BuChangeRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	int32 XiLianId = 1;
-
 	int64 BuChangId = 1;
 }
 
