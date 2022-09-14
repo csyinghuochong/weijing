@@ -17,7 +17,7 @@ namespace ET
                 UserId = userInfoComponent.Id,
                 AccountId = userInfoComponent.UserInfo.AccInfoID
             });
-            int rechargeNum = 0;
+            int rechargeNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
             for (int i = 0; i < centerAccount.RechargeInfos.Count; i++)
             {
                 if (centerAccount.RechargeInfos[i].UserId == userInfoComponent.Id)
@@ -25,7 +25,7 @@ namespace ET
                     rechargeNum += centerAccount.RechargeInfos[i].Amount;
                 }
             }
-            unit.GetComponent<NumericComponent>().ApplyChange( null, NumericType.RechargeNumber, rechargeNum,0);
+            unit.GetComponent<NumericComponent>().ApplyValue( NumericType.RechargeNumber, rechargeNum);
             response.RechargeInfos = centerAccount.RechargeInfos;
             reply();
             await ETTask.CompletedTask;
