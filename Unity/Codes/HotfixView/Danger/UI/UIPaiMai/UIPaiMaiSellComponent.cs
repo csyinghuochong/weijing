@@ -93,9 +93,6 @@ namespace ET
             {
                 //弹出提示
                 FloatTipManager.Instance.ShowFloatTip("请前往主城摆摊!");
-
-                //PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "摆摊提示", "是否前往摆摊区域进行摆摊?", ()=> { self.OnRun(); }).Coroutine();
-
             }
         }
 

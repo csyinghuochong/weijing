@@ -31,7 +31,8 @@ namespace ET
                 }
                 if (self.BaiTan != null)
                 {
-                    GameObjectPool.Instance.InternalPut(ABPathHelper.GetUnitPath("Player/BaiTan"), self.GameObject);
+                    GameObjectPool.Instance.InternalPut(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
+                    self.BaiTan.SetActive(false);
                 }
                 self.BaiTan = null;
             }
