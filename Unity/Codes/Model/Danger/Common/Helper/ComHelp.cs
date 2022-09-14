@@ -934,9 +934,20 @@ namespace ET
             double hideShowPro = equipConfig.HideShowPro;
             if (xilianType == 1)
             {
-                hideShowPro = 1;
+                hideShowPro = 1;        //洗炼100%出随机属性
             }
-            //hideShowPro = 1;
+
+            //附加额外的极品属性
+            float equipJiPinPro = 0.3f;
+            //附加特殊技能
+            float equipJiPinSkillPro = 0.2f;
+
+            //-------------------测试-------------------
+            //附加额外的极品属性
+            equipJiPinPro = 1f;
+            //附加特殊技能
+            equipJiPinSkillPro = 1f;
+
             //获取装备是否有锻造大师属性
             /*
             float hintSkillProValue = 0.2f;
@@ -1043,8 +1054,7 @@ namespace ET
                     HideProList.Add(new HideProList() { HideID = 100, HideValue = addValue });
                 }
                 */
-                //附加额外的极品属性
-                float equipJiPinPro = 0.3f;
+
 
                 //如果是掉落,概率降低10倍
                 /*
@@ -1170,8 +1180,7 @@ namespace ET
                 //判定是否需要写入特殊技能
                 if (bagInfo.HideID != 0)
                 {
-                    //附加特殊技能
-                    float equipJiPinSkillPro = 0.0108f;
+
                     //如果是掉落,概率降低10倍
 
                     //洗炼大师附加

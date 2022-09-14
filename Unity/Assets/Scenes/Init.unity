@@ -840,7 +840,7 @@ MonoBehaviour:
   WXAppSecret: dd075324e0a4ab44bd49d972efcffedc
   javaClassStr: com.example.alinewsdk.AliSDKActivity
   javaActiveStr: currentActivity
-  CodeMode: 2
+  CodeMode: 1
   VersionMode: 1
 --- !u!4 &575235020
 Transform:

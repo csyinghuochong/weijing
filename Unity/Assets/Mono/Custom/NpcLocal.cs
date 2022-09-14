@@ -41,7 +41,7 @@ public class NpcLocal : MonoBehaviour
             return;
         }
         float distance = Vector3.Distance(Target.position, this.transform.position);
-        if (distance < 3f && this.HeadBar == null)
+        if (distance < 15f && this.HeadBar == null)
         {
             this.HeadBar = GameObject.Instantiate(this.AssetBundle);
             this.HeadBar.transform.Find("Lab_NpcName").GetComponent<Text>().text = this.NpcName;
@@ -49,7 +49,7 @@ public class NpcLocal : MonoBehaviour
             this.HeadBar.transform.SetParent(this.Blood.transform);
             this.HeadBar.transform.localScale = Vector3.one;
         }
-        if (distance > 3f && this.HeadBar != null)
+        if (distance > 15f && this.HeadBar != null)
         {
             GameObject.Destroy(this.HeadBar);
             this.HeadBar = null;

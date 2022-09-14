@@ -1874,7 +1874,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTypeEnum: 1
   moveDistance: 2000
-  delayTime: 0
+  isLoop: 0
   MoveToTime: 0
 --- !u!1 &1714446991795346
 GameObject:
@@ -2279,7 +2279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &224562218819575098
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5133,7 +5133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTypeEnum: 1
   moveDistance: -500
-  delayTime: 0
+  isLoop: 0
   MoveToTime: 0
 --- !u!1 &4227950307350922727
 GameObject:

@@ -87,23 +87,26 @@ namespace ET
 		/// <summary>洗炼属性出现部位</summary>
 		[ProtoMember(4)]
 		public int[] EquipSpace { get; set; }
-		/// <summary>随机概率</summary>
+		/// <summary>需要洗炼等级</summary>
 		[ProtoMember(5)]
+		public int NeedXiLianLv { get; set; }
+		/// <summary>随机概率</summary>
+		[ProtoMember(6)]
 		public double TriggerPro { get; set; }
 		/// <summary>隐藏属性类型</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int PropertyType { get; set; }
 		/// <summary>是否根据等级成长</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int IfEquipLvUp { get; set; }
 		/// <summary>隐藏属性类型</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int HideProValueType { get; set; }
 		/// <summary>隐藏属性最小值</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public string PropertyValueMin { get; set; }
 		/// <summary>隐藏属性最大值</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public string PropertyValueMax { get; set; }
 
 	}
