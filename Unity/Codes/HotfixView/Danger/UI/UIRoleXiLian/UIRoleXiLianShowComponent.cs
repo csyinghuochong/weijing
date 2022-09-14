@@ -38,7 +38,7 @@ namespace ET
 			self.XilianBagInfo = null;
 			ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 			self.XiLianButton = rc.Get<GameObject>("XiLianButton");
-			self.XiLianButton.GetComponent<Button>().onClick.AddListener(() => { self.OnXiLianButton(); });
+			self.XiLianButton.GetComponent<Button>().onClick.AddListener(() => { self.OnXiLianButton().Coroutine(); });
 
 			self.Text_CostValue = rc.Get<GameObject>("Text_CostValue");
 			self.Text_CostName = rc.Get<GameObject>("Text_CostName");
@@ -56,8 +56,6 @@ namespace ET
 			self.XiLianItemUI = null;
 			self.CostItem.SetActive(false);
 			self.InitSubItemUI().Coroutine();
-
-			self.UpdateShow();
 		}
 	}
 
@@ -108,32 +106,32 @@ namespace ET
 			BagInfo bagInfoNeed = new BagInfo() { ItemID = itemCost[0], ItemNum = itemCost[1] };
 			self.CostItemUI.GetComponent<UIItemComponent>().UpdateItem(bagInfoNeed, ItemOperateEnum.None);
 			self.CostItemUI.GetComponent<UIItemComponent>().Label_ItemNum.SetActive(false);
+
 			self.Text_CostValue.GetComponent<Text>().text = string.Format("{0}/{1}", self.BagComponent.GetItemNumber(itemCost[0]), itemCost[1]);
+			self.Text_CostValue.GetComponent<Text>().color = self.BagComponent.GetItemNumber(itemCost[0]) >= itemCost[1] ? Color.green : Color.red;
+
 			self.Text_CostName.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(bagInfoNeed.ItemID).ItemName;
 			self.Text_CostName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor((int)ItemConfigCategory.Instance.Get(bagInfoNeed.ItemID).ItemQuality);
-			if (self.BagComponent.GetItemNumber(itemCost[0]) >= itemCost[1]) {
+			if (self.BagComponent.GetItemNumber(itemCost[0]) >= itemCost[1])
+			{
 				self.Text_CostValue.GetComponent<Text>().color = Color.green;
 			}
 		}
 
 		public static void OnXiLianReturn(this UIRoleXiLianShowComponent self)
 		{
-			if (self.XilianBagInfo != null)
-			{
-				self.XilianBagInfo = self.BagComponent.GetBagInfo(self.XilianBagInfo.BagInfoID);
-			}
+			self.XilianBagInfo = self.BagComponent.GetBagInfo(self.XilianBagInfo.BagInfoID);
 			self.OnUpdateXinLian();
 			self.OnEquiListUpdate().Coroutine();
 		}
 
 		public static async ETTask OnEquiListUpdate(this UIRoleXiLianShowComponent self)
 		{
+			int number = 0;
 			var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-			await ETTask.CompletedTask;
-			var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+			var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 			List<BagInfo> equipInfos = self.BagComponent.GetItemsByType(ItemTypeEnum.Equipment);
 
-			int number = 0;
 			for (int i = 0; i < equipInfos.Count; i++)
 			{
 				if (equipInfos[i].IfJianDing)
@@ -188,8 +186,7 @@ namespace ET
 		public static async ETTask InitSubItemUI(this UIRoleXiLianShowComponent self)
 		{
 			var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-			await ETTask.CompletedTask;
-			var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+			var bundleGameObject =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
 			GameObject go = GameObject.Instantiate(bundleGameObject);
 			UICommonHelper.SetParent(go, self.UIXiLianItemNode);
@@ -213,7 +210,7 @@ namespace ET
 			}
 		}
 
-		public static void OnXiLianButton(this UIRoleXiLianShowComponent self)
+		public static async ETTask OnXiLianButton(this UIRoleXiLianShowComponent self)
 		{
 			if (self.XilianBagInfo == null)
 			{
@@ -235,29 +232,8 @@ namespace ET
 				return;
 			}
 
-			/*
-			int maxXilian = int.Parse(GlobalValueConfigCategory.Instance.Get(27).Value);
-			Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-			if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_XiLian) >= maxXilian)
-			{
-				FloatTipManager.Instance.ShowFloatTip("今日已达到最大重铸次数！");
-				return;
-			}
-			*/
-
-			self.BagComponent.SendXiLian(self.XilianBagInfo).Coroutine();
-			self.UpdateShow();
-		}
-
-		public static void UpdateShow(this UIRoleXiLianShowComponent self)
-		{
-			int maxXilian = int.Parse(GlobalValueConfigCategory.Instance.Get(27).Value);
-			Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-			//unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_XiLian);
-
-			//显示数据
-			self.Lab_Num.GetComponent<Text>().text = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_XiLian) + "/" + maxXilian;
-			//Log.ILog.Info("洗炼...");
+			await self.BagComponent.SendXiLian(self.XilianBagInfo);
+			self.OnXiLianReturn();
 		}
 	}
 }

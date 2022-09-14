@@ -38,7 +38,6 @@ namespace ET
             DataUpdatelegateDics.Add(DataType.TaskCountryUpdate, OnTaskCountryUpdate);
             DataUpdatelegateDics.Add(DataType.SettingUpdate, OnSettingUpdate);
             DataUpdatelegateDics.Add(DataType.PetFenJieUpdate, OnPetFenJieUpdate);
-            DataUpdatelegateDics.Add(DataType.EquipXiLian, OnEquipXiLian);
             DataUpdatelegateDics.Add(DataType.EquipHuiShow, OnEquipHuiShow);
             DataUpdatelegateDics.Add(DataType.BagItemAdd, OnBagItemAdd);
             DataUpdatelegateDics.Add(DataType.BuffUpdate, OnBuffUpdate);
@@ -155,18 +154,6 @@ namespace ET
                 if (component is UIRoleComponent uiComponent)
                 {
                     uiComponent.OnEquipHuiShow();
-                    continue;
-                }
-            }
-        }
-
-        public void OnEquipXiLian(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
-        {
-            foreach (var component in dataUpdateComponentDic.Values)
-            {
-                if (component is UIRoleXiLianComponent uiComponent)
-                {
-                    uiComponent.OnEquipXiLian();
                     continue;
                 }
             }

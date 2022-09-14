@@ -39,8 +39,6 @@ namespace ET
         {
             C2M_ItemXiLianRequest c2M_ItemHuiShouRequest = new C2M_ItemXiLianRequest() { OperateBagID = bagInfo.BagInfoID };
             M2C_ItemXiLianResponse r2c_roleEquip = (M2C_ItemXiLianResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
-
-            HintHelp.GetInstance().DataUpdate(DataType.EquipXiLian);
             HintHelp.GetInstance().ShowHint("洗炼道具成功");
         }
 

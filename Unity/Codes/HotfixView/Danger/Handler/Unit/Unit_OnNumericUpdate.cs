@@ -24,10 +24,6 @@
                     UI uI_2 = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
                     uI_2.GetComponent<UIMainComponent>().OnUpdateDamage(args.Unit);
                     break;
-                case NumericType.Now_XiLian:
-                    UI uirole = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIRole);
-                    uirole?.GetComponent<UIRoleXiLianComponent>().OnEquipXiLian();
-                    break;
                 case NumericType.Pet_ChouKa:
                     UI uipet = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIPetEgg);
                     uipet?.GetComponent<UIPetEggComponent>().UpdateChouKaTime();
@@ -43,6 +39,8 @@
                     {
                         args.Unit.GetComponent<ChangeEquipComponent>().ChangeWeapon("");
                     }
+                    break;
+                case NumericType.Now_XiLian:
                     break;
                 case NumericType.Ling_DiLv:
                     break;

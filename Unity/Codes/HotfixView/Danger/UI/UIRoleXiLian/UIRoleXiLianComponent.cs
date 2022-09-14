@@ -47,8 +47,6 @@ namespace ET
 			});
 			uIPageViewComponent.OnSelectIndex(0);
 			self.UIPageButton = uiPage;
-
-			DataUpdateComponent.Instance.AddListener(DataType.EquipXiLian, self);
 		}
 	}
 
@@ -57,7 +55,6 @@ namespace ET
 	{
 		public override void Destroy(UIRoleXiLianComponent self)
 		{
-			DataUpdateComponent.Instance.RemoveListener(DataType.EquipXiLian, self);
 		}
 	}
 
@@ -66,11 +63,6 @@ namespace ET
 		public static void OnClickPageButton(this UIRoleXiLianComponent self, int page)
 		{
 			self.UIPageView.OnSelectIndex(page).Coroutine();
-		}
-
-		public static void OnEquipXiLian(this UIRoleXiLianComponent self)
-		{
-			self.UIPageView.UISubViewList[(int)RoleXiLianPageEnum.RoleXiLianShow].GetComponent<UIRoleXiLianShowComponent>().OnXiLianReturn();
 		}
 	}
 }

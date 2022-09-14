@@ -43,7 +43,6 @@
         //穿戴装备
         public const int EquipWear = 12;
 
-        public const int EquipXiLian = 13;
 
         public const int EquipHuiShow = 14;
 
