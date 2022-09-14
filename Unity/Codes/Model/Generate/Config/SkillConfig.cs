@@ -123,114 +123,114 @@ namespace ET
 		/// <summary>连招技能ID</summary>
 		[ProtoMember(16)]
 		public int ComboSkillID { get; set; }
-		/// <summary>伤害类型</summary>
+		/// <summary>技能攻击类型</summary>
 		[ProtoMember(17)]
+		public int SkillActType { get; set; }
+		/// <summary>伤害类型</summary>
+		[ProtoMember(18)]
 		public int DamgeType { get; set; }
 		/// <summary>伤害元素攻击</summary>
-		[ProtoMember(18)]
+		[ProtoMember(19)]
 		public int DamgeElementType { get; set; }
 		/// <summary>攻击系数</summary>
-		[ProtoMember(19)]
+		[ProtoMember(20)]
 		public double ActDamge { get; set; }
 		/// <summary>固定伤害值</summary>
-		[ProtoMember(20)]
+		[ProtoMember(21)]
 		public int DamgeValue { get; set; }
 		/// <summary>是否必中</summary>
-		[ProtoMember(21)]
+		[ProtoMember(22)]
 		public int IfMustAct { get; set; }
 		/// <summary>消耗魔法</summary>
-		[ProtoMember(22)]
+		[ProtoMember(23)]
 		public int SkillUseMP { get; set; }
 		/// <summary>增加魔法</summary>
-		[ProtoMember(23)]
+		[ProtoMember(24)]
 		public int SkillAddMP { get; set; }
 		/// <summary>是否触发公共CD</summary>
-		[ProtoMember(24)]
+		[ProtoMember(25)]
 		public int IfPublicSkillCD { get; set; }
 		/// <summary>是否触发冷却技能CD</summary>
-		[ProtoMember(25)]
+		[ProtoMember(26)]
 		public int IfSkillCD { get; set; }
 		/// <summary>冷却CD</summary>
-		[ProtoMember(26)]
+		[ProtoMember(27)]
 		public int SkillCD { get; set; }
 		/// <summary>伤害范围类型</summary>
-		[ProtoMember(27)]
+		[ProtoMember(28)]
 		public int DamgeRangeType { get; set; }
 		/// <summary>伤害范围</summary>
-		[ProtoMember(28)]
+		[ProtoMember(29)]
 		public double[] DamgeRange { get; set; }
 		/// <summary>技能目标类型</summary>
-		[ProtoMember(29)]
+		[ProtoMember(30)]
 		public int SkillTargetType { get; set; }
 		/// <summary>释放区域类型</summary>
-		[ProtoMember(30)]
+		[ProtoMember(31)]
 		public int SkillZhishiType { get; set; }
 		/// <summary>释放区域大小</summary>
-		[ProtoMember(31)]
+		[ProtoMember(32)]
 		public double SkillRangeSize { get; set; }
 		/// <summary>技能指示器增加范围</summary>
-		[ProtoMember(32)]
+		[ProtoMember(33)]
 		public int SkillRangeZhiShiSize { get; set; }
 		/// <summary>施法前吟唱时间</summary>
-		[ProtoMember(33)]
+		[ProtoMember(34)]
 		public double SkillFrontSingTime { get; set; }
 		/// <summary>施法中吟唱时间</summary>
-		[ProtoMember(34)]
+		[ProtoMember(35)]
 		public double SkillSingTime { get; set; }
 		/// <summary>技能僵直</summary>
-		[ProtoMember(35)]
+		[ProtoMember(36)]
 		public double SkillRigidity { get; set; }
 		/// <summary>技能存在时间[毫秒]</summary>
-		[ProtoMember(36)]
+		[ProtoMember(37)]
 		public int SkillLiveTime { get; set; }
 		/// <summary>技能效果延迟时间</summary>
-		[ProtoMember(37)]
+		[ProtoMember(38)]
 		public double SkillDelayTime { get; set; }
 		/// <summary>技能移动速度</summary>
-		[ProtoMember(38)]
+		[ProtoMember(39)]
 		public double SkillMoveSpeed { get; set; }
 		/// <summary>初始化BUFFID</summary>
-		[ProtoMember(39)]
+		[ProtoMember(40)]
 		public int[] InitBuffID { get; set; }
 		/// <summary>释放BUFFID</summary>
-		[ProtoMember(40)]
+		[ProtoMember(41)]
 		public int[] BuffID { get; set; }
 		/// <summary>施法动作名称</summary>
-		[ProtoMember(41)]
+		[ProtoMember(42)]
 		public string SkillAnimation { get; set; }
 		/// <summary>技能音效</summary>
-		[ProtoMember(42)]
+		[ProtoMember(43)]
 		public string SkillMusic { get; set; }
 		/// <summary>技能特效ID</summary>
-		[ProtoMember(43)]
+		[ProtoMember(44)]
 		public int SkillHitEffectID { get; set; }
 		/// <summary>技能特效ID</summary>
-		[ProtoMember(44)]
+		[ProtoMember(45)]
 		public int[] SkillEffectID { get; set; }
 		/// <summary>脚本名称</summary>
-		[ProtoMember(45)]
+		[ProtoMember(46)]
 		public string GameObjectName { get; set; }
 		/// <summary>每个脚本对应参数</summary>
-		[ProtoMember(46)]
+		[ProtoMember(47)]
 		public string GameObjectParameter { get; set; }
 		/// <summary>所有脚本通用参数</summary>
-		[ProtoMember(47)]
+		[ProtoMember(48)]
 		public string ComObjParameter { get; set; }
 		/// <summary>是否显示</summary>
-		[ProtoMember(48)]
+		[ProtoMember(49)]
 		public int IsShow { get; set; }
 		/// <summary>技能描述</summary>
-		[ProtoMember(49)]
+		[ProtoMember(50)]
 		public string SkillDescribe { get; set; }
 		/// <summary>触发技能时附带技能</summary>
-		[ProtoMember(50)]
+		[ProtoMember(51)]
 		public int AddSkillID { get; set; }
 		/// <summary>技能触发时间</summary>
-		[ProtoMember(51)]
-		public double PassiveSkillTriggerTime { get; set; }
-		/// <summary>技能攻击类型</summary>
 		[ProtoMember(52)]
-		public int SkillActType { get; set; }
+		public double PassiveSkillTriggerTime { get; set; }
 		/// <summary>施法时是否面对目标</summary>
 		[ProtoMember(53)]
 		public int IfLookAtTarget { get; set; }

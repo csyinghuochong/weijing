@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIRoleXiLianLevelItemComponent : Entity, IAwake<GameObject>
     {
+        public GameObject ImageExp;
         public GameObject ButtonGet;
         public GameObject ItemListNode;
         public GameObject TextShuLianDu;
@@ -27,6 +28,7 @@ namespace ET
             self.GameObject = go;
 
             ReferenceCollector rc = go.GetComponent<ReferenceCollector>();
+            self.ImageExp = rc.Get<GameObject>("ImageExp");
             self.TextShuLianDu = rc.Get<GameObject>("TextShuLianDu");
             self.TextLevelTip = rc.Get<GameObject>("TextLevelTip");
             self.TextAttribute = rc.Get<GameObject>("TextAttribute");
@@ -69,6 +71,8 @@ namespace ET
             self.ButtonGet.SetActive(actived && !userInfo.XiLianRewardIds.Contains(xilianId));
             self.TextShuLianDu.GetComponent<Text>().text = $"需要洗练熟练度 {shuliandu}/{equipXiLianConfig.NeedShuLianDu}";
             self.TextShuLianDu.GetComponent<Text>().color = actived ? Color.green : Color.red;
+            float progress = shuliandu * 1f / equipXiLianConfig.NeedShuLianDu;
+            self.ImageExp.GetComponent<Image>().fillAmount = Mathf.Min(progress, 1f);
             self.TextTitle.GetComponent<Text>().text = equipXiLianConfig.Title;
 
             if (equipXiLianConfig.ProList_Type[0] != 0)

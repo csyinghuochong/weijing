@@ -81,20 +81,23 @@ namespace ET
 		/// <summary>洗练类型</summary>
 		[ProtoMember(2)]
 		public int XiLianType { get; set; }
-		/// <summary>需要熟练度</summary>
+		/// <summary>洗练等级</summary>
 		[ProtoMember(3)]
+		public int XiLianLevel { get; set; }
+		/// <summary>需要熟练度</summary>
+		[ProtoMember(4)]
 		public int NeedShuLianDu { get; set; }
 		/// <summary>称号</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public string Title { get; set; }
 		/// <summary>属性类型</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int[] ProList_Type { get; set; }
 		/// <summary>属性值</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int[] ProList_Value { get; set; }
 		/// <summary>达成奖励</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public string RewardList { get; set; }
 
 	}

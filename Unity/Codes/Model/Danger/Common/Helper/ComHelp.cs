@@ -901,7 +901,7 @@ namespace ET
         /// </summary>
         /// <param name="bagInfo"></param>
         /// xilianType  洗炼类型   0 普通掉落  1 装备洗炼功能
-        public static void XiLianItem(BagInfo bagInfo, int xilianType = 0)
+        public static void XiLianItem(BagInfo bagInfo, int xilianType, int xilianLv)
         {
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             //获取装备等级和装备类型
@@ -1082,6 +1082,11 @@ namespace ET
                     do
                     {
                         HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hintProListID);
+
+                        if (hideProListConfig.NeedXiLianLv > xilianLv)
+                        {
+                            break;
+                        }
                         //获取单条触发概率
                         double triggerPro = hideProListConfig.TriggerPro;
                         //判定当条属性位置是否激活
@@ -1103,8 +1108,6 @@ namespace ET
                         {
                             break;
                         }
-
-
                         //触发隐藏属性
                         if (RandomHelper.RandFloat01() < triggerPro)
                         {
@@ -1302,7 +1305,6 @@ namespace ET
             bagInfo.XiLianHideProLists = BaseHideProList;   //基础属性洗炼
             bagInfo.HideSkillLists = HideSkillList;         //隐藏技能
             bagInfo.XiLianHideTeShuProLists = TeShuHideProList;  //特殊属性洗炼
-
         }
 
         private static int returnProValue(int xuhao)
