@@ -168,8 +168,8 @@ namespace ET
 		 public const ushort M2C_TaskTrackResponse = 10165;
 		 public const ushort C2M_TaskNoticeRequest = 10166;
 		 public const ushort M2C_TaskNoticeResponse = 10167;
-		 public const ushort C2M_CommitTaskRequest = 10168;
-		 public const ushort M2C_CommitTaskResponse = 10169;
+		 public const ushort C2M_TaskCommitRequest = 10168;
+		 public const ushort M2C_TaskCommitResponse = 10169;
 		 public const ushort M2C_TaskUpdate = 10170;
 		 public const ushort TaskPro = 10171;
 		 public const ushort C2M_RolePetList = 10172;

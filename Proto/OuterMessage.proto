@@ -1522,15 +1522,15 @@ message M2C_TaskNoticeResponse    // IActorLocationResponse
 }
 
 //提交任务
-//ResponseType M2C_CommitTaskResponse
-message C2M_CommitTaskRequest    // IActorLocationRequest
+//ResponseType M2C_TaskCommitResponse
+message C2M_TaskCommitRequest    // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 TaskId = 1;
 	int32 TaskStatus = 2; //0未激活 1已接取 2已完成 3已领取
 }
 
-message M2C_CommitTaskResponse    // IActorLocationResponse
+message M2C_TaskCommitResponse    // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

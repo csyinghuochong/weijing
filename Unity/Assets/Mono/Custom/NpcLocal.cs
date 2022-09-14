@@ -33,6 +33,15 @@ public class NpcLocal : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        if (this.HeadBar != null)
+        {
+            GameObject.Destroy(this.HeadBar);
+            this.HeadBar = null;
+        }
+    }
+
     // Update is called once per frame
     void Update()
     {

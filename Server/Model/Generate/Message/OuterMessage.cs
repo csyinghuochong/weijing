@@ -3215,10 +3215,10 @@ namespace ET
 	}
 
 //提交任务
-	[ResponseType(nameof(M2C_CommitTaskResponse))]
-	[Message(OuterOpcode.C2M_CommitTaskRequest)]
+	[ResponseType(nameof(M2C_TaskCommitResponse))]
+	[Message(OuterOpcode.C2M_TaskCommitRequest)]
 	[ProtoContract]
-	public partial class C2M_CommitTaskRequest: Object, IActorLocationRequest
+	public partial class C2M_TaskCommitRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -3231,9 +3231,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_CommitTaskResponse)]
+	[Message(OuterOpcode.M2C_TaskCommitResponse)]
 	[ProtoContract]
-	public partial class M2C_CommitTaskResponse: Object, IActorLocationResponse
+	public partial class M2C_TaskCommitResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

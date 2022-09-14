@@ -289,8 +289,8 @@ namespace ET
         {
             try
             {
-                C2M_CommitTaskRequest c2M_CommitTaskRequest = new C2M_CommitTaskRequest() { TaskId = taskId };
-                M2C_CommitTaskResponse m2C_CommitTaskResponse = (M2C_CommitTaskResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_CommitTaskRequest);
+                C2M_TaskCommitRequest c2M_CommitTaskRequest = new C2M_TaskCommitRequest() { TaskId = taskId };
+                M2C_TaskCommitResponse m2C_CommitTaskResponse = (M2C_TaskCommitResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_CommitTaskRequest);
                 for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
                 {
                     if (self.RoleTaskList[i].taskID == taskId)

@@ -254,8 +254,13 @@ namespace ET
             unitInfoComponent.UpdateRoleData(UserDataType.Exp, TaskExp.ToString()).Coroutine();
             unitInfoComponent.UpdateRoleData(UserDataType.Gold, TaskCoin.ToString()).Coroutine();
 
+            BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
             List<RewardItem> rewardItems = TaskHelp.Instance.GetTaskRewards(taskid, taskConfig);
-            self.GetParent<Unit>().GetComponent<BagComponent>().OnAddItemData(rewardItems,0, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
+            bagComponent.OnAddItemData(rewardItems,0, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
+            if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
+            {
+                bagComponent.OnCostItemData($"{taskConfig.Target[0]};{taskConfig.TargetValue[0]}");
+            }
             return ErrorCore.ERR_Success;
         }
 
