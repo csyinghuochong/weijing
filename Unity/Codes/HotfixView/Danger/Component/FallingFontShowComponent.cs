@@ -33,7 +33,8 @@ namespace ET
             {
                 self.GameObject.SetActive(false);
                 self.ObjFlyText.SetActive(false);
-                GameObjectPool.Instance.InternalPut(GameObjectPool.Instance.UIBattleFly, self.GameObject);
+                string uIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
+                GameObjectPool.Instance.InternalPut(uIBattleFly, self.GameObject);
             }
         }
     }
@@ -43,7 +44,8 @@ namespace ET
         public static async ETTask OnInitData(this FallingFontShowComponent self, float targetValue, Unit unit, int type)
         {
             long instanceid = self.InstanceId;
-            GameObject FlyFontObj = await GameObjectPool.Instance.GetExternal(GameObjectPool.Instance.UIBattleFly);
+            string uIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
+            GameObject FlyFontObj = await GameObjectPool.Instance.GetExternal(uIBattleFly);
             if (instanceid != self.InstanceId)
             {
                 return;

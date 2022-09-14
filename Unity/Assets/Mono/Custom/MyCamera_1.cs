@@ -58,7 +58,7 @@ public class MyCamera_1 : MonoBehaviour
             //    && hit[i].collider.gameObject.tag != "Player")//角色
             if (hit[i].transform.gameObject.layer == LayerMask.NameToLayer("Building"))
             {
-                Debug.Log(hit[i].collider.gameObject.name);
+                //Debug.Log(hit[i].collider.gameObject.name);
                 colliderObject.Add(hit[i].collider.gameObject);
                 SetMaterialsColor(hit[i].collider.gameObject.GetComponent<Renderer>(), 0.4f);//置当前物体材质透明度
             }

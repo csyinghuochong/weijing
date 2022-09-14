@@ -7,18 +7,12 @@ namespace ET
 
     public  class GameObjectPool : Singleton<GameObjectPool>
     {
-
         public Dictionary<string, List<GameObject>> ExternalReferences;
-
-        public string UIBattleFly = "";
-
-
         protected override void InternalInit()
         {
             base.InternalInit();
 
             ExternalReferences = new Dictionary<string, List<GameObject>>();
-            UIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
         }
 
         public async ETTask<GameObject> GetExternal(string path)

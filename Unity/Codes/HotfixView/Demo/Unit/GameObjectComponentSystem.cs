@@ -29,6 +29,11 @@ namespace ET
                 {
                     GameObjectPool.Instance.InternalPut(self.AssetsPath, self.GameObject);
                 }
+                if (self.BaiTan != null)
+                {
+                    GameObjectPool.Instance.InternalPut(ABPathHelper.GetUnitPath("Player/BaiTan"), self.GameObject);
+                }
+                self.BaiTan = null;
             }
         }
 
@@ -47,7 +52,6 @@ namespace ET
             }
         }
 
-
         public static void OnRevive(this GameObjectComponent self)
         {
             //if (self.Material != null)
@@ -62,6 +66,32 @@ namespace ET
                     continue;
                 }
                 transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+
+        public static async ETTask OnUnitStallUpdate(this GameObjectComponent self,int stallType)
+        {
+            if (stallType == 0)
+            {
+                if (self.BaiTan != null)
+                {
+                    GameObjectPool.Instance.InternalPut(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
+                    self.BaiTan = null;
+                }
+                self.GameObject.transform.Find("BaseModel").gameObject.SetActive(true);
+                return;
+            }
+
+            if (stallType == 1)
+            {
+                long instancid = self.InstanceId;
+                if (self.BaiTan == null)
+                {
+                    self.BaiTan = await GameObjectPool.Instance.GetExternal(ABPathHelper.GetUnitPath("Player/BaiTan"));
+                }
+                self.BaiTan.SetActive(true);
+                self.BaiTan.transform.position = self.GameObject.transform.position;
+                self.GameObject.transform.Find("BaseModel").gameObject.SetActive(false);
             }
         }
     }

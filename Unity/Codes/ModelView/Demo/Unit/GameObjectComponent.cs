@@ -7,7 +7,7 @@ namespace ET
 
         public string AssetsPath;
         public GameObject GameObject;
+        public GameObject BaiTan;
         public Material Material;
-
     }
 }

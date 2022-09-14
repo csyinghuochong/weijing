@@ -51,7 +51,12 @@ namespace ET
             unit.AddComponent<FsmComponent>();                         //当前状态组建
             unit.UpdateUIType = HeadBarType.HeroHeadBar;
             unit.AddComponent<HeroHeadBarComponent>();                 //血条UI组件                 //刷新显示
-        
+
+            if (unit.GetComponent<UnitInfoComponent>().Type == UnitType.Player)
+            {
+                int stall = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Stall);
+                unit.GetComponent<GameObjectComponent>().OnUnitStallUpdate(stall).Coroutine();
+            }
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
                 EventType.UnitDead.Instance.Unit = unit;
@@ -60,30 +65,35 @@ namespace ET
 
             if (unit.MainHero)
             {
-                Transform targetTf = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head).transform;
-                Camera camera = UIComponent.Instance.MainCamera;
-                camera.GetComponent<MyCamera_1>().enabled = mapComponent.SceneTypeEnum == SceneTypeEnum.MainCityScene;
-                camera.GetComponent<MyCamera_1>().Target = targetTf;
+                OnMainHero(unit, go.transform, mapComponent.SceneTypeEnum);
+            }
+        }
 
-                GameObject shiBingSet = GameObject.Find("ShiBingSet");
-                if (shiBingSet != null)
+        private void OnMainHero(Unit unit, Transform mainTf, int sceneTypeEnum)
+        {
+            Transform targetTf = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head).transform;
+            Camera camera = UIComponent.Instance.MainCamera;
+            camera.GetComponent<MyCamera_1>().enabled = sceneTypeEnum == SceneTypeEnum.MainCityScene;
+            camera.GetComponent<MyCamera_1>().Target = targetTf;
+
+            GameObject shiBingSet = GameObject.Find("ShiBingSet");
+            if (shiBingSet != null)
+            {
+                string path_2 = ABPathHelper.GetUGUIPath($"Battle/UINpcLocal");
+                GameObject npc_go =  ResourcesComponent.Instance.LoadAsset<GameObject>(path_2);
+                for (int i = 0; i < shiBingSet.transform.childCount; i++)
                 {
-                    string path_2 = ABPathHelper.GetUGUIPath($"Battle/UINpcLocal");
-                    GameObject npc_go = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path_2);
-                    for (int i = 0; i < shiBingSet.transform.childCount; i++)
-                    { 
-                        GameObject shiBingItem = shiBingSet.transform.GetChild(i).gameObject;
-                        NpcLocal npcLocal = shiBingItem.GetComponent<NpcLocal>();
-                        if (npcLocal == null)
-                        {
-                            continue;
-                        }
-                        NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcLocal.NpcId);
-                        npcLocal.Target = go.transform;
-                        npcLocal.NpcName = npcConfig.Name;
-                        npcLocal.NpcSpeak = npcConfig.SpeakText;
-                        npcLocal.AssetBundle = npc_go;
+                    GameObject shiBingItem = shiBingSet.transform.GetChild(i).gameObject;
+                    NpcLocal npcLocal = shiBingItem.GetComponent<NpcLocal>();
+                    if (npcLocal == null)
+                    {
+                        continue;
                     }
+                    NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcLocal.NpcId);
+                    npcLocal.Target = mainTf;
+                    npcLocal.NpcName = npcConfig.Name;
+                    npcLocal.NpcSpeak = npcConfig.SpeakText;
+                    npcLocal.AssetBundle = npc_go;
                 }
             }
         }
