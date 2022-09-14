@@ -134,7 +134,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选中道具！");
                 return;
             }
-            if (self.PaiMaiItemInfos.Count >= 24)
+            if (self.PaiMaiItemInfos.Count >= GlobalValueConfigCategory.Instance.Get(50).Value2)
             {
                 FloatTipManager.Instance.ShowFloatTip("已经达到最大上架数量！");
                 return;
@@ -236,8 +236,7 @@ namespace ET
         public static async ETTask UpdateSellItemUILIist(this UIPaiMaiSellComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiSellItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
             for (int i = 0; i < self.PaiMaiItemInfos.Count; i++)
             {
