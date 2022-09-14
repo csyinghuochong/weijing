@@ -20,6 +20,9 @@ namespace ET
                     playerInfo.RechargeInfos[i].UserId = request.UserId;
                 }
             }
+            playerInfo.DeleteUserList.Clear();
+            Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(scene.DomainZone(), centerAccountInfoList[0]).Coroutine();
+
             response.RechargeInfos = playerInfo.RechargeInfos;
             reply();
             await ETTask.CompletedTask;
