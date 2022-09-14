@@ -59,6 +59,8 @@ MonoBehaviour:
     gameObject: {fileID: 6347807925364088658}
   - key: Text_LeftSp
     gameObject: {fileID: 1347285919028358228}
+  - key: BtnItemTypeSet
+    gameObject: {fileID: 7023473299407519165}
 --- !u!1 &202041760948383019
 GameObject:
   m_ObjectHideFlags: 0

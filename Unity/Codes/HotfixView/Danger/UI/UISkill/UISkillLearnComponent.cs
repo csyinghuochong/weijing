@@ -16,6 +16,7 @@ namespace ET
 
         public SkillPro SkillPro;
         public List<UI> SkillUIList = new List<UI>();
+        public UIPageButtonComponent UIPageButton;
         public bool LinShiSkillStatus;
     }
 
@@ -39,11 +40,25 @@ namespace ET
             } );
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
+
+            //单选组件
+            GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
+            UI uiPage = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
+            UIPageButtonComponent uIPageViewComponent = uiPage.AddComponent<UIPageButtonComponent>();
+            uIPageViewComponent.SetClickHandler((int page) => {
+                self.OnClickPageButton(page);
+            });
+            self.UIPageButton = uIPageViewComponent;
         }
     }
 
     public static class UISkillLearnComponentSystem
     {
+
+        public static void OnClickPageButton(this UISkillLearnComponent self,  int page)
+        {
+            self.InitSkillList(page).Coroutine();
+        }
 
         public static async ETTask OnButtonReset(this UISkillLearnComponent self, int operation)
         {
@@ -83,33 +98,32 @@ namespace ET
                 self.ZoneScene().GetComponent<SkillSetComponent>().OnOccReset();
             }
 
-            self.InitSkillList().Coroutine();
+            self.InitSkillList(self.UIPageButton.CurrentIndex).Coroutine();
         }
 
         public static void OnUpdateUI(this UISkillLearnComponent self)
         {
-            self.InitSkillList().Coroutine();
+            self.UIPageButton.OnSelectIndex(0);
             self.UpdateLeftSp();
         }
 
-        public static async ETTask InitSkillList(this UISkillLearnComponent self)
+        public static async ETTask InitSkillList(this UISkillLearnComponent self, int page)
         {
-            UICommonHelper.DestoryChild(self.SkillListNode);
             self.SkillUIList.Clear();
-
+            UICommonHelper.DestoryChild(self.SkillListNode);
             string path = ABPathHelper.GetUGUIPath("Main/Skill/UISkillLearnItem");
-            await ETTask.CompletedTask;
-            GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             List<SkillPro> skillPros = self.ZoneScene().GetComponent<SkillSetComponent>().SkillList;
             List<SkillPro> showSkillPros = new List<SkillPro>();
             showSkillPros.AddRange(skillPros);
 
             //临时增加显示
             int occTwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
-            
-            if (occTwo != 0 && self.LinShiSkillStatus == false) {
+            if (occTwo != 0 && self.LinShiSkillStatus == false) 
+            {
                 OccupationTwoConfig occTwoCof = OccupationTwoConfigCategory.Instance.Get(occTwo);
-                for (int i = 0; i < occTwoCof.ShowPassiveSkill.Length; i++) {
+                for (int i = 0; i < occTwoCof.ShowPassiveSkill.Length; i++)
+                {
                     SkillPro pro = new SkillPro();
                     pro.SkillID = occTwoCof.ShowPassiveSkill[i];
                     showSkillPros.Add(pro);
@@ -126,18 +140,22 @@ namespace ET
                 }
 
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(showSkillPros[i].SkillID);
-                //根据类型显示
-
-                UI uI = null;
-                if (showSkillPros[i].SkillSetType == (int)SkillSetEnum.Item)
-                {
-                    continue;
-                }
-
                 if (skillConfig.IsShow == 1)
                 {
                     continue;
                 }
+                //page ==0 主动 1被动
+                if (skillConfig.SkillType == 1 && page != 0)
+                {
+                    continue;
+                }
+                if (skillConfig.SkillType != 1 && page == 0)
+                {
+                    continue;
+                }
+
+                //根据类型显示
+                UI uI = null;
                 if (number < self.SkillUIList.Count)
                 {
                     uI = self.SkillUIList[number];

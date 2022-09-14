@@ -50,32 +50,21 @@ namespace ET
             orderInfo.objCount = int.Parse(msg[1]);
 
             //第一步:签名计算=>获取向微信服务器请求的参数
-            Dictionary<string, string> dics = new Dictionary<string, string>();
-            dics.Add("appid", orderInfo.appid);
-            dics.Add("mch_id", orderInfo.mch_id);
-            dics.Add("nonce_str", orderInfo.nonce_str);
-            dics.Add("body", orderInfo.body);
-            dics.Add("out_trade_no", orderInfo.out_trade_no);
-            dics.Add("total_fee", orderInfo.total_fee.ToString());
-            dics.Add("spbill_create_ip", orderInfo.spbill_create_ip);
-            dics.Add("notify_url", orderInfo.notify_url);
-            dics.Add("trade_type", orderInfo.trade_type);
-
             //将订单转换成Xml格式准备传入服务器
             //string tempXML = self.GetParamSrc(dics);
             //// 第二步:下单请求 - 获取响应的参数
             ////此处为关键代码,游戏服务器像支付服务器发送支付请求,并且返回数据到result中
             //string result = await ComHelp.OnWebRequestPost_2(self.getWeChatPayParameterURL, JsonHelper.ToJson(dics));
             Dictionary<string, string> data = new Dictionary<string, string>();
-            data.Add("appid", "wx0f24f5e538739f0d");
-            data.Add("mch_id", "1498251552");
-            data.Add("nonce_str", "nonceStr649411654081134956");
-            data.Add("body", "危境游戏赞助");
-            data.Add("out_trade_no", "wxpay649411654081134956");
-            data.Add("total_fee", "200");
-            data.Add("spbill_create_ip", "");
-            data.Add("notify_url", "http://39.96.194.143:30003");
-            data.Add("trade_type", "APP");
+            data.Add("appid", orderInfo.appid);
+            data.Add("mch_id", orderInfo.mch_id);
+            data.Add("nonce_str", orderInfo.nonce_str);
+            data.Add("body", orderInfo.body);
+            data.Add("out_trade_no", orderInfo.out_trade_no);
+            data.Add("total_fee", orderInfo.total_fee.ToString());
+            data.Add("spbill_create_ip", orderInfo.spbill_create_ip);
+            data.Add("notify_url", orderInfo.notify_url);
+            data.Add("trade_type", orderInfo.trade_type);
             string result = await ComHelp.OnWebRequestPost_2(self.getWeChatPayParameterURL, self.GetParamToXml(data));
             ////第三步:将返回的参数再进行签名 并且按照我们跟客户端协定好的格式拼接
             string payList = self.PayOrder(result, orderInfo);
@@ -92,7 +81,6 @@ namespace ET
             //wx_payList.pay_Des = "申请支付";
             //ServerSQL.Player_WritePayData(wx_payList);
 
-            dics.Clear();
             orderInfo.Dispose();
             self.orderNumber++;
             return payList;

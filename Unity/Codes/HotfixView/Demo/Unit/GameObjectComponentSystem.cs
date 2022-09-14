@@ -89,6 +89,7 @@ namespace ET
                 {
                     self.BaiTan = await GameObjectPool.Instance.GetExternal(ABPathHelper.GetUnitPath("Player/BaiTan"));
                 }
+
                 self.BaiTan.SetActive(true);
                 self.BaiTan.transform.position = self.GameObject.transform.position;
                 self.GameObject.transform.Find("BaseModel").gameObject.SetActive(false);

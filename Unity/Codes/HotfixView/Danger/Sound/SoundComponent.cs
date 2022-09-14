@@ -106,8 +106,6 @@ namespace ET
         //播放SoundData
         public async ETTask PlayMusic(string clipName, float volume = 0.5f)
         {
-            Log.Info("clipName = " + clipName);
-
             //if(clipName == "MainCity"|| clipName == "MainCity")
 
             for (int i = 0; i < m_musciclips.Count; i++)
