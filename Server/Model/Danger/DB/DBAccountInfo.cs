@@ -4,7 +4,6 @@ using System.Collections.Generic;
 namespace ET
 {
 
-
 	[BsonIgnoreExtraElements]
 	public class DBAccountInfo : Entity, IAwake
 	{

@@ -3186,6 +3186,8 @@ message RechargeInfo
 	int32 Amount = 1;
 	int64 Time = 2;
 	int64 UserId = 3;
+	string Name = 4;
+	int32 Zone = 5;
 }
 
 message ShouJiChapterInfo

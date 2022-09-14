@@ -6677,6 +6677,12 @@ namespace ET
 		[ProtoMember(3)]
 		public long UserId { get; set; }
 
+		[ProtoMember(4)]
+		public string Name { get; set; }
+
+		[ProtoMember(5)]
+		public int Zone { get; set; }
+
 	}
 
 	[Message(OuterOpcode.ShouJiChapterInfo)]

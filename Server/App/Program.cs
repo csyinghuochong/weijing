@@ -31,10 +31,10 @@ namespace ET
                 //if (args.Length == 0)
                 //{
                 //    args = new string[4];
-                //    args[0] = "--AppType=MergeZone";
+                //    args[0] = "--AppType=Deletion";
                 //    args[1] = "--Console=1";
                 //    args[2] = "--Process=1";
-                //    args[3] = "--MergeZone=1_2";
+                //    args[3] = "--Parameters=1";
                 //}
                 // 命令行参数
                 Options options = null;

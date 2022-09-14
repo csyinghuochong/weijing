@@ -12,7 +12,7 @@ namespace ET
         ExcelExporter,
         Proto2CS,
         MergeZone,  //合区
-        Deletion,   //删档
+        DeleteZone,   //删档
     }
     
     public class Options
@@ -41,7 +41,7 @@ namespace ET
         [Option("CreateScenes", Required = false, Default = 1)]
         public int CreateScenes { get; set; } = 1;
 
-        [Option("MergeZone", Required = false, Default = "")]
-        public string MergeZone { get; set; } = "";
+        [Option("Parameters", Required = false, Default = "")]
+        public string Parameters { get; set; } = "";
     }
 }
