@@ -77,6 +77,7 @@ namespace ET
                 if (self.BaiTan != null)
                 {
                     GameObjectPool.Instance.InternalPut(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
+                    self.BaiTan.SetActive(false);
                     self.BaiTan = null;
                 }
                 self.GameObject.transform.Find("BaseModel").gameObject.SetActive(true);
