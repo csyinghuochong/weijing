@@ -554,7 +554,7 @@
         public const int Extra_Buff_Damge_Demon_Pro_Mul = Now_Damge_Demon_Pro * 100 + 12;            //属性Buff附加乘法
 
 
-        /*
+        
         public const int Now_GoldAdd_Pro = 2201;          //经验收益
         public const int Base_GoldAdd_Pro_Base = Now_GoldAdd_Pro * 100 + 1;                  //属性累加
         public const int Base_GoldAdd_Pro_Mul = Now_GoldAdd_Pro * 100 + 2;                   //属性乘法
@@ -568,7 +568,7 @@
         public const int Base_ExpAdd_Pro_Add = Now_ExpAdd_Pro * 100 + 3;                   //属性附加
         public const int Extra_Buff_ExpAdd_Pro_Add = Now_ExpAdd_Pro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_ExpAdd_Pro_Mul = Now_ExpAdd_Pro * 100 + 12;            //属性Buff附加乘法
-        */
+        
 
         public const int Now_DropAdd_Pro = 2203;          //爆率收益
         public const int Base_DropAdd_Pro_Base = Now_DropAdd_Pro * 100 + 1;                  //属性累加

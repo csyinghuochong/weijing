@@ -71,16 +71,20 @@ namespace ET
             self.TextShuLianDu.GetComponent<Text>().color = actived ? Color.green : Color.red;
             self.TextTitle.GetComponent<Text>().text = equipXiLianConfig.Title;
 
-            NumericAttribute numericAttribute = ItemViewHelp.AttributeToName[equipXiLianConfig.ProList_Type[0]];
-            if (numericAttribute.Float)
+            if (equipXiLianConfig.ProList_Type[0] != 0)
             {
-                float fvalue = equipXiLianConfig.ProList_Value[0] * 0.001f;
-                string svalue = fvalue.ToString("0.#####");
-                self.TextAttribute.GetComponent<Text>().text =  $"{ItemViewHelp.GetAttributeName(equipXiLianConfig.ProList_Type[0])} +{svalue}%";
-            }
-            else
-            {
-                self.TextAttribute.GetComponent<Text>().text = $"{ItemViewHelp.GetAttributeName(equipXiLianConfig.ProList_Type[0])} +{equipXiLianConfig.ProList_Value[0]}";
+                NumericAttribute numericAttribute = ItemViewHelp.AttributeToName[equipXiLianConfig.ProList_Type[0]];
+
+                if (numericAttribute.Float)
+                {
+                    float fvalue = equipXiLianConfig.ProList_Value[0] * 0.001f;
+                    string svalue = fvalue.ToString("0.#####");
+                    self.TextAttribute.GetComponent<Text>().text = $"{ItemViewHelp.GetAttributeName(equipXiLianConfig.ProList_Type[0])} +{svalue}%";
+                }
+                else
+                {
+                    self.TextAttribute.GetComponent<Text>().text = $"{ItemViewHelp.GetAttributeName(equipXiLianConfig.ProList_Type[0])} +{equipXiLianConfig.ProList_Value[0]}";
+                }
             }
         }
     }
