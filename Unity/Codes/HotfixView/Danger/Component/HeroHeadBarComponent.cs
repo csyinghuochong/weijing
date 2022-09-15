@@ -227,7 +227,13 @@ namespace ET
             blood = Mathf.Max(blood, 0f);
             if (ObjHp != null)
             {
-                ObjHp.GetComponent<Image>().fillAmount = blood;
+                if (this.Parent.GetComponent<UnitInfoComponent>().Type == UnitType.Player)
+                {
+                    ObjHp.GetComponent<Slider>().value = blood;
+                }
+                else {
+                    ObjHp.GetComponent<Image>().fillAmount = blood;
+                }
             }
         }
 
