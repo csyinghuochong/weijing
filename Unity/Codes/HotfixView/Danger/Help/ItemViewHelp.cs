@@ -732,6 +732,5 @@ namespace ET
             }
             return properShowNum;
         }
-
     }
 }
