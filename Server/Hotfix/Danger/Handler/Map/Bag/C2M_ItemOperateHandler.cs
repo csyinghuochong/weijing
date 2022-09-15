@@ -283,9 +283,9 @@ namespace ET
                                 unit.GetComponent<HeroDataComponent>().OnResetPoint();
                                 break;
                             case 117:   //宠物洗点
+                            case 118:   //宠物资质
+                            case 119:   //宠物成长
                                 break;
-                            //118 宠物资质
-                            //119 宠物成长
                             case 120://120 冒险积分
                                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.MaoXianExp, int.Parse(itemCof.ItemUsePar), 0 );
                                 break;

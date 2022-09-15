@@ -330,6 +330,15 @@ namespace ET
                 || itemConfig.ItemSubType == 118
                 || itemConfig.ItemSubType == 119)
             {
+                PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+                RolePetInfo petInfo = petComponent.GetFightPetInfo();
+                if ((itemConfig.ItemSubType == 108
+                || itemConfig.ItemSubType == 109) && petInfo != null)
+                {
+                    petComponent.RequestXiLian(self.BagInfo.BagInfoID, petInfo.Id).Coroutine();
+                    self.OnCloseTips();
+                    return;
+                }
                 FloatTipManager.Instance.ShowFloatTip("请前往宠物重塑界面使用！");
                 return;
             }

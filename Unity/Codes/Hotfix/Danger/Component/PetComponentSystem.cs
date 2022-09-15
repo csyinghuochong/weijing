@@ -153,8 +153,6 @@ namespace ET
             }
             for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
             {
-                Log.ILog.Info("TT:" + self.RolePetInfos[i]);
-                Log.ILog.Info("TT:" + m2C_RolePetXiLian.rolePetInfo);
                 if (self.RolePetInfos[i].Id == m2C_RolePetXiLian.rolePetInfo.Id)
                 {
                     self.RolePetInfos[i] = m2C_RolePetXiLian.rolePetInfo;
