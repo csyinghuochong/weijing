@@ -285,7 +285,7 @@ namespace ET
             NumericComponent numericComponent = nowUnit.GetComponent<NumericComponent>();
 
             float hpCoefficient = 1f;
-            float ackCoefficient = 0.5f; 
+            float ackCoefficient = 1f; 
             //根据副本难度刷新属性
             //进入 挑战关卡 怪物血量增加 1.5 伤害增加 1.2 低于关卡 血量增加2 伤害增加 1.5
             switch (fubenDifficulty)
