@@ -10,13 +10,11 @@ namespace ET
         public GameObject ImageQualityBg;
         public GameObject Obj_ItemQuality;
         public GameObject Obj_ItemIcon;
-        public GameObject ItemName;
+        public GameObject Lab_ItemName;
         public GameObject ItemDes;
-        public GameObject ItemStory;
         public GameObject ItemItemLv;
         public GameObject ItemType;
-        public GameObject Lab_EquipType;
-        public GameObject ItemDi;
+        public GameObject Img_back;
         public GameObject Obj_BagOpenSet;
         public GameObject Obj_SaveStoreHouse;
         public GameObject Btn_TakeStoreHouse;
@@ -40,6 +38,9 @@ namespace ET
         //按钮相关
         public GameObject Btn_Sell;
         public GameObject Btn_Use;
+
+        public Vector2 Img_backVector2;
+        public float Lab_ItemNameWidth;
     }
 
     [ObjectSystem]
@@ -58,16 +59,18 @@ namespace ET
             self.Obj_SaveStoreHouse = rc.Get<GameObject>("Btn_SaveStoreHouse");
             self.Obj_Diu = rc.Get<GameObject>("Btn_Diu");
             self.ItemType = rc.Get<GameObject>("Lab_ItemType");
-            self.Lab_EquipType = rc.Get<GameObject>("Lab_EquipType");
             self.ItemItemLv = rc.Get<GameObject>("Lab_ItemLv");
             self.ItemDes = rc.Get<GameObject>("Lab_ItemDes");
-            self.ItemName = rc.Get<GameObject>("Lab_ItemName");
+            self.Lab_ItemName = rc.Get<GameObject>("Lab_ItemName");
+            self.Lab_ItemNameWidth = self.Lab_ItemName.GetComponent<RectTransform>().sizeDelta.x;
+
             self.Obj_ItemIcon = rc.Get<GameObject>("Image_ItemIcon");
             self.Obj_ItemQuality = rc.Get<GameObject>("Image_ItemQuality");
-            self.ItemStory = rc.Get<GameObject>("Lab_ItemStory");
             self.Imagebg = rc.Get<GameObject>("Imagebg");
             self.Obj_BagOpenSet = rc.Get<GameObject>("BagOpenSet");
-            self.ItemDi = rc.Get<GameObject>("Img_back");
+            self.Img_back = rc.Get<GameObject>("Img_back");
+            self.Img_backVector2 = self.Img_back.GetComponent<RectTransform>().sizeDelta;
+
             self.Btn_Use = rc.Get<GameObject>("Btn_Use");
             self.Btn_Sell = rc.Get<GameObject>("Btn_Sell");
             self.Obj_Lab_ItemCostDes = rc.Get<GameObject>("Lab_ItemCostDes");
@@ -188,18 +191,16 @@ namespace ET
                 }
             }
 
+            string equipType = "";
             if (itemType == 3)
             {
                 //获取类型显示
                 string textEquipType = ItemHelper.GetEquipSonType(itemconf.ItemSubType.ToString());
                 string textEquipSonType = ItemHelper.GetEquipType(itemconf.EquipType);
 
-                self.Lab_EquipType.SetActive(true);
-                self.Lab_EquipType.GetComponent<Text>().text =  "类型:" + textEquipSonType;
+                //121211 <color=#AFFF06>颜色</color>
+                equipType =  $"<color=#AFFF06>    类型:{textEquipSonType}</color>";
                 self.ItemType.GetComponent<Text>().text = "部位:" + textEquipType;
-            }
-            else {
-                self.Lab_EquipType.SetActive(false);
             }
 
             string Text_ItemDes = itemconf.ItemDes;
@@ -362,10 +363,15 @@ namespace ET
             //self.ItemDi.GetComponent<RectTransform>().sizeDelta = new Vector2(301.0f, 180.0f + i1 * 20.0f + i2 * 16.0f + ItemBottomTextNum);
 
             //显示道具信息
-            self.ItemName.GetComponent<Text>().text = itemconf.ItemName;
-            self.ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
-            //self.ItemDes.GetComponent<Text>().text = Text_ItemDes;
-            //self.ItemStory.GetComponent<Text>().text = Text_ItemStory;
+            self.Lab_ItemName.GetComponent<Text>().text =  itemconf.ItemName + equipType + "_" + itemconf.ItemName; 
+            self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
+            float exceedWidth = self.Lab_ItemName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
+            Log.ILog.Debug($"exceedWidth  {exceedWidth}");
+            if (exceedWidth > 0)
+            {
+                self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x + exceedWidth, self.Img_backVector2.y);
+            }
+
             string langStr = GameSettingLanguge.LoadLocalization("等级");
             if (itemconf.UseLv > 0)
             {
@@ -376,16 +382,11 @@ namespace ET
                     self.ItemItemLv.GetComponent<Text>().text = langStr + " : " + itemconf.UseLv + " (等级不足)";
                     self.ItemItemLv.GetComponent<Text>().color = new Color(255f / 255f, 200f / 255f, 200f / 255f);
                 }
-
             }
             else
             {
                 self.ItemItemLv.GetComponent<Text>().text = langStr + ":1";
             }
-
-            //设置缩放大小
-            self.GetParent<UI>().GameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
-
         }
      }
 }

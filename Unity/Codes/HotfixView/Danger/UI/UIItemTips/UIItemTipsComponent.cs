@@ -6,18 +6,17 @@ namespace ET
 {
     public class UIItemTipsComponent : Entity, IAwake
     {
-        public GameObject Lab_JianDian;
+
         public GameObject ImageQualityLine;
         public GameObject ImageQualityBg;
         public GameObject TextBtn_Use;
         public GameObject Obj_ItemQuality;
         public GameObject Obj_ItemIcon;
-        public GameObject ItemName;
+        public GameObject Lab_ItemName;
         public GameObject ItemDes;
-        public GameObject ItemStory;
         public GameObject ItemItemLv;
         public GameObject ItemType;
-        public GameObject ItemDi;
+        public GameObject Img_back;
         public GameObject Obj_BagOpenSet;
         public GameObject Obj_Diu;
         public GameObject Obj_Btn_GemHoleText;
@@ -40,6 +39,9 @@ namespace ET
         public GameObject Btn_StoreHouse;    //放入仓库
         public GameObject Btn_PutBag;           //放入背包
         public BagComponent BagComponent;
+
+        public Vector2 Img_backVector2;
+        public float Lab_ItemNameWidth;
     }
 
     [ObjectSystem]
@@ -48,7 +50,7 @@ namespace ET
         public override void Awake(UIItemTipsComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-            self.Lab_JianDian = rc.Get<GameObject>("Lab_JianDian");
+
             self.ImageQualityLine = rc.Get<GameObject>("ImageQualityLine");
             self.ImageQualityBg = rc.Get<GameObject>("ImageQulityBg");
             self.TextBtn_Use = rc.Get<GameObject>("TextBtn_Use");
@@ -59,13 +61,15 @@ namespace ET
             self.ItemType = rc.Get<GameObject>("Lab_ItemType");
             self.ItemItemLv = rc.Get<GameObject>("Lab_ItemLv");
             self.ItemDes = rc.Get<GameObject>("Lab_ItemDes");
-            self.ItemName = rc.Get<GameObject>("Lab_ItemName");
+            self.Lab_ItemName = rc.Get<GameObject>("Lab_ItemName");
+            self.Lab_ItemNameWidth = self.Lab_ItemName.GetComponent<RectTransform>().sizeDelta.x;
             self.Obj_ItemIcon = rc.Get<GameObject>("Image_ItemIcon");
             self.Obj_ItemQuality = rc.Get<GameObject>("Image_ItemQuality");
-            self.ItemStory = rc.Get<GameObject>("Lab_ItemStory");
             self.Imagebg = rc.Get<GameObject>("Imagebg");
             self.Obj_BagOpenSet = rc.Get<GameObject>("BagOpenSet");
-            self.ItemDi = rc.Get<GameObject>("Img_back");
+            self.Img_back = rc.Get<GameObject>("Img_back");
+            self.Img_backVector2 = self.Img_back.GetComponent<RectTransform>().sizeDelta;
+
             self.Btn_Use = rc.Get<GameObject>("Btn_Use");
             self.Btn_Sell = rc.Get<GameObject>("Btn_Sell");
             self.Obj_Lab_EquipBangDing = rc.Get<GameObject>("Lab_BangDing");
@@ -76,13 +80,15 @@ namespace ET
             self.Btn_Use.GetComponent<Button>().onClick.AddListener(() => { self.OnClickUse().Coroutine(); });
 
             self.Btn_StoreHouse = rc.Get<GameObject>("Btn_StoreHouse");
-            self.Btn_PutBag = rc.Get<GameObject>("Btn_PutBag");
             self.Btn_StoreHouse.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_StoreHouse(); });
+            self.Btn_StoreHouse.SetActive(false);
+
+            self.Btn_PutBag = rc.Get<GameObject>("Btn_PutBag");
             self.Btn_PutBag.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PutBag(); });
+            self.Btn_PutBag.SetActive(false);
 
             self.Obj_Btn_HuiShouCancle.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_HuiShouCancle(); });
             self.Obj_Btn_HuiShou.GetComponent<Button>().onClick.AddListener(() => { self.On_Btn_HuiShou(); });
-
             self.Obj_Btn_XieXiaGemSet.GetComponent<Button>().onClick.AddListener(() => { self.On_Btn_XieXiaGemSet(); });
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
         }
@@ -343,7 +349,7 @@ namespace ET
             self.OnCloseTips();
         }
 
-        public static void InitData(this UIItemTipsComponent self, BagInfo baginfo, ItemOperateEnum equipTipsType, Action handler=null)
+        public static void InitData(this UIItemTipsComponent self, BagInfo baginfo, ItemOperateEnum equipTipsType, Action handler = null)
         {
             self.BagInfo = baginfo;
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
@@ -355,11 +361,11 @@ namespace ET
             self.ImageQualityLine.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconLine);
             string qualityiconBack = FunctionUI.GetInstance().ItemQualityBack(itemconf.ItemQuality);
             self.ImageQualityBg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconBack);
-        
+
             //类型描述
             string itemTypename = "消耗品";
             ItemViewHelp.ItemTypeName.TryGetValue((ItemTypeEnum)itemType, out itemTypename);
-            self.ItemType.GetComponent<Text>().text =  "类型:" + itemTypename;
+            self.ItemType.GetComponent<Text>().text = "类型:" + itemTypename;
 
             string Text_ItemDes = itemconf.ItemDes;
             //获取道具描述的分隔符
@@ -381,7 +387,7 @@ namespace ET
             if (baginfo.isBinging)
             {
                 self.Obj_Lab_EquipBangDing.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已绑定");
-                self.Obj_Lab_EquipBangDing.GetComponent<Text>().color = new Color(175f / 255f,1,6f / 255f);
+                self.Obj_Lab_EquipBangDing.GetComponent<Text>().color = new Color(175f / 255f, 1, 6f / 255f);
                 self.Obj_Img_EquipBangDing.SetActive(true);
             }
             else
@@ -399,7 +405,7 @@ namespace ET
 
             //根据Tips描述长度缩放底的大小
             int i1 = 0;
-            Text_ItemDes = ItemViewHelp.GetItemDesc(baginfo,ref i1);
+            Text_ItemDes = ItemViewHelp.GetItemDesc(baginfo, ref i1);
             //赞助宝箱设置描述为绿色
             if (itemSubType == 9)
             {
@@ -479,7 +485,7 @@ namespace ET
                 case ItemOperateEnum.XiangQianBag:
                     self.Obj_BagOpenSet.SetActive(true);
                     break;
-                    //镶嵌在装备上的宝石
+                //镶嵌在装备上的宝石
                 case ItemOperateEnum.XiangQianGem:
                     self.Obj_BagOpenSet.SetActive(false);
                     self.Obj_Btn_XieXiaGemSet.SetActive(true);
@@ -503,17 +509,20 @@ namespace ET
             //设置底的长度
             //self.ItemDi.GetComponent<RectTransform>().sizeDelta = new Vector2(301.0f, 180.0f + i1 * 20.0f + i2 * 16.0f + ItemBottomTextNum);
             //显示道具信息
-            self.ItemName.GetComponent<Text>().text = itemconf.ItemName;
-            self.ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
+            self.Lab_ItemName.GetComponent<Text>().text = itemconf.ItemName + "_" + itemconf.ItemName;
+            self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
             self.ItemDes.GetComponent<Text>().text = Text_ItemDes;
-            self.ItemStory.GetComponent<Text>().text = Text_ItemStory;
-
-            if (itemconf.ItemSubType==121) {
-                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + $"鉴定符品质:{baginfo.ItemPar}" + "\n" + "品质越高,鉴定出极品的概率越高。";
+            float exceedWidth = self.Lab_ItemName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
+            Log.ILog.Debug($"exceedWidth  {exceedWidth}");
+            if (exceedWidth > 0)
+            {
+                self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x + exceedWidth, self.Img_backVector2.y);
             }
 
-            //self.Lab_JianDian.GetComponent<Text>().text = $"品质:{baginfo.ItemPar}";
-            //Text_ItemDes = Text_ItemDes + "\n" + "\n" + @"" + langStr_2 + holeStr + @langStr_3 + "";
+            if (itemconf.ItemSubType == 121)
+            {
+                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + $"鉴定符品质:{baginfo.ItemPar}" + "\n" + "品质越高,鉴定出极品的概率越高。";
+            }
 
             string langStr = GameSettingLanguge.LoadLocalization("使用等级");
             if (itemconf.UseLv > 0)
@@ -524,9 +533,6 @@ namespace ET
             {
                 self.ItemItemLv.GetComponent<Text>().text = langStr + ":1";
             }
-
-            //设置缩放大小
-            self.GetParent<UI>().GameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
 
             //监测UI是否超过底部显示
             /*
@@ -547,6 +553,5 @@ namespace ET
             }
             */
         }
-
-     }
+    }
 }

@@ -15,11 +15,11 @@ namespace ET
         public string ItemGemID;
         public string ItemGemHole;
         public string ItemHide_PaiHangBangShowHideStr; 
-        public GameObject Obj_Imgback;
+        public GameObject Img_back;
         public GameObject Obj_EquipIcon;
         public GameObject Obj_EquipQuality;
         public GameObject Obj_EquipName;
-        public GameObject Obj_EquipType;
+
         public GameObject Obj_EquipTypeSon;
         public GameObject Obj_EquipProperty;
         public GameObject Obj_EquipWearNeed;
@@ -101,6 +101,9 @@ namespace ET
         public GameObject Btn_Sell;         //出售
 
         public BagComponent BagComponent;
+
+        public Vector2 Img_backVector2;
+        public float Lab_ItemNameWidth;
     }
 
     [ObjectSystem]
@@ -113,11 +116,14 @@ namespace ET
             self.ImageQualityLine = rc.Get<GameObject>("ImageQualityLine");
             self.ImageQualityBg = rc.Get<GameObject>("ImageQualityBg");
             self.Img_back_btn = rc.Get<GameObject>("Img_back_btn");
-            self.Obj_Imgback = rc.Get<GameObject>("Img_back");
+            self.Img_back = rc.Get<GameObject>("Img_back");
+            self.Img_backVector2 = self.Img_back.GetComponent<RectTransform>().sizeDelta;
+
             self.Obj_EquipIcon = rc.Get<GameObject>("Img_EquipIcon");
             self.Obj_EquipQuality = rc.Get<GameObject>("Img_EquipQuality");
             self.Obj_EquipName = rc.Get<GameObject>("Img_EquipName");
-            self.Obj_EquipType = rc.Get<GameObject>("Img_EquipType");
+            self.Lab_ItemNameWidth = self.Obj_EquipName.GetComponent<RectTransform>().sizeDelta.x;
+
             self.Obj_EquipTypeSon = rc.Get<GameObject>("Img_EquipTypeSon");
             self.Obj_EquipProperty = rc.Get<GameObject>("Lab_EquipProperty");
             self.Obj_EquipWearNeed = rc.Get<GameObject>("Lab_WearNeed");
@@ -1149,7 +1155,7 @@ namespace ET
             {
                 equipSuitTextNum = self.DiLengt_Title;
                 Log.Info("self.DiLengt_Head = " + self.DiLengt_Head + "self.DiLengt_Pro = " + self.DiLengt_Pro + "self.properShowNum = " + self.properShowNum + "ZhuanJingTextNum = " + ZhuanJingTextNum + "HintTextNum = " + HintTextNum + "equipSuitTextNum = " + equipSuitTextNum);
-                Vector2 equipSuit_vec2 = new Vector2(-31f, -(self.DiLengt_Head + self.DiLengt_Pro * self.properShowNum) - ZhuanJingTextNum - HintTextNum - equipSuitTextNum - showGemTextNum);
+                Vector2 equipSuit_vec2 = new Vector2(167.5f, -(self.DiLengt_Head + self.DiLengt_Pro * self.properShowNum) - ZhuanJingTextNum - HintTextNum - equipSuitTextNum - showGemTextNum);
                 Log.Info("equipSuit_vec2 = " + equipSuit_vec2);
                 self.Obj_UIEquipSuit.transform.GetComponent<RectTransform>().anchoredPosition = equipSuit_vec2;
                 self.Obj_UIEquipSuit.SetActive(true);
@@ -1229,13 +1235,19 @@ namespace ET
             {
                 self.Obj_UIEquipSuit.SetActive(false);
             }
-
+           
             //显示基础信息
-            self.Obj_EquipName.GetComponent<Text>().text = equipName;
+            self.Obj_EquipName.GetComponent<Text>().text = equipName + $"<color=#AFFF06>    类型:{textEquipType}</color>" + "_" +  equipName;
             self.Obj_EquipName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(ItemQuality);
+            float exceedWidth = self.Obj_EquipName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
+            Log.ILog.Debug($"exceedWidth  {exceedWidth}");
+            if (exceedWidth > 0)
+            {
+                self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x + exceedWidth, self.Img_backVector2.y);
+            }
+
             langStr = GameSettingLanguge.LoadLocalization("部位");
             //self.Obj_EquipType.GetComponent<Text>().text = langStr + ":" + textEquipType;
-            self.Obj_EquipType.GetComponent<Text>().text = textEquipType;
             langStr = GameSettingLanguge.LoadLocalization("类型");
             self.Obj_EquipTypeSon.GetComponent<Text>().text = langStr + ":" + textEquipTypeSon;
             equipNeedvec2 = new Vector2(150.0f, -175 - 22 * self.properShowNum - HintTextNum - showGemTextNum - equipSuitTextNum);
@@ -1421,11 +1433,10 @@ namespace ET
                     break;
             }
 
-            float DiHight = 350 + self.DiLengt_Pro * self.properShowNum + HintTextNum + showGemTextNum + EquipNeedTextNum + EquipBottomTextNum + equipSuitTextNum;
-
+            float DiHight = -200f + self.Img_backVector2.y + self.DiLengt_Pro * self.properShowNum + HintTextNum + showGemTextNum + EquipNeedTextNum + EquipBottomTextNum + equipSuitTextNum;
             Log.Info("self.properShowNum:" + self.properShowNum + " HintTextNum:" + HintTextNum + " showGemTextNum:" + showGemTextNum + " EquipNeedTextNum:" + EquipNeedTextNum + " EquipBottomTextNum:" + EquipBottomTextNum + " equipSuitTextNum:" + equipSuitTextNum);
             Log.Info("DiHight:" + DiHight);
-            self.Obj_Imgback.GetComponent<RectTransform>().sizeDelta = new Vector2(385f, DiHight);
+            self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x, DiHight);
             self.GetParent<UI>().GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(0, DiHight);
             self.Obj_EquipIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, ItemIcon);
             string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(ItemQuality);

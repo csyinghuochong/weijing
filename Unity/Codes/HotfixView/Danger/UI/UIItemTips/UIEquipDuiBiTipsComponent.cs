@@ -51,7 +51,6 @@ namespace ET
             UIPetInfoShow_1.Img_back_btn.SetActive(false);
             UIPetInfoShow_1.InitData(args.bagInfo, args.itemOperateEnum, 0);
             UICommonHelper.SetParent(ui_1.GameObject, self.Tips1);
-            ui_1.GameObject.transform.localScale = Vector3.one * 1.2f;
         }
 
         public static async ETTask OnUpdateAppraisalUI(this UIEquipDuiBiTipsComponent self, EventType.ShowItemTips args)
@@ -69,7 +68,6 @@ namespace ET
             uIItemAppraisalTipsComponent.InitData(args.bagInfo, args.itemOperateEnum);
             uIItemAppraisalTipsComponent.Imagebg.SetActive(false);
             UICommonHelper.SetParent(ui_1.GameObject, self.Tips1);
-            ui_1.GameObject.transform.localScale = Vector3.one * 1.2f;
         }
 
         public static async ETTask OnUpdateDuiBiUI(this UIEquipDuiBiTipsComponent self, BagInfo bagInfo_1, EventType.ShowItemTips args, int weight)
@@ -87,7 +85,7 @@ namespace ET
             UIEquipTipsComponent UIPetInfoShow_1 = ui_1.AddComponent<UIEquipTipsComponent>();
             UIPetInfoShow_1.Img_back_btn.SetActive(false);
             UIPetInfoShow_1.InitData(bagInfo_1, ItemOperateEnum.None, 0);
-            height_1 = UIPetInfoShow_1.Obj_Imgback.GetComponent<RectTransform>().sizeDelta.y;
+            height_1 = UIPetInfoShow_1.Img_back.GetComponent<RectTransform>().sizeDelta.y;
 
             UI ui_2 = null;
             if (bagInfo_2.IfJianDing == false)
@@ -96,7 +94,7 @@ namespace ET
                 UIEquipTipsComponent UIPetInfoShow_2 = ui_2.AddComponent<UIEquipTipsComponent>();
                 UIPetInfoShow_2.InitData(bagInfo_2, ItemOperateEnum.Bag, 0);
                 UIPetInfoShow_2.Img_back_btn.SetActive(false);
-                height_2 = UIPetInfoShow_2.Obj_Imgback.GetComponent<RectTransform>().sizeDelta.y;
+                height_2 = UIPetInfoShow_2.Img_back.GetComponent<RectTransform>().sizeDelta.y;
             }
             else
             {
@@ -106,17 +104,15 @@ namespace ET
                 UIItemAppraisalTipsComponent uIItemAppraisalTipsComponent = ui_2.AddComponent<UIItemAppraisalTipsComponent>();
                 uIItemAppraisalTipsComponent.InitData(bagInfo_2, ItemOperateEnum.Bag);
                 uIItemAppraisalTipsComponent.Imagebg.SetActive(false);
-                height_2 =420;
+                height_2 = uIItemAppraisalTipsComponent.Img_back.GetComponent<RectTransform>().sizeDelta.y;
             }
             self.UI_2 = ui_2;
-            height_1 *= 1.2f;
-            height_2 *= 1.2f;
+            height_1 *= 1f;
+            height_2 *= 1f;
 
             UICommonHelper.SetParent(ui_1.GameObject, self.Tips1);
             UICommonHelper.SetParent(ui_2.GameObject, self.Tips2);
-            ui_1.GameObject.transform.localScale = Vector3.one * 1.2f;
-            ui_2.GameObject.transform.localScale = Vector3.one * 1.2f;
-
+          
             Vector2 vectorPoint;
             RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Low].GetComponent<RectTransform>();
             Camera uiCamera = args.ZoneScene.GetComponent<UIComponent>().UICamera;
