@@ -71,9 +71,6 @@ namespace ET
 
             int xilianLevel = EquipXiLianConfigCategory.Instance.Get(xilianId).XiLianLevel;
             List<int> xilianSkill = XiLianHelper.GetLevelSkill(xilianLevel);
-
-            Log.ILog.Debug($"xilianLevel:  {xilianLevel}  {xilianSkill.Count} ");
-
             UICommonHelper.DestoryChild(self.SkillListNode);
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkillItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);

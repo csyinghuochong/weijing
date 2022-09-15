@@ -7,7 +7,6 @@ SpriteAtlas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ItemQualityIcon
-  serializedVersion: 2
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -33,6 +32,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 829180aecbbeab6468b11ff1357ba5c8, type: 3}
+    totalSpriteSurfaceArea: 399950
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -46,6 +46,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 1187f577be4e61a4fa8486273c15fae4, type: 3}
   - {fileID: 21300000, guid: b3caffa793ba7084492400cfc9b6b0d1, type: 3}
   - {fileID: 21300000, guid: 4cf952f9034d4c24da9462c2036bce3e, type: 3}
+  - {fileID: 21300000, guid: 8805050a3e77a41428dc0bcc1198610f, type: 3}
   - {fileID: 21300000, guid: 9b3781fa781740b4487a912a39c67d22, type: 3}
   - {fileID: 21300000, guid: a57a6d5c6fe0b2a4ea954eed05b3ff56, type: 3}
   - {fileID: 21300000, guid: e4d0253d7143aec4d873c119fe0429eb, type: 3}
@@ -62,6 +63,7 @@ SpriteAtlas:
   - QuaDiline_3
   - QuaDi_3
   - QuaDi_1
+  - QuaDi_6
   - QuaDiline_4
   - QuaDiline_1
   - QuaDiline_5
@@ -72,4 +74,3 @@ SpriteAtlas:
   m_RenderDataMap: {}
   m_Tag: ItemQualityIcon
   m_IsVariant: 0
-  m_IsPlaceholder: 0
