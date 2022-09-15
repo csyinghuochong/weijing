@@ -239,6 +239,8 @@
     <Compile Include="Codes\HotfixView\Danger\UI\UIEnergy\UIEnergyEarlysleepComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIEnergy\UIEnergyEarlyupComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIEnergy\UIEnergyEvent.cs" />
+    <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianSkillComponent.cs" />
+    <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianSkillItemComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianLevelComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianLevelItemComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIZhanQu\UIFirstWinComponent.cs" />

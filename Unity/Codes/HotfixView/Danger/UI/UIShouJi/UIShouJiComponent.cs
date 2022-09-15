@@ -30,9 +30,8 @@ namespace ET
     {
         public static async ETTask OnUpdateUI(this UIShouJiComponent self)
         {
-            await ETTask.CompletedTask;
             var path = ABPathHelper.GetUGUIPath("Main/ShouJi/UIShouJiChapter");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             List<ShouJiConfig> shouJiConfigs = ShouJiConfigCategory.Instance.GetAll().Values.ToList();
             long instanceId = self.InstanceId;
             for (int i = 0; i < shouJiConfigs.Count; i++)

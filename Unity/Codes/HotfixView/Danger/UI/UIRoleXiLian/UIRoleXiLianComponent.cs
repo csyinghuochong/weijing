@@ -8,6 +8,7 @@ namespace ET
 	{
 		RoleXiLianShow = 0,
 		RoleXiLianLevel = 1,
+		RoleXiLianSkill = 2,
 		Number
 	}
 
@@ -36,6 +37,9 @@ namespace ET
 
 			pageViewComponent.UISubViewPath[(int)RoleXiLianPageEnum.RoleXiLianLevel] = ABPathHelper.GetUGUIPath("Main/RoleXiLian/UIRoleXiLianLevel");
 			pageViewComponent.UISubViewType[(int)RoleXiLianPageEnum.RoleXiLianLevel] = typeof(UIRoleXiLianLevelComponent);
+
+			pageViewComponent.UISubViewPath[(int)RoleXiLianPageEnum.RoleXiLianSkill] = ABPathHelper.GetUGUIPath("Main/RoleXiLian/UIRoleXiLianSkill");
+			pageViewComponent.UISubViewType[(int)RoleXiLianPageEnum.RoleXiLianSkill] = typeof(UIRoleXiLianSkillComponent);
 			self.UIPageView = pageViewComponent;
 
 			//单选组件

@@ -111,7 +111,7 @@ namespace ET
             self.OnChangePosition(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).Position);
             self.MainPostion.transform.Find("Text").GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Name;
 
-            await TimerComponent.Instance.WaitAsync(100);
+            await TimerComponent.Instance.WaitAsync(200);
             camera.enabled = false;
         }
 

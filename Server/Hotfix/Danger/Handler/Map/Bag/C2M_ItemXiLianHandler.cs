@@ -21,7 +21,7 @@ namespace ET
                 }
 
                 bool sucess = unit.GetComponent<BagComponent>().OnCostItemData(rewardItems);
-                int xilianLevel = XiLianHelper.GetXiLianLevel(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu));
+                int xilianLevel = XiLianHelper.GetXiLianId(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu));
                 xilianLevel = xilianLevel != 0 ? EquipXiLianConfigCategory.Instance.Get(xilianLevel).XiLianLevel : 0;
                 if (sucess)
                 {

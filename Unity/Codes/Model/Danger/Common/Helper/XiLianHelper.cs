@@ -7,6 +7,7 @@ namespace ET
     public  static class XiLianHelper
     {
 
+
         public static List<int> GetLevelSkill(int xilianLevel)
         {
             List<int> skills = new List<int>();
@@ -23,7 +24,7 @@ namespace ET
             return skills;
         }
 
-        public static int GetXiLianLevel(int xilianDu)
+        public static int GetXiLianId(int xilianDu)
         {
             int xilianid = 0;
             List<EquipXiLianConfig> equipXiLians =  EquipXiLianConfigCategory.Instance.GetAll().Values.ToList();

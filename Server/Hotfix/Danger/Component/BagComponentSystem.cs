@@ -565,7 +565,7 @@ namespace ET
                     //默认洗练
                     if (!ItemHelper.IsBuyItem(getType) && itemCof.ItemEquipID != 0)
                     {
-                        int xilianLevel = XiLianHelper.GetXiLianLevel(self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu));
+                        int xilianLevel = XiLianHelper.GetXiLianId(self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu));
                         xilianLevel = xilianLevel != 0 ? EquipXiLianConfigCategory.Instance.Get(xilianLevel).XiLianLevel : 0;
                         ComHelp.XiLianItem(useBagInfo, 0, xilianLevel);
                     }

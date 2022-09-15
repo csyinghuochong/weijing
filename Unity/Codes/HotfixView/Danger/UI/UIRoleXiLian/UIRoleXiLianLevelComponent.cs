@@ -70,7 +70,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int xiliandu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu);
-            int xilianLevel = XiLianHelper.GetXiLianLevel(xiliandu);
+            int xilianLevel = XiLianHelper.GetXiLianId(xiliandu);
             xilianLevel = xilianLevel != 0 ? xilianLevel : EquipXiLianConfigCategory.Instance.EquipXiLianLevelList[0].Id;
             self.OnUpdateButton(xilianLevel);
             self.UIRoleXiLianLevels[1].OnUpdateUI(xilianLevel);
