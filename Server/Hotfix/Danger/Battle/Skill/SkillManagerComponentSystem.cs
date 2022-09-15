@@ -331,17 +331,18 @@ namespace ET
             Dictionary<int, float> keyValuePairs = skillSetComponent != null ? skillSetComponent.GetSkillPropertyAdd(weaponSkill) : null;
             if (keyValuePairs != null)
                 keyValuePairs.TryGetValue((int)SkillAttributeEnum.ReduceSkillCD, out reduceCD);
-            SkillCDList skillcd = new SkillCDList();
+
+            SkillCDList skillcd = null;
+            self.SkillCDs.TryGetValue(skillId, out skillcd);
+            if (skillcd == null)
+            {
+                skillcd = new SkillCDList();
+                self.SkillCDs.Add(skillId, skillcd);
+            }
             skillcd.SkillID = skillId;
             skillcd.CDStartTime = TimeHelper.ServerNow();
             skillcd.CDEndTime = skillcd.CDStartTime + (skillConfig.SkillCD - (int)reduceCD) * 1000;
-
-            if (self.SkillCDs.ContainsKey(skillId))
-            {
-                self.SkillCDs.Remove(skillId);
-            }
-            self.SkillCDs.Add(skillId, skillcd);
-            if (skillConfig.IfPublicSkillCD == 0)
+            if (skillConfig.IfPublicSkillCD == 0 )
             {
                 //添加技能公共CD
                 self.SkillPublicCDTime = skillcd.CDStartTime + 1000;  //公共1秒CD  
@@ -426,7 +427,7 @@ namespace ET
                     continue;
                 }
                 skillHandler.SetSkillState(SkillState.Finished);
-                self.GetParent<Unit>().GetComponent<StateComponent>().StateTypeAdd(StateTypeData.Interrupt, skillHandler.SkillConf.Id.ToString());
+                self.GetParent<Unit>().GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.Interrupt, skillHandler.SkillConf.Id.ToString());
             }
         }
 

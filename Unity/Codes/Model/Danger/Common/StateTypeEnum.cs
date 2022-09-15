@@ -3,76 +3,76 @@ using System;
 namespace ET
 {
 
-    [Flags]
-    public enum StateTypeData:long
+
+    public static class StateTypeEnum
     {
-        None = 1 << 0,
+        public const long None = 1 << 0;
 
         /// <summary>
         /// 传送
         /// </summary>
-        ChuanSong = 1 << 1,
+        public const long ChuanSong = 1 << 1;
 
         /// <summary>
         /// 空闲
         /// </summary>
-        Idle = 1 << 2,
+        public const long  Idle = 1 << 2;
 
         /// <summary>
         /// 释放技能
         /// </summary>
-        SkillRigidity = 1 << 3,
+        public const long SkillRigidity = 1 << 3;
 
         /// <summary>
         /// 击退
         /// </summary>
-        JiTui = 1 << 4,
+        public const long JiTui = 1 << 4;
 
         /// <summary>
         /// 沉默
         /// </summary>
-        Silence = 1 << 6,
+        public const long Silence = 1 << 6;
 
         /// <summary>
         /// 眩晕
         /// </summary>
-        Dizziness = 1 << 7,
+        public const long Dizziness = 1 << 7;
 
         /// <summary>
         /// 吟唱
         /// </summary>
-        Singing = 1 << 8,
+        public const long Singing = 1 << 8;
 
         /// <summary>
         /// 开箱子
         /// </summary>
-        OpenBox = 1 << 9,
+        public const long OpenBox = 1 << 9;
 
         /// <summary>
         /// 禁锢
         /// </summary>
-        Shackle = 1 << 11,
+        public const long Shackle = 1 << 11;
 
         /// <summary>
         /// 打断
         /// </summary>
-        Interrupt = 1 << 12,
+        public const long Interrupt = 1 << 12;
 
         /// <summary>
         /// 遇到障碍物
         /// </summary>
-        Obstruct = 1 << 13,
+        public const long Obstruct = 1 << 13;
 
         /// <summary>
         /// 无敌
         /// </summary>
-        WuDi = 1 << 18,
+        public const long WuDi = 1 << 18;
         /// <summary>
         /// 秒杀
         /// </summary>
-        MiaoSha = 1 << 19,
+        public const long MiaoSha = 1 << 19;
 
         //护盾
-        Shield = 1 << 20,
+        public const long Shield = 1 << 20;
     }
 }

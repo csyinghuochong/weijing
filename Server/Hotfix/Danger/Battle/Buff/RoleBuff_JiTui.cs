@@ -24,7 +24,7 @@ namespace ET
             this.BeginTime = TimeHelper.ServerNow();
             this.StartPosition = theUnitBelongto.Position;
             this.TargetPosition = theUnitBelongto.DomainScene().GetComponent<MapComponent>().GetCanReachPath(theUnitBelongto.Position, vector3);
-            theUnitBelongto.GetComponent<StateComponent>().StateTypeAdd( StateTypeData.JiTui);
+            theUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.JiTui);
         }
 
         public override void OnUpdate()
@@ -46,7 +46,7 @@ namespace ET
 
         public override void OnFinished()
         {
-            this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove(StateTypeData.JiTui);
+            this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.JiTui);
         }
 
     }

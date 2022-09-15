@@ -51,7 +51,7 @@ namespace ET
         public static async ETTask GeneratePetFuben(this PetFubenSceneComponent self, Unit unit, int sceneId)
         {
             long instanceId = self.InstanceId;
-            unit.GetComponent<StateComponent>().StateTypeAdd( StateTypeData.WuDi);
+            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.WuDi);
 
             PetComponent petComponent = unit.GetComponent<PetComponent>();
             List<long> pets = petComponent.PetFormations;

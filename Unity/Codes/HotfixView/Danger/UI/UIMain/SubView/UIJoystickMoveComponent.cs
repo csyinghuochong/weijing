@@ -145,7 +145,7 @@ namespace ET
             int obstruct = self.CheckObstruct(newv3);
             if (obstruct!= 0)
             {
-                myUnit.GetComponent<StateComponent>().StateTypeAdd( StateTypeData.Obstruct);
+                myUnit.GetComponent<StateComponent>().StateTypeAdd( StateTypeEnum.Obstruct);
                 self.ShowObstructTip(obstruct);
                 return;
             }
@@ -218,7 +218,7 @@ namespace ET
         public static void EndDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            myUnit?.GetComponent<StateComponent>().StateTypeAdd(StateTypeData.Obstruct);
+            myUnit?.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.Obstruct);
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
             self.HideUI();
         }

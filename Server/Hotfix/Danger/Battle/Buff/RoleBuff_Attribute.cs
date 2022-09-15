@@ -107,7 +107,7 @@ namespace ET
                 //状态类buff
                 case 2:
                     NowBuffParameterType = this.BuffData.BuffConfig.buffParameterType;
-                    StateTypeData sta = (StateTypeData)(1 << NowBuffParameterType);
+                    long sta = (1 << NowBuffParameterType);
                     this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(sta);
                     break;
                 case 3: //释放技能 
@@ -151,7 +151,7 @@ namespace ET
                     break;
 
                 case 2:
-                    this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove((StateTypeData)(1<<NowBuffParameterType));
+                    this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove(1<<NowBuffParameterType);
                     break;
             }
         }

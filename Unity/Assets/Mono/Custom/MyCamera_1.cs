@@ -21,7 +21,7 @@ public class MyCamera_1 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public void  OnUpdate()
     {
         /*射线可以从头部起始*/
 
@@ -47,7 +47,10 @@ public class MyCamera_1 : MonoBehaviour
         //将 colliderObject 中所有的值添加进 lastColliderObject
         for (int i = 0; i < colliderObject.Count; i++)
         {
-            lastColliderObject.Add(colliderObject[i]);
+            if (!lastColliderObject.Contains(colliderObject[i]))
+            {
+                lastColliderObject.Add(colliderObject[i]);
+            }
         }
 
         colliderObject.Clear();//清空本次碰撞到的所有物体
@@ -69,24 +72,25 @@ public class MyCamera_1 : MonoBehaviour
         {
             for (int ii = 0; ii < colliderObject.Count; ii++)
             {
-                if (colliderObject[ii] != null)
+                if (lastColliderObject[i] == colliderObject[ii])
                 {
-                    if (lastColliderObject[i] == colliderObject[ii])
-                    {
-                        lastColliderObject[i] = null;
-                        break;
-                    }
+                    lastColliderObject[i] = null;
+                    break;
                 }
             }
         }
 
          // 当值为null时则可判断当前物体还处于遮挡状态
          //值不为null时则可恢复默认状态(不透明)
-         for (int i = 0; i < lastColliderObject.Count; i++)
+         for (int i = lastColliderObject.Count -1; i >= 0 ; i--)
         {
             if (lastColliderObject[i] != null)
             {
                 SetMaterialsColor(lastColliderObject[i].GetComponent<Renderer>(), 1f);//恢复上次物体材质透明度
+            }
+            else
+            {
+                lastColliderObject.RemoveAt(i);
             }
         }
     }

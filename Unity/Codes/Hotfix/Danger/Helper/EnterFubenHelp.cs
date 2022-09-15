@@ -89,7 +89,7 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             unit.GetComponent<MoveComponent>().Stop();
-            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeData.ChuanSong);
+            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.ChuanSong);
             UnitHelper.LoadingScene = true;
 
             Actor_EnterSonFubenRequest actor_EnterFubenRequest = new Actor_EnterSonFubenRequest() { CurrentCell = cellindex, DirectionType = direction };

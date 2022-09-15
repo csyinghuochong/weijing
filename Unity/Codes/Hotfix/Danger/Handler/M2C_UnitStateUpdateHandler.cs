@@ -19,16 +19,16 @@ namespace ET
             // 添加状态
             if (message.StateOperateType == 1)
             {
-                nowNunt.GetComponent<StateComponent>().StateTypeAdd((StateTypeData)message.StateType, message.StateValue);
+                nowNunt.GetComponent<StateComponent>().StateTypeAdd(message.StateType, message.StateValue);
             }
 
             //移除状态
             if (message.StateOperateType == 2)
             {
-                nowNunt.GetComponent<StateComponent>().StateTypeRemove((StateTypeData)message.StateType);
+                nowNunt.GetComponent<StateComponent>().StateTypeRemove(message.StateType);
             }
 
-            if (message.StateOperateType == 1 && message.StateType == (long)StateTypeData.Interrupt)
+            if (message.StateOperateType == 1 && message.StateType == (long)StateTypeEnum.Interrupt)
             {
                 //打断技能
                 nowNunt.GetComponent<SkillManagerComponent>().InterruptSkill(int.Parse(message.StateValue));

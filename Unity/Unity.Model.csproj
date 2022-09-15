@@ -149,7 +149,7 @@
     <Compile Include="Codes\Model\Danger\Common\SkillHelp.cs" />
     <Compile Include="Codes\Model\Danger\Component\SkillManagerComponent.cs" />
     <Compile Include="Codes\Model\Danger\Common\StateComponent.cs" />
-    <Compile Include="Codes\Model\Danger\Common\StateTypeData.cs" />
+    <Compile Include="Codes\Model\Danger\Common\StateTypeEnum.cs" />
     <Compile Include="Codes\Model\Demo\EventType.cs" />
     <Compile Include="Codes\Model\Demo\Helper\PositionHelper.cs" />
     <Compile Include="Codes\Model\Demo\Move\MoveComponent.cs" />

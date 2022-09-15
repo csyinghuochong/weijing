@@ -13,7 +13,7 @@ namespace ET
 				return;
 			}
 
-			if (unit.GetComponent<StateComponent>().StateTypeGet( StateTypeData.ChuanSong))
+			if (unit.GetComponent<StateComponent>().StateTypeGet( StateTypeEnum.ChuanSong))
 			{
 				return;
 			}

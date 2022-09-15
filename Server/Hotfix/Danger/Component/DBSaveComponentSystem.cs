@@ -58,7 +58,7 @@ namespace ET
         public static void Activeted(this DBSaveComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000, TimerType.DBSaveTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000 * 5, TimerType.DBSaveTimer, self);
         }
 
         public static void AddChange(this DBSaveComponent self, Type type)

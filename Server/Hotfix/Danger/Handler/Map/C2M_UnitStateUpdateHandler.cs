@@ -16,12 +16,12 @@ namespace ET
 			if (message.StateOperateType == 1)
 			{
 				//增加
-				unit.GetComponent<StateComponent>().StateTypeAdd((StateTypeData)message.StateType, message.StateValue);
+				unit.GetComponent<StateComponent>().StateTypeAdd(message.StateType, message.StateValue);
 			}
 			else
 			{
 				//移除
-				unit.GetComponent<StateComponent>().StateTypeRemove((StateTypeData)message.StateType);
+				unit.GetComponent<StateComponent>().StateTypeRemove(message.StateType);
 			}
 			
 			await ETTask.CompletedTask;

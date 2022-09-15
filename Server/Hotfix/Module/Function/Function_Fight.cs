@@ -38,12 +38,12 @@ namespace ET
             }
 
             //无敌buff，不受伤害
-            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeData.WuDi))
+            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDi))
             {
                 return;
             }
 
-            if (attackUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeData.MiaoSha))
+            if (attackUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.MiaoSha))
             {
                 long hp = defendUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp)+1;
                 defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, hp * -1, skillconfig.Id);
@@ -352,7 +352,7 @@ namespace ET
 
                     float shield_Hp = 0;
                     int shield_Type = 0;    //1百分比  2固定值
-                    if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeData.Shield))
+                    if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Shield))
                     {
                         shield_Hp = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_HP);
                         shield_Type = numericComponentDefend.GetAsInt(NumericType.Now_Shield_Type);

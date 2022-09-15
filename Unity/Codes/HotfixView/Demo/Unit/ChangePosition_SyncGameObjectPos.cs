@@ -26,6 +26,13 @@ namespace ET
                     UI uI = UIHelper.GetUI(unit.ZoneScene(), UIType.UIMapBig);
                     uI?.GetComponent<UIMapBigComponent>().OnChangePosition(unit.Position);
                     unit.ZoneScene().CurrentScene()?.GetComponent<LockTargetComponent>()?.OnUpdate();
+
+                    MapComponent mapComponent = unit.ZoneScene().GetComponent<MapComponent>();
+                    if (mapComponent.SceneTypeEnum == SceneTypeEnum.MainCityScene)
+                    {
+                        Camera camera = UIComponent.Instance.MainCamera;
+                        camera.GetComponent<MyCamera_1>().OnUpdate();
+                    }
                 }
             }
             catch (Exception ex)

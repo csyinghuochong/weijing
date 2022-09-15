@@ -14,10 +14,10 @@ namespace ET
             }
 
             UnitType unitType = args.Unit.GetComponent<UnitInfoComponent>().Type;
-            if (unitType == UnitType.Player && args.Unit.GetComponent<StateComponent>().StateTypeGet( StateTypeData.Obstruct))
+            if (unitType == UnitType.Player && args.Unit.GetComponent<StateComponent>().StateTypeGet( StateTypeEnum.Obstruct))
             {
                 //args.Unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmRunState);
-                args.Unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeData.Obstruct);
+                args.Unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.Obstruct);
             }
             else
             {
