@@ -1,11 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace ET
 {
 
-    public class UIAttackGridComponent : Entity, IAwake
+    [Timer(TimerType.AttackGridTimer)]
+    public class AttackGridTimer : ATimer<UIAttackGridComponent>
+    {
+        public override void Run(UIAttackGridComponent self)
+        {
+            try
+            {
+                self.OnUpdate();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+    public class UIAttackGridComponent : Entity, IAwake, IDestroy
     {
         public GameObject Btn_SkillStart;
         public SkillConfig SkillConfig;
@@ -31,6 +48,8 @@ namespace ET
 
         public long CDTime = 500;
         public long CDEndTime;
+
+        public long Timer;
     }
 
     [ObjectSystem]
@@ -39,6 +58,15 @@ namespace ET
         public override void Awake(UIAttackGridComponent self)
         {
             self.Awake();
+        }
+    }
+
+    [ObjectSystem]
+    public class UIAttackGridComponentDestroySystem : DestroySystem<UIAttackGridComponent>
+    {
+        public override void Destroy(UIAttackGridComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
@@ -69,16 +97,11 @@ namespace ET
 
         public static void OnLockUnit(this UIAttackGridComponent self, Unit targetUnit)
         {
-            self.CancellationToken?.Cancel();
-            self.CancellationToken = null;
-            ETCancellationToken cancellationToken = new ETCancellationToken();
-            self.CancellationToken = cancellationToken;
-
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (targetUnit == null)
             {
                 self.MoveAttackId = 0;
-                int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0);
+                int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), null);
                 MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, targetAngle, 0, 0).Coroutine();
                 self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
                 return;
@@ -88,12 +111,14 @@ namespace ET
             if (distance < self.AttackDistance)
             {
                 self.MoveAttackId = 0;
-                self.AutoAttack(targetUnit.Id, self.CancellationToken).Coroutine();
+                self.CancellationToken?.Cancel();
+                self.CancellationToken = new ETCancellationToken();
+                self.AutoAttack_1(unit, targetUnit, self.CancellationToken).Coroutine();
                 return;
             }
-            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             self.MoveAttackId = targetUnit.Id;
-            self.SendMoveToUnit(unit, targetUnit.Position).Coroutine();
+            unit.MoveToAsync2(targetUnit.Position, false).Coroutine();
+            self.BeginAutoAttack();
         }
 
         public static void PointerUp(this UIAttackGridComponent self, PointerEventData pdata)
@@ -108,7 +133,6 @@ namespace ET
             LockTargetComponent lockTargetComponent = self.ZoneScene().CurrentScene().GetComponent<LockTargetComponent>();
             long targetId = lockTargetComponent.LockTargetUnit(true);
             Unit targetUnit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(targetId);
-
             self.OnLockUnit(targetUnit);
         }
 
@@ -138,7 +162,6 @@ namespace ET
         //连击
         public static void UpdateComboTime(this UIAttackGridComponent self)
         {
-
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
             if (bagComponent.GetEquipType() == ItemEquipType.Sword)
@@ -179,117 +202,92 @@ namespace ET
             self.CancellationToken = null;
         }
 
-        public static async ETTask AutoAttack(this UIAttackGridComponent self, long targetId, ETCancellationToken cancellationToken = null)
+        public static async ETTask AutoAttack_1(this UIAttackGridComponent self, Unit unit, Unit taretUnit, ETCancellationToken cancellationToken = null)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            long instanceid = unit.InstanceId;
-            while (true)
+            if (PositionHelper.Distance2D(unit, taretUnit) > self.AttackDistance)
             {
-                if (instanceid != unit.InstanceId)
-                {
-                    return;
-                }
-                if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
-                {
-                    return;
-                }
-                LockTargetComponent lockTargetComponent = self.ZoneScene().CurrentScene().GetComponent<LockTargetComponent>();
-                if (targetId != lockTargetComponent.LastLockId)
-                {
-                    Unit targetUnit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(lockTargetComponent.LastLockId);
-                    self.OnLockUnit(targetUnit);
-                    return;
-                }
-
-                Unit taretUnit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(targetId);
-                if (taretUnit == null || taretUnit.IsDisposed || taretUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
-                {
-                    return;
-                }
-
-                bool canAttack = true;
-                int errorCode = ErrorCore.ERR_Success;
-                if (Time.time - self.LastSkillTime < self.ComboStartTime)
-                {
-                    canAttack = false;
-                }
-                if (canAttack)
-                {
-                    if (Time.time - self.LastSkillTime > self.CombatEndTime)
-                    {
-                        canAttack = true;
-                        self.ComboSkillId = self.SkillId;
-                    }
-                    else
-                    {
-                        //更新技能ID
-                        canAttack = true;
-                        self.ComboSkillId = SkillConfigCategory.Instance.Get(self.ComboSkillId).ComboSkillID;
-                    }
-                    int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
-                    if ((EquipType == (int)ItemEquipType.Sword || EquipType == (int)ItemEquipType.Common))
-                    {
-                        self.ComboSkillId = self.RandomGetSkill();
-                    }
-                    float distance = PositionHelper.Distance2D(unit, taretUnit);
-                    if (distance < self.AttackDistance)
-                    {
-                        errorCode = await self.SendAttackUnit(unit, targetId);
-                    }
-                    else
-                    {
-                        return;
-                    }
-  
-                    if (errorCode == ErrorCore.ERR_Success)
-                    {
-                        self.LastSkillTime = Time.time;
-                        if (self.ComboSkillId == 60000103 || self.ComboSkillId == 60000203)
-                        {
-                            self.ComboStartTime = 1.25f;
-                            self.CombatEndTime = 2f;
-                        }
-                    }
-                }
-
-                if (cancellationToken.IsCancel())
-                {
-                    return;
-                }
-                bool timeRet = await TimerComponent.Instance.WaitAsync(self.CDTime, cancellationToken);
-                if (!timeRet)
-                {
-                    return;
-                }
+                cancellationToken?.Cancel();
+                //self.BeginAutoAttack();
+                return;
             }
+            if (taretUnit.IsDisposed || taretUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
+            {
+                cancellationToken?.Cancel();
+                return;
+            }
+
+            if (Time.time - self.LastSkillTime > self.CombatEndTime)
+            {
+                self.ComboSkillId = self.SkillId;
+            }
+            else
+            {
+                self.ComboSkillId = SkillConfigCategory.Instance.Get(self.ComboSkillId).ComboSkillID;
+            }
+            int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
+            if ((EquipType == (int)ItemEquipType.Sword || EquipType == (int)ItemEquipType.Common))
+            {
+                self.ComboSkillId = self.RandomGetSkill();
+            }
+
+            int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), taretUnit);
+            int errorCode = await MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, targetAngle, taretUnit.Id, 0);
+            if (errorCode != ErrorCore.ERR_Success)
+            {
+                return;
+            }
+            self.LastSkillTime = Time.time;
+            self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
+            if (self.ComboSkillId == 60000103 || self.ComboSkillId == 60000203)
+            {
+                self.ComboStartTime = 1.25f;
+                self.CombatEndTime = 2f;
+            }
+            bool timeRet = await TimerComponent.Instance.WaitAsync(self.CDTime, cancellationToken);
+            if (!timeRet)
+            {
+                return;
+            }
+            self.AutoAttack_1(unit, taretUnit, cancellationToken).Coroutine();
         }
 
-        public static async ETTask<int> SendAttackUnit(this UIAttackGridComponent self, Unit unit, long targetId)
+        public static void BeginAutoAttack(this UIAttackGridComponent self)
         {
-            Unit taretUnit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(targetId);
+            TimerComponent.Instance?.Remove(ref self.Timer);
+            self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.AttackGridTimer, self);
+        }
+
+        public static void FinishAutoAttack(this UIAttackGridComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.Timer);
+        }
+
+        public static void OnUpdate(this UIAttackGridComponent self)
+        {
+            //超出了攻击范围，则不再追击。
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (self.MoveAttackId == 0 || unit == null || unit.IsDisposed)
+            {
+                TimerComponent.Instance?.Remove( ref self.Timer);
+                return;
+            }
+            Unit taretUnit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.MoveAttackId);
             if (taretUnit == null || taretUnit.IsDisposed)
             {
-                return ErrorCore.ERR_NetWorkError;
+                self.MoveAttackId = 0;
+                self.DomainScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
+                TimerComponent.Instance?.Remove(ref self.Timer);
+                return;
             }
-            self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
-            int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), targetId);
-            return await MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, targetAngle, targetId, 0);
-        }
-
-        public static async ETTask SendMoveToUnit(this UIAttackGridComponent self, Unit unit, Vector3 position)
-        {
-            self.CheckMove().Coroutine();
-            int value = await unit.MoveToAsync2(position, false);
-            long targetId = self.ZoneScene().CurrentScene().GetComponent<LockTargetComponent>().LastLockId;
-            Unit taretUnit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(targetId);
-            //说明正常移动到目标点
-            if (value == 0 && taretUnit != null && PositionHelper.Distance2D(unit, taretUnit) < self.AttackDistance)
+            if (PositionHelper.Distance2D(unit, taretUnit) <= self.AttackDistance)
             {
+                self.MoveAttackId = 0;
+                self.DomainScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
+                TimerComponent.Instance?.Remove(ref self.Timer);
                 self.CancellationToken?.Cancel();
-                self.CancellationToken = null;
-                ETCancellationToken cancellationToken = new ETCancellationToken();
-                self.CancellationToken = cancellationToken;
-                self.AutoAttack(targetId, cancellationToken).Coroutine();
+                self.CancellationToken = new ETCancellationToken();
+                self.AutoAttack_1(unit, taretUnit, self.CancellationToken).Coroutine();
+                return;
             }
         }
 
@@ -317,15 +315,12 @@ namespace ET
             }
         }
 
-        public static int GetTargetAnagle(this UIAttackGridComponent self, int angle, long targetId)
+        public static int GetTargetAnagle(this UIAttackGridComponent self, int angle, Unit taretUnit)
         {
-            Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (targetId == 0)
-                return angle;
-            Unit taretUnit = self.DomainScene().CurrentScene().GetComponent<UnitComponent>().Get(targetId);
             if (taretUnit == null || taretUnit.IsDisposed)
                 return angle;
 
+            Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Vector3 direction = taretUnit.Position - myUnit.Position;
             float ange = Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z);
             return Mathf.FloorToInt(ange);

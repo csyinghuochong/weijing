@@ -46,6 +46,7 @@
         public const int PetMainTimer = 1044;
         public const int DungeonSettlement = 1055;
         public const int RoleXiLianLevel = 1056;
+        public const int AttackGridTimer = 1057;
         // 不能超过10000
     }
 }
