@@ -64,16 +64,17 @@ namespace ET
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             UICommonHelper.DestoryChild(self.ItemListNode);
-            UICommonHelper.ShowItemList(equipXiLianConfig.RewardList, self.ItemListNode, self, 0.8f).Coroutine();
+            UICommonHelper.ShowItemList(equipXiLianConfig.RewardList, self.ItemListNode, self, 1f).Coroutine();
 
             bool actived = shuliandu >= equipXiLianConfig.NeedShuLianDu;
             self.Image_Acvityed.SetActive(userInfo.XiLianRewardIds.Contains(xilianId));
             self.ButtonGet.SetActive(actived && !userInfo.XiLianRewardIds.Contains(xilianId));
-            self.TextShuLianDu.GetComponent<Text>().text = $"需要洗练熟练度 {shuliandu}/{equipXiLianConfig.NeedShuLianDu}";
-            self.TextShuLianDu.GetComponent<Text>().color = actived ? Color.green : Color.red;
+            self.TextShuLianDu.GetComponent<Text>().text = $"{shuliandu}/{equipXiLianConfig.NeedShuLianDu}";
+            //self.TextShuLianDu.GetComponent<Text>().color = actived ? Color.green : Color.red;
             float progress = shuliandu * 1f / equipXiLianConfig.NeedShuLianDu;
             self.ImageExp.GetComponent<Image>().fillAmount = Mathf.Min(progress, 1f);
             self.TextTitle.GetComponent<Text>().text = equipXiLianConfig.Title;
+            self.TextLevelTip.GetComponent<Text>().text = "获得"+ equipXiLianConfig.Title + "，洗炼获得高品质属性概率提升";
 
             if (equipXiLianConfig.ProList_Type[0] != 0)
             {

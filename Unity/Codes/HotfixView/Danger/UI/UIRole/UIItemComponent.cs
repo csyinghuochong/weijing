@@ -228,7 +228,7 @@ namespace ET
                 if (self.Label_ItemName != null)
                 {
                     self.Label_ItemName.GetComponent<Text>().text = itemconfig.ItemName;
-                    self.Label_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconfig.ItemQuality);
+                    self.Label_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColorDi(itemconfig.ItemQuality);
                 }
 
                 if (self.Image_Binding != null)

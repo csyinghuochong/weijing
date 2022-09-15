@@ -377,7 +377,7 @@ namespace ET
                     break;
                 //隐藏技能  橙色
                 case "2":
-                    propertyObj.GetComponent<Text>().color = new Color(1f, 1f, 0f);
+                    propertyObj.GetComponent<Text>().color = new Color(248/255f, 62f/255, 191f/255f);
                     break;
                 //红色
                 case "3":
@@ -511,7 +511,7 @@ namespace ET
 
                         if (hidePropertyType == NumericType.Base_MaxHp_Base)
                         {
-                            textShow = langStr + "  " + equip_Hp + "(+" + hidePropertyValue + ")" + occShowStr + occShowStr;
+                            textShow = langStr + " ： " + equip_Hp + "(+" + hidePropertyValue + ")" + occShowStr + occShowStr;
                             ifHideProperty = true;
                         }
                     }

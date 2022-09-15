@@ -944,9 +944,9 @@ namespace ET
 
             //-------------------测试-------------------
             //附加额外的极品属性
-            equipJiPinPro = 1f;
+            //equipJiPinPro = 1f;
             //附加特殊技能
-            equipJiPinSkillPro = 1f;
+            //equipJiPinSkillPro = 1f;
 
             //获取装备是否有锻造大师属性
             /*
@@ -1181,8 +1181,8 @@ namespace ET
                 }
 
                 //判定是否需要写入特殊技能
-                if (bagInfo.HideID != 0)
-                {
+                //if (bagInfo.HideID != 0)
+                //{
 
                     //如果是掉落,概率降低10倍
 
@@ -1299,7 +1299,7 @@ namespace ET
                             //bagInfo.HideProLists = HideProList;             //精炼
                         }
                     }
-                }
+                //}
             }
 
             bagInfo.XiLianHideProLists = BaseHideProList;   //基础属性洗炼
