@@ -154,7 +154,7 @@ namespace ET
 					}
 					break;
 				case (int)SceneTypeEnum.MainCityScene:
-					sceneConfig = SceneConfigCategory.Instance.Get(1);
+					sceneConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());
 					NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 					if (numericComponent.GetAsFloat(NumericType.MainCity_X)== 0)
 					{
