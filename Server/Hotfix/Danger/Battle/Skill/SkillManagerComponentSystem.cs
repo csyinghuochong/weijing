@@ -394,16 +394,17 @@ namespace ET
                 return ErrorCore.ERR_UseSkillInCD1;
             }
 
-            //判定是否再公共冷却时间
-            if (TimeHelper.ServerNow() < self.SkillPublicCDTime)
-            {
-                return ErrorCore.ERR_UseSkillInCD2;
-            }
-
             //判断当前眩晕状态
             if (!unit.GetComponent<StateComponent>().CanUseSkill())
             {
                 return ErrorCore.ERR_UseSkillInCD3;
+            }
+
+            //判定是否再公共冷却时间
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(nowSkillID);
+            if (TimeHelper.ServerNow() < self.SkillPublicCDTime  && skillConfig.SkillActType != 0)
+            {
+                return ErrorCore.ERR_UseSkillInCD2;
             }
 
             return ErrorCore.ERR_Success;

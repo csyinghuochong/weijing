@@ -427,11 +427,16 @@ namespace ET
 
         public static int CheckObstruct(this OperaComponent self, Vector3 start, Vector3 target)
         {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.TeamDungeon)
+            {
+                return 0;
+            }
+
             Vector3 dir = (target - start).normalized;
             while (true)
             {
                 RaycastHit hit;
-
                 if (Vector3.Distance(start, target) < 1f)
                 {
                     break;

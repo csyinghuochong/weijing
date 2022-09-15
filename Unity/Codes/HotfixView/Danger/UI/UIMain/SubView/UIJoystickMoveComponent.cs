@@ -167,6 +167,11 @@ namespace ET
 
         public static int CheckObstruct(this UIJoystickMoveComponent self,  Vector3 target)
         {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.TeamDungeon)
+            {
+                return 0;
+            }
             RaycastHit hit;
             int mapMask = (1 << LayerMask.NameToLayer(LayerEnum.Obstruct.ToString()));
             Physics.Raycast(target + new Vector3(0f, 10f, 0f), Vector3.down, out hit, 100, mapMask);
