@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,6 +7,7 @@ namespace ET
 {
     public class UIRoleXiLianLevelItemComponent : Entity, IAwake<GameObject>
     {
+        public GameObject SkillListNode;
         public GameObject ImageExp;
         public GameObject ButtonGet;
         public GameObject ItemListNode;
@@ -28,6 +30,7 @@ namespace ET
             self.GameObject = go;
 
             ReferenceCollector rc = go.GetComponent<ReferenceCollector>();
+            self.SkillListNode = rc.Get<GameObject>("SkillListNode");
             self.ImageExp = rc.Get<GameObject>("ImageExp");
             self.TextShuLianDu = rc.Get<GameObject>("TextShuLianDu");
             self.TextLevelTip = rc.Get<GameObject>("TextLevelTip");
@@ -65,6 +68,22 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             UICommonHelper.DestoryChild(self.ItemListNode);
             UICommonHelper.ShowItemList(equipXiLianConfig.RewardList, self.ItemListNode, self, 1f).Coroutine();
+
+            int xilianLevel = EquipXiLianConfigCategory.Instance.Get(xilianId).XiLianLevel;
+            List<int> xilianSkill = XiLianHelper.GetLevelSkill(xilianLevel);
+
+            Log.ILog.Debug($"xilianLevel:  {xilianLevel}  {xilianSkill.Count} ");
+
+            UICommonHelper.DestoryChild(self.SkillListNode);
+            var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkillItem");
+            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            for (int i = 0; i < xilianSkill.Count; i++)
+            {
+                GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
+                UICommonHelper.SetParent(bagSpace, self.SkillListNode);
+                UICommonSkillItemComponent ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(bagSpace);
+                ui_item.OnUpdateUI(xilianSkill[i], ABAtlasTypes.RoleSkillIcon);
+            }
 
             bool actived = shuliandu >= equipXiLianConfig.NeedShuLianDu;
             self.Image_Acvityed.SetActive(userInfo.XiLianRewardIds.Contains(xilianId));

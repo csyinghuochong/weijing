@@ -93,8 +93,7 @@ namespace ET
         public static async ETTask UpdateSkillList(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkillItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
             for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)
             {
