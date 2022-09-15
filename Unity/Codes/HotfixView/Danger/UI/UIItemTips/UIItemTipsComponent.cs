@@ -192,7 +192,6 @@ namespace ET
         public static async ETTask OnClickUse(this UIItemTipsComponent self)
         {
             //发送消息
-            Log.ILog.Info("我点击了道具使用..");
             //判断当前技能是否再CD状态
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
             int errorCode = ErrorCore.ERR_Success;

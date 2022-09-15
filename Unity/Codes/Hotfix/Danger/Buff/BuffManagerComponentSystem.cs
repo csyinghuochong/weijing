@@ -107,7 +107,6 @@ namespace ET
             {
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.BuffTimer, self);
             }
-            Log.ILog.Info("触发buff:" + buffData.BuffConfig.Id + ",名称:" + buffData.BuffConfig.BuffName);
         }
 
         /// <summary>
@@ -122,7 +121,6 @@ namespace ET
                 aBuffSystemBase.BuffState = BuffState.Finished;
             }
 
-            Log.ILog.Info("移除buff:" + buffId);
             return aBuffSystemBase;
         }
 

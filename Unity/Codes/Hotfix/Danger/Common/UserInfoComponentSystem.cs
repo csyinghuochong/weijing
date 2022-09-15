@@ -89,7 +89,6 @@ namespace ET
 
             if (updateType == 0)
             {
-                Log.ILog.Info($"task_updateTask1: { self.UserInfo.UserId}");
                 self.OnZeroClockUpdate(false);
                 unit.GetComponent<TaskComponent>().OnZeroClockUpdate(false);
                 unit.GetComponent<EnergyComponent>().OnResetEnergyInfo();

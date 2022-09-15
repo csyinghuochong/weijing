@@ -20,6 +20,7 @@ namespace ET
         public bool IfShowStatus;
         public float LastTime;
         public HeadBarUI HeadBarUI;
+        public long Timer;
     }
 
 }

@@ -52,7 +52,6 @@
     <Compile Include="Codes\ModelView\Danger\Component\ChainLightningComponent.cs" />
     <Compile Include="Codes\ModelView\Danger\Component\ChangeEquipComponent.cs" />
     <Compile Include="Codes\ModelView\Danger\Component\DropUIComponent.cs" />
-    <Compile Include="Codes\ModelView\Danger\Component\FallingFontComponent.cs" />
     <Compile Include="Codes\ModelView\Danger\Component\FingerTouchComponent.cs" />
     <Compile Include="Codes\ModelView\Danger\Component\FloatTipComponent.cs" />
     <Compile Include="Codes\ModelView\Danger\Component\FloatTipManager.cs" />

@@ -5,6 +5,22 @@ using UnityEngine;
 
 namespace ET
 {
+    [Timer(TimerType.DropUITimer)]
+    public class DropUITimer : ATimer<DropUIComponent>
+    {
+        public override void Run(DropUIComponent self)
+        {
+            try
+            {
+                self.OnUpdate();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
 
     [ObjectSystem]
     public class DropUIComponentAwakeSystem : AwakeSystem<DropUIComponent>
@@ -25,6 +41,7 @@ namespace ET
         public override void Destroy(DropUIComponent self)
         {
             self.Destroy();
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
@@ -84,7 +101,7 @@ namespace ET
                 self.StartPoint = parent.Position;
                 self.EndPoint = new Vector3(dropinfo.X, parent.Position.y, dropinfo.Z);
                 self.GeneratePositions();
-                self.MoveAnimation().Coroutine();
+                self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.DropUITimer, self);
             }
 
             self.SetDropInfo(dropinfo);
@@ -188,41 +205,25 @@ namespace ET
             return (1 - t) * (1 - t) * start + 2 * t * (1 - t) * center + t * t * end;
         }
 
-        public static async ETTask MoveAnimation(this DropUIComponent self)
+        public static  void OnUpdate(this DropUIComponent self)
         {
-            long instanceId = self.InstanceId;
-            for (int i = 0; i < self.LinepointList.Length; i++)
+            self.PositionIndex++;
+            //快速下落处理
+            if (self.PositionIndex >= (int)(self.Resolution * 0.4f))
             {
-                await TimerComponent.Instance.WaitFrameAsync();
-                if (instanceId != self.InstanceId)
-                {
-                    break;
-                }
-
                 self.PositionIndex++;
-                //快速下落处理
-                if (self.PositionIndex >= (int)(self.Resolution * 0.4f))
-                {
-                    self.PositionIndex++;
-                }
-                //快速下落处理
-                if (self.PositionIndex >= (int)(self.Resolution * 0.6f))
-                {
-                    self.PositionIndex++;
-                }
-                if (self.PositionIndex >= self.LinepointList.Length)
-                {
-                    //Log.Info("显示数据HeadBar...");
-                    //显示UI,只显示一次
-                    //if (self.IfShowStatus == false)
-                    //{
-                    //    self.IfShowStatus = true;
-                    //    self.SetDropInfo(self.DropInfoData);
-                    //}
-                    break;
-                }
-                self.MyUnit.Position = self.LinepointList[self.PositionIndex];
             }
+            //快速下落处理
+            if (self.PositionIndex >= (int)(self.Resolution * 0.6f))
+            {
+                self.PositionIndex++;
+            }
+            if (self.PositionIndex >= self.LinepointList.Length)
+            {
+                TimerComponent.Instance.Remove(ref self.Timer);
+                return;
+            }
+            self.MyUnit.Position = self.LinepointList[self.PositionIndex];
         }
 
         public static void LateUpdate(this DropUIComponent self)

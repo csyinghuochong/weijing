@@ -15,7 +15,6 @@ namespace ET
         {
             if (args.ErrorCore == ErrorCore.ERR_FangChengMi_Tip1)
             {
-                Log.ILog.Info("args.Value = " + args.Value);
                 string content = ErrorHelp.Instance.ErrorHintList[args.ErrorCore];
                 content = content.Replace("{0}", args.Value);
                 PopupTipHelp.OpenPopupTip_3(args.ZoneScene, "防沉迷提示",

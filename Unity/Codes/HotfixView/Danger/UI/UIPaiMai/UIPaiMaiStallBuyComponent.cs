@@ -156,7 +156,6 @@ namespace ET
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
             self.Lab_ItemName.GetComponent<Text>().text = itemConfig.ItemName;
-            Log.ILog.Info("paiMaiItemInfo.Price.ToString() = " + paiMaiItemInfo.Price.ToString());
             self.Lab_ChuShouPrice.GetComponent<Text>().text = paiMaiItemInfo.Price.ToString();
             self.UIItemComponent.UpdateItem(paiMaiItemInfo.BagInfo, ItemOperateEnum.None);
         }

@@ -46,7 +46,6 @@ namespace ET
             //默认暂时只开启第一章
             self.ChapterId = chapterId;
             bool chapterOpen = self.ZoneScene().GetComponent<UserInfoComponent>().IsChapterOpen(chapterId);
-            Log.ILog.Info("chapterOpen" + chapterId + ":" + chapterOpen + ":" + self.GetParent<UI>().GameObject.name);
             self.UnLock.SetActive(!chapterOpen);
             self.Obj_ShowLv.SetActive(chapterOpen);
 

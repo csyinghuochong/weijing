@@ -475,8 +475,6 @@ namespace ET
 				return;
 			}
 
-			Log.ILog.Info( $"{account}_{password}_{loginType}" );
-
 			self.Loading.SetActive(true);
 			account = account.Replace(" ", "");
 			password = password.Replace(" ", "");

@@ -595,7 +595,6 @@ namespace ET
             self.ReceiveHuoYueIds.Clear();
             self.TaskCountryList.Clear();
             List<int> taskCountryList = TaskHelp.Instance.GetTaskCountrys();
-            Log.ILog.Info($"task_updateTask2: { taskCountryList.Count}");
             if (taskCountryList.Count == 0)
             {
                 Log.Error("taskCountryList.Count == 0");

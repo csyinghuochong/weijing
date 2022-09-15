@@ -200,6 +200,7 @@ namespace ET
         {
             self.CancellationToken?.Cancel();
             self.CancellationToken = null;
+            self.FinishAutoAttack();
         }
 
         public static async ETTask AutoAttack_1(this UIAttackGridComponent self, Unit unit, Unit taretUnit, ETCancellationToken cancellationToken = null)
@@ -231,11 +232,12 @@ namespace ET
             }
 
             int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), taretUnit);
-            int errorCode = await MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, targetAngle, taretUnit.Id, 0);
-            if (errorCode != ErrorCore.ERR_Success)
-            {
-                return;
-            }
+            //int errorCode = await MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, targetAngle, taretUnit.Id, 0);
+            //if (errorCode != ErrorCore.ERR_Success)
+            //{
+            //    return;
+            //}
+            MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, targetAngle, taretUnit.Id, 0).Coroutine();
             self.LastSkillTime = Time.time;
             self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
             if (self.ComboSkillId == 60000103 || self.ComboSkillId == 60000203)

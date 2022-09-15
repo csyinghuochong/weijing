@@ -38,8 +38,8 @@ namespace ET
             self.EditorMode = init.EditorMode;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             init.OnGetKeyHandler = (int key) => { self.OnGetKeyHandler(key); };
-            init.OnGetMouseButtonDown_0 = () => { self.OnGetMouseButtonDown_0(); };
-            init.OnGetMouseButtonDown_1 = () => { self.OnGetMouseButtonDown_1(); };
+            init.OnGetMouseButtonDown_0 = self.OnGetMouseButtonDown_0;
+            init.OnGetMouseButtonDown_1 = self.OnGetMouseButtonDown_1;
             self.UpdateClickMode();
         }
     }

@@ -7,7 +7,7 @@ namespace ET
 {
     public static class MapHelper
     {
-        public static async ETTask SendZhaoHuan(Scene zoneScene)
+        public static void  SendZhaoHuan(Scene zoneScene)
         {
             try
             {
@@ -23,9 +23,7 @@ namespace ET
                     Z = unit.Position.z,
                     ParentUnitId = unit.Id
                 };
-
                 zoneScene.GetComponent<SessionComponent>().Session.Send(zhaohuancmd);
-                await ETTask.CompletedTask;
             }
             catch (Exception e)
             {

@@ -22,6 +22,18 @@ namespace ET
         }
     }
 
+    /// <summary>
+    /// 飘字组件，用于处理诸如伤害飘字。治疗飘字这种效果
+    /// </summary>
+    public class FallingFontComponent : Entity, IAwake, IDestroy
+    {
+        public Camera UiCamera;
+        public Camera MainCamera;
+        public long Timer;
+
+        public List<FallingFontShowComponent> FallingFontShows = new List<FallingFontShowComponent>();
+    }
+
     [ObjectSystem]
     public class FallingFontComponentAwakeSystem : AwakeSystem<FallingFontComponent>
     {
@@ -46,6 +58,7 @@ namespace ET
         {
             self.UiCamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
+            self.FallingFontShows.Clear();
         }
 
         /// <summary>
@@ -59,7 +72,9 @@ namespace ET
                 || unit.GetComponent<HeroHeadBarComponent>().HeadBar == null)
                 return;
 
-            self.AddChild<FallingFontShowComponent>(true).OnInitData(targetValue, unit, type).Coroutine();
+            FallingFontShowComponent fallingFont = self.AddChild<FallingFontShowComponent>(true);
+            fallingFont.OnInitData(targetValue, unit, type).Coroutine();
+            self.FallingFontShows.Add(fallingFont);
 
             if (self.Timer == 0)
             {
@@ -69,18 +84,18 @@ namespace ET
 
         public static void OnUpdate(this FallingFontComponent self)
         {
-            List<Entity> entities = self.Children.Values.ToList();
-            for (int i = entities.Count - 1; i >= 0; i--)
+            for (int i = self.FallingFontShows.Count - 1; i >= 0; i--)
             {
-                FallingFontShowComponent fallingFontShowComponent = entities[i] as FallingFontShowComponent;
+                FallingFontShowComponent fallingFontShowComponent = self.FallingFontShows[i];
                 bool remove = fallingFontShowComponent.LateUpdate();
                 if (remove)
                 {
+                    self.FallingFontShows.RemoveAt(i);
                     fallingFontShowComponent.Dispose();
                 }
             }
 
-            if (self.Children.Count == 0 && self.Timer!=0)
+            if (self.FallingFontShows.Count == 0 && self.Timer!=0)
             {
                 TimerComponent.Instance?.Remove(ref self.Timer);
             }

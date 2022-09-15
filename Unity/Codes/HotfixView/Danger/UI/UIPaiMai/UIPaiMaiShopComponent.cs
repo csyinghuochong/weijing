@@ -131,7 +131,6 @@ namespace ET
             for (int i = 0; i < self.TypeItemUIList.Count; i++)
             {
                 UIPaiMaiShopTypeComponent uIChengJiuTypeComponent = self.TypeItemUIList[i].GetComponent<UIPaiMaiShopTypeComponent>();
-                Log.ILog.Info("typeid = " + typeid);
                 uIChengJiuTypeComponent.SetSelected(typeid).Coroutine();
             }
         }

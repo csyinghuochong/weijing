@@ -236,10 +236,10 @@ namespace ET
         {
             self.ShowEffect = false;
             SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
-            if (skillIndicatorItem == null)
+            if (skillIndicatorItem == null || skillIndicatorItem.GameObject == null)
+            {
                 return;
-            if (skillIndicatorItem.GameObject == null)
-                return;
+            }
             skillIndicatorItem.GameObject.SetActive(false);
             GameObjectPool.Instance.InternalPut(skillIndicatorItem.EffectPath, skillIndicatorItem.GameObject);
             self.SkillIndicator = null;

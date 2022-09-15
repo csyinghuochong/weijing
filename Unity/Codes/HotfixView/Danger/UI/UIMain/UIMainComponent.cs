@@ -979,7 +979,7 @@ namespace ET
 
         public static void OnZhaoHuan(this UIMainComponent self)
         {
-            MapHelper.SendZhaoHuan(self.DomainScene()).Coroutine();
+            MapHelper.SendZhaoHuan(self.DomainScene());
         }
 
         public static async ETTask OnEnterChapter(this UIMainComponent self)

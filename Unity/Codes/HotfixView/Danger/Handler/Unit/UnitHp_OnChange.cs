@@ -29,7 +29,7 @@
 
             //主界面血條
             UI mainui = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
-            mainui.GetComponent<UIMainComponent>().OnUpdateHP(args.Unit);
+            mainui?.GetComponent<UIMainComponent>().OnUpdateHP(args.Unit);
 
             MapComponent mapComponent = args.Unit.ZoneScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetDungeon)

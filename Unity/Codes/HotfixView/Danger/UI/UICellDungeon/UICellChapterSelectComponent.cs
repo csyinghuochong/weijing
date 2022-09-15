@@ -119,16 +119,14 @@ namespace ET
             GameObject clickItem = null;
             Transform ShowTargetPosi = null;
 
-            Log.ILog.Info("chapterIdOnClickHandler:" + chapterId);
-
-            for (int i = 0; i < self.ChapterListUI.Count; i++) {
+            for (int i = 0; i < self.ChapterListUI.Count; i++) 
+            {
                 GameObject go = self.ChapterListUI[i].GameObject;
                 if (chapterId == int.Parse(go.name))
                 {
                     clickItem = go;
                     ShowTargetPosi = go.transform.Find("ShowTargetPosi");
                     self.NowChapterObj = self.ChapterListUI[i];
-                    Log.ILog.Info("chapterIdOnClickHandler222:" + i);
                     break;
                 }
             }
@@ -136,7 +134,6 @@ namespace ET
             if (clickItem == null)
             return;
 
-            Log.ILog.Info("chapterIdOnClickHandler333:");
             self.ClickPositionX = clickItem.transform.localPosition.x + ShowTargetPosi.localPosition.x;
             self.ClickPositionY = clickItem.transform.localPosition.y + ShowTargetPosi.localPosition.y;
             self.EnterScale = true;
@@ -150,7 +147,6 @@ namespace ET
             //var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             for (int i = 0; i < self.ChapterList.transform.childCount; i++)
             {
-                Log.ILog.Info("初始化章节UI:" + i);
                 GameObject go = self.ChapterList.transform.GetChild(i).gameObject;
                 int chapterid = int.Parse(go.name);
 

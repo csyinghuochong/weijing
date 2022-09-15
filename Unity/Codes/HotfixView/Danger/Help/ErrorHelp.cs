@@ -11,8 +11,9 @@ namespace ET
         //单例的初始化
         protected override void InternalInit()
         {
-
             base.InternalInit();
+            
+            ErrorHintList.Add(ErrorCore.ERR_NetWorkError, "网络错误!");
             ErrorHintList.Add(ErrorCore.ERR_AccountAlreadyRegister, "账号已注册!");
             ErrorHintList.Add(ErrorCore.ERR_AccountInBlackListError, "账号异常,禁止登录!");
             ErrorHintList.Add(ErrorCore.ERR_LoginInfoIsNull, "未找到账号数据,请确认账号是否已经注册");
