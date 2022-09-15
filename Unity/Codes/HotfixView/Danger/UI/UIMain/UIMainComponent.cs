@@ -1063,9 +1063,9 @@ namespace ET
             unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmShiQuItem);
             MapHelper.SendShiquItem(self.ZoneScene(), ids).Coroutine();
 
-            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeData.SkillRigidity);
+            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.SkillRigidity);
             await TimerComponent.Instance.WaitAsync(500);
-            unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeData.SkillRigidity);
+            unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.SkillRigidity);
             unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
         }
 

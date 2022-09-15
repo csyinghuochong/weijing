@@ -426,7 +426,7 @@ namespace ET
                     continue;
                 }
                 skillHandler.SetSkillState(SkillState.Finished);
-                self.GetParent<Unit>().GetComponent<StateComponent>().StateTypeAdd(StateTypeData.Interrupt, skillHandler.SkillConf.Id.ToString());
+                self.GetParent<Unit>().GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.Interrupt, skillHandler.SkillConf.Id.ToString());
             }
         }
 

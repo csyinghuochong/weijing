@@ -24,15 +24,15 @@ namespace ET
             OnEditorFocus(isFocused);
         }
         /// <summary>
-        /// Unity´°¿Ú¾Û½¹×´Ì¬¸Ä±ä»Øµ÷
+        /// Unityï¿½ï¿½ï¿½Ú¾Û½ï¿½×´Ì¬ï¿½Ä±ï¿½Øµï¿½
         /// </summary>
         /// <param name="focus"></param>
         private static void OnEditorFocus(bool focus)
         {
             if (focus)
             {
-                //Ã¿´ÎÇÐ»ØÀ´Unity£¬×Ô¶¯Ö´ÐÐ½Å±¾±àÒë
-                // Debug.Log($"±à¼­Æ÷¼¤»î×´Ì¬:{focus}");
+                //Ã¿ï¿½ï¿½ï¿½Ð»ï¿½ï¿½ï¿½Unityï¿½ï¿½ï¿½Ô¶ï¿½Ö´ï¿½Ð½Å±ï¿½ï¿½ï¿½ï¿½ï¿½
+                // Debug.Log($"ï¿½à¼­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½×´Ì¬:{focus}");
                 bool autoBuild = PlayerPrefs.HasKey("AutoBuild");
                 if (!autoBuild)
                     return;
@@ -41,11 +41,11 @@ namespace ET
         }
 
         /// <summary>
-        /// AssetÏÂÎÄ¼þ¸Ä±äÊ±»Øµ÷
+        /// Assetï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ä±ï¿½Ê±ï¿½Øµï¿½
         /// </summary>
         private void OnPreprocessAsset()
         {
-            //Debug.Log("AssetÏÂÎÄ¼þ¸Ä±äÊ±»Øµ÷");
+            //Debug.Log("Assetï¿½ï¿½ï¿½Ä¼ï¿½ï¿½Ä±ï¿½Ê±ï¿½Øµï¿½");
         }
     }
 }

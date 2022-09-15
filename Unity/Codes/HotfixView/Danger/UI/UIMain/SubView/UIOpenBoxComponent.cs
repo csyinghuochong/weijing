@@ -87,12 +87,12 @@ namespace ET
                 Unit box = unit.GetParent<UnitComponent>().Get(unitId);
                 Vector3 direction = box.Position - unit.Position;
                 int ange = Mathf.FloorToInt(Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z));
-                MapHelper.SendUpdateState(self.ZoneScene(), 1, (long)StateTypeData.OpenBox, ange.ToString());
+                MapHelper.SendUpdateState(self.ZoneScene(), 1, StateTypeEnum.OpenBox, ange.ToString());
             }
             else
             {
                 //unit.GetComponent<FsmComponent>().ChangeState(FsmHandlerType.FsmIdleState);
-                MapHelper.SendUpdateState(self.ZoneScene(), 2, (long)StateTypeData.OpenBox, "0");
+                MapHelper.SendUpdateState(self.ZoneScene(), 2, StateTypeEnum.OpenBox, "0");
             }
         }
 

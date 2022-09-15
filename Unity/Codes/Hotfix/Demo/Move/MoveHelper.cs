@@ -18,7 +18,7 @@ namespace ET
         /// <returns></returns>
         public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos, bool yangan=false)
         {
-            unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeData.Obstruct);
+            unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.Obstruct);
             unit.GetComponent<StateComponent>().BeginOperation();
             if (!unit.GetComponent<StateComponent>().CanMove())
             {

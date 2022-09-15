@@ -7,7 +7,7 @@
             this.OnBaseBuffInit(buffData,  theUnitFrom,  theUnitBelongto);
 
             NumericComponent numericComponent = this.TheUnitBelongto.GetComponent<NumericComponent>();
-            this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeData.Shield);
+            this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.Shield);
             //1百分比 2固定伤害
             numericComponent.ApplyValue(NumericType.Now_Shield_Type, buffData.BuffConfig.buffParameterType,  false);
             if (numericComponent.GetAsLong(NumericType.Now_Shield_Type) == 1)
@@ -34,7 +34,7 @@
 
         public override void OnFinished()
         {
-            this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove( StateTypeData.Shield);
+            this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.Shield);
         }
     }
 }

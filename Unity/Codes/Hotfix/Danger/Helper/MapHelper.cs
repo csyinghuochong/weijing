@@ -145,7 +145,7 @@ namespace ET
             {
                 return;
             }
-            unit.GetComponent<StateComponent>()?.StateTypeRemove(StateTypeData.SkillRigidity);
+            unit.GetComponent<StateComponent>()?.StateTypeRemove(StateTypeEnum.SkillRigidity);
         }
 
         /// <summary>
@@ -160,11 +160,11 @@ namespace ET
             C2M_UnitStateUpdate c2M_UnitStateUpdate = new C2M_UnitStateUpdate() { StateOperateType = operatype, StateType = stateType, StateValue = stateValue };
             zoneScene.GetComponent<SessionComponent>().Session.Send(c2M_UnitStateUpdate);
 
-            if (operatype == 2 && stateType == (long)StateTypeData.Singing)
+            if (operatype == 2 && stateType == (long)StateTypeEnum.Singing)
             {
                 return;
             }
-            if (operatype == 1 && stateType == (long)StateTypeData.Singing)
+            if (operatype == 1 && stateType == (long)StateTypeEnum.Singing)
             {
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(int.Parse(stateValue));
                 WaitUseSkill(zoneScene, (long)(skillConfig.SkillFrontSingTime * 1000)).Coroutine();
@@ -175,7 +175,7 @@ namespace ET
         {
             await TimerComponent.Instance.WaitAsync(waitTime);
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-            if (!unit.GetComponent<StateComponent>().StateTypeGet(StateTypeData.Singing))
+            if (!unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))
             {
                 return;
             }
@@ -205,20 +205,20 @@ namespace ET
                 }
                 if (checksing && skillConfig.SkillFrontSingTime > 0)
                 {
-                    if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeData.Singing))
+                    if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))
                     {
                         return errorCode;
                     }
-                    SendUpdateState(zoneScene, 1, (int)StateTypeData.Singing, SkillCmd.SkillID.ToString());
+                    SendUpdateState(zoneScene, 1, (int)StateTypeEnum.Singing, SkillCmd.SkillID.ToString());
                     return ErrorCore.ERR_Success;
                 }
                 unit.GetComponent<StateComponent>().BeginOperation();
-                unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeData.SkillRigidity);
+                unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.SkillRigidity);
                 M2C_SkillCmd m2C_SkillCmd = await zoneScene.GetComponent<SessionComponent>().Session.Call(SkillCmd) as M2C_SkillCmd;
 
                 if (m2C_SkillCmd.Error != 0)
                 {
-                    unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeData.SkillRigidity);
+                    unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.SkillRigidity);
                 }
                 else
                 {
@@ -232,7 +232,7 @@ namespace ET
                 Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
                 if (myUnit != null)
                 {
-                    myUnit.GetComponent<StateComponent>().StateTypeRemove(StateTypeData.SkillRigidity);
+                    myUnit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.SkillRigidity);
                 }
                 Log.Error(e);
                 return ErrorCore.ERR_NetWorkError;

@@ -16,21 +16,21 @@ public class Demo : MonoBehaviour {
         OnSwitch();
     }
 
-    void OnGUI()
-    {
-        List<string> effectNames = new List<string>();
-        foreach (GameObject go in effects)
-        {
-            effectNames.Add(go.name);
-        }
+    //void OnGUI()
+    //{
+    //    List<string> effectNames = new List<string>();
+    //    foreach (GameObject go in effects)
+    //    {
+    //        effectNames.Add(go.name);
+    //    }
 
-        int lastSelected = selected;
+    //    int lastSelected = selected;
 
-        selected = GUILayout.Toolbar(selected, effectNames.ToArray());
+    //    selected = GUILayout.Toolbar(selected, effectNames.ToArray());
 
-        if (selected != lastSelected)
-            OnSwitch();
-    }
+    //    if (selected != lastSelected)
+    //        OnSwitch();
+    //}
 
     void OnSwitch()
     {

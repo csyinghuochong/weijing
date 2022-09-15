@@ -206,7 +206,7 @@ namespace ET
             {
                 return false;
             }
-            if (self.GetParent<Unit>().GetComponent<StateComponent>().StateTypeGet(StateTypeData.Singing))
+            if (self.GetParent<Unit>().GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))
             {
                 return false;
             }
