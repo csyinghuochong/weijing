@@ -365,29 +365,6 @@ namespace ET
             }
         }
 
-        public static async Task<string> OnWebRequestPost_2(string url, string xml)
-        {
-            try
-            {
-                //ServicePointManager.ServerCertificateValidationCallback = (sender, certificate, chain, sslPolicyErrors) => true;
-                Log.Info($"responseBody1:");
-                var httpClient = new HttpClient();
-                HttpContent httpContent = new StringContent(xml);
-                httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
-                HttpResponseMessage response = await httpClient.PostAsync(url, httpContent);
-                response.EnsureSuccessStatusCode();//用来抛异常的
-                string responseBody = await response.Content.ReadAsStringAsync();
-
-                Log.Info($"responseBody2: {responseBody}");
-                return responseBody;
-            }
-            catch (Exception ex)
-            {
-                Log.Info($"Exception ex: {ex}");
-                return "";
-            }
-        }
-
         /// <summary>
         /// 判断是不是周末/节假日
         /// </summary>
