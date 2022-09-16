@@ -7,7 +7,6 @@ SpriteAtlas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: MonsterIcon
-  serializedVersion: 2
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -33,6 +32,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 45f74ee1eb1f39f4e9e6cf160f667b9a, type: 3}
+    totalSpriteSurfaceArea: 1120000
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -98,4 +98,3 @@ SpriteAtlas:
   m_RenderDataMap: {}
   m_Tag: MonsterIcon
   m_IsVariant: 0
-  m_IsPlaceholder: 0

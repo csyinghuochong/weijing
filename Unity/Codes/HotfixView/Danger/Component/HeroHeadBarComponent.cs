@@ -227,7 +227,7 @@ namespace ET
             blood = Mathf.Max(blood, 0f);
             if (ObjHp != null)
             {
-                if (this.Parent.GetComponent<UnitInfoComponent>().Type == UnitType.Player)
+                if (this.Parent.GetComponent<UnitInfoComponent>().Type == UnitType.Player|| this.Parent.GetComponent<UnitInfoComponent>().Type == UnitType.Pet)
                 {
                     ObjHp.GetComponent<Slider>().value = blood;
                 }
