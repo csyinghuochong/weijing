@@ -7,7 +7,6 @@ SpriteAtlas:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: BuffIcon
-  serializedVersion: 2
   m_EditorData:
     serializedVersion: 2
     textureSettings:
@@ -33,6 +32,7 @@ SpriteAtlas:
     variantMultiplier: 1
     packables:
     - {fileID: 102900000, guid: 23877234478a34344a0d62b453cb0917, type: 3}
+    totalSpriteSurfaceArea: 3613776
     bindAsDefault: 1
     isAtlasV2: 0
     cachedData: {fileID: 0}
@@ -208,4 +208,3 @@ SpriteAtlas:
   m_RenderDataMap: {}
   m_Tag: BuffIcon
   m_IsVariant: 0
-  m_IsPlaceholder: 0
