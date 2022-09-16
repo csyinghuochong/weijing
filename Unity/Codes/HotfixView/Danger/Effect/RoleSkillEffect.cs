@@ -8,7 +8,7 @@ namespace ET
     public class RoleSkillEffect: AEffectHandler
     {
 
-        public override void OnInit(EffectData effectData,  Unit theUnitBelongto)
+        public override void OnInit(EffectData effectData, Unit theUnitBelongto)
         {
             this.EffectPath = "";
             this.EffectObj = null;
@@ -16,16 +16,17 @@ namespace ET
             this.EffectData = effectData;
             this.EffectState = BuffState.Running;
             this.TheUnitBelongto = theUnitBelongto;
-            this.EffectEndTime = TimeHelper.ClientNow() + EffectData.mEffectConfig.SkillEffectLiveTime;
-            this.PlayEffect((long)(EffectData.mEffectConfig.SkillEffectDelayTime*1000)).Coroutine();
+            this.EffectEndTime = EffectData.mEffectConfig.SkillEffectLiveTime * 0.001f;
+            this.EffectDelayTime = (float)EffectData.mEffectConfig.SkillEffectDelayTime;
+
+            this.OnUpdate();
         }
 
         /// <summary>
         /// 实例化特效
         /// </summary>
-        public async ETTask PlayEffect(long delayTime)
+        public async ETTask PlayEffect()
         {
-            await TimerComponent.Instance.WaitAsync(delayTime);
             if (this.EffectData == null)
             {
                 return;
@@ -88,8 +89,8 @@ namespace ET
                     break;
                 //不跟随玩家
                 case 1:
-                    EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
-                    if (EffectData.SkillID != 0)
+                    this.EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
+                    if (this.EffectData.mSkillConfig != null)
                     {
                         switch (EffectData.mSkillConfig.SkillTargetType)
                         {
@@ -166,7 +167,12 @@ namespace ET
             //只有不是永久Buff的情况下才会执行Update判断
             base.OnUpdate();
 
-            if (TimeHelper.ClientNow() > this.EffectEndTime)
+            if (this.EffectDelayTime >= 0f && this.PassTime > this.EffectDelayTime)
+            {
+                this.EffectDelayTime = -1f;
+                this.PlayEffect().Coroutine();
+            }
+            if (this.PassTime > this.EffectEndTime)
             {
                 this.EffectState = BuffState.Finished;
                 return;

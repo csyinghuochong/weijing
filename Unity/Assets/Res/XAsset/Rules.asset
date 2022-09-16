@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 123
+  version: 124
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -1026,8 +1026,6 @@ MonoBehaviour:
     path: Assets/Bundles/UI/Main/Activity/UIActivityTokenItem.prefab
   - bundle: 3ad1d71b2adfeb6d8a61f55c644e88ca.unity3d
     path: Assets/Bundles/UI/Main/Activity/UIActivityYueKa.prefab
-  - bundle: ea92f4bf1c0e09913dcb1c0dd70fc050.unity3d
-    path: Assets/Bundles/UI/Main/BuChang/UIBuChang.prefab
   - bundle: 87e27a87bb4fc9f342df99b0e84926bc.unity3d
     path: Assets/Bundles/UI/Main/Camp/UICamp.prefab
   - bundle: 113125dabccb0334d55e2e4bf82a7b5a.unity3d
@@ -1322,6 +1320,10 @@ MonoBehaviour:
     path: Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianLevelItem.prefab
   - bundle: eeaf12bffee7dc08cd563810e6086b5d.unity3d
     path: Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianShow.prefab
+  - bundle: b9a003ed195a393203aa256c55e1d147.unity3d
+    path: Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianSkill.prefab
+  - bundle: 4042c023ec796a6d0c6051b356879f6d.unity3d
+    path: Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianSkillItem.prefab
   - bundle: b92270eac3fc2bae5abdf2b880f4f54c.unity3d
     path: Assets/Bundles/UI/Main/Setting/UISetting.prefab
   - bundle: 057e7c52e5f7f2c65545cc92fafe43a5.unity3d
@@ -1928,6 +1930,8 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Pet/10015.prefab
   - bundle: 5a3ec9e021191acb57c5ea7d648603d7.unity3d
     path: Assets/Bundles/Unit/Pet/70001010.prefab
+  - bundle: 8a6a9e9073c56e8a66e3ad3b2b3a15f8.unity3d
+    path: Assets/Bundles/Unit/Player/BaiTan.prefab
   - bundle: 96df006e313af22ff15c199b389a9d97.unity3d
     path: Assets/Bundles/Unit/Player/BaseModel.prefab
   - bundle: d2af96264668045ca126025b1f477b43.unity3d
@@ -3131,6 +3135,9 @@ MonoBehaviour:
   - name: 5a3ec9e021191acb57c5ea7d648603d7.unity3d
     assets:
     - Assets/Bundles/Unit/Pet/70001010.prefab
+  - name: 8a6a9e9073c56e8a66e3ad3b2b3a15f8.unity3d
+    assets:
+    - Assets/Bundles/Unit/Player/BaiTan.prefab
   - name: 96df006e313af22ff15c199b389a9d97.unity3d
     assets:
     - Assets/Bundles/Unit/Player/BaseModel.prefab
@@ -3419,9 +3426,6 @@ MonoBehaviour:
   - name: 3ad1d71b2adfeb6d8a61f55c644e88ca.unity3d
     assets:
     - Assets/Bundles/UI/Main/Activity/UIActivityYueKa.prefab
-  - name: ea92f4bf1c0e09913dcb1c0dd70fc050.unity3d
-    assets:
-    - Assets/Bundles/UI/Main/BuChang/UIBuChang.prefab
   - name: 87e27a87bb4fc9f342df99b0e84926bc.unity3d
     assets:
     - Assets/Bundles/UI/Main/Camp/UICamp.prefab
@@ -3863,6 +3867,12 @@ MonoBehaviour:
   - name: eeaf12bffee7dc08cd563810e6086b5d.unity3d
     assets:
     - Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianShow.prefab
+  - name: b9a003ed195a393203aa256c55e1d147.unity3d
+    assets:
+    - Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianSkill.prefab
+  - name: 4042c023ec796a6d0c6051b356879f6d.unity3d
+    assets:
+    - Assets/Bundles/UI/Main/RoleXiLian/UIRoleXiLianSkillItem.prefab
   - name: b92270eac3fc2bae5abdf2b880f4f54c.unity3d
     assets:
     - Assets/Bundles/UI/Main/Setting/UISetting.prefab
@@ -4978,7 +4988,6 @@ MonoBehaviour:
     - Assets/Res/Models/Warrior/Suriyun/UnityChanShader/Shader/Unitychan_chara_hada.shader
     - Assets/TextMesh Pro/Shaders/TMP_SDF.shader
     - Assets/Res/Effect/BackBlur/BackBlur.shader
-    - Assets/TextMesh Pro/Shaders/TMP_SDF-Mobile.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-Add.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-DetachAlpha-Top.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-Add-Disslove.shader
@@ -6183,9 +6192,6 @@ MonoBehaviour:
   - name: b37c2a6a93bccaa6af5a54a7e1ad0e11.unity3d
     assets:
     - Assets/Mono/ThirdRes/GUI Pro Kit Fantasy RPG/Particles/Textures/fx_glow2.png
-  - name: 8892c6f8ec05d7779fa3ec271c5d1359.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_18.png
   - name: 69c0e87cad72e9a093b0636580c2f201.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_40.png
@@ -6327,15 +6333,15 @@ MonoBehaviour:
   - name: 205b68b81852f2f93ef18a9b43898881.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_77.png
-  - name: ad95c8537a3d6992701f22d140e7f3ad.unity3d
+  - name: 0ce39595490e8a8e424ff4cb8d784dce.unity3d
     assets:
-    - Assets/Res/UI/UIRes/Back/Back_10.jpg
-  - name: 254690b6326e19782f6b47056188bbfa.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_8.png
+    - Assets/Res/UI/UIRes/Imgage/Img_241.Png
   - name: 472698f27cfdaa63f01ab01748c7aba1.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_257.png
+  - name: ad95c8537a3d6992701f22d140e7f3ad.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Back/Back_10.jpg
   - name: 90468efebf243892e6ac3c8be753858b.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_300.png
@@ -6363,6 +6369,9 @@ MonoBehaviour:
   - name: edcea1872a9110610dbe777d90e861cc.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_281.png
+  - name: 254690b6326e19782f6b47056188bbfa.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_8.png
   - name: 1b20db3af43d16e97fde68ea9dd53e98.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_196.png
@@ -6381,12 +6390,6 @@ MonoBehaviour:
   - name: e92a2154877cc6a895631516bd18387a.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_33.png
-  - name: 9bc980653071aa387d141b7b60fafd45.unity3d
-    assets:
-    - Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF - Fallback.asset
-  - name: f16de81a2946d9fc789b5cc6833b5a2c.unity3d
-    assets:
-    - Assets/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset
   - name: 3fee61081d4e30121bdc822a28dbf69f.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/EmojiOne.png
@@ -6429,6 +6432,9 @@ MonoBehaviour:
   - name: f20faf0e7c55bf860c320300b0530a90.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_144.png
+  - name: 113f99598e418e3618f7c0d62066fb82.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_382.png
   - name: 7ec82ed3a08b100d52e1ec2a891300a1.unity3d
     assets:
     - Assets/Mono/ThirdRes/GUI Pro Kit Fantasy RPG/Particles/Textures/fx_circle_line1.png
@@ -6516,6 +6522,9 @@ MonoBehaviour:
   - name: 43a50dc2d9a4a5ff787bea2854104fc2.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_36.png
+  - name: 4f49dc309a535719742a0ef9ebf4e01b.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_145.png
   - name: cd5b32f337b0a05e4f33d8aafebf62e1.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_338.png
@@ -6588,9 +6597,6 @@ MonoBehaviour:
   - name: e95070835ba4a0e5aa8c6d875fef9212.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_211.png
-  - name: 4f49dc309a535719742a0ef9ebf4e01b.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_145.png
   - name: 48367e4dbef9a89c1ded1e76d4f6004c.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_198.png
@@ -6600,9 +6606,6 @@ MonoBehaviour:
   - name: 8cc7d1a1c8acafbb4b52d92a67e790a9.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_55.png
-  - name: eaa3897b6fe44faac1ebdb280e3f832c.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_265.png
   - name: 8f14c42fb55b17a369cbc67422497327.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_187.png
@@ -6624,6 +6627,9 @@ MonoBehaviour:
   - name: dd75dd98edaee765f85d40778a638096.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_56.png
+  - name: c99f6e18d2ad87ae1cf62a6add9bad61.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Button/Btn_59.png
   - name: 378003f0aae41977900722226b5511da.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_85.png
@@ -6681,9 +6687,6 @@ MonoBehaviour:
   - name: 660336a8cff617c9ff77306899e4764b.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_78_1.png
-  - name: c99f6e18d2ad87ae1cf62a6add9bad61.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Button/Btn_59.png
   - name: b1ce6a5e512077e0730b201c79e624b9.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_234.png
@@ -6696,15 +6699,18 @@ MonoBehaviour:
   - name: d78abe373aa3e2360b35ccd203b8cf90.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_293.png
+  - name: eaa3897b6fe44faac1ebdb280e3f832c.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_265.png
   - name: 5d2383459e75c9d84111758904827d4c.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/Pro_13.png
-  - name: c5b260af50f123b4a915b94070270420.unity3d
+  - name: 5c40661422f5391a2ebaf115f11e33f6.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Pro/UI_pro_4_2.png
-  - name: 9d4931c62bc0a0c83f745de7eb5ff7f1.unity3d
+    - Assets/Res/UI/UIRes/Pro/UI_pro_4_2.png
+  - name: be3414f77fc92cb95df3e9934b09de27.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Pro/UI_pro_4_1.png
+    - Assets/Res/UI/UIRes/Pro/UI_pro_4_1.png
   - name: ca18b38fc4720f5ee7263f2a133af58c.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_88.png
@@ -6723,9 +6729,6 @@ MonoBehaviour:
   - name: 803297a374d8a383fee39c2c4d9fbd87.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_315.png
-  - name: 0ce39595490e8a8e424ff4cb8d784dce.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_241.Png
   - name: 30962cbca364ec19dd2e858eeb763b7e.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_69.png
@@ -6810,6 +6813,12 @@ MonoBehaviour:
   - name: 258ba9bfd269d2ef1deae4818f59a4eb.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_255_1.png
+  - name: c2d1dfb61cc45e93f284621c92fda1ba.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_375.png
+  - name: dab871bb140b92ba511b8b43294b8f7a.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Pro/Pro_16.png
   - name: 9632ccae9ce221be623aeffb752985ff.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_64.png
@@ -6843,18 +6852,9 @@ MonoBehaviour:
   - name: d33412e5e0076974820bdefe372d0122.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_400.Png
-  - name: dab871bb140b92ba511b8b43294b8f7a.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Pro/Pro_16.png
-  - name: 113f99598e418e3618f7c0d62066fb82.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_382.png
   - name: 6430467bfbf0d2869ce06401b8c47085.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_83.png
-  - name: d4a04ca0dd9f2a36d19e4f489f6a499a.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/ImageBig/Img_111.png
   - name: 17c8f0cf242fa448fcd5433a85864eac.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_84.Png
@@ -6900,6 +6900,9 @@ MonoBehaviour:
   - name: a5d14d2f78c33045b55ffff886e63571.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_180.png
+  - name: 8892c6f8ec05d7779fa3ec271c5d1359.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_18.png
   - name: dfca749dd0d7f24620ca8ad3c1d0f8f2.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_80_1.png
@@ -10882,12 +10885,36 @@ MonoBehaviour:
   - name: 8552b6ff659d596d0d9ac3bbc72ceada.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/treasure_ray.png
+  - name: a172c410f287b71231a92987461f744b.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.png
+  - name: 00a0c2f5f65c8bcbfbe0907d70224c48.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Accessories_lv1.FBX
+  - name: 399f09fb4acdd8c7927a40915d54b671.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories_roof.mat
   - name: 07acde07c754dbf641a7a26c9dea211b.unity3d
     assets:
     - Assets/Res/ScenceModel/Hyper Casual Chests/Texture/Chest Color Palette.png
+  - name: 5d3696bf5b7a2f4a7231f273d88b556f.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories.mat
   - name: e5c1e3b1c68c4a4c84bfd2c13ff3cb64.unity3d
     assets:
     - Assets/Res/ScenceModel/Hyper Casual Chests/Materials/Chest Material.mat
+  - name: 1c39bf9cd0363631c88a01f435d275da.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/etc_Sword_shelves01.FBX
+  - name: 876faf8b325702c468a339aa0091b16c.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories_roof.png
+  - name: d3a64327cafa1263dc59f466f86300c9.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories.png
+  - name: c887be2ef0d8eaf041cf3bcebfe59adb.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.mat
   - name: 4eb7ec892c29ab65d8beffecbc7c4fca.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/obj_small_047_01.mat

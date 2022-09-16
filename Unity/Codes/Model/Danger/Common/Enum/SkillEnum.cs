@@ -164,8 +164,6 @@ namespace ET
 
         public bool FollowUnitMove = true;
 
-        //施放的技能ID
-        public int SkillID;
         public int TargetAngle;
         public long TargetID;
 

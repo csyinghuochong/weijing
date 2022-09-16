@@ -35,11 +35,6 @@ namespace ET
         public BuffState EffectState;
 
         /// <summary>
-        /// 最多持续到什么时候
-        /// </summary>
-        public long EffectEndTime;
-
-        /// <summary>
         /// Buff数据
         /// </summary>
         public EffectData EffectData;
@@ -48,6 +43,13 @@ namespace ET
         /// 寄生于哪个Unit，并不代表当前Buff实际寄居者，需要通过GetBuffTarget来获取，因为它赋值于Buff链起源的地方，具体值取决于那个起源Buff
         /// </summary>
         public Unit TheUnitBelongto;
+
+        /// <summary>
+        /// 最多持续到什么时候
+        /// </summary>
+        public float EffectEndTime;
+
+        public float EffectDelayTime;
 
         /// <summary>
         /// 执行的时间

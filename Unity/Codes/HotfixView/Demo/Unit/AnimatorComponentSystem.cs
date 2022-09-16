@@ -43,8 +43,7 @@ namespace ET
 			if (animator == null)
 				return;
 
-			animator.speed = Speed;
-
+			//animator.speed = Speed;
 			if (animator == null)
 			{
 				return;

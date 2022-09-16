@@ -9,8 +9,7 @@ namespace ET
 
             EffectData playEffectBuffData = new EffectData();
             playEffectBuffData.TargetID = args.M2C_ChainLightning.TargetID;
-            playEffectBuffData.SkillID = args.M2C_ChainLightning.SkillID;              //技能ID
-            playEffectBuffData.mSkillConfig = SkillConfigCategory.Instance.Get(playEffectBuffData.SkillID);                   //技能相关配置
+            playEffectBuffData.mSkillConfig = SkillConfigCategory.Instance.Get(args.M2C_ChainLightning.SkillID);                   //技能相关配置
             playEffectBuffData.mEffectConfig = EffectConfigCategory.Instance.Get(playEffectBuffData.mSkillConfig.SkillEffectID[0]);                 //特效相关配置
             playEffectBuffData.TargetPosition = new UnityEngine.Vector3(args.M2C_ChainLightning.PosX, args.M2C_ChainLightning.PosY, args.M2C_ChainLightning.PosZ);           //技能目标点
             playEffectBuffData.TargetAngle = 0;         //技能角度

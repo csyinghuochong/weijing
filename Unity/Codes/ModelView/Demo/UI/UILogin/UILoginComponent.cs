@@ -46,13 +46,13 @@ namespace ET
 		public GameObject Loading;
 
 		public long LastLoginTime;
-
+		
 		public ServerItem ServerInfo;
 		public AccountInfoComponent PlayerComponent;
 		public UI UIRotateComponent;
 
-		public int BigVersion = 3;
-		public string DownloadUrl = "http://39.96.194.143/weijing/apk/mengjing.apk";
+		public int BigVersion = 4;
+		public string DownloadUrl = "http://39.96.194.143/weijing1/apk/weijing1.apk";
 
 		public string LoginType;
 	}

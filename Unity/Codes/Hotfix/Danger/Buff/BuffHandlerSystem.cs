@@ -83,7 +83,6 @@ namespace ET
             }
             if (self.mSkillConf != null)
             {
-                playEffectBuffData.SkillID = (int)(self.mSkillConf.Id);              //技能ID
                 playEffectBuffData.mSkillConfig = self.mSkillConf;                   //技能相关配置
             }
             playEffectBuffData.TargetAngle = self.BuffData.TargetAngle;

@@ -60,7 +60,6 @@ namespace ET
                 return;
             EffectData playEffectBuffData = new EffectData();
             playEffectBuffData.TargetID = self.mSkillCmd.TargetID;
-            playEffectBuffData.SkillID = (int)(self.SkillConf.Id);              //技能ID
             playEffectBuffData.mSkillConfig = self.SkillConf;                   //技能相关配置
             playEffectBuffData.mEffectConfig = self.EffectConf;                 //特效相关配置
             playEffectBuffData.TargetPosition = effectPostion;           //技能目标点
