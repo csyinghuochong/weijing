@@ -14,7 +14,7 @@ namespace ET
                     response.Message = await scene.GetComponent<ReChargeWXComponent>().WeChatPay(request);
                     break;
                 case PayTypeEnum.AliPay:
-                    response.Message = await scene.GetComponent<ReChargeAliComponent>().AliPay(request);
+                    response.Message =  scene.GetComponent<ReChargeAliComponent>().AliPay(request);
                     break;
                 case PayTypeEnum.QuDaoPay:
                     response.Message = scene.GetComponent<ReChargeQDComponent>().QudaoPay(request);
