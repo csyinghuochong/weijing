@@ -26,7 +26,7 @@ namespace ET
     public static class ReChargeAliComponentSystem
     {
 
-        public static async ETTask<string> AliPay(this ReChargeAliComponent self, M2R_RechargeRequest request)
+        public static string AliPay(this ReChargeAliComponent self, M2R_RechargeRequest request)
         {
             //第一步:获取支付的价格
             int totalFee = GettotalFeeTool.AliGettotalFee(request.RechargeNumber, 1);
@@ -63,7 +63,6 @@ namespace ET
             string toClientStr = "AliPay" + "," + aliRequestStr;
             //agent.SendClientStr(toClientStr);
             Log.Info("PayTypeEnum.AliPay:  " + aliRequestStr);
-            await ETTask.CompletedTask;
             return aliRequestStr;
         }
 

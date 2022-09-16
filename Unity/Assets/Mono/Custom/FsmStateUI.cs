@@ -92,11 +92,13 @@ namespace ET
                     this.Animator.SetBool("Idle", true);
                     break;
                 case FsmStateEnum.FsmSinging:
-                    this.ClearnAnimator();
+                    //this.ClearnAnimator();
+                    this.Animator.SetBool("Run", false);
                     this.Animator.SetBool("Idle", true);
                     break;
                 case FsmStateEnum.FsmSkillState:
-                    this.ClearnAnimator();
+                    //this.ClearnAnimator();
+                    this.Animator.SetBool("Run", false);
                     this.Animator.SetBool("Idle", true);
                     break;
                 default:
@@ -106,7 +108,9 @@ namespace ET
             switch (targetFSmState)
             {
                 case FsmStateEnum.FsmComboState:
-                    this.ClearnAnimator();
+                    //this.ClearnAnimator();
+                    this.Animator.SetBool("Idle", false);
+                    this.Animator.SetBool("Run", false);
                     this.OnEnterFsmComboState(parasmss);
                     break;
                 case FsmStateEnum.FsmDeathState:
@@ -122,18 +126,24 @@ namespace ET
                     this.SetIdleState();
                     break;
                 case FsmStateEnum.FsmNpcSpeak:
-                    this.ClearnAnimator();
+                    //this.ClearnAnimator();
+                    this.Animator.SetBool("Idle", false);
+                    this.Animator.SetBool("Run", false);
                     this.Animator.Play("Speak");
                     break;
                 case FsmStateEnum.FsmRunState:
                     this.OnEnterFsmFsmRunState(parasmss);
                     break;
                 case FsmStateEnum.FsmShiQuItem:
-                    this.ClearnAnimator();
+                    //this.ClearnAnimator();
+                    this.Animator.SetBool("Idle", false);
+                    this.Animator.SetBool("Run", false);
                     this.Animator.Play("ShiQu");
                     break;
                 case FsmStateEnum.FsmSinging:
-                    this.ClearnAnimator();
+                    //this.ClearnAnimator();
+                    this.Animator.SetBool("Idle", false);
+                    this.Animator.SetBool("Run", false);
                     if (double.Parse(parasmss) > 0)
                     {
                         this.Animator.Play("YinChang");
