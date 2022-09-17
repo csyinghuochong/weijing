@@ -123,6 +123,8 @@ namespace ET
             self.Obj_EquipDes = rc.Get<GameObject>("Lab_EquipDes");
             self.Obj_EquipWearNeedProperty = rc.Get<GameObject>("Lab_WearNeedProperty");
             self.Obj_EquipHintSkill = rc.Get<GameObject>("EquipHintSkill");
+            self.Obj_EquipHintSkill.SetActive(false);
+
             self.Obj_EquipHintSkillSetList = rc.Get<GameObject>("EquipHintSkillSetList");
             self.Obj_EquipBottom = rc.Get<GameObject>("EquipBottom");
             self.Obj_BtnSet = rc.Get<GameObject>("EquipBtnSet");
@@ -138,6 +140,7 @@ namespace ET
             self.Btn_Takeoff = rc.Get<GameObject>("Btn_Takeoff");
             self.Obj_EquipPropertyText = rc.Get<GameObject>("Obj_EquipPropertyText");
             self.Obj_EquiZhuanJing = rc.Get<GameObject>("ObjEquipZhuanJingSet");
+            self.Obj_EquiZhuanJing.SetActive(false);
 
             self.Obj_UIEquipSuit = rc.Get<GameObject>("Obj_UIEquipSuit");
             self.Obj_UIEquipSuitName = rc.Get<GameObject>("Lab_SuitName");
@@ -1024,7 +1027,7 @@ namespace ET
             {
                 string[] skillID = skillIDStr.Split(',');
 
-                Vector2 hint_vec2 = new Vector2(-31f, startPostionY);
+                Vector2 hint_vec2 = new Vector2(158.5f, startPostionY);
                 self.Obj_EquipHintSkill.transform.GetComponent<RectTransform>().anchoredPosition = hint_vec2;
 
                 for (int i = 0; i <= skillID.Length - 1; i++)
