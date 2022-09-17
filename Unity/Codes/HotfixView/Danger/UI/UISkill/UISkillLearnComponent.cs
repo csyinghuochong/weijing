@@ -145,33 +145,29 @@ namespace ET
                     continue;
                 }
                 //page ==0 主动 1被动
-                if (skillConfig.SkillType == 1 && page != 0)
+                if ((skillConfig.SkillType == 1 && page == 0)
+                    || (skillConfig.SkillType != 1 && page == 1) )
                 {
-                    continue;
+                    //根据类型显示
+                    UI uI = null;
+                    if (number < self.SkillUIList.Count)
+                    {
+                        uI = self.SkillUIList[number];
+                        uI.GameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        GameObject skillItem = GameObject.Instantiate(bundleObj);
+                        UICommonHelper.SetParent(skillItem, self.SkillListNode);
+                        uI = self.AddChild<UI, string, GameObject>("skill_Item_" + i, skillItem);
+                        UISkillLearnItemComponent uISkillSetItemComponent = uI.AddComponent<UISkillLearnItemComponent>();
+                        uISkillSetItemComponent.SetClickHander((SkillPro skillpro) => { self.OnSelectSkill(skillpro); });
+                        self.SkillUIList.Add(uI);
+                    }
+                    number++;
+                    uI.GetComponent<UISkillLearnItemComponent>().OnUpdateUI(showSkillPros[i]);
                 }
-                if (skillConfig.SkillType != 1 && page == 0)
-                {
-                    continue;
-                }
-
-                //根据类型显示
-                UI uI = null;
-                if (number < self.SkillUIList.Count)
-                {
-                    uI = self.SkillUIList[number];
-                    uI.GameObject.SetActive(true);
-                }
-                else
-                {
-                    GameObject skillItem = GameObject.Instantiate(bundleObj);
-                    UICommonHelper.SetParent(skillItem, self.SkillListNode);
-                    uI = self.AddChild<UI, string, GameObject>( "skill_Item_" + i, skillItem);
-                    UISkillLearnItemComponent uISkillSetItemComponent = uI.AddComponent<UISkillLearnItemComponent>();
-                    uISkillSetItemComponent.SetClickHander((SkillPro skillpro) => { self.OnSelectSkill(skillpro); });
-                    self.SkillUIList.Add(uI);
-                }
-                number++;
-                uI.GetComponent<UISkillLearnItemComponent>().OnUpdateUI(showSkillPros[i]);
+              
             }
             for (int i = number; i < self.SkillUIList.Count; i++)
             {
