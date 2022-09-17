@@ -10,6 +10,7 @@ namespace ET
         public GameObject ItemNode;
         public GameObject Text_XiLianName;
         public GameObject GameObject;
+        public GameObject JiHuoSet;
         public EquipXiLianConfig EquipXiLianConfig;
         public List<UICommonSkillItemComponent> uIItems = new List<UICommonSkillItemComponent>();
     }
@@ -24,6 +25,7 @@ namespace ET
             self.GameObject = go;
             self.Text_XiLianName = go.Get<GameObject>("Text_XiLianName");
             self.ItemNode = go.Get<GameObject>("ItemNode");
+            self.JiHuoSet = go.Get<GameObject>("JiHuoSet"); 
         }
     }
 
@@ -34,7 +36,7 @@ namespace ET
             self.EquipXiLianConfig = equipXiLianConfig;
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkillItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            self.Text_XiLianName.GetComponent<Text>().text = equipXiLianConfig.Title;
+            self.Text_XiLianName.GetComponent<Text>().text = equipXiLianConfig.Title+GameSettingLanguge.LoadLocalization("激活洗炼特殊属性");
             List<int> xilianSkill = XiLianHelper.GetLevelSkill(equipXiLianConfig.XiLianLevel);
 
             int row = (xilianSkill.Count / 8);
@@ -47,6 +49,10 @@ namespace ET
                 UICommonHelper.SetParent(bagSpace, self.ItemNode);
                 UICommonSkillItemComponent ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(bagSpace);
                 ui_item.OnUpdateUI(xilianSkill[i], ABAtlasTypes.RoleSkillIcon);
+                //EquipXiLianConfig equipXiLian = EquipXiLianConfigCategory.Instance.Get()
+                Log.Info("xilianSkill[i] = " + xilianSkill[i]);
+                SkillConfig skillcof = SkillConfigCategory.Instance.Get(xilianSkill[i]);
+                ui_item.TextSkillName.GetComponent<Text>().text = skillcof.SkillName;
                 self.uIItems.Add(ui_item);
             }
         }
@@ -57,6 +63,9 @@ namespace ET
             for (int i = 0; i < self.uIItems.Count; i++)
             {
                 UICommonHelper.SetImageGray(self.uIItems[i].ImageIcon, gray);
+            }
+            if (gray) {
+                self.JiHuoSet.SetActive(false);
             }
         }
     }

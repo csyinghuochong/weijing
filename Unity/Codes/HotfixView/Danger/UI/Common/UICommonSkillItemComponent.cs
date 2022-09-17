@@ -10,6 +10,8 @@ namespace ET
         public GameObject ImageIcon;
         public GameObject ImageKuang;
         public GameObject GameObject;
+        //public GameObject Text_XiLianName;
+        public GameObject TextSkillName;
         public ABAtlasTypes SkillAtlas;
         public int SkillId;
     }
@@ -24,6 +26,8 @@ namespace ET
 
             self.ImageIcon = rc.Get<GameObject>("ImageIcon");
             self.ImageKuang = rc.Get<GameObject>("ImageKuang");
+            //self.Text_XiLianName = rc.Get<GameObject>("Text_XiLianName");
+            self.TextSkillName = rc.Get<GameObject>("TextSkillName");
 
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.BeginDrag(pdata).Coroutine(); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
