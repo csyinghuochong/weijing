@@ -414,12 +414,7 @@ namespace ET
             //根据Tips描述长度缩放底的大小
             int i1 = 0;
             Text_ItemDes = ItemViewHelp.GetItemDesc(baginfo, ref i1);
-            //赞助宝箱设置描述为绿色
-            if (itemSubType == 9)
-            {
-                self.ItemDes.GetComponent<Text>().color = Color.green;
-            }
-
+           
             //显示图标
             //显示道具Icon
             string ItemIcon = itemconf.Icon;
@@ -520,6 +515,12 @@ namespace ET
             self.Lab_ItemName.GetComponent<Text>().text = itemconf.ItemName;
             self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
             self.ItemDes.GetComponent<Text>().text = Text_ItemDes;
+            //赞助宝箱设置描述为绿色
+            //if (itemSubType == 9)
+            //{
+            //    self.ItemDes.GetComponent<Text>().color = Color.green;
+            //}
+
             float exceedWidth = self.Lab_ItemName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
             Log.ILog.Debug($"exceedWidth  {exceedWidth}");
             if (exceedWidth > -20)
