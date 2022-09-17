@@ -39,11 +39,20 @@ namespace ET
             return spr;
         }
 
+        public static Sprite GetIconSprite_2(ABAtlasTypes types, string icon)
+        {
+            var path = ABPathHelper.GetAtlasPath_2(types.ToString(), icon);
+            Sprite prefab =  ResourcesComponent.Instance.LoadAsset<Sprite>(path);
+            //SpriteAtlas atlas = prefab.Get<SpriteAtlas>(types.ToString());
+            //var code_1 = ABPathHelper.GetAtlasPath_2();
+            //var request1 = libx.Assets.LoadAssetAsync(code_1, typeof(Sprite));
+            return prefab;
+        }
+
         public static async ETTask<Sprite> GetIconSpriteAsync(ABAtlasTypes types, string icon)
         {
             var path = ABPathHelper.GetAtlasPath(types.ToString());
-            await ETTask.CompletedTask;
-            GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             SpriteAtlas atlas = prefab.Get<SpriteAtlas>(types.ToString());
             //SpriteAtlas atlas = ResourcesComponent.Instance.LoadAsset<SpriteAtlas>(path);
             //Sprite spr = atlas.GetSprite(icon);

@@ -579,7 +579,8 @@ namespace libx
             }
 
             //1
-            var request = UnityWebRequest.Get(GetDownloadURL(Versions.Filename));
+            string downuri = GetDownloadURL(Versions.Filename);
+            var request = UnityWebRequest.Get(downuri);
             request.downloadHandler = new DownloadHandlerFile(_savePath + Versions.Filename);
             yield return request.SendWebRequest();
             var error = request.error;
@@ -813,6 +814,7 @@ namespace libx
                 Assets.AddSearchPath("Assets/Bundles/Effect");
                 Assets.AddSearchPath("Assets/Bundles/Independent");
                 Assets.AddSearchPath("Assets/Bundles/Unit");
+                Assets.AddSearchPath("Assets/Bundles/Icon");
                 Assets.AddSearchPath("Assets/Res/Scenes");
                 init.Release();
 

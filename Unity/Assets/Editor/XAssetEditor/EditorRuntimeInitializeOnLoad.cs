@@ -42,7 +42,7 @@ namespace libx
 
         public static int GetVersion()
         {
-            int version = 0;
+            int version = -1;
 
             UnityEngine.SceneManagement.Scene curScene = UnityEditor.SceneManagement.EditorSceneManager.GetSceneByPath("Assets/Scenes/Init.unity");
             GameObject[] gos = curScene.GetRootGameObjects();
@@ -66,13 +66,11 @@ namespace libx
                 }
             }
 
-            return version;
-        }
-
-        [RuntimeInitializeOnLoadMethod()]
-        public static void OnInitialize()
-        {
-            int version = EditorRuntimeInitializeOnLoad.GetVersion();
+            if (version == -1)
+            {
+                UnityEngine.Debug.LogError("version == -1");
+                return version;
+            }
             VersionMode versionMode = (VersionMode)version;
             switch (versionMode)
             {
@@ -82,10 +80,18 @@ namespace libx
                 case VersionMode.Beta:
                     BuildScript.outputPath = "../Release/DLCBeta/" + BuildScript.GetPlatformName();
                     break;
-                case VersionMode.BanHao: 
+                case VersionMode.BanHao:
                     BuildScript.outputPath = "../Release/DLCBanHao/" + BuildScript.GetPlatformName();
                     break;
             }
+            Assets.basePath = BuildScript.outputPath + Path.DirectorySeparatorChar;
+            Assets.loadDelegate = AssetDatabase.LoadAssetAtPath;
+            return version;
+        }
+
+        [RuntimeInitializeOnLoadMethod()]
+        public static void OnInitialize()
+        {
             Assets.basePath = BuildScript.outputPath + Path.DirectorySeparatorChar;
             Assets.loadDelegate = AssetDatabase.LoadAssetAtPath; 
 

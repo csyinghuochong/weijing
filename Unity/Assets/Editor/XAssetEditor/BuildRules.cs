@@ -35,10 +35,10 @@ namespace libx
 {
     public enum NameBy
     {
-        Explicit,
-        Path,
-        Directory,
-        TopDirectory
+        Explicit,                   //直接定义assetbundlename
+        Path,                       //Pass每个文件不同的assetbundlename
+        Directory,                  //同一个文件夹一个assetbundlename
+        TopDirectory                //同根目录的文件夹的assetbundlename
     }
 
     [Serializable]
@@ -136,9 +136,9 @@ namespace libx
         public void Apply()
         {
             Clear();
-            CollectAssets();
-            AnalysisAssets();
-            OptimizeAssets();
+            CollectAssets();        //收集所有要打包的Asset
+            AnalysisAssets();       //找出公共资源
+            OptimizeAssets();       //把公用bunldle添加到_asset2Bundles
             Save();
         }
 
@@ -192,14 +192,14 @@ namespace libx
                 _tracker.Add(asset, assets);
             }
 
-            assets.Add(bundle);
+            assets.Add(bundle);                 
             if (assets.Count > 1)
             {
                 string bundleName;
-                _asset2Bundles.TryGetValue(asset, out bundleName);
+                _asset2Bundles.TryGetValue(asset, out bundleName);          //初始的asset
                 if (string.IsNullOrEmpty(bundleName))
                 {
-                    _duplicated.Add(asset);
+                    _duplicated.Add(asset);                                 //公用的bundle
                 }
             }
         }
@@ -215,6 +215,11 @@ namespace libx
                 {
                     list = new List<string>();
                     bundles[bundle] = list;
+                }
+                else
+                {
+                    int sstt = 1;
+                    sstt++;
                 }
 
                 if (!list.Contains(item.Key)) list.Add(item.Key);
@@ -277,7 +282,7 @@ namespace libx
         private void AnalysisAssets()
         {
             var getBundles = GetBundles();
-            int i = 0, max = getBundles.Count;
+            int i = 0, max = getBundles.Count;                                                  //获取文件本身作为第一个依赖文件
             foreach (var item in getBundles)
             {
                 var bundle = item.Key;
@@ -286,11 +291,11 @@ namespace libx
                 var assetPaths = getBundles[bundle];
                 if (assetPaths.Exists(IsScene) && !assetPaths.TrueForAll(IsScene))
                     _conflicted.Add(bundle, assetPaths.ToArray());
-                var dependencies = AssetDatabase.GetDependencies(assetPaths.ToArray(), true);
+                var dependencies = AssetDatabase.GetDependencies(assetPaths.ToArray(), true);   //获取文件本身的所有依赖文件
                 if (dependencies.Length > 0)
                     foreach (var asset in dependencies)
-                        if (ValidateAsset(asset))
-                            Track(asset, bundle);
+                        if (ValidateAsset(asset))                                               //判断依赖文件的有效性
+                            Track(asset, bundle);                                               //每个被依赖的文件作为key， 记录改文件被依赖的列表在_tracker， 一个文件可能被多个asset引用
                 i++;
             }
         }

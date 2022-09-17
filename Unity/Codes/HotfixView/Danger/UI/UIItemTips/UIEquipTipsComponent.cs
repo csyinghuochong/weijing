@@ -81,12 +81,7 @@ namespace ET
         public GameObject Obj_Lab_EquipBangDing;
         public GameObject Obj_Img_EquipBangDing;
 
-        public GameObject Obj_Lab_EquipMake;
-
-
-        public int equipSuitID;
-        public int properShowNum;               
-
+        public GameObject Obj_Lab_EquipMake;       
         public bool clickBtnStatus;
 
         public BagInfo BagInfo;
@@ -196,11 +191,9 @@ namespace ET
             self.Obj_Btn_StoreHouseSet.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PutBag(); });
 
             self.DiLengt_Head = 180;
-            self.DiLengt_Pro = 30;
+            self.DiLengt_Pro = 40;
             self.DiLengt_Title = 50;
-
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
-
         }
     }
 
@@ -272,7 +265,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("宠物装备！");
                 return;
             }
-            
+
             self.BagComponent.SendWearEquip(self.BagInfo).Coroutine();
             self.OnCloseTips();
         }
@@ -291,7 +284,7 @@ namespace ET
             string[] gemids = self.BagInfo.GemID.Split('_');
             bool haveGem = false;
             for (int i = 0; i < gemids.Length; i++)
-            { 
+            {
                 if (gemids[i] != "0")
                 {
                     haveGem = true;
@@ -914,44 +907,9 @@ namespace ET
             return textShow;
         }
 
-        public static void InitData(this UIEquipTipsComponent self, BagInfo baginfo, ItemOperateEnum equipTipsType, int occTwoValue)
+        //专精状态
+        public static void ZhuanJingStatus(this UIEquipTipsComponent self, int occTwoValue, ItemConfig itemconf, BagInfo baginfo)
         {
-            //初始化值
-            self.BagInfo = baginfo;
-            self.EquipTipsType = equipTipsType;
-            ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
-            EquipConfig equipconf = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID);
-            string ItemIcon = itemconf.Icon;
-            int ItemQuality = itemconf.ItemQuality;
-            string equip_ID = itemconf.ItemEquipID.ToString();
-            string equipName = itemconf.ItemName;
-            string equipLv = itemconf.UseLv.ToString();
-            string ItemBlackDes = itemconf.ItemDes;
-            string textShow = "";
-
-            string qualityiconLine = FunctionUI.GetInstance().ItemQualityLine(itemconf.ItemQuality);
-            self.ImageQualityLine.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconLine);
-            string qualityiconBack = FunctionUI.GetInstance().ItemQualityBack(itemconf.ItemQuality);
-            self.ImageQualityBg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconBack);
-            self.properShowNum = ItemViewHelp.ShowBaseAttribute(baginfo, self.Obj_EquipPropertyText, self.Obj_EquipBaseSetList) ;
-
-            string langStr = GameSettingLanguge.LoadLocalization("强化");
-            if (self.EquipQiangHuaID != 0)
-            {
-                EquipQiangHuaConfig equipQiangHua = EquipQiangHuaConfigCategory.Instance.Get(self.EquipQiangHuaID);
-                float equipPropreAdd = float.Parse(equipQiangHua.EquipPropreAdd);
-                string qiangHuaLv = equipQiangHua.QiangHuaLv.ToString();
-                self.Obj_Lab_EquipQiangHua.GetComponent<Text>().text = "+" + qiangHuaLv + langStr;
-            }
-            else 
-            {
-                self.Obj_Lab_EquipQiangHua.GetComponent<Text>().text = "+" + 0 + langStr;
-            }
-
-            if (textShow != "")
-            {
-                textShow = textShow.Substring(0, textShow.Length - 1);
-            }
             if (occTwoValue != 0)
             {
                 if (itemconf.EquipType == 11 || itemconf.EquipType == 12 || itemconf.EquipType == 13 && baginfo.Loc == (int)ItemLocType.ItemLocEquip)
@@ -981,65 +939,11 @@ namespace ET
                 self.Obj_ZhuanJingStatusDes.GetComponent<Text>().color = new Color(0.58f, 0.58f, 0.58f);
                 self.Obj_ZhuanJingStatusImg.SetActive(false);
             }
+        }
 
-            string textEquipType = "";
-            string textEquipTypeSon = "";
-
-            string itemSubType = itemconf.ItemSubType.ToString();
-            switch (itemSubType)
-            {
-                case "1":
-                    textEquipType = "武器";
-                    break;
-
-                case "2":
-                    textEquipType = "衣服";
-                    break;
-
-                case "3":
-                    textEquipType = "护符";
-
-                    break;
-
-                case "4":
-                    textEquipType = "戒指";
-
-                    break;
-
-                case "5":
-                    textEquipType = "饰品";
-                    break;
-
-                case "6":
-                    textEquipType = "鞋子";
-                    break;
-
-                case "7":
-                    textEquipType = "裤子";
-                    break;
-
-                case "8":
-                    textEquipType = "腰带";
-                    break;
-
-                case "9":
-                    textEquipType = "手套";
-                    break;
-
-                case "10":
-                    textEquipType = "头盔";
-                    break;
-
-                case "11":
-                    textEquipType = "项链";
-                    break;
-            }
-            textEquipTypeSon = self.GetEquipType(itemconf.EquipType);
-            textEquipType = GameSettingLanguge.LoadLocalization(textEquipType);
-
-            //显示宝石插槽属性
-            float showGemTextNum = 0;
-
+        //宝石
+        public static int ShowGemList(this UIEquipTipsComponent self)
+        {
             int gemNumber = 0;
             if (!string.IsNullOrEmpty(self.BagInfo.GemHole))
             {
@@ -1068,29 +972,25 @@ namespace ET
                 self.Obj_UIEquipGemHoleList[2].SetActive(false);
                 self.Obj_UIEquipGemHoleList[3].SetActive(false);
             }
-            showGemTextNum = gemNumber * 30;
-            //显示宝石
-            Vector2 equipNeedvec2 = new Vector2(-43, -(self.DiLengt_Head + self.DiLengt_Pro * self.properShowNum));
-            self.Obj_UIEquipGemHoleSet.transform.GetComponent<RectTransform>().anchoredPosition = equipNeedvec2;
+            return gemNumber;
+        }
 
-            //显示专精属性
-            float ZhuanJingTextNum = 0;
-
-            if (self.BagInfo.HideProLists != null && self.BagInfo.HideProLists.Count>=1) 
+        //显示专精属性
+        public static void ShowZhuanJingAttribute(this UIEquipTipsComponent self, ItemConfig itemconf, ref int properShowNum, float showGemTextNum)
+        {
+            if (self.BagInfo.HideProLists != null && self.BagInfo.HideProLists.Count >= 1)
             {
-                ZhuanJingTextNum = self.DiLengt_Title;
-
                 //统计长度需要在显示属性之前,要不显示属性会将self.properShowNum值累加
-                Vector2 hint_vec2 = new Vector2(-31f, -(self.DiLengt_Head + self.DiLengt_Pro * self.properShowNum) - ZhuanJingTextNum);
+                Vector2 hint_vec2 = new Vector2(175f,0 - self.DiLengt_Head - self.DiLengt_Pro * properShowNum - self.DiLengt_Title * 2 - showGemTextNum);
 
-                foreach (HideProList hide in self.BagInfo.HideProLists) {
+                foreach (HideProList hide in self.BagInfo.HideProLists)
+                {
                     //获取属性名称
                     string proName = UICommonHelper.GetProName(hide.HideID);
                     string proText = proName + "提高" + hide.HideValue + "点";
                     GameObject nowObj = ItemViewHelp.ShowPropertyText(proText, "1", self.Obj_EquipPropertyText, self.Obj_EquipZhuanJingSetList);
-                    self.properShowNum += 1;
-                    //ZhuanJingTextNum = ZhuanJingTextNum + self.DiLengt_Pro;
-
+                    properShowNum += 1;
+       
                     //显示职业护甲加成
                     if (itemconf.EquipType == 11 || itemconf.EquipType == 12 || itemconf.EquipType == 13)
                     {
@@ -1115,16 +1015,16 @@ namespace ET
                 self.Obj_EquiZhuanJing.transform.GetComponent<RectTransform>().anchoredPosition = hint_vec2;
                 self.Obj_EquiZhuanJing.SetActive(true);
             }
-  
-            //显示隐藏技能
-            float HintTextNum = 0;
+        }
+
+        public static void ShowHideSkill(this UIEquipTipsComponent self, ItemConfig itemconf, ref int properShowNum, float showGemTextNum)
+        {
             string skillIDStr = itemconf.SkillID;
             if (skillIDStr != "" && skillIDStr != "0")
             {
-                HintTextNum = self.DiLengt_Title;
                 string[] skillID = skillIDStr.Split(',');
 
-                Vector2 hint_vec2 = new Vector2(-31f, -(self.DiLengt_Head + self.DiLengt_Pro * self.properShowNum) - ZhuanJingTextNum - HintTextNum - showGemTextNum);
+                Vector2 hint_vec2 = new Vector2(-31f, -(self.DiLengt_Head + self.DiLengt_Pro * properShowNum) - 50 - 50 - showGemTextNum);
                 self.Obj_EquipHintSkill.transform.GetComponent<RectTransform>().anchoredPosition = hint_vec2;
 
                 for (int i = 0; i <= skillID.Length - 1; i++)
@@ -1136,8 +1036,7 @@ namespace ET
                     string skillName = skillconf.SkillName;
                     string showHintTxt = GameSettingLanguge.LoadLocalization("技能") + "：" + skillName;
                     ItemViewHelp.ShowPropertyText(showHintTxt, "4", self.Obj_EquipPropertyText, self.Obj_EquipHintSkillSetList);
-                    self.properShowNum += 1;
-                    //HintTextNum = HintTextNum + self.DiLengt_Pro;
+                    properShowNum += 1;
                 }
 
                 self.Obj_EquipHintSkill.SetActive(true);
@@ -1146,21 +1045,19 @@ namespace ET
             {
                 self.Obj_EquipHintSkill.SetActive(false);
             }
-            
+        }
 
-            //显示装备套装信息
-            float equipSuitTextNum = 0;
-            self.equipSuitID = equipconf.EquipSuitID;
-            if (self.equipSuitID != 0)
+        //套装信息
+        public static void ShowSuitEquipInfo(this UIEquipTipsComponent self, ItemConfig  itemConfig, int equipSuitID, ref int properShowNum, float showGemTextNum)
+        {
+            if (equipSuitID != 0)
             {
-                equipSuitTextNum = self.DiLengt_Title;
-                Log.Info("self.DiLengt_Head = " + self.DiLengt_Head + "self.DiLengt_Pro = " + self.DiLengt_Pro + "self.properShowNum = " + self.properShowNum + "ZhuanJingTextNum = " + ZhuanJingTextNum + "HintTextNum = " + HintTextNum + "equipSuitTextNum = " + equipSuitTextNum);
-                Vector2 equipSuit_vec2 = new Vector2(167.5f, -(self.DiLengt_Head + self.DiLengt_Pro * self.properShowNum) - ZhuanJingTextNum - HintTextNum - equipSuitTextNum - showGemTextNum);
+                Vector2 equipSuit_vec2 = new Vector2(167.5f,0 -self.DiLengt_Head - self.DiLengt_Pro * properShowNum - self.DiLengt_Title * 2- showGemTextNum);
                 Log.Info("equipSuit_vec2 = " + equipSuit_vec2);
                 self.Obj_UIEquipSuit.transform.GetComponent<RectTransform>().anchoredPosition = equipSuit_vec2;
                 self.Obj_UIEquipSuit.SetActive(true);
-  
-                EquipSuitConfig equipSuit = EquipSuitConfigCategory.Instance.Get(self.equipSuitID);
+
+                EquipSuitConfig equipSuit = EquipSuitConfigCategory.Instance.Get(equipSuitID);
 
                 string equipSuitName = equipSuit.Name;
 
@@ -1173,28 +1070,32 @@ namespace ET
                 List<int> itemIDList = new List<int>();
                 for (int y = 0; y < equipList.Count; y++)
                 {
-                    if (equipList[y].ItemID != 0) {
+                    if (equipList[y].ItemID != 0)
+                    {
                         itemIDList.Add(equipList[y].ItemID);
                     }
                 }
 
                 //获取自身拥有的装备
                 int equipSuitNum = 0;
-                for (int i = 0; i < needEquipIDSet.Length; i++) {
+                for (int i = 0; i < needEquipIDSet.Length; i++)
+                {
 
                     ItemConfig itemCof = ItemConfigCategory.Instance.Get(int.Parse(needEquipIDSet[i]));
                     string showType = "0";
-                    if (itemIDList.Contains(int.Parse(needEquipIDSet[i]))) {
+                    if (itemIDList.Contains(int.Parse(needEquipIDSet[i])))
+                    {
                         equipSuitNum = equipSuitNum + 1;
                         showType = "5";
                     }
-                    else {
+                    else
+                    {
                         showType = "11";
                     }
 
                     //显示套装名称
                     ItemViewHelp.ShowPropertyText(itemCof.ItemName, showType, self.Obj_EquipPropertyText, self.Obj_EquipSuitShowNameListSet);
-                    self.properShowNum += 0;
+                    properShowNum += 0;
                     self.Obj_Lab_EquipSuitShowListSetSuitName.GetComponent<Text>().text = equipSuitName + "(" + equipSuitNum + "/" + needEquipIDSet.Length + ")";
                 }
 
@@ -1217,15 +1118,16 @@ namespace ET
                     //显示类型
                     string showType = "11";
                     //满足显示为绿色
-                    if (equipSuitNum >= int.Parse(triggerSuitNum)) {
+                    if (equipSuitNum >= int.Parse(triggerSuitNum))
+                    {
                         showType = "1";
                     }
 
                     if (ifShowSuitNum == "0")
                     {
-                        langStr = GameSettingLanguge.LoadLocalization("件套");
+                        string langStr = GameSettingLanguge.LoadLocalization("件套");
                         ItemViewHelp.ShowPropertyText(triggerSuitNum + langStr + "：" + equipSuitDes, showType, self.Obj_EquipPropertyText, self.Obj_EquipSuitSetList);
-                        self.properShowNum += 1;
+                        properShowNum += 1;
                     }
                 }
 
@@ -1235,43 +1137,40 @@ namespace ET
             {
                 self.Obj_UIEquipSuit.SetActive(false);
             }
-           
-            //显示基础信息
-            self.Obj_EquipName.GetComponent<Text>().text = equipName + $"<color=#AFFF06>    类型:{textEquipType}</color>" + "_" +  equipName;
-            self.Obj_EquipName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(ItemQuality);
-            float exceedWidth = self.Obj_EquipName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
-            Log.ILog.Debug($"exceedWidth  {exceedWidth}");
-            if (exceedWidth > 0)
+        }
+
+        //基础信息
+        public static void ShowBaseAttribute(this UIEquipTipsComponent self, ref int EquipNeedTextNum, ref int properShowNum, ref float EquipBottomTextNum, float showGemTextNum)
+        {
+            ItemConfig itemconf = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
+            EquipConfig equipconf = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID);
+            string ItemIcon = itemconf.Icon;
+            int ItemQuality = itemconf.ItemQuality;
+            string equip_ID = itemconf.ItemEquipID.ToString();
+            string equipName = itemconf.ItemName;
+            string equipLv = itemconf.UseLv.ToString();
+            string ItemBlackDes = itemconf.ItemDes;
+            string textEquipType = "";
+            string textEquipTypeSon = "";
+            textEquipType = ItemViewHelp.ItemSubType3Name[itemconf.ItemSubType];
+            textEquipTypeSon = self.GetEquipType(itemconf.EquipType);
+            textEquipType = GameSettingLanguge.LoadLocalization(textEquipType);
+
+            string langStr = GameSettingLanguge.LoadLocalization("强化");
+            if (self.EquipQiangHuaID != 0)
             {
-                self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x + exceedWidth, self.Img_backVector2.y);
+                EquipQiangHuaConfig equipQiangHua = EquipQiangHuaConfigCategory.Instance.Get(self.EquipQiangHuaID);
+                float equipPropreAdd = float.Parse(equipQiangHua.EquipPropreAdd);
+                string qiangHuaLv = equipQiangHua.QiangHuaLv.ToString();
+                self.Obj_Lab_EquipQiangHua.GetComponent<Text>().text = "+" + qiangHuaLv + langStr;
             }
-
-            langStr = GameSettingLanguge.LoadLocalization("部位");
-            //self.Obj_EquipType.GetComponent<Text>().text = langStr + ":" + textEquipType;
-            langStr = GameSettingLanguge.LoadLocalization("类型");
-            self.Obj_EquipTypeSon.GetComponent<Text>().text = langStr + ":" + textEquipTypeSon;
-            equipNeedvec2 = new Vector2(150.0f, -175 - 22 * self.properShowNum - HintTextNum - showGemTextNum - equipSuitTextNum);
-            //self.Obj_EquipNeed.transform.GetComponent<RectTransform>().anchoredPosition = equipNeedvec2;
-            langStr = GameSettingLanguge.LoadLocalization("等级");
-            Log.Info(langStr + " : " + equipLv);
-            self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + " : " + equipLv;
-
-            if (int.Parse(equipLv) > self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv) {
-                self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + " : " + equipLv + " (等级不足)";
-                self.Obj_EquipWearNeed.GetComponent<Text>().color = new Color(255f / 255f, 200f / 255f, 200f / 255f);
-            }
-
-            //int roseLv = 10; // PlayerComponent.Instance.MyPlayer.RoleLv;
-            /*
-            if (int.Parse(equipLv) >= 1)
+            else
             {
-                string langStr_1 = GameSettingLanguge.LoadLocalization("穿戴等级:");
-                self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + " �� " + equipLv + "<color=#ff0000ff>  (" + langStr_1 + ")</color>";
+                self.Obj_Lab_EquipQiangHua.GetComponent<Text>().text = "+" + 0 + langStr;
             }
-            */
 
             //显示是否绑定
-            if (baginfo.isBinging)
+            if (self.BagInfo.isBinging)
             {
                 self.Obj_Lab_EquipBangDing.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("已绑定");
                 self.Obj_Lab_EquipBangDing.GetComponent<Text>().color = new Color(175f / 255f, 1, 6f / 255f);
@@ -1284,8 +1183,36 @@ namespace ET
                 self.Obj_Img_EquipBangDing.SetActive(false);
             }
 
+            self.Obj_EquipIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, ItemIcon);
+            string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(ItemQuality);
+            Log.Info("qualityiconStr = " + qualityiconStr);
+            self.Obj_EquipQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
 
-            int EquipNeedTextNum = 0;
+            //显示基础信息
+            self.Obj_EquipName.GetComponent<Text>().text = equipName + $"<color=#AFFF06>    类型:{textEquipType}</color>" + "_" + equipName;
+            self.Obj_EquipName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(ItemQuality);
+            float exceedWidth = self.Obj_EquipName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
+            Log.ILog.Debug($"exceedWidth  {exceedWidth}");
+            if (exceedWidth > 0)
+            {
+                self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x + exceedWidth, self.Img_backVector2.y);
+            }
+
+            langStr = GameSettingLanguge.LoadLocalization("部位");
+            //self.Obj_EquipType.GetComponent<Text>().text = langStr + ":" + textEquipType;
+            langStr = GameSettingLanguge.LoadLocalization("类型");
+            self.Obj_EquipTypeSon.GetComponent<Text>().text = langStr + ":" + textEquipTypeSon;
+            Vector2 equipNeedvec2 = new Vector2(150.0f, -175 - 40 * properShowNum - self.DiLengt_Title - showGemTextNum - self.DiLengt_Title);
+            //self.Obj_EquipNeed.transform.GetComponent<RectTransform>().anchoredPosition = equipNeedvec2;
+            langStr = GameSettingLanguge.LoadLocalization("等级");
+            Log.Info(langStr + " : " + equipLv);
+            self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + " : " + equipLv;
+
+            if (int.Parse(equipLv) > self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv)
+            {
+                self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + " : " + equipLv + " (等级不足)";
+                self.Obj_EquipWearNeed.GetComponent<Text>().color = new Color(255f / 255f, 200f / 255f, 200f / 255f);
+            }
 
             string propertyLimit = ""; /// itemconf.PropertyLimit;
             string[] needProperty = propertyLimit.Split(',');
@@ -1319,15 +1246,14 @@ namespace ET
             }
 
             int ItemBlackNum = 0;
-            float EquipBottomTextNum = 0;
             //Debug.Log("ItemBlackDes = " + ItemBlackDes);
             if (ItemBlackDes != "0" && ItemBlackDes != "")
             {
                 ItemBlackNum = (int)((ItemBlackDes.Length - 16) / 16) + 1;
-                Vector2 equipBottomvec2 = new Vector2(150.0f, -170 - 20 * self.properShowNum - HintTextNum - showGemTextNum - EquipNeedTextNum - ItemBlackNum * 8 - equipSuitTextNum);
+                Vector2 equipBottomvec2 = new Vector2(150.0f, -170 - 20 * properShowNum - self.DiLengt_Title - showGemTextNum - EquipNeedTextNum - ItemBlackNum * 8 - self.DiLengt_Title);
                 self.Obj_EquipBottom.transform.GetComponent<RectTransform>().anchoredPosition = equipBottomvec2;
                 EquipBottomTextNum = EquipBottomTextNum + 50.0f;
-               // self.Obj_EquipDes.GetComponent<Text>().text = ItemBlackDes;
+                // self.Obj_EquipDes.GetComponent<Text>().text = ItemBlackDes;
             }
             else
             {
@@ -1341,6 +1267,11 @@ namespace ET
                 EquipBottomTextNum = EquipBottomTextNum + 16 * ItemBlackNum;
             }
 
+        }
+
+        public static void ShowButton(this UIEquipTipsComponent self)
+        {
+
             self.Obj_Btn_HuiShou.SetActive(false);
             self.Obj_Btn_HuiShouCancle.SetActive(false);
             switch (self.EquipTipsType)
@@ -1352,7 +1283,6 @@ namespace ET
                     self.Obj_RoseEquipOpenSet.SetActive(false);
                     self.Obj_Btn_StoreHouseSet.SetActive(false);
                     self.Obj_SaveStoreHouse.SetActive(false);
-                    EquipBottomTextNum = 0;
                     break;
                 case ItemOperateEnum.Bag:
                     self.Obj_BagOpenSet.SetActive(true);
@@ -1384,7 +1314,6 @@ namespace ET
                     self.Obj_BagOpenSet.SetActive(false);
                     self.Obj_RoseEquipOpenSet.SetActive(false);
                     self.Obj_Btn_StoreHouseSet.SetActive(false);
-                    EquipBottomTextNum = 0;
                     break;
                 case ItemOperateEnum.Cangku:
                     self.Obj_BagOpenSet.SetActive(false);
@@ -1433,27 +1362,62 @@ namespace ET
                     break;
             }
 
-            float DiHight = -200f + self.Img_backVector2.y + self.DiLengt_Pro * self.properShowNum + HintTextNum + showGemTextNum + EquipNeedTextNum + EquipBottomTextNum + equipSuitTextNum;
-            Log.Info("self.properShowNum:" + self.properShowNum + " HintTextNum:" + HintTextNum + " showGemTextNum:" + showGemTextNum + " EquipNeedTextNum:" + EquipNeedTextNum + " EquipBottomTextNum:" + EquipBottomTextNum + " equipSuitTextNum:" + equipSuitTextNum);
-            Log.Info("DiHight:" + DiHight);
-            self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x, DiHight);
-            self.GetParent<UI>().GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(0, DiHight);
-            self.Obj_EquipIcon.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, ItemIcon);
-            string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(ItemQuality);
-            Log.Info("qualityiconStr = " + qualityiconStr);
-            self.Obj_EquipQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
-           
-            //设置缩放大小
-            self.GetParent<UI>().GameObject.transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
+        }
 
-            self.InitDataAsyn(self.BagInfo).Coroutine();
 
+        public static void InitData(this UIEquipTipsComponent self, BagInfo baginfo, ItemOperateEnum equipTipsType, int occTwoValue)
+        {
+            //初始化值
+            self.BagInfo = baginfo;
+            self.EquipTipsType = equipTipsType;
+            ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
+            EquipConfig equipconf = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID);
+         
+            string qualityiconLine = FunctionUI.GetInstance().ItemQualityLine(itemconf.ItemQuality);
+            self.ImageQualityLine.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconLine);
+            string qualityiconBack = FunctionUI.GetInstance().ItemQualityBack(itemconf.ItemQuality);
+            self.ImageQualityBg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconBack);
+
+            self.ZhuanJingStatus(occTwoValue, itemconf, baginfo);
+
+            //基础属性  专精属性  隐藏技能  套装属性
+            int properShowNum = ItemViewHelp.ShowBaseAttribute(baginfo, self.Obj_EquipPropertyText, self.Obj_EquipBaseSetList) ;
+            
+            //显示宝石插槽属性
+            int gemNumber = self.ShowGemList();
+            float showGemTextNum = gemNumber * 40;
+            //显示宝石
+            Vector2 equipNeedvec2 = new Vector2(155.5f, 0 - self.DiLengt_Head - self.DiLengt_Pro - self.DiLengt_Pro * properShowNum);
+            self.Obj_UIEquipGemHoleSet.transform.GetComponent<RectTransform>().anchoredPosition = equipNeedvec2;
+
+            //显示专精属性
+            self.ShowZhuanJingAttribute(itemconf, ref properShowNum, showGemTextNum);
+
+            //显示隐藏技能
+            //float HintTextNum = 50;
+            self.ShowHideSkill(itemconf, ref properShowNum, showGemTextNum);
+
+            //显示装备套装信息
+            //float equipSuitTextNum = 0;
+            self.ShowSuitEquipInfo(itemconf, equipconf.EquipSuitID, ref properShowNum, showGemTextNum);
+
+            int EquipNeedTextNum = 0;
+            float EquipBottomTextNum = 0;
+            self.ShowBaseAttribute(ref EquipNeedTextNum, ref properShowNum,ref EquipBottomTextNum, showGemTextNum);
+            float DiHight = self.DiLengt_Head  + self.DiLengt_Pro * properShowNum + self.DiLengt_Pro * 3 + showGemTextNum + 200;
+                //+ HintTextNum + showGemTextNum + EquipNeedTextNum + EquipBottomTextNum + equipSuitTextNum;
+            if (DiHight > self.Img_backVector2.y)
+            {
+                self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x, DiHight);
+            }
+
+            //显示装备制造者的名字[名字直接放入baginfo]
         }
 
         //需要异步的初始化
         public static async ETTask InitDataAsyn(this UIEquipTipsComponent self, BagInfo baginfo)
         {
-
+            self.Obj_Lab_EquipMake.SetActive(false);
             //显示装备制造玩家
             if (baginfo.MakeUserId != 0)
             {

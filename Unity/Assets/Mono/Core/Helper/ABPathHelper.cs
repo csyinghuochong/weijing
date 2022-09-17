@@ -71,6 +71,12 @@
             return $"Assets/Bundles/Effect/SkillHitEffect/{fileName}.prefab";
         }
 
+        //图集2
+        public static string GetAtlasPath_2( string path, string name)
+        {
+            return $"Assets/Bundles/Icon/{path}/{name}.png";
+        }
+
         //图集
         public static string GetAtlasPath(string path)
         {

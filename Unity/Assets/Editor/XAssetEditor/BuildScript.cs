@@ -206,6 +206,13 @@ namespace libx
                     searchPattern = rule.searchPatternScene,
                     nameBy = NameBy.Path
                 },
+
+                 new BuildRule()
+                {
+                    searchPath ="Assets/Bundles/Icon",
+                    searchPattern = rule.searchPatternDir,
+                    nameBy = NameBy.Directory
+                },
                 //,
                 //new BuildRule()
                 //{
