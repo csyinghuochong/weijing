@@ -567,7 +567,7 @@ namespace ET
                     {
                         int xilianLevel = XiLianHelper.GetXiLianId(self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu));
                         xilianLevel = xilianLevel != 0 ? EquipXiLianConfigCategory.Instance.Get(xilianLevel).XiLianLevel : 0;
-                        ComHelp.XiLianItem(useBagInfo, 0, xilianLevel);
+                        XiLianHelper.XiLianItem(useBagInfo, 0, xilianLevel);
                     }
                     //藏宝图
                     if (itemCof.ItemSubType == 113)

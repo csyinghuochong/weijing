@@ -66,10 +66,9 @@ namespace ET
         {
             self.AssetPath = assetPath;
             long instanceid = self.InstanceId;
-            int number = self.GetDropNumber();
+            //int number = self.GetDropNumber();
 
             var path = ABPathHelper.GetUGUIPath("Battle/UIDropItem");
-            await TimerComponent.Instance.WaitAsync(number * 50);
             self.HeadBar = await GameObjectPool.Instance.GetExternal(path);
             if (instanceid != self.InstanceId)
             {

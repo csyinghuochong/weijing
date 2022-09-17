@@ -25,7 +25,7 @@ namespace ET
                 xilianLevel = xilianLevel != 0 ? EquipXiLianConfigCategory.Instance.Get(xilianLevel).XiLianLevel : 0;
                 if (sucess)
                 {
-                    ComHelp.XiLianItem(bagInfo,1, xilianLevel);     //精炼属性不进行重置
+                    XiLianHelper.XiLianItem(bagInfo,1, xilianLevel);     //精炼属性不进行重置
 
                     M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
                     //通知客户端背包道具发生改变
