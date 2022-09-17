@@ -1265,7 +1265,10 @@ namespace ET
 
         public static void ShowButton(this UIEquipTipsComponent self)
         {
-
+            self.Obj_BagOpenSet.SetActive(false);
+            self.Obj_RoseEquipOpenSet.SetActive(false);
+            self.Obj_Btn_StoreHouseSet.SetActive(false);
+            self.Obj_SaveStoreHouse.SetActive(false);
             self.Obj_Btn_HuiShou.SetActive(false);
             self.Obj_Btn_HuiShouCancle.SetActive(false);
             switch (self.EquipTipsType)
