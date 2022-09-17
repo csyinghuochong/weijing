@@ -517,7 +517,7 @@ namespace ET
             //设置底的长度
             //self.ItemDi.GetComponent<RectTransform>().sizeDelta = new Vector2(301.0f, 180.0f + i1 * 20.0f + i2 * 16.0f + ItemBottomTextNum);
             //显示道具信息
-            self.Lab_ItemName.GetComponent<Text>().text = itemconf.ItemName + "_" + itemconf.ItemName;
+            self.Lab_ItemName.GetComponent<Text>().text = itemconf.ItemName;
             self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
             self.ItemDes.GetComponent<Text>().text = Text_ItemDes;
             float exceedWidth = self.Lab_ItemName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;

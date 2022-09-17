@@ -28,7 +28,7 @@ namespace ET
         public GameObject selPastureItemUICommonHint;
         public GameObject Obj_Lab_EquipBangDing;
         public GameObject Obj_Img_EquipBangDing;
-
+        public GameObject Lab_ItemSubType;
         public GameObject Imagebg;
 
         public ItemOperateEnum EquipTipsType;               //操作类型
@@ -76,6 +76,7 @@ namespace ET
             self.Obj_Lab_ItemCostDes = rc.Get<GameObject>("Lab_ItemCostDes");
             self.Obj_Lab_EquipBangDing = rc.Get<GameObject>("Lab_BangDing");
             self.Obj_Img_EquipBangDing = rc.Get<GameObject>("Img_BangDing");
+            self.Lab_ItemSubType = rc.Get<GameObject>("Lab_ItemSubType");
 
             self.Imagebg.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseTips(); });
             self.Btn_Sell.GetComponent<Button>().onClick.AddListener(() => { self.OnClickSell(); });
@@ -363,7 +364,8 @@ namespace ET
             //self.ItemDi.GetComponent<RectTransform>().sizeDelta = new Vector2(301.0f, 180.0f + i1 * 20.0f + i2 * 16.0f + ItemBottomTextNum);
 
             //显示道具信息
-            self.Lab_ItemName.GetComponent<Text>().text =  itemconf.ItemName + equipType + "_" + itemconf.ItemName; 
+            self.Lab_ItemName.GetComponent<Text>().text =  itemconf.ItemName;
+            self.Lab_ItemSubType.GetComponent<Text>().text = equipType;
             self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
             float exceedWidth = self.Lab_ItemName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
             Log.ILog.Debug($"exceedWidth  {exceedWidth}");
