@@ -1195,7 +1195,7 @@ namespace ET
             self.Obj_EquipQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
 
             //显示基础信息
-            self.Obj_EquipName.GetComponent<Text>().text = equipName + $"<color=#AFFF06>    类型:{textEquipType}</color>" + "_" + equipName;
+            self.Obj_EquipName.GetComponent<Text>().text = equipName + $"<color=#AFFF06>    类型:{textEquipType}</color>";
             self.Obj_EquipName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(ItemQuality);
             float exceedWidth = self.Obj_EquipName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
             Log.ILog.Debug($"exceedWidth  {exceedWidth}");
