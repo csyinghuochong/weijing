@@ -19,9 +19,13 @@ namespace ILRuntime.Runtime.Generated
         public static void Register(ILRuntime.Runtime.Enviorment.AppDomain app)
         {
             BindingFlags flag = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly;
+            MethodBase method;
             FieldInfo field;
             Type[] args;
             Type type = typeof(global::MyCamera_1);
+            args = new Type[]{};
+            method = type.GetMethod("OnUpdate", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, OnUpdate_0);
 
             field = type.GetField("Target", flag);
             app.RegisterCLRFieldGetter(field, get_Target_0);
@@ -31,6 +35,21 @@ namespace ILRuntime.Runtime.Generated
 
         }
 
+
+        static StackObject* OnUpdate_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            global::MyCamera_1 instance_of_this_method = (global::MyCamera_1)typeof(global::MyCamera_1).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            __intp.Free(ptr_of_this_method);
+
+            instance_of_this_method.OnUpdate();
+
+            return __ret;
+        }
 
 
         static object get_Target_0(ref object o)
