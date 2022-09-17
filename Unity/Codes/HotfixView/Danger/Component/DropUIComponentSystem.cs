@@ -147,10 +147,13 @@ namespace ET
                 if (dropinfo.ItemID == 1)
                 {
                     sprite = await ABAtlasHelp.GetIconSpriteAsync(ABAtlasTypes.ItemIcon, "DropGold");
+                    self.HeadBar.transform.Find("CurrencySet").gameObject.SetActive(true);
+                    //self.ModelMesh.gameObject.SetActive(false);
                 }
                 else
                 {
                     sprite = await ABAtlasHelp.GetIconSpriteAsync(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+                    self.HeadBar.transform.Find("CurrencySet").gameObject.SetActive(false);
                 }
                 if (instanceid != self.InstanceId)
                 {
@@ -168,6 +171,7 @@ namespace ET
                     targetTex.Apply();
 
                     self.ModelMesh.material.mainTexture = targetTex;
+                    //self.HeadBar.transform.Find("CurrencySet/Gold").gameObject.SetActive(true);
                 }
                 catch (Exception e)
                 {
