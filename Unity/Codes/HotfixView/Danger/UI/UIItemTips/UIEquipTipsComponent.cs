@@ -78,6 +78,7 @@ namespace ET
         public GameObject Obj_ImgYiChuanDai;
         public GameObject Obj_Lab_EquipBangDing;
         public GameObject Obj_Img_EquipBangDing;
+        public GameObject Lab_EquipType;
 
         public GameObject Obj_Lab_EquipMake;       
         public bool clickBtnStatus;
@@ -158,6 +159,7 @@ namespace ET
             self.Obj_Lab_EquipBangDing = rc.Get<GameObject>("Lab_EquipBangDing");
             self.Obj_Img_EquipBangDing = rc.Get<GameObject>("Img_EquipBangDing");
             self.Obj_Lab_EquipMake = rc.Get<GameObject>("Lab_EquipMake");
+            self.Lab_EquipType = rc.Get<GameObject>("Lab_EquipType");
 
             self.Obj_UIEquipGemHoleSet = rc.Get<GameObject>("Obj_UIEquipGemHoleSet");
             self.Obj_UIEquipGemHoleList = new GameObject[4];
@@ -982,7 +984,7 @@ namespace ET
             if (self.BagInfo.HideProLists != null && self.BagInfo.HideProLists.Count >= 1)
             {
                 //统计长度需要在显示属性之前,要不显示属性会将self.properShowNum值累加
-                Vector2 hint_vec2 = new Vector2(175f, startPostionY);
+                Vector2 hint_vec2 = new Vector2(0, startPostionY);
 
                 foreach (HideProList hide in self.BagInfo.HideProLists)
                 {
@@ -1057,7 +1059,7 @@ namespace ET
             int properShowNum = 0;
             if (equipSuitID != 0)
             {
-                Vector2 equipSuit_vec2 = new Vector2(167.5f, startPostionY);
+                Vector2 equipSuit_vec2 = new Vector2(0, startPostionY);
                 Log.Info("equipSuit_vec2 = " + equipSuit_vec2);
                 self.Obj_UIEquipSuit.transform.GetComponent<RectTransform>().anchoredPosition = equipSuit_vec2;
                 self.Obj_UIEquipSuit.SetActive(true);
@@ -1195,8 +1197,9 @@ namespace ET
             self.Obj_EquipQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
 
             //显示基础信息
-            self.Obj_EquipName.GetComponent<Text>().text = equipName + $"<color=#AFFF06>    类型:{textEquipType}</color>";
+            self.Obj_EquipName.GetComponent<Text>().text = equipName;
             self.Obj_EquipName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(ItemQuality);
+            //self.Lab_EquipType.GetComponent<Text>().text = "类型" + " : " + textEquipType;
             float exceedWidth = self.Obj_EquipName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
             Log.ILog.Debug($"exceedWidth  {exceedWidth}");
             if (exceedWidth > 0)
@@ -1205,7 +1208,7 @@ namespace ET
             }
 
             langStr = GameSettingLanguge.LoadLocalization("部位");
-            //self.Obj_EquipType.GetComponent<Text>().text = langStr + ":" + textEquipType;
+            self.Lab_EquipType.GetComponent<Text>().text = langStr + ":" + textEquipType;
             langStr = GameSettingLanguge.LoadLocalization("类型");
             self.Obj_EquipTypeSon.GetComponent<Text>().text = langStr + ":" + textEquipTypeSon;
             langStr = GameSettingLanguge.LoadLocalization("等级");
@@ -1388,16 +1391,18 @@ namespace ET
             float startPostionY = 0 - self.TitleBigHeight_160 - self.TitleMiniHeight_50 - self.TextItemHeight_40 * properShowNum;
             Vector2 equipNeedvec2 = new Vector2(155.5f, startPostionY);
             self.Obj_UIEquipGemHoleSet.transform.GetComponent<RectTransform>().anchoredPosition = equipNeedvec2;
-            float gemHoleShowHeight = self.ShowGemList() * 30f;
+            float gemHoleShowHeight = self.ShowGemList() * 35f;
 
             //显示专精属性
             startPostionY -= gemHoleShowHeight;
+            startPostionY -= 5;
             int zhunjingNumber = self.ShowZhuanJingAttribute(itemconf, startPostionY);
 
             //显示隐藏技能
             //float HintTextNum = 50;
             startPostionY -= (zhunjingNumber > 0 ? self.TitleMiniHeight_50 : 0);
             startPostionY = startPostionY  - zhunjingNumber * self.TextItemHeight_40;
+            startPostionY -= 5;
             int hideSkillNumber = self.ShowHideSkill(itemconf, startPostionY);
 
             //显示装备套装信息
@@ -1408,8 +1413,9 @@ namespace ET
             int suitEquipNumber = self.ShowSuitEquipInfo(itemconf, equipconf.EquipSuitID, startPostionY);
             suitEquipNumber = suitEquipNumber + (suitEquipNumber > 0 ? 2 : 0);
             startPostionY = startPostionY - self.TitleMiniHeight_50 - suitEquipNumber * self.TextItemHeight_40 ;
+            startPostionY -= 5;
 
-            float DiHight = startPostionY * -1 + 100;
+            float DiHight = startPostionY * -1 + 70;
             if (DiHight > self.Img_backVector2.y)
             {
                 self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x, DiHight);

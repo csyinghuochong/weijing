@@ -11,6 +11,7 @@ namespace ET
         public GameObject Lab_SkillDes;
         public GameObject Lab_SkillName;
         public GameObject Image_SkillIcon;
+        public GameObject Lab_SkillType;
 
     }
 
@@ -29,6 +30,7 @@ namespace ET
             self.Lab_SkillDes = rc.Get<GameObject>("Lab_SkillDes");
             self.Lab_SkillName = rc.Get<GameObject>("Lab_SkillName");
             self.Image_SkillIcon = rc.Get<GameObject>("Image_SkillIcon");
+            self.Lab_SkillType = rc.Get<GameObject>("Lab_SkillType");
         }
 
     }
@@ -48,6 +50,15 @@ namespace ET
 
             self.Lab_SkillName.GetComponent<Text>().text = skillConfig.SkillName;
             self.Lab_SkillDes.GetComponent<Text>().text = skillConfig.SkillDescribe;
+
+            if (skillConfig.SkillType == 1)
+            {
+                self.Lab_SkillType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("类型：主动技能");
+            }
+            else {
+                self.Lab_SkillType.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("类型：被动技能");
+            }
+            
 
             if (vector3.x > UnityEngine.Screen.width * -0.5 + 500)
                 self.PositionNode.transform.localPosition = vector3 + new Vector3(-50f,50f,0f);

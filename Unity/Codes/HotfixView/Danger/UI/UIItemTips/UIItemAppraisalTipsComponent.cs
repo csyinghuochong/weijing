@@ -369,9 +369,9 @@ namespace ET
             self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
             float exceedWidth = self.Lab_ItemName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
             Log.ILog.Debug($"exceedWidth  {exceedWidth}");
-            if (exceedWidth > 0)
+            if (exceedWidth > -20)
             {
-                self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x + exceedWidth, self.Img_backVector2.y);
+                self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x + exceedWidth + 30, self.Img_backVector2.y);
             }
 
             string langStr = GameSettingLanguge.LoadLocalization("等级");

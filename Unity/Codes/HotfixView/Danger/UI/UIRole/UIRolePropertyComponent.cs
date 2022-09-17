@@ -172,7 +172,7 @@ namespace ET
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DamgeSubPro, "伤害减免", "", 2));
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Luck, "幸运值", "", 1));
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Speed, "移动速度", "", 2));
-            /*
+            
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_CriLv, "暴击等级", "", 1));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ResLv, "韧性等级", "", 1));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HitLv, "命中等级", "", 1));
@@ -198,6 +198,7 @@ namespace ET
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ZhenShi, "真实伤害", "", 1));
 
 			//抗性属性
+            /*
 			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ActBossPro, "物攻领主加成", "", 2));
 			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_MageBossPro, "魔攻领主加成", "", 2));
 			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ActBossSubPro, "领主物攻减免", "", 2));
