@@ -31,11 +31,9 @@ namespace ET
         public GameObject Obj_HideProperty;
 
         public GameObject Obj_EquipZhuanJingSetList;
-        public GameObject Obj_EquipBaseSetList;
+        public GameObject EquipBaseSetList;
 
-        public GameObject Obj_EquiBase;
         public GameObject Obj_EquiZhuanJing;
-        public GameObject Obj_EquipNeed;
         public GameObject Obj_EquipBottom;
         public GameObject Obj_BtnSet;
         public GameObject Obj_EquipPropertyText;
@@ -86,9 +84,9 @@ namespace ET
 
         public BagInfo BagInfo;
 
-        public float DiLengt_Head;      //底图头部的宽度
-        public float DiLengt_Pro;       //底图属性的宽度
-        public float DiLengt_Title;
+        public float TitleBigHeight_160;      //底图头部的宽度
+        public float TextItemHeight_40;       //底图属性的宽度
+        public float TitleMiniHeight_50;
 
         //按钮相关
         public GameObject Btn_Use;          //穿戴
@@ -139,14 +137,13 @@ namespace ET
             self.Btn_Use = rc.Get<GameObject>("Btn_Use");
             self.Btn_Takeoff = rc.Get<GameObject>("Btn_Takeoff");
             self.Obj_EquipPropertyText = rc.Get<GameObject>("Obj_EquipPropertyText");
-            self.Obj_EquiBase = rc.Get<GameObject>("ObjEquipBase");
             self.Obj_EquiZhuanJing = rc.Get<GameObject>("ObjEquipZhuanJingSet");
-            self.Obj_EquipNeed = rc.Get<GameObject>("Obj_EquipNeed");
+
             self.Obj_UIEquipSuit = rc.Get<GameObject>("Obj_UIEquipSuit");
             self.Obj_UIEquipSuitName = rc.Get<GameObject>("Lab_SuitName");
             self.Btn_Sell = rc.Get<GameObject>("Btn_Sell");
             self.Obj_EquipZhuanJingSetList = rc.Get<GameObject>("EquipZhuanJingSetList");
-            self.Obj_EquipBaseSetList = rc.Get<GameObject>("EquipBaseSetList");
+            self.EquipBaseSetList = rc.Get<GameObject>("EquipBaseSetList");
             self.Obj_EquipSuitSetList = rc.Get<GameObject>("EquipSuitSetList");
             self.Obj_Btn_ShowEquipSuit = rc.Get<GameObject>("Btn_ShowEquipSuit");
             self.Obj_EquipSuitShowListSet = rc.Get<GameObject>("EquipSuitShowListSet");
@@ -190,9 +187,9 @@ namespace ET
             self.Obj_SaveStoreHouse.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PutStoreHouse(); });
             self.Obj_Btn_StoreHouseSet.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PutBag(); });
 
-            self.DiLengt_Head = 180;
-            self.DiLengt_Pro = 40;
-            self.DiLengt_Title = 50;
+            self.TitleBigHeight_160 = 160f;              //标题底框高度
+            self.TitleMiniHeight_50 = 50;                //条目标题高度
+            self.TextItemHeight_40 = 40;                  //条目文本高度
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
         }
     }
@@ -976,12 +973,13 @@ namespace ET
         }
 
         //显示专精属性
-        public static void ShowZhuanJingAttribute(this UIEquipTipsComponent self, ItemConfig itemconf, ref int properShowNum, float showGemTextNum)
+        public static int ShowZhuanJingAttribute(this UIEquipTipsComponent self, ItemConfig itemconf, float startPostionY)
         {
+            int properShowNum = 0;
             if (self.BagInfo.HideProLists != null && self.BagInfo.HideProLists.Count >= 1)
             {
                 //统计长度需要在显示属性之前,要不显示属性会将self.properShowNum值累加
-                Vector2 hint_vec2 = new Vector2(175f,0 - self.DiLengt_Head - self.DiLengt_Pro * properShowNum - self.DiLengt_Title * 2 - showGemTextNum);
+                Vector2 hint_vec2 = new Vector2(175f, startPostionY);
 
                 foreach (HideProList hide in self.BagInfo.HideProLists)
                 {
@@ -1015,16 +1013,18 @@ namespace ET
                 self.Obj_EquiZhuanJing.transform.GetComponent<RectTransform>().anchoredPosition = hint_vec2;
                 self.Obj_EquiZhuanJing.SetActive(true);
             }
+            return properShowNum;
         }
 
-        public static void ShowHideSkill(this UIEquipTipsComponent self, ItemConfig itemconf, ref int properShowNum, float showGemTextNum)
+        public static int ShowHideSkill(this UIEquipTipsComponent self, ItemConfig itemconf, float startPostionY)
         {
+            int properShowNum = 0;
             string skillIDStr = itemconf.SkillID;
             if (skillIDStr != "" && skillIDStr != "0")
             {
                 string[] skillID = skillIDStr.Split(',');
 
-                Vector2 hint_vec2 = new Vector2(-31f, -(self.DiLengt_Head + self.DiLengt_Pro * properShowNum) - 50 - 50 - showGemTextNum);
+                Vector2 hint_vec2 = new Vector2(-31f, startPostionY);
                 self.Obj_EquipHintSkill.transform.GetComponent<RectTransform>().anchoredPosition = hint_vec2;
 
                 for (int i = 0; i <= skillID.Length - 1; i++)
@@ -1045,14 +1045,16 @@ namespace ET
             {
                 self.Obj_EquipHintSkill.SetActive(false);
             }
+            return properShowNum;
         }
 
         //套装信息
-        public static void ShowSuitEquipInfo(this UIEquipTipsComponent self, ItemConfig  itemConfig, int equipSuitID, ref int properShowNum, float showGemTextNum)
+        public static int ShowSuitEquipInfo(this UIEquipTipsComponent self, ItemConfig  itemConfig, int equipSuitID, float startPostionY)
         {
+            int properShowNum = 0;
             if (equipSuitID != 0)
             {
-                Vector2 equipSuit_vec2 = new Vector2(167.5f,0 -self.DiLengt_Head - self.DiLengt_Pro * properShowNum - self.DiLengt_Title * 2- showGemTextNum);
+                Vector2 equipSuit_vec2 = new Vector2(167.5f, startPostionY);
                 Log.Info("equipSuit_vec2 = " + equipSuit_vec2);
                 self.Obj_UIEquipSuit.transform.GetComponent<RectTransform>().anchoredPosition = equipSuit_vec2;
                 self.Obj_UIEquipSuit.SetActive(true);
@@ -1137,10 +1139,11 @@ namespace ET
             {
                 self.Obj_UIEquipSuit.SetActive(false);
             }
+            return properShowNum;
         }
 
         //基础信息
-        public static void ShowBaseAttribute(this UIEquipTipsComponent self, ref int EquipNeedTextNum, ref int properShowNum, ref float EquipBottomTextNum, float showGemTextNum)
+        public static void ShowBaseAttribute(this UIEquipTipsComponent self)
         {
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
             EquipConfig equipconf = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID);
@@ -1202,8 +1205,6 @@ namespace ET
             //self.Obj_EquipType.GetComponent<Text>().text = langStr + ":" + textEquipType;
             langStr = GameSettingLanguge.LoadLocalization("类型");
             self.Obj_EquipTypeSon.GetComponent<Text>().text = langStr + ":" + textEquipTypeSon;
-            Vector2 equipNeedvec2 = new Vector2(150.0f, -175 - 40 * properShowNum - self.DiLengt_Title - showGemTextNum - self.DiLengt_Title);
-            //self.Obj_EquipNeed.transform.GetComponent<RectTransform>().anchoredPosition = equipNeedvec2;
             langStr = GameSettingLanguge.LoadLocalization("等级");
             Log.Info(langStr + " : " + equipLv);
             self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + " : " + equipLv;
@@ -1238,7 +1239,6 @@ namespace ET
                 }
 
                 self.Obj_EquipWearNeedProperty.SetActive(true);
-                EquipNeedTextNum = EquipNeedTextNum + 22;
             }
             else
             {
@@ -1250,10 +1250,6 @@ namespace ET
             if (ItemBlackDes != "0" && ItemBlackDes != "")
             {
                 ItemBlackNum = (int)((ItemBlackDes.Length - 16) / 16) + 1;
-                Vector2 equipBottomvec2 = new Vector2(150.0f, -170 - 20 * properShowNum - self.DiLengt_Title - showGemTextNum - EquipNeedTextNum - ItemBlackNum * 8 - self.DiLengt_Title);
-                self.Obj_EquipBottom.transform.GetComponent<RectTransform>().anchoredPosition = equipBottomvec2;
-                EquipBottomTextNum = EquipBottomTextNum + 50.0f;
-                // self.Obj_EquipDes.GetComponent<Text>().text = ItemBlackDes;
             }
             else
             {
@@ -1264,9 +1260,7 @@ namespace ET
                 ItemBlackNum = (int)((ItemBlackDes.Length - 32) / 16) + 1;
                 self.Obj_EquipDes.GetComponent<RectTransform>().sizeDelta = new Vector2(240.0f, 40.0f + 16.0f * ItemBlackNum);
                 self.Obj_EquipDes.GetComponent<Text>().text = ItemBlackDes;
-                EquipBottomTextNum = EquipBottomTextNum + 16 * ItemBlackNum;
             }
-
         }
 
         public static void ShowButton(this UIEquipTipsComponent self)
@@ -1372,40 +1366,42 @@ namespace ET
             self.EquipTipsType = equipTipsType;
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
             EquipConfig equipconf = EquipConfigCategory.Instance.Get(itemconf.ItemEquipID);
-         
             string qualityiconLine = FunctionUI.GetInstance().ItemQualityLine(itemconf.ItemQuality);
             self.ImageQualityLine.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconLine);
             string qualityiconBack = FunctionUI.GetInstance().ItemQualityBack(itemconf.ItemQuality);
             self.ImageQualityBg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconBack);
-
+            self.ShowBaseAttribute();
             self.ZhuanJingStatus(occTwoValue, itemconf, baginfo);
 
+
             //基础属性  专精属性  隐藏技能  套装属性
-            int properShowNum = ItemViewHelp.ShowBaseAttribute(baginfo, self.Obj_EquipPropertyText, self.Obj_EquipBaseSetList) ;
-            
-            //显示宝石插槽属性
-            int gemNumber = self.ShowGemList();
-            float showGemTextNum = gemNumber * 40;
+            //基础属性
+            int properShowNum = ItemViewHelp.ShowBaseAttribute(baginfo, self.Obj_EquipPropertyText, self.EquipBaseSetList) ;
+
             //显示宝石
-            Vector2 equipNeedvec2 = new Vector2(155.5f, 0 - self.DiLengt_Head - self.DiLengt_Pro - self.DiLengt_Pro * properShowNum);
+            float startPostionY = 0 - self.TitleBigHeight_160 - self.TitleMiniHeight_50 - self.TextItemHeight_40 * properShowNum;
+            Vector2 equipNeedvec2 = new Vector2(155.5f, startPostionY);
             self.Obj_UIEquipGemHoleSet.transform.GetComponent<RectTransform>().anchoredPosition = equipNeedvec2;
+            float gemHoleShowHeight = self.ShowGemList() * 30f;
 
             //显示专精属性
-            self.ShowZhuanJingAttribute(itemconf, ref properShowNum, showGemTextNum);
+            startPostionY -= gemHoleShowHeight;
+            int zhunjingNumber = self.ShowZhuanJingAttribute(itemconf, startPostionY);
 
             //显示隐藏技能
             //float HintTextNum = 50;
-            self.ShowHideSkill(itemconf, ref properShowNum, showGemTextNum);
+            startPostionY = startPostionY - self.TitleMiniHeight_50 - zhunjingNumber * self.TextItemHeight_40;
+            int hideSkillNumber = self.ShowHideSkill(itemconf, startPostionY);
 
             //显示装备套装信息
             //float equipSuitTextNum = 0;
-            self.ShowSuitEquipInfo(itemconf, equipconf.EquipSuitID, ref properShowNum, showGemTextNum);
+            startPostionY -= (hideSkillNumber > 0 ? self.TitleMiniHeight_50 : 0);
+            startPostionY -= hideSkillNumber * self.TextItemHeight_40;
 
-            int EquipNeedTextNum = 0;
-            float EquipBottomTextNum = 0;
-            self.ShowBaseAttribute(ref EquipNeedTextNum, ref properShowNum,ref EquipBottomTextNum, showGemTextNum);
-            float DiHight = self.DiLengt_Head  + self.DiLengt_Pro * properShowNum + self.DiLengt_Pro * 3 + showGemTextNum + 200;
-                //+ HintTextNum + showGemTextNum + EquipNeedTextNum + EquipBottomTextNum + equipSuitTextNum;
+            int suitEquipNumber = self.ShowSuitEquipInfo(itemconf, equipconf.EquipSuitID, startPostionY);
+            startPostionY = startPostionY - self.TitleMiniHeight_50 - suitEquipNumber * self.TextItemHeight_40 ;
+
+            float DiHight = startPostionY * -1 + 100;
             if (DiHight > self.Img_backVector2.y)
             {
                 self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x, DiHight);
