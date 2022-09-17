@@ -41,7 +41,7 @@ namespace ET
             }
             unit.UpdateUIType = HeadBarType.TransferUI;
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            unit.AddComponent<GameObjectComponent>().GameObject = go;
+            unit.AddComponent<GameObjectComponent, GameObject>(go, true);
             unit.UpdateUIType = HeadBarType.TransferUI;
             unit.AddComponent<TransferUIComponent>().OnInitUI(unitInfoComponent.UnitCondigID).Coroutine();
             unit.GetComponent<ChuansongComponent>().ChuanSongOpen = true;

@@ -162,12 +162,6 @@ namespace libx
                     nameBy = NameBy.Path
                 },
 
-                new BuildRule()
-                {
-                    searchPath = hotUpdatePath+"Atlas",
-                    searchPattern = rule.searchPatternPrefab,
-                    nameBy = NameBy.Path
-                },
                   new BuildRule()
                 {
                     searchPath = hotUpdatePath+"Jpg",

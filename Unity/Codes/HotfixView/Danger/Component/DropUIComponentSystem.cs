@@ -62,10 +62,12 @@ namespace ET
             return number;
         }
 
-        public static async ETTask InitData(this DropUIComponent self, DropInfo dropinfo)
+        public static async ETTask InitData(this DropUIComponent self, DropInfo dropinfo, string assetPath)
         {
+            self.AssetPath = assetPath;
             long instanceid = self.InstanceId;
             int number = self.GetDropNumber();
+
             var path = ABPathHelper.GetUGUIPath("Battle/UIDropItem");
             await TimerComponent.Instance.WaitAsync(number * 50);
             self.HeadBar = await GameObjectPool.Instance.GetExternal(path);
@@ -140,48 +142,36 @@ namespace ET
             //显示品质
             textMeshProUGUI.color = FunctionUI.GetInstance().QualityReturnColor(itemConfig.ItemQuality);
             ItemConfig itemconfig = ItemConfigCategory.Instance.Get(dropinfo.ItemID);
-            if (itemconfig != null)
-            {
-                Sprite sprite;
-                long instanceid = self.InstanceId;
-                if (dropinfo.ItemID == 1)
-                {
-                    sprite =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, "DropGold");
-                    self.HeadBar.transform.Find("CurrencySet").gameObject.SetActive(true);
-                    //self.ModelMesh.gameObject.SetActive(false);
-                }
-                else
-                {
-                    sprite =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
-                    self.HeadBar.transform.Find("CurrencySet").gameObject.SetActive(false);
-                }
-                if (instanceid != self.InstanceId)
-                {
-                    return;
-                }
-                try
-                {
-                    Texture2D targetTex = new Texture2D((int)sprite.textureRect.width, (int)sprite.textureRect.height);
-                    var pixels = sprite.texture.GetPixels(
-                        (int)sprite.textureRect.x,
-                        (int)sprite.textureRect.y,
-                        (int)sprite.textureRect.width,
-                        (int)sprite.textureRect.height);
-                    targetTex.SetPixels(pixels);
-                    targetTex.Apply();
-
-                    self.ModelMesh.material.mainTexture = targetTex;
-                    //self.HeadBar.transform.Find("CurrencySet/Gold").gameObject.SetActive(true);
-                }
-                catch (Exception e)
-                {
-                    Log.Error(e.ToString());
-                }
-            }
-
             //显示UI
             self.HeadBar.SetActive(true);
 
+            Sprite sprite = null;
+            long instanceid = self.InstanceId;
+            if (dropinfo.ItemID != 1)
+            {
+                sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            }
+            if (sprite ==null || instanceid != self.InstanceId)
+            {
+                return;
+            }
+            try
+            {
+                Texture2D targetTex = new Texture2D((int)sprite.textureRect.width, (int)sprite.textureRect.height);
+                var pixels = sprite.texture.GetPixels(
+                    (int)sprite.textureRect.x,
+                    (int)sprite.textureRect.y,
+                    (int)sprite.textureRect.width,
+                    (int)sprite.textureRect.height);
+                targetTex.SetPixels(pixels);
+                targetTex.Apply();
+
+                self.ModelMesh.material.mainTexture = targetTex;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e.ToString());
+            }
         }
 
         public static void GeneratePositions(this DropUIComponent self)
@@ -250,7 +240,6 @@ namespace ET
             NewPosition.y = OldPosition.y;
             self.HeadBar.transform.localPosition = NewPosition;
         }
-
 
         public static void Destroy(this DropUIComponent self)
         {

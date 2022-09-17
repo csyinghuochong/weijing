@@ -6,10 +6,11 @@ namespace ET
     public static class GameObjectComponentSystem
     {
         [ObjectSystem]
-        public class GameObjectAwakeSystem : AwakeSystem<GameObjectComponent>
+        public class GameObjectAwakeSystem : AwakeSystem<GameObjectComponent, GameObject>
         {
-            public override void Awake(GameObjectComponent self)
+            public override void Awake(GameObjectComponent self, GameObject gameObject)
             {
+                self.GameObject = gameObject;
                 self.AssetsPath = "";
                 self.Material = null;
             }

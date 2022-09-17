@@ -43,7 +43,7 @@ namespace ET
             go.transform.localPosition = unit.Position;
             go.transform.name = unit.Id.ToString();
             unit.AddComponent<EffectViewComponent>();               //添加特效组建
-            unit.AddComponent<GameObjectComponent>().GameObject = go;
+            unit.AddComponent<GameObjectComponent, GameObject>(go, true);
             unit.GetComponent<GameObjectComponent>().AssetsPath = path;
             unit.AddComponent<HeroTransformComponent>();              //获取角色绑点组件
             unit.AddComponent<ChangeEquipComponent>().InitWeapon(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon));

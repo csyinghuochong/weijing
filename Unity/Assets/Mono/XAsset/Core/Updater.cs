@@ -803,7 +803,6 @@ namespace libx
             yield return init;
             if (string.IsNullOrEmpty(init.error))
             {
-
                 Assets.AddSearchPath("Assets/Bundles/Jpg");
                 Assets.AddSearchPath("Assets/Bundles/Material");
                 Assets.AddSearchPath("Assets/Bundles/Other");

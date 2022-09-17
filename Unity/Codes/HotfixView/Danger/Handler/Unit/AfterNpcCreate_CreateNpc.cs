@@ -38,7 +38,7 @@ namespace ET
                     box.center = new Vector3(0f, 1f, 0f);
                 }
                 go.name = config.Id.ToString();
-                unit.AddComponent<GameObjectComponent>().GameObject = go;
+                unit.AddComponent<GameObjectComponent, GameObject>(go);
                 unit.AddComponent<AnimatorComponent>();
                 unit.AddComponent<HeroTransformComponent>();
                 unit.UpdateUIType = HeadBarType.NpcHeadBarUI;

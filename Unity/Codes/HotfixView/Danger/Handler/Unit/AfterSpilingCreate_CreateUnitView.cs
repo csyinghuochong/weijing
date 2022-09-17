@@ -30,14 +30,14 @@ namespace ET
             if (monsterCof.AI != 0)
             {
                 unit.AddComponent<EffectViewComponent>(true);            //添加特效组建
-                unit.AddComponent<GameObjectComponent>(true).GameObject = go;
+                unit.AddComponent<GameObjectComponent, GameObject>(go, true);
                 unit.AddComponent<AnimatorComponent>(true);
                 unit.AddComponent<FsmComponent>(true);                 //当前状态组建
                 unit.AddComponent<SkillYujingComponent>(true);
             }
             else
             {
-                unit.AddComponent<GameObjectComponent>().GameObject = go;
+                unit.AddComponent<GameObjectComponent, GameObject>(go, true);
             }
 
             //51 场景怪 有AI 不显示名称

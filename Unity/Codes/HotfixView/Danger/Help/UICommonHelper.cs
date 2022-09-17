@@ -25,7 +25,7 @@ namespace ET
             go.transform.localRotation = unit.Rotation;
             go.transform.name = unit.Id.ToString();
             unit.AddComponent<EffectViewComponent>();            //添加特效组建
-            unit.AddComponent<GameObjectComponent>().GameObject = go;
+            unit.AddComponent<GameObjectComponent, GameObject>(go);
             unit.AddComponent<AnimatorComponent>();
             unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
             unit.AddComponent<FsmComponent>();                 //当前状态组建
