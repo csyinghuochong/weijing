@@ -61,7 +61,7 @@ namespace ET
         public static void ShowOccIcon(GameObject go, int occ)
         {
             occ = occ == 0 ? 1 : occ;
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.UIPlayerIcon, occ.ToString());
+            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PlayerIcon, occ.ToString());
             go.GetComponent<Image>().sprite = sp;
         }
 

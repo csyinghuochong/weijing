@@ -185,7 +185,7 @@ namespace ET
 
         public static  void ShowIcon(this UIItemComponent self)
         {
-            Sprite sp =  ABAtlasHelp.GetIconSprite_2(ABAtlasTypes.ItemIcon, self.ItemIcon);
+            Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, self.ItemIcon);
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
         }
 

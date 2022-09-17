@@ -47,7 +47,7 @@ namespace ET
                 GameObject go = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(go, self.ItemNode);
                 LingDiRewardConfig shouJiItemConfig = lingDiRewardConfigs[i];
-                self.AddChild<UILingDiRewardItemComponent, GameObject>(go).OnUpdateUI(shouJiItemConfig, lingdiLv).Coroutine();
+                self.AddChild<UILingDiRewardItemComponent, GameObject>(go).OnUpdateUI(shouJiItemConfig, lingdiLv);
             }
         }
 

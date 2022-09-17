@@ -29,11 +29,11 @@ namespace ET
 
     public static class UIShouJiItemComponentSystem
     {
-        public static async ETTask OnUpdateUI(this UIShouJiItemComponent self, int chapterId, ShouJiItemConfig shouJiItemConfig)
+        public static void  OnUpdateUI(this UIShouJiItemComponent self, int chapterId, ShouJiItemConfig shouJiItemConfig)
         {
             ItemConfig itemconfig = ItemConfigCategory.Instance.Get(shouJiItemConfig.ItemID);
             long instanceid = self.InstanceId;
-            Sprite sp = await ABAtlasHelp.GetIconSpriteAsync(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
             if (instanceid != self.InstanceId)
             {
                 return;

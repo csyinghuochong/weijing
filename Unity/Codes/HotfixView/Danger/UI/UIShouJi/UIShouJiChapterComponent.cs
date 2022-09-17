@@ -173,7 +173,7 @@ namespace ET
                 GameObject go =  GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(go, self.ItemNode);
                 ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(itemId);
-                self.AddChild<UIShouJiItemComponent, GameObject>(go).OnUpdateUI(shouJiConfig.Id, shouJiItemConfig).Coroutine();
+                self.AddChild<UIShouJiItemComponent, GameObject>(go).OnUpdateUI(shouJiConfig.Id, shouJiItemConfig);
                 itemId = shouJiItemConfig.NextID;
             }
         }

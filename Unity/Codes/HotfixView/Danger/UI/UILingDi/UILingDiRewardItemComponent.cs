@@ -67,14 +67,14 @@ namespace ET
             M2C_LingDiRewardResponse m2C_LingDiRewardResponse = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_LingDiRewardRequest) as M2C_LingDiRewardResponse;
         }
 
-        public static async ETTask OnUpdateUI(this UILingDiRewardItemComponent self, LingDiRewardConfig shouJiItemConfig, int lingdiLv)
+        public static void  OnUpdateUI(this UILingDiRewardItemComponent self, LingDiRewardConfig shouJiItemConfig, int lingdiLv)
         {
             self.LingDiLevel = lingdiLv;
             self.LingDiRewardConfig = shouJiItemConfig;
 
             ItemConfig itemconfig = ItemConfigCategory.Instance.Get(shouJiItemConfig.ItemID);
             long instanceid = self.InstanceId;
-            Sprite sp = await ABAtlasHelp.GetIconSpriteAsync(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+            Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
             if (instanceid != self.InstanceId)
             {
                 return;

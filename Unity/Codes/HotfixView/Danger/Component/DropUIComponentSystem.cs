@@ -123,7 +123,7 @@ namespace ET
             self.LateUpdate();
         }
 
-        public static async void SetDropInfo(this DropUIComponent self, DropInfo dropinfo )
+        public static  void SetDropInfo(this DropUIComponent self, DropInfo dropinfo )
         {
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropinfo.ItemID);
             TextMeshProUGUI textMeshProUGUI = self.HeadBar.transform.Find("Lab_DropName").gameObject.GetComponent<TextMeshProUGUI>();
@@ -146,13 +146,13 @@ namespace ET
                 long instanceid = self.InstanceId;
                 if (dropinfo.ItemID == 1)
                 {
-                    sprite = await ABAtlasHelp.GetIconSpriteAsync(ABAtlasTypes.ItemIcon, "DropGold");
+                    sprite =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, "DropGold");
                     self.HeadBar.transform.Find("CurrencySet").gameObject.SetActive(true);
                     //self.ModelMesh.gameObject.SetActive(false);
                 }
                 else
                 {
-                    sprite = await ABAtlasHelp.GetIconSpriteAsync(ABAtlasTypes.ItemIcon, itemconfig.Icon);
+                    sprite =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
                     self.HeadBar.transform.Find("CurrencySet").gameObject.SetActive(false);
                 }
                 if (instanceid != self.InstanceId)
