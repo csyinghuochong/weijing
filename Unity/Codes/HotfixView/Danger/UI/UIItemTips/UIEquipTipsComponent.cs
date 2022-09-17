@@ -1378,6 +1378,7 @@ namespace ET
             self.ImageQualityBg.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconBack);
             self.ShowBaseAttribute();
             self.ZhuanJingStatus(occTwoValue, itemconf, baginfo);
+            self.ShowButton();
 
             //基础属性  专精属性  隐藏技能  套装属性
             //基础属性
@@ -1395,7 +1396,8 @@ namespace ET
 
             //显示隐藏技能
             //float HintTextNum = 50;
-            startPostionY = startPostionY - self.TitleMiniHeight_50 - zhunjingNumber * self.TextItemHeight_40;
+            startPostionY -= (zhunjingNumber > 0 ? self.TitleMiniHeight_50 : 0);
+            startPostionY = startPostionY  - zhunjingNumber * self.TextItemHeight_40;
             int hideSkillNumber = self.ShowHideSkill(itemconf, startPostionY);
 
             //显示装备套装信息
@@ -1404,7 +1406,8 @@ namespace ET
             startPostionY -= hideSkillNumber * self.TextItemHeight_40;
 
             int suitEquipNumber = self.ShowSuitEquipInfo(itemconf, equipconf.EquipSuitID, startPostionY);
-            startPostionY = startPostionY - self.TitleMiniHeight_50 - (2 + suitEquipNumber) * self.TextItemHeight_40 ;
+            suitEquipNumber = suitEquipNumber + (suitEquipNumber > 0 ? 2 : 0);
+            startPostionY = startPostionY - self.TitleMiniHeight_50 - suitEquipNumber * self.TextItemHeight_40 ;
 
             float DiHight = startPostionY * -1 + 100;
             if (DiHight > self.Img_backVector2.y)
