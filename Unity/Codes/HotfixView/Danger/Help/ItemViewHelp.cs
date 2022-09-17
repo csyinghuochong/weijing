@@ -15,6 +15,13 @@ namespace ET
 
     public static class ItemViewHelp
     {
+
+        public static Dictionary<int, List<int>> OccWeaponList = new Dictionary<int, List<int>>()
+        {
+            { 1, new List<int>(){ 1, 2} },
+            { 2, new List<int>(){ 3, 4}  },
+        };
+
         public static Dictionary<int, NumericAttribute> AttributeToName = new Dictionary<int, NumericAttribute>()
         {
             { NumericType.Now_MaxHp, new NumericAttribute(){ Name = "生命", Icon = "PetPro_1" , Float = false }  },

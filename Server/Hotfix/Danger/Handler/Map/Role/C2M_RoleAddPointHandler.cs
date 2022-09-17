@@ -24,6 +24,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.PointNaiLi, request.PointList[3]);
             numericComponent.ApplyValue(NumericType.PointMinJie, request.PointList[4]);
             numericComponent.ApplyValue(NumericType.PointRemain, remainPoint);
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
 
             reply();
             await ETTask.CompletedTask;

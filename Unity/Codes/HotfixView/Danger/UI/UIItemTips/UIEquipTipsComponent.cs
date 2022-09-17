@@ -267,6 +267,12 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("宠物装备！");
                 return;
             }
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            if (!ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
+            {
+                FloatTipManager.Instance.ShowFloatTip("请选择合适的武器！");
+                return;
+            }
 
             self.BagComponent.SendWearEquip(self.BagInfo).Coroutine();
             self.OnCloseTips();

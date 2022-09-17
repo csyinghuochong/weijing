@@ -488,7 +488,11 @@ namespace ET
             Dictionary<int, long> UpdateProDicList = new Dictionary<int, long>();
 
             //属性点
-            int liLiang =  numericComponent.GetAsInt(NumericType.PointLiLiang);
+            int PointLiLiang = numericComponent.GetAsInt(NumericType.PointLiLiang);
+            int PointZhiLi = numericComponent.GetAsInt(NumericType.PointZhiLi);
+            int PointTiZhi = numericComponent.GetAsInt(NumericType.PointTiZhi);
+            int PointNaiLi = numericComponent.GetAsInt(NumericType.PointNaiLi);
+            int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
 
 
             //基础职业属性
@@ -840,7 +844,6 @@ namespace ET
             }
 
             //战力计算
-
             long ShiLi_Act  = 0;
             float ShiLi_ActPro = 0f;
             long ShiLi_Def = 0;
