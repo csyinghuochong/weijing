@@ -44,5 +44,4 @@
             android:exported="true"
             android:launchMode="singleTop" />
     </application>
-。
 </manifest>
