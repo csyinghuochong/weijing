@@ -25,14 +25,16 @@ namespace ET
         {
             //概率返回
             float chance = RandomHelper.RandFloat01();
-            if (chance < 0.1f)
+            EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeId);
+            Double lingwuPro = equipMakeConfig.LearnPro;
+            if (chance > lingwuPro)
             {
                 return 0;
             }
 
             //未学会的制造
             List<int> unLearnIds = new List<int> { };
-            EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeId); 
+            
             Dictionary<int, EquipMakeConfig> keyValuePairs = EquipMakeConfigCategory.Instance.GetAll();
             foreach (var item in keyValuePairs)
             {

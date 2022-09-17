@@ -102,38 +102,41 @@ namespace ET
 		/// <summary>制作成功概率</summary>
 		[ProtoMember(9)]
 		public double MakeSuccesPro { get; set; }
-		/// <summary>触发隐藏属性概率</summary>
+		/// <summary>领悟概率</summary>
 		[ProtoMember(10)]
+		public double LearnPro { get; set; }
+		/// <summary>触发隐藏属性概率</summary>
+		[ProtoMember(11)]
 		public string MakeHintPro { get; set; }
 		/// <summary>制造装备等级</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public int MakeLv { get; set; }
 		/// <summary>制造装备最大等级</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public int MakeLvMax { get; set; }
 		/// <summary>制造星级</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public int MakeStar { get; set; }
 		/// <summary>需要熟练度</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public int NeedProficiencyValue { get; set; }
 		/// <summary>增长熟练度上限</summary>
-		[ProtoMember(15)]
+		[ProtoMember(16)]
 		public int ProficiencyMax { get; set; }
 		/// <summary>增长熟练点数</summary>
-		[ProtoMember(16)]
+		[ProtoMember(17)]
 		public int[] ProficiencyValue { get; set; }
 		/// <summary>熟练度转换概率生效值</summary>
-		[ProtoMember(17)]
+		[ProtoMember(18)]
 		public double ProficiencyStartProValue { get; set; }
 		/// <summary>熟练点数转换概率</summary>
-		[ProtoMember(18)]
+		[ProtoMember(19)]
 		public double ProficiencyProValue { get; set; }
 		/// <summary>制造消耗金币</summary>
-		[ProtoMember(19)]
+		[ProtoMember(20)]
 		public int MakeNeedGold { get; set; }
 		/// <summary>需要道具</summary>
-		[ProtoMember(20)]
+		[ProtoMember(21)]
 		public string NeedItems { get; set; }
 
 	}

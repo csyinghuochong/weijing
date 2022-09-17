@@ -49,8 +49,8 @@ namespace ET
 				userInfo.Occ = request.CreateOcc;           //职业暂时默认为1
 				userInfo.HuoYue = 0;
 				userInfo.Lv = newAccount.Password == ComHelp.RobotPassWord ? 20 : 1;
-				userInfo.Gold = newAccount.Password == ComHelp.RobotPassWord ? 1000000000 : 1;
-				userInfo.Diamond = 10000;    //测试默认创建给5000
+				userInfo.Gold = newAccount.Password == ComHelp.RobotPassWord ? 1000000 : 0;
+				//userInfo.Diamond = 10000;    //测试默认创建给5000
 				userInfo.PiLao = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);        //初始化疲劳
 				userInfo.Vitality = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
 				userInfo.MakeList.AddRange(ComHelp.StringArrToIntList(GlobalValueConfigCategory.Instance.Get(18).Value.Split(';')));

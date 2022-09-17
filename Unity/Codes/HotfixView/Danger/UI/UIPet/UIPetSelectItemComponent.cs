@@ -53,11 +53,11 @@ namespace ET
             self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
             self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
             self.Lab_PetName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(petConfig.PetQuality);
-            self.Lab_PetLv.GetComponent<Text>().text = rolePetInfo.PetLv.ToString();
-            self.Lab_StartLv.GetComponent<Text>().text = "x" + rolePetInfo.Star;
+            self.Lab_PetLv.GetComponent<Text>().text = rolePetInfo.PetLv.ToString() + GameSettingLanguge.LoadLocalization("级");
+            //self.Lab_StartLv.GetComponent<Text>().text = "x" + rolePetInfo.Star;
 
-            self.Img_Start.SetActive(!GlobalHelp.IsBanHaoMode);
-            self.Lab_StartLv.SetActive(!GlobalHelp.IsBanHaoMode);
+            //self.Img_Start.SetActive(!GlobalHelp.IsBanHaoMode);
+            //self.Lab_StartLv.SetActive(!GlobalHelp.IsBanHaoMode);
         }
 
         public static void OnClickPetItem(this UIPetSelectItemComponent self)
