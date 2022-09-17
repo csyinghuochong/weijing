@@ -1373,7 +1373,6 @@ namespace ET
             self.ShowBaseAttribute();
             self.ZhuanJingStatus(occTwoValue, itemconf, baginfo);
 
-
             //基础属性  专精属性  隐藏技能  套装属性
             //基础属性
             int properShowNum = ItemViewHelp.ShowBaseAttribute(baginfo, self.Obj_EquipPropertyText, self.EquipBaseSetList) ;
@@ -1399,7 +1398,7 @@ namespace ET
             startPostionY -= hideSkillNumber * self.TextItemHeight_40;
 
             int suitEquipNumber = self.ShowSuitEquipInfo(itemconf, equipconf.EquipSuitID, startPostionY);
-            startPostionY = startPostionY - self.TitleMiniHeight_50 - suitEquipNumber * self.TextItemHeight_40 ;
+            startPostionY = startPostionY - self.TitleMiniHeight_50 - (2 + suitEquipNumber) * self.TextItemHeight_40 ;
 
             float DiHight = startPostionY * -1 + 100;
             if (DiHight > self.Img_backVector2.y)
