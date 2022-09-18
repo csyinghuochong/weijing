@@ -69,9 +69,8 @@ namespace ET
 
         public static async ETTask UpdateSkillList(this UIPetInfoShowComponent self, RolePetInfo rolePetInfo)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkillItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
+            var bundleGameObject =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             List<int> zhuanzhuids = new List<int>();

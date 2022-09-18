@@ -139,6 +139,8 @@
     <Compile Include="Codes\HotfixView\Danger\Effect\RoleSkillEffect.cs" />
     <Compile Include="Codes\HotfixView\Danger\Component\HeroTransformComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\Sound\SoundComponent.cs" />
+    <Compile Include="Codes\HotfixView\Danger\UI\OccTwo\UIOccTwoShowComponent.cs" />
+    <Compile Include="Codes\HotfixView\Danger\UI\OccTwo\UIOccTwoShowEvent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIActivity\UIActivityTeHuiComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIActivity\UIActivityTeHuiItemComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIActivity\UIActivityTokenComponent.cs" />
@@ -182,7 +184,6 @@
     <Compile Include="Codes\HotfixView\Danger\UI\MiniMap\UIMapBigNpcItemComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\OccTwo\UIOccTwoComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\OccTwo\UIOccTwoEvent.cs" />
-    <Compile Include="Codes\HotfixView\Danger\UI\OccTwo\UIOccTwoItemComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\PetFuben\UIPetFubenResultComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\PetFuben\UIPetFubenResultEvent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIActivity\UIActivityComponent.cs" />

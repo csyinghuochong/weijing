@@ -59,8 +59,7 @@ namespace ET
         {
             //模型展示界面
             var path = ABPathHelper.GetUGUIPath("Common/UIModelShow1");
-            await ETTask.CompletedTask;
-            GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(gameObject, self.RawImage);
             UI ui = self.AddChild<UI, string, GameObject>( "UIModelShow", gameObject);
@@ -92,7 +91,7 @@ namespace ET
 
         public static async ETTask UpdateSkillList(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkillItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
             for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)

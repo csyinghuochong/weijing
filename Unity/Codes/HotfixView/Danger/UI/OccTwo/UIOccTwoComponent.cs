@@ -1,8 +1,6 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
 
 namespace ET
 {
@@ -119,10 +117,11 @@ namespace ET
         public static async ETTask RequestChangeOcc(this UIOccTwoComponent self)
         {
             bool ifChange = await self.ZoneScene().GetComponent<SkillSetComponent>().ChangeOccTwoRequest(self.OccTwoId);
-            //if (ifChange)
-            //{
-            //    UIHelper.Remove(self.DomainScene(), UIType.UIOccTwo).Coroutine();
-            //}
+            if (ifChange)
+            {
+                //UIHelper.Remove(self.DomainScene(), UIType.UIOccTwo).Coroutine();
+                UIHelper.Create(self.DomainScene(), UIType.UIOccTwoShow).Coroutine();
+            }
         }
 
         public static void OnInitUI(this UIOccTwoComponent self)
@@ -183,7 +182,7 @@ namespace ET
             self.OccNengLi_2.transform.Find("ImageProgress").GetComponent<Image>().fillAmount = occupationTwoConfig.Capacitys[1] * 1f / 100f;
             self.OccNengLi_3.transform.Find("ImageProgress").GetComponent<Image>().fillAmount = occupationTwoConfig.Capacitys[2] * 1f / 100f;
 
-            var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkillItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             int[] skills = occupationTwoConfig.ShowTalentSkill;
             for (int i = 0; i < skills.Length; i++)
@@ -235,21 +234,6 @@ namespace ET
         public static void OnClickOccTwoui(this UIOccTwoComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIOccTwo).Coroutine() ;
-        }
-
-        public static void InitSubItemView(this UIOccTwoComponent self)
-        {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-            int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            int[] OccTwoID = OccupationConfigCategory.Instance.Get(occ).OccTwoID;
-
-            for (int i = 0; i < OccTwoID.Length; i++)
-            {
-                GameObject taskTypeItem = rc.Get<GameObject>("UIOccTwoItem" + i.ToString());
-                UI ui_1 = self.AddChild<UI, string, GameObject>( "UIOccTwoItem_" + i.ToString(), taskTypeItem);
-                UIOccTwoItemComponent uIItemComponent = ui_1.AddComponent<UIOccTwoItemComponent>();
-                uIItemComponent.SetOccTwoId(OccTwoID[i]).Coroutine();
-            }
         }
     }
 }

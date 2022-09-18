@@ -83,8 +83,6 @@
 
         public const int OnActiveTianFu = 30;
 
-        public const int RoleOccTwo = 31;
-
         public const int BuffUpdate = 32;
 
         /// <summary>

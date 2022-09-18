@@ -164,7 +164,6 @@ namespace ET
                 self.BossNode.SetActive(true);
                 self.Lab_BossLv.GetComponent<Text>().text = monsterConfig.Lv.ToString();
                 self.Lab_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon.ToString());
                 //self.Img_BossIcon.GetComponent<Image>().sprite = sp;
                 self.InitModelShowView(configid).Coroutine();
                 self.OnChangeHp(unit);

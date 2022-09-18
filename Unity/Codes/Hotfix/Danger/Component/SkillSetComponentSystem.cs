@@ -220,7 +220,6 @@ namespace ET
 
 			if (m2C_SkillSet.Error == 0)
 			{
-
 				if (oldOccTwo == 0)
 				{
 					OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(occTwoID);
@@ -239,11 +238,11 @@ namespace ET
 
 				//飘字
 				HintHelp.GetInstance().ShowHint("恭喜你!转职成功");
-				HintHelp.GetInstance().DataUpdate(DataType.RoleOccTwo);
 				return true;
 
 			}
-			else {
+			else
+			{
 				//HintHelp.GetInstance().ShowErrHint(m2C_SkillSet.Error);
 				return false;
 			}

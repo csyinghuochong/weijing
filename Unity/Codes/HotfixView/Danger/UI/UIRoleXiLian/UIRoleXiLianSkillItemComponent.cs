@@ -34,7 +34,7 @@ namespace ET
         public static void OnInitUI(this UIRoleXiLianSkillItemComponent self, EquipXiLianConfig equipXiLianConfig)
         {
             self.EquipXiLianConfig = equipXiLianConfig;
-            var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkillItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             self.Text_XiLianName.GetComponent<Text>().text = equipXiLianConfig.Title+GameSettingLanguge.LoadLocalization("激活洗炼特殊属性");
             List<int> xilianSkill = XiLianHelper.GetLevelSkill(equipXiLianConfig.XiLianLevel);
