@@ -63,10 +63,6 @@ namespace ET
 
         public static void OnUpdateHP(this UIMainTeamComponent self, Unit unit)
         {
-            if (unit.GetComponent<UnitInfoComponent>().Type != UnitType.Player)
-            {
-                return;
-            }
             for (int i = 0; i < self.TeamUIList.Count; i++)
             {
                 self.TeamUIList[i].OnUpdateHP(unit);

@@ -384,7 +384,8 @@ namespace ET
 
         public static void OnUpdateHP(this UIMainComponent self, Unit unit, int sceneType)
         {
-            if (sceneType == SceneTypeEnum.TeamDungeon)
+            UnitType unitType = unit.GetComponent<UnitInfoComponent>().Type;
+            if (sceneType == SceneTypeEnum.TeamDungeon && unitType == UnitType.Player)
             {
                 self.UIMainTeam.OnUpdateHP(unit);
             }
