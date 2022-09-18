@@ -32,13 +32,17 @@ namespace ET
             self.SkillListItem = rc.Get<GameObject>("SkillListItem");
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.RawImage.SetActive(false);
+
+            self.OnInitUI();
         }
     }
 
     public static class UIOccTwoShowComponentSystem
     {
-        public static void OnInitUI(this UIOccTwoShowComponent self, int occTwo)
+        public static void OnInitUI(this UIOccTwoShowComponent self)
         {
+            int occTwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+
             self.InitModelShowView().Coroutine();
             self.ShowSkillList(occTwo).Coroutine();
         }
@@ -48,7 +52,7 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             OccupationTwoConfig twoConfig = OccupationTwoConfigCategory.Instance.Get(occTwo);
-            UICommonHelper.ShowSkillItem(bundleGameObject, self.SkillListItem, self, twoConfig.SkillID, ABAtlasTypes.RechageIcon );
+            UICommonHelper.ShowSkillItem(bundleGameObject, self.SkillListItem, self, twoConfig.SkillID, ABAtlasTypes.RoleSkillIcon );
         }
 
         public static async ETTask InitModelShowView(this UIOccTwoShowComponent self)
@@ -59,8 +63,9 @@ namespace ET
             GameObject bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(gameObject, self.RawImage);
-           
-            self.uIModelShowComponent = self.AddChild<UIModelShowComponent, GameObject>(self.RawImage);
+
+            UI ui = self.AddChild<UI, string, GameObject>("UIModelShow", gameObject);
+            self.uIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
             //配置摄像机位置[0,115,257]
             gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 70f, 150f);
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
