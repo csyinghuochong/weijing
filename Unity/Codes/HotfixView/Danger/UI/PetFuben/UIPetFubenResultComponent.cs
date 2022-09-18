@@ -48,8 +48,8 @@ namespace ET
         public static void OnButton_exit(this UIPetFubenResultComponent self)
         {
             EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
-            UIHelper.Remove(self.ZoneScene(), UIType.UIPetMain).Coroutine();
-            UIHelper.Remove( self.ZoneScene(), UIType.UIPetFubenResult ).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIPetMain);
+            UIHelper.Remove( self.ZoneScene(), UIType.UIPetFubenResult );
         }
     }
 }

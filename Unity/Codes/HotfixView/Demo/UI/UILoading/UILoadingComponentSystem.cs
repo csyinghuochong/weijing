@@ -70,7 +70,7 @@ namespace ET
             UI uimain = UIHelper.GetUI(self.DomainScene(), UIType.UIMain);
             if (uimain != null)
             {
-                UIHelper.Remove(self.ZoneScene(), UIType.UIMapBig).Coroutine();
+                UIHelper.Remove(self.ZoneScene(), UIType.UIMapBig);
                 uimain.GetComponent<UIMainComponent>().BeginChangeScene();
             }
         }
@@ -238,7 +238,7 @@ namespace ET
                     break;
             }
             Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
-            UIHelper.Remove(self.DomainScene(), UIType.UILoading).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UILoading);
         }
     }
 

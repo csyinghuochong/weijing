@@ -56,7 +56,7 @@ namespace ET
 
         public static void OnCloseStore(this UIStoreComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIStore).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIStore);
         }
 
         public static async ETTask InitData(this UIStoreComponent self, int npcid)

@@ -74,7 +74,7 @@ namespace ET
 
         public static void OnBtn_Close(this UIPetChouKaGetComponent self)
         {
-            UIHelper.Remove(  self.DomainScene(), UIType.UIPetChouKaGet ).Coroutine();
+            UIHelper.Remove(  self.DomainScene(), UIType.UIPetChouKaGet );
         }
 
         public static void OnInitUI(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo, bool showSkin = false)

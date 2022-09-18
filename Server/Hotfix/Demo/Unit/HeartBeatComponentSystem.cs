@@ -5,7 +5,7 @@
         public override void Awake(HeartBeatComponent self)
         {
             self.LastPingTime = TimeHelper.ServerNow();
-            self.DisconnectDeltaTime = 30000;
+            self.DisconnectDeltaTime = 60000;
             self.CheckDeltaTime = 2000;
             self.LastCheckTime = TimeHelper.ServerNow();
         }

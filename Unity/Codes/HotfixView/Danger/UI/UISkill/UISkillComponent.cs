@@ -99,7 +99,7 @@ namespace ET
 
         public static void OnCloseSkillSet(this UISkillComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UISkill).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UISkill);
         }
 
         public static void OnClickPageButton(this UISkillComponent self, int page)

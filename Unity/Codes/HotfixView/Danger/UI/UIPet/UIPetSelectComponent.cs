@@ -117,7 +117,7 @@ namespace ET
 
         public static void OnClickCoseButton(this UIPetSelectComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIPetSelect).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIPetSelect);
         }
 
     }

@@ -48,7 +48,7 @@ namespace ET
 
 			AccountInfoComponent PlayerComponent = args.ZoneScene.GetComponent<AccountInfoComponent>();
 			await UIHelper.Create(args.ZoneScene, PlayerComponent.CreateRoleList.Count > 0 ? UIType.UILobby : UIType.UICreateRole);
-			UIHelper.Remove(args.ZoneScene, UIType.UILogin).Coroutine();
+			UIHelper.Remove(args.ZoneScene, UIType.UILogin);
 		}
 	}
 }

@@ -28,7 +28,7 @@ namespace ET
 		public static void OnCloseStory(this UIRoleStoryComponent self)
 		{
 			NetHelper.SendTaskNotice(self.DomainScene(), self.TaskId).Coroutine();
-			UIHelper.Remove(self.ZoneScene(), UIType.UIStorySpeak).Coroutine();
+			UIHelper.Remove(self.ZoneScene(), UIType.UIStorySpeak);
 		}
 
 		public static void OnUpdateInfo(this UIRoleStoryComponent self, int taskid)

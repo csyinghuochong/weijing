@@ -213,7 +213,7 @@ namespace ET
                () =>
                {
                    EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
-                   UIHelper.Remove(self.ZoneScene(), UIType.UIPetMain).Coroutine();
+                   UIHelper.Remove(self.ZoneScene(), UIType.UIPetMain);
                },
                null).Coroutine();
         }

@@ -59,7 +59,7 @@ namespace ET
 
         public static void OnClickCoseButton(this UICellDungeonCellComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonCell).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonCell);
         }
 
 

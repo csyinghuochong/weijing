@@ -63,7 +63,7 @@ namespace ET
         public static void OnClickPetItem(this UIPetSelectItemComponent self)
         {
             HintHelp.GetInstance().DataUpdate(DataType.PetItemSelect, self.OperationType.ToString() + "@" + self.RolePetInfo.Id.ToString());
-            UIHelper.Remove(self.DomainScene(), UIType.UIPetSelect).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIPetSelect);
         }
     }
 

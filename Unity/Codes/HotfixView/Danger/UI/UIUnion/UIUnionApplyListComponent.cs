@@ -35,7 +35,7 @@ namespace ET
     {
         public static void ImageButton(this UIUnionApplyListComponent self)
         {
-            UIHelper.Remove(self.ZoneScene(), UIType.UIUnionApplyList).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIUnionApplyList);
             self.ActionFunc();
         }
 

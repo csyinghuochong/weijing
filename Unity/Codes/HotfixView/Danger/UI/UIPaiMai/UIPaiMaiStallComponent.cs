@@ -159,7 +159,7 @@ namespace ET
 
         public static void OnButtonClose(this UIPaiMaiStallComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIPaiMaiStall ).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIPaiMaiStall );
         }
 
         //收回摊位

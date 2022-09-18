@@ -98,6 +98,7 @@ namespace ET
 		public const string UIPetHeXinHeCheng = "Main/Pet/UIPetHeXinHeCheng";
 		public const string UICamp = "Main/Camp/UICamp";
 		public const string UIWorldLv = "Main/WorldLv/UIWorldLv";
+		public const string UIAppraisalSelect = "Main/Appraisal/UIAppraisalSelect";
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
 		{

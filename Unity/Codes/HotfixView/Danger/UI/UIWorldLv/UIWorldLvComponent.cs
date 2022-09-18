@@ -73,7 +73,7 @@ namespace ET
 
         public static void OnBtn_Close(this UIWorldLvComponent self)
         {
-            UIHelper.Remove( self.ZoneScene(), UIType.UIWorldLv ).Coroutine();
+            UIHelper.Remove( self.ZoneScene(), UIType.UIWorldLv );
         }
 
         public static void  OnButtonDiHuan(this UIWorldLvComponent self)

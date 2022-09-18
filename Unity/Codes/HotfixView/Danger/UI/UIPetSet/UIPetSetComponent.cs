@@ -28,7 +28,7 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.CloseButton = rc.Get<GameObject>("CloseButton");
-            self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIPetSet ).Coroutine();  });
+            self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIPetSet );  });
 
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
             UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);

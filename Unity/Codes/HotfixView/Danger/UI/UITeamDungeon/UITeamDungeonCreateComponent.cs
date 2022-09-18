@@ -73,7 +73,7 @@ namespace ET
 
             self.OnClickButton(self.ButtonList[0]);
 
-            self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonCreate).Coroutine(); });
+            self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonCreate); });
         }
     }
 
@@ -103,7 +103,7 @@ namespace ET
 
         public static void OnButton_Close(this UITeamDungeonCreateComponent self)
         {
-            UIHelper.Remove( self.DomainScene(), UIType.UITeamDungeonCreate ).Coroutine();
+            UIHelper.Remove( self.DomainScene(), UIType.UITeamDungeonCreate );
         }
 
         public static async ETTask OnButton_Create(this UITeamDungeonCreateComponent self)
@@ -117,7 +117,7 @@ namespace ET
 
             UI ui = UIHelper.GetUI( self.DomainScene(), UIType.UITeamDungeon );
             ui.GetComponent<UITeamDungeonComponent>().UIPageButtonComponent_1.OnSelectIndex(1);
-            UIHelper.Remove( self.DomainScene(), UIType.UITeamDungeonCreate ).Coroutine();
+            UIHelper.Remove( self.DomainScene(), UIType.UITeamDungeonCreate );
         }
 
     }

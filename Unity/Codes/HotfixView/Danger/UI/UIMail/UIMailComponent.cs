@@ -63,7 +63,7 @@ namespace ET
     {
         public static void OnCloseMail(this UIMailComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIMail).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIMail);
         }
 
         public static void  RequestMaiList(this UIMailComponent self)

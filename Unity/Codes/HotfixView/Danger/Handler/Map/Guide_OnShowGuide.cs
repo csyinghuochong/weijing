@@ -43,7 +43,7 @@ namespace ET
 
             void OnClickGuide()
             {
-                UIHelper.Remove(args.ZoneScene, UIType.UIGuide).Coroutine();
+                UIHelper.Remove(args.ZoneScene, UIType.UIGuide);
                 gameObject.GetComponent<Button>().onClick.RemoveListener(OnClickGuide);
                 args.ZoneScene.GetComponent<GuideComponent>().OnNext(args.GroupId);
             }

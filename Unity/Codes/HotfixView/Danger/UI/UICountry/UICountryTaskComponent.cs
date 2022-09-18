@@ -94,7 +94,7 @@ namespace ET
         public static void EndDrag(this UICountryTaskComponent self, PointerEventData pdata, int index)
         {
             self.OnBtn_Reward_Type(index);
-            UIHelper.Remove(self.DomainScene(), UIType.UICountryTips).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICountryTips);
         }
 
         public static void OnBtn_Reward_Type(this UICountryTaskComponent self, int index)

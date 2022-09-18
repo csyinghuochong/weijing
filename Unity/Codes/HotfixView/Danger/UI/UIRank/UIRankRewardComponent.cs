@@ -35,7 +35,7 @@ namespace ET
         public static void OnCloseButton(this UIRankRewardComponent self)
         {
             self.ClickOnClose?.Invoke();
-            UIHelper.Remove( self.ZoneScene(), UIType.UIRankReward).Coroutine();
+            UIHelper.Remove( self.ZoneScene(), UIType.UIRankReward);
         }
 
         public static async ETTask OnInitUI(this UIRankRewardComponent self)

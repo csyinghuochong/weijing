@@ -284,7 +284,7 @@ namespace ET
         public static void OnPointerUp(this UIRoleHuiShouComponent self, BagInfo binfo, PointerEventData pdata)
         {
             self.IsHoldDown = false;
-            UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips);
         }
 
         public static void UpdateSelected(this UIRoleHuiShouComponent self)

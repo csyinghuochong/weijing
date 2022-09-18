@@ -87,7 +87,7 @@ namespace ET
         public static void EndDrag(this UIShouJiChapterComponent self, PointerEventData pdata, int index)
         {
             self.OnBtn_Reward_Type(index).Coroutine();
-            UIHelper.Remove(self.DomainScene(), UIType.UICountryTips).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICountryTips);
         }
 
         public static async ETTask OnBtn_Reward_Type(this UIShouJiChapterComponent self, int index)

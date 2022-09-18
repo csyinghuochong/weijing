@@ -224,7 +224,7 @@ namespace ET
 
         public static void OnCloseWarehouse(this UIWarehouseComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIWarehouse).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIWarehouse);
         }
 
 

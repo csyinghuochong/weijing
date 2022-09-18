@@ -390,7 +390,7 @@ namespace ET
             }
             self.OnArriveToNpc();
             self.OnUnitToSpeak(position).Coroutine();
-            UIHelper.Remove(self.ZoneScene(), UIType.UIMapBig).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIMapBig);
         }
 
         public static async ETTask OnUnitToSpeak(this OperaComponent self, Vector3 vector3)

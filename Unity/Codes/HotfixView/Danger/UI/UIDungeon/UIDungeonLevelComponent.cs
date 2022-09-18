@@ -87,7 +87,7 @@ namespace ET
         public static async void OnCloseChapter(this UIDungeonLevelComponent self)
         {
             UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIDungeon);
-            UIHelper.Remove(self.ZoneScene(), UIType.UIDungeonLevel).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIDungeonLevel);
         }
 
         public static void OnInitData(this UIDungeonLevelComponent self, int chapterId)

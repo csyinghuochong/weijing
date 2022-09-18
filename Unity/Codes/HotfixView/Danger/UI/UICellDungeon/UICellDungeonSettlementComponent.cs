@@ -129,13 +129,13 @@ namespace ET
                 return;
             }
 
-            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonSettlement).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonSettlement);
         }
 
         public static void OnExitButton(this UICellDungeonSettlementComponent self)
         {
             EnterFubenHelp.RequestQuitFuben(self.DomainScene());
-            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonSettlement).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonSettlement);
         }
 
 
@@ -197,7 +197,7 @@ namespace ET
             int chapterId = self.ZoneScene().GetComponent<CellDungeonComponent>().ChapterId;
             int difficulty = self.ZoneScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
             EnterFubenHelp.EnterFubenRequest(self.DomainScene(), difficulty, chapterId, 1).Coroutine();
-            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonSettlement).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonSettlement);
         }
 
         public static async ETTask OnUpdateUI(this UICellDungeonSettlementComponent self, M2C_FubenSettlement m2C_FubenSettlement)

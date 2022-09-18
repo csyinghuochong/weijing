@@ -163,7 +163,7 @@ namespace ET
         //点击Tips
         public static void OnCloseTips(this UIItemTipsComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIItemTips).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIItemTips);
         }
 
         //出售道具
@@ -305,7 +305,7 @@ namespace ET
                     EventType.DigForTreasure.Instance.BagInfo = self.BagInfo;
                     EventType.DigForTreasure.Instance.ZoneScene = self.ZoneScene();
                     Game.EventSystem.PublishClass(EventType.DigForTreasure.Instance);
-                    UIHelper.Remove(zoneScene, UIType.UIRole).Coroutine();
+                    UIHelper.Remove(zoneScene, UIType.UIRole);
                     self.OnCloseTips();
                     return;
                     //if (gameObject == null)

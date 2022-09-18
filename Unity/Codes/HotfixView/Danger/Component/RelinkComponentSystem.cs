@@ -83,12 +83,12 @@ namespace ET
                 {
                     self.Relink = false;
                     Log.ILog.Debug("重连成功！！");
-                    UIHelper.Remove(self.DomainScene(), UIType.UIRelink).Coroutine();
+                    UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
                     break;
                 }
                 if(i == 9)
                 {
-                    UIHelper.Remove(self.DomainScene(), UIType.UIRelink).Coroutine();
+                    UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
                     EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
                     Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
                     break;

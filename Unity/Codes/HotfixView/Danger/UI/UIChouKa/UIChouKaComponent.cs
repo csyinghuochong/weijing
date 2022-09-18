@@ -113,7 +113,7 @@ namespace ET
 
         public static void OnButtonClose(this UIChouKaComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIChouKa).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIChouKa);
         }
 
         public static void OnSelectChapterID(this UIChouKaComponent self, int chapterid)

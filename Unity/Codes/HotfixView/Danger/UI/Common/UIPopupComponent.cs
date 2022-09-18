@@ -55,7 +55,7 @@ namespace ET
         {
             self.confirHandler?.Invoke();
             self.confirHandler = null;
-            UIHelper.Remove(self.DomainScene(), self.UIType).Coroutine();
+            UIHelper.Remove(self.DomainScene(), self.UIType);
         }
 
         public static void OnCancelButton(this UIPopupComponent self)
@@ -63,12 +63,12 @@ namespace ET
             self.confirButton.SetActive(false);
             self.cancelHandler?.Invoke();
             self.cancelHandler = null;
-            UIHelper.Remove(self.DomainScene(), self.UIType).Coroutine();
+            UIHelper.Remove(self.DomainScene(), self.UIType);
         }
 
         public static void OnCloseButton(this UIPopupComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), self.UIType).Coroutine();
+            UIHelper.Remove(self.DomainScene(), self.UIType);
         }
 
         public static void InitData(this UIPopupComponent self, string title, string content, Action okhandle, Action cancelHandle)

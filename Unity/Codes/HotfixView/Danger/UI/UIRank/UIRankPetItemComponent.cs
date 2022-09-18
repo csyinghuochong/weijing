@@ -70,7 +70,7 @@ namespace ET
             }
 
             EnterFubenHelp.RequestTransfer(self.DomainScene(), (int)SceneTypeEnum.PetTianTi, 0).Coroutine();
-            UIHelper.Remove( self.DomainScene(), UIType.UIRank).Coroutine();
+            UIHelper.Remove( self.DomainScene(), UIType.UIRank);
         }
 
     }

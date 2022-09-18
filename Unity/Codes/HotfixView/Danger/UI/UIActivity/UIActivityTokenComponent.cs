@@ -35,7 +35,7 @@ namespace ET
         public static void OnBtn_GoPay(this UIActivityTokenComponent  self)
         {
             UIHelper.Create(self.ZoneScene(), UIType.UIRecharge).Coroutine() ;
-            UIHelper.Remove( self.ZoneScene(), UIType.UIActivity ).Coroutine();
+            UIHelper.Remove( self.ZoneScene(), UIType.UIActivity );
         }
 
         public static async ETTask OnInitUI(this UIActivityTokenComponent  self)

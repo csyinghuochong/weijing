@@ -16,7 +16,7 @@ namespace ET
                 PlayerComponent.Password,
                 false,
                 args.Token).Coroutine();
-            UIHelper.Remove(args.ZoneScene, UIType.UIQueue).Coroutine();
+            UIHelper.Remove(args.ZoneScene, UIType.UIQueue);
         }
 
     }

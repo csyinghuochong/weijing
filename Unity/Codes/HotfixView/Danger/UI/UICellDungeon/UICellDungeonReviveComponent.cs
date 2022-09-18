@@ -105,13 +105,13 @@ namespace ET
             }
 
             EnterFubenHelp.SendReviveRequest(self.DomainScene()).Coroutine();
-            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
         }
 
         public static void OnButton_Exit(this UICellDungeonReviveComponent self)
         {
             EnterFubenHelp.RequestQuitFuben(self.DomainScene());
-            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
         }
 
     }

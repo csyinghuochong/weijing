@@ -33,7 +33,7 @@ namespace ET
        
         public static void OnCloseTips(this UIEquipDuiBiTipsComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips);
         }
 
         public static async ETTask OnUpdateEquipUI(this UIEquipDuiBiTipsComponent self, EventType.ShowItemTips args)

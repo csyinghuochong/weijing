@@ -59,14 +59,14 @@ namespace ET
             if (errorCode == ErrorCore.ERR_Success)
             {
                 FloatTipManager.Instance.ShowFloatTipDi("注册成功！");
-                UIHelper.Remove(self.ZoneScene(), UIType.UIRegister).Coroutine();
+                UIHelper.Remove(self.ZoneScene(), UIType.UIRegister);
             }
         }
 
         //关闭界面
         public static void OnCloseEquip(this UIRegisterComponent self)
         {
-            UIHelper.Remove(self.DomainScene(),UIType.UIRegister).Coroutine();
+            UIHelper.Remove(self.DomainScene(),UIType.UIRegister);
         }
     }
 

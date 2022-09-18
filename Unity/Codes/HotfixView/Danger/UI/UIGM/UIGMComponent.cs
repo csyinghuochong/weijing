@@ -92,7 +92,7 @@ namespace ET
 
         public static void OnButton_Close(this UIGMComponent self)
         {
-            UIHelper.Remove( self.DomainScene(), UIType.UIGM ).Coroutine();
+            UIHelper.Remove( self.DomainScene(), UIType.UIGM );
         }
 
         public static async ETTask OnButton_ReLoad(this UIGMComponent self)

@@ -105,7 +105,7 @@ namespace ET
     {
         public static void OnCloseChapter(this UICellChapterSelectComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UICellChapterSelect).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICellChapterSelect);
         }
 
         public static void OnChapterReturn(this UICellChapterSelectComponent self)

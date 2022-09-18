@@ -41,7 +41,7 @@ namespace ET
     {
         public static void OnClickImageBg(this UIWatchComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIWatch).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIWatch);
         }
 
         public static void OnUpdateUI(this UIWatchComponent self, F2C_WatchPlayerResponse m2C_WatchPlayerResponse)

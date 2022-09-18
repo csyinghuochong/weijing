@@ -22,7 +22,7 @@ namespace ET
 
             self.TextTitle = rc.Get<GameObject>("TextTitle");
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
-            self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIChouKaReward).Coroutine(); } );
+            self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIChouKaReward); } );
 
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
 

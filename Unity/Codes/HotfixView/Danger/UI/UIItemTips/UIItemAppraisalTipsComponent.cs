@@ -115,7 +115,7 @@ namespace ET
         //点击Tips
         public static void OnCloseTips(this UIItemAppraisalTipsComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips);
         }
 
         public static void On_Btn_HuiShou(this UIItemAppraisalTipsComponent self)
@@ -158,12 +158,16 @@ namespace ET
         public static async ETTask OnClickUse(this UIItemAppraisalTipsComponent self)
         {
             //发送消息
-            int errorCode = await self.ZoneScene().GetComponent<BagComponent>().SendAppraisalItem(self.BagInfo);
-            if (errorCode == ErrorCore.ERR_Success)
-            {
-                FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("道具鉴定成功!"));
-                self.OnCloseTips();
-            }
+            UI uI = await UIHelper.Create( self.ZoneScene(), UIType.UIAppraisalSelect );
+            uI.GetComponent<UIAppraisalSelectComponent>().OnInitUI(self.BagInfo);
+            self.OnCloseTips();
+
+            //int errorCode = await self.ZoneScene().GetComponent<BagComponent>().SendAppraisalItem(self.BagInfo);
+            //if (errorCode == ErrorCore.ERR_Success)
+            //{
+            //    FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("道具鉴定成功!"));
+            //    self.OnCloseTips();
+            //}
         }
 
         public static void InitData(this UIItemAppraisalTipsComponent self, BagInfo baginfo, ItemOperateEnum equipTipsType, Action handler=null)

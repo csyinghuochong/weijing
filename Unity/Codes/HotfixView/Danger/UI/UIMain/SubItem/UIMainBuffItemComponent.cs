@@ -52,7 +52,7 @@ namespace ET
 
         public static void EndDrag(this UIMainBuffItemComponent self, PointerEventData pdata)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIBuffTips).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIBuffTips);
         }
 
         public static bool OnUpdate(this UIMainBuffItemComponent self)

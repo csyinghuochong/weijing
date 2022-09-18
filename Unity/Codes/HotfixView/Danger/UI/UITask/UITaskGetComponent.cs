@@ -98,7 +98,7 @@ namespace ET
 
         public static void OnCloseNpcTask(this UITaskGetComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UITaskGet).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UITaskGet);
         }
 
         public static void InitData(this UITaskGetComponent self, int npcID)
@@ -172,7 +172,7 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             accountInfoComponent.PlayerInfo.RechargeInfos = response.RechargeInfos;
 
-            UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
         }
 
         public static void OnClickFubenItem(this UITaskGetComponent self, int sceneId)
@@ -220,7 +220,7 @@ namespace ET
             }
             if (errorCode == ErrorCore.ERR_Success)
             { 
-                UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet).Coroutine();
+                UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
             }
         }
 
@@ -231,7 +231,7 @@ namespace ET
 
             if (m2C_PaiMaiBuyResponse.Error == 0)
             {
-                UIHelper.Remove(self.DomainScene(), UIType.UITaskGet).Coroutine();
+                UIHelper.Remove(self.DomainScene(), UIType.UITaskGet);
             }
             else {
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_ItemNotEnoughError);

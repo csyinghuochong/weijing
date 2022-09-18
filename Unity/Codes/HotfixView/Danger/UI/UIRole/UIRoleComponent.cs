@@ -182,7 +182,7 @@ namespace ET
 
 		public static void OnCloseEquip(this UIRoleComponent self)
 		{
-			UIHelper.Remove(self.ZoneScene(), UIType.UIRole).Coroutine();
+			UIHelper.Remove(self.ZoneScene(), UIType.UIRole);
 		}
 
 		public static void OnEquipWear(this UIRoleComponent self, string DataParams)

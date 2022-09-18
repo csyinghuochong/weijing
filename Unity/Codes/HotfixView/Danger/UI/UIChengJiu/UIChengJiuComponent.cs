@@ -93,7 +93,7 @@ namespace ET
 
         public static void OnCloseChengJiu(this UIChengJiuComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIChengJiu).Coroutine() ;
+            UIHelper.Remove(self.DomainScene(), UIType.UIChengJiu);
         }
 
     }

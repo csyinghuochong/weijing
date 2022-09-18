@@ -71,7 +71,7 @@ namespace ET
 
         public static void OnCloseStore(this UIMysteryComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIMystery).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIMystery);
         }
 
         public static async ETTask UpdateMysteryItem(this UIMysteryComponent self, List<MysteryItemInfo> mysteryItemInfos)

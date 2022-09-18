@@ -101,7 +101,7 @@ namespace ET
     {
         public static void OnClickImageBg(this UIWatchMenuComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIWatchMenu).Coroutine() ;
+            UIHelper.Remove(self.DomainScene(), UIType.UIWatchMenu);
         }
 
         public static void OnButton_Leave(this UIWatchMenuComponent self)

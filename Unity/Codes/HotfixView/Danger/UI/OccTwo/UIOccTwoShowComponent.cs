@@ -25,7 +25,7 @@ namespace ET
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() =>
             {
-                UIHelper.Remove( self.ZoneScene(), UIType.UIOccTwoShow ).Coroutine();
+                UIHelper.Remove( self.ZoneScene(), UIType.UIOccTwoShow );
             });
 
             self.TextOccTwoName = rc.Get<GameObject>("TextOccTwoName");

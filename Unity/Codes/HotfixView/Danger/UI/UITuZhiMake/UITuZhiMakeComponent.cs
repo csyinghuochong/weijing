@@ -70,7 +70,7 @@ namespace ET
 
         public static void OnCloseMake(this UITuZhiMakeComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UITuZhiMake).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UITuZhiMake);
         }
 
         public static async ETTask OnBtn_Make(this UITuZhiMakeComponent self)
