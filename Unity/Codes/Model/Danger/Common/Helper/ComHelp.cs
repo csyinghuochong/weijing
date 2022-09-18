@@ -905,6 +905,11 @@ namespace ET
             return retunrnValue;
         }
 
+        public static int GetJianDingCoin(int level)
+        {
+            return level * 100;
+        }
+
         /// <summary>
         /// 根据出生日期，计算精确的年龄
         /// </summary>

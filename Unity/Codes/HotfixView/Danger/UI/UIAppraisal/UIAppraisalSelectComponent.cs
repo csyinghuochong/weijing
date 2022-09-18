@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIAppraisalSelectComponent : Entity, IAwake
     {
+        public GameObject Text_Coin;
         public GameObject Text_Tip_1;
         public GameObject ButtonClose;
         public GameObject ItemListNode;
@@ -34,8 +35,13 @@ namespace ET
             self.Text_Tip_1 = rc.Get<GameObject>("Text_Tip_1");
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.Text_EquipLevel = rc.Get<GameObject>("Text_EquipLevel");
+            self.Text_Coin = rc.Get<GameObject>("Text_Coin");
+
             self.Button_Item = rc.Get<GameObject>("Button_Item");
+            ButtonHelp.AddListenerEx( self.Button_Item, () => { self.OnButton_Item();  } );
             self.Button_Coin = rc.Get<GameObject>("Button_Coin");
+            ButtonHelp.AddListenerEx(self.Button_Coin, () => { self.OnButton_Coin(); });
+
             self.UICommonItem_2 = rc.Get<GameObject>("UICommonItem_2");
             self.UICommonItem_1 = rc.Get<GameObject>("UICommonItem_1");
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
@@ -51,9 +57,12 @@ namespace ET
         public static void OnInitUI(this UIAppraisalSelectComponent self, BagInfo bagInfo)
         {
             self.BagInfo_Equip = bagInfo;
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             EquipConfig equipCof = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
             int appItem = equipCof.AppraisalItem;
+
+            self.Text_Coin.GetComponent<Text>().text = ComHelp.GetJianDingCoin(userInfo.Lv).ToString();
 
             UIItemComponent item_equip = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem_1);
             item_equip.UpdateItem(bagInfo, ItemOperateEnum.None);
@@ -79,7 +88,7 @@ namespace ET
                 UICommonHelper.SetParent(itemSpace, self.ItemListNode);
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
                 uIItemComponent.UpdateItem(bagInfos[i], ItemOperateEnum.None);
-                uIItemComponent.SetClickHandler((BagInfo baginfo) => {  } );
+                uIItemComponent.SetClickHandler((BagInfo baginfo) => { self.OnSelectItem(baginfo);  } );
                 string pingzhi = $"品质:{bagInfos[i].ItemPar}";
                 uIItemComponent.Label_ItemName.GetComponent<Text>().text = pingzhi;
                 uIItemComponent.Label_ItemName.SetActive(true);
