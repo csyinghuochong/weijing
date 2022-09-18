@@ -266,10 +266,23 @@ namespace ET
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (itemconf.ItemSubType == (int)ItemSubTypeEnum.Wuqi && !ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
+            if (itemconf.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
             {
-                FloatTipManager.Instance.ShowFloatTip("请选择合适的武器！");
-                return;
+                if (!ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
+                {
+                    FloatTipManager.Instance.ShowFloatTip("请选择合适的武器！");
+                    return;
+                }
+            }
+            int occTwo = userInfo.OccTwo;
+            if (itemconf.ItemSubType != (int)ItemSubTypeEnum.Wuqi && occTwo != 0)
+            {
+                OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
+                if (itemconf.EquipType != 0 && itemconf.EquipType != occupationTwo.ArmorMastery)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("请选择合适的装备！");
+                    return;
+                }
             }
 
             self.BagComponent.SendWearEquip(self.BagInfo).Coroutine();
