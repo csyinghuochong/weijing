@@ -64,7 +64,8 @@ namespace ET
             {
                 UICommonHelper.SetImageGray(self.uIItems[i].ImageIcon, gray);
             }
-            if (gray) {
+            if (gray)
+            {
                 self.JiHuoSet.SetActive(false);
             }
         }

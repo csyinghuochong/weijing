@@ -51,6 +51,10 @@ namespace ET
                 {
                     return;
                 }
+                if (XiLianHelper.GetLevelSkill(i+1).Count == 0)
+                {
+                    continue;
+                }
                 GameObject go = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(go, self.ItemListNode);
                 UIRoleXiLianSkillItemComponent uIRoleXiLian = self.AddChild<UIRoleXiLianSkillItemComponent, GameObject>(go);

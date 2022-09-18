@@ -107,6 +107,11 @@ namespace ET
             self.UpdateLeftSp();
         }
 
+        public static bool IsZhuDongSkill(this UISkillLearnComponent self, int skilltype)
+        {
+            return skilltype == 1 || skilltype == 6;
+        }
+
         public static async ETTask InitSkillList(this UISkillLearnComponent self, int page)
         {
             self.SkillUIList.Clear();
@@ -134,40 +139,48 @@ namespace ET
             int number = 0;
             for (int i = 0; i < showSkillPros.Count; i++)
             {
+                Log.ILog.Debug($"1 {showSkillPros[i].SkillID}");
+
                 if (showSkillPros[i].SkillSetType == (int)SkillSetEnum.Item)
                 {
+                    Log.ILog.Debug($"2 {showSkillPros[i].SkillID}");
                     continue;
                 }
 
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(showSkillPros[i].SkillID);
                 if (skillConfig.IsShow == 1)
                 {
+                    Log.ILog.Debug($"3 {showSkillPros[i].SkillID}");
                     continue;
                 }
                 //page ==0 主动 1被动
-                if ((skillConfig.SkillType == 1 && page == 0)
-                    || (skillConfig.SkillType != 1 && page == 1) )
+                if (page == 0 && !self.IsZhuDongSkill(skillConfig.SkillType))
                 {
-                    //根据类型显示
-                    UI uI = null;
-                    if (number < self.SkillUIList.Count)
-                    {
-                        uI = self.SkillUIList[number];
-                        uI.GameObject.SetActive(true);
-                    }
-                    else
-                    {
-                        GameObject skillItem = GameObject.Instantiate(bundleObj);
-                        UICommonHelper.SetParent(skillItem, self.SkillListNode);
-                        uI = self.AddChild<UI, string, GameObject>("skill_Item_" + i, skillItem);
-                        UISkillLearnItemComponent uISkillSetItemComponent = uI.AddComponent<UISkillLearnItemComponent>();
-                        uISkillSetItemComponent.SetClickHander((SkillPro skillpro) => { self.OnSelectSkill(skillpro); });
-                        self.SkillUIList.Add(uI);
-                    }
-                    number++;
-                    uI.GetComponent<UISkillLearnItemComponent>().OnUpdateUI(showSkillPros[i]);
+                    continue;
                 }
-              
+                if (page ==1 && self.IsZhuDongSkill(skillConfig.SkillType))
+                {
+                    continue;
+                }
+
+                //根据类型显示
+                UI uI = null;
+                if (number < self.SkillUIList.Count)
+                {
+                    uI = self.SkillUIList[number];
+                    uI.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject skillItem = GameObject.Instantiate(bundleObj);
+                    UICommonHelper.SetParent(skillItem, self.SkillListNode);
+                    uI = self.AddChild<UI, string, GameObject>("skill_Item_" + i, skillItem);
+                    UISkillLearnItemComponent uISkillSetItemComponent = uI.AddComponent<UISkillLearnItemComponent>();
+                    uISkillSetItemComponent.SetClickHander((SkillPro skillpro) => { self.OnSelectSkill(skillpro); });
+                    self.SkillUIList.Add(uI);
+                }
+                number++;
+                uI.GetComponent<UISkillLearnItemComponent>().OnUpdateUI(showSkillPros[i]);
             }
             for (int i = number; i < self.SkillUIList.Count; i++)
             {

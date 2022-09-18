@@ -448,7 +448,7 @@ namespace ET
         public static List<int> GetLevelSkill(int xilianLevel)
         {
             List<int> skills = new List<int>();
-            int hideProId = 2011;
+            int hideProId = 2001;
             while (hideProId != 0)
             {
                 HideProListConfig proListConfig = HideProListConfigCategory.Instance.Get(hideProId);

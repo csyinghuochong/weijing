@@ -164,7 +164,7 @@ namespace ET
                 int itemID = bagInfos[i].ItemID;
                 ItemConfig itemconf = ItemConfigCategory.Instance.Get(itemID);
              
-                if (itemconf.ItemSubType == 101 && itemconf.ItemUsePar != "0" && itemconf.ItemUsePar != "")
+                if (itemconf.ItemType != (int)ItemTypeEnum.Gemstone && itemconf.ItemSubType == 101 && itemconf.ItemUsePar != "0" && itemconf.ItemUsePar != "")
                 {
                     GameObject skillItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(skillItem, self.ItemListNode);
