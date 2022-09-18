@@ -231,6 +231,17 @@ namespace ET
             }
         }
 
+        public static void ShowSkillItem(GameObject itemObj, GameObject itemParent, Entity entity, int[] skills, ABAtlasTypes aBAtlas)
+        {
+            for (int i = 0; i < skills.Length; i++)
+            {
+                GameObject skillItem = GameObject.Instantiate(itemObj);
+                UICommonHelper.SetParent(skillItem, itemParent);
+                UICommonSkillItemComponent ui_item = entity.AddChild<UICommonSkillItemComponent, GameObject>(skillItem);
+                ui_item.OnUpdateUI(skills[i], aBAtlas);
+            }
+        }
+
         public static void ShowAttributeItemList(string itemList, GameObject itemNodeList, GameObject attributeItem )
         {
             string[] attributeinfos = itemList.Split('@');

@@ -11,7 +11,8 @@ namespace ET
             "tcg01",
             "test01",
             "testcn01",
-            "QQ13302053296"
+            "QQ13302053296",
+            "ojWalwKkIkWWqtWRgef5kyJHMxY0"
         };
 #endif
 

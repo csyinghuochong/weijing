@@ -248,10 +248,6 @@ namespace ET
                 return;
             }
 
-            if (skillIfo.SkillId == 60091008)
-            {
-                Log.Info("112122");
-            }
             Unit unit = self.GetParent<Unit>();
             C2M_SkillCmd cmd = new C2M_SkillCmd();
             cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
