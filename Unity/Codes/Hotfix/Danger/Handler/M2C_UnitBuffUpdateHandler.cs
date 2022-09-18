@@ -9,7 +9,7 @@ namespace ET
         protected override void Run(Session session, M2C_UnitBuffUpdate message)
         {
             //抛出事件处理属性改变
-            Unit msgUnitBelongTo = session.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(message.UnitIdBelongTo);
+            Unit msgUnitBelongTo = session.ZoneScene().CurrentScene()?.GetComponent<UnitComponent>().Get(message.UnitIdBelongTo);
             if (msgUnitBelongTo == null)
             {
                 Log.Debug($"{message.UnitIdBelongTo}  == null");
