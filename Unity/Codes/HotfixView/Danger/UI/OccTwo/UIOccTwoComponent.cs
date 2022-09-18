@@ -23,6 +23,14 @@ namespace ET
         public GameObject OccNengLi_2;
         public GameObject OccNengLi_3;
 
+        public GameObject OccLine_1;
+        public GameObject OccLine_2;
+        public GameObject OccLine_3;
+
+        public GameObject Button_ZhiYeSelect_1;
+        public GameObject Button_ZhiYeSelect_2;
+        public GameObject Button_ZhiYeSelect_3;
+
         public GameObject SkillContainer;
         public GameObject Text_ZhiYe_4;
         public GameObject Text_ZhiYe_3;
@@ -67,6 +75,14 @@ namespace ET
             self.OccNengLi_1 = rc.Get<GameObject>("OccNengLi_1");
             self.OccNengLi_2 = rc.Get<GameObject>("OccNengLi_2");
             self.OccNengLi_3 = rc.Get<GameObject>("OccNengLi_3");
+
+            self.OccLine_1 = rc.Get<GameObject>("OccLine_1");
+            self.OccLine_2 = rc.Get<GameObject>("OccLine_2");
+            self.OccLine_3 = rc.Get<GameObject>("OccLine_3");
+
+            self.Button_ZhiYeSelect_1 = rc.Get<GameObject>("Button_ZhiYeSelect_1");
+            self.Button_ZhiYeSelect_2 = rc.Get<GameObject>("Button_ZhiYeSelect_2");
+            self.Button_ZhiYeSelect_3 = rc.Get<GameObject>("Button_ZhiYeSelect_3");
 
             self.Button_ZhiYe_Select = rc.Get<GameObject>("Button_ZhiYe_Select");
             self.Button_ZhiYe_3 = rc.Get<GameObject>("Button_ZhiYe_3");
@@ -151,12 +167,45 @@ namespace ET
 
         public static void OnButton_ZhiYe(this UIOccTwoComponent self, int index)
         {
-            UICommonHelper.SetParent(self.Button_ZhiYe_Select, self.Button_ZhiYe_List[index]);
+            //UICommonHelper.SetParent(self.Button_ZhiYe_Select, self.Button_ZhiYe_List[index]);
+
+            Material mat = ResourcesComponent.Instance.LoadAsset<Material>(ABPathHelper.GetMaterialPath("UI_Hui"));
+            UICommonHelper.SetImageGray(self.Button_ZhiYe_List[0], true);
+            UICommonHelper.SetImageGray(self.Button_ZhiYe_List[1], true);
+            UICommonHelper.SetImageGray(self.Button_ZhiYe_List[2], true);
+
+            UICommonHelper.SetImageGray(self.Button_ZhiYe_List[index], false);
 
             int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(occ);
             self.OnSelectZhiYe(occupationConfig.OccTwoID[index]);
-        }
+
+            //显示路线
+            self.OccLine_1.SetActive(false);
+            self.OccLine_2.SetActive(false);
+            self.OccLine_3.SetActive(false);
+
+            self.Button_ZhiYeSelect_1.SetActive(false);
+            self.Button_ZhiYeSelect_2.SetActive(false);
+            self.Button_ZhiYeSelect_3.SetActive(false);
+
+            switch (index)
+            {
+                case 0:
+                    self.OccLine_1.SetActive(true);
+                    self.Button_ZhiYeSelect_1.SetActive(true);
+                    break;
+                case 1:
+                    self.OccLine_2.SetActive(true);
+                    self.Button_ZhiYeSelect_2.SetActive(true);
+                    break;
+                case 2:
+                    self.OccLine_3.SetActive(true);
+                    self.Button_ZhiYeSelect_3.SetActive(true);
+                    break;
+                    
+            }
+    }
 
         public static void OnSelectZhiYe(this UIOccTwoComponent self, int occTwoId)
         {

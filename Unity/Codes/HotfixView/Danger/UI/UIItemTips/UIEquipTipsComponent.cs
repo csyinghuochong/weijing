@@ -270,7 +270,18 @@ namespace ET
             {
                 if (!ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
                 {
-                    FloatTipManager.Instance.ShowFloatTip("请选择合适的武器！");
+                    
+                    switch (userInfo.Occ)
+                    {
+                        //战士
+                        case 1:
+                            FloatTipManager.Instance.ShowFloatTip("请选择武器类型为：刀 剑！");
+                            break;
+                        //法师
+                        case 2:
+                            FloatTipManager.Instance.ShowFloatTip("请选择武器类型为：法杖 魔法书！！");
+                            break;
+                    }
                     return;
                 }
             }
@@ -280,7 +291,22 @@ namespace ET
                 OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
                 if (itemconf.EquipType != 0 && itemconf.EquipType != occupationTwo.ArmorMastery)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("请选择合适的装备！");
+                    //FloatTipManager.Instance.ShowFloatTip("请选择合适的装备！");
+                    switch (occupationTwo.ArmorMastery)
+                    {
+                        //布甲
+                        case 11:
+                            FloatTipManager.Instance.ShowFloatTip("转职后请选择布甲进行装备！");
+                            break;
+                        //轻甲
+                        case 12:
+                            FloatTipManager.Instance.ShowFloatTip("转职后请选择轻甲进行装备！");
+                            break;
+                        //重甲
+                        case 13:
+                            FloatTipManager.Instance.ShowFloatTip("转职后请选择重甲进行装备！");
+                            break;
+                    }
                     return;
                 }
             }
@@ -1228,6 +1254,17 @@ namespace ET
             self.Lab_EquipType.GetComponent<Text>().text = langStr + ":" + textEquipType;
             langStr = GameSettingLanguge.LoadLocalization("类型");
             self.Obj_EquipTypeSon.GetComponent<Text>().text = langStr + ":" + textEquipTypeSon;
+
+            int occTwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
+            if (occTwo != 0)
+            {
+                OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
+                if (itemconf.EquipType != 0 && itemconf.EquipType != occupationTwo.ArmorMastery)
+                {
+                    self.Obj_EquipTypeSon.GetComponent<Text>().color = new Color(248f / 255f, 148f / 255f, 148f / 255f);
+                    //self.Obj_EquipTypeSon.GetComponent<Text>().text = self.Obj_EquipTypeSon.GetComponent<Text>().text + "(类型不符)";
+                }
+            }
             langStr = GameSettingLanguge.LoadLocalization("等级");
             Log.Info(langStr + " : " + equipLv);
             self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + " : " + equipLv;

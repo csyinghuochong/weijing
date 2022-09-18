@@ -64,6 +64,10 @@ namespace ET
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(gameObject, self.RawImage);
 
+            OccupationTwoConfig twoCof = OccupationTwoConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo);
+
+            self.TextOccTwoName.GetComponent<Text>().text = twoCof.OccupationName;
+
             UI ui = self.AddChild<UI, string, GameObject>("UIModelShow", gameObject);
             self.uIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
             //配置摄像机位置[0,115,257]
