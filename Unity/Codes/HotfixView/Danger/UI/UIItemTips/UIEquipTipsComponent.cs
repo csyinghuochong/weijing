@@ -37,6 +37,7 @@ namespace ET
         public GameObject Obj_EquipBottom;
         public GameObject Obj_BtnSet;
         public GameObject Obj_EquipPropertyText;
+        public GameObject Obj_EquipSuitItemNamePropertyText;
         public GameObject Obj_BagOpenSet;
         public GameObject Obj_RoseEquipOpenSet;
         public GameObject Obj_SaveStoreHouse;
@@ -160,6 +161,7 @@ namespace ET
             self.Obj_Img_EquipBangDing = rc.Get<GameObject>("Img_EquipBangDing");
             self.Obj_Lab_EquipMake = rc.Get<GameObject>("Lab_EquipMake");
             self.Lab_EquipType = rc.Get<GameObject>("Lab_EquipType");
+            self.Obj_EquipSuitItemNamePropertyText = rc.Get<GameObject>("EquipSuitItemNamePropertyText");
 
             self.Obj_UIEquipGemHoleSet = rc.Get<GameObject>("Obj_UIEquipGemHoleSet");
             self.Obj_UIEquipGemHoleList = new GameObject[4];
@@ -1107,7 +1109,7 @@ namespace ET
                     }
 
                     //显示套装名称
-                    ItemViewHelp.ShowPropertyText(itemCof.ItemName, showType, self.Obj_EquipPropertyText, self.Obj_EquipSuitShowNameListSet);
+                    ItemViewHelp.ShowPropertyText(itemCof.ItemName, showType, self.Obj_EquipSuitItemNamePropertyText, self.Obj_EquipSuitShowNameListSet);
                     properShowNum += 0;
                     self.Obj_Lab_EquipSuitShowListSetSuitName.GetComponent<Text>().text = equipSuitName + "(" + equipSuitNum + "/" + needEquipIDSet.Length + ")";
                 }
