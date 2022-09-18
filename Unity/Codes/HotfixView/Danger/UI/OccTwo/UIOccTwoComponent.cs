@@ -135,8 +135,8 @@ namespace ET
             bool ifChange = await self.ZoneScene().GetComponent<SkillSetComponent>().ChangeOccTwoRequest(self.OccTwoId);
             if (ifChange)
             {
-                //UIHelper.Remove(self.DomainScene(), UIType.UIOccTwo).Coroutine();
                 UIHelper.Create(self.DomainScene(), UIType.UIOccTwoShow).Coroutine();
+                UIHelper.Remove(self.DomainScene(), UIType.UIOccTwo).Coroutine();
             }
         }
 
