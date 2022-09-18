@@ -61,20 +61,29 @@ namespace ET
 			//技能
 			List<int> petSkillList_2 = petinfo_2.PetSkill;
 
+			//设定每个技能的留下的概率
+			float skillpro = 0.35f;
 
 			List<int> savePetSkillID = new List<int>();
 			for (int i = 0; i < petSkillList_1.Count; i++)
 			{
 				if (!savePetSkillID.Contains(petSkillList_1[i]))
 				{
-					savePetSkillID.Add(petSkillList_1[i]);
+					if (savePetSkillID.Contains(petSkillList_1[i]) == false && RandomHelper.RandFloat01()<= skillpro)
+					{
+						savePetSkillID.Add(petSkillList_1[i]);
+					}
 				}
 			}
+
 			for (int i = 0; i < petSkillList_2.Count; i++)
 			{
 				if (!savePetSkillID.Contains(petSkillList_2[i]))
 				{
-					savePetSkillID.Add(petSkillList_2[i]);
+					if (savePetSkillID.Contains(petSkillList_1[i]) == false && RandomHelper.RandFloat01() <= skillpro)
+					{
+						savePetSkillID.Add(petSkillList_2[i]);
+					}
 				}
 			}
 
@@ -107,6 +116,15 @@ namespace ET
 				}
 			}
 
+			//填补必带技能
+			PetConfig bidaiPet = PetConfigCategory.Instance.Get(petID);
+			string[] baseSkillID = bidaiPet.BaseSkillID.Split(';');
+			for (int i = 0; i < baseSkillID.Length;i++) {
+				if (savePetSkillID.Contains(int.Parse(baseSkillID[i]))==false) {
+					savePetSkillID.Add(int.Parse(baseSkillID[i]));
+				}
+			}
+
 			int zizhiNow_Hp = (int)Pet_HeCheng_ZiZhi(zizhiNow_Hp_1, zizhiNow_Hp_2, 6500);
 			int zizhiNow_Act = (int)Pet_HeCheng_ZiZhi(zizhiNow_Act_1, zizhiNow_Act_2, 1600);
 			int zizhiNow_MageAct = (int)Pet_HeCheng_ZiZhi(zizhiNow_MageAct_1, zizhiNow_MageAct_2, 1800);
@@ -117,37 +135,36 @@ namespace ET
 			//目前攻速不做调整,强制为3000
 			zizhiNow_ActSpeed = 3000;
 
-			//合成技能
-			//删除重复的技能
 
-			//设定每个技能的留下的概率
 		
 			//填补必带技能
 
 			int pet_Lv = 1;
+
 			int pet_exp = 0;
 			int addPropertyNum = pet_Lv * 5 + 20;
 			string addPropertyValue = "0_0_0_0";
 			bool baby = false;
+
+
+			//合成等级
+			pet_Lv = (int)(Mathf.Min(petLv_1, petLv_2) * 0.75f + (Mathf.Max(petLv_1, petLv_2) - Mathf.Min(petLv_1, petLv_2)) * GetRandomZeroTOne());
+			pet_exp = 10000; // Config.Instance.GetConf<Exp>(pet_Lv).PetUpExp;
+			pet_exp = (int)(pet_exp * GetRandomZeroTOne());
+			if (pet_Lv < 1)
+			{
+				pet_Lv = 1;
+			}
+
+
+			/*
 			bool baby_1 = petinfo_1.IfBaby;
 			bool baby_2 = petinfo_2.IfBaby;
 			//获取目标是否为宝宝,如果两个都为宝宝则本次必定变成宝宝
 			if (baby_1 && baby_2)
 			{
 				baby = true;
-				//合成等级
-				pet_Lv = (int)(Mathf.Min(petLv_1, petLv_2) * 0.75f + (Mathf.Max(petLv_1, petLv_2) - Mathf.Min(petLv_1, petLv_2)) * GetRandomZeroTOne());
-				pet_exp = 10000; // Config.Instance.GetConf<Exp>(pet_Lv).PetUpExp;
-				pet_exp = (int)(pet_exp * GetRandomZeroTOne());
-				if (pet_Lv < 1)
-				{
-					pet_Lv = 1;
-				}
-				//随机点数
-				addPropertyNum = (pet_Lv - 1) * 5 + 20;
-				//addPropertyValue = "15;15;15;15";
-				int writeProValue = 15 + (pet_Lv - 1) * 1;
-				addPropertyValue = writeProValue + "_" + writeProValue + "_" + writeProValue + "_" + writeProValue;
+
 			}
 			else
 			{
@@ -232,7 +249,7 @@ namespace ET
 					}
 				}
 			}
-
+			*/
 			//重新写入宠物的数据
 			RolePetInfo petinfo_update = null;
 			RolePetInfo petinfo_delete = null;
