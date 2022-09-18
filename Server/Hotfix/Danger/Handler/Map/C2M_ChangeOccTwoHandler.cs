@@ -9,7 +9,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_ChangeOccTwoRequest request, M2C_ChangeOccTwoResponse response, Action reply)
         {
 
-            bool ifChange = false;
+            bool ifChange = true;
 
             //判断当前角色等级是否达到
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 18) 
