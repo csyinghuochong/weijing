@@ -29,8 +29,7 @@
             unitComponent.Add(unit);
             zoneScene.GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
             //zoneScene.RemoveComponent<AIComponent>();
-            //防止还没有切场景。摄像机就跟随玩家
-            //await TimerComponent.Instance.WaitAsync(1000);
+
             EventType.SceneChangeFinish.Instance.ZoneScene = zoneScene;
             EventType.SceneChangeFinish.Instance.CurrentScene = currentScene;
             Game.EventSystem.PublishClass(EventType.SceneChangeFinish.Instance);   //挂在当前Scene组件

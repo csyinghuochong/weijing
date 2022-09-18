@@ -58,14 +58,15 @@ namespace ET
         public GameObject Btn_Email;
         public GameObject Btn_MakeItem;
 
-        public UI UIMainTeam;
+
         public UI UIMainTask;
         public UI UILevelGuideMini;
         public UI UIMainChat;
         public UI UIRoleHead;
-        public UI UIMainHpBar;
         public UI UIMailHintTip;
 
+        public UIMainHpBarComponent UIMainHpBar;
+        public UIMainTeamComponent UIMainTeam;
         public UIPageButtonComponent UIPageButtonComponent;
         public UIMainBuffComponent UIMainBuffComponent;
         public UIJoystickComponent UIJoystickComponent;
@@ -278,9 +279,6 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.TaskGiveUp, self);
             DataUpdateComponent.Instance.AddListener(DataType.TeamUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.OnActiveTianFu, self);
-
-            //self.Btn_PetFormation.SetActive(GlobalHelp.IsBanHaoMode);
-
         }
     }
 
@@ -384,20 +382,24 @@ namespace ET
             FloatTipManager.Instance.ShowFloatTip($"获得物品 {itemConfig.ItemName} x{iteminfo[1]}");
         }
 
-        public static void OnUpdateHP(this UIMainComponent self, Unit unit)
+        public static void OnUpdateHP(this UIMainComponent self, Unit unit, int sceneType)
         {
-            self.UIMainTeam.GetComponent<UIMainTeamComponent>().OnUpdateHP(unit);
-            self.UIMainHpBar.GetComponent<UIMainHpBarComponent>().OnChangeHp(unit);
+            if (sceneType == SceneTypeEnum.TeamDungeon)
+            {
+                self.UIMainTeam.OnUpdateHP(unit);
+            }
+
+            self.UIMainHpBar.OnUpdateHP(unit);
         }
 
         public static void OnUpdateDamage(this UIMainComponent self, Unit unit)
         {
-            self.UIMainTeam.GetComponent<UIMainTeamComponent>().OnUpdateDamage(unit);
+            self.UIMainTeam.OnUpdateDamage(unit);
         }
 
         public static void OnTeamUpdate(this UIMainComponent self)
         {
-            self.UIMainTeam.GetComponent<UIMainTeamComponent>().OnUpdateUI();
+            self.UIMainTeam.OnUpdateUI();
         }
 
         public static void OnUpdateRoleData(this UIMainComponent self, string updateType)
@@ -672,8 +674,7 @@ namespace ET
 
             //组队
             GameObject mainTeamSet = rc.Get<GameObject>("UIMainTeam");
-            self.UIMainTeam = self.AddChild<UI, string, GameObject>("mainTeamSet", mainTeamSet);
-            self.UIMainTeam.AddComponent<UIMainTeamComponent>();
+            self.UIMainTeam = self.AddChild<UIMainTeamComponent, GameObject>( mainTeamSet);
 
             //关卡小地图
             self.LevelGuideMini = rc.Get<GameObject>("LevelGuideMini");
@@ -695,9 +696,7 @@ namespace ET
             self.UIRoleHead.AddComponent<UIRoleHeadComponent>();
 
             GameObject UIMainHpBar = rc.Get<GameObject>("UIMainHpBar");
-            UI ui_hpbar = self.AddChild<UI, string, GameObject>("UIMainHpBar", UIMainHpBar);
-            ui_hpbar.AddComponent<UIMainHpBarComponent>();
-            self.UIMainHpBar = ui_hpbar;
+            self.UIMainHpBar = self.AddChild<UIMainHpBarComponent, GameObject>(UIMainHpBar);
 
             GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
             UI buttonSet = self.AddChild<UI, string, GameObject>("FunctionBtnSet", BtnItemTypeSet);
@@ -820,8 +819,8 @@ namespace ET
             //进入主城默认不显示目标
             if (sceneTypeEnum == SceneTypeEnum.MainCityScene)
             {
-                self.UIMainHpBar.GetComponent<UIMainHpBarComponent>().MonsterNode.SetActive(false);
-                self.UIMainHpBar.GetComponent<UIMainHpBarComponent>().BossNode.SetActive(false);
+                self.UIMainHpBar.MonsterNode.SetActive(false);
+                self.UIMainHpBar.BossNode.SetActive(false);
                 self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-128f, 380f);
             }
             else
@@ -829,7 +828,7 @@ namespace ET
                 self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-95.7f, 738f);
             }
 
-            self.UIMainTeam.GetComponent<UIMainTeamComponent>().OnReset();
+            self.UIMainTeam.OnReset();
         }
 
         public static async ETTask OnButtonStallOpen(this UIMainComponent self)

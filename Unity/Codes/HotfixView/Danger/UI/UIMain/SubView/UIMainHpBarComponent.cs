@@ -3,9 +3,9 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMainHpBarComponent : Entity, IAwake
+    public class UIMainHpBarComponent : Entity, IAwake<GameObject>
     {
-
+        public GameObject GameObject;
         public GameObject Lab_MonsterLv;
         public GameObject Lab_MonsterName;
         public GameObject Img_MonsterHp;
@@ -18,19 +18,19 @@ namespace ET
 
         public long LockMonsterId;
         public long LockBossId;
-        public Vector3 Vector3;
+        public Vector3 Vector3 =  new Vector3(1, 1, 1);
         public UIModelShowComponent uIModelShowComponent;
     }
 
 
     [ObjectSystem]
-    public class UIMainHpBarComponentAwakeSystem : AwakeSystem<UIMainHpBarComponent>
+    public class UIMainHpBarComponentAwakeSystem : AwakeSystem<UIMainHpBarComponent, GameObject>
     {
 
-        public override void Awake(UIMainHpBarComponent self)
+        public override void Awake(UIMainHpBarComponent self, GameObject gameObject)
         {
-            self.Vector3 = new Vector3(1, 1, 1);
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Lab_MonsterLv = rc.Get<GameObject>("Lab_MonsterLv");
             self.Lab_MonsterName = rc.Get<GameObject>("Lab_MonsterName");
@@ -79,10 +79,10 @@ namespace ET
             {
                 self.Lab_MonsterLv.GetComponent<Text>().text = monsterConfig.Lv.ToString();
             }
-            self.OnChangeHp(unit);
+            self.OnUpdateHP(unit);
         }
 
-        public static void OnChangeHp(this UIMainHpBarComponent self, Unit unit)
+        public static void OnUpdateHP(this UIMainHpBarComponent self, Unit unit)
         {
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float curhp = numericComponent.GetAsLong(NumericType.Now_Hp);
@@ -166,7 +166,7 @@ namespace ET
                 self.Lab_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
                 //self.Img_BossIcon.GetComponent<Image>().sprite = sp;
                 self.InitModelShowView(configid).Coroutine();
-                self.OnChangeHp(unit);
+                self.OnUpdateHP(unit);
             }
         }
 

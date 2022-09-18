@@ -480,6 +480,11 @@ namespace ET
         /// <param name="unit"></param>
         public void UnitUpdateProperty_Base(Unit unit, bool notice = true)
         {
+            //基础职业属性
+            UserInfoComponent UnitInfoComponent = unit.GetComponent<UserInfoComponent>();
+            UserInfo userInfo = UnitInfoComponent.UserInfo;
+            int roleLv = userInfo.Lv;
+
             //初始化属性
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.ResetProperty();
@@ -493,12 +498,11 @@ namespace ET
             int PointTiZhi = numericComponent.GetAsInt(NumericType.PointTiZhi);
             int PointNaiLi = numericComponent.GetAsInt(NumericType.PointNaiLi);
             int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
-
-
-            //基础职业属性
-            UserInfoComponent UnitInfoComponent = unit.GetComponent<UserInfoComponent>();
-            UserInfo userInfo = UnitInfoComponent.UserInfo;
-            int roleLv = userInfo.Lv;
+            PointLiLiang += roleLv;
+            PointZhiLi += roleLv;
+            PointTiZhi += roleLv;
+            PointNaiLi += roleLv;
+            PointMinJie += roleLv;
 
             OccupationConfig mOccupationConfig = OccupationConfigCategory.Instance.Get(1);
 

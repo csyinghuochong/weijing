@@ -67,7 +67,7 @@ namespace ET
                 }
             }
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain?.GetComponent<UIMainComponent>().UIMainHpBar.GetComponent<UIMainHpBarComponent>().ShowBossHPBar(haveBoss);
+            uimain?.GetComponent<UIMainComponent>().UIMainHpBar.ShowBossHPBar(haveBoss);
         }
 
         public static void OnChangeSonScene(this LockTargetComponent self)
@@ -79,7 +79,7 @@ namespace ET
             }
 
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().UIMainHpBar.GetComponent<UIMainHpBarComponent>().OnChangeSonScene();
+            uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnChangeSonScene();
         }
 
         public static void HideLockEffect(this LockTargetComponent self)
@@ -91,7 +91,7 @@ namespace ET
             self.LastLockId = 0;
 
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().UIMainHpBar.GetComponent<UIMainHpBarComponent>().OnCancelLock();
+            uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnCancelLock();
         }
 
         public static void OnSelfDead(this LockTargetComponent self)
@@ -195,7 +195,7 @@ namespace ET
                 if (unitTarget.GetComponent<UnitInfoComponent>().Type == UnitType.Monster)
                 {
                     UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                    uimain.GetComponent<UIMainComponent>().UIMainHpBar.GetComponent<UIMainHpBarComponent>().OnLockUnit(unitTarget);
+                    uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnLockUnit(unitTarget);
                 }
             }
             return self.LastLockId;

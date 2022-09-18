@@ -5,21 +5,22 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMainTeamComponent : Entity, IAwake
+    public class UIMainTeamComponent : Entity, IAwake<GameObject>
     {
+        public GameObject GameObject;
         public GameObject TeamNodeList;
         public GameObject UIMainTeamItem;
         public GameObject Btn_RoseTeam;
-        public List<UI> TeamUIList = new List<UI>();
+        public List<UIMainTeamItemComponent> TeamUIList = new List<UIMainTeamItemComponent>();
     }
 
-
     [ObjectSystem]
-    public class UIMainTeamComponentAwakeSystem : AwakeSystem<UIMainTeamComponent>
+    public class UIMainTeamComponentAwakeSystem : AwakeSystem<UIMainTeamComponent, GameObject>
     {
-        public override void Awake(UIMainTeamComponent self)
+        public override void Awake(UIMainTeamComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.TeamNodeList = rc.Get<GameObject>("TeamNodeList");
             self.UIMainTeamItem = rc.Get<GameObject>("UIMainTeamItem");
@@ -52,7 +53,7 @@ namespace ET
             long userId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             for (int i = 0; i < self.TeamUIList.Count; i++)
             {
-                UIMainTeamItemComponent uIMainTeamItemComponent = self.TeamUIList[i].GetComponent<UIMainTeamItemComponent>();
+                UIMainTeamItemComponent uIMainTeamItemComponent = self.TeamUIList[i];
                 if (uIMainTeamItemComponent.PlayerID == userId)
                 {
                     uIMainTeamItemComponent.OnUpdateDamage(unit.GetComponent<NumericComponent>().GetAsInt( (int)NumericType.Now_Damage ));
@@ -68,7 +69,7 @@ namespace ET
             }
             for (int i = 0; i < self.TeamUIList.Count; i++)
             {
-                self.TeamUIList[i].GetComponent<UIMainTeamItemComponent>().OnUpdateHP(unit);
+                self.TeamUIList[i].OnUpdateHP(unit);
             }
         }
 
@@ -76,7 +77,7 @@ namespace ET
         {
             for (int i = 0; i < self.TeamUIList.Count; i++)
             {
-                self.TeamUIList[i].GetComponent<UIMainTeamItemComponent>().OnReset();
+                self.TeamUIList[i].OnReset();
             }
         }
 
@@ -94,7 +95,7 @@ namespace ET
 
             for (int i = 0; i < teamInfo.PlayerList.Count; i++)
             {
-                UI ui_1 = null;
+                UIMainTeamItemComponent ui_1 = null;
                 if (i < self.TeamUIList.Count)
                 {
                     ui_1 = self.TeamUIList[i];
@@ -106,11 +107,10 @@ namespace ET
                     item.SetActive(true);
                     UICommonHelper.SetParent(item, self.TeamNodeList);
 
-                    ui_1 = self.AddChild<UI, string, GameObject>("TaskShowItem_" + i.ToString(), item);
-                    UIMainTeamItemComponent uIItemComponent = ui_1.AddComponent<UIMainTeamItemComponent>();
+                    ui_1 = self.AddChild<UIMainTeamItemComponent, GameObject>(item);
                     self.TeamUIList.Add(ui_1);
                 }
-                ui_1.GetComponent<UIMainTeamItemComponent>().OnUpdateItem(teamInfo.PlayerList[i]);
+                ui_1.OnUpdateItem(teamInfo.PlayerList[i]);
             }
         }
 

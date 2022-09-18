@@ -2,7 +2,7 @@
 {
 
     [Event]
-    public class UnitHp_OnChange : AEventClass<EventType.UnitHpUpdate>
+    public class Unit_OnHpUpdate : AEventClass<EventType.UnitHpUpdate>
     {
         protected override  void Run(object upchange)
         {
@@ -26,12 +26,12 @@
             {
                 FunctionEffect.GetInstance().PlayHitEffect(args.Unit, args.SkillID);
             }
+            MapComponent mapComponent = args.Unit.ZoneScene().GetComponent<MapComponent>();
 
             //主界面血條
             UI mainui = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
-            mainui?.GetComponent<UIMainComponent>().OnUpdateHP(args.Unit);
+            mainui?.GetComponent<UIMainComponent>().OnUpdateHP(args.Unit, mapComponent.SceneTypeEnum);
 
-            MapComponent mapComponent = args.Unit.ZoneScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetDungeon)
             {
                 UI petmain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIPetMain);

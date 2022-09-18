@@ -5,8 +5,9 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UIMainTeamItemComponent : Entity, IAwake
+    public class UIMainTeamItemComponent : Entity, IAwake<GameObject>
     {
+        public GameObject GameObject;
         public GameObject DamageValue;
         public GameObject ImageBooldValue;
         public GameObject PlayerName;
@@ -19,11 +20,12 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UIMainTeamItemComponentAwakeSystem : AwakeSystem<UIMainTeamItemComponent>
+    public class UIMainTeamItemComponentAwakeSystem : AwakeSystem<UIMainTeamItemComponent, GameObject>
     {
-        public override void Awake(UIMainTeamItemComponent self)
+        public override void Awake(UIMainTeamItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.DamageValue = rc.Get<GameObject>("DamageValue");
             self.ImageBooldValue = rc.Get<GameObject>("ImageBooldValue");

@@ -84,7 +84,6 @@ namespace ET
         {
             RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetFightPetInfo();
             self.PetIconSet.SetActive(!GlobalHelp.IsBanHaoMode &&rolePetInfo != null);
-
             if (rolePetInfo == null)
             {
                 return; 
@@ -96,8 +95,7 @@ namespace ET
             self.Obj_ImagePetHeadIcon.GetComponent<Image>().sprite = sp;
 
             self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
-            Unit pet = self.DomainScene().CurrentScene().GetComponent<UnitComponent>().Get(rolePetInfo.Id);
-            //获取当前血量
+
         }
 
         //角色名称更新
@@ -130,9 +128,13 @@ namespace ET
         //初始化界面基础信息
         public static void UpdateShowRolePetHp(this UIRoleHeadComponent self)
         {
+            RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetFightPetInfo();
+            if (rolePetInfo == null)
+            {
+                return;
+            }
+            Unit pet = self.DomainScene().CurrentScene().GetComponent<UnitComponent>().Get(rolePetInfo.Id);
 
         }
-
     }
-
 }

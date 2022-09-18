@@ -110,7 +110,7 @@
     <Compile Include="Codes\HotfixView\Danger\Handler\Unit\AfterTransferCreate_CreateTransfer.cs" />
     <Compile Include="Codes\HotfixView\Danger\Handler\Unit\MoveStart_PlayMoveAnimate.cs" />
     <Compile Include="Codes\HotfixView\Danger\Handler\Unit\MoveStop_PlayIdleAnimate.cs" />
-    <Compile Include="Codes\HotfixView\Danger\Handler\Unit\UnitHp_OnChange.cs" />
+    <Compile Include="Codes\HotfixView\Danger\Handler\Unit\Unit_OnHpUpdate.cs" />
     <Compile Include="Codes\HotfixView\Danger\Handler\Unit\RoleDataBroadcase_OnBroadcast.cs" />
     <Compile Include="Codes\HotfixView\Danger\Handler\Unit\UnitDead_PlayDeadAnimate.cs" />
     <Compile Include="Codes\HotfixView\Danger\Handler\Unit\UnitRevive_PlayIdleAnimate.cs" />
