@@ -87,7 +87,6 @@ namespace ET
             //UIComponent.Instance.MainCamera.fieldOfView -= 1;
             int mask = UIComponent.Instance.MainCamera.cullingMask;
             UIComponent.Instance.MainCamera.cullingMask = mask;
-            Log.ILog.Debug("cullingMask_1");
 
             Animator animator = hero.GetComponentInChildren<Animator>();
             if (animator != null)

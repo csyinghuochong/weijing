@@ -3,9 +3,10 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIRoleHeadComponent : Entity, IAwake
+    public class UIRoleHeadComponent : Entity, IAwake<GameObject>
     {
 
+        public GameObject GameObject;
         public GameObject Lab_Combat;
         public GameObject Lab_PetName;
         public GameObject PetIconSet;
@@ -24,12 +25,13 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UIRoleHeadComponentAwakeSystem : AwakeSystem<UIRoleHeadComponent>
+    public class UIRoleHeadComponentAwakeSystem : AwakeSystem<UIRoleHeadComponent, GameObject>
     {
 
-        public override void Awake(UIRoleHeadComponent self)
+        public override void Awake(UIRoleHeadComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             //获取相关组件
             self.Lab_Combat= rc.Get<GameObject>("Lab_Combat");
@@ -75,7 +77,6 @@ namespace ET
             self.UpdateShowRoleExp();
             self.UpdateShowRolePiLao();
             self.UpdateShowRolePetName();
-            self.UpdateShowRolePetHp();
             self.OnPetFightSet();
             self.OnUpdateCombat();
         }
@@ -93,9 +94,9 @@ namespace ET
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
             self.Obj_ImagePetHeadIcon.GetComponent<Image>().sprite = sp;
-
             self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
-
+            Unit pet = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(rolePetInfo.Id);
+            self.OnUpdatePetHP(pet);
         }
 
         //角色名称更新
@@ -126,15 +127,17 @@ namespace ET
         }
 
         //初始化界面基础信息
-        public static void UpdateShowRolePetHp(this UIRoleHeadComponent self)
+        public static void OnUpdatePetHP(this UIRoleHeadComponent self, Unit pet)
         {
             RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetFightPetInfo();
-            if (rolePetInfo == null)
+            if (rolePetInfo == null || pet.Id != rolePetInfo.Id)
             {
                 return;
             }
-            Unit pet = self.DomainScene().CurrentScene().GetComponent<UnitComponent>().Get(rolePetInfo.Id);
-
+            float curhp = pet.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp); 
+            float blood = curhp / pet.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
+            blood = Mathf.Max(blood, 0f);
+            self.Obj_Img_PetHp.GetComponent<Image>().fillAmount = blood;
         }
     }
 }

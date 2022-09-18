@@ -62,9 +62,9 @@ namespace ET
         public UI UIMainTask;
         public UI UILevelGuideMini;
         public UI UIMainChat;
-        public UI UIRoleHead;
         public UI UIMailHintTip;
 
+        public UIRoleHeadComponent UIRoleHead;
         public UIMainHpBarComponent UIMainHpBar;
         public UIMainTeamComponent UIMainTeam;
         public UIPageButtonComponent UIPageButtonComponent;
@@ -352,7 +352,7 @@ namespace ET
 
         public static void OnUpdateCombat(this UIMainComponent self)
         {
-            self.UIRoleHead.GetComponent<UIRoleHeadComponent>().OnUpdateCombat();
+            self.UIRoleHead.OnUpdateCombat();
         }
 
         public static async ETTask ShowPing(this UIMainComponent self)
@@ -389,8 +389,14 @@ namespace ET
             {
                 self.UIMainTeam.OnUpdateHP(unit);
             }
-
-            self.UIMainHpBar.OnUpdateHP(unit);
+            if (unitType == UnitType.Monster)
+            {
+                self.UIMainHpBar.OnUpdateHP(unit);
+            }
+            if (unitType == UnitType.Pet)
+            {
+                self.UIRoleHead.OnUpdatePetHP(unit);
+            }
         }
 
         public static void OnUpdateDamage(this UIMainComponent self, Unit unit)
@@ -421,17 +427,17 @@ namespace ET
 
                 self.UpdateShowRoleExp();
 
-                self.UIRoleHead.GetComponent<UIRoleHeadComponent>().UpdateShowRoleExp();
+                self.UIRoleHead.UpdateShowRoleExp();
 
                 self.ZoneScene().GetComponent<GuideComponent>().OnTrigger(GuideTriggerType.GuideTriggerLevel, userInfo.Lv);
             }
             if (userDataType == UserDataType.Name)
             {
-                self.UIRoleHead.GetComponent<UIRoleHeadComponent>().UpdateShowRoleName();
+                self.UIRoleHead.UpdateShowRoleName();
             }
             if (userDataType == UserDataType.PiLao)
             {
-                self.UIRoleHead.GetComponent<UIRoleHeadComponent>().UpdateShowRolePiLao();
+                self.UIRoleHead.UpdateShowRolePiLao();
             }
             if (userDataType == UserDataType.Gold)
             {
@@ -598,12 +604,12 @@ namespace ET
 
         public static void OnPetFightSet(this UIMainComponent self)
         {
-            self.UIRoleHead.GetComponent<UIRoleHeadComponent>().OnPetFightSet();
+            self.UIRoleHead.OnPetFightSet();
         }
 
         public static void OnUpdateRoleName(this UIMainComponent self)
         {
-            self.UIRoleHead.GetComponent<UIRoleHeadComponent>().UpdateShowRoleName();
+            self.UIRoleHead.UpdateShowRoleName();
         }
 
         public static void OnClickPageButton(this UIMainComponent self, int page)
@@ -693,8 +699,7 @@ namespace ET
 
             //左上角头像
             GameObject RoleHead = rc.Get<GameObject>("UIRoleHead");
-            self.UIRoleHead = self.AddChild<UI, string, GameObject>("UIRoleHead", RoleHead);
-            self.UIRoleHead.AddComponent<UIRoleHeadComponent>();
+            self.UIRoleHead = self.AddChild<UIRoleHeadComponent, GameObject>(RoleHead);
 
             GameObject UIMainHpBar = rc.Get<GameObject>("UIMainHpBar");
             self.UIMainHpBar = self.AddChild<UIMainHpBarComponent, GameObject>(UIMainHpBar);
