@@ -170,8 +170,8 @@ namespace ET
 			int bossId = FirstWinConfigCategory.Instance.Get(firstwinId).BossID;
 			MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
 			self.Text_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
-			Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon.ToString());
-			self.ImageBossIcon.GetComponent<Image>().sprite = sp;
+			//Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon.ToString());
+			//self.ImageBossIcon.GetComponent<Image>().sprite = sp;
 
 			string skilldesc = "";
 			int[] skilllist = monsterConfig.SkillID;
