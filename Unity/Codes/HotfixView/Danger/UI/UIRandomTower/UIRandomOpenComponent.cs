@@ -57,7 +57,7 @@ namespace ET
             }
             C2M_RandomTowerBeginRequest c2M_RandomTowerBeginRequest = new C2M_RandomTowerBeginRequest() {  RandomNumber = randomNumber};
             M2C_RandomTowerBeginResponse m2C_RandomTowerBeginResponse =(M2C_RandomTowerBeginResponse) await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RandomTowerBeginRequest);
-            UIHelper.Remove(self.ZoneScene(), UIType.UIRandomOpen).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIRandomOpen);
         }
     }
 }

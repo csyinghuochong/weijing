@@ -144,6 +144,8 @@
     <Compile Include="Codes\HotfixView\Danger\UI\UIActivity\UIActivityTeHuiComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIActivity\UIActivityTeHuiItemComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIActivity\UIActivityTokenComponent.cs" />
+    <Compile Include="Codes\HotfixView\Danger\UI\UIAppraisal\UIAppraisalSelectComponent.cs" />
+    <Compile Include="Codes\HotfixView\Danger\UI\UIAppraisal\UIAppraisalSelectEvent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIBuChang\UIBuChangItemComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UICellDungeon\UICellDungeonEnterShowComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UICellDungeon\UICellChapterItemComponent.cs" />

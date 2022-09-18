@@ -53,7 +53,7 @@ namespace ET
     {
         public static void OnButton_Close(this UICommandComponent self)
         {
-            UIHelper.Remove(self.ZoneScene(), UIType.UICommand).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UICommand);
         }
 
         public static void OnButton_AddLevel(this UICommandComponent self)

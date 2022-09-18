@@ -139,18 +139,14 @@ namespace ET
             int number = 0;
             for (int i = 0; i < showSkillPros.Count; i++)
             {
-                Log.ILog.Debug($"1 {showSkillPros[i].SkillID}");
-
                 if (showSkillPros[i].SkillSetType == (int)SkillSetEnum.Item)
                 {
-                    Log.ILog.Debug($"2 {showSkillPros[i].SkillID}");
                     continue;
                 }
 
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(showSkillPros[i].SkillID);
                 if (skillConfig.IsShow == 1)
                 {
-                    Log.ILog.Debug($"3 {showSkillPros[i].SkillID}");
                     continue;
                 }
                 //page ==0 主动 1被动

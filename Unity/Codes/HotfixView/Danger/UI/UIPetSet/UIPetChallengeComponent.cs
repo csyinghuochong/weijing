@@ -139,7 +139,7 @@ namespace ET
                 petComponent.PetFubeRewardId = canRewardId;
             }
             self.OnUpdateStar();
-            UIHelper.Remove(self.DomainScene(), UIType.UICountryTips).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICountryTips);
         }
 
         public static async ETTask OnButtonChallenge(this UIPetChallengeComponent self)
@@ -174,7 +174,7 @@ namespace ET
             }
 
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.PetDungeon, self.PetFubenId);
-            UIHelper.Remove(self.ZoneScene(), UIType.UIPetSet).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIPetSet);
             if (errorCode != ErrorCore.ERR_Success)
             {
                 return;

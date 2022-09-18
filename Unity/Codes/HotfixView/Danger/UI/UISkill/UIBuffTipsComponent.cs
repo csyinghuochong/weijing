@@ -39,7 +39,7 @@ namespace ET
     {
         public static void OnImageButton(this UIBuffTipsComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UISkillTips).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
         }
 
         public static void OnUpdateData(this UIBuffTipsComponent self, int skillId, Vector3 vector3,string showStr)

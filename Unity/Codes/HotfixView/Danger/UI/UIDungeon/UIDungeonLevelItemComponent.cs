@@ -87,7 +87,7 @@ namespace ET
                     return;
                 }
 
-                UIHelper.Remove(self.DomainScene(), UIType.UIDungeonLevel).Coroutine();
+                UIHelper.Remove(self.DomainScene(), UIType.UIDungeonLevel);
             }
             catch (Exception ex)
             {

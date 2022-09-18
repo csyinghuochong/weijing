@@ -28,7 +28,7 @@ namespace ET
     {
         public static void OnImageButton(this UICommonRewardComponent self)
         {
-            UIHelper.Remove( self.DomainScene(), UIType.UICommonReward ).Coroutine();
+            UIHelper.Remove( self.DomainScene(), UIType.UICommonReward );
         }
 
         public static void  OnUpdateUI(this UICommonRewardComponent self, List<RewardItem> rewardItems)

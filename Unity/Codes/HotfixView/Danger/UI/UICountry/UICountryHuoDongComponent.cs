@@ -39,7 +39,7 @@ namespace ET
 
         public static void OnBtn_Close(this UICountryHuoDongComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UICountry).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICountry);
         }
 
     }

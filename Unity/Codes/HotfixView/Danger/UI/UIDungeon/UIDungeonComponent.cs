@@ -47,7 +47,7 @@ namespace ET
 
         public static void OnCloseChapter(this UIDungeonComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIDungeon).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIDungeon);
         }
     }
 }

@@ -46,7 +46,7 @@
             {
                 ErrorHelp.Instance.ErrorHint(errorCode);
             }
-            UIHelper.Remove(args.ZoneScene, UIType.UITeamDungeon).Coroutine();
+            UIHelper.Remove(args.ZoneScene, UIType.UITeamDungeon);
         }
     }
 

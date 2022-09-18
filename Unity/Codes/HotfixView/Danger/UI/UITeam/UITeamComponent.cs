@@ -101,7 +101,7 @@ namespace ET
         public static void SendLeaveRequest(this UITeamComponent self)
         {
             self.ZoneScene().GetComponent<TeamComponent>().SendLeaveRequest().Coroutine();
-            UIHelper.Remove(self.DomainScene(), UIType.UITeam).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UITeam);
         }
 
         public static void On_ButtonApplyList(this UITeamComponent self)

@@ -54,7 +54,7 @@ namespace ET
             return uI;
         }
         
-        public static async ETTask Remove(Scene scene, string uiType)
+        public static  void Remove(Scene scene, string uiType)
         {
             UI uI = UIHelper.GetUI(scene, uiType);
             if (uI == null)
@@ -91,7 +91,6 @@ namespace ET
             }
 
             scene.GetComponent<UIComponent>().Remove(uiType);
-            await ETTask.CompletedTask;
         }
 
         public static UI GetUI(Scene scene, string uiType)

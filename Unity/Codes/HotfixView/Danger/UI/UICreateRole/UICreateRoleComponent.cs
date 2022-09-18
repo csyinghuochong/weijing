@@ -87,7 +87,7 @@ namespace ET
         public static async ETTask OnClickImageButton(this UICreateRoleComponent self)
         {
             await UIHelper.Create(self.DomainScene(), UIType.UILobby);
-            UIHelper.Remove(  self.DomainScene(), UIType.UICreateRole ).Coroutine();
+            UIHelper.Remove(  self.DomainScene(), UIType.UICreateRole );
         }
 
         public static async ETTask OnBtnCreateRole(this UICreateRoleComponent self)
@@ -109,7 +109,7 @@ namespace ET
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UILobby);
             uI.GetComponent<UILobbyComponent>().OnCreateRoleData(g2cCreateRole.createRoleInfo);
 
-            UIHelper.Remove(self.DomainScene(), UIType.UICreateRole).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICreateRole);
         }
 
         public static void OnClickRandomName(this UICreateRoleComponent self)

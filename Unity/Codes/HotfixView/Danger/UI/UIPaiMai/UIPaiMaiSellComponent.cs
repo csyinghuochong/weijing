@@ -81,7 +81,7 @@ namespace ET
                 if (Mathf.Abs(x -stallarea[0]) < stallarea[3] && Mathf.Abs(z - stallarea[2]) < stallarea[3])
                 {
                     NetHelper.PaiMaiStallRequest(self.DomainScene(), 1).Coroutine();
-                    UIHelper.Remove(self.DomainScene(), UIType.UIPaiMai).Coroutine();
+                    UIHelper.Remove(self.DomainScene(), UIType.UIPaiMai);
                 }
                 else
                 {
@@ -284,7 +284,7 @@ namespace ET
         public static void OnPointerUp(this UIPaiMaiSellComponent self, BagInfo binfo, PointerEventData pdata)
         {
             self.IsHoldDown = false;
-            UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips);
         }
         
     }

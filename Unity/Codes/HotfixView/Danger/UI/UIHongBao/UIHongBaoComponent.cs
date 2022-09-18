@@ -22,7 +22,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_Open, () => { self.OnButton_Open().Coroutine(); });
 
             self.Button_Back = rc.Get<GameObject>("Button_Back");
-            self.Button_Back.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIHongBao).Coroutine();  });
+            self.Button_Back.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIHongBao);  });
 
             self.Text_Amount = rc.Get<GameObject>("Text_Amount");
         }

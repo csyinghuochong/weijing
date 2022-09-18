@@ -63,7 +63,7 @@ namespace ET
 
         public static void EndDrag(this UICommonSkillItemComponent self, PointerEventData pdata)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UISkillTips).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
         }
     }
 

@@ -121,7 +121,6 @@ namespace ET
                     AccountId = zoneScene.GetComponent<AccountInfoComponent>().AccountId,
                     ServerId = zoneScene.GetComponent<AccountInfoComponent>().CurrentServerId
                 });
-
             }
             catch (Exception e)
             {

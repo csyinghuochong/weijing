@@ -135,7 +135,7 @@ namespace ET
 
         public static void OnBtn_Close(this UIRechargeComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIRecharge).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIRecharge);
         }
     }
 

@@ -311,7 +311,7 @@ namespace ET
 
         public static void OnCloseMiniMap(this UIMapBigComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIMapBig).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIMapBig);
         }
 
         public static void OnChangePosition(this UIMapBigComponent self, Vector3 vector3)

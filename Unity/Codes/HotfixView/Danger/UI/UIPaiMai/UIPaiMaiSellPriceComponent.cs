@@ -114,7 +114,7 @@ namespace ET
 
         public static void OnImageButton(this UIPaiMaiSellPriceComponent self)
         {
-            UIHelper.Remove( self.DomainScene(), UIType.UIPaiMaiSellPrice ).Coroutine();
+            UIHelper.Remove( self.DomainScene(), UIType.UIPaiMaiSellPrice );
         }
 
         //浅拷贝即可
@@ -146,7 +146,7 @@ namespace ET
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIPaiMai);
             uI.GetComponent<UIPaiMaiComponent>().UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiSell].GetComponent<UIPaiMaiSellComponent>().OnPaiBuyShangJia(m2C_PaiMaiBuyResponse.PaiMaiItemInfo);
 
-            UIHelper.Remove( self.DomainScene(), UIType.UIPaiMaiSellPrice ).Coroutine();
+            UIHelper.Remove( self.DomainScene(), UIType.UIPaiMaiSellPrice );
         }
 
         public static async void InitPriceUI(this UIPaiMaiSellPriceComponent self, BagInfo bagInfo)

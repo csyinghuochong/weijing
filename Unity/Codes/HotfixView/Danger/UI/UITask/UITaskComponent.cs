@@ -137,7 +137,7 @@ namespace ET
 
 		public static void OnCloseTask(this UITaskComponent self)
 		{
-			UIHelper.Remove(self.DomainScene(), UIType.UITask).Coroutine();
+			UIHelper.Remove(self.DomainScene(), UIType.UITask);
 		}
 
 		public static async ETTask UpdateTaskInfo(this UITaskComponent self, TaskPro taskPro)

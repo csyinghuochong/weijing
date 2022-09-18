@@ -150,7 +150,7 @@ namespace ET
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UILogin);
             uI.GetComponent<UILoginComponent>().OnSelectServer(serverId);
 
-            UIHelper.Remove(self.DomainScene(), UIType.UISelectServer).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UISelectServer);
         }
 
         public static void OnClickPageButton(this UISelectServerComponent self, int page)
@@ -160,7 +160,7 @@ namespace ET
 
         public static void CloseUI(this UISelectServerComponent self)
         {
-            UIHelper.Remove(self.DomainScene(),UIType.UISelectServer).Coroutine();
+            UIHelper.Remove(self.DomainScene(),UIType.UISelectServer);
         }
 
     }

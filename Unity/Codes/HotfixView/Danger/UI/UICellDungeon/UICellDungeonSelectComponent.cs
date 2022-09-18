@@ -130,8 +130,8 @@ namespace ET
                 return;
             }
 
-            UIHelper.Remove(self.DomainScene(), UIType.UICellChapterSelect).Coroutine();
-            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonSelect).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UICellChapterSelect);
+            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonSelect);
         }
 
         public static void OnSelectNandu(this UICellDungeonSelectComponent self, int difficulty)
@@ -213,7 +213,7 @@ namespace ET
                 uI.GetComponent<UICellChapterSelectComponent>().OnChapterReturn();
             }
 
-            UIHelper.Remove(self.ZoneScene(), UIType.UICellDungeonSelect).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UICellDungeonSelect);
         }
 
         public static void OnInitData(this UICellDungeonSelectComponent self, int chapterId)

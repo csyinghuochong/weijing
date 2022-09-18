@@ -113,7 +113,7 @@ namespace ET
 
         public static void OnCloseBtn(this UIRankPetTeamComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIRankPetTeam).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIRankPetTeam);
         }
 
         public static async ETTask OnButton_OK(this UIRankPetTeamComponent self)
@@ -129,7 +129,7 @@ namespace ET
 
             self.ZoneScene().GetComponent<PetComponent>().TeamPetList = self.PetIdList;
 
-            UIHelper.Remove( self.DomainScene(), UIType.UIRankPetTeam ).Coroutine();
+            UIHelper.Remove( self.DomainScene(), UIType.UIRankPetTeam );
         }
     }
 

@@ -38,7 +38,7 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.CloseButton = rc.Get<GameObject>("CloseButton");
-            self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeon).Coroutine(); });
+            self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeon); });
 
             self.Text_LeftTime = rc.Get<GameObject>("Text_LeftTime");
             self.UITeamDungeonList = rc.Get<GameObject>("UITeamDungeonList");

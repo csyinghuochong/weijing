@@ -253,7 +253,7 @@ namespace ET
 
         public static void OnCloseTips(this UIEquipTipsComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips);
         }
 
         public static void OnDestroyTips(this UIEquipTipsComponent self)

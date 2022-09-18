@@ -101,7 +101,7 @@ namespace ET
 
         public static void OnCloseChat(this UIChatComponent self)
         {
-            UIHelper.Remove( self.DomainScene(), UIType.UIChat ).Coroutine();
+            UIHelper.Remove( self.DomainScene(), UIType.UIChat );
         }
 
         public static async ETTask OnChatRecv(this UIChatComponent self)

@@ -282,7 +282,7 @@ namespace ET
 
         public static void OnClickOccTwoui(this UIOccTwoComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIOccTwo).Coroutine() ;
+            UIHelper.Remove(self.DomainScene(), UIType.UIOccTwo);
         }
     }
 }

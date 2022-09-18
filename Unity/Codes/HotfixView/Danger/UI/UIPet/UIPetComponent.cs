@@ -91,7 +91,7 @@ namespace ET
     {
         public static void OnBtn_Close(this UIPetComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIPet).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIPet);
         }
 
         public static void OnPetFenJieUpdate(this UIPetComponent self)

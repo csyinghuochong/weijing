@@ -162,7 +162,7 @@ namespace ET
 
         public static void OnBtn_Close(this UIPaiMaiStallBuyComponent self)
         {
-            UIHelper.Remove( self.DomainScene(), UIType.UIPaiMaiStallBuy ).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIPaiMaiStallBuy);
         }
 
         public static async ETTask OnBtn_Buy(this UIPaiMaiStallBuyComponent self)

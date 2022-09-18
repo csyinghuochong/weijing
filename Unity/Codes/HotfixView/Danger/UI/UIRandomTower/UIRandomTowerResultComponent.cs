@@ -38,7 +38,7 @@ namespace ET
         public static void OnButton_exit(this UIRandomTowerResultComponent self)
         {
             EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
-            UIHelper.Remove(self.ZoneScene(), UIType.UIRandomTowerResult).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIRandomTowerResult);
         }
     }
 }

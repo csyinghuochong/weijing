@@ -93,7 +93,7 @@ namespace ET
                 //ui.GetComponent<UILobbyComponent>().OpenCreateRoleShow();
                 UI createRole = await UIHelper.Create( self.DomainScene(), UIType.UICreateRole );
                 createRole.GetComponent<UICreateRoleComponent>().ShowHeroSelect(2);
-                UIHelper.Remove( self.DomainScene(), UIType.UILobby).Coroutine() ;
+                UIHelper.Remove( self.DomainScene(), UIType.UILobby);
             }
         }
 

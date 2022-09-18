@@ -33,7 +33,7 @@ namespace ET
             self.ImagePetHexinItemIcon.SetActive(false);
             self.PetListNode = rc.Get<GameObject>("PetListNode");
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
-            self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIPetHeXinHeCheng ).Coroutine();  });
+            self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIPetHeXinHeCheng );  });
             self.IsHoldDown = false;
             self.uIItems.Clear();
 
@@ -126,14 +126,14 @@ namespace ET
         {
             self.IsHoldDown = false;
             self.BagInfo = null;
-            UIHelper.Remove( self.ZoneScene(), UIType.UIItemTips ).Coroutine();
+            UIHelper.Remove( self.ZoneScene(), UIType.UIItemTips );
         }
 
         public static void BeginDrag(this UIPetHeXinHeChengComponent self, BagInfo binfo, PointerEventData pdata)
         {
             self.IsHoldDown = false;
             self.BagInfo = null;
-            UIHelper.Remove(self.ZoneScene(), UIType.UIItemTips).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIItemTips);
             self.BagItemCopy = GameObject.Instantiate(self.ImagePetHexinItemIcon);
             self.BagItemCopy.SetActive(true);
             UICommonHelper.SetParent(self.BagItemCopy, UIEventComponent.Instance.UILayers[(int)UILayer.Low].gameObject);

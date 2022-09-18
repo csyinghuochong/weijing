@@ -51,7 +51,7 @@ namespace ET
             {
                 return;
             }
-            UIHelper.Remove( self.ZoneScene(), UIType.UIRandomTower ).Coroutine();
+            UIHelper.Remove( self.ZoneScene(), UIType.UIRandomTower );
         }
 
         public static async ETTask OnInitUI(this UIRandomTowerComponent self)

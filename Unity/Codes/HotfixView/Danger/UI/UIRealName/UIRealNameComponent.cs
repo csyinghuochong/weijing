@@ -107,7 +107,7 @@ namespace ET
 
         public static void OnBtn_Close(this UIRealNameComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIRealName).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIRealName);
         }
 
 
@@ -148,7 +148,7 @@ namespace ET
             //    PlayerComponent.Password);
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UILogin);
             uI.GetComponent<UILoginComponent>().OnReLogin();
-            UIHelper.Remove(self.DomainScene(), UIType.UIRealName).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIRealName);
         }
 
         public static async ETTask OnBtn_RealName_2(this UIRealNameComponent self)

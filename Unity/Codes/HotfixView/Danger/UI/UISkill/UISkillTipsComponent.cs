@@ -39,7 +39,7 @@ namespace ET
     {
         public static void OnImageButton(this UISkillTipsComponent self)
         {
-            UIHelper.Remove( self.DomainScene(), UIType.UISkillTips ).Coroutine();
+            UIHelper.Remove( self.DomainScene(), UIType.UISkillTips );
         }
 
         public static void OnUpdateData(this UISkillTipsComponent self, int skillId, Vector3 vector3, ABAtlasTypes aBAtlasTypes = ABAtlasTypes.RoleSkillIcon)

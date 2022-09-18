@@ -136,7 +136,7 @@ namespace ET
 
         public static void OnImageButton(this UIMakeLearnComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UIMakeLearn).Coroutine();
+            UIHelper.Remove(self.DomainScene(), UIType.UIMakeLearn);
         }
 
         public static async ETTask InitData(this UIMakeLearnComponent self, int makeType)

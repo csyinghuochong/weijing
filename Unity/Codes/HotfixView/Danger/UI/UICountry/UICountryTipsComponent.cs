@@ -23,7 +23,7 @@ namespace ET
             self.PositionNode = rc.Get<GameObject>("PositionNode");
             self.ImageButton = rc.Get<GameObject>("ImageButton");
 
-            self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.DomainScene(), UIType.UICountryTips).Coroutine(); });
+            self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.DomainScene(), UIType.UICountryTips); });
         }
     }
 

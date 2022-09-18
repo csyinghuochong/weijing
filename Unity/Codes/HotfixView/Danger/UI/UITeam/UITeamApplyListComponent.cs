@@ -33,7 +33,7 @@ namespace ET
     {
         public static void OnImg_Button(this UITeamApplyListComponent self)
         {
-            UIHelper.Remove(self.ZoneScene(), UIType.UITeamApplyList).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UITeamApplyList);
         }
 
         public static async ETTask OnUpdateUI(this UITeamApplyListComponent self)

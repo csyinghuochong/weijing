@@ -99,7 +99,7 @@ namespace ET
                 uI.GetComponent<UIDungeonLevelComponent>().OnInitData(self.ChapterId);
             }
 
-            UIHelper.Remove(self.ZoneScene(), UIType.UIDungeon).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIDungeon);
         }
 
     }

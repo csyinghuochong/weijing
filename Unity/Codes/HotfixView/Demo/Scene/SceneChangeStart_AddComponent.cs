@@ -41,7 +41,7 @@ namespace ET
             uI.GetComponent<UILoadingComponent>().OnInitUI(args.SceneType, args.ChapterId);
             if (UIHelper.GetUI(args.ZoneScene, UIType.UILobby) != null)
             {
-                UIHelper.Remove(args.ZoneScene, UIType.UILobby).Coroutine();
+                UIHelper.Remove(args.ZoneScene, UIType.UILobby);
             }
             Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.ChapterId).Coroutine();
         }

@@ -74,9 +74,9 @@ namespace ET
 
         public static void OnButtonClose(this UICommonHuoBiSetComponent self)
         {
-            UIHelper.Remove(self.ZoneScene(), UIType.UIItemTips).Coroutine();
-            UIHelper.Remove(self.ZoneScene(), UIType.UIEquipDuiBiTips).Coroutine();
-            UIHelper.Remove(self.ZoneScene(), UIType.UIGuide).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIItemTips);
+            UIHelper.Remove(self.ZoneScene(), UIType.UIEquipDuiBiTips);
+            UIHelper.Remove(self.ZoneScene(), UIType.UIGuide);
 
             if (UIHelper.OpenUIList.Count >0 )
             {
@@ -84,7 +84,7 @@ namespace ET
                 {
                     UIHelper.GetUI(self.DomainScene(), UIType.UISetting).GetComponent<UISettingComponent>().OnBeforeClose();
                 }
-                UIHelper.Remove(self.DomainScene(), UIHelper.OpenUIList[0]).Coroutine();
+                UIHelper.Remove(self.DomainScene(), UIHelper.OpenUIList[0]);
             }
         }
 

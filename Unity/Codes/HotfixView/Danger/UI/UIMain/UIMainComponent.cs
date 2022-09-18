@@ -850,7 +850,7 @@ namespace ET
                        {
                            NetHelper.PaiMaiStallRequest(self.DomainScene(), 0).Coroutine();
                            //界面存在就销毁界面
-                           UIHelper.Remove(self.DomainScene(), UIType.UIPaiMaiStall).Coroutine();
+                           UIHelper.Remove(self.DomainScene(), UIType.UIPaiMaiStall);
                            //弹出提示
                            FloatTipManager.Instance.ShowFloatTipDi("摊位已收起!");
                        }).Coroutine();

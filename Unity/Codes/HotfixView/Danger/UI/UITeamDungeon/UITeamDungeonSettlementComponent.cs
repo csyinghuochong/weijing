@@ -244,7 +244,7 @@ namespace ET
 
             //离开副本
             //EnterFubenHelp.QuitTeamDungeonRequest(self.DomainScene(), 1).Coroutine();
-            UIHelper.Remove( self.DomainScene(), UIType.UITeamDungeonSettlement ).Coroutine();
+            UIHelper.Remove( self.DomainScene(), UIType.UITeamDungeonSettlement );
         }
 
     }

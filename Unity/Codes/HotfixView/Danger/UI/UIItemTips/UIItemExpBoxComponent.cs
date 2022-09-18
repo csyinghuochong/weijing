@@ -87,7 +87,7 @@ namespace ET
 
         public static void ImageButton(this UIItemExpBoxComponent self)
         {
-            UIHelper.Remove( self.ZoneScene(), UIType.UIItemExpBox ).Coroutine();
+            UIHelper.Remove( self.ZoneScene(), UIType.UIItemExpBox );
         }
     }
 }
