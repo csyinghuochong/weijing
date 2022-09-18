@@ -451,7 +451,7 @@ namespace ET
                         if (useBagInfo.IfJianDing == true)
                         {
                             useBagInfo.IfJianDing = false;
-                            useBagInfo.HideProLists = ComHelp.GetEquipZhuanJingHidePro(itemCof.ItemEquipID);
+                            useBagInfo.HideProLists = ComHelp.GetEquipZhuanJingHidePro(itemCof.ItemEquipID, itemCof.Id, 60);
                             m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
                         }
                     }

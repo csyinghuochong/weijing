@@ -536,21 +536,26 @@ namespace ET
                         }
                         else
                         {
-                            //白色和绿色品质 0.2的鉴定概率,蓝色是0.35概率
+                            //白色和绿色品质都是100% 紫色概率出鉴定
                             float jianDingPro = 0f;
 
                             if (itemCof.ItemQuality == 1)
                             {
-                                jianDingPro = 0.1f;
+                                jianDingPro = 0f;
                             }
                             if (itemCof.ItemQuality == 2)
                             {
-                                jianDingPro = 0.2f;
+                                jianDingPro = 0f;
                             }
                             if (itemCof.ItemQuality == 3)
                             {
-                                jianDingPro = 0.35f;
+                                jianDingPro = 0f;
                             }
+                            if (itemCof.ItemQuality == 4)
+                            {
+                                jianDingPro = 0.75f;
+                            }
+
                             if (RandomHelper.RandFloat() <= jianDingPro)
                             {
                                 useBagInfo.IfJianDing = true;

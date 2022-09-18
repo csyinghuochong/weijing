@@ -140,7 +140,7 @@ namespace ET
         }
 
         /// <summary>
-        /// 
+        /// 鉴定符根据熟练度算品质的方法
         /// </summary>
         /// <param name="bagInf0"></param>
         /// <param name="getType">1购买</param>
@@ -151,15 +151,22 @@ namespace ET
                 bagInf0.ItemPar = GlobalValueConfigCategory.Instance.JianDingFuQulity.ToString();
                 return;
             }
+
+            //万能鉴定符固定为60
+            if (bagInf0.ItemID == 11200000) {
+                bagInf0.ItemPar = "80";
+                return;
+            }
+
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInf0.ItemID);
             float minValuePro = (float)shulianValue / (float)int.Parse(itemCof.ItemUsePar);
             if (minValuePro >= 1)
             {
                 minValuePro = 1;
             }
-            if (minValuePro <= 0.25f)
+            if (minValuePro <= 0.2f)
             {
-                minValuePro = 0.25f;
+                minValuePro = 0.2f;
             }
             int minValue = (int)(minValuePro * 50f);
             int maxValue = (int)(minValuePro * 100f);
@@ -562,14 +569,36 @@ namespace ET
         }
 
         //获取装备的专精属性
-        public static List<HideProList> GetEquipZhuanJingHidePro(int equipID)
+        public static List<HideProList> GetEquipZhuanJingHidePro(int equipID,int itemID ,int jianDingPinZhi)
         {
             //获取最大值
             EquipConfig equipCof = EquipConfigCategory.Instance.Get(equipID);
             List<HideProList> hideList = new List<HideProList>();
 
+            //获取当前鉴定系数
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
+
+            //鉴定符品质大于装备等级
+            float JianDingPro = 1f;
+            if (jianDingPinZhi >= itemCof.UseLv)
+            {
+                JianDingPro = jianDingPinZhi / itemCof.UseLv;
+            }
+            else {
+                JianDingPro = jianDingPinZhi / itemCof.UseLv * 0.5f;
+            }
+
+            if (JianDingPro >= 1.5f) {
+                JianDingPro = 1.5f;
+            }
+
+            if (JianDingPro <= 0.25f) {
+                JianDingPro = 0.25f;
+            }
+
             int randomNum = 0;
             float randomFloat = RandomHelper.RandFloat();
+            randomFloat = randomFloat * JianDingPro;
 
             if (randomFloat <= 0.2f)
             {
