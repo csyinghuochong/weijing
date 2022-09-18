@@ -163,8 +163,15 @@ namespace ET
             {
                 MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(this.Parent.GetComponent<UnitInfoComponent>().UnitCondigID);
                 bool isboos = monsterCof.MonsterType == (int)MonsterTypeEnum.Boss;
-                ObjName.GetComponent<TextMeshProUGUI>().text = monsterCof.MonsterName;
-                ObjName.GetComponent<TextMeshProUGUI>().color = isboos ? new Color(255, 95, 255) : Color.white;
+                if (isboos)
+                {
+                    this.ObjName.GetComponent<TextMeshProUGUI>().text = $"<color=#FF5FFF>{monsterCof.MonsterName}</color>";
+                }
+                else
+                {
+                    this.ObjName.GetComponent<TextMeshProUGUI>().text = $"<color=#FFFFFF>{monsterCof.MonsterName}</color>";
+                }
+                //this.ObjName.GetComponent<TextMeshProUGUI>().color = isboos ? new Color(255, 95, 255) : Color.white;
                 //怪物等级显示
                 ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
             
