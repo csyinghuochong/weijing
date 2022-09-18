@@ -234,6 +234,8 @@ namespace ET
                 await NetHelper.RequestSkillSet(zoneScene);
                 //请求好友数据
                 await NetHelper.RequestFriendInfo(zoneScene);
+                //请求活动数据
+                await NetHelper.RequestActivityInfo(zoneScene);
 
                 EventType.EnterMapFinish.Instance.ZoneScene = zoneScene;
                 Game.EventSystem.PublishClass(EventType.EnterMapFinish.Instance);
