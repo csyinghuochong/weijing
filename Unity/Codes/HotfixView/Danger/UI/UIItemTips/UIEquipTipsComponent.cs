@@ -268,7 +268,7 @@ namespace ET
                 return;
             }
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (!ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
+            if (itemconf.ItemType == (int)ItemTypeEnum.Equipment && !ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
             {
                 FloatTipManager.Instance.ShowFloatTip("请选择合适的武器！");
                 return;
