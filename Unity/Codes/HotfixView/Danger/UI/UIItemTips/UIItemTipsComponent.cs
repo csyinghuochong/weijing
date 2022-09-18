@@ -197,6 +197,12 @@ namespace ET
             int errorCode = ErrorCore.ERR_Success;
             string usrPar = "";
 
+            //材料
+            if (itemConfig.ItemType == (int)ItemTypeEnum.Gemstone)
+            {
+
+                return;
+            }
             //镶嵌宝石
             if (itemConfig.ItemType == (int)ItemTypeEnum.Gemstone)
             {
@@ -432,6 +438,7 @@ namespace ET
             self.Obj_Btn_HuiShou.SetActive(false);
             self.Obj_Btn_HuiShouCancle.SetActive(false);
             self.Obj_Btn_XieXiaGemSet.SetActive(false);
+            self.Btn_Use.SetActive(itemType != (int)ItemTypeEnum.Material);
 
             //显示按钮
             switch ((ItemOperateEnum)equipTipsType)

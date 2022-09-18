@@ -136,7 +136,7 @@ namespace ET
             if (ifChange)
             {
                 UIHelper.Create(self.DomainScene(), UIType.UIOccTwoShow).Coroutine();
-                UIHelper.Remove(self.DomainScene(), UIType.UIOccTwo).Coroutine();
+                UIHelper.Remove(self.DomainScene(), UIType.UIOccTwo);
             }
         }
 
