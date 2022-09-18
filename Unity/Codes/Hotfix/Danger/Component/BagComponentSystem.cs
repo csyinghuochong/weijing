@@ -218,11 +218,11 @@ namespace ET
         }
 
         //JianDing道具
-        public static async ETTask<int> SendAppraisalItem(this BagComponent self, BagInfo bagInfo)
+        public static async ETTask<int> SendAppraisalItem(this BagComponent self, BagInfo bagInfo, long appID = 0)
         {
             try
             {
-                C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 5, OperateBagID = bagInfo.BagInfoID };
+                C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 5, OperateBagID = bagInfo.BagInfoID, OperatePar = appID.ToString() };
                 M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
                 return r2c_roleEquip.Error;
             }

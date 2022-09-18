@@ -175,7 +175,7 @@ namespace ET
             string icon = numericAttribute.Icon;
             if (string.IsNullOrEmpty(icon) && numberType > NumericType.Max)
             {
-                return GetAttributeName(numberType / 100);
+                return GetAttributeIcon(numberType / 100);
             }
             return numericAttribute.Icon;
         }

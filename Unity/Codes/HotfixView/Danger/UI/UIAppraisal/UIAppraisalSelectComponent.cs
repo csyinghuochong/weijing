@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIAppraisalSelectComponent : Entity, IAwake
     {
+        public GameObject Text_Tip_1;
         public GameObject ButtonClose;
         public GameObject ItemListNode;
         public GameObject Text_EquipLevel;
@@ -30,6 +31,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.uIItems.Clear();
+            self.Text_Tip_1 = rc.Get<GameObject>("Text_Tip_1");
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.Text_EquipLevel = rc.Get<GameObject>("Text_EquipLevel");
             self.Button_Item = rc.Get<GameObject>("Button_Item");
@@ -56,8 +58,10 @@ namespace ET
             UIItemComponent item_equip = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem_1);
             item_equip.UpdateItem(bagInfo, ItemOperateEnum.None);
 
+            ItemConfig itemConfig_app = ItemConfigCategory.Instance.Get(appItem);
             UIItemComponent item_app = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem_2);
-            item_app.UpdateItem(new BagInfo() {ItemID =  appItem }, ItemOperateEnum.None);
+            item_app.UpdateItem(new BagInfo() {ItemID =  appItem,ItemNum = 1 }, ItemOperateEnum.None);
+            self.Text_Tip_1.GetComponent<Text>().text = $"需要消耗：{itemConfig_app.ItemName}";
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetBagList();
@@ -93,8 +97,10 @@ namespace ET
         }
 
         public static void OnButton_Coin(this UIAppraisalSelectComponent self)
-        { 
-            
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            bagComponent.SendAppraisalItem(self.BagInfo_Equip).Coroutine();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIAppraisalSelect);
         }
 
         public static void OnButton_Item(this UIAppraisalSelectComponent self)
@@ -104,7 +110,10 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选择鉴定符！");
                 return;
             }
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            bagComponent.SendAppraisalItem(self.BagInfo_Equip, self.BagInfo_Appri.BagInfoID).Coroutine();
 
+            UIHelper.Remove(self.ZoneScene(), UIType.UIAppraisalSelect);
         }
     }
 }

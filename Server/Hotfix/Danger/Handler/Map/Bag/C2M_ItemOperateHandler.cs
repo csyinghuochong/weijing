@@ -434,29 +434,28 @@ namespace ET
                 if (request.OperateType == 5)
                 {
                     //判定材料消耗
-                    RewardItem rItem = new RewardItem();
-                    EquipConfig equipCof = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
-                    rItem.ItemID = equipCof.AppraisalItem;
-                    rItem.ItemNum = 1;
-                    List<RewardItem> rewardList = new List<RewardItem>();
-                    if (equipCof.AppraisalItem != 0)
+                    bool ifSell = unit.GetComponent<BagComponent>().OnCostItemData("");     //默认出售全部
+                    long baginfoId = long.Parse(request.OperatePar);
+                    if (baginfoId == 0)
                     {
-                        rewardList.Add(rItem);
+                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData($"1:10000");
                     }
-
-                    bool ifSell = unit.GetComponent<BagComponent>().OnCostItemData(rewardList);     //默认出售全部
+                    else
+                    {
+                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData(baginfoId,1);
+                    }
                     if (ifSell)
                     {
                         //未鉴定才可以
-                        if (useBagInfo.IfJianDing == true)
-                        {
-                            useBagInfo.IfJianDing = false;
-                            useBagInfo.HideProLists = ComHelp.GetEquipZhuanJingHidePro(itemCof.ItemEquipID, itemCof.Id, 60);
-                            m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
-                        }
+                        useBagInfo.IfJianDing = false;
+                        useBagInfo.HideProLists = ComHelp.GetEquipZhuanJingHidePro(itemCof.ItemEquipID, itemCof.Id, 60);
+                        m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
                     }
-                    else {
+                    else 
+                    {
                         response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                        reply();
+                        return;
                     }
                 }
 

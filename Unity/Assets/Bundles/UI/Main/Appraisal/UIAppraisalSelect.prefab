@@ -89,6 +89,8 @@ MonoBehaviour:
     gameObject: {fileID: 7419640075625760753}
   - key: ButtonClose
     gameObject: {fileID: 6249944853738674690}
+  - key: Text_Tip_1
+    gameObject: {fileID: 3574026782091599044}
 --- !u!1 &864332073209748437
 GameObject:
   m_ObjectHideFlags: 0
