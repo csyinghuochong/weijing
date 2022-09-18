@@ -264,13 +264,9 @@ namespace ET
         public static void OnClickWearEquip(this UIEquipTipsComponent self)
         {
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
-            if (itemconf.ItemType == (int)ItemTypeEnum.PetHeXin)
-            {
-                FloatTipManager.Instance.ShowFloatTip("宠物装备！");
-                return;
-            }
+
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (itemconf.ItemType == (int)ItemTypeEnum.Equipment && !ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
+            if (itemconf.ItemSubType == (int)ItemSubTypeEnum.Wuqi && !ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
             {
                 FloatTipManager.Instance.ShowFloatTip("请选择合适的武器！");
                 return;
