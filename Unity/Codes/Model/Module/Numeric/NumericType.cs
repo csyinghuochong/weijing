@@ -40,8 +40,8 @@
         public const int HongBao = 3037;
         public const int Random_Tower_ID = 3038;                                    //随机塔
         public const int ChouKa = 3039;
-        public const int ChouKaOneTime = 3040;
-        public const int ChouKaTenTime = 3041;
+        public const int ChouKaOneTime = 3040;                                      //抽卡在线时间
+        public const int ChouKaTenTime = 3041;                                      //抽卡在线时间
         public const int PointLiLiang = 3042;
         public const int PointZhiLi  = 3043;
         public const int PointTiZhi = 3044;
