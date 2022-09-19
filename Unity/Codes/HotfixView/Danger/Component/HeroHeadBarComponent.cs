@@ -166,6 +166,7 @@ namespace ET
                 if (isboos)
                 {
                     this.ObjName.GetComponent<TextMeshProUGUI>().text = $"<color=#FF5FFF>{monsterCof.MonsterName}</color>";
+                    this.ObjName.GetComponent<TextMeshProUGUI>().fontSize = 32;
                 }
                 else
                 {

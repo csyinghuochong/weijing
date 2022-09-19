@@ -385,7 +385,8 @@ namespace ET
 
                 if (itemconf.UseLv > self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv)
                 {
-                    self.ItemItemLv.GetComponent<Text>().text = langStr + " : " + itemconf.UseLv + " (等级不足)";
+                    self.ItemItemLv.GetComponent<Text>().text = langStr + " : " + itemconf.UseLv;
+                    //self.ItemItemLv.GetComponent<Text>().text = langStr + " : " + itemconf.UseLv + " (等级不足)";
                     self.ItemItemLv.GetComponent<Text>().color = new Color(255f / 255f, 200f / 255f, 200f / 255f);
                 }
             }

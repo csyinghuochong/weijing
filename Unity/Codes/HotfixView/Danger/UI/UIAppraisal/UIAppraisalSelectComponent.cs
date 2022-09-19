@@ -16,6 +16,9 @@ namespace ET
         public GameObject Button_Coin;
         public GameObject UICommonItem_2;
         public GameObject UICommonItem_1;
+        public GameObject Label_JianDingQuality;
+        public GameObject JianDingSet;
+        public GameObject Label_JianDingShow;
 
         public BagInfo BagInfo_Equip;
         public BagInfo BagInfo_Appri;
@@ -36,6 +39,10 @@ namespace ET
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.Text_EquipLevel = rc.Get<GameObject>("Text_EquipLevel");
             self.Text_Coin = rc.Get<GameObject>("Text_Coin");
+            self.Label_JianDingQuality = rc.Get<GameObject>("Label_JianDingQuality");
+            self.JianDingSet = rc.Get<GameObject>("JianDingSet");
+            self.JianDingSet.SetActive(false);
+            self.Label_JianDingShow = rc.Get<GameObject>("Label_JianDingShow");
 
             self.Button_Item = rc.Get<GameObject>("Button_Item");
             ButtonHelp.AddListenerEx( self.Button_Item, () => { self.OnButton_Item();  } );
@@ -46,6 +53,7 @@ namespace ET
             self.UICommonItem_1 = rc.Get<GameObject>("UICommonItem_1");
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIAppraisalSelect); });
+
 
             self.BagInfo_Equip = null;
             self.BagInfo_Appri = null;  
@@ -82,7 +90,7 @@ namespace ET
             {
                 Log.ILog.Debug($" {bagInfos[i].ItemID}  {appItem}");
 
-                if (bagInfos[i].ItemID != appItem)
+                if (bagInfos[i].ItemID != appItem && bagInfos[i].ItemID != 11200000)
                 {
                     continue;
                 }
@@ -90,7 +98,7 @@ namespace ET
                 UICommonHelper.SetParent(itemSpace, self.ItemListNode);
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
                 uIItemComponent.UpdateItem(bagInfos[i], ItemOperateEnum.None);
-                uIItemComponent.SetClickHandler((BagInfo baginfo) => { self.OnSelectItem(baginfo);  } );
+                uIItemComponent.SetClickHandler((BagInfo baginfo) => { self.OnSelectItem(baginfo, itemCof);  } );
                 string pingzhi = $"品质:{bagInfos[i].ItemPar}";
                 uIItemComponent.Label_ItemName.GetComponent<Text>().text = pingzhi;
                 uIItemComponent.Label_ItemName.SetActive(true);
@@ -98,10 +106,45 @@ namespace ET
             }
         }
 
-        public static void OnSelectItem(this UIAppraisalSelectComponent self, BagInfo bagInfo)
+        public static void OnSelectItem(this UIAppraisalSelectComponent self, BagInfo bagInfo,ItemConfig itemCof)
         { 
             self.BagInfo_Appri = bagInfo;
             self.UIItemComponent_2.UpdateItem(bagInfo, ItemOperateEnum.None);
+            self.UIItemComponent_2.GameObject.SetActive(true);
+            self.Label_JianDingQuality.GetComponent<Text>().text = "品质:" + bagInfo.ItemPar;
+            string jianDingStr = "大海捞针";
+            int chaValue = int.Parse(bagInfo.ItemPar) - itemCof.UseLv;
+            if (chaValue < 0) {
+                jianDingStr = "大海捞针";
+                self.Label_JianDingShow.GetComponent<Text>().color = new Color(130f / 255f, 130f / 255f, 130f / 255f);
+            }
+            if (chaValue >= 0 && chaValue < 8) {
+                jianDingStr = "一击必中";
+                self.Label_JianDingShow.GetComponent<Text>().color = new Color(175f / 255f, 200f / 255f, 20f / 255f);
+            }
+            if (chaValue >= 8 && chaValue < 16)
+            {
+                jianDingStr = "十发十中";
+                self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(2);
+            }
+            if (chaValue >= 16 && chaValue < 24)
+            {
+                jianDingStr = "百年不遇";
+                self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(3);
+            }
+            if (chaValue >= 24 && chaValue < 32)
+            {
+                jianDingStr = "千载难逢";
+                self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(4);
+            }
+            if (chaValue >= 32 && chaValue < 999)
+            {
+                jianDingStr = "万里挑一";
+                self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(5);
+            }
+
+            self.Label_JianDingShow.GetComponent<Text>().text = jianDingStr;
+            self.JianDingSet.SetActive(true);
             for (int i = 0; i < self.uIItems.Count; i++)
             {
                 self.uIItems[i].SetSelected(bagInfo);
@@ -122,10 +165,14 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选择鉴定符！");
                 return;
             }
+
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             bagComponent.SendAppraisalItem(self.BagInfo_Equip, self.BagInfo_Appri.BagInfoID).Coroutine();
 
             UIHelper.Remove(self.ZoneScene(), UIType.UIAppraisalSelect);
+
+            FloatTipManager.Instance.ShowFloatTip("恭喜您！道具发挥了作用,鉴定成功!");
+
         }
     }
 }

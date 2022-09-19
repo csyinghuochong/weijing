@@ -437,14 +437,15 @@ namespace ET
                     bool ifSell = false;     //默认出售全部
                     long baginfoId = long.Parse(request.OperatePar);
                     int rolelv = useInfo.Lv;
+                    string qulitylv = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, baginfoId).ItemPar;
+                    qulitylv = string.IsNullOrEmpty(qulitylv) ? "0" : qulitylv;
+
                     if (baginfoId == 0)
                     {
                         ifSell = unit.GetComponent<BagComponent>().OnCostItemData($"1;{ComHelp.GetJianDingCoin(rolelv)}");
                     }
                     else
                     {
-                        string qulitylv = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, baginfoId).ItemPar;
-                        qulitylv = string.IsNullOrEmpty(qulitylv) ? "0" : qulitylv;
                         rolelv = int.Parse(qulitylv);
                         ifSell = unit.GetComponent<BagComponent>().OnCostItemData(baginfoId,1);
                     }
@@ -452,7 +453,7 @@ namespace ET
                     {
                         //未鉴定才可以
                         useBagInfo.IfJianDing = false;
-                        useBagInfo.HideProLists = ComHelp.GetEquipZhuanJingHidePro(itemCof.ItemEquipID, itemCof.Id, rolelv);
+                        useBagInfo.HideProLists = ComHelp.GetEquipZhuanJingHidePro(itemCof.ItemEquipID, itemCof.Id, int.Parse(qulitylv));
                         m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
                     }
                     else 
