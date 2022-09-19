@@ -905,9 +905,38 @@ namespace ET
             return retunrnValue;
         }
 
+        //金币鉴定消费
         public static int GetJianDingCoin(int level)
         {
-            return level * 100;
+            int gold = 30000;
+            bool ifStatus = false;
+
+            if (level <= 18) {
+                gold = 30000;
+                ifStatus = true;
+            }
+
+            if (level <= 29 && ifStatus == false)
+            {
+                gold = 30000;
+            }
+
+            if (level <= 39 && ifStatus == false)
+            {
+                gold = 40000;
+            }
+
+            if (level <= 49 && ifStatus == false)
+            {
+                gold = 60000;
+            }
+
+            if (level <= 100 && ifStatus == false)
+            {
+                gold = 80000;
+            }
+
+            return gold;
         }
 
         /// <summary>
