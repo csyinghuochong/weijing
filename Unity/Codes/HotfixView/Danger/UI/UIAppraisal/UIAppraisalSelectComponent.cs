@@ -20,7 +20,7 @@ namespace ET
         public BagInfo BagInfo_Equip;
         public BagInfo BagInfo_Appri;
 
-
+        public UIItemComponent UIItemComponent_2;
         public List<UIItemComponent> uIItems = new List<UIItemComponent> ();
     }
 
@@ -69,7 +69,9 @@ namespace ET
 
             ItemConfig itemConfig_app = ItemConfigCategory.Instance.Get(appItem);
             UIItemComponent item_app = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem_2);
-            item_app.UpdateItem(new BagInfo() {ItemID =  appItem,ItemNum = 1 }, ItemOperateEnum.None);
+            self.UIItemComponent_2 = item_app;
+            self.UIItemComponent_2.GameObject.SetActive(false);
+            //item_app.UpdateItem(new BagInfo() {ItemID =  appItem,ItemNum = 1 }, ItemOperateEnum.None);
             self.Text_Tip_1.GetComponent<Text>().text = $"需要消耗：{itemConfig_app.ItemName}";
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
@@ -99,6 +101,7 @@ namespace ET
         public static void OnSelectItem(this UIAppraisalSelectComponent self, BagInfo bagInfo)
         { 
             self.BagInfo_Appri = bagInfo;
+            self.UIItemComponent_2.UpdateItem(bagInfo, ItemOperateEnum.None);
             for (int i = 0; i < self.uIItems.Count; i++)
             {
                 self.uIItems[i].SetSelected(bagInfo);
