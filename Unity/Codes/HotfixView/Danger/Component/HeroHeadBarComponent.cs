@@ -89,7 +89,7 @@ namespace ET
                 HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIPetHp");
             }
             long instanceid = this.InstanceId;
-            HeadBar = await GameObjectPool.Instance.GetExternal(HeadBarPath);
+            HeadBar = await GameObjectPoolComponent.Instance.GetExternal(HeadBarPath);
             HeadBar.SetActive(true);
             if (instanceid != this.InstanceId)
             {
@@ -267,7 +267,7 @@ namespace ET
             if (HeadBar != null)
             {
                 HeadBar.SetActive(false);
-                GameObjectPool.Instance.InternalPut(HeadBarPath, HeadBar);
+                GameObjectPoolComponent.Instance.InternalPut(HeadBarPath, HeadBar);
                 HeadBar = null;
             }
         }

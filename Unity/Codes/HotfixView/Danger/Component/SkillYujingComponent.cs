@@ -89,7 +89,7 @@ namespace ET
             SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
             skillIndicatorItem.SkillZhishiType = (SkillZhishiType)skillConfig.SkillZhishiType;
             skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
-            skillIndicatorItem.GameObject = await GameObjectPool.Instance.GetExternal(skillIndicatorItem.EffectPath);
+            skillIndicatorItem.GameObject = await GameObjectPoolComponent.Instance.GetExternal(skillIndicatorItem.EffectPath);
             skillIndicatorItem.GameObject.transform.localScale = Vector3.one * 0.1f;
 
             skillIndicatorItem.TargetAngle = skillcmd.TargetAngle;
@@ -133,7 +133,7 @@ namespace ET
         public static void RecoveryEffect(this SkillYujingComponent self, SkillIndicatorItem skillIndicatorItem)
         {
             skillIndicatorItem.GameObject.SetActive(false);
-            GameObjectPool.Instance.InternalPut(skillIndicatorItem.EffectPath, skillIndicatorItem.GameObject);
+            GameObjectPoolComponent.Instance.InternalPut(skillIndicatorItem.EffectPath, skillIndicatorItem.GameObject);
             skillIndicatorItem = null;
         }
 

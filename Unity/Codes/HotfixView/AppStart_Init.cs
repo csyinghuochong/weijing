@@ -60,6 +60,7 @@ namespace ET
             Game.Scene.AddComponent<SoundComponent>();
             Game.Scene.AddComponent<NumericWatcherComponent>();     //数值监听组件
             Game.Scene.AddComponent<ShouJiChapterInfoComponent>();
+            Game.Scene.AddComponent<GameObjectPoolComponent>();
             TimeInfo.Instance.TimeZone = 8;
             //await ResourcesComponent.Instance.LoadBundleAsync("unit.unity3d");
 

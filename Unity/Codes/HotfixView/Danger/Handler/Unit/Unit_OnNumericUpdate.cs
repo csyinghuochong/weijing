@@ -53,7 +53,7 @@
                     args.Unit.RemoveComponent<HeroTransformComponent>();
                     args.Unit.RemoveComponent<FsmComponent>();
                     args.Unit.RemoveComponent<HeroHeadBarComponent>();
-                    UICommonHelper.AfterPetCreate(args.Unit).Coroutine();
+                    args.Unit.AddComponent<GameObjectComponent>();
                     break;
                 case NumericType.ZeroClock:
                     UserInfoComponent userInfoComponent = args.Unit.ZoneScene().GetComponent<UserInfoComponent>();

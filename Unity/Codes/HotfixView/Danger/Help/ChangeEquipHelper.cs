@@ -49,7 +49,7 @@ namespace ET
                     weaponPath = "14100101";
                 }
             }
-            Log.ILog.Debug($"ChangeWeapon  {weaponPath}  {weaponParent}");
+
             var path = ABPathHelper.GetItemPath(weaponPath);
             await ETTask.CompletedTask;
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);

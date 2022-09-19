@@ -125,8 +125,6 @@ namespace ET
             {
                 self.ImageStarList.transform.GetChild(i).gameObject.SetActive(rolePetInfo.Star > i);
             }
-
-
             self.Text_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
@@ -138,7 +136,8 @@ namespace ET
             string expStr = rolePetInfo.PetExp.ToString();
             string upExpStr = expConfig.UpExp.ToString();
 
-            if (rolePetInfo.PetExp >= 10000) {
+            if (rolePetInfo.PetExp >= 10000) 
+            {
                 expStr = (int)(rolePetInfo.PetExp / 10000) + GameSettingLanguge.LoadLocalization("万");
             }
 
@@ -170,7 +169,7 @@ namespace ET
             self.ImageStarList.SetActive(havepet && !GlobalHelp.IsBanHaoMode);
             self.Img_PetHeroIon.SetActive(havepet);
             self.Text_PetLevel.SetActive(havepet);
-            //self.Text_PetExp.SetActive(pet);
+            self.Text_PetExp.SetActive(havepet);
             self.ImageExpValue.SetActive(havepet);
             for (int i = 0; i < self.PetZiZhiItemList.Length; i++)
             {

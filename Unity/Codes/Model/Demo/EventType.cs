@@ -127,46 +127,6 @@ namespace ET
             public string Token;
         }
 
-        public class AfterPetCreate : DisposeObject
-        {
-            public static readonly AfterPetCreate Instance = new AfterPetCreate();
-            public Unit Unit;
-
-            public override void Dispose()
-            {
-                this.Unit = null;
-            }
-        }
-
-        public class AfterDropCreate : DisposeObject
-        {
-            public static readonly AfterDropCreate Instance = new AfterDropCreate();
-            public DropInfo DropItem;
-            public Unit Unit;
-
-            public override void Dispose()
-            {
-                this.Unit = null;
-            }
-        }
-
-        public class AfterTransferCreate : DisposeObject
-        {
-            public static readonly AfterTransferCreate Instance = new AfterTransferCreate();
-            public Unit Unit;
-
-            public override void Dispose()
-            {
-                //this.Unit = null;
-            }
-        }
-
-        public class AfterNpcCreate : DisposeObject
-        {
-            public static readonly AfterNpcCreate Instance = new AfterNpcCreate();
-            public Unit Unit;
-        }
-
         public class RoleDataBroadcase : DisposeObject
         {
             public static readonly RoleDataBroadcase Instance = new RoleDataBroadcase();
@@ -425,16 +385,6 @@ namespace ET
         public class MoveStop : DisposeObject
         {
             public static readonly MoveStop Instance = new MoveStop();
-            public Unit Unit;
-            public override void Dispose()
-            {
-                this.Unit = null;
-            }
-        }
-
-        public class AfterSpilingCreate : DisposeObject
-        {
-            public static readonly AfterSpilingCreate Instance = new AfterSpilingCreate();
             public Unit Unit;
             public override void Dispose()
             {

@@ -96,8 +96,6 @@ namespace ET
             {
                 difficultyinfo = difficultyinfo.Substring(0, difficultyinfo.Length - 1);
             }
-
-            Log.ILog.Debug($" 11:  {difficultyinfo}");
             SetString(ChapterDifficulty, difficultyinfo);
         }
     }

@@ -37,7 +37,6 @@ namespace ET
 			unit.AddComponent<MoveComponent>();
 			if (unitInfo.MoveInfo != null && unitInfo.MoveInfo.X.Count > 0)
 			{
-
 					using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
 					{
 						list.Add(unit.Position);
@@ -146,7 +145,6 @@ namespace ET
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
 			unitInfoComponent.Type = UnitType.Chuansong;
 			unitInfoComponent.UnitCondigID = transferInfo.TransferId;
-			EventType.AfterTransferCreate.Instance.Unit = unit;
 
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;

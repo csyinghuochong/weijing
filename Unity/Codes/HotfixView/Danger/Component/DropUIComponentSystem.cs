@@ -62,14 +62,12 @@ namespace ET
             return number;
         }
 
-        public static async ETTask InitData(this DropUIComponent self, DropInfo dropinfo, string assetPath)
+        public static async ETTask InitData(this DropUIComponent self, DropInfo dropinfo)
         {
-            self.AssetPath = assetPath;
             long instanceid = self.InstanceId;
             //int number = self.GetDropNumber();
-
             var path = ABPathHelper.GetUGUIPath("Battle/UIDropItem");
-            self.HeadBar = await GameObjectPool.Instance.GetExternal(path);
+            self.HeadBar = await GameObjectPoolComponent.Instance.GetExternal(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -245,7 +243,7 @@ namespace ET
             if (self.HeadBar != null)
             {
                 self.HeadBar.SetActive(false);
-                GameObjectPool.Instance.InternalPut(ABPathHelper.GetUGUIPath("Battle/UIDropItem"), self.HeadBar);
+                GameObjectPoolComponent.Instance.InternalPut(ABPathHelper.GetUGUIPath("Battle/UIDropItem"), self.HeadBar);
                 self.HeadBar = null;
             }
             self.PositionIndex = 0;

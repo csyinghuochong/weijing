@@ -32,7 +32,7 @@ namespace ET
             //先卸载旧资源
             if (args.LastSceneType > (int)SceneTypeEnum.MainCityScene)
             {
-                GameObjectPool.Instance.DisposeAll();
+                GameObjectPoolComponent.Instance.DisposeAll();
                 UI uimain = UIHelper.GetUI(args.ZoneScene, UIType.UIMain);
                 uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnExitBattle();
             }
