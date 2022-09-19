@@ -165,12 +165,14 @@ namespace ET
 
         public static void OnUpdateUI(this UIRoleAddPointComponent self)
         {
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+
             self.Lab_ShengYuNum.GetComponent<Text>().text = self.PointRemain.ToString();
-            self.OnUpdateItem(self.AddProperty_LiLiang, self.PointList[0]);
-            self.OnUpdateItem(self.AddProperty_ZhiLi, self.PointList[1]);
-            self.OnUpdateItem(self.AddProperty_TiZhi, self.PointList[2]);
-            self.OnUpdateItem(self.AddProperty_NaiLi, self.PointList[3]);
-            self.OnUpdateItem(self.AddProperty_MingJie, self.PointList[4]);
+            self.OnUpdateItem(self.AddProperty_LiLiang, self.PointList[0], userInfo.Lv);
+            self.OnUpdateItem(self.AddProperty_ZhiLi, self.PointList[1], userInfo.Lv);
+            self.OnUpdateItem(self.AddProperty_TiZhi, self.PointList[2], userInfo.Lv);
+            self.OnUpdateItem(self.AddProperty_NaiLi, self.PointList[3], userInfo.Lv);
+            self.OnUpdateItem(self.AddProperty_MingJie, self.PointList[4], userInfo.Lv);
         }
 
         public static void OnInitUI(this UIRoleAddPointComponent self)
@@ -178,7 +180,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             self.PointList.Clear();
-            self.PointList.Add(self.GetNumericValue(numericComponent, 0) );
+            self.PointList.Add(self.GetNumericValue(numericComponent, 0));
             self.PointList.Add(self.GetNumericValue(numericComponent, 1));
             self.PointList.Add(self.GetNumericValue(numericComponent, 2));
             self.PointList.Add(self.GetNumericValue(numericComponent, 3));
@@ -188,9 +190,9 @@ namespace ET
             self.OnUpdateUI();
         }
 
-        public static void OnUpdateItem(this UIRoleAddPointComponent self, GameObject gameObject, int number)
+        public static void OnUpdateItem(this UIRoleAddPointComponent self, GameObject gameObject, int number, int level)
         {
-            gameObject.transform.Find("Lab_Value").GetComponent<Text>().text = number.ToString();
+            gameObject.transform.Find("Lab_Value").GetComponent<Text>().text = (number + level).ToString();
         }
     }
 

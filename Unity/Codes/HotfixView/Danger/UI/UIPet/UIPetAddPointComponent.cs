@@ -160,15 +160,15 @@ namespace ET
             self.RolePetInfo = rolePetInfo;
             self.Lab_ShengYuNum.GetComponent<Text>().text = rolePetInfo.AddPropretyNum.ToString();
             string[] propertyList = self.RolePetInfo.AddPropretyValue.Split('_');
-            self.OnUpdateItem(self.AddProperty_LiLiang, int.Parse(propertyList[0]));
-            self.OnUpdateItem(self.AddProperty_ZhiLi, int.Parse(propertyList[1]));
-            self.OnUpdateItem(self.AddProperty_TiZhi, int.Parse(propertyList[2]));
-            self.OnUpdateItem(self.AddProperty_NaiLi, int.Parse(propertyList[3]));
+            self.OnUpdateItem(self.AddProperty_LiLiang, int.Parse(propertyList[0]), rolePetInfo.PetLv);
+            self.OnUpdateItem(self.AddProperty_ZhiLi, int.Parse(propertyList[1]), rolePetInfo.PetLv);
+            self.OnUpdateItem(self.AddProperty_TiZhi, int.Parse(propertyList[2]), rolePetInfo.PetLv);
+            self.OnUpdateItem(self.AddProperty_NaiLi, int.Parse(propertyList[3]), rolePetInfo.PetLv);
         }
 
-        public static void OnUpdateItem(this UIPetAddPointComponent self, GameObject gameObject, int number)
+        public static void OnUpdateItem(this UIPetAddPointComponent self, GameObject gameObject, int number, int level)
         {
-            gameObject.transform.Find("Lab_Value").GetComponent<Text>().text = number.ToString();
+            gameObject.transform.Find("Lab_Value").GetComponent<Text>().text = ( number+ level ).ToString();
         }
     }
 
