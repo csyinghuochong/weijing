@@ -34,7 +34,7 @@ namespace ET
                 self.GameObject.SetActive(false);
                 self.ObjFlyText.SetActive(false);
                 string uIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
-                GameObjectPool.Instance.InternalPut(uIBattleFly, self.GameObject);
+                GameObjectPoolComponent.Instance.InternalPut(uIBattleFly, self.GameObject);
             }
         }
     }
@@ -45,7 +45,7 @@ namespace ET
         {
             long instanceid = self.InstanceId;
             string uIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
-            GameObject FlyFontObj = await GameObjectPool.Instance.GetExternal(uIBattleFly);
+            GameObject FlyFontObj = await GameObjectPoolComponent.Instance.GetExternal(uIBattleFly);
             if (instanceid != self.InstanceId)
             {
                 return;

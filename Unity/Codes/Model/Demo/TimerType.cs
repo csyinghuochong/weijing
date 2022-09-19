@@ -48,6 +48,7 @@
         public const int RoleXiLianLevel = 1056;
         public const int AttackGridTimer = 1057;
         public const int DropUITimer = 1058;
+        public const int GameObjectPoolTimer = 1059;
         // 不能超过10000
     }
 }

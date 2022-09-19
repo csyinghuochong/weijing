@@ -103,11 +103,7 @@
     <Compile Include="Codes\HotfixView\Danger\Handler\Skill\Skill_OnSkillYuJing.cs" />
     <Compile Include="Codes\HotfixView\Danger\Handler\Skill\State_OnStateChange.cs" />
     <Compile Include="Codes\HotfixView\Danger\Handler\Task\Task_OnTaskNpcDialog.cs" />
-    <Compile Include="Codes\HotfixView\Danger\Handler\Unit\AfterDropCreate_CreateDrop.cs" />
-    <Compile Include="Codes\HotfixView\Danger\Handler\Unit\AfterNpcCreate_CreateNpc.cs" />
-    <Compile Include="Codes\HotfixView\Danger\Handler\Unit\AfterPetCreate_CreatePet.cs" />
-    <Compile Include="Codes\HotfixView\Danger\Handler\Unit\AfterSpilingCreate_CreateUnitView.cs" />
-    <Compile Include="Codes\HotfixView\Danger\Handler\Unit\AfterTransferCreate_CreateTransfer.cs" />
+    <Compile Include="Codes\HotfixView\Danger\Handler\Unit\Unit_OnCreateUnit.cs" />
     <Compile Include="Codes\HotfixView\Danger\Handler\Unit\MoveStart_PlayMoveAnimate.cs" />
     <Compile Include="Codes\HotfixView\Danger\Handler\Unit\MoveStop_PlayIdleAnimate.cs" />
     <Compile Include="Codes\HotfixView\Danger\Handler\Unit\Unit_OnHpUpdate.cs" />
@@ -124,7 +120,7 @@
     <Compile Include="Codes\HotfixView\Danger\Help\ErrorHelp.cs" />
     <Compile Include="Codes\HotfixView\Danger\Help\FunctionEffect.cs" />
     <Compile Include="Codes\HotfixView\Danger\Help\FunctionUI.cs" />
-    <Compile Include="Codes\HotfixView\Danger\Help\GameObjectPool.cs" />
+    <Compile Include="Codes\HotfixView\Danger\Component\GameObjectPoolComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\Help\GameSettingLanguge.cs" />
     <Compile Include="Codes\HotfixView\Danger\Help\ItemViewHelp.cs" />
     <Compile Include="Codes\HotfixView\Danger\Help\LayerHelp.cs" />
@@ -523,7 +519,6 @@
     <Compile Include="Codes\HotfixView\Demo\UI\UILogin\UILoginComponentSystem.cs" />
     <Compile Include="Codes\HotfixView\Demo\UI\UILogin\UILoginEvent.cs" />
     <Compile Include="Codes\HotfixView\Demo\UI\UILogin\UIServerListEvent.cs" />
-    <Compile Include="Codes\HotfixView\Demo\Unit\AfterUnitCreate_CreateUnitView.cs" />
     <Compile Include="Codes\HotfixView\Demo\Unit\AnimatorComponentSystem.cs" />
     <Compile Include="Codes\HotfixView\Demo\Unit\ChangePosition_SyncGameObjectPos.cs" />
     <Compile Include="Codes\HotfixView\Demo\Unit\ChangeRotation_SyncGameObjectRotation.cs" />

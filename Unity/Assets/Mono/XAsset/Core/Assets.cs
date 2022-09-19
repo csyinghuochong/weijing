@@ -171,6 +171,11 @@ namespace libx
         }
         public static void UnloadAsset(string asset)
         {
+            if (!_assets.ContainsKey(asset))
+            {
+                UnityEngine.Debug.LogError("_assets nof found:     " + asset);
+                return;
+            }
             _assets[asset].Release();
         }
 

@@ -76,34 +76,8 @@ namespace ET
                 self.WaitLoad = true;
                 return;
             }
-            UnitInfoComponent unitInfoComponent = self.GetComponent<UnitInfoComponent>();
-            switch (unitInfoComponent.Type)
-            {
-                case UnitType.Player:
-                    EventType.AfterUnitCreate.Instance.Unit = self;
-                    Game.EventSystem.PublishClass(EventType.AfterUnitCreate.Instance);
-                    break;
-                case UnitType.Monster:
-                    EventType.AfterSpilingCreate.Instance.Unit = self;
-                    Game.EventSystem.PublishClass(EventType.AfterSpilingCreate.Instance);
-                    break;
-                case UnitType.Pet:
-                    EventType.AfterPetCreate.Instance.Unit = self;
-                    Game.EventSystem.PublishClass(EventType.AfterPetCreate.Instance);
-                    break;
-                case UnitType.DropItem:
-                    EventType.AfterDropCreate.Instance.Unit = self;
-                    Game.EventSystem.PublishClass(EventType.AfterDropCreate.Instance);
-                    break;
-                case UnitType.Chuansong:
-                    EventType.AfterTransferCreate.Instance.Unit = self;
-                    Game.EventSystem.PublishClass(EventType.AfterTransferCreate.Instance);
-                    break;
-                case UnitType.Npc:
-                    EventType.AfterNpcCreate.Instance.Unit = self;
-                    Game.EventSystem.PublishClass(EventType.AfterNpcCreate.Instance);
-                    break;
-            }
+            EventType.AfterUnitCreate.Instance.Unit = self;
+            Game.EventSystem.PublishClass(EventType.AfterUnitCreate.Instance);
         }
     }
 }

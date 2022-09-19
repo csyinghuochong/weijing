@@ -8,31 +8,6 @@ namespace ET
     public static class UICommonHelper
     {
 
-        public static async ETTask AfterPetCreate(Unit unit)
-        {
-            int skinId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Pet_Skin);
-            int configId = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
-            PetConfig petConfig = PetConfigCategory.Instance.Get(configId);
-            if (skinId == 0)
-            {
-                skinId = petConfig.Skin[0];
-            }
-            PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(skinId);
-            var path = ABPathHelper.GetUnitPath("Pet/" + petSkinConfig.SkinID.ToString());
-            GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            go.transform.localPosition = unit.Position;
-            go.transform.localRotation = unit.Rotation;
-            go.transform.name = unit.Id.ToString();
-            unit.AddComponent<EffectViewComponent>();            //添加特效组建
-            unit.AddComponent<GameObjectComponent, GameObject>(go);
-            unit.AddComponent<AnimatorComponent>();
-            unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
-            unit.AddComponent<FsmComponent>();                 //当前状态组建
-            unit.UpdateUIType = HeadBarType.HeroHeadBar;
-            unit.AddComponent<HeroHeadBarComponent>();         //血条UI组件
-        }
-
         public static string GetNeedItemDesc(string needitems)
         {
             string itemDesc = "";
@@ -115,51 +90,6 @@ namespace ET
                 continue;
             }
         }
-
-        //public static void UpdaterAllHeadBar(Unit self)
-        //{
-        //    float curTime = Time.time;
-        //    Entity[] units = self.GetParent<UnitComponent>().GetAll();
-        //    for (int i = 0; i < units.Length; i++)
-        //    {
-        //        Unit unit = units[i] as Unit;
-        //        if (curTime <= unit.UpdateUITime)
-        //        {
-        //            continue;
-        //        }
-        //        unit.UpdateUITime = curTime;
-        //        if (unit.UpdateUIType == HeadBarType.TransferUI)
-        //        { 
-        //            TransferUIComponent transferUIComponent = units[i].GetComponent<TransferUIComponent>();
-        //            transferUIComponent.LateUpdate();
-        //            continue;
-        //        }
-        //        if (unit.UpdateUIType == HeadBarType.NpcHeadBarUI)
-        //        {
-        //            NpcHeadBarComponent npcHeadBarComponent = unit.GetComponent<NpcHeadBarComponent>();
-        //            npcHeadBarComponent.LateUpdate();
-        //            continue;
-        //        }
-        //        if (unit.UpdateUIType == HeadBarType.DropUI)
-        //        {
-        //            DropUIComponent dropUIComponent = unit.GetComponent<DropUIComponent>();
-        //            dropUIComponent.LateUpdate();
-        //            continue;
-        //        }
-        //        if (unit.UpdateUIType == HeadBarType.HeroHeadBar)
-        //        {
-        //            HeroHeadBarComponent heroHeadBarComponent = unit.GetComponent<HeroHeadBarComponent>();
-        //            heroHeadBarComponent.LateUpdate();
-        //            continue;
-        //        }
-        //        if (unit.UpdateUIType == HeadBarType.SceneItemUI)
-        //        {
-        //            UISceneItemComponent uISceneItemComponent = unit.GetComponent<UISceneItemComponent>();
-        //            uISceneItemComponent.LateUpdate();
-        //            continue;
-        //        }
-        //    }
-        //}
 
         public static void ShowItemList(List<RewardItem> itemList, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true)
         {

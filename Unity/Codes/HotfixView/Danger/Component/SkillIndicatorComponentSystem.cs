@@ -94,7 +94,7 @@ namespace ET
             SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
             skillIndicatorItem.SkillZhishiType = (SkillZhishiType)skillconfig.SkillZhishiType;
             skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
-            skillIndicatorItem.GameObject = await GameObjectPool.Instance.GetExternal(skillIndicatorItem.EffectPath);
+            skillIndicatorItem.GameObject = await GameObjectPoolComponent.Instance.GetExternal(skillIndicatorItem.EffectPath);
             skillIndicatorItem.GameObject.SetActive(true);
             UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);
             self.SkillIndicator = skillIndicatorItem;
@@ -120,7 +120,7 @@ namespace ET
             SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
             skillIndicatorItem.SkillZhishiType = SkillZhishiType.CommonAttack;
             skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
-            skillIndicatorItem.GameObject = await GameObjectPool.Instance.GetExternal(skillIndicatorItem.EffectPath);
+            skillIndicatorItem.GameObject = await GameObjectPoolComponent.Instance.GetExternal(skillIndicatorItem.EffectPath);
             skillIndicatorItem.GameObject.SetActive(true);
             UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);
             self.SkillIndicator = skillIndicatorItem;
@@ -241,7 +241,7 @@ namespace ET
                 return;
             }
             skillIndicatorItem.GameObject.SetActive(false);
-            GameObjectPool.Instance.InternalPut(skillIndicatorItem.EffectPath, skillIndicatorItem.GameObject);
+            GameObjectPoolComponent.Instance.InternalPut(skillIndicatorItem.EffectPath, skillIndicatorItem.GameObject);
             self.SkillIndicator = null;
         }
 

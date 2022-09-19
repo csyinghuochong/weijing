@@ -15,10 +15,10 @@ namespace ET
         {
             Camera camera = UIComponent.Instance.MainCamera.gameObject.GetComponent<Camera>();
             camera.GetComponent<MyCamera_1>().enabled = false;
-
+;
             await Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.LoginScene, 1);
             args.ZoneScene.Dispose();
-            GameObjectPool.Instance.DisposeAll();
+            GameObjectPoolComponent.Instance.DisposeAll();
             Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
 
             EventType.AppStartInitFinish.Instance.ZoneScene = zoneScene;

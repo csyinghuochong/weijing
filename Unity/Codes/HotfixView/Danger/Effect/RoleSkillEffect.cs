@@ -50,7 +50,7 @@ namespace ET
 
             string effectNamePath  = effectFileName + EffectData.mEffectConfig.EffectName;
             EffectPath = ABPathHelper.GetEffetPath(effectNamePath);
-            EffectObj = await GameObjectPool.Instance.GetExternal(EffectPath);
+            EffectObj = await GameObjectPoolComponent.Instance.GetExternal(EffectPath);
 
             if (EffectObj == null)
             {
@@ -212,7 +212,7 @@ namespace ET
             this.EffectData = null;
             if (this.EffectObj != null)
             {
-                GameObjectPool.Instance.InternalPut(this.EffectPath, this.EffectObj);
+                GameObjectPoolComponent.Instance.InternalPut(this.EffectPath, this.EffectObj);
                 this.EffectObj.SetActive(false);
                 this.EffectObj = null;
             }

@@ -22,7 +22,6 @@ namespace ET
         public HeadBarUI HeadBarUI;
         public long Timer;
 
-        public string AssetPath;
     }
 
 }
