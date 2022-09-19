@@ -170,7 +170,7 @@ namespace ET
             self.ImageStarList.SetActive(havepet && !GlobalHelp.IsBanHaoMode);
             self.Img_PetHeroIon.SetActive(havepet);
             self.Text_PetLevel.SetActive(havepet);
-            //self.Text_PetExp.SetActive(pet);
+            self.Text_PetExp.SetActive(havepet);
             self.ImageExpValue.SetActive(havepet);
             for (int i = 0; i < self.PetZiZhiItemList.Length; i++)
             {
