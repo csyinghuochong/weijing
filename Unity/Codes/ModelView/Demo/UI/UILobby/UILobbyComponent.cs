@@ -22,7 +22,7 @@ namespace ET
 
 		public CreateRoleListInfo SeletRoleInfo;              
 		public List<UI> createRoleListUI = new List<UI>();
-
+		public ETCancellationToken eTCancellation = null;
 		public AccountInfoComponent PlayerComponent;
 	}
 }

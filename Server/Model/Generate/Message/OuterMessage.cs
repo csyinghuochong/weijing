@@ -665,6 +665,9 @@ namespace ET
 		[ProtoMember(5)]
 		public int PlayerOcc { get; set; }
 
+		[ProtoMember(6)]
+		public int WeaponId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.UnitInfo)]

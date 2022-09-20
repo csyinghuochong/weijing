@@ -36,35 +36,32 @@ namespace ET
 				DBAccountInfo newAccount = d2GGetUnit.Component as DBAccountInfo;
 
 				//创建角色组件
-				await DBHelper.AddDataComponent<UserInfoComponent>(zone, userId, DBHelper.UserInfoComponent);
+				await DBHelper.AddDataComponent<NumericComponent>(zone, userId, DBHelper.NumericComponent);
 				await DBHelper.AddDataComponent<DBFriendInfo>(zone, userId, DBHelper.DBFriendInfo);
 				await DBHelper.AddDataComponent<DBMailInfo>(zone, userId, DBHelper.DBMailInfo);
 
-				d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userId, Component = DBHelper.UserInfoComponent });
-				UserInfoComponent userInfoComponent = d2GGetUnit.Component as UserInfoComponent;
+				UserInfoComponent userInfoComponent = session.AddChildWithId<UserInfoComponent>(userId);
 				UserInfo userInfo = userInfoComponent.UserInfo;
-				userInfo.AccInfoID = newAccount.Id;
+				userInfo.HuoYue = 0;
 				userInfo.UserId = userId;
+				userInfo.AccInfoID = newAccount.Id;
 				userInfo.Name = request.CreateName;
 				userInfo.Occ = request.CreateOcc;           //职业暂时默认为1
-				userInfo.HuoYue = 0;
 				userInfo.Lv = newAccount.Password == ComHelp.RobotPassWord ? 20 : 1;
 				userInfo.Gold = newAccount.Password == ComHelp.RobotPassWord ? 1000000 : 0;
-				//userInfo.Diamond = 10000;    //测试默认创建给5000
 				userInfo.PiLao = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);        //初始化疲劳
 				userInfo.Vitality = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
 				userInfo.MakeList.AddRange(ComHelp.StringArrToIntList(GlobalValueConfigCategory.Instance.Get(18).Value.Split(';')));
-				userInfoComponent.Id = userInfo.UserId;
 				D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = userId, Component = userInfoComponent, ComponentType = DBHelper.UserInfoComponent });
+				userInfoComponent.Dispose();
 
 				//存储账号信息
-				newAccount.UserList.Add(userInfoComponent.Id);
+				newAccount.UserList.Add(userId);
 				d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = newAccount.Id, Component = newAccount, ComponentType = DBHelper.DBAccountInfo });
 
-				CreateRoleListInfo roleList = new CreateRoleListInfo();
-				roleList = Function_Role.GetInstance().GetRoleListInfo(userInfo, newAccount.UserList.Count - 1, userInfoComponent.Id);
+				//返回角色信息
+				CreateRoleListInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userInfo, newAccount.UserList.Count - 1, userId);
 				response.createRoleInfo = roleList;
-
 				reply();
 			}
 			catch (Exception ex)

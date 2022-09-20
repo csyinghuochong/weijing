@@ -41,31 +41,13 @@ namespace ET
                 self.AddComponent<ChangeEquipHelper>().LoadEquipment(self.target);
             }
 
-            if (equipId != 0)
-            {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipId);
-                self.ChangeWeapon(itemConfig.ItemModelID);
-            }
-            else
-            {
-                self.ChangeWeapon( "");
-            }
-        }
-        public static void ChangeWeapon(this ChangeEquipComponent self, BagInfo bagInfo)
-        {
-            string weaponPath = "";
-            if (bagInfo != null)
-            {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-                weaponPath = itemConfig.ItemModelID;
-            }
-            self.ChangeWeapon(weaponPath);
+            self.ChangeWeapon(equipId);
         }
 
-        public static void ChangeWeapon(this ChangeEquipComponent self,  string weaponPath)
+        public static void ChangeWeapon(this ChangeEquipComponent self,  int weaponId)
         {
             int occ = self.GetParent<Unit>().GetComponent<UnitInfoComponent>().UnitCondigID;
-            self.GetComponent<ChangeEquipHelper>().ChangeWeapon(self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject, weaponPath, occ).Coroutine();
+            UICommonHelper.ShowWeapon(self.GetParent<Unit>().GetComponent<GameObjectComponent>().GameObject, occ, weaponId);
         }
     }
 

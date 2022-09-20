@@ -40,7 +40,42 @@ namespace ET
             go.GetComponent<Image>().sprite = sp;
         }
 
-        public static void ShowHeroSelect(int occ)
+        public static void ShowWeapon(GameObject hero, int occ,  int weaponId)
+        {
+            GameObject unitModel = hero;
+            string weaponPath = "";
+            if (weaponId != 0)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(weaponId);
+                weaponPath = itemConfig.ItemModelID;
+            }
+            Transform weaponParent = unitModel.Get<GameObject>("Wuqi001").transform;
+            UICommonHelper.DestoryChild(weaponParent.gameObject);
+            if (weaponPath == "" || weaponPath == "0")
+            {
+                //战士武器
+                if (occ == 1)
+                {
+                    weaponPath = "14100002";
+                }
+
+                //法师武器
+                if (occ == 2)
+                {
+                    weaponPath = "14100101";
+                }
+            }
+            var path = ABPathHelper.GetItemPath(weaponPath);
+            GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
+            go.SetActive(true);
+            go.transform.parent = weaponParent;
+            go.transform.localRotation = Quaternion.Euler(-180, 90, 90);
+            go.transform.localPosition = Vector3.zero;
+            go.transform.localScale = Vector3.one;
+        }
+
+        public static async ETTask ShowHeroSelect(int occ, int weaponId, ETCancellationToken eTCancellation)
         {
             GameObject parent = GameObject.Find("HeroPosition");
             GameObject hero = null;
@@ -57,16 +92,23 @@ namespace ET
                     gameObject.SetActive(false);
                 }
             }
-
-            //UIComponent.Instance.MainCamera.fieldOfView += 1;
-            //UIComponent.Instance.MainCamera.fieldOfView -= 1;
-            int mask = UIComponent.Instance.MainCamera.cullingMask;
-            UIComponent.Instance.MainCamera.cullingMask = mask;
-
             Animator animator = hero.GetComponentInChildren<Animator>();
             if (animator != null)
             {
                 animator.Play("ShowSelect");
+            }
+            int delayShowWeapon = 2000;  //毫秒
+            if (delayShowWeapon == 0)
+            {
+                ShowWeapon(hero, occ, weaponId);
+                return;
+            }
+            Transform weaponParent = hero.Get<GameObject>("Wuqi001").transform;
+            UICommonHelper.DestoryChild(weaponParent.gameObject);
+            bool result = await TimerComponent.Instance.WaitAsync(delayShowWeapon, eTCancellation);
+            if (result && hero != null)
+            {
+                ShowWeapon(hero, occ, weaponId);
             }
         }
         public static void UpdateAllNpcBar(Unit self)

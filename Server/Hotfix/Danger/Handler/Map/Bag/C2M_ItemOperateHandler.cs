@@ -437,8 +437,7 @@ namespace ET
                     bool ifSell = false;     //默认出售全部
                     long baginfoId = long.Parse(request.OperatePar);
                     int rolelv = useInfo.Lv;
-                    string qulitylv = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, baginfoId).ItemPar;
-                    qulitylv = string.IsNullOrEmpty(qulitylv) ? "0" : qulitylv;
+                    string qulitylv = "";
 
                     if (baginfoId == 0)
                     {
@@ -448,6 +447,8 @@ namespace ET
                     {
                         rolelv = int.Parse(qulitylv);
                         ifSell = unit.GetComponent<BagComponent>().OnCostItemData(baginfoId,1);
+                        qulitylv = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, baginfoId).ItemPar;
+                        qulitylv = string.IsNullOrEmpty(qulitylv) ? "0" : qulitylv;
                     }
                     if (ifSell)
                     {
