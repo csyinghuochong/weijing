@@ -79,10 +79,12 @@ namespace ET
                 OperateBagID_2 = self.BagInfo_Transfer[1].BagInfoID
             };
             M2C_ItemXiLianTransferResponse response = (M2C_ItemXiLianTransferResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
-            self.UpdateEquipItemUI().Coroutine();
-            self.UpdateSelect();
-            self.UpdateCost();
+            if (response.Error != ErrorCore.ERR_Success)
+            {
+                return;
+            }
+            FloatTipManager.Instance.ShowFloatTip("洗练成功！");
+            self.OnUpdateUI();
         }
 
         public static void OnInitUI(this UIRoleXiLianTransferComponent self)
@@ -100,6 +102,7 @@ namespace ET
         {
             self.UpdateCost();
             self.ResetSelect();
+            self.UpdateSelected();
             self.UpdateEquipItemUI().Coroutine();
         }
 
