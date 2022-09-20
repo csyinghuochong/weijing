@@ -9,6 +9,7 @@ namespace ET
 		RoleXiLianShow = 0,
 		RoleXiLianLevel = 1,
 		RoleXiLianSkill = 2,
+		RoleXiLianTransfer=3,
 		Number
 	}
 

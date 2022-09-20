@@ -135,7 +135,7 @@ namespace ET
             }
             var path = ABPathHelper.GetScenePath(paramss);
             await ResourcesComponent.Instance.LoadSceneAsync(path);
-            //self.UpdateChuanSong(scene, sceneTypeEnum).Coroutine();
+            self.UpdateChuanSong(scene, sceneTypeEnum).Coroutine();
         }
 
     }
