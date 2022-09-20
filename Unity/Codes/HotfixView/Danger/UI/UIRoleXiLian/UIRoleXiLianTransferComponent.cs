@@ -204,6 +204,7 @@ namespace ET
 
         public static void BeginDrag(this UIRoleXiLianTransferComponent self, BagInfo binfo, PointerEventData pdata)
         {
+            self.IsHoldDown = false;
             self.UICommonItem_Copy = GameObject.Instantiate(self.UICommonItem_1);
             self.UICommonItem_Copy.SetActive(true);
             UICommonHelper.SetParent(self.UICommonItem_Copy, UIEventComponent.Instance.UILayers[(int)UILayer.Low].gameObject);
@@ -217,6 +218,7 @@ namespace ET
 
         public static void Draging(this UIRoleXiLianTransferComponent self, BagInfo binfo, PointerEventData pdata)
         {
+            self.IsHoldDown = false;
             RectTransform canvas = self.UICommonItem_Copy.transform.parent.GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out self.localPoint);
