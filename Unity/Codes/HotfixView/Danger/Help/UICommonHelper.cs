@@ -97,12 +97,14 @@ namespace ET
             {
                 animator.Play("ShowSelect");
             }
-            int delayShowWeapon = 1000;  //毫秒
+            int delayShowWeapon = 2000;  //毫秒
             if (delayShowWeapon == 0)
             {
                 ShowWeapon(hero, occ, weaponId);
                 return;
             }
+            Transform weaponParent = hero.Get<GameObject>("Wuqi001").transform;
+            UICommonHelper.DestoryChild(weaponParent.gameObject);
             bool result = await TimerComponent.Instance.WaitAsync(delayShowWeapon, eTCancellation);
             if (result && hero != null)
             {
