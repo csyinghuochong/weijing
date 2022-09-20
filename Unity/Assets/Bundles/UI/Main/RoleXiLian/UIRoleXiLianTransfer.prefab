@@ -389,7 +389,7 @@ GameObject:
   - component: {fileID: 6799168457706981693}
   - component: {fileID: 3357118635156433848}
   m_Layer: 5
-  m_Name: UIRoleXiLianTransfer_Item1
+  m_Name: UIRoleXiLianTransferItem_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -639,7 +639,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2330966663083886775
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1490,7 +1490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Content: {fileID: 7390769754887879099}
-  m_Horizontal: 1
+  m_Horizontal: 0
   m_Vertical: 1
   m_MovementType: 1
   m_Elasticity: 0.1
@@ -1599,7 +1599,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3367871065007442990
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2433,9 +2433,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 0.1
-  m_Text: '123123
-
-    123123'
+  m_Text: 
 --- !u!114 &3906919545358270029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2530,9 +2528,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 0.1
-  m_Text: '123123
-
-    123123'
+  m_Text: 
 --- !u!114 &4097290048530905812
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2685,7 +2681,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 120}
-  m_Spacing: {x: 10, y: 10}
+  m_Spacing: {x: 10, y: 20}
   m_Constraint: 1
   m_ConstraintCount: 6
 --- !u!114 &5788589769179776234
@@ -2924,7 +2920,7 @@ RectTransform:
   m_GameObject: {fileID: 6402821545894362966}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.6, y: 0.6, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6402821545874717238}
   - {fileID: 3139203607059196046}
@@ -3889,7 +3885,7 @@ GameObject:
   - component: {fileID: 5172870824157148036}
   - component: {fileID: 6779562878979609722}
   m_Layer: 5
-  m_Name: UIRoleXiLianTransfer_Item2
+  m_Name: UIRoleXiLianTransferItem_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

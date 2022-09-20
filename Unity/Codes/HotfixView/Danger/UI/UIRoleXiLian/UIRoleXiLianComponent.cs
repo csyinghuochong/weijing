@@ -41,6 +41,9 @@ namespace ET
 
 			pageViewComponent.UISubViewPath[(int)RoleXiLianPageEnum.RoleXiLianSkill] = ABPathHelper.GetUGUIPath("Main/RoleXiLian/UIRoleXiLianSkill");
 			pageViewComponent.UISubViewType[(int)RoleXiLianPageEnum.RoleXiLianSkill] = typeof(UIRoleXiLianSkillComponent);
+
+			pageViewComponent.UISubViewPath[(int)RoleXiLianPageEnum.RoleXiLianTransfer] = ABPathHelper.GetUGUIPath("Main/RoleXiLian/UIRoleXiLianTransfer");
+			pageViewComponent.UISubViewType[(int)RoleXiLianPageEnum.RoleXiLianTransfer] = typeof(UIRoleXiLianTransferComponent);
 			self.UIPageView = pageViewComponent;
 
 			//单选组件

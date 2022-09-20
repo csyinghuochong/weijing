@@ -3890,3 +3890,19 @@ message M2C_ItemXiLianSelectResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+//ResponseType M2C_ItemXiLianTransferResponse
+//洗练转移
+message C2M_ItemXiLianTransferRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 OperateBagID_1 = 1;
+	int64 OperateBagID_2 = 2;
+}
+
+message M2C_ItemXiLianTransferResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
