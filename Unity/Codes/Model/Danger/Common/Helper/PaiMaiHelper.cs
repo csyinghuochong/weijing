@@ -65,7 +65,7 @@ namespace ET
 
         public void InitPaiMaiData()
         {
-            for (int i = 0; i < (int)PaiMaiTypeEnum.Number; i++)
+            for (int i = 0; i < (int)PaiMaiTypeEnum.Number+1; i++)
             {
                 PaiMaiTypeData.Add(new PaiMaiTypeData());
             }

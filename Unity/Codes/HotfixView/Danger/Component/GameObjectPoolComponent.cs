@@ -114,7 +114,7 @@ namespace ET
             self.LoadList.Add(load);
             if (self.Timer == 0)
             {
-                self.Timer = TimerComponent.Instance.NewRepeatedTimer(500, TimerType.GameObjectPoolTimer, self);
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.GameObjectPoolTimer, self);
             }
         }
 

@@ -8,7 +8,7 @@ namespace ET
         {
             EventType.ChangeRotation args = cls as EventType.ChangeRotation;
             GameObjectComponent gameObjectComponent = args.Unit.GetComponent<GameObjectComponent>();
-            if (gameObjectComponent == null)
+            if (gameObjectComponent == null || gameObjectComponent.GameObject == null)
             {
                 return;
             }

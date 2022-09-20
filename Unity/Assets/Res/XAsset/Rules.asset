@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 162
+  version: 164
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -1906,6 +1906,10 @@ MonoBehaviour:
     path: Assets/Bundles/Icon/ItemIcon/10045407.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/10045409.png
+  - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
+    path: Assets/Bundles/Icon/ItemIcon/10051001.png
+  - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
+    path: Assets/Bundles/Icon/ItemIcon/10052001.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/10060101.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
@@ -8269,6 +8273,8 @@ MonoBehaviour:
     - Assets/Bundles/Icon/ItemIcon/10045405.png
     - Assets/Bundles/Icon/ItemIcon/10045407.png
     - Assets/Bundles/Icon/ItemIcon/10045409.png
+    - Assets/Bundles/Icon/ItemIcon/10051001.png
+    - Assets/Bundles/Icon/ItemIcon/10052001.png
     - Assets/Bundles/Icon/ItemIcon/10060101.png
     - Assets/Bundles/Icon/ItemIcon/10060201.png
     - Assets/Bundles/Icon/ItemIcon/10060210.png

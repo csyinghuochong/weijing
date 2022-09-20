@@ -47,21 +47,6 @@ namespace ET
 
     public static class DropUIComponentSystem
     {
-
-        public static int GetDropNumber(this DropUIComponent self)
-        {
-            int number = 0;
-            List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < units.Count; i++)
-            {
-                if (units[i].GetComponent<UnitInfoComponent>().Type == UnitType.DropItem)
-                {
-                    number++;
-                }
-            }
-            return number;
-        }
-
         public static async ETTask InitData(this DropUIComponent self, DropInfo dropinfo)
         {
             long instanceid = self.InstanceId;

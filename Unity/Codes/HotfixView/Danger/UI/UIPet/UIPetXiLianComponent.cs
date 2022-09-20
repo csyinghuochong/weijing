@@ -131,7 +131,8 @@ namespace ET
                 int itemSubType = conf.ItemSubType;
 
                 if (itemSubType != 105 && itemSubType != 108 && itemSubType != 109
-                    && itemSubType != 117 && itemSubType != 118 && itemSubType != 119)
+                    && itemSubType != 117 && itemSubType != 118 && itemSubType != 119
+                    && itemSubType != 121)
                 {
                     continue;
                 }

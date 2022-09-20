@@ -332,7 +332,8 @@ namespace ET
                 || itemConfig.ItemSubType == 109
                 || itemConfig.ItemSubType == 117
                 || itemConfig.ItemSubType == 118
-                || itemConfig.ItemSubType == 119)
+                || itemConfig.ItemSubType == 119
+                || itemConfig.ItemSubType == 121)
             {
                 PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
                 RolePetInfo petInfo = petComponent.GetFightPetInfo();
