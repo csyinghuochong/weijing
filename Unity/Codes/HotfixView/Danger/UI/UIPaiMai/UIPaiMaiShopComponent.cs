@@ -96,7 +96,7 @@ namespace ET
             {
                 return;
             }
-            for (int i = (int)PaiMaiTypeEnum.CaiLiao; i <= (int)PaiMaiTypeEnum.CostItem; i++)
+            for (int i = (int)PaiMaiTypeEnum.CaiLiao; i < (int)PaiMaiTypeEnum.Number; i++)
             {
                 GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
                 UICommonHelper.SetParent(taskTypeItem, self.TypeListNode);

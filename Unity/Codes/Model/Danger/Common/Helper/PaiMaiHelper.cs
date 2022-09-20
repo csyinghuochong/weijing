@@ -9,7 +9,7 @@ namespace ET
         None = 0,
         CaiLiao = 1,
         CostItem = 2,
-        petItem = 3,
+        PetItem = 3,
         Number = 4,
     }
 
