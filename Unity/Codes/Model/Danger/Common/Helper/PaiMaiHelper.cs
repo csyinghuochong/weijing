@@ -24,7 +24,7 @@ namespace ET
 
         public List<PaiMaiTypeData> PaiMaiTypeData = new List<PaiMaiTypeData>();
 
-        public List<string> PaiMaiTypeText = new List<string>() { "", "材料", "消耗品"};
+        public List<string> PaiMaiTypeText = new List<string>() { "", "材料", "消耗品","宠物" };
 
         public Dictionary<int, string> PaiMaiIndexText = new Dictionary<int, string>()
         {
@@ -34,6 +34,8 @@ namespace ET
             {4,  "第四章" },
             {5,  "第五章" },
             {21,  "通用" },
+            {31,  "技能" },
+            {32,  "消耗" },
             /*
             {31,  "红色插槽" },
             {32,  "紫色插槽" },
