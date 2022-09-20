@@ -27,24 +27,10 @@ namespace ET
 				return;
 			}
 
-			int addSkillID = 80000012;		//临时
-			int itemSubType = ItemConfigCategory.Instance.Get(bagInfo.ItemID).ItemSubType;
+			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+			int itemSubType = itemConfig.ItemSubType;
 			switch (itemSubType)
 			{
-				//学习技能书
-				case 1:
-					if (Pet_AddSkill(petInfo, addSkillID))
-					{
-						//消耗物品
-						//Game_PublicClassVar.Get_function_Rose.CostBagItem(XiLianNeedItemID, int.Parse(XiLianNeedItemNum)))
-						//写入成就(宠物打书)
-						//Game_PublicClassVar.Get_function_Task.ChengJiu_WriteValue("210", "0", "1");
-					}
-					else
-					{
-						//返回错误码
-					}
-					break;
 				//宠物洗练
 				case 105:
 					//重置资质系数
@@ -74,6 +60,11 @@ namespace ET
 					unit.GetComponent<PetComponent>().UpdatePetChengZhang(petInfo, bagInfo.ItemID);
 					response.rolePetInfo = petInfo;
 					break;
+				//学习技能书
+				case 121:
+					Pet_AddSkill(petInfo, int.Parse(itemConfig.ItemUsePar));
+					response.rolePetInfo = petInfo;
+					break;
 				default:
 					break;
 			}
@@ -94,67 +85,22 @@ namespace ET
 		}
 
 		//宠物打技能书
-		private bool Pet_AddSkill(RolePetInfo petinfo, int addSkillID)
+		private void Pet_AddSkill(RolePetInfo petinfo, int addSkillID)
 		{
-			if (!petinfo.PetSkill.Contains(addSkillID))
+			if (petinfo.PetSkill.Contains(addSkillID))
 			{
-				petinfo.PetSkill.Add(addSkillID);
+				return;
 			}
 
-			//技能
-			bool addSkillSuccess = true;
-			List<int> petSkillList = new List<int>();
-			//合成技能
-			bool ifTiHuanSkill = true;
-			int savePetSkillID = 0;
-
-			//如果当前宠物技能少于4个,则有概率直接添加技能(概率算法为0.5/当前拥有的技能数量)
-			if (petSkillList.Count < 4 && petSkillList.Count >= 1)
-			{
-				if (RandomHelper.RandomNumber(0, 10) * 0.1f <= 0.5 / petSkillList.Count)
-				{
-					ifTiHuanSkill = false;
-				}
-			}
-
-			//如果当前宠物没有技能则直接成功
-			if (petSkillList.Count == 0)
-			{
-				ifTiHuanSkill = false;
-				savePetSkillID = addSkillID;
-			}
-
-			//判断当前自身的技能是否已经拥有
-			for (int i = 0; i < petSkillList.Count; i++)
-			{
-				if (petSkillList[i] == addSkillID)
-				{
-					addSkillSuccess = false;
-				}
-			}
-
-			if (ifTiHuanSkill)
+			//学习规则是随机顶掉当前宠物的一个技能
+			if (petinfo.PetSkill.Count > 0 )
 			{
 				//随机获取替换的技能ID序号
-				int tihuanNum = Function_Role.GetInstance().ReturnRamdomValue_Int(1, petSkillList.Count);
-				//设定每个技能的留下的概率
-				for (int i = 0; i < petSkillList.Count; i++)
-				{
-					int addSkillStr = petSkillList[i];
-					//随机获取替换的技能
-					if (i == tihuanNum - 1)
-					{
-						addSkillStr = addSkillID;
-					}
-
-					if (savePetSkillID != 0 )
-					{
-						savePetSkillID = addSkillStr;
-					}
-				}
+				int tihuanNum =  RandomHelper.RandomNumber(0, petinfo.PetSkill.Count);
+				petinfo.PetSkill.Remove(tihuanNum);
 			}
 
-			return addSkillSuccess;
+			petinfo.PetSkill.Add(addSkillID);
 		}
 
 		//宠物自身洗炼
