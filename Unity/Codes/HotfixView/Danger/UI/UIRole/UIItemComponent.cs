@@ -85,8 +85,6 @@ namespace ET
             self.Image_XuanZhong = rc.Get<GameObject>("Image_XuanZhong");
             self.Obj_Image_ItemDi = rc.Get<GameObject>("Image_ItemDi");
             self.Image_Binding = rc.Get<GameObject>("Image_Binding");
-
-
             if (self.Image_Binding != null)
             {
                 self.Image_Binding.SetActive(false);

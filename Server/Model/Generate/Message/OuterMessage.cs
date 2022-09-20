@@ -8122,4 +8122,36 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_ItemXiLianTransferResponse))]
+//洗练转移
+	[Message(OuterOpcode.C2M_ItemXiLianTransferRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemXiLianTransferRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long OperateBagID_1 { get; set; }
+
+		[ProtoMember(2)]
+		public long OperateBagID_2 { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemXiLianTransferResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemXiLianTransferResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 }
