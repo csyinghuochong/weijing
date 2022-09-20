@@ -22,6 +22,7 @@ namespace ET
 
         public List<UIItemComponent> UIEquipList = new List<UIItemComponent>();
         public Vector2 localPoint;
+        public bool IsHoldDown;
     }
 
     [ObjectSystem]
@@ -30,7 +31,7 @@ namespace ET
         public override void Awake(UIRoleXiLianTransferComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-
+            self.IsHoldDown = false;
             self.BagInfo_Transfer = new BagInfo[2];
             self.UIItem_Transfer = new UIItemComponent[2];
             self.ButtonTransfer = rc.Get<GameObject>("ButtonTransfer");
@@ -166,6 +167,8 @@ namespace ET
                     uIItemComponent.BeginDragHandler = (BagInfo binfo, PointerEventData pdata) => { self.BeginDrag(binfo, pdata); };
                     uIItemComponent.DragingHandler = (BagInfo binfo, PointerEventData pdata) => { self.Draging(binfo, pdata); };
                     uIItemComponent.EndDragHandler = (BagInfo binfo, PointerEventData pdata) => { self.EndDrag(binfo, pdata); };
+                    uIItemComponent.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
+                    uIItemComponent.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
                 }
                 uIItemComponent.UpdateItem(bagInfos[i], ItemOperateEnum.SkillSet);
                 uIItemComponent.Image_XuanZhong.SetActive(false);
@@ -176,6 +179,27 @@ namespace ET
             {
                 self.UIEquipList[i].GameObject.SetActive(false);
             }
+        }
+
+        public static async ETTask OnPointerDown(this UIRoleXiLianTransferComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            self.IsHoldDown = true;
+            HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, "1");
+            await TimerComponent.Instance.WaitAsync(400);
+            if (!self.IsHoldDown)
+                return;
+            EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
+            EventType.ShowItemTips.Instance.bagInfo = binfo;
+            EventType.ShowItemTips.Instance.itemOperateEnum = ItemOperateEnum.None;
+            EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
+            EventType.ShowItemTips.Instance.Occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
+        }
+
+        public static void OnPointerUp(this UIRoleXiLianTransferComponent self, BagInfo binfo, PointerEventData pdata)
+        {
+            self.IsHoldDown = false;
+            UIHelper.Remove(self.DomainScene(), UIType.UIEquipDuiBiTips);
         }
 
         public static void BeginDrag(this UIRoleXiLianTransferComponent self, BagInfo binfo, PointerEventData pdata)

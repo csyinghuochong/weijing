@@ -19,6 +19,14 @@ namespace ET
                 reply();
                 return;
             }
+            string costItem = GlobalValueConfigCategory.Instance.Get(51).Value;
+            if (!unit.GetComponent<BagComponent>().OnCostItemData(costItem))
+            {
+                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                reply();
+                return;
+            }
+
             bagInfo_2.XiLianHideTeShuProLists.Clear();
             bagInfo_2.XiLianHideProLists.Clear();
             bagInfo_2.HideSkillLists.Clear();
