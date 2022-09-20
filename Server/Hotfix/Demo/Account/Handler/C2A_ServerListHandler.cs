@@ -9,20 +9,28 @@ namespace ET
     {
         protected override async ETTask Run(Session session, C2A_ServerList request, A2C_ServerList response, Action reply)
         {
-            long dbCacheId = DBHelper.GetCenterServerId();
-            Center2A_CenterServerList d2GGetUnit = (Center2A_CenterServerList)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new A2Center_CenterServerList() {  });
-
-            long serverTime = TimeHelper.ServerNow();
+            //long dbCacheId = DBHelper.GetCenterServerId();
+            //Center2A_CenterServerList d2GGetUnit = (Center2A_CenterServerList)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new A2Center_CenterServerList() {  });
+            //long serverTime = TimeHelper.ServerNow();
+            //List<ServerItem> serverItems_2 = d2GGetUnit.ServerItems;
+            //for (int i = 0; i < serverItems_2.Count; i++)
+            //{
+            //    if (serverItems_2[i].ServerOpenTime > serverTime)
+            //    {
+            //        continue;
+            //    }
+            //    serverItems_1.Add(serverItems_2[i]);
+            //}
             List<ServerItem> serverItems_1 = new List<ServerItem>();
-            List<ServerItem> serverItems_2 = d2GGetUnit.ServerItems;
-            for (int i = 0; i < serverItems_2.Count; i++)
+            if (ComHelp.IsInnerNet())
             {
-                if (serverItems_2[i].ServerOpenTime > serverTime)
-                {
-                    continue;
-                }
-                serverItems_1.Add(serverItems_2[i]);
+                serverItems_1.Add(new ServerItem() { ServerId = 1, ServerIp = "127.0.0.1:20305", ServerName = "封测一区", ServerOpenTime = 0 });
             }
+            else
+            {
+                serverItems_1.Add(new ServerItem() { ServerId = 1, ServerIp = "39.96.194.143:20305", ServerName = "封测一区", ServerOpenTime = 0 });
+            }
+
             response.ServerItems = serverItems_1;
             reply();
             await ETTask.CompletedTask;

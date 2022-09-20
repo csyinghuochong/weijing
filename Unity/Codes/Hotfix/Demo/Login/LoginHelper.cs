@@ -34,7 +34,6 @@ namespace ET
             return ErrorCore.ERR_Success;
         }
 
-
         public static long LastTime = 0;
         public static async ETTask<int> Login(Scene zoneScene, string address, string account, string password, bool relink = false, string token = "", string thirdLogin = "")
         {
@@ -316,7 +315,7 @@ namespace ET
                 Center2C_Register r2CRegister;
                 IPAddress[] xxc = Dns.GetHostEntry("weijinggame.weijinggame.com").AddressList;
                 //走的中心服
-                string address = outNet ? $"{xxc[0]}:{GetRegisterPort(versionCode)}" : $"127.0.0.1:{GetRegisterPort(versionCode)}";
+                string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"127.0.0.1:{GetAccountCenterPort(versionCode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CRegister = (Center2C_Register)await session.Call(new C2Center_Register() { Account = account, Password = password });
@@ -360,7 +359,12 @@ namespace ET
             }
         }
 
-        public static int GetRegisterPort(VersionMode versionMode)
+        /// <summary>
+        /// 账号中心服
+        /// </summary>
+        /// <param name="versionMode"></param>
+        /// <returns></returns>
+        public static int GetAccountCenterPort(VersionMode versionMode)
         {
             if (versionMode == VersionMode.BanHao)
             {
@@ -373,7 +377,8 @@ namespace ET
             return 20304;
         }
 
-        public static int GetLoginPort(VersionMode versionMode)
+        //账号服
+        public static int GetAccountPort(VersionMode versionMode)
         {
             if (versionMode == VersionMode.BanHao)
             {
@@ -392,12 +397,10 @@ namespace ET
             try
             {
                 IPAddress[] xxc = Dns.GetHostEntry("weijinggame.weijinggame.com").AddressList;
-                string address = $"{xxc[0]}:{GetLoginPort(versionMode)}";
+                string address = $"{xxc[0]}:{GetAccountPort(versionMode)}";
                 A2C_ServerList r2CSelectServer;
-
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
-
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { });
                     CheckServerList(r2CSelectServer.ServerItems, versionMode);
 
@@ -453,7 +456,7 @@ namespace ET
             try
             {
                 A2C_ServerList r2CSelectServer;
-                string address = $"127.0.0.1:{GetLoginPort(versionMode)}";
+                string address = $"127.0.0.1:{GetAccountPort(versionMode)}";
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {
                     r2CSelectServer = (A2C_ServerList)await session.Call(new C2A_ServerList() { });
