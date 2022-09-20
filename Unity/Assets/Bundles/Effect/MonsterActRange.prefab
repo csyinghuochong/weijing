@@ -10031,11 +10031,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1603041552888280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e225944f16df9f429999eb41d3126ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 62461cb480ed8914d8c2e2ba4671cc2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   RangeSize: 0
-  Obj_LightEffect_1: {fileID: 1637738514963812}
+  Obj_LightEffect_1: {fileID: 0}
 --- !u!1 &1637738514963812
 GameObject:
   m_ObjectHideFlags: 0
@@ -10129,13 +10129,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1721977756232254}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60e6e1d6b31df1747a843fe3bcc13cec, type: 3}
+  m_Script: {fileID: 11500000, guid: 1fe6371b54bd03c48b108680ac06409d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   updateMode: 0
-  node: 1
-  activateByAnimationEvent: 0
-  activateTime: 0.44
+  node: 0
+  activateByAnimationEvent: 1
+  activateTime: 0
   duration: 5
   isBullet: 0
   flyHeight: 0
