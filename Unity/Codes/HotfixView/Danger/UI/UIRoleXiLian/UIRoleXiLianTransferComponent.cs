@@ -52,7 +52,7 @@ namespace ET
         public static async ETTask OnButtonTransfer(this UIRoleXiLianTransferComponent self)
         {
             string costItem = GlobalValueConfigCategory.Instance.Get(51).Value;
-            if (self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costItem))
+            if (!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(costItem))
             {
                 FloatTipManager.Instance.ShowFloatTip("材料不足！");
                 return;
