@@ -9,7 +9,8 @@ namespace ET
         None = 0,
         CaiLiao = 1,
         CostItem = 2,
-        Number = 3,
+        petItem = 3,
+        Number = 4,
     }
 
     //成就类型数据
