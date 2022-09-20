@@ -363,7 +363,6 @@ namespace ET
                 self.Obj_Btn_GemHoleText.GetComponent<Text>().text = langStr_A;
             }
             */
-
             //设置底的长度
             //self.ItemDi.GetComponent<RectTransform>().sizeDelta = new Vector2(301.0f, 180.0f + i1 * 20.0f + i2 * 16.0f + ItemBottomTextNum);
 
@@ -372,7 +371,6 @@ namespace ET
             self.Lab_ItemSubType.GetComponent<Text>().text = equipType;
             self.Lab_ItemName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconf.ItemQuality);
             float exceedWidth = self.Lab_ItemName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
-            Log.ILog.Debug($"exceedWidth  {exceedWidth}");
             if (exceedWidth > -20)
             {
                 self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x + exceedWidth + 30, self.Img_backVector2.y);

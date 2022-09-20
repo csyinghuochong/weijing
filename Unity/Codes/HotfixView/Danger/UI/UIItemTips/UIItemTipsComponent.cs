@@ -198,9 +198,8 @@ namespace ET
             string usrPar = "";
 
             //材料
-            if (itemConfig.ItemType == (int)ItemTypeEnum.Gemstone)
+            if (itemConfig.ItemType == (int)ItemTypeEnum.Material)
             {
-
                 return;
             }
             //镶嵌宝石
@@ -527,9 +526,7 @@ namespace ET
             //{
             //    self.ItemDes.GetComponent<Text>().color = Color.green;
             //}
-
             float exceedWidth = self.Lab_ItemName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
-            Log.ILog.Debug($"exceedWidth  {exceedWidth}");
             if (exceedWidth > -20)
             {
                 self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x + exceedWidth + 30, self.Img_backVector2.y);
