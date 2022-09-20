@@ -22,6 +22,7 @@ namespace ET
         public int Occ;
 
         public UI UIModelShowComponent;
+        public ETCancellationToken eTCancellation = null;
         public List<UICommonSkillItemComponent> SkillUIList = new List<UICommonSkillItemComponent>();
     }
 
@@ -71,7 +72,9 @@ namespace ET
     {
         public static void ShowHeroSelect(this UICreateRoleComponent self, int occ)
         {
-            UICommonHelper.ShowHeroSelect(1, 0);
+            self.eTCancellation?.Cancel();
+            self.eTCancellation = new ETCancellationToken();
+            UICommonHelper.ShowHeroSelect(1, 0, self.eTCancellation).Coroutine();
             GameObject go = GameObject.Find("HeroPosition");
             go.transform.localPosition = Vector3.zero;
         }
@@ -137,7 +140,9 @@ namespace ET
         public static async ETTask OnUpdateOccInfo(this UICreateRoleComponent self)
         {
             long instanceid = self.InstanceId;
-            UICommonHelper.ShowHeroSelect(self.Occ, 0);
+            self.eTCancellation?.Cancel();
+            self.eTCancellation = new ETCancellationToken();
+            UICommonHelper.ShowHeroSelect(self.Occ, 0, self.eTCancellation).Coroutine();
             OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(self.Occ);
             string path = ABPathHelper.GetUGUIPath("CreateRole/UICreateRoleSkillItem");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);

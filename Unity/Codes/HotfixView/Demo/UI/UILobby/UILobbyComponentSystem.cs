@@ -116,7 +116,9 @@ namespace ET
             {
                 self.Text_Name.GetComponent<Text>().text = self.SeletRoleInfo.PlayerName;
                 self.Text_Lv.GetComponent<Text>().text = $"{self.SeletRoleInfo.PlayerLv}级";
-                UICommonHelper.ShowHeroSelect(self.SeletRoleInfo.PlayerOcc, self.SeletRoleInfo.WeaponId);
+                self.eTCancellation?.Cancel();
+                self.eTCancellation = new ETCancellationToken();
+                UICommonHelper.ShowHeroSelect(self.SeletRoleInfo.PlayerOcc, self.SeletRoleInfo.WeaponId, self.eTCancellation).Coroutine();
                 long instanceid = self.InstanceId;
                 await TimerComponent.Instance.WaitAsync(100);
                 if (self.InstanceId != instanceid)

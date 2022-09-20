@@ -75,7 +75,7 @@ namespace ET
             go.transform.localScale = Vector3.one;
         }
 
-        public static void ShowHeroSelect(int occ, int weaponId)
+        public static async ETTask ShowHeroSelect(int occ, int weaponId, ETCancellationToken eTCancellation)
         {
             GameObject parent = GameObject.Find("HeroPosition");
             GameObject hero = null;
@@ -92,16 +92,22 @@ namespace ET
                     gameObject.SetActive(false);
                 }
             }
-            //UIComponent.Instance.MainCamera.fieldOfView += 1;
-            //UIComponent.Instance.MainCamera.fieldOfView -= 1;
-            //int mask = UIComponent.Instance.MainCamera.cullingMask;
-            //UIComponent.Instance.MainCamera.cullingMask = mask;
             Animator animator = hero.GetComponentInChildren<Animator>();
             if (animator != null)
             {
                 animator.Play("ShowSelect");
             }
-            ShowWeapon(hero, occ, weaponId);
+            int delayShowWeapon = 1000;  //毫秒
+            if (delayShowWeapon == 0)
+            {
+                ShowWeapon(hero, occ, weaponId);
+                return;
+            }
+            bool result = await TimerComponent.Instance.WaitAsync(delayShowWeapon, eTCancellation);
+            if (result && hero != null)
+            {
+                ShowWeapon(hero, occ, weaponId);
+            }
         }
         public static void UpdateAllNpcBar(Unit self)
         {
