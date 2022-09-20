@@ -115,7 +115,7 @@ namespace ET
             {
                 PaiMaiShopItemInfo shopList = new PaiMaiShopItemInfo();
 
-                if (dicInfos.ContainsKey(item.Value.ItemID) == false) {
+                if (dicInfos.ContainsKey(item.Value.Id) == false) {
                     shopList.ItemNumber = 999;
                     shopList.Id = item.Value.ItemID;
                     shopList.PriceType = item.Value.Price[0];

@@ -442,6 +442,7 @@ namespace ET
                     if (baginfoId == 0)
                     {
                         ifSell = unit.GetComponent<BagComponent>().OnCostItemData($"1;{ComHelp.GetJianDingCoin(rolelv)}");
+                        qulitylv = itemCof.UseLv.ToString();
                     }
                     else
                     {
