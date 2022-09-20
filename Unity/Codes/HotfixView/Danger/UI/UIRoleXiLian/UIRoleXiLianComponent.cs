@@ -68,5 +68,11 @@ namespace ET
 		{
 			self.UIPageView.OnSelectIndex(page).Coroutine();
 		}
+
+		public static void OnXiLianReturn(this UIRoleXiLianComponent self)
+		{
+			UI xilianshou = self.UIPageView.UISubViewList[(int)RoleXiLianPageEnum.RoleXiLianShow];
+			xilianshou?.GetComponent<UIRoleXiLianShowComponent>().OnXiLianReturn();
+		}
 	}
 }

@@ -83,6 +83,7 @@ namespace ET
 		public const string UIGuide = "Main/Guide/UIGuide";
 		public const string UIShouJi = "Main/ShouJi/UIShouJi";
 		public const string UIRoleXiLian = "Main/RoleXiLian/UIRoleXiLian";
+		public const string UIRoleXiLianTen = "Main/RoleXiLian/UIRoleXiLianTen";
 		public const string UILingDi = "Main/LingDi/UILingDi";
 		public const string UILingDiReward = "Main/LingDi/UILingDiReward";
 		public const string UITuZhiMake = "Main/TuZhiMake/UITuZhiMake";

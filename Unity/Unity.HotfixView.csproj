@@ -242,7 +242,9 @@
     <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianSkillItemComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianLevelComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianLevelItemComponent.cs" />
+    <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianTenComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianTenEvent.cs" />
+    <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianTenItemComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIZhanQu\UIFirstWinComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIFriend\UIFriendApplyComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIFriend\UIFriendApplyItemComponent.cs" />
