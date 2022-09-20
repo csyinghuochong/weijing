@@ -328,6 +328,7 @@ message CreateRoleListInfo
 	string PlayerName = 3;
 	int32 PlayerLv = 4;
 	int32 PlayerOcc = 5;
+	int32 WeaponId = 6;
 }
 
 message UnitInfo

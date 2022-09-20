@@ -77,7 +77,7 @@ namespace ET
             }
         }
 
-        public static async ETTask AddDataComponent<K>(int zone, long userID, string componentType) where K : Entity, new()
+        public static async ETTask<Entity> AddDataComponent<K>(int zone, long userID, string componentType) where K : Entity, new()
         {
             Type type = typeof(K);
             Entity entity = (Entity)Activator.CreateInstance(type);
@@ -89,6 +89,7 @@ namespace ET
                 Component = entity,
                 ComponentType = componentType
             });
+            return entity;
         }
 
 

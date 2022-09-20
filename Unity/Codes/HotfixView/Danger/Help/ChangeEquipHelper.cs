@@ -31,36 +31,6 @@ namespace ET
             return outo;
         }
 
-        public static async ETTask ChangeWeapon(this ChangeEquipHelper self, GameObject unitModel, string weaponPath, int occ)
-        {
-            Transform weaponParent = unitModel.Get<GameObject>("Wuqi001").transform;
-            UICommonHelper.DestoryChild(weaponParent.gameObject);
-
-            if (weaponPath == "" || weaponPath == "0")
-            {
-                //战士武器
-                if (occ == 1) {
-                    weaponPath = "14100002";
-                }
-
-                //法师武器
-                if (occ == 2)
-                {
-                    weaponPath = "14100101";
-                }
-            }
-
-            var path = ABPathHelper.GetItemPath(weaponPath);
-            await ETTask.CompletedTask;
-            GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            go.SetActive(true);
-            go.transform.parent = weaponParent;
-            go.transform.localRotation = Quaternion.Euler(-180, 90, 90);
-            go.transform.localPosition = Vector3.zero;
-            go.transform.localScale = Vector3.one;
-        }
-
         public static async ETTask LoadPrefab_2(this ChangeEquipHelper self, List<GameObject> gameObjects , string asset, Transform parent, List<SkinnedMeshRenderer> skinnedMeshRenderers)
         {
             var path = ABPathHelper.GetUnitPath(asset);

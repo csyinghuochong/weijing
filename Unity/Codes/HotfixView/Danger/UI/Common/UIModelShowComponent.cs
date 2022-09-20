@@ -96,13 +96,12 @@ namespace ET
 
         public static void ChangeWeapon(this UIModelShowComponent self, BagInfo bagInfo, int occ)
         {
-            string weaponPath = "";
+            int weaponId = 0;
             if (bagInfo != null && bagInfo.ItemID != 0)
             {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-                weaponPath = itemConfig.ItemModelID;
+                weaponId = bagInfo.ItemID;
             }
-            self.GetComponent<ChangeEquipHelper>().ChangeWeapon(self.UnitModel, weaponPath, occ).Coroutine();
+            UICommonHelper.ShowWeapon(self.UnitModel, occ, weaponId);
             LayerHelp.ChangeLayer(self.UnitModel.transform, LayerEnum.RenderTexture);
         }
 

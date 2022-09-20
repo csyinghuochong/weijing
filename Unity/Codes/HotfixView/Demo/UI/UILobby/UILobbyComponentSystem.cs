@@ -116,7 +116,7 @@ namespace ET
             {
                 self.Text_Name.GetComponent<Text>().text = self.SeletRoleInfo.PlayerName;
                 self.Text_Lv.GetComponent<Text>().text = $"{self.SeletRoleInfo.PlayerLv}级";
-                UICommonHelper.ShowHeroSelect(self.SeletRoleInfo.PlayerOcc);
+                UICommonHelper.ShowHeroSelect(self.SeletRoleInfo.PlayerOcc, self.SeletRoleInfo.WeaponId);
                 long instanceid = self.InstanceId;
                 await TimerComponent.Instance.WaitAsync(100);
                 if (self.InstanceId != instanceid)

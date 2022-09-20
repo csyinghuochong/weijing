@@ -71,7 +71,7 @@ namespace ET
     {
         public static void ShowHeroSelect(this UICreateRoleComponent self, int occ)
         {
-            UICommonHelper.ShowHeroSelect(1);
+            UICommonHelper.ShowHeroSelect(1, 0);
             GameObject go = GameObject.Find("HeroPosition");
             go.transform.localPosition = Vector3.zero;
         }
@@ -137,7 +137,7 @@ namespace ET
         public static async ETTask OnUpdateOccInfo(this UICreateRoleComponent self)
         {
             long instanceid = self.InstanceId;
-            UICommonHelper.ShowHeroSelect(self.Occ);
+            UICommonHelper.ShowHeroSelect(self.Occ, 0);
             OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(self.Occ);
             string path = ABPathHelper.GetUGUIPath("CreateRole/UICreateRoleSkillItem");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
