@@ -445,7 +445,7 @@ namespace ET
                     }
                     else
                     {
-                        rolelv = int.Parse(qulitylv);
+                       
                         ifSell = unit.GetComponent<BagComponent>().OnCostItemData(baginfoId,1);
                         qulitylv = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, baginfoId).ItemPar;
                         qulitylv = string.IsNullOrEmpty(qulitylv) ? "0" : qulitylv;
