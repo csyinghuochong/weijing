@@ -1244,7 +1244,6 @@ namespace ET
             self.Obj_EquipName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(ItemQuality);
             //self.Lab_EquipType.GetComponent<Text>().text = "类型" + " : " + textEquipType;
             float exceedWidth = self.Obj_EquipName.GetComponent<Text>().preferredWidth - self.Lab_ItemNameWidth;
-            Log.ILog.Debug($"exceedWidth  {exceedWidth}");
             if (exceedWidth > 0)
             {
                 self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x + exceedWidth, self.Img_backVector2.y);

@@ -1159,7 +1159,8 @@ message M2C_ItemQiangHuaResponse // IActorLocationResponse
 message C2M_ItemXiLianRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
-	int64 OperateBagID = 2;							
+	int64 OperateBagID = 2;		
+	int32 Times = 1;
 }
 
 message M2C_ItemXiLianResponse // IActorLocationResponse
@@ -1167,6 +1168,8 @@ message M2C_ItemXiLianResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
+	
+	repeated ItemXiLianResult ItemXiLianResults = 1;
 }
 
 //ResponseType M2C_ItemOperateResponse
@@ -3862,4 +3865,27 @@ message M2C_BuChangeResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 	repeated RechargeInfo RechargeInfos = 1;
+}
+
+message ItemXiLianResult
+{
+	repeated HideProList XiLianHideProLists = 1;
+	repeated int32 HideSkillLists = 2;
+	repeated HideProList XiLianHideTeShuProLists = 3;
+}
+
+//ResponseType M2C_ItemXiLianSelectResponse
+//洗练装备
+message C2M_ItemXiLianSelectRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 OperateBagID = 2;		
+	ItemXiLianResult ItemXiLianResult = 1;
+}
+
+message M2C_ItemXiLianSelectResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
 }

@@ -451,5 +451,6 @@ namespace ET
 		 public const ushort M2C_ItemXiLianRewardResponse = 10448;
 		 public const ushort C2M_BuChangeRequest = 10449;
 		 public const ushort M2C_BuChangeResponse = 10450;
+		 public const ushort ItemXiLianResult = 10451;
 	}
 }

@@ -303,6 +303,10 @@ namespace ET
             }
             for (int i = 0; i < makeList.Count; i++)
             {
+                if (!EquipMakeConfigCategory.Instance.Contain(makeList[i]))
+                {
+                    continue;
+                }
                 EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeList[i]);
                 if (equipMakeConfig.ProficiencyType != makeType)
                 {

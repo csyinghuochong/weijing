@@ -2479,6 +2479,9 @@ namespace ET
 		[ProtoMember(2)]
 		public long OperateBagID { get; set; }
 
+		[ProtoMember(1)]
+		public int Times { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_ItemXiLianResponse)]
@@ -2493,6 +2496,9 @@ namespace ET
 
 		[ProtoMember(92)]
 		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public List<ItemXiLianResult> ItemXiLianResults = new List<ItemXiLianResult>();
 
 	}
 
@@ -8063,6 +8069,21 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<RechargeInfo> RechargeInfos = new List<RechargeInfo>();
+
+	}
+
+	[Message(OuterOpcode.ItemXiLianResult)]
+	[ProtoContract]
+	public partial class ItemXiLianResult: Object
+	{
+		[ProtoMember(1)]
+		public List<HideProList> XiLianHideProLists = new List<HideProList>();
+
+		[ProtoMember(2)]
+		public List<int> HideSkillLists = new List<int>();
+
+		[ProtoMember(3)]
+		public List<HideProList> XiLianHideTeShuProLists = new List<HideProList>();
 
 	}
 

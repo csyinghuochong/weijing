@@ -74,9 +74,9 @@ namespace ET
             self.TriggerEvent(ChengJiuTargetEnum.TotalChouKaTen, 0, 1);
         }
 
-        public static void OnEquipXiLian(this ChengJiuComponent self)
+        public static void OnEquipXiLian(this ChengJiuComponent self, int times)
         {
-            self.TriggerEvent(ChengJiuTargetEnum.TotalEquipXiLian, 0, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.TotalEquipXiLian, 0, times);
         }
 
         public static void OnRevive(this ChengJiuComponent self)

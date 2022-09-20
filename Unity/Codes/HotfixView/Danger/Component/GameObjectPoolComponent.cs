@@ -99,14 +99,14 @@ namespace ET
                 gobjet = self.ExternalReferences[path][0];
                 self.ExternalReferences[path].RemoveAt(0);
             }
-            Log.ILog.Debug($"GetExternal {path}");
+            Log.Debug($"GetExternal {path}");
             load.LoadHandler(gobjet);
             load.Dispose();
         }
 
         public static void AddLoadQueue(this GameObjectPoolComponent self,  string path, Action<GameObject> action)
         {
-            Log.ILog.Debug($"AddLoadQueue {path}");
+            Log.Debug($"AddLoadQueue {path}");
 
             GameObjectLoad load = self.AddChild<GameObjectLoad>();
             load.Path = path;

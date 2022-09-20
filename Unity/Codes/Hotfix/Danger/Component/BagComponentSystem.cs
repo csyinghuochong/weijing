@@ -34,14 +34,6 @@ namespace ET
             HintHelp.GetInstance().DataUpdate(DataType.BagItemUpdate);
         }
 
-        //洗练
-        public static async ETTask SendXiLian(this BagComponent self, BagInfo bagInfo)
-        {
-            C2M_ItemXiLianRequest c2M_ItemHuiShouRequest = new C2M_ItemXiLianRequest() { OperateBagID = bagInfo.BagInfoID };
-            M2C_ItemXiLianResponse r2c_roleEquip = (M2C_ItemXiLianResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
-            HintHelp.GetInstance().ShowHint("洗炼道具成功");
-        }
-
         //回收
         public static async ETTask SendHuiShou(this BagComponent self, List<long> huishouList)
         {

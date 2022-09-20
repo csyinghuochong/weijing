@@ -7,6 +7,7 @@ namespace ET
 	public class UIRoleXiLianShowComponent : Entity, IAwake
 	{
 
+		public GameObject XiLianTen;
 		public GameObject Obj_EquipPropertyText;
 		public GameObject EquipBaseSetList;
 		public GameObject UIXiLianItemNode;
@@ -21,10 +22,9 @@ namespace ET
 
 		public BagComponent BagComponent;
 
-		public UI CostItemUI;
-		public UI XiLianItemUI;
-		public UI UIPageComponent;
-		public List<UI> EquipUIList;
+		public UIItemComponent CostItemUI;
+		public UIItemComponent XiLianItemUI;
+		public List<UIItemComponent> EquipUIList = new List<UIItemComponent>();
 
 		public BagInfo XilianBagInfo;
 	}
@@ -34,11 +34,14 @@ namespace ET
 	{
 		public override void Awake(UIRoleXiLianShowComponent self)
 		{
-			self.EquipUIList = new List<UI>();
+			self.EquipUIList.Clear();
 			self.XilianBagInfo = null;
 			ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 			self.XiLianButton = rc.Get<GameObject>("XiLianButton");
-			self.XiLianButton.GetComponent<Button>().onClick.AddListener(() => { self.OnXiLianButton().Coroutine(); });
+			ButtonHelp.AddListenerEx(self.XiLianButton, () => { self.OnXiLianButton(1).Coroutine(); });
+
+			self.XiLianTen = rc.Get<GameObject>("XiLianTen");
+			ButtonHelp.AddListenerEx(self.XiLianTen, () => { self.OnXiLianButton(10).Coroutine(); });
 
 			self.Text_CostValue = rc.Get<GameObject>("Text_CostValue");
 			self.Text_CostName = rc.Get<GameObject>("Text_CostName");
@@ -92,7 +95,7 @@ namespace ET
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 			if (self.XiLianItemUI != null)
 			{
-				self.XiLianItemUI.GetComponent<UIItemComponent>().UpdateItem(bagInfo, ItemOperateEnum.None);
+				self.XiLianItemUI.UpdateItem(bagInfo, ItemOperateEnum.None);
 			}
 
 			//洗炼消耗
@@ -104,8 +107,8 @@ namespace ET
 			}
 
 			BagInfo bagInfoNeed = new BagInfo() { ItemID = itemCost[0], ItemNum = itemCost[1] };
-			self.CostItemUI.GetComponent<UIItemComponent>().UpdateItem(bagInfoNeed, ItemOperateEnum.None);
-			self.CostItemUI.GetComponent<UIItemComponent>().Label_ItemNum.SetActive(false);
+			self.CostItemUI.UpdateItem(bagInfoNeed, ItemOperateEnum.None);
+			self.CostItemUI.Label_ItemNum.SetActive(false);
 
 			self.Text_CostValue.GetComponent<Text>().text = string.Format("{0}/{1}", self.BagComponent.GetItemNumber(itemCost[0]), itemCost[1]);
 			self.Text_CostValue.GetComponent<Text>().color = self.BagComponent.GetItemNumber(itemCost[0]) >= itemCost[1] ? Color.green : Color.red;
@@ -139,7 +142,7 @@ namespace ET
 					continue;
 				}
 
-				UI uI = null;
+				UIItemComponent uI = null;
 				if (number < self.EquipUIList.Count)
 				{
 					uI = self.EquipUIList[number];
@@ -149,13 +152,12 @@ namespace ET
 				{
 					GameObject go = GameObject.Instantiate(bundleGameObject);
 					UICommonHelper.SetParent(go, self.EquipListNode);
-					uI = self.AddChild<UI, string, GameObject>("XiLianItem", go);
-					UIItemComponent uIItemComponent = uI.AddComponent<UIItemComponent>();
-					uIItemComponent.SetClickHandler((BagInfo bagInfo) => { self.OnSelectItem(bagInfo); });
+					uI = self.AddChild<UIItemComponent, GameObject>( go);
+					uI.SetClickHandler((BagInfo bagInfo) => { self.OnSelectItem(bagInfo); });
 					self.EquipUIList.Add(uI);
 				}
 				number++;
-				uI.GetComponent<UIItemComponent>().UpdateItem(equipInfos[i], ItemOperateEnum.ItemXiLian);
+				uI.UpdateItem(equipInfos[i], ItemOperateEnum.ItemXiLian);
 			}
 
 			for (int i = number; i < self.EquipUIList.Count; i++)
@@ -169,7 +171,7 @@ namespace ET
 			}
 			else if (number > 0)
 			{
-				self.EquipUIList[0].GetComponent<UIItemComponent>().OnClickUIItem();
+				self.EquipUIList[0].OnClickUIItem();
 			}
 		}
 
@@ -178,7 +180,7 @@ namespace ET
 			self.XilianBagInfo = bagInfo;
 			for (int i = 0; i < self.EquipUIList.Count; i++)
 			{
-				self.EquipUIList[i].GetComponent<UIItemComponent>().SetSelected(bagInfo);
+				self.EquipUIList[i].SetSelected(bagInfo);
 			}
 			self.OnUpdateXinLian();
 		}
@@ -190,27 +192,24 @@ namespace ET
 
 			GameObject go = GameObject.Instantiate(bundleGameObject);
 			UICommonHelper.SetParent(go, self.UIXiLianItemNode);
-			self.XiLianItemUI = self.AddChild<UI, string, GameObject>("XiLianItem", go);
-			self.XiLianItemUI.AddComponent<UIItemComponent>();
-			self.XiLianItemUI.GetComponent<UIItemComponent>().Label_ItemName.SetActive(true);
+			self.XiLianItemUI = self.AddChild<UIItemComponent, GameObject>(go);
+			self.XiLianItemUI.Label_ItemName.SetActive(true);
 
 			go = GameObject.Instantiate(bundleGameObject);
 			UICommonHelper.SetParent(go, self.CostItem);
-			self.CostItemUI = self.AddChild<UI, string, GameObject>("CostItemUI", go);
-			UIItemComponent uIItemComponent = self.CostItemUI.AddComponent<UIItemComponent>();
-			uIItemComponent.Label_ItemNum.SetActive(false);
-			uIItemComponent.Label_ItemName.SetActive(false);
+			self.CostItemUI = self.AddChild<UIItemComponent, GameObject>( go);
+			self.CostItemUI.Label_ItemNum.SetActive(false);
+			self.CostItemUI.Label_ItemName.SetActive(false);
 
 			BagInfo bagInfo = self.XilianBagInfo;
 			self.CostItem.SetActive(bagInfo != null);
 			if (bagInfo != null)
 			{
-				ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-				self.XiLianItemUI.GetComponent<UIItemComponent>().UpdateItem(bagInfo, ItemOperateEnum.None);
+				self.XiLianItemUI.UpdateItem(bagInfo, ItemOperateEnum.None);
 			}
 		}
 
-		public static async ETTask OnXiLianButton(this UIRoleXiLianShowComponent self)
+		public static async ETTask OnXiLianButton(this UIRoleXiLianShowComponent self, int times)
 		{
 			if (self.XilianBagInfo == null)
 			{
@@ -223,7 +222,7 @@ namespace ET
 			int[] itemCost = itemConfig.XiLianStone;
 			if (itemCost != null && itemCost.Length > 0)
 			{
-				costItems.Add(new RewardItem() { ItemID = itemCost[0], ItemNum = itemCost[1] });
+				costItems.Add(new RewardItem() { ItemID = itemCost[0], ItemNum = itemCost[1] * times });
 			}
 
 			if (!self.BagComponent.CheckNeedItem(costItems))
@@ -232,8 +231,21 @@ namespace ET
 				return;
 			}
 
-			await self.BagComponent.SendXiLian(self.XilianBagInfo);
-			self.OnXiLianReturn();
+			C2M_ItemXiLianRequest c2M_ItemHuiShouRequest = new C2M_ItemXiLianRequest() { OperateBagID = bagInfo.BagInfoID, Times = times };
+			M2C_ItemXiLianResponse r2c_roleEquip = (M2C_ItemXiLianResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
+			if (r2c_roleEquip.Error != 0)
+			{
+				return;
+			}
+			if (times == 1)
+			{
+				HintHelp.GetInstance().ShowHint("洗炼道具成功");
+				self.OnXiLianReturn();
+			}
+			if (times == 10)
+			{
+
+			}
 		}
 	}
 }

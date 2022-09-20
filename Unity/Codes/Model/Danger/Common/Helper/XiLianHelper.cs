@@ -33,33 +33,32 @@ namespace ET
             return 0;
         }
 
+        public static string GenerateGemHoleInfo(int itemQuality)
+        {
+            string gemholeinfo = "";
+            List<int> gemHoleId = new List<int>() { 0, 1, 2, 3, 4 };
+            List<int> gemWeight = new List<int>() { 50, 20, 15, 10, 5 };
+            int gemNumber = gemHoleId[RandomHelper.RandomByWeight(gemWeight)];
+            gemNumber = itemQuality >= 4 ? 4 : gemNumber;
+            for (int i = 0; i < gemNumber; i++)
+            {
+                gemholeinfo += RandomHelper.RandomNumber(101, 104).ToString();
+                gemholeinfo += "_";
+            }
+            return gemholeinfo.Length > 1 ? gemholeinfo.Substring(0, gemholeinfo.Length - 1) : gemholeinfo;
+        }
+
         /// <summary>
         /// 洗练装备
         /// </summary>
         /// <param name="bagInfo"></param>
         /// xilianType  洗炼类型   0 普通掉落  1 装备洗炼功能
-        public static void XiLianItem(BagInfo bagInfo, int xilianType, int xilianLv)
+        public static ItemXiLianResult XiLianItem(BagInfo bagInfo, int xilianType, int xilianLv)
         {
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             //获取装备等级和装备类型
             int equipID = itemConfig.ItemEquipID;
-            if (equipID == 0)
-            {
-                return;
-            }
             //默认送四个宝石位
-            string gemhole = "";
-            List<int> gemHoleId = new List<int>() { 0, 1, 2, 3, 4 };
-            List<int> gemWeight = new List<int>() { 50, 20, 15, 10, 5 };
-            int gemNumber = gemHoleId[RandomHelper.RandomByWeight(gemWeight)];
-            gemNumber = itemConfig.ItemQuality >= 4 ? 4 : gemNumber;
-            for (int i = 0; i < gemNumber; i++)
-            {
-                gemhole += RandomHelper.RandomNumber(101, 104).ToString();
-                gemhole += "_";
-            }
-            bagInfo.GemHole = gemhole.Length > 1 ? gemhole.Substring(0, gemhole.Length - 1) : gemhole;
-
             string fuMoStr = ComHelp.GetHideFuMoValue(bagInfo.HideID);
             List<HideProList> HideProList = new List<HideProList>();    //专精属性
             List<HideProList> BaseHideProList = new List<HideProList>();    //基础洗炼属性
@@ -440,9 +439,18 @@ namespace ET
                 //}
             }
 
-            bagInfo.XiLianHideProLists = BaseHideProList;   //基础属性洗炼
-            bagInfo.HideSkillLists = HideSkillList;         //隐藏技能
-            bagInfo.XiLianHideTeShuProLists = TeShuHideProList;  //特殊属性洗炼
+            if (xilianType == 0) //普通掉落
+            {
+                bagInfo.GemHole = GenerateGemHoleInfo(itemConfig.ItemQuality);
+            }
+            //bagInfo.XiLianHideProLists = BaseHideProList;   //基础属性洗炼
+            //bagInfo.HideSkillLists = HideSkillList;         //隐藏技能
+            //bagInfo.XiLianHideTeShuProLists = TeShuHideProList;  //特殊属性洗炼
+            ItemXiLianResult itemXiLianResult = new ItemXiLianResult();
+            itemXiLianResult.XiLianHideProLists = BaseHideProList;   //基础属性洗炼
+            itemXiLianResult.HideSkillLists = HideSkillList;         //隐藏技能
+            itemXiLianResult.XiLianHideTeShuProLists = TeShuHideProList;  //特殊属性洗炼
+            return itemXiLianResult;
         }
 
         public static List<int> GetLevelSkill(int xilianLevel)

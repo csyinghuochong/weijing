@@ -7,6 +7,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Linq;
 using UnityEngine;
+using System.Reflection;
 
 namespace ET
 {
@@ -938,6 +939,24 @@ namespace ET
 
             return gold;
         }
+
+        //浅拷贝即可
+        public static T DeepCopy<T>(T obj)
+        {
+            //如果是字符串或值类型则直接返回
+            if (obj == null || obj is string || obj.GetType().IsValueType) return obj;
+
+            object retval = Activator.CreateInstance(obj.GetType());
+            System.Reflection.FieldInfo[] fields = obj.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
+            foreach (System.Reflection.FieldInfo field in fields)
+            {
+                //try { field.SetValue(retval, DeepCopy(field.GetValue(obj))); }
+                try { field.SetValue(retval, (field.GetValue(obj))); }
+                catch { }
+            }
+            return (T)retval;
+        }
+
 
         /// <summary>
         /// 根据出生日期，计算精确的年龄

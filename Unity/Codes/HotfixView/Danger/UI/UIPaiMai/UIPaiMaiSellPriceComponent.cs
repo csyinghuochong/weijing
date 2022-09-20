@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
@@ -117,27 +115,10 @@ namespace ET
             UIHelper.Remove( self.DomainScene(), UIType.UIPaiMaiSellPrice );
         }
 
-        //浅拷贝即可
-        public static T DeepCopy<T>(T obj)
-        {
-            //如果是字符串或值类型则直接返回
-            if (obj == null || obj is string || obj.GetType().IsValueType) return obj;
-
-            object retval = Activator.CreateInstance(obj.GetType());
-            System.Reflection.FieldInfo[] fields = obj.GetType().GetFields(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.Static);
-            foreach (System.Reflection.FieldInfo field in fields)
-            {
-                //try { field.SetValue(retval, DeepCopy(field.GetValue(obj))); }
-                try { field.SetValue(retval, (field.GetValue(obj))); }
-                catch { }
-            }
-            return (T)retval;
-        }
-
         public static async ETTask OnBtn_ChuShou(this UIPaiMaiSellPriceComponent self)
         {
             PaiMaiItemInfo paiMaiItemInfo = new PaiMaiItemInfo();
-            paiMaiItemInfo.BagInfo = DeepCopy<BagInfo>(self.BagInfo);
+            paiMaiItemInfo.BagInfo = ComHelp.DeepCopy<BagInfo>(self.BagInfo);
             paiMaiItemInfo.BagInfo.ItemNum = self.SellNum;
             paiMaiItemInfo.Price = self.nowPrice;
             C2M_PaiMaiSellRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiSellRequest() {  PaiMaiItemInfo = paiMaiItemInfo };

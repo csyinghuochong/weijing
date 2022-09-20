@@ -303,9 +303,9 @@ namespace ET
         /// 道具洗练
         /// </summary>
         /// <param name="self"></param>
-        public static void OnEquipXiLian(this TaskComponent self)
+        public static void OnEquipXiLian(this TaskComponent self, int times)
         {
-            self.TriggerTaskCountryEvent(TaskCountryTargetType.EquipXiLian_9, 0, 1);
+            self.TriggerTaskCountryEvent(TaskCountryTargetType.EquipXiLian_9, 0, times);
         }
 
         /// <summary>
