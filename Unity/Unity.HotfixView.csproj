@@ -62,6 +62,7 @@
     <Compile Include="Codes\HotfixView\Danger\Component\GlobalUpdateComponentSystem.cs" />
     <Compile Include="Codes\HotfixView\Danger\Component\HeroHeadBarComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\Component\LockTargetComponentSystem.cs" />
+    <Compile Include="Codes\HotfixView\Danger\Component\MonsterActRangeComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\Component\NpcHeadBarComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\Component\ReddotViewComponentSystem.cs" />
     <Compile Include="Codes\HotfixView\Danger\Component\RelinkComponentSystem.cs" />

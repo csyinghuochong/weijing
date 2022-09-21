@@ -175,6 +175,10 @@ namespace ET
                         unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
                         unit.AddComponent<HeroHeadBarComponent>();         //血条UI组件
                     }
+                    if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
+                    {
+                        unit.AddComponent<MonsterActRangeComponent>();         //血条UI组件
+                    }
 
                     if (monsterCof.MonsterSonType == 52)
                     {

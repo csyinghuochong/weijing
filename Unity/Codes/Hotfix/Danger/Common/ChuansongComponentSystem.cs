@@ -29,10 +29,16 @@ namespace ET
         public static void OnUpdate(this ChuansongComponent self)
         {
             if (!self.ChuanSongOpen)
+            {
                 return;
+            }
 
-            Vector3 vector3 = self.GetParent<Unit>().Position;
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (myUnit == null)
+            {
+                return;
+            }
+            Vector3 vector3 = self.GetParent<Unit>().Position;
             if (self.InitInCircle && PositionHelper.Distance2D(vector3, myUnit.Position) > 1.2f)
             {
                 self.InitInCircle = false;

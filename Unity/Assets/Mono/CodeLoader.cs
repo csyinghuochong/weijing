@@ -109,7 +109,7 @@ namespace ET
 					}
 				case CodeMode.Mono:
 				{
-						Log.ILog.Debug("hotupdate1   CodeMode.HuaTuo");
+						Log.ILog.Debug("hotupdate1   CodeMode.Mono");
 						byte[] assBytes = LoadHelper.LoadCode("Code.dll").bytes;
 					byte[] pdbBytes = LoadHelper.LoadCode("Code.pdb").bytes;
 

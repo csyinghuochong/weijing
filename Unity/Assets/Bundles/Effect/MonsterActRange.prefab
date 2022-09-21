@@ -9998,7 +9998,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4116879926199456}
-  - component: {fileID: 114213784317363506}
+  - component: {fileID: 4829181684733483750}
   m_Layer: 0
   m_Name: MonsterActRange
   m_TagString: Untagged
@@ -10022,7 +10022,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114213784317363506
+--- !u!114 &4829181684733483750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10031,11 +10031,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1603041552888280}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62461cb480ed8914d8c2e2ba4671cc2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RangeSize: 0
-  Obj_LightEffect_1: {fileID: 0}
+  data: []
 --- !u!1 &1637738514963812
 GameObject:
   m_ObjectHideFlags: 0
@@ -10095,7 +10094,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4372882080042290}
-  - component: {fileID: 114661535808182226}
   m_Layer: 0
   m_Name: MainEffect
   m_TagString: Untagged
@@ -10120,27 +10118,6 @@ Transform:
   m_Father: {fileID: 4167766211831706}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &114661535808182226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1721977756232254}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fe6371b54bd03c48b108680ac06409d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  updateMode: 0
-  node: 0
-  activateByAnimationEvent: 1
-  activateTime: 0
-  duration: 5
-  isBullet: 0
-  flyHeight: 0
-  flySpeed: 0
-  flyMode: 0
 --- !u!1 &1894255413579222
 GameObject:
   m_ObjectHideFlags: 0
