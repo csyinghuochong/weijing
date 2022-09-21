@@ -11,7 +11,8 @@ namespace ET
     public class CheckReferences : EditorWindow
     {
         private const string KBuildAssetBundles = "XAsset/Bundles/Check Atlas References";
-        private static string sCheckPath = "Assets/Bundles/UI";
+        private static string sUICheckPath = "Assets/Bundles/UI";
+        private static string sSceneCheckPath = "Assets/Scenes";
 
 
         // [MenuItem("Asset / ), false, 1]
@@ -36,8 +37,8 @@ namespace ET
         }
 
         // [MenuItem("Asset / ), false, 1]
-        [MenuItem("Assets/Custom/Check  References", false, 1)]//路径
-        public static void KCheckFontReferences()
+        [MenuItem("Assets/Custom/Check References UI", false, 1)]//路径
+        public static void KCheckUIReferences()
         {
             string fontPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
 
@@ -51,7 +52,8 @@ namespace ET
             UnityEngine.Debug.Log("KCheckFontReferences: Begin");
 
             List<string> fileList = new List<string>();
-            fileList = GetFile(sCheckPath, fileList);
+            fileList.AddRange( GetFile(sUICheckPath, fileList) );
+
             string dataPath = Application.dataPath;
             int pathLength = dataPath.Length - 6;
             for (int i = 0; i < fileList.Count; i++)
@@ -112,13 +114,55 @@ namespace ET
             UnityEngine.Debug.Log("KCheckFontReferences: End");
         }
 
+        // [MenuItem("Asset / ), false, 1]
+        [MenuItem("Assets/Custom/Check References Scene", false, 1)]//路径
+        public static void KCheckSceneReferences()
+        {
+            string fontPath = AssetDatabase.GetAssetPath(Selection.activeInstanceID);
+
+            string[] assetPath = fontPath.Split('/');
+            string fontAssetName = assetPath[assetPath.Length - 1];
+            if (fontAssetName.Contains("."))
+            {
+                fontAssetName = fontAssetName.Split('.')[0];
+            }
+
+            UnityEngine.Debug.Log("KCheckFontReferences: Begin");
+
+            List<string> fileList = new List<string>();
+            fileList.AddRange(GetFile(sSceneCheckPath, fileList));
+
+            string dataPath = Application.dataPath;
+            int pathLength = dataPath.Length - 6;
+            for (int i = 0; i < fileList.Count; i++)
+            {
+                string itemPath = fileList[i];
+                if (itemPath.Contains(".meta"))
+                {
+                    continue;
+                }
+
+                itemPath = itemPath.Remove(0, pathLength);
+                string[] dependPathList = AssetDatabase.GetDependencies(new string[] { itemPath });
+                foreach (string path in dependPathList)
+                {
+                    if (path == fontPath)
+                    {
+                        UnityEngine.Debug.Log($"以下文件有引用： {itemPath} ");
+                    }
+                }
+            }
+
+            UnityEngine.Debug.Log("KCheckFontReferences: End");
+        }
+
         [MenuItem(KBuildAssetBundles)]
         public static void CheckAtlasReferences()
         {
             UnityEngine.Debug.LogError("CheckAtlasReferences: Begin");
 
             List<string> fileList = new List<string>();
-            fileList =  GetFile(sCheckPath, fileList);
+            fileList =  GetFile(sUICheckPath, fileList);
 
             string dataPath = Application.dataPath;
             int pathLength = dataPath.Length - 6;
