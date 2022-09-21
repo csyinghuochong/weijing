@@ -26,8 +26,6 @@ namespace ET
                     numericComponent.GetAsFloat(NumericType.Born_Y),
                     numericComponent.GetAsFloat(NumericType.Born_Z)
                 );
-
-            Log.ILog.Debug($"self.AckRange11 {self.AckRange}");
         }
     }
 
@@ -73,8 +71,7 @@ namespace ET
             self.MonsterActRange.SetActive(true);
             self.MonsterActRange.Get<GameObject>("MonsterActRange").GetComponent<Projector>().orthographicSize = self.AckRange;
             self.MonsterActRange.transform.position = self.BornPositon;
-
-            Log.ILog.Debug($"self.AckRange222 {self.AckRange}");
+            self.MonsterActRange.transform.localScale = self.AckRange * Vector3.one;
         }
     }
 }
