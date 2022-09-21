@@ -3,21 +3,31 @@ using UnityEngine;
 
 namespace ET
 {
-    public class MonsterActRangeComponent : Entity, IAwake, IDestroy
+    public class MonsterActRangeComponent : Entity, IAwake<int>, IDestroy
     {
         public bool IsInAck;
-        public Vector3 BornPositon;
         public float AckRange;
+        public Vector3 BornPositon;
         public GameObject MonsterActRange;
     }
 
     [ObjectSystem]
-    public class MonsterActRangeComponentAwakeSystem : AwakeSystem<MonsterActRangeComponent>
+    public class MonsterActRangeComponentAwakeSystem : AwakeSystem<MonsterActRangeComponent, int>
     {
-        public override void Awake(MonsterActRangeComponent self)
+        public override void Awake(MonsterActRangeComponent self, int configId)
         {
             self.IsInAck = false;
             self.MonsterActRange = null;
+            self.AckRange = (float)MonsterConfigCategory.Instance.Get(configId).ChaseRange;
+
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            self.BornPositon = new Vector3(
+                    numericComponent.GetAsFloat(NumericType.Born_X),
+                    numericComponent.GetAsFloat(NumericType.Born_Y),
+                    numericComponent.GetAsFloat(NumericType.Born_Z)
+                );
+
+            Log.ILog.Debug($"self.AckRange11 {self.AckRange}");
         }
     }
 
@@ -37,19 +47,34 @@ namespace ET
     public static class MonsterActRangeComponentSystem
     {
 
-        public static async ETTask ShowActRange(this MonsterActRangeComponent self)
+        public static void OnBossInCombat(this MonsterActRangeComponent self, int combat)
         {
-            await ETTask.CompletedTask;   
+            if (combat == 0)
+            {
+                self.MonsterActRange?.SetActive(false);
+            }
+            else
+            {
+                if (self.MonsterActRange != null)
+                {
+                    self.MonsterActRange.SetActive(true);
+                }
+                else
+                {
+                    self.LoadEffect().Coroutine();
+                }
+            }
         }
 
-        public static void OnUpdate(this MonsterActRangeComponent self)
+        public static async ETTask LoadEffect(this MonsterActRangeComponent self)
         {
-            if (self.MonsterActRange == null)
-            {
-                return;
-            }
-            
-            //bool isinack = Vector3.Distance( self.BornPositon, self.GetParent<Unit>().Position) < self.AckRange;
+            string path = ABPathHelper.GetEffetPath("MonsterActRange");
+            self.MonsterActRange = await GameObjectPoolComponent.Instance.GetExternal(path);
+            self.MonsterActRange.SetActive(true);
+            self.MonsterActRange.Get<GameObject>("MonsterActRange").GetComponent<Projector>().orthographicSize = self.AckRange;
+            self.MonsterActRange.transform.position = self.BornPositon;
+
+            Log.ILog.Debug($"self.AckRange222 {self.AckRange}");
         }
     }
 }

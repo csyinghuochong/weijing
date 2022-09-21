@@ -10034,7 +10034,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: []
+  data:
+  - key: MonsterActRange
+    gameObject: {fileID: 1637738514963812}
 --- !u!1 &1637738514963812
 GameObject:
   m_ObjectHideFlags: 0

@@ -177,7 +177,7 @@ namespace ET
                     }
                     if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
                     {
-                        unit.AddComponent<MonsterActRangeComponent>();         //血条UI组件
+                        unit.AddComponent<MonsterActRangeComponent, int>(monsterCof.Id);         //血条UI组件
                     }
 
                     if (monsterCof.MonsterSonType == 52)

@@ -49,7 +49,6 @@
                     break;
                 case NumericType.ZeroClock:
                     UserInfoComponent userInfoComponent = args.Unit.ZoneScene().GetComponent<UserInfoComponent>();
-                    ActivityComponent activityComponent = args.Unit.ZoneScene().GetComponent<ActivityComponent>();
                     userInfoComponent.UserInfo.DayFubenTimes.Clear();
                     userInfoComponent.UserInfo.ChouKaRewardIds.Clear();
                     break;
@@ -59,6 +58,7 @@
                     break;
                 case NumericType.BossInCombat:
                     int incombat = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.BossInCombat);
+                    args.Unit.GetComponent<MonsterActRangeComponent>().OnBossInCombat(incombat);
                     Log.ILog.Debug($"BossInCombat {args.Unit.Id} {incombat}");
                     break;
                 case NumericType.Tower_ID:
