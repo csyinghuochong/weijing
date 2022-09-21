@@ -106,6 +106,8 @@ namespace ET
                 UISkillGridComponentSystem.SetSkillCancelHandler(skillgrid, (bool val) => { self.ShowCancelButton(val); });
                 self.UISkillGirdList.Add(uiskillButton);
             }
+
+
         }
     }
 

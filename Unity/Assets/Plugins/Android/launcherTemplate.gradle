@@ -8,8 +8,8 @@ apply plugin: 'com.mob.sdk'
 
 MobSDK {
 
-    appKey "2d21337c7dc80"
-    appSecret "a2c24f564def8b4a450a88491e5cc353"
+    appKey "36af6e3967670"
+    appSecret "c2b2d9e1afdfd9f6e1cfb3a399d01703"
     spEdition "FP"
     fp true
 
@@ -97,8 +97,8 @@ MobSDK {
             Wechat {
                 id 4
                 sortId 4
-                appId "wx0f24f5e538739f0d"
-                appSecret "dd075324e0a4ab44bd49d972efcffedc"
+                appId "wx638f7f0efe37a825"
+                appSecret "a53c07eac29a15df1422627a4cc97a7e"
                 userName "gh_afb25ac019c9"
                 path "pages/index/index.html?id=1"
                 withShareTicket true

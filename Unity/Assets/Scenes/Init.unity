@@ -825,8 +825,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff906ecbbd0163f4094f8fa4e305d39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Development: 1
-  EditorMode: 1
+  Development: 0
+  EditorMode: 0
   OueNetMode: 1
   BigVersion: 4
   Updater: {fileID: 2018631435}
@@ -836,11 +836,11 @@ MonoBehaviour:
   FenXiang_ClickUrl: 
   ssdk: {fileID: 0}
   mobsdk: {fileID: 0}
-  WXAppID: wx0f24f5e538739f0d
-  WXAppSecret: dd075324e0a4ab44bd49d972efcffedc
+  WXAppID: wx638f7f0efe37a825
+  WXAppSecret: a53c07eac29a15df1422627a4cc97a7e
   javaClassStr: com.example.alinewsdk.AliSDKActivity
   javaActiveStr: currentActivity
-  CodeMode: 1
+  CodeMode: 2
   VersionMode: 1
 --- !u!4 &575235020
 Transform:
@@ -873,8 +873,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96253c5d46f644c4a76f41a43885015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appKey: 2d21337c7dc80
-  appSecret: a2c24f564def8b4a450a88491e5cc353
+  appKey: 36af6e3967670
+  appSecret: c2b2d9e1afdfd9f6e1cfb3a399d01703
   devInfo:
     sinaweibo:
       Enable: 1
@@ -898,8 +898,8 @@ MonoBehaviour:
     wechat:
       Enable: 1
       SortId: 5
-      AppId: wx0f24f5e538739f0d
-      AppSecret: dd075324e0a4ab44bd49d972efcffedc
+      AppId: wx638f7f0efe37a825
+      AppSecret: a53c07eac29a15df1422627a4cc97a7e
       UserName: gh_afb25ac019c9@app
       Path: /page/API/pages/share/share
       BypassApproval: 0
@@ -908,14 +908,14 @@ MonoBehaviour:
     wechatMoments:
       Enable: 1
       SortId: 6
-      AppId: wx0f24f5e538739f0d
-      AppSecret: dd075324e0a4ab44bd49d972efcffedc
+      AppId: wx638f7f0efe37a825
+      AppSecret: a53c07eac29a15df1422627a4cc97a7e
       BypassApproval: 1
     wechatFavorites:
       Enable: 1
       SortId: 7
-      AppId: wx0f24f5e538739f0d
-      AppSecret: dd075324e0a4ab44bd49d972efcffedc
+      AppId: wx638f7f0efe37a825
+      AppSecret: a53c07eac29a15df1422627a4cc97a7e
 --- !u!114 &575235022
 MonoBehaviour:
   m_ObjectHideFlags: 0
