@@ -82,12 +82,8 @@ public class EventHandle : QuickSDKListener
 	// Use this for initialization
 	void Start()
 	{
+		//no non-static method with name='setUnityGameObjectName'
 		QuickSDK.getInstance().setListener(this);
-		//mExitDialogCanvas = GameObject.Find("ExitDialog");
-		//if (mExitDialogCanvas != null)
-		//{
-		//	mExitDialogCanvas.SetActive(false);
-		//}
 	}
 
 	//init 已经在安卓层调用了

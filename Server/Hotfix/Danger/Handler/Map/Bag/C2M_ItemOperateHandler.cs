@@ -291,6 +291,8 @@ namespace ET
                                 break;
                             case 121:
                                 break;
+                            case 122:   //宠物技能书
+                                break;
                         }
 
                         //扣除道具

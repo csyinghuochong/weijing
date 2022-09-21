@@ -41,9 +41,8 @@ namespace ET
 		public ShareSDK ssdk;
 		public MobSDK mobsdk;
 
-
-		public string WXAppID = "wx0f24f5e538739f0d";
-		public string WXAppSecret = "dd075324e0a4ab44bd49d972efcffedc";
+		public string WXAppID = "wx638f7f0efe37a825";
+		public string WXAppSecret = "a53c07eac29a15df1422627a4cc97a7e";//a53c07eac29a15df1422627a4cc97a7e
 
 #if UNITY_IPHONE
     /*

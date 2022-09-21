@@ -41,11 +41,10 @@ namespace ET
             return key * 100 + number;
         }
 
-        public const int PetHeXinMax = 60;
-
         public const int RankNumber = 30;
         public const int CampRankNumber = 50;
         public const int PetRankNumber = 100;
+        public const int PetHeXinMax = 120;
 
         public static int BagMaxCapacity()
         {

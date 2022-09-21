@@ -61,7 +61,7 @@ namespace ET
 					response.rolePetInfo = petInfo;
 					break;
 				//学习技能书
-				case 121:
+				case 122:
 					Pet_AddSkill(petInfo, int.Parse(itemConfig.ItemUsePar));
 					response.rolePetInfo = petInfo;
 					break;

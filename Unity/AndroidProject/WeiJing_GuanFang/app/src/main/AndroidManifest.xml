@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.guangying.weijing"
+    package="com.example.weijinggame"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -25,14 +25,13 @@
         android:usesCleartextTraffic="true"
         android:networkSecurityConfig="@xml/network_security_config" >
         <activity
-            android:name="com.guangying.weijing2.MainActivity"
+            android:name="com.example.weijinggame.MainActivity"
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|mnc|mcc|navigation|orientation|screenLayout|screenSize|smallestScreenSize|uiMode|touchscreen"
             android:exported="true"
             android:launchMode="singleTask"
             android:noHistory="false" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
             <meta-data
@@ -40,7 +39,7 @@
                 android:value="true" />
         </activity>
         <activity
-            android:name="com.guangying.weijing2.wxapi.WXPayEntryActivity"
+            android:name="com.example.weijinggame.wxapi.WXPayEntryActivity"
             android:exported="true"
             android:launchMode="singleTop" />
     </application>
