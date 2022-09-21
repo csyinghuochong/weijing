@@ -47,7 +47,7 @@ namespace ET
             }
         }
 
-        public static void Run(this NumericWatcherComponent self, EventType.NumbericChange args)
+        public static void Run(this NumericWatcherComponent self, EventType.NumericChangeEvent args)
         {
             List<INumericWatcher> list;
             if (!self.allWatchers.TryGetValue(args.NumericType, out list))

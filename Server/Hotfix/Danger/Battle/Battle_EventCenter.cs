@@ -7,7 +7,7 @@ namespace ET
     //发送客户端数值更新消息   EventType.NumericApplyChangeValue
     public static class SendNumbericChange 
     {
-        public static  void Broadcast(EventType.NumbericChange args)
+        public static  void Broadcast(EventType.NumericChangeEvent args)
         {
  
             MessageHelper.Broadcast(args.Parent, new M2C_UnitNumbericUpdate()
@@ -21,7 +21,7 @@ namespace ET
             });
         }
 
-        public static void  SendToClient(EventType.NumbericChange args)
+        public static void  SendToClient(EventType.NumericChangeEvent args)
         {
             if (args.Parent.IsDisposed)
             {

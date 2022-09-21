@@ -6,6 +6,8 @@ namespace ET
     // 客户端挂在ZoneScene上，服务端挂在Unit上
     public class AIComponent: Entity, IAwake<int>, IDestroy
     {
+        public bool IsBoss;
+
         public bool IsRetreat;
 
         public int AIConfigId;
@@ -52,5 +54,7 @@ namespace ET
         public bool StopAI;
 
         public List<long> BeAttackList = new List<long>();
+
+        public C2M_SkillCmd c2M_SkillCmd = new C2M_SkillCmd();
     }
 }

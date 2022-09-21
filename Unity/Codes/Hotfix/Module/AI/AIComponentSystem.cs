@@ -24,6 +24,7 @@ namespace ET
     {
         public override void Awake(AIComponent self, int aiConfigId)
         {
+            self.IsBoss = false;
             self.TargetID = 0;
             self.StopAI = false;
             self.IsRetreat = false;
@@ -76,7 +77,6 @@ namespace ET
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
             foreach (AIConfig aiConfig in oneAI.Values)
             {
-
                 AIDispatcherComponent.Instance.AIHandlers.TryGetValue(aiConfig.Name, out AAIHandler aaiHandler);
 
                 if (aaiHandler == null)
@@ -137,6 +137,7 @@ namespace ET
             self.PatrolRange = MonsterCof.PatrolRange;  //巡逻范围
             self.ActDistance = MonsterCof.ActDistance;  //2    小于转攻击
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
+            self.IsBoss = MonsterCof.MonsterType == (int)MonsterTypeEnum.Boss;
         }
 
         public static void InitTeampPet(this AIComponent self, int monsteConfigId)

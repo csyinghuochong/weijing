@@ -14,9 +14,14 @@ namespace ET
 
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
+            Unit unit = aiComponent.GetParent<Unit>();
+            if (aiComponent.IsBoss)
+            {
+                unit.GetComponent<NumericComponent>().ApplyValue( NumericType.BossInCombat, 0);
+            }
+
             aiComponent.TargetID = 0;
             aiComponent.IsRetreat = true;
-            Unit unit = aiComponent.GetParent<Unit>();
             unit.Stop(0);
             await unit.FindPathMoveToAsync(aiComponent.BornPostion, cancellationToken, true);
             aiComponent.IsRetreat = false;

@@ -57,6 +57,7 @@
         public const int MakeShuLianDu = 3054;
         public const int RechargeNumber = 3055;
         public const int ItemXiLianDu = 3056;                                    //洗练家等级
+        public const int BossInCombat = 3057;                                    //进入战斗
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

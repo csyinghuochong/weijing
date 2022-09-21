@@ -57,6 +57,10 @@
                     ReddotComponent reddotComponent = args.Unit.ZoneScene().GetComponent<ReddotComponent>();
                     reddotComponent.UpdateReddont(ReddotType.RolePoint);
                     break;
+                case NumericType.BossInCombat:
+                    int incombat = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.BossInCombat);
+                    Log.ILog.Debug($"BossInCombat {args.Unit.Id} {incombat}");
+                    break;
                 case NumericType.Tower_ID:
                     int towerId = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Tower_ID);
                     if (towerId != 0)

@@ -4,9 +4,9 @@
 	/// 监视hp数值变化，改变血条值
 	/// </summary>
 	[NumericWatcher(NumericType.Now_Hp)]
-	public class NumericWatcher_Hp_ShowUI : INumericWatcher
+	public class NumericWatcher_Now_Hp : INumericWatcher
 	{
-		public void Run(EventType.NumbericChange args)
+		public void Run(EventType.NumericChangeEvent args)
 		{
 			Unit unit = args.Parent;
 			UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
@@ -68,7 +68,7 @@
 	[NumericWatcher(NumericType.Now_Dead)]
 	public class NumericWatcher_Now_Dead : INumericWatcher
 	{
-		public void Run(EventType.NumbericChange args)
+		public void Run(EventType.NumericChangeEvent args)
 		{
 
 #if SERVER
@@ -95,7 +95,7 @@
 		}
 
 #if !SERVER && NOT_UNITY
-		public async ETTask RunAsync(EventType.NumbericChange args)
+		public async ETTask RunAsync(EventType.NumericChangeEvent args)
 		{
 			Unit unit = args.Parent;
 			if (args.NewValue == 1 && unit.IsRobot())

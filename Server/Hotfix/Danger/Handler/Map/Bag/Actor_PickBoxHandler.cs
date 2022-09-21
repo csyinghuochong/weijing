@@ -19,9 +19,9 @@ namespace ET
             if (boxUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
             {
                 UnitFactory.CreateDropItems(boxUnit, unit);
-                EventType.NumbericChange.Instance.Attack = unit;
-                EventType.NumbericChange.Instance.Parent = boxUnit;
-                boxUnit.GetComponent<HeroDataComponent>().OnDead(EventType.NumbericChange.Instance);
+                EventType.NumericChangeEvent.Instance.Attack = unit;
+                EventType.NumericChangeEvent.Instance.Parent = boxUnit;
+                boxUnit.GetComponent<HeroDataComponent>().OnDead(EventType.NumericChangeEvent.Instance);
             }
             response.Error = ErrorCore.ERR_Success;
             reply();

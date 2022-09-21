@@ -23,7 +23,12 @@ namespace ET
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = aiComponent.GetParent<Unit>();
+            if (aiComponent.IsBoss)
+            {
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 1,true, true);
+            }
             unit.Stop(0);
+
             for (int i = 0; i < 100000; ++i)
             {
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
@@ -47,7 +52,7 @@ namespace ET
                 //}
                 Vector3 direction = target.Position - unit.Position;
                 float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
-                C2M_SkillCmd cmd = new C2M_SkillCmd();
+                C2M_SkillCmd cmd = aiComponent.c2M_SkillCmd;
                 //触发技能
                 cmd.TargetID = target.Id;
                 cmd.SkillID = skillId;

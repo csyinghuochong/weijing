@@ -20,6 +20,7 @@ namespace ET
             NumericType.Now_MaxHp,
             NumericType.Pet_Skin,
             NumericType.UnionLeader,
+            NumericType.BossInCombat,
         };
 
         //1 整数  2 浮点数

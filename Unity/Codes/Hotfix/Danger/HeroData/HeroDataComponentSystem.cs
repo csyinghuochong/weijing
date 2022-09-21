@@ -160,7 +160,7 @@ namespace ET
             return 1;
         }
 
-        public static void OnDead(this HeroDataComponent self, EventType.NumbericChange args)
+        public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
         {
             Unit unit = self.GetParent<Unit>();
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
@@ -364,7 +364,7 @@ namespace ET
         }
 #else
 
-        public static void OnDead(this HeroDataComponent self, EventType.NumbericChange args)
+        public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
         {
             Unit unit = self.GetParent<Unit>();
             unit.GetComponent<MoveComponent>()?.Stop();

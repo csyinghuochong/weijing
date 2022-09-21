@@ -179,8 +179,8 @@
     <Compile Include="Codes\Hotfix\Module\Message\SessionStreamDispatcherSystem.cs" />
     <Compile Include="Codes\Hotfix\Module\Numeric\NumericChangeEvent_NotifyWatcher.cs" />
     <Compile Include="Codes\Hotfix\Module\Numeric\NumericWatcherComponentSystem.cs" />
+    <Compile Include="Codes\Hotfix\Module\Numeric\NumericWatcher_Now_Hp.cs" />
     <Compile Include="Codes\Hotfix\Module\Numeric\NumericWatcher_Update.cs" />
-    <Compile Include="Codes\Hotfix\Module\Numeric\NumericWatcher_Hp_ShowUI.cs" />
     <Compile Include="Codes\Hotfix\Module\Ping\PingComponentSystem.cs" />
     <Compile Include="Codes\Hotfix\Module\Recast\NavmeshComponentSystem.cs" />
     <Compile Include="Codes\Hotfix\Module\Recast\PathfindingComponentSystem.cs" />

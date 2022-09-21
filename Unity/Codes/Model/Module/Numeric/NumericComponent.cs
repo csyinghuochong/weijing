@@ -6,9 +6,10 @@ namespace ET
 {
 	namespace EventType
 	{
-		public class NumbericChange : DisposeObject
+		//NumericChangeEvent_NotifyWatcher
+		public class NumericChangeEvent : DisposeObject
 		{
-			public static readonly NumbericChange Instance = new NumbericChange();
+			public static readonly NumericChangeEvent Instance = new NumericChangeEvent();
 
 			public Unit Parent;
 			public Unit Attack;
@@ -145,7 +146,7 @@ namespace ET
 			if (notice && old != nowPropertyValue)
 			{
 				//发送改变属性的相关消息
-				EventType.NumbericChange args = EventType.NumbericChange.Instance;
+				EventType.NumericChangeEvent args = EventType.NumericChangeEvent.Instance;
 				args.Parent = this.Parent as Unit;
 				args.NumericType = nowValue;
 				args.OldValue = old;
@@ -189,15 +190,19 @@ namespace ET
 		}
 
 
-		public void ApplyValue(int numericType, long value, bool notice = true)
+		public void ApplyValue(int numericType, long value, bool notice = true, bool check = false)
 		{
 			long old = this.GetByKey(numericType);
 			NumericDic[numericType] = value;
 
+			if (check && old == value)
+			{
+				return;
+			}
 			if (notice)
 			{
 				//发送改变属性的相关消息
-				EventType.NumbericChange args = EventType.NumbericChange.Instance;
+				EventType.NumericChangeEvent args = EventType.NumericChangeEvent.Instance;
 				args.Parent = this.Parent as Unit;
 				args.NumericType = numericType;
 				args.OldValue = old;
@@ -227,7 +232,7 @@ namespace ET
 			if (notice)
 			{
 				//发送改变属性的相关消息
-				EventType.NumbericChange args = EventType.NumbericChange.Instance;
+				EventType.NumericChangeEvent args = EventType.NumericChangeEvent.Instance;
 				args.Parent = this.Parent as Unit;
 				args.Attack = attack;
 				args.NumericType = numericType;

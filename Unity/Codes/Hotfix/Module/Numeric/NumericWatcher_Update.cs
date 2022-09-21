@@ -4,11 +4,10 @@
     [NumericWatcher((int)NumericType.Now_Damage)]
 	public class NumericWatcher_Change_Now_Damage : INumericWatcher
 	{
-		public void Run(EventType.NumbericChange args)
+		public void Run(EventType.NumericChangeEvent args)
 		{
 #if SERVER
-;
-				args.Parent.DomainScene().GetComponent<TeamDungeonComponent>().OnUpdateDamage(args.Parent, (int)args.NewValue);
+			args.Parent.DomainScene().GetComponent<TeamDungeonComponent>().OnUpdateDamage(args.Parent, (int)args.NewValue);
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
 			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
@@ -30,11 +29,12 @@
 	[NumericWatcher((int)NumericType.Ling_DiExp)]
 	[NumericWatcher((int)NumericType.ZeroClock)]
 	[NumericWatcher((int)NumericType.PointRemain)]
+	[NumericWatcher((int)NumericType.BossInCombat)]
 	[NumericWatcher((int)NumericType.XiuLian_ExpNumber)]
 	[NumericWatcher((int)NumericType.XiuLian_CoinNumber)]
-	public class NumericWatcher_Change_Now_Weapon : INumericWatcher
+	public class NumericWatcher_Change_Update : INumericWatcher
 	{
-		public void Run(EventType.NumbericChange args)
+		public void Run(EventType.NumericChangeEvent args)
 		{
 
 #if SERVER

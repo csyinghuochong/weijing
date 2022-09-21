@@ -1,11 +1,11 @@
 ﻿namespace ET
 {
-	// 分发数值监听
-	public class NumericChangeEvent_NotifyWatcher: AEventClass<EventType.NumbericChange>
+	// 分发数值监听NumericComponent
+	public class NumericChangeEvent_NotifyWatcher: AEventClass<EventType.NumericChangeEvent>
 	{
 		protected override  void Run(object number)
 		{
-			EventType.NumbericChange args = number as EventType.NumbericChange;
+			EventType.NumericChangeEvent args = number as EventType.NumericChangeEvent;
 #if SERVER
 			if (NumericHelp.BroadcastType.Contains(args.NumericType))
 			{

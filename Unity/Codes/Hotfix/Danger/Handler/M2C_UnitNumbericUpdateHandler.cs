@@ -26,7 +26,7 @@ namespace ET
             //HeroDataComponent hero = session.DomainScene().GetComponent<UnitComponent>().Get(message.UnitId).GetComponent<HeroDataComponent>();
             //客户端的NumericComponent.Set不会抛出事件。需要自己手动抛出
             nowNunt.GetComponent<NumericComponent>().Set(message.NumericType, message.NewValue, false);
-            EventType.NumbericChange args = EventType.NumbericChange.Instance;
+            EventType.NumericChangeEvent args = EventType.NumericChangeEvent.Instance;
             args.Parent = nowNunt;
             args.NumericType = message.NumericType;
             args.OldValue = message.OldValue;

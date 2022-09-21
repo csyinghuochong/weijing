@@ -14,7 +14,7 @@ namespace ET
                 {
                     return;
                 }
-                EventType.NumbericChange args = new EventType.NumbericChange();
+                EventType.NumericChangeEvent args = new EventType.NumericChangeEvent();
                 self.Parent.GetComponent<HeroDataComponent>().OnDead(args);
                 //self.Parent.GetParent<UnitComponent>().Remove(self.Parent.Id);
             }
