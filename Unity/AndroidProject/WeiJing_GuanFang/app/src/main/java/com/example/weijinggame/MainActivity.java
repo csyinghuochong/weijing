@@ -1,4 +1,4 @@
-package com.guangying.weijing2;
+package com.example.weijinggame;
 
 import android.Manifest;
 import android.app.Activity;
@@ -15,7 +15,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.guangying.weijing2.wxapi.WXPayEntryActivity;
+import com.example.weijinggame.wxapi.WXPayEntryActivity;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;

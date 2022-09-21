@@ -604,6 +604,11 @@ namespace ET
             return ComHelp.BagMaxCapacity() - self.GetBagList().Count;
         }
 
+        public static int GetPetHeXinLeftSpace(this BagComponent self)
+        {
+            return ComHelp.PetHeXinMax - self.GetItemsByLoc(ItemLocType.ItemPetHeXinBag).Count;
+        }
+
         public static int GetWuqiItemID(this BagComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

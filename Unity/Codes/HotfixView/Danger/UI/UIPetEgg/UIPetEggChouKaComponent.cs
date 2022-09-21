@@ -41,7 +41,7 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
 
             int needDimanond = int.Parse(GlobalValueConfigCategory.Instance.Get(40).Value.Split('@')[0]);
-            self.Text_DiamondNumber.GetComponent<Text>().text = needDimanond.ToString(); 
+            self.Text_DiamondNumber.GetComponent<Text>().text = needDimanond.ToString();
 
             string[] itemInfo = GlobalValueConfigCategory.Instance.Get(39).Value.Split('@')[0].Split(';');
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, ItemConfigCategory.Instance.Get(int.Parse(itemInfo[0])).Icon);
@@ -57,6 +57,11 @@ namespace ET
             if (bagComponent.GetLeftSpace() < choukaType)
             {
                 FloatTipManager.Instance.ShowFloatTip("请预留足够的背包空间！");
+                return;
+            }
+            if (bagComponent.GetPetHeXinLeftSpace() < choukaType)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请清理一下宠物之核背包！");
                 return;
             }
 

@@ -1,5 +1,4 @@
-package com.guangying.weijing2;
-import android.util.Log;
+package com.example.weijinggame;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
