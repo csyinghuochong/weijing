@@ -831,6 +831,7 @@ namespace ET
             }
             else
             {
+                self.UIMainSkillComponent.OnSkillSetUpdate();
                 self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-95.7f, 738f);
             }
 
@@ -989,6 +990,7 @@ namespace ET
 
         public static async ETTask OnEnterChapter(this UIMainComponent self)
         {
+            Log.Debug("OnEnterChapter_1");
             self.adventureBtn.SetActive(false);
             await UIHelper.Create(self.DomainScene(), UIType.UIDungeon);
             self.adventureBtn.SetActive(true);

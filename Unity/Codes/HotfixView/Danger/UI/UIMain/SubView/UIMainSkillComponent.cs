@@ -103,10 +103,7 @@ namespace ET
                 go.transform.localPosition = listpos[i];
                 UI uiskillButton = self.AddChild<UI, string, GameObject>(name, go);
                 UISkillGridComponent skillgrid = uiskillButton.AddComponent<UISkillGridComponent, int>(i);
-
-                SkillPro skillid = skillSetComponent.GetByPosition(i + 1);
                 UISkillGridComponentSystem.SetSkillCancelHandler(skillgrid, (bool val) => { self.ShowCancelButton(val); });
-                skillgrid.UpdateSkillInfo(skillid);
                 self.UISkillGirdList.Add(uiskillButton);
             }
         }
@@ -198,7 +195,6 @@ namespace ET
                 SkillPro skillid = skillSetComponent.GetByPosition(i + 1);
                 skillgrid.UpdateSkillInfo(skillid);
             }
-
             self.UIAttackGrid.GetComponent<UIAttackGridComponent>().UpdateComboTime();
         }
 
