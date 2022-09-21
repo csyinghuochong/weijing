@@ -43,7 +43,7 @@ namespace ET
 
 		public string WXAppID = "wx638f7f0efe37a825";
 		public string WXAppSecret = "a53c07eac29a15df1422627a4cc97a7e";//a53c07eac29a15df1422627a4cc97a7e
-
+		//apk sign   b119680ac96937de65f5c989ce485fb3
 #if UNITY_IPHONE
     /*
     [DllImport("__Internal")]
@@ -267,17 +267,25 @@ namespace ET
 		void OnGetUserInfoResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
 		{
 			Log.ILog.Debug("OnGetUserInfoResultHandler1:" + MiniJSON.jsonEncode(result));
-			if (state == ResponseState.Success)
+
+			if (type == PlatformType.WeChat)
 			{
-				this.OnGetUserInfoHandler("sucess_" + result["openid"].ToString());
+				if (state == ResponseState.Success)
+				{
+					this.OnGetUserInfoHandler("sucess_" + result["openid"].ToString());
+				}
+				else
+				{
+					this.OnGetUserInfoHandler("fail");
+				}
 			}
-			else
+			if (type == PlatformType.QQPlatform)
 			{
-				this.OnGetUserInfoHandler("fail");
+
 			}
 		}
 
-		public void FenXiang(string fenxiangtype)
+			public void FenXiang(string fenxiangtype)
 		{
 			//auth和getuser接口都可以实现授权登录功能，可以任意调用一个
 			//授权（每次都会跳转到第三方平台进行授权）进行授权

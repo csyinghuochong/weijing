@@ -886,14 +886,14 @@ MonoBehaviour:
     qq:
       Enable: 1
       SortId: 2
-      AppId: 101883752
-      AppKey: ab9d332ee43d3259991047c7796767dd
+      AppId: 1105893765
+      AppKey: 8DpWsEXj40TfCKzz
       ShareByAppClient: 1
     qzone:
       Enable: 1
       SortId: 1
-      AppId: 101883752
-      AppKey: ab9d332ee43d3259991047c7796767dd
+      AppId: 1105893765
+      AppKey: 8DpWsEXj40TfCKzz
       ShareByAppClient: 1
     wechat:
       Enable: 1
