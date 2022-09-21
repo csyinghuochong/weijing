@@ -93,11 +93,20 @@ namespace ET
 			}
 
 			//学习规则是随机顶掉当前宠物的一个技能
-			if (petinfo.PetSkill.Count > 0 )
+			if (petinfo.PetSkill.Count > 1 )
 			{
+				bool delStatus = false;
+				if (petinfo.PetSkill.Count < 3) {
+					if (RandomHelper.RandFloat01() > 0.5f) {
+						delStatus = true;
+					}
+				}
 				//随机获取替换的技能ID序号
-				int tihuanNum =  RandomHelper.RandomNumber(0, petinfo.PetSkill.Count);
-				petinfo.PetSkill.Remove(tihuanNum);
+				if (delStatus)
+				{
+					int tihuanNum = RandomHelper.RandomNumber(0, petinfo.PetSkill.Count);
+					petinfo.PetSkill.RemoveAt(tihuanNum);
+				}
 			}
 
 			petinfo.PetSkill.Add(addSkillID);
