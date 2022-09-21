@@ -883,9 +883,9 @@ MonoBehaviour:
     m_Alignment: 1
     m_AlignByGeometry: 0
     m_RichText: 1
-    m_HorizontalOverflow: 1
+    m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
-    m_LineSpacing: 0.1
+    m_LineSpacing: 0.7
   m_Text: '123123
 
     123123'

@@ -601,26 +601,29 @@ namespace ET
             float randomFloat = RandomHelper.RandFloat();
             randomFloat = randomFloat * JianDingPro;
 
-            if (randomFloat <= 0.2f)
+            if (randomFloat <= 0.25f)
             {
                 randomNum = 0;
             }
-            else if (randomFloat <= 0.55f)
+            else if (randomFloat <= 0.7f)
             {
                 randomNum = 1;
             }
-            else if (randomFloat <= 0.75f)
+            else if (randomFloat <= 0.9f)
             {
                 randomNum = 2;
             }
+            else
+            {
+                randomNum = 3;
+            }
+            /*
             else if (randomFloat <= 0.9f)
             {
                 randomNum = 3;
             }
-            else
-            {
-                randomNum = 4;
-            }
+            */
+
 
             if (randomNum == 0)
             {
