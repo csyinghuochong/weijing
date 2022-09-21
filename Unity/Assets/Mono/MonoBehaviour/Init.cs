@@ -247,6 +247,7 @@ namespace ET
 
 		public void GetUserInfo(string fenxiangtype)
 		{
+
 #if UNITY_ANDROID && !UNITY_EDITOR
 			switch (fenxiangtype)
 			{
@@ -257,7 +258,6 @@ namespace ET
 					ssdk.GetUserInfo(PlatformType.QQ);
 					break;
 			}
-
 #else
 			string add = fenxiangtype == "1" ? "WeChat" : "QQ";
 			this.OnGetUserInfoHandler($"sucess_{add}{PhoneNumberHelper.getRandomTel()}");
@@ -285,7 +285,7 @@ namespace ET
 			}
 		}
 
-			public void FenXiang(string fenxiangtype)
+		public void FenXiang(string fenxiangtype)
 		{
 			//auth和getuser接口都可以实现授权登录功能，可以任意调用一个
 			//授权（每次都会跳转到第三方平台进行授权）进行授权
@@ -348,9 +348,12 @@ namespace ET
 					break;
 			}
 		}
+
+
 		void OnAuthResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
 		{
-			Log.ILog.Debug("OnAuthResultHandler1:" + MiniJSON.jsonEncode(result));
+			Log.ILog.Debug("OnAuthResultHandler1:" + result);
+			Log.ILog.Debug("OnAuthResultHandler2:" + MiniJSON.jsonEncode(result));
 			if (state == ResponseState.Success)
 			{
 				this.OnAuthorizeHandler("sucess_" + result["openid"].ToString());
