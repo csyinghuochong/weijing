@@ -149,10 +149,14 @@
         public const int ERR_UseSkillInCD3 = 300803;
         public const int ERR_UseSkillError = 300804;
 
+        //宠物
         public const int ERR_Pet_Hint_1 = 300901;                                   //宠物星级出错
-        public const int ERR_Pet_UpStar = 300902;                                   //宠物星级失败
+        public const int ERR_Pet_UpStar = 300902;                                   //宠物星级失败                                                                 //宠物
+        public const int ERR_Pet_AddSkillSame = 300903;                             //宠物打书技能ID相同
 
         public const int ERR_Union_Same_Name = 301001;                              //同名的家族
+
+
 
         public static bool IsRpcNeedThrowException(int error)
         {

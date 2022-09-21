@@ -29,6 +29,8 @@ namespace ET
 
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 			int itemSubType = itemConfig.ItemSubType;
+			bool ifCost = true;
+
 			switch (itemSubType)
 			{
 				//宠物洗练
@@ -62,15 +64,17 @@ namespace ET
 					break;
 				//学习技能书
 				case 122:
-					Pet_AddSkill(petInfo, int.Parse(itemConfig.ItemUsePar));
+					bool ifok = Pet_AddSkill(petInfo, int.Parse(itemConfig.ItemUsePar));
 					response.rolePetInfo = petInfo;
+					ifCost = ifok;
+					response.Error = ErrorCore.ERR_Pet_AddSkillSame;
 					break;
 				default:
 					break;
 			}
 
 			//扣除相关道具
-			if (bagInfo != null)
+			if (bagInfo != null && ifCost)
 			{
 				//扣除道具
 				List<RewardItem> rewardItems = new List<RewardItem>();
@@ -85,11 +89,12 @@ namespace ET
 		}
 
 		//宠物打技能书
-		private void Pet_AddSkill(RolePetInfo petinfo, int addSkillID)
+		private bool Pet_AddSkill(RolePetInfo petinfo, int addSkillID)
 		{
+			//判断当前技能是否有重复的
 			if (petinfo.PetSkill.Contains(addSkillID))
 			{
-				return;
+				return false; 
 			}
 
 			//学习规则是随机顶掉当前宠物的一个技能
@@ -101,8 +106,9 @@ namespace ET
 						delStatus = true;
 					}
 				}
+
 				//随机获取替换的技能ID序号
-				if (delStatus)
+				if (!delStatus)
 				{
 					int tihuanNum = RandomHelper.RandomNumber(0, petinfo.PetSkill.Count);
 					petinfo.PetSkill.RemoveAt(tihuanNum);
@@ -110,6 +116,8 @@ namespace ET
 			}
 
 			petinfo.PetSkill.Add(addSkillID);
+
+			return true;
 		}
 
 		//宠物自身洗炼
