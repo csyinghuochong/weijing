@@ -69,7 +69,7 @@ namespace ET
             string path = ABPathHelper.GetEffetPath("MonsterActRange");
             self.MonsterActRange = await GameObjectPoolComponent.Instance.GetExternal(path);
             self.MonsterActRange.SetActive(true);
-            self.MonsterActRange.Get<GameObject>("MonsterActRange").GetComponent<Projector>().orthographicSize = self.AckRange;
+            self.MonsterActRange.Get<GameObject>("MonsterActRange").GetComponent<Projector>().orthographicSize = self.AckRange * 1.2f;
             self.MonsterActRange.transform.position = self.BornPositon;
             self.MonsterActRange.transform.localScale = self.AckRange * Vector3.one;
         }

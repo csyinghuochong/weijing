@@ -31,6 +31,7 @@ namespace ET
     [ObjectSystem]
     public  class GameObjectPoolComponent : Entity, IAwake, IDestroy
     {
+        public long LoadInterval;
         public static GameObjectPoolComponent Instance;
         public List<GameObjectLoad> LoadList = new List<GameObjectLoad> ();
         public Dictionary<string, List<GameObject>> ExternalReferences = new Dictionary<string, List<GameObject>>();
@@ -46,6 +47,7 @@ namespace ET
             self.LoadList.Clear (); 
             self.ExternalReferences.Clear();
             GameObjectPoolComponent.Instance = self;
+            self.LoadInterval = 200;
         }
     }
 
@@ -114,7 +116,7 @@ namespace ET
             self.LoadList.Add(load);
             if (self.Timer == 0)
             {
-                self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.GameObjectPoolTimer, self);
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(self.LoadInterval, TimerType.GameObjectPoolTimer, self);
             }
         }
 
