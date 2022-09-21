@@ -1072,7 +1072,7 @@ namespace ET
             {
                 string[] skillID = skillIDStr.Split(',');
 
-                Vector2 hint_vec2 = new Vector2(158.5f, startPostionY);
+                Vector2 hint_vec2 = new Vector2(0f, startPostionY);
                 self.Obj_EquipHintSkill.transform.GetComponent<RectTransform>().anchoredPosition = hint_vec2;
 
                 for (int i = 0; i <= skillID.Length - 1; i++)
