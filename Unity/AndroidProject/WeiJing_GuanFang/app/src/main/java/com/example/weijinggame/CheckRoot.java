@@ -1,4 +1,4 @@
-package com.guangying.weijing2;
+package com.example.weijinggame;
 
 import android.util.Log;
 

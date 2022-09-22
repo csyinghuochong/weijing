@@ -1,4 +1,4 @@
-package com.guangying.weijing2;
+package com.example.weijinggame;
 
 import android.Manifest;
 import android.app.Activity;
@@ -15,11 +15,15 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.guangying.weijing2.wxapi.WXPayEntryActivity;
+import com.example.weijinggame.wxapi.WXPayEntryActivity;
+import com.tencent.connect.common.Constants;
 import com.tencent.mm.sdk.modelpay.PayReq;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
 
+import com.tencent.tauth.IUiListener;
+import com.tencent.tauth.Tencent;
+import com.tencent.tauth.UiError;
 import com.unity3d.player.UnityPlayer;
 
 import java.io.BufferedReader;
@@ -32,6 +36,9 @@ import android.content.IntentFilter;
 
 import com.quicksdk.Sdk;
 import com.quicksdk.utility.AppConfig;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 public class MainActivity extends UnityPlayerActivity {
@@ -98,6 +105,124 @@ public class MainActivity extends UnityPlayerActivity {
         return wxAPI.isWXAppSupportAPI();
     }
 
+    public  void SetIsPermissionGranted(String appid)
+    {
+        Log.d("SetIsPermissionGranted",appid);
+        Tencent.setIsPermissionGranted(true);
+    }
+
+    //////////////
+    //登录方法
+    static Tencent mTencent;
+    public void LoginAndSend(String appid)
+    {//定义一个对象，里面的第一个参数是自己在QQ开放平台上申请的APPID。
+        mTencent = Tencent.createInstance(appid,this.getApplicationContext());
+        if (!mTencent.isSessionValid())
+        {
+            mTencent.login(this, "all", loginListener);
+        }
+    }
+    IUiListener loginListener = new BaseUiListener() {
+        @Override
+        protected void doComplete(JSONObject values) {
+            initOpenidAndToken(values);
+        }
+    };
+    public static void initOpenidAndToken(JSONObject jsonObject) {
+        try {
+            String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
+            String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
+            String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
+            if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires)
+                    && !TextUtils.isEmpty(openId)) {
+                mTencent.setAccessToken(token, expires);
+                mTencent.setOpenId(openId);
+            }
+        } catch(Exception e) {
+        }
+    }
+
+    @Override  //这段代码非常重要，不加的话无法获取回调
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == Constants.REQUEST_LOGIN ||
+                requestCode == Constants.REQUEST_APPBAR) {
+            Tencent.onActivityResultData(requestCode,resultCode,data,loginListener);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+    private class BaseUiListener implements IUiListener {
+        @Override
+        public void onComplete(Object response) {
+            if (null == response) {
+                Log.d("LoginQQ","null == response");
+                return;
+            }
+            JSONObject jsonResponse = (JSONObject) response;
+            Log.d("LoginQQ ",jsonResponse.length() + "");
+            if (null != jsonResponse && jsonResponse.length() == 0) {
+
+                return;
+            }
+
+            try {
+                doComplete((JSONObject) response);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        protected void doComplete(JSONObject values) throws JSONException {
+            String nickname = values.getString("nickname");
+        }
+
+        @Override
+        public void onError(UiError e) {
+
+        }
+
+        @Override
+        public void onCancel() {
+
+        }
+
+        @Override
+        public void onWarning(int i) {
+
+        }
+    }
+
+    /*
+    public void LoginQQ_Old(String appid)
+    {
+
+        final Tencent tencent = Tencent.createInstance(appid,getApplicationContext());
+        if(!tencent.isSessionValid()){
+            //login
+            tencent.login(MainActivity.this, "get_simple_userinfo", new IUiListener() {
+                @Override
+                public void onComplete(Object o) {
+                    //在这里可以获取登录账户的个人信息
+                    Log.d("LoginQQ","onComplete");
+                }
+
+                @Override
+                public void onError(UiError uiError) {
+                    Log.d("LoginQQ","onError");
+                }
+
+                @Override
+                public void onCancel() {
+                    Log.d("LoginQQ","onCancel");
+                }
+
+                @Override
+                public void onWarning(int i) {
+                    Log.d("LoginQQ","onWarning");
+                }
+            });
+        }
+    }
+    */
     //微信登录的接口
     /*
     public  void LoginWechat(String appid,String state,String ObjName,String funName) {

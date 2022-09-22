@@ -93,7 +93,7 @@ namespace ET
 		 public const ushort C2M_CreateSpiling = 10090;
 		 public const ushort M2C_CreateSpilings = 10091;
 		 public const ushort SpilingInfo = 10092;
-		 public const ushort M2C_UnitNumbericUpdate = 10093;
+		 public const ushort M2C_UnitNumericUpdate = 10093;
 		 public const ushort M2C_SyncUnitPos = 10094;
 		 public const ushort M2C_CreateDropItems = 10095;
 		 public const ushort DropInfo = 10096;

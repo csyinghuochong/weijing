@@ -43,6 +43,8 @@ namespace ET
 
 		public string WXAppID = "wx638f7f0efe37a825";
 		public string WXAppSecret = "a53c07eac29a15df1422627a4cc97a7e";//a53c07eac29a15df1422627a4cc97a7e
+
+		public string QQAppID = "1105893765";
 		//apk sign   b119680ac96937de65f5c989ce485fb3
 #if UNITY_IPHONE
     /*
@@ -104,7 +106,12 @@ namespace ET
 			Options.Instance.Develop =  OueNetMode ? 0 : 1;
 			Options.Instance.LogLevel = OueNetMode ? 6 : 1;
 
-			this.CallNative("android to native");
+#if UNITY_ANDROID && !UNITY_EDITOR
+		jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
+		jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
+		jo.Call("CallNative", "yxh" );
+		jo.Call("WechatInit", WXAppID);
+#endif
 
 			GameObject sharesdk = GameObject.Find("Global");
 			ssdk = sharesdk.GetComponent<ShareSDK>();
@@ -114,10 +121,7 @@ namespace ET
 			ssdk.getFriendsHandler = OnGetFriendsResultHandler;
 			ssdk.followFriendHandler = OnFollowFriendResultHandler;
 			mobsdk = gameObject.GetComponent<MobSDK>();
-			//传入的第一个参数为Boolean类型的，true 代表同意授权、false代表不同意授权
-			//该接口必须接入，否则可能造成无法使用MobTech各SDK提供的相关服务。
-			mobsdk.submitPolicyGrantResult(true);
-
+			
 			Application.logMessageReceived += (string condition, string stackTrace, LogType type) =>
 			{
 				if (type == LogType.Error || type == LogType.Assert
@@ -126,6 +130,20 @@ namespace ET
 					UnityEngine.Debug.LogError(stackTrace);
 				}
 			};
+
+			///////需要在用户点击的时候调用
+			SetIsPermissionGranted();
+		}
+
+		public void SetIsPermissionGranted()
+		{
+
+#if UNITY_ANDROID && !UNITY_EDITOR
+			//传入的第一个参数为Boolean类型的，true 代表同意授权、false代表不同意授权
+			//该接口必须接入，否则可能造成无法使用MobTech各SDK提供的相关服务。
+			mobsdk.submitPolicyGrantResult(true);
+			jo.Call("SetIsPermissionGranted", QQAppID);
+#endif
 		}
 
 		public void OpenBuglyAgent(long userId)
@@ -146,17 +164,6 @@ namespace ET
 			BuglyAgent.EnableExceptionHandler();
 		}
 
-		public void CallNative(string strparam)
-		{
-
-#if UNITY_ANDROID && !UNITY_EDITOR
-		jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
-		jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
-
-        jo.Call("CallNative", strparam );
-		jo.Call("WechatInit", WXAppID);
-#endif
-		}
 
 		public void onFromNative(string fromNative)
 		{
@@ -255,7 +262,12 @@ namespace ET
 					ssdk.GetUserInfo(PlatformType.WeChat);
 					break;
 				case "2":
-					ssdk.GetUserInfo(PlatformType.QQ);
+					Log.ILog.Debug("GetUserInfo 2: 2");
+					//ssdk.GetUserInfo(PlatformType.QQ);
+
+					ssdk.Authorize(PlatformType.QQ); 
+
+					jo.Call("LoginAndSend", QQAppID);
 					break;
 			}
 #else
@@ -266,6 +278,7 @@ namespace ET
 
 		void OnGetUserInfoResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
 		{
+			
 			Log.ILog.Debug("OnGetUserInfoResultHandler1:" + MiniJSON.jsonEncode(result));
 
 			if (type == PlatformType.WeChat)

@@ -92,7 +92,7 @@
     <Compile Include="Codes\Hotfix\Danger\Handler\M2C_BagUpdateHandler.cs" />
     <Compile Include="Codes\Hotfix\Danger\Handler\M2C_ChainLightningHandler.cs" />
     <Compile Include="Codes\Hotfix\Danger\Handler\M2C_PetDataBroadcastHandler.cs" />
-    <Compile Include="Codes\Hotfix\Danger\Handler\M2C_UnitNumbericUpdateHandler.cs" />
+    <Compile Include="Codes\Hotfix\Danger\Handler\M2C_UnitNumericUpdateHandler.cs" />
     <Compile Include="Codes\Hotfix\Danger\Handler\M2C_ChatUpdateInfoHandler.cs" />
     <Compile Include="Codes\Hotfix\Danger\Handler\M2C_CreateDropItemsHandlers.cs" />
     <Compile Include="Codes\Hotfix\Danger\Handler\M2C_CreateRolePetHandler.cs" />

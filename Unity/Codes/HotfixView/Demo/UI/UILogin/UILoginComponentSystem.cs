@@ -13,7 +13,7 @@ namespace ET
 		{
 			try
 			{
-				Log.ILog.Debug("testSdk 1");
+				Log.ILog.Debug("UILoginComponent 1");
 				int version = GameObject.Find("Global").GetComponent<Init>().BigVersion;
 				if (version < self.BigVersion)
 				{

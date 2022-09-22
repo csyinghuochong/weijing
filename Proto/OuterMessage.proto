@@ -885,7 +885,7 @@ message SpilingInfo
 	int64 ReviveTime = 11;
 }
 
-message M2C_UnitNumbericUpdate // IActorMessage
+message M2C_UnitNumericUpdate // IActorMessage
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;

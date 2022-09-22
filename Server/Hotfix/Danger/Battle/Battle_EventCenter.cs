@@ -10,7 +10,7 @@ namespace ET
         public static  void Broadcast(EventType.NumericChangeEvent args)
         {
  
-            MessageHelper.Broadcast(args.Parent, new M2C_UnitNumbericUpdate()
+            MessageHelper.Broadcast(args.Parent, new M2C_UnitNumericUpdate()
             {
                 UnitId = args.Parent.Id,
                 NumericType = args.NumericType,
@@ -27,12 +27,13 @@ namespace ET
             {
                 return;
             }
+            //
             if (args.Parent.GetComponent<UnitGateComponent>() == null)
             {
                 Log.Info($"unit.GetComponent<UnitGateComponent>()  {args.Parent.Type}  {(int)args.NumericType}");
                 return;
             }
-            MessageHelper.SendToClient(args.Parent, new M2C_UnitNumbericUpdate()
+            MessageHelper.SendToClient(args.Parent, new M2C_UnitNumericUpdate()
             {
                 UnitId = args.Parent.Id,
                 NumericType = (int)args.NumericType,

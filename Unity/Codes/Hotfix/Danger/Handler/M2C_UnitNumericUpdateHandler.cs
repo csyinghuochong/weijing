@@ -5,9 +5,9 @@ namespace ET
 
     //接受属性改变消息
     [MessageHandler]
-    public class M2C_UnitNumbericUpdateHandler : AMHandler<M2C_UnitNumbericUpdate>
+    public class M2C_UnitNumericUpdateHandler : AMHandler<M2C_UnitNumericUpdate>
     {
-        protected override void  Run(Session session, M2C_UnitNumbericUpdate message)
+        protected override void  Run(Session session, M2C_UnitNumericUpdate message)
         {
             //Log.Info("获取最新的属性...");
             //同步我当前的属性

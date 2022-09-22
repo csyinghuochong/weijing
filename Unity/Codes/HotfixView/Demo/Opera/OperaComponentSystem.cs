@@ -159,40 +159,6 @@ namespace ET
             }
         }
 
-        public static void OnUpdate(this OperaComponent self)
-        {
-            //if (InputHelper.GetKeyDown(114))
-            //{
-            //    CodeLoader.Instance.LoadLogic();
-            //    Game.EventSystem.Add(CodeLoader.Instance.GetHotfixTypes());
-            //    Game.EventSystem.Load();
-            //    Log.Debug("hot reload success!");
-            //}
-            //if (Input.GetKey(KeyCode.F1))
-            //{
-            //    self.c2mSkillCmd.SkillID = 51011102;
-            //    self.c2mSkillCmd.TargetAngle = 0;
-            //    self.c2mSkillCmd.TargetID = 0;
-            //    self.c2mSkillCmd.TargetDistance = 0;
-            //    MapHelper.SendUseSkill(self.DomainScene(), self.c2mSkillCmd).Coroutine();
-            //    //UIHelper.Create( self.DomainScene(), UIType.UIRole ).Coroutine();
-            //    return;
-            //}
-
-            if (self.EditorMode)
-            {
-            }
-
-            if (InputHelper.GetMouseButtonDown(1))
-            {
-               
-            }
-
-            if (InputHelper.GetMouseButtonDown(0) || (Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began))
-            {
-            }
-        }
-
         public static bool CheckMove(this OperaComponent self)
         {
             Ray ray = self.mainCamera.ScreenPointToRay(Input.mousePosition);

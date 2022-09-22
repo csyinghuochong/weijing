@@ -1889,9 +1889,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_UnitNumbericUpdate)]
+	[Message(OuterOpcode.M2C_UnitNumericUpdate)]
 	[ProtoContract]
-	public partial class M2C_UnitNumbericUpdate: Object, IActorMessage
+	public partial class M2C_UnitNumericUpdate: Object, IActorMessage
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
