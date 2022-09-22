@@ -36,7 +36,7 @@ namespace ET
             self.EquipXiLianConfig = equipXiLianConfig;
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            self.Text_XiLianName.GetComponent<Text>().text = equipXiLianConfig.Title+GameSettingLanguge.LoadLocalization("激活洗炼特殊属性");
+            self.Text_XiLianName.GetComponent<Text>().text = equipXiLianConfig.Title+GameSettingLanguge.LoadLocalization("额外增加概率出现的特殊属性");
             List<int> xilianSkill = XiLianHelper.GetLevelSkill(equipXiLianConfig.XiLianLevel);
 
             int row = (xilianSkill.Count / 8);

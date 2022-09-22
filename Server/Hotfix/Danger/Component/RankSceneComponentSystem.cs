@@ -64,7 +64,7 @@ namespace ET
                 dBServerInfo.Id = self.DomainZone();
             }
             //初始化参数
-            dBServerInfo.ServerInfo.ExChangeGold = dBServerInfo.ServerInfo.ExChangeGold != 0? dBServerInfo.ServerInfo.ExChangeGold  :  10000;  //兑换金币
+            dBServerInfo.ServerInfo.ExChangeGold = dBServerInfo.ServerInfo.ExChangeGold != 0? dBServerInfo.ServerInfo.ExChangeGold  :  1000;  //兑换金币
             dBServerInfo.ServerInfo.OpenServerTime = dBServerInfo.ServerInfo.OpenServerTime != 0 ? dBServerInfo.ServerInfo.OpenServerTime : TimeHelper.ServerNow();
             self.DBServerInfo = dBServerInfo;
             self.BroadcastWorldLv().Coroutine();
