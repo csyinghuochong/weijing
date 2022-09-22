@@ -40,6 +40,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
     implementation files('libs/android-support-v4.jar')
     implementation files('libs/open_sdk_3.5.12.2_r97423a8_lite.jar')
+    implementation files('libs/okhttp-3.4.1.jar')
+    implementation files('libs/okio-1.9.0.jar')
 }
 
 afterEvaluate {

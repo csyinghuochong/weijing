@@ -68,17 +68,12 @@ namespace quicksdk
 			QuickSDKImp.getInstance ().updateRole (gameRoleInfo);//角色升级
 		}
 
-
-
 		public void enterYunKeFuCenter(GameRoleInfo gameRoleInfo){
 			QuickSDKImp.getInstance ().enterYunKeFuCenter (gameRoleInfo);//进入云客服
 		}
 		public void callSDKShare(ShareInfo shareInfo){
 			QuickSDKImp.getInstance ().callSDKShare(shareInfo);//进入云客服
 		}
-
-
-
 
 		public int showToolBar(ToolbarPlace place)//1左上,2右上,3左中,4右中,5左下,6右下
 		{

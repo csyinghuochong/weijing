@@ -40,7 +40,6 @@ import com.quicksdk.utility.AppConfig;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 public class MainActivity extends UnityPlayerActivity {
 
 
@@ -84,7 +83,6 @@ public class MainActivity extends UnityPlayerActivity {
     }
 
     public String getProductCode() {
-
         Log.i("product_code:  ", AppConfig.getInstance().getConfigValue("product_code"));
         return AppConfig.getInstance().getConfigValue("product_code");
     }
@@ -111,34 +109,39 @@ public class MainActivity extends UnityPlayerActivity {
         Tencent.setIsPermissionGranted(true);
     }
 
-    //////////////
     //登录方法
-    static Tencent mTencent;
-    public void LoginAndSend(String appid)
-    {//定义一个对象，里面的第一个参数是自己在QQ开放平台上申请的APPID。
+    private static Tencent mTencent;
+    public void LoginQQ(String appid)
+    {
+        //定义一个对象，里面的第一个参数是自己在QQ开放平台上申请的APPID。
         mTencent = Tencent.createInstance(appid,this.getApplicationContext());
         if (!mTencent.isSessionValid())
         {
             mTencent.login(this, "all", loginListener);
         }
     }
+
     IUiListener loginListener = new BaseUiListener() {
         @Override
-        protected void doComplete(JSONObject values) {
+        protected void doComplete(JSONObject values)
+        {
             initOpenidAndToken(values);
         }
     };
-    public static void initOpenidAndToken(JSONObject jsonObject) {
+
+    public void initOpenidAndToken(JSONObject jsonObject) {
         try {
             String token = jsonObject.getString(Constants.PARAM_ACCESS_TOKEN);
             String expires = jsonObject.getString(Constants.PARAM_EXPIRES_IN);
             String openId = jsonObject.getString(Constants.PARAM_OPEN_ID);
+            NativeToUnit("QQLogin_" + openId);
             if (!TextUtils.isEmpty(token) && !TextUtils.isEmpty(expires)
                     && !TextUtils.isEmpty(openId)) {
                 mTencent.setAccessToken(token, expires);
                 mTencent.setOpenId(openId);
             }
         } catch(Exception e) {
+            Log.d("unity","initOpenidAndToken=null");
         }
     }
 
@@ -150,17 +153,16 @@ public class MainActivity extends UnityPlayerActivity {
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
+
     private class BaseUiListener implements IUiListener {
         @Override
         public void onComplete(Object response) {
             if (null == response) {
-                Log.d("LoginQQ","null == response");
+                Log.d("unity","null == response");
                 return;
             }
             JSONObject jsonResponse = (JSONObject) response;
-            Log.d("LoginQQ ",jsonResponse.length() + "");
             if (null != jsonResponse && jsonResponse.length() == 0) {
-
                 return;
             }
 
@@ -191,38 +193,6 @@ public class MainActivity extends UnityPlayerActivity {
         }
     }
 
-    /*
-    public void LoginQQ_Old(String appid)
-    {
-
-        final Tencent tencent = Tencent.createInstance(appid,getApplicationContext());
-        if(!tencent.isSessionValid()){
-            //login
-            tencent.login(MainActivity.this, "get_simple_userinfo", new IUiListener() {
-                @Override
-                public void onComplete(Object o) {
-                    //在这里可以获取登录账户的个人信息
-                    Log.d("LoginQQ","onComplete");
-                }
-
-                @Override
-                public void onError(UiError uiError) {
-                    Log.d("LoginQQ","onError");
-                }
-
-                @Override
-                public void onCancel() {
-                    Log.d("LoginQQ","onCancel");
-                }
-
-                @Override
-                public void onWarning(int i) {
-                    Log.d("LoginQQ","onWarning");
-                }
-            });
-        }
-    }
-    */
     //微信登录的接口
     /*
     public  void LoginWechat(String appid,String state,String ObjName,String funName) {
@@ -264,7 +234,7 @@ public class MainActivity extends UnityPlayerActivity {
     //获取系统时间戳
     public void ReqSystemTime(String str) {
         long time1 = System.currentTimeMillis();
-        UnityPlayer.UnitySendMessage("WWW_Set", "onRecvSysTime", String.valueOf(time1));
+        UnityPlayer.UnitySendMessage("Global", "onRecvSysTime", String.valueOf(time1));
     }
 
     //获取电池电量
@@ -276,7 +246,7 @@ public class MainActivity extends UnityPlayerActivity {
         double level = -1;
         if (rawlevel >= 0 && scale > 0)
             level = (rawlevel * 1.0) / scale;
-        UnityPlayer.UnitySendMessage("WWW_Set", "onRecvBattery", String.valueOf(level));
+        UnityPlayer.UnitySendMessage("Global", "onRecvBattery", String.valueOf(level));
     }
 
     public void QuDaoRequestPermissions() {
@@ -298,7 +268,7 @@ public class MainActivity extends UnityPlayerActivity {
                 this.activity.requestPermissions(permissions, 1);
             }
         } else {
-            UnityPlayer.UnitySendMessage("WWW_Set", "onRequestPermissionsResult", "1");
+            NativeToUnit("RequestPermissions_1");
         }
     }
 
@@ -311,11 +281,11 @@ public class MainActivity extends UnityPlayerActivity {
                     for (int result : grantResults) {
                         if (result != PackageManager.PERMISSION_GRANTED) {
                             Toast.makeText(this, "请同意所以请求才能运行程序", Toast.LENGTH_SHORT).show();
-                            doSomething_Ex("0");
+                            NativeToUnit("RequestPermissions_0");
                             finish();
                             return;
                         }
-                        doSomething_Ex("1");
+                        NativeToUnit("RequestPermissions_1");
                     }
                 } else {
                     Toast.makeText(this, "发生权限请求错误,程序关闭", Toast.LENGTH_SHORT).show();
@@ -326,14 +296,13 @@ public class MainActivity extends UnityPlayerActivity {
         }
     }
 
-    public void doSomething_Ex(String str) {
-        UnityPlayer.UnitySendMessage("Global", "onRequestPermissionsResult", str);
+    public void NativeToUnit(String str) {
+        UnityPlayer.UnitySendMessage("Global", "OnNativeToUnit", str);
     }
 
     //检测root 和 包名
     public void CallNative(String str) {
-        Log.i("CallNative222", "str");
-        UnityPlayer.UnitySendMessage("Global", "onFromNative", "excuteCheckAction2");
+        Log.i("CallNative_11", "str");
     }
 
     public void GetPhoneNum(String zone) {

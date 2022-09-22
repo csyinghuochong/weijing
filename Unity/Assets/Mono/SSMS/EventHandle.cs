@@ -21,8 +21,6 @@ public class EventHandle : QuickSDKListener
 	public Action onLoginFailAction;
 	public Action onInitSuccessAction;
 
-	public GameObject Btn_RenZheng;
-
 	public string ChannelId = "1";
 
 	void showLog(string title, string message)
@@ -425,7 +423,6 @@ public class EventHandle : QuickSDKListener
 
 		if (IsHuiWeiChannel())
 		{
-			Btn_RenZheng?.SetActive(false);
 			showLog("callFunction[channelid]: ", "huawei");
 		}
 		else

@@ -109,7 +109,7 @@ namespace ET
 #if UNITY_ANDROID && !UNITY_EDITOR
 		jc = new AndroidJavaClass("com.unity3d.player.UnityPlayer");
 		jo = jc.GetStatic<AndroidJavaObject>("currentActivity");
-		jo.Call("CallNative", "yxh" );
+		jo.Call("CallNative", "weijing" );
 		jo.Call("WechatInit", WXAppID);
 #endif
 
@@ -162,12 +162,6 @@ namespace ET
 #endif
 			// 如果你确认已在对应的iOS工程或Android工程中初始化SDK，那么在脚本中只需启动C#异常捕获上报功能即可
 			BuglyAgent.EnableExceptionHandler();
-		}
-
-
-		public void onFromNative(string fromNative)
-		{
-			Log.ILog.Info($"onFromNative { fromNative}");
 		}
 
 		private void Start()
@@ -262,12 +256,8 @@ namespace ET
 					ssdk.GetUserInfo(PlatformType.WeChat);
 					break;
 				case "2":
-					Log.ILog.Debug("GetUserInfo 2: 2");
 					//ssdk.GetUserInfo(PlatformType.QQ);
-
-					ssdk.Authorize(PlatformType.QQ); 
-
-					jo.Call("LoginAndSend", QQAppID);
+					jo.Call("LoginQQ", QQAppID);	//LoginQQ_1 LoginQQ_2 LoginAndSend
 					break;
 			}
 #else
@@ -276,11 +266,26 @@ namespace ET
 #endif
 		}
 
+		public void OnNativeToUnit(string msg)
+		{
+			string[] msginfo = msg.Split('_');
+			switch (msginfo[0])
+			{
+				case "QQLogin":
+					string openid = msginfo[1];
+					if (string.IsNullOrEmpty(openid))
+					{
+						return;
+					}
+					Log.ILog.Debug($"QQLogin:  {openid}");
+					this.OnGetUserInfoHandler($"sucess_{openid}");
+					break;
+			}
+		}
+
 		void OnGetUserInfoResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
 		{
-			
 			Log.ILog.Debug("OnGetUserInfoResultHandler1:" + MiniJSON.jsonEncode(result));
-
 			if (type == PlatformType.WeChat)
 			{
 				if (state == ResponseState.Success)
@@ -291,10 +296,6 @@ namespace ET
 				{
 					this.OnGetUserInfoHandler("fail");
 				}
-			}
-			if (type == PlatformType.QQPlatform)
-			{
-
 			}
 		}
 
@@ -365,8 +366,7 @@ namespace ET
 
 		void OnAuthResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
 		{
-			Log.ILog.Debug("OnAuthResultHandler1:" + result);
-			Log.ILog.Debug("OnAuthResultHandler2:" + MiniJSON.jsonEncode(result));
+			Log.ILog.Debug("OnAuthResultHandler:" + MiniJSON.jsonEncode(result));
 			if (state == ResponseState.Success)
 			{
 				this.OnAuthorizeHandler("sucess_" + result["openid"].ToString());
