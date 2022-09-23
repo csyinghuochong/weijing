@@ -1,10 +1,63 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
 
     public static class PetTianTiComponentSystem
     {
+        public static  async ETTask GeneratePetFuben(this PetTianTiComponent self)
+        {
+            long instanceId = self.InstanceId;
+            Unit unit = self.MainUnit;
+            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.WuDi);
+
+            PetComponent petComponent = self.MainUnit.GetComponent<PetComponent>();
+            for (int i = 0; i < petComponent.TeamPetList.Count; i++)
+            {
+                RolePetInfo rolePetInfo = petComponent.GetPetInfo(petComponent.TeamPetList[i]);
+                if (rolePetInfo == null)
+                {
+                    continue;
+                }
+                Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), unit.Id,
+                   unit.GetComponent<UnitInfoComponent>().RoleCamp,
+                   rolePetInfo, AIHelp.Formation_1[i]);
+                //petunit.GetComponent<AIComponent>().StopAI = true;
+            }
+
+            //先查找真实玩家。再查找
+            long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = self.EnemyId, Component = DBHelper.PetComponent });
+            if (d2GGetUnit.Component != null)
+            {
+                PetComponent petComponent_enemy =  d2GGetUnit.Component as PetComponent;
+                for (int i = 0; i < petComponent_enemy.TeamPetList.Count; i++)
+                {
+                    RolePetInfo rolePetInfo = petComponent_enemy.GetPetInfo(petComponent_enemy.TeamPetList[i]);
+                    if (rolePetInfo == null)
+                    {
+                        continue;
+                    }
+                    Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), unit.Id,
+                       2, rolePetInfo, AIHelp.Formation_2[i]);
+                    //petunit.GetComponent<AIComponent>().StopAI = true;
+                }
+            }
+            else
+            {
+                List<int> petlist = new List<int>() { 1000101, 1000201, 1000301 };
+                for (int k = 0; k < petlist.Count; k++)
+                {
+                    RolePetInfo petInfo = petComponent.GenerateNewPet(petlist[0], 0);
+                    petComponent.PetXiLian(petInfo, 1);
+                    petComponent.UpdatePetAttribute(petInfo);
+                    Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), unit.Id,
+                       2,  petInfo, AIHelp.Formation_2[k]);
+                    //petunit.GetComponent<AIComponent>().StopAI = true;
+                }
+            }
+        }
 
         public static void OnKillEvent(this PetTianTiComponent self)
         {
@@ -21,7 +74,7 @@ namespace ET
 
             M2C_PetRankSettlement m2C_FubenSettlement = new M2C_PetRankSettlement();
             m2C_FubenSettlement.BattleResult = result;
-            MessageHelper.SendToClient(self.GetPlayerUnit(), m2C_FubenSettlement);
+            MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
         }
 
         /// <summary>
@@ -35,7 +88,7 @@ namespace ET
             //获取传送map的 actorId
             long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
 
-            Unit unit = self.GetPlayerUnit();
+            Unit unit = self.MainUnit;
             RankPetInfo rankPetInfo = new RankPetInfo();
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             rankPetInfo.UserId = userInfoComponent.UserInfo.UserId;
@@ -48,19 +101,6 @@ namespace ET
             }
             R2M_PetRankUpdateResponse m2m_TrasferUnitResponse = (R2M_PetRankUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                      (mapInstanceId, new M2R_PetRankUpdateRequest() {  RankPetInfo = rankPetInfo, EnemyId = self.DomainScene().GetComponent<PetTianTiComponent>().EnemyId });
-        }
-
-        public static Unit GetPlayerUnit(this PetTianTiComponent self)
-        {
-            foreach ((long id, Entity value) in self.DomainScene().GetComponent<UnitComponent>().Children)
-            {
-                UnitInfoComponent unitInfoComponent = value.GetComponent<UnitInfoComponent>();
-                if (unitInfoComponent.Type == UnitType.Player )
-                {
-                    return value as Unit;
-                }
-            }
-            return null;
         }
 
         public static int GetCombatResult(this PetTianTiComponent self)

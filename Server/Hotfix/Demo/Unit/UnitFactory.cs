@@ -167,9 +167,8 @@ namespace ET
             return unit;
         }
 
-        public static Unit CreatePetFuben(Unit master, RolePetInfo petinfo, Vector3 postion)
+        public static Unit CreateFubenPet(Scene scene,  long masterId, int roleCamp, RolePetInfo petinfo, Vector3 postion)
         {
-            Scene scene = master.DomainScene();
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(petinfo.Id, 1);
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
@@ -179,11 +178,11 @@ namespace ET
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
-            unit.GetComponent<NumericComponent>().Set(NumericType.Master_ID, master.Id);
+            unit.GetComponent<NumericComponent>().Set(NumericType.Master_ID, masterId);
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unitInfoComponent.Type = UnitType.Pet;
             unitInfoComponent.UnitCondigID = petinfo.ConfigId;
-            unitInfoComponent.RoleCamp = master.GetComponent<UnitInfoComponent>().RoleCamp;
+            unitInfoComponent.RoleCamp = roleCamp;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Position = postion;
@@ -205,7 +204,7 @@ namespace ET
             unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill();
             unit.GetComponent<SkillPassiveComponent>().Activeted();
             //添加其他组件
-            unit.AddComponent<HeroDataComponent>().InitPet(petinfo, master.Id, false);
+            unit.AddComponent<HeroDataComponent>().InitPet(petinfo, false);
             unit.AddComponent<AOIEntity, int, Vector3>(1 * 1000, unit.Position);
             return unit;
         }
@@ -241,7 +240,7 @@ namespace ET
             }
 
             //添加其他组件
-            unit.AddComponent<HeroDataComponent>().InitPet(petinfo, master.Id, false);
+            unit.AddComponent<HeroDataComponent>().InitPet(petinfo,  false);
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
             return unit;
         }

@@ -8,7 +8,7 @@ namespace ET
 		Normal = 0,
 		NpcStoreEnter = 1,
 		NpcStoreExit = 2,
-		PetRank = 3,
+		PetFuben = 3,
 	}
 
 	public class CameraComponent : Entity, IAwake, ILateUpdate, IDestroy

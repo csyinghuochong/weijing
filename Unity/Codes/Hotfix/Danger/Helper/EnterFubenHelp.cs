@@ -4,11 +4,11 @@ namespace ET
 {
     public static class EnterFubenHelp
     {
-        public static async ETTask<int> RequestTransfer(Scene zoneScene, int sceneType, int sceneId, int transferId = 0, int difficulty = FubenDifficulty.None)
+        public static async ETTask<int> RequestTransfer(Scene zoneScene, int sceneType, int sceneId, int transferId = 0, int difficulty = FubenDifficulty.None, string paraminfo = "")
         {
             try
             {
-                Actor_TransferRequest c2M_ItemHuiShouRequest = new Actor_TransferRequest() { SceneType = sceneType, SceneId = sceneId, TransferId = transferId, Difficulty = difficulty };
+                Actor_TransferRequest c2M_ItemHuiShouRequest = new Actor_TransferRequest() { SceneType = sceneType, SceneId = sceneId, TransferId = transferId, Difficulty = difficulty, paramInfo = paraminfo };
                 Actor_TransferResponse r2c_roleEquip = (Actor_TransferResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
                 return r2c_roleEquip.Error;
             }

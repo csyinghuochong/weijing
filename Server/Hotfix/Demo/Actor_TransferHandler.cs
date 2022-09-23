@@ -79,11 +79,11 @@ namespace ET
 						break;
 					case (int)SceneTypeEnum.PetTianTi:
 						////动态创建副本
-						long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
+						long enemyId = long.Parse(request.paramInfo);
 						fubenid = IdGenerater.Instance.GenerateId();
                         fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
                         fubnescene =  SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "Fuben" + fubenid.ToString(), SceneType.Fuben);
-                        fubnescene.AddComponent<PetTianTiComponent>().EnemyId = userId;
+                        fubnescene.AddComponent<PetTianTiComponent>().EnemyId = enemyId;
                         TransferHelper.BeforeTransfer(unit);
 						TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetTianTi, request.SceneId, 0).Coroutine();
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();

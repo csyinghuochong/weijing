@@ -69,12 +69,12 @@ namespace ET
 			switch (sceneTypeEnum)
 			{
 				case SceneTypeEnum.PetTianTi:
-					self.CameraMoveType = CameraMoveType.PetRank;
-					self.MainCamera.transform.position = new Vector3(-0.5816254f, 12.86972f, -7.074983f);
-					self.MainCamera.transform.localRotation = Quaternion.Euler(63.806f, 3.781f, 0);
+					self.CameraMoveType = CameraMoveType.PetFuben;
+					self.MainCamera.transform.position = AIHelp.FuBenCameraPosition;
+					self.MainCamera.transform.localRotation = AIHelp.FuBenCameraRotation;
 					break;
 				case SceneTypeEnum.PetDungeon:
-					self.CameraMoveType = CameraMoveType.PetRank;
+					self.CameraMoveType = CameraMoveType.PetFuben;
 					self.MainCamera.transform.position = AIHelp.FuBenCameraPosition;
 					self.MainCamera.transform.localRotation = AIHelp.FuBenCameraRotation;
 					break;
@@ -147,7 +147,7 @@ namespace ET
 
 		public static void LateUpdate(this CameraComponent self)
 		{
-			if (self.CameraMoveType == CameraMoveType.PetRank)
+			if (self.CameraMoveType == CameraMoveType.PetFuben)
 			{
 				return;
 			}

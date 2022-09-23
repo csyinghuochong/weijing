@@ -60,9 +60,9 @@ namespace ET
 					}
 					break;
 				case (int)SceneTypeEnum.PetDungeon:
+				case (int)SceneTypeEnum.PetTianTi:
 					SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 					scene.GetComponent<MapComponent>().NavMeshId = sceneConfig.MapID.ToString();
-					scene.GetComponent<PetFubenSceneComponent>().MainUnit = unit;
 					unit.AddComponent<PathfindingComponent, string>(sceneConfig.MapID.ToString());
 					Game.Scene.GetComponent<RecastPathComponent>().Update(sceneConfig.MapID);
 
@@ -75,7 +75,16 @@ namespace ET
 					MessageHelper.SendToClient(unit, m2CCreateUnits);
 					// 加入aoi
 					unit.AddComponent<AOIEntity, int, Vector3>(40 * 1000, unit.Position);
-					scene.GetComponent<PetFubenSceneComponent>().GeneratePetFuben(unit, request.SonId).Coroutine();
+					if (request.SceneType == (int)SceneTypeEnum.PetDungeon)
+					{
+						scene.GetComponent<PetFubenSceneComponent>().MainUnit = unit;
+						scene.GetComponent<PetFubenSceneComponent>().GeneratePetFuben(unit, request.SonId).Coroutine();
+					}
+					if (request.SceneType == (int)SceneTypeEnum.PetTianTi)
+					{
+						scene.GetComponent<PetTianTiComponent>().MainUnit = unit;
+						scene.GetComponent<PetTianTiComponent>().GeneratePetFuben().Coroutine();
+					}
 					break;
 				case (int)SceneTypeEnum.LocalDungeon:
 					unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Task_DungeonID, request.ChapterId, false);

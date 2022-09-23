@@ -171,6 +171,9 @@ namespace ET
 		[ProtoMember(5)]
 		public int Difficulty { get; set; }
 
+		[ProtoMember(6)]
+		public string paramInfo { get; set; }
+
 	}
 
 	[Message(OuterOpcode.Actor_TransferResponse)]

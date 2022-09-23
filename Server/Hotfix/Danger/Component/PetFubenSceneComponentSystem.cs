@@ -63,7 +63,8 @@ namespace ET
                     continue;
                 }
                 await TimerComponent.Instance.WaitFrameAsync();
-                Unit petunit =  UnitFactory.CreatePetFuben(unit, rolePetInfo, AIHelp.Formation_1[i]);
+                Unit petunit =  UnitFactory.CreateFubenPet(unit.DomainScene(), 0,
+                    2,  rolePetInfo, AIHelp.Formation_1[i]);
                 petunit.GetComponent<AIComponent>().StopAI = true;
             }
             if (instanceId != self.InstanceId)

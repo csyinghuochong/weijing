@@ -48,6 +48,7 @@ namespace ET
                 case (int)SceneTypeEnum.Tower:
                 case (int)SceneTypeEnum.RandomTower:
                 case (int)SceneTypeEnum.PetDungeon:
+                case (int)SceneTypeEnum.PetTianTi:
                     loadResName = backpngs[index];
                     //self.PreLoadAssets.AddRange( self.GetRoleSkillEffect() );
                     //self.PreLoadAssets.AddRange( self.GetCommonAssets( ) );
@@ -219,7 +220,6 @@ namespace ET
                 return;
             }
             int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
-            //uimain.GameObject.SetActive(sceneTypeEnum != (int)SceneTypeEnum.PetFuben);
             uimain.GameObject.transform.localScale = sceneTypeEnum !=SceneTypeEnum.PetDungeon ? Vector3.one : Vector3.zero;
             Camera camera = UIComponent.Instance.MainCamera;
             camera.GetComponent<Camera>().fieldOfView = 50;
