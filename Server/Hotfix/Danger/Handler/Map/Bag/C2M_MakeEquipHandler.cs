@@ -74,17 +74,21 @@ namespace ET
             //制作的过程中有一定概率可以领悟当前等级可以学习的配方
             int newMakeId = MakeHelper.GetNewMakeID(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType), request.MakeId,
                 unit.GetComponent<UserInfoComponent>().UserInfo.MakeList);
-            if (newMakeId != 0)
+            //宝石不领悟
+            if (equipMakeConfig.ProficiencyType != 4 && newMakeId != 0)
             {
                 unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(newMakeId);
                 response.NewMakeId = newMakeId;
             }
 
-            int curShuLian = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
-            int addShuLian = RandomHelper.RandomNumber(equipMakeConfig.ProficiencyValue[0], equipMakeConfig.ProficiencyValue[1]);
-            curShuLian += addShuLian;
-            curShuLian = Math.Min(ComHelp.MaxShuLianDu(), curShuLian);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.MakeShuLianDu, curShuLian);
+            if (equipMakeConfig.ProficiencyType != 4)
+            {
+                int curShuLian = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
+                int addShuLian = RandomHelper.RandomNumber(equipMakeConfig.ProficiencyValue[0], equipMakeConfig.ProficiencyValue[1]);
+                curShuLian += addShuLian;
+                curShuLian = Math.Min(ComHelp.MaxShuLianDu(), curShuLian);
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.MakeShuLianDu, curShuLian);
+            }
             
             reply();
             await ETTask.CompletedTask;
