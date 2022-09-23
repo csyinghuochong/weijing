@@ -8,7 +8,8 @@ namespace ET
     { 
         RankShow = 0,
         RankReward = 1,
-        RankNum = 2,
+        RankPet = 2,
+        RankNum,
     }
 
     public class UIRankComponent : Entity, IAwake
@@ -34,8 +35,11 @@ namespace ET
             pageViewComponent.UISubViewType = new Type[(int)RankPageEnum.RankNum];
             pageViewComponent.UISubViewPath[(int)RankPageEnum.RankShow] = ABPathHelper.GetUGUIPath("Main/Rank/UIRankShow");
             pageViewComponent.UISubViewPath[(int)RankPageEnum.RankReward] = ABPathHelper.GetUGUIPath("Main/Rank/UIRankReward");
+            pageViewComponent.UISubViewPath[(int)RankPageEnum.RankPet] = ABPathHelper.GetUGUIPath("Main/Rank/UIRankPet");
+
             pageViewComponent.UISubViewType[(int)RankPageEnum.RankShow] = typeof(UIRankShowComponent);
             pageViewComponent.UISubViewType[(int)RankPageEnum.RankReward] = typeof(UIRankRewardComponent);
+            pageViewComponent.UISubViewType[(int)RankPageEnum.RankPet] = typeof(UIRankPetComponent);
             self.UIPageView = pageViewComponent;
 
             GameObject FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
