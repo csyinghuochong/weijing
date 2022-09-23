@@ -28,7 +28,6 @@ namespace ET
     {
         public override void Awake(RankSceneComponent self)
         {
-            self.InitRankPetList();
             self.InitDBRankInfo().Coroutine();
             self.InitServerInfo().Coroutine();
 
@@ -189,6 +188,7 @@ namespace ET
             {
                 self.DBRankInfo = d2GGetUnit.Component as DBRankInfo;
             }
+            self.InitRankPetList();
         }
 
         public static async ETTask SaveDB(this RankSceneComponent self)
@@ -323,10 +323,17 @@ namespace ET
 
             //读机器人配置表
             self.DBRankInfo.rankingPets.Clear();
-            //for (int i = 0; i < self.PetRankNumber; i++)
-            //{
-            //    self.DBRankInfo.rankingPets.Add( new RankPetInfo() {  UserId = IdGenerater.Instance.GenerateId(), TeamName = "机器人:" + (i + 1)+"的队伍", RankId = i+1, PlayerName = "机器人:" + (i+1),  PetUId = new List<long>() { 0,0,0},  PetConfigId = new List<int>() { 10002,10004,10005 } } );
-            //}
+            List<int> allPet = new List<int>() { 1000101, 1000201 , 1000301 , 1000401 , 1000501 ,1000601, 1000701};
+            for (int i = 0; i < ComHelp.PetRankNumber; i++)
+            {
+                int[] indexs = RandomHelper.GetRandoms(3, 0, allPet.Count);
+                List<int> pets = new List<int>();
+                for (int p = 0; p < indexs.Length; p++)
+                {
+                    pets.Add(allPet[p]);
+                }
+                self.DBRankInfo.rankingPets.Add(new RankPetInfo() { UserId = IdGenerater.Instance.GenerateId(), TeamName = "机器人:" + (i + 1) + "的队伍", RankId = i + 1, PlayerName = "机器人:" + (i + 1), PetUId = new List<long>() { 0, 0, 0 }, PetConfigId = pets });
+            }
         }
 
         public static void OnRecvPetRank(this RankSceneComponent self, M2R_PetRankUpdateRequest m2R_PetRankUpdateRequest)

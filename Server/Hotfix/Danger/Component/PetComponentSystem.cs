@@ -125,11 +125,10 @@ namespace ET
                 string[] randomSkillList = randomSkillID.Split(';');
                 for (int i = 0; i < randomSkillList.Length; i++)
                 {
-                    float skillPro = float.Parse(randomSkillList[i].Split(',')[1]);
-                    string skillID = randomSkillList[i].Split(',')[0];
+                    int skillID = int.Parse(randomSkillList[i]);
                     if (RandomHelper.RandFloat() <= 0.25f)
                     {
-                        rolePetInfo.PetSkill.Add(int.Parse(skillID));
+                        rolePetInfo.PetSkill.Add(skillID);
                     }
                 }
             }
