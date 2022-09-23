@@ -899,8 +899,8 @@ MonoBehaviour:
     wechat:
       Enable: 1
       SortId: 5
-      AppId: wx638f7f0efe37a825
-      AppSecret: a53c07eac29a15df1422627a4cc97a7e
+      AppId: wx74d544161221d62f
+      AppSecret: 8cc10edcf1969478005ad631fec57b37
       UserName: gh_afb25ac019c9@app
       Path: /page/API/pages/share/share
       BypassApproval: 0
@@ -909,14 +909,14 @@ MonoBehaviour:
     wechatMoments:
       Enable: 1
       SortId: 6
-      AppId: wx638f7f0efe37a825
-      AppSecret: a53c07eac29a15df1422627a4cc97a7e
+      AppId: wx74d544161221d62f
+      AppSecret: 8cc10edcf1969478005ad631fec57b37
       BypassApproval: 1
     wechatFavorites:
       Enable: 1
       SortId: 7
-      AppId: wx638f7f0efe37a825
-      AppSecret: a53c07eac29a15df1422627a4cc97a7e
+      AppId: wx74d544161221d62f
+      AppSecret: 8cc10edcf1969478005ad631fec57b37
 --- !u!114 &575235022
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -994,7 +994,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mExitDialogCanvas: {fileID: 0}
-  Btn_RenZheng: {fileID: 0}
   ChannelId: 1
 --- !u!1 &615489394
 GameObject:

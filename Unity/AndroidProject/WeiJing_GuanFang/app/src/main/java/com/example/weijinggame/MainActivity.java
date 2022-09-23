@@ -99,9 +99,8 @@ public class MainActivity extends UnityPlayerActivity {
         return wxAPI.isWXAppSupportAPI();
     }
 
-    public  void SetIsPermissionGranted(String appid)
-    {
-        Log.d("SetIsPermissionGranted",appid);
+    public void SetIsPermissionGranted(String appid) {
+        Log.d("SetIsPermissionGranted", appid);
 
     }
 
@@ -218,10 +217,10 @@ public class MainActivity extends UnityPlayerActivity {
     }
 
     public void GetPhoneNum(String zone) {
-
+        Log.i("GetPhoneNum", "111");
         String phoneNum = "";
         TelephonyManager mTelephoneManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
-        /*if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_SMS) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_NUMBERS) != PackageManager.PERMISSION_GRANTED
                 && ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
@@ -231,8 +230,10 @@ public class MainActivity extends UnityPlayerActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
-            phoneNum = "";
-        }*/
+            Log.i("GetPhoneNum", "222");
+            return;
+        }
+        Log.i("GetPhoneNum", "333");
         String ret = mTelephoneManager.getLine1Number() != null ? mTelephoneManager.getLine1Number() : "";
         if (TextUtils.isEmpty(ret))
         {

@@ -41,9 +41,10 @@ namespace ET
 		public ShareSDK ssdk;
 		public MobSDK mobsdk;
 
-		public string WXAppID = "wx638f7f0efe37a825";
-		public string WXAppSecret = "a53c07eac29a15df1422627a4cc97a7e";//a53c07eac29a15df1422627a4cc97a7e
-
+		public string WXAppID = "wx74d544161221d62f";
+		public string WXAppSecret = "8cc10edcf1969478005ad631fec57b37";
+		//a53c07eac29a15df1422627a4cc97a7e
+		//8cc10edcf1969478005ad631fec57b37  俄罗斯消除
 		public string QQAppID = "1105893765";
 		//apk sign   b119680ac96937de65f5c989ce485fb3
 #if UNITY_IPHONE
@@ -256,7 +257,6 @@ namespace ET
 					break;
 				case "2":
 					ssdk.GetUserInfo(PlatformType.QQ);
-					//ssdk.Authorize(PlatformType.QQ);
 					break;
 			}
 #else

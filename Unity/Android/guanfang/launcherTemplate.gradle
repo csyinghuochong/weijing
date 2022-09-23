@@ -185,7 +185,7 @@ android {
             release {
                 keyAlias 'going'
                 keyPassword '829475'
-                storeFile file('D:\\WeijingGame_2\\GameDemo\\Android\\user_weijing2.keystore')
+                storeFile file('D:\\GitWeiJing\\Unity\\user.keystore')
                 storePassword '829475'
             }
     }

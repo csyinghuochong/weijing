@@ -8,8 +8,8 @@ apply plugin: 'com.mob.sdk'
 
 MobSDK {
 
-    appKey "2d21337c7dc80"
-    appSecret "a2c24f564def8b4a450a88491e5cc353"
+    appKey "36af6e3967670"
+    appSecret "c2b2d9e1afdfd9f6e1cfb3a399d01703"
     spEdition "FP"
     fp true
 
@@ -97,8 +97,8 @@ MobSDK {
             Wechat {
                 id 4
                 sortId 4
-                appId "wx638f7f0efe37a825"
-                appSecret "a53c07eac29a15df1422627a4cc97a7e"
+                appId "wx74d544161221d62f"
+                appSecret "8cc10edcf1969478005ad631fec57b37"
                 userName "gh_afb25ac019c9"
                 path "pages/index/index.html?id=1"
                 withShareTicket true
@@ -111,8 +111,8 @@ MobSDK {
             WechatMoments {
                 id 5
                 sortId 5
-                appId "wx638f7f0efe37a825"
-                appSecret "a53c07eac29a15df1422627a4cc97a7e"
+                appId "wx74d544161221d62f"
+                appSecret "8cc10edcf1969478005ad631fec57b37"
                 bypassApproval false
                 enable true
             }
@@ -121,8 +121,8 @@ MobSDK {
             WechatFavorite {
                 id 6
                 sortId 6
-                appId "wx638f7f0efe37a825"
-                appSecret "a53c07eac29a15df1422627a4cc97a7e"
+                appId "wx74d544161221d62f"
+                appSecret "8cc10edcf1969478005ad631fec57b37"
                 bypassApproval false
                 enable true
             }
@@ -185,7 +185,7 @@ android {
             release {
                 keyAlias 'going'
                 keyPassword '829475'
-                storeFile file('D:\\WeijingGame_2\\GameDemo\\Android\\user_weijing2.keystore')
+                storeFile file('D:\\GitWeiJing\\Unity\\user.keystore')
                 storePassword '829475'
             }
     }
