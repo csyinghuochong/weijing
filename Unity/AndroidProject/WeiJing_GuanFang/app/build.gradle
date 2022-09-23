@@ -36,8 +36,7 @@ dependencies {
     implementation files('libs/libammsdk.jar')
     implementation files('libs/classes.jar')
     implementation 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:+'
-    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.4.1'
+    implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation files('libs/android-support-v4.jar')
 }
 
