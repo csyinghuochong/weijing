@@ -248,7 +248,6 @@ namespace ET
 
 		public void GetUserInfo(string fenxiangtype)
 		{
-
 #if UNITY_ANDROID && !UNITY_EDITOR
 			switch (fenxiangtype)
 			{
@@ -257,7 +256,7 @@ namespace ET
 					break;
 				case "2":
 					//ssdk.GetUserInfo(PlatformType.QQ);
-					jo.Call("LoginQQ", QQAppID);	//LoginQQ_1 LoginQQ_2 LoginAndSend
+					ssdk.Authorize(PlatformType.QQ);
 					break;
 			}
 #else
@@ -285,7 +284,10 @@ namespace ET
 
 		void OnGetUserInfoResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
 		{
-			Log.ILog.Debug("OnGetUserInfoResultHandler1:" + MiniJSON.jsonEncode(result));
+			print("get user info result:" );
+			print( MiniJSON.jsonEncode(result));
+			print( "AuthInfo:   "  + MiniJSON.jsonEncode(ssdk.GetAuthInfo(type)));
+			print("get user info sucess ! platform :" + type);
 			if (type == PlatformType.WeChat)
 			{
 				if (state == ResponseState.Success)

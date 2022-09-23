@@ -80,14 +80,16 @@ public class EventHandle : QuickSDKListener
 	// Use this for initialization
 	void Start()
 	{
-		//no non-static method with name='setUnityGameObjectName'
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		QuickSDK.getInstance().setListener(this);
 	}
 
 	//init 已经在安卓层调用了
 	public static void reInit()
 	{
-		//ongetDeviceId();
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		QuickSDK.getInstance().reInit();
 	}
 
@@ -96,6 +98,8 @@ public class EventHandle : QuickSDKListener
 	 */
 	public void onLogin()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		QuickSDK.getInstance().login();
 	}
 
@@ -105,6 +109,8 @@ public class EventHandle : QuickSDKListener
 	/// </summary>
 	public void onLogout()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		QuickSDK.getInstance().logout();
 	}
 
@@ -321,6 +327,8 @@ public class EventHandle : QuickSDKListener
 	/// </summary>
 	public void onExit()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		if (QuickSDK.getInstance().isChannelHasExitDialog())
 		{
 			QuickSDK.getInstance().exit();
@@ -335,51 +343,71 @@ public class EventHandle : QuickSDKListener
 
 	public void onExitCancel()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		mExitDialogCanvas?.SetActive(false);
 	}
 
 	public void onExitConfirm()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		mExitDialogCanvas?.SetActive(false);
 		QuickSDK.getInstance().exit();
 	}
 
 	public void onShowToolbar()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		QuickSDK.getInstance().showToolBar(ToolbarPlace.QUICK_SDK_TOOLBAR_BOT_LEFT);
 	}
 
 	public void onHideToolbar()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		QuickSDK.getInstance().hideToolBar();
 	}
 
 	public void onEnterUserCenter()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		QuickSDK.getInstance().callFunction(FuncType.QUICK_SDK_FUNC_TYPE_ENTER_USER_CENTER);
 	}
 
 	public void onEnterBBS()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		QuickSDK.getInstance().callFunction(FuncType.QUICK_SDK_FUNC_TYPE_ENTER_BBS);
 	}
 	public void onEnterCustomer()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		QuickSDK.getInstance().callFunction(FuncType.QUICK_SDK_FUNC_TYPE_ENTER_CUSTOMER_CENTER);
 	}
 	public void onGetGoodsInfos()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		showLog("onGetGoodsInfos", "onGetGoodsInfos 方法已被调用");
 		QuickSDK.getInstance().callFunction(FuncType.QUICK_SDK_FUNC_TYPE_QUERY_GOODS_INFO);
 	}
 	public void onUserId()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		string uid = QuickSDK.getInstance().userId();
 		showLog("userId", uid);
 	}
 
 	public void ongetDeviceId()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		string deviceId = QuickSDK.getInstance().getDeviceId();
 		showLog("deviceId", deviceId);
 	}
@@ -402,6 +430,8 @@ public class EventHandle : QuickSDKListener
 
 	public void onPauseGame()
 	{
+		if (!EventHandle.IsQudaoPackage())
+			return;
 		Time.timeScale = 0;
 		QuickSDK.getInstance().callFunction(FuncType.QUICK_SDK_FUNC_TYPE_PAUSED_GAME);
 	}
