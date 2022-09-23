@@ -255,8 +255,8 @@ namespace ET
 					ssdk.GetUserInfo(PlatformType.WeChat);
 					break;
 				case "2":
-					//ssdk.GetUserInfo(PlatformType.QQ);
-					ssdk.Authorize(PlatformType.QQ);
+					ssdk.GetUserInfo(PlatformType.QQ);
+					//ssdk.Authorize(PlatformType.QQ);
 					break;
 			}
 #else
@@ -286,13 +286,25 @@ namespace ET
 		{
 			print("get user info result:" );
 			print( MiniJSON.jsonEncode(result));
-			print( "AuthInfo:   "  + MiniJSON.jsonEncode(ssdk.GetAuthInfo(type)));
 			print("get user info sucess ! platform :" + type);
 			if (type == PlatformType.WeChat)
 			{
 				if (state == ResponseState.Success)
 				{
 					this.OnGetUserInfoHandler("sucess_" + result["openid"].ToString());
+				}
+				else
+				{
+					this.OnGetUserInfoHandler("fail");
+				}
+			}
+			if (type == PlatformType.QQ)
+			{
+				print("AuthInfo:   " + MiniJSON.jsonEncode(ssdk.GetAuthInfo(type)));
+				if (state == ResponseState.Success)
+				{
+					result = ssdk.GetAuthInfo(type);
+					this.OnGetUserInfoHandler("sucess_" + result["unionID"].ToString());
 				}
 				else
 				{
