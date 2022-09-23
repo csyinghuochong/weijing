@@ -41,12 +41,12 @@ namespace ET
 		public ShareSDK ssdk;
 		public MobSDK mobsdk;
 
-		public string WXAppID = "wx74d544161221d62f";
-		public string WXAppSecret = "8cc10edcf1969478005ad631fec57b37";
-		//a53c07eac29a15df1422627a4cc97a7e
-		//8cc10edcf1969478005ad631fec57b37  俄罗斯消除
-		public string QQAppID = "1105893765";
-		//apk sign   b119680ac96937de65f5c989ce485fb3
+		public string WXAppID = "wx74d544161221d62f";           //俄罗斯消除
+		public string WXAppSecret = "8cc10edcf1969478005ad631fec57b37"; 
+
+		public string QQAppID = "1105893765";					 //危境
+		//apk sign 1  b119680ac96937de65f5c989ce485fb3   user_weijing2.keystore
+		//apk sign 2  3a0a616cdbf889b3565ba81fca3bed49   user.keystore
 #if UNITY_IPHONE
     /*
     [DllImport("__Internal")]

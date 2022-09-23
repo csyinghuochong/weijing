@@ -874,8 +874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f96253c5d46f644c4a76f41a43885015, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  appKey: 2d21337c7dc80
-  appSecret: a2c24f564def8b4a450a88491e5cc353
+  appKey: 36af6e3967670
+  appSecret: c2b2d9e1afdfd9f6e1cfb3a399d01703
   devInfo:
     sinaweibo:
       Enable: 1

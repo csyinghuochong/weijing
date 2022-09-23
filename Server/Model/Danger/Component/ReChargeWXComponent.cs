@@ -18,7 +18,7 @@ namespace ET
     public class ReChargeWXComponent :Entity, IAwake
     {
         public string miyao = "515M55XAQ0WRZIRRAKCIUUQCTFWN6V54";
-        public string appId = "wx0f24f5e538739f0d";
+        public string appId = "wx74d544161221d62f";
         public string merchantId = "1498251552";
 
         public string notify_url = @"http://39.96.194.143:20003";
