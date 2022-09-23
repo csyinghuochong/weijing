@@ -52,7 +52,7 @@ namespace ET
 		public UI UIRotateComponent;
 
 		public int BigVersion = 4;
-		public string DownloadUrl = "http://39.96.194.143/weijing1/apk/weijing1.apk";
+		public string DownloadUrl = "http://39.96.194.143/weijing1/apk/beta/weijing.apk";
 
 		public string LoginType;
 	}

@@ -91,8 +91,8 @@
         public static async ETTask RequestZhanQuInfo(Scene zoneScene)
         {
             ActivityComponent activityComponent = zoneScene.GetComponent<ActivityComponent>();
-            C2M_ZhanQuInfoRequest c2M_ItemHuiShouRequest = new C2M_ZhanQuInfoRequest() { };
-            M2C_ZhanQuInfoResponse r2c_roleEquip = (M2C_ZhanQuInfoResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
+            C2M_ZhanQuInfoRequest request = new C2M_ZhanQuInfoRequest() { };
+            M2C_ZhanQuInfoResponse r2c_roleEquip = (M2C_ZhanQuInfoResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
 
             activityComponent.ZhanQuReceiveIds = r2c_roleEquip.ReceiveIds;
             activityComponent.ZhanQuReceiveNumbers = r2c_roleEquip.ReceiveNum;

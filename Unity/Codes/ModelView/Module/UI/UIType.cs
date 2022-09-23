@@ -47,7 +47,6 @@ namespace ET
 		public const string UISetting = "Main/Setting/UISetting";
 		public const string UIWarehouse = "Main/Role/UIWarehouse";
 		public const string UIMail = "Main/Mail/UIMail";
-		public const string UIMake = "Main/Make/UIMake";
 		public const string UIQueue = "Login/UIQueue";
 		public const string UIRealName = "Main/RealName/UIRealName";
 		public const string UIRecharge = "Main/Recharge/UIRecharge";
@@ -100,6 +99,7 @@ namespace ET
 		public const string UICamp = "Main/Camp/UICamp";
 		public const string UIWorldLv = "Main/WorldLv/UIWorldLv";
 		public const string UIAppraisalSelect = "Main/Appraisal/UIAppraisalSelect";
+		public const string UIGemMake = "Main/Make/UIGemMake";
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
 		{
@@ -110,7 +110,6 @@ namespace ET
 			{ "UIOccTwo", UIOccTwo},
 			{ "UIStore", UIStore},
 			{ "UIMail", UIMail},
-			{ "UIMake", UIMake},
 			{ "UIMystery", UIMystery},
 			{ "UIMakeLearn", UIMakeLearn},
 			{ "UIWarehouse", UIWarehouse},
@@ -123,6 +122,7 @@ namespace ET
 			{ "UIXiuLian", UIXiuLian},
 			{ "UIPetEgg", UIPetEgg},
 			{ "UIChouKa", UIChouKa},
+			{ "UIGemMake", UIGemMake},
 		};
 	}
 }

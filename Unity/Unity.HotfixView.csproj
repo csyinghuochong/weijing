@@ -239,6 +239,7 @@
     <Compile Include="Codes\HotfixView\Danger\UI\UIEnergy\UIEnergyEarlysleepComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIEnergy\UIEnergyEarlyupComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIEnergy\UIEnergyEvent.cs" />
+    <Compile Include="Codes\HotfixView\Danger\UI\UIMake\UIGemMakeComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianSkillComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianSkillItemComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianLevelComponent.cs" />
@@ -322,7 +323,7 @@
     <Compile Include="Codes\HotfixView\Danger\UI\UIMake\UIMakeComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIMake\UIMakeItemComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIMake\UIMakeNeedComponent.cs" />
-    <Compile Include="Codes\HotfixView\Danger\UI\UIMake\UIMakEvent.cs" />
+    <Compile Include="Codes\HotfixView\Danger\UI\UIMake\UIGemMakEvent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIMystery\UIMysteryComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIMystery\UIMysteryEvent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIMystery\UIMysteryItemComponent.cs" />

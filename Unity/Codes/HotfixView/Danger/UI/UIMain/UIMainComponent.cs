@@ -195,8 +195,7 @@ namespace ET
 
             self.Btn_MakeItem = rc.Get<GameObject>("Btn_MakeItem");
             //self.Btn_MakeItem.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Btn_MakeItem(); });
-            ButtonHelp.AddListenerEx(self.Btn_MakeItem, () => { self.OnBtn_Btn_MakeItem(); });
-
+           
             self.Button_RealName = rc.Get<GameObject>("Button_RealName");
             //self.Button_RealName.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_RealName(); });
             ButtonHelp.AddListenerEx(self.Button_RealName, () => { self.OnButton_RealName(); });
@@ -1160,15 +1159,9 @@ namespace ET
             UICommonHelper.SetParent(uiskillButton.GameObject, UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject);
         }
 
-
         public static void OnBtn_Email(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UIMail).Coroutine();
-        }
-
-        public static void OnBtn_Btn_MakeItem(this UIMainComponent self)
-        {
-            UIHelper.Create(self.DomainScene(), UIType.UIMake).Coroutine();
         }
 
         public static void OnButton_RealName(this UIMainComponent self)

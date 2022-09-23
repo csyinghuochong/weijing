@@ -20,4 +20,5 @@
 {"_t":"FuntionConfig","_id":1019,"Name":"UIXiuLian","ConditionType":[1],"ConditionParam":[1]},
 {"_t":"FuntionConfig","_id":1020,"Name":"UIPetEgg","ConditionType":[1],"ConditionParam":[1]},
 {"_t":"FuntionConfig","_id":1021,"Name":"UIChouKa","ConditionType":[1],"ConditionParam":[1]},
+{"_t":"FuntionConfig","_id":1022,"Name":"UIGemMake","ConditionType":[1],"ConditionParam":[1]},
 ]}

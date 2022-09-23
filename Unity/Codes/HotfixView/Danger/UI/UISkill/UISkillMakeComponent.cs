@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Linq;
 
 namespace ET
 {
@@ -27,8 +26,8 @@ namespace ET
         public GameObject MakeINeedNode;
         public GameObject MakeListNode;
 
-        public GameObject Obj_Lab_MakeName;
-        public GameObject Obj_Lab_MakeNum;
+        public GameObject Lab_MakeName;
+        public GameObject Lab_MakeNum;
 
         public List<UIMakeItemComponent> MakeListUI = new List<UIMakeItemComponent>();
         public List<UIMakeNeedComponent> NeedListUI = new List<UIMakeNeedComponent>();
@@ -69,8 +68,8 @@ namespace ET
             self.MakeINeedNode = rc.Get<GameObject>("MakeINeedNode");
             self.MakeListNode = rc.Get<GameObject>("MakeListNode");
 
-            self.Obj_Lab_MakeName = rc.Get<GameObject>("Lab_MakeName");
-            self.Obj_Lab_MakeNum = rc.Get<GameObject>("Lab_MakeNum");
+            self.Lab_MakeName = rc.Get<GameObject>("Lab_MakeName");
+            self.Lab_MakeNum = rc.Get<GameObject>("Lab_MakeNum");
 
             GameObject Button_Select_1 = rc.Get<GameObject>("Button_Select_1");
             GameObject Button_Select_2 = rc.Get<GameObject>("Button_Select_2");
@@ -223,9 +222,9 @@ namespace ET
             string[] itemsList = needItems.Split('@');
 
             //显示名称
-            self.Obj_Lab_MakeName.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID).ItemName;
-            self.Obj_Lab_MakeName.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID).ItemQuality);
-            self.Obj_Lab_MakeNum.GetComponent<Text>().text = equipMakeConfig.MakeEquipNum.ToString();
+            self.Lab_MakeName.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID).ItemName;
+            self.Lab_MakeName.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID).ItemQuality);
+            self.Lab_MakeNum.GetComponent<Text>().text = equipMakeConfig.MakeEquipNum.ToString();
 
             //self.TextVitality.GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality.ToString();
             //显示消耗活力
