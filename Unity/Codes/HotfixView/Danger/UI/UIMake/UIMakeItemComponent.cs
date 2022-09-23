@@ -53,7 +53,7 @@ namespace ET
             self.ImageQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
 
             self.Lab_PetName.GetComponent<Text>().text = itemconfig.ItemName;
-            self.Lab_PetName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemconfig.ItemQuality);
+            self.Lab_PetName.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColorDi(itemconfig.ItemQuality);
         }
 
         public static void SetClickAction(this UIMakeItemComponent self, Action<int> action)
