@@ -191,6 +191,7 @@ public class MainActivity extends UnityPlayerActivity {
                 if (grantResults.length > 0) {
                     for (int result : grantResults) {
                         if (result != PackageManager.PERMISSION_GRANTED) {
+                            //permissions[i]
                             Toast.makeText(this, "请同意所以请求才能运行程序", Toast.LENGTH_SHORT).show();
                             NativeToUnit("RequestPermissions_0");
                             finish();
@@ -215,7 +216,7 @@ public class MainActivity extends UnityPlayerActivity {
     public void CallNative(String str) {
         Log.i("CallNative_11", "str");
     }
-
+    final int REQUEST_CODE_ADDRESS = 100;
     public void GetPhoneNum(String zone) {
         Log.i("GetPhoneNum", "111");
         String phoneNum = "";
@@ -230,6 +231,12 @@ public class MainActivity extends UnityPlayerActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            //申请权限，permissions是要申请的权限数组
+            String[] permissions = new  String[]
+                    {
+                            Manifest.permission.READ_SMS, Manifest.permission.READ_PHONE_NUMBERS, Manifest.permission.READ_PHONE_STATE
+                    };
+            ActivityCompat.requestPermissions(this, permissions, REQUEST_CODE_ADDRESS);
             Log.i("GetPhoneNum", "222");
             return;
         }
