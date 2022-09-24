@@ -393,7 +393,7 @@ namespace ET
             HintHelp.GetInstance().DataUpdate(DataType.BagItemUpdate);
         }
 
-        public static List<BagInfo> GetItemsByType(this BagComponent self, ItemTypeEnum itemType)
+        public static List<BagInfo> GetItemsByType(this BagComponent self, int itemType)
         {
             List<BagInfo> bagInfos = self.GetBagList();
             if (itemType == ItemTypeEnum.ALL)

@@ -37,7 +37,7 @@ namespace ET
         };
 
 
-        public static Dictionary<ItemTypeEnum, string> ItemTypeName = new Dictionary<ItemTypeEnum, string>()
+        public static Dictionary<int, string> ItemTypeName = new Dictionary<int, string>()
         {
             {  ItemTypeEnum.Consume,  GameSettingLanguge.LoadLocalization("消耗品") },
             {  ItemTypeEnum.Material,  GameSettingLanguge.LoadLocalization("材料") },

@@ -378,7 +378,7 @@ namespace ET
 
             //类型描述
             string itemTypename = "消耗品";
-            ItemViewHelp.ItemTypeName.TryGetValue((ItemTypeEnum)itemType, out itemTypename);
+            ItemViewHelp.ItemTypeName.TryGetValue(itemType, out itemTypename);
             self.ItemType.GetComponent<Text>().text = "类型:" + itemTypename;
 
             string Text_ItemDes = itemconf.ItemDes;

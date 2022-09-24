@@ -414,13 +414,13 @@ namespace ET
                 }
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(rewardItems[i].ItemID);
                 int ItemPileSum = gm ? 1000000 : itemCof.ItemPileSum;
-                if ((ItemTypeEnum)itemCof.ItemType == ItemTypeEnum.PetHeXin)
+                if (itemCof.ItemType == ItemTypeEnum.PetHeXin)
                 {
                     petHeXinNumber += rewardItems[i].ItemNum;
                     continue;
                 }
 
-                if ((ItemTypeEnum)itemCof.ItemType == ItemTypeEnum.Equipment)
+                if (itemCof.ItemType == ItemTypeEnum.Equipment)
                 {
                     ItemPileSum = itemCof.ItemPileSum;
                 }
@@ -463,11 +463,11 @@ namespace ET
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
                 int maxPileSum = gm ? 1000000 :  itemCof.ItemPileSum;
                 List<BagInfo> itemlist = null;
-                if ((ItemTypeEnum)itemCof.ItemType == ItemTypeEnum.Equipment)
+                if (itemCof.ItemType == ItemTypeEnum.Equipment)
                 {
                     maxPileSum = itemCof.ItemPileSum;
                 }
-                if ((ItemTypeEnum)itemCof.ItemType == ItemTypeEnum.PetHeXin)
+                if (itemCof.ItemType == ItemTypeEnum.PetHeXin)
                 {
                     maxPileSum = itemCof.ItemPileSum;
                     itemlist = self.GetItemByLoc(ItemLocType.ItemPetHeXinBag);

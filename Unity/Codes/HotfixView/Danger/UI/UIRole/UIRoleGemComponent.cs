@@ -178,7 +178,7 @@ namespace ET
             {
                 itemType = self.UIPageComponent.GetComponent<UIPageButtonComponent>().GetCurrentIndex();
             }
-            ItemTypeEnum itemTypeEnum = ItemTypeEnum.ALL;
+            int itemTypeEnum = ItemTypeEnum.ALL;
             switch (itemType)
             {
                 case 0:

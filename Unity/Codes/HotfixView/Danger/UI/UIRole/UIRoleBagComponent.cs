@@ -107,7 +107,7 @@ namespace ET
             {
                 page = self.UIPageComponent.GetCurrentIndex();
             }
-            ItemTypeEnum itemTypeEnum = ItemTypeEnum.ALL;
+            int itemTypeEnum = ItemTypeEnum.ALL;
             switch (page)
             {
                 case 0:

@@ -17,8 +17,8 @@ namespace ET
     {
         public override void Awake(UIFangunSkillComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-            GameObject button_1 = self.GetParent<UI>().GameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
+            GameObject button_1 = gameObject;
 
             self.Img_SkillCD = rc.Get<GameObject>("Img_SkillCD");
             self.Text_Time = rc.Get<GameObject>("Text_Time");

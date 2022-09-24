@@ -9,6 +9,7 @@ namespace ET
     public class UIPaiMaiSellComponent : Entity, IAwake
     {
 
+        public GameObject SellTypeButton;
         public GameObject Btn_Stall;
         public GameObject Lab_ShengYuTime;
         public GameObject Text_SellTime;
@@ -19,6 +20,8 @@ namespace ET
 
         public List<UI> BagItemUILIist = new List<UI>();
         public List<UI> SellItemUILIist = new List<UI>();
+
+        public UIPageButtonComponent UIPageButton;
 
         public List<PaiMaiItemInfo> PaiMaiItemInfos = new List<PaiMaiItemInfo>();
         public long PaiMaiItemInfoId;
@@ -60,12 +63,25 @@ namespace ET
 
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
+            self.SellTypeButton = rc.Get<GameObject>("SellTypeButton");
+            UI uIPageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.SellTypeButton);
+            UIPageButtonComponent uIPageButtonComponent = uIPageButton.AddComponent<UIPageButtonComponent>();
+            uIPageButtonComponent.SetClickHandler((int page) => {
+                self.OnClickPageButton(page);
+            });
+            self.UIPageButton = uIPageButtonComponent;
+         
             self.RequestSelfPaiMaiList().Coroutine();
         }
     }
 
     public static class UIPaiMaiSellComponentSystem
     {
+
+        public static void OnClickPageButton(this UIPaiMaiSellComponent self, int page)
+        {
+            self.UpdateSellItemUILIist(page).Coroutine();
+        }
 
         public static void OnBtn_Stall(this UIPaiMaiSellComponent self)
         {
@@ -147,7 +163,7 @@ namespace ET
         public static void OnUpdateUI(this UIPaiMaiSellComponent self)
         {
             self.UpdateBagItemUIList().Coroutine();
-            self.UpdateSellItemUILIist().Coroutine();
+            self.UIPageButton.OnSelectIndex(0);
         }
 
         public static async ETTask RequestSelfPaiMaiList(this UIPaiMaiSellComponent self)
@@ -157,7 +173,7 @@ namespace ET
             P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse = (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
             self.PaiMaiItemInfos = m2C_PaiMaiBuyResponse.PaiMaiItemInfos;
 
-            self.UpdateSellItemUILIist().Coroutine();
+            self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex).Coroutine();
         }
 
         public static async ETTask UpdateBagItemUIList(this UIPaiMaiSellComponent self)
@@ -233,13 +249,31 @@ namespace ET
             }
         }
 
-        public static async ETTask UpdateSellItemUILIist(this UIPaiMaiSellComponent self)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="subType">0 装备   1其他</param>
+        /// <returns></returns>
+        public static async ETTask UpdateSellItemUILIist(this UIPaiMaiSellComponent self, int subType)
         {
             var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiSellItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
+            int number = 0;
             for (int i = 0; i < self.PaiMaiItemInfos.Count; i++)
             {
+                PaiMaiItemInfo paiMaiItemInfo =  self.PaiMaiItemInfos[i];
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
+                if (subType == 0 && itemConfig.ItemType != ItemTypeEnum.Equipment)
+                {
+                    continue;
+                }
+                if (subType == 1 &&  itemConfig.ItemType == ItemTypeEnum.Equipment)
+                {
+                    continue;
+                }
+
                 UI uI = null;
                 if (i < self.SellItemUILIist.Count)
                 {
@@ -256,9 +290,10 @@ namespace ET
                     uIItemComponent.SetClickHandler((PaiMaiItemInfo bagInfo) => { self.OnSelectSellItem(bagInfo); });
                     self.SellItemUILIist.Add(uI);
                 }
-                uI.GetComponent<UIPaiMaiSellItemComponent>().OnUpdateUI(self.PaiMaiItemInfos[i]);
+                uI.GetComponent<UIPaiMaiSellItemComponent>().OnUpdateUI(paiMaiItemInfo);
+                number++;
             }
-            for (int i = self.PaiMaiItemInfos.Count; i < self.SellItemUILIist.Count; i++)
+            for (int i = number; i < self.SellItemUILIist.Count; i++)
             {
                 self.SellItemUILIist[i].GameObject.SetActive(false);
             }

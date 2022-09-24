@@ -41,14 +41,14 @@ namespace ET
     //2：材料
     //3：装备
     //4：宝石
-    public enum ItemTypeEnum : int
+    public static class ItemTypeEnum
     {
-        ALL = 0,
-        Consume = 1,
-        Material = 2,
-        Equipment = 3,
-        Gemstone = 4,
-        PetHeXin = 5,
+        public const int ALL = 0;
+        public const int Consume = 1;
+        public const int Material = 2;
+        public const int Equipment = 3;
+        public const int Gemstone = 4;
+        public const int PetHeXin = 5;
     }
 
     //装备类型细分
