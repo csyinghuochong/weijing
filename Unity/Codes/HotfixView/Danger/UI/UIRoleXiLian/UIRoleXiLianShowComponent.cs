@@ -7,6 +7,7 @@ namespace ET
 	public class UIRoleXiLianShowComponent : Entity, IAwake
 	{
 
+		public GameObject XiLianEffect;
 		public GameObject XiLianTen;
 		public GameObject Obj_EquipPropertyText;
 		public GameObject EquipBaseSetList;
@@ -27,6 +28,7 @@ namespace ET
 		public List<UIItemComponent> EquipUIList = new List<UIItemComponent>();
 
 		public BagInfo XilianBagInfo;
+		public ETCancellationToken ETCancellationToken;
 	}
 
 	[ObjectSystem]
@@ -44,6 +46,7 @@ namespace ET
 			ButtonHelp.AddListenerEx(self.XiLianTen, () => { self.OnXiLianButton(10).Coroutine(); });
 
 			self.Text_CostValue = rc.Get<GameObject>("Text_CostValue");
+			self.XiLianEffect = rc.Get<GameObject>("XiLianEffect");
 			self.Text_CostName = rc.Get<GameObject>("Text_CostName");
 			self.CostItem = rc.Get<GameObject>("CostItem");
 			self.EquipListNode = rc.Get<GameObject>("EquipListNode");
@@ -126,6 +129,22 @@ namespace ET
 			self.XilianBagInfo = self.BagComponent.GetBagInfo(self.XilianBagInfo.BagInfoID);
 			self.OnUpdateXinLian();
 			self.OnEquiListUpdate().Coroutine();
+		}
+
+		public static async ETTask ShowXiLianEffect(this UIRoleXiLianShowComponent self)
+		{
+			self.ETCancellationToken?.Cancel();
+			self.ETCancellationToken = null;
+			self.ETCancellationToken = new ETCancellationToken();
+			long instance = self.InstanceId;
+			self.XiLianEffect.SetActive(false);
+			self.XiLianEffect.SetActive(true);
+			bool ret =  await TimerComponent.Instance.WaitAsync(2000, self.ETCancellationToken);
+			if (!ret || instance != self.InstanceId)
+			{
+				return;
+			}
+			self.XiLianEffect.SetActive(false);
 		}
 
 		public static async ETTask OnEquiListUpdate(this UIRoleXiLianShowComponent self)
@@ -241,6 +260,7 @@ namespace ET
 			{
 				HintHelp.GetInstance().ShowHint("洗炼道具成功");
 				self.OnXiLianReturn();
+				self.ShowXiLianEffect().Coroutine();
 			}
 			if (times == 10)
 			{
