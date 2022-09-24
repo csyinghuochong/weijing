@@ -277,7 +277,7 @@ namespace ET
                 UI uI = null;
                 if (i < self.SellItemUILIist.Count)
                 {
-                    uI = self.SellItemUILIist[i];
+                    uI = self.SellItemUILIist[number];
                     uI.GameObject.SetActive(true);
                 }
                 else
