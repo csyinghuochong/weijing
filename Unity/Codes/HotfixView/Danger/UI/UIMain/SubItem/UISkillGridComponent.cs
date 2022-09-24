@@ -37,17 +37,17 @@ namespace ET
 
         public void Awake(int index)
         {
-            ReferenceCollector rc = this.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-         
-            this.SkillDi = rc.Get<GameObject>("SkillDi");
-            this.Btn_SkillStart = rc.Get<GameObject>("Btn_SkillStart");
             this.UIcam = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
-            this.Img_SkillIcon = rc.Get<GameObject>("Img_SkillIcon");
-            this.Text_SkillItemNum = rc.Get<GameObject>("Text_SkillItemNum");
-            this.Img_SkillCD = rc.Get<GameObject>("Img_SkillCD");
-            this.Text_SkillCD = rc.Get<GameObject>("Text_SkillCD");
-            this.Img_PublicSkillCD = rc.Get<GameObject>("Img_PublicSkillCD");
-            this.Obj_SkillIconShowSet = rc.Get<GameObject>("SkillIconShowSet");
+            GameObject gameObject  = this.GetParent<UI>().GameObject;
+
+            this.SkillDi = gameObject.transform.Find("SkillDi").gameObject;
+            this.Btn_SkillStart = gameObject.transform.Find("Btn_SkillStart").gameObject;
+            this.Img_SkillIcon = gameObject.transform.Find("SkillIconShowSet/Img_Mask/Img_SkillIcon").gameObject;
+            this.Text_SkillItemNum = gameObject.transform.Find("Text_SkillItemNum").gameObject;
+            this.Img_SkillCD = gameObject.transform.Find("Img_SkillCD").gameObject;
+            this.Text_SkillCD = gameObject.transform.Find("Text_SkillCD").gameObject;
+            this.Img_PublicSkillCD = gameObject.transform.Find("Img_PublicSkillCD").gameObject;
+            this.Obj_SkillIconShowSet = gameObject.transform.Find("SkillIconShowSet").gameObject;
 
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.Draging(pdata); }, EventTriggerType.Drag);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.EndDrag(pdata); }, EventTriggerType.EndDrag);

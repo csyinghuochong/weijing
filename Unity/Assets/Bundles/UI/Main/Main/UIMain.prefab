@@ -669,7 +669,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8912093824954639427}
-  - component: {fileID: 974458523505314125}
   m_Layer: 5
   m_Name: SkillIconShowSet
   m_TagString: Untagged
@@ -698,14 +697,6 @@ RectTransform:
   m_AnchoredPosition: {x: 35.3, y: 36}
   m_SizeDelta: {x: 117, y: 117}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &974458523505314125
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 235278709428150087}
-  m_CullTransparentMesh: 0
 --- !u!1 &239685601553655150
 GameObject:
   m_ObjectHideFlags: 0
@@ -3853,8 +3844,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5441677880095385732}
-  - component: {fileID: 8634203993006906344}
-  - component: {fileID: 5750238932541049122}
   m_Layer: 5
   m_Name: UI_MainRoseSkill_item_2
   m_TagString: Untagged
@@ -3893,45 +3882,6 @@ RectTransform:
   m_AnchoredPosition: {x: 971, y: 139}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &8634203993006906344
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1261286611997183215}
-  m_CullTransparentMesh: 0
---- !u!114 &5750238932541049122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1261286611997183215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - key: Btn_SkillStart
-    gameObject: {fileID: 6247306050462743831}
-  - key: Img_SkillIcon
-    gameObject: {fileID: 2762030831925206147}
-  - key: Text_SkillItemNum
-    gameObject: {fileID: 7907420785530621713}
-  - key: Img_SkillCD
-    gameObject: {fileID: 572229911631050402}
-  - key: Text_SkillCD
-    gameObject: {fileID: 5824011952617338885}
-  - key: Img_PublicSkillCD
-    gameObject: {fileID: 7478050708236510652}
-  - key: BackIcon
-    gameObject: {fileID: 2723057771092809874}
-  - key: SkillIconShowSet
-    gameObject: {fileID: 4319206777319178712}
-  - key: SkillDi
-    gameObject: {fileID: 3465106119493615895}
 --- !u!1 &1356843610296096285
 GameObject:
   m_ObjectHideFlags: 0
@@ -4819,8 +4769,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1732063677937833578}
-  - component: {fileID: 3453539187239997146}
-  - component: {fileID: 989823429951220977}
   m_Layer: 5
   m_Name: UI_MainRoseSkill_item_3
   m_TagString: Untagged
@@ -4859,45 +4807,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1242, y: 420}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3453539187239997146
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578565339301618635}
-  m_CullTransparentMesh: 0
---- !u!114 &989823429951220977
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1578565339301618635}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - key: Btn_SkillStart
-    gameObject: {fileID: 8657365130084838703}
-  - key: Img_SkillIcon
-    gameObject: {fileID: 1658382584619371}
-  - key: Text_SkillItemNum
-    gameObject: {fileID: 2179363582733805053}
-  - key: Img_SkillCD
-    gameObject: {fileID: 3335564014372078903}
-  - key: Text_SkillCD
-    gameObject: {fileID: 4434503089793348248}
-  - key: Img_PublicSkillCD
-    gameObject: {fileID: 5837263815841314442}
-  - key: BackIcon
-    gameObject: {fileID: 2970818673285269350}
-  - key: SkillIconShowSet
-    gameObject: {fileID: 235278709428150087}
-  - key: SkillDi
-    gameObject: {fileID: 8475061940225878663}
 --- !u!1 &1589618522265567499
 GameObject:
   m_ObjectHideFlags: 0
@@ -6018,8 +5927,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8688817763631242818}
-  - component: {fileID: 6033034797993322420}
-  - component: {fileID: 7795969909026287769}
   m_Layer: 5
   m_Name: UI_MainRoseSkill_item_4
   m_TagString: Untagged
@@ -6058,45 +5965,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1100, y: 411}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &6033034797993322420
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037317528515227547}
-  m_CullTransparentMesh: 0
---- !u!114 &7795969909026287769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2037317528515227547}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - key: Btn_SkillStart
-    gameObject: {fileID: 5803150699081420770}
-  - key: Img_SkillIcon
-    gameObject: {fileID: 5911934021602365604}
-  - key: Text_SkillItemNum
-    gameObject: {fileID: 6116496662274944567}
-  - key: Img_SkillCD
-    gameObject: {fileID: 8804038915235812258}
-  - key: Text_SkillCD
-    gameObject: {fileID: 3870382814157824721}
-  - key: Img_PublicSkillCD
-    gameObject: {fileID: 3452600693505566507}
-  - key: BackIcon
-    gameObject: {fileID: 6137412501697117835}
-  - key: SkillIconShowSet
-    gameObject: {fileID: 5871513114994792848}
-  - key: SkillDi
-    gameObject: {fileID: 3149216304691089275}
 --- !u!1 &2058528450888077917
 GameObject:
   m_ObjectHideFlags: 0
@@ -10279,7 +10147,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3055922815288210412}
-  - component: {fileID: 3055922815288210415}
   m_Layer: 5
   m_Name: SkillIconShowSet
   m_TagString: Untagged
@@ -10308,14 +10175,6 @@ RectTransform:
   m_AnchoredPosition: {x: 35.3, y: 36}
   m_SizeDelta: {x: 117, y: 117}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3055922815288210415
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3055922815288210411}
-  m_CullTransparentMesh: 0
 --- !u!1 &3055922815293132160
 GameObject:
   m_ObjectHideFlags: 0
@@ -18640,8 +18499,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3055922816776994103}
-  - component: {fileID: 3055922816776994105}
-  - component: {fileID: 6662315511291409397}
   m_Layer: 5
   m_Name: UI_MainRoseSkill_item_0
   m_TagString: Untagged
@@ -18680,45 +18537,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1205, y: 288}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3055922816776994105
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3055922816776994102}
-  m_CullTransparentMesh: 0
---- !u!114 &6662315511291409397
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3055922816776994102}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - key: Btn_SkillStart
-    gameObject: {fileID: 3055922816873031828}
-  - key: Img_SkillIcon
-    gameObject: {fileID: 3055922816857923139}
-  - key: Text_SkillItemNum
-    gameObject: {fileID: 3055922815318691272}
-  - key: Img_SkillCD
-    gameObject: {fileID: 3055922815856506818}
-  - key: Text_SkillCD
-    gameObject: {fileID: 3055922815778771644}
-  - key: Img_PublicSkillCD
-    gameObject: {fileID: 3055922815954704896}
-  - key: BackIcon
-    gameObject: {fileID: 3055922816445383130}
-  - key: SkillIconShowSet
-    gameObject: {fileID: 3055922815288210411}
-  - key: SkillDi
-    gameObject: {fileID: 8810916367668092564}
 --- !u!1 &3055922816795700408
 GameObject:
   m_ObjectHideFlags: 0
@@ -26339,7 +26157,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8685719834485413829}
-  - component: {fileID: 4742300824902384202}
   m_Layer: 5
   m_Name: SkillIconShowSet
   m_TagString: Untagged
@@ -26368,14 +26185,6 @@ RectTransform:
   m_AnchoredPosition: {x: 35.3, y: 36}
   m_SizeDelta: {x: 117, y: 117}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &4742300824902384202
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4087582343401239836}
-  m_CullTransparentMesh: 0
 --- !u!1 &4099086632092342327
 GameObject:
   m_ObjectHideFlags: 0
@@ -26779,7 +26588,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7029404870237415508}
-  - component: {fileID: 5483058268270963498}
   m_Layer: 5
   m_Name: SkillIconShowSet
   m_TagString: Untagged
@@ -26808,14 +26616,6 @@ RectTransform:
   m_AnchoredPosition: {x: 35.3, y: 36}
   m_SizeDelta: {x: 117, y: 117}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5483058268270963498
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4319206777319178712}
-  m_CullTransparentMesh: 0
 --- !u!1 &4330185412292220203
 GameObject:
   m_ObjectHideFlags: 0
@@ -28951,8 +28751,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1048305453588593222}
-  - component: {fileID: 4987683661787786688}
-  - component: {fileID: 4369359985251256985}
   m_Layer: 5
   m_Name: UI_MainRoseSkill_item_9
   m_TagString: Untagged
@@ -28991,45 +28789,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1285, y: 212}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &4987683661787786688
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4846152910843541970}
-  m_CullTransparentMesh: 0
---- !u!114 &4369359985251256985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4846152910843541970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - key: Btn_SkillStart
-    gameObject: {fileID: 291518233391326894}
-  - key: Img_SkillIcon
-    gameObject: {fileID: 5581309456731732805}
-  - key: Text_SkillItemNum
-    gameObject: {fileID: 342706232417299227}
-  - key: Img_SkillCD
-    gameObject: {fileID: 3270883086160038587}
-  - key: Text_SkillCD
-    gameObject: {fileID: 633360761571389299}
-  - key: Img_PublicSkillCD
-    gameObject: {fileID: 1130011102289251862}
-  - key: BackIcon
-    gameObject: {fileID: 5715147996694320757}
-  - key: SkillIconShowSet
-    gameObject: {fileID: 7475809725461848887}
-  - key: SkillDi
-    gameObject: {fileID: 1967293556627407531}
 --- !u!1 &4889623452950484864
 GameObject:
   m_ObjectHideFlags: 0
@@ -29730,7 +29489,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6304821698264633222}
-  - component: {fileID: 1598638736923171578}
   m_Layer: 5
   m_Name: SkillIconShowSet
   m_TagString: Untagged
@@ -29759,14 +29517,6 @@ RectTransform:
   m_AnchoredPosition: {x: 35.3, y: 36}
   m_SizeDelta: {x: 117, y: 117}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1598638736923171578
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4926497604629942915}
-  m_CullTransparentMesh: 0
 --- !u!1 &4957821037658112148
 GameObject:
   m_ObjectHideFlags: 0
@@ -30396,8 +30146,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3242054093904134752}
-  - component: {fileID: 8424853703850272390}
-  - component: {fileID: 5961444743242466461}
   m_Layer: 5
   m_Name: UI_MainRoseSkill_item_5
   m_TagString: Untagged
@@ -30436,45 +30184,6 @@ RectTransform:
   m_AnchoredPosition: {x: 946, y: 353}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &8424853703850272390
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5082423101452341194}
-  m_CullTransparentMesh: 0
---- !u!114 &5961444743242466461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5082423101452341194}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - key: Btn_SkillStart
-    gameObject: {fileID: 3887839477934527673}
-  - key: Img_SkillIcon
-    gameObject: {fileID: 1507449529953720142}
-  - key: Text_SkillItemNum
-    gameObject: {fileID: 8284805648952767469}
-  - key: Img_SkillCD
-    gameObject: {fileID: 7275171298128880318}
-  - key: Text_SkillCD
-    gameObject: {fileID: 5078492101884961315}
-  - key: Img_PublicSkillCD
-    gameObject: {fileID: 7863877224392752323}
-  - key: BackIcon
-    gameObject: {fileID: 131928069151980854}
-  - key: SkillIconShowSet
-    gameObject: {fileID: 8414757197903487301}
-  - key: SkillDi
-    gameObject: {fileID: 486572941044989846}
 --- !u!1 &5100193115579651408
 GameObject:
   m_ObjectHideFlags: 0
@@ -32757,7 +32466,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5676489229175309184}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
   m_Name: 
@@ -34076,7 +33785,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3040162032076811919}
-  - component: {fileID: 3644877103391963377}
   m_Layer: 5
   m_Name: SkillIconShowSet
   m_TagString: Untagged
@@ -34105,14 +33813,6 @@ RectTransform:
   m_AnchoredPosition: {x: 35.3, y: 36}
   m_SizeDelta: {x: 117, y: 117}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3644877103391963377
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5871513114994792848}
-  m_CullTransparentMesh: 0
 --- !u!1 &5911934021602365604
 GameObject:
   m_ObjectHideFlags: 0
@@ -34521,8 +34221,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6606076564646948616}
-  - component: {fileID: 1728410810805697105}
-  - component: {fileID: 2658415827465606311}
   m_Layer: 5
   m_Name: UI_MainRoseSkill_item_8
   m_TagString: Untagged
@@ -34561,45 +34259,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1027, y: 47}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &1728410810805697105
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6028842654547546008}
-  m_CullTransparentMesh: 0
---- !u!114 &2658415827465606311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6028842654547546008}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - key: Btn_SkillStart
-    gameObject: {fileID: 5583518053553781239}
-  - key: Img_SkillIcon
-    gameObject: {fileID: 2087779100540763354}
-  - key: Text_SkillItemNum
-    gameObject: {fileID: 2645993038143311917}
-  - key: Img_SkillCD
-    gameObject: {fileID: 5488883363482257103}
-  - key: Text_SkillCD
-    gameObject: {fileID: 9075968138360413920}
-  - key: Img_PublicSkillCD
-    gameObject: {fileID: 7118836801302381877}
-  - key: BackIcon
-    gameObject: {fileID: 4957821037658112148}
-  - key: SkillIconShowSet
-    gameObject: {fileID: 7908942467299836616}
-  - key: SkillDi
-    gameObject: {fileID: 7103429693226882025}
 --- !u!1 &6044200555939420734
 GameObject:
   m_ObjectHideFlags: 0
@@ -35991,8 +35650,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7954462334500072914}
-  - component: {fileID: 6566441149478529882}
-  - component: {fileID: 2906171975580763046}
   m_Layer: 5
   m_Name: UI_MainRoseSkill_item_1
   m_TagString: Untagged
@@ -36031,45 +35688,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1048, y: 257}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &6566441149478529882
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6537048756523815296}
-  m_CullTransparentMesh: 0
---- !u!114 &2906171975580763046
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6537048756523815296}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - key: Btn_SkillStart
-    gameObject: {fileID: 5744674983502436288}
-  - key: Img_SkillIcon
-    gameObject: {fileID: 5384335602991975522}
-  - key: Text_SkillItemNum
-    gameObject: {fileID: 3291252633588821440}
-  - key: Img_SkillCD
-    gameObject: {fileID: 239685601553655150}
-  - key: Text_SkillCD
-    gameObject: {fileID: 5433876393845870850}
-  - key: Img_PublicSkillCD
-    gameObject: {fileID: 1494068803717134163}
-  - key: BackIcon
-    gameObject: {fileID: 5626297570895822951}
-  - key: SkillIconShowSet
-    gameObject: {fileID: 4926497604629942915}
-  - key: SkillDi
-    gameObject: {fileID: 2647743912651674172}
 --- !u!1 &6537872699035937381
 GameObject:
   m_ObjectHideFlags: 0
@@ -36872,8 +36490,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8082897197992836536}
-  - component: {fileID: 5444801662655197307}
-  - component: {fileID: 4537474371246932924}
   m_Layer: 5
   m_Name: UI_MainRoseSkill_item_7
   m_TagString: Untagged
@@ -36912,45 +36528,6 @@ RectTransform:
   m_AnchoredPosition: {x: 847, y: 76}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &5444801662655197307
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7021986152493034509}
-  m_CullTransparentMesh: 0
---- !u!114 &4537474371246932924
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7021986152493034509}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - key: Btn_SkillStart
-    gameObject: {fileID: 3808439194709386827}
-  - key: Img_SkillIcon
-    gameObject: {fileID: 3580230211396520807}
-  - key: Text_SkillItemNum
-    gameObject: {fileID: 8368601145620365355}
-  - key: Img_SkillCD
-    gameObject: {fileID: 8343492778927160927}
-  - key: Text_SkillCD
-    gameObject: {fileID: 3133086675198005135}
-  - key: Img_PublicSkillCD
-    gameObject: {fileID: 7604387184986123537}
-  - key: BackIcon
-    gameObject: {fileID: 8618215210800865059}
-  - key: SkillIconShowSet
-    gameObject: {fileID: 4087582343401239836}
-  - key: SkillDi
-    gameObject: {fileID: 6302695126312959173}
 --- !u!1 &7039545354239191620
 GameObject:
   m_ObjectHideFlags: 0
@@ -38927,7 +38504,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 741612316810646589}
-  - component: {fileID: 929072633358121427}
   m_Layer: 5
   m_Name: SkillIconShowSet
   m_TagString: Untagged
@@ -38956,14 +38532,6 @@ RectTransform:
   m_AnchoredPosition: {x: 35.3, y: 36}
   m_SizeDelta: {x: 117, y: 117}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &929072633358121427
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7475809725461848887}
-  m_CullTransparentMesh: 0
 --- !u!1 &7478050708236510652
 GameObject:
   m_ObjectHideFlags: 0
@@ -40157,7 +39725,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1004287757044892371}
-  - component: {fileID: 2232426240873694211}
   m_Layer: 5
   m_Name: SkillIconShowSet
   m_TagString: Untagged
@@ -40186,14 +39753,6 @@ RectTransform:
   m_AnchoredPosition: {x: 35.3, y: 36}
   m_SizeDelta: {x: 117, y: 117}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &2232426240873694211
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7908942467299836616}
-  m_CullTransparentMesh: 0
 --- !u!1 &7962464682750882325
 GameObject:
   m_ObjectHideFlags: 0
@@ -41450,7 +41009,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5036689403119071833}
-  - component: {fileID: 6639858448797072062}
   m_Layer: 5
   m_Name: SkillIconShowSet
   m_TagString: Untagged
@@ -41479,14 +41037,6 @@ RectTransform:
   m_AnchoredPosition: {x: 35.3, y: 36}
   m_SizeDelta: {x: 117, y: 117}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &6639858448797072062
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8310964525059760057}
-  m_CullTransparentMesh: 0
 --- !u!1 &8311202880641702780
 GameObject:
   m_ObjectHideFlags: 0
@@ -41875,7 +41425,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 188756432785225964}
-  - component: {fileID: 8140583793900836423}
   m_Layer: 5
   m_Name: SkillIconShowSet
   m_TagString: Untagged
@@ -41904,14 +41453,6 @@ RectTransform:
   m_AnchoredPosition: {x: 35.3, y: 36}
   m_SizeDelta: {x: 117, y: 117}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &8140583793900836423
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8414757197903487301}
-  m_CullTransparentMesh: 0
 --- !u!1 &8420702595021892079
 GameObject:
   m_ObjectHideFlags: 0
@@ -42611,8 +42152,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 738559842506098386}
-  - component: {fileID: 8742149312990976513}
-  - component: {fileID: 227560931064865943}
   m_Layer: 5
   m_Name: UI_MainRoseSkill_item_6
   m_TagString: Untagged
@@ -42651,45 +42190,6 @@ RectTransform:
   m_AnchoredPosition: {x: 860, y: 222}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &8742149312990976513
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8566364637204431490}
-  m_CullTransparentMesh: 0
---- !u!114 &227560931064865943
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8566364637204431490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - key: Btn_SkillStart
-    gameObject: {fileID: 2243473053894479183}
-  - key: Img_SkillIcon
-    gameObject: {fileID: 2130999108752240767}
-  - key: Text_SkillItemNum
-    gameObject: {fileID: 310892431843558565}
-  - key: Img_SkillCD
-    gameObject: {fileID: 8062479091648768462}
-  - key: Text_SkillCD
-    gameObject: {fileID: 7990751349762780421}
-  - key: Img_PublicSkillCD
-    gameObject: {fileID: 4409147567541459186}
-  - key: BackIcon
-    gameObject: {fileID: 5452089328388972499}
-  - key: SkillIconShowSet
-    gameObject: {fileID: 8310964525059760057}
-  - key: SkillDi
-    gameObject: {fileID: 8306746797086786899}
 --- !u!1 &8575265437447824008
 GameObject:
   m_ObjectHideFlags: 0
