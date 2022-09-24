@@ -156,6 +156,24 @@ namespace ET
              
         };
 
+        public static string XiLianWeiZhiTip(int hideId)
+        {
+            string tip = string.Empty;
+            HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hideId);
+            int[] spaces = hideProListConfig.EquipSpace;
+            if (spaces == null)
+            {
+                return tip;
+            }
+            tip += "\n\r";
+            tip += "洗练部位：";
+            for (int i = 0; i < spaces.Length; i++)
+            {
+                tip +=  ItemSubType3Name[spaces[i]] + ".";
+            }
+            return tip;
+        }
+
         public static string GetAttributeName(int numberType)
         {
             NumericAttribute numericAttribute;

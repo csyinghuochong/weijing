@@ -70,7 +70,7 @@ namespace ET
             UICommonHelper.ShowItemList(equipXiLianConfig.RewardList, self.ItemListNode, self, 1f).Coroutine();
 
             int xilianLevel = EquipXiLianConfigCategory.Instance.Get(xilianId).XiLianLevel;
-            List<int> xilianSkill = XiLianHelper.GetLevelSkill(xilianLevel);
+            List<KeyValuePairInt> xilianSkill = XiLianHelper.GetLevelSkill(xilianLevel);
             UICommonHelper.DestoryChild(self.SkillListNode);
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -79,7 +79,7 @@ namespace ET
                 GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(bagSpace, self.SkillListNode);
                 UICommonSkillItemComponent ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(bagSpace);
-                ui_item.OnUpdateUI(xilianSkill[i], ABAtlasTypes.RoleSkillIcon);
+                ui_item.OnUpdateUI((int)xilianSkill[i].Value, ABAtlasTypes.RoleSkillIcon, ItemViewHelp.XiLianWeiZhiTip(xilianSkill[i].KeyId));
             }
 
             bool actived = shuliandu >= equipXiLianConfig.NeedShuLianDu;

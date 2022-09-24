@@ -453,16 +453,16 @@ namespace ET
             return itemXiLianResult;
         }
 
-        public static List<int> GetLevelSkill(int xilianLevel)
+        public static List<KeyValuePairInt> GetLevelSkill(int xilianLevel)
         {
-            List<int> skills = new List<int>();
+            List<KeyValuePairInt> skills = new List<KeyValuePairInt>();
             int hideProId = 2001;
             while (hideProId != 0)
             {
                 HideProListConfig proListConfig = HideProListConfigCategory.Instance.Get(hideProId);
-                if (xilianLevel == proListConfig.NeedXiLianLv && !skills.Contains(proListConfig.PropertyType))
+                if (xilianLevel == proListConfig.NeedXiLianLv)
                 {
-                    skills.Add(proListConfig.PropertyType);
+                    skills.Add(new KeyValuePairInt() {  KeyId = proListConfig.Id, Value = proListConfig.PropertyType });
                 }
                 hideProId = proListConfig.NtxtID;
             }

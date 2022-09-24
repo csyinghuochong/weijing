@@ -14,6 +14,7 @@ namespace ET
         public GameObject TextSkillName;
         public ABAtlasTypes SkillAtlas;
         public int SkillId;
+        public string addTip;
     }
 
     [ObjectSystem]
@@ -37,17 +38,19 @@ namespace ET
     public static class UICommonSkillItemComponentSystem
     {
 
-        public static void OnUpdateUI(this UICommonSkillItemComponent self, int skillId, ABAtlasTypes SkillAtlas = ABAtlasTypes.RoleSkillIcon)
+        public static void OnUpdateUI(this UICommonSkillItemComponent self, int skillId, ABAtlasTypes SkillAtlas = ABAtlasTypes.RoleSkillIcon, string addtip = "")
         {
             self.SkillId = skillId;
             if (!SkillConfigCategory.Instance.Contain(skillId))
             {
                 return;
             }
+
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             Sprite sp = ABAtlasHelp.GetIconSprite(SkillAtlas, skillConfig.SkillIcon);
             self.ImageIcon.GetComponent<Image>().sprite = sp;
             self.SkillAtlas = SkillAtlas;
+            self.addTip = addtip;
         }
 
         public static async ETTask BeginDrag(this UICommonSkillItemComponent self, PointerEventData pdata)
@@ -58,7 +61,7 @@ namespace ET
             RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject.GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out localPoint);
-            skillTips.GetComponent<UISkillTipsComponent>().OnUpdateData(self.SkillId, new Vector3(localPoint.x, localPoint.y, 0f), self.SkillAtlas);
+            skillTips.GetComponent<UISkillTipsComponent>().OnUpdateData(self.SkillId, new Vector3(localPoint.x, localPoint.y, 0f), self.SkillAtlas, self.addTip);
         }
 
         public static void EndDrag(this UICommonSkillItemComponent self, PointerEventData pdata)
