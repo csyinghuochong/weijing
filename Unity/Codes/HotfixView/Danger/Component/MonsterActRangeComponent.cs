@@ -45,6 +45,11 @@ namespace ET
     public static class MonsterActRangeComponentSystem
     {
 
+        public static void OnDead(this MonsterActRangeComponent self)
+        {
+            self.MonsterActRange?.SetActive(false);
+        }
+
         public static void OnBossInCombat(this MonsterActRangeComponent self, int combat)
         {
             if (combat == 0)

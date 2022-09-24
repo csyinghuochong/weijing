@@ -74,6 +74,7 @@ namespace ET
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(monsterId);
                     path = ABPathHelper.GetUnitPath("Monster/" + monsterCof.MonsterModelID);
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.OnLoadGameObject);
+                    self.AssetsPath = path;
                     break;
                 case UnitType.Pet:
                     int skinId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Pet_Skin);
@@ -98,6 +99,7 @@ namespace ET
                     string assetPath = dropComponent.DropInfo.ItemID == 1 ? "DropICoin" : "DropItem";
                     path = ABPathHelper.GetUnitPath($"Player/{assetPath}");
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.OnLoadGameObject);
+                    self.AssetsPath = path;
                     break;
                 case UnitType.Chuansong:
                     path = ABPathHelper.GetUnitPath("Monster/DorrWay_1");

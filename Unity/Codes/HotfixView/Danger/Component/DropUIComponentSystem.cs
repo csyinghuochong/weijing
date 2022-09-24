@@ -163,7 +163,7 @@ namespace ET
             Vector3 bezierControlPoint = (self.StartPoint + self.EndPoint) * 0.5f + (Vector3.up * height);
 
             //resolution为int类型，表示要取得路径点数量，值越大，取得的路径点越多，曲线最后越平滑
-            self.Resolution = 35;
+            self.Resolution = 20;
             self.LinepointList = new Vector3[self.Resolution];
             for (int i = 0; i < self.Resolution; i++)
             {

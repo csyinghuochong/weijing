@@ -69,14 +69,14 @@ namespace ET
     //4：怪物召唤
     //5：场景物【场景怪 能量台子 传送门】
 
-    public enum MonsterTypeEnum
-    { 
-        None = 0,
-        Normal,
-        Elite,
-        Boss,
-        ZhaoHuan,
-        SceneItem,
+    public static class MonsterTypeEnum
+    {
+        public const int None = 0;
+        public const int Normal = 1;
+        public const int Elite = 2;
+        public const int Boss = 3;
+        public const int ZhaoHuan = 4;
+        public const int SceneItem = 5;
     }
 
 }
