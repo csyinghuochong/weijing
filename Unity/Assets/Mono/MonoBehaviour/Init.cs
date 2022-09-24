@@ -28,6 +28,7 @@ namespace ET
 		public Action<string> OnGetUserInfoHandler;
 		public Action<string> OnGetPhoneNumHandler;
 		public Action<bool> OnApplicationFocusHandler;
+		public Action OnApplicationQuitHandler;
 
 		public Action<int> OnGetKeyHandler;
 		public Action OnGetMouseButtonDown_1;
@@ -214,6 +215,7 @@ namespace ET
 
 		private void OnApplicationQuit()
 		{
+			OnApplicationQuitHandler?.Invoke();
 			CodeLoader.Instance.OnApplicationQuit();
 			CodeLoader.Instance.Dispose();
 		}
@@ -501,6 +503,5 @@ namespace ET
 			Log.ILog.Debug($"OnRecvPhoneNum: {phoneNum}");
 			this.OnGetPhoneNumHandler(phoneNum);
 		}
-
 	}
 }

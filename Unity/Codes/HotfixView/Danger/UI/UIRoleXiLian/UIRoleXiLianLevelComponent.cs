@@ -71,7 +71,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int xiliandu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu);
             int xilianLevel = XiLianHelper.GetXiLianId(xiliandu);
-            xilianLevel = xilianLevel != 0 ? xilianLevel : EquipXiLianConfigCategory.Instance.EquipXiLianLevelList[0].Id;
+            xilianLevel = xilianLevel != 0 ? xilianLevel : EquipXiLianConfigCategory.Instance.EquipXiLianLevelList[1].Id;
             self.OnUpdateButton(xilianLevel);
             self.UIRoleXiLianLevels[1].OnUpdateUI(xilianLevel);
         }
@@ -178,7 +178,7 @@ namespace ET
             self.EquipXilianId = xilianLevel;
 
             List<EquipXiLianConfig> equipXiLianConfigs = EquipXiLianConfigCategory.Instance.EquipXiLianLevelList;
-            self.Button_Left.SetActive(xilianLevel != equipXiLianConfigs[0].Id);
+            self.Button_Left.SetActive(xilianLevel > equipXiLianConfigs[1].Id);
             self.Button_Right.SetActive(xilianLevel != equipXiLianConfigs[equipXiLianConfigs.Count - 1].Id);
         }
     }
