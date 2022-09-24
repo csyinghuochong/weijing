@@ -166,11 +166,24 @@ namespace ET
                 return tip;
             }
             tip += "\n\r";
-            tip += "洗练部位：";
-            for (int i = 0; i < spaces.Length; i++)
-            {
-                tip +=  ItemSubType3Name[spaces[i]] + ".";
+            tip += "<color=#ACFF23FF>此属性可出现的装备部位：\n";
+
+            //string str = hideProListConfig.EquipSpace.ArrayToString();
+            //Log.Info("hideProListConfig.EquipSpace.ArrayToString() = " + hideProListConfig.EquipSpace.ArrayToString());
+            //if (hideProListConfig.EquipSpace.ArrayToString() != " [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]")
+            //{
+                for (int i = 0; i < spaces.Length; i++)
+                {
+                    tip += ItemSubType3Name[spaces[i]] + "、";
+                }
+                tip = tip.Substring(0, tip.Length - 1);
+            //}
+            /*
+            else {
+                tip += "全部位";
             }
+            */
+            tip += "</color>";
             return tip;
         }
 
