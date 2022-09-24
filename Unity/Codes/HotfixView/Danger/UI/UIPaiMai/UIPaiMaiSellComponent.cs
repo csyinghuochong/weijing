@@ -140,7 +140,8 @@ namespace ET
             }
             self.PaiMaiItemInfoId = 0;
 
-            self.OnUpdateUI();
+            self.UpdateBagItemUIList().Coroutine();
+            self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex).Coroutine();
         }
 
         public static async ETTask OnBtn_ShangJia(this UIPaiMaiSellComponent self)
@@ -204,11 +205,10 @@ namespace ET
                     uI = self.AddChild<UI, string, GameObject>( "BagItemUILIist_" + number, go);
                     UIItemComponent uIItemComponent = uI.AddComponent<UIItemComponent>();
                     uIItemComponent.HideItemName();
-                 
-                    uIItemComponent.SetEventTrigger(true);
-                    uIItemComponent.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
-                    uIItemComponent.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
-
+                    uIItemComponent.SetClickHandler((BagInfo baginfo) => { self.OnSelectItem(baginfo); });
+                    //uIItemComponent.SetEventTrigger(true);
+                    //uIItemComponent.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
+                    //uIItemComponent.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
                     self.BagItemUILIist.Add(uI);
                 }
                 number++;

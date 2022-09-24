@@ -157,8 +157,7 @@ namespace ET
                 self.ClickPaiMaiHandler(self.PaiMaiId);
             }
 
-            if (self.ItemOperateEnum != ItemOperateEnum.ItemXiLian
-                && self.ItemOperateEnum != ItemOperateEnum.PaiMaiSell)
+            if (self.ItemOperateEnum != ItemOperateEnum.ItemXiLian)
             {
                 //弹出Tips
                 EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
