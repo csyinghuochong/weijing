@@ -179,8 +179,7 @@ namespace ET
         public static async ETTask UpdateBagItemUIList(this UIPaiMaiSellComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
             int number = 0;
             List<BagInfo> equipInfos = self.BagComponent.GetBagList();
@@ -223,9 +222,11 @@ namespace ET
 
         public static void OnPaiBuyShangJia(this UIPaiMaiSellComponent self, PaiMaiItemInfo paiMaiItemInfo)
         {
-            self.PaiMaiItemInfos.Add(paiMaiItemInfo);       //增加拍卖行出售的列表
             self.BagInfo = null;                            //选中置空
-            self.OnUpdateUI();
+            self.PaiMaiItemInfos.Add(paiMaiItemInfo);       //增加拍卖行出售的列表
+
+            self.UpdateBagItemUIList().Coroutine();
+            self.UIPageButton.OnSelectIndex(self.UIPageButton.CurrentIndex);
         }
 
         public static void OnSelectItem(this UIPaiMaiSellComponent self, BagInfo bagInfo)

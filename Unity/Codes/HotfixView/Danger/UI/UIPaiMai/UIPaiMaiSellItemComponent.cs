@@ -47,8 +47,7 @@ namespace ET
         public static async ETTask OnInitUI(this UIPaiMaiSellItemComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(bagSpace, self.ItemSet);
 
