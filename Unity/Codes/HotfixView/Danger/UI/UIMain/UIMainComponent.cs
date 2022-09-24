@@ -822,15 +822,15 @@ namespace ET
             {
                 self.UIMainHpBar.MonsterNode.SetActive(false);
                 self.UIMainHpBar.BossNode.SetActive(false);
-                self.HomeButton.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-                self.UIMainSkill.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, -1000f);
+                self.HomeButton.SetActive(true);
+                self.UIMainSkill.SetActive(false);
                 self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-128f, 380f);
             }
             else
             {
+                self.HomeButton.SetActive(false);
+                self.UIMainSkill.SetActive(true);
                 self.UIMainSkillComponent.OnSkillSetUpdate();
-                self.HomeButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, -1000f);
-                self.UIMainSkill.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-95.7f, 738f);
             }
 
