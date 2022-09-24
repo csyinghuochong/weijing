@@ -170,7 +170,10 @@ namespace ET
 
             long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
             Unit player = unit.GetParent<UnitComponent>().Get(masterId);
-            rolePetInfo.PlayerName = player.GetComponent<UserInfoComponent>().UserInfo.Name;
+            if (player != null)
+            {
+                rolePetInfo.PlayerName = player.GetComponent<UserInfoComponent>().UserInfo.Name;
+            }
 
             NumericComponent nc = unit.GetComponent<NumericComponent>();
             foreach ((int key, long value) in nc.NumericDic)

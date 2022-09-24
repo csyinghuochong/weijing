@@ -79,7 +79,8 @@ namespace ET
             MapComponent mapComponent = null;
 #if SERVER
             mapComponent = unit.DomainScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon)
+            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon
+                || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi)
             {
                 if (self.GetParent<Unit>().Type == UnitType.Player ||  unit.Type == UnitType.Player)
                 {

@@ -39,7 +39,7 @@ namespace ET
                     {
                         continue;
                     }
-                    Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), unit.Id,
+                    Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), 0,
                        2, rolePetInfo, AIHelp.Formation_2[i]);
                     //petunit.GetComponent<AIComponent>().StopAI = true;
                 }
@@ -52,7 +52,7 @@ namespace ET
                     RolePetInfo petInfo = petComponent.GenerateNewPet(petlist[0], 0);
                     petComponent.PetXiLian(petInfo, 1);
                     petComponent.UpdatePetAttribute(petInfo);
-                    Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), unit.Id,
+                    Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), 0,
                        2,  petInfo, AIHelp.Formation_2[k]);
                     //petunit.GetComponent<AIComponent>().StopAI = true;
                 }
@@ -107,7 +107,7 @@ namespace ET
         {
             int number_1 = 0;
             int number_2 = 0;
-            foreach ((long id, Entity value) in self.DomainScene().GetParent<UnitComponent>().Children)
+            foreach ((long id, Entity value) in self.DomainScene().GetComponent<UnitComponent>().Children)
             {
                 UnitInfoComponent unitInfoComponent = value.GetComponent<UnitInfoComponent>();
                 if (!unitInfoComponent.IsPet() || !unitInfoComponent.IsCanBeAttack())

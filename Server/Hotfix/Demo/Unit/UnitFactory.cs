@@ -194,7 +194,8 @@ namespace ET
             switch (mapComponent.SceneTypeEnum)
             {
                 case (int)SceneTypeEnum.PetDungeon:
-                    aIComponent.InitPetFuben(petinfo.ConfigId);
+                case (int)SceneTypeEnum.PetTianTi:
+                    aIComponent.InitPetFubenPet(petinfo.ConfigId);
                     break;
                 default:
                     aIComponent.InitPet(petinfo.ConfigId);

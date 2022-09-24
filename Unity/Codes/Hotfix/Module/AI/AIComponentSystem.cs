@@ -154,7 +154,7 @@ namespace ET
         }
 
         //宠物天梯，需要新的AI
-        public static void InitPetFuben(this AIComponent self, int petConfigId)
+        public static void InitPetFubenPet(this AIComponent self, int petConfigId)
         {
             PetConfig petConfig = PetConfigCategory.Instance.Get(petConfigId);
             self.ChaseRange = 100;

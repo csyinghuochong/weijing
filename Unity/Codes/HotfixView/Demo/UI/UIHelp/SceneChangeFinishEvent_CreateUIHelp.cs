@@ -15,7 +15,9 @@
             {
                 args.CurrentScene.AddComponent<SkillIndicatorComponent>();
             }
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon)
+            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon
+                || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi)
+
             {
                 args.CurrentScene.AddComponent<FingerTouchComponent>();
             }
