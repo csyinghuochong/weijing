@@ -226,7 +226,7 @@ namespace ET
             self.PaiMaiItemInfos.Add(paiMaiItemInfo);       //增加拍卖行出售的列表
 
             self.UpdateBagItemUIList().Coroutine();
-            self.UIPageButton.OnSelectIndex(self.UIPageButton.CurrentIndex);
+            self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex).Coroutine();
         }
 
         public static void OnSelectItem(this UIPaiMaiSellComponent self, BagInfo bagInfo)
