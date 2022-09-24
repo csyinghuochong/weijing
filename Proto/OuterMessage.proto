@@ -2422,7 +2422,7 @@ message PaiMaiShopItemInfo
 	int32 PriceType = 3;
 	int32 Price = 4;
 	float PricePro = 5;
-	float BuyNum = 6;
+	int32 BuyNum = 6;
 }
 
 //ResponseType P2C_PaiMaiListResponse

@@ -20,11 +20,9 @@ namespace ET
         public List<UI> ItemUIList = new List<UI>();
         public int PaiMaiTypeId;
         public int PaiMaiSellId;
-
         public int BuyNum;
 
-        //public List<PaiMaiShopItemInfo> PaiMaiShopItemInfos = new List<PaiMaiShopItemInfo>();       //快捷存储列表
-        public Dictionary<long,PaiMaiShopItemInfo> PaiMaiShopItemInfos = new Dictionary<long, PaiMaiShopItemInfo>();       //快捷存储列表
+        public Dictionary<long, PaiMaiShopItemInfo> PaiMaiShopItemInfos = new Dictionary<long, PaiMaiShopItemInfo>();       //快捷存储列表
     }
 
     [ObjectSystem]
@@ -60,7 +58,7 @@ namespace ET
             self.ItemUIList.Clear();
             self.TypeItemUIList.Clear();
 
-            await self.InitPaiMaiShopData();    //初始化数据
+            await self.RequestPaiMaiShopData();    //初始化数据
             self.InitPaiMaiType().Coroutine();    //初始化显示
         }
     }
@@ -68,7 +66,7 @@ namespace ET
     public static class UIPaiMaiShopComponentSystem
     {
 
-        public static async ETTask InitPaiMaiShopData(this UIPaiMaiShopComponent self) {
+        public static async ETTask RequestPaiMaiShopData(this UIPaiMaiShopComponent self) {
 
             //请求当前快捷拍卖的对应价格
             C2P_PaiMaiShopShowListRequest c2P_PaiMaiShopShowListRequest = new C2P_PaiMaiShopShowListRequest() { };

@@ -69,20 +69,12 @@ namespace ET
             self.SaveDB().Coroutine();
         }
 
-        public static async ETTask<long> GetOpenServerTime(this ActivitySceneComponent self)
-        {
-            long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = self.DomainZone(), Component = DBHelper.DBServerInfo });
-            return d2GGetUnit.Component != null ? (d2GGetUnit.Component as DBServerInfo).ServerInfo.OpenServerTime : 0;
-        }
-
         public static async ETTask InitDayActivity(this ActivitySceneComponent self)
         {
             int zone = self.DomainZone();
             long dbCacheId = DBHelper.GetDbCacheId(zone);
+            long openServerTime = await DBHelper.GetOpenServerTime(zone);
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = self.DomainZone(), Component = DBHelper.DBDayActivityInfo });
-            long openServerTime = await self.GetOpenServerTime();
-            openServerTime = openServerTime != 0 ? openServerTime : TimeHelper.ServerNow();
             if (d2GGetUnit.Component == null)
             {
                 self.DBDayActivityInfo = new DBDayActivityInfo();
@@ -148,13 +140,12 @@ namespace ET
         /// <returns></returns>
         public static async ETTask NoticeActivityUpdate_Day(this ActivitySceneComponent self)
         {
+            long openServerTime = await DBHelper.GetOpenServerTime(self.DomainZone());
             for (int i = 0; i < self.MapIdList.Count; i++)
             {
                 M2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (M2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                         (self.MapIdList[i], new A2M_ActivityUpdateRequest() { ActivityType = 0 });
             }
-
-            long openServerTime = await self.GetOpenServerTime();
             self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(self.DomainScene(), openServerTime);
         }
 

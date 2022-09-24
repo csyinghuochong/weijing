@@ -204,5 +204,14 @@ namespace ET
         {
             return StartSceneConfigCategory.Instance.RechargeConfig.InstanceId;
         }
+
+        public static async ETTask<long> GetOpenServerTime( int zone)
+        {
+            long dbCacheId = DBHelper.GetDbCacheId(zone);
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = zone, Component = DBHelper.DBServerInfo });
+            long serverOpenTime = d2GGetUnit.Component != null ? (d2GGetUnit.Component as DBServerInfo).ServerInfo.OpenServerTime : 0;
+            return serverOpenTime;
+        }
+
     }
 }

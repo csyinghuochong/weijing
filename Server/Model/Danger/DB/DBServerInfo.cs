@@ -3,6 +3,7 @@
 namespace ET
 {
 
+	//RankServer
     [BsonIgnoreExtraElements]
 	public class DBServerInfo : Entity
 	{

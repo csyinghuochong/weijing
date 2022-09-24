@@ -82,8 +82,7 @@ namespace ET
                     break;
                 case SceneType.PaiMai:
                     //更新快捷购买列表价格
-                    DBPaiMainInfo dBPaiMainInfo = scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo;
-                    PaiMaiHelper.Instance.UpdatePaiMaiShopItemList(dBPaiMainInfo.PaiMaiShopItemInfos);
+                    scene.GetComponent<PaiMaiSceneComponent>().OnZeroClockUpdate();
                     break;
                 case SceneType.Rank:
                     scene.GetComponent<RankSceneComponent>().OnZeroClockUpdate();

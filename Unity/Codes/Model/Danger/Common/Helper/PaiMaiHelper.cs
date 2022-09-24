@@ -127,49 +127,5 @@ namespace ET
 
             return shopListInfos;
         }
-
-
-        //每天更新道具物品价格
-        public void UpdatePaiMaiShopItemList(List<PaiMaiShopItemInfo> shopItemList)
-        {
-            foreach (PaiMaiShopItemInfo info in shopItemList) {
-
-                float upPrice = RandomHelper.RandFloat() * 0.05f;
-                info.PricePro = 1 + upPrice;
-                info.Price = (int)(info.Price * info.PricePro);
-
-            }
-        }
-
-        //根据道具ID获取对应快捷购买的列表
-        public PaiMaiShopItemInfo GetPaiMaiShopInfo(List<PaiMaiShopItemInfo> paiMaiItemInfos, long needItemID) 
-        {
-
-            //获取当前的数据
-            foreach (PaiMaiShopItemInfo info in paiMaiItemInfos)
-            {
-                if (info.Id == needItemID)
-                {
-                    return info;
-                }
-            }
-
-            return null;
-        }
-
-        //根据道具ID获取对应快捷购买的列表
-        public void PaiMaiShopInfoAddBuyNum(List<PaiMaiShopItemInfo> paiMaiItemInfos, long needItemID,int buyNum)
-        {
-
-            //获取当前的数据
-            foreach (PaiMaiShopItemInfo info in paiMaiItemInfos)
-            {
-                if (info.Id == needItemID)
-                {
-                    info.BuyNum += buyNum;
-                }
-            }
-        }
-
     }
 }

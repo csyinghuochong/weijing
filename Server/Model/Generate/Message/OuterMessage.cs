@@ -5125,7 +5125,7 @@ namespace ET
 		public float PricePro { get; set; }
 
 		[ProtoMember(6)]
-		public float BuyNum { get; set; }
+		public int BuyNum { get; set; }
 
 	}
 

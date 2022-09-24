@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -66,15 +67,91 @@ namespace ET
                 self.dBPaiMainInfo = d2GGetUnit.Component as DBPaiMainInfo;
 
                 //更新快捷购买列表
-                self.dBPaiMainInfo.PaiMaiShopItemInfos = PaiMaiHelper.Instance.InitPaiMaiShopItemList(self.dBPaiMainInfo.PaiMaiShopItemInfos);
-
+                self.UpdatePaiMaiShopItemList();
             }
 
             //测试更新价格
             //PaiMaiHelper.Instance.UpdatePaiMaiShopItemList(self.dBPaiMainInfo.PaiMaiShopItemInfos);
+
+            self.OnZeroClockUpdate();
         }
 
+        //更新快捷购买列表
+        public static void UpdatePaiMaiShopItemList(this PaiMaiSceneComponent self)
+        {
+            self.dBPaiMainInfo.PaiMaiShopItemInfos = PaiMaiHelper.Instance.InitPaiMaiShopItemList(self.dBPaiMainInfo.PaiMaiShopItemInfos);
+        }
 
+        //零点刷新
+        public static void OnZeroClockUpdate(this PaiMaiSceneComponent self)
+        {
+            //更新价格
+            self.UpdatePaiMaiShopItemPrice().Coroutine();
+        }
+
+        //每天更新道具物品价格
+        public static async ETTask UpdatePaiMaiShopItemPrice(this PaiMaiSceneComponent self)
+        {
+            long openServerTime = await DBHelper.GetOpenServerTime(self.DomainZone());
+            long serverNow = TimeHelper.ServerNow();
+            int openserverDay = ComHelp.DateDiff_Day(serverNow, openServerTime);
+
+            Log.Info($"PaiMaiScene开服天数 {openserverDay}");
+            List<PaiMaiShopItemInfo> paiMaiShopItemInfos = self.dBPaiMainInfo.PaiMaiShopItemInfos;
+            for (int i = 0; i < paiMaiShopItemInfos.Count; i++)
+            {
+                float upPrice = RandomHelper.RandFloat() * 0.05f;
+                PaiMaiShopItemInfo info = paiMaiShopItemInfos[i];
+                 
+                info.PricePro = 1 + upPrice;
+                info.Price = (int)(info.Price * info.PricePro);
+            }
+        }
+
+        //根据道具ID获取对应快捷购买的列表
+        public static PaiMaiShopItemInfo GetPaiMaiShopInfo(this PaiMaiSceneComponent self, long needItemID)
+        {
+            //获取当前的数据
+            foreach (PaiMaiShopItemInfo info in self.dBPaiMainInfo.PaiMaiShopItemInfos)
+            {
+                if (info.Id == needItemID)
+                {
+                    return info;
+                }
+            }
+            return null;
+        }
+
+        //根据道具ID获取对应快捷购买的列表
+        public static void PaiMaiShopInfoAddBuyNum(this PaiMaiSceneComponent self, long needItemID, int buyNum)
+        {
+            foreach (PaiMaiShopItemInfo info in self.dBPaiMainInfo.PaiMaiShopItemInfos)
+            {
+                if (info.Id == needItemID)
+                {
+                    info.BuyNum += buyNum;
+                }
+            }
+        }
+
+        public static PaiMaiItemInfo GetPaiMaiItemInfo(this PaiMaiSceneComponent self, int itemID)
+        {
+            PaiMaiItemInfo paiMaiItemInfo = null;
+            List<PaiMaiItemInfo> paiMaiItemInfos = self.dBPaiMainInfo.PaiMaiItemInfos;
+
+            for (int i = 0; i < paiMaiItemInfos.Count; i++)
+            {
+                if (paiMaiItemInfos[i].BagInfo.ItemID!=itemID)
+                {
+                    continue;
+                }
+                if (paiMaiItemInfo == null || paiMaiItemInfos[i].Price < paiMaiItemInfo.Price)
+                {
+                    paiMaiItemInfo = paiMaiItemInfos[i];
+                }
+            }
+            return paiMaiItemInfo;
+        }
 
         public static async ETTask SaveDB(this PaiMaiSceneComponent self)
         {

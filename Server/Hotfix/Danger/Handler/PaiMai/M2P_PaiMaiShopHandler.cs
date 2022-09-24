@@ -11,10 +11,18 @@ namespace ET
         {
             //获取当前的数据
             PaiMaiSceneComponent paimaiCompontent = scene.GetComponent<PaiMaiSceneComponent>();
-            response.PaiMaiShopItemInfo = PaiMaiHelper.Instance.GetPaiMaiShopInfo(paimaiCompontent.dBPaiMainInfo.PaiMaiShopItemInfos, request.ItemID);
+            response.PaiMaiShopItemInfo = paimaiCompontent.GetPaiMaiShopInfo(request.ItemID);
 
             //后面记录购买的数量
-            PaiMaiHelper.Instance.PaiMaiShopInfoAddBuyNum(paimaiCompontent.dBPaiMainInfo.PaiMaiShopItemInfos, request.ItemID, request.BuyNum);
+            paimaiCompontent.PaiMaiShopInfoAddBuyNum( request.ItemID, request.BuyNum);
+
+            //扣除对应的上架道具
+            PaiMaiItemInfo paiMaiItemInfo = paimaiCompontent.GetPaiMaiItemInfo(request.ItemID);
+            if (paiMaiItemInfo!= null && paiMaiItemInfo.BagInfo.ItemNum >= request.BuyNum)
+            {
+                paiMaiItemInfo.BagInfo.ItemNum -= request.BuyNum;
+                MailHelp.SendPaiMaiEmail(scene.DomainZone(), paiMaiItemInfo).Coroutine();
+            }
 
             //返回消息
             reply();
