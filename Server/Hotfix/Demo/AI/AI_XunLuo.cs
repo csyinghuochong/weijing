@@ -26,8 +26,7 @@ namespace ET
             {
                 aiComponent.TargetID = nearest.Id;
             }
-
-            if (aiComponent.IsBoss)
+            if (aiComponent.TargetID != 0 && aiComponent.IsBoss)
             {
                 aiComponent.GetParent<Unit>().GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 1, true, true);
             }
