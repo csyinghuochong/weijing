@@ -33,7 +33,8 @@ namespace ET
             {
                 unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
             }
-            if (unitInfoComponent.Type == UnitType.Monster && unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
+            if (unitInfoComponent.Type == UnitType.Monster
+                && unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
             {
                 unit.GetComponent<MonsterActRangeComponent>()?.OnDead();
             }

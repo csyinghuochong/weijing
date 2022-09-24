@@ -1236,7 +1236,7 @@ namespace ET
             {
                 self.UIOpenBoxComponent.OnOpenBox(0);
             }
-            self.UIMainSkillComponent.UIAttackGrid.GetComponent<UIAttackGridComponent>().OnMoveStart();
+            self.UIMainSkillComponent.UIAttackGrid.OnMoveStart();
         }
 
         public static void UpdateShadow(this UIMainComponent self, string usevalue = "")

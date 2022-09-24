@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIFangunSkillComponent : Entity, IAwake
+    public class UIFangunSkillComponent : Entity, IAwake<GameObject>
     {
         public GameObject Img_SkillCD;
         public GameObject Text_Time;
@@ -13,9 +13,9 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class SubFungunSkillComponentAwakeSystem : AwakeSystem<UIFangunSkillComponent>
+    public class SubFungunSkillComponentAwakeSystem : AwakeSystem<UIFangunSkillComponent, GameObject>
     {
-        public override void Awake(UIFangunSkillComponent self)
+        public override void Awake(UIFangunSkillComponent self, GameObject gameObject)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             GameObject button_1 = self.GetParent<UI>().GameObject;

@@ -22,7 +22,7 @@ namespace ET
         }
     }
 
-    public class UIAttackGridComponent : Entity, IAwake, IDestroy
+    public class UIAttackGridComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Btn_SkillStart;
         public SkillConfig SkillConfig;
@@ -53,11 +53,11 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UIAttackGridComponentAwakeSystem : AwakeSystem<UIAttackGridComponent>
+    public class UIAttackGridComponentAwakeSystem : AwakeSystem<UIAttackGridComponent, GameObject>
     {
-        public override void Awake(UIAttackGridComponent self)
+        public override void Awake(UIAttackGridComponent self, GameObject gameObject)
         {
-            self.Awake();
+            self.Awake(gameObject);
         }
     }
 
@@ -73,11 +73,11 @@ namespace ET
     public static class UIAttackGridComponentSystem
     {
 
-        public static void Awake(this UIAttackGridComponent self)
+        public static void Awake(this UIAttackGridComponent self, GameObject gameObject)
         {
             self.InitEffect = false;
             self.MoveAttackId = 0;
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.Btn_SkillStart = rc.Get<GameObject>("Btn_SkillStart");
             self.FightEffect = rc.Get<GameObject>("FightEffect");
            

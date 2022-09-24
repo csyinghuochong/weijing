@@ -7,15 +7,15 @@ namespace ET
 {
 
     [ObjectSystem]
-    public class UISkillButtonComponentAwakeSystem : AwakeSystem<UISkillGridComponent, int>
+    public class UISkillButtonComponentAwakeSystem : AwakeSystem<UISkillGridComponent, GameObject>
     {
-        public override void Awake(UISkillGridComponent self, int index)
+        public override void Awake(UISkillGridComponent self, GameObject gameObjectnt)
         {
-            self.Awake(index);
+            self.Awake(gameObjectnt);
         }
     }
 
-    public class UISkillGridComponent : Entity, IAwake, IAwake<int>
+    public class UISkillGridComponent : Entity, IAwake, IAwake<GameObject>
     {
         public GameObject SkillDi;
         public GameObject Btn_SkillStart;
@@ -35,11 +35,10 @@ namespace ET
         public Camera UIcam;
         public Action<bool> SkillCancelHandler;
 
-        public void Awake(int index)
+        public void Awake(GameObject gameObject)
         {
             this.UIcam = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
-            GameObject gameObject  = this.GetParent<UI>().GameObject;
-
+          
             this.SkillDi = gameObject.transform.Find("SkillDi").gameObject;
             this.Btn_SkillStart = gameObject.transform.Find("Btn_SkillStart").gameObject;
             this.Img_SkillIcon = gameObject.transform.Find("SkillIconShowSet/Img_Mask/Img_SkillIcon").gameObject;

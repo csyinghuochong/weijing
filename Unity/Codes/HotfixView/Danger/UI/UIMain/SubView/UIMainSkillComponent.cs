@@ -31,9 +31,9 @@ namespace ET
         public GameObject UI_RoseSkillSet;
         public GameObject Btn_FanGun;
 
-        public UI UIFangunComponet;
-        public UI UIAttackGrid;
-        public List<UI> UISkillGirdList = new List<UI>();
+        public UIAttackGridComponent UIAttackGrid;
+        public UIFangunSkillComponent UIFangunComponet;
+        public List<UISkillGridComponent> UISkillGirdList = new List<UISkillGridComponent>();
         public long Timer;
     }
 
@@ -65,16 +65,12 @@ namespace ET
             ButtonHelp.AddEventTriggers(self.Btn_CancleSkill, (PointerEventData pdata) => { self.OnEnterCancelButton(); }, EventTriggerType.PointerEnter);
 
             //普通攻击
-            UI uiattackButton = self.AddChild<UI, string, GameObject>("UI_MainRose_attack", self.UI_MainRose_attack);
-            uiattackButton.AddComponent<UIAttackGridComponent>();
             OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ);
-            uiattackButton.GetComponent<UIAttackGridComponent>().UpdateSkillInfo(occConfig.InitActSkillID);
-            self.UIAttackGrid = uiattackButton;
+            self.UIAttackGrid = self.AddChild<UIAttackGridComponent, GameObject>(self.UI_MainRose_attack); ;
+            self.UIAttackGrid.UpdateSkillInfo(occConfig.InitActSkillID);
 
             //翻滚技能
-            UI uiFangun = self.AddChild<UI, string, GameObject>("FanGunSkill", self.Btn_FanGun);
-            uiFangun.AddComponent<UIFangunSkillComponent>();
-            self.UIFangunComponet = uiFangun;
+            self.UIFangunComponet = self.AddChild<UIFangunSkillComponent, GameObject>(self.Btn_FanGun);
 
             //获取玩家携带的技能
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
@@ -82,17 +78,16 @@ namespace ET
             {
                 string name = "UI_MainRoseSkill_" + (i + 1);
                 GameObject go = self.UI_RoseSkillSet.transform.GetChild(i).gameObject;
-                UI uiskillButton = self.AddChild<UI, string, GameObject>(name, go);
-                UISkillGridComponent skillgrid = uiskillButton.AddComponent<UISkillGridComponent, int>(i);
+                UISkillGridComponent skillgrid = self.AddChild<UISkillGridComponent, GameObject>(go);
                 skillgrid.SetSkillCancelHandler((bool val) => { self.ShowCancelButton(val); });
-                self.UISkillGirdList.Add(uiskillButton);
+                self.UISkillGirdList.Add(skillgrid);
             }
 
 
         }
     }
 
-    public static class SubMainSkillComponentSystem
+    public static class UIMainSkillComponentSystem
     {
         public static void OnUseSkill(this UIMainSkillComponent self)
         {
@@ -110,7 +105,7 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
-                UISkillGridComponent uISkillGridComponent = self.UISkillGirdList[i].GetComponent<UISkillGridComponent>();
+                UISkillGridComponent uISkillGridComponent = self.UISkillGirdList[i];
                 uISkillGridComponent.OnUpdate(skillManagerComponent.GetCdTime(uISkillGridComponent.GetSkillId(), serverTime), skillManagerComponent.SkillPublicCDTime);
             }
             //UIFangunSkillComponent uIFangunSkillComponent = self.UIFangunComponet.GetComponent<UIFangunSkillComponent>();
@@ -135,7 +130,7 @@ namespace ET
             }
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
-                self.UISkillGirdList[i].GetComponent<UISkillGridComponent>().ResetUI();
+                self.UISkillGirdList[i].ResetUI();
             }
         }
 
@@ -157,7 +152,7 @@ namespace ET
 
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
-                self.UISkillGirdList[i].GetComponent<UISkillGridComponent>().OnEnterCancelButton();
+                self.UISkillGirdList[i].OnEnterCancelButton();
             }
         }
 
@@ -165,7 +160,7 @@ namespace ET
         {
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
-                self.UISkillGirdList[i].GetComponent<UISkillGridComponent>().UpdateItemNumber();
+                self.UISkillGirdList[i].UpdateItemNumber();
             }
         }
 
@@ -174,12 +169,11 @@ namespace ET
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
             for (int i = 0; i < UIMainEvent.SkillButtonNumber; i++)
             {
-                UISkillGridComponent skillgrid = self.UISkillGirdList[i].GetComponent<UISkillGridComponent>();
+                UISkillGridComponent skillgrid = self.UISkillGirdList[i];
                 SkillPro skillid = skillSetComponent.GetByPosition(i + 1);
                 skillgrid.UpdateSkillInfo(skillid);
             }
-            self.UIAttackGrid.GetComponent<UIAttackGridComponent>().UpdateComboTime();
+            self.UIAttackGrid.UpdateComboTime();
         }
-
     }
 }
