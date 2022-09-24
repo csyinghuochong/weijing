@@ -28,7 +28,6 @@ namespace ET
         public GameObject Btn_Target;
         public GameObject Btn_CancleSkill;
         public GameObject UI_MainRose_attack;
-        public GameObject UI_MainRoseSkill_item;
         public GameObject UI_RoseSkillSet;
         public GameObject Btn_FanGun;
 
@@ -57,7 +56,6 @@ namespace ET
             self.Btn_FanGun = rc.Get<GameObject>("Btn_FanGun");
             self.Btn_CancleSkill = rc.Get<GameObject>("Btn_CancleSkill");
             self.UI_MainRose_attack = rc.Get<GameObject>("UI_MainRose_attack");
-            self.UI_MainRoseSkill_item = rc.Get<GameObject>("UI_MainRoseSkill_item");
             self.UI_RoseSkillSet = rc.Get<GameObject>("UI_RoseSkillSet");
 
             self.Btn_Target = rc.Get<GameObject>("Btn_Target");
@@ -78,32 +76,26 @@ namespace ET
             uiFangun.AddComponent<UIFangunSkillComponent>();
             self.UIFangunComponet = uiFangun;
 
-            ListComponent<Vector3> listpos = new ListComponent<Vector3>();
-            listpos.Add(new Vector3(1205f, 288f, 0f));
-            listpos.Add(new Vector3(1048f, 257f, 0f));
-            listpos.Add(new Vector3(971f, 139f, 0f));
-            listpos.Add(new Vector3(1242f, 420f, 0f));
-            listpos.Add(new Vector3(1100f, 411f, 0f));
-            listpos.Add(new Vector3(946f, 353f, 0f));
-            listpos.Add(new Vector3(860f, 222f, 0f));
-            listpos.Add(new Vector3(847f, 76f, 0f));
-            listpos.Add(new Vector3(1027f, 47f, 0f));
-            listpos.Add(new Vector3(1285f, 212f, 0f));
-
+            //ListComponent<Vector3> listpos = new ListComponent<Vector3>();
+            //listpos.Add(new Vector3(1205f, 288f, 0f));
+            //listpos.Add(new Vector3(1048f, 257f, 0f));
+            //listpos.Add(new Vector3(971f, 139f, 0f));
+            //listpos.Add(new Vector3(1242f, 420f, 0f));
+            //listpos.Add(new Vector3(1100f, 411f, 0f));
+            //listpos.Add(new Vector3(946f, 353f, 0f));
+            //listpos.Add(new Vector3(860f, 222f, 0f));
+            //listpos.Add(new Vector3(847f, 76f, 0f));
+            //listpos.Add(new Vector3(1027f, 47f, 0f));
+            //listpos.Add(new Vector3(1285f, 212f, 0f));
             //获取玩家携带的技能
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
-            self.UI_MainRoseSkill_item.SetActive(false);
             for (int i = 0; i < UIMainEvent.SkillButtonNumber; i++)
             {
                 string name = "UI_MainRoseSkill_" + (i + 1);
-                GameObject go = GameObject.Instantiate<GameObject>(self.UI_MainRoseSkill_item);
-                go.SetActive(true);
-                go.transform.SetParent(self.UI_RoseSkillSet.transform);
-                go.transform.localScale = i >= 8 ? Vector3.one * 0.8f : Vector3.one;
-                go.transform.localPosition = listpos[i];
+                GameObject go = self.UI_RoseSkillSet.transform.GetChild(i).gameObject;
                 UI uiskillButton = self.AddChild<UI, string, GameObject>(name, go);
                 UISkillGridComponent skillgrid = uiskillButton.AddComponent<UISkillGridComponent, int>(i);
-                UISkillGridComponentSystem.SetSkillCancelHandler(skillgrid, (bool val) => { self.ShowCancelButton(val); });
+                skillgrid.SetSkillCancelHandler((bool val) => { self.ShowCancelButton(val); });
                 self.UISkillGirdList.Add(uiskillButton);
             }
 

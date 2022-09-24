@@ -39,8 +39,8 @@ namespace ET
         public GameObject taskButton;
         public GameObject bagButton;
         public GameObject jiayuanButton;
-        public GameObject homeButtons;
-        public GameObject skillButtons;
+        public GameObject HomeButton;
+        public GameObject UIMainSkill;
         public GameObject buttonReturn;
         public GameObject zhaohuanButton;
         public GameObject chengjiuButton;
@@ -244,8 +244,8 @@ namespace ET
             //ShrinkBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnShrinkBtn(); });
             ButtonHelp.AddListenerEx(ShrinkBtn, () => { self.OnShrinkBtn(); });
 
-            self.homeButtons = rc.Get<GameObject>("HomeButton");
-            self.skillButtons = rc.Get<GameObject>("SkillButtons");
+            self.HomeButton = rc.Get<GameObject>("HomeButton");
+            self.UIMainSkill = rc.Get<GameObject>("UIMainSkill");
 
             //初始化子UI
             self.initSubUI();
@@ -649,7 +649,7 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             //技能
-            GameObject mainSkill = rc.Get<GameObject>("SkillButtons");
+            GameObject mainSkill = rc.Get<GameObject>("UIMainSkill");
             UI uiskill = self.AddChild<UI, string, GameObject>("SubMainSkill", mainSkill);
             self.UIMainSkillComponent = uiskill.AddComponent<UIMainSkillComponent>();
 
@@ -807,8 +807,8 @@ namespace ET
         public static void OnEnterScene(this UIMainComponent self, int sceneTypeEnum)
         {
             self.UITiaoZhan.SetActive(sceneTypeEnum == SceneTypeEnum.Tower);
-            self.homeButtons.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
-            self.skillButtons.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene
+            self.HomeButton.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
+            self.UIMainSkill.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene
                 && sceneTypeEnum != SceneTypeEnum.PetTianTi
                 && sceneTypeEnum != SceneTypeEnum.PetDungeon);
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
