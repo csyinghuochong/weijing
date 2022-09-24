@@ -266,11 +266,11 @@ namespace ET
             {
                 PaiMaiItemInfo paiMaiItemInfo =  self.PaiMaiItemInfos[i];
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
-                if (subType == 0 && itemConfig.ItemType != ItemTypeEnum.Equipment)
+                if (subType == 1 && itemConfig.ItemType != ItemTypeEnum.Equipment)
                 {
                     continue;
                 }
-                if (subType == 1 &&  itemConfig.ItemType == ItemTypeEnum.Equipment)
+                if (subType == 2 &&  itemConfig.ItemType == ItemTypeEnum.Equipment)
                 {
                     continue;
                 }
