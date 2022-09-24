@@ -76,17 +76,6 @@ namespace ET
             uiFangun.AddComponent<UIFangunSkillComponent>();
             self.UIFangunComponet = uiFangun;
 
-            //ListComponent<Vector3> listpos = new ListComponent<Vector3>();
-            //listpos.Add(new Vector3(1205f, 288f, 0f));
-            //listpos.Add(new Vector3(1048f, 257f, 0f));
-            //listpos.Add(new Vector3(971f, 139f, 0f));
-            //listpos.Add(new Vector3(1242f, 420f, 0f));
-            //listpos.Add(new Vector3(1100f, 411f, 0f));
-            //listpos.Add(new Vector3(946f, 353f, 0f));
-            //listpos.Add(new Vector3(860f, 222f, 0f));
-            //listpos.Add(new Vector3(847f, 76f, 0f));
-            //listpos.Add(new Vector3(1027f, 47f, 0f));
-            //listpos.Add(new Vector3(1285f, 212f, 0f));
             //获取玩家携带的技能
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
             for (int i = 0; i < UIMainEvent.SkillButtonNumber; i++)

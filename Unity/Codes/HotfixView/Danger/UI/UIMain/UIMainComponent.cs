@@ -807,10 +807,6 @@ namespace ET
         public static void OnEnterScene(this UIMainComponent self, int sceneTypeEnum)
         {
             self.UITiaoZhan.SetActive(sceneTypeEnum == SceneTypeEnum.Tower);
-            self.HomeButton.SetActive(sceneTypeEnum == SceneTypeEnum.MainCityScene);
-            self.UIMainSkill.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene
-                && sceneTypeEnum != SceneTypeEnum.PetTianTi
-                && sceneTypeEnum != SceneTypeEnum.PetDungeon);
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.MainCityShow.SetActive(UICommonHelper.ShowBigMap((int)sceneTypeEnum));
@@ -826,11 +822,15 @@ namespace ET
             {
                 self.UIMainHpBar.MonsterNode.SetActive(false);
                 self.UIMainHpBar.BossNode.SetActive(false);
+                self.HomeButton.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
+                self.UIMainSkill.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, -1000f);
                 self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-128f, 380f);
             }
             else
             {
                 self.UIMainSkillComponent.OnSkillSetUpdate();
+                self.HomeButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, -1000f);
+                self.UIMainSkill.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
                 self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-95.7f, 738f);
             }
 

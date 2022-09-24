@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 167
+  version: 168
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -2970,6 +2970,54 @@ MonoBehaviour:
     path: Assets/Bundles/Icon/PetHeadIcon/1000801.png
   - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
     path: Assets/Bundles/Icon/PetHeadIcon/1000802.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1000901.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1000902.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1000903.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1000904.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001001.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001002.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001003.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001004.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001101.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001102.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001103.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001201.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001202.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001203.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001301.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001302.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001303.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001304.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001401.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001402.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/1001403.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/2000001.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/2000002.png
+  - bundle: b45d13e2bbde6ed8db5be185dcb70c6e.unity3d
+    path: Assets/Bundles/Icon/PetHeadIcon/2000003.png
   - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
     path: Assets/Bundles/Icon/PetSkillIcon/80000001.png
   - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
@@ -3603,6 +3651,8 @@ MonoBehaviour:
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
     path: Assets/Bundles/Icon/TiTleIcon/Img_UIFriend.png
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
+    path: Assets/Bundles/Icon/TiTleIcon/Img_UIGemMake.png
+  - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
     path: Assets/Bundles/Icon/TiTleIcon/Img_UILingDi.png
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
     path: Assets/Bundles/Icon/TiTleIcon/Img_UILingDiReward.png
@@ -3960,6 +4010,8 @@ MonoBehaviour:
     path: Assets/Bundles/UI/Main/Mail/UIMailItem.prefab
   - bundle: 6bbc3146657e5e49ac894dffe28dad1e.unity3d
     path: Assets/Bundles/UI/Main/Main/UIMain.prefab
+  - bundle: 8779e88dd6a911c59d6074b0f4bcfe91.unity3d
+    path: Assets/Bundles/UI/Main/Make/UIGemMake.prefab
   - bundle: 71bdb077ca7a747bd88c226a3fb1a0b1.unity3d
     path: Assets/Bundles/UI/Main/Make/UIMake.prefab
   - bundle: 82280eda19b8321f75356e0b119bd087.unity3d
@@ -4070,8 +4122,6 @@ MonoBehaviour:
     path: Assets/Bundles/UI/Main/Rank/UIRank.prefab
   - bundle: b5cdcfce08dabfa5f38864fd63546108.unity3d
     path: Assets/Bundles/UI/Main/Rank/UIRankPet.prefab
-  - bundle: 8d1986cf0851fe3aed5930ea6aab5097.unity3d
-    path: Assets/Bundles/UI/Main/Rank/UIRankPetItem.prefab
   - bundle: 6eefd6a89da05bd5f94b0c53b8463122.unity3d
     path: Assets/Bundles/UI/Main/Rank/UIRankPetTeam.prefab
   - bundle: a102f4eef11dde4593084af2ab4069a1.unity3d
@@ -4698,20 +4748,52 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Pet/1000802.prefab
   - bundle: b06b529fd8ac434d733723e68ba52fd8.unity3d
     path: Assets/Bundles/Unit/Pet/1000901.prefab
+  - bundle: d1d797f39d8299be69d72e7030bdc60c.unity3d
+    path: Assets/Bundles/Unit/Pet/1000902.prefab
+  - bundle: a85e9ec9250a2e09f9af955d4989f7c8.unity3d
+    path: Assets/Bundles/Unit/Pet/1000903.prefab
+  - bundle: c2a4923190e32484018697b0ab07f8d2.unity3d
+    path: Assets/Bundles/Unit/Pet/1000904.prefab
   - bundle: f58d1fa3563a057295348bc713fc0d74.unity3d
     path: Assets/Bundles/Unit/Pet/1001001.prefab
+  - bundle: 5e5705144c050e4c595ab52af08a91f5.unity3d
+    path: Assets/Bundles/Unit/Pet/1001002.prefab
+  - bundle: 3ca1ee223bc30aad2c87c180bda1526e.unity3d
+    path: Assets/Bundles/Unit/Pet/1001003.prefab
+  - bundle: 51c9f7046f33bd193461152035ae8eb8.unity3d
+    path: Assets/Bundles/Unit/Pet/1001004.prefab
   - bundle: c56ef216b56a6b94a3e7629431bfe4ee.unity3d
     path: Assets/Bundles/Unit/Pet/1001101.prefab
+  - bundle: 046df49bf0ac06cf1dff4a5b85746ac0.unity3d
+    path: Assets/Bundles/Unit/Pet/1001102.prefab
+  - bundle: 09abe59cc304aba13908e5e56b81d4d9.unity3d
+    path: Assets/Bundles/Unit/Pet/1001103.prefab
   - bundle: 0e2977d4832b6021c417d2a16ef4e401.unity3d
     path: Assets/Bundles/Unit/Pet/1001201.prefab
+  - bundle: 2ec4a63ea909fdf24d6a88aa3236cf3a.unity3d
+    path: Assets/Bundles/Unit/Pet/1001202.prefab
+  - bundle: 682219962850e64cf85ce6d423634ac7.unity3d
+    path: Assets/Bundles/Unit/Pet/1001203.prefab
   - bundle: 83fbad26fdd71ec17b4e60f937480104.unity3d
     path: Assets/Bundles/Unit/Pet/1001301.prefab
+  - bundle: 80c135b4e371c821653b242329e4af43.unity3d
+    path: Assets/Bundles/Unit/Pet/1001302.prefab
+  - bundle: 1e920e4bb36f919fb637b62eb5224b3b.unity3d
+    path: Assets/Bundles/Unit/Pet/1001303.prefab
+  - bundle: 4c911d9423369e5401899167dd6be256.unity3d
+    path: Assets/Bundles/Unit/Pet/1001304.prefab
   - bundle: c1a0da7949ee04d4a1989c1e18bb9d4f.unity3d
     path: Assets/Bundles/Unit/Pet/1001401.prefab
+  - bundle: 6ae613c6bccebe4a7ac2eb055e91c248.unity3d
+    path: Assets/Bundles/Unit/Pet/1001402.prefab
+  - bundle: 7d97409a0ceff72d62f8b2ffe43967d5.unity3d
+    path: Assets/Bundles/Unit/Pet/1001403.prefab
   - bundle: 7adfb63b29f7a0c0bfb3611b0750df94.unity3d
     path: Assets/Bundles/Unit/Pet/2000001.prefab
   - bundle: 2d950a86f544211087960b242ef5045e.unity3d
     path: Assets/Bundles/Unit/Pet/2000002.prefab
+  - bundle: a47d4abdea413a0719927e0d6eb69c43.unity3d
+    path: Assets/Bundles/Unit/Pet/2000003.prefab
   - bundle: 8a6a9e9073c56e8a66e3ad3b2b3a15f8.unity3d
     path: Assets/Bundles/Unit/Player/BaiTan.prefab
   - bundle: 96df006e313af22ff15c199b389a9d97.unity3d
@@ -5874,27 +5956,75 @@ MonoBehaviour:
   - name: b06b529fd8ac434d733723e68ba52fd8.unity3d
     assets:
     - Assets/Bundles/Unit/Pet/1000901.prefab
+  - name: d1d797f39d8299be69d72e7030bdc60c.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1000902.prefab
+  - name: a85e9ec9250a2e09f9af955d4989f7c8.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1000903.prefab
+  - name: c2a4923190e32484018697b0ab07f8d2.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1000904.prefab
   - name: f58d1fa3563a057295348bc713fc0d74.unity3d
     assets:
     - Assets/Bundles/Unit/Pet/1001001.prefab
+  - name: 5e5705144c050e4c595ab52af08a91f5.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1001002.prefab
+  - name: 3ca1ee223bc30aad2c87c180bda1526e.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1001003.prefab
+  - name: 51c9f7046f33bd193461152035ae8eb8.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1001004.prefab
   - name: c56ef216b56a6b94a3e7629431bfe4ee.unity3d
     assets:
     - Assets/Bundles/Unit/Pet/1001101.prefab
+  - name: 046df49bf0ac06cf1dff4a5b85746ac0.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1001102.prefab
+  - name: 09abe59cc304aba13908e5e56b81d4d9.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1001103.prefab
   - name: 0e2977d4832b6021c417d2a16ef4e401.unity3d
     assets:
     - Assets/Bundles/Unit/Pet/1001201.prefab
+  - name: 2ec4a63ea909fdf24d6a88aa3236cf3a.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1001202.prefab
+  - name: 682219962850e64cf85ce6d423634ac7.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1001203.prefab
   - name: 83fbad26fdd71ec17b4e60f937480104.unity3d
     assets:
     - Assets/Bundles/Unit/Pet/1001301.prefab
+  - name: 80c135b4e371c821653b242329e4af43.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1001302.prefab
+  - name: 1e920e4bb36f919fb637b62eb5224b3b.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1001303.prefab
+  - name: 4c911d9423369e5401899167dd6be256.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1001304.prefab
   - name: c1a0da7949ee04d4a1989c1e18bb9d4f.unity3d
     assets:
     - Assets/Bundles/Unit/Pet/1001401.prefab
+  - name: 6ae613c6bccebe4a7ac2eb055e91c248.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1001402.prefab
+  - name: 7d97409a0ceff72d62f8b2ffe43967d5.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/1001403.prefab
   - name: 7adfb63b29f7a0c0bfb3611b0750df94.unity3d
     assets:
     - Assets/Bundles/Unit/Pet/2000001.prefab
   - name: 2d950a86f544211087960b242ef5045e.unity3d
     assets:
     - Assets/Bundles/Unit/Pet/2000002.prefab
+  - name: a47d4abdea413a0719927e0d6eb69c43.unity3d
+    assets:
+    - Assets/Bundles/Unit/Pet/2000003.prefab
   - name: 8a6a9e9073c56e8a66e3ad3b2b3a15f8.unity3d
     assets:
     - Assets/Bundles/Unit/Player/BaiTan.prefab
@@ -6351,6 +6481,9 @@ MonoBehaviour:
   - name: 6bbc3146657e5e49ac894dffe28dad1e.unity3d
     assets:
     - Assets/Bundles/UI/Main/Main/UIMain.prefab
+  - name: 8779e88dd6a911c59d6074b0f4bcfe91.unity3d
+    assets:
+    - Assets/Bundles/UI/Main/Make/UIGemMake.prefab
   - name: 71bdb077ca7a747bd88c226a3fb1a0b1.unity3d
     assets:
     - Assets/Bundles/UI/Main/Make/UIMake.prefab
@@ -6516,9 +6649,6 @@ MonoBehaviour:
   - name: b5cdcfce08dabfa5f38864fd63546108.unity3d
     assets:
     - Assets/Bundles/UI/Main/Rank/UIRankPet.prefab
-  - name: 8d1986cf0851fe3aed5930ea6aab5097.unity3d
-    assets:
-    - Assets/Bundles/UI/Main/Rank/UIRankPetItem.prefab
   - name: 6eefd6a89da05bd5f94b0c53b8463122.unity3d
     assets:
     - Assets/Bundles/UI/Main/Rank/UIRankPetTeam.prefab
@@ -8782,6 +8912,30 @@ MonoBehaviour:
     - Assets/Bundles/Icon/PetHeadIcon/1000704.png
     - Assets/Bundles/Icon/PetHeadIcon/1000801.png
     - Assets/Bundles/Icon/PetHeadIcon/1000802.png
+    - Assets/Bundles/Icon/PetHeadIcon/1000901.png
+    - Assets/Bundles/Icon/PetHeadIcon/1000902.png
+    - Assets/Bundles/Icon/PetHeadIcon/1000903.png
+    - Assets/Bundles/Icon/PetHeadIcon/1000904.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001001.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001002.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001003.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001004.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001101.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001102.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001103.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001201.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001202.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001203.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001301.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001302.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001303.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001304.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001401.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001402.png
+    - Assets/Bundles/Icon/PetHeadIcon/1001403.png
+    - Assets/Bundles/Icon/PetHeadIcon/2000001.png
+    - Assets/Bundles/Icon/PetHeadIcon/2000002.png
+    - Assets/Bundles/Icon/PetHeadIcon/2000003.png
   - name: a8b509e015f91cdefae806627391e7c7.unity3d
     assets:
     - Assets/Bundles/Icon/PetSkillIcon/80000001.png
@@ -9112,6 +9266,7 @@ MonoBehaviour:
     - Assets/Bundles/Icon/TiTleIcon/Img_UICountry.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UIEnergy.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UIFriend.png
+    - Assets/Bundles/Icon/TiTleIcon/Img_UIGemMake.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UILingDi.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UILingDiReward.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UIMail.png
@@ -9157,15 +9312,14 @@ MonoBehaviour:
     - Assets/Res/Effect/BackBlur/BackBlur.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-Add.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-Add-Disslove.shader
-    - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-Top.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Add-DetachAlpha-Top.shader
+    - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-Top.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Add-Top.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-Glow.shader
     - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/Shader/ShaderB/E3D-distortion.shader
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/JR1/Effects/Shaders/E/E3D/E3D_EF_31_ADD_Top2.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/E3D-Effect-Shader/AirDistort/E3D-AirDistort-Noise-Mask.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/E3D-Effect-Shader/AirDistort/E3D-AirDistort-AutoNoise-Mask.shader
-    - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Alpha-Blend-DetachAlpha-Top.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Alpha-DetachAlpha-Top.shader
     - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Shaders/Add_CenterGlow.shader
     - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Shaders/Blend_CenterGlow.shader
@@ -9176,6 +9330,7 @@ MonoBehaviour:
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/E3D-Effect-Shader/UV/E3DVFX-3T-UV-VC-Add.shader
     - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Shaders/Add_Fresnel.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-AirWave.shader
+    - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Alpha-Blend-DetachAlpha-Top.shader
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/IceEffect/Effects/Magic
       Ice Vol.1/Shaders/ParticleCook-Transparent-Additive-Diffuse.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Blend-Glow.shader
@@ -10277,6 +10432,213 @@ MonoBehaviour:
   - name: 06eaae860da35fd6b1fed192b67fa1e3.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/PetAnimator/1000801.controller
+  - name: c2bd3b4e1f1fd6dd99fe117482a3612e.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Animations/Fire Pig/Anim_@Move.fbx
+  - name: fad60dd3b1f792010a2278772eaa77ac.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Animations/Fire Pig/Anim_@Idle.fbx
+  - name: 6f9a0f7cd75e3f7f4bc77c02321686fc.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Animations/Fire Pig/Anim_@Die.fbx
+  - name: 8d95d009c8e9e76dc889a4e779ca0489.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Animations/Fire Pig/Anim_@Damage.fbx
+  - name: a213e7d7ef7f4d3589645f73235db973.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Animations/Fire Pig/Anim_@Attack.fbx
+  - name: 7b32e8137683dc89ccf408087d9f4a9e.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Textures/Fire Pig/T_Fire_Pig_B.png
+  - name: 939889aac85eaa3bfa96501a2eca480f.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Animations/Fire Pig/Fire_Pig_Animations_Check.controller
+  - name: 0e43a040e53a6181f0cc1ea78d10569c.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/FBX/Fire_Pig_B.fbx
+  - name: 33211f8a68fdde941483e44d68370c33.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/PetAnimator/1000901.controller
+  - name: 9a8897860396de1f721078c94dc7576d.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Materials/Fire Pig/T_Fire_Pig_B.mat
+  - name: dc1004890094c94db92025f32a486aea.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Materials/Fire Pig/T_Fire_Pig_A.mat
+  - name: b6f9843f62f99bb52b56774df5424162.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Textures/Fire Pig/T_Fire_Pig_A.png
+  - name: 36f9e8f4123ccbf219f876a78f4fc3fa.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/FBX/Fire_Pig_A.fbx
+  - name: e4947b789fda9c46029c2e37b2cc91c7.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/Textures/Cute_Octopus/T_Cute_Octopus_A.png
+  - name: 0246f6ac9d7284527db5566cb079b0d2.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/Animations/Cute_Octopus/Anim_Octopus@Attack.fbx
+  - name: 6f571a0289e62b2ae2077d08355cf3fd.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/FBX/Cute_OctopusA.fbx
+  - name: 457ecdc44c01c90a3678feba4e12cb15.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/Animations/Cute_Octopus/Anim_Octopus@Damage.fbx
+  - name: acaf03cd430ed2ab2a819318d543e715.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/Animations/Cute_Octopus/Anim_Octopus@Move.fbx
+  - name: f6cdecc93a69261e53e5f31369ccdd85.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/Animations/Cute_Octopus/Cute_Octopus_Animations_Check.controller
+  - name: 661c27f4da9be5dfde4339f60cc42649.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/Animations/Cute_Octopus/Anim_Octopus@Die.fbx
+  - name: 2418594d59ae389d6b062e9cff0c79fe.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/PetAnimator/1001001.controller
+  - name: 346ba823b49a8708d1f7b1cf25a358e5.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/Animations/Cute_Octopus/Anim_Octopus@Idle.fbx
+  - name: b8835288788265ad7eccaec5d26337ac.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/Materials/Cute_Octopus/T_Cute_Octopus_A.mat
+  - name: 9d64128daaba9e010577f78c467ca86a.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/Textures/Cute_Octopus/T_Cute_Octopus_C.png
+  - name: a1f58bbfdacf729b441cab2e0badefda.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/Textures/Cute_Octopus/T_Cute_Octopus_B.png
+  - name: 56180672c9de938ee8aa7c19657187e2.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/Materials/Cute_Octopus/T_Cute_Octopus_C.mat
+  - name: 58defd63a204da9bbe9e49b8c641a23d.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Water/Materials/Cute_Octopus/T_Cute_Octopus_B.mat
+  - name: 1265c69a0982070293ee09f9d59d3e29.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Materials/Cute Phoenix/T_Cute_Butterfly_A.mat
+  - name: b432d5553b9f96be120c24e322eb5cef.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Textures/Cute Phoenix/T_Cute_Butterfly_A.png
+  - name: 6b2df16147c47e68b50d341c35960350.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Animations/Cute Phoenix/Anim_Phoenix@Attack.fbx
+  - name: e75121de8bf49091b046aa9f7e181d71.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Animations/Cute Phoenix/Anim_Phoenix@Move.fbx
+  - name: d572eeca6a4fb89005a68ea213b4f1b5.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Animations/Cute Phoenix/Anim_Phoenix@Damage.fbx
+  - name: 96befdbb12e702e2ae3d6d7723b78abb.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Animations/Cute Phoenix/Anim_Phoenix@Die.fbx
+  - name: 31c3b2c0c0824e45fc75ded6d1c135fe.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Textures/Cute Phoenix/T_Cute_Butterfly_N.png
+  - name: ce6093f5e72ff018275e5ceaca63a38e.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/FBX/Cute Butterfly.fbx
+  - name: 4f536ac1b7d25d702f46d9f92cab5d8e.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/PetAnimator/1001101.controller
+  - name: af69c8c5beb673e4e932f0db5bfdbe7c.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Fire/Animations/Cute Phoenix/Anim_Phoenix@Idle.fbx
+  - name: a9652b4f6594110f9284f9becccebd1f.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/TeruTeru/Animation/Teruteru@Damage.fbx
+  - name: 132df6e393f51790ec90814006677a40.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/TeruTeru/Animation/Teruteru@Idle.fbx
+  - name: a0f9f6c659f969ed979b6e41e7d610da.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/TeruTeru/Animation/Teruteru@Move.fbx
+  - name: ca0a0d54e0cf339f7915c0344ffacd4b.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/TeruTeru/Animation/Teruteru@Die.fbx
+  - name: 9e31d3149bfd768a98f24867fb5e6a38.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/TeruTeru/Animation/Teruteru@Atk.fbx
+  - name: ca6b839d92198c99290be38a2d31bef5.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/TeruTeru/FBX/TeruteruC.fbx
+  - name: b756239192825a1de28ef560b2864400.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/PetAnimator/1001201.controller
+  - name: 53cd9370d30c34a13c381891c13bf360.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/TeruTeru/Animation/Teruteru.controller
+  - name: fa3dcf8d1d5d0c40c498aac2d1986577.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/FBX/Rabby_Queen.fbx
+  - name: ba360b8993de38327d5534d17c512726.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/Materials/T_Rabby_01.mat
+  - name: 2b6558c1162fbc76d2d4c7c88d38705e.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/Animations/Rabby/Rabby_Animations_Check.controller
+  - name: 3f16a6e9dac83447f37e5f867f0e3cbf.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/Textures/T_Rabby_01.png
+  - name: e213c403cf9a29da98d1db6d1feea3e5.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/Animations/Rabby/Anim_Rabby_Attack.fbx
+  - name: ee03dec830bdf715b9b621081a2fa7fa.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/Animations/Rabby/Anim_Rabby_Idle.fbx
+  - name: e61d34e41519099a85914f3d2b740c2b.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/Animations/Rabby/Anim_Rabby_Move.fbx
+  - name: 7e239fd3780d5c75cbbfdc613a49ac5f.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/Animations/Rabby/Anim_Rabby_Damage.fbx
+  - name: 8182d28d06ef6b192e9a0aa3da534e6c.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/PetAnimator/1001301.controller
+  - name: 5cd3a4c185f2f0ef133b59808c1b9085.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/Animations/Rabby/Anim_Rabby_Die.fbx
+  - name: e1ee828f18919df4790b081dc5cfec18.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/FBX/Rabby_Young.fbx
+  - name: 0608e8988f33d96859a6ab72c10ee252.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/Textures/T_Rabby_03.png
+  - name: e397818736e05ef784b6f11bfe9b075a.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/Materials/T_Rabby_03.mat
+  - name: 3753a48329a6494e3187aed2e43d7aea.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Holy/Textures/Angez/T_Angez_N.png
+  - name: fd80168bc457b0d3355734f198b77d61.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Holy/FBX/Angez.fbx
+  - name: 21da57e06be8396e080628123cf3f06e.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Holy/Animations/Angez/Angez_Animations_Check.controller
+  - name: c9445263600d85c6c350bd842290bb22.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/PetAnimator/1001401.controller
+  - name: c44adec6ef1fff3ded051619076ad437.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Holy/Animations/Angez/Anim_Angez@Attack.fbx
+  - name: 8fd54821cdae97327081ac9a18134ed1.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Holy/Animations/Angez/Anim_Angez@Idle.fbx
+  - name: b3ec2d80ee5fa716c25a613be9c970e5.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Holy/Animations/Angez/Anim_Angez@Die.fbx
+  - name: e4a5e741035ea4c7d84ae881c233d931.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Holy/Materials/Angez/T_Angez_A.mat
+  - name: 5f5e87db94d617614e6e734e4c01e6ba.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Holy/Animations/Angez/Anim_Angez@Move.fbx
+  - name: 0e71b010202879d318d0873094fcb262.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Holy/Animations/Angez/Anim_Angez@Damage.fbx
+  - name: d0633633bf2d53254735307a33316bba.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Holy/Textures/Angez/T_Angez_A.png
   - name: f1770889279080b30fc10df6b8d1514e.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/sparkle.png
@@ -10748,15 +11110,15 @@ MonoBehaviour:
   - name: 26127c36397d1ec9808c54cd75f329ca.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_67.Png
+  - name: fd91049ee6b939c843cc004390e04fac.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_319.png
   - name: 2e45f63350462b2ae9170698facdc071.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_4.png
   - name: dc077d15abbe577ee90a39c25a1e40cd.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/Pro_12.png
-  - name: fd91049ee6b939c843cc004390e04fac.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_319.png
   - name: 6f14a63952005396f439ff18e4fb84ae.unity3d
     assets:
     - Assets/Res/RenderTexture/MapRenderTexture.renderTexture
@@ -10997,12 +11359,21 @@ MonoBehaviour:
   - name: 258ba9bfd269d2ef1deae4818f59a4eb.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_255_1.png
+  - name: 0f8574ec2232eae9c044e83ac4e0ab72.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_391.png
+  - name: 5a6cd50010bbf0419416e2d5114278fe.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_391_1.png
   - name: c2d1dfb61cc45e93f284621c92fda1ba.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_375.png
   - name: dab871bb140b92ba511b8b43294b8f7a.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/Pro_16.png
+  - name: b2f11d84fa0268c1cfe40cb6e18e597c.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_401.png
   - name: 9632ccae9ce221be623aeffb752985ff.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_64.png
@@ -11105,9 +11476,6 @@ MonoBehaviour:
   - name: 1343f0ec3407d539976d9b1b9707a1e7.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_402.png
-  - name: b2f11d84fa0268c1cfe40cb6e18e597c.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_401.png
   - name: d6a754252e7e5b14e10f8e815c53cd5b.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_403.png
@@ -11244,12 +11612,6 @@ MonoBehaviour:
   - name: 62bf2ad389a035a5799c194219c33b0d.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect_4/EffectPackage/ArtData/Textures-E3D/Normal/_normal_map.jpg
-  - name: a0d7c992e456e69dd3500069ea838746.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_path_00193.tga
-  - name: 3afee04781114c525534e047f6f9f2b9.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_path_00193.mat
   - name: c615c6c4ff38ac3e5a5088edb478ebbc.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX2_glow_00229_A.tga
@@ -11292,9 +11654,15 @@ MonoBehaviour:
   - name: 4169bed4f58861eb43b0704cd7ed227c.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Sparkles/sparkle_legendary.mat
+  - name: 703fe76b9cc7c07b426c4b2e3fd6e4a1.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/roundsmoothitem.png
   - name: e59ed6d8ecab85c56bc9ba72443e2d24.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/sparkle_legendary.png
+  - name: 4c170cae02d7f1010776c02118f52fa4.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/roundsmoothitem.mat
   - name: 63836d8161cd20bf5782872c6eaa6407.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Point140.png
@@ -11415,9 +11783,6 @@ MonoBehaviour:
   - name: cf8aba8c956af52f51008af02be9c319.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Models/Materials/No Name.mat
-  - name: 703fe76b9cc7c07b426c4b2e3fd6e4a1.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/roundsmoothitem.png
   - name: 15ebfded6051487ab9e068fb90eba304.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/questmarker_yellow.png
@@ -11433,15 +11798,18 @@ MonoBehaviour:
   - name: 96e6a9eff59663436d0d7b239b4a00ce.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/verticalgradient.mat
-  - name: 4c170cae02d7f1010776c02118f52fa4.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/roundsmoothitem.mat
   - name: b90e2481c54770c6a3526696d53f9774.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/beamglow.mat
   - name: 610255075d0a79a9849bf62d52917631.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/questmarker_yellow.mat
+  - name: 07f3b86365c5072d6635295e92c8c407.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/doorwayglow.png
+  - name: e1df16908fb69b637c7bdbab967a4cc4.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/doorwayglow.mat
   - name: fefb120e52e1d46015aac9a68a2502d7.unity3d
     assets:
     - Assets/Res/Effect/Skill/Epic Toon FX/Textures/healing.png
@@ -11469,9 +11837,6 @@ MonoBehaviour:
   - name: d10a3ffb642b4efb1f9976a2c028afbf.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_xunhuanguang_00005_C.tga
-  - name: be1b7f361b9790a4f7f37809e7680321.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Import/mianpian.FBX
   - name: 39894ecce38267af0afe75f00eec4597.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_xunhuanguang_00005.mat
@@ -11598,6 +11963,9 @@ MonoBehaviour:
   - name: fcb803173a3f3b5bbba8dd7cd9c4d423.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/yanshi.mat
+  - name: be1b7f361b9790a4f7f37809e7680321.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Import/mianpian.FBX
   - name: e489a1c8d08bc13f73c8ed14408e92bc.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TJEZTX_Textures_0440_M.mat
@@ -12752,6 +13120,9 @@ MonoBehaviour:
   - name: 7442f8415c3c93377e86b424d9354847.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect_4/EffectResources/Effects/Materials/E3D-Direction49-bh59.mat
+  - name: a0d7c992e456e69dd3500069ea838746.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_path_00193.tga
   - name: 3fe6b8444e7ceea0cdb63358867c43f0.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect_4/EffectResources/Effects/Materials/E3D-Direction49-bh60.mat
@@ -12780,6 +13151,9 @@ MonoBehaviour:
   - name: 4a0da8771a2a9b06b6781fb925b92b58.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect_4/EffectPackage/ArtData/Textures-E3D/Direction/E3D-Direction216.png
+  - name: 3afee04781114c525534e047f6f9f2b9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_path_00193.mat
   - name: 44cbc0143f9567f89e5f24112770c63d.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect_4/EffectPackage/ArtData/Textures-E3D/Direction/E3D-Direction352-bh8.png
@@ -13498,15 +13872,27 @@ MonoBehaviour:
   - name: e6c84c0bc008f2694dd3be445a95c2a3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Box3Box.jpg
+  - name: c8b7c6dcf17d8afe4028a46056d34485.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/questmarker_purple.mat
   - name: 2978c92fceff69a152b49b14d9dfcb31.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Building/Textures/tent_stump.tif
+  - name: 6c3b70b49bc4c798bfd6fcc36e9449eb.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Sparkles/sparkle_mythical.mat
   - name: 9c54d8fa810822353ac3a367332cf68b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Mushrooms.jpg
+  - name: 39f92c9f3e1b4bdf8ecb75b8036ddfba.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/questmarker_purple.png
   - name: 3e6d5c447fd9df2e48addc13827ecae4.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/Tree_bark_winter.tif
+  - name: c672791a9dab39017fd4cd44abfdd87d.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/sparkle_mythical.png
   - name: 8fc057dd70fbc3b7efd26b263cc71009.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBox3Box.fbx
@@ -13543,18 +13929,24 @@ MonoBehaviour:
   - name: db2df879d62600523da3ced323c51af5.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Model/YeWai/YeWai_2/model/Materials/ZC_zhenghe03.tga
-  - name: 80d24460a55b8a1635034a70614641f2.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Building/Materials/tent_stump.mat
   - name: 71d8303e17ee7a09853dbbaa4c8059bf.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_jianshi_01.FBX
   - name: 10a6296d447f41df6428a399cafb8db5.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shiban_03.FBX
+  - name: 82400fe48c0cf1704ff4ed496234d099.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/dot.png
+  - name: 80d24460a55b8a1635034a70614641f2.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Building/Materials/tent_stump.mat
   - name: 5f777e51d642cd80ae243f1745cc4704.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_CiGuan/Props_B_1.jpg
+  - name: 1729aa5e512aad185eb2f6481c2a5255.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/dot.mat
   - name: 53198ab78aea89177d561dcc40ffae81.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C6_3.FBX
@@ -13582,12 +13974,12 @@ MonoBehaviour:
   - name: 0e3064bdc5ba06cf57edd22a17c41217.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Model/YeWai/YeWai_1/model/Materials/FB1_zhenghe02.mat
-  - name: 8cee44db43f75a4f61e2d8c4d181d9d3.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Materials/Buildings.mat
   - name: 4ddcd5152566bd700d288ae9a231c0b7.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_CiGuan/Props_B.mat
+  - name: 8cee44db43f75a4f61e2d8c4d181d9d3.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Materials/Buildings.mat
   - name: 288afe0fb3d02dd9e43f71812c8fdec5.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Model/YeWai/YeWai_2/model/Materials/ZC_zhenghe03.mat
@@ -13597,6 +13989,9 @@ MonoBehaviour:
   - name: 776c80261898c1b6dec3c209599eb829.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_jianshi_02.FBX
+  - name: cd254e319c64ff2dd64b468abbd9cd2c.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/treasure_ray.mat
   - name: f24c6c55b0622929fdbf090a5beaa9d2.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_zhalan_01.FBX
@@ -13609,12 +14004,12 @@ MonoBehaviour:
   - name: 6ce37d47c1dc107a897d84a2f34297f3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Textures/Buildings_1.jpg
-  - name: bbc58b25d06cc3d3125e45a89f18881c.unity3d
-    assets:
-    - Assets/Scenes/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox/CartoonSkybox01.png
   - name: 55d1a3ceef19a07a9cfbc19df3cdc518.unity3d
     assets:
     - Assets/Scenes/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox/CartoonSkybox02.png
+  - name: bbc58b25d06cc3d3125e45a89f18881c.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/CartoonSkyboxMegaPack/CartoonSkybox/CartoonSkybox01.png
   - name: 0710715ff92e625092e1a58eb706de2c.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shiban_01.FBX
@@ -13624,6 +14019,9 @@ MonoBehaviour:
   - name: 73f2317093383dfbdec3b0326ff0bf67.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Building/Model/Materials/tent_stump.mat
+  - name: 8552b6ff659d596d0d9ac3bbc72ceada.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/treasure_ray.png
   - name: 1fd8d0cba62f0590ab13e9faeb8af658.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_JingShui/Props_A_1.jpg
@@ -14933,9 +15331,6 @@ MonoBehaviour:
   - name: ed61e2d7b1c2d5ecfa13dbc460e3bede.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Props/SM_fence_01.fbx
-  - name: 6c3b70b49bc4c798bfd6fcc36e9449eb.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Sparkles/sparkle_mythical.mat
   - name: 796fd08bb7dcc4233b1e498b04f10c7e.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_treebase.mat
@@ -14945,9 +15340,6 @@ MonoBehaviour:
   - name: 34e51294051f6e3b6a12b2560f4c3064.unity3d
     assets:
     - Assets/Scenes/Map/100001.asset
-  - name: c672791a9dab39017fd4cd44abfdd87d.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/sparkle_mythical.png
   - name: e8d31638d060d79866f4a528e42e691d.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_dirttexture_stylized.png
@@ -15017,9 +15409,6 @@ MonoBehaviour:
   - name: 41d1031377221bf0f500a33c199fcb89.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/NewLayer.terrainlayer
-  - name: e1df16908fb69b637c7bdbab967a4cc4.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/doorwayglow.mat
   - name: fce9582443a7bde6098730e604e4fee7.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_leaves
@@ -15050,9 +15439,6 @@ MonoBehaviour:
   - name: 75bf2352b70a41861b3a954d084c7037.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_woodenkit_02.mat
-  - name: 07f3b86365c5072d6635295e92c8c407.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/doorwayglow.png
   - name: 277157a2725d111e0e154557d1fd858a.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_woodenkit_02_BaseMap.png
@@ -15072,33 +15458,18 @@ MonoBehaviour:
   - name: 1af459da1bb86f914699f1867d3659d8.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_tengman_01.FBX
-  - name: c8b7c6dcf17d8afe4028a46056d34485.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/questmarker_purple.mat
   - name: eae9b2f8d010db2f01c49ead3e44fc74.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Material/yewai_zhiwu.mat
   - name: 609eab88ff6d677b405b8119975ec20a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/Tree_leaves_winter.tif
-  - name: 82400fe48c0cf1704ff4ed496234d099.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/dot.png
-  - name: 1729aa5e512aad185eb2f6481c2a5255.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/dot.mat
   - name: 32cef0d9eb543354d1e78c872bbc62e0.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Building/Model/Tent1_trunk.fbx
   - name: 0112ce73b2463c305a50fe4f896173be.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Tga/yewai_zhiwu.tga
-  - name: 39f92c9f3e1b4bdf8ecb75b8036ddfba.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/questmarker_purple.png
-  - name: cd254e319c64ff2dd64b468abbd9cd2c.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/treasure_ray.mat
   - name: 7ae2aadc1b3ec9fe185dff015c044196.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Building/Tent1_trunk.prefab
@@ -15108,9 +15479,6 @@ MonoBehaviour:
   - name: ca28c507c9d402c48ce35b4c669f0250.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Tree_Dead1.fbx
-  - name: 8552b6ff659d596d0d9ac3bbc72ceada.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/treasure_ray.png
   - name: a172c410f287b71231a92987461f744b.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.png
