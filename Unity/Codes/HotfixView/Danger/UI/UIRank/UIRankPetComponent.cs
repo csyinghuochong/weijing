@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIRankPetComponent : Entity, IAwake
     {
+        public GameObject UIRankPetItem;
         public GameObject PetListNode;
         public GameObject Button_Add;
         public GameObject Button_Refresh;
@@ -25,6 +26,8 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.PetUIList = new List<UI>();
 
+            self.UIRankPetItem = rc.Get<GameObject>("UIRankPetItem");
+            self.UIRankPetItem.SetActive(false);
             self.PetListNode = rc.Get<GameObject>("PetListNode");
             self.Button_Add = rc.Get<GameObject>("Button_Add");
             self.Button_Add.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Add(); });
@@ -48,10 +51,6 @@ namespace ET
             C2R_RankPetListRequest c2R_RankPetListRequest = new C2R_RankPetListRequest() {  UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId  };
             R2C_RankPetListResponse m2C_RolePetXiLian = (R2C_RankPetListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2R_RankPetListRequest);
 
-            string path = ABPathHelper.GetUGUIPath("Main/Rank/UIRankPetItem");
-            await ETTask.CompletedTask;
-            GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
             for (int i = 0; i < m2C_RolePetXiLian.RankPetList.Count; i++)
             {
                 UI ui_1 = null;
@@ -62,7 +61,8 @@ namespace ET
                 }
                 else
                 {
-                    GameObject skillItem = GameObject.Instantiate(bundleObj);
+                    GameObject skillItem = GameObject.Instantiate(self.UIRankPetItem);
+                    skillItem.SetActive(true);
                     UICommonHelper.SetParent(skillItem, self.PetListNode);
                     ui_1 = self.AddChild<UI, string, GameObject>("UIRankPetItem_" + i, skillItem);
                     ui_1.AddComponent<UIRankPetItemComponent>();
