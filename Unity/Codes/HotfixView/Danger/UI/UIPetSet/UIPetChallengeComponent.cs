@@ -51,7 +51,7 @@ namespace ET
             self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(),UIType.UIPetChallenge );  });
 
             self.InitSubView();
-            self.OnUpdateUI();
+            self.OnUpdateStar();
             self.InitItemList().Coroutine();
         }
     }
@@ -193,6 +193,7 @@ namespace ET
             GameObject go = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(go, self.FormationNode);
             self.UIPetFormationSet = self.AddChild<UIPetFormationSetComponent, GameObject>(go);
+            self.UIPetFormationSet.OnUpdateFormation(false).Coroutine();
         }
 
         public static void OnUpdateStar(this UIPetChallengeComponent self)
@@ -222,12 +223,6 @@ namespace ET
             self.ShowReward = rewardid;
             PetFubenRewardConfig petFubenRewardConfig = PetFubenRewardConfigCategory.Instance.Get(rewardid);
             self.TextStar.GetComponent<Text>().text = $"{petComponent.GetTotalStar()}/{petFubenRewardConfig.NeedStar}";
-        }
-
-        public static void OnUpdateUI(this UIPetChallengeComponent self)
-        {
-            self.OnUpdateStar();
-            self.UIPetFormationSet.OnUpdateFormation(false).Coroutine();
         }
     }
 }
