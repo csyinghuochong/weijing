@@ -40,7 +40,7 @@ namespace ET
             unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo);
 
             //给出售者邮件发送金币
-            MailHelp.SendPaiMaiEmail(unit.DomainZone() ,r_GameStatusResponse.PaiMaiItemInfo).Coroutine();
+            MailHelp.SendPaiMaiEmail(unit.DomainZone() ,r_GameStatusResponse.PaiMaiItemInfo, r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemNum).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

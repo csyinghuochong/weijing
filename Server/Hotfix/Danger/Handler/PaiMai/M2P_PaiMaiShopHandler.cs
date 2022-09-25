@@ -18,10 +18,21 @@ namespace ET
 
             //扣除对应的上架道具
             PaiMaiItemInfo paiMaiItemInfo = paimaiCompontent.GetPaiMaiItemInfo(request.ItemID);
-            if (paiMaiItemInfo!= null && paiMaiItemInfo.BagInfo.ItemNum >= request.BuyNum)
+            if (paiMaiItemInfo!= null)
             {
-                paiMaiItemInfo.BagInfo.ItemNum -= request.BuyNum;
-                MailHelp.SendPaiMaiEmail(scene.DomainZone(), paiMaiItemInfo).Coroutine();
+                int costNum = request.BuyNum;
+                if (paiMaiItemInfo.BagInfo.ItemNum > request.BuyNum)
+                {
+                    //出售部分
+                    paiMaiItemInfo.BagInfo.ItemNum -= request.BuyNum;
+                }
+                else {
+                    //出售全部
+                    paimaiCompontent.dBPaiMainInfo.PaiMaiItemInfos.Remove(paiMaiItemInfo);
+                    costNum = paiMaiItemInfo.BagInfo.ItemNum;
+                }
+
+                MailHelp.SendPaiMaiEmail(scene.DomainZone(), paiMaiItemInfo, costNum).Coroutine();
             }
 
             //返回消息

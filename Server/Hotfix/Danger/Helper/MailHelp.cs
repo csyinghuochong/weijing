@@ -3,7 +3,7 @@
     public static class MailHelp
     {
 
-        public static async ETTask SendPaiMaiEmail(int zone, PaiMaiItemInfo paiMaiItemInfo)
+        public static async ETTask SendPaiMaiEmail(int zone, PaiMaiItemInfo paiMaiItemInfo,int costNum)
         {
             MailInfo mailInfo = new MailInfo();
             mailInfo.Status = 0;
@@ -12,7 +12,7 @@
             mailInfo.MailId = IdGenerater.Instance.GenerateId();
             BagInfo reward = new BagInfo();
             reward.ItemID = 1;
-            int sellPrice = (int)(paiMaiItemInfo.Price * 0.95f);     //5%手续费
+            int sellPrice = (int)(paiMaiItemInfo.Price * 0.95f) * costNum;     //5%手续费
             reward.ItemNum = sellPrice;
             mailInfo.ItemList.Add(reward);
 

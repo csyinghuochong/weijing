@@ -92,17 +92,22 @@ namespace ET
         //每天更新道具物品价格
         public static async ETTask UpdatePaiMaiShopItemPrice(this PaiMaiSceneComponent self)
         {
+
             long openServerTime = await DBHelper.GetOpenServerTime(self.DomainZone());
             long serverNow = TimeHelper.ServerNow();
-            int openserverDay = ComHelp.DateDiff_Day(serverNow, openServerTime);
+            int openserverDay = ComHelp.DateDiff_Day(serverNow, openServerTime);        //当前开服天数
 
             Log.Info($"PaiMaiScene开服天数 {openserverDay}");
+            if (openserverDay > 15) {
+                return;
+            }
+
             List<PaiMaiShopItemInfo> paiMaiShopItemInfos = self.dBPaiMainInfo.PaiMaiShopItemInfos;
             for (int i = 0; i < paiMaiShopItemInfos.Count; i++)
             {
-                float upPrice = RandomHelper.RandFloat() * 0.05f;
+                float upPrice = RandomHelper.RandomNumberFloat(0.03f,0.06f);
                 PaiMaiShopItemInfo info = paiMaiShopItemInfos[i];
-                 
+
                 info.PricePro = 1 + upPrice;
                 info.Price = (int)(info.Price * info.PricePro);
             }
