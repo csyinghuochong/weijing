@@ -87,6 +87,8 @@ namespace ET
         {
             //更新价格
             self.UpdatePaiMaiShopItemPrice().Coroutine();
+
+            self.UpdateShangJiaItems();
         }
 
         //每天更新道具物品价格
@@ -110,6 +112,49 @@ namespace ET
 
                 info.PricePro = 1 + upPrice;
                 info.Price = (int)(info.Price * info.PricePro);
+            }
+        }
+
+        //遍历上架道具
+        public static void UpdateShangJiaItems(this PaiMaiSceneComponent self)
+        {
+            List<PaiMaiItemInfo> paimaiItems = self.dBPaiMainInfo.PaiMaiItemInfos;
+            for (int i = 0; i < paimaiItems.Count; i++)
+            {
+                PaiMaiItemInfo paiMaiItem = paimaiItems[i];
+
+                //int price = 0;
+                PaiMaiShopItemInfo shopInfo = self.GetPaiMaiShopInfo(paiMaiItem.BagInfo.ItemID);
+                if (shopInfo != null)
+                {
+                    //price = shopInfo.Price;
+                    float pro = paiMaiItem.Price / shopInfo.Price;
+                    float buyPro = 0;
+
+                    if (pro <= 0.5f)
+                    {
+                        buyPro = 0.25f;
+                    }
+                    else if (pro <= 0.75f)
+                    {
+                        buyPro = 0.15f;
+                    }
+                    else if (pro <= 1f)
+                    {
+                        buyPro = 0.1f;
+                    }
+                    else if (pro <= 1.2f) {
+                        buyPro = 0.05f;
+                    }
+                    else if (pro <= 1.5f)
+                    {
+                        buyPro = 0.025f;
+                    }
+                    //概率购买
+                    if (RandomHelper.RandFloat01() <= buyPro) {
+                        MailHelp.SendPaiMaiEmail(self.DomainZone(), paiMaiItem, paiMaiItem.BagInfo.ItemNum).Coroutine();
+                    }
+                }
             }
         }
 
