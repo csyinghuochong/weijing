@@ -85,8 +85,30 @@ namespace ET
         //零点刷新
         public static void OnZeroClockUpdate(this PaiMaiSceneComponent self)
         {
-            //更新价格
+            //更新价格[商店]
             self.UpdatePaiMaiShopItemPrice().Coroutine();
+
+
+            self.UpdateShangJiaItems();
+        }
+
+        //遍历上架道具
+        public static void UpdateShangJiaItems(this PaiMaiSceneComponent self)
+        {
+            List<PaiMaiItemInfo> paimaiItems = self.dBPaiMainInfo.PaiMaiItemInfos;
+            for (int i = 0; i < paimaiItems.Count; i++)
+            {
+                PaiMaiItemInfo paiMaiItem = paimaiItems[i];
+
+                int price = 0;
+                PaiMaiShopItemInfo shopInfo = self.GetPaiMaiShopInfo(paiMaiItem.BagInfo.ItemID);
+                if (shopInfo!=null)
+                {
+                    price = shopInfo.Price;
+                }
+
+
+            }
         }
 
         //每天更新道具物品价格
