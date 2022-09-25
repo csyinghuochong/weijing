@@ -26,6 +26,10 @@ namespace ET
             {
                 serverItems_1.Add(new ServerItem() { ServerId = 1, ServerIp = "127.0.0.1:20305", ServerName = "封测一区", ServerOpenTime = 0 });
             }
+            else if (ComHelp.IsBanHaoZone(session.DomainZone()))
+            {
+                serverItems_1.Add(new ServerItem() { ServerId = 201, ServerIp = "39.96.194.143:20105", ServerName = "封测1区", ServerOpenTime = 0 });
+            }
             else
             {
                 serverItems_1.Add(new ServerItem() { ServerId = 1, ServerIp = "39.96.194.143:20305", ServerName = "封测一区", ServerOpenTime = 0 });
