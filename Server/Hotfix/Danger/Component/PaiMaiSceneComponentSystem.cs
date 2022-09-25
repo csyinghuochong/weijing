@@ -96,7 +96,7 @@ namespace ET
             long serverNow = TimeHelper.ServerNow();
             int openserverDay = ComHelp.DateDiff_Day(serverNow, openServerTime);
 
-            Log.Info($"PaiMaiScene开服天数 {openserverDay}");
+            Log.Info($"PaiMaiScene开服天数 {self.DomainZone()}区 {openserverDay}");
             List<PaiMaiShopItemInfo> paiMaiShopItemInfos = self.dBPaiMainInfo.PaiMaiShopItemInfos;
             for (int i = 0; i < paiMaiShopItemInfos.Count; i++)
             {

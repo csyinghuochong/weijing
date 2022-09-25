@@ -1607,6 +1607,8 @@ message C2M_RolePetFormationSet // IActorLocationRequest
 	int32 Index = 1;
 	int64 PetId = 2;
 	int32 OperateType = 3;// 1上阵  2替换  3下阵 
+	repeated int64 PetFormat = 4;
+	int32 SceneType = 5;
 }
 
 message M2C_RolePetFormationSet // IActorLocationResponse

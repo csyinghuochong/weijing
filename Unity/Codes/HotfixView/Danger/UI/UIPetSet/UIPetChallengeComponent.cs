@@ -41,7 +41,7 @@ namespace ET
             self.TextStar = rc.Get<GameObject>("TextStar");
             self.CloseButton = rc.Get<GameObject>("CloseButton");
 
-            ButtonHelp.AddListenerEx( self.ButtonSet, () => { self.OnButtonSet(); } );
+            ButtonHelp.AddListenerEx( self.ButtonSet, () => { self.OnButtonSet().Coroutine(); } );
             ButtonHelp.AddListenerEx(self.ButtonChallenge, () => { self.OnButtonChallenge().Coroutine(); });
             //ButtonHelp.AddListenerEx(self.ButtonReward, () => { self.OnButtonReward().Coroutine(); });
 
@@ -105,11 +105,12 @@ namespace ET
             }
         }
 
-        public static  void OnButtonSet(this UIPetChallengeComponent self)
+        public static  async ETTask OnButtonSet(this UIPetChallengeComponent self)
         {
             Scene scene = self.ZoneScene();
             UIHelper.Remove(self.ZoneScene(), UIType.UIPetChallenge);
-            UIHelper.Create(scene, UIType.UIPetFormation ).Coroutine();
+            UI ui = await UIHelper.Create(scene, UIType.UIPetFormation );
+            ui.GetComponent<UIPetFormationComponent>().OnInitUI(SceneTypeEnum.PetDungeon);
             //uI.GetComponent<UIPetFormationComponent>().UIPageButton.OnSelectIndex(1);
         }
 
@@ -193,7 +194,8 @@ namespace ET
             GameObject go = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(go, self.FormationNode);
             self.UIPetFormationSet = self.AddChild<UIPetFormationSetComponent, GameObject>(go);
-            self.UIPetFormationSet.OnUpdateFormation(false).Coroutine();
+            self.UIPetFormationSet.OnUpdateFormation(SceneTypeEnum.PetDungeon,
+                self.ZoneScene().GetComponent<PetComponent>().PetFormations ,false).Coroutine();
         }
 
         public static void OnUpdateStar(this UIPetChallengeComponent self)

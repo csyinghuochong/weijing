@@ -9,7 +9,15 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_RolePetFormationSet request, M2C_RolePetFormationSet response, Action reply)
         {
             PetComponent petComponent = unit.GetComponent<PetComponent>();
-            petComponent.OnFormationSet(request.PetId, request.Index, request.OperateType);
+            switch (request.SceneType)
+            {
+                case SceneTypeEnum.PetDungeon:
+                    petComponent.PetFormations = request.PetFormat;
+                    break;
+                case SceneTypeEnum.PetTianTi:
+                    petComponent.TeamPetList = request.PetFormat;
+                    break;
+            }
 
             reply();
             await ETTask.CompletedTask;

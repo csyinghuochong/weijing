@@ -30,7 +30,7 @@ namespace ET
     public static class UIPetFormationSetComponentSystem
     {
 
-        public static async ETTask OnUpdateFormation(this UIPetFormationSetComponent self, bool drag = false)
+        public static async ETTask OnUpdateFormation(this UIPetFormationSetComponent self, int sceneType, List<long> teamPets, bool drag = false)
         {
             long instanceId = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/PetSet/UIPetFormationItem");
@@ -40,12 +40,12 @@ namespace ET
                 return;
             }
 
-            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             Transform transform = self.GameObject.transform.Find("FormationNode");
-            for (int i = 0; i < petComponent.PetFormations.Count; i++)
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            for (int i = 0; i < teamPets.Count; i++)
             {
                 UIPetFormationItemComponent uIRolePetItemComponent = self.FormationItemComponents[i];
-                if (petComponent.PetFormations[i] == 0)
+                if (teamPets[i] == 0)
                 {
                     if (uIRolePetItemComponent != null)
                     {
@@ -61,7 +61,7 @@ namespace ET
                     self.FormationItemComponents[i] = uIRolePetItemComponent;
                 }
                 uIRolePetItemComponent.GameObject.SetActive(true);
-                RolePetInfo rolePetInfo = petComponent.GetPetInfoByID(petComponent.PetFormations[i]);
+                RolePetInfo rolePetInfo = petComponent.GetPetInfoByID(teamPets[i]);
                 uIRolePetItemComponent.OnInitUI(rolePetInfo);
                 uIRolePetItemComponent.SetDragEnable(drag);
                 uIRolePetItemComponent.BeginDragHandler = (RolePetInfo binfo, PointerEventData pdata) => { self.BeginDrag(binfo, pdata); };
@@ -93,7 +93,7 @@ namespace ET
         public static void RequestFormationSet(this UIPetFormationSetComponent self, long rolePetInfoId, int index, int operateType)
         {
             UI ui = UIHelper.GetUI( self.ZoneScene(), UIType.UIPetFormation);
-            ui.GetComponent<UIPetFormationComponent>().RequestFormationSet(rolePetInfoId, index, operateType).Coroutine();
+            ui.GetComponent<UIPetFormationComponent>().OnDragFormationSet(rolePetInfoId, index, operateType);
         }
 
         public static void EndDrag(this UIPetFormationSetComponent self, RolePetInfo binfo, PointerEventData pdata)
