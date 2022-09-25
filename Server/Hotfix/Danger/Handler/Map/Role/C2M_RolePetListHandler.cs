@@ -10,10 +10,6 @@ namespace ET
 		{
 			PetComponent petComponent = unit.GetComponent<PetComponent>();
 			petComponent.InitPetInfo();
-			if (petComponent.TeamPetList.Count > 3)
-			{
-				petComponent.TeamPetList.Clear();
-			}
 			response.RolePetInfos = petComponent.GetAllPets();
 			response.TeamPetList = petComponent.TeamPetList;
 			response.RolePetEggs = petComponent.RolePetEggs;

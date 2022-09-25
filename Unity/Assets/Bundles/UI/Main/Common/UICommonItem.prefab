@@ -886,9 +886,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 0.7
-  m_Text: '123123
-
-    123123'
+  m_Text: 
 --- !u!114 &1612688291598887258
 MonoBehaviour:
   m_ObjectHideFlags: 0

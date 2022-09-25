@@ -217,11 +217,6 @@ namespace ET
                     uiComponent.PetItemSelect(DataParams);
                     continue;
                 }
-                if (component is UIRankPetTeamComponent uiPetTeamComponent)
-                {
-                    uiPetTeamComponent.PetItemSelect(DataParams);
-                    continue;
-                }
             }
             return;
         }

@@ -1607,6 +1607,8 @@ message C2M_RolePetFormationSet // IActorLocationRequest
 	int32 Index = 1;
 	int64 PetId = 2;
 	int32 OperateType = 3;// 1上阵  2替换  3下阵 
+	repeated int64 PetFormat = 4;
+	int32 SceneType = 5;
 }
 
 message M2C_RolePetFormationSet // IActorLocationResponse
@@ -2303,21 +2305,6 @@ message M2C_RankPetCombatResponse // IActorLocationResponse
 	string Message = 92;
 }
 
-//ResponseType M2C_RankPetTeamResponse
-message C2M_RankPetTeamRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int64 PlayerId = 1;
-	repeated int64 PetIds = 2;
-}
-
-message M2C_RankPetTeamResponse // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-}
 
 //ResponseType M2C_QuitPetRankResponse
 message C2M_QuitPetRankRequest // IActorLocationRequest

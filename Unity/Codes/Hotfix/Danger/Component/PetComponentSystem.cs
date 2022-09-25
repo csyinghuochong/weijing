@@ -326,6 +326,19 @@ namespace ET
             }
         }
 
+        public static List<long> GetPetFormatList(this PetComponent self, int sceneType)
+        {
+            if (sceneType == SceneTypeEnum.PetDungeon)
+            {
+                return self.PetFormations;
+            }
+            if (sceneType == SceneTypeEnum.PetTianTi)
+            {
+                return self.TeamPetList;
+            }
+            return null;
+        }
+
         /// <summary>
         /// 宠物合成
         /// </summary>

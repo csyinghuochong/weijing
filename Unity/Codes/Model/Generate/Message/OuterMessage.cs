@@ -3399,6 +3399,12 @@ namespace ET
 		[ProtoMember(3)]
 		public int OperateType { get; set; }
 
+		[ProtoMember(4)]
+		public List<long> PetFormat = new List<long>();
+
+		[ProtoMember(5)]
+		public int SceneType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_RolePetFormationSet)]

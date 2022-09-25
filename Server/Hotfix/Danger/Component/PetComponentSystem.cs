@@ -23,6 +23,14 @@ namespace ET
                     self.PetFormations.Add(0);
                 }
             }
+            if (self.TeamPetList == null || self.TeamPetList.Count != 9)
+            {
+                self.TeamPetList.Clear();
+                for (int i = 0; i < 9; i++)
+                {
+                    self.TeamPetList.Add(0);
+                }
+            }
             List<PetConfig> petConfigs = PetConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < petConfigs.Count; i++)
             {
@@ -447,44 +455,6 @@ namespace ET
 
                  
                     break;
-                }
-            }
-        }
-
-        public static void OnFormationSet(this PetComponent self, long rolePetInfoId, int index, int operateType)
-        {
-            if (operateType == 1)
-            {
-                for (int i = 0; i < self.PetFormations.Count; i++)
-                {
-                    if (self.PetFormations[i] == rolePetInfoId && i != index)
-                    {
-                        self.PetFormations[i] = 0;
-                    }
-                }
-                self.PetFormations[index] = rolePetInfoId;
-            }
-            if (operateType == 2)
-            {
-                int oldIndex = -1;
-                for (int i = 0; i < self.PetFormations.Count; i++)
-                {
-                    if (self.PetFormations[i] == rolePetInfoId)
-                    {
-                        oldIndex = i;
-                    }
-                }
-                self.PetFormations[oldIndex] = self.PetFormations[index];
-                self.PetFormations[index] = rolePetInfoId;
-            }
-            if (operateType == 3)
-            {
-                for (int i = 0; i < self.PetFormations.Count; i++)
-                {
-                    if (self.PetFormations[i] == rolePetInfoId)
-                    {
-                        self.PetFormations[i] = 0;
-                    }
                 }
             }
         }
