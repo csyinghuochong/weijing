@@ -48,7 +48,7 @@ namespace ET
             }
         }
 
-        public static async ETTask GeneratePetFuben(this PetFubenSceneComponent self, Unit unit, int sceneId)
+        public static void  GeneratePetFuben(this PetFubenSceneComponent self, Unit unit, int sceneId)
         {
             long instanceId = self.InstanceId;
             unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.WuDi);
@@ -62,9 +62,8 @@ namespace ET
                 {
                     continue;
                 }
-                await TimerComponent.Instance.WaitFrameAsync();
                 Unit petunit =  UnitFactory.CreateFubenPet(unit.DomainScene(), 0,
-                    2,  rolePetInfo, AIHelp.Formation_1[i]);
+                    1,  rolePetInfo, AIHelp.Formation_1[i]);
                 petunit.GetComponent<AIComponent>().StopAI = true;
             }
             if (instanceId != self.InstanceId)
@@ -74,21 +73,13 @@ namespace ET
 
             PetFubenConfig petFubenConfig = PetFubenConfigCategory.Instance.Get(sceneId);
             self.GenerateCellMonsters(petFubenConfig.Cell_1, 0);
-            await TimerComponent.Instance.WaitFrameAsync();
             self.GenerateCellMonsters(petFubenConfig.Cell_2, 1);
-            await TimerComponent.Instance.WaitFrameAsync();
             self.GenerateCellMonsters(petFubenConfig.Cell_3, 2);
-            await TimerComponent.Instance.WaitFrameAsync();
             self.GenerateCellMonsters(petFubenConfig.Cell_4, 3);
-            await TimerComponent.Instance.WaitFrameAsync();
             self.GenerateCellMonsters(petFubenConfig.Cell_5, 4);
-            await TimerComponent.Instance.WaitFrameAsync();
             self.GenerateCellMonsters(petFubenConfig.Cell_6, 5);
-            await TimerComponent.Instance.WaitFrameAsync();
             self.GenerateCellMonsters(petFubenConfig.Cell_7, 6);
-            await TimerComponent.Instance.WaitFrameAsync();
             self.GenerateCellMonsters(petFubenConfig.Cell_8, 7);
-            await TimerComponent.Instance.WaitFrameAsync();
             self.GenerateCellMonsters(petFubenConfig.Cell_9, 8);
         }
 

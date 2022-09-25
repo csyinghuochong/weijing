@@ -78,7 +78,7 @@ namespace ET
 					if (request.SceneType == (int)SceneTypeEnum.PetDungeon)
 					{
 						scene.GetComponent<PetFubenSceneComponent>().MainUnit = unit;
-						scene.GetComponent<PetFubenSceneComponent>().GeneratePetFuben(unit, request.SonId).Coroutine();
+						scene.GetComponent<PetFubenSceneComponent>().GeneratePetFuben(unit, request.SonId);
 					}
 					if (request.SceneType == (int)SceneTypeEnum.PetTianTi)
 					{
