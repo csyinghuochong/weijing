@@ -1,8 +1,8 @@
 {"list":[
-{"_t":"StartSceneConfig","_id":20001,"Process":1,"Zone":201,"SceneType":"Account","Name":"Account","OuterPort":20125},
-{"_t":"StartSceneConfig","_id":20002,"Process":1,"Zone":201,"SceneType":"Realm","Name":"Realm","OuterPort":20126},
-{"_t":"StartSceneConfig","_id":20003,"Process":1,"Zone":201,"SceneType":"Gate","Name":"Gate1","OuterPort":20127},
-{"_t":"StartSceneConfig","_id":20004,"Process":1,"Zone":201,"SceneType":"Queue","Name":"Queue","OuterPort":20128},
+{"_t":"StartSceneConfig","_id":20001,"Process":1,"Zone":201,"SceneType":"Account","Name":"Account","OuterPort":20105},
+{"_t":"StartSceneConfig","_id":20002,"Process":1,"Zone":201,"SceneType":"Realm","Name":"Realm","OuterPort":20106},
+{"_t":"StartSceneConfig","_id":20003,"Process":1,"Zone":201,"SceneType":"Gate","Name":"Gate1","OuterPort":20107},
+{"_t":"StartSceneConfig","_id":20004,"Process":1,"Zone":201,"SceneType":"Queue","Name":"Queue","OuterPort":20108},
 {"_t":"StartSceneConfig","_id":20005,"Process":1,"Zone":201,"SceneType":"Map","Name":"Map1","OuterPort":0},
 {"_t":"StartSceneConfig","_id":20007,"Process":1,"Zone":201,"SceneType":"DBCache","Name":"DBCache","OuterPort":0},
 {"_t":"StartSceneConfig","_id":20008,"Process":1,"Zone":201,"SceneType":"Chat","Name":"Chat","OuterPort":0},
