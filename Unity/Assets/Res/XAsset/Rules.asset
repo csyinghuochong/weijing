@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 177
+  version: 178
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -4108,8 +4108,6 @@ MonoBehaviour:
     path: Assets/Bundles/UI/Main/PetSet/UIPetFormationSet.prefab
   - bundle: 399bb571d39f848d349aa83269737cce.unity3d
     path: Assets/Bundles/UI/Main/PetSet/UIPetMain.prefab
-  - bundle: d5c77da2c2c24c54366854bb673d9a53.unity3d
-    path: Assets/Bundles/UI/Main/PetSet/UIPetSet.prefab
   - bundle: 13170127947aafd654c11cc9b40a9c6f.unity3d
     path: Assets/Bundles/UI/Main/RandomTower/UIRandomOpen.prefab
   - bundle: 825b02acbf55d1d36926ffa5721ac7d4.unity3d
@@ -4122,8 +4120,6 @@ MonoBehaviour:
     path: Assets/Bundles/UI/Main/Rank/UIRank.prefab
   - bundle: b5cdcfce08dabfa5f38864fd63546108.unity3d
     path: Assets/Bundles/UI/Main/Rank/UIRankPet.prefab
-  - bundle: 6eefd6a89da05bd5f94b0c53b8463122.unity3d
-    path: Assets/Bundles/UI/Main/Rank/UIRankPetTeam.prefab
   - bundle: a102f4eef11dde4593084af2ab4069a1.unity3d
     path: Assets/Bundles/UI/Main/Rank/UIRankReward.prefab
   - bundle: 4519402684e2606dc25442f616b749d9.unity3d
@@ -6628,9 +6624,6 @@ MonoBehaviour:
   - name: 399bb571d39f848d349aa83269737cce.unity3d
     assets:
     - Assets/Bundles/UI/Main/PetSet/UIPetMain.prefab
-  - name: d5c77da2c2c24c54366854bb673d9a53.unity3d
-    assets:
-    - Assets/Bundles/UI/Main/PetSet/UIPetSet.prefab
   - name: 13170127947aafd654c11cc9b40a9c6f.unity3d
     assets:
     - Assets/Bundles/UI/Main/RandomTower/UIRandomOpen.prefab
@@ -6649,9 +6642,6 @@ MonoBehaviour:
   - name: b5cdcfce08dabfa5f38864fd63546108.unity3d
     assets:
     - Assets/Bundles/UI/Main/Rank/UIRankPet.prefab
-  - name: 6eefd6a89da05bd5f94b0c53b8463122.unity3d
-    assets:
-    - Assets/Bundles/UI/Main/Rank/UIRankPetTeam.prefab
   - name: a102f4eef11dde4593084af2ab4069a1.unity3d
     assets:
     - Assets/Bundles/UI/Main/Rank/UIRankReward.prefab
@@ -11251,6 +11241,9 @@ MonoBehaviour:
   - name: 660336a8cff617c9ff77306899e4764b.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_78_1.png
+  - name: ca18b38fc4720f5ee7263f2a133af58c.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Button/Btn_88.png
   - name: b1ce6a5e512077e0730b201c79e624b9.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_234.png
@@ -11275,9 +11268,6 @@ MonoBehaviour:
   - name: be3414f77fc92cb95df3e9934b09de27.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/UI_pro_4_1.png
-  - name: ca18b38fc4720f5ee7263f2a133af58c.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Button/Btn_88.png
   - name: 552a8bfe79fb9097a7b8499e9191d415.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_28.png

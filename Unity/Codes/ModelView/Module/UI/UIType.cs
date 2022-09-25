@@ -58,7 +58,6 @@ namespace ET
 		public const string UICountryTips = "Main/Country/UICountryTips";
 		public const string UIMakeLearn = "Main/MakeLearn/UIMakeLearn";
 		public const string UIRank = "Main/Rank/UIRank";
-		public const string UIRankPetTeam = "Main/Rank/UIRankPetTeam";
 		public const string UIRankReward = "Main/Rank/UIRankReward";
 		public const string UIPaiMai = "Main/PaiMai/UIPaiMai";
 		public const string UIPaiMaiSellPrice = "Main/PaiMai/UIPaiMaiSellPrice";

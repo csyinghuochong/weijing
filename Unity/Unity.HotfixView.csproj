@@ -388,8 +388,6 @@
     <Compile Include="Codes\HotfixView\Danger\UI\UIRank\UIRankEvent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRank\UIRankPetComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRank\UIRankPetItemComponent.cs" />
-    <Compile Include="Codes\HotfixView\Danger\UI\UIRank\UIRankPetTeamComponent.cs" />
-    <Compile Include="Codes\HotfixView\Danger\UI\UIRank\UIRankPetTeamEvent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRank\UIRankRewardComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRank\UIRankRewardEvent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRank\UIRankRewardItemComponent.cs" />

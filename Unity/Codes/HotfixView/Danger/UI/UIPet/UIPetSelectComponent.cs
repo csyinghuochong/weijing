@@ -64,11 +64,6 @@ namespace ET
                 selected = uipet.GetComponent<UIPetComponent>().UIPageView.UISubViewList[(int)PetPageEnum.PetUpStar].GetComponent<UIPetUpStarComponent>().GetSelectedPet();
                 selected.AddRange(petTeamList);
             }
-            if (self.OperationType == PetOperationType.RankPet_Team)
-            {
-                UI uirank = UIHelper.GetUI(self.DomainScene(), UIType.UIRankPetTeam);
-                selected = uirank.GetComponent<UIRankPetTeamComponent>().GetSelectedPet();
-            }
             if (fightPetInfo != null)
             {
                 selected.Add(fightPetInfo.Id);

@@ -25,6 +25,7 @@ namespace ET
             }
             if (self.TeamPetList == null || self.TeamPetList.Count != 9)
             {
+                self.TeamPetList.Clear();
                 for (int i = 0; i < 9; i++)
                 {
                     self.TeamPetList.Add(0);

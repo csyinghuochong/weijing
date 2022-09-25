@@ -36,7 +36,7 @@ namespace ET
             self.Button_Reward = rc.Get<GameObject>("Button_Reward");
             self.Button_Reward.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Reward(); });
             self.Button_Team = rc.Get<GameObject>("Button_Team");
-            self.Button_Team.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Team(); });
+            self.Button_Team.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Team().Coroutine(); });
             self.Text_LeftTime = rc.Get<GameObject>("Text_LeftTime");
             self.Text_Rank = rc.Get<GameObject>("Text_Rank");
 
@@ -92,9 +92,11 @@ namespace ET
 
         }
 
-        public static void OnButton_Team(this UIRankPetComponent self)
+        public static async ETTask OnButton_Team(this UIRankPetComponent self)
         {
-            UIHelper.Create( self.DomainScene(), UIType.UIRankPetTeam).Coroutine();
+            Scene scene = self.DomainScene();
+            UI ui = await UIHelper.Create(scene, UIType.UIPetFormation);
+            ui.GetComponent<UIPetFormationComponent>().OnInitUI(SceneTypeEnum.PetTianTi);
         }
     }
 

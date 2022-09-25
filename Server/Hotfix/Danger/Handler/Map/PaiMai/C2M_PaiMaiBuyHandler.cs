@@ -10,7 +10,7 @@ namespace ET
         {
          
             //背包是否有位置
-            if (unit.GetComponent<BagComponent>().GetSpaceNumber() >= 1)
+            if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
             {
                 response.Error = ErrorCore.ERR_BagIsFull;
                 reply();
