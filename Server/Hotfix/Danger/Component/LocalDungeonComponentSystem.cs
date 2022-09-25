@@ -143,12 +143,12 @@ namespace ET
         {
             DungeonConfig chapterSonConfig = DungeonConfigCategory.Instance.Get(mapid);
 
-            FubenHelp.CreateMonsterList(self.DomainScene(), chapterSonConfig.CreateMonster, self.Difficulty).Coroutine();
+            FubenHelp.CreateMonsterList(self.DomainScene(), chapterSonConfig.CreateMonster, self.FubenDifficulty).Coroutine();
 
             if (chapterSonConfig.MonsterGroup != 0)
             {
                 MonsterGroupConfig monsterGroupConfig = MonsterGroupConfigCategory.Instance.Get(chapterSonConfig.MonsterGroup);
-                FubenHelp.CreateMonsterList(self.DomainScene(), monsterGroupConfig.CreateMonster, self.Difficulty).Coroutine();
+                FubenHelp.CreateMonsterList(self.DomainScene(), monsterGroupConfig.CreateMonster, self.FubenDifficulty).Coroutine();
             }
 
             //生成npc

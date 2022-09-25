@@ -58,7 +58,7 @@ namespace ET
                 reviveTime = defendUnit.GetComponent<HeroDataComponent>().OnWaitRevive();
             }
             defendUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
-            
+            int sceneTypeEnum = args.UnitAttack.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (args.UnitAttack != null && !args.UnitAttack.IsDisposed)
             {
                 Unit player = null;
@@ -79,7 +79,6 @@ namespace ET
                     player.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit);
                     UnitFactory.CreateDropItems(defendUnit, player);
                 }
-                int sceneTypeEnum = args.UnitAttack.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
                 switch (sceneTypeEnum)
                 {
                     case (int)SceneTypeEnum.PetDungeon:

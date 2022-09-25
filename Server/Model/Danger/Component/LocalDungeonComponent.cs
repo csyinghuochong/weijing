@@ -8,7 +8,7 @@ namespace ET
         public long Timer;
         public int DungeonId;
         public Unit MainUnit;
-        public int Difficulty;
+        public int FubenDifficulty;
 
         public List<RefreshMonster> RefreshMonsters = new List<RefreshMonster>();
     }

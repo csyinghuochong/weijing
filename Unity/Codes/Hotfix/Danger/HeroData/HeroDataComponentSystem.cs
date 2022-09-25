@@ -151,7 +151,7 @@ namespace ET
                 localDungeon.MainUnit.GetComponent<UserInfoComponent>().OnAddRevive(unitInfoComponent.UnitCondigID, TimeHelper.ServerNow() + resurrection * 1000);
                 unit.RemoveComponent<ReviveTimeComponent>();
                 unit.AddComponent<ReviveTimeComponent, long>(TimeHelper.ServerNow() + resurrection * 1000);
-                FirstWinHelper.SendFirstWinInfo(localDungeon.MainUnit, unit, localDungeon.Difficulty);
+                FirstWinHelper.SendFirstWinInfo(localDungeon.MainUnit, unit, localDungeon.FubenDifficulty);
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene)
             {

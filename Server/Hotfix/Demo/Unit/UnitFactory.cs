@@ -265,6 +265,10 @@ namespace ET
             {
                 fubenDifficulty = unit.DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
             }
+            if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+            {
+                fubenDifficulty = unit.DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
+            }
             switch (fubenDifficulty)
             {
                 case FubenDifficulty.TiaoZhan:
