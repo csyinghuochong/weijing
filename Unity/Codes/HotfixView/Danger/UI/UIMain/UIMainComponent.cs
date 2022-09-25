@@ -87,7 +87,7 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Btn_PetFormation = rc.Get<GameObject>("Btn_PetFormation");
-            ButtonHelp.AddListenerEx(self.Btn_PetFormation, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPetSet).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Btn_PetFormation, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPetChallenge).Coroutine(); });
 
             self.Btn_GM = rc.Get<GameObject>("Btn_GM");
             self.Btn_GM.SetActive(GlobalHelp.IsBanHaoMode);

@@ -88,7 +88,6 @@ namespace ET
 		public const string UITuZhiMake = "Main/TuZhiMake/UITuZhiMake";
 		public const string UIXiuLian = "Main/XiuLian/UIXiuLian";
 		public const string UIPetEgg = "Main/PetEgg/UIPetEgg";
-		public const string UIPetSet = "Main/PetSet/UIPetSet";
 		public const string UIPetFubenResult = "PetFuben/UIPetFubenResult";
 		public const string UIPetMain = "Main/PetSet/UIPetMain";
 		public const string UIHongBao = "Main/HongBao/UIHongBao";
@@ -100,6 +99,8 @@ namespace ET
 		public const string UIWorldLv = "Main/WorldLv/UIWorldLv";
 		public const string UIAppraisalSelect = "Main/Appraisal/UIAppraisalSelect";
 		public const string UIGemMake = "Main/Make/UIGemMake";
+		public const string UIPetChallenge = "Main/PetSet/UIPetChallenge";
+		public const string UIPetFormation = "Main/PetSet/UIPetFormation";
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
 		{

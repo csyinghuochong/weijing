@@ -8,7 +8,7 @@ namespace ET
 {
     public class UIPetFormationComponent : Entity, IAwake
     {
-
+        public GameObject CloseButton;
         public GameObject ButtonChallenge;
         public GameObject TextNumber;
         public GameObject FormationNode;
@@ -33,9 +33,12 @@ namespace ET
             self.ButtonConfirm = rc.Get<GameObject>("ButtonConfirm");
             self.PetListNode = rc.Get<GameObject>("PetListNode");
             self.IconItemDrag = rc.Get<GameObject>("IconItemDrag");
+            self.CloseButton = rc.Get<GameObject>("CloseButton");
+            self.IconItemDrag.SetActive(false);
 
             ButtonHelp.AddListenerEx( self.ButtonConfirm, () => {   } );
             ButtonHelp.AddListenerEx(self.ButtonChallenge, () => { self.OnButtonChallenge(); });
+            self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIPetFormation); });
 
             self.InitSubView();
             self.OnInitPetList().Coroutine();
@@ -67,8 +70,9 @@ namespace ET
 
         public static void OnButtonChallenge(this UIPetFormationComponent self)
         {
-            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIPetSet);
-            uI.GetComponent<UIPetSetComponent>().UIPageButton.OnSelectIndex(0);
+            Scene scene = self.ZoneScene();
+            UIHelper.Remove(scene, UIType.UIPetFormation);
+            UIHelper.Create(scene, UIType.UIPetChallenge).Coroutine();
         }
 
         public static  void InitSubView(this UIPetFormationComponent self)

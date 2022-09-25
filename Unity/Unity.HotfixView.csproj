@@ -240,6 +240,7 @@
     <Compile Include="Codes\HotfixView\Danger\UI\UIEnergy\UIEnergyEarlyupComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIEnergy\UIEnergyEvent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIMake\UIGemMakeComponent.cs" />
+    <Compile Include="Codes\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianSkillComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianSkillItemComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianLevelComponent.cs" />
@@ -358,8 +359,7 @@
     <Compile Include="Codes\HotfixView\Danger\UI\UIPetSet\UIPetFormationSetComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIPetSet\UIPetMainComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIPetSet\UIPetMainEvent.cs" />
-    <Compile Include="Codes\HotfixView\Danger\UI\UIPetSet\UIPetSetComponent.cs" />
-    <Compile Include="Codes\HotfixView\Danger\UI\UIPetSet\UIPetSetEvent.cs" />
+    <Compile Include="Codes\HotfixView\Danger\UI\UIPetSet\UIPetChallengeEvent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIPet\UIPetAddPointComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIPetEgg\UIPetChouKaComponent.cs" />
     <Compile Include="Codes\HotfixView\Danger\UI\UIPetEgg\UIPetChouKaGetComponent.cs" />

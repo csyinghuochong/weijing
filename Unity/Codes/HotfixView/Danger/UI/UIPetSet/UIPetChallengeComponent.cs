@@ -9,6 +9,7 @@ namespace ET
 {
     public class UIPetChallengeComponent : Entity, IAwake
     {
+        public GameObject CloseButton;
         public GameObject TextStar;
         public GameObject ButtonReward;
         public ScrollRect ScrollRect;
@@ -30,7 +31,6 @@ namespace ET
         {
             self.ChallengeItemList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-            self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
             self.FormationNode = rc.Get<GameObject>("FormationNode");
             self.ChallengeListNode = rc.Get<GameObject>("ChallengeListNode");
 
@@ -39,6 +39,7 @@ namespace ET
             self.ScrollRect = rc.Get<GameObject>("ScrollRect").GetComponent<ScrollRect>();
             self.ButtonReward = rc.Get<GameObject>("ButtonReward");
             self.TextStar = rc.Get<GameObject>("TextStar");
+            self.CloseButton = rc.Get<GameObject>("CloseButton");
 
             ButtonHelp.AddListenerEx( self.ButtonSet, () => { self.OnButtonSet(); } );
             ButtonHelp.AddListenerEx(self.ButtonChallenge, () => { self.OnButtonChallenge().Coroutine(); });
@@ -47,8 +48,10 @@ namespace ET
             ButtonHelp.AddEventTriggers(self.ButtonReward, (PointerEventData pdata) => { self.BeginDrag(pdata).Coroutine(); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.ButtonReward, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);
 
+            self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(),UIType.UIPetChallenge );  });
 
             self.InitSubView();
+            self.OnUpdateUI();
             self.InitItemList().Coroutine();
         }
     }
@@ -102,10 +105,12 @@ namespace ET
             }
         }
 
-        public static void OnButtonSet(this UIPetChallengeComponent self)
+        public static  void OnButtonSet(this UIPetChallengeComponent self)
         {
-            UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIPetSet );
-            uI.GetComponent<UIPetSetComponent>().UIPageButton.OnSelectIndex(1);
+            Scene scene = self.ZoneScene();
+            UIHelper.Remove(self.ZoneScene(), UIType.UIPetChallenge);
+            UIHelper.Create(scene, UIType.UIPetFormation ).Coroutine();
+            //uI.GetComponent<UIPetFormationComponent>().UIPageButton.OnSelectIndex(1);
         }
 
         public static async ETTask BeginDrag(this UIPetChallengeComponent self, PointerEventData pdata)
@@ -174,11 +179,11 @@ namespace ET
             }
 
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.PetDungeon, self.PetFubenId);
-            UIHelper.Remove(self.ZoneScene(), UIType.UIPetSet);
             if (errorCode != ErrorCore.ERR_Success)
             {
                 return;
             }
+            UIHelper.Remove(self.ZoneScene(), UIType.UIPetChallenge);
         }
 
         public static void InitSubView(this UIPetChallengeComponent self)

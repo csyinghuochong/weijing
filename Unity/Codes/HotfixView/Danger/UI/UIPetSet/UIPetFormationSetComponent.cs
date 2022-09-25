@@ -92,8 +92,8 @@ namespace ET
 
         public static void RequestFormationSet(this UIPetFormationSetComponent self, long rolePetInfoId, int index, int operateType)
         {
-            UI ui = UIHelper.GetUI( self.ZoneScene(), UIType.UIPetSet);
-            ui.GetComponent<UIPetSetComponent>().RequestFormationSet(rolePetInfoId, index, operateType);
+            UI ui = UIHelper.GetUI( self.ZoneScene(), UIType.UIPetFormation);
+            ui.GetComponent<UIPetFormationComponent>().RequestFormationSet(rolePetInfoId, index, operateType).Coroutine();
         }
 
         public static void EndDrag(this UIPetFormationSetComponent self, RolePetInfo binfo, PointerEventData pdata)
