@@ -99,7 +99,7 @@ namespace ET
             long serverNow = TimeHelper.ServerNow();
             int openserverDay = ComHelp.DateDiff_Day(serverNow, openServerTime);        //当前开服天数
 
-            Log.Info($"PaiMaiScene开服天数 {openserverDay}");
+            Log.Info($"PaiMaiScene开服天数 {self.DomainZone()} {openserverDay}");
             if (openserverDay > 15) {
                 return;
             }
