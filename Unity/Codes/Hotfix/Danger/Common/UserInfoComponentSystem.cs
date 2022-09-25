@@ -170,7 +170,7 @@ namespace ET
                 return;
             }
             MonsterConfig mCof = MonsterConfigCategory.Instance.Get(beKill.GetComponent<UnitInfoComponent>().UnitCondigID);
-            float expcoefficient = 3f;
+            float expcoefficient = 1f;
             int addexp = (int)(expcoefficient * mCof.Exp);
             self.UpdateRoleData(UserDataType.Exp, addexp.ToString()).Coroutine();
         }
