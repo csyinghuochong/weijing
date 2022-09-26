@@ -58,7 +58,7 @@
                     break;
                 case NumericType.BossInCombat:
                     int incombat = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.BossInCombat);
-                    args.Unit.GetComponent<MonsterActRangeComponent>().OnBossInCombat(incombat);
+                    args.Unit.GetComponent<MonsterActRangeComponent>()?.OnBossInCombat(incombat);
                     Log.ILog.Debug($"BossInCombat {args.Unit.Id} {incombat}");
                     break;
                 case NumericType.Tower_ID:

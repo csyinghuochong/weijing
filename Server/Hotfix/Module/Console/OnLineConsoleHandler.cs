@@ -25,7 +25,7 @@ namespace ET
                         List<StartZoneConfig> listprogress = StartZoneConfigCategory.Instance.GetAll().Values.ToList();
                         for (int i = 0; i < listprogress.Count; i++)
                         {
-                            if (listprogress[i].Id > ComHelp.MaxZone)
+                            if (listprogress[i].Id >= ComHelp.MaxZone)
                             {
                                 continue;
                             }

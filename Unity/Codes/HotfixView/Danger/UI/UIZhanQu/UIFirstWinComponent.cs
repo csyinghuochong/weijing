@@ -22,7 +22,7 @@ namespace ET
 		public GameObject TypeListNode;
 		public UITypeViewComponent UITypeViewComponent;
 		public UIFirstWinRewardComponent UIFirstWinReward;
-		public List<FirstWinInfo> firstWinInfos = new List<FirstWinInfo>();
+		public List<FirstWinInfo> FirstWinInfos = new List<FirstWinInfo>();
 
 		public int FirstWinId;
 	}
@@ -75,10 +75,22 @@ namespace ET
 
 		public static async ETTask ReqestFirstWinInfo(this UIFirstWinComponent self)
 		{
-			C2A_FirstWinInfoRequest	 request = new C2A_FirstWinInfoRequest();
-			A2C_FirstWinInfoResponse response = (A2C_FirstWinInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-			self.firstWinInfos = response.FirstWinInfos;
-			self.UpdateBossInfo(self.FirstWinId);
+			try
+			{
+				long instance = self.InstanceId;
+				C2A_FirstWinInfoRequest request = new C2A_FirstWinInfoRequest();
+				A2C_FirstWinInfoResponse response = (A2C_FirstWinInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+				if (instance != self.InstanceId)
+				{
+					return;
+				}
+				self.FirstWinInfos = response.FirstWinInfos;
+				self.UpdateBossInfo(self.FirstWinId);
+			}
+			catch (Exception ex)
+			{
+				Log.Error(ex.ToString());
+			}
 		}
 
 		public static List<TypeButtonInfo> InitTypeButtonInfos(this UIFirstWinComponent self)
@@ -135,12 +147,12 @@ namespace ET
 
 		public static FirstWinInfo GetFirstWinInfo(this UIFirstWinComponent self, int firstWinId, int difficulty)
 		{
-			for (int i = 0; i < self.firstWinInfos.Count; i++)
+			for (int i = 0; i < self.FirstWinInfos.Count; i++)
 			{
-				if (self.firstWinInfos[i].FirstWinId == firstWinId
-				&&	self.firstWinInfos[i].Difficulty == difficulty)
+				if (self.FirstWinInfos[i].FirstWinId == firstWinId
+				&&	self.FirstWinInfos[i].Difficulty == difficulty)
 				{ 
-					return self.firstWinInfos[i];
+					return self.FirstWinInfos[i];
 				}
 			}
 			return null;

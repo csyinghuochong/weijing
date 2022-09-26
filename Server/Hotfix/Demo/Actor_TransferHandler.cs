@@ -91,7 +91,6 @@ namespace ET
 					case (int)SceneTypeEnum.LocalDungeon:
 						LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
 						request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
-						localDungeon.FubenDifficulty = request.Difficulty;
 						TransferHelper.DungeonTransfer( unit, request.SceneId, request.TransferId, request.Difficulty );
 						break;
 					case (int)SceneTypeEnum.TeamDungeon:

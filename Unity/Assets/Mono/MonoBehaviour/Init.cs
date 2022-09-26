@@ -150,7 +150,6 @@ namespace ET
 
 		public void OpenBuglyAgent(long userId)
 		{
-
 			Log.ILog.Info("OpenBuglyAgent: " + userId);
 			// 开启SDK的日志打印，发布版本请务必关闭
 			BuglyAgent.ConfigDebugMode(false);

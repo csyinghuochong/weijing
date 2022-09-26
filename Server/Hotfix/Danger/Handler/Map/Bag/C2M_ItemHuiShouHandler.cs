@@ -23,7 +23,7 @@ namespace ET
                     BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[i]);
                     if (bagInfo == null)
                     {
-                        Log.Error("无效的物品ID: " + huishouList[i]);
+                        Log.Info("无效的物品ID: " + huishouList[i]);
                         continue;
                     }
                     ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);

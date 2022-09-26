@@ -130,15 +130,16 @@ namespace ET
             string randomSkillID = petConfig.RandomSkillID;
             if (randomSkillID != "" && randomSkillID != "0")
             {
-                string[] randomSkillList = randomSkillID.Split(';');
-                for (int i = 0; i < randomSkillList.Length; i++)
-                {
-                    int skillID = int.Parse(randomSkillList[i]);
-                    if (RandomHelper.RandFloat() <= 0.25f)
-                    {
-                        rolePetInfo.PetSkill.Add(skillID);
-                    }
-                }
+                //先注释掉 配置问题
+                //string[] randomSkillList = randomSkillID.Split(';');
+                //for (int i = 0; i < randomSkillList.Length; i++)
+                //{
+                //    int skillID = int.Parse(randomSkillList[i]);
+                //    if (RandomHelper.RandFloat() <= 0.25f)
+                //    {
+                //        rolePetInfo.PetSkill.Add(skillID);
+                //    }
+                //}
             }
 
             return rolePetInfo;
@@ -374,9 +375,13 @@ namespace ET
                 BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemPetHeXinEquip, baginfoId);
                 //100203;790
                 string attriStr = ItemConfigCategory.Instance.Get(bagInfo.ItemID).ItemUsePar;
-                string[] attriList = attriStr.Split(';');
-                int typeId = int.Parse(attriList[0]);
-                Function_Fight.AddUpdateProDicList(typeId, NumericHelp.GetNumericValueType(typeId) == 1 ? (long)(10000 * float.Parse(attriList[1])) : long.Parse(attriList[1]), attriDic);
+                string[] attriList = attriStr.Split('@');
+                for (int a = 0; a < attriList.Length; a++ )
+                {
+                    string[] attriItem = attriList[a].Split(';');
+                    int typeId = int.Parse(attriItem[0]);
+                    Function_Fight.AddUpdateProDicList(typeId, NumericHelp.GetNumericValueType(typeId) == 1 ? (long)(10000 * float.Parse(attriItem[1])) : long.Parse(attriItem[1]), attriDic);
+                }
             }
             foreach (var item in attriDic)
             {

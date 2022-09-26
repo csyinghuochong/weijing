@@ -82,7 +82,14 @@ namespace ET
             {
                 //跟随玩家
                 case 0:
-                    EffectObj.transform.SetParent(this.TheUnitBelongto.GetComponent<HeroTransformComponent>().GetTranform((PosType)Enum.Parse(typeof(PosType), EffectData.mEffectConfig.SkillParentPosition) ));
+                    //Debug
+                    if (this.TheUnitBelongto.GetComponent<HeroTransformComponent>()==null)
+                    {
+                        Log.Error($"this.TheUnitBelongto.GetComponent<HeroTransformComponent>()==null: {this.TheUnitBelongto.UpdateUIType} ");
+                    }
+                    Transform tParent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>().GetTranform((PosType)Enum.Parse(typeof(PosType), EffectData.mEffectConfig.SkillParentPosition));
+
+                    EffectObj.transform.SetParent(tParent);
                     EffectObj.transform.localPosition = Vector3.zero;
                     EffectObj.transform.localScale = Vector3.one;
                     EffectObj.transform.localRotation = Quaternion.Euler(Vector3.zero);

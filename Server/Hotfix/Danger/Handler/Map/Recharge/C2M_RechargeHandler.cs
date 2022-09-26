@@ -13,7 +13,6 @@ namespace ET
             //Log.ILog.Info("d2GGetUnit.Value = " + d2GGetUnit.Value);
             if (int.Parse(d2GGetUnit.Value) != 1)
             {
-                RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber).Coroutine();
                 reply();
                 return;
             }
