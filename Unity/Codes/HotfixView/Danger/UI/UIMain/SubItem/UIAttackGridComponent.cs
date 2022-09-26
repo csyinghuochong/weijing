@@ -245,7 +245,10 @@ namespace ET
             {
                 return;
             }
-            self.AutoAttack_1(unit, taretUnit, cancellationToken).Coroutine();
+
+            self.CancellationToken?.Cancel();
+            self.CancellationToken = new ETCancellationToken();
+            self.AutoAttack_1(unit, taretUnit, self.CancellationToken).Coroutine();
         }
 
         public static void BeginAutoAttack(this UIAttackGridComponent self)
@@ -285,30 +288,6 @@ namespace ET
                 self.CancellationToken = new ETCancellationToken();
                 self.AutoAttack_1(unit, taretUnit, self.CancellationToken).Coroutine();
                 return;
-            }
-        }
-
-        public static async ETTask CheckMove(this UIAttackGridComponent self)
-        {
-            for (int i = 0; i < 100; i++)
-            {
-                await TimerComponent.Instance.WaitFrameAsync();
-                if (self.MoveAttackId == 0)
-                {
-                    return;
-                }
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                if (unit == null)
-                {
-                    return;
-                }
-                Unit taretUnit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.MoveAttackId);
-                if (taretUnit == null || taretUnit.IsDisposed || (PositionHelper.Distance2D(unit, taretUnit) <= self.AttackDistance))
-                {
-                    self.MoveAttackId = 0;
-                    self.DomainScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
-                    return;
-                }
             }
         }
 
