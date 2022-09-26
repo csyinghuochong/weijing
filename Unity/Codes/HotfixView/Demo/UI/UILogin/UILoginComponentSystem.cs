@@ -371,6 +371,12 @@ namespace ET
 		public static void OnGetUserInfo(this UILoginComponent self, string openId)
 		{
 			string[] msg = openId.Split('_');
+
+			for (int i = 0; i < msg.Length; i++)
+			{
+				Log.ILog.Debug($"unit  msg[i] : {msg[i]}");
+			}
+
 			if (msg.Length< 2 || msg[0] == "fail")
 			{
 				GlobalHelp.Authorize(self.LoginType);
@@ -453,6 +459,8 @@ namespace ET
 
 			string account = self.Account.GetComponent<InputField>().text;
 			string password = self.Password.GetComponent<InputField>().text;
+
+			Log.ILog.Debug($"unit OnLogin:  {account}");
 			self.RequestLogin(account, password, self.LoginType).Coroutine();
 		}
 

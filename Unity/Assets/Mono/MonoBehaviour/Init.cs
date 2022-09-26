@@ -301,11 +301,13 @@ namespace ET
 			}
 			if (type == PlatformType.QQ)
 			{
-				print("AuthInfo:   " + MiniJSON.jsonEncode(ssdk.GetAuthInfo(type)));
+				print("QQAuthInfo:   " + MiniJSON.jsonEncode(ssdk.GetAuthInfo(type)));
 				if (state == ResponseState.Success)
 				{
 					result = ssdk.GetAuthInfo(type);
-					this.OnGetUserInfoHandler("sucess_" + result["unionID"].ToString());
+					string openId = result["unionID"].ToString();
+					Log.ILog.Debug($"openId: {openId}");
+					this.OnGetUserInfoHandler("sucess_" + openId);
 				}
 				else
 				{

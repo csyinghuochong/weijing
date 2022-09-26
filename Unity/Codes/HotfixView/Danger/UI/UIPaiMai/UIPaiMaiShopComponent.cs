@@ -96,10 +96,6 @@ namespace ET
             }
             for (int i = (int)PaiMaiTypeEnum.CaiLiao; i < (int)PaiMaiTypeEnum.Number; i++)
             {
-                if (i == (int)PaiMaiTypeEnum.CostItem)
-                {
-                    continue;
-                }
                 GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
                 UICommonHelper.SetParent(taskTypeItem, self.TypeListNode);
 
@@ -151,12 +147,24 @@ namespace ET
                 return;
             }
 
+            List<int> caoLiaoShow = new List<int>() { 1, 2};
+            int number = 0;
             for (int i = 0; i < ids.Count; i++)
             {
-                UI ui_1;
-                if (i < self.ItemUIList.Count)
+                PaiMaiSellConfig paiMaiSellConfig = PaiMaiSellConfigCategory.Instance.Get(ids[i]);
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiSellConfig.ItemID);
+                if (typeid == (int)PaiMaiTypeEnum.CaiLiao)
                 {
-                    ui_1 = self.ItemUIList[i];
+                    if (!caoLiaoShow.Contains(itemConfig.ItemSubType))
+                    {
+                        continue;
+                    }
+                }
+
+                UI ui_1;
+                if (number < self.ItemUIList.Count)
+                {
+                    ui_1 = self.ItemUIList[number];
                     ui_1.GameObject.SetActive(true);
                 }
                 else
@@ -170,14 +178,15 @@ namespace ET
                 }
                 Log.Info("self.PaiMaiShopItemInfos = " + self.PaiMaiShopItemInfos.Count + "ids[i] = " + ids[i]);
                 ui_1.GetComponent<UIPaiMaiShopItemComponent>().OnUpdateData(ids[i],self.PaiMaiShopItemInfos[PaiMaiSellConfigCategory.Instance.Get(ids[i]).ItemID]);
+                number++;
             }
 
-            if (ids.Count > 0)
+            if (number > 0)
             {
                 self.ItemUIList[0].GetComponent<UIPaiMaiShopItemComponent>().ImageButton();
             }
 
-            for (int i = ids.Count; i < self.ItemUIList.Count; i++)
+            for (int i = number; i < self.ItemUIList.Count; i++)
             {
                 self.ItemUIList[i].GameObject.SetActive(false);
             }
