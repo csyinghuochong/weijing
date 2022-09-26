@@ -1,131 +1,334 @@
 fileFormatVersion: 2
 guid: f1385a7176003054ba71476ed019852f
-timeCreated: 1451654064
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 18
-  fileIDToRecycleName:
-    100000: Bip01
-    100002: Bip01_Head
-    100004: Bip01_Jaw
-    100006: Bip01_L_Calf
-    100008: Bip01_L_Clavicle
-    100010: Bip01_L_Foot
-    100012: Bip01_L_Forearm
-    100014: Bip01_L_Hand
-    100016: Bip01_L_HorseLink
-    100018: Bip01_L_Thigh
-    100020: Bip01_L_UpperArm
-    100022: Bip01_Neck
-    100024: Bip01_Pelvis
-    100026: Bip01_Ponytail1
-    100028: Bip01_Ponytail2
-    100030: Bip01_R_Calf
-    100032: Bip01_R_Clavicle
-    100034: Bip01_R_Foot
-    100036: Bip01_R_Forearm
-    100038: Bip01_R_Hand
-    100040: Bip01_R_HorseLink
-    100042: Bip01_R_Thigh
-    100044: Bip01_R_UpperArm
-    100046: Bip01_Spine
-    100048: Bip01_Spine1
-    100050: Bip01_Spine2
-    100052: Bip01_Tail
-    100054: Bip01_Tail1
-    100056: Bip01_Tail2
-    100058: root
-    100060: werewolf_canine_mat
-    100062: //RootNode
-    100064: wolf
-    400000: Bip01
-    400002: Bip01_Head
-    400004: Bip01_Jaw
-    400006: Bip01_L_Calf
-    400008: Bip01_L_Clavicle
-    400010: Bip01_L_Foot
-    400012: Bip01_L_Forearm
-    400014: Bip01_L_Hand
-    400016: Bip01_L_HorseLink
-    400018: Bip01_L_Thigh
-    400020: Bip01_L_UpperArm
-    400022: Bip01_Neck
-    400024: Bip01_Pelvis
-    400026: Bip01_Ponytail1
-    400028: Bip01_Ponytail2
-    400030: Bip01_R_Calf
-    400032: Bip01_R_Clavicle
-    400034: Bip01_R_Foot
-    400036: Bip01_R_Forearm
-    400038: Bip01_R_Hand
-    400040: Bip01_R_HorseLink
-    400042: Bip01_R_Thigh
-    400044: Bip01_R_UpperArm
-    400046: Bip01_Spine
-    400048: Bip01_Spine1
-    400050: Bip01_Spine2
-    400052: Bip01_Tail
-    400054: Bip01_Tail1
-    400056: Bip01_Tail2
-    400058: root
-    400060: werewolf_canine_mat
-    400062: //RootNode
-    400064: wolf
-    4300000: werewolf_canine_mat
-    7400000: attack1
-    7400002: attack2
-    7400004: attack3
-    7400006: death_flight
-    7400008: death_land
-    7400010: die1
-    7400012: die2
-    7400014: die3
-    7400016: Envi_Alert11_Howl1
-    7400018: Envi_Alert12_Howl2
-    7400020: Envi_Alert2_Sleep
-    7400022: Envi_Alert3_Sit
-    7400024: Envi_Idle11_Howl1
-    7400026: Envi_Idle12_Howl2
-    7400028: Envi_Idle2_Sleep
-    7400030: Envi_Idle3_Sit
-    7400032: fidget1
-    7400034: hit1
-    7400036: hit2
-    7400038: hit3
-    7400040: idle
-    7400042: Jump_Down
-    7400044: Jump_Land
-    7400046: Materialize_Spawn1
-    7400048: run
-    7400050: Special_Phase
-    7400052: Special_Transform
-    7400054: stunned
-    7400056: walk
-    9500000: //RootNode
-    13700000: werewolf_canine_mat
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip01
+  - first:
+      1: 100002
+    second: Bip01_Head
+  - first:
+      1: 100004
+    second: Bip01_Jaw
+  - first:
+      1: 100006
+    second: Bip01_L_Calf
+  - first:
+      1: 100008
+    second: Bip01_L_Clavicle
+  - first:
+      1: 100010
+    second: Bip01_L_Foot
+  - first:
+      1: 100012
+    second: Bip01_L_Forearm
+  - first:
+      1: 100014
+    second: Bip01_L_Hand
+  - first:
+      1: 100016
+    second: Bip01_L_HorseLink
+  - first:
+      1: 100018
+    second: Bip01_L_Thigh
+  - first:
+      1: 100020
+    second: Bip01_L_UpperArm
+  - first:
+      1: 100022
+    second: Bip01_Neck
+  - first:
+      1: 100024
+    second: Bip01_Pelvis
+  - first:
+      1: 100026
+    second: Bip01_Ponytail1
+  - first:
+      1: 100028
+    second: Bip01_Ponytail2
+  - first:
+      1: 100030
+    second: Bip01_R_Calf
+  - first:
+      1: 100032
+    second: Bip01_R_Clavicle
+  - first:
+      1: 100034
+    second: Bip01_R_Foot
+  - first:
+      1: 100036
+    second: Bip01_R_Forearm
+  - first:
+      1: 100038
+    second: Bip01_R_Hand
+  - first:
+      1: 100040
+    second: Bip01_R_HorseLink
+  - first:
+      1: 100042
+    second: Bip01_R_Thigh
+  - first:
+      1: 100044
+    second: Bip01_R_UpperArm
+  - first:
+      1: 100046
+    second: Bip01_Spine
+  - first:
+      1: 100048
+    second: Bip01_Spine1
+  - first:
+      1: 100050
+    second: Bip01_Spine2
+  - first:
+      1: 100052
+    second: Bip01_Tail
+  - first:
+      1: 100054
+    second: Bip01_Tail1
+  - first:
+      1: 100056
+    second: Bip01_Tail2
+  - first:
+      1: 100058
+    second: root
+  - first:
+      1: 100060
+    second: werewolf_canine_mat
+  - first:
+      1: 100062
+    second: //RootNode
+  - first:
+      1: 100064
+    second: wolf
+  - first:
+      4: 400000
+    second: Bip01
+  - first:
+      4: 400002
+    second: Bip01_Head
+  - first:
+      4: 400004
+    second: Bip01_Jaw
+  - first:
+      4: 400006
+    second: Bip01_L_Calf
+  - first:
+      4: 400008
+    second: Bip01_L_Clavicle
+  - first:
+      4: 400010
+    second: Bip01_L_Foot
+  - first:
+      4: 400012
+    second: Bip01_L_Forearm
+  - first:
+      4: 400014
+    second: Bip01_L_Hand
+  - first:
+      4: 400016
+    second: Bip01_L_HorseLink
+  - first:
+      4: 400018
+    second: Bip01_L_Thigh
+  - first:
+      4: 400020
+    second: Bip01_L_UpperArm
+  - first:
+      4: 400022
+    second: Bip01_Neck
+  - first:
+      4: 400024
+    second: Bip01_Pelvis
+  - first:
+      4: 400026
+    second: Bip01_Ponytail1
+  - first:
+      4: 400028
+    second: Bip01_Ponytail2
+  - first:
+      4: 400030
+    second: Bip01_R_Calf
+  - first:
+      4: 400032
+    second: Bip01_R_Clavicle
+  - first:
+      4: 400034
+    second: Bip01_R_Foot
+  - first:
+      4: 400036
+    second: Bip01_R_Forearm
+  - first:
+      4: 400038
+    second: Bip01_R_Hand
+  - first:
+      4: 400040
+    second: Bip01_R_HorseLink
+  - first:
+      4: 400042
+    second: Bip01_R_Thigh
+  - first:
+      4: 400044
+    second: Bip01_R_UpperArm
+  - first:
+      4: 400046
+    second: Bip01_Spine
+  - first:
+      4: 400048
+    second: Bip01_Spine1
+  - first:
+      4: 400050
+    second: Bip01_Spine2
+  - first:
+      4: 400052
+    second: Bip01_Tail
+  - first:
+      4: 400054
+    second: Bip01_Tail1
+  - first:
+      4: 400056
+    second: Bip01_Tail2
+  - first:
+      4: 400058
+    second: root
+  - first:
+      4: 400060
+    second: werewolf_canine_mat
+  - first:
+      4: 400062
+    second: //RootNode
+  - first:
+      4: 400064
+    second: wolf
+  - first:
+      43: 4300000
+    second: werewolf_canine_mat
+  - first:
+      74: 7400000
+    second: attack1
+  - first:
+      74: 7400002
+    second: attack2
+  - first:
+      74: 7400004
+    second: attack3
+  - first:
+      74: 7400006
+    second: death_flight
+  - first:
+      74: 7400008
+    second: death_land
+  - first:
+      74: 7400010
+    second: die1
+  - first:
+      74: 7400012
+    second: die2
+  - first:
+      74: 7400014
+    second: die3
+  - first:
+      74: 7400016
+    second: Envi_Alert11_Howl1
+  - first:
+      74: 7400018
+    second: Envi_Alert12_Howl2
+  - first:
+      74: 7400020
+    second: Envi_Alert2_Sleep
+  - first:
+      74: 7400022
+    second: Envi_Alert3_Sit
+  - first:
+      74: 7400024
+    second: Envi_Idle11_Howl1
+  - first:
+      74: 7400026
+    second: Envi_Idle12_Howl2
+  - first:
+      74: 7400028
+    second: Envi_Idle2_Sleep
+  - first:
+      74: 7400030
+    second: Envi_Idle3_Sit
+  - first:
+      74: 7400032
+    second: fidget1
+  - first:
+      74: 7400034
+    second: hit1
+  - first:
+      74: 7400036
+    second: hit2
+  - first:
+      74: 7400038
+    second: hit3
+  - first:
+      74: 7400040
+    second: idle
+  - first:
+      74: 7400042
+    second: Jump_Down
+  - first:
+      74: 7400044
+    second: Jump_Land
+  - first:
+      74: 7400046
+    second: Materialize_Spawn1
+  - first:
+      74: 7400048
+    second: run
+  - first:
+      74: 7400050
+    second: Special_Phase
+  - first:
+      74: 7400052
+    second: Special_Transform
+  - first:
+      74: 7400054
+    second: stunned
+  - first:
+      74: 7400056
+    second: walk
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: werewolf_canine_mat
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: attack1
       takeName: attack1
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -133,6 +336,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -145,14 +349,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: .589865804
-        functionName: AIAct
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask:
       - path: 
         weight: 1
@@ -222,9 +419,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: attack2
       takeName: attack2
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -232,6 +431,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -314,9 +514,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: attack3
       takeName: attack3
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -324,6 +526,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -406,9 +609,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: death_flight
       takeName: death_flight
+      internalID: 0
       firstFrame: 0
       lastFrame: 10
       wrapMode: 0
@@ -416,6 +621,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -498,9 +704,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: death_land
       takeName: death_land
+      internalID: 0
       firstFrame: 0
       lastFrame: 13
       wrapMode: 0
@@ -508,6 +716,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -590,9 +799,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: die1
       takeName: die1
+      internalID: 0
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
@@ -600,6 +811,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -682,9 +894,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: die2
       takeName: die2
+      internalID: 0
       firstFrame: 0
       lastFrame: 37
       wrapMode: 0
@@ -692,6 +906,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -774,9 +989,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: die3
       takeName: die3
+      internalID: 0
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
@@ -784,6 +1001,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -866,9 +1084,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Envi_Alert11_Howl1
       takeName: Envi_Alert11_Howl1
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -876,6 +1096,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -958,9 +1179,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Envi_Alert12_Howl2
       takeName: Envi_Alert12_Howl2
+      internalID: 0
       firstFrame: 0
       lastFrame: 16
       wrapMode: 0
@@ -968,6 +1191,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1050,9 +1274,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Envi_Alert2_Sleep
       takeName: Envi_Alert2_Sleep
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -1060,6 +1286,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1142,9 +1369,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Envi_Alert3_Sit
       takeName: Envi_Alert3_Sit
+      internalID: 0
       firstFrame: 0
       lastFrame: 10
       wrapMode: 0
@@ -1152,6 +1381,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1234,9 +1464,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Envi_Idle11_Howl1
       takeName: Envi_Idle11_Howl1
+      internalID: 0
       firstFrame: 0
       lastFrame: 83
       wrapMode: 0
@@ -1244,6 +1476,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1326,9 +1559,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Envi_Idle12_Howl2
       takeName: Envi_Idle12_Howl2
+      internalID: 0
       firstFrame: 0
       lastFrame: 108
       wrapMode: 0
@@ -1336,6 +1571,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1418,9 +1654,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Envi_Idle2_Sleep
       takeName: Envi_Idle2_Sleep
+      internalID: 0
       firstFrame: 0
       lastFrame: 100
       wrapMode: 0
@@ -1428,6 +1666,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1510,9 +1749,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Envi_Idle3_Sit
       takeName: Envi_Idle3_Sit
+      internalID: 0
       firstFrame: 0
       lastFrame: 187
       wrapMode: 0
@@ -1520,6 +1761,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1602,9 +1844,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: fidget1
       takeName: fidget1
+      internalID: 0
       firstFrame: 0
       lastFrame: 41
       wrapMode: 0
@@ -1612,6 +1856,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1694,9 +1939,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: hit1
       takeName: hit1
+      internalID: 0
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0
@@ -1704,6 +1951,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1786,9 +2034,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: hit2
       takeName: hit2
+      internalID: 0
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0
@@ -1796,6 +2046,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1878,9 +2129,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: hit3
       takeName: hit3
+      internalID: 0
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0
@@ -1888,6 +2141,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -1970,9 +2224,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: idle
       takeName: idle
+      internalID: 0
       firstFrame: 0
       lastFrame: 30
       wrapMode: 0
@@ -1980,6 +2236,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -2062,9 +2319,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Jump_Down
       takeName: Jump_Down
+      internalID: 0
       firstFrame: 0
       lastFrame: 12
       wrapMode: 0
@@ -2072,6 +2331,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -2154,9 +2414,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Jump_Land
       takeName: Jump_Land
+      internalID: 0
       firstFrame: 0
       lastFrame: 5
       wrapMode: 0
@@ -2164,6 +2426,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -2246,9 +2509,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Materialize_Spawn1
       takeName: Materialize_Spawn1
+      internalID: 0
       firstFrame: 0
       lastFrame: 70
       wrapMode: 0
@@ -2256,6 +2521,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -2338,9 +2604,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: run
       takeName: run
+      internalID: 0
       firstFrame: 0
       lastFrame: 28
       wrapMode: 0
@@ -2348,6 +2616,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -2430,9 +2699,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Special_Phase
       takeName: Special_Phase
+      internalID: 0
       firstFrame: 0
       lastFrame: 25
       wrapMode: 0
@@ -2440,6 +2711,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -2522,9 +2794,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Special_Transform
       takeName: Special_Transform
+      internalID: 0
       firstFrame: 0
       lastFrame: 100
       wrapMode: 0
@@ -2532,6 +2806,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -2614,9 +2889,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: stunned
       takeName: stunned
+      internalID: 0
       firstFrame: 0
       lastFrame: 62
       wrapMode: 0
@@ -2624,6 +2901,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -2706,9 +2984,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: walk
       takeName: walk
+      internalID: 0
       firstFrame: 0
       lastFrame: 33
       wrapMode: 0
@@ -2716,6 +2996,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -2798,44 +3079,72 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
+    serializedVersion: 3
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
