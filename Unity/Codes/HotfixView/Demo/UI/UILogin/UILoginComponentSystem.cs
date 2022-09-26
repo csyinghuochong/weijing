@@ -17,7 +17,7 @@ namespace ET
 				int version = GameObject.Find("Global").GetComponent<Init>().BigVersion;
 				if (version < self.BigVersion)
 				{
-					self.OpenDownLoadUI();
+					self.OpenDownLoadUI($"old:{version}_new:{self.BigVersion}");
 					return;
 				}
 				Application.targetFrameRate = 30;
@@ -262,9 +262,9 @@ namespace ET
 			self.Password.SetActive(false);
 		}
 
-		public static void OpenDownLoadUI(this UILoginComponent self)
+		public static void OpenDownLoadUI(this UILoginComponent self, string version)
 		{
-			PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "重新下载", "应用版本过低，请重新下载", () =>
+			PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "重新下载", $"应用版本过低，请重新下载{version}", () =>
 			{
 				Application.OpenURL(self.DownloadUrl);
 			}).Coroutine();

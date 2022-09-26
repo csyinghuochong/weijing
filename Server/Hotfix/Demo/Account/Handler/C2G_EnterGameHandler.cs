@@ -78,7 +78,7 @@ namespace ET
 						try
 						{
 							//重连
-							Log.Info($"二次登录;{player.UnitId}");
+							Log.Info($"二次登录开始;{player.UnitId}");
 							IActorResponse reqEnter =(M2G_RequestEnterGameState) await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
 							{
 								GateSessionActorId = session.InstanceId
