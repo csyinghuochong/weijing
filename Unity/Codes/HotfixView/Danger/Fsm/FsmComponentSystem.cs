@@ -20,7 +20,8 @@ namespace ET
             fsmStateUI.OnInitUI(unit.GetComponent<AnimatorComponent>().Animator);
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             bool idle = moveComponent == null || moveComponent.IsArrived();
-            fsmStateUI.ChangeState(idle ? FsmStateEnum.FsmIdleState : FsmStateEnum.FsmRunState);
+            int unitype = unit.GetComponent<UnitInfoComponent>().Type;
+            fsmStateUI.ChangeState(idle ? FsmStateEnum.FsmIdleState : FsmStateEnum.FsmRunState, "", unitype);
         }
     }
 
@@ -75,7 +76,8 @@ namespace ET
                     break;
             }
 
-            self.FsmStateUI.ChangeState(targetFsm, paramss);
+            int unitType = self.GetParent<Unit>().GetComponent<UnitInfoComponent>().Type;
+            self.FsmStateUI.ChangeState(targetFsm, paramss, unitType);
             return true;
         }
 

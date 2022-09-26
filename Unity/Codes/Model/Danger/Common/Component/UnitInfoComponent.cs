@@ -15,7 +15,7 @@ namespace ET
 
         public string PlayerName { get; set; }
 
-        public UnitType Type { get; set; }
+        public int Type { get; set; }
 
         /// <summary>
         /// 根据不同的类型获取对应的ID,例如怪物类型,这里就是怪物ID

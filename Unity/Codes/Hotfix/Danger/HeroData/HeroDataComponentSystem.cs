@@ -370,7 +370,7 @@ namespace ET
             unit.GetComponent<MoveComponent>()?.Stop();
 
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            UnitType unitType = unitInfoComponent.Type;
+            int unitType = unitInfoComponent.Type;
             if (unitType == UnitType.Player)
             {
                 unit.GetComponent<SkillManagerComponent>().OnDispose();

@@ -10,9 +10,9 @@ namespace ET
 
 
         [BsonIgnore]
-        public UnitType Type { get { return this.GetComponent<UnitInfoComponent>().Type; } }
+        public int Type { get { return this.GetComponent<UnitInfoComponent>().Type; } }
 
-        public UnitType TestType { get; set; }
+        public int TestType { get; set; }
 
         public bool SingleScene;
 

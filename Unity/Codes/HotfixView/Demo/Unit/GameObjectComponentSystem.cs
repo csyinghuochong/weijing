@@ -54,7 +54,7 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            UnitType unitType = unitInfoComponent.Type;
+            int unitType = unitInfoComponent.Type;
             switch (unitType)
             {
                 case UnitType.Player:
@@ -124,7 +124,7 @@ namespace ET
             self.GameObject = go;
 
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            UnitType unitType = unitInfoComponent.Type;
+            int unitType = unitInfoComponent.Type;
             switch (unitType)
             {
                 case UnitType.Player:

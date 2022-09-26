@@ -69,7 +69,7 @@ namespace ET
             this.Animator = animator;
         }
 
-        public void ChangeState(int targetFSmState, string parasmss = "")
+        public void ChangeState(int targetFSmState, string parasmss, int unitType)
         {
             if (this.Animator == null)
             {

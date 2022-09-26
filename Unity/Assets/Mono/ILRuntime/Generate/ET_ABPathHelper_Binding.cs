@@ -34,12 +34,12 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(System.String)};
             method = type.GetMethod("GetAtlasPath", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, GetAtlasPath_3);
-            args = new Type[]{typeof(System.String)};
-            method = type.GetMethod("GetItemPath", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetItemPath_4);
             args = new Type[]{};
             method = type.GetMethod("GetTextPath", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetTextPath_5);
+            app.RegisterCLRMethodRedirection(method, GetTextPath_4);
+            args = new Type[]{typeof(System.String)};
+            method = type.GetMethod("GetItemPath", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, GetItemPath_5);
             args = new Type[]{typeof(System.String)};
             method = type.GetMethod("GetMaterialPath", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, GetMaterialPath_6);
@@ -124,7 +124,18 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* GetItemPath_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* GetTextPath_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 0);
+
+
+            var result_of_this_method = ET.ABPathHelper.GetTextPath();
+
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
+        }
+
+        static StackObject* GetItemPath_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -136,17 +147,6 @@ namespace ILRuntime.Runtime.Generated
 
 
             var result_of_this_method = ET.ABPathHelper.GetItemPath(@fileName);
-
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
-        }
-
-        static StackObject* GetTextPath_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 0);
-
-
-            var result_of_this_method = ET.ABPathHelper.GetTextPath();
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }

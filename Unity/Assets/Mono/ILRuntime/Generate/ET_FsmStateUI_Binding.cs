@@ -25,7 +25,7 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(UnityEngine.Animator)};
             method = type.GetMethod("OnInitUI", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, OnInitUI_0);
-            args = new Type[]{typeof(System.Int32), typeof(System.String)};
+            args = new Type[]{typeof(System.Int32), typeof(System.String), typeof(System.Int32)};
             method = type.GetMethod("ChangeState", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, ChangeState_1);
 
@@ -56,20 +56,23 @@ namespace ILRuntime.Runtime.Generated
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 3);
+            StackObject* __ret = ILIntepreter.Minus(__esp, 4);
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Int32 @unitType = ptr_of_this_method->Value;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
             System.String @parasmss = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
             __intp.Free(ptr_of_this_method);
 
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 3);
             System.Int32 @targetFSmState = ptr_of_this_method->Value;
 
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 3);
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 4);
             ET.FsmStateUI instance_of_this_method = (ET.FsmStateUI)typeof(ET.FsmStateUI).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
             __intp.Free(ptr_of_this_method);
 
-            instance_of_this_method.ChangeState(@targetFSmState, @parasmss);
+            instance_of_this_method.ChangeState(@targetFSmState, @parasmss, @unitType);
 
             return __ret;
         }

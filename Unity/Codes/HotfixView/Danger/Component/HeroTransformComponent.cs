@@ -51,7 +51,7 @@ namespace ET
             }
 
             this.RunEffect = null;
-            UnitType unitType = this.MyHero.GetComponent<UnitInfoComponent>().Type;
+            int unitType = this.MyHero.GetComponent<UnitInfoComponent>().Type;
             //获取自身的绑点
             if (unitType == UnitType.Player)
             {
