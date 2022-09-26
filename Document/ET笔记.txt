@@ -1,0 +1,57 @@
+1  打图集流程：
+
+2  客户端规范:
+    UI组件：  只需要执行一次的方法放在Awake
+                   切页组件每次激活需要执行的  添加方法self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
+                   通过事件触发的在DataUpdateHelp注册对应的事件监听
+
+3 TextMeshPro字体制作：
+	 生成之后 要 Save
+
+
+4 log: nlog.config
+
+
+5 	//if (args.Length == 0)
+                //{
+                //    args = new string[3];
+                //    args[0] = "--AppType=Server";
+                //    args[1] = "--Console=1";
+                //    args[2] = "--Process=1";
+                //}
+
+adb forward tcp:34999 localabstract:Unity-com.yinhuochong.mjcs
+
+
+{_id:{$lte:1206130411328045058}}
+
+
+
+C:\Users\Admin\AppData\Local\Android\Sdk\platform-tools
+
+ILog
+<logger name="*" minlevel="Trace" maxlevel="Error" writeTo="ErrorConsole" />
+
+DISABLE_ILRUNTIME_DEBUG
+加上DISABLE_ILRUNTIME_DEBUG宏，查gc的时候方便，调试的时候要去掉
+
+* 起服配置变成多份，使用命令行参数选择使用哪份起服配置, 例如
+dotnet Server.dll --Process=1 --StartConfig=StartConfig/Release --Console=1
+这样每个开发人员都可以配置自己的起服配置，再也不会冲突了
+
+导表工具进化：
+1.增加了表合并功能，UnitConfig.xlsx跟UnitConfig_Monster.xlsx会合并成一张表
+2.多线程导表
+3.表格名里面带@后面加上cs#等，c表示导出客户端，s表示导出服务端，#表示该表不导出
+4.json导出放到Excel中，这样提交到svn方便策划对比变化
+
+安卓工程导出：
+
+1.无论你使用集群，还是使用单机，你的带宽，连接数都是有限制的，一般不可以为了追求玩家登陆而最后让在线的玩家玩游戏受到限制。所以，当服务器超过了一定最有体验容载量，就会要求新进入的玩家进行排队。2.排队主要是为了解决在线玩家高质量的享受游戏的问题。3.一般这个机制可以有一定的算法，正常游戏玩家退出游戏，和你一起在队列里等待的玩家退出等待，都可能会让你的游戏排名靠前。4.排队系统一般可以由账号服务器提供一个"Ticket"。游戏服务器接受连接请求的时候验证这个"ticket"是否可以入场。去过电影院没有？卖票的和入场检票的就是这个原理。5.大致流程是  登录先想账号服务器选择账号->账号服务器根据游戏服务器的目前情况，返回给客户端一个"Ticket"，这个Ticket大概包含票根和前面等待人数，预测时间等相关信息->排队，定时刷新账号服务器获得游戏服务器当前票根的执行情况，从而获得排位的提升->当游戏服务器允许新的ticket进入，会告诉账号服务器，账号服务器会通知相关的等待者进入->登录游戏服务器，验证当前客户端Ticket持有的有效性->进入游戏一般情况下，你可以全部把Ticket验证放在账号服务器下进行，等可以进入的时候，由账号服务器发送一个游戏服务器可以验证的"入场券"，进入游戏。这样较好的隔离了排队功能。排队功能一般根据游戏的不同，可能有一些小的逻辑变化。比如卡牌游戏，炉石传说，可能会根据当前玩家等级分布，为了保证游戏对战搜索匹配度，优先匹配玩家等级区域玩家数少的玩家先进入。保证最佳游戏体验。这个系统其实很简单，现实中有大量的应用。火车票，电影院，多看看就能学到其中的诀窍。
+
+放置闯关第一节 数据库定时存取
+
+
+
+
+

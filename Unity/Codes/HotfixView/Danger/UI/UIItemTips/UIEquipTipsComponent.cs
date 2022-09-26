@@ -270,7 +270,6 @@ namespace ET
             {
                 if (!ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
                 {
-                    
                     switch (userInfo.Occ)
                     {
                         //战士
