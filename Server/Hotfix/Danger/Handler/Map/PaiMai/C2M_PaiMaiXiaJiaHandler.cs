@@ -16,7 +16,14 @@ namespace ET
                     PaiMaiItemInfoId = request.PaiMaiItemInfoId
                 });
 
-            unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo);
+            if (r_GameStatusResponse.Error == ErrorCore.ERR_Success && r_GameStatusResponse.PaiMaiItemInfo != null)
+            {
+                unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo);
+            }
+            else
+            {
+                Log.Info($"C2M_PaiMaiXiaJiaHandler==null  {unit.Id} {request.PaiMaiItemInfoId}");
+            }
             
             reply();
         }

@@ -13,7 +13,12 @@ namespace ET
 		{
 			try
 			{
-				Log.ILog.Debug("UILoginComponent 1");
+				string path = "beta";
+				if (GlobalHelp.IsBanHaoMode)
+				{
+					path = "banhao";
+				}
+				self.DownloadUrl = $"http://39.96.194.143/weijing1/apk/{path}/weijing.apk";
 				int version = GameObject.Find("Global").GetComponent<Init>().BigVersion;
 				if (version < self.BigVersion)
 				{
