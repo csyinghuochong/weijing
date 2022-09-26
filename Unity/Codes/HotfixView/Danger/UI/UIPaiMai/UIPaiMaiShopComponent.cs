@@ -173,7 +173,7 @@ namespace ET
                 self.ItemUIList[0].GetComponent<UIPaiMaiShopItemComponent>().ImageButton();
             }
 
-            for (int  = ids.Count; i < self.ItemUIList.Count; i++)
+            for (int  i= ids.Count; i < self.ItemUIList.Count; i++)
             {
                 self.ItemUIList[i].GameObject.SetActive(false);
             }

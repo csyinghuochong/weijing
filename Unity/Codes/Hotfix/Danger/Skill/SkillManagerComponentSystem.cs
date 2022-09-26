@@ -147,7 +147,7 @@ namespace ET
             Unit from = self.GetParent<Unit>();
             if (from.GetComponent<UnitInfoComponent>().Type == UnitType.Player)
             {
-                Log.ILog.Debug($" {TimeHelper.ClientNow()}  {skillcmd.SkillID}");
+                Log.ILog.Debug($"OnUseSkill {TimeHelper.ClientNow()}  {skillcmd.SkillID}");
             }
             //野怪技能指示器
             for (int i = 0; i < skillcmd.SkillInfos.Count; i++)
