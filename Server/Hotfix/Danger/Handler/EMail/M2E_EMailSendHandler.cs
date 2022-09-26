@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ET
 {
 
     [ActorMessageHandler]
-    public class M2E_EMailSendHandler: AMActorLocationRpcHandler<Scene, M2E_EMailSendRequest, E2M_EMailSendResponse>
+    public class M2E_EMailSendHandler: AMActorRpcHandler<Scene, M2E_EMailSendRequest, E2M_EMailSendResponse>
     {
 
         protected override async ETTask Run(Scene scene, M2E_EMailSendRequest request, E2M_EMailSendResponse response, Action reply)

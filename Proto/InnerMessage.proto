@@ -457,7 +457,7 @@ message G2M_ActivityUpdate // IActorLocationMessage
 }
 
 //ResponseType E2M_EMailSendResponse
-message M2E_EMailSendRequest // IActorLocationRequest
+message M2E_EMailSendRequest // IActorRequest
 {
     int32 RpcId = 90;
     int64 ActorId = 93;
@@ -465,7 +465,7 @@ message M2E_EMailSendRequest // IActorLocationRequest
     MailInfo MailInfo = 3;
 }
 
-message E2M_EMailSendResponse // IActorLocationResponse
+message E2M_EMailSendResponse // IActorResponse
 {
     int32 RpcId = 90;
     int32 Error = 91;
@@ -473,7 +473,7 @@ message E2M_EMailSendResponse // IActorLocationResponse
 }
 
 //ResponseType E2M_EMailReceiveResponse
-message M2E_EMailReceiveRequest // IActorLocationRequest
+message M2E_EMailReceiveRequest // IActorRequest
 {
     int32 RpcId = 90;
     int64 ActorId = 93;
@@ -481,7 +481,7 @@ message M2E_EMailReceiveRequest // IActorLocationRequest
     int64 MailId = 2;
 }
 
-message E2M_EMailReceiveResponse // IActorLocationResponse
+message E2M_EMailReceiveResponse // IActorResponse
 {
     int32 RpcId = 90;
     int32 Error = 91;
@@ -963,4 +963,21 @@ message Center2M_BuChangeResponse // IActorResponse
 	int32 Error = 91;
 	string Message = 92;
 	repeated RechargeInfo RechargeInfos = 1;
+}
+
+//ResponseType E2M_GMEMailSendResponse
+message M2E_GMEMailSendRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    int64 UserId = 1;
+    string Itemlist = 2;
+    string Title = 3; 
+}
+
+message E2M_GMEMailSendResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
 }

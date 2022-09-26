@@ -5,7 +5,7 @@ namespace ET
 {
 
     [ActorMessageHandler]
-    public class M2E_EMailReceiveHandler : AMActorLocationRpcHandler<Scene, M2E_EMailReceiveRequest, E2M_EMailReceiveResponse>
+    public class M2E_EMailReceiveHandler : AMActorRpcHandler<Scene, M2E_EMailReceiveRequest, E2M_EMailReceiveResponse>
     {
 
         protected override async ETTask Run(Scene scene, M2E_EMailReceiveRequest request, E2M_EMailReceiveResponse response, Action reply)

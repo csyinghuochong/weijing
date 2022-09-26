@@ -970,7 +970,7 @@ namespace ET
 	[ResponseType(nameof(E2M_EMailSendResponse))]
 	[Message(InnerOpcode.M2E_EMailSendRequest)]
 	[ProtoContract]
-	public partial class M2E_EMailSendRequest: Object, IActorLocationRequest
+	public partial class M2E_EMailSendRequest: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -988,7 +988,7 @@ namespace ET
 
 	[Message(InnerOpcode.E2M_EMailSendResponse)]
 	[ProtoContract]
-	public partial class E2M_EMailSendResponse: Object, IActorLocationResponse
+	public partial class E2M_EMailSendResponse: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -1004,7 +1004,7 @@ namespace ET
 	[ResponseType(nameof(E2M_EMailReceiveResponse))]
 	[Message(InnerOpcode.M2E_EMailReceiveRequest)]
 	[ProtoContract]
-	public partial class M2E_EMailReceiveRequest: Object, IActorLocationRequest
+	public partial class M2E_EMailReceiveRequest: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -1022,7 +1022,7 @@ namespace ET
 
 	[Message(InnerOpcode.E2M_EMailReceiveResponse)]
 	[ProtoContract]
-	public partial class E2M_EMailReceiveResponse: Object, IActorLocationResponse
+	public partial class E2M_EMailReceiveResponse: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -2010,6 +2010,43 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<RechargeInfo> RechargeInfos = new List<RechargeInfo>();
+
+	}
+
+	[ResponseType(nameof(E2M_GMEMailSendResponse))]
+	[Message(InnerOpcode.M2E_GMEMailSendRequest)]
+	[ProtoContract]
+	public partial class M2E_GMEMailSendRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UserId { get; set; }
+
+		[ProtoMember(2)]
+		public string Itemlist { get; set; }
+
+		[ProtoMember(3)]
+		public string Title { get; set; }
+
+	}
+
+	[Message(InnerOpcode.E2M_GMEMailSendResponse)]
+	[ProtoContract]
+	public partial class E2M_GMEMailSendResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
 
 	}
 

@@ -121,5 +121,7 @@ namespace ET
 		 public const ushort Center2A_RechargeResponse = 20118;
 		 public const ushort M2Center_BuChangeRequest = 20119;
 		 public const ushort Center2M_BuChangeResponse = 20120;
+		 public const ushort M2E_GMEMailSendRequest = 20121;
+		 public const ushort E2M_GMEMailSendResponse = 20122;
 	}
 }
