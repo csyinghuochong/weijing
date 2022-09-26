@@ -123,7 +123,6 @@ namespace ET
 
             self.Button_WorldLv = rc.Get<GameObject>("Button_WorldLv");
             ButtonHelp.AddListenerEx(self.Button_WorldLv, () => { self.OnButton_WorldLv(); });
-            self.Button_WorldLv.SetActive(!GlobalHelp.IsBanHaoMode);
 
             self.MailHintTip = rc.Get<GameObject>("MailHintTip");
             ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
@@ -237,7 +236,6 @@ namespace ET
 
             GameObject Button_ZhanQu = rc.Get<GameObject>("Button_ZhanQu");
             ButtonHelp.AddListenerEx(Button_ZhanQu, () => { self.OnButton_ZhanQu(); });
-            Button_ZhanQu.SetActive(!GlobalHelp.IsBanHaoMode);
 
             self.LeftBottomBtns = rc.Get<GameObject>("LeftBottomBtns");
             GameObject ShrinkBtn = rc.Get<GameObject>("ShrinkBtn");
