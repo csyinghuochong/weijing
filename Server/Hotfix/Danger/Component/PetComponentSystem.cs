@@ -130,16 +130,15 @@ namespace ET
             string randomSkillID = petConfig.RandomSkillID;
             if (randomSkillID != "" && randomSkillID != "0")
             {
-                //先注释掉 配置问题
-                //string[] randomSkillList = randomSkillID.Split(';');
-                //for (int i = 0; i < randomSkillList.Length; i++)
-                //{
-                //    int skillID = int.Parse(randomSkillList[i]);
-                //    if (RandomHelper.RandFloat() <= 0.25f)
-                //    {
-                //        rolePetInfo.PetSkill.Add(skillID);
-                //    }
-                //}
+                string[] randomSkillList = randomSkillID.Split(';');
+                for (int i = 0; i < randomSkillList.Length; i++)
+                {
+                    int skillID = int.Parse(randomSkillList[i]);
+                    if (RandomHelper.RandFloat() <= 0.25f)
+                    {
+                        rolePetInfo.PetSkill.Add(skillID);
+                    }
+                }
             }
 
             return rolePetInfo;

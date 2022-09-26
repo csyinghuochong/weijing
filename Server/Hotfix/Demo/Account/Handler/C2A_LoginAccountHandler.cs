@@ -181,10 +181,10 @@ namespace ET
                     otherSession?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_OtherAccountLogin });                 //踢accout服的玩家下线
                     otherSession?.Disconnect().Coroutine();
                     session.DomainScene().GetComponent<AccountSessionsComponent>().Add(account.Id, session.InstanceId);
-                    session.AddComponent<AccountCheckOutTimeComponent, long>(account.Id);   //自己在登录服只能停留60秒
+                    session.AddComponent<AccountCheckOutTimeComponent, long>(account.Id);   //自己在登录服只能停留600秒
 
                     string Token = TimeHelper.ServerNow().ToString() + RandomHelper.RandomNumber(int.MinValue, int.MaxValue).ToString();
-                    session.DomainScene().GetComponent<TokenComponent>().Remove(account.Id);
+                    session.DomainScene().GetComponent<TokenComponent>().Remove(account.Id);    //Token也是保留十分钟
                     session.DomainScene().GetComponent<TokenComponent>().Add(account.Id, Token);
                    
                     long dbCacheId = DBHelper.GetDbCacheId(session.DomainZone());

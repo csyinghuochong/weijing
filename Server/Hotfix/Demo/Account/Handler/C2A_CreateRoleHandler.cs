@@ -41,6 +41,7 @@ namespace ET
 				await DBHelper.AddDataComponent<DBMailInfo>(zone, userId, DBHelper.DBMailInfo);
 
 				UserInfoComponent userInfoComponent = session.AddChildWithId<UserInfoComponent>(userId);
+				userInfoComponent.Account = newAccount.Account;
 				UserInfo userInfo = userInfoComponent.UserInfo;
 				userInfo.HuoYue = 0;
 				userInfo.UserId = userId;

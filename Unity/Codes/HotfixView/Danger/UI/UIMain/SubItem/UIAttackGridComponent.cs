@@ -232,11 +232,6 @@ namespace ET
             }
 
             int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), taretUnit);
-            //int errorCode = await MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, targetAngle, taretUnit.Id, 0);
-            //if (errorCode != ErrorCore.ERR_Success)
-            //{
-            //    return;
-            //}
             MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, targetAngle, taretUnit.Id, 0).Coroutine();
             self.LastSkillTime = Time.time;
             self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
