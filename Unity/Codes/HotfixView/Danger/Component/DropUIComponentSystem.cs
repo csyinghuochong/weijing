@@ -84,6 +84,7 @@ namespace ET
                 self.MyUnit.Position = parent.Position;
                 self.StartPoint = parent.Position;
                 self.EndPoint = new Vector3(dropinfo.X, parent.Position.y, dropinfo.Z);
+                Log.ILog.Debug($"drop: { self.EndPoint}");
                 self.GeneratePositions();
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.DropUITimer, self);
             }
@@ -183,6 +184,13 @@ namespace ET
 
         public static  void OnUpdate(this DropUIComponent self)
         {
+            if (self.PositionIndex >= self.Resolution)
+            {
+                self.MyUnit.Position = self.LinepointList[self.Resolution-1];
+                TimerComponent.Instance.Remove(ref self.Timer);
+                return;
+            }
+
             self.PositionIndex++;
             //快速下落处理
             if (self.PositionIndex >= (int)(self.Resolution * 0.4f))
@@ -193,11 +201,6 @@ namespace ET
             if (self.PositionIndex >= (int)(self.Resolution * 0.6f))
             {
                 self.PositionIndex++;
-            }
-            if (self.PositionIndex >= self.LinepointList.Length)
-            {
-                TimerComponent.Instance.Remove(ref self.Timer);
-                return;
             }
             self.MyUnit.Position = self.LinepointList[self.PositionIndex];
         }
