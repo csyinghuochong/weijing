@@ -183,6 +183,7 @@ namespace ET
 
         public static  void OnUpdate(this DropUIComponent self)
         {
+          
             self.PositionIndex++;
             //快速下落处理
             if (self.PositionIndex >= (int)(self.Resolution * 0.4f))
@@ -194,8 +195,9 @@ namespace ET
             {
                 self.PositionIndex++;
             }
-            if (self.PositionIndex >= self.LinepointList.Length)
+            if (self.PositionIndex >= self.Resolution)
             {
+                self.MyUnit.Position = self.LinepointList[self.Resolution - 1];
                 TimerComponent.Instance.Remove(ref self.Timer);
                 return;
             }

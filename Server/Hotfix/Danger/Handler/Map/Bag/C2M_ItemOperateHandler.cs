@@ -443,15 +443,15 @@ namespace ET
                     if (baginfoId == 0)        
                     {
                         //金币鉴定，扣除金币
-                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData($"1;{ComHelp.GetJianDingCoin(rolelv)}");
                         qulitylv = itemCof.UseLv.ToString();
+                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData($"1;{ComHelp.GetJianDingCoin(rolelv)}");
                     }
                     else
                     {
                         //道具鉴定，扣除道具
-                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData(baginfoId,1);
                         qulitylv = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, baginfoId).ItemPar;
                         qulitylv = string.IsNullOrEmpty(qulitylv) ? "0" : qulitylv;
+                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData(baginfoId,1);
                     }
                     if (ifSell)
                     {
