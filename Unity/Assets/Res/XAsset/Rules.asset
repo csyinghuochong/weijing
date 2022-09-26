@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 182
+  version: 183
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -11145,6 +11145,9 @@ MonoBehaviour:
   - name: 8cc7d1a1c8acafbb4b52d92a67e790a9.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_55.png
+  - name: b4e94c18f169b7f51a7c2530a1757902.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Button/Btn_81.Png
   - name: 8f14c42fb55b17a369cbc67422497327.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_187.png
