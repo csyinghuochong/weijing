@@ -174,7 +174,8 @@ namespace ET
                 {
                     self.PaiMaiList[i].GameObject.SetActive(false);
                 }
-                if (uI.PaiMaiItemInfo != null) { 
+                if (uI.PaiMaiItemInfo != null) 
+                { 
                     ItemConfig itemConfig = ItemConfigCategory.Instance.Get(uI.PaiMaiItemInfo.BagInfo.ItemID);
                     //显示   0表示通用
                     if (itemConfig.ItemType == typeid && subtypeid == 0)
@@ -187,7 +188,6 @@ namespace ET
                         self.PaiMaiList[i].GameObject.SetActive(itemConfig.ItemType == typeid && itemConfig.ItemSubType == subtypeid);
                     }
                 }
-
             }
         }
 
@@ -222,16 +222,23 @@ namespace ET
             P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse = (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
 
             var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiBuyItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
+            int number = 0;
             List<PaiMaiItemInfo> PaiMaiItemInfos = m2C_PaiMaiBuyResponse.PaiMaiItemInfos;
             for (int i = 0; i < PaiMaiItemInfos.Count; i++)
             {
-                UI uI = null;
-                if (i < self.PaiMaiList.Count)
+                PaiMaiItemInfo paiMaiItemInfo = PaiMaiItemInfos[i];
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
+                if(itemConfig.ItemSubType != 114 && itemConfig.ItemSubType != 121)
                 {
-                    uI = self.PaiMaiList[i];
+                    continue;
+                }
+
+                UI uI = null;
+                if (number < self.PaiMaiList.Count)
+                {
+                    uI = self.PaiMaiList[number];
                     uI.GameObject.SetActive(true);
                 }
                 else
@@ -240,14 +247,15 @@ namespace ET
                     UICommonHelper.SetParent(go, self.ItemListNode);
                     go.transform.localScale = Vector3.one * 1f;
                     uI = self.AddChild<UI, string, GameObject>( "BagItemUILIist_" + i, go);
-                    UIPaiMaiBuyItemComponent uIItemComponent = uI.AddComponent<UIPaiMaiBuyItemComponent>();
+                    uI.AddComponent<UIPaiMaiBuyItemComponent>();
                     self.PaiMaiList.Add(uI);
                 }
 
-                uI.GetComponent<UIPaiMaiBuyItemComponent>().OnUpdateItem(PaiMaiItemInfos[i]);
+                uI.GetComponent<UIPaiMaiBuyItemComponent>().OnUpdateItem(paiMaiItemInfo);
+                number++;
             }
             //刷新列表
-            for (int i = PaiMaiItemInfos.Count; i < self.PaiMaiList.Count; i++)
+            for (int i = number; i < self.PaiMaiList.Count; i++)
             {
                 self.PaiMaiList[i].GetComponent<UIPaiMaiBuyItemComponent>().OnUpdateItem(null);
                 self.PaiMaiList[i].GameObject.SetActive(false);

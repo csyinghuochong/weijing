@@ -147,24 +147,12 @@ namespace ET
                 return;
             }
 
-            List<int> caoLiaoShow = new List<int>() { 1, 2};
-            int number = 0;
             for (int i = 0; i < ids.Count; i++)
             {
-                PaiMaiSellConfig paiMaiSellConfig = PaiMaiSellConfigCategory.Instance.Get(ids[i]);
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiSellConfig.ItemID);
-                if (typeid == (int)PaiMaiTypeEnum.CaiLiao)
-                {
-                    if (!caoLiaoShow.Contains(itemConfig.ItemSubType))
-                    {
-                        continue;
-                    }
-                }
-
                 UI ui_1;
-                if (number < self.ItemUIList.Count)
+                if (i < self.ItemUIList.Count)
                 {
-                    ui_1 = self.ItemUIList[number];
+                    ui_1 = self.ItemUIList[i];
                     ui_1.GameObject.SetActive(true);
                 }
                 else
@@ -178,15 +166,14 @@ namespace ET
                 }
                 Log.Info("self.PaiMaiShopItemInfos = " + self.PaiMaiShopItemInfos.Count + "ids[i] = " + ids[i]);
                 ui_1.GetComponent<UIPaiMaiShopItemComponent>().OnUpdateData(ids[i],self.PaiMaiShopItemInfos[PaiMaiSellConfigCategory.Instance.Get(ids[i]).ItemID]);
-                number++;
             }
 
-            if (number > 0)
+            if (ids.Count > 0)
             {
                 self.ItemUIList[0].GetComponent<UIPaiMaiShopItemComponent>().ImageButton();
             }
 
-            for (int i = number; i < self.ItemUIList.Count; i++)
+            for (int  = ids.Count; i < self.ItemUIList.Count; i++)
             {
                 self.ItemUIList[i].GameObject.SetActive(false);
             }

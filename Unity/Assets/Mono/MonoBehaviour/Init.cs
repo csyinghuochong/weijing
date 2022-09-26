@@ -262,7 +262,7 @@ namespace ET
 			}
 #else
 			string add = fenxiangtype == "1" ? "WeChat" : "QQ";
-			this.OnGetUserInfoHandler($"sucess_{add}{PhoneNumberHelper.getRandomTel()}");
+			this.OnGetUserInfoHandler($"{PhoneNumberHelper.getRandomTel()}");
 #endif
 		}
 
@@ -278,7 +278,7 @@ namespace ET
 						return;
 					}
 					Log.ILog.Debug($"QQLogin:  {openid}");
-					this.OnGetUserInfoHandler($"sucess_{openid}");
+					this.OnGetUserInfoHandler($"{openid}");
 					break;
 			}
 		}
@@ -292,7 +292,7 @@ namespace ET
 			{
 				if (state == ResponseState.Success)
 				{
-					this.OnGetUserInfoHandler("sucess_" + result["openid"].ToString());
+					this.OnGetUserInfoHandler(result["openid"].ToString());
 				}
 				else
 				{
@@ -307,7 +307,7 @@ namespace ET
 					result = ssdk.GetAuthInfo(type);
 					string openId = result["unionID"].ToString();
 					Log.ILog.Debug($"openId: {openId}");
-					this.OnGetUserInfoHandler("sucess_" + openId);
+					this.OnGetUserInfoHandler(openId);
 				}
 				else
 				{

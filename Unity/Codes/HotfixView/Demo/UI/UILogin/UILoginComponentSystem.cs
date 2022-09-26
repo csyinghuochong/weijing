@@ -370,20 +370,13 @@ namespace ET
 		//QQ/WeiXin Login
 		public static void OnGetUserInfo(this UILoginComponent self, string openId)
 		{
-			string[] msg = openId.Split('_');
-
-			for (int i = 0; i < msg.Length; i++)
-			{
-				Log.ILog.Debug($"unit  msg[i] : {msg[i]}");
-			}
-
-			if (msg.Length< 2 || msg[0] == "fail")
+			if (openId == "fail" || string.IsNullOrEmpty(openId) )
 			{
 				GlobalHelp.Authorize(self.LoginType);
 				return;
 			}
 			//self.RequestLogin(msg[1], self.LoginType, self.LoginType).Coroutine();
-			self.Account.GetComponent<InputField>().text = msg[1];
+			self.Account.GetComponent<InputField>().text = openId;
 			self.Password.GetComponent<InputField>().text = self.LoginType;
 			self.ZhuCe.SetActive(false);
 			self.YiJianDengLu.SetActive(false);
