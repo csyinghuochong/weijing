@@ -959,6 +959,10 @@ namespace ET
             return (T)retval;
         }
 
+        public static bool IsShowPaiMai(int subType)
+        {
+            return subType == 114 || subType == 121;
+        }
 
         /// <summary>
         /// 根据出生日期，计算精确的年龄

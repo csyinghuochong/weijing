@@ -42,7 +42,7 @@ namespace ET
             gemNumber = itemQuality >= 4 ? 4 : gemNumber;
             for (int i = 0; i < gemNumber; i++)
             {
-                gemholeinfo += RandomHelper.RandomNumber(101, 104).ToString();
+                gemholeinfo += RandomHelper.RandomNumber(101, 105).ToString();
                 gemholeinfo += "_";
             }
             return gemholeinfo.Length > 1 ? gemholeinfo.Substring(0, gemholeinfo.Length - 1) : gemholeinfo;

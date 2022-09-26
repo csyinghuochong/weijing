@@ -230,7 +230,7 @@ namespace ET
             {
                 PaiMaiItemInfo paiMaiItemInfo = PaiMaiItemInfos[i];
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
-                if(itemConfig.ItemSubType != 114 && itemConfig.ItemSubType != 121)
+                if (!ComHelp.IsShowPaiMai(itemConfig.ItemSubType))
                 {
                     continue;
                 }

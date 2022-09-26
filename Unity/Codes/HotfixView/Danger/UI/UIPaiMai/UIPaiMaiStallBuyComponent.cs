@@ -66,8 +66,7 @@ namespace ET
         public static async ETTask OnInitUI(this UIPaiMaiStallBuyComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             GameObject go = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(go, self.ItemShowSet);
             UI uiItem = self.AddChild<UI, string, GameObject>("XiLianItem", go);

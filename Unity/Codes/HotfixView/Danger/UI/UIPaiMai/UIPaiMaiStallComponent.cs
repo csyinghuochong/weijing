@@ -113,15 +113,22 @@ namespace ET
             }
 
             var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiStallItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
+            int number = 0;
             for (int i = 0; i < m2C_PaiMaiBuyResponse.PaiMaiItemInfos.Count; i++)
             {
-                UI uI = null;
-                if (i < self.StallItemUILIist.Count)
+                PaiMaiItemInfo paiMaiItemInfo = m2C_PaiMaiBuyResponse.PaiMaiItemInfos[i];
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
+                if (!ComHelp.IsShowPaiMai(itemConfig.ItemSubType))
                 {
-                    uI = self.StallItemUILIist[i];
+                    continue;
+                }
+
+                UI uI = null;
+                if (number < self.StallItemUILIist.Count)
+                {
+                    uI = self.StallItemUILIist[number];
                     uI.GameObject.SetActive(true);
                 }
                 else
@@ -134,9 +141,10 @@ namespace ET
                     uIItemComponent.SetClickHandler((PaiMaiItemInfo bagInfo) => { self.OnSelectStallItem(bagInfo); });
                     self.StallItemUILIist.Add(uI);
                 }
-                uI.GetComponent<UIPaiMaiStallItemComponent>().OnUpdateUI(m2C_PaiMaiBuyResponse.PaiMaiItemInfos[i]).Coroutine();
+                uI.GetComponent<UIPaiMaiStallItemComponent>().OnUpdateUI(paiMaiItemInfo).Coroutine();
+                number++;
             }
-            for (int i = m2C_PaiMaiBuyResponse.PaiMaiItemInfos.Count; i < self.StallItemUILIist.Count; i++)
+            for (int i = number; i < self.StallItemUILIist.Count; i++)
             {
                 self.StallItemUILIist[i].GameObject.SetActive(false);
             }
