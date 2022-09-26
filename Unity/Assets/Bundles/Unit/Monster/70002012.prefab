@@ -193,7 +193,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8047369133595439816}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_Children:
   - {fileID: 8047369133931754537}
@@ -263,7 +263,7 @@ Transform:
   m_GameObject: {fileID: 8047369133596270602}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.006996155, y: 0.005, z: 0.059001923}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_Children: []
   m_Father: {fileID: 8047369133595439817}
   m_RootOrder: 1
@@ -468,7 +468,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8047369133931754537}
-  - component: {fileID: 8047369133931754538}
   m_Layer: 0
   m_Name: ShiTouGuai
   m_TagString: Untagged
@@ -492,26 +491,6 @@ Transform:
   m_Father: {fileID: 8047369133595439817}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &8047369133931754538
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 9517276, guid: 206f003c8584ca04ea18d5531bb9ad46,
-    type: 2}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8047369133931754536}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 603db1476e0321d4f805d06706ce2822, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8047369133964427041
 GameObject:
   m_ObjectHideFlags: 0
