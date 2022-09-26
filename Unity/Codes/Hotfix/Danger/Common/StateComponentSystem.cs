@@ -15,6 +15,7 @@ namespace ET
         public static void Awake(this StateComponent self)
         {
             self.CurrentStateType = StateTypeEnum.None;
+            self.RigidityEndTime = 0;
         }
 
         public static void Reset(this StateComponent self)
@@ -41,12 +42,16 @@ namespace ET
         }
 
         public static bool CanMove(this StateComponent self)
-        {
+        { 
             //判断当前是否是眩晕状态
             if (self.StateTypeGet(StateTypeEnum.SkillRigidity)
                 || self.StateTypeGet(StateTypeEnum.Dizziness)
                 || self.StateTypeGet(StateTypeEnum.ChuanSong)
                 || self.StateTypeGet(StateTypeEnum.JiTui))
+            {
+                return false;
+            }
+            if (TimeHelper.ServerNow() < self.RigidityEndTime)
             {
                 return false;
             }
@@ -139,7 +144,7 @@ namespace ET
 
 #if !SERVER
         //移动或者释放技能
-        public static void BeginOperation(this StateComponent self)
+        public static void BeginMoveOrSkill(this StateComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))

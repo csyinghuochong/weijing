@@ -145,10 +145,6 @@ namespace ET
         public static void OnUseSkill(this SkillManagerComponent self, M2C_UnitUseSkill skillcmd )
         {
             Unit from = self.GetParent<Unit>();
-            if (from.GetComponent<UnitInfoComponent>().Type == UnitType.Player)
-            {
-                Log.ILog.Debug($"OnUseSkill {TimeHelper.ClientNow()}  {skillcmd.SkillID}");
-            }
             //野怪技能指示器
             for (int i = 0; i < skillcmd.SkillInfos.Count; i++)
             {

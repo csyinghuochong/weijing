@@ -135,17 +135,6 @@ namespace ET
             }
         }
 
-        public static async ETTask RemoveSkillRigidity(Unit unit, long time)
-        {
-            long instanceId = unit.InstanceId;
-            await TimerComponent.Instance.WaitAsync(time);
-            if (instanceId != unit.InstanceId)
-            {
-                return;
-            }
-            unit.GetComponent<StateComponent>()?.StateTypeRemove(StateTypeEnum.SkillRigidity);
-        }
-
         /// <summary>
         /// 
         /// </summary>
@@ -210,10 +199,10 @@ namespace ET
                     SendUpdateState(zoneScene, 1, (int)StateTypeEnum.Singing, SkillCmd.SkillID.ToString());
                     return ErrorCore.ERR_Success;
                 }
-                unit.GetComponent<StateComponent>().BeginOperation();
+                unit.GetComponent<StateComponent>().BeginMoveOrSkill();
                 unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.SkillRigidity);
                 M2C_SkillCmd m2C_SkillCmd = await zoneScene.GetComponent<SessionComponent>().Session.Call(SkillCmd) as M2C_SkillCmd;
-
+                unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.SkillRigidity);
                 if (m2C_SkillCmd.Error != 0)
                 {
                     unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.SkillRigidity);
@@ -221,17 +210,12 @@ namespace ET
                 else
                 {
                     unit.GetComponent<SkillManagerComponent>().AddSkillCD(skillid, skillConfig, m2C_SkillCmd.CDEndTime);
-                    RemoveSkillRigidity(unit, (long)(skillConfig.SkillRigidity * 1000)).Coroutine();
+                    unit.GetComponent<StateComponent>().RigidityEndTime = (long)(skillConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
                 }
                 return m2C_SkillCmd.Error;
             }
             catch (Exception e)
             {
-                Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-                if (myUnit != null)
-                {
-                    myUnit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.SkillRigidity);
-                }
                 Log.Error(e);
                 return ErrorCore.ERR_NetWorkError;
             }
