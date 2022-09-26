@@ -95,7 +95,7 @@ namespace ET
                     }
                 }
             }
-            FubenHelp.CreateMonsterList(scene, timingMonster, FubenDifficulty.Normal).Coroutine();
+            FubenHelp.CreateMonsterList(scene, timingMonster, FubenDifficulty.Normal);
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.RefreshMonsterTimer, self);
         }
 

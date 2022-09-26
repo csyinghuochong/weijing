@@ -76,7 +76,7 @@ namespace ET
             Scene scene = self.DomainScene();
             TowerConfig towerConfig = TowerConfigCategory.Instance.Get(self.TowerId);
             self.WaveTime = towerConfig.NextTime * 1000;
-            FubenHelp.CreateMonsterList(scene, towerConfig.MonsterSet, FubenDifficulty.Tower).Coroutine();
+            FubenHelp.CreateMonsterList(scene, towerConfig.MonsterSet, FubenDifficulty.Tower);
 
             TimerComponent.Instance.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewOnceTimer( TimeHelper.ServerNow() + self.WaveTime, TimerType.TowerTimer, self );

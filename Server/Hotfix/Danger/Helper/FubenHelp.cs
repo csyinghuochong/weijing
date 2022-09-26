@@ -25,7 +25,7 @@ namespace ET
 			return false;
 		}
 
-		public static async ETTask CreateMonsterList(Scene scene, string createMonster, int fubenDifficulty)
+		public static  void CreateMonsterList(Scene scene, string createMonster, int fubenDifficulty)
 		{
 			long instanceId = scene.InstanceId;
 			string[] monsters = createMonster.Split('@');
@@ -49,7 +49,6 @@ namespace ET
 				{
 					for (int c = 0; c < int.Parse(mcount[0]); c++)
 					{
-						await TimerComponent.Instance.WaitAsync(100);
 						if (instanceId != scene.InstanceId)
 						{
 							return;
@@ -79,7 +78,6 @@ namespace ET
 					int cmcount = int.Parse(mcount[0]);
 					for (int c = 0; c < cmcount; c++)
 					{
-						await TimerComponent.Instance.WaitAsync(100);
 						if (instanceId != scene.InstanceId)
 						{
 							return;
@@ -105,8 +103,6 @@ namespace ET
 					int cmcount = int.Parse(mcount[0]);
 					for (int c = 0; c < cmcount; c++)
 					{
-						await TimerComponent.Instance.WaitAsync(1);
-
 						float range = float.Parse(mcount[1]);
 						Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
 						Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));

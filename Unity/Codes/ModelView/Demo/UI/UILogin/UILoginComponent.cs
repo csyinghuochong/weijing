@@ -51,7 +51,7 @@ namespace ET
 		public AccountInfoComponent PlayerComponent;
 		public UI UIRotateComponent;
 
-		public int BigVersion = 5;
+		public int BigVersion = 6;
 		public string DownloadUrl = "http://39.96.194.143/weijing1/apk/beta/weijing.apk";
 
 		public string LoginType;

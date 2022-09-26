@@ -154,7 +154,7 @@ namespace ET
 					if (request.SceneType == (int)SceneTypeEnum.TeamDungeon && scene.GetComponent<UnitComponent>().Children.Values.Count == 1)
 					{
 						Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
-						FubenHelp.CreateMonsterList(scene, sceneConfig.CreateMonster, FubenDifficulty.Teamdungeon).Coroutine();
+						FubenHelp.CreateMonsterList(scene, sceneConfig.CreateMonster, FubenDifficulty.Teamdungeon);
 					}
 					fightId = unit.GetComponent<PetComponent>().GetFightPet();
 					if (fightId != null)

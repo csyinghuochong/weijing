@@ -363,7 +363,7 @@ namespace ET
             //开始刷怪
             if (!pass)
             {
-                FubenHelp.CreateMonsterList(self.DomainScene(), chapterSonConfig.CreateMonster, self.FubenDifficulty).Coroutine();
+                FubenHelp.CreateMonsterList(self.DomainScene(), chapterSonConfig.CreateMonster, self.FubenDifficulty);
             }
 
             //生成npc

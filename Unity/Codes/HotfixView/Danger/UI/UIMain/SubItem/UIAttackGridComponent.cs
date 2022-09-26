@@ -46,7 +46,7 @@ namespace ET
         public ETCancellationToken CancellationToken;
         public readonly C2M_SkillCmd c2mSkillCmd = new C2M_SkillCmd();
 
-        public long CDTime = 500;
+        public long CDTime = 800;
         public long CDEndTime;
 
         public long Timer;
@@ -226,11 +226,13 @@ namespace ET
                 self.ComboSkillId = SkillConfigCategory.Instance.Get(self.ComboSkillId).ComboSkillID;
             }
             int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
-            if ((EquipType == (int)ItemEquipType.Sword || EquipType == (int)ItemEquipType.Common))
+            self.CDTime = EquipType == (int)ItemEquipType.Knife ? 1000 : 800;
+            if ((EquipType == (int)ItemEquipType.Sword
+                || EquipType == (int)ItemEquipType.Common))
             {
                 self.ComboSkillId = self.RandomGetSkill();
             }
-
+            
             int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), taretUnit);
             MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, targetAngle, taretUnit.Id, 0).Coroutine();
             self.LastSkillTime = Time.time;
@@ -245,9 +247,6 @@ namespace ET
             {
                 return;
             }
-
-            self.CancellationToken?.Cancel();
-            self.CancellationToken = new ETCancellationToken();
             self.AutoAttack_1(unit, taretUnit, self.CancellationToken).Coroutine();
         }
 
