@@ -16,6 +16,11 @@ namespace ET
                 reply();
                 return;
             }
+            if (request.PaiMaiItemInfo == null || request.PaiMaiItemInfo.BagInfo == null)
+            {
+                reply();
+                return;
+            }
 
             PaiMaiItemInfo paiMaiItemInfo = request.PaiMaiItemInfo;
             long needGold = paiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;

@@ -67,8 +67,6 @@ namespace ET
 			await NetHelper.RequestZhanQuInfo(self.ZoneScene());
 			self.UIPageButton.ClickEnabled = true;
 			self.UIPageButton.OnSelectIndex(0);
-
-			await ETTask.CompletedTask;
 		}
 
 		public static void OnClickPageButton(this UIZhanQuComponent self, int page)
