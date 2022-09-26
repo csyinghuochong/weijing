@@ -84,7 +84,6 @@ namespace ET
                 self.MyUnit.Position = parent.Position;
                 self.StartPoint = parent.Position;
                 self.EndPoint = new Vector3(dropinfo.X, parent.Position.y, dropinfo.Z);
-                Log.ILog.Debug($"drop: { self.EndPoint}");
                 self.GeneratePositions();
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.DropUITimer, self);
             }
