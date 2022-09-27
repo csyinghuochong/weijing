@@ -10,6 +10,16 @@ namespace ET
         }
     }
 
+    [ObjectSystem]
+    public class StateComponentDeserializeSystem : DeserializeSystem<StateComponent>
+    {
+        public override void Deserialize(StateComponent self)
+        {
+            self.CurrentStateType = StateTypeEnum.None;
+            self.RigidityEndTime = 0;
+        }
+    }
+
     public static class StateComponentSystem
     {
         public static void Awake(this StateComponent self)
