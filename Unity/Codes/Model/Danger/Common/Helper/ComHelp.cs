@@ -784,6 +784,7 @@ namespace ET
                     {
                         //表示浮点数
                         hintProVlaue = ReturnEquipRamdomValue_float(propertyValueMin, propertyValueMax);
+                        Log.Info("propertyValueMin = " + propertyValueMin + "propertyValueMax = " + propertyValueMax + " hintProVlaue = " + hintProVlaue);
                         if (hintProVlaue <= 0)
                         {
                             hintProVlaue = propertyValueMin;

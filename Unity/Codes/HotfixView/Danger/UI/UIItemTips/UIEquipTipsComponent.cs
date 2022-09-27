@@ -533,6 +533,7 @@ namespace ET
 
                     //暴击
                     case "30":
+                        Log.Info("propretyValue = " + propretyValue);
                         langStr = GameSettingLanguge.LoadLocalization("暴击概率提升");
                         textShow = langStr + " ：" + float.Parse(propretyValue) * 100 + "%";
                         break;

@@ -169,13 +169,20 @@ namespace ET
             {
                 return 2;
             }
+            /*
+            //增加
+            if (key >= 200001 && key < 300000) {
+                return 1;
+            }
+            */
             if (key >= 1001 && key < 3000 || key >= 200001 && key < 300000)
+            //if (key >= 1001 && key < 3000)
             {
                 return 2;
             }
             else
             {
-                if (key >= 10000)
+                if (key >= 10000 && key < 2000)
                 {
                     if (key.ToString().Substring(key.ToString().Length - 1, 1) == "2")
                     {
