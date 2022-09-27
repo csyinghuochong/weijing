@@ -14,6 +14,10 @@ namespace ET
             {
                 self.OnApplicationFocusHandler(value);
             };
+            GameObject.Find("Global").GetComponent<Init>().OnApplicationQuitHandler = () =>
+            {
+                self.OnApplicationQuitHandler().Coroutine();
+            };
         }
     }
 
@@ -28,6 +32,19 @@ namespace ET
 
     public static class RelinkComponentSystem
     {
+        public static async ETTask OnApplicationQuitHandler(this RelinkComponent self)
+        {
+            SessionComponent sessionComponent = self.DomainScene().GetComponent<SessionComponent>();
+            if (sessionComponent == null)
+            {
+                return;
+            }
+            if (sessionComponent.Session == null || sessionComponent.Session.IsDisposed)
+            {
+                return;
+            }
+            G2C_ExitGameGate response = await sessionComponent.Session.Call(new C2G_ExitGameGate()) as G2C_ExitGameGate;
+        }
 
         public static void OnApplicationFocusHandler(this RelinkComponent self, bool value)
         {

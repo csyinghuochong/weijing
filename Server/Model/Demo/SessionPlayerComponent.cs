@@ -6,6 +6,6 @@
 		public long PlayerInstanceId;
 		public long AccountId;
 
-		public int DisconnectType = 0;	//正常 1 重登  2顶号
+		public bool isLoginAgain = false;
 	}
 }

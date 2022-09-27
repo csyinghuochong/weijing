@@ -9,15 +9,14 @@ namespace ET
 	{
 		protected override async ETTask Run(Scene scene, M2M_UnitTransferRequest request, M2M_UnitTransferResponse response, Action reply)
 		{
-			UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
-			Unit unit = request.Unit;
 			scene.GetComponent<MapComponent>().SetMapInfo((int)request.SceneType, request.ChapterId, request.SonId);
-			if (unitComponent.Get(unit.Id)!=null)
+			UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
+			if (unitComponent.Get(request.Unit.Id)!=null)
 			{
-				Log.ILog.Debug($"unitComponent.Get(unit.Id)!=null:  {unit.Id}");
-				unitComponent.Remove(unit.Id);
+				Log.Debug($"M2M_UnitTransfer   unitComponent.Get(unit.Id)!=null:  {request.Unit.Id}");
+				unitComponent.Remove(request.Unit.Id);
 			}
-
+			Unit unit = request.Unit;
 			unitComponent.AddChild(unit);
 			unitComponent.Add(unit);
 			foreach (Entity entity in request.Entitys)

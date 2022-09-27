@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 185
+  version: 186
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -2033,7 +2033,7 @@ MonoBehaviour:
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/14020001.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
-    path: Assets/Bundles/Icon/ItemIcon/14020002.PNG
+    path: Assets/Bundles/Icon/ItemIcon/14020002.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/14020003.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
@@ -2495,7 +2495,7 @@ MonoBehaviour:
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/15403002.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
-    path: Assets/Bundles/Icon/ItemIcon/15403003.PNG
+    path: Assets/Bundles/Icon/ItemIcon/15403003.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/15403004.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
@@ -8425,7 +8425,7 @@ MonoBehaviour:
     - Assets/Bundles/Icon/ItemIcon/14010011.png
     - Assets/Bundles/Icon/ItemIcon/14010012.png
     - Assets/Bundles/Icon/ItemIcon/14020001.png
-    - Assets/Bundles/Icon/ItemIcon/14020002.PNG
+    - Assets/Bundles/Icon/ItemIcon/14020002.png
     - Assets/Bundles/Icon/ItemIcon/14020003.png
     - Assets/Bundles/Icon/ItemIcon/14020004.png
     - Assets/Bundles/Icon/ItemIcon/14020005.png
@@ -8656,7 +8656,7 @@ MonoBehaviour:
     - Assets/Bundles/Icon/ItemIcon/15402006.png
     - Assets/Bundles/Icon/ItemIcon/15403001.png
     - Assets/Bundles/Icon/ItemIcon/15403002.png
-    - Assets/Bundles/Icon/ItemIcon/15403003.PNG
+    - Assets/Bundles/Icon/ItemIcon/15403003.png
     - Assets/Bundles/Icon/ItemIcon/15403004.png
     - Assets/Bundles/Icon/ItemIcon/15403005.png
     - Assets/Bundles/Icon/ItemIcon/15403006.png

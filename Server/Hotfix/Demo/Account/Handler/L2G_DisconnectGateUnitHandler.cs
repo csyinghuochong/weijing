@@ -23,7 +23,7 @@ namespace ET
                 if (gateSession != null && !gateSession.IsDisposed)
                 {
                     Log.Info($"ErrorCore.ERR_OtherAccountLogin2 {accountId}");
-                    gateSession.GetComponent<SessionPlayerComponent>().DisconnectType = ErrorCore.ERR_OtherAccountLogin;
+                    gateSession.GetComponent<SessionPlayerComponent>().isLoginAgain = true;
                     gateSession.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_OtherAccountLogin }); //客户端断线
                     gateSession?.Disconnect().Coroutine();  //释放会调用SessionPlayerComponentDestory
                 }

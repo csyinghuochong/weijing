@@ -96,7 +96,7 @@ namespace ET
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
             {
                 mainUnit = scene.GetComponent<LocalDungeonComponent>().MainUnit;
-                revetime = mainUnit.GetComponent<UserInfoComponent>().GetReviveTime(monsterConfig.Id);
+                revetime = mainUnit.GetComponent<UserInfoComponent>().GetReviveTime(mainUnit.Id,  monsterConfig.Id);
             }
             if (mainUnit!=null && TimeHelper.ServerNow() < revetime)
             {

@@ -9,7 +9,7 @@ namespace ET
     {
         public override void Awake(UILobbyComponent self)
         {
-            self.LoginErroCode = ErrorCore.ERR_Success;
+            self.LoginErroCode = -1;
             self.SeletRoleInfo = null;
             self.createRoleListUI = new List<UI>();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
@@ -139,9 +139,8 @@ namespace ET
         //选择角色进入游戏
         public static async ETTask EnterGame(this UILobbyComponent self)
         {
-            if (self.LoginErroCode != ErrorCore.ERR_Success)
+            if (self.LoginErroCode == ErrorCore.ERR_Success)
             {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请重新登录!"));
                 return;
             }
             if (self.PlayerComponent.CreateRoleList.Count == 0)
@@ -154,7 +153,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("进入角色为空!"));
                 return;
             }
-            
+            self.LoginErroCode = ErrorCore.ERR_Success;
             PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastUserID, self.SeletRoleInfo.UserID.ToString());
             self.PlayerComponent.CurrentRoleId = self.SeletRoleInfo.UserID;
             self.LoginErroCode = await LoginHelper.GetRealmKey(self.ZoneScene());

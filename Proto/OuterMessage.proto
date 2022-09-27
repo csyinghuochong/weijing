@@ -3894,3 +3894,21 @@ message M2C_ItemXiLianTransferResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+//ResponseType G2C_ExitGameGate
+message C2G_ExitGameGate // IRequest
+{
+	int32 RpcId = 90;
+	string Key = 1;
+	int64 RoleId = 2;
+	int64 Account = 3;
+}
+
+message G2C_ExitGameGate // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	// 自己的unit id
+	int64 PlayerId = 1;
+}

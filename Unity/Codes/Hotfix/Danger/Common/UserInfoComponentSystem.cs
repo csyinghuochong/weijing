@@ -345,8 +345,13 @@ namespace ET
             self.UserInfo.MonsterRevives.Add(new KeyValuePair() { KeyId = monsterId, Value = reviveTime.ToString() });
         }
 
-        public static long GetReviveTime(this UserInfoComponent self, int monsterId)
+        public static long GetReviveTime(this UserInfoComponent self, long unitid, int monsterId)
         {
+            if (self == null)
+            {
+                Log.Debug($"UserInfoComponent == null {unitid}");
+                return 0;
+            }
             for (int i = 0; i < self.UserInfo.MonsterRevives.Count; i++)
             {
                 if (self.UserInfo.MonsterRevives[i].KeyId == monsterId)

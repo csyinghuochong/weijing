@@ -97,6 +97,13 @@ namespace ET
 
         public static async ETTask OnOffLine(this DBSaveComponent self)
         {
+            Unit unit = self.GetParent<Unit>();
+            string offLineInfo = $"{unit.DomainZone()}区： " +
+                $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
+                $"{  TimeHelper.DateTimeNow().ToString()}  {unit.GetComponent<UserInfoComponent>().RemoteAddress} 离线";
+            ComHelp.LoginInfo(offLineInfo);
+            Log.Debug(offLineInfo);
+
             DBHelper.UpdateCacheDB(self.GetParent<Unit>()).Coroutine();
             
             long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Chat)).InstanceId;
@@ -113,9 +120,11 @@ namespace ET
         public static void OnLogin(this DBSaveComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-            ComHelp.LoginInfo($"{unit.DomainZone()}区： " +
+            string offLineInfo = $"{unit.DomainZone()}区： " +
                 $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
-                $"{  TimeHelper.DateTimeNow().ToString()}  {unit.GetComponent<UserInfoComponent>().RemoteAddress} 登录");
+                $"{  TimeHelper.DateTimeNow().ToString()}  {unit.GetComponent<UserInfoComponent>().RemoteAddress} 登录";
+            ComHelp.LoginInfo(offLineInfo);
+            Log.Debug(offLineInfo);
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsLong(NumericType.LastGameTime) == 0)
@@ -127,10 +136,11 @@ namespace ET
         public static async ETTask OnDisconnect(this DBSaveComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-
-            ComHelp.LoginInfo($"{unit.DomainZone()}区： " +
+            string offLineInfo = $"{unit.DomainZone()}区： " +
              $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
-             $"{  TimeHelper.DateTimeNow().ToString()}  {unit.GetComponent<UserInfoComponent>().RemoteAddress} 离线");
+             $"{  TimeHelper.DateTimeNow().ToString()}  {unit.GetComponent<UserInfoComponent>().RemoteAddress} 退出";
+            ComHelp.LoginInfo(offLineInfo);
+            Log.Debug(offLineInfo);
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false); 

@@ -477,6 +477,9 @@ namespace ET
 		[ProtoMember(4)]
 		public bool Relink { get; set; }
 
+		[ProtoMember(5)]
+		public string Account { get; set; }
+
 	}
 
 	[Message(OuterOpcode.G2C_EnterGame)]
@@ -8126,6 +8129,44 @@ namespace ET
 
 		[ProtoMember(92)]
 		public int Error { get; set; }
+
+	}
+
+	[ResponseType(nameof(G2C_ExitGameGate))]
+	[Message(OuterOpcode.C2G_ExitGameGate)]
+	[ProtoContract]
+	public partial class C2G_ExitGameGate: Object, IRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string Key { get; set; }
+
+		[ProtoMember(2)]
+		public long RoleId { get; set; }
+
+		[ProtoMember(3)]
+		public long Account { get; set; }
+
+	}
+
+	[Message(OuterOpcode.G2C_ExitGameGate)]
+	[ProtoContract]
+	public partial class G2C_ExitGameGate: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+// 自己的unit id
+		[ProtoMember(1)]
+		public long PlayerId { get; set; }
 
 	}
 

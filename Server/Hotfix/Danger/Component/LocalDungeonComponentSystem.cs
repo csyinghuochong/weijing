@@ -69,21 +69,35 @@ namespace ET
 
         public static void OnTimer(this LocalDungeonComponent self)
         {
-            long time = TimeHelper.ServerNow();
-            for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
+            if (self.MainUnit.InstanceId == 0 || (self.MainUnit.IsDisposed))
             {
-                RefreshMonster refreshMonster = self.RefreshMonsters[i];
-                if (time < refreshMonster.RefreshTime)
-                {
-                    continue;
-                }
-                self.CreateMonsters(refreshMonster);
-                self.RefreshMonsters.RemoveAt(i);
+                Log.Debug($"LocalDungeonComponent == null  {self.MainUnit.Id}");
+                TimerComponent.Instance?.Remove(ref self.Timer);
+                return;
             }
+            try
+            {
+                long time = TimeHelper.ServerNow();
+                for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
+                {
+                    RefreshMonster refreshMonster = self.RefreshMonsters[i];
+                    if (time < refreshMonster.RefreshTime)
+                    {
+                        continue;
+                    }
+                    self.CreateMonsters(refreshMonster);
+                    self.RefreshMonsters.RemoveAt(i);
+                }
 
-            if (self.RefreshMonsters.Count == 0)
+                if (self.RefreshMonsters.Count == 0)
+                {
+                    TimerComponent.Instance?.Remove(ref self.Timer);
+                }
+            }
+            catch (Exception ex)
             {
                 TimerComponent.Instance?.Remove(ref self.Timer);
+                Log.Debug($"LocalDungeonComponent == null  {ex.ToString()}");
             }
         }
 

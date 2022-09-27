@@ -40,7 +40,7 @@ namespace ET
 			{
 				if (instanceId != session.InstanceId)	//防止多个客户端同时请求
 				{
-					Log.Debug($"C2G_LoginGameGate 多个客户端同时请求{request.Account}{session.RemoteAddress}");
+					Log.Debug($"C2G_LoginGameGate 多个客户端同时请求  {request.Account}    {session.RemoteAddress}");
 					return;
 				}
 
@@ -48,7 +48,6 @@ namespace ET
 				StartSceneConfig loginCenterConfig = StartSceneConfigCategory.Instance.LoginCenterConfig;
 				L2G_AddLoginRecord l2ARoleLogin = (L2G_AddLoginRecord)await MessageHelper.CallActor(loginCenterConfig.InstanceId,
 																				new G2L_AddLoginRecord() { AccountId = request.Account, ServerId = scene.Zone });
-
 				if (l2ARoleLogin.Error != ErrorCode.ERR_Success)
 				{
 					response.Error = l2ARoleLogin.Error;

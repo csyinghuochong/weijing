@@ -16,6 +16,8 @@
 
 		public long UnitId { get; set; }		//unitid  ==  userid
 
+		public string Name { get; set; }
+
 		public PlayerState PlayerState { get; set; }
 
 		public long DBCacheId { get; set; }

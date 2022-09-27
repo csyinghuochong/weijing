@@ -8,10 +8,13 @@ namespace ET
         {
             if (request.GateSessionActorId != 0)
             {
+
                 await unit.GetComponent<DBSaveComponent>().OnRelogin(request.GateSessionActorId);
             }
             else
             {
+
+
                 await  unit.GetComponent<DBSaveComponent>().OnDisconnect();
             }
             reply();
