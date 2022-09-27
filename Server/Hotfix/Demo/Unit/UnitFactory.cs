@@ -254,6 +254,7 @@ namespace ET
                 return;
             }
             if (unitInfoComponent.GetMonsterType() != (int)MonsterTypeEnum.Boss
+                && unitInfoComponent.GetMonsterType() != (int)MonsterTypeEnum.SceneItem
                 && main.GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0)
             {
                 return;
