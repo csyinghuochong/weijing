@@ -38,7 +38,7 @@ namespace ET
                     string[] attributeItem = attributes[a].Split(';');
                     int hideId = int.Parse(attributeItem[0]);
                     long hide_value = 0;
-                    if (NumericHelp.GetNumericValueType(hideId) == 1)
+                    if (NumericHelp.GetNumericValueType(hideId) == 2)
                     {
                         hide_value = (long)(float.Parse(attributeItem[1]) * 10000);
                     }

@@ -155,7 +155,7 @@ namespace ET
 
 
         /// <summary>
-        /// 2 标识整数  1表示浮点数
+        /// 1 标识整数  2表示浮点数
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
@@ -163,19 +163,19 @@ namespace ET
         {
             if (key == 1009)
             {
-                return 1;
+                return 2;
             }
             if (key == 3001)
             {
-                return 2;
-            }
-            /*
-            //增加
-            if (key >= 200001 && key < 300000) {
                 return 1;
             }
-            */
-            if (key >= 1001 && key < 3000 || key >= 200001 && key < 300000)
+            
+            //增加
+            if (key >= 200001 && key < 300000) {
+                return 2;
+            }
+            
+            if (key >= 2001 && key < 3000 || key >= 200001 && key < 300000)
             //if (key >= 1001 && key < 3000)
             {
                 return 2;

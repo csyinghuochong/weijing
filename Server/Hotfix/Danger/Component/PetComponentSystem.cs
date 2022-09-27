@@ -381,7 +381,7 @@ namespace ET
                     {
                         string[] attriItem = attriList[a].Split(';');
                         int typeId = int.Parse(attriItem[0]);
-                        Function_Fight.AddUpdateProDicList(typeId, NumericHelp.GetNumericValueType(typeId) == 1 ? (long)(10000 * float.Parse(attriItem[1])) : long.Parse(attriItem[1]), attriDic);
+                        Function_Fight.AddUpdateProDicList(typeId, NumericHelp.GetNumericValueType(typeId) == 2 ? (long)(10000 * float.Parse(attriItem[1])) : long.Parse(attriItem[1]), attriDic);
                     }
                     catch(Exception ex)
                     {

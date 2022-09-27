@@ -66,13 +66,13 @@ namespace ET
                         ValueType = NumericHelp.GetNumericValueType(NowBuffParameterValueType);
 
                         //取整数
-                        if (ValueType == 2)
+                        if (ValueType == 1)
                         {
                             NowBuffValue = heroCom.GetAsLong(NowBuffParameterValueType) * NowBuffParameterValue;
                         }
 
                         //取浮点数
-                        if (ValueType == 1)
+                        if (ValueType == 2)
                         {
                             NowBuffValue = heroCom.GetAsFloat(NowBuffParameterValueType) * NowBuffParameterValue;
                         }
