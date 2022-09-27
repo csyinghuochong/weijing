@@ -44,7 +44,7 @@ namespace ET
                     //如果查询数据不为空,表示当前账号已经被注册
                     if (result.Count > 0)
                     {
-                        Log.Info($"账号已注册:{request.Account}");
+                        Log.Debug($"账号已注册:{request.Account}");
                         response.Error = ErrorCore.ERR_AccountAlreadyRegister;
                         reply();
                         session.Disconnect().Coroutine();
@@ -63,7 +63,7 @@ namespace ET
                         newAccount.PlayerInfo.Name = request.Account;
                         newAccount.PlayerInfo.IdCardNo = "429001198010232399";
                     }
-                    Log.Info($"注册新账号: {MongoHelper.ToJson(newAccount)}");
+                    Log.Debug($"注册新账号: {MongoHelper.ToJson(newAccount)}");
                     await Game.Scene.GetComponent<DBComponent>().Save(session.DomainZone(), newAccount);
                     //发送创建回执
                     reply();

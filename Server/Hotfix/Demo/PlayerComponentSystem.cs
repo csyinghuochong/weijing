@@ -35,7 +35,7 @@ namespace ET
         {
             foreach (var player in self.idPlayers.Values)
             {
-                if (player.UserId == id)
+                if (player.UnitId == id)
                 {
                     return player;
                 }
