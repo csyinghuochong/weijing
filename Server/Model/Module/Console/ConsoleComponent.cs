@@ -14,6 +14,7 @@ namespace ET
         public const string Robot = "Robot";
         public const string OnLineNumer = "online";
         public const string Mail = "mail";
+        public const string StopServer = "stopserver";
     }
 
     public class ConsoleComponent: Entity, IAwake, ILoad

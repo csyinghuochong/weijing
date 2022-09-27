@@ -1,0 +1,55 @@
+﻿using System.Collections.Generic;
+using System.Linq;
+
+namespace ET
+{
+
+    [ConsoleHandler(ConsoleMode.StopServer)]
+    public class StopServerConsoleHandler : IConsoleHandler
+    {
+        public async ETTask Run(ModeContex contex, string content)
+        {
+            switch (content)
+            {
+                case ConsoleMode.StopServer:
+                    contex.Parent.RemoveComponent<ModeContex>();
+                    Log.Console($"C must zone");
+                    break;
+                default:
+                    string[] ss = content.Split(" ");
+                    string zoneid = ss[1];
+    
+                    List<int> zoneList = new List<int> { };
+                    if (zoneid == "0")
+                    {
+                        List<StartZoneConfig> listprogress = StartZoneConfigCategory.Instance.GetAll().Values.ToList();
+                        for (int i = 0; i < listprogress.Count; i++)
+                        {
+                            if (listprogress[i].Id >= ComHelp.MaxZone)
+                            {
+                                continue;
+                            }
+                            zoneList.Add(listprogress[i].Id);
+                        }
+                    }
+                    else
+                    {
+                        zoneList.Add(int.Parse(zoneid));
+                    }
+
+                    for (int i = 0; i < zoneList.Count; i++)
+                    {
+                        long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Chat").InstanceId;
+                        A2M_ChangeStatusResponse g_SendChatRequest = (A2M_ChangeStatusResponse)await ActorMessageSenderComponent.Instance.Call
+                            (chatServerId, new M2A_ChangeStatusRequest()
+                            {
+                                SceneType = -1,
+                            });
+                    }
+                    break;
+            }
+
+            await ETTask.CompletedTask;
+        }
+    }
+}
