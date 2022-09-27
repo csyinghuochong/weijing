@@ -312,7 +312,7 @@ MonoBehaviour:
   UILayer: 30
   UIType: 0
   HideMainUI: 1
-  ShowHuoBi: 1
+  ShowHuoBi: 0
 --- !u!1 &187460
 GameObject:
   m_ObjectHideFlags: 0
