@@ -61,20 +61,23 @@ namespace ET
 						return;
 					}
 
-					//player可以映射任意一个seesion。 session是唯一的
-					//if (player.PlayerState == PlayerState.Game && !request.Relink)
-					//{
-					//	//快速重启客户端而非重连
-					//	//通知游戏逻辑服下线Unit角色逻辑，并将数据存入数据库
-					//	Log.Debug($"C2G_EnterGame  PlayerState.Game && !request.Relink:{player.UnitId}");
-					//	IActorResponse reqEnter = (M2G_RequestEnterGameState)await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
-					//	{
-					//		GateSessionActorId = 0
-					//	});
-					//	player.RemoveComponent<GateMapComponent>();
-					//	player.PlayerState = PlayerState.None;
-					//}
-					if (player.PlayerState == PlayerState.Game)
+
+					Log.Debug($"C2G_EnterGame {player.Id} {player.PlayerState} {request.Relink}");
+                    //player可以映射任意一个seesion。 session是唯一的
+                    if (player.PlayerState == PlayerState.Game && !request.Relink)
+                    {
+                        //快速重启客户端而非重连
+                        //通知游戏逻辑服下线Unit角色逻辑，并将数据存入数据库
+                        Log.Debug($"C2G_EnterGame  PlayerState.Game && !request.Relink:{player.UnitId}");
+                        IActorResponse reqEnter = (M2G_RequestEnterGameState)await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
+                        {
+                            GateSessionActorId = 0
+                        });
+                        player.RemoveComponent<GateMapComponent>();
+                        player.PlayerState = PlayerState.None;
+                    }
+
+                    if (player.PlayerState == PlayerState.Game)
 					{
 						try
 						{
@@ -96,6 +99,7 @@ namespace ET
 							await DisconnectHelper.KickPlayer(player, true);
 							reply();
 							session?.Disconnect().Coroutine();
+							return;
 						}
 						catch (Exception e)
 						{
@@ -106,7 +110,6 @@ namespace ET
 							session?.Disconnect().Coroutine();
 							throw;
 						}
-						return;
 					}
 
 					try

@@ -11,10 +11,14 @@ namespace ET
 		{
 			scene.GetComponent<MapComponent>().SetMapInfo((int)request.SceneType, request.ChapterId, request.SonId);
 			UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
-			if (unitComponent.Get(request.Unit.Id)!=null)
+			if (unitComponent.Get(request.Unit.Id) != null)
 			{
 				Log.Debug($"M2M_UnitTransfer   unitComponent.Get(unit.Id)!=null:  {request.Unit.Id}");
 				unitComponent.Remove(request.Unit.Id);
+			}
+			else
+			{
+				Log.Debug($"M2M_UnitTransfer {request.Unit.Id}  {request.SceneType}");
 			}
 			Unit unit = request.Unit;
 			unitComponent.AddChild(unit);

@@ -8,7 +8,7 @@ namespace ET
         {
             if (session.DomainScene().SceneType != SceneType.Account)
             {
-                Log.Error($"请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+                Log.Error($"请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}  {session.RemoteAddress}");
                 session.Dispose();
                 return;
             }

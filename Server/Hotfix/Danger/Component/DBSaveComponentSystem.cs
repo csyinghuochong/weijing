@@ -80,7 +80,7 @@ namespace ET
                 (teamServerId, new M2A_ChangeStatusRequest() { SceneType = (int)SceneType.Team, UserID = userId, UnitId = 0 });
         }
 
-        public static async ETTask OnRelogin(this DBSaveComponent self, long gateSessionId)
+        public static async ETTask<int> OnRelogin(this DBSaveComponent self, long gateSessionId)
         {
             Unit unit = self.GetParent<Unit>();
 
@@ -93,6 +93,7 @@ namespace ET
                     UserID = unit.GetComponent<UserInfoComponent>().UserInfo.UserId,
                     GateSessionId = gateSessionId
                 });
+            return g_SendChatRequest1.Error;
         }
 
         public static async ETTask OnOffLine(this DBSaveComponent self)
@@ -133,7 +134,7 @@ namespace ET
             }
         }
 
-        public static async ETTask OnDisconnect(this DBSaveComponent self)
+        public static async ETTask<int> OnDisconnect(this DBSaveComponent self)
         {
             Unit unit = self.GetParent<Unit>();
             string offLineInfo = $"{unit.DomainZone()}区： " +
@@ -192,6 +193,7 @@ namespace ET
                     scene.Dispose();
                 }
             }
+            return ErrorCode.ERR_Success;
         }
 
         public static bool Check(this DBSaveComponent self)
