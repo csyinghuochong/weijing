@@ -125,6 +125,7 @@
     <Compile Include="Codes\Hotfix\Danger\Helper\MapHelper.cs" />
     <Compile Include="Codes\Hotfix\Danger\Helper\NetHelper.cs" />
     <Compile Include="Codes\Hotfix\Danger\Helper\TaskHelper.cs" />
+    <Compile Include="Codes\Hotfix\Danger\Common\XiLianHelper.cs" />
     <Compile Include="Codes\Hotfix\Danger\HeroData\HeroDataComponentSystem.cs" />
     <Compile Include="Codes\Hotfix\Danger\HeroData\HeroProfession.cs" />
     <Compile Include="Codes\Hotfix\Danger\ReferencePool\IReference.cs" />
@@ -151,6 +152,7 @@
     <Compile Include="Codes\Hotfix\Demo\ConstValue.cs" />
     <Compile Include="Codes\Hotfix\Demo\Login\EnterMapHelper.cs" />
     <Compile Include="Codes\Hotfix\Demo\Login\LoginHelper.cs" />
+    <Compile Include="Codes\Hotfix\Module\Numeric\NumericHelp.cs" />
     <Compile Include="Codes\Hotfix\Demo\Move\M2C_PathfindingResultHandler.cs" />
     <Compile Include="Codes\Hotfix\Demo\Move\M2C_StopHandler.cs" />
     <Compile Include="Codes\Hotfix\Demo\Move\MoveComponentSystem.cs" />

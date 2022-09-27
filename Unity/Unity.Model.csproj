@@ -103,7 +103,6 @@
     <Compile Include="Codes\Model\Danger\Common\Helper\DropHelper.cs" />
     <Compile Include="Codes\Model\Danger\Common\Helper\GettotalFeeTool.cs" />
     <Compile Include="Codes\Model\Danger\Common\Helper\GMHelp.cs" />
-    <Compile Include="Codes\Model\Danger\Common\Helper\XiLianHelper.cs" />
     <Compile Include="Codes\Model\Danger\Common\QiangHuaHelper.cs" />
     <Compile Include="Codes\Model\Danger\Component\ChatComponent.cs" />
     <Compile Include="Codes\Model\Danger\Common\Component\ChengJiuComponent.cs" />
@@ -125,7 +124,6 @@
     <Compile Include="Codes\Model\Danger\Common\Helper\ChengJiuHelper.cs" />
     <Compile Include="Codes\Model\Danger\Common\Helper\ComHelp.cs" />
     <Compile Include="Codes\Model\Danger\Common\Helper\ItemHelper.cs" />
-    <Compile Include="Codes\Model\Danger\Common\Helper\NumericHelp.cs" />
     <Compile Include="Codes\Model\Danger\Common\Helper\PaiMaiHelper.cs" />
     <Compile Include="Codes\Model\Danger\Common\Component\HeroDataComponent.cs" />
     <Compile Include="Codes\Model\Danger\Common\Component\MailComponent.cs" />
