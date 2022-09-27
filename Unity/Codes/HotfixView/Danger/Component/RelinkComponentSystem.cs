@@ -43,7 +43,14 @@ namespace ET
             {
                 return;
             }
-            G2C_ExitGameGate response = await sessionComponent.Session.Call(new C2G_ExitGameGate()) as G2C_ExitGameGate;
+            try
+            {
+                G2C_ExitGameGate response = await sessionComponent.Session.Call(new C2G_ExitGameGate()) as G2C_ExitGameGate;
+            }
+            catch (Exception e)
+            {
+                Log.Debug(e.ToString());
+            }
         }
 
         public static void OnApplicationFocusHandler(this RelinkComponent self, bool value)

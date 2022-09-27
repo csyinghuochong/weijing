@@ -29,7 +29,6 @@ namespace ET
 			}
 			//连接gate的时候会做记录
 			Player player = Game.EventSystem.Get(sessionPlayerComponent.PlayerInstanceId) as Player;
-
 			if (player == null || player.IsDisposed)
 			{
 				response.Error = ErrorCore.ERR_NonePlayerError;
@@ -60,7 +59,6 @@ namespace ET
 						reply();
 						return;
 					}
-
 
 					Log.Debug($"C2G_EnterGame {player.Id} {player.PlayerState} {request.Relink}");
                     //player可以映射任意一个seesion。 session是唯一的
