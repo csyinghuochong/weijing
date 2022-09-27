@@ -158,6 +158,11 @@ namespace ET
             return self.UserInfo;
         }
 
+        /// <summary>
+        /// 杀怪经验
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="beKill"></param>
         public static  void OnKillUnit(this UserInfoComponent self, Unit beKill)
         {
             UnitInfoComponent unitInfoComponent = beKill.GetComponent<UnitInfoComponent>();

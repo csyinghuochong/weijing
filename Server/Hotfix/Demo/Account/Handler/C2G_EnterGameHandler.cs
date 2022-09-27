@@ -37,14 +37,13 @@ namespace ET
 			}
 
 			long instanceId = session.InstanceId;
-
 			using (session.AddComponent<SessionLockingComponent>())
 			{
 				using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginGate, player.AccountId.GetHashCode()))
 				{
-
 					if (instanceId != session.InstanceId || player.IsDisposed)
 					{
+						Log.Debug($"LoginTest C2G_EnterGameHandler: {instanceId} {session.InstanceId} {player.IsDisposed} ");
 						response.Error = ErrorCore.ERR_PlayerSessionError;
 						reply();
 						return;
@@ -66,7 +65,6 @@ namespace ET
                     {
                         //快速重启客户端而非重连
                         //通知游戏逻辑服下线Unit角色逻辑，并将数据存入数据库
-                        Log.Debug($"C2G_EnterGame  PlayerState.Game && !request.Relink:{player.UnitId}");
                         IActorResponse reqEnter = (M2G_RequestEnterGameState)await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
                         {
                             GateSessionActorId = 0

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -55,10 +56,13 @@ namespace ET
             {
                 reviveTime = defendUnit.GetComponent<HeroDataComponent>().OnWaitRevive();
             }
+            UnitInfoComponent unitInfoComponent = defendUnit.GetComponent<UnitInfoComponent>();
             defendUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
             if (args.UnitAttack != null && !args.UnitAttack.IsDisposed)
             {
                 Unit player = null;
+                int sceneTypeEnum = args.UnitAttack.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+                bool isBoss = unitInfoComponent.IsMonster() && unitInfoComponent.GetMonsterType() == MonsterTypeEnum.Boss;
                 if (args.UnitAttack.Type == UnitType.Player)
                 {
                     player = args.UnitAttack;
@@ -73,10 +77,23 @@ namespace ET
                     player.GetComponent<TaskComponent>().OnKillUnit(defendUnit);
                     player.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
                     player.GetComponent<PetComponent>().OnKillUnit(defendUnit);
-                    player.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit);
                     UnitFactory.CreateDropItems(defendUnit, player);
                 }
-                int sceneTypeEnum = args.UnitAttack.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+                if (isBoss && sceneTypeEnum == SceneTypeEnum.TeamDungeon)
+                {
+                    List<Unit> units = args.UnitAttack.DomainScene().GetComponent<UnitComponent>().GetAll();
+                    for (int k = 0; k < units.Count; k++)
+                    {
+                        if (units[k].Type == UnitType.Player)
+                        {
+                            units[k].GetComponent<UserInfoComponent>().OnKillUnit(defendUnit);
+                        }
+                    }
+                }
+                else if(player != null)
+                {
+                    player.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit);
+                }
                 switch (sceneTypeEnum)
                 {
                     case (int)SceneTypeEnum.PetDungeon:
