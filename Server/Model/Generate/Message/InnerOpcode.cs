@@ -15,8 +15,8 @@ namespace ET
 		 public const ushort M2G_RechargeResultResponse = 20012;
 		 public const ushort A2Center_CenterServerList = 20013;
 		 public const ushort Center2A_CenterServerList = 20014;
-		 public const ushort A2Center_LoginAccount = 20015;
-		 public const ushort Center2A_LoginAccount = 20016;
+		 public const ushort A2Center_CheckAccount = 20015;
+		 public const ushort Center2A_CheckAccount = 20016;
 		 public const ushort A2Center_SaveAccount = 20017;
 		 public const ushort Center2A_SaveAccount = 20018;
 		 public const ushort A2Center_RegisterAccount = 20019;

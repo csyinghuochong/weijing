@@ -8,7 +8,7 @@ namespace ET
 		{
 			if (session.DomainScene().SceneType != SceneType.Gate)
 			{
-				Log.Error($"请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+				Log.Error($"C2G_EnterGame请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
 				session.Dispose();
 				return;
 			}
@@ -78,7 +78,7 @@ namespace ET
 						try
 						{
 							//重连
-							Log.Info($"二次登录开始;{player.UnitId}");
+							Log.Debug($"二次登录开始;{player.UnitId}");
 							IActorResponse reqEnter =(M2G_RequestEnterGameState) await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
 							{
 								GateSessionActorId = session.InstanceId

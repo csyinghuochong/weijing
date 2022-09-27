@@ -111,7 +111,6 @@ namespace ET
         public static async ETTask<int> GetRealmKey(Scene zoneScene)
         {
             A2C_GetRealmKey a2CGetRealmKey = null;
-
             try
             {
                 a2CGetRealmKey = (A2C_GetRealmKey)await zoneScene.GetComponent<SessionComponent>().Session.Call(new C2A_GetRealmKey()
@@ -159,7 +158,7 @@ namespace ET
             {
                 Log.Error(e);
                 session?.Dispose();
-                return ErrorCore.ERR_NetWorkError;
+                return ErrorCore.ERR_LoginRealm;
             }
             session?.Dispose();
             if (r2CLogin.Error != ErrorCore.ERR_Success)

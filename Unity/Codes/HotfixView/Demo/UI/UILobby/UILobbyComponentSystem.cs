@@ -9,6 +9,7 @@ namespace ET
     {
         public override void Awake(UILobbyComponent self)
         {
+            self.LoginErroCode = ErrorCore.ERR_Success;
             self.SeletRoleInfo = null;
             self.createRoleListUI = new List<UI>();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
@@ -47,7 +48,6 @@ namespace ET
                     }
                 }
             }
-
             //展示角色列表
             self.ShowRoleList();
         }
@@ -139,6 +139,10 @@ namespace ET
         //选择角色进入游戏
         public static async ETTask EnterGame(this UILobbyComponent self)
         {
+            if (self.LoginErroCode == ErrorCore.ERR_Success)
+            {
+                return;
+            }
             if (self.PlayerComponent.CreateRoleList.Count == 0)
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请先创建角色!"));
@@ -158,7 +162,7 @@ namespace ET
                 return;
             }
             
-            LoginHelper.EnterGame(self.ZoneScene()).Coroutine();
+            self.LoginErroCode = await  LoginHelper.EnterGame(self.ZoneScene());
         }
 
         //删除角色

@@ -12,7 +12,6 @@ namespace ET
             {
                 PlayerComponent playerComponent = scene.GetComponent<PlayerComponent>();
                 Player player = playerComponent.Get(accountId);
-
                 if (player == null)
                 {
                     reply();

@@ -9,7 +9,7 @@ namespace ET
         {
             if (session.DomainScene().SceneType != SceneType.Account)
             {
-                Log.Error($"请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+                Log.Error($"C2A_LoginAccount请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
                 session.Dispose();
                 return;
             }
@@ -55,7 +55,7 @@ namespace ET
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountName.Trim().GetHashCode()))
                     {
                         long accountZone = DBHelper.GetAccountCenter();
-                        Center2A_LoginAccount centerAccount = (Center2A_LoginAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_LoginAccount() { AccountName = request.AccountName, Password = request.Password });
+                        Center2A_CheckAccount centerAccount = (Center2A_CheckAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_CheckAccount() { AccountName = request.AccountName, Password = request.Password });
                         PlayerInfo playerInfo = centerAccount.PlayerInfo != null ? centerAccount.PlayerInfo : null;
 
                         if (centerAccount.PlayerInfo == null)
@@ -78,7 +78,7 @@ namespace ET
                     DBAccountInfo account = accountInfoList != null && accountInfoList.Count > 0 ? accountInfoList[0] : null;
 
                     long accountZone = DBHelper.GetAccountCenter();
-                    Center2A_LoginAccount centerAccount = (Center2A_LoginAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_LoginAccount() { AccountName = request.AccountName, Password = request.Password });
+                    Center2A_CheckAccount centerAccount = (Center2A_CheckAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_CheckAccount() { AccountName = request.AccountName, Password = request.Password });
                     PlayerInfo centerPlayerInfo = centerAccount.PlayerInfo;
 
                     if (centerPlayerInfo == null)
@@ -90,7 +90,7 @@ namespace ET
                     }
                     if (account == null)
                     {
-                        //创建一条数据库信息,创建账号信息
+                        //在该区创建账号信息
                         account = session.AddChildWithId<DBAccountInfo>(centerAccount.AccountId);
                         account.Account = request.AccountName;
                         account.Password = request.Password;
@@ -128,6 +128,8 @@ namespace ET
                     }
 
                     string queueToken = session.DomainScene().GetComponent<TokenComponent>().Get(account.Id);
+
+                    //在线人数判断有问题。[获取的是在保存在账号服的玩家数量]
                     long onlineNumber = session.DomainScene().GetComponent<AccountSessionsComponent>().GetAll().Values.Count;
                     int maxNumber = int.Parse( GlobalValueConfigCategory.Instance.Get(25).Value);
                     if (session.DomainScene().GetComponent<AccountSessionsComponent>().Get(account.Id) == 0 &&
@@ -176,12 +178,12 @@ namespace ET
                     Session otherSession = Game.EventSystem.Get(accountSessionInstanceId) as Session;
                     if (otherSession != null)
                     {
-                        Log.Info($"ErrorCore.ERR_OtherAccountLogin1 {account.Id}");
+                        Log.Info($"C2A_LoginAccount.ERR_OtherAccountLogin1 {account.Id}");
                     } 
                     otherSession?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_OtherAccountLogin });                 //踢accout服的玩家下线
                     otherSession?.Disconnect().Coroutine();
                     session.DomainScene().GetComponent<AccountSessionsComponent>().Add(account.Id, session.InstanceId);
-                    session.AddComponent<AccountCheckOutTimeComponent, long>(account.Id);   //自己在登录服只能停留600秒
+                    session.AddComponent<AccountCheckOutTimeComponent, long>(account.Id);   //自己在账号服只能停留600秒
 
                     string Token = TimeHelper.ServerNow().ToString() + RandomHelper.RandomNumber(int.MinValue, int.MaxValue).ToString();
                     session.DomainScene().GetComponent<TokenComponent>().Remove(account.Id);    //Token也是保留十分钟

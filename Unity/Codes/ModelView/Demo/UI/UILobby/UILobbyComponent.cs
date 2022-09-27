@@ -24,5 +24,7 @@ namespace ET
 		public List<UI> createRoleListUI = new List<UI>();
 		public ETCancellationToken eTCancellation = null;
 		public AccountInfoComponent PlayerComponent;
+
+		public int LoginErroCode;
 	}
 }

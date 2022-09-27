@@ -107,8 +107,8 @@ message Center2A_CenterServerList // IActorResponse
     repeated ServerItem ServerItems = 1;
 }
 
-//ResponseType Center2A_LoginAccount
-message A2Center_LoginAccount // IActorRequest
+//ResponseType Center2A_CheckAccount
+message A2Center_CheckAccount // IActorRequest
 {
     int32 RpcId = 90;
     int64 ActorId = 93;
@@ -116,7 +116,7 @@ message A2Center_LoginAccount // IActorRequest
     string Password = 2;
 }
 
-message Center2A_LoginAccount // IActorResponse
+message Center2A_CheckAccount // IActorResponse
 {
     int32 RpcId = 90;
     int32 Error = 91;

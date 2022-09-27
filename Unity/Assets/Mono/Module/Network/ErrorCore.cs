@@ -96,6 +96,7 @@
         public const int ERR_SessionStateError = 200113;
         public const int ERR_LoginTimeOut = 200114;                                 //登录超时
         public const int ERR_EnterQueue = 200115;                                   //进入排队    
+        public const int ERR_LoginRealm = 200116;
 
         //300001-400001 服务器提示性错误码
         //角色

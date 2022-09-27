@@ -8,7 +8,7 @@ namespace ET
         {
             if (SceneType.Realm != session.DomainScene().SceneType)
             {
-                Log.Error($"请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+                Log.Error($"C2R_LoginRealm请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
                 session.Dispose();
                 return;
             }

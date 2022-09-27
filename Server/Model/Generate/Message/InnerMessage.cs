@@ -226,10 +226,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(Center2A_LoginAccount))]
-	[Message(InnerOpcode.A2Center_LoginAccount)]
+	[ResponseType(nameof(Center2A_CheckAccount))]
+	[Message(InnerOpcode.A2Center_CheckAccount)]
 	[ProtoContract]
-	public partial class A2Center_LoginAccount: Object, IActorRequest
+	public partial class A2Center_CheckAccount: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -245,9 +245,9 @@ namespace ET
 
 	}
 
-	[Message(InnerOpcode.Center2A_LoginAccount)]
+	[Message(InnerOpcode.Center2A_CheckAccount)]
 	[ProtoContract]
-	public partial class Center2A_LoginAccount: Object, IActorResponse
+	public partial class Center2A_CheckAccount: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
