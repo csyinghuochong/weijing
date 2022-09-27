@@ -52,7 +52,8 @@ namespace ET
 					}
 
 					//同一个session不能重复进
-					if (session.GetComponent<SessionStateComponent>() != null && session.GetComponent<SessionStateComponent>().State == SessionState.Game)
+					if (session.GetComponent<SessionStateComponent>() != null
+						&& session.GetComponent<SessionStateComponent>().State == SessionState.Game)
 					{
 						response.Error = ErrorCore.ERR_SessionStateError;
 						reply();
@@ -78,7 +79,7 @@ namespace ET
 						try
 						{
 							//重连
-							Log.Debug($"二次登录开始;{player.UnitId}");
+							Log.Debug($"C2G_EnterGame 二次登录开始;{player.UnitId}");
 							IActorResponse reqEnter =(M2G_RequestEnterGameState) await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
 							{
 								GateSessionActorId = session.InstanceId
@@ -88,7 +89,7 @@ namespace ET
 								reply();
 								return;
 							}
-							Log.Error("二次登录失败  " + reqEnter.Error + " | " + reqEnter.Message);
+							Log.Error("C2G_EnterGame 二次登录失败  " + reqEnter.Error + " | " + reqEnter.Message);
 							response.Error = ErrorCore.ERR_ReEnterGameError;
 							await DisconnectHelper.KickPlayer(player, true);
 							reply();
@@ -96,7 +97,7 @@ namespace ET
 						}
 						catch (Exception e)
 						{
-							Log.Error("二次登录失败  " + e.ToString());
+							Log.Error("C2G_EnterGame 二次登录失败  " + e.ToString());
 							response.Error = ErrorCore.ERR_ReEnterGameError2;
 							await DisconnectHelper.KickPlayer(player, true);
 							reply();
@@ -150,7 +151,7 @@ namespace ET
 
 						reply();
 						StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), "Map1");
-						//await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, startSceneConfig.Name);
+						Log.Debug($"C2G_EnterGame TransferHelper.Transfer;{player.UnitId}");
 						await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);
 
 						SessionStateComponent SessionStateComponent = session.GetComponent<SessionStateComponent>();
@@ -161,7 +162,7 @@ namespace ET
 						SessionStateComponent.State = SessionState.Game;
 
 						player.PlayerState = PlayerState.Game;
-						player.UserId = request.UserID;
+						player.UnitId = request.UserID;
 					}
 					catch (Exception e)
 					{

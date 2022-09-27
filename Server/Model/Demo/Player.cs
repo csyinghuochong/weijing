@@ -14,11 +14,9 @@
 
 		public Session ClientSession { get; set; }
 
-		public long UnitId { get; set; }
+		public long UnitId { get; set; }		//unitid  ==  userid
 
 		public PlayerState PlayerState { get; set; }
-
-		public long UserId { get; set; }
 
 		public long DBCacheId { get; set; }
 
