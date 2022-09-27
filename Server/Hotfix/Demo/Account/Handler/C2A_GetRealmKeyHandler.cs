@@ -22,7 +22,6 @@ namespace ET
             }
 
             string token = session.DomainScene().GetComponent<TokenComponent>().Get(request.AccountId);
-
             if (token == null || token != request.Token)
             {
                 response.Error = ErrorCore.ERR_TokenError;
@@ -31,6 +30,7 @@ namespace ET
                 return;
             }
 
+
             using (session.AddComponent<SessionLockingComponent>())
             {
                 using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountId))
@@ -38,7 +38,6 @@ namespace ET
                     StartSceneConfig realmStartSceneConfig = RealmGateAddressHelper.GetRealm(request.ServerId);
 
                     R2A_GetRealmKey r2AGetRealmKey = (R2A_GetRealmKey)await MessageHelper.CallActor(realmStartSceneConfig.InstanceId, new A2R_GetRealmKey() { AccountId = request.AccountId });
-
                     if (r2AGetRealmKey.Error != ErrorCode.ERR_Success)
                     {
                         response.Error = r2AGetRealmKey.Error;

@@ -139,8 +139,9 @@ namespace ET
         //选择角色进入游戏
         public static async ETTask EnterGame(this UILobbyComponent self)
         {
-            if (self.LoginErroCode == ErrorCore.ERR_Success)
+            if (self.LoginErroCode != ErrorCore.ERR_Success)
             {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("请重新登录!"));
                 return;
             }
             if (self.PlayerComponent.CreateRoleList.Count == 0)
@@ -153,15 +154,16 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("进入角色为空!"));
                 return;
             }
-            self.PlayerComponent.CurrentRoleId = self.SeletRoleInfo.UserID;
+            
             PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastUserID, self.SeletRoleInfo.UserID.ToString());
-            int errorCode = await LoginHelper.GetRealmKey(self.ZoneScene());
-            if (errorCode != ErrorCore.ERR_Success)
+            self.PlayerComponent.CurrentRoleId = self.SeletRoleInfo.UserID;
+            self.LoginErroCode = await LoginHelper.GetRealmKey(self.ZoneScene());
+            if (self.LoginErroCode != ErrorCore.ERR_Success)
             {
-                Log.Error(errorCode.ToString());
+                Log.Error(self.LoginErroCode.ToString());
                 return;
             }
-            
+
             self.LoginErroCode = await  LoginHelper.EnterGame(self.ZoneScene());
         }
 
