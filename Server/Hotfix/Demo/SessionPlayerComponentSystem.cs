@@ -23,7 +23,7 @@ namespace ET
 				Player player = Game.EventSystem.Get(self.PlayerInstanceId) as Player;
 				if (player == null)
 				{
-					Log.Debug($"SessionPlayerComponent  player == null");
+					Log.Debug($"SessionPlayerComponent  player == null {self.AccountId}");
 					return;
 				}
 

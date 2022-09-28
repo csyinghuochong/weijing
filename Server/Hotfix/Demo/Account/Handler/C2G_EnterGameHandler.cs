@@ -8,7 +8,7 @@ namespace ET
 		{
 			if (session.DomainScene().SceneType != SceneType.Gate)
 			{
-				Log.Error($"C2G_EnterGame请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+				Log.Error($"LoginTest C2G_EnterGame请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
 				session.Dispose();
 				return;
 			}
@@ -53,7 +53,7 @@ namespace ET
 					if (session.GetComponent<SessionStateComponent>() != null
 						&& session.GetComponent<SessionStateComponent>().State == SessionState.Game)
 					{
-						Log.Debug("C2G_EnterGameHandler: SessionStateComponent.State == SessionState.Game");
+						Log.Debug("LoginTest C2G_EnterGameHandler: SessionStateComponent.State == SessionState.Game");
 						response.Error = ErrorCore.ERR_SessionStateError;
 						reply();
 						return;
@@ -78,7 +78,7 @@ namespace ET
 						try
 						{
 							//重连
-							Log.Debug($"C2G_EnterGame 二次登录开始;{player.UnitId}");
+							Log.Debug($"LoginTest C2G_EnterGame 二次登录开始;{player.UnitId}");
 							//主要判断unit还在不在
 							IActorResponse reqEnter =(M2G_RequestEnterGameState) await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
 							{
@@ -86,11 +86,11 @@ namespace ET
 							});
 							if (reqEnter.Error == ErrorCode.ERR_Success)
 							{
-								Log.Debug($"C2G_EnterGame 二次登录成功;{player.UnitId}");
+								Log.Debug($"LoginTest C2G_EnterGame 二次登录成功;{player.UnitId}");
 								reply();
 								return;
 							}
-							Log.Error($"C2G_EnterGame 二次登录失败  {player.UnitId}" + reqEnter.Error + " | " + reqEnter.Message);
+							Log.Error($"LoginTest C2G_EnterGame 二次登录失败  {player.UnitId}" + reqEnter.Error + " | " + reqEnter.Message);
 							response.Error = ErrorCore.ERR_ReEnterGameError;
 							await DisconnectHelper.KickPlayer(player, true);
 							reply();
@@ -99,7 +99,7 @@ namespace ET
 						}
 						catch (Exception e)
 						{
-							Log.Error($"C2G_EnterGame 二次登录失败  {player.UnitId}" + e.ToString());
+							Log.Error($"LoginTest C2G_EnterGame 二次登录失败  {player.UnitId}" + e.ToString());
 							response.Error = ErrorCore.ERR_ReEnterGameError2;
 							await DisconnectHelper.KickPlayer(player, true);
 							reply();
@@ -107,7 +107,6 @@ namespace ET
 							throw;
 						}
 					}
-
 					try
 					{
 						if (player.GetComponent<GateMapComponent>()!=null)
@@ -140,12 +139,12 @@ namespace ET
 						unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString()).Coroutine();
 						if (session.DomainZone() == 0)
 						{
-							Log.Debug($"C2G_EnterGame session.DomainZone() == 0  {player.UnitId}");
+							Log.Debug($"LoginTest C2G_EnterGame session.DomainZone() == 0  {player.UnitId}");
 							response.Error = ErrorCore.ERR_SessionStateError;
 							reply();
 							return;
 						}
-						Log.Debug($"C2G_EnterGame TransferHelper.Transfer;{player.UnitId} {session.DomainZone()}");
+						Log.Debug($"LoginTest C2G_EnterGame TransferHelper.Transfer;{player.UnitId} {session.DomainZone()}");
 						long unitId = unit.Id;
 						player.UnitId = unitId;
 						player.DBCacheId = DBHelper.GetDbCacheId(session.DomainZone());
@@ -177,7 +176,7 @@ namespace ET
 					}
 					catch (Exception e)
 					{
-						Log.Error($"角色进入游戏逻辑服出现问题 账号Id: {player.AccountId}  角色Id: {player.Id}   异常信息： {e.ToString()}");
+						Log.Error($"LoginTest 角色进入游戏逻辑服出现问题 账号Id: {player.AccountId}  角色Id: {player.Id}   异常信息： {e.ToString()}");
 						response.Error = ErrorCore.ERR_EnterGameError;
 						reply();
 						await DisconnectHelper.KickPlayer(player, true);

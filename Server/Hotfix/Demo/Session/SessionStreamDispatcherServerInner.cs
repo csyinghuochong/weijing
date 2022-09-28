@@ -24,7 +24,6 @@ namespace ET
                     instanceIdStruct.Process = Game.Options.Process;
                     long realActorId = instanceIdStruct.ToLong();
                     
-                    
                     Entity entity = Game.EventSystem.Get(realActorId);
                     if (entity == null)
                     {

@@ -9,7 +9,7 @@ namespace ET
         {
             if (session.DomainScene().SceneType != SceneType.Account)
             {
-                Log.Error($"C2A_LoginAccount请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+                Log.Error($"LoginTest C2A_LoginAccount请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
                 session.Dispose();
                 return;
             }
@@ -178,7 +178,7 @@ namespace ET
                     Session otherSession = Game.EventSystem.Get(accountSessionInstanceId) as Session;
                     if (otherSession != null)
                     {
-                        Log.Debug($"C2A_LoginAccount.ERR_OtherAccountLogin1 {account.Id}");
+                        Log.Debug($"LoginTest C2A_LoginAccount.ERR_OtherAccountLogin1 {account.Id}");
                     } 
                     otherSession?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_OtherAccountLogin });                 //踢accout服的玩家下线
                     otherSession?.Disconnect().Coroutine();

@@ -6,10 +6,10 @@ namespace ET
 	{
 		protected override async ETTask Run(Session session, C2G_LoginGameGate request, G2C_LoginGameGate response, Action reply)
 		{
-			Log.Debug($"C2G_LoginGameGate  {request.RoleId}");
+			Log.Debug($"LoginTest C2G_LoginGameGate  {request.RoleId}");
 			if (session.DomainScene().SceneType != SceneType.Gate)
 			{
-				Log.Error($"C2G_LoginGameGate请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+				Log.Error($"LoginTest C2G_LoginGameGate请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
 				session.Dispose();
 				return;
 			}
@@ -27,7 +27,7 @@ namespace ET
 			if (tokenKey == null || !tokenKey.Equals(request.Key))
 			{
 				response.Error = ErrorCore.ERR_ConnectGateKeyError;
-				response.Message = "Gate key验证失败!";
+				response.Message = "LoginTest C2G_LoginGameGate key验证失败!";
 				reply();
 				session?.Disconnect().Coroutine();
 				return;
@@ -41,7 +41,7 @@ namespace ET
 			{
 				if (instanceId != session.InstanceId)	//防止多个客户端同时请求
 				{
-					Log.Debug($"C2G_LoginGameGate 多个客户端同时请求  {request.RoleId} {session.RemoteAddress}  {instanceId} {session.InstanceId}");
+					Log.Debug($"LoginTest C2G_LoginGameGate 多个客户端同时请求  {request.RoleId} {session.RemoteAddress}  {instanceId} {session.InstanceId}");
 					return;
 				}
 
@@ -79,7 +79,7 @@ namespace ET
 				{
 					//移除倒计时下线组件   //断线重连、
 					player.RemoveComponent<PlayerOfflineOutTimeComponent>();
-					Log.Debug($"C2G_LoginGameGate player!=null {request.RoleId}");
+					Log.Debug($"LoginTest C2G_LoginGameGate player!=null {request.RoleId}");
 				}
 
 				session.AddComponent<SessionPlayerComponent>().PlayerId = player.Id;
