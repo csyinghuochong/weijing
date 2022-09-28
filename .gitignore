@@ -54,6 +54,7 @@ Server/.DS_Store
 /*.user
 /ToolsApp/
 /Unity/Unity.Editor.csproj
+/Unity/Assets/Res/XAsset
 /Unity/Assets/Bundles/Independent
 /Unity/Assets/Bundles/Code/Code.dll.bytes
 /Unity/Assets/Bundles/Code/Code.dll.bytes.meta
