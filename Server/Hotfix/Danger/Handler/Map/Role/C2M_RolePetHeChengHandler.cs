@@ -273,10 +273,11 @@ namespace ET
 			petinfo_update.ZiZhi_Def = zizhiNow_Def + 500;
 			petinfo_update.ZiZhi_Adf = zizhiNow_Adf;
 			petinfo_update.ZiZhi_ActSpeed = zizhiNow_ActSpeed;
-			petinfo_update.ZiZhi_ChengZhang = Mathf.FloorToInt(zizhiNow_ChengZhang * GetMultiple());
+			//petinfo_update.ZiZhi_ChengZhang = Mathf.FloorToInt(zizhiNow_ChengZhang * GetMultiple());
+			petinfo_update.ZiZhi_ChengZhang = zizhiNow_ChengZhang;
 			petinfo_update.PetSkill = savePetSkillID;
 			PetConfig petconf = PetConfigCategory.Instance.Get(petID);
-			petinfo_update.PetName = petconf.PetName + "合成";
+			petinfo_update.PetName = petconf.PetName;
 
 			response.DeletePetInfoId = petinfo_2.Id;
 			response.rolePetInfo = petinfo_update;
