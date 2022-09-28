@@ -62,7 +62,6 @@ namespace ET
             {
                 Unit player = null;
                 int sceneTypeEnum = args.UnitAttack.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-                bool isBoss = unitInfoComponent.IsMonster() && unitInfoComponent.GetMonsterType() == MonsterTypeEnum.Boss;
                 if (args.UnitAttack.Type == UnitType.Player)
                 {
                     player = args.UnitAttack;
@@ -79,7 +78,7 @@ namespace ET
                     player.GetComponent<PetComponent>().OnKillUnit(defendUnit);
                     UnitFactory.CreateDropItems(defendUnit, player);
                 }
-                if (isBoss && sceneTypeEnum == SceneTypeEnum.TeamDungeon)
+                if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
                 {
                     List<Unit> units = args.UnitAttack.DomainScene().GetComponent<UnitComponent>().GetAll();
                     for (int k = 0; k < units.Count; k++)

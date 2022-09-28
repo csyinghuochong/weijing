@@ -110,6 +110,10 @@ namespace ET
 
 					try
 					{
+						if (player.GetComponent<GateMapComponent>()!=null)
+						{
+							player.RemoveComponent<GateMapComponent>();
+						}
 						GateMapComponent gateMapComponent = player.AddComponent<GateMapComponent>();
 						gateMapComponent.Scene = SceneFactory.Create(gateMapComponent, "GateMap", SceneType.GateMap);
 

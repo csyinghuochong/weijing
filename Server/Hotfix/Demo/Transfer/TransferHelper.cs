@@ -10,7 +10,7 @@
             //传送回主场景
             long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), "Map1").InstanceId;
             long oldsceneid = unit.DomainScene().Id;
-            TransferHelper.BeforeReturnMainScene(unit);
+            TransferHelper.BeforeTransfer(unit);
             await  TransferHelper.Transfer(unit, mapInstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);
             //动态删除副本
             Scene scene = Game.Scene.Get(oldsceneid);
@@ -97,7 +97,7 @@
             //Game.EventSystem.Remove(unitId);
             // 删除Mailbox,让发给Unit的ActorLocation消息重发
             unit.RemoveComponent<MailBoxComponent>();
-
+            unit.GetComponent<BuffManagerComponent>().RecordBuff();
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
             if (fightId != null)
             {
@@ -107,13 +107,12 @@
 
         public static void BeforeReturnMainScene(Unit unit)
         {
+            //清除玩家当前状态，不然序列化报错
+            unit.RecordPostion();
             //删除unit,让其它进程发送过来的消息找不到actor，重发
             //Game.EventSystem.Remove(unitId);
             // 删除Mailbox,让发给Unit的ActorLocation消息重发
             unit.RemoveComponent<MailBoxComponent>();
-            //清除玩家当前状态，不然序列化报错
-            unit.RecordPostion();
-            unit.GetComponent<BuffManagerComponent>().RecordBuff();
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
             if (fightId != null)
             {
