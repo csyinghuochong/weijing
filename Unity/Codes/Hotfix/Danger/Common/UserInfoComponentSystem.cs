@@ -242,6 +242,9 @@ namespace ET
                     break;
                 case UserDataType.Occ:
                     break;
+                case UserDataType.MaoXianExp:
+                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.MaoXianExp, long.Parse(value), 0);
+                    break;
                 case UserDataType.PiLao:
                     int maxValue = self.IsYueKaStates(unit.GetComponent<NumericComponent>()) ? int.Parse(GlobalValueConfigCategory.Instance.Get(26).Value) : int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
                     long newValue = long.Parse(value) + self.UserInfo.PiLao;

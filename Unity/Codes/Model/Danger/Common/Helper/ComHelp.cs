@@ -492,7 +492,8 @@ namespace ET
             {  4, UserDataType.Vitality },
             {  5, UserDataType.PiLao },
             {  6, UserDataType.RongYu },
-            { 7, UserDataType.FangRong}
+            { 7, UserDataType.FangRong},
+             { 8, UserDataType.MaoXianExp},
         };
 
         public static UserDataType GetItemToUserDataType(int itemid)

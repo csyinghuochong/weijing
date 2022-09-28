@@ -11,6 +11,7 @@
         PiLao = 5,                  //疲劳  
         RongYu = 6,             //荣誉
         FangRong = 7,           //繁荣度
+        MaoXianExp = 8,         //冒险家经验
         Lv,                     //等级            
         Occ,                    //职业
         HuoYue,                 //活跃
