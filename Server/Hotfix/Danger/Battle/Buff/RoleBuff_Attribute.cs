@@ -64,6 +64,11 @@ namespace ET
                     if (NowBuffParameterValueType != 0)
                     {
                         ValueType = NumericHelp.GetNumericValueType(NowBuffParameterValueType);
+                        //临时代吗
+                        if (this.BuffData.BuffConfig.buffParameterValue < 1 && this.BuffData.BuffConfig.buffParameterValueType == 1002)  
+                        {
+                            ValueType = 1;
+                        }
 
                         //取整数
                         if (ValueType == 1)
