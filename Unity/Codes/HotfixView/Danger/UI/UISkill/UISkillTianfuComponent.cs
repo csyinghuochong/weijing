@@ -7,18 +7,15 @@ namespace ET
 
     public class UISkillTianFuComponent : Entity, IAwake
     {
+        public GameObject DescListNode;
         public GameObject ImageSelect;
         public GameObject Text_NeedLv;
         public GameObject Lab_SkillName;
         public GameObject TianfuListNode;
         public GameObject Btn_ActiveTianFu;
         public GameObject TianFuIcon;
-        public GameObject TextDesc4;
-        public GameObject TextDesc3;
-        public GameObject TextDesc2;
         public GameObject TextDesc1;
 
-        public List<GameObject> TextDescList = new List<GameObject>();
         public List<UI> TianItemListUI = new List<UI>();
         public int TianFuId;
     }
@@ -28,7 +25,6 @@ namespace ET
     {
         public override void Awake(UISkillTianFuComponent self)
         {
-            self.TextDescList.Clear();
             self.TianItemListUI.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
@@ -37,15 +33,10 @@ namespace ET
             self.TianfuListNode = rc.Get<GameObject>("TianfuListNode");
             self.TianFuIcon = rc.Get<GameObject>("TianFuIcon");
             self.ImageSelect = rc.Get<GameObject>("ImageSelect");
+            self.DescListNode = rc.Get<GameObject>("DescListNode");
 
-            self.TextDesc4 = rc.Get<GameObject>("TextDesc4");
-            self.TextDesc3 = rc.Get<GameObject>("TextDesc3");
-            self.TextDesc2 = rc.Get<GameObject>("TextDesc2");
             self.TextDesc1 = rc.Get<GameObject>("TextDesc1");
-            self.TextDescList.Add(self.TextDesc1);
-            self.TextDescList.Add(self.TextDesc2);
-            self.TextDescList.Add(self.TextDesc3);
-            self.TextDescList.Add(self.TextDesc4);
+            self.TextDesc1.SetActive(false);
 
             self.Btn_ActiveTianFu = rc.Get<GameObject>("Btn_ActiveTianFu");
             self.Btn_ActiveTianFu.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_ActiveTianFu(); });
@@ -81,8 +72,7 @@ namespace ET
             }
 
             string path = ABPathHelper.GetUGUIPath("Main/Skill/UISkillTianFuItem");
-            await ETTask.CompletedTask;
-            GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
             foreach (var item in TianFuToLevel)
             {
@@ -112,11 +102,25 @@ namespace ET
             self.TianFuId = tianfuId;
 
             TalentConfig talentConfig = TalentConfigCategory.Instance.Get(tianfuId);
+
+            string[] descList = talentConfig.talentDes.Split(';');
+            UICommonHelper.DestoryChild(self.DescListNode);
+            for (int i = 0; i < descList.Length; i++)
+            {
+                if (string.IsNullOrEmpty(descList[i]))
+                {
+                    continue;
+                }
+                GameObject gameObject = GameObject.Instantiate(self.TextDesc1);
+                gameObject.SetActive(true);
+                gameObject.GetComponent<Text>().text = descList[i];
+                gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(600f, gameObject.GetComponent<Text>().preferredHeight);
+            }
+
             self.Lab_SkillName.GetComponent<Text>().text = talentConfig.Name;
             self.Text_NeedLv.GetComponent<Text>().text = talentConfig.LearnRoseLv.ToString();
 
-            TalentConfig skillConfig = TalentConfigCategory.Instance.Get(tianfuId);
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.Icon.ToString());
+            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, talentConfig.Icon.ToString());
             self.TianFuIcon.GetComponent<Image>().sprite = sp;
 
             for (int i = 0; i < self.TianItemListUI.Count; i++)
@@ -130,25 +134,6 @@ namespace ET
                     UICommonHelper.SetParent(self.ImageSelect, uISkillTianFuItem.GetKuangByIndex(index));
                 }
             }
-
-            string[] descList = skillConfig.talentDes.Split(';');
-            for (int i = 0; i < self.TextDescList.Count; i++)
-            {
-                GameObject gameObject = self.TextDescList[i];
-
-                if (i < descList.Length)
-                {
-                    gameObject.SetActive(true);
-                    gameObject.GetComponent<Text>().text = descList[i];
-                    gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(600f, gameObject.GetComponent<Text>().preferredHeight);
-                }
-                else
-                {
-                    gameObject.SetActive(false);
-                }
-            }
-            self.TextDescList[0].transform.parent.gameObject.SetActive(false);
-            self.TextDescList[0].transform.parent.gameObject.SetActive(true);
         }
 
         public static void OnBtn_ActiveTianFu(this UISkillTianFuComponent self)
