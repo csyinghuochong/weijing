@@ -29,6 +29,7 @@ namespace ET
     public static class SceneTypeEnum
     {
         public const int NONE = 0;
+        public const int InitScene = 1;
         public const int LoginScene = 2;         //登录scene
         public const int MainCityScene = 3;      //主城
         public const int CellDungeon = 4;       //格子副本

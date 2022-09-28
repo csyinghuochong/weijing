@@ -71,16 +71,15 @@ namespace ET
             var path = ABPathHelper.GetScenePath(paramss);
             await ResourcesComponent.Instance.LoadSceneAdditive(path);
 
-            self.UpdateChuanSong(scene, (int)sceneTypeEnum).Coroutine();
+            self.UpdateChuanSong(scene, (int)sceneTypeEnum);
             //刷新主界面
             UI ui = UIHelper.GetUI(scene, UIType.UIMain);
             UIMainComponent uimain = ui.GetComponent<UIMainComponent>();
             uimain.OnEnterScene(sceneTypeEnum);
         }
 
-        public static async ETTask UpdateChuanSong(this SceneManagerComponent self, Scene scene, int sceneTypeEnum)
+        public static void  UpdateChuanSong(this SceneManagerComponent self, Scene scene, int sceneTypeEnum)
         {
-            await ETTask.CompletedTask;
             AdditiveHide[] additiveHides = (AdditiveHide[])GameObject.FindObjectsOfType(typeof(AdditiveHide));
             for (int i = 0; i < additiveHides.Length; i++)
             {
@@ -117,11 +116,14 @@ namespace ET
             string paramss = "";
             switch (sceneTypeEnum)
             {
-                case (int)SceneTypeEnum.MainCityScene:
-                    paramss = chapterId.ToString();
+                case (int)SceneTypeEnum.InitScene:
+                    paramss = "Init";
                     break;
                 case (int)SceneTypeEnum.LoginScene:
                     paramss = "Login";
+                    break;
+                case (int)SceneTypeEnum.MainCityScene:
+                    paramss = chapterId.ToString();
                     break;
                 case (int)SceneTypeEnum.CellDungeon:
                     paramss = ChapterSonConfigCategory.Instance.Get(scene.GetComponent<MapComponent>().SonSceneId).MapID.ToString();
@@ -135,7 +137,7 @@ namespace ET
             }
             var path = ABPathHelper.GetScenePath(paramss);
             await ResourcesComponent.Instance.LoadSceneAsync(path);
-            self.UpdateChuanSong(scene, sceneTypeEnum).Coroutine();
+            self.UpdateChuanSong(scene, sceneTypeEnum);
         }
 
     }

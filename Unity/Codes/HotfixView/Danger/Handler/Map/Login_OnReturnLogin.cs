@@ -15,14 +15,15 @@ namespace ET
         {
             Camera camera = UIComponent.Instance.MainCamera.gameObject.GetComponent<Camera>();
             camera.GetComponent<MyCamera_1>().enabled = false;
-;
-            await Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.LoginScene, 1);
-            args.ZoneScene.Dispose();
-            GameObjectPoolComponent.Instance.DisposeAll();
-            Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
 
-            EventType.AppStartInitFinish.Instance.ZoneScene = zoneScene;
-            Game.EventSystem.PublishClass(EventType.AppStartInitFinish.Instance);
+            await Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.InitScene, 1);
+            CodeLoader.Instance.OnApplicationQuit();
+            CodeLoader.Instance.Dispose();
+            GameObjectPoolComponent.Instance.DisposeAll();
+            GameObject.Destroy(GameObject.Find("Global"));
+            //Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
+            //EventType.AppStartInitFinish.Instance.ZoneScene = zoneScene;
+            //Game.EventSystem.PublishClass(EventType.AppStartInitFinish.Instance);
         }
 
         private async ETTask RunAsync(EventType.ReturnLogin args)
