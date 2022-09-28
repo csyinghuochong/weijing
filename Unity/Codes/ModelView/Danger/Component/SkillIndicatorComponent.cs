@@ -29,5 +29,7 @@ namespace ET
         public SkillIndicatorItem SkillIndicator;
         public bool ShowEffect;
         public Camera MainCamera;
+
+        public Vector2 StartIndicator;
     }
 }

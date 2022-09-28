@@ -55,7 +55,6 @@ namespace ET
 
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.OnCancel(pdata); }, EventTriggerType.Cancel);
         }
-
     }
 
     public static class UISkillGridComponentSystem
@@ -117,10 +116,11 @@ namespace ET
             {
                 return;
             }
-            Vector2 mSkillIndicator;
-            RectTransformUtility.ScreenPointToLocalPointInRectangle(self.Btn_SkillStart.GetComponent<RectTransform>(),
-            eventData.position, self.UIcam, out mSkillIndicator);
-            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().OnMouseDrag(mSkillIndicator);
+            //Vector2 mSkillIndicator;
+            //RectTransformUtility.ScreenPointToLocalPointInRectangle(self.Btn_SkillStart.GetComponent<RectTransform>(),
+            //eventData.position, self.UIcam, out mSkillIndicator);
+            //self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().OnMouseDrag(mSkillIndicator);
+            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().OnMouseDrag(eventData.delta);
         }
 
         public static void SetSkillCancelHandler(this UISkillGridComponent self, Action<bool> action)

@@ -179,15 +179,21 @@ namespace ET
             {
                 //self.SkillIndicator.TargetAngle = (int) (Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z));
                 //self.SkillIndicator.AttackDistance = Mathf.FloorToInt(self.SkillRangeSize * 1f);
-                float distance = PositionHelper.Distance2D(target.Position , unit.Position);
+                float distance = PositionHelper.Distance2D(target.Position, unit.Position);
                 float rate = distance / self.SkillRangeSize;
                 rate = Mathf.Min(rate, 1f);
                 Vector3 direction = target.Position - unit.Position;
                 vector2.x = direction.x;
                 vector2.y = direction.z;
                 vector2 = vector2.normalized * 80 * rate;
+                self.StartIndicator = Vector2.zero;
+                self.OnMouseDrag(vector2);
             }
-            self.OnMouseDrag(vector2);
+            else
+            {
+                self.StartIndicator = Vector2.zero;
+                self.OnMouseDrag(Vector2.zero);
+            }
         }
 
         //鼠标拖拽
@@ -199,19 +205,20 @@ namespace ET
                 return;
             }
 
+            self.StartIndicator += indicator;
             //只有 IfSelectSkillRange 为1 可以选中释放距离
             if (skillIndicatorItem.SkillZhishiType == SkillZhishiType.Position)
             {
                 float rate = 1;
-                rate = indicator.magnitude / 80;
+                rate = self.StartIndicator.magnitude / 80;
                 rate = (rate > 1) ? 1 : rate;
                 skillIndicatorItem.AttackDistance = Mathf.FloorToInt(self.SkillRangeSize * rate);
-                skillIndicatorItem.TargetAngle = 90 - (int)(Mathf.Atan2(indicator.y, indicator.x) * Mathf.Rad2Deg);
+                skillIndicatorItem.TargetAngle = 90 - (int)(Mathf.Atan2(self.StartIndicator.y, self.StartIndicator.x) * Mathf.Rad2Deg);
             }
             else
             {
                 skillIndicatorItem.AttackDistance = 0;
-                skillIndicatorItem.TargetAngle = 90 - (int)(Mathf.Atan2(indicator.y, indicator.x) * Mathf.Rad2Deg);
+                skillIndicatorItem.TargetAngle = 90 - (int)(Mathf.Atan2(self.StartIndicator.y, self.StartIndicator.x) * Mathf.Rad2Deg);
             }
 
             skillIndicatorItem.TargetAngle += (int)self.MainCamera.transform.eulerAngles.y;
@@ -242,6 +249,7 @@ namespace ET
             }
             skillIndicatorItem.GameObject.SetActive(false);
             GameObjectPoolComponent.Instance.InternalPut(skillIndicatorItem.EffectPath, skillIndicatorItem.GameObject);
+            self.StartIndicator = Vector2.zero;
             self.SkillIndicator = null;
         }
 
