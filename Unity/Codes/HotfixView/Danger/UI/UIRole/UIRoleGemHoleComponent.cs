@@ -70,7 +70,7 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="holeId">孔位ID</param>
         /// <param name="gemId">宝石ID</param>
-        public static void OnUpdateUI(this UIRoleGemHoleComponent self, int holeId, long gemId, int index)
+        public static void OnUpdateUI(this UIRoleGemHoleComponent self, int holeId, int gemId, int index)
         {
             self.Index = index;
             self.Image_SelectImg.SetActive(false);
@@ -103,8 +103,7 @@ namespace ET
             self.ImageHoleName.GetComponent<Image>().sprite = sp1;
             self.Lab_HoleName.SetActive(false);
             self.UIGemItem.GameObject.SetActive(true);
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            BagInfo bagInfo = bagComponent.GetBagInfo(gemId);
+            BagInfo bagInfo = new BagInfo() { ItemID = gemId, ItemNum = 1 };
             self.UIGemItem.UpdateItem(bagInfo, ItemOperateEnum.XiangQianGem);
         }
     }

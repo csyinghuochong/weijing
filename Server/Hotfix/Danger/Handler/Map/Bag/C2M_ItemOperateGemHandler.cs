@@ -1,111 +1,88 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
-//namespace ET
-//{
+namespace ET
+{
 
-//    [ActorMessageHandler]
-//    public class C2M_ItemOperateGemHandler : AMActorLocationRpcHandler<Unit, C2M_ItemOperateGemRequest, M2C_ItemOperateGemResponse>
-//    {
+    [ActorMessageHandler]
+    public class C2M_ItemOperateGemHandler : AMActorLocationRpcHandler<Unit, C2M_ItemOperateGemRequest, M2C_ItemOperateGemResponse>
+    {
 
-//        protected override async ETTask Run(Unit unit, C2M_ItemOperateGemRequest request, M2C_ItemOperateGemResponse response, Action reply)
-//        {
-//            long bagInfoID = request.OperateBagID;
-//            ItemLocType locType = ItemLocType.ItemLocBag;
-//            if (request.OperateType == 10)
-//            {
-//                locType = ItemLocType.ItemLocGem;
-//            }
-//            BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(locType, bagInfoID);
-//            if (useBagInfo == null)
-//            {
-//                response.Error = ErrorCore.ERR_ItemUseError;
-//                reply();
-//                return;
-//            }
+        protected override async ETTask Run(Unit unit, C2M_ItemOperateGemRequest request, M2C_ItemOperateGemResponse response, Action reply)
+        {
+            long bagInfoID = request.OperateBagID;
+            ItemLocType locType = request.OperateType == 9 ?  ItemLocType.ItemLocBag : ItemLocType.ItemLocEquip;
+            BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(locType, bagInfoID);
+            if (useBagInfo == null)
+            {
+                response.Error = ErrorCore.ERR_ItemUseError;
+                reply();
+                return;
+            }
 
-//            // 通知客户端背包刷新
-//            M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
-//            //通知客户端背包道具发生改变
-//            m2c_bagUpdate.BagInfoUpdate = new List<BagInfo>();
-//            //镶嵌宝石
-//            if (request.OperateType == 9)
-//            {
-//                //宝石镶嵌
-//                string[] geminfos = request.OperatePar.Split('_');
-//                long equipid = long.Parse(geminfos[0]);
-//                int gemIndex = int.Parse(geminfos[1]);
+            // 通知客户端背包刷新
+            M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
+            //通知客户端背包道具发生改变
+            m2c_bagUpdate.BagInfoUpdate = new List<BagInfo>();
+            //镶嵌宝石
+            if (request.OperateType == 9)
+            {
+                //宝石镶嵌
+                string[] geminfos = request.OperatePar.Split('_');
+                long equipid = long.Parse(geminfos[0]);
+                int gemIndex = int.Parse(geminfos[1]);
 
-//                //获取装备baginfo
-//                BagInfo equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, equipid);
-//                if (equipInfo == null)
-//                {
-//                    equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, equipid);
-//                }
-//                if (equipInfo == null)
-//                {
-//                    Log.Error($"equipInfo == null {equipid}");
-//                    reply();
-//                    return;
-//                }
-//                string[] gemIdList = equipInfo.GemID.Split('_');
-//                gemIdList[gemIndex] = useBagInfo.BagInfoID.ToString();
-//                equipInfo.GemID = "";
-//                for (int i = 0; i < gemIdList.Length; i++)
-//                {
-//                    equipInfo.GemID = equipInfo.GemID + gemIdList[i] + "_";
-//                }
-//                equipInfo.GemID = equipInfo.GemID.Substring(0, equipInfo.GemID.Length - 1);
+                //获取装备baginfo
+                BagInfo equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, equipid);
+                if (equipInfo == null)
+                {
+                    equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, equipid);
+                }
+                if (equipInfo == null)
+                {
+                    Log.Error($"equipInfo == null {equipid}");
+                    reply();
+                    return;
+                }
+                string[] gemIdList = equipInfo.GemIDNew.Split('_');
+                gemIdList[gemIndex] = useBagInfo.ItemID.ToString();
+                equipInfo.GemIDNew = "";
+                for (int i = 0; i < gemIdList.Length; i++)
+                {
+                    equipInfo.GemIDNew = equipInfo.GemIDNew + gemIdList[i] + "_";
+                }
+                equipInfo.GemIDNew = equipInfo.GemIDNew.Substring(0, equipInfo.GemIDNew.Length - 1);
 
-//                //改变宝石loc
-//                unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.ItemLocGem, ItemLocType.ItemLocBag);
-//                m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
-//                m2c_bagUpdate.BagInfoUpdate.Add(equipInfo);
+                m2c_bagUpdate.BagInfoUpdate.Add(equipInfo);
+                //消耗宝石
+                unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo.BagInfoID, 1);
+                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
+            }
 
-//                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
-//            }
+            //卸下宝石
+            if (request.OperateType == 10)
+            {
+                int gemIndex = int.Parse(request.OperatePar);
+                string[] gemIdList = useBagInfo.GemIDNew.Split('_');
+                int gemItemId = int.Parse(gemIdList[gemIndex]);
+                gemIdList[gemIndex] = "0";
+                useBagInfo.GemIDNew = "";
+                for (int i = 0; i < gemIdList.Length; i++)
+                {
+                    useBagInfo.GemIDNew = useBagInfo.GemIDNew + gemIdList[i] + "_";
+                }
+                useBagInfo.GemIDNew = useBagInfo.GemIDNew.Substring(0, useBagInfo.GemIDNew.Length - 1);
+                m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
 
-//            //卸下宝石
-//            if (request.OperateType == 10)
-//            {
-//                //宝石镶嵌
-//                string[] geminfos = request.OperatePar.Split('_');
-//                long equipid = long.Parse(geminfos[0]);
-//                int gemIndex = int.Parse(geminfos[1]);
+                //回收宝石
+                unit.GetComponent<BagComponent>().OnAddItemData($"{gemItemId};1", $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
+                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
+            }
 
-//                //获取装备baginfo
-//                BagInfo equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, equipid);
-//                if (equipInfo == null)
-//                {
-//                    equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, equipid);
-//                }
-//                if (equipInfo == null)
-//                {
-//                    Log.Error($"equipInfo == null {equipid}");
-//                    reply();
-//                    return;
-//                }
-//                string[] gemIdList = equipInfo.GemID.Split('_');
-//                gemIdList[gemIndex] = "0";
-//                equipInfo.GemID = "";
-//                for (int i = 0; i < gemIdList.Length; i++)
-//                {
-//                    equipInfo.GemID = equipInfo.GemID + gemIdList[i] + "_";
-//                }
-//                equipInfo.GemID = equipInfo.GemID.Substring(0, equipInfo.GemID.Length - 1);
-
-//                //改变宝石loc
-//                unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.ItemLocBag, ItemLocType.ItemLocGem);
-//                m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
-//                m2c_bagUpdate.BagInfoUpdate.Add(equipInfo);
-
-//                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
-//            }
-
-
-//            reply();
-//            await ETTask.CompletedTask;
-//        }
-//    }
-//}
+            MessageHelper.SendToClient(unit, m2c_bagUpdate);
+            reply();
+            await ETTask.CompletedTask;
+        }
+    }
+}

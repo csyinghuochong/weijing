@@ -441,7 +441,7 @@ namespace ET
 
 
         //装备镶嵌宝石
-        public static void TipsShowEquipGem(Scene zoneScene, GameObject icon, GameObject text, int gemHole, long gemId)
+        public static void TipsShowEquipGem(Scene zoneScene, GameObject icon, GameObject text, int gemHole, int gemId)
         {
             if (gemHole == 0)
             {
@@ -449,8 +449,7 @@ namespace ET
             }
             if (gemId != 0)
             {
-                BagInfo bagInfo = zoneScene.GetComponent<BagComponent>().GetBagInfo(gemId);
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(gemId);
                 text.GetComponent<Text>().text = itemConfig.ItemName;
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 icon.GetComponent<Image>().sprite = sp;

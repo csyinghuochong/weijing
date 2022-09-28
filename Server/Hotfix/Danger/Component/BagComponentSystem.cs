@@ -517,7 +517,7 @@ namespace ET
                     useBagInfo.Loc = itemCof.ItemType == (int)ItemTypeEnum.PetHeXin ? (int)ItemLocType.ItemPetHeXinBag : (int)ItemLocType.ItemLocBag;
                     useBagInfo.BagInfoID = IdGenerater.Instance.GenerateId();
                     useBagInfo.GemHole = "0_0_0_0";
-                    useBagInfo.GemID = "0_0_0_0";
+                    useBagInfo.GemIDNew = "0_0_0_0";
                     useBagInfo.GetWay = getWay;
                     leftNum -= useBagInfo.ItemNum;
 

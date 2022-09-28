@@ -13,7 +13,8 @@ namespace ET
             "testcn01",
             "QQ13302053296",
             "18319670288",
-            "oyHedvzGgPkynfiq3fNJInZcM76Q"
+            "oyHedvzGgPkynfiq3fNJInZcM76Q",
+            "oyHedv5Q72d8DNansF9PZGx7ME1M",
         };
 #endif
 

@@ -31,6 +31,7 @@ namespace ET
                 else
                 {
                     serverItems_1.Add(new ServerItem() { ServerId = 1, ServerIp = "127.0.0.1:20305", ServerName = "封测一区", ServerOpenTime = 0 });
+                    serverItems_1.Add(new ServerItem() { ServerId = 2, ServerIp = "127.0.0.1:20315", ServerName = "封测二区", ServerOpenTime = 0 });
                 }
             }
             else

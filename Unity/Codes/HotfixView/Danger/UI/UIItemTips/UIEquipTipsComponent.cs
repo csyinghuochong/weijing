@@ -325,7 +325,7 @@ namespace ET
         //出售装备
         public static void OnClickSellEquip(this UIEquipTipsComponent self)
         {
-            string[] gemids = self.BagInfo.GemID.Split('_');
+            string[] gemids = self.BagInfo.GemIDNew.Split('_');
             bool haveGem = false;
             for (int i = 0; i < gemids.Length; i++)
             {
@@ -993,7 +993,7 @@ namespace ET
             if (!string.IsNullOrEmpty(self.BagInfo.GemHole))
             {
                 string[] gemHoles = self.BagInfo.GemHole.Split('_');
-                string[] gemIds = self.BagInfo.GemID.Split('_');
+                string[] gemIds = self.BagInfo.GemIDNew.Split('_');
                 for (int g = 0; g < self.Obj_UIEquipGemHoleList.Length; g++)
                 {
                     self.Obj_UIEquipGemHoleList[g].SetActive(false);
@@ -1006,7 +1006,7 @@ namespace ET
                     }
                     self.Obj_UIEquipGemHoleList[gemNumber].SetActive(gemHoles[i] != "0");
                     ItemViewHelp.TipsShowEquipGem(self.ZoneScene(), self.Obj_UIEquipGemHoleIconList[gemNumber], self.Obj_UIEquipGemHoleTextList[gemNumber],
-                        int.Parse(gemHoles[gemNumber]), long.Parse(gemIds[gemNumber]));
+                        int.Parse(gemHoles[gemNumber]), int.Parse(gemIds[gemNumber]));
                     gemNumber += (gemHoles[i] != "0" ? 1 : 0);
                 }
             }

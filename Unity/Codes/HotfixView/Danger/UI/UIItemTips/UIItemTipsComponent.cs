@@ -124,8 +124,7 @@ namespace ET
             {
                 return;
             }
-            string usrPar = $"{uIRoleGemComponent.XiangQianItem.BagInfoID}_{uIRoleGemComponent.XiangQianIndex}";
-            self.BagComponent.SendXieXiaGem(self.BagInfo, usrPar).Coroutine();
+            self.BagComponent.SendXieXiaGem(uIRoleGemComponent.XiangQianItem, uIRoleGemComponent.XiangQianIndex.ToString()).Coroutine();
 
             self.OnCloseTips();
         }
@@ -228,7 +227,13 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip("请选择孔位！");
                     return;
                 }
-                string itemgem = gemHole.Split('_')[uIRoleGemComponent.XiangQianIndex];
+                string[] gemHolelist = gemHole.Split('_');
+                if (gemHolelist.Length <= uIRoleGemComponent.XiangQianIndex)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("请选择孔位！");
+                    return;
+                }
+                string itemgem = gemHolelist[uIRoleGemComponent.XiangQianIndex];
                 if (itemgem != itemConfig.ItemSubType.ToString())
                 {
                     FloatTipManager.Instance.ShowFloatTip("宝石与孔位不符！");

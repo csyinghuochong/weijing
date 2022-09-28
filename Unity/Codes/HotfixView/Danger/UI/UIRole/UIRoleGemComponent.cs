@@ -100,14 +100,14 @@ namespace ET
             self.UIEquipItem.UpdateItem(info, ItemOperateEnum.None);
 
             info.GemHole = string.IsNullOrEmpty(info.GemHole) ? "" : info.GemHole;
-            info.GemID = string.IsNullOrEmpty(info.GemID) ? "" : info.GemID;
+            info.GemIDNew = string.IsNullOrEmpty(info.GemIDNew) ? "" : info.GemIDNew;
             string[] gemHoles = info.GemHole.Split('_');
-            string[] gemIds = info.GemID.Split('_');
+            string[] gemIds = info.GemIDNew.Split('_');
 
             for (int i = 0; i < 4; i++)
             {
                 int gemHoleId = (gemHoles.Length > i && gemHoles[i]!="") ? int.Parse(gemHoles[i]) : 0;
-                long gemId = (gemIds.Length > i && gemIds[i] != "") ? long.Parse(gemIds[i]) : 0;
+                int gemId = (gemIds.Length > i && gemIds[i] != "") ? int.Parse(gemIds[i]) : 0;
 
                 self.GemHoleList[i].OnUpdateUI(gemHoleId, gemId, i);
                 self.GemHoleList[i].SetClickHandler(self.OnSetHoleIndex);

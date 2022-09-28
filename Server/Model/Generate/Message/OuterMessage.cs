@@ -477,9 +477,6 @@ namespace ET
 		[ProtoMember(4)]
 		public bool Relink { get; set; }
 
-		[ProtoMember(5)]
-		public string Account { get; set; }
-
 	}
 
 	[Message(OuterOpcode.G2C_EnterGame)]
@@ -1631,6 +1628,9 @@ namespace ET
 
 		[ProtoMember(16)]
 		public string GetWay { get; set; }
+
+		[ProtoMember(17)]
+		public string GemIDNew { get; set; }
 
 	}
 
@@ -8167,6 +8167,44 @@ namespace ET
 // 自己的unit id
 		[ProtoMember(1)]
 		public long PlayerId { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_ItemOperateGemResponse))]
+//
+	[Message(OuterOpcode.C2M_ItemOperateGemRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemOperateGemRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(2)]
+		public long OperateBagID { get; set; }
+
+		[ProtoMember(3)]
+		public string OperatePar { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemOperateGemResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemOperateGemResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public string OperatePar { get; set; }
 
 	}
 

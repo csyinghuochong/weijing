@@ -43,7 +43,6 @@ namespace ET
                     itemCof = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
                     weizhi = ItemHelper.ReturnEquipSpaceNum(itemCof.ItemSubType);
                 }
-
                 //通知客户端背包刷新
                 M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
                 //通知客户端背包道具发生改变
@@ -314,7 +313,7 @@ namespace ET
                 {
                     //默认出售全部
                     //给与对应金币或货币奖励
-                    string[] gemids = useBagInfo.GemID.Split('_');
+                    string[] gemids = useBagInfo.GemIDNew.Split('_');
                     List<long> gemIdList =  new List<long>();
                     ItemConfig itemConf = null;
                     for (int i = 0; i < gemids.Length; i++)
@@ -505,81 +504,6 @@ namespace ET
                 {
                     unit.GetComponent<BagComponent>().OnRecvItemSort((ItemLocType)(int.Parse(request.OperatePar)));
                 }
-
-                //镶嵌宝石
-                if (request.OperateType == 9)
-                { 
-                    //宝石镶嵌
-                    string[] geminfos = request.OperatePar.Split('_');
-                    long equipid = long.Parse(geminfos[0]);
-                    int gemIndex = int.Parse(geminfos[1]);
-
-                    //获取装备baginfo
-                    BagInfo equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, equipid);
-                    if (equipInfo == null)
-                    {
-                        equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, equipid);
-                    }
-                    if (equipInfo == null)
-                    {
-                        Log.Error($"equipInfo == null {equipid}");
-                        reply();
-                        return;
-                    }
-                    string[] gemIdList = equipInfo.GemID.Split('_');
-                    gemIdList[gemIndex] = useBagInfo.BagInfoID.ToString();
-                    equipInfo.GemID = "";
-                    for (int i = 0; i < gemIdList.Length; i++)
-                    {
-                        equipInfo.GemID = equipInfo.GemID  + gemIdList[i] + "_";
-                    }
-                    equipInfo.GemID = equipInfo.GemID.Substring(0, equipInfo.GemID.Length - 1);
-
-                    //改变宝石loc
-                    unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.ItemLocGem, ItemLocType.ItemLocBag);
-                    m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
-                    m2c_bagUpdate.BagInfoUpdate.Add(equipInfo);
-
-                    Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
-                }
-
-                //卸下宝石
-                if (request.OperateType == 10)
-                {
-                    //宝石镶嵌
-                    string[] geminfos = request.OperatePar.Split('_');
-                    long equipid = long.Parse(geminfos[0]);
-                    int gemIndex = int.Parse(geminfos[1]);
-
-                    //获取装备baginfo
-                    BagInfo equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, equipid);
-                    if (equipInfo == null)
-                    {
-                        equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, equipid);
-                    }
-                    if (equipInfo == null)
-                    {
-                        Log.Error($"equipInfo == null {equipid}");
-                        reply();
-                        return;
-                    }
-                    string[] gemIdList = equipInfo.GemID.Split('_');
-                    gemIdList[gemIndex] = "0";
-                    equipInfo.GemID = "";
-                    for (int i = 0; i < gemIdList.Length; i++)
-                    {
-                        equipInfo.GemID = equipInfo.GemID + gemIdList[i] + "_";
-                    }
-                    equipInfo.GemID = equipInfo.GemID.Substring(0, equipInfo.GemID.Length - 1);
-
-                    //改变宝石loc
-                    unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.ItemLocBag, ItemLocType.ItemLocGem);
-                    m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
-                    m2c_bagUpdate.BagInfoUpdate.Add(equipInfo);
-
-                    Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
-                }
-
                 MessageHelper.SendToClient(unit, m2c_bagUpdate);
                 //通知客户端属性刷新
                 reply();

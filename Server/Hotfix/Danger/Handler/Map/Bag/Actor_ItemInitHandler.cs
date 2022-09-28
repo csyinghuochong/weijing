@@ -31,10 +31,13 @@ namespace ET
 			//初始化
 			for (int i = 0; i < bagInfos.Count; i++)
 			{
+				if (string.IsNullOrEmpty(bagInfos[i].GemIDNew))
+				{
+					bagInfos[i].GemIDNew = "0_0_0_0";
+				}
 				if (string.IsNullOrEmpty(bagInfos[i].GemHole))
 				{
 					bagInfos[i].GemHole = "0_0_0_0";
-					bagInfos[i].GemID = "0_0_0_0";
 				}
 			}
 

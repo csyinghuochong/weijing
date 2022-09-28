@@ -133,8 +133,8 @@ namespace ET
         //镶嵌宝石
         public static async ETTask<int> SendXiangQianGem(this BagComponent self, BagInfo bagInfo, string par = "")
         {
-            C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 9, OperateBagID = bagInfo.BagInfoID, OperatePar = par };
-            M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
+            C2M_ItemOperateGemRequest m_ItemOperateWear = new C2M_ItemOperateGemRequest() { OperateType = 9, OperateBagID = bagInfo.BagInfoID, OperatePar = par };
+            M2C_ItemOperateGemResponse r2c_roleEquip = (M2C_ItemOperateGemResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
 
             if (r2c_roleEquip.Error != ErrorCore.ERR_Success)
             {
@@ -145,8 +145,8 @@ namespace ET
 
         public static async ETTask<int> SendXieXiaGem(this BagComponent self, BagInfo bagInfo, string par = "")
         {
-            C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 10, OperateBagID = bagInfo.BagInfoID, OperatePar = par };
-            M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
+            C2M_ItemOperateGemRequest m_ItemOperateWear = new C2M_ItemOperateGemRequest() { OperateType = 10, OperateBagID = bagInfo.BagInfoID, OperatePar = par };
+            M2C_ItemOperateGemResponse r2c_roleEquip = (M2C_ItemOperateGemResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
 
             if (r2c_roleEquip.Error != ErrorCore.ERR_Success)
             {
