@@ -112,6 +112,7 @@ namespace ET
                     continue;
                 }
                 GameObject gameObject = GameObject.Instantiate(self.TextDesc1);
+                UICommonHelper.SetParent( gameObject, self.DescListNode );
                 gameObject.SetActive(true);
                 gameObject.GetComponent<Text>().text = descList[i];
                 gameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(600f, gameObject.GetComponent<Text>().preferredHeight);
