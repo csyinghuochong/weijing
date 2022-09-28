@@ -6,6 +6,7 @@ namespace ET
 	{
 		protected override async ETTask Run(Session session, C2G_LoginGameGate request, G2C_LoginGameGate response, Action reply)
 		{
+			Log.Debug($"C2G_LoginGameGate  {request.RoleId}");
 			if (session.DomainScene().SceneType != SceneType.Gate)
 			{
 				Log.Error($"C2G_LoginGameGate请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
@@ -38,9 +39,9 @@ namespace ET
 			using (session.AddComponent<SessionLockingComponent>())
 			using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginGate, request.Account.GetHashCode()))
 			{
-				if (instanceId != session.InstanceId)	//防止多个客户端同时请求
+				if (instanceId != session.InstanceId)   //防止多个客户端同时请求
 				{
-					Log.Debug($"C2G_LoginGameGate 多个客户端同时请求{request.Account}{session.RemoteAddress}");
+					Log.Debug($"C2G_LoginGameGate 多个客户端同时请求  {request.RoleId} {session.RemoteAddress}  {instanceId} {session.InstanceId}");
 					return;
 				}
 
@@ -48,7 +49,6 @@ namespace ET
 				StartSceneConfig loginCenterConfig = StartSceneConfigCategory.Instance.LoginCenterConfig;
 				L2G_AddLoginRecord l2ARoleLogin = (L2G_AddLoginRecord)await MessageHelper.CallActor(loginCenterConfig.InstanceId,
 																				new G2L_AddLoginRecord() { AccountId = request.Account, ServerId = scene.Zone });
-
 				if (l2ARoleLogin.Error != ErrorCode.ERR_Success)
 				{
 					response.Error = l2ARoleLogin.Error;
@@ -79,7 +79,7 @@ namespace ET
 				{
 					//移除倒计时下线组件   //断线重连、
 					player.RemoveComponent<PlayerOfflineOutTimeComponent>();
-					Log.Debug($"C2G_LoginGameGate 多个客户端同时请求{request.Account}{session.RemoteAddress}");
+					Log.Debug($"C2G_LoginGameGate player!=null {request.RoleId}");
 				}
 
 				session.AddComponent<SessionPlayerComponent>().PlayerId = player.Id;
