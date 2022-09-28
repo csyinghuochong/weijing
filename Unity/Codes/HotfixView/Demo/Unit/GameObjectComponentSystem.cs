@@ -138,12 +138,12 @@ namespace ET
                     }
                     go.transform.name = unit.Id.ToString();
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
-                    unit.AddComponent<EffectViewComponent>();               //添加特效组建
                     unit.AddComponent<HeroTransformComponent>();              //获取角色绑点组件
                     unit.AddComponent<ChangeEquipComponent>().InitWeapon(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon));
                     unit.AddComponent<AnimatorComponent>();
                     unit.AddComponent<FsmComponent>();                         //当前状态组建
                     unit.AddComponent<HeroHeadBarComponent>();
+                    unit.AddComponent<EffectViewComponent>();               //添加特效组建
                     //血条UI组件
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                     self.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall)).Coroutine();
