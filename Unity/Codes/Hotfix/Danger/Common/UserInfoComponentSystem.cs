@@ -84,7 +84,7 @@ namespace ET
             if (lastLoginTime != 0)
             {
                 DateTime lastdateTime = TimeInfo.Instance.ToDateTime(lastLoginTime);
-                updateType = dateTime.Day != lastdateTime.Day ? 0: (dateTime.Hour != lastdateTime.Hour && dateTime.Hour == 12 ? 12 : -1);
+                updateType = dateTime.Day != lastdateTime.Day ? 0: (lastdateTime.Hour < 12 && dateTime.Hour >= 12 ? 12 : -1);
             }
 
             if (updateType == 0)
