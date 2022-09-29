@@ -12,8 +12,11 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_ItemOperateGemRequest request, M2C_ItemOperateGemResponse response, Action reply)
         {
             long bagInfoID = request.OperateBagID;
-            ItemLocType locType = request.OperateType == 9 ?  ItemLocType.ItemLocBag : ItemLocType.ItemLocEquip;
-            BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(locType, bagInfoID);
+            BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, bagInfoID);
+            if (useBagInfo == null)
+            {
+                useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, bagInfoID);
+            }
             if (useBagInfo == null)
             {
                 response.Error = ErrorCore.ERR_ItemUseError;

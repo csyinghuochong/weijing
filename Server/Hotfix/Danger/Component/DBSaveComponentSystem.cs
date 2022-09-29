@@ -100,8 +100,9 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             string offLineInfo = $"{unit.DomainZone()}区： " +
+                $" {unit.GetComponent<UserInfoComponent>().Id} : " +
                 $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
-                $"{  TimeHelper.DateTimeNow().ToString()}  {unit.GetComponent<UserInfoComponent>().RemoteAddress} 离线";
+                $"{  TimeHelper.DateTimeNow().ToString()}   离线";
             ComHelp.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
 
@@ -122,8 +123,9 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             string offLineInfo = $"{unit.DomainZone()}区： " +
-                $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
-                $"{  TimeHelper.DateTimeNow().ToString()}  {unit.GetComponent<UserInfoComponent>().RemoteAddress} 登录";
+               $" {unit.GetComponent<UserInfoComponent>().Id} : " +
+               $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
+               $"{  TimeHelper.DateTimeNow().ToString()}   登录";
             ComHelp.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
 
@@ -138,8 +140,9 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             string offLineInfo = $"{unit.DomainZone()}区： " +
-             $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
-             $"{  TimeHelper.DateTimeNow().ToString()}  {unit.GetComponent<UserInfoComponent>().RemoteAddress} 退出";
+              $" {unit.GetComponent<UserInfoComponent>().Id} : " +
+              $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
+              $"{  TimeHelper.DateTimeNow().ToString()}  移除";
             ComHelp.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
 

@@ -59,7 +59,7 @@ namespace ET
 						return;
 					}
 
-					Log.Debug($"C2G_EnterGame {player.Id} {player.PlayerState} {request.Relink}");
+					Log.Debug($"LoginTest  C2G_EnterGame_1 {player.Id} {player.InstanceId} {player.PlayerState} {request.Relink}");
                     //player可以映射任意一个seesion。 session是唯一的
                     if (player.PlayerState == PlayerState.Game && !request.Relink)
                     {

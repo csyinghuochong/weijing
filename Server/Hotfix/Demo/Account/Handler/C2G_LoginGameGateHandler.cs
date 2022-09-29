@@ -14,7 +14,6 @@ namespace ET
 				return;
 			}
 			session.RemoveComponent<SessionAcceptTimeoutComponent>();
-
 			if (session.GetComponent<SessionLockingComponent>() != null)
 			{
 				response.Error = ErrorCore.ERR_RequestRepeatedly;
@@ -74,12 +73,13 @@ namespace ET
 					session.AddComponent<MailBoxComponent, MailboxType>(MailboxType.GateSession);
 					player.AddComponent<MailBoxComponent, MailboxType>(MailboxType.GateSession);                    //ET-UWA
 					player.PlayerState = PlayerState.Gate;
+					Log.Debug($"LoginTest C2G_LoginGameGate player==null player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
 				}
 				else
 				{
 					//移除倒计时下线组件   //断线重连、
 					player.RemoveComponent<PlayerOfflineOutTimeComponent>();
-					Log.Debug($"LoginTest C2G_LoginGameGate player!=null {request.RoleId}");
+					Log.Debug($"LoginTest C2G_LoginGameGate player!=null player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
 				}
 
 				session.AddComponent<SessionPlayerComponent>().PlayerId = player.Id;
