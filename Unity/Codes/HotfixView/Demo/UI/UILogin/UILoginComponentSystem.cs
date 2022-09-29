@@ -168,6 +168,8 @@ namespace ET
 
 			self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 			self.Password.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastPassword(self.LoginType));
+
+			Log.ILog.Debug($"LoginTest2222  {self.LoginType} {self.Account.GetComponent<InputField>().text}");
 		}
 
 		//public const int RegisterLogin = 0;     //注册账号登录
@@ -184,6 +186,8 @@ namespace ET
 			bool uppos = GlobalHelp.IsBanHaoMode || LoginTypeEnum.RegisterLogin.ToString() == self.LoginType;
 			self.BanHanNode.transform.localPosition = uppos ? new Vector3(0f, -20f, 0f) : new Vector3(0f,160f,0f);
 
+			Log.ILog.Debug($"LoginTest {self.LoginType} {lastAccount}");
+
 			switch (int.Parse(self.LoginType))
 			{
 				case LoginTypeEnum.RegisterLogin:
@@ -197,10 +201,12 @@ namespace ET
 				case LoginTypeEnum.QQLogin:
 					if (string.IsNullOrEmpty(lastAccount))
 					{
+						Log.ILog.Debug($"LoginTest IsNullOrEmpty {lastAccount} {self.LoginType}");
 						GlobalHelp.GetUserInfo(self.LoginType);
 					}
 					else
 					{
+						Log.ILog.Debug($"LoginTest  Valided {lastAccount}");
 						self.OnGetUserInfo($"{lastAccount}");
 					}
 					break;
@@ -374,6 +380,8 @@ namespace ET
 		//QQ/WeiXin Login
 		public static void OnGetUserInfo(this UILoginComponent self, string openId)
 		{
+			Log.ILog.Debug($"LoginTestOnGetUserInfo  {openId}  {self.LoginType}");
+
 			if (openId == "fail" || string.IsNullOrEmpty(openId) )
 			{
 				GlobalHelp.Authorize(self.LoginType);
@@ -457,7 +465,7 @@ namespace ET
 			string account = self.Account.GetComponent<InputField>().text;
 			string password = self.Password.GetComponent<InputField>().text;
 
-			Log.ILog.Debug($"unit OnLogin:  {account}");
+			Log.ILog.Debug($"LoginTest OnLogin:  {account}");
 			self.RequestLogin(account, password, self.LoginType).Coroutine();
 		}
 
