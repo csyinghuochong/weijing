@@ -57,18 +57,23 @@ namespace ET
 
         public static void OnBulletUpdate(this BuffHandler self, Vector3 curPostion)
         {
-            List<Entity> units = self.TheUnitFrom.Domain.GetComponent<UnitComponent>().Children.Values.ToList();
-            for(int i = units.Count - 1; i >= 0; i--)
+            List<Unit> units = self.TheUnitFrom.GetParent<UnitComponent>().GetAll();
+            for (int i = units.Count - 1; i >= 0; i--)
             {
                 Unit uu = units[i] as Unit;
                 //不对自己造成伤害和同一个目标不造成2次伤害
-                if (uu.Id == self.TheUnitFrom.Id || self.mSkillHandler.HurtIds.Contains(uu.Id))
+                if (uu.IsDisposed||uu.Id == self.TheUnitFrom.Id)
                 {
                     continue;
                 }
-
-                if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(self.TheUnitFrom))
+                if (self.mSkillHandler.HurtIds.Contains(uu.Id))
+                {
                     continue;
+                }
+                if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(self.TheUnitFrom))
+                {
+                    continue;
+                }
 
                 //检测目标是否在技能范围
                 if (Vector3.Distance(curPostion, uu.Position) > self.DamageRange)

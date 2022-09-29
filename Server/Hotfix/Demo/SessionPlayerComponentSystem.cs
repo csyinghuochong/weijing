@@ -27,7 +27,7 @@ namespace ET
 					return;
 				}
 
-				Log.Debug($"SessionPlayerComponent|self.isLoginAgain = {self.isLoginAgain}: {player.Id}");
+				Log.Debug($"SessionPlayerComponent|self.isLoginAgain = {self.isLoginAgain}: {player.Id} {player.UnitId}");
 				ActorLocationSenderComponent.Instance.Send(self.PlayerId, new G2M_SessionDisconnect());
 				player.RemoveComponent<PlayerOfflineOutTimeComponent>();
 				player.AddComponent<PlayerOfflineOutTimeComponent>();	//30秒后会kickplayer

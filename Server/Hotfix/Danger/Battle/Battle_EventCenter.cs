@@ -56,7 +56,6 @@ namespace ET
             {
                 reviveTime = defendUnit.GetComponent<HeroDataComponent>().OnWaitRevive();
             }
-            UnitInfoComponent unitInfoComponent = defendUnit.GetComponent<UnitInfoComponent>();
             defendUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
             if (args.UnitAttack != null && !args.UnitAttack.IsDisposed)
             {

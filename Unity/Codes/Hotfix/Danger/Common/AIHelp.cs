@@ -51,11 +51,15 @@ namespace ET
             List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
-                Unit uu = units[i];
-                if (unit.Id == uu.Id)
+                Unit uu = units[i]; 
+                if (uu.IsDisposed || unit.Id == uu.Id)
+                {
                     continue;
+                }
                 if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(unit))
+                {
                     continue;
+                }
                 float dd = PositionHelper.Distance2D(unit, uu);
                 if (distance < 0f || dd < distance)
                 {

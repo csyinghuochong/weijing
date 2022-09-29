@@ -76,16 +76,24 @@ namespace ET
 				}
 			}
 
-            for (int i = 0; i < petSkillList_2.Count; i++)
-            {
-                if (!savePetSkillID.Contains(petSkillList_2[i]))
-                {
-                    if (savePetSkillID.Contains(petSkillList_1[i]) == false && RandomHelper.RandFloat01() <= skillpro)
-                    {
-                        savePetSkillID.Add(petSkillList_2[i]);
-                    }
-                }
-            }
+			try
+			{
+				for (int i = 0; i < petSkillList_2.Count; i++)
+				{
+					if (!savePetSkillID.Contains(petSkillList_2[i]))
+					{
+						if (savePetSkillID.Contains(petSkillList_1[i]) == false && RandomHelper.RandFloat01() <= skillpro)
+						{
+							savePetSkillID.Add(petSkillList_2[i]);
+						}
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Log.Debug("C2M_RolePetHeCheng: " +  ex.ToString());
+			}
+
             int petID = 0;
 			PetConfig itemConf1 = PetConfigCategory.Instance.Get(petID_1);
 			PetConfig itemConf2 = PetConfigCategory.Instance.Get(petID_2);
