@@ -16,7 +16,7 @@ namespace ET
 				UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
 				if (unitComponent.Get(request.Unit.Id) != null)
 				{
-					Log.Debug($"LoginTest M2M_UnitTransfer   unitComponent.Get(unit.Id)!=null:  {request.Unit.Id}");
+					Log.Debug($"LoginTest M2M_UnitTransfer   unitComponent.Get(unit.Id)!=null:  {request.Unit.Id} {request.SceneType}");
 					unitComponent.Remove(request.Unit.Id);
 				}
 				else

@@ -126,10 +126,6 @@ namespace ET
 				Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), (int)SceneTypeEnum.LoginScene);
 				self.InitLoginType();
 				self.UpdateLoginType();
-
-				self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
-				self.Password.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastPassword(self.LoginType));
-
 			}
 			catch (Exception E)
 			{
@@ -169,6 +165,9 @@ namespace ET
 				self.LoginType = lastloginType;
 			}
 			self.LoginType = GlobalHelp.IsBanHaoMode ? LoginTypeEnum.RegisterLogin.ToString() : self.LoginType;
+
+			self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
+			self.Password.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastPassword(self.LoginType));
 		}
 
 		//public const int RegisterLogin = 0;     //注册账号登录
@@ -202,7 +201,7 @@ namespace ET
 					}
 					else
 					{
-						self.OnGetUserInfo($"sucess_{lastAccount}");
+						self.OnGetUserInfo($"{lastAccount}");
 					}
 					break;
 				case LoginTypeEnum.PhoneCodeLogin:
@@ -476,6 +475,11 @@ namespace ET
 				self.RequestAllServer().Coroutine();
 				return;
 			}
+			if (string.IsNullOrEmpty(account) || string.IsNullOrEmpty(password))
+			{
+				FloatTipManager.Instance.ShowFloatTip("请选择登录方式");
+				return;
+			}
 			if (TimeHelper.ClientNow() - self.LastLoginTime < 3000)
 			{
 				return;
@@ -529,6 +533,19 @@ namespace ET
 				self.Password.SetActive(false);
 				self.HideNode.SetActive(false);
 			}
+			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastLoginType, "");
+			self.ResetPlayerPrefs(LoginTypeEnum.RegisterLogin.ToString());
+			self.ResetPlayerPrefs(LoginTypeEnum.WeixLogin.ToString());
+			self.ResetPlayerPrefs(LoginTypeEnum.QQLogin.ToString());
+			self.ResetPlayerPrefs(LoginTypeEnum.PhoneCodeLogin.ToString());
+			self.ResetPlayerPrefs(LoginTypeEnum.PhoneNumLogin.ToString());
+			self.InitLoginType();
+		}
+
+		public static void ResetPlayerPrefs(this UILoginComponent self, string loingType)
+		{
+			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastAccount(loingType), "");
+			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastPassword(loingType), "");
 		}
 
 		public static void OnSelectServer(this UILoginComponent self, ServerItem serverId)

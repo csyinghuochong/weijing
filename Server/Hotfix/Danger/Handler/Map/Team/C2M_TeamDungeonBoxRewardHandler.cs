@@ -9,12 +9,20 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_TeamDungeonBoxRewardRequest request, M2C_TeamDungeonBoxRewardResponse response, Action reply)
         {
-            if (unit.DomainScene().GetComponent<TeamDungeonComponent>().BoxReward.Contains(request.BoxIndex))
+            Scene scene = unit.DomainScene();
+            if (scene.InstanceId == 0 || scene.IsDisposed)
+            {
+                Log.Debug($"LoginTest TeamDungeonBoxReward {unit.Id}");
+                reply();
+                return;
+            }
+
+            if (scene.GetComponent<TeamDungeonComponent>().BoxReward.Contains(request.BoxIndex))
             {
                 reply();
                 return;
             }
-            unit.DomainScene().GetComponent<TeamDungeonComponent>().BoxReward.Add(request.BoxIndex);
+            scene.GetComponent<TeamDungeonComponent>().BoxReward.Add(request.BoxIndex);
 
             List<RewardItem> rewardItems = new List<RewardItem>();
             rewardItems.Add(request.RewardItem);

@@ -8,6 +8,17 @@ namespace ET
         {
             try
             {
+                if (TimeHelper.ServerNow() - LastquitTime < 1000)
+                {
+                    return ErrorCore.ERR_OperationOften;
+                }
+                LastquitTime = TimeHelper.ServerNow();
+                MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
+                if (mapComponent.SceneTypeEnum == sceneType 
+                    && sceneType!= SceneTypeEnum.LocalDungeon)
+                {
+                    return ErrorCore.ERR_RequestRepeatedly;
+                }
                 Actor_TransferRequest c2M_ItemHuiShouRequest = new Actor_TransferRequest() { SceneType = sceneType, SceneId = sceneId, TransferId = transferId, Difficulty = difficulty, paramInfo = paraminfo };
                 Actor_TransferResponse r2c_roleEquip = (Actor_TransferResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
                 return r2c_roleEquip.Error;
@@ -117,8 +128,10 @@ namespace ET
             Actor_SendReviveResponse actor_QuitFubenResponse = await zoneScene.GetComponent<SessionComponent>().Session.Call(actor_SendReviveRequest) as Actor_SendReviveResponse;
         }
 
+        public static long LastquitTime = 0;
         public static void RequestQuitFuben(Scene zoneScene)
         {
+            
              RequestTransfer(zoneScene, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID()).Coroutine();
         }
     }
