@@ -58,7 +58,7 @@ namespace ET
                                 UserId = long.Parse(mailInfo[2]),
                                 Itemlist = mailInfo[3],
                                 Title = titie,    
-                                Zone = zoneList[i],
+                                ActorId = zoneList[i],
                             });
                     }
 

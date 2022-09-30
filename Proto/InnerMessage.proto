@@ -974,7 +974,6 @@ message M2E_GMEMailSendRequest // IActorRequest
     int64 UserId = 1;
     string Itemlist = 2;
     string Title = 3; 
-    int32 Zone = 4;
 }
 
 message E2M_GMEMailSendResponse // IActorResponse
