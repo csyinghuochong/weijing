@@ -11,15 +11,24 @@ namespace ET
         {
             Log.Info($"M2E_GMEMailSendHandler: {scene.SceneType} {scene.DomainZone()}");
             long serverTime = TimeHelper.ServerNow();
-            List<DBMailInfo> dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id > 0);
-            for(int i = 0; i< dBMailInfos.Count; i++)
+            List<DBMailInfo> dBMailInfos = null;
+
+            if (request.UserId == 0)
+            {
+                dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id > 0);
+            }
+            else
+            {
+                dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id == request.UserId);
+            }
+
+            for (int i = 0; i < dBMailInfos.Count; i++)
             {
                 MailInfo mailInfo = new MailInfo();
                 mailInfo.Status = 0;
                 mailInfo.Context = "清档补偿";
                 mailInfo.Title = "清档补偿";
                 mailInfo.MailId = IdGenerater.Instance.GenerateId();
-
                 string[] needList = request.Itemlist.Split('@');
                 for (int k = 0; k < needList.Length; k++)
                 {
@@ -33,13 +42,10 @@ namespace ET
                     mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.RankReward}_{serverTime}" });
                 }
 
-                dBMailInfos[i].MailInfoList.Add(mailInfo);
-                await Game.Scene.GetComponent<DBComponent>().Save<DBMailInfo>(scene.DomainZone(), dBMailInfos[i]);
+                await MailHelp.SendUserMail(3, dBMailInfos[i].Id, mailInfo);
             }
-
             reply();
             await ETTask.CompletedTask;
         }
     }
 }
-

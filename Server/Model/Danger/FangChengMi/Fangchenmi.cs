@@ -92,7 +92,15 @@ namespace ET
 			Log.Debug($"Fangchenmi res {res}");
 			//object data_result = Newtonsoft.Json.JsonConvert.DeserializeObject<object>(res);
 			// 反序列化json
-			RealNameResult result_1 = BsonSerializer.Deserialize<RealNameResult>(res);
+			RealNameResult result_1 = null;
+			try
+			{
+				 result_1 = BsonSerializer.Deserialize<RealNameResult>(res);
+			}
+			catch (Exception ex)
+			{
+				Log.Debug(ex.ToString());
+			}
 			return result_1;
 		}
 
