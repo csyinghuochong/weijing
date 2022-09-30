@@ -72,7 +72,9 @@ namespace ET
             self.NanDu_1_Select.SetActive(diff == 1);
             self.NanDu_2_Select.SetActive(diff == 2);
             self.NanDu_3_Select.SetActive(diff == 3);
-            PlayerPrefsHelp.SetChapterDifficulty(self.ChapterId, diff);
+
+            UserInfo userinfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            PlayerPrefsHelp.SetChapterDifficulty($"{userinfo.UserId}{self.ChapterId}", diff);
         }
 
         public static void OnClickHandler(this UIDungeonLevelComponent self, int chapterId)
@@ -99,7 +101,8 @@ namespace ET
             self.NanDu_2_Button.transform.Find("TextOpenLevel").GetComponent<Text>().text = $"激活等级:{openLv[1]}级";
             self.NanDu_3_Button.transform.Find("TextOpenLevel").GetComponent<Text>().text = $"激活等级:{openLv[2]}级";
 
-            self.OnNanDu_Button(PlayerPrefsHelp.GetChapterDifficulty(self.ChapterId));
+            UserInfo userinfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            self.OnNanDu_Button(PlayerPrefsHelp.GetChapterDifficulty($"{userinfo.UserId}{self.ChapterId}"));
             self.UpdateLevelList(chapterId).Coroutine();
         }
 

@@ -43,7 +43,7 @@ namespace ET
         }
 
 
-        public static int GetChapterDifficulty(int chapterid)
+        public static int GetChapterDifficulty(string chapterid)
         {
             string difficultyinfo = GetString(ChapterDifficulty);
             if (string.IsNullOrEmpty(difficultyinfo))
@@ -54,7 +54,7 @@ namespace ET
             for (int i = 0; i < difficultylist.Length; i++)
             {
                 string[] chapterinfo = difficultylist[i].Split(';');
-                if (int.Parse(chapterinfo[0]) == chapterid)
+                if (chapterinfo[0] == chapterid)
                 {
                     return int.Parse(chapterinfo[1]);
                 }
@@ -62,7 +62,7 @@ namespace ET
             return 1;
         }
 
-        public static void SetChapterDifficulty(int chapterid, int difficulty)
+        public static void SetChapterDifficulty(string chapterid, int difficulty)
         {
             string difficultyinfo = GetString(ChapterDifficulty);
             if (string.IsNullOrEmpty(difficultyinfo))
@@ -73,11 +73,11 @@ namespace ET
             }
 
             string[] difficultylist = difficultyinfo.Split('@');
-            Dictionary<int,int> keyValuePairs = new Dictionary<int,int>();
+            Dictionary<string,int> keyValuePairs = new Dictionary<string,int>();
             for (int i = 0; i < difficultylist.Length; i++)
             {
                 string[] chapterinfo = difficultylist[i].Split(';');
-                keyValuePairs.Add(int.Parse(chapterinfo[0]), int.Parse(chapterinfo[1]));
+                keyValuePairs.Add(chapterinfo[0], int.Parse(chapterinfo[1]));
             }
             if (!keyValuePairs.ContainsKey(chapterid))
             {
