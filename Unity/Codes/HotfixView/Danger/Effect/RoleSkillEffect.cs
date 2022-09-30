@@ -85,10 +85,12 @@ namespace ET
                     //Debug
                     if (this.TheUnitBelongto.GetComponent<HeroTransformComponent>()==null)
                     {
-                        Log.Error($"this.TheUnitBelongto.GetComponent<HeroTransformComponent>()==null: {this.TheUnitBelongto.UpdateUIType} ");
+                        UnitInfoComponent unitInfo = this.TheUnitBelongto.GetComponent<UnitInfoComponent>();
+                        GameObjectComponent gameObjectComponent = this.TheUnitBelongto.GetComponent<GameObjectComponent>();
+                        Log.Error($"this.TheUnitBelongto.GetComponent<HeroTransformComponent>()==null: " +
+                            $"unitInfo:  {unitInfo.Type}  {gameObjectComponent!=null}");
                     }
                     Transform tParent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>().GetTranform((PosType)Enum.Parse(typeof(PosType), EffectData.mEffectConfig.SkillParentPosition));
-
                     EffectObj.transform.SetParent(tParent);
                     EffectObj.transform.localPosition = Vector3.zero;
                     EffectObj.transform.localScale = Vector3.one;

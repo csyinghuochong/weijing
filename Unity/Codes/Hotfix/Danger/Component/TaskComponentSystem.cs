@@ -11,15 +11,17 @@ namespace ET
 
         public static List<int> GetOpenTaskIds(this TaskComponent self, int npcid)
         {
+            List<int> openTaskids = new List<int>();
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
             if (npcConfig == null)
-                return null;
-
-            List<int> openTaskids = new List<int>();
+            {
+                return openTaskids;
+            }
             int[] taskid = npcConfig.TaskID;
             if (taskid == null)
+            {
                 return openTaskids;
-
+            }
             Scene unit = self.ZoneScene();
             for (int i = 0; i < taskid.Length; i++)
             {

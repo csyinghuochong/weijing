@@ -59,19 +59,23 @@ namespace ET
             self.TypeItemUIList.Clear();
 
             await self.RequestPaiMaiShopData();    //初始化数据
-            self.InitPaiMaiType().Coroutine();    //初始化显示
         }
     }
 
     public static class UIPaiMaiShopComponentSystem
     {
 
-        public static async ETTask RequestPaiMaiShopData(this UIPaiMaiShopComponent self) {
-
+        public static async ETTask RequestPaiMaiShopData(this UIPaiMaiShopComponent self) 
+        {
+            long instanceId = self.InstanceId;
+          
             //请求当前快捷拍卖的对应价格
             C2P_PaiMaiShopShowListRequest c2P_PaiMaiShopShowListRequest = new C2P_PaiMaiShopShowListRequest() { };
             P2C_PaiMaiShopShowListResponse p2C_PaiMaiShopShowListResponse = (P2C_PaiMaiShopShowListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2P_PaiMaiShopShowListRequest);
-
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
             //添加缓存
             foreach (PaiMaiShopItemInfo data in p2C_PaiMaiShopShowListResponse.PaiMaiShopItemInfos) {
                 self.PaiMaiShopItemInfos.Add(data.Id, data);
@@ -83,6 +87,8 @@ namespace ET
             {
                 ui.GetComponent<UIPaiMaiComponent>().PaiMaiShopItemInfos = self.PaiMaiShopItemInfos;
             }
+
+            self.InitPaiMaiType().Coroutine();    //初始化显示
         }
 
         public static async ETTask InitPaiMaiType(this UIPaiMaiShopComponent self)

@@ -259,10 +259,7 @@ namespace ET
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Task/UITaskGetItem");
             var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            if (instanceid != self.InstanceId)
-            {
-                return true;
-            }
+            
             for (int i = 0; i < taskids.Count; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);

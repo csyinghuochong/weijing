@@ -139,6 +139,10 @@ namespace ET
 				return;
 			}
 			Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+			if (unit == null)
+			{
+				return;
+			}
 			Vector3 chaV3 = self.OldCameraPostion + (self.TargetPosition - self.OldCameraPostion) * self.CameraMoveTime;
 			self.MainCamera.transform.position = chaV3;
 			Vector3 lookPosition = self.NpcUnit.Position + (unit.Position - self.NpcUnit.Position) * self.CameraMoveTime;

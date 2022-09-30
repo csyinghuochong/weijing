@@ -64,10 +64,8 @@ namespace ET
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
             self.Img_YiJianZiSe.SetActive(false);
 
+            self.InitHuiShouList();
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
-
-            self.InitHuiShouList().Coroutine();
-            self.UpdateBagUI();
 
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
         }
@@ -77,12 +75,12 @@ namespace ET
     public static class UIHuiShouComponentSystem
     {
 
-        public static async ETTask InitHuiShouList(this UIRoleHuiShouComponent self)
+        public static void  InitHuiShouList(this UIRoleHuiShouComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;

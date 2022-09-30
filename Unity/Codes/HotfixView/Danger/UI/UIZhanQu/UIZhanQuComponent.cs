@@ -64,7 +64,12 @@ namespace ET
 	{
 		public static async ETTask RequeatActivityInfo(this UIZhanQuComponent self)
 		{
+			long instance = self.InstanceId;
 			await NetHelper.RequestZhanQuInfo(self.ZoneScene());
+			if (instance == self.InstanceId)
+			{
+				return;
+			}
 			self.UIPageButton.ClickEnabled = true;
 			self.UIPageButton.OnSelectIndex(0);
 		}
