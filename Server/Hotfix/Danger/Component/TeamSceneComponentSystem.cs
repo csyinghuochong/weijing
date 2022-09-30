@@ -97,7 +97,14 @@ namespace ET
                     if (tempTeampInfo.TeamId == userId)
                     {
                         teamInfo = tempTeampInfo;
-                        teamInfo.PlayerList.RemoveAt(0);
+                        if (teamInfo.PlayerList.Count > 0)
+                        {
+                            teamInfo.PlayerList.RemoveAt(0);
+                        }
+                        else
+                        {
+                            Log.Debug($"TeamScene UnitChangeStatus {request.UnitId}");
+                        }
                         self.TeamList.Remove(teamInfo);
                         break;
                     }

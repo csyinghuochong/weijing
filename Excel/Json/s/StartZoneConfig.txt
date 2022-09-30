@@ -1,6 +1,7 @@
 {"list":[
 {"_t":"StartZoneConfig","_id":1,"DBConnection":"mongodb://localhost:27017/","DBName":"WJBeta1"},
 {"_t":"StartZoneConfig","_id":2,"DBConnection":"mongodb://localhost:27017/","DBName":"WJBeta2"},
+{"_t":"StartZoneConfig","_id":3,"DBConnection":"mongodb://localhost:27017/","DBName":"WJBeta3"},
 {"_t":"StartZoneConfig","_id":202,"DBConnection":"mongodb://localhost:27017/","DBName":"WJBeta202(center)"},
 {"_t":"StartZoneConfig","_id":203,"DBConnection":"mongodb://localhost:27017/","DBName":"WJBeta203(robot)"},
 ]}

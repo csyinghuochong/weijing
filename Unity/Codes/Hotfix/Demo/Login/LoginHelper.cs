@@ -50,7 +50,7 @@ namespace ET
             {
                 //password = MD5Helper.StringMD5(password);
                 accountSession = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
-                a2CLoginAccount = (A2C_LoginAccount)await accountSession.Call(new C2A_LoginAccount() { AccountName = account, Password = password, Token = token, ThirdLogin = thirdLogin });
+                a2CLoginAccount = (A2C_LoginAccount)await accountSession.Call(new C2A_LoginAccount() { AccountName = account, Password = password, Token = token, ThirdLogin = thirdLogin, Relink = relink });
             }
             catch (Exception e)
             {

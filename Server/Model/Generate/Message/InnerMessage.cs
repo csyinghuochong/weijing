@@ -787,6 +787,9 @@ namespace ET
 		[ProtoMember(1)]
 		public long AccountId { get; set; }
 
+		[ProtoMember(4)]
+		public bool Relink { get; set; }
+
 	}
 
 	[Message(InnerOpcode.G2L_DisconnectGateUnit)]
@@ -2038,6 +2041,37 @@ namespace ET
 	[Message(InnerOpcode.E2M_GMEMailSendResponse)]
 	[ProtoContract]
 	public partial class E2M_GMEMailSendResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(L2A_LoginAccountResponse))]
+	[Message(InnerOpcode.A2L_LoginAccountRequest)]
+	[ProtoContract]
+	public partial class A2L_LoginAccountRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long AccountId { get; set; }
+
+		[ProtoMember(5)]
+		public bool Relink { get; set; }
+
+	}
+
+	[Message(InnerOpcode.L2A_LoginAccountResponse)]
+	[ProtoContract]
+	public partial class L2A_LoginAccountResponse: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

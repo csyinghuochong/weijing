@@ -367,6 +367,7 @@ message L2G_DisconnectGateUnit //IActorRequest
 {
 	int32 RpcId = 90;
 	int64 AccountId = 1;
+	bool Relink = 4;
 }
 
 message G2L_DisconnectGateUnit //IActorResponse
@@ -980,4 +981,20 @@ message E2M_GMEMailSendResponse // IActorResponse
     int32 RpcId = 90;
     int32 Error = 91;
     string Message = 92;
+}
+
+
+//ResponseType L2A_LoginAccountResponse
+message A2L_LoginAccountRequest //IActorRequest
+{
+	int32 RpcId = 90;
+	int64 AccountId = 1;
+	bool Relink = 5;
+}
+
+message L2A_LoginAccountResponse //IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }

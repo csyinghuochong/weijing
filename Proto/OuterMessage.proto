@@ -497,6 +497,7 @@ message C2A_LoginAccount // IRequest
 	string	Password = 2;	// 密码
 	string Token = 3;
 	string ThirdLogin = 4;
+	bool Relink = 5;
 }
 
 message A2C_LoginAccount // IResponse
@@ -510,20 +511,6 @@ message A2C_LoginAccount // IResponse
 	PlayerInfo PlayerInfo = 5;
 	int32 QueueNumber = 6;
 	string QueueAddres = 7;
-}
-
-//ResponseType L2A_LoginAccountResponse
-message A2L_LoginAccountRequest //IActorRequest
-{
-	int32 RpcId = 90;
-	int64 AccountId = 1;
-}
-
-message L2A_LoginAccountResponse //IActorResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
 }
 
 message A2C_Disconnect	//IMessage

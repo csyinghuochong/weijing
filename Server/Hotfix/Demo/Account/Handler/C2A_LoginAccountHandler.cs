@@ -162,7 +162,7 @@ namespace ET
                     //StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), "LoginCenter");
                     //long loginCenterInstanceId = startSceneConfig.InstanceId;
                     long loginCenterInstanceId = StartSceneConfigCategory.Instance.LoginCenterConfig.InstanceId;//踢掉进入gate的玩家
-                    var loginAccountResponse = (L2A_LoginAccountResponse)await ActorMessageSenderComponent.Instance.Call(loginCenterInstanceId, new A2L_LoginAccountRequest() { AccountId = account.Id });
+                    var loginAccountResponse = (L2A_LoginAccountResponse)await ActorMessageSenderComponent.Instance.Call(loginCenterInstanceId, new A2L_LoginAccountRequest() { AccountId = account.Id, Relink = request.Relink });
 
                     if (loginAccountResponse.Error != ErrorCode.ERR_Success)
                     {

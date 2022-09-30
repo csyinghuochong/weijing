@@ -67,10 +67,10 @@ namespace ET
 
         public static void OnGetKeyHandler(this OperaComponent self, int keyCode)
         {
-            if (!self.EditorMode)
-            {
-                return;
-            }
+            //if (!self.EditorMode)
+            //{
+            //    return;
+            //}
             if (Time.time - self.LastSendTime < 0.2f)
             {
                 return;

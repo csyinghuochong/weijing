@@ -27,9 +27,15 @@ namespace ET
                     gateSession.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_OtherAccountLogin }); //客户端断线
                     gateSession?.Disconnect().Coroutine();  //释放会调用SessionPlayerComponentDestory
                 }
-                //player.RemoveComponent<PlayerOfflineOutTimeComponent>();   
-                //player.AddComponent<PlayerOfflineOutTimeComponent>();   //客户端踢下线，30秒之后调用kickplayer? 还是直接kickplayer;
-                DisconnectHelper.KickPlayer(player).Coroutine();
+                if (request.Relink)
+                {
+                    player.RemoveComponent<PlayerOfflineOutTimeComponent>();   
+                    player.AddComponent<PlayerOfflineOutTimeComponent>();   //客户端踢下线，30秒之后调用kickplayer? 还是直接kickplayer;
+                }
+                else
+                {
+                    DisconnectHelper.KickPlayer(player).Coroutine();
+                }
                 player.ClientSession = null;
             }
             reply();
