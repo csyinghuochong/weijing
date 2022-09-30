@@ -23,8 +23,10 @@ namespace ET
 		public UITypeViewComponent UITypeViewComponent;
 		public UIFirstWinRewardComponent UIFirstWinReward;
 		public List<FirstWinInfo> FirstWinInfos = new List<FirstWinInfo>();
+		public List<UIItemComponent> UIItemComponents = new List<UIItemComponent>();	
 
 		public int FirstWinId;
+		public long LastUpdateTime;
 	}
 
     [ObjectSystem]
@@ -34,6 +36,9 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+			self.FirstWinId = 0;
+			self.LastUpdateTime = 0;
+			self.UIItemComponents.Clear();
 			self.Text_JiSha_3 = rc.Get<GameObject>("Text_JiSha_3");
 			self.Text_JiSha_2 = rc.Get<GameObject>("Text_JiSha_2");
 			self.Text_JiSha_1 = rc.Get<GameObject>("Text_JiSha_1");
@@ -141,6 +146,15 @@ namespace ET
 
 		public static void OnClickTypeItem(this UIFirstWinComponent self, int typeid, int firstwinId)
 		{
+			if (self.FirstWinId == firstwinId)
+			{
+				return;	
+			}
+			if (TimeHelper.ServerNow() - self.LastUpdateTime < 500)
+			{
+				return;
+			}
+			self.LastUpdateTime = TimeHelper.ServerNow();
 			self.FirstWinId = firstwinId;
 			self.UpdateBossInfo(firstwinId);
 		}
@@ -173,6 +187,47 @@ namespace ET
 			return true;
 		}
 
+		public static void UpdateRewardList(this UIFirstWinComponent self, List<RewardItem> itemList)
+		{
+			var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+			var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+			
+			try
+			{
+				int number = 0;
+				for (int i = 0; i < itemList.Count; i++)
+				{
+					UIItemComponent uIItemComponent = null;
+					if (number < self.UIItemComponents.Count)
+					{
+						uIItemComponent = self.UIItemComponents[i];
+						uIItemComponent.GameObject.SetActive(true);
+					}
+					else
+					{
+						RewardItem rewardItem = itemList[i];
+						GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
+						UICommonHelper.SetParent(itemSpace, self.RewardListNode);
+						uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
+						uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItem.ItemID, ItemNum = rewardItem.ItemNum }, ItemOperateEnum.None);
+						uIItemComponent.Label_ItemName.SetActive(false);
+						uIItemComponent.Label_ItemNum.SetActive(false);
+						itemSpace.transform.localScale = Vector3.one * 1f;
+						self.UIItemComponents.Add(uIItemComponent);
+					}
+					number++;	
+				}
+				for (int i = number; i < self.UIItemComponents.Count; i++)
+				{
+					self.UIItemComponents[i].GameObject.SetActive(false);
+				}
+			}
+			catch (Exception ex)
+			{
+				Log.Error("UIFirstWin: " +  ex.ToString());
+			}
+		}
+
 		public static void UpdateBossInfo(this UIFirstWinComponent self, int firstwinId)
 		{
 			if (firstwinId == 0)
@@ -200,27 +255,32 @@ namespace ET
 			bool updatestatus = self.IsUpdateStatus(bossId);
 			self.Text_UpdateStatus.GetComponent<Text>().text = updatestatus ? "(已刷新)" : "(未刷新)";
 			self.Text_UpdateStatus.GetComponent<Text>().color = updatestatus ? new Color(25f/255,180f/255f,25f/255f) : new Color(50f / 255, 50f / 255f, 50f / 255f);
-			UICommonHelper.DestoryChild(self.RewardListNode);
-			List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterConfig.Id, 1f, true);
-			string showList = "";
-			for (int i = 0; i < droplist.Count; i++)
+			List<RewardItem> droplist = new List<RewardItem>();
+			try
 			{
-				if (showList.Contains(droplist[i].ItemID.ToString()))
+				droplist = DropHelper.AI_MonsterDrop(monsterConfig.Id, 1f, true);
+			}
+			catch (Exception ex)
+			{
+				Log.Error("UIFirstWin: " + ex.ToString());
+			}
+			List<int> itemIdList = new List<int>();
+			for (int i = droplist.Count - 1; i >=0;  i--)
+			{
+				if (itemIdList.Contains(droplist[i].ItemID))
 				{
+					droplist.RemoveAt(i);
 					continue;
 				}
 				ItemConfig itemConfig = ItemConfigCategory.Instance.Get( droplist[i].ItemID );
 				if (itemConfig.ItemQuality < 4)
 				{
+					droplist.RemoveAt(i);
 					continue;
 				}
-				showList = showList + $"{droplist[i].ItemID};1@";
 			}
-			if (showList.Length > 0)
-			{
-				showList = showList.Substring(0, showList.Length - 1);
-			}
-			UICommonHelper.ShowItemList(showList, self.RewardListNode, self, 1f, false).Coroutine();
+			
+			self.UpdateRewardList(droplist);
 
 			FirstWinInfo firstWinInfo_1 = self.GetFirstWinInfo(firstwinId, 1);
 			FirstWinInfo firstWinInfo_2 = self.GetFirstWinInfo(firstwinId, 2);

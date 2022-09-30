@@ -2180,7 +2180,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "111\u54C8\u54C8\uFF08\u65F6\u95F4 \uFF1A 2021-04--24 02:20:18\uFF09"
+  m_Text: 
 --- !u!1 &2997047367015797278
 GameObject:
   m_ObjectHideFlags: 0
@@ -3627,7 +3627,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "111\u54C8\u54C8\uFF08\u65F6\u95F4 \uFF1A 2021-04--24 02:20:18\uFF09"
+  m_Text: 
 --- !u!1 &6443696191612634715
 GameObject:
   m_ObjectHideFlags: 0
@@ -4866,4 +4866,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "111\u54C8\u54C8\uFF08\u65F6\u95F4 \uFF1A 2021-04--24 02:20:18\uFF09"
+  m_Text: 

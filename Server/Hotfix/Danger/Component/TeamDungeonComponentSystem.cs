@@ -27,6 +27,11 @@ namespace ET
 
         public static void OnUpdateDamage(this TeamDungeonComponent self, Unit unit, int damage)
         {
+            if (self.TeamInfo == null)
+            {
+                Log.Debug($"TeamDungeon unit.Id: {unit.Id}  senceid: {unit.DomainScene().InstanceId} instanceid: {self.InstanceId} ");
+                return;
+            }
             long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
             for (int i = 0; i < self.TeamInfo.PlayerList.Count; i++)
             {
