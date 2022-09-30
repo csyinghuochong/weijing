@@ -285,7 +285,7 @@ namespace ET
             }
             catch (Exception ex)
             {
-                Log.Error("无效的npc: " + ex.ToString());
+                Log.Error($"无效的npc: {obname}" + ex.ToString());
             }
             return false;
         }

@@ -191,40 +191,33 @@ namespace ET
 		{
 			var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
 			var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-			
-			try
+
+			int number = 0;
+			for (int i = 0; i < itemList.Count; i++)
 			{
-				int number = 0;
-				for (int i = 0; i < itemList.Count; i++)
+				RewardItem rewardItem = itemList[i];
+				UIItemComponent uIItemComponent = null;
+				if (number < self.UIItemComponents.Count)
 				{
-					RewardItem rewardItem = itemList[i];
-					UIItemComponent uIItemComponent = null;
-					if (number < self.UIItemComponents.Count)
-					{
-						uIItemComponent = self.UIItemComponents[i];
-						uIItemComponent.GameObject.SetActive(true);
-					}
-					else
-					{
-						GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
-						UICommonHelper.SetParent(itemSpace, self.RewardListNode);
-						uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
-						uIItemComponent.Label_ItemName.SetActive(false);
-						uIItemComponent.Label_ItemNum.SetActive(false);
-						itemSpace.transform.localScale = Vector3.one * 1f;
-						self.UIItemComponents.Add(uIItemComponent);
-					}
-					uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItem.ItemID, ItemNum = rewardItem.ItemNum }, ItemOperateEnum.None);
-					number++;	
+					uIItemComponent = self.UIItemComponents[i];
+					uIItemComponent.GameObject.SetActive(true);
 				}
-				for (int i = number; i < self.UIItemComponents.Count; i++)
+				else
 				{
-					self.UIItemComponents[i].GameObject.SetActive(false);
+					GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
+					UICommonHelper.SetParent(itemSpace, self.RewardListNode);
+					uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
+					uIItemComponent.Label_ItemName.SetActive(false);
+					uIItemComponent.Label_ItemNum.SetActive(false);
+					itemSpace.transform.localScale = Vector3.one * 1f;
+					self.UIItemComponents.Add(uIItemComponent);
 				}
+				uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItem.ItemID, ItemNum = rewardItem.ItemNum }, ItemOperateEnum.None);
+				number++;
 			}
-			catch (Exception ex)
+			for (int i = number; i < self.UIItemComponents.Count; i++)
 			{
-				Log.Error("UIFirstWin: " +  ex.ToString());
+				self.UIItemComponents[i].GameObject.SetActive(false);
 			}
 		}
 
@@ -255,15 +248,7 @@ namespace ET
 			bool updatestatus = self.IsUpdateStatus(bossId);
 			self.Text_UpdateStatus.GetComponent<Text>().text = updatestatus ? "(已刷新)" : "(未刷新)";
 			self.Text_UpdateStatus.GetComponent<Text>().color = updatestatus ? new Color(25f/255,180f/255f,25f/255f) : new Color(50f / 255, 50f / 255f, 50f / 255f);
-			List<RewardItem> droplist = new List<RewardItem>();
-			try
-			{
-				droplist = DropHelper.AI_MonsterDrop(monsterConfig.Id, 1f, true);
-			}
-			catch (Exception ex)
-			{
-				Log.Error("UIFirstWin: " + ex.ToString());
-			}
+			List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterConfig.Id, 1f, true);
 			List<int> itemIdList = new List<int>();
 			for (int i = droplist.Count - 1; i >=0;  i--)
 			{

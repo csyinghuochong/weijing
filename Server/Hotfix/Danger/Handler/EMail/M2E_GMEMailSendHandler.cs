@@ -26,8 +26,8 @@ namespace ET
             {
                 MailInfo mailInfo = new MailInfo();
                 mailInfo.Status = 0;
-                mailInfo.Context = "清档补偿";
-                mailInfo.Title = "清档补偿";
+                mailInfo.Context = "福利发放";
+                mailInfo.Title = "福利发放";
                 mailInfo.MailId = IdGenerater.Instance.GenerateId();
                 string[] needList = request.Itemlist.Split('@');
                 for (int k = 0; k < needList.Length; k++)
