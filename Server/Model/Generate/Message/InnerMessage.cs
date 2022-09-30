@@ -2036,6 +2036,9 @@ namespace ET
 		[ProtoMember(3)]
 		public string Title { get; set; }
 
+		[ProtoMember(4)]
+		public int Zone { get; set; }
+
 	}
 
 	[Message(InnerOpcode.E2M_GMEMailSendResponse)]

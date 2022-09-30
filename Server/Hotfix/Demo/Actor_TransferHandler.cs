@@ -31,6 +31,12 @@ namespace ET
 				switch (request.SceneType)
 				{
 					case (int)SceneTypeEnum.MainCityScene:
+						if (oldScene == SceneTypeEnum.MainCityScene)
+						{
+							response.Error = ErrorCore.ERR_RequestRepeatedly;
+							reply();
+							return;
+						}
 						TransferHelper.MainCityTransfer(unit).Coroutine();
 						break;
 					case (int)SceneTypeEnum.CellDungeon:

@@ -66,7 +66,7 @@ namespace ET
 		{
 			long instance = self.InstanceId;
 			await NetHelper.RequestZhanQuInfo(self.ZoneScene());
-			if (instance == self.InstanceId)
+			if (instance != self.InstanceId)
 			{
 				return;
 			}

@@ -42,7 +42,7 @@ namespace ET
                     mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.RankReward}_{serverTime}" });
                 }
 
-                await MailHelp.SendUserMail(3, dBMailInfos[i].Id, mailInfo);
+                await MailHelp.SendUserMail(request.Zone, dBMailInfos[i].Id, mailInfo);
             }
             reply();
             await ETTask.CompletedTask;

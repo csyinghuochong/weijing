@@ -28,7 +28,10 @@
             long dbCacheId = DBHelper.GetDbCacheId(zone);
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userID, Component = DBHelper.DBMailInfo });
             DBMailInfo dBMainInfo=  d2GGetUnit.Component as DBMailInfo;
-            
+            if (dBMainInfo == null)
+            {
+                return -1;
+            }
             /*
             //判断邮件是否已满
             if (dBMainInfo.MailInfoList.Count > 99) {
