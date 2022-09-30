@@ -197,6 +197,7 @@ namespace ET
 				int number = 0;
 				for (int i = 0; i < itemList.Count; i++)
 				{
+					RewardItem rewardItem = itemList[i];
 					UIItemComponent uIItemComponent = null;
 					if (number < self.UIItemComponents.Count)
 					{
@@ -205,16 +206,15 @@ namespace ET
 					}
 					else
 					{
-						RewardItem rewardItem = itemList[i];
 						GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
 						UICommonHelper.SetParent(itemSpace, self.RewardListNode);
 						uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
-						uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItem.ItemID, ItemNum = rewardItem.ItemNum }, ItemOperateEnum.None);
 						uIItemComponent.Label_ItemName.SetActive(false);
 						uIItemComponent.Label_ItemNum.SetActive(false);
 						itemSpace.transform.localScale = Vector3.one * 1f;
 						self.UIItemComponents.Add(uIItemComponent);
 					}
+					uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItem.ItemID, ItemNum = rewardItem.ItemNum }, ItemOperateEnum.None);
 					number++;	
 				}
 				for (int i = number; i < self.UIItemComponents.Count; i++)
