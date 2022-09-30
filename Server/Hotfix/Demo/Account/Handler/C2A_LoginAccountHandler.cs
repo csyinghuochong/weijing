@@ -7,7 +7,7 @@ namespace ET
     {
         protected override async ETTask Run(Session session, C2A_LoginAccount request, A2C_LoginAccount response, Action reply)
         {
-            Log.Debug($"LoginTestLoginAccount {request.AccountName} {request.Password}");
+            Log.Debug($"LoginTestLoginAccount request.AccountName:{request.AccountName} {request.Password}");
             if (session.DomainScene().SceneType != SceneType.Account)
             {
                 Log.Error($"LoginTest C2A_LoginAccount请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
@@ -157,7 +157,6 @@ namespace ET
                         account?.Dispose();
                         return;
                     }
-                    session.DomainScene().GetComponent<TokenComponent>().Remove(account.Id);
 
                     //请求登录中心服查询有没有同账号玩家登录[uwa]
                     //StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), "LoginCenter");
@@ -179,7 +178,7 @@ namespace ET
                     Session otherSession = Game.EventSystem.Get(accountSessionInstanceId) as Session;
                     if (otherSession != null)
                     {
-                        Log.Debug($"LoginTest C2A_LoginAccount.ERR_OtherAccountLogin1 {account.Id}");
+                        Log.Debug($"LoginTest C2A_LoginAccount.ERR_OtherAccountLogin1 account.Id: {account.Id}");
                     } 
                     otherSession?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_OtherAccountLogin });                 //踢accout服的玩家下线
                     otherSession?.Disconnect().Coroutine();

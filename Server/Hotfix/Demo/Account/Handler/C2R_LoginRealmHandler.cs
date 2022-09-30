@@ -33,8 +33,6 @@ namespace ET
             }
 
             domainScene.GetComponent<TokenComponent>().Remove(request.AccountId);
-
-
             using (session.AddComponent<SessionLockingComponent>())
             using (await CoroutineLockComponent.Instance.Wait((int)CoroutineLockType.LoginRealm, request.AccountId))
             {

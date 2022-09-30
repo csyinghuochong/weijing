@@ -27,7 +27,6 @@ namespace ET
         public override void Destroy(PlayerOfflineOutTimeComponent self)
         {
             TimerComponent.Instance.Remove(ref self.Timer);
-            Log.Debug($"LoginTest PlayerOfflineOutTimeDestroy  {self.GetParent<Player>().Id}   {self.GetParent<Player>().InstanceId} {self.GetParent<Player>().UnitId}");
         }
     }
 
@@ -37,7 +36,6 @@ namespace ET
         public override void Awake(PlayerOfflineOutTimeComponent self)
         {
             self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 30000, TimerType.PlayerOfflineOutTime, self);
-            Log.Debug($"LoginTest PlayerOfflineOutTimeAwake  {self.GetParent<Player>().Id}   {self.GetParent<Player>().InstanceId} {self.GetParent<Player>().UnitId}");
         }
     }
 

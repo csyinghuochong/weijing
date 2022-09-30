@@ -40,7 +40,7 @@ namespace ET
                 {
                     return;
                 }
-                Log.Info($"KickPlayerBegin playerId: {player.Id} unitId:{player.UnitId}: {isException}");
+                Log.Debug($"KickPlayerBegin playerId: {player.Id} unitId:{player.UnitId}: state {player.PlayerState} {isException}");
 
                 if (!isException)   //异常下线不会走正常下线的流程。
                 {
@@ -73,11 +73,11 @@ namespace ET
                 });
 
                 //通知账号服
-                long accountSceneId = DBHelper.GetAccountServerId(player.DomainZone());
-                var a2G_ExitGame = (A2G_ExitGame)await MessageHelper.CallActor(accountSceneId, new G2A_ExitGame()
-                {
-                    AccountId = player.AccountId,
-                });
+                //long accountSceneId = DBHelper.GetAccountServerId(player.DomainZone());
+                //var a2G_ExitGame = (A2G_ExitGame)await MessageHelper.CallActor(accountSceneId, new G2A_ExitGame()
+                //{
+                //    AccountId = player.AccountId,
+                //});
 
                 player.PlayerState = PlayerState.Disconnect;
                 player.DomainScene().GetComponent<PlayerComponent>()?.Remove(player.AccountId);

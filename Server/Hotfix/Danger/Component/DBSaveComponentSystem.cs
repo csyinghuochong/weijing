@@ -83,6 +83,12 @@ namespace ET
         public static async ETTask<int> OnRelogin(this DBSaveComponent self, long gateSessionId)
         {
             Unit unit = self.GetParent<Unit>();
+            string offLineInfo = $"{unit.DomainZone()}区： " +
+               $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
+               $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
+               $"{  TimeHelper.DateTimeNow().ToString()}   二次登录";
+            ComHelp.LoginInfo(offLineInfo);
+            Log.Debug(offLineInfo);
 
             long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Chat)).InstanceId;
             A2M_ChangeStatusResponse g_SendChatRequest1 = (A2M_ChangeStatusResponse)await ActorMessageSenderComponent.Instance.Call
@@ -100,7 +106,7 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             string offLineInfo = $"{unit.DomainZone()}区： " +
-                $" {unit.GetComponent<UserInfoComponent>().Id} : " +
+                $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
                 $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                 $"{  TimeHelper.DateTimeNow().ToString()}   离线";
             ComHelp.LoginInfo(offLineInfo);
@@ -123,7 +129,7 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             string offLineInfo = $"{unit.DomainZone()}区： " +
-               $" {unit.GetComponent<UserInfoComponent>().Id} : " +
+               $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
                $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                $"{  TimeHelper.DateTimeNow().ToString()}   登录";
             ComHelp.LoginInfo(offLineInfo);
@@ -140,7 +146,7 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             string offLineInfo = $"{unit.DomainZone()}区： " +
-              $" {unit.GetComponent<UserInfoComponent>().Id} : " +
+              $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
               $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
               $"{  TimeHelper.DateTimeNow().ToString()}  移除";
             ComHelp.LoginInfo(offLineInfo);
@@ -161,8 +167,6 @@ namespace ET
             long userId = userInfo.UserId;
 
             await self.OnDisconnect(domainZone, userInfo.UserId);
-            Log.Debug($"unitid: {unitId.ToString()} playerId:{unit.GetComponent<UserInfoComponent>().UserInfo.UserId.ToString()}已移除");
-
             Scene scene = unit.DomainScene();
             //TransferHelper.BeforeTransfer(unit);
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();

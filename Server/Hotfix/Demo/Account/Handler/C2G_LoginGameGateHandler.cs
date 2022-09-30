@@ -40,7 +40,7 @@ namespace ET
 			{
 				if (instanceId != session.InstanceId)	//防止多个客户端同时请求
 				{
-					Log.Debug($"LoginTest C2G_LoginGameGate 多个客户端同时请求  {request.RoleId} {session.RemoteAddress}  {instanceId} {session.InstanceId}");
+					Log.Debug($"LoginTest C2G_LoginGameGate 多个客户端同时请求 request.RoleId: {request.RoleId}");
 					return;
 				}
 
@@ -64,7 +64,10 @@ namespace ET
 				SessionStateComponent.State = SessionState.Normal;
 				//游戏客户端在Gate上的一个映射
 				Player player = scene.GetComponent<PlayerComponent>().Get(request.Account);
-
+				if (player!=null && player.Id != request.RoleId)
+				{
+					Log.Debug($"LoginTest C2G_LoginGameGate  player.Id:{player.Id}  request.RoleId: {request.RoleId}");
+				}
 				if (player == null)
 				{
 					// 添加一个新的GateUnit

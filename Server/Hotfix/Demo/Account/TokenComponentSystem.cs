@@ -15,6 +15,11 @@
             return value;
         }
 
+        /// <summary>
+        /// G2AExitGame
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="key"></param>
         public static void Remove(this TokenComponent self, long key)
         {
             if (self.TokenDictionary.ContainsKey(key))
