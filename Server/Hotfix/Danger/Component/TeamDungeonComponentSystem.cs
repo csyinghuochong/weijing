@@ -71,11 +71,15 @@ namespace ET
         {
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             if (unitInfoComponent.Type != UnitType.Monster)
+            {
                 return;
+            }
 
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(self.TeamInfo.FubenId);
             if (unitInfoComponent.UnitCondigID != sceneConfig.BossId)
+            {
                 return;
+            }
 
             M2C_TeamDungeonSettlement m2C_FubenSettlement = new M2C_TeamDungeonSettlement();
 
@@ -103,17 +107,20 @@ namespace ET
                     idExtra = m2C_FubenSettlement.PlayerList[i].UserID;
                 }
             }
-            List<Entity> units = self.DomainScene().GetComponent<UnitComponent>().Children.Values.ToList();
+
+            List<Unit> units = unit.DomainScene().GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
                 Unit unit1 = units[i] as Unit;
-                if (unit1.GetComponent<UnitInfoComponent>().Type != UnitType.Player)
+                if (unit1.Type != UnitType.Player)
                 {
                     continue;
                 }
-                if (units[i].GetComponent<UserInfoComponent>().UserInfo.UserId == idExtra)
+
+                unit1.GetComponent<TaskComponent>().OnPassTeamFuben();
+                if (unit1.GetComponent<UserInfoComponent>().UserInfo.UserId == idExtra)
                 {
-                    units[i].GetComponent<BagComponent>().OnAddItemData(m2C_FubenSettlement.RewardExtraItem, 0, $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
+                    unit1.GetComponent<BagComponent>().OnAddItemData(m2C_FubenSettlement.RewardExtraItem, 0, $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
                 }
                 MessageHelper.SendToClient(unit1, m2C_FubenSettlement);
             }

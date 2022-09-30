@@ -347,8 +347,6 @@ namespace ET
         public static void OnPassFuben(this TaskComponent self, int difficulty, int chapterid, int star)
         {
             self.TriggerTaskEvent(TaskTargetType.PassFubenID_7, chapterid, 1);
-            self.TriggerTaskCountryEvent(TaskCountryTargetType.PassFuben_4, 0, 1);
-
             if ((int)difficulty >= (int)FubenDifficulty.TiaoZhan)  //挑战
             {
                 self.TriggerTaskEvent(TaskTargetType.PassTianZhanFubenID_111, chapterid, 1);
@@ -357,6 +355,11 @@ namespace ET
             {
                 self.TriggerTaskEvent(TaskTargetType.PassDiYuFubenID_112, chapterid, 1);
             }
+        }
+
+        public static void OnPassTeamFuben(this TaskComponent self)
+        {
+            self.TriggerTaskCountryEvent(TaskCountryTargetType.PassTeamFuben_4, 0, 1);
         }
 
         //击杀怪物可触发多种类型的任务

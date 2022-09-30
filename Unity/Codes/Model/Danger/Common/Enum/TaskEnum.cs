@@ -61,7 +61,7 @@ namespace ET
     //1：登陆
     //2：打任意怪
     //3：打领主级怪
-    //4：通关任意难度关卡
+    //4：通关一次组队副本
     //5：消费指定数量金币
     //6：制造任意的道具或道具
     //7：宠物界面洗炼
@@ -74,7 +74,7 @@ namespace ET
         Login_1 =1,
         KillMonster_2 = 2,
         KillBoss_3 = 3,
-        PassFuben_4 = 4,
+        PassTeamFuben_4 = 4,
         CostCoin_5 = 5,
         MakeItem_6 = 6,
         PetXiLian_7 = 7,
