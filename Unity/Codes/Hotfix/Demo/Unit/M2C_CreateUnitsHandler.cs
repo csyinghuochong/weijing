@@ -6,6 +6,10 @@
 		protected override void Run(Session session, M2C_CreateUnits message)
 		{
 			Scene currentScene = session.ZoneScene().CurrentScene();
+			if (currentScene == null)
+			{
+				return;
+			}
 
 			foreach (UnitInfo unitInfo in message.Units)
 			{

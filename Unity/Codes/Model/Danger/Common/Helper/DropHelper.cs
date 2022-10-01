@@ -173,75 +173,73 @@ namespace ET
 		public static bool DropIDToDropItem(int dropID, List<RewardItem> dropItemList, int monsterID = 0, float dropProValue = 1, bool all = false)
 		{
 			DropConfig dropconf = DropConfigCategory.Instance.Get(dropID);
-			int dropLimit = dropconf.DropLimit;
-			try
+			if (dropconf == null)
 			{
-				//Debug.Log("DropIDToDropItemDropIDToDropItemDropIDToDropItem");
-				//是否有子掉落
-				bool DropSonStatus = false;
+				Log.Error($"无效的dropid： {dropID}");
+				return false; 
+			}
+			int dropLimit = dropconf.DropLimit;
+			//Debug.Log("DropIDToDropItemDropIDToDropItemDropIDToDropItem");
+			//是否有子掉落
+			bool DropSonStatus = false;
 
-				//设置掉落最大数量
-				int dropNumNow = 0;                     //当前掉落道具的数量
-				int dropLoopNum = 0;                    //掉落循环次数
-				int dropIDInitial = dropID;          //设置初始掉落
+			//设置掉落最大数量
+			int dropNumNow = 0;                     //当前掉落道具的数量
+			int dropLoopNum = 0;                    //掉落循环次数
+			int dropIDInitial = dropID;          //设置初始掉落
 
-				int oldNumber = dropItemList.Count;
+			int oldNumber = dropItemList.Count;
 
-				do
+			do
+			{
+				DropSonStatus = true;
+				//传入当前掉落数量和最大掉落数量给行掉落数据
+				//Debug.Log("dropID = " + dropID);
+				//生成每行掉落数据
+				dropNumNow = RowDrop(dropID, dropItemList, monsterID, dropNumNow, dropLimit, dropProValue, all);
+				//获取子掉落
+				dropID = DropConfigCategory.Instance.Get(dropID).DropSonID;
+				//没有子掉落循环取消（因为掉落ID里面可以套掉落ID）
+				if (dropID == 0)
 				{
-					DropSonStatus = true;
-					//传入当前掉落数量和最大掉落数量给行掉落数据
-					//Debug.Log("dropID = " + dropID);
-					//生成每行掉落数据
-					dropNumNow = RowDrop(dropID, dropItemList, monsterID, dropNumNow, dropLimit, dropProValue, all);
-					//获取子掉落
-					dropID = DropConfigCategory.Instance.Get(dropID).DropSonID;
-					//没有子掉落循环取消（因为掉落ID里面可以套掉落ID）
-					if (dropID == 0)
+					DropSonStatus = false;
+					//如果掉落数量没达到指定数量再次随机
+					if (dropLimit != 0)
+					{
+						//子级为空时,判定当前数量是否已达到掉落上线,不足上线则再次执行一边
+						if (dropNumNow < dropLimit)
+						{
+							dropLoopNum = dropLoopNum + 1;
+							dropID = dropIDInitial;
+							DropSonStatus = true;
+							//Debug.Log("22222222");
+						}
+					}
+					//循环10次强制结束循环
+					if (dropLoopNum > 10)
 					{
 						DropSonStatus = false;
-						//如果掉落数量没达到指定数量再次随机
-						if (dropLimit != 0)
-						{
-							//子级为空时,判定当前数量是否已达到掉落上线,不足上线则再次执行一边
-							if (dropNumNow < dropLimit)
-							{
-								dropLoopNum = dropLoopNum + 1;
-								dropID = dropIDInitial;
-								DropSonStatus = true;
-								//Debug.Log("22222222");
-							}
-						}
-						//循环10次强制结束循环
-						if (dropLoopNum > 10)
+						//return true;
+					}
+				}
+				else
+				{
+					//当掉落数量已达上线时,自动取消掉落
+					if (dropLimit != 0)
+					{
+						if (dropNumNow >= dropLimit)
 						{
 							DropSonStatus = false;
-							//return true;
 						}
 					}
-					else
-					{
-						//当掉落数量已达上线时,自动取消掉落
-						if (dropLimit != 0)
-						{
-							if (dropNumNow >= dropLimit)
-							{
-								DropSonStatus = false;
-							}
-						}
-					}
-				}
-				while (DropSonStatus);
-
-				//掉落为空在默认第一个
-				if (monsterID == 0 && dropItemList.Count == oldNumber)
-				{
-					dropItemList.Add(new RewardItem() { ItemID = dropconf.DropItemID1, ItemNum = 1 });
 				}
 			}
-			catch (Exception ex)
+			while (DropSonStatus);
+
+			//掉落为空在默认第一个
+			if (monsterID == 0 && dropItemList.Count == oldNumber)
 			{
-				Log.Error($"DropIDToDropItem  dropID: {dropID}  monsterID:{monsterID}  dropLimit{dropLimit}" + ex.ToString());
+				dropItemList.Add(new RewardItem() { ItemID = dropconf.DropItemID1, ItemNum = 1 });
 			}
 			return true;
 		}

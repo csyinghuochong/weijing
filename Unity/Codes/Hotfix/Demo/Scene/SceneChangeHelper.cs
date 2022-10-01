@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using System;
+
+namespace ET
 {
     public static class SceneChangeHelper
     {
@@ -25,17 +27,25 @@
             // 等待CreateMyUnit的消息
             WaitType.Wait_CreateMyUnit waitCreateMyUnit = await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_CreateMyUnit>();
             M2C_CreateMyUnit m2CCreateMyUnit = waitCreateMyUnit.Message;
-            Unit unit = UnitFactory.CreateUnit(currentScene, m2CCreateMyUnit.Unit, true);
-            unitComponent.Add(unit);
-            zoneScene.GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
-            //zoneScene.RemoveComponent<AIComponent>();
+            Unit unit = null;
+            try
+            {
+                unit = UnitFactory.CreateUnit(currentScene, m2CCreateMyUnit.Unit, true);
+                unitComponent.Add(unit);
+                zoneScene.GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
+                //zoneScene.RemoveComponent<AIComponent>();
 
-            EventType.SceneChangeFinish.Instance.ZoneScene = zoneScene;
-            EventType.SceneChangeFinish.Instance.CurrentScene = currentScene;
-            Game.EventSystem.PublishClass(EventType.SceneChangeFinish.Instance);   //挂在当前Scene组件
+                EventType.SceneChangeFinish.Instance.ZoneScene = zoneScene;
+                EventType.SceneChangeFinish.Instance.CurrentScene = currentScene;
+                Game.EventSystem.PublishClass(EventType.SceneChangeFinish.Instance);   //挂在当前Scene组件
 
-            // 通知等待场景切换的协程
-            zoneScene.GetComponent<ObjectWait>().Notify(new WaitType.Wait_SceneChangeFinish());
+                // 通知等待场景切换的协程
+                zoneScene.GetComponent<ObjectWait>().Notify(new WaitType.Wait_SceneChangeFinish());
+            }
+            catch (Exception ex)
+            { 
+                Log.Error(ex);
+            }
         }
     }
 }

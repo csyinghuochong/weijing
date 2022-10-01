@@ -65,6 +65,12 @@ namespace ET
             {
                 this.EffectState = BuffState.Finished;
             }
+            if (this.TheUnitBelongto.GetComponent<HeroTransformComponent>() == null)
+            {
+                UnitInfoComponent unitInfo = this.TheUnitBelongto.GetComponent<UnitInfoComponent>();
+                Log.Error($"this.TheUnitBelongto.GetComponent<HeroTransformComponent>()==null: " +
+                    $"unitInfo:  {unitInfo.UnitCondigID} ");
+            }
             if (this.EffectState == BuffState.Finished)
             {
                 this.OnFinished();
@@ -82,14 +88,6 @@ namespace ET
             {
                 //跟随玩家
                 case 0:
-                    //Debug
-                    if (this.TheUnitBelongto.GetComponent<HeroTransformComponent>()==null)
-                    {
-                        UnitInfoComponent unitInfo = this.TheUnitBelongto.GetComponent<UnitInfoComponent>();
-                        GameObjectComponent gameObjectComponent = this.TheUnitBelongto.GetComponent<GameObjectComponent>();
-                        Log.Error($"this.TheUnitBelongto.GetComponent<HeroTransformComponent>()==null: " +
-                            $"unitInfo:  {unitInfo.Type}  {gameObjectComponent!=null}");
-                    }
                     Transform tParent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>().GetTranform((PosType)Enum.Parse(typeof(PosType), EffectData.mEffectConfig.SkillParentPosition));
                     EffectObj.transform.SetParent(tParent);
                     EffectObj.transform.localPosition = Vector3.zero;
