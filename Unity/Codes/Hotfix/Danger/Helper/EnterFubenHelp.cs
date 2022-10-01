@@ -4,15 +4,16 @@ namespace ET
 {
     public static class EnterFubenHelp
     {
+        public static long LastQuitTime = 0;
         public static async ETTask<int> RequestTransfer(Scene zoneScene, int sceneType, int sceneId, int transferId = 0, int difficulty = FubenDifficulty.None, string paraminfo = "")
         {
             try
             {
-                if (TimeHelper.ServerNow() - LastquitTime < 1000)
+                if (TimeHelper.ServerNow() - LastQuitTime < 1000)
                 {
                     return ErrorCore.ERR_OperationOften;
                 }
-                LastquitTime = TimeHelper.ServerNow();
+                LastQuitTime = TimeHelper.ServerNow();
                 MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
                 if (mapComponent.SceneTypeEnum == sceneType 
                     && sceneType!= SceneTypeEnum.LocalDungeon)
@@ -128,10 +129,8 @@ namespace ET
             Actor_SendReviveResponse actor_QuitFubenResponse = await zoneScene.GetComponent<SessionComponent>().Session.Call(actor_SendReviveRequest) as Actor_SendReviveResponse;
         }
 
-        public static long LastquitTime = 0;
         public static void RequestQuitFuben(Scene zoneScene)
         {
-            
              RequestTransfer(zoneScene, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID()).Coroutine();
         }
     }

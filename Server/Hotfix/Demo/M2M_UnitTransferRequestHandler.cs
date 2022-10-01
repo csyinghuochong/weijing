@@ -16,8 +16,10 @@ namespace ET
 				UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
 				if (unitComponent.Get(request.Unit.Id) != null)
 				{
-					Log.Debug($"LoginTest M2M_UnitTransfer   unitComponent.Get(unit.Id)!=null:  {request.Unit.Id} {request.SceneType}");
-					unitComponent.Remove(request.Unit.Id);
+					Log.Error($"LoginTest M2M_UnitTransfer   unitComponent.Get(unit.Id)!=null:  {request.Unit.Id} {request.SceneType}");
+					response.Error = ErrorCore.ERR_OperationOften;
+					reply();
+					return;
 				}
 				else
 				{

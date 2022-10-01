@@ -28,15 +28,17 @@ namespace ET
 			try
 			{
 				int oldScene = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+				if (oldScene == SceneTypeEnum.MainCityScene && request.SceneType!= SceneTypeEnum.LocalDungeon)
+				{
+					Log.Error($"LoginTest  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}");
+					response.Error = ErrorCore.ERR_RequestRepeatedly;
+					reply();
+					return;
+				}
+
 				switch (request.SceneType)
 				{
 					case (int)SceneTypeEnum.MainCityScene:
-						if (oldScene == SceneTypeEnum.MainCityScene)
-						{
-							response.Error = ErrorCore.ERR_RequestRepeatedly;
-							reply();
-							return;
-						}
 						TransferHelper.MainCityTransfer(unit).Coroutine();
 						break;
 					case (int)SceneTypeEnum.CellDungeon:
