@@ -35,11 +35,16 @@
 		{
 			long instanceid = unit.InstanceId;
 			await TimerComponent.Instance.WaitAsync(1000);
-			if (instanceid != unit.InstanceId)
+			if (instanceid != unit.InstanceId || unit.InstanceId == 0)
 			{
 				return;
 			}
-			unit.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Remove(unit.Id);
+			UnitComponent unitComponent = unit.ZoneScene().CurrentScene().GetComponent<UnitComponent>();
+			if (unitComponent.Get(unit.Id) == null)
+			{
+				return;
+			}
+			unitComponent.Remove(unit.Id);
 		}
 	}
 }
