@@ -91,9 +91,11 @@ namespace ET
             UnitComponent unitComponent = zoneScene.CurrentScene().GetComponent<UnitComponent>();
             CameraComponent cameraComponent = zoneScene.CurrentScene().GetComponent<CameraComponent>();
 
+            UIHelper.CurrentNpcId = npcid;
+            UIHelper.CurrentNpcUI = GetUIPath(funtionOpenConfig.Name);
             UI uimain = UIHelper.GetUI(zoneScene, UIType.UIMain);
             uimain.GetComponent<UIMainComponent>().JoystickMove.SetActive(false);
-            cameraComponent.SetBuildEnter(TaskHelper.GetNpcByConfigId(zoneScene, npcid), () => { OnBuildEnter(npcid).Coroutine(); });
+            cameraComponent.SetBuildEnter(TaskHelper.GetNpcByConfigId(zoneScene, npcid), () => { OnBuildEnter(npcid); });
             return true;
         }
 
@@ -111,7 +113,7 @@ namespace ET
         }
 
         //打开对应功能
-        public async ETTask OnBuildEnter(int npcid)
+        public void OnBuildEnter(int npcid)
         {
             int FunctionId = NpcConfigCategory.Instance.Get(npcid).NpcType;
             FuntionConfig funtionOpenConfig = FuntionConfigCategory.Instance.Get(FunctionId);
@@ -119,10 +121,8 @@ namespace ET
             UI uimain = UIHelper.GetUI(ZoneScene, UIType.UIMain);
             uimain.GetComponent<UIMainComponent>().JoystickMove.SetActive(true);
 
-            UIHelper.CurrentNpc = npcid;
-            UIHelper.CurrentUI = GetUIPath(funtionOpenConfig.Name);
             //创建UI
-            await UIHelper.Create(ZoneScene, GetUIPath(funtionOpenConfig.Name));
+            UIHelper.Create(ZoneScene, GetUIPath(funtionOpenConfig.Name)).Coroutine();
         }
 
         //传入X值返回实际X值

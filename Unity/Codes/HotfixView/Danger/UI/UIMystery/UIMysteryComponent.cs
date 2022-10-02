@@ -65,7 +65,7 @@ namespace ET
 
             //配置摄像机位置[0,115,257]
             gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 115, 257f);
-            NpcConfig npcConfig = NpcConfigCategory.Instance.Get(UIHelper.CurrentNpc);
+            NpcConfig npcConfig = NpcConfigCategory.Instance.Get(UIHelper.CurrentNpcId);
             self.uIModelShowComponent.ShowOtherModel("Npc/" + npcConfig.Asset.ToString()).Coroutine();
         }
 
@@ -98,7 +98,7 @@ namespace ET
                     UIMysteryItemComponent uIItemComponent = ui_1.AddComponent<UIMysteryItemComponent>();
                     self.SellList.Add(ui_1);
                 }
-                ui_1.GetComponent<UIMysteryItemComponent>().OnUpdateUI(mysteryItemInfos[i], UIHelper.CurrentNpc);
+                ui_1.GetComponent<UIMysteryItemComponent>().OnUpdateUI(mysteryItemInfos[i], UIHelper.CurrentNpcId);
             }
 
             for (int i = mysteryItemInfos.Count; i < self.SellList.Count; i++)
@@ -109,7 +109,7 @@ namespace ET
 
         public static async ETTask RequestMystery(this UIMysteryComponent self)
         {
-            if (UIHelper.CurrentNpc == ComHelp.ShenMiNpcId)
+            if (UIHelper.CurrentNpcId == ComHelp.ShenMiNpcId)
             {
                 C2A_MysteryListRequest c2A_MysteryListRequest = new C2A_MysteryListRequest() { UserId = self.UserInfoComponent.UserInfo.UserId };
                 A2C_MysteryListResponse r2c_roleEquip = (A2C_MysteryListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2A_MysteryListRequest);

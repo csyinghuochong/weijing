@@ -172,12 +172,13 @@ namespace ET
 		//传入掉落ID，生成掉落数据
 		public static bool DropIDToDropItem(int dropID, List<RewardItem> dropItemList, int monsterID = 0, float dropProValue = 1, bool all = false)
 		{
-			DropConfig dropconf = DropConfigCategory.Instance.Get(dropID);
-			if (dropconf == null)
+			if (!DropConfigCategory.Instance.Contain(dropID))
 			{
 				Log.Error($"无效的dropid： {dropID}");
-				return false; 
+				return false;
 			}
+
+			DropConfig dropconf = DropConfigCategory.Instance.Get(dropID);
 			int dropLimit = dropconf.DropLimit;
 			//Debug.Log("DropIDToDropItemDropIDToDropItemDropIDToDropItem");
 			//是否有子掉落

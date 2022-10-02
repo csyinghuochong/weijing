@@ -65,11 +65,14 @@ namespace ET
             {
                 this.EffectState = BuffState.Finished;
             }
+            if (this.EffectState == BuffState.Finished)
+            {
+                this.OnFinished();
+                return;
+            }
             if (this.TheUnitBelongto.GetComponent<HeroTransformComponent>() == null)
             {
-                UnitInfoComponent unitInfo = this.TheUnitBelongto.GetComponent<UnitInfoComponent>();
-                Log.Error($"this.TheUnitBelongto.GetComponent<HeroTransformComponent>()==null: " +
-                    $"unitInfo:  {unitInfo.UnitCondigID} ");
+                this.EffectState = BuffState.Finished;
             }
             if (this.EffectState == BuffState.Finished)
             {

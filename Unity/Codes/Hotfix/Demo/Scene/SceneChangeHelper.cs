@@ -20,21 +20,34 @@ namespace ET
             EventType.SceneChangeStart.Instance.ZoneScene = zoneScene;
             EventType.SceneChangeStart.Instance.LastSceneType = lastSceneType;
             EventType.SceneChangeStart.Instance.SceneType = sceneType;
-            EventType.SceneChangeStart.Instance.ChapterId =   chapterId;
+            EventType.SceneChangeStart.Instance.ChapterId = chapterId;
             EventType.SceneChangeStart.Instance.SonId = sonId;
             Game.EventSystem.PublishClass(EventType.SceneChangeStart.Instance);
 
-            // 等待CreateMyUnit的消息
-            WaitType.Wait_CreateMyUnit waitCreateMyUnit = await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_CreateMyUnit>();
-            M2C_CreateMyUnit m2CCreateMyUnit = waitCreateMyUnit.Message;
-            Unit unit = null;
+            long instanceid_1 = 0;
+            long instanceid_2 = 0;
+
             try
-            {
-                unit = UnitFactory.CreateUnit(currentScene, m2CCreateMyUnit.Unit, true);
+            {  // 等待CreateMyUnit的消息
+                instanceid_1 = currentScene.InstanceId;
+                WaitType.Wait_CreateMyUnit waitCreateMyUnit = await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_CreateMyUnit>();
+                M2C_CreateMyUnit m2CCreateMyUnit = waitCreateMyUnit.Message;
+                instanceid_2 = currentScene.InstanceId;
+                if (currentScene == null || currentScene.IsDisposed || currentScene.InstanceId == 0)
+                {
+                    Log.Error($"SceneChangeHelper1 {currentScene}");
+                    return;
+                }
+                if (currentScene.GetComponent<UnitComponent>().Get(m2CCreateMyUnit.Unit.UnitId)!=null)
+                {
+                    Log.Error("SceneChangeHelper2 Get(m2CCreateMyUnit.Unit.UnitId)!=null");
+                    return;
+                }
+
+                Unit unit  = UnitFactory.CreateUnit(currentScene, m2CCreateMyUnit.Unit, true);
                 unitComponent.Add(unit);
                 zoneScene.GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
-                //zoneScene.RemoveComponent<AIComponent>();
-
+  
                 EventType.SceneChangeFinish.Instance.ZoneScene = zoneScene;
                 EventType.SceneChangeFinish.Instance.CurrentScene = currentScene;
                 Game.EventSystem.PublishClass(EventType.SceneChangeFinish.Instance);   //挂在当前Scene组件
@@ -44,7 +57,7 @@ namespace ET
             }
             catch (Exception ex)
             { 
-                Log.Error(ex);
+                Log.Error("SceneChangeHelper3" +  ex);
             }
         }
     }

@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using System;
 namespace ET
 {
 
@@ -9,45 +9,64 @@ namespace ET
         
         protected override void Run(object cls)
         {
-            EventType.UnitDead args = cls as EventType.UnitDead;
-            Unit unit = args.Unit;
-            MapComponent mapComponent = unit.ZoneScene().GetComponent<MapComponent>();
-            UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            if (unitInfoComponent.Type == UnitType.Player)
+            try
             {
-                unit.GetComponent<EffectViewComponent>()?.OnDispose();
-                unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
-                ShowRevive(unit, mapComponent).Coroutine();
-            }
-            else
-            {
-                unit.GetComponent<EffectViewComponent>()?.OnDispose();
-                unit.ZoneScene().CurrentScene().GetComponent<LockTargetComponent>().OnUnitDead(unit);
-            }
-
-            if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) > 0)
-            {
-                RunAsync(unit).Coroutine();
-            }
-            else
-            {
-                unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
-            }
-            if (unitInfoComponent.Type == UnitType.Monster
-                && unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
-            {
-                unit.GetComponent<MonsterActRangeComponent>()?.OnDead();
-            }
-
-            if (unitInfoComponent.Type == UnitType.Monster 
-                && mapComponent.SceneTypeEnum == (int)SceneTypeEnum.TeamDungeon)
-            {
-                GameObject Obstruct = GameObject.Find("Obstruct");
-                if (Obstruct == null)
+                EventType.UnitDead args = cls as EventType.UnitDead;
+                Unit unit = args.Unit;
+                if (unit == null || unit.InstanceId == 0 || unit.IsDisposed)
                 {
+                    Log.Error("unitplaydead  unit.InstanceId == 0 || unit.IsDisposed");
                     return;
                 }
-                Obstruct.transform.Find(unitInfoComponent.UnitCondigID.ToString())?.gameObject.SetActive(false);
+                if (unit.ZoneScene().CurrentScene() == null)
+                {
+                    Log.Error("unitplaydead  unit.ZoneScene().CurrentScene() == null");
+                    return;
+                }
+
+                MapComponent mapComponent = unit.ZoneScene().GetComponent<MapComponent>();
+                UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
+                if (unitInfoComponent.Type == UnitType.Player)
+                {
+                    unit.GetComponent<EffectViewComponent>()?.OnDispose();
+                    unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
+                    ShowRevive(unit, mapComponent).Coroutine();
+                }
+                else
+                {
+                    unit.GetComponent<EffectViewComponent>()?.OnDispose();
+                    unit.ZoneScene().CurrentScene().GetComponent<LockTargetComponent>().OnUnitDead(unit);
+                }
+
+                if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) > 0)
+                {
+                    RunAsync(unit).Coroutine();
+                }
+                else
+                {
+                    unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
+                }
+
+                if (unitInfoComponent.Type == UnitType.Monster
+                && unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
+                {
+                    unit.GetComponent<MonsterActRangeComponent>()?.OnDead();
+                }
+
+                if (unitInfoComponent.Type == UnitType.Monster
+                    && mapComponent.SceneTypeEnum == (int)SceneTypeEnum.TeamDungeon)
+                {
+                    GameObject Obstruct = GameObject.Find("Obstruct");
+                    if (Obstruct == null)
+                    {
+                        return;
+                    }
+                    Obstruct.transform.Find(unitInfoComponent.UnitCondigID.ToString())?.gameObject.SetActive(false);
+                }
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
             }
         }
 

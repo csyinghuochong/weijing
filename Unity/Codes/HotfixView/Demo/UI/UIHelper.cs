@@ -4,8 +4,8 @@ namespace ET
 {
     public static class UIHelper
     {
-        public static string CurrentUI = "";
-        public static int CurrentNpc = 0;
+        public static string CurrentNpcUI = "";
+        public static int CurrentNpcId = 0;
         public static List<string> WaitUI = new List<string>();
         public static List<string> OpenUIList = new List<string>();
 
@@ -61,10 +61,11 @@ namespace ET
             {
                 return;
             }
-            if (CurrentUI == uiType)
+            if (CurrentNpcUI == uiType)
             {
                 scene.CurrentScene().GetComponent<CameraComponent>().SetBuildExit();
-                CurrentUI = "";
+                CurrentNpcId = 0;
+                CurrentNpcUI = "";
             }
           
             UILayerScript uILayerScript = uI.GameObject.GetComponent<UILayerScript>();

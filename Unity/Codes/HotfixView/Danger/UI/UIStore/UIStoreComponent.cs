@@ -31,7 +31,7 @@ namespace ET
             self.RawImage = rc.Get<GameObject>("RawImage");
 
             self.InitModelShowView().Coroutine();
-            self.InitData(UIHelper.CurrentNpc).Coroutine();
+            self.InitData(UIHelper.CurrentNpcId).Coroutine();
         }
     }
 

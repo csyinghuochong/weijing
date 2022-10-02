@@ -9,7 +9,12 @@ namespace ET
             self.PassTime = 0f;
             self.mSkillCmd = skillcmd;
             self.SkillConf = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
-            self.EffectConf = self.SkillConf.SkillEffectID[0]!= 0 ? EffectConfigCategory.Instance.Get(self.SkillConf.SkillEffectID[0]):null;
+            int effctId = self.SkillConf.SkillEffectID[0];
+            if (effctId!= 0 && !EffectConfigCategory.Instance.Contain(effctId))
+            {
+                Log.Error($"SkillHandlerSystem effctId not found {effctId}");
+            }
+            self.EffectConf = effctId != 0 ? EffectConfigCategory.Instance.Get(effctId) :null;
             self.PlayMusic = self.EffectConf != null;
             self.BeingTime = TimeHelper.ClientNow();
 

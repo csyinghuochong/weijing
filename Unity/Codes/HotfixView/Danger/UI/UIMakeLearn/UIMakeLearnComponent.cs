@@ -121,7 +121,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()) ;
             int makeType = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType);
-            int showValue = NpcConfigCategory.Instance.Get(UIHelper.CurrentNpc).ShopValue;
+            int showValue = NpcConfigCategory.Instance.Get(UIHelper.CurrentNpcId).ShopValue;
             self.MakeType = makeType;
 
             self.Right.SetActive(makeType == showValue);

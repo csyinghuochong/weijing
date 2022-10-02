@@ -6,8 +6,8 @@ namespace ET
 	public enum CameraMoveType
 	{
 		Normal = 0,
-		NpcStoreEnter = 1,
-		NpcStoreExit = 2,
+		NpcEnter = 1,
+		NpcExit = 2,
 		PetFuben = 3,
 	}
 

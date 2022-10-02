@@ -31,6 +31,8 @@ namespace ET
 				GameObject.Destroy(self.MainRoleCamera);
 				self.MainRoleCamera = null;
 			}
+			UIHelper.CurrentNpcId = 0;
+			UIHelper.CurrentNpcUI = "";
 		}
 	}
 
@@ -45,11 +47,11 @@ namespace ET
 			self.MainRoleCamera = null;
 			self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 			
-			self.OnEnterScene(self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum ).Coroutine();
+			self.OnEnterScene(self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum );
 		}
 
 		//== SceneTypeEnum.MainCityScene
-		public static async ETTask OnEnterScene(this CameraComponent self, int sceneTypeEnum)
+		public static  void OnEnterScene(this CameraComponent self, int sceneTypeEnum)
 		{
 			Log.Debug("InitMainRoleCamera : " + sceneTypeEnum);
 			if (!UICommonHelper.ShowBigMap((int)sceneTypeEnum) && self.MainRoleCamera != null)
@@ -60,7 +62,6 @@ namespace ET
 			if (UICommonHelper.ShowBigMap((int)sceneTypeEnum) && self.MainRoleCamera == null)
 			{
 				var path = ABPathHelper.GetUnitPath("Component/MainRoleCamera");
-				await ETTask.CompletedTask;
 				GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 				//GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 				self.MainRoleCamera = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
@@ -89,14 +90,13 @@ namespace ET
 		{
 			self.NpcUnit = npc;
 			self.CameraMoveTime = 0f;
-			self.CameraMoveType = (npc != null) ? CameraMoveType.NpcStoreEnter : CameraMoveType.Normal;
+			self.CameraMoveType = (npc != null) ? CameraMoveType.NpcEnter : CameraMoveType.Normal;
 
 			self.TargetPosition = npc.Position + npc.Forward * 4f;
 			self.TargetPosition.y += 2f;
 
 			Vector3 temp1 = npc.Position + new Vector3(0f, 1f, 0f);
 			//Vector3 forward = temp1 - self.TargetPosition;
-			
 			self.OldCameraPostion = self.MainCamera.transform.position;
 			self.OnBuildEnter = action;
 
@@ -108,7 +108,7 @@ namespace ET
 		{
 			Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 			self.CameraMoveTime = 0f;
-			self.CameraMoveType = CameraMoveType.NpcStoreExit;
+			self.CameraMoveType = CameraMoveType.NpcExit;
 			self.OldCameraPostion = self.MainCamera.transform.localPosition;
 			self.TargetPosition = unit.Position + self.OffsetPostion;
 		}
@@ -132,15 +132,15 @@ namespace ET
 
 		public static void BuildExitMove(this CameraComponent self)
 		{
-			if (self.CameraMoveTime > 1f)
-			{
-				self.CameraMoveType = CameraMoveType.Normal;
-				UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<HeroHeadBarComponent>().HeadBar.SetActive(true);
-				return;
-			}
 			Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 			if (unit == null)
 			{
+				return;
+			}
+			if (self.CameraMoveTime > 1f)
+			{
+				self.CameraMoveType = CameraMoveType.Normal;
+				unit.GetComponent<HeroHeadBarComponent>().HeadBar.SetActive(true);
 				return;
 			}
 			Vector3 chaV3 = self.OldCameraPostion + (self.TargetPosition - self.OldCameraPostion) * self.CameraMoveTime;
@@ -155,13 +155,13 @@ namespace ET
 			{
 				return;
 			}
-			if (self.CameraMoveType == CameraMoveType.NpcStoreEnter)
+			if (self.CameraMoveType == CameraMoveType.NpcEnter)
 			{
 				self.CameraMoveTime += Time.deltaTime * 2f;
 				self.BuildEnterMove();
 				return;
 			}
-			if (self.CameraMoveType == CameraMoveType.NpcStoreExit)
+			if (self.CameraMoveType == CameraMoveType.NpcExit)
 			{
 				self.CameraMoveTime += Time.deltaTime * 2f;
 				self.BuildExitMove();
