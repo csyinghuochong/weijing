@@ -35,7 +35,7 @@ namespace ET
                 instanceid_2 = currentScene.InstanceId;
                 if (currentScene == null || currentScene.IsDisposed || currentScene.InstanceId == 0)
                 {
-                    Log.Error($"SceneChangeHelper1 {currentScene}");
+                    Log.Error($"SceneChangeHelper1 {currentScene} {instanceid_1} {instanceid_2}");
                     return;
                 }
                 if (currentScene.GetComponent<UnitComponent>().Get(m2CCreateMyUnit.Unit.UnitId)!=null)
