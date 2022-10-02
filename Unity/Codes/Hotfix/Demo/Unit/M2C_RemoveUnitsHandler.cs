@@ -34,12 +34,12 @@
 		private async ETTask RunAsync(Unit unit)
 		{
 			long instanceid = unit.InstanceId;
+			UnitComponent unitComponent = unit.ZoneScene().CurrentScene().GetComponent<UnitComponent>();
 			await TimerComponent.Instance.WaitAsync(1000);
-			if (instanceid != unit.InstanceId || unit.InstanceId == 0)
+			if (instanceid != unit.InstanceId || unit.InstanceId == 0 || unitComponent.IsDisposed)
 			{
 				return;
 			}
-			UnitComponent unitComponent = unit.ZoneScene().CurrentScene().GetComponent<UnitComponent>();
 			if (unitComponent.Get(unit.Id) == null)
 			{
 				return;
