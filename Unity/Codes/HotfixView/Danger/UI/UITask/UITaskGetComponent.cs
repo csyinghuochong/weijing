@@ -79,17 +79,10 @@ namespace ET
 
     public static class UINpcTaskComponentSystem
     {
-        public static async ETTask OnTaskGet(this UITaskGetComponent self)
+        public static  void OnTaskGet(this UITaskGetComponent self)
         {
             bool update = self.UpdataTask();
             if (update)
-            {
-                return;
-            }
-
-            long instanceid = self.InstanceId;
-            await TimerComponent.Instance.WaitAsync(1);
-            if (instanceid != self.InstanceId)
             {
                 return;
             }
@@ -98,7 +91,7 @@ namespace ET
 
         public static void OnCloseNpcTask(this UITaskGetComponent self)
         {
-            UIHelper.Remove(self.DomainScene(), UIType.UITaskGet);
+            UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
         }
 
         public static void InitData(this UITaskGetComponent self, int npcID)
@@ -312,12 +305,13 @@ namespace ET
 
         public static async ETTask OnBtn_CommitTask(this UITaskGetComponent self)
         {
-            int errorCode =  await self.ZoneScene().GetComponent<TaskComponent>().SendCommitTask(self.TaskId);
+            Scene zoneScene = self.ZoneScene();
+            int errorCode =  await zoneScene.GetComponent<TaskComponent>().SendCommitTask(self.TaskId);
             if (errorCode == ErrorCore.ERR_Success)
             {
-                FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), 91000201) ;
+                FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 91000201) ;
             }
-            self.OnCloseNpcTask();
+            UIHelper.Remove(zoneScene, UIType.UITaskGet);
         }
 
     }

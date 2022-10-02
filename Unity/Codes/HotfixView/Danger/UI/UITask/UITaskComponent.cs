@@ -314,7 +314,7 @@ namespace ET
 
 			if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
 			{
-				TaskHelper.GoToCommitTask(self.ZoneScene(), self.TaskPro).Coroutine();
+				TaskHelper.MoveToNpc(self.ZoneScene(), self.TaskPro).Coroutine();
 				self.OnCloseTask();
 				return;
 			}

@@ -150,6 +150,13 @@ namespace ET
             {
                 SkillConfig skillConfig1 = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[i].WeaponSkillID);
 
+                int effctId = skillConfig1.SkillEffectID[0];
+                if (effctId != 0 && !EffectConfigCategory.Instance.Contain(effctId))
+                {
+                    Log.Error($"无效的effectid {effctId}");
+                    continue;
+                }
+
                 ASkillHandler skillHandler = (ASkillHandler)ObjectPool.Instance.Fetch(SkillDispatcherComponent.Instance.SkillTypes[skillConfig1.GameObjectName]);
                 skillHandler.OnInit(skillcmd.SkillInfos[i], from);
                 self.Skills.Add(skillHandler);

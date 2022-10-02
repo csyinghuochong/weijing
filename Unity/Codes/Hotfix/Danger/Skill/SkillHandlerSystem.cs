@@ -10,10 +10,6 @@ namespace ET
             self.mSkillCmd = skillcmd;
             self.SkillConf = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
             int effctId = self.SkillConf.SkillEffectID[0];
-            if (effctId!= 0 && !EffectConfigCategory.Instance.Contain(effctId))
-            {
-                Log.Error($"SkillHandlerSystem effctId not found {effctId}");
-            }
             self.EffectConf = effctId != 0 ? EffectConfigCategory.Instance.Get(effctId) :null;
             self.PlayMusic = self.EffectConf != null;
             self.BeingTime = TimeHelper.ClientNow();

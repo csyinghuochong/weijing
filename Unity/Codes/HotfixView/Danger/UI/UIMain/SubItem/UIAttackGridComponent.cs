@@ -124,15 +124,19 @@ namespace ET
         public static void PointerUp(this UIAttackGridComponent self, PointerEventData pdata)
         {
             self.FightEffect.SetActive(false);
-            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().ClearnsShow();
+            Scene curscene = self.ZoneScene().CurrentScene();
+            if (curscene == null)
+            {
+                return;
+            }
+            curscene.GetComponent<SkillIndicatorComponent>().ClearnsShow();
             if (TimeHelper.ClientNow() < self.CDEndTime)
             {
                 return;
             }
-
-            LockTargetComponent lockTargetComponent = self.ZoneScene().CurrentScene().GetComponent<LockTargetComponent>();
+            LockTargetComponent lockTargetComponent = curscene.GetComponent<LockTargetComponent>();
             long targetId = lockTargetComponent.LockTargetUnit(true);
-            Unit targetUnit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(targetId);
+            Unit targetUnit = curscene.GetComponent<UnitComponent>().Get(targetId);
             self.OnLockUnit(targetUnit);
         }
 

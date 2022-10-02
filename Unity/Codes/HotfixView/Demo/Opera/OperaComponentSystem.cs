@@ -71,11 +71,14 @@ namespace ET
             //{
             //    return;
             //}
+            if (keyCode == 257 && self.EditorMode)
+            {
+                MapHelper.SendUseSkill( self.ZoneScene(), 50000101, 0, 0 ,0 ).Coroutine();
+            }
             if (Time.time - self.LastSendTime < 0.2f)
             {
                 return;
             }
-
             Vector3 dir = Vector3.zero;
             if (keyCode == 119)
             {
@@ -285,7 +288,7 @@ namespace ET
             }
             catch (Exception ex)
             {
-                Log.Error($"无效的npc: {obname}" + ex.ToString());
+                Log.Error($"无效的npc collider: {obname}" + ex.ToString());
             }
             return false;
         }

@@ -178,7 +178,6 @@ namespace ET
         {
             C2M_GetTaskRequest m_GetTaskRequest = new C2M_GetTaskRequest() { TaskId = taskId };
             M2C_GetTaskResponse m2C_GetTaskResponse = (M2C_GetTaskResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_GetTaskRequest);
-
             if (m2C_GetTaskResponse.Error != 0)
                 return;
 

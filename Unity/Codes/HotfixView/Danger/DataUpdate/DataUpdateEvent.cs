@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace ET
@@ -441,11 +442,13 @@ namespace ET
             TaskConfig taskCof = TaskConfigCategory.Instance.Get(int.Parse(DataParams));
             FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("接取任务") + ":" + taskCof.TaskName);
 
-            foreach (var component in dataUpdateComponentDic.Values)
+            List<Entity> entities = dataUpdateComponentDic.Values.ToList();
+            for (int i = entities.Count - 1; i >= 0; i--)
             {
+                Entity component = entities[i];    
                 if (component is UITaskGetComponent uitaskgetComponent)
                 {
-                    uitaskgetComponent.OnTaskGet().Coroutine();
+                    uitaskgetComponent.OnTaskGet();
                     continue;
                 }
                 if (component is UIMainComponent uimainComponent)

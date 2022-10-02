@@ -10,16 +10,6 @@ namespace ET
 
         public static float NpcSpeakDistance = 1.5f;
 
-        public static async ETTask GoToCommitTask(Scene zoneScene, TaskPro taskPro)
-        {
-            int errorCode = await TaskHelper.MoveToNpc(zoneScene, taskPro);
-
-            EventType.TaskNpcDialog.Instance.TaskPro = taskPro;
-            EventType.TaskNpcDialog.Instance.zoneScene = zoneScene;
-            EventType.TaskNpcDialog.Instance.ErrorCode = errorCode;
-            EventSystem.Instance.PublishClass(EventType.TaskNpcDialog.Instance);
-        }
-
         public static bool HaveNpc(Scene zoneScene, int npcId)
         {
             List<int> npcList = new List<int>();
@@ -49,6 +39,7 @@ namespace ET
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(taskConfig.CompleteNpcID);
             targetPos = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f );
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            long instanceid = unit.InstanceId;
             targetPos.y = unit.Position.y;
             if (Vector3.Distance(unit.Position, targetPos) < NpcSpeakDistance + 0.1f)
             {
@@ -57,6 +48,14 @@ namespace ET
             Vector3 dir = (unit.Position - targetPos).normalized;
             targetPos += dir * NpcSpeakDistance;
             int ret = await unit.MoveToAsync2(targetPos, false);
+            if (instanceid != unit.InstanceId)
+            {
+                return -1;
+            }
+            EventType.TaskNpcDialog.Instance.TaskPro = taskPro;
+            EventType.TaskNpcDialog.Instance.zoneScene = zoneScene;
+            EventType.TaskNpcDialog.Instance.ErrorCode = ret;
+            EventSystem.Instance.PublishClass(EventType.TaskNpcDialog.Instance);
             return ret;
         }
 

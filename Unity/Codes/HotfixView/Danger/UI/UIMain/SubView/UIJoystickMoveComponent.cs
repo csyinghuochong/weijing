@@ -106,7 +106,7 @@ namespace ET
         public static void Draging(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (!myUnit.GetComponent<StateComponent>().CanMove())
+            if (myUnit.IsDisposed || !myUnit.GetComponent<StateComponent>().CanMove())
                 return;
 
             self.draging = true;

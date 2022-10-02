@@ -86,6 +86,11 @@ namespace ET
             for (int i = self.Effects.Count - 1; i >= 0; i--)
             {
                 AEffectHandler aEffectHandler = self.Effects[i];
+                if (aEffectHandler.EffectData == null)
+                {
+                    Log.ILog.Debug($"aEffectHandler.EffectData == nul");
+                    continue;
+                }
                 if (!aEffectHandler.EffectData.FollowUnitMove)
                 {
                     continue;

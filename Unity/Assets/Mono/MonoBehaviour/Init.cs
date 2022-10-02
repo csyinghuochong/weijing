@@ -179,6 +179,10 @@ namespace ET
 
 		private void CheckMouseInput()
 		{
+			if (InputHelper.GetKey(257))
+			{
+				this.OnGetKeyHandler?.Invoke(257);
+			}
 			if (InputHelper.GetKey(119))
 			{
 				this.OnGetKeyHandler?.Invoke(119);

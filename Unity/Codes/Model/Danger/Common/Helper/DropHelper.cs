@@ -172,12 +172,6 @@ namespace ET
 		//传入掉落ID，生成掉落数据
 		public static bool DropIDToDropItem(int dropID, List<RewardItem> dropItemList, int monsterID = 0, float dropProValue = 1, bool all = false)
 		{
-			if (!DropConfigCategory.Instance.Contain(dropID))
-			{
-				Log.Error($"无效的dropid： {dropID}");
-				return false;
-			}
-
 			DropConfig dropconf = DropConfigCategory.Instance.Get(dropID);
 			int dropLimit = dropconf.DropLimit;
 			//Debug.Log("DropIDToDropItemDropIDToDropItemDropIDToDropItem");
@@ -248,231 +242,238 @@ namespace ET
 		//行掉落ID数据
 		public static int RowDrop(int dropID, List<RewardItem> dropItemList, int monsterID, int dropNumNow = 0, int dropNumMax = 0, float dropProValue = 1, bool all = false)
 		{
-			//根据掉落ID获取掉落
-			DropConfig dropconf = DropConfigCategory.Instance.Get(dropID);
-			//int dropNum
-			int dropType = dropconf.DropType;
-
-			for (int i = 1; i <= 10; i++)
+			try
 			{
-				//Debug.Log("Str1111 = " + i);
-				//获取掉落道具的ID
-				int dropItemID = 0;
-				int dropChance = 0;
-				int dropMinNum = 0;
-				int dropMaxNum = 0;
-				switch (i)
-				{
-					case 1:
-						dropItemID = dropconf.DropItemID1;
-						dropChance = dropconf.DropChance1;
-						dropMinNum = dropconf.DropItemMinNum1;
-						dropMaxNum = dropconf.DropItemMaxNum1;
-						break;
-					case 2:
-						dropItemID = dropconf.DropItemID2;
-						dropChance = dropconf.DropChance2;
-						dropMinNum = dropconf.DropItemMinNum2;
-						dropMaxNum = dropconf.DropItemMaxNum2;
-						break;
-					case 3:
-						dropItemID = dropconf.DropItemID3;
-						dropChance = dropconf.DropChance3;
-						dropMinNum = dropconf.DropItemMinNum3;
-						dropMaxNum = dropconf.DropItemMaxNum3;
-						break;
-					case 4:
-						dropItemID = dropconf.DropItemID4;
-						dropChance = dropconf.DropChance4;
-						dropMinNum = dropconf.DropItemMinNum4;
-						dropMaxNum = dropconf.DropItemMaxNum4;
-						break;
-					case 5:
-						dropItemID = dropconf.DropItemID5;
-						dropChance = dropconf.DropChance5;
-						dropMinNum = dropconf.DropItemMinNum5;
-						dropMaxNum = dropconf.DropItemMaxNum5;
-						break;
-					case 6:
-						dropItemID = dropconf.DropItemID6;
-						dropChance = dropconf.DropChance6;
-						dropMinNum = dropconf.DropItemMinNum6;
-						dropMaxNum = dropconf.DropItemMaxNum6;
-						break;
-					case 7:
-						dropItemID = dropconf.DropItemID7;
-						dropChance = dropconf.DropChance7;
-						dropMinNum = dropconf.DropItemMinNum7;
-						dropMaxNum = dropconf.DropItemMaxNum7;
-						break;
-					case 8:
-						dropItemID = dropconf.DropItemID8;
-						dropChance = dropconf.DropChance8;
-						dropMinNum = dropconf.DropItemMinNum8;
-						dropMaxNum = dropconf.DropItemMaxNum8;
-						break;
-					case 9:
-						dropItemID = dropconf.DropItemID9;
-						dropChance = dropconf.DropChance9;
-						dropMinNum = dropconf.DropItemMinNum9;
-						dropMaxNum = dropconf.DropItemMaxNum9;
-						break;
-					case 10:
-						dropItemID = dropconf.DropItemID10;
-						dropChance = dropconf.DropChance10;
-						dropMinNum = dropconf.DropItemMinNum10;
-						dropMaxNum = dropconf.DropItemMaxNum10;
-						break;
-				}
+				//根据掉落ID获取掉落
+				DropConfig dropconf = DropConfigCategory.Instance.Get(dropID);
+				//int dropNum
+				int dropType = dropconf.DropType;
 
-				//string dropItemID = "1";
-				//string dropType = "1";
-				//Debug.Log("dropItemID = " + dropItemID);
-				//如果道具ID不为空则触发掉落概率
-				//Debug.Log("Str2222 = " + i);
-				if (dropItemID != 0)
+				for (int i = 1; i <= 10; i++)
 				{
-					//每个掉落
-					//获取每个掉落的概率
-					//string dropChance = "100000";
-					float randomdrop = RandomHelper.RandomNumberFloat(0, 1000000);
-					float dropChanceData = dropChance * dropProValue;     //概率附加
-
-					if (all)
+					//Debug.Log("Str1111 = " + i);
+					//获取掉落道具的ID
+					int dropItemID = 0;
+					int dropChance = 0;
+					int dropMinNum = 0;
+					int dropMaxNum = 0;
+					switch (i)
 					{
-						dropChanceData = randomdrop + 1f;
+						case 1:
+							dropItemID = dropconf.DropItemID1;
+							dropChance = dropconf.DropChance1;
+							dropMinNum = dropconf.DropItemMinNum1;
+							dropMaxNum = dropconf.DropItemMaxNum1;
+							break;
+						case 2:
+							dropItemID = dropconf.DropItemID2;
+							dropChance = dropconf.DropChance2;
+							dropMinNum = dropconf.DropItemMinNum2;
+							dropMaxNum = dropconf.DropItemMaxNum2;
+							break;
+						case 3:
+							dropItemID = dropconf.DropItemID3;
+							dropChance = dropconf.DropChance3;
+							dropMinNum = dropconf.DropItemMinNum3;
+							dropMaxNum = dropconf.DropItemMaxNum3;
+							break;
+						case 4:
+							dropItemID = dropconf.DropItemID4;
+							dropChance = dropconf.DropChance4;
+							dropMinNum = dropconf.DropItemMinNum4;
+							dropMaxNum = dropconf.DropItemMaxNum4;
+							break;
+						case 5:
+							dropItemID = dropconf.DropItemID5;
+							dropChance = dropconf.DropChance5;
+							dropMinNum = dropconf.DropItemMinNum5;
+							dropMaxNum = dropconf.DropItemMaxNum5;
+							break;
+						case 6:
+							dropItemID = dropconf.DropItemID6;
+							dropChance = dropconf.DropChance6;
+							dropMinNum = dropconf.DropItemMinNum6;
+							dropMaxNum = dropconf.DropItemMaxNum6;
+							break;
+						case 7:
+							dropItemID = dropconf.DropItemID7;
+							dropChance = dropconf.DropChance7;
+							dropMinNum = dropconf.DropItemMinNum7;
+							dropMaxNum = dropconf.DropItemMaxNum7;
+							break;
+						case 8:
+							dropItemID = dropconf.DropItemID8;
+							dropChance = dropconf.DropChance8;
+							dropMinNum = dropconf.DropItemMinNum8;
+							dropMaxNum = dropconf.DropItemMaxNum8;
+							break;
+						case 9:
+							dropItemID = dropconf.DropItemID9;
+							dropChance = dropconf.DropChance9;
+							dropMinNum = dropconf.DropItemMinNum9;
+							dropMaxNum = dropconf.DropItemMaxNum9;
+							break;
+						case 10:
+							dropItemID = dropconf.DropItemID10;
+							dropChance = dropconf.DropChance10;
+							dropMinNum = dropconf.DropItemMinNum10;
+							dropMaxNum = dropconf.DropItemMaxNum10;
+							break;
 					}
 
-					//怪物ID
-					if (monsterID != 0)
+					//string dropItemID = "1";
+					//string dropType = "1";
+					//Debug.Log("dropItemID = " + dropItemID);
+					//如果道具ID不为空则触发掉落概率
+					//Debug.Log("Str2222 = " + i);
+					if (dropItemID != 0)
 					{
-						//特殊道具概率降低
-						//钥匙类
-						if (IfTeShuDropItemID(dropItemID))
+						//每个掉落
+						//获取每个掉落的概率
+						//string dropChance = "100000";
+						float randomdrop = RandomHelper.RandomNumberFloat(0, 1000000);
+						float dropChanceData = dropChance * dropProValue;     //概率附加
+
+						if (all)
 						{
-							//获取当前等级差
-							int roseLv = 1; //临时
-							int aiLv = 0;  //// int.Parse(function_DataSet.DataSet_ReadData("Lv", "ID", monsterID, "Monster_Template"));
-										   //最低保障前两章是正常掉落
-							if (aiLv < 40)
+							dropChanceData = randomdrop + 1f;
+						}
+
+						//怪物ID
+						if (monsterID != 0)
+						{
+							//特殊道具概率降低
+							//钥匙类
+							if (IfTeShuDropItemID(dropItemID))
 							{
-								int lvCha = roseLv - aiLv;
-								//超过10级不再执行掉落
-								if (lvCha >= 10)
+								//获取当前等级差
+								int roseLv = 1; //临时
+								int aiLv = 0;  //// int.Parse(function_DataSet.DataSet_ReadData("Lv", "ID", monsterID, "Monster_Template"));
+											   //最低保障前两章是正常掉落
+								if (aiLv < 40)
 								{
-									dropChanceData = 0;
+									int lvCha = roseLv - aiLv;
+									//超过10级不再执行掉落
+									if (lvCha >= 10)
+									{
+										dropChanceData = 0;
+									}
 								}
 							}
 						}
-					}
 
-					//Debug.Log("Str3333 = " + i);
-					//当随机值小于掉落概率值判定为掉落成功
-					if (randomdrop <= dropChanceData)
-					{
-						//Debug.Log("掉落成功！掉落成功！掉落成功！掉落成功！掉落成功！掉落成功！ dropID = " + dropID);
-						//掉落成功
-						//获取掉落数量
-						//判定概率是否大于100%,大于100则掉落数量变多（此处触发BUG不能直接成掉落系数,要加算法）
-						if (dropChanceData > 1000000)
+						//Debug.Log("Str3333 = " + i);
+						//当随机值小于掉落概率值判定为掉落成功
+						if (randomdrop <= dropChanceData)
 						{
-							//dropMinNum_Int = (int)(dropMinNum_Int * dropProValue);
-							//dropMaxNum_Int = (int)(dropMaxNum_Int * dropProValue);
-
-							//如果需要此处应该是这样的
-							dropMinNum = (int)(dropMinNum * (dropChance / 1000000 * dropProValue));
-							dropMaxNum = (int)(dropMaxNum * (dropChance / 1000000 * dropProValue));
-						}
-						//随机掉落数量
-						int itemDropNum = RandomHelper.RandomNumber(dropMinNum, dropMaxNum);
-						randomSet = itemDropNum;
-
-						//读取掉落道具ID
-						//string itemID = function_DataSet.DataSet_ReadData("DropItemID" + i.ToString(), "ID", dropID,"Drop_Template");
-						//Debug.Log("Str4444 = " + i);
-						switch (dropType)
-						{
-							//发送道具到地上实体
-							case 1:
-
-								//如果是金币掉落显示掉落数量为1
-								if (dropItemID == 1)
-								{
-									//金币数量
-									itemDropNum = 1;
-									dropItemList.Add(new RewardItem() { ItemID = 1, ItemNum = randomSet });
-								}
-								else
-								{
-									//当掉落数量不为0时,循环实例化每个掉落
-									if (itemDropNum != 0)
-									{
-										for (int n = 1; n <= itemDropNum; n++)
-										{
-											//执行掉落
-											dropItemList.Add(new RewardItem() { ItemID = dropItemID, ItemNum = 1 });
-										}
-									}
-
-								}
-								break;
-							//发送道具到背包
-							case 2:
-								//Debug.Log("Str5555 = " + i);
-								//获取道具的极品值
-								/*
-								float HideDropPro = 0;
-								if (monsterID != 0)
-								{
-									HideDropPro = 0; /// float.Parse(function_DataSet.DataSet_ReadData("HideDropPro", "ID", monsterID, "Monster_Template"));
-								}
-								*/
-								//Debug.Log("Str6666 = " + i);
-								//Debug.Log("HideDropPro = " + HideDropPro);
-								//Debug.Log("itemID = " + itemID + "itemDropNum = " + itemDropNum + "HideDropPro = " + HideDropPro);
-								bool ifDrop = true;   // Function_Role.GetInstance().SendRewardToBag(itemID, itemDropNum, "0", HideDropPro, "0", true, "12");
-													  //Debug.Log("Str7777 = " + i);
-													  //背包满了的话直接掉落到地上
-								if (!ifDrop)
-								{
-									//背包满了执行掉落地上
-									//dropItemList.Add(itemID);
-									if (itemDropNum != 0)
-									{
-										for (int n = 1; n <= itemDropNum; n++)
-										{
-											//执行掉落
-											dropItemList.Add(new RewardItem() { ItemID = dropItemID, ItemNum = 1 });
-										}
-									}
-									//Debug.Log("Str8888 = " + i);
-								}
-								break;
-						}
-						//累计掉落数量
-						//dropNum = dropNum + 1;
-						if (dropNumMax != 0)
-						{
-							//Debug.Log("掉落1");
-							dropNumNow = dropNumNow + 1;
-							if (dropNumNow >= dropNumMax)
+							//Debug.Log("掉落成功！掉落成功！掉落成功！掉落成功！掉落成功！掉落成功！ dropID = " + dropID);
+							//掉落成功
+							//获取掉落数量
+							//判定概率是否大于100%,大于100则掉落数量变多（此处触发BUG不能直接成掉落系数,要加算法）
+							if (dropChanceData > 1000000)
 							{
-								//Debug.Log("掉落2");
-								return dropNumNow;
+								//dropMinNum_Int = (int)(dropMinNum_Int * dropProValue);
+								//dropMaxNum_Int = (int)(dropMaxNum_Int * dropProValue);
+
+								//如果需要此处应该是这样的
+								dropMinNum = (int)(dropMinNum * (dropChance / 1000000 * dropProValue));
+								dropMaxNum = (int)(dropMaxNum * (dropChance / 1000000 * dropProValue));
 							}
+							//随机掉落数量
+							int itemDropNum = RandomHelper.RandomNumber(dropMinNum, dropMaxNum);
+							randomSet = itemDropNum;
+
+							//读取掉落道具ID
+							//string itemID = function_DataSet.DataSet_ReadData("DropItemID" + i.ToString(), "ID", dropID,"Drop_Template");
+							//Debug.Log("Str4444 = " + i);
+							switch (dropType)
+							{
+								//发送道具到地上实体
+								case 1:
+
+									//如果是金币掉落显示掉落数量为1
+									if (dropItemID == 1)
+									{
+										//金币数量
+										itemDropNum = 1;
+										dropItemList.Add(new RewardItem() { ItemID = 1, ItemNum = randomSet });
+									}
+									else
+									{
+										//当掉落数量不为0时,循环实例化每个掉落
+										if (itemDropNum != 0)
+										{
+											for (int n = 1; n <= itemDropNum; n++)
+											{
+												//执行掉落
+												dropItemList.Add(new RewardItem() { ItemID = dropItemID, ItemNum = 1 });
+											}
+										}
+
+									}
+									break;
+								//发送道具到背包
+								case 2:
+									//Debug.Log("Str5555 = " + i);
+									//获取道具的极品值
+									/*
+									float HideDropPro = 0;
+									if (monsterID != 0)
+									{
+										HideDropPro = 0; /// float.Parse(function_DataSet.DataSet_ReadData("HideDropPro", "ID", monsterID, "Monster_Template"));
+									}
+									*/
+									//Debug.Log("Str6666 = " + i);
+									//Debug.Log("HideDropPro = " + HideDropPro);
+									//Debug.Log("itemID = " + itemID + "itemDropNum = " + itemDropNum + "HideDropPro = " + HideDropPro);
+									bool ifDrop = true;   // Function_Role.GetInstance().SendRewardToBag(itemID, itemDropNum, "0", HideDropPro, "0", true, "12");
+														  //Debug.Log("Str7777 = " + i);
+														  //背包满了的话直接掉落到地上
+									if (!ifDrop)
+									{
+										//背包满了执行掉落地上
+										//dropItemList.Add(itemID);
+										if (itemDropNum != 0)
+										{
+											for (int n = 1; n <= itemDropNum; n++)
+											{
+												//执行掉落
+												dropItemList.Add(new RewardItem() { ItemID = dropItemID, ItemNum = 1 });
+											}
+										}
+										//Debug.Log("Str8888 = " + i);
+									}
+									break;
+							}
+							//累计掉落数量
+							//dropNum = dropNum + 1;
+							if (dropNumMax != 0)
+							{
+								//Debug.Log("掉落1");
+								dropNumNow = dropNumNow + 1;
+								if (dropNumNow >= dropNumMax)
+								{
+									//Debug.Log("掉落2");
+									return dropNumNow;
+								}
+							}
+						}
+						else
+						{
+							//掉落失败
 						}
 					}
 					else
 					{
-						//掉落失败
+						i = 10; //因为一条掉落最大支持10个道具数据
 					}
 				}
-				else
-				{
-					i = 10; //因为一条掉落最大支持10个道具数据
-				}
-			}
 
+			}
+			catch (Exception ex)
+			{
+				Log.Error("DropHelp " + ex.ToString());
+			}
 			return dropNumNow;
 		}
 
