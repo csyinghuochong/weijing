@@ -78,8 +78,12 @@ namespace ET
 						try
 						{
 							//重连
+<<<<<<< HEAD
 							Log.Debug($"LoginTest C2G_EnterGame 二次登录开始; player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
 							//主要判断unit还在不在
+=======
+							Log.Debug($"C2G_EnterGame 二次登录开始;{player.UnitId}");
+>>>>>>> ba72ae7e7 (no message)
 							IActorResponse reqEnter =(M2G_RequestEnterGameState) await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
 							{
 								GateSessionActorId = session.InstanceId
@@ -90,7 +94,11 @@ namespace ET
 								reply();
 								return;
 							}
+<<<<<<< HEAD
 							Log.Error($"LoginTest C2G_EnterGame 二次登录失败 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
+=======
+							Log.Error("C2G_EnterGame 二次登录失败  " + reqEnter.Error + " | " + reqEnter.Message);
+>>>>>>> ba72ae7e7 (no message)
 							response.Error = ErrorCore.ERR_ReEnterGameError;
 							await DisconnectHelper.KickPlayer(player, true);
 							reply();
@@ -99,7 +107,11 @@ namespace ET
 						}
 						catch (Exception e)
 						{
+<<<<<<< HEAD
 							Log.Error($"LoginTest C2G_EnterGame 二次登录失败player.Id： {player.Id}  request.UserID{request.UserID}  player.UnitId: {player.UnitId}" + e.ToString());
+=======
+							Log.Error("C2G_EnterGame 二次登录失败  " + e.ToString());
+>>>>>>> ba72ae7e7 (no message)
 							response.Error = ErrorCore.ERR_ReEnterGameError2;
 							await DisconnectHelper.KickPlayer(player, true);
 							reply();
@@ -160,6 +172,10 @@ namespace ET
 
 						reply();
 						StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), "Map1");
+<<<<<<< HEAD
+=======
+						Log.Debug($"C2G_EnterGame TransferHelper.Transfer;{player.UnitId}");
+>>>>>>> ba72ae7e7 (no message)
 						await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);
 
 						SessionStateComponent SessionStateComponent = session.GetComponent<SessionStateComponent>();

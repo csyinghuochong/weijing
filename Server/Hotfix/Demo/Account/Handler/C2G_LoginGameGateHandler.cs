@@ -9,7 +9,11 @@ namespace ET
 			Log.Debug($"LoginTest C2G_LoginGameGate  {request.RoleId}");
 			if (session.DomainScene().SceneType != SceneType.Gate)
 			{
+<<<<<<< HEAD
 				Log.Error($"LoginTest C2G_LoginGameGate请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+=======
+				Log.Error($"C2G_LoginGameGate请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
+>>>>>>> ba72ae7e7 (no message)
 				session.Dispose();
 				return;
 			}
@@ -40,7 +44,11 @@ namespace ET
 			{
 				if (instanceId != session.InstanceId)	//防止多个客户端同时请求
 				{
+<<<<<<< HEAD
 					Log.Debug($"LoginTest C2G_LoginGameGate 多个客户端同时请求 request.RoleId: {request.RoleId}");
+=======
+					Log.Debug($"C2G_LoginGameGate 多个客户端同时请求{request.Account}{session.RemoteAddress}");
+>>>>>>> ba72ae7e7 (no message)
 					return;
 				}
 
@@ -76,13 +84,20 @@ namespace ET
 					session.AddComponent<MailBoxComponent, MailboxType>(MailboxType.GateSession);
 					player.AddComponent<MailBoxComponent, MailboxType>(MailboxType.GateSession);                    //ET-UWA
 					player.PlayerState = PlayerState.Gate;
+<<<<<<< HEAD
 					Log.Debug($"LoginTest C2G_LoginGameGate  player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
+=======
+>>>>>>> ba72ae7e7 (no message)
 				}
 				else
 				{
 					//移除倒计时下线组件   //断线重连、
 					player.RemoveComponent<PlayerOfflineOutTimeComponent>();
+<<<<<<< HEAD
 					Log.Debug($"LoginTest C2G_LoginGameGate player!=null player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
+=======
+					Log.Debug($"C2G_LoginGameGate 多个客户端同时请求{request.Account}{session.RemoteAddress}");
+>>>>>>> ba72ae7e7 (no message)
 				}
 
 				session.AddComponent<SessionPlayerComponent>().PlayerId = player.Id;

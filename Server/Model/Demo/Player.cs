@@ -15,8 +15,11 @@
 		public Session ClientSession { get; set; }
 
 		public long UnitId { get; set; }		//unitid  ==  userid
+<<<<<<< HEAD
 
 		public string Name { get; set; }
+=======
+>>>>>>> ba72ae7e7 (no message)
 
 		public PlayerState PlayerState { get; set; }
 
