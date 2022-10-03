@@ -6,7 +6,11 @@ namespace ET
 	{
 		protected override async ETTask Run(Session session, C2G_LoginGameGate request, G2C_LoginGameGate response, Action reply)
 		{
+<<<<<<< HEAD
 			Log.Debug($"LoginTest C2G_LoginGameGate  {request.RoleId}");
+=======
+			Log.Debug($"C2G_LoginGameGate  {request.RoleId}");
+>>>>>>> 9c93ccf54 (no message)
 			if (session.DomainScene().SceneType != SceneType.Gate)
 			{
 <<<<<<< HEAD
@@ -42,13 +46,17 @@ namespace ET
 			using (session.AddComponent<SessionLockingComponent>())
 			using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginGate, request.Account.GetHashCode()))
 			{
-				if (instanceId != session.InstanceId)	//防止多个客户端同时请求
+				if (instanceId != session.InstanceId)   //防止多个客户端同时请求
 				{
+<<<<<<< HEAD
 <<<<<<< HEAD
 					Log.Debug($"LoginTest C2G_LoginGameGate 多个客户端同时请求 request.RoleId: {request.RoleId}");
 =======
 					Log.Debug($"C2G_LoginGameGate 多个客户端同时请求{request.Account}{session.RemoteAddress}");
 >>>>>>> ba72ae7e7 (no message)
+=======
+					Log.Debug($"C2G_LoginGameGate 多个客户端同时请求  {request.RoleId} {session.RemoteAddress}  {instanceId} {session.InstanceId}");
+>>>>>>> 9c93ccf54 (no message)
 					return;
 				}
 
@@ -94,10 +102,14 @@ namespace ET
 					//移除倒计时下线组件   //断线重连、
 					player.RemoveComponent<PlayerOfflineOutTimeComponent>();
 <<<<<<< HEAD
+<<<<<<< HEAD
 					Log.Debug($"LoginTest C2G_LoginGameGate player!=null player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
 =======
 					Log.Debug($"C2G_LoginGameGate 多个客户端同时请求{request.Account}{session.RemoteAddress}");
 >>>>>>> ba72ae7e7 (no message)
+=======
+					Log.Debug($"C2G_LoginGameGate player!=null {request.RoleId}");
+>>>>>>> 9c93ccf54 (no message)
 				}
 
 				session.AddComponent<SessionPlayerComponent>().PlayerId = player.Id;
