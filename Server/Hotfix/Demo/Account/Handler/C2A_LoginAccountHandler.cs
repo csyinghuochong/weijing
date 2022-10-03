@@ -178,11 +178,7 @@ namespace ET
                     Session otherSession = Game.EventSystem.Get(accountSessionInstanceId) as Session;
                     if (otherSession != null)
                     {
-<<<<<<< HEAD
                         Log.Debug($"LoginTest C2A_LoginAccount.ERR_OtherAccountLogin1 account.Id: {account.Id}");
-=======
-                        Log.Debug($"C2A_LoginAccount.ERR_OtherAccountLogin1 {account.Id}");
->>>>>>> ba72ae7e7 (no message)
                     } 
                     otherSession?.Send(new A2C_Disconnect() { Error = ErrorCore.ERR_OtherAccountLogin });                 //踢accout服的玩家下线
                     otherSession?.Disconnect().Coroutine();
