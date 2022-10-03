@@ -18,8 +18,6 @@
 
 		public string Name { get; set; }
 
-		public string Name { get; set; }
-
 		public PlayerState PlayerState { get; set; }
 
 		public long DBCacheId { get; set; }

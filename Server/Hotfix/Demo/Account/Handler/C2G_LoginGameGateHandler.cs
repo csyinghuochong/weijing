@@ -6,11 +6,7 @@ namespace ET
 	{
 		protected override async ETTask Run(Session session, C2G_LoginGameGate request, G2C_LoginGameGate response, Action reply)
 		{
-<<<<<<< HEAD
 			Log.Debug($"LoginTest C2G_LoginGameGate  {request.RoleId}");
-=======
-			Log.Debug($"C2G_LoginGameGate  {request.RoleId}");
->>>>>>> 9c93ccf54726c8a18ca00b074d76a3ea36c86fac
 			if (session.DomainScene().SceneType != SceneType.Gate)
 			{
 				Log.Error($"LoginTest C2G_LoginGameGate请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");
@@ -44,11 +40,7 @@ namespace ET
 			{
 				if (instanceId != session.InstanceId)   //防止多个客户端同时请求
 				{
-<<<<<<< HEAD
 					Log.Debug($"LoginTest C2G_LoginGameGate 多个客户端同时请求 request.RoleId: {request.RoleId}");
-=======
-					Log.Debug($"C2G_LoginGameGate 多个客户端同时请求  {request.RoleId} {session.RemoteAddress}  {instanceId} {session.InstanceId}");
->>>>>>> 9c93ccf54726c8a18ca00b074d76a3ea36c86fac
 					return;
 				}
 
@@ -72,7 +64,7 @@ namespace ET
 				SessionStateComponent.State = SessionState.Normal;
 				//游戏客户端在Gate上的一个映射
 				Player player = scene.GetComponent<PlayerComponent>().Get(request.Account);
-				if (player!=null && player.Id != request.RoleId)
+				if (player != null && player.Id != request.RoleId)
 				{
 					Log.Debug($"LoginTest C2G_LoginGameGate  player.Id:{player.Id}  request.RoleId: {request.RoleId}");
 				}
@@ -90,11 +82,7 @@ namespace ET
 				{
 					//移除倒计时下线组件   //断线重连、
 					player.RemoveComponent<PlayerOfflineOutTimeComponent>();
-<<<<<<< HEAD
 					Log.Debug($"LoginTest C2G_LoginGameGate player!=null player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
-=======
-					Log.Debug($"C2G_LoginGameGate player!=null {request.RoleId}");
->>>>>>> 9c93ccf54726c8a18ca00b074d76a3ea36c86fac
 				}
 
 				session.AddComponent<SessionPlayerComponent>().PlayerId = player.Id;
