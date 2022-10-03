@@ -28,7 +28,7 @@ namespace ET
 			try
 			{
 				int oldScene = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-				if (oldScene == SceneTypeEnum.MainCityScene && request.SceneType!= SceneTypeEnum.LocalDungeon)
+				if (oldScene == request.SceneType && request.SceneType!= SceneTypeEnum.LocalDungeon)
 				{
 					Log.Error($"LoginTest  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}");
 					response.Error = ErrorCore.ERR_RequestRepeatedly;
@@ -115,7 +115,8 @@ namespace ET
 						TransferHelper.Transfer(unit, createUnit.FubenInstanceId, (int)SceneTypeEnum.TeamDungeon, createUnit.FubenId, 0).Coroutine();
 						if (sceneTypeEnum == SceneTypeEnum.CellDungeon 
 							|| sceneTypeEnum == SceneTypeEnum.Tower
-							|| sceneTypeEnum == SceneTypeEnum.RandomTower)
+							|| sceneTypeEnum == SceneTypeEnum.RandomTower
+							|| sceneTypeEnum == SceneTypeEnum.LocalDungeon)
 						{
 							TransferHelper.NoticeFubenCenter(unit.DomainScene(), 2).Coroutine();
 							unit.DomainScene().Dispose();

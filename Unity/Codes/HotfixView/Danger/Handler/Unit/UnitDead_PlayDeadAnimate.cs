@@ -108,6 +108,7 @@ namespace ET
             {
                 return;
             }
+
             NumericComponent  numericComponent = unit.GetComponent<NumericComponent>();
             unit.Position = new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),
                 numericComponent.GetAsFloat(NumericType.Born_Y),

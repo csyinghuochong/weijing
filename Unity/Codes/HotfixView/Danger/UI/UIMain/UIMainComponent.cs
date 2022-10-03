@@ -535,6 +535,10 @@ namespace ET
             for (int i = 0; i < allunit.Count; i++)
             {
                 Unit unit = allunit[i];
+                if (unit.InstanceId == 0 || unit.IsDisposed)
+                {
+                    continue;
+                }
                 if (unit.GetComponent<UnitInfoComponent>().Type != UnitType.Npc)
                 {
                     continue;

@@ -202,16 +202,16 @@ namespace ET
             return self.Buffs;
         }
 
-        public static void RecordBuff(this BuffManagerComponent self)
+        public static void BeforeTransfer(this BuffManagerComponent self)
         {
             UnitInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UnitInfoComponent>();
             unitInfoComponent.Buffs.Clear();
             for (int i = 0; i < self.m_Buffs.Count; i++)
             {
                 BuffHandler buffHandler = self.m_Buffs[i];
+                buffHandler.OnFinished();
                 if (buffHandler.BuffData.BuffConfig.Transfer != 1)
                 {
-                    buffHandler.OnFinished();
                     continue;
                 }
                 unitInfoComponent.Buffs.Add(new KeyValuePair() { KeyId = buffHandler.BuffData.BuffConfig.Id, Value2 = buffHandler.BuffEndTime.ToString() });

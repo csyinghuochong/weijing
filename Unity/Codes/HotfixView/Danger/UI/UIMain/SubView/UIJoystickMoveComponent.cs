@@ -71,10 +71,13 @@ namespace ET
         {
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
             uI.GetComponent<UIMainComponent>().OnMoveStart();
-            self.ZoneScene().CurrentScene().GetComponent<LockTargetComponent>()?.OnLockNpc(null);
-            if (!UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<StateComponent>().CanMove())
+            Scene zonescene = self.ZoneScene();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (unit == null || unit.IsDisposed || !unit.GetComponent<StateComponent>().CanMove())
+            {
                 return;
-
+            }
+            zonescene.CurrentScene().GetComponent<LockTargetComponent>()?.OnLockNpc(null);
             self.draging = true;
             self.SendMove(self.GetDirection(pdata));
         }
@@ -106,7 +109,7 @@ namespace ET
         public static void Draging(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (myUnit.IsDisposed || !myUnit.GetComponent<StateComponent>().CanMove())
+            if (myUnit == null || myUnit.IsDisposed || !myUnit.GetComponent<StateComponent>().CanMove())
                 return;
 
             self.draging = true;

@@ -70,7 +70,6 @@
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{
-
 #if SERVER
 			;
 #else

@@ -39,7 +39,6 @@ namespace ET
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterID);
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
-            scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<NumericComponent>();
             unit.AddComponent<HeroDataComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
@@ -82,10 +81,6 @@ namespace ET
                 }
                 aIComponent.BornPostion = unit.Position;
             }
-
-            unit.AI = monsterConfig.AI;
-            unit.AddComponent<AOIEntity, int, Vector3>(1 * 1000, unit.Position);
-
             if (monsterConfig.DeathTime > 0)
             {
                 unit.AddComponent<DeathTimeComponent, long>(monsterConfig.DeathTime * 1000);
@@ -105,6 +100,10 @@ namespace ET
                 numericComponent.ApplyValue(NumericType.ReviveTime, revetime, false);
                 numericComponent.ApplyValue(NumericType.Now_Dead, 1, false);
             }
+
+            unit.AI = monsterConfig.AI;
+            scene.GetComponent<UnitComponent>().Add(unit);
+            unit.AddComponent<AOIEntity, int, Vector3>(1 * 1000, unit.Position);
             return unit;
         }
 

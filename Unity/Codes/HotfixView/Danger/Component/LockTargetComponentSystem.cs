@@ -40,7 +40,11 @@ namespace ET
     {
         public override void Destroy(LockTargetComponent self)
         {
-            TimerComponent.Instance?.Remove(ref self.FrameTimer);
+            if (self.LockUnitEffect != null)
+            {
+                GameObject.Destroy(self.LockUnitEffect);
+                self.LockUnitEffect = null;
+            }
         }
     }
 

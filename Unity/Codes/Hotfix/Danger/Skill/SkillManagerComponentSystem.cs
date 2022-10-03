@@ -149,11 +149,10 @@ namespace ET
             for (int i = 0; i < skillcmd.SkillInfos.Count; i++)
             {
                 SkillConfig skillConfig1 = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[i].WeaponSkillID);
-
                 int effctId = skillConfig1.SkillEffectID[0];
                 if (effctId != 0 && !EffectConfigCategory.Instance.Contain(effctId))
                 {
-                    Log.Error($"无效的effectid {effctId}");
+                    Log.Debug($"无效的effectid {effctId}");
                     continue;
                 }
 

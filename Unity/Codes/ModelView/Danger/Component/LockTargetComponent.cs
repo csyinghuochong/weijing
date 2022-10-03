@@ -7,7 +7,6 @@ namespace ET
         public GameObject LockUnitEffect;
         public int LastLockIndex = -1;
         public long LastLockId = 0;
-        public long FrameTimer = 0;
     }
 
 }

@@ -27,7 +27,7 @@ namespace ET
 				}
 				Application.targetFrameRate = 30;
 				Application.runInBackground = true;
-				libx.Assets.MAX_BUNDLES_PERFRAME = 32;
+				libx.Assets.MAX_BUNDLES_PERFRAME = 16;
 				self.ZoneScene().GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LoginScene, 0, 0);
 				self.LastLoginTime = 0;
 				ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
