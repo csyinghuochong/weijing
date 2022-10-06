@@ -120,7 +120,7 @@ namespace ET
             {
                 PaiMaiItemInfo paiMaiItemInfo = m2C_PaiMaiBuyResponse.PaiMaiItemInfos[i];
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
-                if (!ComHelp.IsShowPaiMai(itemConfig.ItemSubType))
+                if (!ComHelp.IsShowPaiMai(itemConfig.ItemType, itemConfig.ItemSubType))
                 {
                     continue;
                 }

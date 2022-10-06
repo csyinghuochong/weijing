@@ -961,9 +961,12 @@ namespace ET
             return (T)retval;
         }
 
-        public static bool IsShowPaiMai(int subType)
+        public static bool IsShowPaiMai(int itemType, int subType)
         {
-            return subType == 114 || subType == 121;
+            if (itemType == 3)
+                return true;
+            else
+                return subType == 114 || subType == 121;
         }
 
         /// <summary>
