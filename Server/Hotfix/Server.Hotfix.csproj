@@ -19,38 +19,38 @@
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\Unity\Codes\Hotfix\Demo\Move\MoveComponentSystem.cs">
+    <Compile Include="..\..\Unity\Assets\Hotfix\Demo\Move\MoveComponentSystem.cs">
       <Link>Demo\Move\MoveComponentSystem.cs</Link>
     </Compile>
-    <Compile Include="..\..\Unity\Codes\Hotfix\Module\Config\ConfigComponentSystem.cs">
+    <Compile Include="..\..\Unity\Assets\Hotfix\Module\Config\ConfigComponentSystem.cs">
       <Link>Module\Config\ConfigComponentSystem.cs</Link>
     </Compile>
-    <Compile Include="..\..\Unity\Codes\Hotfix\Module\Numeric\**\*.cs">
+    <Compile Include="..\..\Unity\Assets\Hotfix\Module\Numeric\**\*.cs">
       <Link>Module\Numeric\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
 	  
-    <Compile Include="..\..\Unity\Codes\Hotfix\Module\AI\**\*.cs">
+    <Compile Include="..\..\Unity\Assets\Hotfix\Module\AI\**\*.cs">
       <Link>Module\AI\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
 
-    <Compile Include="..\..\Unity\Codes\Hotfix\Module\Recast\**\*.cs">
+    <Compile Include="..\..\Unity\Assets\Hotfix\Module\Recast\**\*.cs">
       <Link>Module\Recast\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
 
-    <Compile Include="..\..\Unity\Codes\Hotfix\Module\Message\**\*.cs">
+    <Compile Include="..\..\Unity\Assets\Hotfix\Module\Message\**\*.cs">
       <Link>Module\Message\%(RecursiveDir)%(FileName)%(Extension)</Link>
     </Compile>
 
-	  <Compile Include="..\..\Unity\Codes\Hotfix\Danger\AI\**\*.cs">
+	  <Compile Include="..\..\Unity\Assets\Hotfix\Danger\AI\**\*.cs">
 		  <Link>Danger\AI\%(RecursiveDir)%(FileName)%(Extension)</Link>
 	  </Compile>
-	  <Compile Include="..\..\Unity\Codes\Hotfix\Danger\HeroData\**\*.cs">
+	  <Compile Include="..\..\Unity\Assets\Hotfix\Danger\HeroData\**\*.cs">
 		  <Link>Danger\HeroData\%(RecursiveDir)%(FileName)%(Extension)</Link>
 	  </Compile>
-	  <Compile Include="..\..\Unity\Codes\Hotfix\Danger\ReferencePool\**\*.cs">
+	  <Compile Include="..\..\Unity\Assets\Hotfix\Danger\ReferencePool\**\*.cs">
 		  <Link>Danger\ReferencePool\%(RecursiveDir)%(FileName)%(Extension)</Link>
 	  </Compile>
-	  <Compile Include="..\..\Unity\Codes\Hotfix\Danger\Common\**\*.cs">
+	  <Compile Include="..\..\Unity\Assets\Hotfix\Danger\Common\**\*.cs">
 		  <Link>Danger\Common\%(RecursiveDir)%(FileName)%(Extension)</Link>
 	  </Compile>
 

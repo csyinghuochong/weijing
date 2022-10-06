@@ -34,11 +34,11 @@
 		<Compile Include="..\..\Server\Model\Config\ConfigLoader.cs">
 			<Link>Config\ConfigLoader.cs</Link>
 		</Compile>
-        <Compile Include="..\..\Unity\Codes\Model\Module\Config\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Model\Module\Config\**\*.cs">
             <Link>Module\Config\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Model\Core\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Model\Core\**\*.cs">
             <Link>Core\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
@@ -46,7 +46,7 @@
             <Link>Core\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Model\Module\AI\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Model\Module\AI\**\*.cs">
             <Link>Module\AI\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
@@ -66,11 +66,11 @@
             <Link>Module\MessageInner\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Model\Module\Ping\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Model\Module\Ping\**\*.cs">
             <Link>Module\Ping\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Model\Module\Message\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Model\Module\Message\**\*.cs">
             <Link>Module\Message\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
@@ -82,15 +82,15 @@
             <Link>Module\Message\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Model\Module\Numeric\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Model\Module\Numeric\**\*.cs">
             <Link>Module\Numeric\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Model\Module\Recast\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Model\Module\Recast\**\*.cs">
             <Link>Module\Recast\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Model\Demo\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Model\Demo\**\*.cs">
             <Link>Demo\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
@@ -102,34 +102,34 @@
             <Link>Module\Actor\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Model\Module\Actor\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Model\Module\Actor\**\*.cs">
             <Link>Module\Actor\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Model\Module\ActorLocation\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Model\Module\ActorLocation\**\*.cs">
             <Link>Module\ActorLocation\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Model\Module\CoroutineLock\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Model\Module\CoroutineLock\**\*.cs">
             <Link>Module\CoroutineLock\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
         <Compile Include="..\..\Server\Model\Module\Console\**\*.cs">
             <Link>Module\Console\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
-		<Compile Include="..\..\Unity\Codes\Model\Danger\Component\**\*.cs">
+		<Compile Include="..\..\Unity\Assets\Model\Danger\Component\**\*.cs">
 			<Link>Danger\Component\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
-		<Compile Include="..\..\Unity\Codes\Model\Danger\Buff\**\*.cs">
+		<Compile Include="..\..\Unity\Assets\Model\Danger\Buff\**\*.cs">
 			<Link>Danger\Buff\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
-		<Compile Include="..\..\Unity\Codes\Model\Danger\Skill\**\*.cs">
+		<Compile Include="..\..\Unity\Assets\Model\Danger\Skill\**\*.cs">
 			<Link>Danger\Skill\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
-		<Compile Include="..\..\Unity\Codes\Model\Danger\Common\**\*.cs">
+		<Compile Include="..\..\Unity\Assets\Model\Danger\Common\**\*.cs">
 			<Link>Danger\Common\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
-		<Compile Include="..\..\Unity\Codes\Model\Danger\DataUpdate\**\*.cs">
+		<Compile Include="..\..\Unity\Assets\Model\Danger\DataUpdate\**\*.cs">
 			<Link>Danger\DataUpdate\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
     </ItemGroup>

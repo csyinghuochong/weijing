@@ -4,7 +4,8 @@
     "references": [
         "Unity.Mono",
         "Unity.ThirdParty",
-        "Unity.TextMeshPro"
+        "Unity.TextMeshPro",
+        "HybridCLR.Editor"
     ],
     "includePlatforms": [
         "Editor"

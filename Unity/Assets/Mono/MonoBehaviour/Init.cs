@@ -82,9 +82,9 @@ namespace ET
 
 		private void Awake()
 		{
-#if ENABLE_IL2CPP
-			this.CodeMode = CodeMode.ILRuntime;
-#endif
+//#if ENABLE_IL2CPP
+//			this.CodeMode = CodeMode.ILRuntime;
+//#endif
 			Updater.SetActive(true);
 
 			System.AppDomain.CurrentDomain.UnhandledException += (sender, e) =>

@@ -1,0 +1,17 @@
+{
+    "name": "Unity.Model",
+    "rootNamespace": "",
+    "references": [
+        "Unity.Mono",
+        "Unity.ThirdParty"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

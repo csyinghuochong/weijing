@@ -9,6 +9,15 @@ using System.Net.Http;
 
 namespace ET
 {
+	public static class HotDlls
+	{
+		public const string Model = "Unity.Model.dll";
+		public const string ModelView = "Unity.ModelView.dll";
+		public const string Hotfix = "Unity.Hotfix.dll";
+		public const string HotfixView = "Unity.HotfixView.dll";
+
+	}
+
 	public class CodeLoader: IDisposable
 	{
 		public static CodeLoader Instance = new CodeLoader();
@@ -27,6 +36,9 @@ namespace ET
 		private readonly Dictionary<string, Type> hotfixTypes = new Dictionary<string, Type>();
 		private ILRuntime.Runtime.Enviorment.AppDomain appDomain;
 
+
+		public List<string> HotFixDlls = new List<string>() { HotDlls.Model, HotDlls.ModelView, HotDlls.Hotfix, HotDlls.HotfixView };
+		public Dictionary<string, Assembly> hotFixAssemblies = new Dictionary<string, Assembly>();
 
 		[IgnoreDataMemberAttribute]
 		private int ttt;
@@ -82,7 +94,23 @@ namespace ET
 		{
 			this.appDomain?.Dispose();
 		}
-		
+
+		public void AddHotfixTypes(Type[] types)
+		{
+			foreach (Type type in types)
+			{
+				this.hotfixTypes[type.FullName] = type;
+			}
+		}
+
+		public void AddMonoTypes(Type[] types)
+		{
+			foreach (Type type in types)
+			{
+				this.monoTypes[type.FullName] = type;
+			}
+		}
+
 		public void Start()
 		{
 			switch (this.CodeMode)
@@ -91,16 +119,24 @@ namespace ET
 					{
 						Log.ILog.Debug("hotupdate1   CodeMode.HuaTuo");
 
-						byte[] assBytes = LoadHelper.LoadCode("Code.dll").bytes;
-						byte[] pdbBytes = LoadHelper.LoadCode("Code.pdb").bytes;
-
-						assembly = Assembly.Load(assBytes, pdbBytes);
-						Type[] types = assembly.GetTypes();
-						foreach (Type type in types)
+						InitHybridCLR.Init();
+						foreach (var hotFixDll in this.HotFixDlls)
 						{
-							this.hotfixTypes[type.FullName] = type;
+							byte[] assBytes = LoadHelper.LoadCode($"{hotFixDll}").bytes;
+							var hotfixAssembly = Assembly.Load(assBytes);
+							this.AddHotfixTypes(hotfixAssembly.GetTypes());
+							this.hotFixAssemblies.Add(hotFixDll, hotfixAssembly);
 						}
 
+						//byte[] assBytes = LoadHelper.LoadCode("Code.dll").bytes;
+						//byte[] pdbBytes = LoadHelper.LoadCode("Code.pdb").bytes;
+						//assembly = Assembly.Load(assBytes, pdbBytes);
+						//Type[] types = assembly.GetTypes();
+						//foreach (Type type in types)
+						//{
+						//	this.hotfixTypes[type.FullName] = type;
+						//}
+						assembly = this.hotFixAssemblies[HotDlls.ModelView];
 						Log.ILog.Debug($"huatuo2   CodeMode.HuaTuo {this.hotfixTypes.Count}");
 						IStaticMethod start = MonoStaticMethod.Create(assembly, "ET.Entry", "Start");
 						start.Run();
@@ -109,16 +145,24 @@ namespace ET
 					}
 				case CodeMode.Mono:
 				{
-						Log.ILog.Debug("hotupdate1   CodeMode.Mono");
-						byte[] assBytes = LoadHelper.LoadCode("Code.dll").bytes;
-					byte[] pdbBytes = LoadHelper.LoadCode("Code.pdb").bytes;
-
-					assembly = Assembly.Load(assBytes, pdbBytes);
-					foreach (Type type in this.assembly.GetTypes())
+					Log.ILog.Debug("hotupdate1   CodeMode.Mono");
+					//byte[] assBytes = LoadHelper.LoadCode("Code.dll").bytes;
+					//assembly = Assembly.Load(assBytes, pdbBytes);
+					//foreach (Type type in this.assembly.GetTypes())
+					//{
+					//	this.monoTypes[type.FullName] = type;
+					//	this.hotfixTypes[type.FullName] = type;
+					//}
+					foreach (var hotFixDll in this.HotFixDlls)
 					{
-						this.monoTypes[type.FullName] = type;
-						this.hotfixTypes[type.FullName] = type;
+						byte[] assBytes = LoadHelper.LoadCode($"{hotFixDll}").bytes;
+						var hotfixAssembly = Assembly.Load(assBytes);
+						this.AddHotfixTypes(hotfixAssembly.GetTypes());
+						this.AddMonoTypes(hotfixAssembly.GetTypes());
+						this.hotFixAssemblies.Add(hotFixDll, hotfixAssembly);
 					}
+
+					assembly = this.hotFixAssemblies[HotDlls.ModelView];
 					IStaticMethod start = new MonoStaticMethod(assembly, "ET.Entry", "Start");
 					start.Run();
 					break;
@@ -139,7 +183,6 @@ namespace ET
                         MemoryStream assStream = new MemoryStream(assBytes);
                         MemoryStream pdbStream = new MemoryStream(pdbBytes);
                         appDomain.LoadAssembly(assStream, pdbStream, new ILRuntime.Mono.Cecil.Pdb.PdbReaderProvider());
-
                         Type[] types = appDomain.LoadedTypes.Values.Select(x => x.ReflectionType).ToArray();
                         foreach (Type type in types)
                         {

@@ -60,10 +60,10 @@ namespace KO
             Sprite sprite = null;
             if (atlas != null)
                 sprite = atlas.GetSpriteByName(path);
-#if UNITY_EDITOR
-            if (sprite == null)
-                sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/ArtistResources/UI/[AtlasSprites]/" + type + "/" + path + ".png");
-#endif
+//#if UNITY_EDITOR
+//            if (sprite == null)
+//                sprite = UnityEditor.AssetDatabase.LoadAssetAtPath<Sprite>("Assets/ArtistResources/UI/[AtlasSprites]/" + type + "/" + path + ".png");
+//#endif
             return sprite;
         }
     }

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEditor;
 using UnityEngine;
-using cn.mob.unity3d.sdkporter;
+//using cn.mob.unity3d.sdkporter;
 using System.Reflection;
 
 namespace cn.sharesdk.unity3d

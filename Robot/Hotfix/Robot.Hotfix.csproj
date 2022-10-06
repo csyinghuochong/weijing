@@ -31,15 +31,15 @@
         <Compile Include="..\..\Server\Hotfix\Demo\Session\SessionStreamDispatcherServerInner.cs">
           <Link>Server\Session\SessionStreamDispatcherServerInner.cs</Link>
         </Compile>
-        <Compile Include="..\..\Unity\Codes\Hotfix\Module\Message\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Hotfix\Module\Message\**\*.cs">
             <Link>Module\Message\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Hotfix\Module\MessageOuter\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Hotfix\Module\MessageOuter\**\*.cs">
             <Link>Module\MessageOuter\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Hotfix\Module\Numeric\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Hotfix\Module\Numeric\**\*.cs">
             <Link>Module\Numeric\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
@@ -59,23 +59,23 @@
             <Link>Module\NetworkTCP\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Hotfix\Demo\**\*.cs"> 
+        <Compile Include="..\..\Unity\Assets\Hotfix\Demo\**\*.cs"> 
             <Link>Demo\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Hotfix\Core\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Hotfix\Core\**\*.cs">
             <Link>Core\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Hotfix\Module\Config\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Hotfix\Module\Config\**\*.cs">
             <Link>Module\Config\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Hotfix\Module\Ping\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Hotfix\Module\Ping\**\*.cs">
             <Link>Module\Ping\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-        <Compile Include="..\..\Unity\Codes\Hotfix\Module\Recast\**\*.cs">
+        <Compile Include="..\..\Unity\Assets\Hotfix\Module\Recast\**\*.cs">
             <Link>Module\Recast\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
@@ -87,26 +87,26 @@
             <Link>Config\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
-		<Compile Include="..\..\Unity\Codes\Hotfix\Danger\Skill\**\*.cs">
+		<Compile Include="..\..\Unity\Assets\Hotfix\Danger\Skill\**\*.cs">
 			<Link>Danger\Skill\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
-		<Compile Include="..\..\Unity\Codes\Hotfix\Danger\Buff\**\*.cs">
+		<Compile Include="..\..\Unity\Assets\Hotfix\Danger\Buff\**\*.cs">
 			<Link>Danger\Buff\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
-		<Compile Include="..\..\Unity\Codes\Hotfix\Danger\Common\**\*.cs">
+		<Compile Include="..\..\Unity\Assets\Hotfix\Danger\Common\**\*.cs">
 			<Link>Danger\Common\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
-		<Compile Include="..\..\Unity\Codes\Hotfix\Danger\Component\**\*.cs">
+		<Compile Include="..\..\Unity\Assets\Hotfix\Danger\Component\**\*.cs">
 			<Link>Danger\Component\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
-	    <Compile Include="..\..\Unity\Codes\Hotfix\Danger\HeroData\**\*.cs">
+	    <Compile Include="..\..\Unity\Assets\Hotfix\Danger\HeroData\**\*.cs">
 			<Link>Danger\HeroData\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
-		<Compile Include="..\..\Unity\Codes\Hotfix\Danger\Handler\**\*.cs">
+		<Compile Include="..\..\Unity\Assets\Hotfix\Danger\Handler\**\*.cs">
 			<Link>Danger\Handler\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 
-		<Compile Include="..\..\Unity\Codes\Hotfix\Danger\Helper\**\*.cs">
+		<Compile Include="..\..\Unity\Assets\Hotfix\Danger\Helper\**\*.cs">
 			<Link>Danger\Helper\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>
 		

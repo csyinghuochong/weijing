@@ -5,7 +5,9 @@ namespace ET
 	public static class Define
 	{
 		public const string BuildOutputDir = "./Temp/Bin/Debug";
-		public const string HuatuoBuildOutputDir = "./HybridCLRData/AssembliesPostIl2CppStrip/Android";
+		public const string HybridCLRBuildOutputDir = "./HybridCLRData/AssembliesPostIl2CppStrip/Android";
+		public const string HybridCLRBuildHotFixOutputDir = "./HybridCLRData/HotUpdateDlls/Android";
+		public const string HybridCLRCutOutputDir = "./HybridCLRData/AssembliesPostIl2CppStrip/Android";
 
 #if UNITY_EDITOR && !ASYNC
 		public static bool IsAsync = false;
@@ -21,29 +23,32 @@ namespace ET
 		
 		public static UnityEngine.Object LoadAssetAtPath(string s)
 		{
-#if UNITY_EDITOR	
-			return UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(s);
-#else
+			//#if UNITY_EDITOR	
+			//			return UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Object>(s);
+			//#else
+			//			return null;
+			//#endif
 			return null;
-#endif
 		}
 		
 		public static string[] GetAssetPathsFromAssetBundle(string assetBundleName)
 		{
-#if UNITY_EDITOR	
-			return UnityEditor.AssetDatabase.GetAssetPathsFromAssetBundle(assetBundleName);
-#else
+//#if UNITY_EDITOR	
+//			return UnityEditor.AssetDatabase.GetAssetPathsFromAssetBundle(assetBundleName);
+//#else
+//			return new string[0];
+//#endif
 			return new string[0];
-#endif
 		}
 		
 		public static string[] GetAssetBundleDependencies(string assetBundleName, bool v)
 		{
-#if UNITY_EDITOR	
-			return UnityEditor.AssetDatabase.GetAssetBundleDependencies(assetBundleName, v);
-#else
+			//#if UNITY_EDITOR	
+			//			return UnityEditor.AssetDatabase.GetAssetBundleDependencies(assetBundleName, v);
+			//#else
+			//			return new string[0];
+			//#endif
 			return new string[0];
-#endif
 		}
 	}
 }

@@ -44,10 +44,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: Code.pdb
-    gameObject: {fileID: 4900000, guid: 17982d6d67fcef048b3b8719f073185c, type: 3}
-  - key: Code.dll
-    gameObject: {fileID: 4900000, guid: dca09a6829a8fdf4f98522f59c578bb4, type: 3}
   - key: mscorlib.dll
     gameObject: {fileID: 4900000, guid: a8620b3073d0650468fbc870eedfe286, type: 3}
   - key: System.Core.dll
@@ -58,3 +54,11 @@ MonoBehaviour:
     gameObject: {fileID: 4900000, guid: 8526d853baab7ed4daba451132493e78, type: 3}
   - key: Unity.ThirdParty.dll
     gameObject: {fileID: 4900000, guid: 5df167b395a8dbd46ab87d03d30b8f07, type: 3}
+  - key: Unity.Hotfix.dll
+    gameObject: {fileID: 4900000, guid: d0a3dad699610b0478d60e77f016705f, type: 3}
+  - key: Unity.HotfixView.dll
+    gameObject: {fileID: 4900000, guid: 474952151a3547e4ea811aa393265a20, type: 3}
+  - key: Unity.Model.dll
+    gameObject: {fileID: 4900000, guid: f44b84583c9db294aa38533ed435320c, type: 3}
+  - key: Unity.ModelView.dll
+    gameObject: {fileID: 4900000, guid: f31cf954eab94cd41939b214b1ec617e, type: 3}

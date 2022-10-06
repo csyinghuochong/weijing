@@ -107,7 +107,7 @@ namespace libx
         {
             VersionMode versionMode = GameObject.Find("Global").GetComponent<Init>().VersionMode;
             string dlcPath = "";
-            switch(versionMode)
+            switch (versionMode)
             {
                 case VersionMode.Alpha:
                     dlcPath = "DLCAlpha";
