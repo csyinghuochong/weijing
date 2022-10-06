@@ -56,7 +56,10 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Plugins\iOS\MOBTool\iOS\MOBAutoPackage\Editor\MOBPostProcessBuild.cs" />
+    <Compile Include="Assets\Plugins\iOS\MOBTool\iOS\MOBAutoPackage\Editor\MOBPathModel.cs" />
     <Compile Include="Assets\Plugins\iOS\ShareSDK\Editor\ShareSDKConfigEditor.cs" />
+    <Compile Include="Assets\Plugins\iOS\MOBTool\iOS\MOBAutoPackage\Editor\MOBXCodeEditorModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\iOS\ShareSDK\Editor\SDK\ShareSDK\Support\Optional\ShareSDKConfigFile.bundle\ShareSDK.xml" />

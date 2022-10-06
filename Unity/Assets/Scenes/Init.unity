@@ -825,7 +825,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff906ecbbd0163f4094f8fa4e305d39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Development: 1
+  Development: 0
   EditorMode: 1
   OueNetMode: 1
   BigVersion: 7
@@ -842,7 +842,7 @@ MonoBehaviour:
   javaClassStr: com.example.alinewsdk.AliSDKActivity
   javaActiveStr: currentActivity
   CodeMode: 1
-  VersionMode: 2
+  VersionMode: 1
 --- !u!4 &575235020
 Transform:
   m_ObjectHideFlags: 0
