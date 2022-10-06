@@ -30,7 +30,7 @@ namespace ET
 				int oldScene = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
 				if (oldScene == request.SceneType && request.SceneType!= SceneTypeEnum.LocalDungeon)
 				{
-					Log.Error($"LoginTest  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}");
+					Log.Error($"LoginTest  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
 					response.Error = ErrorCore.ERR_RequestRepeatedly;
 					reply();
 					return;

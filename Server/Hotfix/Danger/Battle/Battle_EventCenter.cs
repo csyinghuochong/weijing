@@ -10,7 +10,6 @@ namespace ET
     {
         public static  void Broadcast(EventType.NumericChangeEvent args)
         {
- 
             MessageHelper.Broadcast(args.Parent, new M2C_UnitNumericUpdate()
             {
                 UnitId = args.Parent.Id,

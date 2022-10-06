@@ -29,14 +29,15 @@ namespace ET
         public static async ETTask OnPaySucessToUnit(Scene scene,  long userId, int rechargeNumber)
         {
             Player gateUnitInfo = scene.GetComponent<PlayerComponent>().GetByUserId(userId);
-
-            if (gateUnitInfo.PlayerState == PlayerState.Game && gateUnitInfo.InstanceId > 0)
+            if (gateUnitInfo!=null && gateUnitInfo.PlayerState == PlayerState.Game && gateUnitInfo.InstanceId > 0)
             {
+                Log.Debug($"Recharge PlayerState.Game userId: {userId}  rechargeNumber:{rechargeNumber}");
                 G2M_RechargeResultRequest r2M_RechargeRequest = new G2M_RechargeResultRequest() { RechargeNumber = rechargeNumber };
                 M2G_RechargeResultResponse m2G_RechargeResponse = (M2G_RechargeResultResponse)await ActorLocationSenderComponent.Instance.Call(gateUnitInfo.UnitId, r2M_RechargeRequest);
             }
             else
             {
+                Log.Debug($"Recharge PlayerState.None userId: {userId}  rechargeNumber:{rechargeNumber}");
                 //直接存数据库
                 int number = ComHelp.GetDiamondNumber(rechargeNumber);
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
@@ -60,7 +61,7 @@ namespace ET
                     ComponentType = DBHelper.NumericComponent
                 });
 
-                long accountId = gateUnitInfo.AccountId;
+                long accountId = userInfoComponent.UserInfo.AccInfoID;
                 A2Center_RechargeRequest rechargeRequest = new A2Center_RechargeRequest()
                 {
                     AccountId = accountId,

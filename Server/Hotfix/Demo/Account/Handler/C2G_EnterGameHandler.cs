@@ -60,27 +60,27 @@ namespace ET
 					}
 
 					Log.Debug($"LoginTest  C2G_EnterGame_1 player.Id： {player.Id} request.UserID: {request.UserID} player.PlayerState：{player.PlayerState} request.Relink：{request.Relink}");
-					//player可以映射任意一个seesion。 session是唯一的
-					if (player.PlayerState == PlayerState.Game && !request.Relink)
-					{
-						//快速重启客户端而非重连
-						//通知游戏逻辑服下线Unit角色逻辑，并将数据存入数据库
-						IActorResponse reqEnter = (M2G_RequestEnterGameState)await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
-						{
-							GateSessionActorId = 0
-						});
-						player.RemoveComponent<GateMapComponent>();
-						player.PlayerState = PlayerState.None;
-					}
+                    //player可以映射任意一个seesion。 session是唯一的
+                    if (player.PlayerState == PlayerState.Game && !request.Relink)
+                    {
+                        //快速重启客户端而非重连
+                        //通知游戏逻辑服下线Unit角色逻辑，并将数据存入数据库
+                        IActorResponse reqEnter = (M2G_RequestEnterGameState)await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
+                        {
+                            GateSessionActorId = 0
+                        });
+                        player.RemoveComponent<GateMapComponent>();
+                        player.PlayerState = PlayerState.None;
+                    }
 
-					if (player.PlayerState == PlayerState.Game)
+                    if (player.PlayerState == PlayerState.Game)
 					{
 						try
 						{
 							//重连
 							Log.Debug($"LoginTest C2G_EnterGame 二次登录开始; player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
 							//主要判断unit还在不在
-							IActorResponse reqEnter = (M2G_RequestEnterGameState)await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
+							IActorResponse reqEnter =(M2G_RequestEnterGameState) await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
 							{
 								GateSessionActorId = session.InstanceId
 							});
@@ -109,7 +109,7 @@ namespace ET
 					}
 					try
 					{
-						if (player.GetComponent<GateMapComponent>() != null)
+						if (player.GetComponent<GateMapComponent>()!=null)
 						{
 							player.RemoveComponent<GateMapComponent>();
 						}

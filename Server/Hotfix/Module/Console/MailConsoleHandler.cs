@@ -46,7 +46,7 @@ namespace ET
                     string titie = "邮件";
                     if (mailInfo[4] == "1")
                     {
-                        titie = "清档补偿！";
+                        titie = "补偿！";
                     }
 
                     for (int i = 0; i < zoneList.Count; i++)

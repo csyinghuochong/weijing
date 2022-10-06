@@ -8,13 +8,13 @@
 		Game,
 	}
 
-	public sealed class Player : Entity, IAwake<string>, IAwake<long, long>
-	{
+	public sealed class Player : Entity, IAwake<string>, IAwake<long,long>
+	{ 
 		public long AccountId { get; set; }
 
 		public Session ClientSession { get; set; }
 
-		public long UnitId { get; set; }        //unitid  ==  userid
+		public long UnitId { get; set; }		//unitid  ==  userid
 
 		public string Name { get; set; }
 

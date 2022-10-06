@@ -51,7 +51,7 @@ namespace ET
             data.Add("spbill_create_ip", "123.12.12.123");
             data.Add("notify_url", self.notify_url);
             data.Add("trade_type", "APP");
-
+            Log.Debug($"微信支付请求 {request.UserId}  {msg[1]}");
             string tempXML = self.GetParamToXml(data);
             string result = "";
             try
@@ -89,7 +89,7 @@ namespace ET
             self.httpListener.Prefixes.Add(self.Order_Url);
             self.httpListener.Start();
             //调用移除处理请求
-            self.httpListener.BeginGetContext(new AsyncCallback(self.GetContextCallback), null);
+            self.httpListener.BeginGetContext(self.GetContextCallback, self.httpListener);
         }
 
         /// <summary>
@@ -187,20 +187,22 @@ namespace ET
         {
             try
             {
+                //继续异步监听
+                self.httpListener.BeginGetContext(self.GetContextCallback, null);
+
                 //读取到监听到的信息
                 HttpListenerContext context = self.httpListener.EndGetContext(ar);
                 HttpListenerRequest request = context.Request;
-
                 //判定读取到的信息不为空
                 if (context == null)
                 {
+                    Log.Debug("微信支付通知结果来了context == null");
                     return;
                 }
                 //将支付的回调结果转换成字符串
                 StreamReader body = new StreamReader(request.InputStream, Encoding.UTF8);       //读取流，用来获取微信请求的数据
                 string pay_notice = HttpUtility.UrlDecode(body.ReadToEnd(), Encoding.UTF8);     //HttpUtility.UrlDecode：解码                                                  //打印看看支付宝给我们发了什么
                 Log.Debug("微信支付通知结果来了:" + pay_notice);
-
                 if (string.IsNullOrEmpty(pay_notice))
                 {
                     return;
@@ -236,22 +238,22 @@ namespace ET
                     //安全验证 单号对应的金额 
                     //验证单号上的金额和xml中的金额是否一致
                     int amount = int.Parse(dingdanStr.Split('_')[1]);
-                    Log.Info($"单号金额: {xml["total_fee"].InnerText}  {amount} ");
+                    Log.Debug($"单号金额: {xml["total_fee"].InnerText}  {amount} ");
                     if (int.Parse(xml["total_fee"].InnerText) == amount)
                     {
-                        Log.Debug("微信支付结果验证,单号金额一致");
                         //消息协议 SendProps,会话ID/订单号，道具ID,数量...(道具实体)
                         //向客户端发送道具
                         int zone = int.Parse(userinfo.Split('_')[0]);
                         long userId = long.Parse(userinfo.Split('_')[1]);
                         amount /= 100;
+                        Log.Debug($"微信支付成功 {userId}  {amount}");
                         RechargeHelp.OnPaySucessToScene(self.DomainScene(), zone, userId, amount).Coroutine();
                         //删除本地缓存的订单
                         self.orderDic.Remove(dingdanStr);
                     }
                     else
                     {
-                        Log.Debug("微信支付结果验证,单号金额不一致");
+                        Log.Debug("微信支付失败,单号金额不一致");
                     }
                 }
 
@@ -271,17 +273,17 @@ namespace ET
                 Log.Error("微信支付报错111:" + e.ToString());
             }
 
-            if (self.httpListener.IsListening)
-            {
-                try
-                {
-                    self.httpListener.BeginGetContext(new AsyncCallback(self.GetContextCallback), null);
-                }
-                catch (Exception e)
-                {
-                    Log.Error("微信支付报错222:" + e.ToString());
-                }
-            }
+            //if (self.httpListener.IsListening)
+            //{
+            //    try
+            //    {
+            //        self.httpListener.BeginGetContext(new AsyncCallback(self.GetContextCallback), null);
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Log.Error("微信支付报错222:" + e.ToString());
+            //    }
+            //}
         }
 
     }

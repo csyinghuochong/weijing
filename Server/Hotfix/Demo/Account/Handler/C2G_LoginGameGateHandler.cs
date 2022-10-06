@@ -38,7 +38,7 @@ namespace ET
 			using (session.AddComponent<SessionLockingComponent>())
 			using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginGate, request.Account.GetHashCode()))
 			{
-				if (instanceId != session.InstanceId)   //防止多个客户端同时请求
+				if (instanceId != session.InstanceId)	//防止多个客户端同时请求
 				{
 					Log.Debug($"LoginTest C2G_LoginGameGate 多个客户端同时请求 request.RoleId: {request.RoleId}");
 					return;
@@ -64,7 +64,7 @@ namespace ET
 				SessionStateComponent.State = SessionState.Normal;
 				//游戏客户端在Gate上的一个映射
 				Player player = scene.GetComponent<PlayerComponent>().Get(request.Account);
-				if (player != null && player.Id != request.RoleId)
+				if (player!=null && player.Id != request.RoleId)
 				{
 					Log.Debug($"LoginTest C2G_LoginGameGate  player.Id:{player.Id}  request.RoleId: {request.RoleId}");
 				}

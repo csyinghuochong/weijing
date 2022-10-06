@@ -53,7 +53,6 @@ namespace ET
             model.SetInfo(request.RechargeNumber.ToString(), dingDanID);
             model.objID = request.RechargeNumber.ToString();
             self.OrderDic.Add(dingDanID, request.UserId.ToString());
-
             model.Dispose();
 
             //第三步:向支付宝的服务器请求 可用于 客户端调起支付的 参数
@@ -62,7 +61,7 @@ namespace ET
             //第四步:拼接格式 发送给客户端
             string toClientStr = "AliPay" + "," + aliRequestStr;
             //agent.SendClientStr(toClientStr);
-            Log.Info("PayTypeEnum.AliPay:  " + aliRequestStr);
+            Log.Debug($"支付宝支付请求 {request.UserId} {request.RechargeNumber}");
             return aliRequestStr;
         }
 
@@ -105,13 +104,15 @@ namespace ET
             self.HttpListener.Prefixes.Add(self.HttpListenerUrl);
             self.HttpListener.Start();
             //异步的方式处理请求
-            self.HttpListener.BeginGetContext(new AsyncCallback(self.CheckAliPayResult), null);
+            self.HttpListener.BeginGetContext(self.CheckAliPayResult, self.HttpListener);
         }
 
         public static void CheckAliPayResult(this ReChargeAliComponent self, IAsyncResult ar)
         {
             try
             {
+                self.HttpListener.BeginGetContext(self.CheckAliPayResult,null);
+
                 //异步传入值后进行调用
                 HttpListenerContext context = self.HttpListener.EndGetContext(ar);
                 HttpListenerRequest request = context.Request;//请求对象
@@ -127,7 +128,7 @@ namespace ET
 
                 //设置支付结果打印颜色并输出结果
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Log.Console("支付结果来了2：" + pay_notice);
+                Log.Debug("支付宝支付结果来了：" + pay_notice);
                 Console.ForegroundColor = ConsoleColor.White;
 
                 //此处存储所有的支付返回数据（因为返回数据是用aaa = bbb 的结构 所以用此方法进行解析,直接调用Key即可获取对应的Value）
@@ -139,34 +140,32 @@ namespace ET
                 if (result  && aliPayResultDic["trade_status"] == "TRADE_SUCCESS" && self.OrderDic.ContainsKey(orderId))
                 {
                     long userId = long.Parse(self.OrderDic[orderId]);
+                    Log.Debug($"支付宝支付成功 {userId}  {int.Parse(orderId.Split('_')[2])}");
                     RechargeHelp.OnPaySucessToScene(self.DomainScene(), int.Parse(orderId.Split('_')[1]), userId, int.Parse(orderId.Split('_')[2])).Coroutine();
-                    //删除本地缓存的订单
                     self.OrderDic.Remove(aliPayResultDic["out_trade_no"]);
-                    //RechargeHelp.OnPaySucessToScene(self.DomainScene(), int.Parse(orderId.Split('_')[1]), userId, int.Parse(aliPayResultDic["total_amount"])).Coroutine();
-                    Log.Info("验签成功");
                 }
                 else
                 {
-                    Log.Info("验签失败");
+                    Log.Debug("支付宝支付失败");
                 }
                 //输出验证结果
-                Log.Info("验签结果：" + (result == true ? "支付成功" : "支付失败"));
+                Log.Debug("验签结果：" + (result == true ? "支付成功" : "支付失败"));
                 //输出当前订单的的信息
                 if (aliPayResultDic.ContainsKey("trade_status"))
                 {
                     switch (aliPayResultDic["trade_status"])
                     {
                         case "WAIT_BUYER_PAY":
-                            Log.Info("交易状态:" + "交易创建，等待买家付款");
+                            Log.Debug("交易状态:" + "交易创建，等待买家付款");
                             break;
                         case "TRADE_CLOSED":
-                            Log.Info("交易状态:" + "未付款交易超时关闭，或支付完成后全额退款");
+                            Log.Debug("交易状态:" + "未付款交易超时关闭，或支付完成后全额退款");
                             break;
                         case "TRADE_SUCCESS":
-                            Log.Info("交易状态:" + "交易支付成功");
+                            Log.Debug("交易状态:" + "交易支付成功");
                             break;
                         case "TRADE_FINISHED":
-                            Log.Info("交易结束，不可退款");
+                            Log.Debug("交易结束，不可退款");
                             break;
                         default:
                             break;
@@ -193,21 +192,21 @@ namespace ET
             }
             catch (Exception e)
             {
-                Log.Info("支付宝:" + e.ToString());
+                Log.Debug("支付宝:" + e.ToString());
             }
 
             //一直监听消息
-            if (self.HttpListener.IsListening)
-            {
-                try
-                {
-                    self.HttpListener.BeginGetContext(new AsyncCallback(self.CheckAliPayResult), null);
-                }
-                catch (Exception e)
-                {
-                    Log.Info("支付宝:" + e.ToString());
-                }
-            }
+            //if (self.HttpListener.IsListening)
+            //{
+            //    try
+            //    {
+            //        self.HttpListener.BeginGetContext(new AsyncCallback(self.CheckAliPayResult), null);
+            //    }
+            //    catch (Exception e)
+            //    {
+            //        Log.Debug("支付宝:" + e.ToString());
+            //    }
+            //}
         }
 
         /// <summary>
