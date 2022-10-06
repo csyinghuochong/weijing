@@ -15,7 +15,6 @@ namespace ET
     {
         private const string CodeDir = "Assets/Bundles/Code/";
 
-
         [MenuItem("Tools/Build/BuildWoLongCodeForBundle")]
         public static void BuildCodeForBundle()
         {
@@ -37,7 +36,7 @@ namespace ET
             ShowNotification("AutoBuildCode Disabled");
         }
 
-        [MenuItem("Tools/Build/BuildCodeDebug _F5")]
+        //[MenuItem("Tools/Build/BuildCodeDebug _F5")]
         public static void BuildCodeDebug()
         {
             BuildAssemblieEditor.BuildMuteAssembly("Code", new []
@@ -53,7 +52,7 @@ namespace ET
             AssetDatabase.Refresh();
         }
         
-        [MenuItem("Tools/Build/BuildCodeRelease _F6")]
+        //[MenuItem("Tools/Build/BuildCodeRelease _F6")]
         public static void BuildCodeRelease()
         {
             BuildAssemblieEditor.BuildMuteAssembly("Code", new []

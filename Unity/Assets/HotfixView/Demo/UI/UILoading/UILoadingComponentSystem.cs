@@ -55,6 +55,8 @@ namespace ET
                     break;
                 case (int)SceneTypeEnum.LocalDungeon:
                     loadResName = backpngs[index];
+                    self.PreLoadAssets.AddRange(self.GetRoleSkillEffect());
+                    self.PreLoadAssets.AddRange(self.GetCommonAssets());
                     self.PreLoadAssets.AddRange(self.GetLocalDungeonMonsters());
                     break;
             }
