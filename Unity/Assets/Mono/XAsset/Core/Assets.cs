@@ -395,7 +395,7 @@ namespace libx
                     return existPath;
             }
 
-            Debug.LogError("资源没有收集打包" + path);
+            Debug.LogError($"资源没有收集打包: {path}  count: {_assetToBundles.Count}");
             return path;
         }
 

@@ -25,7 +25,8 @@ namespace ET
 					self.OpenDownLoadUI($"old:{version}_new:{self.BigVersion}");
 					return;
 				}
-				Application.targetFrameRate = 60;
+
+				Application.targetFrameRate = 30;
 				Application.runInBackground = true;
 				libx.Assets.MAX_BUNDLES_PERFRAME = 16;
 				self.ZoneScene().GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LoginScene, 0, 0);
