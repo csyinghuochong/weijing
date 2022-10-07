@@ -62,3 +62,7 @@ MonoBehaviour:
     gameObject: {fileID: 4900000, guid: f44b84583c9db294aa38533ed435320c, type: 3}
   - key: Unity.ModelView.dll
     gameObject: {fileID: 4900000, guid: f31cf954eab94cd41939b214b1ec617e, type: 3}
+  - key: Code.dll
+    gameObject: {fileID: 4900000, guid: 94cc474e202e43a40949ce4015fe2f8c, type: 3}
+  - key: Code.pdb
+    gameObject: {fileID: 4900000, guid: 00e8a109547a033408cbcfb98ae9b6ed, type: 3}

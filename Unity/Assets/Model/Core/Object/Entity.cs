@@ -361,7 +361,7 @@ namespace ET
             {
                 if (this.children == null)
                 {
-                    this.children = MonoPool.Instance.Fetch<Dictionary<long, Entity>>();
+                    this.children = PoolHelper.Fetch<Dictionary<long, Entity>>(MonoPool.Instance);
                 }
                 return this.children;
             }
@@ -398,7 +398,7 @@ namespace ET
                 return;
             }
 
-            this.childrenDB = this.childrenDB ?? MonoPool.Instance.Fetch<HashSet<Entity>>();
+            this.childrenDB = this.childrenDB ?? PoolHelper.Fetch<HashSet<Entity>>(MonoPool.Instance);
 
             this.childrenDB.Add(entity);
         }
@@ -441,7 +441,7 @@ namespace ET
             {
                 if (this.components == null)
                 {
-                    this.components = MonoPool.Instance.Fetch<Dictionary<Type, Entity>>();
+                    this.components = PoolHelper.Fetch<Dictionary<Type, Entity>>(MonoPool.Instance);
                 }
                 return this.components;
             }
@@ -553,7 +553,7 @@ namespace ET
             
             if (this.componentsDB == null)
             {
-                this.componentsDB = MonoPool.Instance.Fetch<HashSet<Entity>>();
+                this.componentsDB = PoolHelper.Fetch<HashSet<Entity>>(MonoPool.Instance);
             }
 
             this.componentsDB.Add(component);

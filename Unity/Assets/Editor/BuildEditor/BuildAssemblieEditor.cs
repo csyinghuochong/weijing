@@ -52,7 +52,7 @@ namespace ET
             AssetDatabase.Refresh();
         }
         
-        //[MenuItem("Tools/Build/BuildCodeRelease _F6")]
+        [MenuItem("Tools/Build/BuildCodeRelease _F6")]
         public static void BuildCodeRelease()
         {
             BuildAssemblieEditor.BuildMuteAssembly("Code", new []

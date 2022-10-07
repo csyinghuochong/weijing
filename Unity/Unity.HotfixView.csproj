@@ -215,7 +215,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityTeHuiComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIWorldLv\UIWorldLvComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIEnergy\UIEnergyEvent.cs" />
-    <Compile Include="Assets\HotfixView\Module\Resource\GameObjectHelper.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampShouLieComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\RelinkComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiSellComponent.cs" />

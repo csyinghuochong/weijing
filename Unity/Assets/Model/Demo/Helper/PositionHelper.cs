@@ -59,13 +59,13 @@ namespace ET
         /// <returns></returns>
 	    public static float DistanceOfPointToVector(Vector3 startPoint, Vector3 endPoint, Vector3 point)
 	    {
-            Vector2 startVe2 = startPoint.IgnoreYAxis();
-            Vector2 endVe2 = endPoint.IgnoreYAxis();
+            Vector2 startVe2 = IgnoreYAxis(startPoint);
+            Vector2 endVe2 = IgnoreYAxis(endPoint);
             float A = endVe2.y - startVe2.y;
             float B = startVe2.x - endVe2.x;
             float C = endVe2.x * startVe2.y - startVe2.x * endVe2.y;
             float denominator = Mathf.Sqrt(A * A + B * B);
-            Vector2 pointVe2 = point.IgnoreYAxis();
+            Vector2 pointVe2 = IgnoreYAxis(point);
             return Mathf.Abs((A * pointVe2.x + B * pointVe2.y + C) / denominator);
         }
         /// <summary>
@@ -83,7 +83,7 @@ namespace ET
         /// </summary>
         /// <param name="vector3"></param>
         /// <returns></returns>
-	    public static Vector2 IgnoreYAxis(this Vector3 vector3)
+	    public static Vector2 IgnoreYAxis(Vector3 vector3)
 	    {
             return new Vector2(vector3.x, vector3.z);
         }
@@ -93,11 +93,11 @@ namespace ET
         /// <returns>True is on left, false is on right</returns>
         public static bool PointOnLeftSideOfVector(this Vector3 vector3, Vector3 originPoint, Vector3 point)
         {
-            Vector2 originVec2 = originPoint.IgnoreYAxis();
+            Vector2 originVec2 = IgnoreYAxis(originPoint);
 
-            Vector2 pointVec2 = (point.IgnoreYAxis() - originVec2).normalized;
+            Vector2 pointVec2 = (IgnoreYAxis(point) - originVec2).normalized;
 
-            Vector2 vector2 = vector3.IgnoreYAxis();
+            Vector2 vector2 = IgnoreYAxis(vector3);
 
             float verticalX = originVec2.x;
 
