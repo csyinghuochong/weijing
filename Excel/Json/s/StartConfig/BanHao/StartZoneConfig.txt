@@ -1,4 +1,4 @@
 {"list":[
-{"_t":"StartZoneConfig","_id":201,"DBConnection":"mongodb://localhost:27017/","DBName":"WeiJing201(banhao)"},
-{"_t":"StartZoneConfig","_id":202,"DBConnection":"mongodb://localhost:27017/","DBName":"WeiJing202(center)"},
+{"_t":"StartZoneConfig","_id":201,"DBConnection":"mongodb://localhost:27017/","PhysicZone":201,"DBName":"WeiJing201(banhao)"},
+{"_t":"StartZoneConfig","_id":202,"DBConnection":"mongodb://localhost:27017/","PhysicZone":202,"DBName":"WeiJing202(center)"},
 ]}

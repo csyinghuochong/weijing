@@ -142,7 +142,6 @@ namespace ET
                 coroutineLockQueueType.Add(key, self.AddChildWithId<CoroutineLockQueue>(++self.idGenerator, true));
                 return self.CreateCoroutineLock(coroutineLockType, key, time, 1);
             }
-
             ETTask<CoroutineLock> tcs = ETTask<CoroutineLock>.Create(true);
             queue.Add(tcs, time);
             return await tcs;

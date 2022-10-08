@@ -81,8 +81,11 @@ namespace ET
 		/// <summary>数据库地址</summary>
 		[ProtoMember(2)]
 		public string DBConnection { get; set; }
-		/// <summary>数据库名</summary>
+		/// <summary>物理区</summary>
 		[ProtoMember(3)]
+		public int PhysicZone { get; set; }
+		/// <summary>数据库名</summary>
+		[ProtoMember(4)]
 		public string DBName { get; set; }
 
 	}

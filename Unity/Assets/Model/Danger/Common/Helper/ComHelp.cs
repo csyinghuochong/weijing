@@ -35,6 +35,15 @@ namespace ET
             { 648,      12888},
         };
 
+        public static int GetPhysicZone(int zone)
+        {
+            if (zone == 2)
+            {
+                return 3;
+            }
+            return zone;
+        }
+
         public static int GetDiamondNumber(int key)
         {
             int number = RechargeGive[key];

@@ -51,7 +51,8 @@ namespace ET
 
                     for (int i = 0; i < zoneList.Count; i++)
                     {
-                        long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "EMail").InstanceId;
+                        int pyzone = StartZoneConfigCategory.Instance.Get(zoneList[i]).PhysicZone;
+                        long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(pyzone, "EMail").InstanceId;
                         E2M_GMEMailSendResponse g2M_UpdateUnitResponse = (E2M_GMEMailSendResponse)await ActorMessageSenderComponent.Instance.Call
                             (gateServerId, new M2E_GMEMailSendRequest()
                             { 
