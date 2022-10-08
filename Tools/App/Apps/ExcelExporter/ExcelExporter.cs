@@ -198,10 +198,10 @@ namespace ET
 
         public static void Export()
         {
-            if (Directory.Exists(ClientClassDir))
-            {
-                Directory.Delete(ClientClassDir, true);
-            }
+            //if (Directory.Exists(ClientClassDir))
+            //{
+            //    Directory.Delete(ClientClassDir, true);
+            //}
 
             if (Directory.Exists(ServerClassDir))
             {
