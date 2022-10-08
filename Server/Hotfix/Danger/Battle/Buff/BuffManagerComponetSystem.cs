@@ -37,8 +37,8 @@ namespace ET
             for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
             {
                 BuffHandler buffHandler = self.m_Buffs[i];
-                self.m_Buffs.RemoveAt(i);
                 ObjectPool.Instance.Recycle(buffHandler);
+                self.m_Buffs.RemoveAt(i);
             }
             TimerComponent.Instance?.Remove(ref self.Timer);
         }

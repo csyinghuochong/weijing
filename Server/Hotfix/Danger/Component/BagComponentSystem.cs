@@ -579,6 +579,11 @@ namespace ET
                         useBagInfo.HideSkillLists = itemXiLian.HideSkillLists;                      //隐藏技能
                         useBagInfo.XiLianHideTeShuProLists = itemXiLian.XiLianHideTeShuProLists;    //特殊属性洗炼
                     }
+                    //掉落的橙色装备默认为绑定的物品
+                    if (getType == ItemGetWay.PickItem && itemCof.ItemQuality >= 5)
+                    {
+                        useBagInfo.isBinging = true;
+                    }
                     //藏宝图
                     if (itemCof.ItemSubType == 113)
                     {
