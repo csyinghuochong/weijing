@@ -10,6 +10,7 @@ namespace ET
         public GameObject RawImage;
         public UIModelShowComponent UIModelShowComponent;
         public List<UIEquipSetItemComponent> EquipList = new List<UIEquipSetItemComponent>();
+        public List<int> EquipIdList = new List<int>();
         public int Index;
     }
 
@@ -120,6 +121,11 @@ namespace ET
             self.ResetEquipShow();
 
             int shipingIndex = 0;
+            self.EquipIdList.Clear();
+            for (int i = 0; i < equiplist.Count; i++)
+            {
+                self.EquipIdList.Add(equiplist[i].ItemID);
+            }
             for (int i = 0; i < equiplist.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID);
@@ -127,12 +133,12 @@ namespace ET
 
                 if (pos == 4)
                 {
-                    self.EquipList[pos + shipingIndex].UpdateData(equiplist[i], occ, itemOperateEnum);
+                    self.EquipList[pos + shipingIndex].UpdateData(equiplist[i], occ, itemOperateEnum, self.EquipIdList);
                     shipingIndex++;
                 }
                 else
                 {
-                    self.EquipList[pos].UpdateData(equiplist[i], occ, itemOperateEnum);
+                    self.EquipList[pos].UpdateData(equiplist[i], occ, itemOperateEnum, self.EquipIdList);
                 }
             }
         }

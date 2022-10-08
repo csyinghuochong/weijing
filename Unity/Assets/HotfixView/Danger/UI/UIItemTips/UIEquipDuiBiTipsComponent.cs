@@ -49,7 +49,7 @@ namespace ET
             self.UI_1 = ui_1;
             UIEquipTipsComponent UIPetInfoShow_1 = ui_1.AddComponent<UIEquipTipsComponent>();
             UIPetInfoShow_1.Img_back_btn.SetActive(false);
-            UIPetInfoShow_1.InitData(args.bagInfo, args.itemOperateEnum, 0);
+            UIPetInfoShow_1.InitData(args.bagInfo, args.itemOperateEnum, 0, args.EquipList);
             UICommonHelper.SetParent(ui_1.GameObject, self.Tips1);
         }
 
@@ -77,14 +77,13 @@ namespace ET
 
             BagInfo bagInfo_2 = args.bagInfo;
             var path = ABPathHelper.GetUGUIPath("Main/ItemTips/UIEquipTips");
-            await ETTask.CompletedTask;
-            GameObject bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
 
             UI ui_1 = self.AddChild<UI, string, GameObject>( "UIEquipTips_1", UnityEngine.Object.Instantiate(bundleGameObject));
             self.UI_1 = ui_1;
             UIEquipTipsComponent UIPetInfoShow_1 = ui_1.AddComponent<UIEquipTipsComponent>();
             UIPetInfoShow_1.Img_back_btn.SetActive(false);
-            UIPetInfoShow_1.InitData(bagInfo_1, ItemOperateEnum.None, 0);
+            UIPetInfoShow_1.InitData(bagInfo_1, ItemOperateEnum.None, 0, args.EquipList);
             height_1 = UIPetInfoShow_1.Img_back.GetComponent<RectTransform>().sizeDelta.y;
 
             UI ui_2 = null;
@@ -92,7 +91,7 @@ namespace ET
             {
                 ui_2 = self.AddChild<UI, string, GameObject>( "UIEquipTips_2", UnityEngine.Object.Instantiate(bundleGameObject));
                 UIEquipTipsComponent UIPetInfoShow_2 = ui_2.AddComponent<UIEquipTipsComponent>();
-                UIPetInfoShow_2.InitData(bagInfo_2, ItemOperateEnum.Bag, 0);
+                UIPetInfoShow_2.InitData(bagInfo_2, ItemOperateEnum.Bag, 0, args.EquipList);
                 UIPetInfoShow_2.Img_back_btn.SetActive(false);
                 height_2 = UIPetInfoShow_2.Img_back.GetComponent<RectTransform>().sizeDelta.y;
             }

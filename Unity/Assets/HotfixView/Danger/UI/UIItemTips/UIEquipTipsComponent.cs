@@ -1097,7 +1097,7 @@ namespace ET
         }
 
         //套装信息
-        public static int ShowSuitEquipInfo(this UIEquipTipsComponent self, ItemConfig  itemConfig, int equipSuitID, float startPostionY)
+        public static int ShowSuitEquipInfo(this UIEquipTipsComponent self, ItemConfig  itemConfig, int equipSuitID, float startPostionY, List<int> itemIDList)
         {
             int properShowNum = 0;
             if (equipSuitID != 0)
@@ -1115,22 +1115,10 @@ namespace ET
                 //string[] needEquipNumSet = equipSuit.NeedEquipNum.Split(';');
                 string[] suitPropertyIDSet = equipSuit.SuitPropertyID.Split(';');
 
-                //缓存当前身上拥有的装备
-                List<BagInfo> equipList = self.ZoneScene().GetComponent<BagComponent>().GetEquipList();
-                List<int> itemIDList = new List<int>();
-                for (int y = 0; y < equipList.Count; y++)
-                {
-                    if (equipList[y].ItemID != 0)
-                    {
-                        itemIDList.Add(equipList[y].ItemID);
-                    }
-                }
-
                 //获取自身拥有的装备
                 int equipSuitNum = 0;
                 for (int i = 0; i < needEquipIDSet.Length; i++)
                 {
-
                     ItemConfig itemCof = ItemConfigCategory.Instance.Get(int.Parse(needEquipIDSet[i]));
                     string showType = "0";
                     if (itemIDList.Contains(int.Parse(needEquipIDSet[i])))
@@ -1421,7 +1409,7 @@ namespace ET
         }
 
 
-        public static void InitData(this UIEquipTipsComponent self, BagInfo baginfo, ItemOperateEnum equipTipsType, int occTwoValue)
+        public static void InitData(this UIEquipTipsComponent self, BagInfo baginfo, ItemOperateEnum equipTipsType, int occTwoValue, List<int> equipItemList)
         {
             //初始化值
             self.BagInfo = baginfo;
@@ -1463,7 +1451,7 @@ namespace ET
             startPostionY -= (hideSkillNumber > 0 ? self.TitleMiniHeight_50 : 0);
             startPostionY -= hideSkillNumber * self.TextItemHeight_40;
 
-            int suitEquipNumber = self.ShowSuitEquipInfo(itemconf, equipconf.EquipSuitID, startPostionY);
+            int suitEquipNumber = self.ShowSuitEquipInfo(itemconf, equipconf.EquipSuitID, startPostionY, equipItemList);
             suitEquipNumber = suitEquipNumber + (suitEquipNumber > 0 ? 2 : 0);
             startPostionY = startPostionY - self.TitleMiniHeight_50 - suitEquipNumber * self.TextItemHeight_40 ;
             startPostionY -= 5;

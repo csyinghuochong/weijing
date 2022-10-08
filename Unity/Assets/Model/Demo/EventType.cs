@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -257,6 +258,7 @@ namespace ET
             public BagInfo bagInfo;
             public ItemOperateEnum itemOperateEnum;
             public Vector3 inputPoint;
+            public List<int> EquipList = new List<int>();   
             public int Occ;
         }
 

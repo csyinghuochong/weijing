@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 #if !NOT_UNITY
@@ -13,6 +14,7 @@ namespace ET
         public GameObject Img_EquipQuality;
         public GameObject Btn_Equip;
         public GameObject Img_EquipBangDing;
+        public List<int> EquipIdList = new List<int>();
         public BagInfo BagInfo;
         public int Occ;
 
@@ -47,6 +49,7 @@ namespace ET
             EventType.ShowItemTips.Instance.itemOperateEnum = self.itemOperateEnum;
             EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
             EventType.ShowItemTips.Instance.Occ = self.Occ;
+            EventType.ShowItemTips.Instance.EquipList = self.EquipIdList;
             Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
         }
 
@@ -63,13 +66,14 @@ namespace ET
             self.Img_EquipBack.GetComponent<Image>().sprite = sp;
         }
 
-        public static void UpdateData(this UIEquipSetItemComponent self, BagInfo bagInfo, int occ, ItemOperateEnum itemOperateEnum)
+        public static void UpdateData(this UIEquipSetItemComponent self, BagInfo bagInfo, int occ, ItemOperateEnum itemOperateEnum, List<int> equipIdList)
         {
             try
             {
                 self.Occ = occ;
                 self.BagInfo = bagInfo;
                 self.itemOperateEnum = itemOperateEnum;
+                self.EquipIdList = equipIdList;
                 ItemConfig itemconfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
 
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);

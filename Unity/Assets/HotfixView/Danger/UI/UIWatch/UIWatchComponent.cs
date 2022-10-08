@@ -5,7 +5,6 @@ namespace ET
 {
     public class UIWatchComponent : Entity, IAwake
     {
-
         public GameObject Img_Back;
         public GameObject EquipSet1;
         public GameObject EquipSet2;
