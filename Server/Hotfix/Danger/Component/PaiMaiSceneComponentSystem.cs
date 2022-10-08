@@ -188,7 +188,6 @@ namespace ET
         {
             PaiMaiItemInfo paiMaiItemInfo = null;
             List<PaiMaiItemInfo> paiMaiItemInfos = self.dBPaiMainInfo.PaiMaiItemInfos;
-
             for (int i = 0; i < paiMaiItemInfos.Count; i++)
             {
                 if (paiMaiItemInfos[i].BagInfo.ItemID!=itemID)

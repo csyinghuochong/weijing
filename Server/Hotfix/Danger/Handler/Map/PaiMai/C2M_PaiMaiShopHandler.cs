@@ -43,7 +43,6 @@ namespace ET
 			{
 				response.Error = ErrorCore.ERR_GoldNotEnoughError;
 			}
-
 			reply();
 			await ETTask.CompletedTask;
 		}
