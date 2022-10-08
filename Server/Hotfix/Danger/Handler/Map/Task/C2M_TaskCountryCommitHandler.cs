@@ -11,15 +11,28 @@ namespace ET
         {
             try
             {
+                int errorCode = ErrorCore.ERR_Success;
                 TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
                 for (int i = 0; i < taskComponent.TaskCountryList.Count; i++)
                 {
-                    if (taskComponent.TaskCountryList[i].taskID != request.TaskId)
+                    TaskPro taskPro = taskComponent.TaskCountryList[i]; 
+                    if (taskPro.taskID != request.TaskId)
                     {
                         continue;
                     }
-                    taskComponent.TaskCountryList[i].taskStatus = (int)TaskStatuEnum.Commited;
+                    if (taskPro.taskStatus >= (int)TaskStatuEnum.Commited)
+                    {
+                        errorCode = ErrorCore.ERR_OperationOften;
+                        break;
+                    }
+                    taskPro.taskStatus = (int)TaskStatuEnum.Commited;
                     break;
+                }
+                if (errorCode!= ErrorCore.ERR_Success)
+                {
+                    response.Error = errorCode; 
+                    reply();
+                    return;
                 }
 
                 TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(request.TaskId);
