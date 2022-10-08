@@ -84,11 +84,14 @@ namespace ET
 		/// <summary>章节ID</summary>
 		[ProtoMember(3)]
 		public int ChapterId { get; set; }
-		/// <summary>道具ID</summary>
+		/// <summary>购买等级</summary>
 		[ProtoMember(4)]
+		public int BuyLv { get; set; }
+		/// <summary>道具ID</summary>
+		[ProtoMember(5)]
 		public int ItemID { get; set; }
 		/// <summary>价格</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int[] Price { get; set; }
 
 	}
