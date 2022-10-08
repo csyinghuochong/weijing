@@ -82,7 +82,7 @@ namespace ET
 				{
 					if (!savePetSkillID.Contains(petSkillList_2[i]))
 					{
-						if (savePetSkillID.Contains(petSkillList_1[i]) == false && RandomHelper.RandFloat01() <= skillpro)
+						if (savePetSkillID.Contains(petSkillList_2[i]) == false && RandomHelper.RandFloat01() <= skillpro)
 						{
 							savePetSkillID.Add(petSkillList_2[i]);
 						}
