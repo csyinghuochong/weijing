@@ -286,12 +286,11 @@ namespace ET
 			petinfo_update.PetSkill = savePetSkillID;
 			PetConfig petconf = PetConfigCategory.Instance.Get(petID);
 			petinfo_update.PetName = petconf.PetName;
-
+			petComponent.OnResetPoint(petinfo_update);
+			petComponent.RemovePet(petinfo_2.Id);
+			unit.GetComponent<ChengJiuComponent>().OnPetHeCheng(petinfo_update);
 			response.DeletePetInfoId = petinfo_2.Id;
 			response.rolePetInfo = petinfo_update;
-
-			unit.GetComponent<ChengJiuComponent>().OnPetHeCheng(petinfo_update);
-			petComponent.RemovePet(petinfo_2.Id);
 			reply();
 			await ETTask.CompletedTask;
 		}
