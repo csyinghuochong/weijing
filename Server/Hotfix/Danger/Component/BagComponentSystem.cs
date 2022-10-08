@@ -447,6 +447,7 @@ namespace ET
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             m2c_bagUpdate.BagInfoAdd = new List<BagInfo>();
 
+            Unit unit = self.GetParent<Unit>();
             for (int i = rewardItems.Count - 1; i >= 0; i--)
             {
                 int itemID = rewardItems[i].ItemID;
@@ -455,7 +456,8 @@ namespace ET
                 UserDataType userDataType = ComHelp.GetItemToUserDataType(itemID);
                 if (userDataType != UserDataType.None)
                 {
-                    self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(userDataType, leftNum.ToString()).Coroutine();
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(userDataType, leftNum.ToString()).Coroutine();
+                    Log.Debug($"Gold:  {unit.Id} {leftNum} {getWay}");
                     continue;
                 }
 

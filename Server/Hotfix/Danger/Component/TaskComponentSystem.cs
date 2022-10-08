@@ -253,6 +253,7 @@ namespace ET
             UserInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
             unitInfoComponent.UpdateRoleData(UserDataType.Exp, TaskExp.ToString()).Coroutine();
             unitInfoComponent.UpdateRoleData(UserDataType.Gold, TaskCoin.ToString()).Coroutine();
+            Log.Debug($"Gold:  {unitInfoComponent.Id} {TaskCoin} task");
 
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
             List<RewardItem> rewardItems = TaskHelp.Instance.GetTaskRewards(taskid, taskConfig);

@@ -126,6 +126,7 @@ namespace ET
                             //增加金币
                             case 1:
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, itemCof.ItemUsePar).Coroutine();
+                                Log.Debug($"Gold:  {unit.Id} {itemCof.ItemUsePar} itemoperate1");
                                 break;
                             //增加经验
                             case 2:
@@ -254,6 +255,7 @@ namespace ET
                                 ExpConfig expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addCoin = (int)RandomHelper.RandomNumberFloat(float.Parse(jinbiInfos[0]) * expConfig.RoseGoldPro, float.Parse(jinbiInfos[1]) * expConfig.RoseGoldPro);
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, addCoin.ToString()).Coroutine();
+                                Log.Debug($"Gold:  {unit.Id} {addCoin} itemoperate111");
                                 break;
                             //经验木桩
                             case 112:

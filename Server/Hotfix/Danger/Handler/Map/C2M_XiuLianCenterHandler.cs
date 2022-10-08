@@ -39,6 +39,7 @@ namespace ET
                 float coefficient = float.Parse(GlobalValueConfigCategory.Instance.Get(30).Value);
                 int addValue = Mathf.CeilToInt(coefficient * level);
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, addValue.ToString()).Coroutine();
+                Log.Debug($"Gold:  {unit.Id} {addValue} xiuliancenter");
             }
             reply();
             await ETTask.CompletedTask;

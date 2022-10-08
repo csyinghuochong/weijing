@@ -29,7 +29,7 @@ namespace ET
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, taskCountryConfig.RewardGold.ToString()).Coroutine();
                 //添加活跃
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.HuoYue, taskCountryConfig.EveryTaskRewardNum.ToString()).Coroutine();
-
+                Log.Debug($"Gold:  {unit.Id} {taskCountryConfig.RewardGold} taskcountry");
                 reply();
                 await ETTask.CompletedTask;
             }
