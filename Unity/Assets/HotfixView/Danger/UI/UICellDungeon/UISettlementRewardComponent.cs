@@ -35,7 +35,7 @@ namespace ET
             self.Image_bg = rc.transform.Find("Image_bg").gameObject;
 
             self.ImageButton = rc.transform.Find("ImageButton").gameObject;
-            self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClickItem(); });
+            ButtonHelp.AddListenerEx(self.ImageButton, self.OnClickItem);
 
             self.ItemNode = rc.transform.Find("UIItem").gameObject;
             self.ItemNode.SetActive(false);

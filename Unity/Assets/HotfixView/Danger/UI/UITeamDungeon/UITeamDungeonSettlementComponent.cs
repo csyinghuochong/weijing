@@ -38,6 +38,7 @@ namespace ET
         public List<UISettlementRewardComponent> RewardUIList = new List<UISettlementRewardComponent>();
 
         public bool IfLingQuStatus;
+        public long SendGetTime;
 
         public int LeftTime;
         public long Timer;
@@ -65,6 +66,7 @@ namespace ET
             self.SelectEffectSet = rc.Get<GameObject>("SelectEffectSet");
             self.SelectEffectSet.SetActive(false);
 
+            self.SendGetTime = 0;
             self.RewardUIList.Clear();
             self.SettlementRward1 = rc.Get<GameObject>("SettlementRward1");
             self.SettlementRward1.SetActive(false);
@@ -150,6 +152,13 @@ namespace ET
 
         public static void OnTeamDungeonBoxReward(this UITeamDungeonSettlementComponent self, M2C_TeamDungeonBoxRewardResult message)
         {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum!= SceneTypeEnum.TeamDungeon)
+            {
+                UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonSettlement);
+                return;
+            }
+
             UISettlementRewardComponent select = self.RewardUIList[message.BoxIndex];
             select.ShowRewardItem();
 
@@ -178,6 +187,11 @@ namespace ET
 
         public static async ETTask OnClickRewardItem(this UITeamDungeonSettlementComponent self, int index)
         {
+            if (TimeHelper.ServerNow() - self.SendGetTime < 1000)
+            {
+                return;
+            }
+            self.SendGetTime = TimeHelper.ServerNow();
             NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (index >= 3 && !userInfoComponent.IsYueKaStates(numericComponent))

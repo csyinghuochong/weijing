@@ -12,18 +12,22 @@ namespace ET
             Scene scene = unit.DomainScene();
             if (scene.InstanceId == 0 || scene.IsDisposed)
             {
-                Log.Debug($"LoginTest TeamDungeonBoxReward {unit.Id}");
+                Log.Debug($"TeamDungeonBoxReward scene.InstanceId == 0 {unit.Id}");
                 reply();
                 return;
             }
 
-            if (scene.GetComponent<TeamDungeonComponent>().BoxReward.Contains(request.BoxIndex))
+            TeamDungeonComponent teamDungeonComponent = scene.GetComponent<TeamDungeonComponent>();
+            if (teamDungeonComponent != null)
             {
-                reply();
-                return;
+                if (teamDungeonComponent.BoxReward.Contains(request.BoxIndex))
+                {
+                    reply();
+                    return;
+                }
+                teamDungeonComponent.BoxReward.Add(request.BoxIndex);
             }
-            scene.GetComponent<TeamDungeonComponent>().BoxReward.Add(request.BoxIndex);
-
+  
             List<RewardItem> rewardItems = new List<RewardItem>();
             rewardItems.Add(request.RewardItem);
             unit.GetComponent<BagComponent>().OnAddItemData(rewardItems,0,$"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");

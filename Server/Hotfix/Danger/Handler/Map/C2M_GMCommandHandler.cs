@@ -35,7 +35,7 @@ namespace ET
 					}
 					return;
 				}
-				if (message.GMMsg == "#wudi")
+				if (message.GMMsg == "#lihai")
 				{
 					if (unit.GetComponent<BuffManagerComponent>().HaveBuff(90106002))
 					{
