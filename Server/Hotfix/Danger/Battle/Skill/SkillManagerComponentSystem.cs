@@ -327,8 +327,8 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             SkillCDList skillcd = null;
-            float nocdPrp = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SkillNoCDPro);
-            if (nocdPrp > RandomHelper.RandFloat01())
+            float nocdPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SkillNoCDPro);
+            if (nocdPro > RandomHelper.RandFloat01())
             {
                 return skillcd;
             }

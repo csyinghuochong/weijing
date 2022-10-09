@@ -70,6 +70,11 @@ namespace ET
                             ValueType = 1;
                         }
 
+                        if (NowBuffParameterType == 3001 && NowBuffParameterValue > 0f)
+                        {
+                            NowBuffParameterValue += heroCom.GetAsFloat(NumericType.Now_ShenNongPro);
+                        }
+
                         //取整数
                         if (ValueType == 1)
                         {
@@ -82,7 +87,8 @@ namespace ET
                             NowBuffValue = heroCom.GetAsFloat(NowBuffParameterValueType) * NowBuffParameterValue;
                         }
                     }
-                    else {
+                    else
+                    {
 
                         //加法算法
                         NowBuffValue = NowBuffParameterValue;
@@ -90,6 +96,7 @@ namespace ET
 
                     if (NowBuffParameterType == 3001)
                     {
+                       
                         //血量单独处理
                         this.TheUnitBelongto.GetComponent<NumericComponent>().ApplyChange(TheUnitFrom, NumericType.Now_Hp, (long)NowBuffValue, 0, true, 2);
                     }
