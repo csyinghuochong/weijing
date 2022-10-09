@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ET
 { 
-    public class UnitInfoComponent : Entity, IAwake, ITransfer
+    public class UnitInfoComponent : Entity, IAwake, ITransfer, IDestroy
     {
 
         //离线

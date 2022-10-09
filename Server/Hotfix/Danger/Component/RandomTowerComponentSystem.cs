@@ -25,7 +25,7 @@ namespace ET
             if (allMonsterDead)
             {
                 NumericComponent numericComponent = self.MainUnit.GetComponent<NumericComponent>();
-                numericComponent.ApplyValue(NumericType.Random_Tower_ID, self.TowerId);
+                numericComponent.ApplyValue(NumericType.RandomTowerID, self.TowerId);
             }
             M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
             m2C_FubenSettlement.BattleResult = allMonsterDead ? 1 : 0;

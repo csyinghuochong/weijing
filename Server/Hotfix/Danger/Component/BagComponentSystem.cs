@@ -580,7 +580,7 @@ namespace ET
                         useBagInfo.XiLianHideTeShuProLists = itemXiLian.XiLianHideTeShuProLists;    //特殊属性洗炼
                     }
                     //掉落的橙色装备默认为绑定的物品
-                    if (getType == ItemGetWay.PickItem && itemCof.ItemQuality >= 5)
+                    if ((getType == ItemGetWay.PickItem || getType == ItemGetWay.ChouKa) && itemCof.ItemQuality >= 5)
                     {
                         useBagInfo.isBinging = true;
                     }

@@ -18,7 +18,7 @@
         public const int MainCity_X = 3014;
         public const int MainCity_Y = 3015;
         public const int MainCity_Z = 3016;
-        public const int Pet_ChouKa = 3017;
+        public const int PetChouKa = 3017;
         public const int YueKa_Award = 3018;                                       //领取时间戳
         public const int Born_X = 3019;
         public const int Born_Y = 3020;
@@ -34,11 +34,11 @@
         public const int XiuLian_CoinNumber = 3031;                                  //金币修炼次数
         public const int XiuLian_ExpTime = 3032;
         public const int XiuLian_CoinTime = 3033;
-        public const int Task_DungeonID = 3034;                                     //机器人用，记录当前的副本进度
-        public const int Pet_Skin = 3035;                                           //宠物皮肤
-        public const int TiLi_Kill_Number = 3036;                                   //击杀单人副本5个普通怪会消耗1点体力,体力为0击杀普通怪物无任何经验和掉落奖励
+        public const int TaskDungeonID = 3034;                                     //机器人用，记录当前的副本进度
+        public const int PetSkin = 3035;                                           //宠物皮肤
+        public const int TiLiKillNumber = 3036;                                   //击杀单人副本5个普通怪会消耗1点体力,体力为0击杀普通怪物无任何经验和掉落奖励
         public const int HongBao = 3037;
-        public const int Random_Tower_ID = 3038;                                    //随机塔
+        public const int RandomTowerID = 3038;                                    //随机塔
         public const int ChouKa = 3039;
         public const int ChouKaOneTime = 3040;                                      //抽卡在线时间
         public const int ChouKaTenTime = 3041;                                      //抽卡在线时间
@@ -58,6 +58,7 @@
         public const int RechargeNumber = 3055;
         public const int ItemXiLianDu = 3056;                                    //洗练家等级
         public const int BossInCombat = 3057;                                    //进入战斗
+        public const int UseMasterModel = 3058;                                    //使用主人形象
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

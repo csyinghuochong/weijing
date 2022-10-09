@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ET
 {
@@ -15,13 +14,7 @@ namespace ET
 
             OnExecute();
 
-            int fubenDifficulty = FubenDifficulty.None;
-            MapComponent mapComponent = theUnitFrom.DomainScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
-            {
-                fubenDifficulty = theUnitFrom.DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
-            }
-
+            int fubenDifficulty = UnitHelper.GetSceneType(theUnitFrom);
             //获取参数
             string[] summonParList = SkillConfigCategory.Instance.Get(skillId.WeaponSkillID).GameObjectParameter.Split('@');
             for (int y = 0; y < summonParList.Length; y++) {
@@ -54,8 +47,8 @@ namespace ET
                     }
 
                     //创建怪物
-                    Unit unit = UnitFactory.CreateMonster(theUnitFrom.DomainScene(), initPosi, fubenDifficulty, createMonsterID, new CreateMonsterInfo());
-
+                    Unit unit = UnitFactory.CreateMonster(theUnitFrom.DomainScene(), createMonsterID, initPosi,  new CreateMonsterInfo()
+                    { Camp = 2, FubenDifficulty = fubenDifficulty});
                     theUnitFrom.GetComponent<UnitInfoComponent>().ZhaohuanIds.Add(unit.Id);
                 }
             }

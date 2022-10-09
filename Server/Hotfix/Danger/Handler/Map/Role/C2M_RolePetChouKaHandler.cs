@@ -23,7 +23,7 @@ namespace ET
             }
             else if(request.ChouKaType == 2)
             {
-                int choukaTim = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Pet_ChouKa);
+                int choukaTim = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetChouKa);
                 if (choukaTim >= 20)
                 {
                     reply();
@@ -38,7 +38,7 @@ namespace ET
                     return;
                 }
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (-1 * needDimanond).ToString()).Coroutine();
-                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.Pet_ChouKa, 1, 0);
+                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetChouKa, 1, 0);
             }
 
             List<int> petList = new List<int>() { 1000101, 1000201, 1000301 };

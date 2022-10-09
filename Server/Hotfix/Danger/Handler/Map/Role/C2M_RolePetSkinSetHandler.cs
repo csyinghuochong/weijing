@@ -17,7 +17,7 @@ namespace ET
             petComponent.UpdatePetAttribute(rolePetInfo, unitPet);
             if (unitPet != null)
             {
-                unitPet.GetComponent<NumericComponent>().ApplyValue(NumericType.Pet_Skin, rolePetInfo.SkinId, true);
+                unitPet.GetComponent<NumericComponent>().ApplyValue(NumericType.PetSkin, rolePetInfo.SkinId, true);
             }
             reply();
             await ETTask.CompletedTask;

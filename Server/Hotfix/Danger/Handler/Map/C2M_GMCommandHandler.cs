@@ -31,7 +31,11 @@ namespace ET
 						await TimerComponent.Instance.WaitAsync(1);
 						Vector3 pos = unit.Position;
 						Vector3 vector3 = new Vector3(pos.x + RandomHelper.RandFloat01() * 1, pos.y, pos.z + RandomHelper.RandFloat01() * 1);
-						Unit monster = UnitFactory.CreateMonster(unit.DomainScene(), vector3, FubenDifficulty.None, monsterConfigs[i].Id, new CreateMonsterInfo());
+						Unit monster = UnitFactory.CreateMonster(unit.DomainScene(), monsterConfigs[i].Id, vector3,  new CreateMonsterInfo()
+						{ 
+							FubenDifficulty = FubenDifficulty.None,
+							Camp = 2,
+						});
 					}
 					return;
 				}
@@ -133,7 +137,11 @@ namespace ET
 						{
 							await TimerComponent.Instance.WaitAsync(1);
 							Vector3 vector3 = new Vector3(posX + RandomHelper.RandFloat01() * 1, posY, posZ + RandomHelper.RandFloat01() * 1);
-							Unit monster = UnitFactory.CreateMonster(unit.DomainScene(), vector3, FubenDifficulty.None, monsterId, new CreateMonsterInfo());
+							Unit monster = UnitFactory.CreateMonster(unit.DomainScene(), monsterId, vector3, new CreateMonsterInfo()
+							{ 
+								FubenDifficulty = FubenDifficulty.None,
+								Camp = 2
+							});
 
 							//M2C_CreateSpilings createSpilings = new M2C_CreateSpilings();
 							//SpilingInfo spilingInfo = UnitHelper.CreateSpilingInfo(monster);

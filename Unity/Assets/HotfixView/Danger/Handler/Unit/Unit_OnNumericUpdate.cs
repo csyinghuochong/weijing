@@ -24,7 +24,7 @@
                     UI uI_2 = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
                     uI_2.GetComponent<UIMainComponent>().OnUpdateDamage(args.Unit);
                     break;
-                case NumericType.Pet_ChouKa:
+                case NumericType.PetChouKa:
                     UI uipet = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIPetEgg);
                     uipet?.GetComponent<UIPetEggComponent>().UpdateChouKaTime();
                     break;
@@ -38,7 +38,7 @@
                     break;
                 case NumericType.Ling_DiExp:
                     break;
-                case NumericType.Pet_Skin:
+                case NumericType.PetSkin:
                     args.Unit.RemoveComponent<EffectViewComponent>();
                     args.Unit.RemoveComponent<GameObjectComponent>();
                     args.Unit.RemoveComponent<AnimatorComponent>();

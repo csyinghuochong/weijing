@@ -50,7 +50,7 @@ namespace ET
         public static void UpdateChouKaTime(this UIPetChouKaComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int leftTime = 20 - unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Pet_ChouKa);
+            int leftTime = 20 - unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetChouKa);
             self.Text_ChouKaNumber.GetComponent<Text>().text = $"(兑换次数: {leftTime}/20)";
         }
 
@@ -92,7 +92,7 @@ namespace ET
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int leftTime = 20 - unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Pet_ChouKa);
+            int leftTime = 20 - unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetChouKa);
             if (choukaType == 2 && leftTime<=0)
             {
                 FloatTipManager.Instance.ShowFloatTip("已达到钻石抽卡最大次数");

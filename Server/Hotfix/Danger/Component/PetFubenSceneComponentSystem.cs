@@ -105,7 +105,8 @@ namespace ET
                     float range = 0.5f;
                     Vector3 vector3 = new Vector3(position.x + RandomHelper.RandomNumberFloat(-1 * range, range),
                         position.y, position.z + RandomHelper.RandomNumberFloat(-1 * range, range));
-                    Unit monsterunit=  UnitFactory.CreateMonster(self.DomainScene(), vector3, FubenDifficulty.None, monsterId, new CreateMonsterInfo());
+                    Unit monsterunit=  UnitFactory.CreateMonster(self.DomainScene(), monsterId, vector3,  new CreateMonsterInfo()
+                    { FubenDifficulty= FubenDifficulty.None, Camp = 2});
                     monsterunit.GetComponent<AIComponent>().StopAI = true;
                 }
             }

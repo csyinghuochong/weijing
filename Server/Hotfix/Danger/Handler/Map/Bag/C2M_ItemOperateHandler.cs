@@ -245,7 +245,11 @@ namespace ET
                                     string[] ids = lelveparams[2].Split(',');
                                     int r_number = RandomHelper.RandomNumber(0, ids.Length);
                                     Vector3 vector3 = new Vector3(unit.Position.x + RandomHelper.RandFloat01() * 1, unit.Position.y, unit.Position.z + RandomHelper.RandFloat01() * 1);
-                                    Unit monster = UnitFactory.CreateMonster(unit.DomainScene(), vector3, FubenDifficulty.None, int.Parse(ids[r_number]), new CreateMonsterInfo());
+                                    Unit monster = UnitFactory.CreateMonster(unit.DomainScene(), int.Parse(ids[r_number]), vector3, new CreateMonsterInfo()
+                                    { 
+                                        FubenDifficulty = FubenDifficulty.None,
+                                        Camp = 2
+                                    });
                                 }
                                 break;
                             //金币袋子

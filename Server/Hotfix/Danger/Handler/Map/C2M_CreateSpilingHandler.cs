@@ -9,7 +9,11 @@ namespace ET
     {
         protected override async ETTask Run(Unit entity, C2M_CreateSpiling message)
         {
-            Unit unit = UnitFactory.CreateMonster(entity.DomainScene(), Vector3.zero, FubenDifficulty.None, 70001960, new CreateMonsterInfo());
+            Unit unit = UnitFactory.CreateMonster(entity.DomainScene(), 70001960, Vector3.zero, new CreateMonsterInfo() 
+            {
+                FubenDifficulty = FubenDifficulty.None,
+                Camp = 2
+            });
 
             // 广播创建的木桩unit
             //M2C_CreateSpilings createSpilings = new M2C_CreateSpilings();

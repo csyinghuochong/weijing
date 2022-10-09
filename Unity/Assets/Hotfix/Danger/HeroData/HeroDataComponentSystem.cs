@@ -87,13 +87,13 @@ namespace ET
 
             numericComponent.ApplyValue(NumericType.HongBao, 0, notice);
             numericComponent.ApplyValue(NumericType.Now_XiLian, 0, notice);
-            numericComponent.ApplyValue(NumericType.Pet_ChouKa, 0, notice);
+            numericComponent.ApplyValue(NumericType.PetChouKa, 0, notice);
             numericComponent.ApplyValue(NumericType.YueKa_Award, 0, notice);
             numericComponent.ApplyValue(NumericType.XiuLian_ExpNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.XiuLian_CoinNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.XiuLian_ExpTime, 0, notice);
             numericComponent.ApplyValue(NumericType.XiuLian_CoinTime, 0, notice);
-            numericComponent.ApplyValue(NumericType.TiLi_Kill_Number, 0, notice);
+            numericComponent.ApplyValue(NumericType.TiLiKillNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.ChouKa, 0, notice);
             numericComponent.ApplyValue(NumericType.ExpToGoldTimes, 0, false);
         }
@@ -286,7 +286,50 @@ namespace ET
         /// <summary>
         /// 角色属性模块初始化
         /// </summary>
-        public static void InitMonsterInfo(this HeroDataComponent self, MonsterConfig monsterConfig, int fubenDifficulty, CreateMonsterInfo createMonsterInfo)
+        public static void InitMonsterInfo_Summon2(this HeroDataComponent self, MonsterConfig monsterConfig, CreateMonsterInfo createMonsterInfo)
+        {
+            Unit nowUnit = self.GetParent<Unit>();
+            NumericComponent numericComponent = nowUnit.GetComponent<NumericComponent>();
+
+            Unit masterUnit = nowUnit.GetParent<UnitComponent>().Get(createMonsterInfo.Master_ID);
+            //召唤ID；是否复刻玩家形象（0不是，1是）；范围；数量；血量比例,攻击比例,魔法比例,物防比例，魔防比例；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值
+            string[] summonInfo = createMonsterInfo.AttributeParams.Split(';');
+            int useMasterModel = int.Parse(summonInfo[1]);
+            numericComponent.Set((int)NumericType.UseMasterModel, useMasterModel, false);
+
+            string[] attributeList_1 = summonInfo[4].Split(',');
+            string[] attributeList_2 = summonInfo[5].Split(',');
+
+            numericComponent.Set((int)NumericType.Base_MaxHp_Base, (int)(monsterConfig.Hp), false);
+            numericComponent.Set((int)NumericType.Base_MinAct_Base, (int)(monsterConfig.Act), false);
+            numericComponent.Set((int)NumericType.Base_MaxAct_Base, (int)(monsterConfig.Act), false);
+            numericComponent.Set((int)NumericType.Base_MinDef_Base, monsterConfig.Def, false);
+            numericComponent.Set((int)NumericType.Base_MaxDef_Base, monsterConfig.Def, false);
+            numericComponent.Set((int)NumericType.Base_MinAdf_Base, monsterConfig.Adf, false);
+            numericComponent.Set((int)NumericType.Base_MaxAdf_Base, monsterConfig.Adf, false);
+            numericComponent.Set((int)NumericType.Base_Speed_Base, monsterConfig.MoveSpeed, false);
+            numericComponent.Set((int)NumericType.Base_Cri_Base, monsterConfig.Cri, false);
+            numericComponent.Set((int)NumericType.Base_Res_Base, monsterConfig.Res, false);
+            numericComponent.Set((int)NumericType.Base_Hit_Base, monsterConfig.Hit, false);
+            numericComponent.Set((int)NumericType.Base_Dodge_Base, monsterConfig.Dodge, false);
+            numericComponent.Set((int)NumericType.Base_ActDamgeSubPro_Base, monsterConfig.DefAdd, false);
+            numericComponent.Set((int)NumericType.Base_MageDamgeSubPro_Base, monsterConfig.AdfAdd, false);
+            numericComponent.Set((int)NumericType.Base_DamgeSubPro_Base, monsterConfig.DamgeAdd, false);
+
+            //出生点
+            numericComponent.Set((int)NumericType.Born_X, nowUnit.Position.x);
+            numericComponent.Set((int)NumericType.Born_Y, nowUnit.Position.y);
+            numericComponent.Set((int)NumericType.Born_Z, nowUnit.Position.z);
+
+            //设置当前血量
+            numericComponent.NumericDic[(int)NumericType.Now_Hp] = numericComponent.NumericDic[(int)NumericType.Now_MaxHp];
+            //Log.Debug("初始化当前怪物血量:" + numericComponent.GetAsLong(NumericType.Now_Hp));
+        }
+
+        /// <summary>
+        /// 角色属性模块初始化
+        /// </summary>
+        public static void InitMonsterInfo(this HeroDataComponent self, MonsterConfig monsterConfig, CreateMonsterInfo createMonsterInfo)
         {
             Unit nowUnit = self.GetParent<Unit>();
             NumericComponent numericComponent = nowUnit.GetComponent<NumericComponent>();
@@ -295,7 +338,7 @@ namespace ET
             float ackCoefficient = 1f; 
             //根据副本难度刷新属性
             //进入 挑战关卡 怪物血量增加 1.5 伤害增加 1.2 低于关卡 血量增加2 伤害增加 1.5
-            switch (fubenDifficulty)
+            switch (createMonsterInfo.FubenDifficulty)
             {
                 case FubenDifficulty.TiaoZhan:
                     hpCoefficient = 1.5f;

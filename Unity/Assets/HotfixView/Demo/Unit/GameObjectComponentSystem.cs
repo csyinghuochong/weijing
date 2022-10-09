@@ -72,12 +72,23 @@ namespace ET
                 case UnitType.Monster:
                     int monsterId = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(monsterId);
-                    path = ABPathHelper.GetUnitPath("Monster/" + monsterCof.MonsterModelID);
-                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.OnLoadGameObject);
-                    self.AssetsPath = path;
+                    int userMaterModel = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UseMasterModel);
+                    if (userMaterModel == 1)
+                    {
+                        //path = ABPathHelper.GetUnitPath("Monster/" + monsterCof.MonsterModelID);
+                        long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
+                        Unit master = unit.GetParent<UnitComponent>().Get(masterId);
+                        self.OnLoadGameObject(master.GetComponent<GameObjectComponent>().GameObject);
+                    }
+                    else
+                    {
+                        path = ABPathHelper.GetUnitPath("Monster/" + monsterCof.MonsterModelID);
+                        GameObjectPoolComponent.Instance.AddLoadQueue(path, self.OnLoadGameObject);
+                        self.AssetsPath = path;
+                    }
                     break;
                 case UnitType.Pet:
-                    int skinId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Pet_Skin);
+                    int skinId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetSkin);
                     int configId = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
                     PetConfig petConfig = PetConfigCategory.Instance.Get(configId);
                     if (skinId == 0)
