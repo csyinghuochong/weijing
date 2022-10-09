@@ -98,16 +98,23 @@ namespace ET
             }
 
             ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
-            if (unitInfoComponent1.RoleCamp == 1 && unitInfoComponent1.Type == UnitType.Monster)
+            if ( unitInfoComponent1.Type == UnitType.Monster)
             {
-                rc.Get<GameObject>("Img_HpValue").SetActive(false);
-                rc.Get<GameObject>("Img_HpValue2").SetActive(true);
-                ObjHp = rc.Get<GameObject>("Img_HpValue2");
+                if (unitInfoComponent1.RoleCamp == 1)
+                {
+                    rc.Get<GameObject>("Img_HpValue").SetActive(false);
+                    rc.Get<GameObject>("Img_HpValue2").SetActive(true);
+                    ObjHp = rc.Get<GameObject>("Img_HpValue2");
+                }
+                else
+                {
+                    rc.Get<GameObject>("Img_HpValue").SetActive(true);
+                    rc.Get<GameObject>("Img_HpValue2").SetActive(false);
+                    ObjHp = rc.Get<GameObject>("Img_HpValue");
+                }
             }
             else
             {
-                rc.Get<GameObject>("Img_HpValue").SetActive(true);
-                rc.Get<GameObject>("Img_HpValue2").SetActive(false);
                 ObjHp = rc.Get<GameObject>("Img_HpValue");
             }
             ObjName = rc.Get<GameObject>("Lal_Name");

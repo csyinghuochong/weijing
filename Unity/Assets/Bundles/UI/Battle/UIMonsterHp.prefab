@@ -287,6 +287,8 @@ MonoBehaviour:
     gameObject: {fileID: 7864875654909524872}
   - key: Dead
     gameObject: {fileID: 5021816177478977132}
+  - key: Img_HpValue2
+    gameObject: {fileID: 8071493061916560910}
 --- !u!1 &1888445702330170
 GameObject:
   m_ObjectHideFlags: 0
