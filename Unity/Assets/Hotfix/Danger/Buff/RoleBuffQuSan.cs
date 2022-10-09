@@ -6,7 +6,7 @@ namespace ET
     {
         public override void OnInit(BuffData buffData, Unit theUnitBelongto)
         {
-            this.BaseOnBulletInit(buffData, theUnitBelongto);
+            this.BaseOnBuffInit(buffData, theUnitBelongto);
 
             BuffManagerComponent buffManager = theUnitBelongto.GetComponent<BuffManagerComponent>();
             for (int i = buffManager.m_Buffs.Count - 1; i >= 0; i--)

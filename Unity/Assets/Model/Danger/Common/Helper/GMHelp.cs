@@ -13,6 +13,7 @@ namespace ET
             "testcn01",
             "18319670288",
             "wxoyHedvzGgPkynfiq3fNJInZcM76Q",
+            "qqUID_E345FB495D13CA8792AA967F39F35045",
         };
 #endif
 

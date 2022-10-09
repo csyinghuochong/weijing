@@ -1574,9 +1574,6 @@ namespace ET
 		[ProtoMember(6)]
 		public string GemHole { get; set; }
 
-		[ProtoMember(7)]
-		public string GemID { get; set; }
-
 		[ProtoMember(8)]
 		public int Loc { get; set; }
 
