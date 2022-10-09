@@ -259,7 +259,7 @@
         public const int Extra_Buff_GoldAdd_Add = Now_GoldAdd * 100 + 11;           //属性Buff附加加法
         public const int Extra_Buff_GoldAdd_Mul = Now_GoldAdd * 100 + 12;           //属性Buff附加乘法
 
-        public const int Now_MonsterDis = 1204;          //怪物目标距离
+        public const int Now_MonsterDis = 1204;          //怪物发现目标距离
         public const int Base_MonsterDis_Base = Now_MonsterDis * 100 + 1;                 //属性累加
         public const int Base_MonsterDis_Mul = Now_MonsterDis * 100 + 2;                  //属性乘法
         public const int Base_MonsterDis_Add = Now_MonsterDis * 100 + 3;                  //属性附加
@@ -512,11 +512,55 @@
         public const int Extra_Buff_SkillDodgePro_Mul = Now_SkillDodgePro * 100 + 12;              //属性Buff附加乘法
 
         public const int Now_ShenNongPro = 2043;          //神农
-        public const int Base_ShenNongPro_Base = Now_SkillDodgePro * 100 + 1;                    //属性累加
-        public const int Base_ShenNongPro_Mul = Now_SkillDodgePro * 100 + 2;                     //属性乘法
-        public const int Base_ShenNongPro_Add = Now_SkillDodgePro * 100 + 3;                     //属性附加
-        public const int Extra_Buff_ShenNongPro_Add = Now_SkillDodgePro * 100 + 11;              //属性Buff附加加法
-        public const int Extra_Buff_ShenNongPro_Mul = Now_SkillDodgePro * 100 + 12;              //属性Buff附加乘法
+        public const int Base_ShenNongPro_Base = Now_ShenNongPro * 100 + 1;                    //属性累加
+        public const int Base_ShenNongPro_Mul = Now_ShenNongPro * 100 + 2;                     //属性乘法
+        public const int Base_ShenNongPro_Add = Now_ShenNongPro * 100 + 3;                     //属性附加
+        public const int Extra_Buff_ShenNongPro_Add = Now_ShenNongPro * 100 + 11;              //属性Buff附加加法
+        public const int Extra_Buff_ShenNongPro_Mul = Now_ShenNongPro * 100 + 12;              //属性Buff附加乘法
+
+        public const int Now_SecHpAddPro = 2044;          //每秒百分比恢复
+        public const int Base_SecHpAddPro_Base = Now_SecHpAddPro * 100 + 1;                    //属性累加
+        public const int Base_SecHpAddPro_Mul = Now_SecHpAddPro * 100 + 2;                     //属性乘法
+        public const int Base_SecHpAddPro_Add = Now_SecHpAddPro * 100 + 3;                     //属性附加
+        public const int Extra_Buff_SecHpAddPro_Add = Now_SecHpAddPro * 100 + 11;              //属性Buff附加加法
+        public const int Extra_Buff_SecHpAddPro_Mul = Now_SecHpAddPro * 100 + 12;              //属性Buff附加乘法
+
+        public const int Now_DiKangPro = 2045;          //抵抗减益Buff概率
+        public const int Base_DiKangPro_Base = Now_DiKangPro * 100 + 1;                    //属性累加
+        public const int Base_DiKangPro_Mul = Now_DiKangPro * 100 + 2;                     //属性乘法
+        public const int Base_DiKangPro_Add = Now_DiKangPro * 100 + 3;                     //属性附加
+        public const int Extra_Buff_DiKangPro_Add = Now_DiKangPro * 100 + 11;              //属性Buff附加加法
+        public const int Extra_Buff_DiKangPro_Mul = Now_DiKangPro * 100 + 12;              //属性Buff附加乘法
+
+        public const int Now_MageDodgePro = 2046;          //魔法闪避
+        public const int Base_MageDodgePro_Base = Now_MageDodgePro * 100 + 1;                    //属性累加
+        public const int Base_MageDodgePro_Mul = Now_MageDodgePro * 100 + 2;                     //属性乘法
+        public const int Base_MageDodgePro_Add = Now_MageDodgePro * 100 + 3;                     //属性附加
+        public const int Extra_Buff_MageDodgePro_Add = Now_MageDodgePro * 100 + 11;              //属性Buff附加加法
+        public const int Extra_Buff_MageDodgePro_Mul = Now_MageDodgePro * 100 + 12;              //属性Buff附加乘法
+
+        public const int Now_ZhuanZhuPro = 2047;            //专注  释放技能有概率释放2次
+        public const int Base_ZhuanZhuPro_Base = Now_MageDodgePro * 100 + 1;                    //属性累加
+        public const int Base_ZhuanZhuPro_Mul = Now_MageDodgePro * 100 + 2;                     //属性乘法
+        public const int Base_ZhuanZhuPro_Add = Now_MageDodgePro * 100 + 3;                     //属性附加
+        public const int Extra_Buff_ZhuanZhuPro_Add = Now_MageDodgePro * 100 + 11;              //属性Buff附加加法
+        public const int Extra_Buff_ZhuanZhuPro_Mul = Now_MageDodgePro * 100 + 12;              //属性Buff附加乘法
+
+        public const int Now_ShenYouPro = 2048;          //当前神佑几率   （跟复活的区别时满血）  
+        public const int Base_ShenYouPro_Base = Now_ShenYouPro * 100 + 1;              //属性累加
+        public const int Base_ShenYouPro_Mul = Now_ShenYouPro * 100 + 2;               //属性乘法
+        public const int Base_ShenYouPro_Add = Now_ShenYouPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_ShenYouPro_Add = Now_ShenYouPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_ShenYouPro_Mul = Now_ShenYouPro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_ActDodgePro = 2049;          //物理闪避
+        public const int Base_ActDodgePro_Base = Now_ActDodgePro * 100 + 1;                    //属性累加
+        public const int Base_ActDodgePro_Mul = Now_ActDodgePro * 100 + 2;                     //属性乘法
+        public const int Base_ActDodgePro_Add = Now_ActDodgePro * 100 + 3;                     //属性附加
+        public const int Extra_Buff_ActDodgePro_Add = Now_ActDodgePro * 100 + 11;              //属性Buff附加加法
+        public const int Extra_Buff_ActDodgePro_Mul = Now_ActDodgePro * 100 + 12;              //属性Buff附加乘法
+
+        //----------------抗性-------------
 
         public const int Now_Resistance_Shine_Pro = 2101;          //当前神圣抗性
         public const int Base_Resistance_Shine_Pro_Base = Now_Resistance_Shine_Pro * 100 + 1;              //属性累加

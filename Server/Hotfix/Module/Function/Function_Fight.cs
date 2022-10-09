@@ -92,6 +92,7 @@ namespace ET
 
             long defend_Act = (long)RandomHelper.RandomNumberFloat(defend_MinAct, defend_MaxAct);
             long defend_def = (long)RandomHelper.RandomNumberFloat(defend_MinDef, defend_MaxDef);
+            long defend_adf = (long)RandomHelper.RandomNumberFloat(defend_MinAdf, defend_MaxAdf);
 
             bool ifMonsterBoss_Act = false;
             bool ifMonsterBoss_Def = false;
@@ -179,28 +180,84 @@ namespace ET
             {
                 ifHit = false;
             }
+
+            //技能闪避
+            if (skillconfig.SkillActType == 1)
+            {
+                if (RandomHelper.RandFloat() <= numericComponentAttack.GetAsFloat(NumericType.Now_SkillDodgePro))
+                {
+                    ifHit = true;
+                }
+            }
+
+
+            //物理闪避
+            if (skillconfig.DamgeType == 1)
+            {
+                if (RandomHelper.RandFloat() <= numericComponentAttack.GetAsFloat(NumericType.Now_ActDodgePro))
+                {
+                    ifHit = true;
+                }
+            }
+
+            //魔法闪避
+            if (skillconfig.DamgeType == 2)
+            {
+                if (RandomHelper.RandFloat() <= numericComponentAttack.GetAsFloat(NumericType.Now_MageDodgePro))
+                {
+                    ifHit = true;
+                }
+            }
+
             if (ifHit)
             {
                 //判定是否触发重击
                 long actValue = attack_Act;
                 long defValue = defend_def;
+                long adfValue = defend_def;
                 float zhongJiPro = numericComponentAttack.GetAsFloat(NumericType.Now_ZhongJiPro);
                 if (RandomHelper.RandFloat() <= zhongJiPro) {
                     defValue = 0;
                     actValue += numericComponentAttack.GetAsLong(NumericType.Now_ZhongJi);
                 }
 
-                //计算战斗公式
-                long damge = (actValue - defValue);
+                //判定是否无视防御
+                float wushiPro = numericComponentAttack.GetAsFloat(NumericType.Now_WuShiFangYuPro);
+                if (RandomHelper.RandFloat() <= wushiPro)
+                {
+                    defValue = 0;
+                    adfValue = 0;
+                }
 
-                //魔法伤害无法被抵消是固定伤害,技能附带加成
+                long nowdef = defValue;
+
+                //伤害类型 物理/魔法
+                if (skillconfig.DamgeType == 2) {
+                    nowdef = adfValue;
+                }
+
+                //计算战斗公式
+                long damge = (actValue - nowdef);
+
+                //技能倍伤
                 if (skillconfig.SkillActType == 1)
                 {
-                    damge = attack_MageAct + damge;
+                    nowdef = adfValue;
+
+                }
+
+                //魔法伤害无法被抵消是固定伤害,技能附带加成
+                double skillProAdd = 0;
+                if (skillconfig.SkillActType == 1)
+                {
+                    if (RandomHelper.RandFloat() <= numericComponentAttack.GetAsFloat(NumericType.Now_SkillMoreDamgePro))
+                    {
+                        skillProAdd = 0.5f;
+                    }
                 }
 
                 //获取技能相关系数
-                damge = (long)(damge * ( skillconfig.ActDamge  + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) )) + skillconfig.DamgeValue;
+                damge = (long)(damge * ( skillconfig.ActDamge  + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) + skillProAdd)) + skillconfig.DamgeValue;
 
                 float damgePro = 1;
                 //伤害加成
@@ -387,10 +444,27 @@ namespace ET
                     }
                 }
 
+                
+
                 //即将死亡
                 if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) + damge <= 0)
                 {
-                    defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WillDead_6, attackUnit.Id);
+                    //判定是否复活
+                    if (RandomHelper.RandFloat01() < defendUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_FuHuoPro))
+                    {
+                        //复活存在30%的血量
+                        numericComponentDefend.ApplyChange(null, NumericType.Now_Hp, (int)(numericComponentAttack.GetAsInt(NumericType.Now_MaxHp) * 0.3f), 0);
+                    }
+                    else if(RandomHelper.RandFloat01() < defendUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ShenYouPro) )
+                    {
+                        //神佑存在100%的血量
+                        numericComponentDefend.ApplyChange(null, NumericType.Now_Hp, (int)(numericComponentAttack.GetAsInt(NumericType.Now_MaxHp) * 1f), 0);
+                    }
+                    else
+                    {
+                        //死亡
+                        defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WillDead_6, attackUnit.Id);
+                    }
                 }
                 //设置目标当前
                 defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, damge, skillconfig.Id, true, DamgeType);
@@ -738,20 +812,33 @@ namespace ET
                         AddUpdateProDicList(mEquipCon.AddPropreListType[y], (long)mEquipCon.AddPropreListValue[y], UpdateProDicList);
                     }
                 }
-                /*
+                
                 //获取宝石属性
-                string[] gemList = equipList[i].GemID.Split('_');
+                string[] gemList = equipList[i].GemIDNew.Split('_');
                 for (int z = 0; z < gemList.Length; z++) {
+
                     int gemID = int.Parse(gemList[z]);
+
                     if (gemID != 0) {
+
                         ItemConfig gemitemCof = ItemConfigCategory.Instance.Get(gemID);
-                        long gemPro = long.Parse(gemitemCof.ItemUsePar.Split(';')[0]);
-                        int gemValue = gemitemCof.ItemUsePar.Split(';')[1];
-                        AddUpdateProDicList(gemProList[i].HideID, gemProList[i].HideValue, UpdateProDicList);
+                        int gemPro = int.Parse(gemitemCof.ItemUsePar.Split(';')[0]);
+                        long gemValue =  long.Parse(gemitemCof.ItemUsePar.Split(';')[1]);
+
+                        //宝石专精
+                        if (equipList[i].HideSkillLists.Contains(68000108))
+                        {
+                            gemValue = (long)((float)gemValue * 1.2f);
+                        }
+
+                        //浮点数处理
+                        if (NumericHelp.GetNumericValueType(gemPro) == 2) {
+                            gemValue = gemValue * 10000;
+                        }
+
+                        AddUpdateProDicList(gemPro, gemValue, UpdateProDicList);
                     }
                 }
-                */
-
             }
 
             /*

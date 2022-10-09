@@ -132,7 +132,7 @@ namespace ET
             //初始化AI组件的一些东西
             self.ActInterValTime = MonsterCof.ActInterValTime;
 
-            self.ActRange = MonsterCof.ActRange;        //5-10  与主角距离小于此值时,向主角发动追击
+            self.ActRange = MonsterCof.ActRange + self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MonsterDis);        //5-10  与主角距离小于此值时,向主角发动追击
             self.ChaseRange = MonsterCof.ChaseRange;    //超出会返回到出生点
             self.PatrolRange = MonsterCof.PatrolRange;  //巡逻范围
             self.ActDistance = MonsterCof.ActDistance;  //2    小于转攻击

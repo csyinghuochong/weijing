@@ -15,7 +15,9 @@ namespace ET
             TargetPosition = theUnitFrom.Position + rotation * Vector3.forward * ((float)SkillConf.SkillMoveSpeed * SkillLiveTime * 0.001f);
             TargetPosition = theUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitFrom.Position, TargetPosition);
 
-            theUnitFrom.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Speed, (long)(10000*SkillConf.SkillMoveSpeed));
+            //1-10 表示 10%-100%
+            double addPro = (double)theUnitFrom.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_JumpDisAdd) / 10;
+            theUnitFrom.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Speed, (long)(10000 * SkillConf.SkillMoveSpeed * addPro));
             OnExecute();
         }
 
