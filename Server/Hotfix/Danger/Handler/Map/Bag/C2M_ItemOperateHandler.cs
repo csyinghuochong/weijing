@@ -331,8 +331,14 @@ namespace ET
                     }
                     unit.GetComponent<BagComponent>().OnCostItemData(gemIdList, ItemLocType.ItemLocGem);
 
+                    //珍宝属性价格提升
+                    int sellValue = itemCof.SellMoneyValue;
+                    if (useBagInfo.HideSkillLists.Contains(68000102)) {
+                        sellValue = itemCof.SellMoneyValue * 20;
+                    }
+
                     itemConf = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConf.SellMoneyType, (useBagInfo.ItemNum * itemConf.SellMoneyValue).ToString()).Coroutine();
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConf.SellMoneyType, (useBagInfo.ItemNum * sellValue).ToString()).Coroutine();
                     unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, locType, useBagInfo.ItemNum);
                     if (useBagInfo.ItemNum == 0)
                     {
@@ -366,6 +372,19 @@ namespace ET
                     //判断等级
                     int roleLv = useInfo.Lv;
                     int equipLv = itemCof.UseLv;
+
+                    //简易
+                    if (useBagInfo.HideSkillLists.Contains(68000103))
+                    {
+                        equipLv = equipLv - 5;
+                    }
+
+                    //无级别
+                    if (useBagInfo.HideSkillLists.Contains(68000106))
+                    {
+                        equipLv = 1;
+                    }
+
                     if (roleLv < equipLv)
                     {
                         response.Error = ErrorCore.ERR_EquipLvLimit;     //错误码:无效的装备ID

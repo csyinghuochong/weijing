@@ -59,6 +59,7 @@ namespace ET
             long attack_MaxHp = numericComponentAttack.GetAsLong(NumericType.Now_MaxHp);
             long attack_MinAct = numericComponentAttack.GetAsLong(NumericType.Now_MinAct);
             long attack_MaxAct = numericComponentAttack.GetAsLong(NumericType.Now_MaxAct);
+            long attack_MageAct = numericComponentAttack.GetAsLong(NumericType.Now_Mage);
             long attack_MinDef = numericComponentAttack.GetAsLong(NumericType.Now_MinDef);
             long attack_MaxDef = numericComponentAttack.GetAsLong(NumericType.Now_MaxDef);
 
@@ -191,6 +192,12 @@ namespace ET
 
                 //计算战斗公式
                 long damge = (actValue - defValue);
+
+                //魔法伤害无法被抵消是固定伤害,技能附带加成
+                if (skillconfig.SkillActType == 1)
+                {
+                    damge = attack_MageAct + damge;
+                }
 
                 //获取技能相关系数
                 damge = (long)(damge * ( skillconfig.ActDamge  + skillHandler.ActTargetTemporaryAddPro + skillHandler.ActTargetAddPro + skillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageCoefficient) )) + skillconfig.DamgeValue;
@@ -672,14 +679,15 @@ namespace ET
             int equipMinAdfSum = 0;
             int equipMaxAdfSum = 0;
 
-            for (int i = 0; i < equipIDList.Count; i++)
+            for (int i = 0; i < equipList.Count; i++)
             {
                 /*
                 if (equipIDList[i] == 0) {
                     break;
                 }
                 */
-                EquipConfig mEquipCon = EquipConfigCategory.Instance.Get(equipIDList[i]);
+                ItemConfig itemCof = ItemConfigCategory.Instance.Get(equipList[i].ItemID);
+                EquipConfig mEquipCon = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
 
                 //职业专精
                 float occMastery = 0f;
@@ -692,16 +700,34 @@ namespace ET
                     //}
                 }
 
+                //极品属性
+                float addPro = 0;
+                if (equipList[i].HideSkillLists.Contains(68000104)) {
+                    addPro = 0.1f;
+                }
+
+                //虚弱属性
+                if (equipList[i].HideSkillLists.Contains(68000107))
+                {
+                    addPro = -0.1f;
+                }
+
+                //胜算属性
+                if (equipList[i].HideSkillLists.Contains(68000105))
+                {
+                    mEquipCon.Equip_MinAct = mEquipCon.Equip_MaxAct;
+                }
+
                 //存储基础属性
-                equipHpSum = (int)(equipHpSum + mEquipCon.Equip_Hp * (1 + occMastery));
-                equipMinActSum = (int)(equipMinActSum + mEquipCon.Equip_MinAct * (1 + occMastery));
-                equipMaxActSum = (int)(equipMaxActSum + mEquipCon.Equip_MaxAct * (1 + occMastery));
-                equipMinMageSum = (int)(equipMinMageSum + mEquipCon.Equip_MinMagAct * (1 + occMastery));
-                equipMaxMageSum = (int)(equipMaxMageSum + mEquipCon.Equip_MaxMagAct * (1 + occMastery));
-                equipMinDefSum = (int)(equipMinDefSum + mEquipCon.Equip_MinDef * (1 + occMastery));
-                equipMaxDefSum = (int)(equipMaxDefSum + mEquipCon.Equip_MaxDef * (1 + occMastery));
-                equipMinAdfSum = (int)(equipMinAdfSum + mEquipCon.Equip_MinAdf * (1 + occMastery));
-                equipMaxAdfSum = (int)(equipMaxAdfSum + mEquipCon.Equip_MaxAdf * (1 + occMastery));
+                equipHpSum = (int)(equipHpSum + mEquipCon.Equip_Hp * (1 + occMastery + addPro));
+                equipMinActSum = (int)(equipMinActSum + mEquipCon.Equip_MinAct * (1 + occMastery + addPro));
+                equipMaxActSum = (int)(equipMaxActSum + mEquipCon.Equip_MaxAct * (1 + occMastery + addPro));
+                equipMinMageSum = (int)(equipMinMageSum + mEquipCon.Equip_MinMagAct * (1 + occMastery + addPro));
+                equipMaxMageSum = (int)(equipMaxMageSum + mEquipCon.Equip_MaxMagAct * (1 + occMastery + addPro));
+                equipMinDefSum = (int)(equipMinDefSum + mEquipCon.Equip_MinDef * (1 + occMastery + addPro));
+                equipMaxDefSum = (int)(equipMaxDefSum + mEquipCon.Equip_MaxDef * (1 + occMastery + addPro));
+                equipMinAdfSum = (int)(equipMinAdfSum + mEquipCon.Equip_MinAdf * (1 + occMastery + addPro));
+                equipMaxAdfSum = (int)(equipMaxAdfSum + mEquipCon.Equip_MaxAdf * (1 + occMastery + addPro));
 
                 //存储特殊属性
                 for (int y = 0; y < mEquipCon.AddPropreListType.Length; y++)
@@ -712,14 +738,29 @@ namespace ET
                         AddUpdateProDicList(mEquipCon.AddPropreListType[y], (long)mEquipCon.AddPropreListValue[y], UpdateProDicList);
                     }
                 }
+
+                //获取宝石属性
+                string[] gemList = equipList[i].GemID.Split('_');
+                for (int z = 0; z < gemList.Length; z++) {
+                    int gemID = int.Parse(gemList[z]);
+                    if (gemID != 0) {
+                        ItemConfig gemitemCof = ItemConfigCategory.Instance.Get(gemID);
+                        long gemPro = long.Parse(gemitemCof.ItemUsePar.Split(';')[0]);
+                        int gemValue = gemitemCof.ItemUsePar.Split(';')[1];
+                        AddUpdateProDicList(gemProList[i].HideID, gemProList[i].HideValue, UpdateProDicList);
+                    }
+                }
+
             }
 
+            /*
             //宝石属性
             List<HideProList> gemProList = unit.GetComponent<BagComponent>().GetGemProLists();
             for (int i = 0; i < gemProList.Count; i++)
             {
                 AddUpdateProDicList(gemProList[i].HideID, gemProList[i].HideValue, UpdateProDicList);
             }
+            */
 
             //天赋属性
             List<HideProList> tianfuProList = unit.GetComponent<SkillSetComponent>().GetTianfuRoleProLists();
