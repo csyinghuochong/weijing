@@ -8,6 +8,21 @@ namespace ET
     public static class ItemHelper
     {
 
+        public static List<int> IsHaveGem(BagInfo bagInfo)
+        {
+            string[] gemIdInfos = bagInfo.GemIDNew.Split('_');
+            List<int> getIds = new List<int>();
+            for (int i = 0; i < gemIdInfos.Length; i++)
+            {
+                int getItemId = int.Parse(gemIdInfos[i]);
+                if (getItemId > 0)
+                {
+                    getIds.Add(getItemId);
+                }
+            }
+            return getIds;
+        }
+
         public static bool IsBuyItem(int getType) 
         {
             return getType == ItemGetWay.StoreBuy || getType == ItemGetWay.MysteryBuy || getType == ItemGetWay.PaiMaiShop;

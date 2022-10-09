@@ -60,10 +60,10 @@ namespace ET
         public GameObject Lal_NameOwner;
         public GameObject JiaZuShowSet;
         public GameObject Lal_JiaZuName;
+        public HeadBarUI HeadBarUI;
         public bool mainHero;
         public float LastTime;
         public long Timer;
-        public HeadBarUI HeadBarUI;
 
         public async ETTask Awake( )
         {
