@@ -51,8 +51,16 @@ namespace ET
                 self.ObjRoleName.GetComponent<Text>().text = self.CreateRoleInfo.PlayerName;
                 self.ObjRoleLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级:") + self.CreateRoleInfo.PlayerLv.ToString();
                 self.ObjRoleLv.SetActive(true);
-                OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(self.CreateRoleInfo.PlayerOcc);
-                self.RoleOcc.GetComponent<Text>().text = $"职业:{occupationConfig.OccupationName}";
+                if (self.CreateRoleInfo.XuHaoID > 0)
+                {
+                    OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(self.CreateRoleInfo.XuHaoID);
+                    self.RoleOcc.GetComponent<Text>().text = $"职业:{occupationTwo.OccupationName}";
+                }
+                else
+                {
+                    OccupationConfig occupationConfig = OccupationConfigCategory.Instance.Get(self.CreateRoleInfo.PlayerOcc);
+                    self.RoleOcc.GetComponent<Text>().text = $"职业:{occupationConfig.OccupationName}";
+                }
                 UICommonHelper.ShowOccIcon(self.ObjImgOccHeadIcon, self.CreateRoleInfo.PlayerOcc);
                 self.NoRole.SetActive(false);
                 self.Role.SetActive(true);
