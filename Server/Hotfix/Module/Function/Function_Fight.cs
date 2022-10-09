@@ -818,12 +818,19 @@ namespace ET
                 for (int z = 0; z < gemList.Length; z++) {
 
                     int gemID = int.Parse(gemList[z]);
+                    if (gemID == 0)
+                    {
+                        continue;
+                    }
 
-                    if (gemID != 0) {
-
-                        ItemConfig gemitemCof = ItemConfigCategory.Instance.Get(gemID);
-                        int gemPro = int.Parse(gemitemCof.ItemUsePar.Split(';')[0]);
-                        long gemValue =  long.Parse(gemitemCof.ItemUsePar.Split(';')[1]);
+                    // "100403;10@100203;60
+                    ItemConfig gemitemCof = ItemConfigCategory.Instance.Get(gemID);
+                    string[] attributeList = gemitemCof.ItemUsePar.Split('@');
+                    for (int a = 0;  a < attributeList.Length; a++)
+                    {
+                        string[] attributeInfo = attributeList[a].Split(';');
+                        int gemPro = int.Parse(attributeInfo[0]);
+                        long gemValue = long.Parse(attributeInfo[1]);
 
                         //宝石专精
                         if (equipList[i].HideSkillLists.Contains(68000108))
@@ -832,7 +839,8 @@ namespace ET
                         }
 
                         //浮点数处理
-                        if (NumericHelp.GetNumericValueType(gemPro) == 2) {
+                        if (NumericHelp.GetNumericValueType(gemPro) == 2)
+                        {
                             gemValue = gemValue * 10000;
                         }
 

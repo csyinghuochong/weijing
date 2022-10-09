@@ -64,16 +64,6 @@ namespace ET
             }
 
             self.RigidityTime -= 1000;
-            UnitInfoComponent unitInfoComponent = self.Parent.GetComponent<UnitInfoComponent>();
-            if (unitInfoComponent.Type == UnitType.Pet)
-            {
-                self.CheckHuiXue();
-            }
-            if (self.Parent.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
-            {
-                return;
-            }
-
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
             foreach (AIConfig aiConfig in oneAI.Values)
             {
@@ -179,16 +169,6 @@ namespace ET
             self.ActDistance = 2;
             self.ActInterValTime = 500L;
             self.AISkillIDList.Add(petConfig.ActSkillID);
-        }
-
-        public static void CheckHuiXue(this AIComponent self)
-        {
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            if (numericComponent.GetAsLong((int)NumericType.Now_Hp) >= numericComponent.GetAsLong((int)NumericType.Now_MaxHp))
-                return;
-
-            self.GetParent<Unit>().GetComponent<NumericComponent>().ApplyChange(null, NumericType.Now_Hp,
-                (long)(numericComponent.GetAsLong((int)NumericType.Now_MaxHp) * 0.1f), 0, true);
         }
 
         public static long GetActInterValTime(this AIComponent self)

@@ -181,7 +181,7 @@ namespace ET
                 zhaohuan.GetComponent<NumericComponent>().ApplyChange(args.Attack, NumericType.Now_Hp, -1000000, args.SkillId);
             }
 
-            unit.GetComponent<AIComponent>()?.Stop();
+            unit.RemoveComponent<AIComponent>();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
             if (unitInfoComponent.IsPlayer())
             {
@@ -217,7 +217,14 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
 
             long max_hp = self.Parent.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
-            unit.GetComponent<AIComponent>().StopAI = false;
+            if (unit.Type == UnitType.Monster)
+            {
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.GetComponent<UnitInfoComponent>().UnitCondigID);
+                if (monsterConfig.AI > 0)
+                {
+                    unit.AddComponent<AIComponent, int>(monsterConfig.AI);
+                }
+            }
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 0);
             unit.GetComponent<NumericComponent>().NumericDic[NumericType.Now_Hp] = 0;
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.Now_Hp, max_hp, 0);
