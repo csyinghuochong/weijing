@@ -107,6 +107,11 @@ namespace ET
 
         public static void AddLoadQueue(this GameObjectPoolComponent self,  string path, Action<GameObject> action)
         {
+            if (path.Contains("90000001"))
+            {
+                Log.Error("asdasdadaadad");
+            }
+
             GameObjectLoad load = self.AddChild<GameObjectLoad>();
             load.Path = path;
             load.LoadHandler = action;

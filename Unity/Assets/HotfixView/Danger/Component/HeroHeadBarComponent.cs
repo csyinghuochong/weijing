@@ -72,19 +72,20 @@ namespace ET
             ObjHp = null;
             HeadBarPath = "";
             LastTime = 0f;
-            Unit m_Hero = GetParent<Unit>();
+            Unit m_Hero = this.GetParent<Unit>();
             mainHero = m_Hero.MainHero;
             UiCamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
-            if (m_Hero.GetComponent<UnitInfoComponent>().Type == UnitType.Player)
+            UnitInfoComponent unitInfoComponent1 = m_Hero.GetComponent<UnitInfoComponent>();
+            if (unitInfoComponent1.Type == UnitType.Player)
             {
                 HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIPlayerHp");
             }
-            if (m_Hero.GetComponent<UnitInfoComponent>().Type == UnitType.Monster)
+            if (unitInfoComponent1.Type == UnitType.Monster)
             {
                 HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIMonsterHp");
             }
-            if (m_Hero.GetComponent<UnitInfoComponent>().Type == UnitType.Pet)
+            if (unitInfoComponent1.Type == UnitType.Pet)
             {
                 HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIPetHp");
             }
@@ -97,8 +98,19 @@ namespace ET
             }
 
             ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
+            if (unitInfoComponent1.RoleCamp == 1 && unitInfoComponent1.Type == UnitType.Monster)
+            {
+                rc.Get<GameObject>("Img_HpValue").SetActive(false);
+                rc.Get<GameObject>("Img_HpValue2").SetActive(true);
+                ObjHp = rc.Get<GameObject>("Img_HpValue2");
+            }
+            else
+            {
+                rc.Get<GameObject>("Img_HpValue").SetActive(true);
+                rc.Get<GameObject>("Img_HpValue2").SetActive(false);
+                ObjHp = rc.Get<GameObject>("Img_HpValue");
+            }
             ObjName = rc.Get<GameObject>("Lal_Name");
-            ObjHp = rc.Get<GameObject>("Img_HpValue");
             Obj_Lal_ShopName = rc.Get<GameObject>("Lal_ShopName");
             Obj_ShopShowSet = rc.Get<GameObject>("ShopShowSet");
             Obj_PlayerNameSet = rc.Get<GameObject>("PlayerNameSet");
