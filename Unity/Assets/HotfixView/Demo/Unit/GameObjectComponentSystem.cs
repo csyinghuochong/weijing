@@ -78,7 +78,8 @@ namespace ET
                         //path = ABPathHelper.GetUnitPath("Monster/" + monsterCof.MonsterModelID);
                         long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
                         Unit master = unit.GetParent<UnitComponent>().Get(masterId);
-                        self.OnLoadGameObject(master.GetComponent<GameObjectComponent>().GameObject);
+                        GameObject gameObject = GameObject.Instantiate(master.GetComponent<GameObjectComponent>().GameObject);
+                        self.OnLoadGameObject(gameObject);
                     }
                     else
                     {

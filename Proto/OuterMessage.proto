@@ -744,7 +744,6 @@ message BagInfo
 	string ItemPar = 4;
 	int32 HideID = 5;
 	string GemHole = 6;	//对应的孔位颜色
-	string GemID = 7;	//对应的宝石ID
 	int32 Loc = 8; //0背包 1装备
 	bool IfJianDing = 9;
 	repeated HideProList HideProLists = 10;
