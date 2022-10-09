@@ -738,7 +738,7 @@ namespace ET
                         AddUpdateProDicList(mEquipCon.AddPropreListType[y], (long)mEquipCon.AddPropreListValue[y], UpdateProDicList);
                     }
                 }
-
+                /*
                 //获取宝石属性
                 string[] gemList = equipList[i].GemID.Split('_');
                 for (int z = 0; z < gemList.Length; z++) {
@@ -750,6 +750,7 @@ namespace ET
                         AddUpdateProDicList(gemProList[i].HideID, gemProList[i].HideValue, UpdateProDicList);
                     }
                 }
+                */
 
             }
 
