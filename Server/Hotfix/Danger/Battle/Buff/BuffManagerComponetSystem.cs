@@ -91,8 +91,14 @@ namespace ET
 
         public static void BuffFactory(this BuffManagerComponent self, BuffData buffData, Unit from, SkillHandler skillHandler, bool notice = true)
         {
+            Unit unit =self.GetParent<Unit>();
+            float now_DiKangPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_DiKangPro);
+            if (RandomHelper.RandFloat01() < now_DiKangPro && buffData.BuffConfig.BuffBenefitType == 2)
+            {
+                return;
+            }
+
             bool addBufStatus = true;
-            Unit to =self.GetParent<Unit>();
             //判断玩家身上是否有相同的buff,如果有就重置此Buff
             BuffHandler buffHandler = null;
             List<BuffHandler> nowAllBuffList = self.GetAllBuffData();
@@ -127,7 +133,7 @@ namespace ET
             if (addBufStatus)
             {
                 buffHandler = (BuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[buffData.BuffClassScript]);
-                buffHandler.OnInit(buffData, from, to, skillHandler);
+                buffHandler.OnInit(buffData, from, unit, skillHandler);
                 self.m_Buffs.Add(buffHandler);     //添加至buff列表中
 
                 if (self.Timer == 0)
@@ -141,14 +147,14 @@ namespace ET
             if (buffData.BuffConfig != null && notice)
             {
                 M2C_UnitBuffUpdate m2C_UnitBuffUpdate = self.m2C_UnitBuffUpdate;
-                m2C_UnitBuffUpdate.UnitIdBelongTo = to.Id;
+                m2C_UnitBuffUpdate.UnitIdBelongTo = unit.Id;
                 m2C_UnitBuffUpdate.BuffID = buffData.BuffConfig.Id;
                 m2C_UnitBuffUpdate.BuffOperateType = addBufStatus ? 1 : 3;
                 m2C_UnitBuffUpdate.TargetPostion.Clear();
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.x);
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.y);
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.z);
-                MessageHelper.Broadcast(to, m2C_UnitBuffUpdate);
+                MessageHelper.Broadcast(unit, m2C_UnitBuffUpdate);
             }
         }
 
