@@ -114,6 +114,7 @@
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_Other_ChongJi_1.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_ShanXian_1.cs" />
     <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuffBullet_2.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Skill\Skill_Com_Summon_2.cs" />
     <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuff_JiTui.cs" />
     <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuff_Base.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\ActivityComponentSystem.cs" />
@@ -194,7 +195,6 @@
     <Compile Include="Assets\Hotfix\Demo\Login\EnterMapHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericWatcher_Update.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetKcpComponentSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Skill\Skill_Com_Summon_2.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

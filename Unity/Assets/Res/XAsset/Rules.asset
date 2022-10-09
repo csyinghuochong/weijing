@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 241
+  version: 242
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -3474,6 +3474,8 @@ MonoBehaviour:
     path: Assets/Bundles/Icon/RoleSkillIcon/62021301.png
   - bundle: f7c1b12f45acf29f6071a1185644a6d1.unity3d
     path: Assets/Bundles/Icon/RoleSkillIcon/62021401.png
+  - bundle: f7c1b12f45acf29f6071a1185644a6d1.unity3d
+    path: Assets/Bundles/Icon/RoleSkillIcon/62021501.png
   - bundle: f7c1b12f45acf29f6071a1185644a6d1.unity3d
     path: Assets/Bundles/Icon/RoleSkillIcon/62022101.png
   - bundle: f7c1b12f45acf29f6071a1185644a6d1.unity3d
@@ -9168,6 +9170,7 @@ MonoBehaviour:
     - Assets/Bundles/Icon/RoleSkillIcon/62021201.png
     - Assets/Bundles/Icon/RoleSkillIcon/62021301.png
     - Assets/Bundles/Icon/RoleSkillIcon/62021401.png
+    - Assets/Bundles/Icon/RoleSkillIcon/62021501.png
     - Assets/Bundles/Icon/RoleSkillIcon/62022101.png
     - Assets/Bundles/Icon/RoleSkillIcon/62022201.png
     - Assets/Bundles/Icon/RoleSkillIcon/62022301.png
@@ -12641,12 +12644,12 @@ MonoBehaviour:
   - name: a65a72a4631565213e778d33cfa1e9d3.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_glow_xin_guangyun_00001_A.png
-  - name: 2a380eced3a9f5a61e79d650ebd819d6.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Shader54-2.mat
   - name: 3f199a2b45b1f8c0d4aeb3cacb8fdfbe.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Sequence164-6.png
+  - name: 2a380eced3a9f5a61e79d650ebd819d6.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Shader54-2.mat
   - name: 9cbb3c9aa72a02cee307dc763efdd7ba.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Shader34-1.mat
@@ -12702,18 +12705,9 @@ MonoBehaviour:
   - name: 35748f5da81255a5fafcafa68acb28d6.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/glow_00031_0001.mat
-  - name: 843fa6b25fb033e6c677b412ff6c7d31.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/lizi_00016.tga
   - name: 32acb1462dd63ba696bf9aec5f8cd094.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_wenli_00480.tga
-  - name: 3e1e101b94017340576d0847ecff3354.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_glow_00180_0001_M.mat
-  - name: 0f11a253f2e12e797d58f3f96e369ee0.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_fazhen_00050_0001_A.png
   - name: ccfe3f8e7141f6c9fe54752099d1fa4a.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Import/yuanzhu01.FBX
@@ -12726,21 +12720,72 @@ MonoBehaviour:
   - name: f5d42dcd673200bc4c0bb9948ed5b9c9.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Animator/Common_FB_chuansongdian/Plane001.controller
-  - name: 33747cb0c29c91555f80d816ce27528a.unity3d
+  - name: 5db9ce95d997263e7adc659f9ce41eee.unity3d
     assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Animator/Common_FB_chuansongdian/fazhen.anim
+    - Assets/Scenes/texiao/Materials/Circle_8.mat
   - name: 0397f153dfdf9978e4513f927a2fd924.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_glow_00180_0001_C.png
+  - name: 670e0b5fe641893c4278f9b75f96095f.unity3d
+    assets:
+    - Assets/Scenes/texiao/Textures/Light_1.png
   - name: a8368288aaeb5462ca7d7e0fba229595.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_glow_00180_0001_A.png
+  - name: 49b58811a02ff3afb73a8031ba022a59.unity3d
+    assets:
+    - Assets/Scenes/texiao/Materials/Glow_1.mat
+  - name: 710242d499ab88d2b6389724920946e2.unity3d
+    assets:
+    - Assets/Scenes/texiao/Materials/Circle_6.mat
+  - name: 043a0dcd01fa9414c38f0843c361631f.unity3d
+    assets:
+    - Assets/Scenes/texiao/Materials/Glow_3.mat
+  - name: d37fd624fff3fcc1227ee9063b6a1358.unity3d
+    assets:
+    - Assets/Scenes/texiao/Textures/Circle_6.png
+  - name: 54bc2f9b012a29c430f2c31426d09898.unity3d
+    assets:
+    - Assets/Scenes/texiao/Textures/Circle_2.png
+  - name: 7f331dae26e106a4ac292dbd8160990a.unity3d
+    assets:
+    - Assets/Scenes/texiao/Materials/Circle_2.mat
+  - name: 50cf2c9ffc17406c1118d246b4202bea.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_glow_xin_guangyun_00001_C.png
+  - name: 9fd1102b83f135cee3f81e4b023085b2.unity3d
+    assets:
+    - Assets/Scenes/texiao/Textures/Glow_1.png
+  - name: 9f88406a477de1c2b76e1e18bca7644b.unity3d
+    assets:
+    - Assets/Scenes/texiao/Textures/Light_7.png
+  - name: 843fa6b25fb033e6c677b412ff6c7d31.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/lizi_00016.tga
+  - name: ae4e63e434239b3c65a5a0bde73a5d1e.unity3d
+    assets:
+    - Assets/Scenes/texiao/Materials/Light_7.mat
+  - name: 3e1e101b94017340576d0847ecff3354.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_glow_00180_0001_M.mat
+  - name: 0f11a253f2e12e797d58f3f96e369ee0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_fazhen_00050_0001_A.png
+  - name: 33747cb0c29c91555f80d816ce27528a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Animator/Common_FB_chuansongdian/fazhen.anim
+  - name: 4c92be70d9decdeaa149e10cb2cf2c06.unity3d
+    assets:
+    - Assets/Scenes/texiao/Textures/Glow_3.png
   - name: 3718f55f5f74ea4d39cc3aab34ec0445.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_lizi_00125_3.mat
   - name: 88ab05f6ee59afebbc2fc27dd9e2cfe6.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_lizi_00125_A.png
+  - name: ed9a0eae26d8d94fafca977948e1ff97.unity3d
+    assets:
+    - Assets/Scenes/texiao/Materials/Circle_11.mat
   - name: f8bf092a22ec74cfe8972a0d680fa6cb.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Import/Plane_xuliehuo_2.FBX
@@ -12753,15 +12798,18 @@ MonoBehaviour:
   - name: 5bddbcc86016877b0c62ed5e1043b421.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TJTX_Textures_2695_4.mat
+  - name: c41982364bf3467055889ff4a9cc111c.unity3d
+    assets:
+    - Assets/Scenes/texiao/Materials/Light_1.mat
+  - name: bbc871ad0dc5e7bed03aebf7f64ab62f.unity3d
+    assets:
+    - Assets/Scenes/texiao/Textures/Circle_11.png
   - name: 6fb5ddcad57a6a64da44092d0b31d918.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_BRD_Lakesi_sj_mx03_002_A.png
   - name: 553191ab2e7b4d25d4820e3373da3751.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_BRD_Lakesi_sj_mx03_002.mat
-  - name: 50cf2c9ffc17406c1118d246b4202bea.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_glow_xin_guangyun_00001_C.png
   - name: ab95fdcfc1a0d07cedd6ff3065e61f93.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TJTX_Textures_2695_4_A.png
@@ -13535,6 +13583,9 @@ MonoBehaviour:
   - name: 75e15b5d4555517ebb52c48fb403da6d.unity3d
     assets:
     - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Textures/Waves21.png
+  - name: 79d70b7036e8ddc820a025f120839dd8.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Shader45-2.mat
   - name: 7c2c0f071148a74b00b76a855a43e95d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/ShurikenMagic/Models/tubeTop.FBX
@@ -13922,9 +13973,6 @@ MonoBehaviour:
   - name: d017e93d9d042906bf5b449f76397902.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Material/yewai_dixing_01.mat
-  - name: db2df879d62600523da3ced323c51af5.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Model/YeWai/YeWai_2/model/Materials/ZC_zhenghe03.tga
   - name: 71d8303e17ee7a09853dbbaa4c8059bf.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_jianshi_01.FBX
@@ -13940,6 +13988,9 @@ MonoBehaviour:
   - name: 5f777e51d642cd80ae243f1745cc4704.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_CiGuan/Props_B_1.jpg
+  - name: db2df879d62600523da3ced323c51af5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Model/YeWai/YeWai_2/model/Materials/ZC_zhenghe03.tga
   - name: 1729aa5e512aad185eb2f6481c2a5255.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/dot.mat
