@@ -8,6 +8,9 @@ namespace ET
         public int SkillId;             //魔能房间台子技能
         public int PlayerLevel;
         public string AttributeParams;
+        public int FubenDifficulty; //副本难度
+        public int Camp;            //阵营
+        public long Master_ID;
     }
 
     public static class FubenDifficulty

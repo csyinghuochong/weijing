@@ -65,11 +65,18 @@ namespace ET
 						{
 							int skillId = energySkills[RandomHelper.RandomNumber(0, energySkills.Count)];
 							energySkills.Remove(skillId);
-							UnitFactory.CreateMonster(scene, vector3, fubenDifficulty,  monsterConfig.Id,new CreateMonsterInfo() { SkillId = skillId});
+							UnitFactory.CreateMonster(scene, monsterConfig.Id, vector3, new CreateMonsterInfo() 
+							{ 
+								SkillId = skillId, FubenDifficulty = fubenDifficulty, Camp = 2,
+							});
 						}
 						else
 						{
-							UnitFactory.CreateMonster(scene, vector3, fubenDifficulty, monsterConfig.Id,new CreateMonsterInfo());
+							UnitFactory.CreateMonster(scene, monsterConfig.Id, vector3,  new CreateMonsterInfo()
+							{
+								FubenDifficulty = fubenDifficulty,
+								Camp = 2,
+							});
 						}
 					}
 				}
@@ -87,8 +94,11 @@ namespace ET
 						Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
 						Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
 						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
-						
-						UnitFactory.CreateMonster(scene, vector3, fubenDifficulty,  int.Parse(monsterid[0]), new CreateMonsterInfo());
+						UnitFactory.CreateMonster(scene, int.Parse(monsterid[0]), vector3, new CreateMonsterInfo()
+						{ 
+							FubenDifficulty = fubenDifficulty,
+							Camp = 2,
+						});
 					}
 				}
 				if (mtype[0] == "4")
@@ -108,7 +118,9 @@ namespace ET
 						Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
 						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
 
-						UnitFactory.CreateMonster(scene, vector3, fubenDifficulty, int.Parse(monsterid[0]), new CreateMonsterInfo() {  PlayerLevel = playerLv, AttributeParams = mondels[4] + ";" + mondels[5] });
+						UnitFactory.CreateMonster(scene, int.Parse(monsterid[0]), vector3,  new CreateMonsterInfo() {
+							PlayerLevel = playerLv, AttributeParams = mondels[4] + ";" + mondels[5] , FubenDifficulty = fubenDifficulty, Camp = 2,
+						});
 					}
 				}
 			}

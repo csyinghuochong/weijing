@@ -55,15 +55,15 @@ namespace ET
                 return;
             }
             NumericComponent numericComponent = self.MainUnit.GetComponent<NumericComponent>();
-            int killNumber = numericComponent.GetAsInt(NumericType.TiLi_Kill_Number);
+            int killNumber = numericComponent.GetAsInt(NumericType.TiLiKillNumber);
             if (killNumber >= 4)
             {
-                numericComponent.ApplyValue(NumericType.TiLi_Kill_Number, 0, false);
+                numericComponent.ApplyValue(NumericType.TiLiKillNumber, 0, false);
                 self.MainUnit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.PiLao, "-1", true).Coroutine();
             }
             else
             {
-                numericComponent.ApplyValue(NumericType.TiLi_Kill_Number, killNumber+1, false);
+                numericComponent.ApplyValue(NumericType.TiLiKillNumber, killNumber+1, false);
             }
         }
 
@@ -103,9 +103,9 @@ namespace ET
 
         public static void  CreateMonsters(this LocalDungeonComponent self, RefreshMonster refreshMonster)
         {
-            UnitFactory.CreateMonster(self.GetParent<Scene>(), 
+            UnitFactory.CreateMonster(self.GetParent<Scene>(), refreshMonster.MonsterId,
                 new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ),
-                FubenDifficulty.Normal, refreshMonster.MonsterId, new CreateMonsterInfo());
+                new CreateMonsterInfo() { Camp = 2, FubenDifficulty = FubenDifficulty.Normal });
         }
 
         public static void OnCleanMonsterCD(this LocalDungeonComponent self)

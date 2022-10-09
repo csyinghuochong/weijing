@@ -34,7 +34,7 @@ namespace ET
             }
         }
 
-        public static Unit CreateMonster(Scene scene, Vector3 vector3, int fubenDifficulty, int monsterID, CreateMonsterInfo createMonsterInfo)
+        public static Unit CreateMonster(Scene scene, int monsterID, Vector3 vector3, CreateMonsterInfo createMonsterInfo)
         {
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterID);
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
@@ -43,7 +43,7 @@ namespace ET
             unit.AddComponent<HeroDataComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unitInfoComponent.Type = UnitType.Monster;
-            unitInfoComponent.RoleCamp = 2;
+            unitInfoComponent.RoleCamp = createMonsterInfo.Camp;
             unitInfoComponent.UnitCondigID = monsterConfig.Id;
             unitInfoComponent.EnergySkillId = createMonsterInfo.SkillId;
             unit.TestType = UnitType.Monster;
@@ -56,6 +56,18 @@ namespace ET
             //55 宝箱
             if (monsterConfig.AI != 0)
             {
+                if (createMonsterInfo.Master_ID > 0)
+                {
+                    unit.GetComponent<HeroDataComponent>().InitMonsterInfo_Summon2(monsterConfig, createMonsterInfo);
+                }
+                else
+                {
+                    unit.GetComponent<HeroDataComponent>().InitMonsterInfo(monsterConfig, createMonsterInfo);
+                }
+            }
+
+            if (monsterConfig.AI != 0)
+            {
                 unit.AddComponent<ObjectWait>();
                 unit.AddComponent<MoveComponent>();
                 unit.AddComponent<SkillManagerComponent>();
@@ -64,12 +76,12 @@ namespace ET
                 //添加其他组件
                 unit.AddComponent<StateComponent>();         //添加状态组件
                 unit.AddComponent<BuffManagerComponent>();      //添加Buff管理器
-                unit.GetComponent<HeroDataComponent>().InitMonsterInfo(monsterConfig, fubenDifficulty, createMonsterInfo);
                 unit.GetComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
                 unit.GetComponent<SkillPassiveComponent>().Activeted();
 
-                //AI行为树序号
-                AIComponent aIComponent = unit.AddComponent<AIComponent, int>(monsterConfig.AI);
+                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                numericComponent.Set(NumericType.Master_ID, createMonsterInfo.Master_ID);
+                AIComponent aIComponent = unit.AddComponent<AIComponent, int>(createMonsterInfo.Master_ID > 0 ? 2 : monsterConfig.AI);
                 switch (mapComponent.SceneTypeEnum)
                 {
                     case (int)SceneTypeEnum.PetDungeon:

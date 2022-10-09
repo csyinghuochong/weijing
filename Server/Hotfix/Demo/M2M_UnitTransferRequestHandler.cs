@@ -95,7 +95,7 @@ namespace ET
 						}
 						break;
 					case (int)SceneTypeEnum.LocalDungeon:
-						unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Task_DungeonID, request.ChapterId, false);
+						unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TaskDungeonID, request.ChapterId, false);
 						DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(request.ChapterId);
 						scene.GetComponent<MapComponent>().NavMeshId = dungeonConfig.MapID.ToString();
 						unit.ResetPostion();

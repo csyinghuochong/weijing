@@ -18,7 +18,7 @@ namespace ET
             NumericType.Now_Weapon,
             NumericType.Now_Damage,
             NumericType.Now_MaxHp,
-            NumericType.Pet_Skin,
+            NumericType.PetSkin,
             NumericType.UnionLeader,
             NumericType.BossInCombat,
         };

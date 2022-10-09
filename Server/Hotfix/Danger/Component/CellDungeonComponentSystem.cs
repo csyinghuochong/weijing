@@ -338,7 +338,11 @@ namespace ET
 
                     string[] position = seneItems[0].Split(",");
                     Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-                    UnitFactory.CreateMonster(self.DomainScene(), vector3, self.FubenDifficulty, int.Parse(seneItems[1]), new CreateMonsterInfo());
+                    UnitFactory.CreateMonster(self.DomainScene(), int.Parse(seneItems[1]), vector3,  new CreateMonsterInfo()
+                    { 
+                        FubenDifficulty = self.FubenDifficulty,
+                        Camp = 2
+                    });
                 }
             }
 
@@ -356,7 +360,11 @@ namespace ET
                     }
                     string[] position = monsterInfo[1].Split(",");
                     Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-                    UnitFactory.CreateMonster(self.DomainScene(), vector3,  self.FubenDifficulty,  int.Parse(monsterInfo[2]), new CreateMonsterInfo());
+                    UnitFactory.CreateMonster(self.DomainScene(), int.Parse(monsterInfo[2]), vector3,  new CreateMonsterInfo()
+                    { 
+                        FubenDifficulty = self.FubenDifficulty,
+                        Camp = 2,
+                    });
                 }
             }
 

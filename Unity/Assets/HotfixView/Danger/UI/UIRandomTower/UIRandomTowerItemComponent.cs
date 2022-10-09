@@ -50,7 +50,7 @@ namespace ET
                 return;
             }
             int cengNum = 0;
-            int randomTowerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Random_Tower_ID);
+            int randomTowerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerID);
             if (randomTowerId != 0)
             {
                 cengNum = RandomTowerConfigCategory.Instance.Get(randomTowerId).CengNum;

@@ -13,6 +13,15 @@ namespace ET
         }
     }
 
+    [ObjectSystem]
+    public class UnitInfoComponentDestroySystem : DestroySystem<UnitInfoComponent>
+    {
+        public override void Destroy(UnitInfoComponent self)
+        {
+            self.ZhaohuanIds.Clear();
+        }
+    }
+
     public static class UnitInfoComponentSystem
     {
 

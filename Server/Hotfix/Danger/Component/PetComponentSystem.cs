@@ -345,7 +345,7 @@ namespace ET
             rolePetInfo.Ks.Add((int)NumericType.Now_MaxAdf);
             rolePetInfo.Vs.Add(adf_Now);
 
-            rolePetInfo.Ks.Add((int)NumericType.Pet_Skin);
+            rolePetInfo.Ks.Add((int)NumericType.PetSkin);
             rolePetInfo.Vs.Add(rolePetInfo.SkinId);
 
             rolePetInfo.Ks.Add((int)NumericType.Now_Cri);
