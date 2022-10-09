@@ -48,16 +48,6 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
-        public static void CheckHuiXue(this SkillPassiveComponent self)
-        {
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            if (numericComponent.GetAsLong((int)NumericType.Now_Hp) >= numericComponent.GetAsLong((int)NumericType.Now_MaxHp))
-                return;
-
-            self.GetParent<Unit>().GetComponent<NumericComponent>().ApplyChange(null, NumericType.Now_Hp,
-                (long)(numericComponent.GetAsLong((int)NumericType.Now_MaxHp) * 0.1f), 0, true);
-        }
-
         public static void Activeted(this SkillPassiveComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
@@ -71,13 +61,27 @@ namespace ET
             }
         }
 
-        public static void Check(this SkillPassiveComponent self)
+        public static void CheckHuiXue(this SkillPassiveComponent self)
         {
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            if (numericComponent.GetAsLong((int)NumericType.Now_Hp) >= numericComponent.GetAsLong((int)NumericType.Now_MaxHp))
+                return;
+
             UnitInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UnitInfoComponent>();
             if (unitInfoComponent.Type == UnitType.Pet)
             {
-                self.CheckHuiXue();
+                numericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(numericComponent.GetAsLong((int)NumericType.Now_MaxHp) * 0.1f), 0, true);
             }
+            float now_SecHpAddPro = numericComponent.GetAsFloat(NumericType.Now_SecHpAddPro);
+            if (now_SecHpAddPro > 0f)
+            {
+                numericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(numericComponent.GetAsLong((int)NumericType.Now_MaxHp) * now_SecHpAddPro), 0, true);
+            }
+        }
+
+        public static void Check(this SkillPassiveComponent self)
+        {
+            self.CheckHuiXue();
 
             self.OnTrigegerPassiveSkill( SkillPassiveTypeEnum.XueLiang_2 );
         }
