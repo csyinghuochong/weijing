@@ -42,12 +42,19 @@ namespace ET
             int PointTiZhi = numericComponent.GetAsInt(NumericType.PointTiZhi);
             int PointNaiLi = numericComponent.GetAsInt(NumericType.PointNaiLi);
             int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
-            int PointLeftNumber = numericComponent.GetAsInt(NumericType.PointRemain);
-
-            if (PointLiLiang == 0 && PointZhiLi == 0 && PointTiZhi == 0 && PointNaiLi == 0
-                && PointMinJie == 0 && PointLeftNumber == 0)
+            int PointLeftNumber = (userInfoComponent.UserInfo.Lv - 1) * 5 - PointLiLiang - PointZhiLi - PointTiZhi - PointNaiLi - PointMinJie;
+            if (PointLeftNumber < 0)
             {
-                numericComponent.Set(NumericType.PointRemain, (userInfoComponent.UserInfo.Lv-1) * 5);
+                numericComponent.Set(NumericType.PointRemain, (userInfoComponent.UserInfo.Lv - 1) * 5);
+                numericComponent.Set(NumericType.PointLiLiang, 0);
+                numericComponent.Set(NumericType.PointZhiLi, 0);
+                numericComponent.Set(NumericType.PointTiZhi, 0);
+                numericComponent.Set(NumericType.PointNaiLi, 0);
+                numericComponent.Set(NumericType.PointMinJie, 0);
+            }
+            else
+            {
+                numericComponent.Set(NumericType.PointRemain, PointLeftNumber);
             }
         }
 

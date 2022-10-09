@@ -70,7 +70,7 @@ namespace ET
         {
             CreateRoleListInfo roleList = new CreateRoleListInfo();
 
-            roleList.XuHaoID = xuhaoID;
+            roleList.XuHaoID = userInfo.OccTwo;
             roleList.UserID = userID;
             roleList.PlayerName = userInfo.Name;
             roleList.PlayerLv = userInfo.Lv;
