@@ -10,7 +10,7 @@ namespace ET
 		{
 			Vector3 target = new Vector3(message.X, message.Y, message.Z);
 
-			unit.GetComponent<SkillManagerComponent>().InterruptSkill();
+			unit.GetComponent<SkillManagerComponent>().InterruptSkill(0);
 			unit.FindPathMoveToAsync(target, null, !message.YaoGan).Coroutine();
 			
 			await ETTask.CompletedTask;

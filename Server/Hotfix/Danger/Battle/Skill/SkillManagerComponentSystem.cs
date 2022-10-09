@@ -223,7 +223,15 @@ namespace ET
                     }
                     break;
             }
-
+            //如果是闪现技能，并且目标点不能到达
+            if (skillConfig.GameObjectName == "Skill_ShanXian_1" && skillInfos.Count > 0)
+            {
+                Vector3 vector3 = new Vector3(skillInfos[0].PosX, skillInfos[0].PosY, skillInfos[0].PosZ);
+                Vector3 target3 = self.DomainScene().GetComponent<MapComponent>().GetCanReachPath(unit.Position, vector3);
+                skillInfos[0].PosX = target3.x;
+                skillInfos[0].PosY = target3.y;
+                skillInfos[0].PosZ = target3.z;
+            }
             return skillInfos;
         }
 
@@ -238,24 +246,63 @@ namespace ET
             }
         }
 
-        public static (int, long) OnUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd)
+        public static async ETTask OnContinueSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd)
+        {
+            long instanceid = self.InstanceId;
+            await TimerComponent.Instance.WaitAsync(1000);
+            if (instanceid != self.InstanceId)
+            {
+                return;
+            }
+            self.OnUseSkill(skillcmd, false);
+        }
+
+        public static void InterruptSkill(this SkillManagerComponent self, int skillId)
+        {
+            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            {
+                SkillHandler skillHandler = self.Skills[i];
+                if (skillHandler.SkillConf.SkillSingTime == 0)
+                {
+                    continue;
+                }
+                skillHandler.SetSkillState(SkillState.Finished);
+                self.GetParent<Unit>().GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.Interrupt, skillHandler.SkillConf.Id.ToString());
+            }
+
+            //移除互斥技能
+            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            {
+                if (skillId == self.FangunSkillId && skillId == self.Skills[i].SkillConf.Id)
+                {
+                    ObjectPool.Instance.Recycle(self.Skills[i]);
+                    self.Skills[i].OnFinished();
+                    self.Skills.RemoveAt(i);
+                }
+            }
+        }
+
+        public static (int, long) OnUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd, bool check = true)
         {
             Unit unit = self.GetParent<Unit>();
 
             //判断技能是否可以释放
             int errorCode = self.IfCanUseSkill(skillcmd.SkillID);
-            if (errorCode != ErrorCore.ERR_Success)
+            if (check && errorCode != ErrorCore.ERR_Success)
             {
                 return (errorCode, 0);
             }
-            self.InterruptSkill();
+            if (check && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro) )
+            {
+                self.OnContinueSkill(skillcmd).Coroutine();
+            }
 
+            self.InterruptSkill(skillcmd.SkillID);
             //执行技能逻辑
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             ItemEquipType EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;
             int weaponSkill = SkillHelp.GetWeaponSkillID(skillcmd.SkillID, EquipType);
-            //Log.ILog.Info("weaponSkill = " + weaponSkill);
             SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
             int tianfuSkill = skillSetComponent != null ? skillSetComponent.GetReplaceSkillId(skillcmd.SkillID) : 0;
             if (tianfuSkill != 0)
@@ -270,33 +317,12 @@ namespace ET
                 return (ErrorCore.ERR_UseSkillError, 0);
             }
 
-            //如果是闪现技能，并且目标点不能到达
-            if (skillConfig.GameObjectName == "Skill_ShanXian_1")
-            {
-                Vector3 vector3 = new Vector3(skillList[0].PosX, skillList[0].PosY, skillList[0].PosZ);
-                Vector3 target = self.DomainScene().GetComponent<MapComponent>().GetCanReachPath(unit.Position, vector3);
-                skillList[0].PosX = target.x;
-                skillList[0].PosY = target.y;
-                skillList[0].PosZ = target.z;
-            }
-
             M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill() {
                 UnitId = unit.Id,
                 SkillID = skillcmd.SkillID,
                 TargetAngle = skillcmd.TargetAngle,
                 SkillInfos = skillList
             };
-
-            //移除互斥技能
-            for (int i = self.Skills.Count - 1; i >= 0; i--)
-            {
-                if (skillcmd.SkillID == self.FangunSkillId && self.Skills[i].SkillConf.Id == skillcmd.SkillID)
-                {
-                    ObjectPool.Instance.Recycle(self.Skills[i]);
-                    self.Skills[i].OnFinished();
-                    self.Skills.RemoveAt(i);
-                }
-            }
             MessageHelper.Broadcast(unit, useSkill);
             for (int i = 0; i < skillList.Count; i++)
             {
@@ -424,20 +450,6 @@ namespace ET
             SkillHandler skillHandler = (SkillHandler)ObjectPool.Instance.Fetch(SkillDispatcherComponent.Instance.SkillTypes[skillConfig.GameObjectName]);
             skillHandler.OnInit(skillcmd, from);
             return skillHandler;
-        }
-
-        public static void InterruptSkill(this SkillManagerComponent self)
-        {
-            for (int i = self.Skills.Count - 1; i >= 0; i--)
-            {
-                SkillHandler skillHandler = self.Skills[i];
-                if (skillHandler.SkillConf.SkillSingTime == 0)
-                {
-                    continue;
-                }
-                skillHandler.SetSkillState(SkillState.Finished);
-                self.GetParent<Unit>().GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.Interrupt, skillHandler.SkillConf.Id.ToString());
-            }
         }
 
         public static void Check(this SkillManagerComponent self)
