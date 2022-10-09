@@ -325,14 +325,22 @@ namespace ET
 
         public static SkillCDList UpdateSkillCD(this SkillManagerComponent self, int skillId, int weaponSkill)
         {
+            Unit unit = self.GetParent<Unit>();
+            SkillCDList skillcd = null;
+            float nocdPrp = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SkillNoCDPro);
+            if (nocdPrp > RandomHelper.RandFloat01())
+            {
+                return skillcd;
+            }
+
             float reduceCD = 0f;
-            SkillSetComponent skillSetComponent = self.GetParent<Unit>().GetComponent<SkillSetComponent>();
+            SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
             Dictionary<int, float> keyValuePairs = skillSetComponent != null ? skillSetComponent.GetSkillPropertyAdd(weaponSkill) : null;
             if (keyValuePairs != null)
+            {
                 keyValuePairs.TryGetValue((int)SkillAttributeEnum.ReduceSkillCD, out reduceCD);
-
-            SkillCDList skillcd = null;
+            }
             self.SkillCDs.TryGetValue(skillId, out skillcd);
             if (skillcd == null)
             {
