@@ -56,12 +56,6 @@ namespace ET
                     //创建怪物
                     Unit unit = UnitFactory.CreateMonster(theUnitFrom.DomainScene(), initPosi, fubenDifficulty, createMonsterID, new CreateMonsterInfo());
 
-                    // 广播创建的木桩unit
-                    //M2C_CreateSpilings createSpilings = new M2C_CreateSpilings();
-                    //SpilingInfo spilingInfo = UnitHelper.CreateSpilingInfo(unit);
-                    //createSpilings.Spilings.Add(spilingInfo);
-                    //MessageHelper.Broadcast(unit, createSpilings);
-
                     theUnitFrom.GetComponent<UnitInfoComponent>().ZhaohuanIds.Add(unit.Id);
                 }
             }
