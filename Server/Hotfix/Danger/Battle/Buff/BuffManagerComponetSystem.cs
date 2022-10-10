@@ -83,6 +83,11 @@ namespace ET
             buffHandler.OnInit(buffData, from, to, skillHandler);
             self.m_Buffs.Add(buffHandler);     //添加至buff列表中
 
+            self.AddTimer();
+        }
+
+        public static void AddTimer(this BuffManagerComponent self)
+        {
             if (self.Timer == 0)
             {
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.BuffTimer, self);
@@ -136,10 +141,7 @@ namespace ET
                 buffHandler.OnInit(buffData, from, unit, skillHandler);
                 self.m_Buffs.Add(buffHandler);     //添加至buff列表中
 
-                if (self.Timer == 0)
-                {
-                    self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.BuffTimer, self);
-                }
+                self.AddTimer();
             }
 
             //发送改变属性的相关消息
