@@ -825,10 +825,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff906ecbbd0163f4094f8fa4e305d39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Development: 1
-  EditorMode: 1
-  OueNetMode: 0
-  BigVersion: 8
+  Development: 0
+  EditorMode: 0
+  OueNetMode: 1
+  BigVersion: 9
   Updater: {fileID: 2018631435}
   FenXiang_Title: 
   FenXiang_Text: 
@@ -841,7 +841,7 @@ MonoBehaviour:
   QQAppID: 1105893765
   javaClassStr: com.example.alinewsdk.AliSDKActivity
   javaActiveStr: currentActivity
-  CodeMode: 1
+  CodeMode: 4
   VersionMode: 1
 --- !u!4 &575235020
 Transform:

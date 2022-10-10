@@ -21,7 +21,7 @@ namespace ET
 		public bool Development;
 		public bool EditorMode;
 		public bool OueNetMode;
-		public int BigVersion = 8;
+		public int BigVersion = 9;
 		public GameObject Updater;
 		public Action<bool> OnShareHandler;
 		public Action<string> OnAuthorizeHandler;

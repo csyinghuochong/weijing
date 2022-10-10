@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.33f1c2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Hotfix\Demo\Scene\SceneChangeHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\MailComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\CellDungeonComponentSystem.cs" />
@@ -111,6 +114,7 @@
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_Other_ChongJi_1.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_ShanXian_1.cs" />
     <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuffBullet_2.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Skill\Skill_Com_Summon_2.cs" />
     <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuff_JiTui.cs" />
     <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuff_Base.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\ActivityComponentSystem.cs" />
@@ -126,6 +130,7 @@
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamUpdateHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\ReferencePool\ReferencePool.ReferenceCollection.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_FriendApplyHandler.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuffQuSan.cs" />
     <Compile Include="Assets\Hotfix\Module\AI\AIDispatcherComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_RoleDataUpdateHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\ReferencePool\ReferencePool.cs" />
@@ -191,8 +196,6 @@
     <Compile Include="Assets\Hotfix\Demo\Login\EnterMapHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericWatcher_Update.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetKcpComponentSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Skill\Skill_Com_Summon_2.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuffQuSan.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -409,6 +412,9 @@
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -435,6 +441,12 @@
     </Reference>
     <Reference Include="DOTweenEditor">
       <HintPath>Assets\Mono\ThirdRes\GUI Pro Kit Fantasy RPG\SampleProject\Extensions\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
