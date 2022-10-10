@@ -31,12 +31,16 @@ namespace ET
         public void Fight(Unit attackUnit, Unit defendUnit, SkillHandler skillHandler)
         {
             SkillConfig skillconfig = skillHandler.SkillConf;
-
             //技能伤害为0则不进行伤害计算
             if (skillconfig.ActDamge == 0 && skillconfig.DamgeValue == 0) {
                 return;
             }
 
+            //已死亡
+            if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
+            {
+                return;
+            }
             //无敌buff，不受伤害
             if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDi))
             {
@@ -103,7 +107,7 @@ namespace ET
                 //怪物
                 case UnitType.Monster:
                     defendUnit.GetComponent<StateComponent>().BeAttacking(attackUnit);
-                    defendUnit.GetComponent<AIComponent>().BeAttack(attackUnit);
+                    defendUnit.GetComponent<AIComponent>()?.BeAttack(attackUnit);
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(defendUnit.GetComponent<UnitInfoComponent>().UnitCondigID);
                     defendUnitLv = monsterCof.Lv;
                     if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
@@ -812,8 +816,13 @@ namespace ET
                         AddUpdateProDicList(mEquipCon.AddPropreListType[y], (long)mEquipCon.AddPropreListValue[y], UpdateProDicList);
                     }
                 }
-                
+
                 //获取宝石属性
+                if (string.IsNullOrEmpty(equipList[i].GemIDNew))
+                {
+                    equipList[i].GemIDNew = "0_0_0_0";
+                    Log.Debug($"GemIDNew==null  unit.Id: {unit.Id} BagInfoID:{equipList[i].BagInfoID}");
+                }
                 string[] gemList = equipList[i].GemIDNew.Split('_');
                 for (int z = 0; z < gemList.Length; z++) {
 

@@ -50,12 +50,12 @@ namespace ET
                 }
                 string[] gemIdList = equipInfo.GemIDNew.Split('_');
                 gemIdList[gemIndex] = useBagInfo.ItemID.ToString();
-                equipInfo.GemIDNew = "";
+                string gemIDNew = "";
                 for (int i = 0; i < gemIdList.Length; i++)
                 {
-                    equipInfo.GemIDNew = equipInfo.GemIDNew + gemIdList[i] + "_";
+                    gemIDNew = gemIDNew + gemIdList[i] + "_";
                 }
-                equipInfo.GemIDNew = equipInfo.GemIDNew.Substring(0, equipInfo.GemIDNew.Length - 1);
+                equipInfo.GemIDNew = gemIDNew.Substring(0, gemIDNew.Length - 1);
 
                 m2c_bagUpdate.BagInfoUpdate.Add(equipInfo);
                 //消耗宝石
@@ -70,12 +70,12 @@ namespace ET
                 string[] gemIdList = useBagInfo.GemIDNew.Split('_');
                 int gemItemId = int.Parse(gemIdList[gemIndex]);
                 gemIdList[gemIndex] = "0";
-                useBagInfo.GemIDNew = "";
+                string gemIDNew = "";
                 for (int i = 0; i < gemIdList.Length; i++)
                 {
-                    useBagInfo.GemIDNew = useBagInfo.GemIDNew + gemIdList[i] + "_";
+                    gemIDNew = gemIDNew + gemIdList[i] + "_";
                 }
-                useBagInfo.GemIDNew = useBagInfo.GemIDNew.Substring(0, useBagInfo.GemIDNew.Length - 1);
+                useBagInfo.GemIDNew = gemIDNew.Substring(0, gemIDNew.Length - 1);
                 m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
 
                 //回收宝石

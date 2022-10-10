@@ -41,8 +41,9 @@ namespace ET
 
         public void Awake()
         {
-            root = new GameObject("SoundDatas").transform;
-            GameObject.DontDestroyOnLoad(root.gameObject);
+            root = GlobalComponent.Instance.Pool;
+            m_soundclips.Clear();
+            m_musciclips.Clear();
         }
 
         public  void InitData(List<KeyValuePair> gameSettingInfos) 
@@ -80,8 +81,7 @@ namespace ET
             if (gameObject == null)
             {
                 gameObject = new GameObject(clipName);
-                await ETTask.CompletedTask;
-                AudioClip audioClip = ResourcesComponent.Instance.LoadAsset<AudioClip>(ABPathHelper.GetAudioPath(clipName));
+                AudioClip audioClip = await ResourcesComponent.Instance.LoadAssetAsync<AudioClip>(ABPathHelper.GetAudioPath(clipName));
                 AudioSource audio = gameObject.AddComponent<AudioSource>();
                 gameObject.transform.SetParent(root);
                 m_soundclips.Add(gameObject);
@@ -113,8 +113,7 @@ namespace ET
                 m_musciclips[i].Dispose();
             }
             m_musciclips.Clear();
-            await ETTask.CompletedTask;
-            GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetSoundPath(clipName));
+            GameObject bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(ABPathHelper.GetSoundPath(clipName));
             GameObject prefab = UnityEngine.Object.Instantiate(bundleGameObject);
             SoundData soundData = prefab.GetComponent<SoundData>();
             prefab.transform.SetParent(root);
@@ -138,7 +137,8 @@ namespace ET
         /// </summary>
         public void DisposeAll()
         {
-            
+            m_soundclips.Clear();
+            m_musciclips.Clear();
         }
     }
 }

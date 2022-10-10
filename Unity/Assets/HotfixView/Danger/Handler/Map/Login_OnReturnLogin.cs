@@ -11,16 +11,17 @@ namespace ET
             RunAsync(cls as EventType.ReturnLogin).Coroutine();
         }
 
-        private async ETTask RunAsync2(EventType.ReturnLogin args)
+        private  void RunAsync2(EventType.ReturnLogin args)
         {
             Camera camera = UIComponent.Instance.MainCamera.gameObject.GetComponent<Camera>();
             camera.GetComponent<MyCamera_1>().enabled = false;
 
-            await Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.InitScene, 1);
-            CodeLoader.Instance.OnApplicationQuit();
-            CodeLoader.Instance.Dispose();
             GameObjectPoolComponent.Instance.DisposeAll();
             GameObject.Destroy(GameObject.Find("Global"));
+
+            Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.InitScene, 1).Coroutine();
+            CodeLoader.Instance.OnApplicationQuit();    //Game.Close
+            CodeLoader.Instance.Dispose();              //this.monoTypes.Clear()
             //Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
             //EventType.AppStartInitFinish.Instance.ZoneScene = zoneScene;
             //Game.EventSystem.PublishClass(EventType.AppStartInitFinish.Instance);
@@ -45,11 +46,11 @@ namespace ET
                 {
                     return;
                 }
-                RunAsync2(args).Coroutine();
+                RunAsync2(args);
             }
             else
             {
-                RunAsync2(args).Coroutine();
+                RunAsync2(args);
             }
 
         }

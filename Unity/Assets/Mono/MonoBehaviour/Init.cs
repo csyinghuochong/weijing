@@ -98,7 +98,10 @@ namespace ET
 
 			LitJson.UnityTypeBindings.Register();
 
+			ETTask.ExceptionHandler -= Log.Error;
 			ETTask.ExceptionHandler += Log.Error;
+			Application.logMessageReceived -= OnLogMessageReceived;
+			Application.logMessageReceived += OnLogMessageReceived;
 
 			Log.ILog = new UnityLogger();
 
@@ -123,18 +126,18 @@ namespace ET
 			ssdk.getFriendsHandler = OnGetFriendsResultHandler;
 			ssdk.followFriendHandler = OnFollowFriendResultHandler;
 			mobsdk = gameObject.GetComponent<MobSDK>();
-			
-			Application.logMessageReceived += (string condition, string stackTrace, LogType type) =>
-			{
-				if (type == LogType.Error || type == LogType.Assert
-					|| type == LogType.Exception)
-				{
-					UnityEngine.Debug.LogError(stackTrace);
-				}
-			};
 
 			///////需要在用户点击的时候调用
 			SetIsPermissionGranted();
+		}
+
+		public void OnLogMessageReceived(string condition, string stackTrace, LogType type)
+		{
+			if (type == LogType.Error || type == LogType.Assert
+					|| type == LogType.Exception)
+			{
+				UnityEngine.Debug.LogError(stackTrace);
+			}
 		}
 
 		public void SetIsPermissionGranted()
