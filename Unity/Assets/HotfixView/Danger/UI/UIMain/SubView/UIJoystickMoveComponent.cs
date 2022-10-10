@@ -55,8 +55,6 @@ namespace ET
     {
         public static void PointerDown(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
-            if (!UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<StateComponent>().CanMove())
-                return;
             RectTransform canvas = self.YaoGanDi.transform.parent.GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out self.OldPoint);
@@ -73,7 +71,7 @@ namespace ET
             uI.GetComponent<UIMainComponent>().OnMoveStart();
             Scene zonescene = self.ZoneScene();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit == null || unit.IsDisposed || !unit.GetComponent<StateComponent>().CanMove())
+            if (unit == null || unit.IsDisposed)
             {
                 return;
             }
