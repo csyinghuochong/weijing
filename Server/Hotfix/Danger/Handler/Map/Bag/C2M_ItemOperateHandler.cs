@@ -161,7 +161,7 @@ namespace ET
                             case 9:
                                 rewardItems = new List<RewardItem>();
                                 string[] rewardInfos = itemCof.ItemUsePar.Split(';');
-                                DropHelper.DropIDToDropItem_2(int.Parse(rewardInfos[1]), rewardItems);
+                                DropHelper.DropIDToDropItem(int.Parse(rewardInfos[1]), rewardItems);
                                 unit.GetComponent<BagComponent>().OnAddItemData(rewardItems,0, $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}");
                                 break;
                             //冷却时间清空卷轴"
