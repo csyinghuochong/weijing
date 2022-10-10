@@ -18,6 +18,7 @@ namespace ET
         public const int FsmSinging = 8;
         public const int FsmOpenBox = 9;
         public const int FsmHui = 10;
+        public const int FsmHorse = 11;
     }
 
     public class FsmStateUI : MonoBehaviour
@@ -46,7 +47,7 @@ namespace ET
             switch (this.CurrentFsm)
             {
                 case FsmStateEnum.FsmRunState:
-                    if (TimeHelper.ClientNow()>= this.SkillMoveTime)
+                    if (TimeHelper.ClientNow()>= this.SkillMoveTime && this.SkillMoveTime!=0)
                     {
                         this.SetRunState();
                     }
@@ -152,6 +153,11 @@ namespace ET
                 case FsmStateEnum.FsmSkillState:
                     this.OnEnterFsmSkillState(parasmss);
                     break;
+                case FsmStateEnum.FsmHorse:
+                    this.Animator.SetBool("Idle", false);
+                    this.Animator.SetBool("Run", false);
+                    this.Animator.Play("Horse");
+                    break;
                 default:
                     break;
             }
@@ -189,6 +195,9 @@ namespace ET
         {
             this.Animator.SetBool("Run", false);
             this.Animator.SetBool("Idle", true);
+            this.Animator.Play("Idle");
+
+            Log.ILog.Debug("SetIdleState");
         }
 
         public void SetRunState()
@@ -197,6 +206,8 @@ namespace ET
             this.Animator.SetBool("Idle", false);
             this.Animator.SetBool("Run", true);
             this.Animator.Play("Run");
+
+            Log.ILog.Debug("SetRunState");
         }
 
         public void OnEnterFsmComboState(string paramss = "")

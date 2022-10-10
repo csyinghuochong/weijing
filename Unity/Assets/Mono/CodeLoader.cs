@@ -92,6 +92,9 @@ namespace ET
 
 		public void Dispose()
 		{
+			this.monoTypes.Clear();
+			this.hotfixTypes.Clear();
+			this.hotFixAssemblies.Clear();
 			this.appDomain?.Dispose();
 		}
 

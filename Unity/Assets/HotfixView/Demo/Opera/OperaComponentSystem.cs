@@ -73,7 +73,7 @@ namespace ET
             //}
             if (keyCode == 257 && self.EditorMode)
             {
-                MapHelper.SendUseSkill( self.ZoneScene(), 61022201, 0, 0 ,0 ).Coroutine();
+                MapHelper.SendUseSkill( self.ZoneScene(), 62023201, 0, 0 ,0 ).Coroutine();                //61022201
             }
             if (Time.time - self.LastSendTime < 0.2f)
             {
@@ -254,11 +254,10 @@ namespace ET
 
         public static async ETTask OpenWatchUI(this OperaComponent self, long unitid)
         {
-            //if (unitid == self.ZoneScene().GetComponent<AccountInfoComponent>().MyId)
-            //{
-            //    return;
-            //}
-
+            if (unitid == self.ZoneScene().GetComponent<AccountInfoComponent>().MyId)
+            {
+                return;
+            }
             Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
             if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Stall) == 1)
             {

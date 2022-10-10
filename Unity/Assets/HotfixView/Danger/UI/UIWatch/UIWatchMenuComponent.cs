@@ -260,10 +260,15 @@ namespace ET
             {
                 self.PositionSet.transform.GetChild(i).gameObject.SetActive(false);
             }
+
+            long instanceId = self.InstanceId;
             C2F_WatchPlayerRequest c2M_SkillSet = new C2F_WatchPlayerRequest() { UserId = self.UserId, WatchType = 2 };
             F2C_WatchPlayerResponse m2C_SkillSet = (F2C_WatchPlayerResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
             self.TeamId = m2C_SkillSet.TeamId;
-
             int friendType = self.ZoneScene().GetComponent<FriendComponent>().GetFriendType(userId);
             TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
             long myUserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
