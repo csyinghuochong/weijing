@@ -28,7 +28,7 @@ namespace ET
 
 				Application.targetFrameRate = 30;
 				Application.runInBackground = true;
-				libx.Assets.MAX_BUNDLES_PERFRAME = 16;
+				libx.Assets.MAX_BUNDLES_PERFRAME = 32;
 				//Screen.sleepTimeout = SleepTimeout.NeverSleep; 
 				self.ZoneScene().GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LoginScene, 0, 0);
 				self.LastLoginTime = 0;
