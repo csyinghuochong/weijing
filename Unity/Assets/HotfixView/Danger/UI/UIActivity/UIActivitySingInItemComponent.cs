@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIActivitySingInItemComponent : Entity, IAwake
+    public class UIActivitySingInItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject Image_ItemButton;
         public GameObject Image_XuanZhong;
@@ -24,11 +24,11 @@ namespace ET
 
 
     [ObjectSystem]
-    public class UIActivitySingInItemComponentAwakeSystem : AwakeSystem<UIActivitySingInItemComponent>
+    public class UIActivitySingInItemComponentAwakeSystem : AwakeSystem<UIActivitySingInItemComponent, GameObject>
     {
-        public override void Awake(UIActivitySingInItemComponent self)
+        public override void Awake(UIActivitySingInItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Image_ItemButton = rc.Get<GameObject>("Image_ItemButton");
             ButtonHelp.AddListenerEx( self.Image_ItemButton, ()=> { self.OnImage_ItemButton();  } );

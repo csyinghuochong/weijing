@@ -6,13 +6,13 @@ namespace ET
 {
     public class UIActivitySingInComponent : Entity, IAwake
     {
-
         public GameObject ItemListNode;
         public GameObject Btn_Com;
         public GameObject Img_lingQu;
         public GameObject RewardListNode;
+        public GameObject RewardListNode2;
 
-        public List<UI> ItemUIList = new List<UI>();
+        public List<UIActivitySingInItemComponent> ItemUIList = new List<UIActivitySingInItemComponent>();
         public int ActivityId;
     }
 
@@ -28,6 +28,7 @@ namespace ET
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.Img_lingQu = rc.Get<GameObject>("Img_lingQu");
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
+            self.RewardListNode2 = rc.Get<GameObject>("RewardListNode2");
 
             self.Btn_Com = rc.Get<GameObject>("Btn_Com");
             ButtonHelp.AddListenerEx(  self.Btn_Com, ()=> { self.OnBtn_Com_Sign().Coroutine();  } );
@@ -65,15 +66,14 @@ namespace ET
                 GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(bagSpace, self.ItemListNode);
 
-                UI ui_item = self.AddChild<UI, string, GameObject>( "UIItem_" + i.ToString(), bagSpace);
-                UIActivitySingInItemComponent uIItemComponent = ui_item.AddComponent<UIActivitySingInItemComponent>();
+                UIActivitySingInItemComponent uIItemComponent = self.AddChild<UIActivitySingInItemComponent, GameObject>(bagSpace);
                 uIItemComponent.OnUpdateUI(activityConfigs[i], (int activityId) => { self.OnClickSignItem(activityId);  });
                 uIItemComponent.SetSignState(curDay, isSign);
-                self.ItemUIList.Add( ui_item );
+                self.ItemUIList.Add(uIItemComponent);
             }
             self.Img_lingQu.SetActive(isSign);
             self.Btn_Com.SetActive(!isSign);
-            self.ItemUIList[curDay-1].GetComponent<UIActivitySingInItemComponent>().OnImage_ItemButton();
+            self.ItemUIList[curDay-1].OnImage_ItemButton();
         }
 
         public static void OnClickSignItem(this UIActivitySingInComponent self, int activityId)
@@ -95,12 +95,14 @@ namespace ET
             }
             for (int i = 0; i < self.ItemUIList.Count; i++)
             {
-                self.ItemUIList[i].GetComponent<UIActivitySingInItemComponent>().SetSelected(ActivityConfig.Id);
+                self.ItemUIList[i].SetSelected(ActivityConfig.Id);
             }
-
 
             UICommonHelper.DestoryChild(self.RewardListNode);
             UICommonHelper.ShowItemList(ActivityConfig.Par_3,  self.RewardListNode, self, 1f).Coroutine();
+
+            UICommonHelper.DestoryChild(self.RewardListNode2);
+            UICommonHelper.ShowItemList(ActivityConfig.Par_2, self.RewardListNode2, self, 1f).Coroutine();
 
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             long serverNow = TimeHelper.ServerNow();
