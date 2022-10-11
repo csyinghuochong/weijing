@@ -8143,7 +8143,6 @@ namespace ET
 	}
 
 	[ResponseType(nameof(M2C_ItemOperateGemResponse))]
-//
 	[Message(OuterOpcode.C2M_ItemOperateGemRequest)]
 	[ProtoContract]
 	public partial class C2M_ItemOperateGemRequest: Object, IActorLocationRequest
@@ -8177,6 +8176,34 @@ namespace ET
 
 		[ProtoMember(1)]
 		public string OperatePar { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_PetDuiHuanResponse))]
+	[Message(OuterOpcode.C2M_PetDuiHuanRequest)]
+	[ProtoContract]
+	public partial class C2M_PetDuiHuanRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperateId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PetDuiHuanResponse)]
+	[ProtoContract]
+	public partial class M2C_PetDuiHuanResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
 
 	}
 

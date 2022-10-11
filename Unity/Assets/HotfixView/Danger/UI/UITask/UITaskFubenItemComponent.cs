@@ -9,7 +9,9 @@ namespace ET
         public GameObject GameObject;
         public GameObject TextFubenName;
         public GameObject ImageButton;
-        public Action<int> ClickHandler;
+        public Action<int, int> ClickHandler;
+
+        public int NpcType;
         public int FubenId;
     }
 
@@ -23,16 +25,28 @@ namespace ET
 
             self.TextFubenName = go.Get<GameObject>("TextFubenName");
             self.ImageButton = go.Get<GameObject>("ImageButton");
-            ButtonHelp.AddListenerEx(self.ImageButton, () => { self.ClickHandler(self.FubenId);  });
+            ButtonHelp.AddListenerEx(self.ImageButton, () => { self.ClickHandler(self.NpcType ,self.FubenId);  });
         }
     }
 
     public static class UITaskFubenItemComponentSystem
     { 
-        public static void OnInitData(this UITaskFubenItemComponent self,Action<int> action, int fubenId)
+        public static void OnInitData(this UITaskFubenItemComponent self,Action<int, int> action, int npcType, int fubenId)
         {
-            self.TextFubenName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(fubenId).Name;
+            switch (npcType)
+            {
+                case 1:
+                    self.TextFubenName.GetComponent<Text>().text = ItemViewHelp.ShowDuiHuanPet(fubenId);
+                    break;
+                case 2:
+                    self.TextFubenName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(fubenId).Name;
+                    break;
+                default:
+                    break;
+            }
+
             self.ClickHandler = action;
+            self.NpcType = npcType;
             self.FubenId = fubenId;
         }
 

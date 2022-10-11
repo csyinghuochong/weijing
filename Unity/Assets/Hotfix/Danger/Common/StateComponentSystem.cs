@@ -38,7 +38,8 @@ namespace ET
             //判断当前是否是眩晕状态
             if (self.StateTypeGet(StateTypeEnum.Dizziness)
                 || self.StateTypeGet(StateTypeEnum.JiTui)
-                || self.StateTypeGet(StateTypeEnum.ChuanSong) )
+                || self.StateTypeGet(StateTypeEnum.ChuanSong)
+                || self.StateTypeGet(StateTypeEnum.Silence))
             {
                 return false;
             }
@@ -57,7 +58,8 @@ namespace ET
             if (self.StateTypeGet(StateTypeEnum.SkillRigidity)
                 || self.StateTypeGet(StateTypeEnum.Dizziness)
                 || self.StateTypeGet(StateTypeEnum.ChuanSong)
-                || self.StateTypeGet(StateTypeEnum.JiTui))
+                || self.StateTypeGet(StateTypeEnum.JiTui)
+                || self.StateTypeGet(StateTypeEnum.Shackle))
             {
                 return false;
             }

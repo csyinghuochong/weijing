@@ -105,16 +105,9 @@ namespace ET
             self.TaskFubenList.SetActive(false);
             self.ScrollView1.SetActive(false);
             self.EnergySkill.SetActive(false);
-            if (npcID == 1000014)       //魔能老人
-            {
-                //显示消耗
-                int costItemID = 12000006;
-                long itemNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(costItemID);
-                self.EnergySkill.SetActive(true);
-                //获取
-                self.Obj_Lab_MoNnengHint.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(costItemID).ItemName + "  " + itemNum + "/" + 5;
-            }
-            else if (npcConfig.NpcType == 2)  //挑戰之地
+
+            if (npcConfig.NpcType == 1//神兽兑换
+               || npcConfig.NpcType == 2)  //挑戰之地
             {
                 self.TaskFubenList.SetActive(true);
                 List<int> fubenList = new List<int>(npcConfig.NpcPar);
@@ -124,8 +117,17 @@ namespace ET
                     go.SetActive(true);
                     UICommonHelper.SetParent(go, self.TaskFubenList);
                     UITaskFubenItemComponent uITaskFubenItemComponent = self.AddChild<UITaskFubenItemComponent, GameObject>(go);
-                    uITaskFubenItemComponent.OnInitData((int fubenId) => { self.OnClickFubenItem(fubenId); }, fubenList[i]);
+                    uITaskFubenItemComponent.OnInitData((int npcType,int fubenId) => { self.OnClickFubenItem(npcType,fubenId); }, npcConfig.NpcType, fubenList[i]);
                 }
+            }
+            else if (npcID == 1000014)       //魔能老人
+            {
+                //显示消耗
+                int costItemID = 12000006;
+                long itemNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(costItemID);
+                self.EnergySkill.SetActive(true);
+                //获取
+                self.Obj_Lab_MoNnengHint.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(costItemID).ItemName + "  " + itemNum + "/" + 5;
             }
             else if (npcID == 20000016) //补偿大师
             {
@@ -168,24 +170,49 @@ namespace ET
             UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
         }
 
-        public static void OnClickFubenItem(this UITaskGetComponent self, int sceneId)
+        public static void OnClickFubenItem(this UITaskGetComponent self,  int npcType, int configId)
         {
-            if (sceneId == 0)
+            if (configId == 0)
             {
                 return;
             }
-            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
-
-            string desStr = "是否进入" + sceneConfig.Name + "?";
-            if (sceneConfig.DayEnterNum >= 1) {
-                desStr += "\n提示:每天只能进入" + sceneConfig.DayEnterNum + "次";
+            if (npcType == 1)
+            {
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "神兽兑换", ItemViewHelp.ShowDuiHuanPet(configId),
+                   () =>
+                   {
+                       //FloatTipManager.Instance.ShowFloatTip("暂未开启");
+                       self.ReqestPetDuiHuan(configId).Coroutine();
+                   }).Coroutine();
             }
-
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "进入地图", desStr,
-                () =>
+            if (npcType == 2)
+            {
+                SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(configId);
+                string desStr = "是否进入" + sceneConfig.Name + "?";
+                if (sceneConfig.DayEnterNum >= 1)
                 {
-                    self.RequestEnterFuben(sceneId).Coroutine();
-                }).Coroutine();
+                    desStr += "\n提示:每天只能进入" + sceneConfig.DayEnterNum + "次";
+                }
+
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "进入地图", desStr,
+                    () =>
+                    {
+                        self.RequestEnterFuben(configId).Coroutine();
+                    }).Coroutine();
+            }
+        }
+
+        public static async ETTask ReqestPetDuiHuan(this UITaskGetComponent self, int configId)
+        {
+            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+            int lv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
+            if (ComHelp.GetPetMaxNumber(lv) <= petComponent.RolePetInfos.Count)
+            {
+                FloatTipManager.Instance.ShowFloatTip("已达到最大宠物数量！");
+                return;
+            }
+            C2M_PetDuiHuanRequest   request = new C2M_PetDuiHuanRequest() { OperateId = configId };
+            M2C_PetDuiHuanResponse response = (M2C_PetDuiHuanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
         }
 
         public static async ETTask RequestEnterFuben(this UITaskGetComponent self, int sceneId)

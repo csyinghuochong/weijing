@@ -456,5 +456,7 @@ namespace ET
 		 public const ushort G2C_ExitGameGate = 10453;
 		 public const ushort C2M_ItemOperateGemRequest = 10454;
 		 public const ushort M2C_ItemOperateGemResponse = 10455;
+		 public const ushort C2M_PetDuiHuanRequest = 10456;
+		 public const ushort M2C_PetDuiHuanResponse = 10457;
 	}
 }

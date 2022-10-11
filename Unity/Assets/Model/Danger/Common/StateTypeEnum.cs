@@ -29,7 +29,7 @@ namespace ET
         public const long JiTui = 1 << 4;
 
         /// <summary>
-        /// 沉默
+        /// 沉默 不能放技能
         /// </summary>
         public const long Silence = 1 << 6;
 
@@ -49,7 +49,7 @@ namespace ET
         public const long OpenBox = 1 << 9;
 
         /// <summary>
-        /// 禁锢
+        /// 禁锢 不能移动
         /// </summary>
         public const long Shackle = 1 << 11;
 

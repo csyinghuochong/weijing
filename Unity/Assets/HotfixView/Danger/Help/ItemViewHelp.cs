@@ -439,6 +439,17 @@ namespace ET
             return propertyObj;
         }
 
+        public static string ShowDuiHuanPet(int configId)
+        {
+            GlobalValueConfig globalValue = GlobalValueConfigCategory.Instance.Get(configId);
+            string[] configInfo = globalValue.Value.Split('@');
+            string[] iteminfo = configInfo[0].Split(';');
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(iteminfo[0]));
+            PetConfig petConfig = PetConfigCategory.Instance.Get(int.Parse(configInfo[1]));
+            string info = $"消耗{itemConfig.ItemName}X{iteminfo[1]}兑换{petConfig.PetName}";
+            return info;
+        }
 
         //装备镶嵌宝石
         public static void TipsShowEquipGem(Scene zoneScene, GameObject icon, GameObject text, int gemHole, int gemId)

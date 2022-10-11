@@ -154,18 +154,25 @@ namespace ET
         public static Dictionary<string, string> ParsePayResult(this ReChargeQDComponent self, string pay_notice)
         {
             Dictionary<string, string> payResult = new Dictionary<string, string>();
-            string parsevalue = self.decode(pay_notice, self.callbackkey);
-            StringReader Reader = new StringReader(parsevalue);
-
-            XmlDocument xdoc = new XmlDocument();
-            xdoc.Load(Reader);
-            XmlNodeList nodeList = xdoc.GetElementsByTagName("quicksdk_message");
-
-            XmlNodeList classNode = (XmlNodeList)nodeList.Item(0).ChildNodes[0].ChildNodes;//取列表中第一个对象
-            foreach (XmlNode xn in classNode)
+            try
             {
-                XmlElement xe = (XmlElement)xn;
-                payResult[xe.Name] = xe.InnerText;
+                string parsevalue = self.decode(pay_notice, self.callbackkey);
+                StringReader Reader = new StringReader(parsevalue);
+
+                XmlDocument xdoc = new XmlDocument();
+                xdoc.Load(Reader);
+                XmlNodeList nodeList = xdoc.GetElementsByTagName("quicksdk_message");
+
+                XmlNodeList classNode = (XmlNodeList)nodeList.Item(0).ChildNodes[0].ChildNodes;//取列表中第一个对象
+                foreach (XmlNode xn in classNode)
+                {
+                    XmlElement xe = (XmlElement)xn;
+                    payResult[xe.Name] = xe.InnerText;
+                }
+            }
+            catch (Exception ex)
+            {
+                Log.Debug(ex.ToString());
             }
             return payResult;
         }

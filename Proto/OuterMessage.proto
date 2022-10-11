@@ -3901,7 +3901,6 @@ message G2C_ExitGameGate // IResponse
 }
 
 //ResponseType M2C_ItemOperateGemResponse
-//
 message C2M_ItemOperateGemRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
@@ -3917,4 +3916,18 @@ message M2C_ItemOperateGemResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 	string OperatePar = 1;
+}
+
+//ResponseType M2C_PetDuiHuanResponse
+message C2M_PetDuiHuanRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 OperateId = 1;
+}
+
+message M2C_PetDuiHuanResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
 }
