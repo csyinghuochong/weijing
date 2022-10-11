@@ -364,6 +364,10 @@ namespace ET
                 return;
             }
             SkillSetComponent skillset = self.GetParent<Unit>().GetComponent<SkillSetComponent>();
+            if (skillset == null)
+            {
+                return;
+            }
             for (int i = 0; i < selfSkillList.Length; i++)
             {
                 int selfSkillId = selfSkillList[i];
