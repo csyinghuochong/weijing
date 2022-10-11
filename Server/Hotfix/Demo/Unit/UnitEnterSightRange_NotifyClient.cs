@@ -22,7 +22,7 @@
             Unit ub = b.GetParent<Unit>();
             if (a.Unit.SingleScene && ub.AI > 0)
             { 
-                ub.GetComponent<AIComponent>()?.Stop();
+                ub.GetComponent<AIComponent>()?.Begin();
             }
             UnitHelper.NoticeUnitAdd(ua, ub);
         }

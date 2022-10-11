@@ -215,6 +215,11 @@ namespace ET
             }
         }
 
+        public static void Begin(this AIComponent self)
+        {
+            self.StopAI = false;
+        }
+
         public static void Stop(this AIComponent self)
         {
             self.StopAI = true;

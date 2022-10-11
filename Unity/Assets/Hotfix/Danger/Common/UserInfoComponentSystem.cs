@@ -103,6 +103,7 @@ namespace ET
             unit.GetComponent<TaskComponent>().OnLogin();
             unit.GetComponent<HeroDataComponent>().OnLogin();
             unit.GetComponent<DBSaveComponent>().OnLogin();
+            unit.GetComponent<RechargeComponent>().OnLogin();
 
             if (lastLoginTime != 0)
             {

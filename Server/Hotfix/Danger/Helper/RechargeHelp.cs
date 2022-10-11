@@ -5,10 +5,32 @@ namespace ET
     public static class RechargeHelp
     {
 
-        public static async ETTask SendDiamondToUnit(Unit unit, int rechargeNumber)
+        public static void  SendDiamondToUnit(Unit unit, int rechargeNumber)
         {
             int number = ComHelp.GetDiamondNumber(rechargeNumber);
+            
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString()).Coroutine();
+            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RechargeSign, 1);
             long accountId = unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID;
+            long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
+            SendToAccountCenter(accountId, userId, rechargeNumber).Coroutine();
+        }
+
+        public static void OnLogin(Unit unit, int rechargeNumber)
+        {
+            if (rechargeNumber <= 0)
+            { 
+                return; 
+            }
+            int number = ComHelp.GetDiamondNumber(rechargeNumber);
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString(), false).Coroutine();
+            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0, false);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RechargeSign, 1, false);
+        }
+
+        public static async ETTask SendToAccountCenter(long accountId, long userId, int rechargeNumber )
+        {
             A2Center_RechargeRequest rechargeRequest = new A2Center_RechargeRequest()
             {
                 AccountId = accountId,
@@ -16,20 +38,17 @@ namespace ET
                 {
                     Amount = rechargeNumber,
                     Time = TimeHelper.ServerNow(),
-                    UserId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId,
+                    UserId = userId,
                 }
             };
             long accountZone = DBHelper.GetAccountCenter();
             Center2A_RechargeResponse saveAccount = (Center2A_RechargeResponse)await ActorMessageSenderComponent.Instance.Call(accountZone, rechargeRequest);
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString()).Coroutine();
-            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0);
-            await ETTask.CompletedTask;
         }
 
         public static async ETTask OnPaySucessToUnit(Scene scene,  long userId, int rechargeNumber)
         {
             Player gateUnitInfo = scene.GetComponent<PlayerComponent>().GetByUserId(userId);
-            if (gateUnitInfo!=null && gateUnitInfo.PlayerState == PlayerState.Game && gateUnitInfo.InstanceId > 0)
+            if (gateUnitInfo != null && gateUnitInfo.PlayerState == PlayerState.Game && gateUnitInfo.InstanceId > 0)
             {
                 Log.Debug($"Recharge PlayerState.Game userId: {userId}  rechargeNumber:{rechargeNumber}");
                 G2M_RechargeResultRequest r2M_RechargeRequest = new G2M_RechargeResultRequest() { RechargeNumber = rechargeNumber };
@@ -39,41 +58,23 @@ namespace ET
             {
                 Log.Debug($"Recharge PlayerState.None userId: {userId}  rechargeNumber:{rechargeNumber}");
                 //直接存数据库
-                int number = ComHelp.GetDiamondNumber(rechargeNumber);
+                //int number = ComHelp.GetDiamondNumber(rechargeNumber);
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
-                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userId, Component = DBHelper.UserInfoComponent });
-                UserInfoComponent userInfoComponent = (d2GGetUnit.Component as UserInfoComponent);
-                userInfoComponent.UserInfo.Diamond += number;
-
-                d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userId, Component = DBHelper.NumericComponent });
+                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userId, Component = DBHelper.NumericComponent });
                 NumericComponent numericComponent = (d2GGetUnit.Component as NumericComponent);
-                numericComponent.ApplyChange(null, NumericType.RechargeNumber, number, 0, false);
+                numericComponent.ApplyChange(null, NumericType.RechargeBuChang, rechargeNumber, 0, false);
                 D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent()
-                {
-                    CharacterId = userId,
-                    Component = userInfoComponent,
-                    ComponentType = DBHelper.UserInfoComponent
-                });
-                d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent()
                 {
                     CharacterId = userId,
                     Component = numericComponent,
                     ComponentType = DBHelper.NumericComponent
                 });
 
+                d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userId, Component = DBHelper.UserInfoComponent });
+                UserInfoComponent userInfoComponent = (d2GGetUnit.Component as UserInfoComponent);
+                
                 long accountId = userInfoComponent.UserInfo.AccInfoID;
-                A2Center_RechargeRequest rechargeRequest = new A2Center_RechargeRequest()
-                {
-                    AccountId = accountId,
-                    RechargeInfo = new RechargeInfo()
-                    {
-                        Amount = rechargeNumber,
-                        Time = TimeHelper.ServerNow(),
-                        UserId =userId,
-                    }
-                };
-                long accountZone = DBHelper.GetAccountCenter();
-                Center2A_RechargeResponse saveAccount = (Center2A_RechargeResponse)await ActorMessageSenderComponent.Instance.Call(accountZone, rechargeRequest);
+                SendToAccountCenter(accountId, userId, rechargeNumber).Coroutine();
                 await ETTask.CompletedTask;
             }
         }

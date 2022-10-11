@@ -8,7 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, G2M_RechargeResultRequest request, M2G_RechargeResultResponse response, Action reply)
         {
-            RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber).Coroutine();
+            RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber);
             await ETTask.CompletedTask;
             reply();
         }

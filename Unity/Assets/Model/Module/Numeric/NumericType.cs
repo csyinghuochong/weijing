@@ -58,7 +58,9 @@
         public const int RechargeNumber = 3055;
         public const int ItemXiLianDu = 3056;                                    //洗练家等级
         public const int BossInCombat = 3057;                                    //进入战斗
-        public const int UseMasterModel = 3058;                                    //使用主人形象
+        public const int UseMasterModel = 3058;                                  //使用主人形象
+        public const int RechargeSign = 3059;                                    //签到充值奖励，每日重置
+        public const int RechargeBuChang = 3060;                                 //充值补偿
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

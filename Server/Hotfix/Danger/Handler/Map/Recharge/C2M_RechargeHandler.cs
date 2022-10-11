@@ -18,7 +18,7 @@ namespace ET
             }
             if (ComHelp.IsBanHaoZone(unit.DomainZone()))
             {
-                RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber).Coroutine();
+                RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber);
                 reply();
                 return;
             }

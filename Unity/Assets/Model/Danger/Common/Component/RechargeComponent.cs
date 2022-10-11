@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-
-
-namespace ET
+﻿namespace ET
 {
-    public class RechargeComponent : Entity, IAwake, ITransfer, IUnitCache
+    public class RechargeComponent : Entity, IAwake
     {
 
     }
