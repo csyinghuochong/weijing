@@ -64,7 +64,7 @@ namespace ET
                 {
                     player = args.UnitAttack;
                 }
-                if (args.UnitAttack.Type == UnitType.Pet)
+                if (args.UnitAttack.Type == UnitType.Pet || args.UnitAttack.Type == UnitType.Monster)
                 {
                     long master = args.UnitAttack.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
                     player = args.UnitAttack.GetParent<UnitComponent>().Get(master);

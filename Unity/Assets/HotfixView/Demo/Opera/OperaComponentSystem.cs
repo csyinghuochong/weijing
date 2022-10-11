@@ -73,7 +73,7 @@ namespace ET
             //}
             if (keyCode == 257 && self.EditorMode)
             {
-                MapHelper.SendUseSkill( self.ZoneScene(), 62023201, 0, 0 ,0 ).Coroutine();                //61022201
+                MapHelper.SendUseSkill( self.ZoneScene(), 61022201, 0, 0 ,0 ).Coroutine();                //62023201
             }
             if (Time.time - self.LastSendTime < 0.2f)
             {

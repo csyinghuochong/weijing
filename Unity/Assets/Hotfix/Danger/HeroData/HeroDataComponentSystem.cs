@@ -222,6 +222,7 @@ namespace ET
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.GetComponent<UnitInfoComponent>().UnitCondigID);
                 if (monsterConfig.AI > 0)
                 {
+                    unit.RemoveComponent<AIComponent>();
                     unit.AddComponent<AIComponent, int>(monsterConfig.AI);
                 }
             }

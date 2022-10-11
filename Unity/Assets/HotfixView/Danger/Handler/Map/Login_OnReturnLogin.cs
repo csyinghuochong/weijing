@@ -16,15 +16,21 @@ namespace ET
             Camera camera = UIComponent.Instance.MainCamera.gameObject.GetComponent<Camera>();
             camera.GetComponent<MyCamera_1>().enabled = false;
 
-            GameObjectPoolComponent.Instance.DisposeAll();
-            GameObject.Destroy(GameObject.Find("Global"));
+            //reload dll
+            //GameObjectPoolComponent.Instance.DisposeAll();
+            //GameObject.Destroy(GameObject.Find("Global"));
+            //Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.InitScene, 1).Coroutine();
+            //CodeLoader.Instance.OnApplicationQuit();    //Game.Close
+            //CodeLoader.Instance.Dispose();              //this.monoTypes.Clear()
 
-            Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.InitScene, 1).Coroutine();
-            CodeLoader.Instance.OnApplicationQuit();    //Game.Close
-            CodeLoader.Instance.Dispose();              //this.monoTypes.Clear()
-            //Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
-            //EventType.AppStartInitFinish.Instance.ZoneScene = zoneScene;
-            //Game.EventSystem.PublishClass(EventType.AppStartInitFinish.Instance);
+            //not  reload dll
+            Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.LoginScene, 1).Coroutine();
+            args.ZoneScene.Dispose();
+            GameObjectPoolComponent.Instance.DisposeAll();
+            Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);
+
+            EventType.AppStartInitFinish.Instance.ZoneScene = zoneScene;
+            Game.EventSystem.PublishClass(EventType.AppStartInitFinish.Instance);
         }
 
         private async ETTask RunAsync(EventType.ReturnLogin args)

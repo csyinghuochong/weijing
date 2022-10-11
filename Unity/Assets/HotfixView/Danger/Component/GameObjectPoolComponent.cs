@@ -47,7 +47,7 @@ namespace ET
             self.LoadList.Clear (); 
             self.ExternalReferences.Clear();
             GameObjectPoolComponent.Instance = self;
-            self.LoadInterval = 200;
+            self.LoadInterval = GlobalHelp.IsEditorMode ? 200 : 100;
         }
     }
 
@@ -107,11 +107,6 @@ namespace ET
 
         public static void AddLoadQueue(this GameObjectPoolComponent self,  string path, Action<GameObject> action)
         {
-            if (path.Contains("90000001"))
-            {
-                Log.Error("asdasdadaadad");
-            }
-
             GameObjectLoad load = self.AddChild<GameObjectLoad>();
             load.Path = path;
             load.LoadHandler = action;
