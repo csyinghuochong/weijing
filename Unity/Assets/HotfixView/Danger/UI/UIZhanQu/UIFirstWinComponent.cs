@@ -263,6 +263,7 @@ namespace ET
 					droplist.RemoveAt(i);
 					continue;
 				}
+				itemIdList.Add(droplist[i].ItemID);
 			}
 			
 			self.UpdateRewardList(droplist);

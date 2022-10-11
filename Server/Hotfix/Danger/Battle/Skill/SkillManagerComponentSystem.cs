@@ -56,7 +56,6 @@ namespace ET
     /// </summary>
     public static class SkillManagerComponentSystem
     {
-
         public static List<SkillInfo> GetRandomSkills(this SkillManagerComponent self, C2M_SkillCmd skillcmd, int weaponSkill)
         {
 
