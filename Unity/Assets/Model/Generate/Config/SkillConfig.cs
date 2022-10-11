@@ -243,6 +243,9 @@ namespace ET
 		/// <summary>宠物互斥ID</summary>
 		[ProtoMember(56)]
 		public int HuChiID { get; set; }
+		/// <summary>触发自身拥有技能</summary>
+		[ProtoMember(57)]
+		public int[] TriggerSelfSkillID { get; set; }
 
 	}
 }
