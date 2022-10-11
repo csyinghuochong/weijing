@@ -83,7 +83,7 @@ namespace ET
                 case (int)SkillTargetType.TargetPositon:
                     skillInfo = new SkillInfo();
                     skillInfo.WeaponSkillID = weaponSkill;
-                    skillInfo.PosX = target!= null? target.Position.x : unit.Position.x;
+                    skillInfo.PosX = target != null ? target.Position.x : unit.Position.x;
                     skillInfo.PosY = target != null ? target.Position.y : unit.Position.y;
                     skillInfo.PosZ = target != null ? target.Position.z : unit.Position.z;
                     skillInfo.TargetID = skillcmd.TargetID;
@@ -130,7 +130,7 @@ namespace ET
                     {
                         skillInfo = new SkillInfo();
                         skillInfo.WeaponSkillID = randomSkillId;
-                        skillInfo.PosX = target==null? unit.Position.x : target.Position.x + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
+                        skillInfo.PosX = target == null ? unit.Position.x : target.Position.x + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
                         skillInfo.PosY = target == null ? unit.Position.y : target.Position.y;
                         skillInfo.PosZ = target == null ? unit.Position.z : target.Position.z + RandomHelper.RandomNumberFloat(-1 * randomRange, randomRange);
                         skillInfo.TargetID = skillcmd.TargetID;
@@ -206,14 +206,14 @@ namespace ET
                     {
                         skillInfo = new SkillInfo();
                         skillInfo.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
-                        SkillConfig skillConfig1 = SkillConfigCategory.Instance.Get(weaponSkill); 
+                        SkillConfig skillConfig1 = SkillConfigCategory.Instance.Get(weaponSkill);
                         Vector3 targetPosition = unit.Position + unit.Rotation * Vector3.forward * (float)skillConfig1.SkillRangeSize;
                         skillInfo.WeaponSkillID = weaponSkill;
                         skillInfo.PosX = targetPosition.x;
                         skillInfo.PosY = targetPosition.y;
                         skillInfo.PosZ = targetPosition.z;
                         skillInfo.TargetID = skillcmd.TargetID;
-                       
+
                         skillInfos.Add(skillInfo);
                     }
                     else
@@ -291,7 +291,7 @@ namespace ET
             {
                 return (errorCode, 0);
             }
-            if (check && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro) )
+            if (check && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))
             {
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
@@ -343,9 +343,37 @@ namespace ET
             {
                 skillCd = self.UpdateSkillCD(skillcmd.SkillID, weaponSkill);
             }
-            unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(skillConfig.SkillActType == 0?  SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7 );
+            unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(skillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7);
 
-            return (ErrorCore.ERR_Success, skillCd !=null ? skillCd.CDEndTime : 0);
+            self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
+            return (ErrorCore.ERR_Success, skillCd != null ? skillCd.CDEndTime : 0);
+        }
+
+        public static void TriggerAddSkill(this SkillManagerComponent self, C2M_SkillCmd c2M_SkillCmd, int skillId)
+        {
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+            int addSkillId = skillConfig.AddSkillID;
+            if (addSkillId!=0)
+            {
+                c2M_SkillCmd.SkillID = addSkillId;
+                self.OnUseSkill(c2M_SkillCmd, false);
+            }
+            int[] selfSkillList = skillConfig.TriggerSelfSkillID;
+            if (selfSkillList == null || selfSkillList.Length == 0 || selfSkillList[0] == 0)
+            {
+                return;
+            }
+            SkillSetComponent skillset = self.GetParent<Unit>().GetComponent<SkillSetComponent>();
+            for (int i = 0; i < selfSkillList.Length; i++)
+            {
+                int selfSkillId = selfSkillList[i];
+                if (skillset.GetBySkillID(selfSkillId) == null)
+                {
+                    continue;
+                }
+                c2M_SkillCmd.SkillID = selfSkillId;
+                self.OnUseSkill(c2M_SkillCmd, false);
+            }
         }
 
         public static SkillCDList UpdateSkillCD(this SkillManagerComponent self, int skillId, int weaponSkill)
