@@ -49,4 +49,6 @@
 {"_t":"GlobalValueConfig","_id":49,"Value":"10;30","Value2":0},
 {"_t":"GlobalValueConfig","_id":50,"Value":"10","Value2":10},
 {"_t":"GlobalValueConfig","_id":51,"Value":"1;100000","Value2":0},
+{"_t":"GlobalValueConfig","_id":52,"Value":"10000132;10@1000101","Value2":0},
+{"_t":"GlobalValueConfig","_id":53,"Value":"10000132;10@1000201","Value2":0},
 ]}
