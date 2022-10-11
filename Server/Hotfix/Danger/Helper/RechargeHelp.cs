@@ -7,26 +7,22 @@ namespace ET
 
         public static void  SendDiamondToUnit(Unit unit, int rechargeNumber)
         {
-            int number = ComHelp.GetDiamondNumber(rechargeNumber);
-            
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString()).Coroutine();
-            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RechargeSign, 1);
+            OnRechage(unit, rechargeNumber, true);
             long accountId = unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID;
             long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
             SendToAccountCenter(accountId, userId, rechargeNumber).Coroutine();
         }
 
-        public static void OnLogin(Unit unit, int rechargeNumber)
+        public static void OnRechage(Unit unit, int rechargeNumber, bool notice)
         {
             if (rechargeNumber <= 0)
             { 
                 return; 
             }
             int number = ComHelp.GetDiamondNumber(rechargeNumber);
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString(), false).Coroutine();
-            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0, false);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RechargeSign, 1, false);
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString(), notice).Coroutine();
+            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0, notice);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RechargeSign, 1, notice);
         }
 
         public static async ETTask SendToAccountCenter(long accountId, long userId, int rechargeNumber )
