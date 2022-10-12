@@ -19,7 +19,8 @@ namespace ET
 
         public override void OnExecute()
         {
-            for (int i = 0; i < SkillExcuteNum; i++) {
+            for (int i = 0; i < SkillExcuteNum; i++)
+            {
 
                 BuffData buffData = new BuffData();
                 buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(7);

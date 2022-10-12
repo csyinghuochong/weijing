@@ -153,7 +153,8 @@ namespace ET
             Log.Debug(offLineInfo);
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false); 
+            numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
+            unit.GetComponent<UserInfoComponent>().LastLoginTime = TimeHelper.ServerNow();
 
             unit.RecordPostion();
             unit.GetComponent<EnergyComponent>().OnDisconnect();
