@@ -3931,3 +3931,20 @@ message M2C_PetDuiHuanResponse // IActorLocationResponse
 	string Message = 91;
 	int32 Error = 92;
 }
+
+//领取充值签到奖励
+//ResponseType M2C_ActivityRechargeSignResponse
+message C2M_ActivityRechargeSignRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 ActivityType = 1;		//活动类型
+	int32 ActivityId = 2;		//活动ID
+}
+
+message M2C_ActivityRechargeSignResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

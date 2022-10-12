@@ -615,7 +615,7 @@ GameObject:
   - component: {fileID: 8335521522694001290}
   - component: {fileID: 7579575509812083376}
   m_Layer: 5
-  m_Name: Btn_Com (1)
+  m_Name: Btn_Com2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -961,7 +961,7 @@ GameObject:
   - component: {fileID: 5641757953823303786}
   - component: {fileID: 2854666421765419221}
   m_Layer: 5
-  m_Name: Img_lingQu (1)
+  m_Name: Img_lingQu2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1733,6 +1733,10 @@ MonoBehaviour:
     gameObject: {fileID: 8956883432699105837}
   - key: RewardListNode2
     gameObject: {fileID: 7178180411583586052}
+  - key: Btn_Com2
+    gameObject: {fileID: 6097534566467993679}
+  - key: Img_lingQu2
+    gameObject: {fileID: 7648248671503308233}
 --- !u!1 &8957197502426498753
 GameObject:
   m_ObjectHideFlags: 0

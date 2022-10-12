@@ -47,12 +47,6 @@ namespace ET
                     activityComponent.LastSignTime = TimeHelper.ServerNow();
                     activityComponent.ActivityReceiveIds.Add(request.ActivityId);
                     unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
-                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                    if (numericComponent.GetAsInt(NumericType.RechargeSign) == 1)
-                    {
-                        numericComponent.Set(NumericType.RechargeSign, 0);
-                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_2, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
-                    }
                     break;
                 case 24:    //令牌
                     List<TokenRecvive> zhanQuTokenRecvives = activityComponent.QuTokenRecvive;

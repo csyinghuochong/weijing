@@ -19,7 +19,6 @@ namespace ET
         public List<BagInfo> Warehouse3 = new List<BagInfo>();
         public List<BagInfo> Warehouse4 = new List<BagInfo>();
 #else
-        public bool ShowGetItemTip = true;
 
         public List<BagInfo>[] AllItemList;
 

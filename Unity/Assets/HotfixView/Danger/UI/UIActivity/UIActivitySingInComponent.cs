@@ -6,6 +6,8 @@ namespace ET
 {
     public class UIActivitySingInComponent : Entity, IAwake
     {
+        public GameObject Img_lingQu2;
+        public GameObject Btn_Com2;
         public GameObject ItemListNode;
         public GameObject Btn_Com;
         public GameObject Img_lingQu;
@@ -29,9 +31,13 @@ namespace ET
             self.Img_lingQu = rc.Get<GameObject>("Img_lingQu");
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
             self.RewardListNode2 = rc.Get<GameObject>("RewardListNode2");
+            self.Img_lingQu2 = rc.Get<GameObject>("Img_lingQu2");
 
             self.Btn_Com = rc.Get<GameObject>("Btn_Com");
             ButtonHelp.AddListenerEx(  self.Btn_Com, ()=> { self.OnBtn_Com_Sign().Coroutine();  } );
+
+            self.Btn_Com2 = rc.Get<GameObject>("Btn_Com2");
+            ButtonHelp.AddListenerEx(self.Btn_Com2, () => { self.OnBtn_Com_Sign2().Coroutine(); });
 
             self.OnInitUI().Coroutine();
         }
@@ -74,6 +80,9 @@ namespace ET
             self.Img_lingQu.SetActive(isSign);
             self.Btn_Com.SetActive(!isSign);
             self.ItemUIList[curDay-1].OnImage_ItemButton();
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            self.Img_lingQu2.SetActive(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeSign) == 2 );
         }
 
         public static void OnClickSignItem(this UIActivitySingInComponent self, int activityId)
@@ -110,6 +119,20 @@ namespace ET
             bool ifShow = int.Parse(ActivityConfig.Par_1) <= activityComponent.TotalSignNumber || isSign;
             self.Img_lingQu.SetActive(ifShow);
             self.Btn_Com.SetActive(!ifShow);
+        }
+
+        public static async ETTask OnBtn_Com_Sign2(this UIActivitySingInComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeSign) != 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("不满足领取条件");
+                return;
+            }
+
+            C2M_ActivityRechargeSignRequest     request     = new C2M_ActivityRechargeSignRequest() { ActivityType = 23, ActivityId = self.ActivityId };
+            M2C_ActivityRechargeSignResponse response = (M2C_ActivityRechargeSignResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            self.Img_lingQu2.SetActive(true);
         }
 
         public static async ETTask OnBtn_Com_Sign(this UIActivitySingInComponent self)
