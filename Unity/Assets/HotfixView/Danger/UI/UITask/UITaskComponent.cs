@@ -304,6 +304,8 @@ namespace ET
 			{
 				return;
 			}
+			UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+			uI.GetComponent<UIMainComponent>().OnMoveStart();
 			Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 			unit.MoveToAsync2( gameObject.transform.position ).Coroutine();
 		}

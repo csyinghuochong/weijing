@@ -146,8 +146,7 @@ namespace ET
             if (!self.InitEffect)
             {
                 self.InitEffect = true;
-                await ETTask.CompletedTask;
-                GameObject prefab =ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetEffetPath("UIFightHintEffect"));
+                GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(ABPathHelper.GetEffetPath("UIFightHintEffect"));
                 GameObject effect = UnityEngine.Object.Instantiate(prefab);
                 effect.GetComponent<UISizeFangDa>().Obj_Img = self.Btn_SkillStart;
                 UICommonHelper.SetParent(effect, self.FightEffect);

@@ -224,7 +224,9 @@ namespace ET
                 if (monsterConfig.AI > 0)
                 {
                     unit.RemoveComponent<AIComponent>();
-                    unit.AddComponent<AIComponent, int>(monsterConfig.AI);
+                    AIComponent aIComponent = unit.AddComponent<AIComponent, int>(monsterConfig.AI);
+                    aIComponent.InitMonster(monsterConfig.Id);
+                    aIComponent.BornPostion = unit.Position;
                 }
             }
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 0);
