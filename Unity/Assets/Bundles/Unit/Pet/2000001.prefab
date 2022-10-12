@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 848490568130377220}
   - component: {fileID: 848490568130377223}
   m_Layer: 12
-  m_Name: 10014
+  m_Name: 2000001
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,7 +74,7 @@ Animator:
   m_GameObject: {fileID: 848490568130377221}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 63a0036da6d385e42b7a9f910f07cb38, type: 3}
-  m_Controller: {fileID: 9100000, guid: ef5ccc5e7d9947843a4446e62b7da1d5, type: 2}
+  m_Controller: {fileID: 9100000, guid: 3b1575ce06a23cf4cb1bb2c36e7955c4, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1315,7 +1315,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6092012821558052046}
-  - component: {fileID: 6092012821564959530}
   m_Layer: 0
   m_Name: 101210_xmhl_npc
   m_TagString: Untagged
@@ -1338,25 +1337,6 @@ Transform:
   m_Father: {fileID: 848490568130377220}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &6092012821564959530
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6092012821557565676}
-  m_Enabled: 0
-  m_Avatar: {fileID: 9000000, guid: 63a0036da6d385e42b7a9f910f07cb38, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &6092012821557565678
 GameObject:
   m_ObjectHideFlags: 0

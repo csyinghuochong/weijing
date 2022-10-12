@@ -922,32 +922,32 @@ namespace ET
         //金币鉴定消费
         public static int GetJianDingCoin(int level)
         {
-            int gold = 30000;
+            int gold = 10000;
             bool ifStatus = false;
 
             if (level <= 18) {
-                gold = 30000;
+                gold = 10000;
                 ifStatus = true;
             }
 
             if (level <= 29 && ifStatus == false)
             {
-                gold = 30000;
+                gold = 15000;
             }
 
             if (level <= 39 && ifStatus == false)
             {
-                gold = 40000;
+                gold = 20000;
             }
 
             if (level <= 49 && ifStatus == false)
             {
-                gold = 60000;
+                gold = 25000;
             }
 
             if (level <= 100 && ifStatus == false)
             {
-                gold = 80000;
+                gold = 30000;
             }
 
             return gold;

@@ -100,17 +100,20 @@ namespace ET
                         reply();
                         return;
                     }
+
                     if (itemCof.ItemSubType == 14      //召唤卷轴
                         || itemCof.ItemSubType == 114) //宝石
                     {
                         costNumber = 0;
                     }
+
                     if (bagIsFull)
                     {
                         response.Error = ErrorCore.ERR_BagIsFull;
                         reply();
                         return;
                     }
+
                     if (itemCof.ItemType != 1
                        && itemCof.ItemType != 2)
                     {
