@@ -181,8 +181,7 @@ namespace ET
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "神兽兑换", ItemViewHelp.ShowDuiHuanPet(configId),
                    () =>
                    {
-                       FloatTipManager.Instance.ShowFloatTip("暂未开启");
-                       //self.ReqestPetDuiHuan(configId).Coroutine();
+                       self.ReqestPetDuiHuan(configId).Coroutine();
                    }).Coroutine();
             }
             if (npcType == 2)

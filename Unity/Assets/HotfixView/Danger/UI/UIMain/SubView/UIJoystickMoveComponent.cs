@@ -130,7 +130,7 @@ namespace ET
             {
                 return;
             }
-            if (self.lastDirection == direction && Time.time - self.lastSendTime < 0.3f)
+            if (self.lastDirection == direction && Time.time - self.lastSendTime < 0.5f)
             {
                 return;
             }

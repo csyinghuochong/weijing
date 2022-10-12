@@ -37,6 +37,7 @@ namespace ET
                     aiComponent.TargetID = 0;
                     return;
                 }
+
                 if (unit.GetComponent<StateComponent>().CanMove())
                 {
                     Vector3 dir = unit.Position - target.Position;

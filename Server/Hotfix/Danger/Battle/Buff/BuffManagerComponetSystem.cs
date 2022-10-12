@@ -62,13 +62,16 @@ namespace ET
         public static void BuffRemove(this BuffManagerComponent self, int buffId)
         {
             //判断玩家身上是否有相同的buff,如果有就注销此Buff
-            List<BuffHandler> nowAllBuffList = self.GetAllBuffData();
-            for (int i = 0; i < nowAllBuffList.Count; i++)
+            List<BuffHandler> nowAllBuffList = self.m_Buffs;
+            for (int i = nowAllBuffList.Count - 1; i >=0 ; i--)
             {
                 if (nowAllBuffList[i].BuffData.BuffConfig.Id == buffId)
                 {
                     //移除目标buff
                     nowAllBuffList[i].BuffState = BuffState.Finished;
+                    ObjectPool.Instance.Recycle(nowAllBuffList[i]);
+                    nowAllBuffList[i].OnFinished();
+                    self.m_Buffs.RemoveAt(i);
                 }
             }
 
@@ -78,10 +81,9 @@ namespace ET
         public static void BulletFactory(this BuffManagerComponent self, BuffData buffData, Unit from, SkillHandler skillHandler)
         {
             Unit to = self.GetParent<Unit>();
-          
             BuffHandler buffHandler = (BuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[buffData.BuffClassScript]);
             buffHandler.OnInit(buffData, from, to, skillHandler);
-            self.m_Buffs.Add(buffHandler);     //添加至buff列表中
+            self.m_Buffs.Insert(0, buffHandler);     //添加至buff列表中
 
             self.AddTimer();
         }
@@ -103,22 +105,15 @@ namespace ET
                 return;
             }
 
-            bool addBufStatus = true;
+            int addBufStatus = 1;   //1新增buff  2 移除 3 重置 4同状态返回
             //判断玩家身上是否有相同的buff,如果有就重置此Buff
             BuffHandler buffHandler = null;
-            List<BuffHandler> nowAllBuffList = self.GetAllBuffData();
-            for (int i = 0; i < nowAllBuffList.Count; i++)
+            List<BuffHandler> nowAllBuffList = self.m_Buffs;
+            for (int i = nowAllBuffList.Count - 1; i >=0 ; i--)
             {
-                if (buffData.BuffConfig == null)
-                {
-                    break;
-                }
                 buffHandler = nowAllBuffList[i];
-                if (buffHandler.BuffData.BuffConfig == null)
-                {
-                    continue;
-                }
-                if (buffHandler.BuffData.BuffConfig.Id == buffData.BuffConfig.Id && buffData.BuffConfig.BuffAddClass == 0)
+                SkillBuffConfig tempBuffConfig = buffHandler.BuffData.BuffConfig;
+                if (tempBuffConfig.Id == buffData.BuffConfig.Id && buffData.BuffConfig.BuffAddClass == 0)
                 {
                     //如果是血量参数 则重置血量buff
                     if (buffData.BuffConfig.buffParameterType == 3001 && buffData.BuffConfig.BuffLoopTime==0)
@@ -129,29 +124,50 @@ namespace ET
                     {
                         buffHandler.PassTime = 0;     //重置Buff时间
                         buffHandler.BuffEndTime = TimeHelper.ServerNow() + buffData.BuffConfig.BuffTime;
-                        addBufStatus = false;
+                        addBufStatus = 3;
+                    }
+                    continue;
+                }
+                //操作同状态的Buff
+                if (tempBuffConfig.BuffType == 2 && tempBuffConfig.BuffType == buffData.BuffConfig.BuffType
+                    && tempBuffConfig.buffParameterType == buffData.BuffConfig.buffParameterType)   
+                {
+                    long newEndTime = TimeHelper.ServerNow() + buffData.BuffConfig.BuffTime;
+                    if (newEndTime < buffHandler.BuffEndTime)
+                    {
+                        addBufStatus = 4;
+                    }
+                    else
+                    {
+                        MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitBuffUpdate() { UnitIdBelongTo = unit.Id, BuffID = tempBuffConfig.Id, BuffOperateType = 2 });
+                        buffHandler.BuffState = BuffState.Finished;
+                        ObjectPool.Instance.Recycle(buffHandler);
+                        buffHandler.OnFinished();
+                        self.m_Buffs.RemoveAt(i);
                     }
                 }
             }
 
+            if (addBufStatus == 4)
+            {
+                return;
+            }
             //添加Buff
-            if (addBufStatus)
+            if (addBufStatus == 1)
             {
                 buffHandler = (BuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[buffData.BuffClassScript]);
                 buffHandler.OnInit(buffData, from, unit, skillHandler);
-                self.m_Buffs.Add(buffHandler);     //添加至buff列表中
-
+                self.m_Buffs.Insert(0, buffHandler);     //添加至buff列表中
                 self.AddTimer();
             }
-
             //发送改变属性的相关消息
             //buffData.BuffConfig==null 是子弹之类的buff不广播
-            if (buffData.BuffConfig != null && notice)
+            if (notice)
             {
                 M2C_UnitBuffUpdate m2C_UnitBuffUpdate = self.m2C_UnitBuffUpdate;
                 m2C_UnitBuffUpdate.UnitIdBelongTo = unit.Id;
                 m2C_UnitBuffUpdate.BuffID = buffData.BuffConfig.Id;
-                m2C_UnitBuffUpdate.BuffOperateType = addBufStatus ? 1 : 3;
+                m2C_UnitBuffUpdate.BuffOperateType = addBufStatus;
                 m2C_UnitBuffUpdate.TargetPostion.Clear();
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.x);
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.y);
@@ -164,6 +180,12 @@ namespace ET
         {
             for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
             {
+                if (self.m_Buffs.Count == 0)
+                {
+                    Log.Debug($"BuffManager: unitId: {self.GetParent<Unit>().Id} timerId: {self.Timer}");
+                    break;
+                }
+
                 if (self.m_Buffs[i].BuffState == BuffState.Finished)
                 {
                     BuffHandler buffHandler = self.m_Buffs[i];
@@ -224,11 +246,6 @@ namespace ET
                 }
                 unitInfoComponent.Buffs.Add(new KeyValuePair() { KeyId = buffHandler.BuffData.BuffConfig.Id, Value2 = buffHandler.BuffEndTime.ToString() });
             }
-        }
-
-        public static List<BuffHandler> GetAllBuffData(this BuffManagerComponent self)
-        {
-            return self.m_Buffs;
         }
     }
 }

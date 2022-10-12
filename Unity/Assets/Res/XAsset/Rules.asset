@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 256
+  version: 257
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -3498,6 +3498,8 @@ MonoBehaviour:
     path: Assets/Bundles/Icon/RoleSkillIcon/63001002.png
   - bundle: f7c1b12f45acf29f6071a1185644a6d1.unity3d
     path: Assets/Bundles/Icon/RoleSkillIcon/63001003.png
+  - bundle: f7c1b12f45acf29f6071a1185644a6d1.unity3d
+    path: Assets/Bundles/Icon/RoleSkillIcon/63001004.png
   - bundle: f7c1b12f45acf29f6071a1185644a6d1.unity3d
     path: Assets/Bundles/Icon/RoleSkillIcon/63002001.png
   - bundle: f7c1b12f45acf29f6071a1185644a6d1.unity3d
@@ -9182,6 +9184,7 @@ MonoBehaviour:
     - Assets/Bundles/Icon/RoleSkillIcon/63001001.png
     - Assets/Bundles/Icon/RoleSkillIcon/63001002.png
     - Assets/Bundles/Icon/RoleSkillIcon/63001003.png
+    - Assets/Bundles/Icon/RoleSkillIcon/63001004.png
     - Assets/Bundles/Icon/RoleSkillIcon/63002001.png
     - Assets/Bundles/Icon/RoleSkillIcon/63002002.png
     - Assets/Bundles/Icon/RoleSkillIcon/63002003.png
