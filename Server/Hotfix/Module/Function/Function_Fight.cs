@@ -739,7 +739,16 @@ namespace ET
                             for (int z = 0; z < AddPropreList.Length; z++)
                             {
                                 int addProType = int.Parse(AddPropreList[z].Split(',')[0]);
-                                int addProValue = int.Parse(AddPropreList[z].Split(',')[1]);
+                                int type = NumericHelp.GetNumericValueType(addProType);
+                                int addProValue = 0;
+                                if (type == 1)
+                                {
+                                    addProValue = int.Parse(AddPropreList[z].Split(',')[1]);
+                                }
+                                else {
+                                    addProValue = (int)(float.Parse(AddPropreList[z].Split(',')[1]) * 10000);
+                                }
+                                
                                 AddUpdateProDicList(addProType, addProValue, UpdateProDicList);
                             }
                         }
