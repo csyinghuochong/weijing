@@ -138,6 +138,9 @@ namespace ET
 		/// <summary>道具背景描述</summary>
 		[ProtoMember(21)]
 		public string ItemBlackDes { get; set; }
+		/// <summary>是否自动使用</summary>
+		[ProtoMember(22)]
+		public int IfAutoUse { get; set; }
 
 	}
 }
