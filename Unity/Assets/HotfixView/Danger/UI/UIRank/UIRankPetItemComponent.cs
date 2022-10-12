@@ -63,7 +63,13 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("体力不足!");
                 return;
             }
-            if (self.ZoneScene().GetComponent<PetComponent>().TeamPetList.Contains(0))
+            int teamNumber = 0;
+            List<long> teamList = self.ZoneScene().GetComponent<PetComponent>().TeamPetList;
+            for (int i = 0; i < teamList.Count; i++)
+            {
+                teamNumber += (teamList[i] != 0 ? 1 : 0);
+            }
+            if (teamNumber < 3)
             {
                 FloatTipManager.Instance.ShowFloatTip("上阵宠物不足三只!");
                 return;

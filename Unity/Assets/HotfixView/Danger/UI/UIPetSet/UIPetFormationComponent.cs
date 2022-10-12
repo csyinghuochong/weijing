@@ -86,7 +86,7 @@ namespace ET
             {
                 petComponent.PetFormations = self.PetTeamList;
             }
-            if (self.SceneTypeEnum == SceneTypeEnum.PetDungeon)
+            if (self.SceneTypeEnum == SceneTypeEnum.PetTianTi)
             {
                 petComponent.TeamPetList = self.PetTeamList;
             }
