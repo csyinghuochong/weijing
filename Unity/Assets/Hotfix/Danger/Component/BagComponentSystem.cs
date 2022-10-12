@@ -8,7 +8,7 @@ namespace ET
     {
         public override void Awake(BagComponent self)
         {
-            self.ShowGetItemTip = true;
+
             self.AllItemList = new List<BagInfo>[(int)ItemLocType.ItemLocMax];
             for (int i = 0; i < (int)ItemLocType.ItemLocMax; i++)
             {
@@ -299,14 +299,16 @@ namespace ET
 
         public static void ShowGetItemTip(this BagComponent self, BagInfo bagInfo, int addNum)
         {
-            self.ZoneScene().GetComponent<ShoujiComponent>().OnGetItem(bagInfo.ItemID);
-
-            if (!self.ShowGetItemTip)
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+            if (itemConfig.IfAutoUse == 1)
             {
-                self.ShowGetItemTip = true;
-                return;
+                self.SendUseItem( bagInfo).Coroutine();
             }
-            HintHelp.GetInstance().DataUpdate(DataType.BagItemAdd, $"{bagInfo.ItemID}_{addNum}");
+            else
+            {
+                self.ZoneScene().GetComponent<ShoujiComponent>().OnGetItem(bagInfo.ItemID);
+                HintHelp.GetInstance().DataUpdate(DataType.BagItemAdd, $"{bagInfo.ItemID}_{addNum}");
+            }
         }
 
         public static void OnRecvBagUpdate(this BagComponent self, M2C_RoleBagUpdate message)

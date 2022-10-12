@@ -458,5 +458,7 @@ namespace ET
 		 public const ushort M2C_ItemOperateGemResponse = 10455;
 		 public const ushort C2M_PetDuiHuanRequest = 10456;
 		 public const ushort M2C_PetDuiHuanResponse = 10457;
+		 public const ushort C2M_ActivityRechargeSignRequest = 10458;
+		 public const ushort M2C_ActivityRechargeSignResponse = 10459;
 	}
 }

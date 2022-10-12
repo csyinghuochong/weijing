@@ -407,12 +407,12 @@ namespace ET
             int getType = int.Parse(getWay.Split('_')[0]);
             for (int i = rewardItems.Count - 1; i >= 0; i--)
             {
+                ItemConfig itemCof = ItemConfigCategory.Instance.Get(rewardItems[i].ItemID);
                 UserDataType userDataType = ComHelp.GetItemToUserDataType(rewardItems[i].ItemID);
                 if (userDataType != UserDataType.None)
                 {
                     continue;
                 }
-                ItemConfig itemCof = ItemConfigCategory.Instance.Get(rewardItems[i].ItemID);
                 int ItemPileSum = gm ? 1000000 : itemCof.ItemPileSum;
                 if (itemCof.ItemType == ItemTypeEnum.PetHeXin)
                 {
@@ -433,6 +433,10 @@ namespace ET
                     bagCellNumber += (int)(1f* rewardItems[i].ItemNum / ItemPileSum);
                     bagCellNumber += (rewardItems[i].ItemNum % ItemPileSum > 0 ? 1 : 0);
                 }
+            }
+            if (rewardItems.Count == 0)
+            {
+                return true;
             }
             if (bagCellNumber + self.BagItemList.Count > ComHelp.BagMaxCapacity())
             {
