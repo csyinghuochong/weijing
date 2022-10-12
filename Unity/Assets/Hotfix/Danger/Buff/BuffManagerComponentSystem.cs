@@ -113,15 +113,23 @@ namespace ET
         /// 移除Buff(下一帧才真正移除)
         /// </summary>
         /// <param name="buffId">要移除的BuffId</param>
-        public static ABuffHandler RemoveBuff(this BuffManagerComponent self, long buffId)
+        public static void RemoveBuff(this BuffManagerComponent self, long buffId)
         {
-            ABuffHandler aBuffSystemBase = self.GetBuffById(buffId);
-            if (aBuffSystemBase != null)
+            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
             {
-                aBuffSystemBase.BuffState = BuffState.Finished;
+                ABuffHandler aBuffHandler = self.m_Buffs[i];
+                if (aBuffHandler.mSkillBuffConf == null)
+                {
+                    continue;
+                }
+                if (aBuffHandler.mSkillBuffConf.Id == buffId)
+                {
+                    aBuffHandler.OnFinished();
+                    aBuffHandler.Clear();
+                    self.m_Buffs.RemoveAt(i);
+                    ObjectPool.Instance.Recycle(aBuffHandler);
+                }
             }
-
-            return aBuffSystemBase;
         }
 
         #endregion

@@ -29,7 +29,8 @@ namespace ET
             }
 
             //buff是否为循环触发的
-            if (InterValTime > 0 ) {
+            if (InterValTime > 0 )
+            {
                 InterValTimeSum = TimeHelper.ServerNow() - this.InterValTimeSumBegin;
                 if (InterValTimeSum >= InterValTime) {
                     this.InterValTimeSumBegin  = TimeHelper.ServerNow();

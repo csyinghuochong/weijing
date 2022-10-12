@@ -74,7 +74,8 @@ namespace ET
             if (keyCode == 257 && self.EditorMode)
             {
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                MapHelper.SendUseSkill( self.ZoneScene(), 52011301, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0 ,0 ).Coroutine();                //62023201
+                //62023202治愈之境（己方加血）    62023402（92034012驱散buff）
+                MapHelper.SendUseSkill( self.ZoneScene(), 62023202, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0 ,0 ).Coroutine();                //62023201
             }
             if (Time.time - self.LastSendTime < 0.2f)
             {

@@ -87,8 +87,7 @@ namespace ET
             //发送改变属性的相关消息
             MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateValue = stateValue, StateOperateType = 1, StateTime = 0 });
             //眩晕状态停止当前移动(服务器代码)
-            if (nowStateType == StateTypeEnum.Dizziness
-                || nowStateType == StateTypeEnum.JiTui)
+            if (!self.CanMove())
             {
                 self.GetParent<Unit>().Stop(0);        //停止当前移动
             }
