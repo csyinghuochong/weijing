@@ -148,11 +148,14 @@ namespace ET
                     for (int i = entities.Count - 1; i >= 0; i--)
                     {
                         Unit uu = entities[i];
+                        if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttack())
+                        {
+                            continue;
+                        }
                         if (self.HurtIds.Contains(uu.Id))
                         {
                             continue;
                         }
-
                         //检测目标是否在技能范围
                         if (!self.CheckShape(uu.Position))
                         {

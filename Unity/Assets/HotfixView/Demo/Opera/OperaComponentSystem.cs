@@ -73,9 +73,9 @@ namespace ET
             //}
             if (keyCode == 257 && self.EditorMode)
             {
-                //62023202治愈之境（己方加血）    62023402（92034012驱散buff） 61021201 子弹1   61023301能量球2
+                //62023202治愈之境（己方加血） 63102001减速光环   62023402（92034012驱散buff） 61021201 子弹1   61023301能量球2
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                MapHelper.SendUseSkill( self.ZoneScene(), 61021201, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0 ,0 ).Coroutine();                //62023201
+                MapHelper.SendUseSkill( self.ZoneScene(), 63102001, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0 ,0 ).Coroutine();                //62023201
             }
             if (Time.time - self.LastSendTime < 0.2f)
             {

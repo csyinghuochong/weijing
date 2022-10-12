@@ -107,7 +107,7 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             long currentTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(currentTime);
-            long lastLoginTime = 1665495566000;// self.LastLoginTime;
+            long lastLoginTime =  self.LastLoginTime;
             if (lastLoginTime != 0)
             {
                 DateTime lastdateTime = TimeInfo.Instance.ToDateTime(lastLoginTime);

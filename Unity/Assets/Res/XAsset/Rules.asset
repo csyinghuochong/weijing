@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 257
+  version: 258
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -1160,6 +1160,10 @@ MonoBehaviour:
     path: Assets/Bundles/Icon/ItemIcon/10010042.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/10010043.png
+  - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
+    path: Assets/Bundles/Icon/ItemIcon/10010044.png
+  - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
+    path: Assets/Bundles/Icon/ItemIcon/10010045.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/10010051.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
@@ -4698,6 +4702,12 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Npc/NPC_LianJin.prefab
   - bundle: bbf5891a4d4922e4e916d1380ac32c48.unity3d
     path: Assets/Bundles/Unit/Npc/NPC_Mail.prefab
+  - bundle: 5c8b8f0674e025482f91382922360d05.unity3d
+    path: Assets/Bundles/Unit/Npc/NPC_ShenShou_1.prefab
+  - bundle: 68dc09165ce16fe4bc3f4287f86f2792.unity3d
+    path: Assets/Bundles/Unit/Npc/NPC_ShenShou_2.prefab
+  - bundle: 0dfc914d7ecba35b95030d35593e203f.unity3d
+    path: Assets/Bundles/Unit/Npc/NPC_ShenShou_3.prefab
   - bundle: f3ce56f3c8df45310dd35407e70df490.unity3d
     path: Assets/Bundles/Unit/Npc/NPC_ZhuanZhi.prefab
   - bundle: dc7e32916ddf0870bc283480a3867fe4.unity3d
@@ -5883,6 +5893,15 @@ MonoBehaviour:
   - name: dc7e32916ddf0870bc283480a3867fe4.unity3d
     assets:
     - Assets/Bundles/Unit/Npc/Npc_Rank.prefab
+  - name: 5c8b8f0674e025482f91382922360d05.unity3d
+    assets:
+    - Assets/Bundles/Unit/Npc/NPC_ShenShou_1.prefab
+  - name: 68dc09165ce16fe4bc3f4287f86f2792.unity3d
+    assets:
+    - Assets/Bundles/Unit/Npc/NPC_ShenShou_2.prefab
+  - name: 0dfc914d7ecba35b95030d35593e203f.unity3d
+    assets:
+    - Assets/Bundles/Unit/Npc/NPC_ShenShou_3.prefab
   - name: f3ce56f3c8df45310dd35407e70df490.unity3d
     assets:
     - Assets/Bundles/Unit/Npc/NPC_ZhuanZhi.prefab
@@ -7997,6 +8016,8 @@ MonoBehaviour:
     - Assets/Bundles/Icon/ItemIcon/10010041.png
     - Assets/Bundles/Icon/ItemIcon/10010042.png
     - Assets/Bundles/Icon/ItemIcon/10010043.png
+    - Assets/Bundles/Icon/ItemIcon/10010044.png
+    - Assets/Bundles/Icon/ItemIcon/10010045.png
     - Assets/Bundles/Icon/ItemIcon/10010051.png
     - Assets/Bundles/Icon/ItemIcon/10010052.png
     - Assets/Bundles/Icon/ItemIcon/10010061.png
@@ -9306,6 +9327,7 @@ MonoBehaviour:
     - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonLitOutline.shader
     - Assets/Res/Models/Occ/zhanshi123/Toony-BasicOutline.shader
     - Assets/Res/Models/Warrior/Suriyun/UnityChanShader/Shader/Unitychan_chara_hada.shader
+    - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-Top.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-DetachAlpha-Top.shader
     - Assets/Mono/GameDemo/Editor Default Resources/Simple Character Pack/Shader/ToonTransparent.shader
     - Assets/TextMesh Pro/Shaders/TMP_SDF.shader
@@ -9313,7 +9335,6 @@ MonoBehaviour:
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-Add.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-Add-Disslove.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Add-DetachAlpha-Top.shader
-    - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-Top.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Add-Top.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-Glow.shader
     - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/Shader/ShaderB/E3D-distortion.shader
@@ -10229,6 +10250,15 @@ MonoBehaviour:
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/model/105711_mms_npc
       #9303106.fbx
+  - name: b9e797b9fc786e9eb0d769e44ef0f536.unity3d
+    assets:
+    - Assets/Scenes/texiao/Common_FB_guangsu.prefab
+  - name: 25edb2df8194e0114397f7e149a39d60.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_path_00227_0003.mat
+  - name: ff7ca1438be892f94a8624714fdb8d21.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_path_00227_0003_A.png
   - name: c8b734c69789aa7c135b7824c6051228.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/3DModel_Cute/Cute Pet/Animations_Cute_Animals/Platypus/Animal_Platypus@Walk.fbx
@@ -10641,6 +10671,43 @@ MonoBehaviour:
   - name: d0633633bf2d53254735307a33316bba.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Holy/Textures/Angez/T_Angez_A.png
+  - name: ca752f0bb9a46cce993fa8abefb9655c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/tex/101210_xmhl_npc_d_256.png
+  - name: f2af49db86325363bd6ec043b2cceabd.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/model/101210_xmhl_npc.fbx
+  - name: 8ecb909d9c7678c6ed90637b4acfb155.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/PetAnimator/2000001.controller
+  - name: 7b0077dc077a164d078286fc6cc44074.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/Materials/101210_xmhl_npc_d_256.mat
+  - name: f5cb432b2c396b6e8ba45349e9314410.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/tex/104620_yy_npc_d_512.png
+  - name: 47bc24da605b8a9c13c06cf3d45bdcfc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/Materials/104620_yy_npc_d_512.mat
+  - name: 075213d3cb3280ed890e91af3e165b09.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/PetAnimator/2000002.controller
+  - name: 01fd6c87c67f175c724b659eef29bd93.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/model/104620_yy_npc.fbx
+  - name: 5f12b3f52f50daa4d850216d0d831379.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/model/101110_xfl_npc
+      #7827049.fbx
+  - name: d36d209c2f20d8ac7ffc2d3267a34dd9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/Materials/101110_xfl_npc_d_512.mat
+  - name: e582583f325b0cfd221c89633c8ed44a.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/PetAnimator/2000003.controller
+  - name: bda86f113f23dc0c896bcbd3e9346b0d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/tex/101120_xfl_npc_d_512.png
   - name: f1770889279080b30fc10df6b8d1514e.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/sparkle.png
@@ -10860,6 +10927,9 @@ MonoBehaviour:
   - name: cf8c5f43a507552f9219ae405fa8baa3.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_63.png
+  - name: 2f94ac8f2c91be9793ed8a65de6edd25.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_67.png
   - name: 50252a38f6861313c929fe3056e798a6.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_3A.png
