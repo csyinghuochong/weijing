@@ -81,10 +81,9 @@ namespace ET
         public static void BulletFactory(this BuffManagerComponent self, BuffData buffData, Unit from, SkillHandler skillHandler)
         {
             Unit to = self.GetParent<Unit>();
-          
             BuffHandler buffHandler = (BuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[buffData.BuffClassScript]);
             buffHandler.OnInit(buffData, from, to, skillHandler);
-            self.m_Buffs.Add(buffHandler);     //添加至buff列表中
+            self.m_Buffs.Insert(0, buffHandler);     //添加至buff列表中
 
             self.AddTimer();
         }
@@ -181,6 +180,12 @@ namespace ET
         {
             for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
             {
+                if (self.m_Buffs.Count == 0)
+                {
+                    Log.Debug($"BuffManager: unitId: {self.GetParent<Unit>().Id} timerId: {self.Timer}");
+                    break;
+                }
+
                 if (self.m_Buffs[i].BuffState == BuffState.Finished)
                 {
                     BuffHandler buffHandler = self.m_Buffs[i];
