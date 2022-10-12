@@ -122,10 +122,6 @@ namespace ET
 
         public static async ETTask NoticeActivityUpdate_Hour(this ActivitySceneComponent self, int hour)
         {
-            if (hour != 12)
-            {
-                return;
-            }
             for (int i = 0; i < self.MapIdList.Count; i++)
             {
                 M2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (M2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call

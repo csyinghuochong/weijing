@@ -72,6 +72,34 @@ namespace ET
             }
         }
 
+        public static int GetTiLiIndex(this UserInfoComponent self, int hour_1)
+        {
+            if (hour_1 <6)
+            {
+                return 1;
+            }
+            if (hour_1 < 12)
+            {
+                return 2;
+            }
+            if (hour_1 < 20)
+            {
+                return 3;
+            }
+            return 4;
+        }
+
+        public static int GetTiLiTimes(this UserInfoComponent self, int hour_1, int hour_2)
+        {
+            int index_1 = self.GetTiLiIndex(hour_1);
+            int index_2 = self.GetTiLiIndex(hour_2);
+            if (index_1 > index_2)
+            {
+                return 0;
+            }
+            return index_2 - index_1;   
+        }
+
         public static async ETTask OnLogin(this UserInfoComponent self, string remoteIp)
         {
             //跨天登录，则重新请求
@@ -79,32 +107,47 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             long currentTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(currentTime);
-            long lastLoginTime = self.LastLoginTime;
-            int updateType = 0;
+            long lastLoginTime = 1665495566000;// self.LastLoginTime;
             if (lastLoginTime != 0)
             {
                 DateTime lastdateTime = TimeInfo.Instance.ToDateTime(lastLoginTime);
-                updateType = dateTime.Day != lastdateTime.Day ? 0: (lastdateTime.Hour < 12 && dateTime.Hour >= 12 ? 12 : -1);
-            }
+                int hour_1, hour_2 = 0;
+                if (dateTime.Day != lastdateTime.Day)
+                {
+                    hour_1 = lastdateTime.Hour;
+                    hour_2 = (dateTime.Day - lastdateTime.Day) * 24 + dateTime.Hour;
+                    if (hour_2 - hour_1 >= 24)
+                    {
+                        self.RecoverPiLao(120, false);
+                    }
+                    else
+                    {
+                        int tiliTimes = self.GetTiLiTimes(lastdateTime.Hour, 24) + self.GetTiLiTimes(0, dateTime.Hour);
+                        tiliTimes = Math.Min(tiliTimes, 4);
+                        self.RecoverPiLao(tiliTimes * 30, false);
+                    }
 
-            if (updateType == 0)
-            {
-                self.OnZeroClockUpdate(false);
-                unit.GetComponent<TaskComponent>().OnZeroClockUpdate(false);
-                unit.GetComponent<EnergyComponent>().OnResetEnergyInfo();
-                unit.GetComponent<HeroDataComponent>().OnZeroClockUpdate(false);
-                unit.GetComponent<ActivityComponent>().OnZeroClockUpdate(self.UserInfo.Lv);
-            }
-            if (updateType == 12)
-            {
-                self.OnHour12Update(false);
+                    self.OnZeroClockUpdate(false);
+                    unit.GetComponent<TaskComponent>().OnZeroClockUpdate(false);
+                    unit.GetComponent<EnergyComponent>().OnResetEnergyInfo();
+                    unit.GetComponent<HeroDataComponent>().OnZeroClockUpdate(false);
+                    unit.GetComponent<ActivityComponent>().OnZeroClockUpdate(self.UserInfo.Lv);
+                }
+                else
+                {
+                    hour_1 = lastdateTime.Hour;
+                    hour_2 = dateTime.Minute;
+
+                    int tiliTimes = self.GetTiLiTimes(lastdateTime.Hour, dateTime.Hour);
+                    tiliTimes = Math.Min(tiliTimes, 4);
+                    self.RecoverPiLao(tiliTimes * 30, false);
+                }
             }
 
             unit.GetComponent<TaskComponent>().OnLogin();
             unit.GetComponent<HeroDataComponent>().OnLogin();
             unit.GetComponent<DBSaveComponent>().OnLogin();
             unit.GetComponent<RechargeComponent>().OnLogin();
-
             if (lastLoginTime != 0)
             {
                 self.CheckTiLi();
@@ -112,7 +155,6 @@ namespace ET
             }
 
             self.LastLoginTime = currentTime;
-            UserInfo userInfo = self.UserInfo;
             self.UserName = self.UserInfo.Name;
             long gateSeesionId = unit.GetComponent<UnitGateComponent>().GateSessionActorId;
 
@@ -124,20 +166,28 @@ namespace ET
                     SceneType = (int)SceneType.Chat,
                     UnitId = 1,
                     UserID = unit.GetComponent<UserInfoComponent>().UserInfo.UserId,
-                    UnionId = userInfo.UnionId,
+                    UnionId = self.UserInfo.UnionId,
                     GateSessionId = gateSeesionId
                 });
         }
 
         /// <summary>
-        /// 中午12点刷新体力
+        /// 0 6 12 20点各刷新30点体力
         /// </summary>
         /// <param name="self"></param>
         /// <param name="notice"></param>
-        public static void OnHour12Update(this UserInfoComponent self, bool notice)
+        public static void OnHourUpdate(this UserInfoComponent self, int hour, bool notice)
+        {
+            if (hour ==0 || hour == 6 || hour == 12 || hour == 20)
+            {
+                self.RecoverPiLao(30, notice);
+            }
+        }
+
+        public static void RecoverPiLao(this UserInfoComponent self, int addValue, bool notice)
         {
             long recoverPiLao = self.GetMaxPiLao(self.GetParent<Unit>().GetComponent<NumericComponent>()) - self.UserInfo.PiLao;
-            recoverPiLao = Math.Min(recoverPiLao, 40);
+            recoverPiLao = Math.Min(recoverPiLao, addValue);
             self.UpdateRoleData(UserDataType.PiLao, recoverPiLao.ToString(), notice).Coroutine();
         }
 
@@ -147,9 +197,7 @@ namespace ET
             self.UpdateRoleData(UserDataType.Vitality, updatevalue.ToString(), notice).Coroutine();
             self.UpdateRoleData(UserDataType.HuoYue, (0 - self.UserInfo.HuoYue).ToString(), notice).Coroutine();
             self.UpdateRoleData(UserDataType.TeamDungeonTimes,"0", notice).Coroutine();
-            self.OnHour12Update(notice);
             self.GetParent<Unit>().GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1,  notice);
-            self.LastLoginTime = TimeHelper.ServerNow();
             self.UserInfo.DayFubenTimes.Clear();
             self.UserInfo.ChouKaRewardIds.Clear();
         }

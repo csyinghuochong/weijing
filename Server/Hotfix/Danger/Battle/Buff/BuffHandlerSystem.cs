@@ -70,16 +70,12 @@ namespace ET
                 {
                     continue;
                 }
-                if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(self.TheUnitFrom))
-                {
-                    continue;
-                }
-
                 //检测目标是否在技能范围
                 if (Vector3.Distance(curPostion, uu.Position) > self.DamageRange)
                 {
                     continue;
                 }
+                self.mSkillHandler.HurtIds.Add(uu.Id);
                 self.mSkillHandler.OnCollisionUnit(uu);
             }
         }

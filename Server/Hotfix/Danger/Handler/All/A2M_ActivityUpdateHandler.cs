@@ -14,12 +14,11 @@ namespace ET
             Log.Info(EventSystem.Instance.ToString());
         }
 
-        private void ActivityUpdate_Hour(Scene scene)
+        private void ActivityUpdate_Hour(Scene scene, int activityType)
         {
             switch (scene.SceneType)
             {
                 case SceneType.Gate:
-                    PrintAllEntity();
                     Player[] players = scene.GetComponent<PlayerComponent>().GetAll();
                     for (int i = 0; i < players.Length; i++)
                     {
@@ -27,37 +26,17 @@ namespace ET
                         {
                             continue;
                         }
-                        ActorLocationSenderComponent.Instance.Send(players[i].UnitId, new G2M_ActivityUpdate() {  ActivityType = 12 });
+                        ActorLocationSenderComponent.Instance.Send(players[i].UnitId, new G2M_ActivityUpdate() {  ActivityType = activityType });
                     }
                     break;
                 case SceneType.Rank:
-                    scene.GetComponent<RankSceneComponent>().OnHour12Update();
+                    if (activityType == 12)
+                    {
+                        scene.GetComponent<RankSceneComponent>().OnHour12Update();
+                    }
                     break;
                 default:
                     break;
-            }
-        }
-
-        private void ActivityUpdate_WorldLv(Scene scene)
-        {
-            switch (scene.SceneType)
-            {
-                case SceneType.Map:
-                    Dictionary<long, Entity> sceneList = scene.Parent.Children;
-                    foreach (var key in sceneList)
-                    {
-                        Scene sceneItem = key.Value as Scene;
-                        if (sceneItem == null)
-                        {
-                            continue;
-                        }
-                        if (sceneItem.SceneType == SceneType.Map
-                            || sceneItem.SceneType == SceneType.Fuben)
-                        {
-                            Log.Info($"{sceneItem.SceneType}  {sceneItem.InstanceId}");
-                        }
-                    }
-                 break;
             }
         }
 
@@ -99,13 +78,9 @@ namespace ET
             {
                 ActivityUpdate_Day(scene);
             }
-            if (request.ActivityType == 1)
+            if (request.ActivityType > 0)
             {
-                ActivityUpdate_WorldLv(scene);
-            }
-            if (request.ActivityType == 12)
-            {
-                ActivityUpdate_Hour(scene);
+                ActivityUpdate_Hour(scene, request.ActivityType);
             }
 
             reply();

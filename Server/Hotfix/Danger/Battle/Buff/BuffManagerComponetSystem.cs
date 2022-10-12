@@ -25,7 +25,7 @@ namespace ET
     {
         public override void Awake(BuffManagerComponent self)
         {
-
+            self.Type = self.GetParent<Unit>().Type;
         }
     }
 
@@ -182,7 +182,7 @@ namespace ET
             {
                 if (self.m_Buffs.Count == 0)
                 {
-                    Log.Debug($"BuffManager: unitId: {self.GetParent<Unit>().Id} timerId: {self.Timer}");
+                    Log.Debug($"BuffManager: self.Type: {self.Type} intanceid :{self.InstanceId} timerId: {self.Timer}");
                     break;
                 }
 

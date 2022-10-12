@@ -148,34 +148,11 @@ namespace ET
                     for (int i = entities.Count - 1; i >= 0; i--)
                     {
                         Unit uu = entities[i];
-                        //不对自己造成伤害和同一个目标不造成2次伤害
-                        //if (uu.Id == self.TheUnitFrom.Id || self.HurtIds.Contains(uu.Id))
-                        //{
-                        //    //如果是自己可能添加对应Buff
-                        //    if (uu.Id == self.TheUnitFrom.Id && self.HurtIds.Contains(uu.Id) == false) 
-                        //    {
-                        //        //Log.ILog.Info("触发技能Skillbuff2222..." + self.SkillConf.BuffID[0]);
-                        //        OnAddSkillBuff(self, uu);
-                        //        self.HurtIds.Add(uu.Id);
-                        //    }
-                        //    continue;
-                        //}
                         if (self.HurtIds.Contains(uu.Id))
                         {
                             continue;
                         }
-                        if (uu.Id == self.TheUnitFrom.Id&& self.CheckShape(uu.Position))
-                        {
-                            OnAddSkillBuff(self, uu);
-                            self.HurtIds.Add(uu.Id);
-                        }
 
-                        //目标不为空
-                        if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(self.TheUnitFrom) )
-                        {
-                            continue;
-                        }
- 
                         //检测目标是否在技能范围
                         if (!self.CheckShape(uu.Position))
                         {
@@ -208,7 +185,8 @@ namespace ET
             }
 
             //触发伤害
-            if (self.SkillConf.DamgeValue > 0 || self.SkillConf.ActDamge > 0)
+            bool canAttack = uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(self.TheUnitFrom);
+            if (canAttack && (self.SkillConf.DamgeValue > 0 || self.SkillConf.ActDamge > 0))
             {
                 self.SkillActTarget(self.TheUnitFrom, uu);
             }

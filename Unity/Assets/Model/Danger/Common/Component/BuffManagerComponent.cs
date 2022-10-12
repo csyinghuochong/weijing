@@ -5,6 +5,7 @@ namespace ET
     public class BuffManagerComponent : Entity, IAwake, IDestroy
     {
         public long Timer;
+        public int Type;
         
 #if !SERVER
         public List<ABuffHandler> m_Buffs = new List<ABuffHandler>();
