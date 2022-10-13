@@ -13,7 +13,7 @@ namespace ET
         {
             try
             {
-                self.OnUpdate();
+                self.OnMainHeroPosition();
             }
             catch (Exception e)
             {
@@ -32,6 +32,8 @@ namespace ET
             //{
             //    self.FrameTimer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.LockTarget, self);
             //}
+
+            DataUpdateComponent.Instance.AddListener(DataType.MainHeroPosition, self);
         }
     }
 
@@ -45,12 +47,14 @@ namespace ET
                 GameObject.Destroy(self.LockUnitEffect);
                 self.LockUnitEffect = null;
             }
+
+            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroPosition, self);
         }
     }
 
     public static class LockTargetComponentSystem
     {
-        public static void OnUpdate(this LockTargetComponent self)
+        public static void OnMainHeroPosition(this LockTargetComponent self)
         {
             Unit haveBoss = null;
             List<Unit> allUnit = self.DomainScene().GetComponent<UnitComponent>().GetAll();

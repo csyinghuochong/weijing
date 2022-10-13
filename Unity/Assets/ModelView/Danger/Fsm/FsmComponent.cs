@@ -8,12 +8,16 @@ namespace ET
     public class FsmComponent : Entity, IAwake, IDestroy
     {
 
-        public FsmStateUI FsmStateUI;
+        public int CurrentFsm;
+
+        public Animator Animator;
 
         public long SkillMoveTime;  //1旋风斩之类的技能
 
-        public AFsmHandler CurrentFsm;
+        public long SkillRigibTime;
 
-        public Animator Animator;
+        public long SkillSingTime;
+
+        public long Timer;
     }
 }

@@ -26,11 +26,6 @@ namespace ET
 	{
 		public override void Destroy(CameraComponent self)
 		{
-			if (self.MainRoleCamera != null)
-			{
-				GameObject.Destroy(self.MainRoleCamera);
-				self.MainRoleCamera = null;
-			}
 			UIHelper.CurrentNpcId = 0;
 			UIHelper.CurrentNpcUI = "";
 		}
@@ -44,7 +39,6 @@ namespace ET
 			self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
 			self.OffsetPostion = new Vector3(0, 10f, -6f);
 			self.CameraMoveType = CameraMoveType.Normal;
-			self.MainRoleCamera = null;
 			self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 			
 			self.OnEnterScene(self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum );
@@ -53,20 +47,6 @@ namespace ET
 		//== SceneTypeEnum.MainCityScene
 		public static  void OnEnterScene(this CameraComponent self, int sceneTypeEnum)
 		{
-			Log.Debug("InitMainRoleCamera : " + sceneTypeEnum);
-			if (!UICommonHelper.ShowBigMap((int)sceneTypeEnum) && self.MainRoleCamera != null)
-			{
-				GameObject.Destroy(self.MainRoleCamera);
-				self.MainRoleCamera = null;
-			}
-			if (UICommonHelper.ShowBigMap((int)sceneTypeEnum) && self.MainRoleCamera == null)
-			{
-				var path = ABPathHelper.GetUnitPath("Component/MainRoleCamera");
-				GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-				//GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-				self.MainRoleCamera = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-			}
-
 			switch (sceneTypeEnum)
 			{
 				case SceneTypeEnum.PetTianTi:
@@ -166,11 +146,6 @@ namespace ET
 				self.CameraMoveTime += Time.deltaTime * 2f;
 				self.BuildExitMove();
 				return;
-			}
-
-			if (self.MainRoleCamera != null)
-			{
-				self.MainRoleCamera.transform.position = self.MainUnit.Position;
 			}
 			//if (self.MainCamera.GetComponent<CameraFollow>() != null)
 			//{

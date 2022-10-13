@@ -20,7 +20,6 @@ namespace ET
         public GameObject TextPing;
         public GameObject MailHintTip;
         public GameObject Btn_Union;
-        public GameObject MainCityShow;
         public GameObject UIStall;
         public GameObject Btn_Friend;
         public GameObject TeamDungeonBtn;
@@ -49,11 +48,10 @@ namespace ET
         public GameObject shiquButton;
         public GameObject petButton;
         public GameObject roleSkillBtn;
-        public GameObject miniMap;
+        public GameObject miniMapButton;
         public GameObject LevelGuideMini;
         public GameObject Obj_Img_ExpPro;
         public GameObject Obj_Lab_ExpValue;
-        public GameObject Obj_Lab_MapName;
         public GameObject Obj_Btn_ShouSuo;
         public GameObject Btn_Email;
         public GameObject Btn_MakeItem;
@@ -64,6 +62,7 @@ namespace ET
         public UI UIMainChat;
         public UI UIMailHintTip;
 
+        public UIMapMiniComponent UIMapMini;
         public UIRoleHeadComponent UIRoleHead;
         public UIMainHpBarComponent UIMainHpBar;
         public UIMainTeamComponent UIMainTeam;
@@ -135,9 +134,6 @@ namespace ET
             //获取相关组件
             self.Obj_Img_ExpPro = rc.Get<GameObject>("Img_ExpPro");
             self.Obj_Lab_ExpValue = rc.Get<GameObject>("Lab_ExpValue");
-            self.Obj_Lab_MapName = rc.Get<GameObject>("Lab_MapName");
-            self.MainCityShow = rc.Get<GameObject>("MainCityShow");
-
             self.bagButton = rc.Get<GameObject>("Btn_RoseEquip");
             //self.bagButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBag(); });
             ButtonHelp.AddListenerEx(self.bagButton, () => { self.OnOpenBag(); });
@@ -180,9 +176,9 @@ namespace ET
             //self.roleSkillBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickSkillButton(); });
             ButtonHelp.AddListenerEx(self.roleSkillBtn, () => { self.OnClickSkillButton(); });
 
-            self.miniMap = rc.Get<GameObject>("MiniMapButton");
+            self.miniMapButton = rc.Get<GameObject>("MiniMapButton");
             //self.miniMap.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenMap(); });
-            ButtonHelp.AddListenerEx(self.miniMap, () => { self.OnOpenMap(); });
+            ButtonHelp.AddListenerEx(self.miniMapButton, () => { self.OnOpenMap(); });
 
             self.Obj_Btn_ShouSuo = rc.Get<GameObject>("Btn_ShouSuo");
             self.Obj_Btn_ShouSuo.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenShouSuo(); });
@@ -252,8 +248,6 @@ namespace ET
             self.InitShow();
 
             self.OnSettingUpdate();
-
-            self.OnEnterScene(SceneTypeEnum.MainCityScene);
 
             self.RegisterReddot();
 
@@ -689,6 +683,9 @@ namespace ET
             self.UILevelGuideMini = self.AddChild<UI, string, GameObject>("LevelGuideMini", self.LevelGuideMini);
             self.UILevelGuideMini.AddComponent<UICellDungeonCellMiniComponent>();
 
+            GameObject UIMapMini = rc.Get<GameObject>("UIMapMini");
+            self.UIMapMini = self.AddChild<UIMapMiniComponent, GameObject>(UIMapMini);
+
             //聊天
             GameObject MainChat = rc.Get<GameObject>("UIMainChat");
             self.UIMainChat = self.AddChild<UI, string, GameObject>("MainChat", MainChat);
@@ -724,9 +721,6 @@ namespace ET
             {
                 self.SetFenBianLv2();
             }
-
-            //更新小地图显示相关
-            self.UpdateShowMapData();
         }
 
         public static void SetFenBianLv1(this UIMainComponent self)
@@ -806,18 +800,22 @@ namespace ET
             self.UIJoystickMoveComponent.draging = false;
         }
 
+       
+
         public static void OnEnterScene(this UIMainComponent self, int sceneTypeEnum)
         {
             self.UITiaoZhan.SetActive(sceneTypeEnum == SceneTypeEnum.Tower);
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
-            self.MainCityShow.SetActive(UICommonHelper.ShowBigMap((int)sceneTypeEnum));
             self.UIMainSkillComponent.ResetUI(sceneTypeEnum == SceneTypeEnum.MainCityScene);
+            self.UIMapMini.OnEnterScene(sceneTypeEnum);
+            if (sceneTypeEnum == SceneTypeEnum.CellDungeon)
+            {
+                self.UILevelGuideMini.GetComponent<UICellDungeonCellMiniComponent>().OnUpdateUI();
+            }
+
             self.UpdateShadow();
             self.UpdateNpcTaskUI();
-
-            //更新小地图显示相关
-            self.UpdateShowMapData();
 
             //进入主城默认不显示目标
             if (sceneTypeEnum == SceneTypeEnum.MainCityScene)
@@ -958,31 +956,6 @@ namespace ET
             self.Obj_Img_ExpPro.GetComponent<Image>().fillAmount = (float)userInfo.Exp / (float)ExpConfigCategory.Instance.Get(userInfo.Lv).UpExp;
         }
 
-        //更新当前地图信息
-        public static void UpdateShowMapData(this UIMainComponent self)
-        {
-            int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
-            int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
-            //显示地图名称
-            if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
-            {
-                //显示地图名称
-                self.Obj_Lab_MapName.GetComponent<Text>().text = ChapterConfigCategory.Instance.Get(sceneId).ChapterName;
-                self.UILevelGuideMini.GetComponent<UICellDungeonCellMiniComponent>().OnUpdateUI();
-            }
-            if (sceneTypeEnum == (int)SceneTypeEnum.MainCityScene
-                || sceneTypeEnum == (int)SceneTypeEnum.TeamDungeon
-                || sceneTypeEnum == (int)SceneTypeEnum.YeWaiScene
-                || sceneTypeEnum == (int)SceneTypeEnum.Tower)
-            {
-                //显示地图名称
-                self.Obj_Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).Name;
-            }
-            if (sceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
-            {
-                self.Obj_Lab_MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(sceneId).ChapterName;
-            }
-        }
 
         public static void OnZhaoHuan(this UIMainComponent self)
         {
@@ -1039,6 +1012,11 @@ namespace ET
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_BagIsFull);
                 return;
             }
+            Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (main.GetComponent<FsmComponent>().IsSkillMoveTime())
+            {
+                return;
+            }
             List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
             if (ids.Count > 0)
             {
@@ -1047,7 +1025,6 @@ namespace ET
             }
             else
             {
-                Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 Unit unit = MapHelper.GetNearItem(self.ZoneScene());
                 if (unit != null)
                 {

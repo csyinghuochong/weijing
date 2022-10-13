@@ -16,9 +16,6 @@ namespace ET
 		// 战斗摄像机
 		public Camera MainCamera;
 
-		//渲染摄像机
-		public GameObject MainRoleCamera;
-
 		public Vector3 OffsetPostion;
 
 		//0正常 1商店npc

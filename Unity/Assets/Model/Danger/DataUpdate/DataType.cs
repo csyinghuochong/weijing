@@ -101,5 +101,7 @@
         public const int FriendChat = 35;
 
         public const int UnitHpUpdate = 36;
+
+        public const int MainHeroPosition = 37;
     }
 }

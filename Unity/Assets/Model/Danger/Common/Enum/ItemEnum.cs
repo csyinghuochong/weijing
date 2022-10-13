@@ -60,16 +60,16 @@ namespace ET
     //11:布甲
     //12:轻甲
     //13:重甲
-    public enum ItemEquipType : int
+    public static class ItemEquipType
     {
-        Common = 0,
-        Sword = 1,
-        Knife = 2,
-        Wand = 3,
-        Book = 4,
-        Bujia =11,
-        QingJia = 12,
-        ZhongJia= 13,
+        public const int Common = 0;
+        public const int Sword = 1;
+        public const int Knife = 2;
+        public const int Wand = 3;
+        public const int Book = 4;
+        public const int Bujia = 11;
+        public const int QingJia = 12;
+        public const int ZhongJia = 13;
     }
 
     //道具存放位置

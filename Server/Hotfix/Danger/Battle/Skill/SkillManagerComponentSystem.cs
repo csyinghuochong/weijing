@@ -300,7 +300,7 @@ namespace ET
             //执行技能逻辑
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            ItemEquipType EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;
+            int EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;
             int weaponSkill = SkillHelp.GetWeaponSkillID(skillcmd.SkillID, EquipType);
             SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
             int tianfuSkill = skillSetComponent != null ? skillSetComponent.GetReplaceSkillId(skillcmd.SkillID) : 0;

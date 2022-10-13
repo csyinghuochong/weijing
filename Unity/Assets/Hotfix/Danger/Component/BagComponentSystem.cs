@@ -618,7 +618,7 @@ namespace ET
             return itemId;
         }
 
-        public static ItemEquipType GetEquipType(this BagComponent self)
+        public static int GetEquipType(this BagComponent self)
         {
             return ComHelp.GetEquipType(self.GetWuqiItemID());
         }

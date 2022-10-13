@@ -49,12 +49,7 @@ namespace ET
     {
         protected override void Run(EventType.KillEvent args)
         {
-            long reviveTime = 0;
             Unit defendUnit = args.UnitDefend;
-            if (defendUnit.Type == UnitType.Monster)
-            {
-                reviveTime = defendUnit.GetComponent<HeroDataComponent>().OnWaitRevive();
-            }
             defendUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
             if (args.UnitAttack != null && !args.UnitAttack.IsDisposed)
             {
@@ -122,7 +117,7 @@ namespace ET
 
             if (defendUnit.Type == UnitType.Monster)
             {
-                if (reviveTime > 0)
+                if (args.WaitRevive > 0)
                 {
                     NumericComponent numericComponent = defendUnit.GetComponent<NumericComponent>();
                     defendUnit.Position = new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),

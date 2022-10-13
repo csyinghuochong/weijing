@@ -132,7 +132,7 @@ namespace ET
             Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
         }
 
-        public static long OnWaitRevive(this HeroDataComponent self)
+        public static int OnWaitRevive(this HeroDataComponent self)
         {
             Unit unit = self.GetParent<Unit>();
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
@@ -181,6 +181,7 @@ namespace ET
                 }
                 zhaohuan.GetComponent<NumericComponent>().ApplyChange(args.Attack, NumericType.Now_Hp, -1000000, args.SkillId);
             }
+            int waitRevive =  self.OnWaitRevive();
 
             unit.RemoveComponent<AIComponent>();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
@@ -208,6 +209,7 @@ namespace ET
           
             Game.EventSystem.Publish(new EventType.KillEvent()
             {
+                WaitRevive = waitRevive,
                 UnitAttack = args.Attack,
                 UnitDefend = unit,
             });

@@ -72,7 +72,9 @@ namespace ET
 		//击杀事件
 		public struct KillEvent
 		{
+			public int WaitRevive;
 			public Unit UnitAttack;
 			public Unit UnitDefend;
-		}	}
+		}
+	}
 }

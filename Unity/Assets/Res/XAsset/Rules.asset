@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 258
+  version: 261
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -9525,9 +9525,6 @@ MonoBehaviour:
   - name: 6ef8ba7eb04f7dcd295df80584fffb82.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/tga/Eye.mat
-  - name: 86a9b028fb147eda01c434baf1d626eb.unity3d
-    assets:
-    - Assets/Res/RenderTexture/MiniRenderTexture.renderTexture
   - name: 110d68940062e3b9a38150d419bd4414.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/WeaponModel/Model/Swords01.FBX
@@ -11173,6 +11170,9 @@ MonoBehaviour:
   - name: 28e283a667a12b44bb25c7fd58839bc0.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_217.png
+  - name: 6f14a63952005396f439ff18e4fb84ae.unity3d
+    assets:
+    - Assets/Res/RenderTexture/MapRenderTexture.renderTexture
   - name: 5f6d022f1ee907905736f7db80fddf5e.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_43.png
@@ -11194,9 +11194,6 @@ MonoBehaviour:
   - name: dc077d15abbe577ee90a39c25a1e40cd.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/Pro_12.png
-  - name: 6f14a63952005396f439ff18e4fb84ae.unity3d
-    assets:
-    - Assets/Res/RenderTexture/MapRenderTexture.renderTexture
   - name: 231b7726f4170e31764ad2f482ce25f1.unity3d
     assets:
     - Assets/Res/RenderTexture/RoleRenderTexture1.renderTexture

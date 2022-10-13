@@ -7,6 +7,17 @@ namespace ET
 
     public static class PetComponentSystem
     {
+        public static void CheckPetList(this PetComponent self, List<long> petList)
+        {
+            for (int i = petList.Count - 1; i >= 0; i--)
+            {
+                if (petList[i]!= 0 && self.GetPetInfo(petList[i]) == null)
+                {
+                    petList[i] = 0;
+                }
+            }
+        }
+
         public static void InitPetInfo(this PetComponent self)
         {
             if (self.RolePetEggs == null || self.RolePetEggs.Count == 0)
@@ -16,8 +27,9 @@ namespace ET
                     self.RolePetEggs.Add(new RolePetEgg());
                 }
             }
-            if (self.PetFormations == null || self.PetFormations.Count == 0)
+            if (self.PetFormations == null || self.PetFormations.Count != 9)
             {
+                self.PetFormations.Clear();
                 for (int i = 0; i < 9; i++)
                 {
                     self.PetFormations.Add(0);
@@ -31,6 +43,9 @@ namespace ET
                     self.TeamPetList.Add(0);
                 }
             }
+            self.CheckPetList(self.PetFormations);
+            self.CheckPetList(self.TeamPetList);
+
             List<PetConfig> petConfigs = PetConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < petConfigs.Count; i++)
             {

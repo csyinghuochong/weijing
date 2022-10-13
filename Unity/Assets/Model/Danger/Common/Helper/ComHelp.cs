@@ -224,7 +224,7 @@ namespace ET
             }
         }
 
-        public static ItemEquipType GetEquipType(int itemId)
+        public static int GetEquipType(int itemId)
         {
             if (itemId == 0)
             {
@@ -233,7 +233,7 @@ namespace ET
             else
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-                return (ItemEquipType)itemConfig.EquipType;
+                return itemConfig.EquipType;
             }
         }
 
