@@ -22,11 +22,10 @@ namespace ET
                 //主角
                 if (unit.MainHero)
                 {
-                    UICommonHelper.UpdateAllNpcBar(unit);
-                    UI uI = UIHelper.GetUI(unit.ZoneScene(), UIType.UIMapBig);
-                    uI?.GetComponent<UIMapBigComponent>().OnChangePosition(unit.Position);
-                    unit.ZoneScene().CurrentScene()?.GetComponent<LockTargetComponent>()?.OnUpdate();
+                    EventType.DataUpdate.Instance.DataType = DataType.MainHeroPosition;
+                    EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
 
+                    UICommonHelper.UpdateAllNpcBar(unit);
                     MapComponent mapComponent = unit.ZoneScene().GetComponent<MapComponent>();
                     if (mapComponent.SceneTypeEnum == SceneTypeEnum.MainCityScene)
                     {

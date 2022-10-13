@@ -32,6 +32,8 @@ namespace ET
             //{
             //    self.FrameTimer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.LockTarget, self);
             //}
+
+            DataUpdateComponent.Instance.AddListener(DataType.MainHeroPosition, self);
         }
     }
 
@@ -45,6 +47,8 @@ namespace ET
                 GameObject.Destroy(self.LockUnitEffect);
                 self.LockUnitEffect = null;
             }
+
+            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroPosition, self);
         }
     }
 

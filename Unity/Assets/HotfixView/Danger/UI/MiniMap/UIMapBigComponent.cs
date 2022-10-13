@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMapBigComponent : Entity, IAwake
+    public class UIMapBigComponent : Entity, IAwake, IDestroy
     {
         public int SceneId = 1;
         public float ScaleRateX = 1f;
@@ -28,6 +28,15 @@ namespace ET
         public MoveComponent MoveComponent;
         public List<GameObject> PathPointList = new List<GameObject>();
         public Dictionary<int, GameObject> NpcGameObject = new Dictionary<int, GameObject>();
+    }
+
+    [ObjectSystem]
+    public class UIMapBigComponentDestroySystem : DestroySystem<UIMapBigComponent>
+    {
+        public override void Destroy(UIMapBigComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroPosition, self);
+        }
     }
 
 
@@ -69,6 +78,8 @@ namespace ET
 
             self.OnAwake().Coroutine();
             self.InitNpcList().Coroutine();
+
+            DataUpdateComponent.Instance.AddListener(DataType.MainHeroPosition, self);
         }
     }
 
@@ -109,7 +120,7 @@ namespace ET
             self.ScaleRateX = self.RawImage.GetComponent<RectTransform>().rect.height / (camera.orthographicSize * 2);
             self.ScaleRateY = self.RawImage.GetComponent<RectTransform>().rect.height / (camera.orthographicSize * 2);
 
-            self.OnChangePosition(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).Position);
+            self.OnChangePosition();
             self.MainPostion.transform.Find("Text").GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Name;
 
             await TimerComponent.Instance.WaitAsync(200);
@@ -317,8 +328,9 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), UIType.UIMapBig);
         }
 
-        public static void OnChangePosition(this UIMapBigComponent self, Vector3 vector3)
+        public static void OnChangePosition(this UIMapBigComponent self)
         {
+            Vector3 vector3 = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).Position;
             Vector3 vector31 = new Vector3(vector3.x, vector3.z, 0f);
             self.MainPostion.transform.localPosition = self.GetWordToUIPositon(vector31);
 

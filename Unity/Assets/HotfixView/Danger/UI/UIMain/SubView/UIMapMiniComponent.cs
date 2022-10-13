@@ -12,6 +12,11 @@ namespace ET
         public GameObject MiniMapButton;
         public GameObject RawImage;
         public GameObject MainCityShow;
+
+        public GameObject MapCamera;
+        public int SceneId;
+        public float ScaleRateX;
+        public float ScaleRateY;
     }
 
     [ObjectSystem]
@@ -32,8 +37,50 @@ namespace ET
 
     public static class UIMapMiniComponentSystem
     {
+        public static async ETTask LoadMapCamera(this UIMapMiniComponent self)
+        {
+            Log.Debug("LoadMapCameraLoadMapCamera {}");
+
+            GameObject mapCamera = GameObject.Find("MapCamera");
+            if (mapCamera == null)
+            {
+                var path = ABPathHelper.GetUnitPath("Component/MapCamera");
+                GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+                mapCamera = GameObject.Instantiate(prefab);
+                mapCamera.name = "MapCamera";
+            }
+            Camera camera = mapCamera.GetComponent<Camera>();
+            camera.enabled = true;
+
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+            {
+                DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(mapComponent.SceneId);
+                mapCamera.transform.position = new Vector3((float)dungeonConfig.CameraPos[0], (float)dungeonConfig.CameraPos[1], (float)dungeonConfig.CameraPos[2]);
+                mapCamera.transform.eulerAngles = new Vector3(90, 0, (float)dungeonConfig.CameraPos[3]);
+                camera.orthographicSize = (float)dungeonConfig.CameraPos[4];
+            }
+            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MainCityScene
+                || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.TeamDungeon)
+            {
+                SceneConfig dungeonConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
+                mapCamera.transform.position = new Vector3((float)dungeonConfig.CameraPos[0], (float)dungeonConfig.CameraPos[1], (float)dungeonConfig.CameraPos[2]);
+                mapCamera.transform.eulerAngles = new Vector3(90, 0, (float)dungeonConfig.CameraPos[3]);
+                camera.orthographicSize = (float)dungeonConfig.CameraPos[4];
+            }
+            self.MapCamera = mapCamera;
+
+            self.SceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
+            self.ScaleRateX = self.RawImage.GetComponent<RectTransform>().rect.height / (camera.orthographicSize * 2);
+            self.ScaleRateY = self.RawImage.GetComponent<RectTransform>().rect.height / (camera.orthographicSize * 2);
+            await TimerComponent.Instance.WaitAsync(200);
+            camera.enabled = false;
+        }
+
         public static void OnEnterScene(this UIMapMiniComponent self, int sceneType)
         {
+            self.LoadMapCamera().Coroutine();
+
             self.MainCityShow.SetActive(UICommonHelper.ShowBigMap((int)sceneType));
 
             int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;

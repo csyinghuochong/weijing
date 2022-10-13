@@ -249,8 +249,6 @@ namespace ET
 
             self.OnSettingUpdate();
 
-            self.OnEnterScene(SceneTypeEnum.MainCityScene);
-
             self.RegisterReddot();
 
             self.ZoneScene().GetComponent<GuideComponent>().FirstEnter();

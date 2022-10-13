@@ -47,6 +47,24 @@ namespace ET
             DataUpdatelegateDics.Add(DataType.FriendChat, OnFriendChat);
             DataUpdatelegateDics.Add(DataType.PetXiLianUpdate, OnPetXiLianUpdate);
             DataUpdatelegateDics.Add(DataType.PetHeChengUpdate, OnHeChengReturn);
+            DataUpdatelegateDics.Add(DataType.MainHeroPosition, OnMainHeroPosition);
+        }
+
+        public void OnMainHeroPosition(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIMapBigComponent uiComponent)
+                {
+                    uiComponent.OnChangePosition();
+                    continue;
+                }
+                if (component is LockTargetComponent lockComponent)
+                {
+                    lockComponent.OnUpdate();
+                    continue;
+                }
+            }
         }
 
         public void OnHeChengReturn(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
