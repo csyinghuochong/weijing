@@ -9,7 +9,15 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_MysteryBuyRequest request, M2C_MysteryBuyResponse response, Action reply)
         {
-            switch(request.NpcId)
+            MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(request.MysteryItemInfo.MysteryId);
+            if (unit.GetComponent<UserInfoComponent>().GetMysteryBuy(request.MysteryItemInfo.MysteryId) >= mysteryConfig.BuyNumMax)
+            {
+                response.Error = ErrorCore.ERR_OperationOften;
+                reply();
+                return;
+            }
+
+            switch (request.NpcId)
             {
                 case ComHelp.ShenMiNpcId:
                     long chargeServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Activity)).InstanceId;
@@ -48,10 +56,10 @@ namespace ET
                     break;
             }
 
-            MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(request.MysteryItemInfo.MysteryId);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (mysteryConfig.SellValue * -1).ToString()).Coroutine();
             unit.GetComponent<BagComponent>().OnAddItemData($"{request.MysteryItemInfo.ItemID};{request.MysteryItemInfo.ItemNumber}",
                 $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
+
             reply();
         }
     }

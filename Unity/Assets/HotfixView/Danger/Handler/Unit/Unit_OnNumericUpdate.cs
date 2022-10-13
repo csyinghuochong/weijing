@@ -51,6 +51,7 @@
                     UserInfoComponent userInfoComponent = args.Unit.ZoneScene().GetComponent<UserInfoComponent>();
                     userInfoComponent.UserInfo.DayFubenTimes.Clear();
                     userInfoComponent.UserInfo.ChouKaRewardIds.Clear();
+                    userInfoComponent.UserInfo.MysteryItems.Clear();
                     break;
                 case NumericType.PointRemain:
                     ReddotComponent reddotComponent = args.Unit.ZoneScene().GetComponent<ReddotComponent>();

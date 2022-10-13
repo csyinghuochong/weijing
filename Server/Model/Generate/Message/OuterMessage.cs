@@ -620,6 +620,9 @@ namespace ET
 		[ProtoMember(29)]
 		public List<int> XiLianRewardIds = new List<int>();
 
+		[ProtoMember(30)]
+		public List<KeyValuePairInt> MysteryItems = new List<KeyValuePairInt>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

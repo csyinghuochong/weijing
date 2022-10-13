@@ -200,6 +200,7 @@ namespace ET
             self.GetParent<Unit>().GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1,  notice);
             self.UserInfo.DayFubenTimes.Clear();
             self.UserInfo.ChouKaRewardIds.Clear();
+            self.UserInfo.MysteryItems.Clear();
         }
 
         public static UserInfo GetUserInfo(this UserInfoComponent self)
@@ -238,6 +239,31 @@ namespace ET
             m2C_BroadcastRoleData.UpdateType = (int)Type;
             m2C_BroadcastRoleData.UpdateTypeValue = value;
             MessageHelper.Broadcast(unit, m2C_BroadcastRoleData);
+        }
+
+        public static int GetMysteryBuy(this UserInfoComponent self, int mysteryId)
+        {
+            for (int i = 0; i < self.UserInfo.MysteryItems.Count; i++)
+            {
+                if (self.UserInfo.MysteryItems[i].KeyId == mysteryId)
+                {
+                    return (int)self.UserInfo.MysteryItems[i].Value;
+                }
+            }
+            return 0;
+        }
+
+        public static void OnMysteryBuy(this UserInfoComponent self, MysteryItemInfo itemInfo)
+        {
+            for (int i = 0; i < self.UserInfo.MysteryItems.Count; i++)
+            {
+                if (self.UserInfo.MysteryItems[i].KeyId == itemInfo.MysteryId)
+                {
+                    self.UserInfo.MysteryItems[i].Value += 1;
+                    return;
+                }
+            }
+            self.UserInfo.MysteryItems.Add(new KeyValuePairInt() { KeyId = itemInfo.MysteryId, Value = 1 });
         }
 
         //需要通知客户端

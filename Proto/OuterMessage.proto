@@ -307,6 +307,8 @@ message UserInfo
 	repeated int32 ChouKaRewardIds = 28;
 
 	repeated int32 XiLianRewardIds = 29;
+
+	repeated KeyValuePairInt  MysteryItems = 30;
 }
 
 message KeyValuePair
