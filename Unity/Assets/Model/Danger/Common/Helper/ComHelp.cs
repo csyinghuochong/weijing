@@ -17,10 +17,6 @@ namespace ET
 
         public const int MaxZone = 202;
 
-        //1000015[神秘商人,全服刷新]1000016[魔能商人，副本刷新]
-        public const int ShenMiNpcId = 1000015;
-        public const int MoNengNpcId = 1000016;
-
         public const string RobotPassWord = "et@#robot";
 
         //赠送钻石数量
