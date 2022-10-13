@@ -30,7 +30,12 @@
                 {
                     continue;
                 }
-                if (!this.CheckShape(unit.Position) && unit.GetComponent<BuffManagerComponent>()!=null)
+                if (!unit.GetComponent<UnitInfoComponent>().IsCanBeAttack())
+                {
+                    HurtIds.RemoveAt(i);
+                    continue;
+                }
+                if (!this.CheckShape(unit.Position))
                 {
                     unit.GetComponent<BuffManagerComponent>().BuffRemove(SkillConf.BuffID[0]);
                     HurtIds.RemoveAt(i);

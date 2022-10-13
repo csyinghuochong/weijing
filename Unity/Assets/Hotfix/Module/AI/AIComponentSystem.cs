@@ -152,7 +152,6 @@ namespace ET
             self.ActDistance = 2;
             self.ActInterValTime = 500L;
             self.AISkillIDList.Add(petConfig.ActSkillID);
-
             self.StopAI = false;
         }
 

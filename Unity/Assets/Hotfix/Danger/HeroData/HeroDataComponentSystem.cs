@@ -132,6 +132,11 @@ namespace ET
             Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
         }
 
+        /// <summary>
+        /// 0 不复活 1等待复活
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
         public static int OnWaitRevive(this HeroDataComponent self)
         {
             Unit unit = self.GetParent<Unit>();
