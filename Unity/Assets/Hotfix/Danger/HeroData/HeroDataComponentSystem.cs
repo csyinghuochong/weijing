@@ -135,8 +135,12 @@ namespace ET
         public static int OnWaitRevive(this HeroDataComponent self)
         {
             Unit unit = self.GetParent<Unit>();
+            if (unit.Type != UnitType.Monster)
+            {
+                return 0;
+            }
+
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-           
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitInfoComponent.UnitCondigID);
             int resurrection = (int)monsterConfig.ReviveTime;
             if (resurrection == 0)
