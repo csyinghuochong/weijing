@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 260
+  version: 261
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -15599,6 +15599,48 @@ MonoBehaviour:
   - name: ca28c507c9d402c48ce35b4c669f0250.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Tree_Dead1.fbx
+  - name: a172c410f287b71231a92987461f744b.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.png
+  - name: b6f316118abb5d24d364cc2ebf803609.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Material and Texture/Gradient.mat
+  - name: 00a0c2f5f65c8bcbfbe0907d70224c48.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/building_Accessories_lv1.FBX
+  - name: 68764a32ff3b2f9d2055c20ad260fa77.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Models/Coins/Coins.fbx
+  - name: 399f09fb4acdd8c7927a40915d54b671.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories_roof.mat
+  - name: 07acde07c754dbf641a7a26c9dea211b.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Hyper Casual Chests/Texture/Chest Color Palette.png
+  - name: 5d3696bf5b7a2f4a7231f273d88b556f.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories.mat
+  - name: e5c1e3b1c68c4a4c84bfd2c13ff3cb64.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Hyper Casual Chests/Materials/Chest Material.mat
+  - name: 1c39bf9cd0363631c88a01f435d275da.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/etc_Sword_shelves01.FBX
+  - name: 4dce0aee589eb6fba052bc84be19e9f7.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Coins/Coin.003.prefab
+  - name: 876faf8b325702c468a339aa0091b16c.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories_roof.png
+  - name: d3a64327cafa1263dc59f466f86300c9.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories.png
+  - name: 8922effa1068661cd987292f80d70245.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Material and Texture/Gradient.png
+  - name: c887be2ef0d8eaf041cf3bcebfe59adb.unity3d
+    assets:
+    - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.mat
   - name: 4eb7ec892c29ab65d8beffecbc7c4fca.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/obj_small_047_01.mat
