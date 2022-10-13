@@ -51,6 +51,7 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             RolePetInfo fightPetInfo = petComponent.GetFightPetInfo();
             List<long> petTeamList = petComponent.TeamPetList;
+            petTeamList.AddRange(petComponent.PetFormations);
 
             if (self.OperationType == PetOperationType.HeCheng)
             {

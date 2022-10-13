@@ -982,6 +982,8 @@ namespace ET
             {
                 self.Obj_Lab_MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(sceneId).ChapterName;
             }
+
+
         }
 
         public static void OnZhaoHuan(this UIMainComponent self)
