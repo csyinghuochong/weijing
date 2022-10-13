@@ -141,6 +141,9 @@ namespace ET
 		/// <summary>是否自动使用</summary>
 		[ProtoMember(22)]
 		public int IfAutoUse { get; set; }
+		/// <summary>是否禁止拍卖行上架</summary>
+		[ProtoMember(23)]
+		public int IfStopPaiMai { get; set; }
 
 	}
 }

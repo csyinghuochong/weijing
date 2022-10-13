@@ -151,6 +151,13 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选中道具！");
                 return;
             }
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
+            if (itemConfig.IfStopPaiMai  == 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("此道具禁止上架！");
+                return;
+            }
             if (self.PaiMaiItemInfos.Count >= GlobalValueConfigCategory.Instance.Get(50).Value2)
             {
                 FloatTipManager.Instance.ShowFloatTip("已经达到最大上架数量！");
