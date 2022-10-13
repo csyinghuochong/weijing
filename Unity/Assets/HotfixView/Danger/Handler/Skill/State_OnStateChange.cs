@@ -40,7 +40,6 @@
             }
             if (message.StateType == StateTypeEnum.Interrupt && message.StateOperateType == 1)
             {
-                fsmComponent.SkillMoveTime = 0;
                 fsmComponent.ChangeState(FsmStateEnum.FsmIdleState, message.StateValue);
             }
             if (message.StateType == StateTypeEnum.OpenBox && message.StateOperateType == 1)

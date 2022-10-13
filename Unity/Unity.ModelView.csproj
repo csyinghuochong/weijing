@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ModelView\Danger\Component\GlobalUpdateComponent.cs" />
-    <Compile Include="Assets\ModelView\Danger\Fsm\FsmDispatchComponent.cs" />
     <Compile Include="Assets\ModelView\Demo\Global\GlobalComponent.cs" />
     <Compile Include="Assets\ModelView\Danger\Component\UISceneItemComponent.cs" />
     <Compile Include="Assets\ModelView\Danger\Component\TransferUIComponent.cs" />

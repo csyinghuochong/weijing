@@ -1039,6 +1039,11 @@ namespace ET
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_BagIsFull);
                 return;
             }
+            Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (main.GetComponent<FsmComponent>().IsSkillMoveTime())
+            {
+                return;
+            }
             List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
             if (ids.Count > 0)
             {
@@ -1047,7 +1052,6 @@ namespace ET
             }
             else
             {
-                Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 Unit unit = MapHelper.GetNearItem(self.ZoneScene());
                 if (unit != null)
                 {

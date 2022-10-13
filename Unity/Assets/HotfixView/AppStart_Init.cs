@@ -55,7 +55,6 @@ namespace ET
             Game.Scene.AddComponent<SkillDispatcherComponent>();
             Game.Scene.AddComponent<BuffDispatcherComponent>();
             Game.Scene.AddComponent<EffectDispatcherComponent>();
-            Game.Scene.AddComponent<FsmDispatchComponent>();
             Game.Scene.AddComponent<SceneManagerComponent>();
             Game.Scene.AddComponent<SoundComponent>();
             Game.Scene.AddComponent<NumericWatcherComponent>();     //数值监听组件

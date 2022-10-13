@@ -49,6 +49,7 @@
         public const int AttackGridTimer = 1057;
         public const int DropUITimer = 1058;
         public const int GameObjectPoolTimer = 1059;
+        public const int FsmTimer = 1060;
         // 不能超过10000
     }
 }

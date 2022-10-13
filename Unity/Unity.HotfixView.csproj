@@ -116,7 +116,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIGuide\UIGuideComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetChallengeComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeam\UITeamApplyListEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Fsm\FsmOpenBox.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILoading\LoadingFinishEvent_RemoveLoadingUI.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Login_OnReturnLogin.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIItemTips\UIEquipDuiBiTipsComponent.cs" />
@@ -159,7 +158,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UITeam\UITeamEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonCellMiniComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIEquipSetItemComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Fsm\FsmHui.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChouKa\UIChouKaRewardEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UICommonHuoBiSetEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubItem\UIAttackGridComponent.cs" />
@@ -171,7 +169,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Register\UIRegisterComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\HeroTransformComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITuZhiMake\UITuZhiMakeNeedComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Fsm\FsmDeathState.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRealName\UIRealNameComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIZhanQu\UIZhanQuCombatItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianSkillItemComponent.cs" />
@@ -253,7 +250,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuRewardComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Help\ChangeEquipHelper.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\FallingFontComponentSystem.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Fsm\FsmHandlerSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBuChang\UIBuChangItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIHongBao\UIHongBaoComponent.cs" />
@@ -281,7 +277,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationSetComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChat\UIChatItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonMyComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Fsm\FsmNpcSpeak.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Help\UnitViewHelper.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonSettlementEvent.cs" />
@@ -336,7 +331,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIRoleEvent.cs" />
     <Compile Include="Assets\HotfixView\Demo\Global\GlobalComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankRewardEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Fsm\FsmIdleState.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetEgg\UIPetChouKaComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuRewardItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendChatItemComponent.cs" />
@@ -410,21 +404,17 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Server\UISelectGameServerSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendApplyItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UIHelp\SceneChangeFinishEvent_CreateUIHelp.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Fsm\FsmShiQuItem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICreateRole\UICreateRoleComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetListComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Fuben_OnAfterEnterFuben.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetMainEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Task\Task_OnTaskNpcDialog.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Fsm\FsmRunState.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Fsm\FsmDispatcherComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampStrengthComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiStallComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubItem\UISkillGridComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Sound\SoundComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Fsm\FsmSinging.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeam\UITeamItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuTypeItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIAppraisal\UIAppraisalSelectComponent.cs" />
@@ -450,7 +440,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIItemTips\UIItemExpBoxEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuShowComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChat\UIChatEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Fsm\FsmSkillState.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\CameraComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianTenItemComponent.cs" />
@@ -490,7 +479,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampFuLiComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIWorldLv\UIWorldLvEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMakeLearn\UIMakeLearnEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Fsm\FsmComboState.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISetting\UISettingEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\TransferUIComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Queue\UIQueueEvent.cs" />
