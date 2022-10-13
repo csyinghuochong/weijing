@@ -315,7 +315,14 @@ namespace ET
         public static void SkillBuff(this SkillHandler self, int buffID, Unit uu)
         {
             if (uu == null)
+            {
                 return;
+            }
+            if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttack())
+            {
+                return;
+            }
+
             SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffID);
             bool canBuff = false;
             switch (skillBuffConfig.TargetType)
