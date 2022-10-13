@@ -12,7 +12,7 @@ namespace ET
             MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(request.MysteryItemInfo.MysteryId);
             if (unit.GetComponent<UserInfoComponent>().GetMysteryBuy(request.MysteryItemInfo.MysteryId) >= mysteryConfig.BuyNumMax)
             {
-                response.Error = ErrorCore.ERR_OperationOften;
+                response.Error = ErrorCore.ERR_MysteryItem_Max;
                 reply();
                 return;
             }
