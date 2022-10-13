@@ -156,6 +156,7 @@
         public const int ERR_Pet_AddSkillSame = 300903;                             //宠物打书技能ID相同
 
         public const int ERR_Union_Same_Name = 301001;                              //同名的家族
+        public const int ERR_MysteryItem_Max = 301002;                              //改道具每日购买次数已达上限
 
 
 

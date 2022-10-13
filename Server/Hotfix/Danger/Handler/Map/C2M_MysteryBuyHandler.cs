@@ -49,6 +49,7 @@ namespace ET
             //    mysteryItemInfo1.ItemNumber -= request.MysteryItemInfo.ItemNumber;
             //    break;
 
+            unit.GetComponent<UserInfoComponent>().OnMysteryBuy(request.MysteryItemInfo);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (mysteryConfig.SellValue * -1).ToString()).Coroutine();
             unit.GetComponent<BagComponent>().OnAddItemData($"{request.MysteryItemInfo.ItemID};{request.MysteryItemInfo.ItemNumber}",
                 $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");

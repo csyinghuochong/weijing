@@ -73,6 +73,8 @@ namespace ET
 
             ErrorHintList.Add(ErrorCore.ERR_RoleYueKaRepeat, "月卡重复开启");
             ErrorHintList.Add(ErrorCore.ERR_AlreadyFinish, "活动已经结束");
+            ErrorHintList.Add(ErrorCore.ERR_MysteryItem_Max, "改道具每日购买次数已达上限");
+            
     }
 
         public string GetHint(int code)
