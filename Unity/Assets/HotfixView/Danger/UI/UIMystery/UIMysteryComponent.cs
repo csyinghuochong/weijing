@@ -109,7 +109,8 @@ namespace ET
 
         public static async ETTask RequestMystery(this UIMysteryComponent self)
         {
-            if (UIHelper.CurrentNpcId == ComHelp.ShenMiNpcId)
+            NpcConfig npcConfig = NpcConfigCategory.Instance.Get(UIHelper.CurrentNpcId);
+            if (npcConfig.NpcType == 1012)
             {
                 C2A_MysteryListRequest c2A_MysteryListRequest = new C2A_MysteryListRequest() { UserId = self.UserInfoComponent.UserInfo.UserId };
                 A2C_MysteryListResponse r2c_roleEquip = (A2C_MysteryListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2A_MysteryListRequest);
