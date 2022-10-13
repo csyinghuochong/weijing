@@ -23,7 +23,7 @@ namespace ET
             Vector3 vector3 = theUnitBelongto.Position + dir * distance;
             this.BeginTime = TimeHelper.ServerNow();
             this.StartPosition = theUnitBelongto.Position;
-            this.TargetPosition = theUnitBelongto.DomainScene().GetComponent<MapComponent>().GetCanReachPath(theUnitBelongto.Position, vector3);
+            this.TargetPosition = theUnitBelongto.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitBelongto.Position, vector3);
             theUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.JiTui);
         }
 
