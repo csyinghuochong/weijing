@@ -13,7 +13,7 @@ namespace ET
         {
             try
             {
-                self.OnUpdate();
+                self.OnMainHeroPosition();
             }
             catch (Exception e)
             {
@@ -54,7 +54,7 @@ namespace ET
 
     public static class LockTargetComponentSystem
     {
-        public static void OnUpdate(this LockTargetComponent self)
+        public static void OnMainHeroPosition(this LockTargetComponent self)
         {
             Unit haveBoss = null;
             List<Unit> allUnit = self.DomainScene().GetComponent<UnitComponent>().GetAll();

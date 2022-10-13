@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMapMiniComponent : Entity, IAwake<GameObject>
+    public class UIMapMiniComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject GameObject;
 
@@ -20,6 +20,15 @@ namespace ET
     }
 
     [ObjectSystem]
+    public class UIMapMiniComponentDestroySystem : DestroySystem<UIMapMiniComponent>
+    {
+        public override void Destroy(UIMapMiniComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroPosition, self);
+        }
+    }
+
+    [ObjectSystem]
     public class UIMapMiniComponentAwakeSystem : AwakeSystem<UIMapMiniComponent, GameObject>
     {
         public override void Awake(UIMapMiniComponent self, GameObject a)
@@ -32,11 +41,36 @@ namespace ET
             self.MiniMapButton = rc.Get<GameObject>("MiniMapButton");
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.MainCityShow = rc.Get<GameObject>("MainCityShow");
+
+            DataUpdateComponent.Instance.AddListener(DataType.MainHeroPosition, self);
         }
     }
 
     public static class UIMapMiniComponentSystem
     {
+        public static void OnMainHeroPosition(this UIMapMiniComponent self)
+        {
+            Vector3 vector3 = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).Position;
+            Vector3 vector31 = new Vector3(vector3.x, vector3.z, 0f);
+            Vector2 localPosition = self.GetWordToUIPositon(vector31);
+
+            self.RawImage.transform.localPosition = new Vector2(localPosition.x * -1, localPosition.y * -1);
+        }
+
+        public static Vector3 GetWordToUIPositon(this UIMapMiniComponent self, Vector3 vector3)
+        {
+            GameObject mapCamera = self.MapCamera;
+            vector3.x -= mapCamera.transform.position.x;
+            vector3.y -= mapCamera.transform.position.z;
+
+            Quaternion rotation = Quaternion.Euler(0, 0, 1 * mapCamera.transform.eulerAngles.y);
+            vector3 = rotation * vector3;
+
+            vector3.x *= self.ScaleRateX;
+            vector3.y *= self.ScaleRateY;
+            return vector3;
+        }
+
         public static async ETTask LoadMapCamera(this UIMapMiniComponent self)
         {
             Log.Debug("LoadMapCameraLoadMapCamera {}");
@@ -73,8 +107,11 @@ namespace ET
             self.SceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
             self.ScaleRateX = self.RawImage.GetComponent<RectTransform>().rect.height / (camera.orthographicSize * 2);
             self.ScaleRateY = self.RawImage.GetComponent<RectTransform>().rect.height / (camera.orthographicSize * 2);
+            self.RawImage.transform.localPosition = Vector2.zero;
             await TimerComponent.Instance.WaitAsync(200);
             camera.enabled = false;
+
+            self.OnMainHeroPosition();
         }
 
         public static void OnEnterScene(this UIMapMiniComponent self, int sceneType)

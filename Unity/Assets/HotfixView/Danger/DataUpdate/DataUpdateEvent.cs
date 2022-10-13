@@ -56,12 +56,17 @@ namespace ET
             {
                 if (component is UIMapBigComponent uiComponent)
                 {
-                    uiComponent.OnChangePosition();
+                    uiComponent.OnMainHeroPosition();
                     continue;
                 }
                 if (component is LockTargetComponent lockComponent)
                 {
-                    lockComponent.OnUpdate();
+                    lockComponent.OnMainHeroPosition();
+                    continue;
+                }
+                if (component is UIMapMiniComponent miniComponent)
+                {
+                    miniComponent.OnMainHeroPosition();
                     continue;
                 }
             }
