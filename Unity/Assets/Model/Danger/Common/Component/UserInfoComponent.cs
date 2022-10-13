@@ -12,12 +12,12 @@
         RongYu = 6,             //荣誉
         FangRong = 7,           //繁荣度
         MaoXianExp = 8,         //冒险家经验
+        TeamDungeonTimes = 9,             //每日副本次数
         Lv,                     //等级            
         Occ,                    //职业
         HuoYue,                 //活跃
         Sp,                     //sp[技能点]
         Name,                   //名称
-        TeamDungeonTimes,             //每日副本次数
         StallName,              //摊位名字
         Union,                  //公会
         Combat,                 //zhanli战力

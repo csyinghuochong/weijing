@@ -499,7 +499,7 @@ namespace ET
             {  6, UserDataType.RongYu },
             { 7, UserDataType.FangRong},
             { 8, UserDataType.MaoXianExp},
-            { 14, UserDataType.TeamDungeonTimes},
+            { 9, UserDataType.TeamDungeonTimes},
         };
 
         public static UserDataType GetItemToUserDataType(int itemid)
