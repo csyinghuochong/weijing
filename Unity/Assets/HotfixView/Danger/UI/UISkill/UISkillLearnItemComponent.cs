@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISkillLearnItemComponent : Entity, IAwake
+    public class UISkillLearnItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject ButtonUp;
         public GameObject ButtonLearn;
@@ -18,17 +19,19 @@ namespace ET
         public GameObject Img_SkillIcon;
         public GameObject ButtonMax;
         public GameObject Lab_NeedSp;
+        public GameObject GameObject;
 
         public SkillPro SkillPro;
         public Action<SkillPro> ClickHandler;
     }
 
     [ObjectSystem]
-    public class UISkillLearnItemComponentAwakeSystem : AwakeSystem<UISkillLearnItemComponent>
+    public class UISkillLearnItemComponentAwakeSystem : AwakeSystem<UISkillLearnItemComponent, GameObject>
     {
-        public override void Awake(UISkillLearnItemComponent self)
+        public override void Awake(UISkillLearnItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Img_XuanZhong = rc.Get<GameObject>("Img_XuanZhong");
             self.Img_Button = rc.Get<GameObject>("Img_Button");
@@ -101,21 +104,27 @@ namespace ET
 
         public static void OnUpdateSkillInfo(this UISkillLearnItemComponent self)
         {
-            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-
             //表现
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            SkillConfig skillWuqiConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkillID(self.SkillPro.SkillID, bagComponent.GetEquipType()));
+            int itemEquipType = bagComponent.GetEquipType();
+            SkillConfig skillWuqiConfig = SkillConfigCategory.Instance.Get(51011101);// SkillHelp.GetWeaponSkillID(self.SkillPro.SkillID, itemEquipType));
 
             //逻辑
             SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(self.SkillPro.SkillID);
+            string[] skillDesc = Regex.Split(skillWuqiConfig.SkillDescribe, "\n\n", RegexOptions.IgnoreCase);
 
-            self.Text_Desc.GetComponent<Text>().text = skillConfig_base.SkillDescribe;
+            if (itemEquipType == 0 ||  skillDesc.Length == 1)
+            {
+                self.Text_Desc.GetComponent<Text>().text = skillDesc[0];
+            }
+            else
+            {
+                self.Text_Desc.GetComponent<Text>().text = skillDesc[itemEquipType - 1];
+            }
 
             self.ButtonLearn.SetActive(false);
             self.ButtonUp.SetActive(false);
             self.ButtonMax.SetActive(false);
-
             if (skillConfig_base.SkillLv == 0)
             {
                 self.ButtonLearn.SetActive(true);
@@ -156,37 +165,26 @@ namespace ET
 
             int playerLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             SkillConfig skillBaseConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
-            //if (skillBaseConfig.SkillLv == 0 && playerLv < skillBaseConfig.LearnRoseLv)
-            //{
-            //    //self.Node_1.SetActive(false);
-            //    //self.Node_2.SetActive(true);
-            //    self.Text_LearnLv.GetComponent<Text>().text = string.Format("{0}级以后学习", skillBaseConfig.LearnRoseLv);
-            //    UICommonHelper.SetImageGray(self.Img_SkillIcon, true);
-            //}
-            //else
+
+            self.Lab_NeedSp.GetComponent<Text>().text = $"需要技能点: {skillBaseConfig.CostSPValue}";
+            self.Lab_SkillLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级 ") + skillBaseConfig.SkillLv.ToString();
+
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkillID(self.SkillPro.SkillID, bagComponent.GetEquipType()));
+            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillWeaponConfig.SkillIcon);
+            self.Lab_SkillName.GetComponent<Text>().text = skillWeaponConfig.SkillName;
+            self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
+
+            if (skillBaseConfig.SkillLv == 0)
             {
-                //self.Node_1.SetActive(true);
-                //self.Node_2.SetActive(false);
-
-                self.Lab_NeedSp.GetComponent<Text>().text = $"需要技能点: {skillBaseConfig.CostSPValue}";
-                self.Lab_SkillLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级 ") + skillBaseConfig.SkillLv.ToString();
-
-                BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-                SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkillID(self.SkillPro.SkillID, bagComponent.GetEquipType()));
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillWeaponConfig.SkillIcon);
-                self.Lab_SkillName.GetComponent<Text>().text = skillWeaponConfig.SkillName;
-                self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
-
-                if (skillBaseConfig.SkillLv == 0)
-                {
-                    self.Lab_SkillLv.GetComponent<Text>().text = string.Format("{0}级以后学习", skillBaseConfig.LearnRoseLv);
-                    UICommonHelper.SetImageGray(self.Img_SkillIcon, true);
-                }
-                else 
-                {
-                    UICommonHelper.SetImageGray(self.Img_SkillIcon, false);
-                }
+                self.Lab_SkillLv.GetComponent<Text>().text = string.Format("{0}级以后学习", skillBaseConfig.LearnRoseLv);
+                UICommonHelper.SetImageGray(self.Img_SkillIcon, true);
             }
+            else
+            {
+                UICommonHelper.SetImageGray(self.Img_SkillIcon, false);
+            }
+
 
             self.OnUpdateSkillInfo();
         }

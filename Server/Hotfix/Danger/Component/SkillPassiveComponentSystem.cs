@@ -216,12 +216,12 @@ namespace ET
             {
                 int weapontype = Convert.ToInt32(skillIfo.SkillPro);
                 int buffId = SkillConfigCategory.Instance.Get(skillIfo.SkillId).InitBuffID[0];
-                ItemEquipType weaponType = targetId == 0 ? ItemEquipType.Common: (ItemEquipType)ItemConfigCategory.Instance.Get((int)targetId).EquipType;
-                if (weaponType != (ItemEquipType)weapontype)
+                int weaponType = targetId == 0 ? ItemEquipType.Common: (int)ItemConfigCategory.Instance.Get((int)targetId).EquipType;
+                if (weaponType != weapontype)
                 {
                     self.GetParent<Unit>().GetComponent<BuffManagerComponent>().BuffRemove(buffId);
                 }
-                if (weaponType == (ItemEquipType)weapontype)
+                if (weaponType == weapontype)
                 {
                     BuffData buffData_1 = new BuffData();
                     buffData_1.BuffConfig = SkillBuffConfigCategory.Instance.Get(buffId);

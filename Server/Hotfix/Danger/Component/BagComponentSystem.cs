@@ -343,7 +343,7 @@ namespace ET
             return bagInfo != null ? bagInfo.ItemID : 0;
         }
 
-        public static ItemEquipType GetEquipType(this BagComponent self)
+        public static int GetEquipType(this BagComponent self)
         {
             BagInfo bagInfo = self.GetEquipByWeizhi((int)ItemSubTypeEnum.Wuqi);
             return ComHelp.GetEquipType(bagInfo!= null ? bagInfo.ItemID:0);

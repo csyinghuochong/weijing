@@ -15,7 +15,7 @@ namespace ET
         public GameObject Obj_Text_SkillTypeShow;
 
         public SkillPro SkillPro;
-        public List<UI> SkillUIList = new List<UI>();
+        public List<UISkillLearnItemComponent> SkillUIList = new List<UISkillLearnItemComponent>();
         public UIPageButtonComponent UIPageButton;
         public bool LinShiSkillStatus;
     }
@@ -160,7 +160,7 @@ namespace ET
                 }
 
                 //根据类型显示
-                UI uI = null;
+                UISkillLearnItemComponent uI = null;
                 if (number < self.SkillUIList.Count)
                 {
                     uI = self.SkillUIList[number];
@@ -170,30 +170,21 @@ namespace ET
                 {
                     GameObject skillItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(skillItem, self.SkillListNode);
-                    uI = self.AddChild<UI, string, GameObject>("skill_Item_" + i, skillItem);
-                    UISkillLearnItemComponent uISkillSetItemComponent = uI.AddComponent<UISkillLearnItemComponent>();
-                    uISkillSetItemComponent.SetClickHander((SkillPro skillpro) => { self.OnSelectSkill(skillpro); });
+                    uI = self.AddChild<UISkillLearnItemComponent, GameObject>(skillItem);
+                    uI.SetClickHander((SkillPro skillpro) => { self.OnSelectSkill(skillpro); });
                     self.SkillUIList.Add(uI);
                 }
                 number++;
-                uI.GetComponent<UISkillLearnItemComponent>().OnUpdateUI(showSkillPros[i]);
+                uI.OnUpdateUI(showSkillPros[i]);
             }
             for (int i = number; i < self.SkillUIList.Count; i++)
             {
                 self.SkillUIList[i].GameObject.SetActive(false);
             }
 
-            //if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo >= 0)
-            //{
-            //    self.Obj_Text_ZhuanZhiHint.SetActive(false);
-            //}
-            //else 
-            //{
-            //    self.Obj_Text_ZhuanZhiHint.SetActive(true);
-            //}
             if (self.SkillUIList.Count > 0)
             {
-                self.SkillUIList[0].GetComponent<UISkillLearnItemComponent>().OnImg_Button();
+                self.SkillUIList[0].OnImg_Button();
             }
         }
 
@@ -203,7 +194,7 @@ namespace ET
 
             for (int i = 0; i < self.SkillUIList.Count; i++)
             {
-                self.SkillUIList[i].GetComponent<UISkillLearnItemComponent>().OnSetSelected(skillPro.SkillID);
+                self.SkillUIList[i].OnSetSelected(skillPro.SkillID);
             }
         }
 
@@ -222,7 +213,7 @@ namespace ET
             UISkillLearnItemComponent uISkillSetItemComponent;
             for (int i = 0; i < self.SkillUIList.Count; i++)
             {
-                uISkillSetItemComponent = self.SkillUIList[i].GetComponent<UISkillLearnItemComponent>();
+                uISkillSetItemComponent = self.SkillUIList[i];
                 SkillPro sp = uISkillSetItemComponent.SkillPro;
                 if (sp.SkillID == newSkill)
                 {
