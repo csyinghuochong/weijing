@@ -216,13 +216,13 @@ namespace ET
 		/// <summary>等级成长魔防</summary>
 		[ProtoMember(47)]
 		public double Lv_Adf { get; set; }
-		/// <summary>监视范围</summary>
+		/// <summary>监视范围(未用)</summary>
 		[ProtoMember(48)]
 		public int PatrolRange { get; set; }
 		/// <summary>追击范围</summary>
 		[ProtoMember(49)]
 		public int ChaseRange { get; set; }
-		/// <summary>攻击范围</summary>
+		/// <summary>攻击范围(未用)</summary>
 		[ProtoMember(50)]
 		public int ActRunRange { get; set; }
 		/// <summary>抓捕狂暴概率</summary>

@@ -25,7 +25,7 @@ namespace ET
         public override void OnUpdate()
         {
             //每间隔一段时间触发一次伤害
-            if (TimeHelper.ServerNow() - this.SkillTriggerLastTime >= 500)
+            if (TimeHelper.ServerNow() - this.SkillTriggerLastTime >= 250)
             {
                 SkillTriggerLastTime = TimeHelper.ServerNow();
                 HurtIds.Clear();

@@ -96,6 +96,9 @@ namespace ET
 		/// <summary>出现服务器时间(天)</summary>
 		[ProtoMember(7)]
 		public int ShowServerDay { get; set; }
+		/// <summary>限购数量</summary>
+		[ProtoMember(8)]
+		public int BuyNumMax { get; set; }
 
 	}
 }
