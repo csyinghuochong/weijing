@@ -20,7 +20,7 @@ namespace ET
             }
             //获取范敌人是否在攻击范围内
             float distance = Vector3.Distance(target.Position, aiComponent.GetParent<Unit>().Position);
-            bool zhuiji = distance >= aiComponent.ActDistance && aiComponent.CanChange();
+            bool zhuiji = distance >= aiComponent.ActDistance && aiComponent.IsCanZhuiJi();
             return zhuiji;
         }
 

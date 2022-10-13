@@ -63,7 +63,6 @@ namespace ET
                 return;
             }
 
-            self.RigidityTime -= 1000;
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
             foreach (AIConfig aiConfig in oneAI.Values)
             {
@@ -180,13 +179,14 @@ namespace ET
         }
 
 #if SERVER
-        public static bool CanChange(this AIComponent self)
+        public static bool IsCanZhuiJi(this AIComponent self)
         {
-            if (self.RigidityTime > 0)
+            StateComponent stateComponent = self.GetParent<Unit>().GetComponent<StateComponent>();
+            if (!stateComponent.CanMove())
             {
                 return false;
             }
-            if (self.GetParent<Unit>().GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))
+            if (stateComponent.StateTypeGet(StateTypeEnum.Singing))
             {
                 return false;
             }

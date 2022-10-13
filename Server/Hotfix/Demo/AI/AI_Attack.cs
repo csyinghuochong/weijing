@@ -57,14 +57,13 @@ namespace ET
                 int errorCode = unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd).Item1;     //触发技能
                 if (errorCode == 0)
                 {
-                    aiComponent.RigidityTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000);
+                    unit.GetComponent<StateComponent>().RigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + TimeHelper.ServerNow();
                 }
 
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
                 timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)
                 {
-                    aiComponent.RigidityTime = 0;
                     return;
                 }
             }
