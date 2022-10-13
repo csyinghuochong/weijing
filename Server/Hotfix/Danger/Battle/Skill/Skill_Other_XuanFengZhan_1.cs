@@ -30,7 +30,7 @@ namespace ET
                 SkillTriggerLastTime = TimeHelper.ServerNow();
                 HurtIds.Clear();
                 this.UpdateCheckPoint();
-                this.TriggerSkillHurt();
+                this.ExcuteSkillAction();
             }
 
             //技能存在时间

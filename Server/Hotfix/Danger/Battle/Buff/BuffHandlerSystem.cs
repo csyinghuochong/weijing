@@ -62,10 +62,6 @@ namespace ET
             {
                 Unit uu = units[i] as Unit;
                 //不对自己造成伤害和同一个目标不造成2次伤害
-                if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttack())
-                {
-                    continue;
-                }
                 if (uu.IsDisposed||uu.Id == self.TheUnitFrom.Id)
                 {
                     continue;

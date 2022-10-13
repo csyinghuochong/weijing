@@ -909,8 +909,5 @@
   -->
   <ItemGroup>
     <Compile Include="Codes\Model\**\*.cs" />
-    <ProjectReference Include="..\Tools\Analyzer\Analyzer.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false">
-      <Project>{d1f2986b-b296-4a2d-8f12-be9f470014c3}</Project>
-    </ProjectReference>
   </ItemGroup>
 </Project>

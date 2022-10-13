@@ -41,7 +41,7 @@ namespace ET
                 return;
             }
             this.UpdateCheckPoint();
-            this.TriggerSkillHurt();
+            this.ExcuteSkillAction();
         }
 
         public override void OnFinished()

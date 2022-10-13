@@ -125,7 +125,7 @@ namespace ET
                 }   
                 else
                 {
-                    self.TriggerSkillHurt();
+                    self.ExcuteSkillAction();
                 }
             }
 
@@ -137,45 +137,48 @@ namespace ET
         }
 
         //触发战斗伤害(0:范围内,不对自己造成伤害 1:只对自己造成影响)
-        public static void TriggerSkillHurt(this SkillHandler self, int type = 0)
+        public static void ExcuteSkillAction(this SkillHandler self)
         {
-            //Log.ILog.Info("触发技能Skillbuff...");
-            switch (type)
-            {
-                //范围内对目标造成伤害
-                case 0:
-                    List<Unit> entities = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll();
-                    for (int i = entities.Count - 1; i >= 0; i--)
-                    {
-                        Unit uu = entities[i];
-                        if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttack())
-                        {
-                            continue;
-                        }
-                        if (self.HurtIds.Contains(uu.Id))
-                        {
-                            continue;
-                        }
-                        //检测目标是否在技能范围
-                        if (!self.CheckShape(uu.Position))
-                        {
-                            continue;
-                        }
+            List<Unit> entities = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll();
 
-                        self.HurtIds.Add(uu.Id);
-                        self.OnCollisionUnit(uu);
-                    }
-                    break;
-                //范围内的己方单位含自己
-                case 1:
-                    break;
+            for (int i = entities.Count - 1; i >= 0; i--)
+            {
+                Unit uu = entities[i];
+                if (self.HurtIds.Contains(uu.Id))
+                {
+                    continue;
+                }
+                //检测目标是否在技能范围
+                if (!self.CheckShape(uu.Position))
+                {
+                    continue;
+                }
+
+                self.HurtIds.Add(uu.Id);
+                self.OnCollisionUnit(uu);
             }
         }
 
         public static void OnCollisionUnit(this SkillHandler self, Unit uu)
         {
             //触发Buff
-            OnAddSkillBuff(self,uu);
+            self.TriggerSkillBuff(uu);
+
+            //触发伤害
+            self.TriggeSkillHurt(uu);
+        }
+
+        //目标附加Buff
+        public static void TriggerSkillBuff(this SkillHandler self, Unit uu)
+        {
+            //触发Buff
+            if (self.SkillConf.BuffID[0] != 0)
+            {
+                for (int y = 0; y < self.SkillConf.BuffID.Length; y++)
+                {
+                    self.SkillBuff(self.SkillConf.BuffID[y], uu);
+                }
+            }
 
             SkillSetComponent skillSetComponent = self.TheUnitFrom.GetComponent<SkillSetComponent>();
             List<int> buffInitAdd = skillSetComponent != null ? skillSetComponent.GetBuffIdAdd(self.SkillConf.Id) : null;
@@ -186,27 +189,6 @@ namespace ET
                     self.SkillBuff(buffInitAdd[k], uu);
                 }
             }
-
-            //触发伤害
-            bool canAttack = uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(self.TheUnitFrom);
-            if (canAttack && (self.SkillConf.DamgeValue > 0 || self.SkillConf.ActDamge > 0))
-            {
-                self.SkillActTarget(self.TheUnitFrom, uu);
-            }
-        }
-
-        //目标附加Buff
-        public static void OnAddSkillBuff(this SkillHandler self, Unit uu) {
-
-            //触发Buff
-            if (self.SkillConf.BuffID[0] != 0)
-            {
-                for (int y = 0; y < self.SkillConf.BuffID.Length; y++)
-                {
-                    self.SkillBuff(self.SkillConf.BuffID[y], uu);
-                }
-            }
-
         }
 
         public static void SetSkillState(this SkillHandler self, SkillState state)
@@ -219,18 +201,25 @@ namespace ET
             return self.ICheckShape.Contains(t_positon);
         }
 
-        public static void SkillActTarget(this SkillHandler self, Unit attactUnit, Unit defendUnit)
+        public static void TriggeSkillHurt(this SkillHandler self,  Unit uu)
         {
-
+            bool canAttack = uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(self.TheUnitFrom);
+            if (!canAttack)
+            {
+                return;
+            }
             //技能伤害为0不执行
-            if (self.SkillConf.ActDamge == 0 && self.SkillConf.DamgeValue == 0) {
+            if (self.SkillConf.ActDamge == 0 && self.SkillConf.DamgeValue == 0) 
+            {
                 return;
             }
 
             bool clearnTemporary = false;
-            if (self.SkillParValueHpUpAct!=null) {
-                foreach (SkillParValue_HpUpAct now in self.SkillParValueHpUpAct) {
-                    float defendUnitHpPro = (float)defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) / (float)defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
+            if (self.SkillParValueHpUpAct!=null)
+            {
+                foreach (SkillParValue_HpUpAct now in self.SkillParValueHpUpAct)
+                {
+                    float defendUnitHpPro = (float)uu.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) / (float)uu.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
                     //血量低于
                     if (now.type == 1) {
                         if (defendUnitHpPro <= now.hpNeedPro) 
@@ -252,12 +241,12 @@ namespace ET
                 }
             }
 
-            Function_Fight.GetInstance().Fight(attactUnit, defendUnit, self);
+            Function_Fight.GetInstance().Fight(self.TheUnitFrom, uu, self);
 
-            if (clearnTemporary) {
+            if (clearnTemporary)
+            {
                 self.ActTargetTemporaryAddPro = 0;      //清空
             }
-
         }
 
         public static Shape CreateCheckShape(this SkillHandler self)

@@ -339,6 +339,9 @@ namespace ET
             rolePetInfo.Ks.Clear();
             rolePetInfo.Vs.Clear();
 
+            rolePetInfo.Ks.Add((int)NumericType.Base_Speed_Base);
+            rolePetInfo.Vs.Add((long)speed * 10000);
+
             rolePetInfo.Ks.Add((int)NumericType.Now_Speed);
             rolePetInfo.Vs.Add((long)speed * 10000);
 

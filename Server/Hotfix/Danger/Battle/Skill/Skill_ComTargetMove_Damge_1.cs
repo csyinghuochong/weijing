@@ -57,7 +57,7 @@ namespace ET
             float damgeRange = (float)this.SkillConf.DamgeRange[0];
             if (damgeRange > 0)
             {
-                this.TriggerSkillHurt();
+                this.ExcuteSkillAction();
             }
             else
             {
