@@ -107,7 +107,7 @@ namespace ET
             //表现
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             int itemEquipType = bagComponent.GetEquipType();
-            SkillConfig skillWuqiConfig = SkillConfigCategory.Instance.Get(51011101);// SkillHelp.GetWeaponSkillID(self.SkillPro.SkillID, itemEquipType));
+            SkillConfig skillWuqiConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkillID(self.SkillPro.SkillID, itemEquipType));
 
             //逻辑
             SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(self.SkillPro.SkillID);
