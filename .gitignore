@@ -65,6 +65,7 @@ Server/.DS_Store
 /Unity/Assets/Bundles/Code/Code.pdb.bytes
 /Unity/Assets/Bundles/Code/Code.pdb.bytes.meta
 /Unity/Assembly-CSharp.csproj
+/Unity/Packages/packages-lock.json
 /Excel/~$*.xlsx
 /.vscode
 /WeiJingShuZhi
