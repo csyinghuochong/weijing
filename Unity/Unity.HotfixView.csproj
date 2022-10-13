@@ -528,6 +528,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UILingDi\UILingDiRewardItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UIMapMiniComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -1171,5 +1172,8 @@
   -->
   <ItemGroup>
     <Compile Include="Codes\HotfixView\**\*.cs" />
+    <ProjectReference Include="..\Tools\Analyzer\Analyzer.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false">
+      <Project>{d1f2986b-b296-4a2d-8f12-be9f470014c3}</Project>
+    </ProjectReference>
   </ItemGroup>
 </Project>
