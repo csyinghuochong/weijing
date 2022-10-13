@@ -16,7 +16,7 @@ namespace ET
             {
                 return false;
             }
-
+            
             float distance = Vector3.Distance(unit.Position, master.Position);
             if (distance > aiComponent.ActRange)
             {

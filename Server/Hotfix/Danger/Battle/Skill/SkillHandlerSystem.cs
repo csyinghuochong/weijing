@@ -16,7 +16,7 @@ namespace ET
             self.SkillConf = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
             self.TheUnitFrom = theUnitFrom;
             SkillSetComponent skillSetComponent = theUnitFrom.GetComponent<SkillSetComponent>();
-            self.tianfuProAdd = skillSetComponent!=null ? skillSetComponent.GetSkillPropertyAdd(skillcmd.WeaponSkillID):null;
+            self.TianfuProAdd = skillSetComponent!=null ? skillSetComponent.GetSkillPropertyAdd(skillcmd.WeaponSkillID):null;
 
             self.PassTime = 0;
             self.OldSpeed = 0f;
@@ -69,9 +69,9 @@ namespace ET
         public static float GetTianfuProAdd(this SkillHandler self, int key)
         {
             float value = 0f;
-            if (self.tianfuProAdd == null)
+            if (self.TianfuProAdd == null)
                 return value;
-            self.tianfuProAdd.TryGetValue(key, out value);
+            self.TianfuProAdd.TryGetValue(key, out value);
             return value;
         }
 

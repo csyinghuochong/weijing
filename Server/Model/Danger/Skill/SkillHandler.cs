@@ -15,7 +15,7 @@ namespace ET
     {
         public List<long> HurtIds = new List<long>();
         public Dictionary<long, long> LastHurtTimes = new Dictionary<long, long>();
-        public Dictionary<int, float> tianfuProAdd;
+        public Dictionary<int, float> TianfuProAdd;
 
         //1 正在执行   2完成使命
         public SkillState SkillState;

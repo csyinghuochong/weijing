@@ -78,26 +78,29 @@ namespace ET
 		/// <summary>Id</summary>
 		[ProtoMember(1)]
 		public int Id { get; set; }
-		/// <summary>随机数量</summary>
+		/// <summary>NextId</summary>
 		[ProtoMember(2)]
+		public int NextId { get; set; }
+		/// <summary>随机数量</summary>
+		[ProtoMember(3)]
 		public int[] NumberLimit { get; set; }
 		/// <summary>出售道具</summary>
-		[ProtoMember(3)]
+		[ProtoMember(4)]
 		public int SellItemID { get; set; }
 		/// <summary>出售货币种类</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public int SellType { get; set; }
 		/// <summary>出售价格</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int SellValue { get; set; }
 		/// <summary>出现权重</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int ShowPro { get; set; }
 		/// <summary>出现服务器时间(天)</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public int ShowServerDay { get; set; }
 		/// <summary>限购数量</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int BuyNumMax { get; set; }
 
 	}
