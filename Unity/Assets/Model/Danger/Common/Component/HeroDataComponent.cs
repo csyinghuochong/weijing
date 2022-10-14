@@ -7,5 +7,8 @@ namespace ET
     public class HeroDataComponent:Entity, IAwake, ITransfer
     {
 
+        public long AttackingId;
+        public long BeAttackId;
+
     }
 }

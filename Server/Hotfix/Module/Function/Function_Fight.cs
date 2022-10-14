@@ -1,7 +1,5 @@
-﻿using ET;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace ET
 {
@@ -53,8 +51,11 @@ namespace ET
                 defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, hp * -1, skillconfig.Id);
                 return;
             }
-            int DamgeType = 0;      //伤害类型
 
+            attackUnit.GetComponent<HeroDataComponent>().AttackingId = defendUnit.Id;
+            defendUnit.GetComponent<HeroDataComponent>().BeAttackId = attackUnit.Id;    
+
+            int DamgeType = 0;      //伤害类型
             defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.BeHurt_3, attackUnit.Id);
 
             //获取攻击方属性

@@ -18,21 +18,27 @@ namespace ET
             }
             
             float distance = Vector3.Distance(unit.Position, master.Position);
-            if (distance > aiComponent.ActRange)
+            if (distance > aiComponent.ActRange)    //超出追击距离，返回
             {
                 aiComponent.TargetID = 0;
                 return true;
             }
-            Unit nearest = AIHelp.GetNearestEnemy(unit);
-            if (nearest == null)
+            long mastaerAttackId = master.GetComponent<HeroDataComponent>().AttackingId;
+            Unit enemyUnit = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(mastaerAttackId);
+            if (enemyUnit == null)
+            {
+                mastaerAttackId = master.GetComponent<HeroDataComponent>().BeAttackId;
+                enemyUnit = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(mastaerAttackId);
+            }
+            if (enemyUnit == null)
             {
                 aiComponent.TargetID = 0;
                 return true;
             }
-            distance = Vector3.Distance(unit.Position, nearest.Position);
+            distance = Vector3.Distance(unit.Position, enemyUnit.Position);
             if (distance < aiComponent.ActRange)
             {
-                aiComponent.TargetID = nearest.Id;
+                aiComponent.TargetID = enemyUnit.Id;
             }
             else
             {

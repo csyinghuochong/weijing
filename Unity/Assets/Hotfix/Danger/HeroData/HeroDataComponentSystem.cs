@@ -4,6 +4,16 @@ using UnityEngine;
 namespace ET
 {
 
+    [ObjectSystem]
+    public class HeroDataComponentAwakeSystem : AwakeSystem<HeroDataComponent>
+    {
+        public override void Awake(HeroDataComponent self)
+        {
+            self.AttackingId = 0;
+            self.BeAttackId = 0;
+        }
+    }
+
     /// <summary>
     /// 英雄数据组件，负责管理英雄数据
     /// </summary>
