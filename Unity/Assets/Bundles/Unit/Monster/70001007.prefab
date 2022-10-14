@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 107369365090213386}
   - component: {fileID: 107369365090213387}
   m_Layer: 12
-  m_Name: 70001005
+  m_Name: 70001007
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -264,6 +264,10 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0.03748901
       objectReference: {fileID: 0}
+    - target: {fileID: 13700000, guid: b85d873c6b322f246a39e3fd387100e1, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 3e72bac2fede58b498f431160acc2926, type: 2}
     m_RemovedComponents:
     - {fileID: 9500000, guid: b85d873c6b322f246a39e3fd387100e1, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: b85d873c6b322f246a39e3fd387100e1, type: 3}
