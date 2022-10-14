@@ -86,7 +86,7 @@ namespace ET
                 self.DBDayActivityInfo.Id = self.DomainZone();
             }
           
-            self.DBDayActivityInfo.MysteryItemInfos = self.DBDayActivityInfo.MysteryItemInfos.Count == 0 ? MysteryShopHelper.InitMysteryItemInfos( openServerTime) : self.DBDayActivityInfo.MysteryItemInfos;
+            self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerTime);
             self.DBDayActivityInfo.Day = TimeHelper.DateTimeNow().Day;
             self.SaveDB().Coroutine();
         }
