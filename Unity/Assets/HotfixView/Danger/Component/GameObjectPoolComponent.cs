@@ -117,7 +117,7 @@ namespace ET
             }
         }
 
-        public static async ETTask<GameObject> GetExternal(this GameObjectPoolComponent self, string path)
+        public static async ETTask<GameObject> GetExternalAsync(this GameObjectPoolComponent self, string path)
         {
             if (self.ExternalReferences.ContainsKey(path))
             {
@@ -135,6 +135,32 @@ namespace ET
             if (!self.ExternalReferences.ContainsKey(path) || self.ExternalReferences[path].Count == 0)
             {
                 GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+                gobjet = GameObject.Instantiate(prefab);
+                return gobjet;
+            }
+            gobjet = self.ExternalReferences[path][0];
+            self.ExternalReferences[path].RemoveAt(0);
+            return gobjet;
+        }
+
+        public static  GameObject GetExternal(this GameObjectPoolComponent self, string path)
+        {
+            if (self.ExternalReferences.ContainsKey(path))
+            {
+                List<GameObject> gameObjects = self.ExternalReferences[path];
+                for (int i = gameObjects.Count - 1; i >= 0; i--)
+                {
+                    if (gameObjects[i] == null)
+                    {
+                        gameObjects.RemoveAt(i);
+                        ResourcesComponent.Instance.UnLoadAsset(path);
+                    }
+                }
+            }
+            GameObject gobjet;
+            if (!self.ExternalReferences.ContainsKey(path) || self.ExternalReferences[path].Count == 0)
+            {
+                GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
                 gobjet = GameObject.Instantiate(prefab);
                 return gobjet;
             }

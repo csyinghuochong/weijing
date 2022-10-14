@@ -52,7 +52,7 @@ namespace ET
             long instanceid = self.InstanceId;
             //int number = self.GetDropNumber();
             var path = ABPathHelper.GetUGUIPath("Battle/UIDropItem");
-            self.HeadBar = await GameObjectPoolComponent.Instance.GetExternal(path);
+            self.HeadBar = await GameObjectPoolComponent.Instance.GetExternalAsync(path);
             if (instanceid != self.InstanceId)
             {
                 return;

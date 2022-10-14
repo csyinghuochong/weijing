@@ -89,7 +89,7 @@ namespace ET
             SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
             skillIndicatorItem.SkillZhishiType = (SkillZhishiType)skillConfig.SkillZhishiType;
             skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
-            skillIndicatorItem.GameObject = await GameObjectPoolComponent.Instance.GetExternal(skillIndicatorItem.EffectPath);
+            skillIndicatorItem.GameObject = await GameObjectPoolComponent.Instance.GetExternalAsync(skillIndicatorItem.EffectPath);
             skillIndicatorItem.GameObject.transform.localScale = Vector3.one * 0.1f;
 
             skillIndicatorItem.TargetAngle = skillcmd.TargetAngle;

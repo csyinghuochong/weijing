@@ -83,7 +83,7 @@ namespace ET
         /// <summary>
         /// 显示技能指示器
         /// </summary>
-        public static async ETTask ShowSkillIndicator(this SkillIndicatorComponent self, SkillConfig skillconfig)
+        public static  void  ShowSkillIndicator(this SkillIndicatorComponent self, SkillConfig skillconfig)
         {
             //0  立即释放,自身中心点
             //1  技能指示器
@@ -94,15 +94,11 @@ namespace ET
             SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
             skillIndicatorItem.SkillZhishiType = (SkillZhishiType)skillconfig.SkillZhishiType;
             skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
-            skillIndicatorItem.GameObject = await GameObjectPoolComponent.Instance.GetExternal(skillIndicatorItem.EffectPath);
+            skillIndicatorItem.GameObject = GameObjectPoolComponent.Instance.GetExternal(skillIndicatorItem.EffectPath);
             skillIndicatorItem.GameObject.SetActive(true);
             UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);
             self.SkillIndicator = skillIndicatorItem;
             self.InitZhishiEffect(skillIndicatorItem);
-            if (!self.ShowEffect)
-            {
-                self.RecoveryEffect();
-            }
             if (self.Timer == 0)
             {
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.SkillIndicator, self);
@@ -120,7 +116,7 @@ namespace ET
             SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
             skillIndicatorItem.SkillZhishiType = SkillZhishiType.CommonAttack;
             skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
-            skillIndicatorItem.GameObject = await GameObjectPoolComponent.Instance.GetExternal(skillIndicatorItem.EffectPath);
+            skillIndicatorItem.GameObject = await GameObjectPoolComponent.Instance.GetExternalAsync(skillIndicatorItem.EffectPath);
             skillIndicatorItem.GameObject.SetActive(true);
             UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);
             self.SkillIndicator = skillIndicatorItem;
@@ -224,14 +220,19 @@ namespace ET
             skillIndicatorItem.TargetAngle += (int)self.MainCamera.transform.eulerAngles.y;
         }
 
-        public static float GetTargetDistance(this SkillIndicatorComponent self)
+        public static float GetIndicatorDistance(this SkillIndicatorComponent self)
         {
             return self.SkillIndicator!=null ? self.SkillIndicator.AttackDistance:0;
         }
 
-        public static int GetTargetAngle(this SkillIndicatorComponent self)
+        public static int GetIndicatorAngle(this SkillIndicatorComponent self)
         {
-            return self.SkillIndicator != null ? self.SkillIndicator.TargetAngle:0;
+            if (self.StartIndicator == Vector2.zero || self.SkillIndicator == null)
+            {
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                return Mathf.FloorToInt(unit.Rotation.eulerAngles.y);
+            }
+            return self.SkillIndicator.TargetAngle;
         }
 
         public static void ClearnsShow(this SkillIndicatorComponent self)

@@ -45,7 +45,7 @@ namespace ET
         {
             long instanceid = self.InstanceId;
             string uIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
-            GameObject FlyFontObj = await GameObjectPoolComponent.Instance.GetExternal(uIBattleFly);
+            GameObject FlyFontObj = await GameObjectPoolComponent.Instance.GetExternalAsync(uIBattleFly);
             if (instanceid != self.InstanceId)
             {
                 return;

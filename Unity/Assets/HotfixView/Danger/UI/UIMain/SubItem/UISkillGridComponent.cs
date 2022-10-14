@@ -193,7 +193,7 @@ namespace ET
             uimain.GetComponent<UIMainComponent>().OnSpellStart();
             if (self.skillPro.SkillSetType == (int)SkillSetEnum.Skill)
             {
-                MapHelper.SendUseSkill(self.DomainScene(), self.SkillBaseConfig.Id, 0, self.GetTargetAnagle(angle, targetId),  targetId, distance).Coroutine();
+                MapHelper.SendUseSkill(self.DomainScene(), self.SkillBaseConfig.Id, 0, angle,  targetId, distance).Coroutine();
             }
             else
             {
@@ -203,24 +203,8 @@ namespace ET
                     return;
                 }
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.skillPro.SkillID);
-                MapHelper.SendUseSkill(self.DomainScene(), int.Parse(itemConfig.ItemUsePar), self.skillPro.SkillID, self.GetTargetAnagle(angle, targetId), targetId, distance).Coroutine();
+                MapHelper.SendUseSkill(self.DomainScene(), int.Parse(itemConfig.ItemUsePar), self.skillPro.SkillID, angle, targetId, distance).Coroutine();
             }
-        }
-
-        public static int GetTargetAnagle(this UISkillGridComponent self, int angle, long targetId)
-        {
-            if (self.IfShowSkillZhishi())
-                return angle;
-            if (targetId == 0)
-                return angle;
-            UnitComponent unitComponent = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>();
-            Unit taretUnit = unitComponent.Get(targetId);
-            if (taretUnit == null || taretUnit.IsDisposed)
-                return angle;
-
-            Vector3 direction = taretUnit.Position - UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).Position;
-            float ange = Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z);
-            return Mathf.FloorToInt(ange);
         }
 
         public static void PointerUp(this UISkillGridComponent self, PointerEventData eventData)
@@ -254,19 +238,19 @@ namespace ET
             self.UseSkill = true;
             self.SkillCancelHandler(true);
             Scene curscene = self.ZoneScene().CurrentScene();
-            curscene.GetComponent<SkillIndicatorComponent>().ShowSkillIndicator(self.SkillWuqiConfig).Coroutine();
+            curscene.GetComponent<SkillIndicatorComponent>().ShowSkillIndicator(self.SkillWuqiConfig);
             curscene.GetComponent<SkillIndicatorComponent>().OnMouseDown(curscene.GetComponent<LockTargetComponent>().LastLockId);
         }
 
         public static int GetTargetAngle(this UISkillGridComponent self)
         {
-            return self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().GetTargetAngle();
+            return self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().GetIndicatorAngle();
         }
 
         //X100
         public static float GetTargetDistance(this UISkillGridComponent self)
         {
-            return self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().GetTargetDistance();
+            return self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().GetIndicatorDistance();
         }
 
         public static void OnEnterCancelButton(this UISkillGridComponent self)

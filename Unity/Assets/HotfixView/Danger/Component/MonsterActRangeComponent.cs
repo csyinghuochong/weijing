@@ -72,7 +72,7 @@ namespace ET
         public static async ETTask LoadEffect(this MonsterActRangeComponent self)
         {
             string path = ABPathHelper.GetEffetPath("MonsterActRange");
-            self.MonsterActRange = await GameObjectPoolComponent.Instance.GetExternal(path);
+            self.MonsterActRange = await GameObjectPoolComponent.Instance.GetExternalAsync(path);
             self.MonsterActRange.SetActive(true);
             self.MonsterActRange.Get<GameObject>("MonsterActRange").GetComponent<Projector>().orthographicSize = self.AckRange * 1.2f;
             self.MonsterActRange.transform.position = self.BornPositon;

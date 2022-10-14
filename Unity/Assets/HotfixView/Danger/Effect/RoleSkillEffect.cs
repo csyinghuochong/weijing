@@ -50,7 +50,7 @@ namespace ET
 
             string effectNamePath  = effectFileName + EffectData.mEffectConfig.EffectName;
             EffectPath = ABPathHelper.GetEffetPath(effectNamePath);
-            EffectObj = await GameObjectPoolComponent.Instance.GetExternal(EffectPath);
+            EffectObj = await GameObjectPoolComponent.Instance.GetExternalAsync(EffectPath);
 
             if (EffectObj == null)
             {

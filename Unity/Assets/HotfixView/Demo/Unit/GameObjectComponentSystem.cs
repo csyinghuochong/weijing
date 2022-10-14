@@ -355,7 +355,7 @@ namespace ET
                 long instancid = self.InstanceId;
                 if (self.BaiTan == null)
                 {
-                    self.BaiTan = await GameObjectPoolComponent.Instance.GetExternal(ABPathHelper.GetUnitPath("Player/BaiTan"));
+                    self.BaiTan = await GameObjectPoolComponent.Instance.GetExternalAsync(ABPathHelper.GetUnitPath("Player/BaiTan"));
                 }
 
                 self.BaiTan.SetActive(true);

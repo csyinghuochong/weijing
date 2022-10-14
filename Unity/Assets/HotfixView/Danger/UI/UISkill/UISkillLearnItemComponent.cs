@@ -111,7 +111,7 @@ namespace ET
 
             //逻辑
             SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(self.SkillPro.SkillID);
-            string[] skillDesc = Regex.Split(skillWuqiConfig.SkillDescribe, "\n\n", RegexOptions.IgnoreCase);
+            string[] skillDesc = Regex.Split(skillConfig_base.SkillDescribe, "\n\n", RegexOptions.IgnoreCase);
 
             if (itemEquipType == 0 ||  skillDesc.Length == 1)
             {
