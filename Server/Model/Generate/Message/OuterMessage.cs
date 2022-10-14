@@ -8251,4 +8251,30 @@ namespace ET
 
 	}
 
+//组队副本返回
+	[ResponseType(nameof(M2C_TeamDungeonRBornResponse))]
+	[Message(OuterOpcode.C2M_TeamDungeonRBornRequest)]
+	[ProtoContract]
+	public partial class C2M_TeamDungeonRBornRequest: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TeamDungeonRBornResponse)]
+	[ProtoContract]
+	public partial class M2C_TeamDungeonRBornResponse: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+	}
+
 }

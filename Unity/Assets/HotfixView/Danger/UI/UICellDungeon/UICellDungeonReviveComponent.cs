@@ -1,11 +1,29 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UICellDungeonReviveComponent : Entity, IAwake, IUpdate
+
+    [Timer(TimerType.DungeonReviveTimer)]
+    public class DungeonReviveTimer : ATimer<UICellDungeonReviveComponent>
+    {
+        public override void Run(UICellDungeonReviveComponent self)
+        {
+            try
+            {
+                self.Check();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+    public class UICellDungeonReviveComponent : Entity, IAwake, IDestroy
     {
         public GameObject Text_CostName;
         public GameObject ImageCost;
@@ -14,8 +32,9 @@ namespace ET
         public GameObject Button_Revive;
         public GameObject Button_Exit;
 
+        public long Timer;
         public int LeftTime;
-        public float Timer;
+        public int SceneType;
     }
 
     [ObjectSystem]
@@ -34,18 +53,15 @@ namespace ET
 
             self.Button_Revive.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Revive(); });
             self.Button_Exit.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Exit(); });
-
-            self.LeftTime = 10;
-            self.OnInitUI();
         }
     }
 
     [ObjectSystem]
-    public class UILevelReviveComponentUpdateSystem : UpdateSystem<UICellDungeonReviveComponent>
+    public class UILevelReviveComponentDestroySystem : DestroySystem<UICellDungeonReviveComponent>
     {
-        public override void Update(UICellDungeonReviveComponent self)
+        public override void Destroy(UICellDungeonReviveComponent self)
         {
-            self.Check();
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
@@ -53,25 +69,29 @@ namespace ET
     {
         public static void Check(this UICellDungeonReviveComponent self)
         {
-            self.Timer += Time.deltaTime;
-            if (self.Timer < 1)
-                return;
-            self.Timer = 0;
-
-             self.LeftTime--;
             if (self.LeftTime < 0)
+            {
                 self.OnButton_Exit();
+                TimerComponent.Instance?.Remove(ref self.Timer);
+            }
             else
+            {
                 self.Text_ExitTip.GetComponent<Text>().text = string.Format("{0}秒后退出副本", self.LeftTime);
+            }
+            self.LeftTime--;
         }
 
-        public static void OnInitUI(this UICellDungeonReviveComponent self)
+        public static void OnInitUI(this UICellDungeonReviveComponent self, int seneTypeEnum)
         {
+            self.SceneType = seneTypeEnum;
+            self.LeftTime = seneTypeEnum == SceneTypeEnum.TeamDungeon ? 20 : 10;
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.DungeonReviveTimer, self);
+
+            self.Check();
             string reviveCost = GlobalValueConfigCategory.Instance.Get(5).Value;
             string[] needList = reviveCost.Split(';');
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(int.Parse(needList[0]));
-            self.Text_ExitTip.GetComponent<Text>().text = string.Format("{0}秒后退出副本", self.LeftTime);
             self.Text_CostName.GetComponent<Text>().text = itemConfig.ItemName;
 
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
@@ -86,11 +106,11 @@ namespace ET
                 self.Text_Cost.GetComponent<Text>().text = selfNum + "/" + needNum;
                 self.Text_Cost.GetComponent<Text>().color = Color.green;
             }
-            else {
+            else 
+            {
                 self.Text_Cost.GetComponent<Text>().text = selfNum + "/" + needNum + "("+"道具不足"+")";
                 self.Text_Cost.GetComponent<Text>().color = Color.yellow;
             }
-            
         }
 
         public static void OnButton_Revive(this UICellDungeonReviveComponent self)

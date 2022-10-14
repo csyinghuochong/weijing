@@ -460,5 +460,7 @@ namespace ET
 		 public const ushort M2C_PetDuiHuanResponse = 10457;
 		 public const ushort C2M_ActivityRechargeSignRequest = 10458;
 		 public const ushort M2C_ActivityRechargeSignResponse = 10459;
+		 public const ushort C2M_TeamDungeonRBornRequest = 10460;
+		 public const ushort M2C_TeamDungeonRBornResponse = 10461;
 	}
 }

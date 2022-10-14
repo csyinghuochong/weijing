@@ -26,37 +26,18 @@ namespace ET
             self.UIItemNode = rc.Get<GameObject>("UIItemNode");
             self.Text_Number = rc.Get<GameObject>("Text_Number");
             self.Text_value = rc.Get<GameObject>("Text_value");
+            self.Image_gold = rc.Get<GameObject>("Image_gold");
 
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
             ButtonHelp.AddListenerEx(self.ButtonBuy, () => { self.OnButtonBuy().Coroutine(); });
 
             self.UICommonItem = null;
             self.MysteryItemInfo = null;
-            self.OnInitUI().Coroutine();
         }
     }
 
     public static class UIMysteryItemComponentSystem
     {
-
-        public static async ETTask OnInitUI(this UIMysteryItemComponent self)
-        {
-            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
-            GameObject go = GameObject.Instantiate(bundleGameObject);
-            UICommonHelper.SetParent(go, self.UIItemNode);
-            self.UICommonItem = self.AddChild<UI, string, GameObject>("UICommonItem", go);
-            self.UICommonItem.AddComponent<UIItemComponent>();
-            self.UICommonItem.GetComponent<UIItemComponent>().Label_ItemName.SetActive(true);
-
-            if (self.MysteryItemInfo != null)
-            {
-                self.UICommonItem.GetComponent<UIItemComponent>().UpdateItem(new BagInfo() { ItemID = self.MysteryItemInfo.ItemID }, ItemOperateEnum.None);
-                self.UICommonItem.GetComponent<UIItemComponent>().Label_ItemNum.SetActive(false);
-            }
-        }
 
         public static async ETTask OnButtonBuy(this UIMysteryItemComponent self)
         {
@@ -69,9 +50,20 @@ namespace ET
 
             MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(self.MysteryItemInfo.MysteryId);
             int sellValue = mysteryConfig.SellValue;
-            if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Gold < sellValue)
+
+            if (mysteryConfig.SellType == 1 && self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Gold < sellValue)
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_GoldNotEnoughError);
+                return;
+            }
+            if (mysteryConfig.SellType == 3 && self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond < sellValue)
+            {
+                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_DiamondNotEnoughError);
+                return;
+            }
+            if(!self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem($"{mysteryConfig.SellType};{mysteryConfig.SellValue}"))
+            {
+                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_ItemNotEnoughError);
                 return;
             }
 
@@ -92,11 +84,22 @@ namespace ET
             self.Text_Number.GetComponent<Text>().text = $"剩余 {mysteryItemInfo.ItemNumber}件";
             self.Text_value.GetComponent<Text>().text = mysteryConfig.SellValue.ToString();
 
-            if (self.UICommonItem != null)
+            if (self.UICommonItem == null)
             {
-                self.UICommonItem.GetComponent<UIItemComponent>().UpdateItem(new BagInfo() { ItemID = self.MysteryItemInfo.ItemID }, ItemOperateEnum.None);
-                self.UICommonItem.GetComponent<UIItemComponent>().Label_ItemNum.SetActive(false);
+                var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+                var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+                GameObject go = GameObject.Instantiate(bundleGameObject);
+                UICommonHelper.SetParent(go, self.UIItemNode);
+                self.UICommonItem = self.AddChild<UI, string, GameObject>("UICommonItem", go);
+                self.UICommonItem.AddComponent<UIItemComponent>();
+                self.UICommonItem.GetComponent<UIItemComponent>().Label_ItemName.SetActive(true);
             }
+            self.UICommonItem.GetComponent<UIItemComponent>().UpdateItem(new BagInfo() { ItemID = self.MysteryItemInfo.ItemID }, ItemOperateEnum.None);
+            self.UICommonItem.GetComponent<UIItemComponent>().Label_ItemNum.SetActive(false);
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(mysteryConfig.SellType);
+            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
+            self.Image_gold.GetComponent<Image>().sprite = sp;
         }
 
     }

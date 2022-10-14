@@ -241,8 +241,6 @@ namespace ET
             self.Animator.SetBool("Run", false);
             self.Animator.SetBool("Idle", true);
             self.Animator.Play("Idle");
-
-            Log.ILog.Debug("SetIdleState");
         }
 
         public static void SetRunState(this FsmComponent self)
@@ -251,8 +249,6 @@ namespace ET
             self.Animator.SetBool("Idle", false);
             self.Animator.SetBool("Run", true);
             self.Animator.Play("Run");
-
-            Log.ILog.Debug("SetRunState");
         }
 
         public static void OnEnterFsmComboState(this FsmComponent self, string paramss = "")

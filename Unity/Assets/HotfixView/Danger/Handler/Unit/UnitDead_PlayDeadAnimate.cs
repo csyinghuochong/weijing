@@ -40,7 +40,7 @@ namespace ET
 
                 if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) > 0)
                 {
-                    RunAsync(unit).Coroutine();
+                    OnBossDead(unit).Coroutine();
                 }
                 else
                 {
@@ -97,10 +97,11 @@ namespace ET
             }
 
             unit.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().OnSelfDead();
-            UIHelper.Create(unit.ZoneScene(), UIType.UICellDungeonRevive).Coroutine();
+            UI uI =await UIHelper.Create(unit.ZoneScene(), UIType.UICellDungeonRevive);
+            uI.GetComponent<UICellDungeonReviveComponent>().OnInitUI(mapComponent.SceneTypeEnum);
         }
 
-        private async ETTask RunAsync(Unit unit)
+        private async ETTask OnBossDead(Unit unit)
         {
             long instanceId = unit.InstanceId;
             await TimerComponent.Instance.WaitAsync(1000);

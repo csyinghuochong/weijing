@@ -27,7 +27,7 @@ namespace ET
             {
                 if (unit.GetComponent<StateComponent>().CanMove())
                 {
-                    await unit.FindPathMoveToAsync(aiComponent.BornPostion, cancellationToken, true);
+                    unit.FindPathMoveToAsync(aiComponent.BornPostion, cancellationToken, true).Coroutine();
                 }
                 bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet || Vector3.Distance(aiComponent.BornPostion, unit.Position) < 0.5f)

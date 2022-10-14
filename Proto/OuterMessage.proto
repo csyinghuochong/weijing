@@ -3952,3 +3952,11 @@ message M2C_ActivityRechargeSignResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//组队副本返回
+//ResponseType M2C_TeamDungeonRBornResponse
+message C2M_TeamDungeonRBornRequest // IActorLocationMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}

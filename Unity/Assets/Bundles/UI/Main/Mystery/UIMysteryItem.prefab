@@ -300,6 +300,8 @@ MonoBehaviour:
     gameObject: {fileID: 3702349953425996436}
   - key: UIItemNode
     gameObject: {fileID: 609658428165825803}
+  - key: Image_gold
+    gameObject: {fileID: 6059411269173104040}
 --- !u!1 &3702349953425996436
 GameObject:
   m_ObjectHideFlags: 0
@@ -614,7 +616,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5a8b5e1ae82bd354eb5be78412ba676d, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

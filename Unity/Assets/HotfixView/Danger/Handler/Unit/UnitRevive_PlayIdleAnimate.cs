@@ -9,13 +9,16 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.UnitRevive args = cls as EventType.UnitRevive;
-            args.Unit.GetComponent<StateComponent>().Reset();
-            args.Unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmIdleState);
-            args.Unit.GetComponent<HeroHeadBarComponent>()?.OnRevive();
-            if (args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) > 0)
+            Unit unit = args.Unit;
+            unit.GetComponent<StateComponent>().Reset();
+            unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmIdleState);
+            unit.GetComponent<HeroHeadBarComponent>()?.OnRevive();
+
+            if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) > 0)
             {
-                args.Unit.GetComponent<GameObjectComponent>()?.OnRevive();
+                unit.GetComponent<GameObjectComponent>()?.OnRevive();
             }
+
         }
     }
 }
