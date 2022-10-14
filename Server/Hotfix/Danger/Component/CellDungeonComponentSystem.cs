@@ -489,7 +489,7 @@ namespace ET
             long dbServerId = DBHelper.GetRankServerId(self.DomainZone());
             R2M_DBServerInfoResponse d2GGetUnit2 = (R2M_DBServerInfoResponse)await ActorMessageSenderComponent.Instance.Call(dbServerId, new M2R_DBServerInfoRequest() { });
             self.MysteryItemInfos.Clear();
-            self.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(self.DomainScene(), d2GGetUnit2.ServerInfo.OpenServerTime);
+            self.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(d2GGetUnit2.ServerInfo.OpenServerTime);
         }
 
         public static bool IsAllMonsterDead(this CellDungeonComponent self)

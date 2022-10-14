@@ -23,14 +23,19 @@ namespace ET
                 aiComponent.TargetID = 0;
                 return true;
             }
-            long mastaerAttackId = master.GetComponent<HeroDataComponent>().AttackingId;
+            long mastaerAttackId = unit.GetComponent<HeroDataComponent>().BeAttackId;
             Unit enemyUnit = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(mastaerAttackId);
-            if (enemyUnit == null)
+            if (enemyUnit == null || !enemyUnit.GetComponent<UnitInfoComponent>().IsCanBeAttack())
+            {
+                mastaerAttackId = master.GetComponent<HeroDataComponent>().AttackingId;
+                enemyUnit = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(mastaerAttackId);
+            }
+            if (enemyUnit == null || !enemyUnit.GetComponent<UnitInfoComponent>().IsCanBeAttack())
             {
                 mastaerAttackId = master.GetComponent<HeroDataComponent>().BeAttackId;
                 enemyUnit = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(mastaerAttackId);
             }
-            if (enemyUnit == null)
+            if (enemyUnit == null || !enemyUnit.GetComponent<UnitInfoComponent>().IsCanBeAttack())
             {
                 aiComponent.TargetID = 0;
                 return true;

@@ -9,7 +9,7 @@
 {"_t":"GlobalValueConfig","_id":8,"Value":"100011;100021;100031;100041;100051;100061;100071;100081;100091;100101","Value2":0},
 {"_t":"GlobalValueConfig","_id":9,"Value":"10010001;20@10010011;20@10010076;1","Value2":0},
 {"_t":"GlobalValueConfig","_id":10,"Value":"160","Value2":0},
-{"_t":"GlobalValueConfig","_id":11,"Value":"8","Value2":0},
+{"_t":"GlobalValueConfig","_id":11,"Value":"100001;8@200001;8","Value2":0},
 {"_t":"GlobalValueConfig","_id":12,"Value":"10","Value2":0},
 {"_t":"GlobalValueConfig","_id":13,"Value":"3;500@12000003;1@12000007;1","Value2":0},
 {"_t":"GlobalValueConfig","_id":14,"Value":"3;500@12000001;30@12000007;1","Value2":0},
