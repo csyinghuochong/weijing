@@ -11,6 +11,9 @@ namespace ET
 			GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(11);
 			int totalNumber = int.Parse(globalValueConfig.Value);
 
+			//要分类型
+			totalNumber *= 2;
+
 			long serverNow = TimeHelper.ServerNow();
 			int openserverDay = ComHelp.DateDiff_Time(serverNow, openSerTime);
 

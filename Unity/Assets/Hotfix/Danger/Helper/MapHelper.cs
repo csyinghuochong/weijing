@@ -166,18 +166,19 @@ namespace ET
             {
                 return;
             }
-            SendUseSkill(zoneScene, SkillCmd.SkillID, SkillCmd.TargetAngle, SkillCmd.TargetID, SkillCmd.TargetDistance, false).Coroutine();
+            SendUseSkill(zoneScene, SkillCmd.SkillID, SkillCmd.ItemId, SkillCmd.TargetAngle, SkillCmd.TargetID, SkillCmd.TargetDistance, false).Coroutine();
         }
 
         public static  readonly C2M_SkillCmd SkillCmd = new C2M_SkillCmd();
 
-        public static async ETTask<int> SendUseSkill(Scene zoneScene, int skillid, int angle, long targetId, float distance, bool checksing = true)
+        public static async ETTask<int> SendUseSkill(Scene zoneScene, int skillid, int itemId, int angle, long targetId, float distance, bool checksing = true)
         {
             try
             {
                 SkillCmd.SkillID = skillid;
                 SkillCmd.TargetAngle = angle;
                 SkillCmd.TargetID = targetId;
+                SkillCmd.ItemId = itemId;
                 SkillCmd.TargetDistance = distance;
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
                 int errorCode = unit.GetComponent<SkillManagerComponent>().CanUseSkill(skillid);
@@ -203,13 +204,9 @@ namespace ET
                 unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.SkillRigidity);
                 M2C_SkillCmd m2C_SkillCmd = await zoneScene.GetComponent<SessionComponent>().Session.Call(SkillCmd) as M2C_SkillCmd;
                 unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.SkillRigidity);
-                if (m2C_SkillCmd.Error != 0)
+                if (m2C_SkillCmd.Error == 0)
                 {
-                    unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.SkillRigidity);
-                }
-                else
-                {
-                    unit.GetComponent<SkillManagerComponent>().AddSkillCD(skillid, skillConfig, m2C_SkillCmd.CDEndTime);
+                    unit.GetComponent<SkillManagerComponent>().AddSkillCD(skillid, m2C_SkillCmd);
                     unit.GetComponent<StateComponent>().RigidityEndTime = (long)(skillConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
                 }
                 return m2C_SkillCmd.Error;

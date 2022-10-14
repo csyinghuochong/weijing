@@ -40,9 +40,6 @@ namespace ET
         //攻击距离
         public double ActDistance;
 
-        //技能僵直时间
-        public long RigidityTime;
-
         //攻击目标
         public long TargetID;
 

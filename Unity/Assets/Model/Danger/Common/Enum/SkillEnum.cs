@@ -144,10 +144,9 @@ namespace ET
         public const string BuffPropertyAdd = "BuffPropertyAdd";
     }
 
-    public class SkillCDList
+    public class SkillCDItem
     {
         public int SkillID;
-        public long CDStartTime;
         public long CDEndTime;
     }
 

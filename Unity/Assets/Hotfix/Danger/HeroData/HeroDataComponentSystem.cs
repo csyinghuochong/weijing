@@ -4,6 +4,16 @@ using UnityEngine;
 namespace ET
 {
 
+    [ObjectSystem]
+    public class HeroDataComponentAwakeSystem : AwakeSystem<HeroDataComponent>
+    {
+        public override void Awake(HeroDataComponent self)
+        {
+            self.AttackingId = 0;
+            self.BeAttackId = 0;
+        }
+    }
+
     /// <summary>
     /// 英雄数据组件，负责管理英雄数据
     /// </summary>
@@ -132,11 +142,20 @@ namespace ET
             Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
         }
 
+        /// <summary>
+        /// 0 不复活 1等待复活
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
         public static int OnWaitRevive(this HeroDataComponent self)
         {
             Unit unit = self.GetParent<Unit>();
+            if (unit.Type != UnitType.Monster)
+            {
+                return 0;
+            }
+
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-           
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitInfoComponent.UnitCondigID);
             int resurrection = (int)monsterConfig.ReviveTime;
             if (resurrection == 0)

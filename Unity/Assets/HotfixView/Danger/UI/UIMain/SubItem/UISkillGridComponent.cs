@@ -118,10 +118,6 @@ namespace ET
             {
                 return;
             }
-            //Vector2 mSkillIndicator;
-            //RectTransformUtility.ScreenPointToLocalPointInRectangle(self.Btn_SkillStart.GetComponent<RectTransform>(),
-            //eventData.position, self.UIcam, out mSkillIndicator);
-            //self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().OnMouseDrag(mSkillIndicator);
             self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().OnMouseDrag(eventData.delta);
         }
 
@@ -193,11 +189,11 @@ namespace ET
                 }
             }
 
+            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+            uimain.GetComponent<UIMainComponent>().OnSpellStart();
             if (self.skillPro.SkillSetType == (int)SkillSetEnum.Skill)
             {
-                UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                uimain.GetComponent<UIMainComponent>().OnSpellStart();
-                MapHelper.SendUseSkill(self.DomainScene(), self.SkillBaseConfig.Id, self.GetTargetAnagle(angle, targetId),  targetId, distance).Coroutine();
+                MapHelper.SendUseSkill(self.DomainScene(), self.SkillBaseConfig.Id, 0, self.GetTargetAnagle(angle, targetId),  targetId, distance).Coroutine();
             }
             else
             {
@@ -206,11 +202,8 @@ namespace ET
                 {
                     return;
                 }
-                Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                if (myUnit.GetComponent<SkillManagerComponent>().CanUseSkill(self.skillPro.SkillID) == ErrorCore.ERR_Success)
-                {
-                    self.ZoneScene().GetComponent<BagComponent>().SendUseItem(bagInfo).Coroutine();
-                }
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.skillPro.SkillID);
+                MapHelper.SendUseSkill(self.DomainScene(), int.Parse(itemConfig.ItemUsePar), self.skillPro.SkillID, self.GetTargetAnagle(angle, targetId), targetId, distance).Coroutine();
             }
         }
 

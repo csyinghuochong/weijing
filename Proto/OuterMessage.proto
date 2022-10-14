@@ -791,6 +791,7 @@ message C2M_SkillCmd // IActorLocationRequest
     int32 TargetAngle = 3;
     float TargetDistance = 4;
     int32 WeaponSkillID = 5;
+    int32 ItemId = 6;
 }
 
 message M2C_SkillCmd // IActorLocationResponse
@@ -800,6 +801,7 @@ message M2C_SkillCmd // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 	int64 CDEndTime = 1;
+	int64 PublicCDTime = 2;
 }
 
 message M2C_UnitUseSkill // IActorMessage

@@ -28,7 +28,7 @@ namespace ET
         {
             self.FangunSkillId = int.Parse(GlobalValueConfigCategory.Instance.Get(2).Value);
             self.DelaySkillList = new List<SkillInfo>();
-            self.SkillCDs = new Dictionary<int, SkillCDList>();
+            self.SkillCDs = new Dictionary<int, SkillCDItem>();
             self.Skills = new List<SkillHandler>();
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.SkillTimer, self);
         }
@@ -281,23 +281,24 @@ namespace ET
             }
         }
 
-        public static (int, long) OnUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd, bool check = true)
+        public static M2C_SkillCmd OnUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd, bool check = true)
         {
             Unit unit = self.GetParent<Unit>();
+            M2C_SkillCmd m2C_Skill = self.M2C_SkillCmd;
 
             //判断技能是否可以释放
             int errorCode = self.IfCanUseSkill(skillcmd.SkillID);
             if (check && errorCode != ErrorCore.ERR_Success)
             {
-                return (errorCode, 0);
+                m2C_Skill.Error = errorCode;
+                return m2C_Skill;
             }
             if (check && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))
             {
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
-
             self.InterruptSkill(skillcmd.SkillID);
-            //执行技能逻辑
+
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             int EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;
@@ -309,11 +310,11 @@ namespace ET
                 weaponSkill = tianfuSkill;
             }
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
-            //发送客户端协议,告诉客户端开始释放技能
             List<SkillInfo> skillList = self.GetRandomSkills(skillcmd, weaponSkill);
             if (skillList.Count == 0)
             {
-                return (ErrorCore.ERR_UseSkillError, 0);
+                m2C_Skill.Error = ErrorCore.ERR_UseSkillError;
+                return m2C_Skill;
             }
 
             M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill() {
@@ -330,7 +331,7 @@ namespace ET
             }
 
             //添加技能CD列表
-            SkillCDList skillCd = null;
+            SkillCDItem skillCd = null;
             if (skillConfig.SkillActType == 0)
             {
                 skillCd = null;
@@ -344,9 +345,12 @@ namespace ET
                 skillCd = self.UpdateSkillCD(skillcmd.SkillID, weaponSkill);
             }
             unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(skillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7);
-
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
-            return (ErrorCore.ERR_Success, skillCd != null ? skillCd.CDEndTime : 0);
+
+            m2C_Skill.Error = ErrorCore.ERR_Success;
+            m2C_Skill.CDEndTime = skillCd != null ? skillCd.CDEndTime : 0;
+            m2C_Skill.PublicCDTime = self.SkillPublicCDTime;
+            return m2C_Skill;
         }
 
         public static void TriggerAddSkill(this SkillManagerComponent self, C2M_SkillCmd c2M_SkillCmd, int skillId)
@@ -380,10 +384,10 @@ namespace ET
             }
         }
 
-        public static SkillCDList UpdateSkillCD(this SkillManagerComponent self, int skillId, int weaponSkill)
+        public static SkillCDItem UpdateSkillCD(this SkillManagerComponent self, int skillId, int weaponSkill)
         {
             Unit unit = self.GetParent<Unit>();
-            SkillCDList skillcd = null;
+            SkillCDItem skillcd = null;
             float nocdPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SkillNoCDPro);
             if (nocdPro > RandomHelper.RandFloat01())
             {
@@ -401,16 +405,15 @@ namespace ET
             self.SkillCDs.TryGetValue(skillId, out skillcd);
             if (skillcd == null)
             {
-                skillcd = new SkillCDList();
+                skillcd = new SkillCDItem();
                 self.SkillCDs.Add(skillId, skillcd);
             }
             skillcd.SkillID = skillId;
-            skillcd.CDStartTime = TimeHelper.ServerNow();
-            skillcd.CDEndTime = skillcd.CDStartTime + (skillConfig.SkillCD - (int)reduceCD) * 1000;
+            skillcd.CDEndTime = TimeHelper.ServerNow() + (skillConfig.SkillCD - (int)reduceCD) * 1000;
             if (skillConfig.IfPublicSkillCD == 0 )
             {
                 //添加技能公共CD
-                self.SkillPublicCDTime = skillcd.CDStartTime + 1000;  //公共1秒CD  
+                self.SkillPublicCDTime = TimeHelper.ServerNow() + 1000;  //公共1秒CD  
             }
             return skillcd;
         }
@@ -420,9 +423,9 @@ namespace ET
         //2.每次释放之间有5秒间隔时间,未超过间隔时间触发连击，如果超过时间重置为初始状态
         //初始状态 最开始的0次连击
         //冷却状态 10秒钟
-        public static SkillCDList UpdateFangunSkillCD(this SkillManagerComponent self)
+        public static SkillCDItem UpdateFangunSkillCD(this SkillManagerComponent self)
         {
-            SkillCDList skillcd = null;
+            SkillCDItem skillcd = null;
             long newTime = TimeHelper.ServerNow();
             if (newTime - self.FangunLastTime <= 5000)
             {
@@ -436,10 +439,8 @@ namespace ET
             if (self.FangunComboNumber >= 3)
             {
                 self.FangunComboNumber = 0;
-
-                skillcd = new SkillCDList();
+                skillcd = new SkillCDItem();
                 skillcd.SkillID = self.FangunSkillId;
-                skillcd.CDStartTime = newTime;
                 skillcd.CDEndTime = newTime + 10000;
                 self.SkillCDs.Add(self.FangunSkillId, skillcd);
             }
@@ -536,7 +537,7 @@ namespace ET
             {
                 long nowTime = TimeHelper.ServerNow();
                 List<int> removeList = new List<int>();
-                foreach (SkillCDList skillcd in self.SkillCDs.Values)
+                foreach (SkillCDItem skillcd in self.SkillCDs.Values)
                 {
                     if (nowTime >= skillcd.CDEndTime)
                     {

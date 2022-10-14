@@ -17,14 +17,25 @@ namespace ET
             Unit unit = aiComponent.GetParent<Unit>();
             if (aiComponent.IsBoss)
             {
-                unit.GetComponent<NumericComponent>().ApplyValue( NumericType.BossInCombat, 0);
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 0);
             }
-
             aiComponent.TargetID = 0;
             aiComponent.IsRetreat = true;
             unit.Stop(0);
-            await unit.FindPathMoveToAsync(aiComponent.BornPostion, cancellationToken, true);
-            aiComponent.IsRetreat = false;
+
+            while (true)
+            {
+                if (unit.GetComponent<StateComponent>().CanMove())
+                {
+                    await unit.FindPathMoveToAsync(aiComponent.BornPostion, cancellationToken, true);
+                }
+                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
+                if (!timeRet || Vector3.Distance(aiComponent.BornPostion, unit.Position) < 0.5f)
+                {
+                    aiComponent.IsRetreat = false;
+                    return;
+                }
+            }
         }
     }
 }

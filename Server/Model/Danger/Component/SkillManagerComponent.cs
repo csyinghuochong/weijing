@@ -8,7 +8,7 @@ namespace ET
         public List<SkillInfo> DelaySkillList = new List<SkillInfo>();
         public List<SkillHandler> Skills = new List<SkillHandler>();
 
-        public Dictionary<int, SkillCDList> SkillCDs = new Dictionary<int, SkillCDList>();  //技能CD列表
+        public Dictionary<int, SkillCDItem> SkillCDs = new Dictionary<int, SkillCDItem>();  //技能CD列表
         public long SkillPublicCDTime;      //公共CD
 
         public int FangunSkillId;
@@ -16,5 +16,7 @@ namespace ET
         public long FangunLastTime;
 
         public long Timer;
+
+        public M2C_SkillCmd M2C_SkillCmd = new M2C_SkillCmd();
     }
 }

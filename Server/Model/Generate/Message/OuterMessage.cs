@@ -1682,6 +1682,9 @@ namespace ET
 		[ProtoMember(5)]
 		public int WeaponSkillID { get; set; }
 
+		[ProtoMember(6)]
+		public int ItemId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_SkillCmd)]
@@ -1699,6 +1702,9 @@ namespace ET
 
 		[ProtoMember(1)]
 		public long CDEndTime { get; set; }
+
+		[ProtoMember(2)]
+		public long PublicCDTime { get; set; }
 
 	}
 

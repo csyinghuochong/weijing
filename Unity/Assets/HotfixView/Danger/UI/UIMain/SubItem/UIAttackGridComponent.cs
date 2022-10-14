@@ -102,7 +102,7 @@ namespace ET
             {
                 self.MoveAttackId = 0;
                 int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), null);
-                MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, targetAngle, 0, 0).Coroutine();
+                MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, 0, targetAngle, 0, 0).Coroutine();
                 self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
                 return;
             }
@@ -237,7 +237,7 @@ namespace ET
             }
             
             int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), taretUnit);
-            MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, targetAngle, taretUnit.Id, 0).Coroutine();
+            MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, 0, targetAngle, taretUnit.Id, 0).Coroutine();
             self.LastSkillTime = Time.time;
             self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
             if (self.ComboSkillId == 60000103 || self.ComboSkillId == 60000203)

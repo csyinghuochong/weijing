@@ -284,11 +284,8 @@ namespace ET
             {
                 unit.Stop(0);
             }
-            int error = unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd).Item1;
-            if (error == ErrorCore.ERR_Success)
-            {
-                skillIfo.LastTriggerTime = TimeHelper.ServerNow();
-            }
+            unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd);
+            skillIfo.LastTriggerTime = TimeHelper.ServerNow();
         }
     }
 }

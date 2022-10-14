@@ -59,7 +59,7 @@ namespace ET
                     //触发技能
                     int skillID = aiComponent.ZoneScene().GetComponent<SkillSetComponent>().GetCanUseSkill();
                     float targetDistance = Vector3.Distance(unit.Position, target.Position);
-                    MapHelper.SendUseSkill(aiComponent.ZoneScene(), skillID, Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
+                    MapHelper.SendUseSkill(aiComponent.ZoneScene(), skillID, 0,Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
                 }
                 else
                 {

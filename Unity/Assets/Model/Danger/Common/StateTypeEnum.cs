@@ -29,12 +29,17 @@ namespace ET
         public const long JiTui = 1 << 4;
 
         /// <summary>
+        /// 沉默免疫
+        /// </summary>
+        public const long SilenceImmune = 1 << 5;
+
+        /// <summary>
         /// 沉默 不能放技能
         /// </summary>
         public const long Silence = 1 << 6;
 
         /// <summary>
-        /// 眩晕
+        /// 眩晕 不能放技能不能移动
         /// </summary>
         public const long Dizziness = 1 << 7;
 

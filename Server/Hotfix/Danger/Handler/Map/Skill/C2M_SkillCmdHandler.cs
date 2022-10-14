@@ -12,9 +12,15 @@ namespace ET
             try
             {
                 entity.Stop(entity.GetComponent<MoveComponent>().IsArrived() ? 0 : -2);
-                (int, long) result =  entity.GetComponent<SkillManagerComponent>().OnUseSkill(request);
-                response.Error = result.Item1;
-                response.CDEndTime = result.Item2;
+                int item = request.ItemId;
+                if (item > 0)
+                {
+                    entity.GetComponent<BagComponent>().OnCostItemData($"{item};1");
+                }
+                M2C_SkillCmd m2C_SkillCmd = entity.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
+                response.Error = m2C_SkillCmd.Error;
+                response.CDEndTime = m2C_SkillCmd.CDEndTime;
+                response.PublicCDTime = m2C_SkillCmd.PublicCDTime;
 
                 reply();
                 await ETTask.CompletedTask;
