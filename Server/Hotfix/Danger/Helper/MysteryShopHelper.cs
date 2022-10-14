@@ -4,32 +4,38 @@ namespace ET
 {
     public static class MysteryShopHelper
     {
-		public static List<MysteryItemInfo> InitMysteryItemInfos(Scene domainScene, long openSerTime = 0)
+
+		public static List<int> GetMysteryList(int shopValue)
+		{
+			List<int> itemList = new List<int>();
+			while (shopValue != 0)
+			{
+				itemList.Add(shopValue);
+				MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(shopValue);
+				shopValue = mysteryConfig.NextId;
+			}
+
+			return itemList;
+		}
+
+		public static List<MysteryItemInfo> InitMysteryTypeItems(int openserverDay , int shopValue, int totalNumber)
 		{
 			List<MysteryItemInfo> mysteryItemInfos = new List<MysteryItemInfo>();
 
-			GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(11);
-			int totalNumber = int.Parse(globalValueConfig.Value);
-
-			//要分类型
-			totalNumber *= 2;
-
-			long serverNow = TimeHelper.ServerNow();
-			int openserverDay = ComHelp.DateDiff_Time(serverNow, openSerTime);
-
+			List<int> mysteryids = GetMysteryList(shopValue);
 			List<int> weightList = new List<int>();
 			List<int> mystIdList = new List<int>();
 
-			Dictionary<int, MysteryConfig> keyValuePairs = MysteryConfigCategory.Instance.GetAll();
-			foreach (var item in keyValuePairs)
+			for(int i = 0; i < mysteryids.Count; i++)
 			{
-				if (openserverDay < item.Value.ShowServerDay)
+				MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mysteryids[i]);
+				if (openserverDay < mysteryConfig.ShowServerDay)
 				{
 					continue;
 				}
 
-				weightList.Add(item.Value.ShowPro);
-				mystIdList.Add(item.Key);
+				weightList.Add(mysteryConfig.ShowPro);
+				mystIdList.Add(mysteryConfig.Id);
 			}
 
 			while (mysteryItemInfos.Count < totalNumber)
@@ -46,6 +52,25 @@ namespace ET
 
 				weightList.RemoveAt(index);
 				mystIdList.RemoveAt(index);
+			}
+
+			return mysteryItemInfos;
+		}
+
+		public static List<MysteryItemInfo> InitMysteryItemInfos(long openSerTime = 0)
+		{
+			long serverNow = TimeHelper.ServerNow();
+			int openserverDay = ComHelp.DateDiff_Time(serverNow, openSerTime);
+
+			List<MysteryItemInfo> mysteryItemInfos = new List<MysteryItemInfo>();
+
+			GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(11);
+			string[] itemList =  globalValueConfig.Value.Split('@');
+
+			for (int i = 0; i < itemList.Length; i++)
+			{
+				string[] iteminfo = itemList[i].Split(';');
+				mysteryItemInfos.AddRange(InitMysteryTypeItems(openserverDay,int.Parse(iteminfo[0]), int.Parse(iteminfo[1])));
 			}
 
 			return mysteryItemInfos;

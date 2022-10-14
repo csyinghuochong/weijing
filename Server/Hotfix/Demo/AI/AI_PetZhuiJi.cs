@@ -9,13 +9,12 @@ namespace ET
 
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
-            Unit nearest = AIHelp.GetNearestEnemy(aiComponent.GetParent<Unit>());
+            Unit nearest = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
             if (nearest == null)
             {
                 aiComponent.TargetID = 0;
                 return false;
             }
-            aiComponent.TargetID = nearest.Id;
 
             //获取范敌人是否在攻击范围内
             float distance = Vector3.Distance(nearest.Position, aiComponent.GetParent<Unit>().Position);

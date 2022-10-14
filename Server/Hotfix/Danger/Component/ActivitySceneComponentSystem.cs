@@ -86,7 +86,7 @@ namespace ET
                 self.DBDayActivityInfo.Id = self.DomainZone();
             }
           
-            self.DBDayActivityInfo.MysteryItemInfos = self.DBDayActivityInfo.MysteryItemInfos.Count == 0 ? MysteryShopHelper.InitMysteryItemInfos(self.DomainScene(), openServerTime) : self.DBDayActivityInfo.MysteryItemInfos;
+            self.DBDayActivityInfo.MysteryItemInfos = self.DBDayActivityInfo.MysteryItemInfos.Count == 0 ? MysteryShopHelper.InitMysteryItemInfos( openServerTime) : self.DBDayActivityInfo.MysteryItemInfos;
             self.DBDayActivityInfo.Day = TimeHelper.DateTimeNow().Day;
             self.SaveDB().Coroutine();
         }
@@ -142,7 +142,7 @@ namespace ET
                 M2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (M2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                         (self.MapIdList[i], new A2M_ActivityUpdateRequest() { ActivityType = 0 });
             }
-            self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(self.DomainScene(), openServerTime);
+            self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerTime);
         }
 
     }
