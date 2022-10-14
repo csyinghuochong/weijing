@@ -272,13 +272,13 @@ namespace ET
                 self.OnCloseTips();
                 return;
             }
-            if (itemConfig.ItemSubType == 101 && itemConfig.ItemUsePar != "0" && itemConfig.ItemUsePar != "")
+            if (itemConfig.ItemSubType == 101)
             {
-                if (UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<SkillManagerComponent>().CanUseSkill(int.Parse(itemConfig.ItemUsePar)) != 0)
-                {
-                    FloatTipManager.Instance.ShowFloatTip("技能冷却中!");
-                    return;
-                }
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                MapHelper.SendUseSkill(self.DomainScene(), int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
+                    Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
+                self.OnCloseTips();
+                return;
             }
             if (itemConfig.ItemSubType == 102 || itemConfig.ItemSubType == 103)
             {

@@ -188,13 +188,6 @@ namespace ET
                 {
                     self.ZoneScene().GetComponent<SkillSetComponent>().OnAddSkill(SkillSourceEnum.Book, int.Parse(itemConfig.ItemUsePar));
                 }
-                if (itemConfig.ItemSubType == 101)
-                {
-                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                    int skillId = int.Parse(itemConfig.ItemUsePar);
-                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-                    unit.GetComponent<SkillManagerComponent>().AddSkillCD(skillId, skillConfig, long.Parse(r2c_roleEquip.Message));
-                }
                 if (itemConfig.ItemSubType == 115)
                 {
                     self.ZoneScene().GetComponent<PetComponent>().OnUnlockSkin(itemConfig.ItemUsePar);

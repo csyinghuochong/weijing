@@ -184,12 +184,6 @@ namespace ET
                                 break;
                             //使用技能
                             case 101:
-                                C2M_SkillCmd cmd = new C2M_SkillCmd();
-                                cmd.SkillID = int.Parse(itemCof.ItemUsePar);
-                                cmd.TargetAngle = 0;
-                                cmd.TargetID = unit.Id;                                         //默认给自己释放
-                                var result =  unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd);     //触发技能
-                                response.Message = result.Item2.ToString();
                                 break;
                             //宠物蛋
                             case 102:

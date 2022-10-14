@@ -48,7 +48,7 @@ namespace ET
 
     public static class SkillManagerComponentSystem
     {
-        public static SkillCDList GetSkillCD(this SkillManagerComponent self, int skillId)
+        public static SkillCDItem GetSkillCD(this SkillManagerComponent self, int skillId)
         {
             for (int i = 0; i < self.SkillCDs.Count; i++)
             {
@@ -62,7 +62,7 @@ namespace ET
 
         public static long GetCdTime(this SkillManagerComponent self, int skillId, long nowTime)
         {
-            SkillCDList skillCD = self.GetSkillCD(skillId);
+            SkillCDItem skillCD = self.GetSkillCD(skillId);
             if (skillCD!=null)
             {
                 return skillCD.CDEndTime - nowTime;
@@ -112,28 +112,20 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
-        public static void AddSkillCD(this SkillManagerComponent self, int skillId, SkillConfig skillConfig, long cdEndTime)
+        public static void AddSkillCD(this SkillManagerComponent self, int skillId, M2C_SkillCmd skillCmd)
         {
             //添加技能CD列表
-            if (cdEndTime == 0)
-            {
-                return;
-            }
-
-            SkillCDList skillcd = self.GetSkillCD(skillId);
+            SkillCDItem skillcd = self.GetSkillCD(skillId);
             if (skillcd == null)
             {
-                skillcd = new SkillCDList();
+                skillcd = new SkillCDItem();
                 self.SkillCDs.Add(skillcd);
             }
+            long time11 =   TimeHelper.ServerNow();
+
             skillcd.SkillID = skillId;
-            skillcd.CDStartTime = TimeHelper.ServerNow();
-            skillcd.CDEndTime = cdEndTime + 200;
-            if (skillConfig.IfPublicSkillCD == 0)
-            {
-                //添加技能公共CD /公共1秒CD  
-                self.SkillPublicCDTime = skillcd.CDStartTime + 1200;
-            }
+            skillcd.CDEndTime = skillCmd.CDEndTime + 100;
+            self.SkillPublicCDTime = skillCmd.PublicCDTime + 100;
             if (self.Timer == 0)
             {
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.SkillTimer, self);
@@ -218,7 +210,7 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
 
-            SkillCDList skillCDList = self.GetSkillCD(skillId);
+            SkillCDItem skillCDList = self.GetSkillCD(skillId);
             if (skillCDList != null )
             {
                 return 1;
