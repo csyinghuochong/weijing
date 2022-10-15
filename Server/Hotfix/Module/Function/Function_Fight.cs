@@ -29,11 +29,6 @@ namespace ET
         public void Fight(Unit attackUnit, Unit defendUnit, SkillHandler skillHandler)
         {
             SkillConfig skillconfig = skillHandler.SkillConf;
-            //技能伤害为0则不进行伤害计算
-            if (skillconfig.ActDamge == 0 && skillconfig.DamgeValue == 0) {
-                return;
-            }
-
             //已死亡
             if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
