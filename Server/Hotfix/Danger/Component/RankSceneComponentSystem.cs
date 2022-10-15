@@ -120,7 +120,6 @@ namespace ET
             DateTime dateTime = TimeInfo.Instance.ToDateTime(currentTime);
             int dayCha = TimeHelper.DateTimeNow().Day - dateTime.Day;
             self.UpdateExchangeGold(dayCha);
-
             self.SendReward().Coroutine();
         }
 
@@ -464,7 +463,8 @@ namespace ET
 
         public static async ETTask SendReward(this RankSceneComponent self)
         {
-            await TimerComponent.Instance.WaitAsync(10000);
+            int zone = self.DomainZone();
+            await TimerComponent.Instance.WaitAsync(zone * 1000);
             long serverTime = TimeHelper.ServerNow();
             List<RankingInfo> rankingInfos = self.DBRankInfo.rankingInfos;
             long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;

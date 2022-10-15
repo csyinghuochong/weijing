@@ -59,6 +59,16 @@ namespace ET
             }
         }
 
+        public void ShowRunEffect()
+        {
+            if (this.RunEffect == null)
+            {
+                return;
+            }
+            this.RunEffect.SetActive(true);
+            this.RunEffect.GetComponent<ParticleSystem>().Play();
+        }
+
         /// <summary>
         /// 获取目标位置
         /// </summary>

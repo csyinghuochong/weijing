@@ -170,11 +170,10 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit target = unit.GetParent<UnitComponent>().Get(targetId);
+            self.StartIndicator = Vector2.zero;
             Vector2 vector2 = Vector2.zero;
             if (target != null)
             {
-                //self.SkillIndicator.TargetAngle = (int) (Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z));
-                //self.SkillIndicator.AttackDistance = Mathf.FloorToInt(self.SkillRangeSize * 1f);
                 float distance = PositionHelper.Distance2D(target.Position, unit.Position);
                 float rate = distance / self.SkillRangeSize;
                 rate = Mathf.Min(rate, 1f);
@@ -182,13 +181,16 @@ namespace ET
                 vector2.x = direction.x;
                 vector2.y = direction.z;
                 vector2 = vector2.normalized * 80 * rate;
-                self.StartIndicator = Vector2.zero;
                 self.OnMouseDrag(vector2);
             }
             else
             {
-                self.StartIndicator = Vector2.zero;
-                self.OnMouseDrag(Vector2.zero);
+                float roationy = Mathf.FloorToInt(unit.Rotation.eulerAngles.y);
+                Quaternion rotation = Quaternion.Euler(0, roationy, 0);
+                Vector3 postition = rotation * Vector3.forward * 0.01f;
+                vector2.x = postition.x;
+                vector2.y = postition.z;
+                self.OnMouseDrag(vector2);
             }
         }
 
@@ -227,11 +229,6 @@ namespace ET
 
         public static int GetIndicatorAngle(this SkillIndicatorComponent self)
         {
-            if (self.StartIndicator == Vector2.zero || self.SkillIndicator == null)
-            {
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                return Mathf.FloorToInt(unit.Rotation.eulerAngles.y);
-            }
             return self.SkillIndicator.TargetAngle;
         }
 

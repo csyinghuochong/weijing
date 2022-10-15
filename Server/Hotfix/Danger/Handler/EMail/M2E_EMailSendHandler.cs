@@ -10,6 +10,7 @@ namespace ET
         protected override async ETTask Run(Scene scene, M2E_EMailSendRequest request, E2M_EMailSendResponse response, Action reply)
         {
             //存储邮件
+            await ETTask.CompletedTask;
             response.Error = await MailHelp.SendUserMail(scene.DomainZone(), request.Id, request.MailInfo);
             if (response.Error != ErrorCore.ERR_Success)
             {
