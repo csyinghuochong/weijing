@@ -266,24 +266,27 @@ namespace ET
                 return;
             }
             float dropAdd_Pro = 1;
-            int fubenDifficulty = FubenDifficulty.None;
-            dropAdd_Pro += main.GetComponent<NumericComponent>().GetAsFloat(NumericType.Base_DropAdd_Pro_Add);
-            if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
+            if (unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
             {
-                fubenDifficulty = unit.DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
-            }
-            if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
-            {
-                fubenDifficulty = unit.DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
-            }
-            switch (fubenDifficulty)
-            {
-                case FubenDifficulty.TiaoZhan:
-                    dropAdd_Pro += 0.3f;
-                    break;
-                case FubenDifficulty.DiYu:
-                    dropAdd_Pro += 0.6f;
-                    break;
+                int fubenDifficulty = FubenDifficulty.None;
+                dropAdd_Pro += main.GetComponent<NumericComponent>().GetAsFloat(NumericType.Base_DropAdd_Pro_Add);
+                if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
+                {
+                    fubenDifficulty = unit.DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
+                }
+                if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+                {
+                    fubenDifficulty = unit.DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
+                }
+                switch (fubenDifficulty)
+                {
+                    case FubenDifficulty.TiaoZhan:
+                        dropAdd_Pro += 0.3f;
+                        break;
+                    case FubenDifficulty.DiYu:
+                        dropAdd_Pro += 0.6f;
+                        break;
+                }
             }
 
             //创建掉落

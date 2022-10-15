@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 267
+  version: 268
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -454,6 +454,8 @@ MonoBehaviour:
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_35.prefab
   - bundle: 6ffa896b28b5cea9c4d2ff5b1d181daa.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_4.prefab
+  - bundle: b38456a6fadaa922b9f5a044c096c74e.unity3d
+    path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_41.prefab
   - bundle: 64b270985166e4a09309fd79d85dd5f7.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_5.prefab
   - bundle: 2f0429fc7392c2f6db96c93fb3d50315.unity3d
@@ -7012,6 +7014,9 @@ MonoBehaviour:
   - name: 6ffa896b28b5cea9c4d2ff5b1d181daa.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_4.prefab
+  - name: b38456a6fadaa922b9f5a044c096c74e.unity3d
+    assets:
+    - Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_41.prefab
   - name: 64b270985166e4a09309fd79d85dd5f7.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_5.prefab
@@ -9210,13 +9215,13 @@ MonoBehaviour:
     - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-AddSmooth-DetachAlpha-Top.shader
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Shaders/AlphaBlendedMobile_Scroll01.shader
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Shaders/AdditiveMobile_Scroll01.shader
+    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-Tex-WithAlpha.shader
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/IceEffect/Effects/Magic
       Ice Vol.1/Shaders/ParticleCook-Transparent-AlphaBlend-Diffuse.shader
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/ShurikenMagic/Shaders/SM_TransparentRim.shader
     - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/E3D-Effect-Shader/AirDistort/E3D-AirDistort-AutoNoise-Mask-Fre.shader
     - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-Mask3.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-HardEdge-Opaque.shader
-    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-Tex-WithAlpha.shader
     - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Shaders/Slash.shader
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Shaders/Additive_EdgeSoft.shader
     - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-HardEdge.shader
@@ -12126,6 +12131,15 @@ MonoBehaviour:
   - name: f8323820e95ecef74085dac71ee0e8a9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/RFX_Resources/Texture/Light_Decal.PNG
+  - name: ff4391dbf0f4770e5136d4255d656b4b.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Point113.png
+  - name: bb1f15f9062ff88493378bf507cad2cb.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Moon11.png
+  - name: 4a4be5eb8e620aa1cd486da69f6b2c03.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-34.png
   - name: 20877f8145feaecc2f04b376ad5dba27.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Point35.png
@@ -12270,9 +12284,6 @@ MonoBehaviour:
   - name: 2e6e3cee3b9dfe166e5e15a2b1539898.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Model-E3D/E3D-Squaresheet35.fbx
-  - name: 4a4be5eb8e620aa1cd486da69f6b2c03.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-34.png
   - name: f3ee9c3e9cd7d1e416eae048609482fe.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Moon4.png
@@ -12452,6 +12463,12 @@ MonoBehaviour:
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
       30.mat
+  - name: 7329674e30a9d3dd367974d73fe5e452.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Moon5.tga
+  - name: 939a890e27e22659a9aab59a03598a67.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Moon7.png
   - name: 9881088ead90c511870fe10f5a81a6e8.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Direction137.png
@@ -12771,9 +12788,6 @@ MonoBehaviour:
   - name: 7509c642e20cb568c16a013433596f08.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-62.png
-  - name: ff4391dbf0f4770e5136d4255d656b4b.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Point113.png
   - name: 59b2af4c92033be1a99e630e5216bf21.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Point117.png
@@ -12916,6 +12930,9 @@ MonoBehaviour:
   - name: a674a4d5b7efe61b962ebc23ae6f0a97.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/ShurikenMagic/Shaders/HolyShield.mat
+  - name: 8972f7a70679988ab64553c07575f81e.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-2.png
   - name: 9f0bc768450f20b064ccc48eb44e67bf.unity3d
     assets:
     - Assets/Res/Effect/Skill/Texture/D_Hit_05.tga
@@ -13170,9 +13187,6 @@ MonoBehaviour:
   - name: cf458b252bc23fea5eed9dd821d25bd4.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Vein12.png
-  - name: 8972f7a70679988ab64553c07575f81e.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-2.png
   - name: 66551bcb1fefb58d192a525a035dc716.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Model-E3D/E3D-Squaresheet62.fbx
@@ -13334,45 +13348,12 @@ MonoBehaviour:
   - name: 9069b76fa6189476a08889d7ee7e861e.unity3d
     assets:
     - Assets/Res/Effect/Skill/Model/Eff_Skill_XuanFengZhan/FadeAnimation/Ground01.anim
-  - name: 7c3567c1fc164a631b419f2c4e53fcdd.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-61.png
-  - name: bb1f15f9062ff88493378bf507cad2cb.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Moon11.png
   - name: 3644e57404b81d6942cc49784d22caf0.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Object91.png
-  - name: 7329674e30a9d3dd367974d73fe5e452.unity3d
+  - name: 7c3567c1fc164a631b419f2c4e53fcdd.unity3d
     assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Moon5.tga
-  - name: 939a890e27e22659a9aab59a03598a67.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Moon7.png
-  - name: c6f4dd7680de19099774b9c9ffb5b566.unity3d
-    assets:
-    - Assets/Res/Effect/Skill/Epic Toon FX/Textures/glow.png
-  - name: 114d79a0584391377342b444352f9852.unity3d
-    assets:
-    - Assets/Res/Effect/Skill/Epic Toon FX/Materials/Glows/glow.mat
-  - name: bc3f71a5c904efd9ae04e136acd0f70b.unity3d
-    assets:
-    - Assets/Res/Effect/Skill/Model/Eff_Skill_XuanFengZhan/FadeAnimation/Ground02.anim
-  - name: 2bf0f8701a279d5df8ba315b0b68bbe8.unity3d
-    assets:
-    - Assets/Res/Effect/Skill/Model/Eff_Skill_XuanFengZhan/SwingLan.png
-  - name: e90241e8f013d280b4a7df6298fed859.unity3d
-    assets:
-    - Assets/Res/Effect/Skill/Model/Eff_Skill_XuanFengZhan/Materials/Swing.mat
-  - name: 195391dba76fa9efed83424f1270b151.unity3d
-    assets:
-    - Assets/Res/Effect/Skill/Model/Eff_Skill_XuanFengZhan/Ground02.FBX
-  - name: eff2a2b58728733ccdbeae349c095488.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/RFX_Resources/Texture/Blood_Splat.png
-  - name: 265cb03f49b683679c4b99bb88265c3e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/RFX_Resources/Materials/Blood_Splat.mat
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-61.png
   - name: 362d5a88cdca42ebeb32274f3cd68397.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Point120-25.mat
@@ -13391,18 +13372,57 @@ MonoBehaviour:
   - name: edff8b016b6c27e1593ba89ef19752f9.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Moon12.png
-  - name: a801e842419c77e04fa9326435e2926f.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Direction140.png
   - name: 7607b63cdf11b1d262d80794dafdd761.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Direction147.png
   - name: 733b682110399a42c2a6d61333135b63.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Shader62.mat
+  - name: a801e842419c77e04fa9326435e2926f.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Direction140.png
   - name: 771b39e6c4fc3ca02fa83ff8835b185f.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-58.png
+  - name: c6f4dd7680de19099774b9c9ffb5b566.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Epic Toon FX/Textures/glow.png
+  - name: 114d79a0584391377342b444352f9852.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Epic Toon FX/Materials/Glows/glow.mat
+  - name: 6b33d6123c81c3931940e1d2c778f011.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Moon5-2.mat
+  - name: 60bc178de3f83dae036f132b2aa86ac4.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Object91-1.mat
+  - name: e4dcdcfc6dd75892cb1b50c0d62be791.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Moon5-3.mat
+  - name: 114cfef3413e8c054167c803ba190623.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/B1/Effect/Animations/E3D-Skill-Brandish-Blast-Cyan.anim
+  - name: 71f11440abb281fc917626e2528ea931.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/B1/Effect/Animations/E3D-Skill-Brandish-Blast-Cyan.controller
+  - name: bc3f71a5c904efd9ae04e136acd0f70b.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Model/Eff_Skill_XuanFengZhan/FadeAnimation/Ground02.anim
+  - name: 2bf0f8701a279d5df8ba315b0b68bbe8.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Model/Eff_Skill_XuanFengZhan/SwingLan.png
+  - name: e90241e8f013d280b4a7df6298fed859.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Model/Eff_Skill_XuanFengZhan/Materials/Swing.mat
+  - name: 195391dba76fa9efed83424f1270b151.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Model/Eff_Skill_XuanFengZhan/Ground02.FBX
+  - name: eff2a2b58728733ccdbeae349c095488.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/RFX_Resources/Texture/Blood_Splat.png
+  - name: 265cb03f49b683679c4b99bb88265c3e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/RFX_Resources/Materials/Blood_Splat.mat
   - name: f0bd8cc22f26c0b4752c30ff29ca7d2d.unity3d
     assets:
     - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Materials/Smoke24bcg.mat
@@ -13508,27 +13528,12 @@ MonoBehaviour:
   - name: 53858f0f7567d5aee8b8c52bd95d1ebe.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/Material/IceSmoke02.mat
-  - name: 6b33d6123c81c3931940e1d2c778f011.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Moon5-2.mat
-  - name: 60bc178de3f83dae036f132b2aa86ac4.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Object91-1.mat
   - name: 763b7c30f59671fb8f5325935d18210c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/Anim/UV4x4.anim
-  - name: e4dcdcfc6dd75892cb1b50c0d62be791.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Moon5-3.mat
   - name: 32f3b2498c36be7587fa6169cac633ae.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/Texture/HitFX_Ice.png
-  - name: 114cfef3413e8c054167c803ba190623.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/B1/Effect/Animations/E3D-Skill-Brandish-Blast-Cyan.anim
-  - name: 71f11440abb281fc917626e2528ea931.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/B1/Effect/Animations/E3D-Skill-Brandish-Blast-Cyan.controller
   - name: 7e3b6f3af203d6c2bd136226f046db5e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/Hit_Ice.mat
