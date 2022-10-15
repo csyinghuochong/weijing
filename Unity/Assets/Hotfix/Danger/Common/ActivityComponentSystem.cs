@@ -26,7 +26,7 @@ namespace ET
 
 #if !SERVER
 
-        public static void OnZeroClockUpdate(this ActivityComponent self, int level)
+        public static void OnZeroClockUpdate(this ActivityComponent self)
         {
             //重置每日特惠
             for (int i = self.ActivityReceiveIds.Count - 1; i >= 0; i--)
