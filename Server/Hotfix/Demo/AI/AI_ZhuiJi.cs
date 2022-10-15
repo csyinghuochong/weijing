@@ -40,6 +40,8 @@ namespace ET
 
                 if (unit.GetComponent<StateComponent>().CanMove())
                 {
+                    Log.Debug($"AIZhuiji   {TimeHelper.ServerNow()}");
+
                     Vector3 dir = unit.Position - target.Position;
                     Vector3 ttt = target.Position + dir.normalized * ((float)aiComponent.ActDistance - 0.5f);
                     ttt = ttt + new Vector3(RandomHelper.RandFloat01() * 0.5f, 0f, RandomHelper.RandFloat01() * 0.5f);

@@ -269,23 +269,31 @@ namespace ET
             }
 
             Unit unit = self.GetParent<Unit>();
-            C2M_SkillCmd cmd = new C2M_SkillCmd();
-            cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
-            cmd.SkillID = skillIfo.SkillId;
-
-            if (targetId == 0 && unit.GetComponent<AIComponent>() != null)
+            long rigidityEndTime = 0;
+            if (unit.GetComponent<SkillManagerComponent>().IfCanUseSkill(skillIfo.SkillId) == ErrorCore.ERR_Success)
             {
-                targetId = unit.GetComponent<AIComponent>().TargetID;
-            }
-            cmd.TargetID = targetId;
+                C2M_SkillCmd cmd = new C2M_SkillCmd();
+                cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+                cmd.SkillID = skillIfo.SkillId;
+                if (targetId == 0 && unit.GetComponent<AIComponent>() != null)
+                {
+                    targetId = unit.GetComponent<AIComponent>().TargetID;
+                }
+                cmd.TargetID = targetId;
 
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIfo.SkillId);
-            if (!string.IsNullOrEmpty(skillConfig.SkillAnimation) && skillConfig.SkillAnimation != "0")
-            {
-                unit.Stop(0);
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIfo.SkillId);
+                if (!string.IsNullOrEmpty(skillConfig.SkillAnimation) && skillConfig.SkillAnimation != "0")
+                {
+                    unit.Stop(0);
+                }
+                unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd);
+                skillIfo.LastTriggerTime = TimeHelper.ServerNow();
+                rigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + TimeHelper.ServerNow();
             }
-            unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd);
-            skillIfo.LastTriggerTime = TimeHelper.ServerNow();
+            if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
+            {
+                unit.GetComponent<StateComponent>().RigidityEndTime = rigidityEndTime;
+            }
         }
     }
 }

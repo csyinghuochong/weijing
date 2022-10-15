@@ -35,6 +35,7 @@ namespace ET
                 }
                 bool timeRet = true;
                 int skillId = aiComponent.GetActSkillId();
+                long rigidityEndTime = 0;
                 if (unit.GetComponent<SkillManagerComponent>().IfCanUseSkill(skillId) == ErrorCore.ERR_Success)
                 {
                     Vector3 direction = target.Position - unit.Position;
@@ -45,8 +46,12 @@ namespace ET
                     cmd.SkillID = skillId;
                     cmd.TargetAngle = Mathf.FloorToInt(ange);
                     cmd.TargetDistance = Vector3.Distance(unit.Position, target.Position);
-                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd);
-                    unit.GetComponent<StateComponent>().RigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + TimeHelper.ServerNow();
+                    M2C_SkillCmd m2C_Skill =  unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd);
+                    rigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + TimeHelper.ServerNow();
+                }
+                if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
+                {
+                    unit.GetComponent<StateComponent>().RigidityEndTime = rigidityEndTime;
                 }
 
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
