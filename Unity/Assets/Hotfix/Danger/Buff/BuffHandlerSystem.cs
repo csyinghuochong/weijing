@@ -22,7 +22,7 @@ namespace ET
             self.mSkillConf = SkillConfigCategory.Instance.Get(buffData.SkillConfig.Id);
             self.mEffectConf = self.mSkillConf.SkillEffectID[0] != 0 ? EffectConfigCategory.Instance.Get(self.mSkillConf.SkillEffectID[0]):null;
 
-            self.mStartPosition = self.TheUnitBelongto.Position;
+            self.StartPosition = self.TheUnitBelongto.Position;
             self.mDelayTime = (float)(buffData.SkillConfig.SkillDelayTime);
             self.IsDelayPlay = self.mDelayTime > 0f;
             self.BuffEndTime = TimeHelper.ClientNow() + buffData.SkillConfig.SkillLiveTime;

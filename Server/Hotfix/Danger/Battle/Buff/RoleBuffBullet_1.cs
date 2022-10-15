@@ -30,7 +30,10 @@ namespace ET
             }
 
             Quaternion rotation = Quaternion.Euler(0, BuffData.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
-            Vector3 currentPosition = StartPosition + rotation * Vector3.forward * ((PassTime - DelayTime) * (float)(BuffData.SkillConfig.SkillMoveSpeed)) * 0.001f;
+            Vector3 movePosition = rotation * Vector3.forward * ((PassTime - DelayTime) * (float)(BuffData.SkillConfig.SkillMoveSpeed)) * 0.001f;
+            Vector3 currentPosition = this.StartPosition + movePosition;
+
+
             this.OnBulletUpdate(currentPosition);
         }
 

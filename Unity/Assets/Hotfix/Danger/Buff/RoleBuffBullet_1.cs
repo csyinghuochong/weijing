@@ -47,7 +47,11 @@ namespace ET
             if (this.EffectInstanceId > 0)
             {
                 Quaternion rotation = Quaternion.Euler(0, this.BuffData.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
-                Vector3 postition = this.mStartPosition + rotation * Vector3.forward * ((PassTime - mDelayTime) * (float)(mSkillConf.SkillMoveSpeed));
+
+                Vector3 movePosition = rotation * Vector3.forward * ((PassTime - mDelayTime) * (float)(mSkillConf.SkillMoveSpeed));
+                Vector3 postition = this.StartPosition + movePosition;
+
+
                 EventType.SkillEffectMove.Instance.Postion = postition;
                 EventType.SkillEffectMove.Instance.Unit = this.TheUnitBelongto;
                 EventType.SkillEffectMove.Instance.EffectInstanceId = this.EffectInstanceId;

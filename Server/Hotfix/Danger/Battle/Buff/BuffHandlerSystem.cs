@@ -18,7 +18,8 @@ namespace ET
             self.SkillConf = buffData.SkillConfig;
             self.BeginTime = TimeHelper.ServerNow();
             self.DelayTime = (long)(1000*buffData.SkillConfig.SkillDelayTime);
-            self.StartPosition = theUnitFrom.Position;
+            self.StartPosition = theUnitBelongto.Position;
+
             self.DamageRange = self.mSkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageRange) + (float)buffData.SkillConfig.DamgeRange[0];
             self.BuffEndTime = (int)self.mSkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime) +  buffData.SkillConfig.SkillLiveTime + TimeHelper.ServerNow();
         }

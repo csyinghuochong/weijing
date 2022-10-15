@@ -58,7 +58,6 @@ namespace ET
 
         public float mDelayTime;
         public bool IsDelayPlay;
-        public Vector3 mStartPosition;
         public long EffectInstanceId;
 
         public float mAngle;
