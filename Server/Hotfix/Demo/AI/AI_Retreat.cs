@@ -8,7 +8,8 @@ namespace ET
 
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
-            float distance =  PositionHelper.Distance2D(aiComponent.BornPostion, aiComponent.GetParent<Unit>().Position);
+            Unit unit = aiComponent.GetParent<Unit>();
+            float distance =  PositionHelper.Distance2D(unit.GetComponent<HeroDataComponent>().GetBornPostion(), unit.Position);
             return distance >= aiComponent.ChaseRange;
         }
 
@@ -22,15 +23,17 @@ namespace ET
             aiComponent.TargetID = 0;
             aiComponent.IsRetreat = true;
             unit.Stop(0);
+            Vector3 bornVector3 = unit.GetComponent<HeroDataComponent>().GetBornPostion();
 
             while (true)
             {
+
                 if (unit.GetComponent<StateComponent>().CanMove())
                 {
-                    unit.FindPathMoveToAsync(aiComponent.BornPostion, cancellationToken, true).Coroutine();
+                    unit.FindPathMoveToAsync(bornVector3, cancellationToken, true).Coroutine();
                 }
                 bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
-                if (!timeRet || Vector3.Distance(aiComponent.BornPostion, unit.Position) < 0.5f)
+                if (!timeRet || Vector3.Distance(bornVector3, unit.Position) < 0.5f)
                 {
                     aiComponent.IsRetreat = false;
                     return;

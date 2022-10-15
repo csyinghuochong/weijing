@@ -119,10 +119,10 @@ namespace ET
             {
                 if (args.WaitRevive > 0)
                 {
-                    NumericComponent numericComponent = defendUnit.GetComponent<NumericComponent>();
-                    defendUnit.Position = new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),
-                        numericComponent.GetAsFloat(NumericType.Born_Y),
-                        numericComponent.GetAsFloat(NumericType.Born_Z));
+                    //NumericComponent numericComponent = defendUnit.GetComponent<NumericComponent>();
+                    //defendUnit.Position = new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),
+                    //    numericComponent.GetAsFloat(NumericType.Born_Y),
+                    //    numericComponent.GetAsFloat(NumericType.Born_Z));
                     return;
                 }
                 //下一帧移除defend

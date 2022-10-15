@@ -12,9 +12,12 @@ namespace ET
         {
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
-            unit.GetComponent<HeroDataComponent>().OnRevive();
-            unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
 
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            numericComponent.ApplyValue(NumericType.Born_X, (long)(sceneConfig.InitPos[0] * 100));
+            numericComponent.ApplyValue(NumericType.Born_Y, (long)(sceneConfig.InitPos[1] * 100));
+            numericComponent.ApplyValue(NumericType.Born_Z, (long)(sceneConfig.InitPos[2] * 100));
+            unit.GetComponent<HeroDataComponent>().OnRevive();
             await ETTask.CompletedTask;
         }
     }

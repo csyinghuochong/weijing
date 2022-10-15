@@ -46,8 +46,6 @@ namespace ET
         public long LastBeAttack = 0;
         public long BeAttackTime = 0;
 
-        public Vector3 BornPostion;
-
         public bool StopAI;
 
         public List<long> BeAttackList = new List<long>();

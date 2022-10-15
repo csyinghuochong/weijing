@@ -21,6 +21,9 @@ namespace ET
             NumericType.PetSkin,
             NumericType.UnionLeader,
             NumericType.BossInCombat,
+            NumericType.Born_X,
+            NumericType.Born_Y,
+            NumericType.Born_Z,
         };
 
         //1 整数  2 浮点数

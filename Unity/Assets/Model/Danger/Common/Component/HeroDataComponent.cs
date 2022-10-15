@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace ET
 {
 
@@ -10,5 +12,6 @@ namespace ET
         public long AttackingId;
         public long BeAttackId;
 
+        public Vector3 BornPostion;
     }
 }

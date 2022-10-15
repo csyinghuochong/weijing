@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -70,7 +69,7 @@ namespace ET
         {
             if (self.LeftTime < 0)
             {
-                self.OnButton_Exit();
+                self.OnAuto_Exit();
                 TimerComponent.Instance?.Remove(ref self.Timer);
             }
             else
@@ -127,6 +126,22 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
         }
 
+        public static void OnAuto_Exit(this UICellDungeonReviveComponent self)
+        {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.TeamDungeon)
+            {
+                EnterFubenHelp.RequestQuitFuben(self.DomainScene());
+                UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
+            }
+        }
+
+        public static void RequestTeamDungeonRBorn(this UICellDungeonReviveComponent self)
+        {
+            C2M_TeamDungeonRBornRequest request = new C2M_TeamDungeonRBornRequest() { };
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(request);
+        }
+
         public static void OnButton_Exit(this UICellDungeonReviveComponent self)
         {
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
@@ -137,8 +152,9 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip($"{self.LeftTime}秒后可复活！");
                 }
                 else
-                { 
-                    
+                {
+                    self.RequestTeamDungeonRBorn();
+                    UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
                 }
             }
             else

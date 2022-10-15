@@ -234,7 +234,7 @@ namespace ET
             });
         }
 
-        public static void OnRevive(this HeroDataComponent self)
+        public static void OnRevive(this HeroDataComponent self, bool bornPostion = false)
         {
             Unit unit = self.GetParent<Unit>();
 
@@ -247,13 +247,13 @@ namespace ET
                     unit.RemoveComponent<AIComponent>();
                     AIComponent aIComponent = unit.AddComponent<AIComponent, int>(monsterConfig.AI);
                     aIComponent.InitMonster(monsterConfig.Id);
-                    aIComponent.BornPostion = unit.Position;
                 }
             }
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 0);
             unit.GetComponent<NumericComponent>().NumericDic[NumericType.Now_Hp] = 0;
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.Now_Hp, max_hp, 0);
             unit.GetComponent<SkillPassiveComponent>()?.Activeted();
+            unit.Position = self.GetBornPostion();
         }
 
         public static void InitTempPet(this HeroDataComponent self, Unit matster, int monster)
@@ -437,9 +437,9 @@ namespace ET
             numericComponent.Set((int)NumericType.Base_DamgeSubPro_Base, monsterConfig.DamgeAdd, false);
 
             //出生点
-            numericComponent.Set((int)NumericType.Born_X, nowUnit.Position.x);
-            numericComponent.Set((int)NumericType.Born_Y, nowUnit.Position.y);
-            numericComponent.Set((int)NumericType.Born_Z, nowUnit.Position.z);
+            numericComponent.Set((int)NumericType.Born_X, nowUnit.Position.x, false);
+            numericComponent.Set((int)NumericType.Born_Y, nowUnit.Position.y, false);
+            numericComponent.Set((int)NumericType.Born_Z, nowUnit.Position.z, false);
 
             //设置当前血量
             numericComponent.NumericDic[(int)NumericType.Now_Hp] = numericComponent.NumericDic[(int)NumericType.Now_MaxHp];
@@ -478,6 +478,14 @@ namespace ET
         }
 #endif
 
+        public static Vector3 GetBornPostion(this HeroDataComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            return new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),
+                numericComponent.GetAsFloat(NumericType.Born_Y),
+                numericComponent.GetAsFloat(NumericType.Born_Z));
+        }
 
         /// <summary>
         /// 更新当前角色身上的buff信息, 更新基础属性

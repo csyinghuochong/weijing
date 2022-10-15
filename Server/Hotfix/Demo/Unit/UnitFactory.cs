@@ -39,8 +39,8 @@ namespace ET
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterID);
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
-            unit.AddComponent<NumericComponent>();
-            unit.AddComponent<HeroDataComponent>();
+            NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+            HeroDataComponent heroDataComponent = unit.AddComponent<HeroDataComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unitInfoComponent.Type = UnitType.Monster;
             unitInfoComponent.RoleCamp = createMonsterInfo.Camp;
@@ -48,6 +48,7 @@ namespace ET
             unitInfoComponent.EnergySkillId = createMonsterInfo.SkillId;
             unit.TestType = UnitType.Monster;
             unit.Position = vector3;
+
 
             //51 场景怪
             //52 能量台子
@@ -58,11 +59,11 @@ namespace ET
             {
                 if (createMonsterInfo.Master_ID > 0)
                 {
-                    unit.GetComponent<HeroDataComponent>().InitMonsterInfo_Summon2(monsterConfig, createMonsterInfo);
+                    heroDataComponent.InitMonsterInfo_Summon2(monsterConfig, createMonsterInfo);
                 }
                 else
                 {
-                    unit.GetComponent<HeroDataComponent>().InitMonsterInfo(monsterConfig, createMonsterInfo);
+                    heroDataComponent.InitMonsterInfo(monsterConfig, createMonsterInfo);
                 }
             }
 
@@ -79,7 +80,6 @@ namespace ET
                 unit.GetComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
                 unit.GetComponent<SkillPassiveComponent>().Activeted();
 
-                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 numericComponent.Set(NumericType.Master_ID, createMonsterInfo.Master_ID);
                 AIComponent aIComponent = unit.AddComponent<AIComponent, int>(createMonsterInfo.Master_ID > 0 ? 2 : monsterConfig.AI);
                 switch (mapComponent.SceneTypeEnum)
@@ -91,13 +91,11 @@ namespace ET
                         aIComponent.InitMonster(monsterConfig.Id);
                         break;
                 }
-                aIComponent.BornPostion = unit.Position;
             }
             if (monsterConfig.DeathTime > 0)
             {
                 unit.AddComponent<DeathTimeComponent, long>(monsterConfig.DeathTime * 1000);
             }
-
             Unit mainUnit = null;
             long revetime = 0;
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
@@ -108,7 +106,6 @@ namespace ET
             if (mainUnit!=null && TimeHelper.ServerNow() < revetime)
             {
                 unit.AddComponent<ReviveTimeComponent, long>(revetime);
-                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 numericComponent.ApplyValue(NumericType.ReviveTime, revetime, false);
                 numericComponent.ApplyValue(NumericType.Now_Dead, 1, false);
             }
@@ -183,13 +180,13 @@ namespace ET
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(petinfo.Id, 1);
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
-            unit.AddComponent<NumericComponent>();
+            NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
-            unit.GetComponent<NumericComponent>().Set(NumericType.Master_ID, masterId);
+            numericComponent.Set(NumericType.Master_ID, masterId);
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unitInfoComponent.Type = UnitType.Pet;
             unitInfoComponent.UnitCondigID = petinfo.ConfigId;
@@ -201,7 +198,6 @@ namespace ET
             unit.Rotation = Quaternion.Euler(0f,90f,0f);
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(1);     //AI行为树序号
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
-            aIComponent.BornPostion = unit.Position;
             switch (mapComponent.SceneTypeEnum)
             {
                 case (int)SceneTypeEnum.PetDungeon:
@@ -212,7 +208,6 @@ namespace ET
                     aIComponent.InitPet(petinfo.ConfigId);
                     break;
             }
-   
             unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill();
             unit.GetComponent<SkillPassiveComponent>().Activeted();
             //添加其他组件

@@ -112,6 +112,9 @@ namespace ET
             ComHelp.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
 
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
+            unit.GetComponent<UserInfoComponent>().LastLoginTime = TimeHelper.ServerNow();
             DBHelper.UpdateCacheDB(self.GetParent<Unit>()).Coroutine();
             
             long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Chat)).InstanceId;
@@ -151,10 +154,6 @@ namespace ET
               $"{  TimeHelper.DateTimeNow().ToString()}  移除";
             ComHelp.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
-
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
-            unit.GetComponent<UserInfoComponent>().LastLoginTime = TimeHelper.ServerNow();
 
             unit.RecordPostion();
             unit.GetComponent<EnergyComponent>().OnDisconnect();

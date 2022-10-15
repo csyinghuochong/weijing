@@ -128,15 +128,8 @@ namespace ET
         public static void OnAddRefreshList(this LocalDungeonComponent self, Unit unit, long aliveTime)
         {
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            Vector3 bornpos;
-            if (unit.GetComponent<AIComponent>() == null)
-            {
-                bornpos = unit.Position;
-            }
-            else {
-                bornpos = unit.GetComponent<AIComponent>().BornPostion;
-            }
-             
+            Vector3 bornpos = unit.GetComponent<HeroDataComponent>().GetBornPostion();
+
             self.RefreshMonsters.Add(new RefreshMonster()
             {
                 MonsterId = unitInfoComponent.UnitCondigID,
