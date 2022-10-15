@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -130,8 +129,23 @@ namespace ET
 
         public static void OnButton_Exit(this UICellDungeonReviveComponent self)
         {
-            EnterFubenHelp.RequestQuitFuben(self.DomainScene());
-            UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
+            {
+                if (self.LeftTime > 0)
+                {
+                    FloatTipManager.Instance.ShowFloatTip($"{self.LeftTime}秒后可复活！");
+                }
+                else
+                { 
+                    
+                }
+            }
+            else
+            {
+                EnterFubenHelp.RequestQuitFuben(self.DomainScene());
+                UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
+            }
         }
 
     }

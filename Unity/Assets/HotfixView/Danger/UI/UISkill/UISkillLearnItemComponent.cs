@@ -113,14 +113,12 @@ namespace ET
             SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(self.SkillPro.SkillID);
             string[] skillDesc = Regex.Split(skillConfig_base.SkillDescribe, "\n\n", RegexOptions.IgnoreCase);
 
-            if (itemEquipType == 0 ||  skillDesc.Length == 1)
+            if (itemEquipType == 0 ||  skillDesc.Length == 1 || itemEquipType > ItemEquipType.Knife)
             {
-                Log.Info("skillDesc[0] = " + skillDesc[0]);
                 self.Text_Desc.GetComponent<Text>().text = skillDesc[0];
             }
             else
             {
-                Log.Info("skillDesc[1] = " + skillDesc[itemEquipType - 1]);
                 self.Text_Desc.GetComponent<Text>().text = skillDesc[itemEquipType - 1];
             }
 

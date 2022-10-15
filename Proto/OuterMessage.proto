@@ -3960,3 +3960,13 @@ message C2M_TeamDungeonRBornRequest // IActorLocationMessage
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 }
+
+message M2C_TeamDungeonRBornResult // IActorMessage
+{
+	int64 ActorId = 1;
+	int64 UnitId = 2;
+
+	float X = 3;
+	float Y = 4;
+	float Z = 5;
+}
