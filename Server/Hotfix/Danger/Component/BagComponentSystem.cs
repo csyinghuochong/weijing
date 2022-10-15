@@ -458,10 +458,13 @@ namespace ET
                 int leftNum = rewardItems[i].ItemNum;
 
                 UserDataType userDataType = ComHelp.GetItemToUserDataType(itemID);
+                if (userDataType == UserDataType.Gold)
+                {
+                    Log.Debug($"Gold:  {unit.Id} {leftNum} {getWay}");
+                }
                 if (userDataType != UserDataType.None)
                 {
                     unit.GetComponent<UserInfoComponent>().UpdateRoleData(userDataType, leftNum.ToString()).Coroutine();
-                    Log.Debug($"Gold:  {unit.Id} {leftNum} {getWay}");
                     continue;
                 }
 

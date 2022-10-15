@@ -9,6 +9,11 @@ namespace ET
 
 		protected override async ETTask Run(Unit unit, C2M_PaiMaiSellRequest request, M2C_PaiMaiSellResponse response, Action reply)
 		{
+			if (request.PaiMaiItemInfo.BagInfo.ItemNum <= 0)
+			{
+				reply();
+				return;
+			}
 
 			//获取出售数据
 			request.PaiMaiItemInfo.Id = IdGenerater.Instance.GenerateId();
