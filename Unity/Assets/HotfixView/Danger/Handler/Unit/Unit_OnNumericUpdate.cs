@@ -48,10 +48,13 @@
                     args.Unit.AddComponent<GameObjectComponent>();
                     break;
                 case NumericType.ZeroClock:
-                    UserInfoComponent userInfoComponent = args.Unit.ZoneScene().GetComponent<UserInfoComponent>();
+                    Scene zoneScene = args.Unit.ZoneScene();
+                    UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
                     userInfoComponent.UserInfo.DayFubenTimes.Clear();
                     userInfoComponent.UserInfo.ChouKaRewardIds.Clear();
                     userInfoComponent.UserInfo.MysteryItems.Clear();
+                    zoneScene.GetComponent<TaskComponent>().OnZeroClockUpdate();
+                    zoneScene.GetComponent<ActivityComponent>().OnZeroClockUpdate();
                     break;
                 case NumericType.PointRemain:
                     ReddotComponent reddotComponent = args.Unit.ZoneScene().GetComponent<ReddotComponent>();

@@ -105,8 +105,8 @@ namespace ET
             numericComponent.ApplyValue(NumericType.XiuLian_CoinTime, 0, notice);
             numericComponent.ApplyValue(NumericType.TiLiKillNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.ChouKa, 0, notice);
-            numericComponent.ApplyValue(NumericType.ExpToGoldTimes, 0, false);
-            numericComponent.ApplyValue(NumericType.RechargeSign, 0, false);
+            numericComponent.ApplyValue(NumericType.ExpToGoldTimes, 0, notice);
+            numericComponent.ApplyValue(NumericType.RechargeSign, 0, notice);
         }
 
         /// <summary>

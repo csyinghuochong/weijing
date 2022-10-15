@@ -9,6 +9,12 @@ namespace ET
     public static class TaskComponentSystem
     {
 
+        public static void OnZeroClockUpdate(this TaskComponent self)
+        {
+            self.ReceiveHuoYueIds.Clear();
+            self.TaskCountryList.Clear();
+        }
+
         public static List<int> GetOpenTaskIds(this TaskComponent self, int npcid)
         {
             List<int> openTaskids = new List<int>();

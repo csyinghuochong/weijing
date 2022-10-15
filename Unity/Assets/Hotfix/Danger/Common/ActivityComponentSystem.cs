@@ -5,6 +5,7 @@ namespace ET
     public static class ActivityComponentSystem
     {
 
+
 #if SERVER
         public static void OnZeroClockUpdate(this ActivityComponent self, int level)
         {
@@ -24,6 +25,20 @@ namespace ET
 #endif
 
 #if !SERVER
+
+        public static void OnZeroClockUpdate(this ActivityComponent self, int level)
+        {
+            //重置每日特惠
+            for (int i = self.ActivityReceiveIds.Count - 1; i >= 0; i--)
+            {
+                ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(self.ActivityReceiveIds[i]);
+                if (activityConfig.ActivityType == 2)
+                {
+                    self.ActivityReceiveIds.RemoveAt(i);
+                }
+            }
+        }
+
         public static async ETTask<int> GetActivityReward(this ActivityComponent self, int activityType, int activityId)
         {
             try
