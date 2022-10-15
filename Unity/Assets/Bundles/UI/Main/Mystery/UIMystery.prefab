@@ -539,7 +539,7 @@ GameObject:
   - component: {fileID: 5117795468465190883}
   - component: {fileID: 4603712253624065945}
   m_Layer: 5
-  m_Name: UIStore
+  m_Name: UIMystery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -747,7 +747,7 @@ MonoBehaviour:
   m_ChildAlignment: 0
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 320, y: 400}
+  m_CellSize: {x: 330, y: 420}
   m_Spacing: {x: 0, y: 0}
   m_Constraint: 1
   m_ConstraintCount: 4
@@ -876,7 +876,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 311, y: -26}
+  m_AnchoredPosition: {x: 206, y: -26}
   m_SizeDelta: {x: 1400, y: 900}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5133095057047701210
