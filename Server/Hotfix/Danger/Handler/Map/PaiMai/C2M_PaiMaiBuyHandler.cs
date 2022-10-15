@@ -42,7 +42,7 @@ namespace ET
             await unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (needGold * -1).ToString());
 
             //背包添加道具
-            unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo);
+            unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo, $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
 
             //给出售者邮件发送金币
             MailHelp.SendPaiMaiEmail(unit.DomainZone() ,r_GameStatusResponse.PaiMaiItemInfo, r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemNum).Coroutine();

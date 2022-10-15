@@ -18,7 +18,7 @@ namespace ET
 
             if (r_GameStatusResponse.Error == ErrorCore.ERR_Success && r_GameStatusResponse.PaiMaiItemInfo != null)
             {
-                unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo);
+                unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo, $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
             }
             else
             {

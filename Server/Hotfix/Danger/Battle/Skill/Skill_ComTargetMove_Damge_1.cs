@@ -38,7 +38,7 @@ namespace ET
 
             Vector3 dir = (this.TargetPosition - NowPosition).normalized;
             float dis = PositionHelper.Distance2D(NowPosition, this.TargetPosition);
-            float move = (float)this.SkillConf.SkillMoveSpeed * deltaTime * 0.001f; ///(this.PassTime - this.DelayHurtTime) * 0.001f;
+            float move = (float)this.SkillConf.SkillMoveSpeed * deltaTime * 0.001f; 
             move = Mathf.Min(dis, move);
             this.NowPosition = this.NowPosition + move * dir;
             this.NowPosition.y = this.TargetPosition.y + 0.5f;

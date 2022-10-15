@@ -368,22 +368,22 @@ namespace ET
             return self.OnAddItemData(costItems, 0, getType, notice);
         }
 
-        public static void OnAddItemData(this BagComponent self, List<BagInfo> bagInfos)
+        public static void OnAddItemData(this BagComponent self, List<BagInfo> bagInfos, string getType)
         {
             for (int i = 0; i < bagInfos.Count; i++)
             {
-                self.OnAddItemData(bagInfos[i]);
+                self.OnAddItemData(bagInfos[i], getType);
             }
         }
 
-        public static void OnAddItemData(this BagComponent self, BagInfo bagInfo)
+        public static void OnAddItemData(this BagComponent self, BagInfo bagInfo, string getType)
         {
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             int maxPileSum = itemCof.ItemPileSum;
 
             if (maxPileSum > 1 || bagInfo.BagInfoID == 0)
             {
-                self.OnAddItemData($"{bagInfo.ItemID};{bagInfo.ItemNum}", string.IsNullOrEmpty(bagInfo.GetWay) ? "0": bagInfo.GetWay);
+                self.OnAddItemData($"{bagInfo.ItemID};{bagInfo.ItemNum}", string.IsNullOrEmpty(bagInfo.GetWay) ? getType : bagInfo.GetWay);
             }
             else
             {

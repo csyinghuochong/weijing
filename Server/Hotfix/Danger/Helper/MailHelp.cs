@@ -14,6 +14,7 @@
             reward.ItemID = 1;
             int sellPrice = (int)(paiMaiItemInfo.Price * 0.95f) * costNum;     //5%手续费
             reward.ItemNum = sellPrice;
+            reward.GetWay = $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}";
             mailInfo.ItemList.Add(reward);
 
             //发送到邮件服

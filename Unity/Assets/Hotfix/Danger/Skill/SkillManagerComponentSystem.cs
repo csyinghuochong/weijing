@@ -121,17 +121,20 @@ namespace ET
                 skillcd = new SkillCDItem();
                 self.SkillCDs.Add(skillcd);
             }
-            long time11 =   TimeHelper.ServerNow();
-
             skillcd.SkillID = skillId;
             skillcd.CDEndTime = skillCmd.CDEndTime + 100;
             self.SkillPublicCDTime = skillCmd.PublicCDTime + 100;
+            self.AddSkillTimer();
+            EventType.SkillCD.Instance.Unit = self.GetParent<Unit>();
+            Game.EventSystem.PublishClass(EventType.SkillCD.Instance);
+        }
+
+        public static void AddSkillTimer(this SkillManagerComponent self)
+        {
             if (self.Timer == 0)
             {
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.SkillTimer, self);
             }
-            EventType.SkillCD.Instance.Unit = self.GetParent<Unit>();
-            Game.EventSystem.PublishClass(EventType.SkillCD.Instance);
         }
 
         public static void OnUseSkill(this SkillManagerComponent self, M2C_UnitUseSkill skillcmd )
@@ -153,17 +156,11 @@ namespace ET
                 self.Skills.Add(skillHandler);
                 self.OnShowSkillIndicator(skillcmd.SkillInfos[i]);
             }
-
-            if (from.MainHero && self.Timer == 0)
-            {
-                self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.SkillTimer, self);
-            }
+            self.AddSkillTimer();
             if (skillcmd.SkillID == 0)
             {
-                //随机延迟释放的技能，不再播放动作和计入CD
                 return;
             }
-
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
             if (!string.IsNullOrEmpty(skillConfig.SkillAnimation) && skillConfig.SkillAnimation != "0")
             {
