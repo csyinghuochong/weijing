@@ -88,8 +88,6 @@ namespace ET
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             for (int i = 0; i < bagInfos.Count; i++)
             {
-                Log.ILog.Debug($" {bagInfos[i].ItemID}  {appItem}");
-
                 if (bagInfos[i].ItemID != appItem && bagInfos[i].ItemID != 11200000)
                 {
                     continue;
