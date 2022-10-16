@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 269
+  version: 270
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -538,6 +538,8 @@ MonoBehaviour:
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_10.prefab
   - bundle: 28810a1dadc2ff9c73f2084858c7900b.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_2.prefab
+  - bundle: a6c46bda721dd5219053fa9a538f3df6.unity3d
+    path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_2a.prefab
   - bundle: a33306541a318c8e4ea98eaa42e0fe49.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_3.prefab
   - bundle: 18479a28172658096967fa377233976a.unity3d
@@ -7089,6 +7091,9 @@ MonoBehaviour:
   - name: 28810a1dadc2ff9c73f2084858c7900b.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_2.prefab
+  - name: a6c46bda721dd5219053fa9a538f3df6.unity3d
+    assets:
+    - Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_2a.prefab
   - name: a33306541a318c8e4ea98eaa42e0fe49.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_3.prefab
@@ -12734,15 +12739,21 @@ MonoBehaviour:
   - name: 23ddf89aeb7a260d39510a157df87a13.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Textures/UniqueProjectiles_Additive8x8.PNG
-  - name: 8c04be82bdd58db14825abe02f4171b8.unity3d
-    assets:
-    - Assets/Res/Effect/Skill/Texture/Materials/dust10.mat
-  - name: bf0d9017e287fc590944271b03c74631.unity3d
-    assets:
-    - Assets/Res/Effect/Skill/Texture/dust10.tif
   - name: 32ae72b2d3b3ab2b1ec7d5a5db78593a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Materials/UniqueProjectiles_Additive_8x8.mat
+  - name: 8c04be82bdd58db14825abe02f4171b8.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Texture/Materials/dust10.mat
+  - name: 9ea97a6a41cbb04757aa2bd74003c5b7.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Materials/Trail01_Add.mat
+  - name: f6e5118a05e42e169dcf026e1e57d16c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Textures/Trail01.PNG
+  - name: bf0d9017e287fc590944271b03c74631.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Texture/dust10.tif
   - name: 3041131c8533d08f86e339a63259a8d9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Textures/Noise/Noise03.TGA
@@ -12770,12 +12781,6 @@ MonoBehaviour:
   - name: 9aa60b4e4b29a3a4e97d52a68f5fa8f7.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Textures/Gradients/GradientCenter04.PNG
-  - name: 9ea97a6a41cbb04757aa2bd74003c5b7.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Materials/Trail01_Add.mat
-  - name: f6e5118a05e42e169dcf026e1e57d16c.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Textures/Trail01.PNG
   - name: a435d80d62c584db6818576da7e071dc.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-60.png
