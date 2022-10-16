@@ -38,6 +38,7 @@ namespace ET
     {
         public override void Destroy(FsmComponent self)
         {
+            self.EndTimer();
         }
     }
 

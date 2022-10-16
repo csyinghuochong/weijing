@@ -216,7 +216,7 @@ namespace ET
                 doc.LoadXml(pay_notice);
                 XmlNode xml = doc.DocumentElement;
                 //状态码:SUCCESS 成功   FAIL 失败
-                if (xml["return_code"].InnerText != "SUCCESS")
+                if (xml == null || xml["return_code"] == null || xml["return_code"].InnerText != "SUCCESS")
                 {
                     return;
                 }

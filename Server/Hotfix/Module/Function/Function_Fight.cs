@@ -416,7 +416,13 @@ namespace ET
 
                     float shield_Hp = 0;
                     int shield_Type = 0;    //1百分比  2固定值
-                    if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Shield))
+
+                    StateComponent stateComponent = defendUnit.GetComponent<StateComponent>();
+                    if (stateComponent == null)
+                    {
+                        Log.Debug($"statcomponent == null {defendUnit.Type}");
+                    }
+                    if (stateComponent!= null &&stateComponent.StateTypeGet(StateTypeEnum.Shield))
                     {
                         shield_Hp = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_HP);
                         shield_Type = numericComponentDefend.GetAsInt(NumericType.Now_Shield_Type);

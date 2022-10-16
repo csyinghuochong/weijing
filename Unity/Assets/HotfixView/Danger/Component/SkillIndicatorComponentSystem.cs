@@ -229,7 +229,22 @@ namespace ET
 
         public static int GetIndicatorAngle(this SkillIndicatorComponent self)
         {
-            return self.SkillIndicator.TargetAngle;
+            if (self.SkillIndicator != null)
+            {
+                return self.SkillIndicator.TargetAngle;
+            }
+            else
+            {
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                if (unit != null)
+                {
+                    return (int)unit.Rotation.eulerAngles.y;
+                }
+                else
+                {
+                    return 0;
+                }
+            }
         }
 
         public static void ClearnsShow(this SkillIndicatorComponent self)
