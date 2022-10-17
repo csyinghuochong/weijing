@@ -75,7 +75,7 @@ namespace ET
             {
                 return;
             }
-            zonescene.CurrentScene().GetComponent<LockTargetComponent>()?.OnLockNpc(null);
+            //zonescene.CurrentScene().GetComponent<LockTargetComponent>()?.OnLockNpc(null);
             self.draging = true;
             self.SendMove(self.GetDirection(pdata));
         }
