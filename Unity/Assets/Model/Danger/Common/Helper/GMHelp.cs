@@ -9,6 +9,7 @@ namespace ET
         public static List<string> GmAccount = new List<string>()
         {
             "tcg01",
+            "tcg02",
             "test01",
             "testcn01",
             "18319670288",
