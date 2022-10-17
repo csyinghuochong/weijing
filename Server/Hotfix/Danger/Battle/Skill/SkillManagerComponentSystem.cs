@@ -453,6 +453,12 @@ namespace ET
         public static int IfCanUseSkill(this SkillManagerComponent self, int nowSkillID)
         {
             Unit unit = self.GetParent<Unit>();
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(nowSkillID);
+            StateComponent stateComponent = unit.GetComponent<StateComponent>();
+            if (unit.Type == UnitType.Monster && stateComponent.IsRigidity() && skillConfig.SkillActType == 0)
+            {
+                return ErrorCore.ERR_UseSkillInCD1;
+            }
 
             //判断技能是否再冷却中
             if (self.SkillCDs.ContainsKey(nowSkillID))
@@ -461,13 +467,12 @@ namespace ET
             }
 
             //判断当前眩晕状态
-            if (!unit.GetComponent<StateComponent>().CanUseSkill())
+            if (!stateComponent.CanUseSkill())
             {
                 return ErrorCore.ERR_UseSkillInCD3;
             }
 
             //判定是否再公共冷却时间
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(nowSkillID);
             if (TimeHelper.ServerNow() < self.SkillPublicCDTime  && skillConfig.SkillActType != 0)
             {
                 return ErrorCore.ERR_UseSkillInCD2;

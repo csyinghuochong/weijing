@@ -36,6 +36,7 @@ namespace ET
                 bool timeRet = true;
                 int skillId = aiComponent.GetActSkillId();
                 long rigidityEndTime = 0;
+
                 if (unit.GetComponent<SkillManagerComponent>().IfCanUseSkill(skillId) == ErrorCore.ERR_Success)
                 {
                     Vector3 direction = target.Position - unit.Position;
