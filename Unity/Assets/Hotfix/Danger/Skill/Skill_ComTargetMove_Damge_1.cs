@@ -19,7 +19,7 @@ namespace ET
 
         public override void OnExecute()
         {
-            this.PlaySkillEffects(this.TargetPosition);
+            this.PlaySkillEffects(this.NowPosition);
         }
 
         public override void OnUpdate()

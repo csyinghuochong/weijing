@@ -16,8 +16,8 @@ namespace ET
             this.EffectData = effectData;
             this.EffectState = BuffState.Running;
             this.TheUnitBelongto = theUnitBelongto;
-            this.EffectEndTime = EffectData.mEffectConfig.SkillEffectLiveTime * 0.001f;
-            this.EffectDelayTime = (float)EffectData.mEffectConfig.SkillEffectDelayTime;
+            this.EffectEndTime = EffectData.EffectConfig.SkillEffectLiveTime * 0.001f;
+            this.EffectDelayTime = (float)EffectData.EffectConfig.SkillEffectDelayTime;
 
             this.OnUpdate();
         }
@@ -32,7 +32,7 @@ namespace ET
                 return;
             }
             string effectFileName = "";
-            switch (EffectData.mEffectConfig.EffectType) 
+            switch (EffectData.EffectConfig.EffectType) 
             {
                 //技能特效
                 case 1:
@@ -48,16 +48,11 @@ namespace ET
                     break;
             }
 
-            string effectNamePath  = effectFileName + EffectData.mEffectConfig.EffectName;
+            string effectNamePath  = effectFileName + EffectData.EffectConfig.EffectName;
             EffectPath = ABPathHelper.GetEffetPath(effectNamePath);
             EffectObj = await GameObjectPoolComponent.Instance.GetExternalAsync(EffectPath);
 
-            if (EffectObj == null)
-            {
-                this.EffectState = BuffState.Finished;
-                Log.Error($"EffectObj == null {effectNamePath}");
-            }
-            if (this.EffectData == null)
+            if (EffectObj == null || this.EffectData == null)
             {
                 this.EffectState = BuffState.Finished;
             }
@@ -70,28 +65,18 @@ namespace ET
                 this.OnFinished();
                 return;
             }
-            if (this.TheUnitBelongto.GetComponent<HeroTransformComponent>() == null)
+            if (EffectData.SkillConfig!=null)
             {
-                this.EffectState = BuffState.Finished;
-            }
-            if (this.EffectState == BuffState.Finished)
-            {
-                this.OnFinished();
-                return;
-            }
-            if (EffectData.mSkillConfig!=null)
-            {
-                int rangeType = EffectData.mSkillConfig.DamgeRangeType;       //技能范围类型
-                float[] rangeValue = FunctionHelp.Instance.DoubleArrToFloatArr(EffectData.mSkillConfig.DamgeRange);          //技能范围
+                int rangeType = EffectData.SkillConfig.DamgeRangeType;       //技能范围类型
+                float[] rangeValue = FunctionHelp.Instance.DoubleArrToFloatArr(EffectData.SkillConfig.DamgeRange);          //技能范围
                 this.AddCollider(EffectObj, rangeType, rangeValue);
             }
-            EffectObj.SetActive(true);
-            int skillParentID = EffectData.mEffectConfig.SkillParent;
+            int skillParentID = EffectData.EffectConfig.SkillParent;
             switch (skillParentID)
             {
                 //跟随玩家
                 case 0:
-                    Transform tParent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>().GetTranform((PosType)Enum.Parse(typeof(PosType), EffectData.mEffectConfig.SkillParentPosition));
+                    Transform tParent = this.TheUnitBelongto.GetComponent<HeroTransformComponent>().GetTranform((PosType)Enum.Parse(typeof(PosType), EffectData.EffectConfig.SkillParentPosition));
                     EffectObj.transform.SetParent(tParent);
                     EffectObj.transform.localPosition = Vector3.zero;
                     EffectObj.transform.localScale = Vector3.one;
@@ -100,30 +85,7 @@ namespace ET
                 //不跟随玩家
                 case 1:
                     this.EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
-                    if (this.EffectData.mSkillConfig != null)
-                    {
-                        switch (EffectData.mSkillConfig.SkillTargetType)
-                        {
-                            case (int)SkillTargetType.SelfOnly:
-                                EffectObj.transform.position = TheUnitBelongto.Position;
-                                break;
-                            case (int)SkillTargetType.TargetOnly:
-                                Unit unit = TheUnitBelongto.DomainScene().GetComponent<UnitComponent>().Get(EffectData.TargetID);
-                                if (unit != null)
-                                {
-                                    EffectObj.transform.position = unit.Position;
-                                }
-                                else
-                                {
-                                    EffectObj.transform.position = TheUnitBelongto.Position;
-                                }
-                                break;
-                            default:
-                                EffectObj.transform.position = EffectData.TargetPosition;
-                                break;
-                        }
-                    }
-
+                    EffectObj.transform.position = EffectData.EffectPosition;
                     EffectObj.transform.localScale = Vector3.one;
                     EffectObj.transform.localRotation =  Quaternion.Euler(0, EffectData.TargetAngle, 0);
                     break;
@@ -165,11 +127,13 @@ namespace ET
                     else
                     {
                         chainLightningComponent.UsePosition = true;
-                        chainLightningComponent.EndPosition = this.EffectData.TargetPosition;
+                        chainLightningComponent.EndPosition = this.EffectData.EffectPosition;
                         chainLightningComponent.OnUpdate();
                     }
                     break;
             }
+
+            EffectObj.SetActive(true);
         }
 
         public override void OnUpdate()
@@ -193,7 +157,7 @@ namespace ET
                 this.EffectState = BuffState.Finished;
                 return;
             }
-            int skillParentID = EffectData.mEffectConfig.SkillParent;
+            int skillParentID = EffectData.EffectConfig.SkillParent;
             if (skillParentID == 4)//闪电链
             {
                 if (EffectData.TargetID != 0 && null == this.TheUnitBelongto.DomainScene().GetComponent<UnitComponent>().Get(EffectData.TargetID))
@@ -203,17 +167,14 @@ namespace ET
                 }
             }
 
-            if (EffectData.mEffectConfig.HideTime > 0)
+            if (EffectData.EffectConfig.HideTime > 0 && EffectObj!=null)
             {
                 HideObjTime += Time.deltaTime;
-                if (HideObjTime >= EffectData.mEffectConfig.HideTime)
+                if (HideObjTime >= EffectData.EffectConfig.HideTime)
                 {
                     HideObjTime = 0;
-                    if (EffectObj != null)
-                    {
-                        EffectObj.SetActive(false);
-                        EffectObj.SetActive(true);
-                    }
+                    EffectObj.SetActive(false);
+                    EffectObj.SetActive(true);
                 }
             }
         }

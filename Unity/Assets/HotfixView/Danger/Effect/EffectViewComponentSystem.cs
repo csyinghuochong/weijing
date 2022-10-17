@@ -95,7 +95,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (aEffectHandler.EffectData.mEffectConfig.SkillParent!=2)
+                if (aEffectHandler.EffectData.EffectConfig.SkillParent!=2)
                 {
                     continue;
                 }

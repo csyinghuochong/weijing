@@ -156,10 +156,10 @@ namespace ET
         public int EffectTypeEnum;
 
         //相关配置表
-        public SkillConfig mSkillConfig;
-        public EffectConfig mEffectConfig;
+        public SkillConfig SkillConfig;
+        public EffectConfig EffectConfig;
 
-        public Vector3 TargetPosition;
+        public Vector3 EffectPosition;
 
         public bool FollowUnitMove = true;
 

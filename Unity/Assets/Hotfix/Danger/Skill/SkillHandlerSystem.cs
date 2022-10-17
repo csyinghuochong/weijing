@@ -61,9 +61,9 @@ namespace ET
                 return;
             EffectData playEffectBuffData = new EffectData();
             playEffectBuffData.TargetID = self.mSkillCmd.TargetID;
-            playEffectBuffData.mSkillConfig = self.SkillConf;                   //技能相关配置
-            playEffectBuffData.mEffectConfig = self.EffectConf;                 //特效相关配置
-            playEffectBuffData.TargetPosition = effectPostion;           //技能目标点
+            playEffectBuffData.SkillConfig = self.SkillConf;                   //技能相关配置
+            playEffectBuffData.EffectConfig = self.EffectConf;                 //特效相关配置
+            playEffectBuffData.EffectPosition = effectPostion;           //技能目标点
             playEffectBuffData.TargetAngle = self.mSkillCmd.TargetAngle;         //技能角度
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;              //特效类型
             playEffectBuffData.InstanceId = IdGenerater.Instance.GenerateInstanceId();
@@ -90,8 +90,8 @@ namespace ET
         {
             EffectData playEffectBuffData = new EffectData();
             EffectConfig hitSkillConfig = EffectConfigCategory.Instance.Get(self.SkillConf.SkillHitEffectID);
-            playEffectBuffData.mEffectConfig = hitSkillConfig;                  //特效相关配置
-            playEffectBuffData.TargetPosition = Vector3.zero;
+            playEffectBuffData.EffectConfig = hitSkillConfig;                  //特效相关配置
+            playEffectBuffData.EffectPosition = Vector3.zero;
             playEffectBuffData.TargetAngle = 0;
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;
 

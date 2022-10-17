@@ -33,8 +33,8 @@ namespace ET
                 return;
             EffectData playEffectBuffData = new EffectData();
             EffectConfig hitSkillConfig = EffectConfigCategory.Instance.Get(skillCof.SkillHitEffectID);
-            playEffectBuffData.mEffectConfig = hitSkillConfig;                  //特效相关配置
-            playEffectBuffData.TargetPosition = Vector3.zero;
+            playEffectBuffData.EffectConfig = hitSkillConfig;                  //特效相关配置
+            playEffectBuffData.EffectPosition = Vector3.zero;
             playEffectBuffData.TargetAngle = 0;
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;
             unit.GetComponent<EffectViewComponent>()?.EffectFactory(playEffectBuffData);
@@ -44,8 +44,8 @@ namespace ET
         {
             EffectData playEffectBuffData = new EffectData();
             EffectConfig hitSkillConfig = EffectConfigCategory.Instance.Get(effectID);
-            playEffectBuffData.mEffectConfig = hitSkillConfig;                  //特效相关配置
-            playEffectBuffData.TargetPosition = Vector3.zero;
+            playEffectBuffData.EffectConfig = hitSkillConfig;                  //特效相关配置
+            playEffectBuffData.EffectPosition = Vector3.zero;
             playEffectBuffData.TargetAngle = 0;
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;
             unit.GetComponent<EffectViewComponent>()?.EffectFactory(playEffectBuffData);
