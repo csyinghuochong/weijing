@@ -33,6 +33,11 @@ namespace ET
             self.CurrentStateType = StateTypeEnum.None;
         }
 
+        public static bool IsRigidity(this StateComponent self)
+        {
+            return  TimeHelper.ServerNow() <  self.RigidityEndTime;
+        }
+
         public static bool CanUseSkill(this StateComponent self)
         {
             //判断当前是否是眩晕状态
