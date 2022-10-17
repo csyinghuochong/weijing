@@ -8,6 +8,12 @@ namespace ET
     public static class UICommonHelper
     {
 
+        public static string ShowFloatValue(float value)
+        {
+            string svalue = value.ToString("0.##");
+            return svalue;
+        }
+
         public static string GetNeedItemDesc(string needitems)
         {
             string itemDesc = "";
