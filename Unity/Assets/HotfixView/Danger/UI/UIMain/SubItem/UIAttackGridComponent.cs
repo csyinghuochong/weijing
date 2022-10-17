@@ -92,7 +92,7 @@ namespace ET
         {
             self.FightEffect.SetActive(false);
 
-            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().ClearnsShow();
+            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
         }
 
         public static void OnLockUnit(this UIAttackGridComponent self, Unit targetUnit)
@@ -129,7 +129,7 @@ namespace ET
             {
                 return;
             }
-            curscene.GetComponent<SkillIndicatorComponent>().ClearnsShow();
+            curscene.GetComponent<SkillIndicatorComponent>().RecoveryEffect();
             if (TimeHelper.ClientNow() < self.CDEndTime)
             {
                 return;
@@ -196,7 +196,7 @@ namespace ET
         public static void PointerDown(this UIAttackGridComponent self, PointerEventData pdata)
         {
             self.ShowFightEffect().Coroutine();
-            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().ShowCommonAttackZhishi().Coroutine();
+            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().ShowCommonAttackZhishi();
         }
         
         public static void OnMoveStart(this UIAttackGridComponent self)

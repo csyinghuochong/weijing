@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -26,9 +25,7 @@ namespace ET
         public override void Awake(SkillIndicatorComponent self)
         {
             self.SkillIndicator = null;
-            self.ShowEffect = false;
             self.MainCamera = self.ZoneScene().GetComponent<UIComponent>().MainCamera;
-
         }
     }
 
@@ -37,7 +34,7 @@ namespace ET
     {
         public override void Destroy(SkillIndicatorComponent self)
         {
-            self.ClearnsShow();
+            self.RecoveryEffect();
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
@@ -80,25 +77,22 @@ namespace ET
             return ABPathHelper.GetEffetPath(effect);
         }
 
-        /// <summary>
-        /// 显示技能指示器
-        /// </summary>
-        public static  void  ShowSkillIndicator(this SkillIndicatorComponent self, SkillConfig skillconfig)
+        public static void OnLoadGameObject(this SkillIndicatorComponent self, GameObject gameObject, long instanceId)
         {
-            //0  立即释放,自身中心点
-            //1  技能指示器
-            //2  立即释放,目标中心点
-            self.ShowEffect = true;
-            self.mSkillConfig = skillconfig;
-            self.SkillRangeSize = (float)self.mSkillConfig.SkillRangeSize;
-            SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
-            skillIndicatorItem.SkillZhishiType = (SkillZhishiType)skillconfig.SkillZhishiType;
-            skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
-            skillIndicatorItem.GameObject = GameObjectPoolComponent.Instance.GetExternal(skillIndicatorItem.EffectPath);
+            SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
+            if (self.IsDisposed || skillIndicatorItem == null)
+            {
+                return;
+            }
+            skillIndicatorItem.GameObject = gameObject;
             skillIndicatorItem.GameObject.SetActive(true);
             UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);
-            self.SkillIndicator = skillIndicatorItem;
             self.InitZhishiEffect(skillIndicatorItem);
+            self.AddTimer();
+        }
+
+        public static void AddTimer(this SkillIndicatorComponent self)
+        {
             if (self.Timer == 0)
             {
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.SkillIndicator, self);
@@ -106,30 +100,34 @@ namespace ET
         }
 
         /// <summary>
+        /// 显示技能指示器
+        /// </summary>
+        public static void  ShowSkillIndicator(this SkillIndicatorComponent self, SkillConfig skillconfig)
+        {
+            //0  立即释放,自身中心点
+            //1  技能指示器
+            //2  立即释放,目标中心点
+            self.mSkillConfig = skillconfig;
+            self.SkillRangeSize = (float)self.mSkillConfig.SkillRangeSize;
+            SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
+            skillIndicatorItem.SkillZhishiType = (SkillZhishiType)skillconfig.SkillZhishiType;
+            skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
+            self.SkillIndicator = skillIndicatorItem;
+            GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, self.InstanceId, self.OnLoadGameObject);
+        }
+
+        /// <summary>
         /// 普攻预警
         /// </summary>
         /// <param name="self"></param>
-        public static async ETTask ShowCommonAttackZhishi(this SkillIndicatorComponent self)
+        public static void  ShowCommonAttackZhishi(this SkillIndicatorComponent self)
         {
             self.RecoveryEffect();
-            self.ShowEffect = true;
             SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
             skillIndicatorItem.SkillZhishiType = SkillZhishiType.CommonAttack;
             skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
-            skillIndicatorItem.GameObject = await GameObjectPoolComponent.Instance.GetExternalAsync(skillIndicatorItem.EffectPath);
-            skillIndicatorItem.GameObject.SetActive(true);
-            UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);
             self.SkillIndicator = skillIndicatorItem;
-            self.InitZhishiEffect(skillIndicatorItem);
-            if (!self.ShowEffect)
-            {
-                self.RecoveryEffect();
-                return;
-            }
-            if (self.Timer == 0)
-            {
-                self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.SkillIndicator, self);
-            }
+            GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, self.InstanceId, self.OnLoadGameObject);
         }
 
         private static void InitZhishiEffect(this SkillIndicatorComponent self, SkillIndicatorItem skillIndicatorItem)
@@ -247,21 +245,15 @@ namespace ET
             }
         }
 
-        public static void ClearnsShow(this SkillIndicatorComponent self)
-        {
-            self.RecoveryEffect( );
-        }
-
         public static void RecoveryEffect(this SkillIndicatorComponent self)
         {
-            self.ShowEffect = false;
             SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
             if (skillIndicatorItem == null || skillIndicatorItem.GameObject == null)
             {
                 return;
             }
             skillIndicatorItem.GameObject.SetActive(false);
-            GameObjectPoolComponent.Instance.InternalPut(skillIndicatorItem.EffectPath, skillIndicatorItem.GameObject);
+            GameObjectPoolComponent.Instance.RecoverGameObject(skillIndicatorItem.EffectPath, skillIndicatorItem.GameObject);
             self.StartIndicator = Vector2.zero;
             self.SkillIndicator = null;
         }

@@ -73,7 +73,7 @@ namespace ET
                 return;
 
             FallingFontShowComponent fallingFont = self.AddChild<FallingFontShowComponent>(true);
-            fallingFont.OnInitData(targetValue, unit, type).Coroutine();
+            fallingFont.OnInitData(targetValue, unit, type);
             self.FallingFontShows.Add(fallingFont);
 
             if (self.Timer == 0)

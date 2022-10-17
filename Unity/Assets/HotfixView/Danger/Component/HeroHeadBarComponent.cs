@@ -27,7 +27,7 @@ namespace ET
     {
         public override void Awake(HeroHeadBarComponent self)
         {
-            self.Awake().Coroutine();
+            self.Awake();
         }
     }
 
@@ -37,7 +37,7 @@ namespace ET
         public override void Destroy(HeroHeadBarComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
-            self.Destroy();
+            self.RecoverGameObject(self.HeadBar);
         }
     }
 
@@ -61,11 +61,10 @@ namespace ET
         public GameObject JiaZuShowSet;
         public GameObject Lal_JiaZuName;
         public HeadBarUI HeadBarUI;
-        public bool mainHero;
         public float LastTime;
         public long Timer;
 
-        public async ETTask Awake( )
+        public void  Awake( )
         {
             HeadBar = null;
             HeadBarUI = null;
@@ -73,7 +72,6 @@ namespace ET
             HeadBarPath = "";
             LastTime = 0f;
             Unit m_Hero = this.GetParent<Unit>();
-            mainHero = m_Hero.MainHero;
             UiCamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
             UnitInfoComponent unitInfoComponent1 = m_Hero.GetComponent<UnitInfoComponent>();
@@ -90,15 +88,22 @@ namespace ET
                 HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIPetHp");
             }
             long instanceid = this.InstanceId;
-            HeadBar = await GameObjectPoolComponent.Instance.GetExternalAsync(HeadBarPath);
-            HeadBar.SetActive(true);
-            if (instanceid != this.InstanceId)
+            GameObjectPoolComponent.Instance.AddLoadQueue(HeadBarPath, this.InstanceId, this.OnLoadGameObject);
+        }
+
+        public void OnLoadGameObject(GameObject gameObject, long formId)
+        {
+            if (this.IsDisposed)
             {
+                this.RecoverGameObject(gameObject);
                 return;
             }
-
+            HeadBar = gameObject;
+            HeadBar.SetActive(true);
+            Unit m_Hero = this.GetParent<Unit>();
+            UnitInfoComponent unitInfoComponent1 = m_Hero.GetComponent<UnitInfoComponent>();
             ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
-            if ( unitInfoComponent1.Type == UnitType.Monster)
+            if (unitInfoComponent1.Type == UnitType.Monster)
             {
                 if (unitInfoComponent1.RoleCamp == 1)
                 {
@@ -139,20 +144,16 @@ namespace ET
             //初始化当前血条
             UpdateBlood();
             //更新显示
-            UpdateShow( );
-
+            UpdateShow();
             if (HeadBar.GetComponent<HeadBarUI>() == null)
             {
                 HeadBar.AddComponent<HeadBarUI>();
             }
             HeadBarUI = HeadBar.GetComponent<HeadBarUI>();
-            HeadBarUI.enabled = !mainHero;
+            HeadBarUI.enabled = !m_Hero.MainHero;
             HeadBarUI.HeadPos = UIPosition;
             HeadBarUI.HeadBar = HeadBar;
-            if (mainHero)
-            {
-                HeadBar.transform.localPosition = new Vector3(0f, 120f, 0f);
-            }
+            HeadBar.transform.localPosition = m_Hero.MainHero ? new Vector3(0f, 120f, 0f) : HeadBar.transform.localPosition;
         }
 
         //更新显示
@@ -194,7 +195,6 @@ namespace ET
                 //this.ObjName.GetComponent<TextMeshProUGUI>().color = isboos ? new Color(255, 95, 255) : Color.white;
                 //怪物等级显示
                 ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
-            
                 MapComponent mapComponent = this.ZoneScene().GetComponent<MapComponent>();
                 if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Tower)
                 {
@@ -260,7 +260,8 @@ namespace ET
                 {
                     ObjHp.GetComponent<Slider>().value = blood;
                 }
-                else {
+                else 
+                {
                     ObjHp.GetComponent<Image>().fillAmount = blood;
                 }
             }
@@ -281,12 +282,12 @@ namespace ET
             reviveTime.GetComponent<Text>().text = $"{monsterConfig.MonsterName} 刷新剩余时间:{showStr}";
         }
 
-        public void Destroy()
+        public void RecoverGameObject(GameObject HeadBar)
         {
             if (HeadBar != null)
             {
                 HeadBar.SetActive(false);
-                GameObjectPoolComponent.Instance.InternalPut(HeadBarPath, HeadBar);
+                GameObjectPoolComponent.Instance.RecoverGameObject(HeadBarPath, HeadBar);
                 HeadBar = null;
             }
         }

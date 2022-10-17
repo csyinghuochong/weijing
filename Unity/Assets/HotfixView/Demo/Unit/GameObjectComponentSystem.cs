@@ -22,33 +22,29 @@ namespace ET
     {
         public override void Destroy(GameObjectComponent self)
         {
-            if (self.GameObject == null)
-            {
-                return;
-            }    
-            if (string.IsNullOrEmpty(self.AssetsPath))
+            if (string.IsNullOrEmpty(self.AssetsPath) && self.GameObject != null)
             {
                 UnityEngine.Object.Destroy(self.GameObject);
                 self.GameObject = null;
             }
-            else
+            if (!string.IsNullOrEmpty(self.AssetsPath))
             {
-                GameObjectPoolComponent.Instance.InternalPut(self.AssetsPath, self.GameObject);
-                self.GameObject.SetActive(false);
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.AssetsPath, self.GameObject);
                 self.GameObject = null;
             }
-            if (self.BaiTan != null)
-            {
-                GameObjectPoolComponent.Instance.InternalPut(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
-                self.BaiTan.SetActive(false);
-                self.BaiTan = null;
-            }
+            GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
+            self.BaiTan = null;
         }
     }
 
 
     public static class GameObjectComponentSystem
     {
+
+        public static void RecoverGameObject(this GameObjectComponent self)
+        { 
+            
+        }
 
         public static void LoadGameObject(this GameObjectComponent self)
         {
@@ -157,7 +153,7 @@ namespace ET
                     unit.AddComponent<EffectViewComponent>();               //添加特效组建
                     //血条UI组件
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                    self.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall)).Coroutine();
+                    self.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
                     if (numericComponent.GetAsInt(NumericType.Now_Dead) == 1)
                     {
                         EventType.UnitDead.Instance.Unit = unit;
@@ -335,13 +331,26 @@ namespace ET
             }
         }
 
-        public static async ETTask OnUnitStallUpdate(this GameObjectComponent self,int stallType)
+        public static void OnLoadBaiTan(this GameObjectComponent self, GameObject gameObject, long formId)
+        {
+            if (self.IsDisposed)
+            {
+                GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), gameObject);
+                return;
+            }
+            self.BaiTan = gameObject;
+            self.BaiTan.SetActive(true);
+            self.BaiTan.transform.position = self.GameObject.transform.position;
+            self.GameObject.transform.Find("BaseModel").gameObject.SetActive(false);
+        }
+
+        public static void  OnUnitStallUpdate(this GameObjectComponent self,int stallType)
         {
             if (stallType == 0)
             {
                 if (self.BaiTan != null)
                 {
-                    GameObjectPoolComponent.Instance.InternalPut(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
+                    GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
                     self.BaiTan.SetActive(false);
                     self.BaiTan = null;
                 }
@@ -349,17 +358,16 @@ namespace ET
                 return;
             }
 
-            if (stallType == 1)
+            if (stallType == 1 && self.BaiTan == null)
             {
-                long instancid = self.InstanceId;
                 if (self.BaiTan == null)
                 {
-                    self.BaiTan = await GameObjectPoolComponent.Instance.GetExternalAsync(ABPathHelper.GetUnitPath("Player/BaiTan"));
+                    GameObjectPoolComponent.Instance.AddLoadQueue(ABPathHelper.GetUnitPath("Player/BaiTan"), self.InstanceId, self.OnLoadBaiTan);
                 }
-
-                self.BaiTan.SetActive(true);
-                self.BaiTan.transform.position = self.GameObject.transform.position;
-                self.GameObject.transform.Find("BaseModel").gameObject.SetActive(false);
+                else
+                {
+                    self.OnLoadBaiTan(self.BaiTan, self.InstanceId);
+                }
             }
         }
     }

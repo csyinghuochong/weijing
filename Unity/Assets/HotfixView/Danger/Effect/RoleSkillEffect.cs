@@ -22,37 +22,9 @@ namespace ET
             this.OnUpdate();
         }
 
-        /// <summary>
-        /// 实例化特效
-        /// </summary>
-        public async ETTask PlayEffect()
+        public void OnLoadGameObject(GameObject EffectObj, long instanceId)
         {
-            if (this.EffectData == null)
-            {
-                return;
-            }
-            string effectFileName = "";
-            switch (EffectData.EffectConfig.EffectType) 
-            {
-                //技能特效
-                case 1:
-                    effectFileName = "SkillEffect/";
-                    break;
-                //受击特效
-                case 2:
-                    effectFileName = "SkillHitEffect/";
-                    break;
-                //技能特效
-                case 3:
-                    effectFileName = "SkillEffect/";
-                    break;
-            }
-
-            string effectNamePath  = effectFileName + EffectData.EffectConfig.EffectName;
-            EffectPath = ABPathHelper.GetEffetPath(effectNamePath);
-            EffectObj = await GameObjectPoolComponent.Instance.GetExternalAsync(EffectPath);
-
-            if (EffectObj == null || this.EffectData == null)
+            if (this.EffectData == null || EffectObj == null)
             {
                 this.EffectState = BuffState.Finished;
             }
@@ -65,13 +37,13 @@ namespace ET
                 this.OnFinished();
                 return;
             }
-            if (EffectData.SkillConfig!=null)
+            if (EffectData.SkillConfig != null)
             {
                 int rangeType = EffectData.SkillConfig.DamgeRangeType;       //技能范围类型
                 float[] rangeValue = FunctionHelp.Instance.DoubleArrToFloatArr(EffectData.SkillConfig.DamgeRange);          //技能范围
                 this.AddCollider(EffectObj, rangeType, rangeValue);
             }
-            int skillParentID = EffectData.EffectConfig.SkillParent;
+            int skillParentID = EffectData.EffectConfig!= null ? EffectData.EffectConfig.SkillParent : 0;
             switch (skillParentID)
             {
                 //跟随玩家
@@ -87,13 +59,13 @@ namespace ET
                     this.EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
                     EffectObj.transform.position = EffectData.EffectPosition;
                     EffectObj.transform.localScale = Vector3.one;
-                    EffectObj.transform.localRotation =  Quaternion.Euler(0, EffectData.TargetAngle, 0);
+                    EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
                     break;
 
                 //实时跟随玩家位置,但是不跟随旋转
                 case 2:
                     EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
-                    EffectObj.transform.position = this.TheUnitBelongto.Position;   
+                    EffectObj.transform.position = this.TheUnitBelongto.Position;
                     EffectObj.transform.localScale = Vector3.one;
                     EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
                     break;
@@ -136,6 +108,37 @@ namespace ET
             EffectObj.SetActive(true);
         }
 
+        /// <summary>
+        /// 实例化特效
+        /// </summary>
+        public  void PlayEffect()
+        {
+            if (this.EffectData == null)
+            {
+                return;
+            }
+            string effectFileName = "";
+            switch (EffectData.EffectConfig.EffectType) 
+            {
+                //技能特效
+                case 1:
+                    effectFileName = "SkillEffect/";
+                    break;
+                //受击特效
+                case 2:
+                    effectFileName = "SkillHitEffect/";
+                    break;
+                //技能特效
+                case 3:
+                    effectFileName = "SkillEffect/";
+                    break;
+            }
+
+            string effectNamePath  = effectFileName + EffectData.EffectConfig.EffectName;
+            EffectPath = ABPathHelper.GetEffetPath(effectNamePath);
+            GameObjectPoolComponent.Instance.AddLoadQueue(EffectPath, this.InstanceId, this.OnLoadGameObject);
+        }
+
         public override void OnUpdate()
         {
             //只有不是永久Buff的情况下才会执行Update判断
@@ -145,7 +148,7 @@ namespace ET
             {
                 this.EffectDelayTime = -1f;
                
-                this.PlayEffect().Coroutine();
+                this.PlayEffect();
             }
             if (this.PassTime > this.EffectEndTime)
             {
@@ -182,12 +185,7 @@ namespace ET
         public override void OnFinished()
         {
             this.EffectData = null;
-            if (this.EffectObj != null)
-            {
-                GameObjectPoolComponent.Instance.InternalPut(this.EffectPath, this.EffectObj);
-                this.EffectObj.SetActive(false);
-                this.EffectObj = null;
-            }
+            GameObjectPoolComponent.Instance.RecoverGameObject(this.EffectPath, this.EffectObj);
         }
 
     }

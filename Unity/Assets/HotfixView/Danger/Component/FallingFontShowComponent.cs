@@ -10,7 +10,9 @@ namespace ET
         public GameObject GameObject;
         public GameObject ObjFlyText;
         public float DamgeFlyTimeSum = 0;
-
+        public float TargetValue;
+        public int FontType;
+        public Unit Unit;
     }
 
     [ObjectSystem]
@@ -29,33 +31,40 @@ namespace ET
     {
         public override void Destroy(FallingFontShowComponent self)
         {
-            if (self.GameObject != null)
-            {
-                self.GameObject.SetActive(false);
-                self.ObjFlyText.SetActive(false);
-                string uIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
-                GameObjectPoolComponent.Instance.InternalPut(uIBattleFly, self.GameObject);
-            }
+            self.RecoveryGameObject(self.GameObject);
         }
     }
 
     public static class FallingFontShowComponentSystem
     {
-        public static async ETTask OnInitData(this FallingFontShowComponent self, float targetValue, Unit unit, int type)
+        public static void RecoveryGameObject(this FallingFontShowComponent self, GameObject FlyFontObj)
         {
-            long instanceid = self.InstanceId;
-            string uIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
-            GameObject FlyFontObj = await GameObjectPoolComponent.Instance.GetExternalAsync(uIBattleFly);
-            if (instanceid != self.InstanceId)
+            if (FlyFontObj == null)
             {
                 return;
             }
+            FlyFontObj.SetActive(false);
+            string uIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
+            GameObjectPoolComponent.Instance.RecoverGameObject(uIBattleFly, FlyFontObj);
+
+        }
+
+        public static void OnLoadGameObject(this FallingFontShowComponent self, GameObject FlyFontObj, long formId)
+        {
+            if (self.IsDisposed)
+            {
+                self.RecoveryGameObject(FlyFontObj);
+                return;    
+            }
+            Unit unit = self.Unit;
+            int type = self.FontType;
+            float targetValue = self.TargetValue;
+
             self.GameObject = FlyFontObj;
             self.Transform = FlyFontObj.transform;
             FlyFontObj.SetActive(true);
             ReferenceCollector rc = FlyFontObj.GetComponent<ReferenceCollector>();
             GameObject ObjFlyText = rc.Get<GameObject>("FlyText_Target");
-           
             //根据目标Unit设定飘字字体
             string selfNull = "";
             if (unit.MainHero)
@@ -74,7 +83,6 @@ namespace ET
             ObjFlyText.SetActive(true);
 
             string addStr = "";
-
             if (targetValue >= 0 && type == 2)
             {
                 addStr = "+";
@@ -99,6 +107,15 @@ namespace ET
             FlyFontObj.transform.SetParent(unit.GetComponent<HeroHeadBarComponent>().HeadBar.transform);
             FlyFontObj.transform.localScale = Vector3.one;
             FlyFontObj.transform.localPosition = new Vector3(0, 30, 0);
+        }
+
+        public static void  OnInitData(this FallingFontShowComponent self, float targetValue, Unit unit, int type)
+        {
+            self.Unit = unit;
+            self.FontType = type;
+            self.TargetValue = targetValue;
+            string uIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
+            GameObjectPoolComponent.Instance.AddLoadQueue(uIBattleFly, self.InstanceId, self.OnLoadGameObject);
         }
 
         public static bool LateUpdate(this FallingFontShowComponent self)

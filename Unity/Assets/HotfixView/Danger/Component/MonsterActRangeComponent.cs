@@ -34,11 +34,8 @@ namespace ET
     {
         public override void Destroy(MonsterActRangeComponent self)
         {
-            if (self.MonsterActRange!=null)
-            { 
-                GameObject.Destroy(self.MonsterActRange);
-                self.MonsterActRange = null;
-            }
+            string path = ABPathHelper.GetEffetPath("MonsterActRange");
+            GameObjectPoolComponent.Instance.RecoverGameObject(path, self.MonsterActRange);
         }
     }
 
@@ -64,19 +61,30 @@ namespace ET
                 }
                 else
                 {
-                    self.LoadEffect().Coroutine();
+                    self.LoadEffect();
                 }
             }
         }
 
-        public static async ETTask LoadEffect(this MonsterActRangeComponent self)
+        public static void OnLoadGameObject(this MonsterActRangeComponent self, GameObject gameObject, long formId)
         {
-            string path = ABPathHelper.GetEffetPath("MonsterActRange");
-            self.MonsterActRange = await GameObjectPoolComponent.Instance.GetExternalAsync(path);
+            if (self.IsDisposed)
+            {
+                string path = ABPathHelper.GetEffetPath("MonsterActRange");
+                GameObjectPoolComponent.Instance.RecoverGameObject(path, self.MonsterActRange);
+                return;
+            }
+            self.MonsterActRange = gameObject;
             self.MonsterActRange.SetActive(true);
             self.MonsterActRange.Get<GameObject>("MonsterActRange").GetComponent<Projector>().orthographicSize = self.AckRange * 1.2f;
             self.MonsterActRange.transform.position = self.BornPositon;
             self.MonsterActRange.transform.localScale = self.AckRange * Vector3.one;
+        }
+
+        public static  void LoadEffect(this MonsterActRangeComponent self)
+        {
+            string path = ABPathHelper.GetEffetPath("MonsterActRange");
+            GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
         }
     }
 }

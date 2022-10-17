@@ -136,7 +136,7 @@ namespace ET
 
             self.UseSkill = false;
             self.SendUseSkill(self.GetTargetAngle(), self.GetTargetDistance());
-            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().ClearnsShow();
+            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
         }
 
         /// <summary>
@@ -215,7 +215,7 @@ namespace ET
             }
             self.UseSkill = false;
             self.SendUseSkill(self.GetTargetAngle(), self.GetTargetDistance());
-            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().ClearnsShow();
+            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
         }
 
         public static void OnPointDown(this UISkillGridComponent self, PointerEventData eventData)
@@ -231,7 +231,7 @@ namespace ET
                 self.UseSkill = false;
                 self.SkillCancelHandler(false);
                 self.SendUseSkill((int)unit.Rotation.eulerAngles.y, 0);
-                self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().ClearnsShow();
+                self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
                 return;
             }
             

@@ -19,6 +19,9 @@ namespace ET
         public float AttackDistance;
         public float LiveTime = -1;
         public float PassTime;
+        public long InstanceId;
+        public SkillInfo SkillInfo;
+        public float DelayTime;
     }
 
     public class SkillIndicatorComponent : Entity , IAwake, IDestroy
@@ -27,7 +30,6 @@ namespace ET
         public float SkillRangeSize;
         public SkillConfig mSkillConfig;
         public SkillIndicatorItem SkillIndicator;
-        public bool ShowEffect;
         public Camera MainCamera;
 
         public Vector2 StartIndicator;

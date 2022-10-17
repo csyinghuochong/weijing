@@ -80,11 +80,7 @@ namespace ET
 
         public static void OnChangeSonScene(this LockTargetComponent self)
         {
-            if (self.LockUnitEffect != null)
-            {
-                self.LockUnitEffect.SetActive(false);
-                UICommonHelper.SetParent(self.LockUnitEffect, GlobalComponent.Instance.Pool.gameObject);
-            }
+            self.HideLockEffect();
 
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
             uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnChangeSonScene();
@@ -121,7 +117,6 @@ namespace ET
             {
                 GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetEffetPath("SkillZhishi/RoseSelectTarget"));
                 self.LockUnitEffect = GameObject.Instantiate(prefab);
-                self.LockUnitEffect.SetActive(false);
             }
         }
 
@@ -220,16 +215,6 @@ namespace ET
 
         public static void OnLockNpc(this LockTargetComponent self, Unit unitTarget=null)
         {
-            if (unitTarget == null
-                || unitTarget.GetComponent<GameObjectComponent>() == null
-                || unitTarget.GetComponent<GameObjectComponent>().GameObject == null)
-            {
-                if (self.LockUnitEffect != null)
-                {
-                    self.LockUnitEffect.SetActive(false);
-                }
-                return;
-            }
             self.CheckLockEffect();
             UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
             self.SetEffectSize(1f);
