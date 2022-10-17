@@ -115,11 +115,10 @@ namespace ET
             }
         }
 
-        public static async ETTask CheckLockEffect(this LockTargetComponent self)
+        public static void  CheckLockEffect(this LockTargetComponent self)
         {
             if (self.LockUnitEffect == null)
             {
-                await ETTask.CompletedTask;
                 GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetEffetPath("SkillZhishi/RoseSelectTarget"));
                 self.LockUnitEffect = GameObject.Instantiate(prefab);
                 self.LockUnitEffect.SetActive(false);
@@ -128,7 +127,7 @@ namespace ET
 
         public static long LockTargetUnit(this LockTargetComponent self, bool first = false)
         {
-            self.CheckLockEffect().Coroutine();
+            self.CheckLockEffect();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (first && self.LastLockId != 0)
             {
@@ -204,6 +203,7 @@ namespace ET
                 {
                     UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                     uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnLockUnit(unitTarget);
+
                 }
             }
             return self.LastLockId;
@@ -221,7 +221,7 @@ namespace ET
                 }
                 return;
             }
-            self.CheckLockEffect().Coroutine();
+            self.CheckLockEffect();
             if (self.LockUnitEffect != null)
             {
                 self.LockUnitEffect.SetActive(true);

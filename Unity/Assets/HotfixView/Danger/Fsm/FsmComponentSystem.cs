@@ -49,6 +49,13 @@ namespace ET
     {
         public static void Check(this FsmComponent self)
         {
+            if (self.Animator == null)
+            {
+                Log.Error($"{self.Animator == null} {self.GetParent<Unit>().UpdateUIType}");
+                self.EndTimer();
+                return;
+            }
+
             switch (self.CurrentFsm)
             {
                 case FsmStateEnum.FsmRunState:
