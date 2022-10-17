@@ -113,7 +113,7 @@ namespace ET
             self.LoadingList.Add(load);
             if (self.Timer == 0)
             {
-                self.Timer = TimerComponent.Instance.NewRepeatedTimer(self.LoadingLimit, TimerType.GameObjectPoolTimer, self);
+                self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.GameObjectPoolTimer, self);
             }
         }
 

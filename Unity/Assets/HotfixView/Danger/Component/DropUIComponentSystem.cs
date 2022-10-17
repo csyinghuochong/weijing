@@ -70,8 +70,8 @@ namespace ET
                 self.MyUnit.Position = parent.Position;
                 self.StartPoint = parent.Position;
                 self.EndPoint = new Vector3(self.DropInfo.X, parent.Position.y, self.DropInfo.Z);
-                self.GeneratePositions();
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.DropUITimer, self);
+                self.GeneratePositions();
             }
             self.ShowDropInfo(self.DropInfo);
 
