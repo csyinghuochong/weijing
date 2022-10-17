@@ -49,6 +49,11 @@ namespace ET
     {
         public static void OnLoadGameObject(this DropUIComponent self, GameObject go)
         {
+            if (self.IsDisposed)
+            {
+                self.Destroy();
+                return;
+            }
             self.HeadBar = go;
             self.HeadBar.SetActive(true);
             self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
