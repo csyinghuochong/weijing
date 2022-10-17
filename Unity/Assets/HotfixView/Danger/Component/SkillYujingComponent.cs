@@ -87,10 +87,12 @@ namespace ET
             self.mSkillConfig = skillConfig;
             SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
             skillIndicatorItem.SkillInfo = skillcmd;
-            skillIndicatorItem.DelayTime = (float)delayTime;
             skillIndicatorItem.SkillZhishiType = (SkillZhishiType)skillConfig.SkillZhishiType;
             skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
             skillIndicatorItem.InstanceId = IdGenerater.Instance.GenerateInstanceId();
+            skillIndicatorItem.TargetAngle = skillcmd.TargetAngle;
+            skillIndicatorItem.PassTime = 0;
+            skillIndicatorItem.LiveTime = (float)delayTime;
             self.SkillIndicatorList.Add(skillIndicatorItem);
             GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, skillIndicatorItem.InstanceId, self.OnLoadGameObject);
         }
@@ -118,14 +120,11 @@ namespace ET
             }
 
             SkillInfo skillcmd = skillIndicatorItem.SkillInfo;
-            skillIndicatorItem.GameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(skillIndicatorItem.EffectPath);
+            skillIndicatorItem.GameObject = gameObject;
             skillIndicatorItem.GameObject.transform.localScale = Vector3.one * 0.1f;
-            skillIndicatorItem.TargetAngle = skillcmd.TargetAngle;
-            UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);
             skillIndicatorItem.GameObject.transform.position = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ);
-            skillIndicatorItem.PassTime = 0;
-            skillIndicatorItem.LiveTime = skillcmd.DelayTime;
             skillIndicatorItem.GameObject.SetActive(true);
+            UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);
             self.InitZhishiEffect(skillIndicatorItem);
             self.AddTimer();
         }
@@ -173,6 +172,10 @@ namespace ET
             {
                 SkillIndicatorItem skillIndicatorItem = self.SkillIndicatorList[i];
                 skillIndicatorItem.PassTime += Time.deltaTime;
+                if (skillIndicatorItem.GameObject == null)
+                {
+                    continue;
+                }
                 switch (skillIndicatorItem.SkillZhishiType)
                 {
                     case SkillZhishiType.Position:

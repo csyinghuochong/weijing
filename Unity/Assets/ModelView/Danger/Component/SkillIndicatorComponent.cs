@@ -21,7 +21,6 @@ namespace ET
         public float PassTime;
         public long InstanceId;
         public SkillInfo SkillInfo;
-        public float DelayTime;
     }
 
     public class SkillIndicatorComponent : Entity , IAwake, IDestroy
