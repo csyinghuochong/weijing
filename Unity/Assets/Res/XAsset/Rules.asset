@@ -538,6 +538,10 @@ MonoBehaviour:
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_10.prefab
   - bundle: 28810a1dadc2ff9c73f2084858c7900b.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_2.prefab
+  - bundle: 2e48fdd4b88a6580dede654e6a98f9d5.unity3d
+    path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_2_Jian.prefab
+  - bundle: 3428205771fd6d73c26f64da13a9ab7a.unity3d
+    path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_2_ice.prefab
   - bundle: a6c46bda721dd5219053fa9a538f3df6.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_2a.prefab
   - bundle: a33306541a318c8e4ea98eaa42e0fe49.unity3d
@@ -4520,12 +4524,6 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Monster/70009001.prefab
   - bundle: fbf28f9b4d113bbbcdf1bc088afe75d2.unity3d
     path: Assets/Bundles/Unit/Monster/70009002.prefab
-  - bundle: 5324c16c2970efacf90769f92f78bb93.unity3d
-    path: Assets/Bundles/Unit/Monster/70009003.prefab
-  - bundle: e2e1334cb1a11b000462eb0279e2d7de.unity3d
-    path: Assets/Bundles/Unit/Monster/70009201.prefab
-  - bundle: aa5523ebdac435c580c0d3ceafb1a39d.unity3d
-    path: Assets/Bundles/Unit/Monster/70009301.prefab
   - bundle: 4cd99a9d5bff614012ca3a7603692911.unity3d
     path: Assets/Bundles/Unit/Monster/70009303.prefab
   - bundle: 645c0d7b96a59fdff8b2f28eeee2c9fe.unity3d
@@ -5555,15 +5553,6 @@ MonoBehaviour:
   - name: fbf28f9b4d113bbbcdf1bc088afe75d2.unity3d
     assets:
     - Assets/Bundles/Unit/Monster/70009002.prefab
-  - name: 5324c16c2970efacf90769f92f78bb93.unity3d
-    assets:
-    - Assets/Bundles/Unit/Monster/70009003.prefab
-  - name: e2e1334cb1a11b000462eb0279e2d7de.unity3d
-    assets:
-    - Assets/Bundles/Unit/Monster/70009201.prefab
-  - name: aa5523ebdac435c580c0d3ceafb1a39d.unity3d
-    assets:
-    - Assets/Bundles/Unit/Monster/70009301.prefab
   - name: 4cd99a9d5bff614012ca3a7603692911.unity3d
     assets:
     - Assets/Bundles/Unit/Monster/70009303.prefab
@@ -7094,6 +7083,12 @@ MonoBehaviour:
   - name: a6c46bda721dd5219053fa9a538f3df6.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_2a.prefab
+  - name: 3428205771fd6d73c26f64da13a9ab7a.unity3d
+    assets:
+    - Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_2_ice.prefab
+  - name: 2e48fdd4b88a6580dede654e6a98f9d5.unity3d
+    assets:
+    - Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_2_Jian.prefab
   - name: a33306541a318c8e4ea98eaa42e0fe49.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Skill_Fireball_3.prefab
@@ -9586,36 +9581,6 @@ MonoBehaviour:
   - name: 4430e3618b9d55af874bb86c5b2713b1.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Lang/Lang_1.controller
-  - name: 4802f132d71c198cdee5ffd6895d348e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/ShiTouGuai.controller
-  - name: e7d95a3ad91da40f84d5a1c36d7ac2de.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Monster/Normal/Texture/BURROWER_ILLUM.png
-  - name: ab662fa5e43d0639c47e925dcd90a042.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/ShiTouGuai.fbx
-  - name: dd8bfac25d4f5098764876290935c5fa.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/Texture/BURROWER.png
-  - name: 31a2c37de8e037a3fd21bb360fe92775.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/Materials/burrower.mat
-  - name: dc78981fc43a85bf3e885b38415fd23f.unity3d
-    assets:
-    - Assets/Res/Models/MonsterModel/ZhangJie_1/BingLang/BingLang.fbx
-  - name: f67060714f35b71f96b313ea2850d3e9.unity3d
-    assets:
-    - Assets/Res/Models/MonsterModel/ZhangJie_1/BingLang/BingLang.controller
-  - name: c24e10bad3ca2352d9b219036d84e08a.unity3d
-    assets:
-    - Assets/Res/Models/MonsterModel/ZhangJie_1/BingLang/Materials/werewolf_canine_mat.mat
-  - name: 5d0af861c0ecf14c36550aab38c5ef2c.unity3d
-    assets:
-    - Assets/Res/Models/MonsterModel/ZhangJie_1/BingLang/Materials/werewolf_canine_matBai.mat
-  - name: 9d08459f430f0465c6da632b8c654ad7.unity3d
-    assets:
-    - Assets/Res/Models/MonsterModel/ZhangJie_1/BingLang/Materials/WOLF_ICE.png
   - name: 807cf9294d042e9c741e648761820cc1.unity3d
     assets:
     - Assets/Res/MonsterSet/Toon_RTS/Elves/animation/Infantry/ELF_infantry_01_idle.FBX
@@ -15766,12 +15731,27 @@ MonoBehaviour:
   - name: a1200415a9da22282b6a6158ddef5551.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C8_4.FBX
+  - name: 4802f132d71c198cdee5ffd6895d348e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/ShiTouGuai.controller
+  - name: ab662fa5e43d0639c47e925dcd90a042.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/ShiTouGuai.fbx
   - name: 10acf6902842467872e3f3e721ae4758.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/KuangDong/Materials/bat_fire_mat.mat
+  - name: dd8bfac25d4f5098764876290935c5fa.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/Texture/BURROWER.png
+  - name: e7d95a3ad91da40f84d5a1c36d7ac2de.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Monster/Normal/Texture/BURROWER_ILLUM.png
   - name: b94a33b29ff3a3568d8dc86cb22a05d5.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/KuangDong/Texture/BAT_SPECTRAL2.png
+  - name: 31a2c37de8e037a3fd21bb360fe92775.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/Materials/burrower.mat
   - name: 3fb94279d9e240fa00c991f9c1e365b2.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Building/Materials/environment_common_shitai_005_05.mat
@@ -15959,6 +15939,9 @@ MonoBehaviour:
   - name: 5f1e59c8d9b1b395f23b40d7a211233e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Barrier4.fbx
+  - name: f67060714f35b71f96b313ea2850d3e9.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/ZhangJie_1/BingLang/BingLang.controller
   - name: 6880028ca263abaf092a303c2d6bd0bb.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Tree_Fall4.prefab
@@ -15998,6 +15981,9 @@ MonoBehaviour:
   - name: ff01a3f5e051f74506633f05ec8b2fa6.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Bush_08.prefab
+  - name: dc78981fc43a85bf3e885b38415fd23f.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/ZhangJie_1/BingLang/BingLang.fbx
   - name: 3abacb35b61e8030ba8587297a18ff7f.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Bush_09.prefab
@@ -16091,6 +16077,9 @@ MonoBehaviour:
   - name: e4d7e6a9a028b56232e0bec8bb554045.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/Stone_elements_Winter.tif
+  - name: c24e10bad3ca2352d9b219036d84e08a.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/ZhangJie_1/BingLang/Materials/werewolf_canine_mat.mat
   - name: abe87a4ae3cafedb97c1e6e75116902b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/Floor3.fbx
