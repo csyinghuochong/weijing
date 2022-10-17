@@ -247,7 +247,7 @@ namespace ET
                     unit.UpdateUIType = HeadBarType.DropUI;
                     DropComponent dropComponent = unit.GetComponent<DropComponent>();
                     unit.AddComponent<EffectViewComponent>();
-                    unit.AddComponent<DropUIComponent>().InitData(dropComponent.DropInfo).Coroutine();
+                    unit.AddComponent<DropUIComponent>().InitData(dropComponent.DropInfo);
                     break;
                 case UnitType.Chuansong:
                     go.name = unit.Id.ToString();

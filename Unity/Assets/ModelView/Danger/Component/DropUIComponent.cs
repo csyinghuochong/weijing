@@ -16,8 +16,7 @@ namespace ET
         public Camera MainCamera;
         public MeshRenderer ModelMesh;              //AI材质
         public int Resolution;
-        public DropInfo DropInfoData;               //掉落数据
-        public bool IfShowStatus;
+        public DropInfo DropInfo;               //掉落数据
         public float LastTime;
         public HeadBarUI HeadBarUI;
         public long Timer;

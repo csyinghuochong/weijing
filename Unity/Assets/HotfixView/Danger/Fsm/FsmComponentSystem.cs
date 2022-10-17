@@ -83,7 +83,7 @@ namespace ET
 
         public static void EndTimer(this FsmComponent self)
         {
-            TimerComponent.Instance.Remove(ref self.Timer);
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
         public static void BeginTimer(this FsmComponent self)
