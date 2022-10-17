@@ -31,9 +31,9 @@ namespace ET
     [ObjectSystem]
     public  class GameObjectPoolComponent : Entity, IAwake, IDestroy
     {
-        public long LoadInterval;
+        public long LoadingLimit;
         public static GameObjectPoolComponent Instance;
-        public List<GameObjectLoad> LoadList = new List<GameObjectLoad> ();
+        public List<GameObjectLoad> LoadingList = new List<GameObjectLoad> ();
         public Dictionary<string, List<GameObject>> ExternalReferences = new Dictionary<string, List<GameObject>>();
 
         public long Timer;
@@ -44,10 +44,10 @@ namespace ET
     {
         public override void Awake(GameObjectPoolComponent self)
         {
-            self.LoadList.Clear (); 
+            self.LoadingList.Clear (); 
             self.ExternalReferences.Clear();
             GameObjectPoolComponent.Instance = self;
-            self.LoadInterval = GlobalHelp.IsEditorMode ? 200 : 100;
+            self.LoadingLimit = GlobalHelp.IsEditorMode ? 200 : 100;
         }
     }
 
@@ -65,13 +65,13 @@ namespace ET
     {
         public static void OnUpdate(this GameObjectPoolComponent self)
         {
-            if (self.LoadList.Count == 0)
+            if (self.LoadingList.Count == 0)
             {
                 TimerComponent.Instance?.Remove(ref self.Timer);
                 return;
             }
-            GameObjectLoad load = self.LoadList[0];
-            self.LoadList.RemoveAt (0);
+            GameObjectLoad load = self.LoadingList[0];
+            self.LoadingList.RemoveAt (0);
             self.GetExternal_2(load).Coroutine();
         }
 
@@ -110,10 +110,10 @@ namespace ET
             GameObjectLoad load = self.AddChild<GameObjectLoad>();
             load.Path = path;
             load.LoadHandler = action;
-            self.LoadList.Add(load);
+            self.LoadingList.Add(load);
             if (self.Timer == 0)
             {
-                self.Timer = TimerComponent.Instance.NewRepeatedTimer(self.LoadInterval, TimerType.GameObjectPoolTimer, self);
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(self.LoadingLimit, TimerType.GameObjectPoolTimer, self);
             }
         }
 

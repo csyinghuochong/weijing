@@ -47,25 +47,12 @@ namespace ET
 
     public static class DropUIComponentSystem
     {
-        public static async ETTask InitData(this DropUIComponent self, DropInfo dropinfo)
+        public static void OnLoadGameObject(this DropUIComponent self, GameObject go)
         {
-            long instanceid = self.InstanceId;
-            //int number = self.GetDropNumber();
-            var path = ABPathHelper.GetUGUIPath("Battle/UIDropItem");
-            self.HeadBar = await GameObjectPoolComponent.Instance.GetExternalAsync(path);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
+            self.HeadBar = go;
             self.HeadBar.SetActive(true);
             self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
             self.HeadBar.transform.localScale = Vector3.one;
-
-            self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("UIPosition");
-            self.ModelMesh = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("DropModel").GetComponent<MeshRenderer>();
-            self.DropInfoData = dropinfo;
-            self.IfShowStatus = false;
-
             if (self.HeadBar.GetComponent<HeadBarUI>() == null)
             {
                 self.HeadBar.AddComponent<HeadBarUI>();
@@ -73,27 +60,25 @@ namespace ET
             self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
             self.HeadBarUI.HeadPos = self.UIPosition;
             self.HeadBarUI.HeadBar = self.HeadBar;
-
-            Unit parent = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(dropinfo.UnitId);
+            Unit parent = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.DropInfo.UnitId);
             if (parent == null)
             {
-                self.MyUnit.Position = new Vector3(dropinfo.X, dropinfo.Y, dropinfo.Z);
+                self.MyUnit.Position = new Vector3(self.DropInfo.X, self.DropInfo.Y, self.DropInfo.Z);
             }
             else
             {
                 self.MyUnit.Position = parent.Position;
                 self.StartPoint = parent.Position;
-                self.EndPoint = new Vector3(dropinfo.X, parent.Position.y, dropinfo.Z);
+                self.EndPoint = new Vector3(self.DropInfo.X, parent.Position.y, self.DropInfo.Z);
                 self.GeneratePositions();
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.DropUITimer, self);
             }
-
-            self.SetDropInfo(dropinfo);
+            self.ShowDropInfo(self.DropInfo);
 
             //创建特效(排除基础货币)
-            if (dropinfo.ItemID >= 100)
+            if (self.DropInfo.ItemID >= 100)
             {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropinfo.ItemID);
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.DropInfo.ItemID);
                 if (itemConfig.ItemQuality == 4)
                 {
                     FunctionEffect.GetInstance().PlaySelfEffect(self.MyUnit, 91000104);
@@ -107,7 +92,18 @@ namespace ET
             self.LateUpdate();
         }
 
-        public static  void SetDropInfo(this DropUIComponent self, DropInfo dropinfo )
+        public static void  InitData(this DropUIComponent self, DropInfo dropinfo)
+        {
+            self.DropInfo = dropinfo;
+            GameObjectComponent gameObjectComponent = self.MyUnit.GetComponent<GameObjectComponent>();
+            self.UIPosition = gameObjectComponent.GameObject.transform.Find("UIPosition");
+            self.ModelMesh = gameObjectComponent.GameObject.transform.Find("DropModel").GetComponent<MeshRenderer>();
+
+            var path = ABPathHelper.GetUGUIPath("Battle/UIDropItem");
+            GameObjectPoolComponent.Instance.AddLoadQueue(path, self.OnLoadGameObject);
+        }
+
+        public static  void ShowDropInfo(this DropUIComponent self, DropInfo dropinfo )
         {
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropinfo.ItemID);
             TextMeshProUGUI textMeshProUGUI = self.HeadBar.transform.Find("Lab_DropName").gameObject.GetComponent<TextMeshProUGUI>();
@@ -183,7 +179,6 @@ namespace ET
 
         public static  void OnUpdate(this DropUIComponent self)
         {
-          
             self.PositionIndex++;
             //快速下落处理
             if (self.PositionIndex >= (int)(self.Resolution * 0.4f))

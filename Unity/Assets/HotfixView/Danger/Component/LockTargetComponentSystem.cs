@@ -204,10 +204,18 @@ namespace ET
                     UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                     uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnLockUnit(unitTarget);
                     MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitTarget.GetComponent<UnitInfoComponent>().UnitCondigID);
-                    self.LockUnitEffect.transform.localScale = Vector3.one * (float)monsterConfig.SelectSize;
+                    self.SetEffectSize((float)monsterConfig.SelectSize);
                 }
             }
             return self.LastLockId;
+        }
+
+        public static void SetEffectSize(this LockTargetComponent self, float size)
+        {
+            GameObject RedCircle = self.LockUnitEffect.transform.Find("Efx_Click_Red/RedCircle").gameObject;
+            ParticleSystem ps = RedCircle.GetComponent<ParticleSystem>();
+            var main = ps.main;
+            main.startSize = new ParticleSystem.MinMaxCurve(3 * size);
         }
 
         public static void OnLockNpc(this LockTargetComponent self, Unit unitTarget=null)
@@ -224,6 +232,7 @@ namespace ET
             }
             self.CheckLockEffect();
             UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
+            self.SetEffectSize(1f);
         }
     }
 
