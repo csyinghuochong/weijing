@@ -203,7 +203,8 @@ namespace ET
                 {
                     UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                     uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnLockUnit(unitTarget);
-
+                    MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitTarget.GetComponent<UnitInfoComponent>().UnitCondigID);
+                    self.LockUnitEffect.transform.localScale = Vector3.one * (float)monsterConfig.SelectSize;
                 }
             }
             return self.LastLockId;
@@ -222,10 +223,6 @@ namespace ET
                 return;
             }
             self.CheckLockEffect();
-            if (self.LockUnitEffect != null)
-            {
-                self.LockUnitEffect.SetActive(true);
-            }
             UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
         }
     }
