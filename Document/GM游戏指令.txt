@@ -1,5 +1,6 @@
 GM                          #etgm
-无敌		#wudi	//1次开启 2次取消
+无敌		#wudi		//1次开启 2次取消
+免伤		#mianshang	//免除一切伤害
 开启单机副本	#openall  需要等级达到对应等级并重启客户端 
 击杀所有野怪	#killall
 创建所有野怪             #allmonster
