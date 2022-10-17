@@ -37,14 +37,15 @@ namespace ET
                 this.OnFinished();
                 return;
             }
+
+            this.EffectObj = gameObject;
+            int skillParentID = EffectData.EffectConfig != null ? EffectData.EffectConfig.SkillParent : 0;
             if (EffectData.SkillConfig != null)
             {
                 int rangeType = EffectData.SkillConfig.DamgeRangeType;       //技能范围类型
                 float[] rangeValue = FunctionHelp.Instance.DoubleArrToFloatArr(EffectData.SkillConfig.DamgeRange);          //技能范围
-                this.AddCollider(EffectObj, rangeType, rangeValue);
+                this.AddCollider(this.EffectObj, rangeType, rangeValue);
             }
-            this.EffectObj = gameObject;
-            int skillParentID = EffectData.EffectConfig!= null ? EffectData.EffectConfig.SkillParent : 0;
             switch (skillParentID)
             {
                 //跟随玩家
