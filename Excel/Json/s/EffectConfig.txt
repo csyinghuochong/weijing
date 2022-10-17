@@ -209,6 +209,7 @@
 {"_t":"EffectConfig","_id":70205001,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_BaoZha_14","SkillEffectDelayTime":2,"SkillParent":1,"SkillParentPosition":"Center","HideTime":1,"SkillEffectLiveTime":3000000},
 {"_t":"EffectConfig","_id":70205002,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_BaoZha_17","SkillEffectDelayTime":2.5,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":6000},
 {"_t":"EffectConfig","_id":70205003,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_ChiXu_2","SkillEffectDelayTime":0.5,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":3000000},
+{"_t":"EffectConfig","_id":70205004,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_BingLieZhan","SkillEffectDelayTime":2,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":3000},
 {"_t":"EffectConfig","_id":70301001,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_BaoZha_13a","SkillEffectDelayTime":2.5,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":6000},
 {"_t":"EffectConfig","_id":70301003,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_BaoZha_13","SkillEffectDelayTime":2.5,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":6000},
 {"_t":"EffectConfig","_id":70302001,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_ChiXu_1","SkillEffectDelayTime":0.5,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":300000},
