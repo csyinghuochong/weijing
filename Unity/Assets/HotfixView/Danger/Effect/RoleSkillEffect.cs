@@ -180,6 +180,7 @@ namespace ET
             if (this.EffectDelayTime >= 0f && this.PassTime > this.EffectDelayTime)
             {
                 this.EffectDelayTime = -1f;
+               
                 this.PlayEffect().Coroutine();
             }
             if (this.PassTime > this.EffectEndTime)

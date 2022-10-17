@@ -47,8 +47,13 @@ namespace ET
 
     public static class DropUIComponentSystem
     {
-        public static void OnLoadGameObject(this DropUIComponent self, GameObject go)
+        public static void OnLoadGameObject(this DropUIComponent self, GameObject go, long formId)
         {
+            if (self.IsDisposed)
+            {
+                self.Destroy();
+                return;
+            }
             self.HeadBar = go;
             self.HeadBar.SetActive(true);
             self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
@@ -100,7 +105,7 @@ namespace ET
             self.ModelMesh = gameObjectComponent.GameObject.transform.Find("DropModel").GetComponent<MeshRenderer>();
 
             var path = ABPathHelper.GetUGUIPath("Battle/UIDropItem");
-            GameObjectPoolComponent.Instance.AddLoadQueue(path, self.OnLoadGameObject);
+            GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
         }
 
         public static  void ShowDropInfo(this DropUIComponent self, DropInfo dropinfo )

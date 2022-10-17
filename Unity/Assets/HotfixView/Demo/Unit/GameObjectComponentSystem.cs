@@ -67,7 +67,7 @@ namespace ET
                     }
                     int occId = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
                     var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occId).ModelAsset}");
-                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.OnLoadGameObject);
+                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     break;
                 case UnitType.Monster:
                     int monsterId = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
@@ -75,16 +75,15 @@ namespace ET
                     int userMaterModel = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UseMasterModel);
                     if (userMaterModel == 1)
                     {
-                        //path = ABPathHelper.GetUnitPath("Monster/" + monsterCof.MonsterModelID);
                         long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
                         Unit master = unit.GetParent<UnitComponent>().Get(masterId);
                         GameObject gameObject = GameObject.Instantiate(master.GetComponent<GameObjectComponent>().GameObject);
-                        self.OnLoadGameObject(gameObject);
+                        self.OnLoadGameObject(gameObject, self.InstanceId);
                     }
                     else
                     {
                         path = ABPathHelper.GetUnitPath("Monster/" + monsterCof.MonsterModelID);
-                        GameObjectPoolComponent.Instance.AddLoadQueue(path, self.OnLoadGameObject);
+                        GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                         self.AssetsPath = path;
                     }
                     break;
@@ -98,31 +97,31 @@ namespace ET
                     }
                     PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(skinId);
                     path = ABPathHelper.GetUnitPath("Pet/" + petSkinConfig.SkinID.ToString());
-                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.OnLoadGameObject);
+                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     break;
                 case UnitType.Npc:
                     int npcId = unitInfoComponent.UnitCondigID;
                     NpcConfig config = NpcConfigCategory.Instance.Get(npcId);
                     path = ABPathHelper.GetUnitPath("Npc/" + config.Asset);
-                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.OnLoadGameObject);
+                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     break;
                 case UnitType.DropItem:
                     DropComponent dropComponent = unit.GetComponent<DropComponent>();
                     string assetPath = dropComponent.DropInfo.ItemID == 1 ? "DropICoin" : "DropItem";
                     path = ABPathHelper.GetUnitPath($"Player/{assetPath}");
-                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.OnLoadGameObject);
+                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     self.AssetsPath = path;
                     break;
                 case UnitType.Chuansong:
                     path = ABPathHelper.GetUnitPath("Monster/DorrWay_1");
-                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.OnLoadGameObject);
+                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     break;
             }
         }
 
-        public static void OnLoadGameObject(this GameObjectComponent self, GameObject go)
+        public static void OnLoadGameObject(this GameObjectComponent self, GameObject go, long formId)
         {
-            if (self.IsDisposed || self.InstanceId == 0)
+            if (self.IsDisposed)
             {
                 GameObject.Destroy(go);
                 return;

@@ -26,7 +26,7 @@ namespace ET
         {
             float passTime = this.PassTime;
             this.BaseOnUpdate();
-            if (this.PassTime < this.EffectConf.SkillEffectDelayTime)
+            if (this.PassTime < this.SkillConf.SkillDelayTime)
             {
                 return;
             }
