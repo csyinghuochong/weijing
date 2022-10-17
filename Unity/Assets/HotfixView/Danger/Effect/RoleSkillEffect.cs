@@ -22,9 +22,9 @@ namespace ET
             this.OnUpdate();
         }
 
-        public void OnLoadGameObject(GameObject EffectObj, long instanceId)
+        public void OnLoadGameObject(GameObject gameObject, long instanceId)
         {
-            if (this.EffectData == null || EffectObj == null)
+            if (this.EffectData == null || gameObject == null)
             {
                 this.EffectState = BuffState.Finished;
             }
@@ -43,6 +43,7 @@ namespace ET
                 float[] rangeValue = FunctionHelp.Instance.DoubleArrToFloatArr(EffectData.SkillConfig.DamgeRange);          //技能范围
                 this.AddCollider(EffectObj, rangeType, rangeValue);
             }
+            this.EffectObj = gameObject;
             int skillParentID = EffectData.EffectConfig!= null ? EffectData.EffectConfig.SkillParent : 0;
             switch (skillParentID)
             {
@@ -105,7 +106,7 @@ namespace ET
                     break;
             }
 
-            EffectObj.SetActive(true);
+            this.EffectObj.SetActive(true);
         }
 
         /// <summary>
