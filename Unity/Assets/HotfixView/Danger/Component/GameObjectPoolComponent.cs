@@ -9,7 +9,8 @@ namespace ET
     public class GameObjectLoad : Entity, IAwake
     {
         public string Path;
-        public Action<GameObject> LoadHandler;
+        public long FormId;
+        public Action<GameObject, long> LoadHandler;
     }
 
     [Timer(TimerType.GameObjectPoolTimer)]
@@ -101,14 +102,15 @@ namespace ET
                 gobjet = self.ExternalReferences[path][0];
                 self.ExternalReferences[path].RemoveAt(0);
             }
-            load.LoadHandler(gobjet);
+            load.LoadHandler(gobjet, load.FormId);
             load.Dispose();
         }
 
-        public static void AddLoadQueue(this GameObjectPoolComponent self,  string path, Action<GameObject> action)
+        public static void AddLoadQueue(this GameObjectPoolComponent self,  string path, long formId, Action<GameObject, long> action)
         {
             GameObjectLoad load = self.AddChild<GameObjectLoad>();
             load.Path = path;
+            load.FormId = formId;
             load.LoadHandler = action;
             self.LoadingList.Add(load);
             if (self.Timer == 0)
