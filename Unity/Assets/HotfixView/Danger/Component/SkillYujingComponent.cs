@@ -122,9 +122,9 @@ namespace ET
             SkillInfo skillcmd = skillIndicatorItem.SkillInfo;
             skillIndicatorItem.GameObject = gameObject;
             skillIndicatorItem.GameObject.transform.localScale = Vector3.one * 0.1f;
-            skillIndicatorItem.GameObject.transform.position = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ);
             skillIndicatorItem.GameObject.SetActive(true);
             UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);
+            skillIndicatorItem.GameObject.transform.position = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ);
             self.InitZhishiEffect(skillIndicatorItem);
             self.AddTimer();
         }
