@@ -26,29 +26,26 @@ namespace ET
         {
             this.BaseOnExecute();
 
-            BuffData buffData = new BuffData();
-            buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(6);
-            buffData.BuffClassScript = buffData.BuffConfig.BuffScript;
-            buffData.SkillConfig = this.SkillConf;
-            buffData.TargetAngle = this.SkillCmd.TargetAngle;
-            TheUnitFrom.GetComponent<BuffManagerComponent>().BulletFactory(buffData, TheUnitFrom, this);
+            string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';') ;
+            int angle = this.SkillCmd.TargetAngle;
+            int range = 0;
+            int number = 1;
+            int starAngle = angle - (int)(range * 0.5f);
+            if (paraminfos.Length == 2)
+            {
+                range = int.Parse(paraminfos[0]);
+                number = int.Parse(paraminfos[1]);
+            }
 
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    int targetAngle = (int)(mSkillCmd.TargetAngle + 30 * (i - 1));
-
-            //    Vector3 sourcePoint = TheUnitFrom.Position;
-            //    Quaternion rotation = Quaternion.Euler(0, targetAngle, 0); //按照Z轴旋转30度的Quaterion
-            //    Vector3 SkillTargetPoint = sourcePoint + rotation * Vector3.forward * mSkillCmd.TargetDistance;
-
-            //    BuffDataBase buffData = new BuffDataBase();
-            //    buffData.BuffSystemType = BuffSystemType.BUFFType_Bullet;
-            //    buffData.SkillConfig = mSkillConf;
-            //    buffData.mSkillActionBase = this;
-            //    buffData.TargetPosition = SkillTargetPoint;
-            //    BuffFactory.AcquireBuff(buffData, TheUnitFrom, TheUnitFrom);
-            //}
-
+            for (int i = 0; i < number; i++)
+            {
+                BuffData buffData = new BuffData();
+                buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(6);
+                buffData.BuffClassScript = buffData.BuffConfig.BuffScript;
+                buffData.SkillConfig = this.SkillConf;
+                buffData.TargetAngle = starAngle + i * (range / (number - 1));
+                TheUnitFrom.GetComponent<BuffManagerComponent>().BulletFactory(buffData, TheUnitFrom, this);
+            }
         }
 
         public override void OnUpdate()
