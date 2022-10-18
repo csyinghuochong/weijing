@@ -51,7 +51,7 @@ namespace ET
         public static void OnMainHeroPosition(this UIMapMiniComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit == null)
+            if (unit == null || self.MapCamera == null)
             {
                 return;
             }
