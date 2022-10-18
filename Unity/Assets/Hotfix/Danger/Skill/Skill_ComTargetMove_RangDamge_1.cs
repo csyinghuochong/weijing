@@ -15,13 +15,33 @@
 
         protected void PlayBullet_1()
         {
-            //有可能有多个子弹
-            BuffData buffData = new BuffData();
-            buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(6);
-            buffData.BuffClassScript = buffData.BuffConfig.BuffScript;
-            buffData.TargetAngle = this.mSkillCmd.TargetAngle;
-            buffData.SkillConfig = this.SkillConf;
-            this.TheUnitFrom.GetComponent<BuffManagerComponent>().BuffFactory(buffData);
+            string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';');
+            int angle = this.SkillCmd.TargetAngle;
+            int range = 0;
+            int number = 1;
+            int delta = 0;
+            int starAngle = angle - (int)(range * 0.5f);
+            if (paraminfos.Length == 2)
+            {
+                range = int.Parse(paraminfos[0]);
+                number = int.Parse(paraminfos[1]);
+            }
+            if (number > 1)
+            {
+                delta = range / (number - 1);
+            }
+
+            for (int i = 0; i < number; i++ )
+            {
+                //有可能有多个子弹
+                BuffData buffData = new BuffData();
+                buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(6);
+                buffData.BuffClassScript = buffData.BuffConfig.BuffScript;
+                buffData.TargetAngle = starAngle + i * delta;
+
+                buffData.SkillConfig = this.SkillConf;
+                this.TheUnitFrom.GetComponent<BuffManagerComponent>().BuffFactory(buffData);
+            }
         }
 
         public override void OnExecute()

@@ -24,6 +24,7 @@ namespace ET
 
         public void OnLoadGameObject(GameObject gameObject, long instanceId)
         {
+            this.EffectObj = gameObject;
             if (this.EffectData == null || gameObject == null)
             {
                 this.EffectState = BuffState.Finished;
@@ -37,8 +38,6 @@ namespace ET
                 this.OnFinished();
                 return;
             }
-
-            this.EffectObj = gameObject;
             int skillParentID = EffectData.EffectConfig != null ? EffectData.EffectConfig.SkillParent : 0;
             if (EffectData.SkillConfig != null)
             {

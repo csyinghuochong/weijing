@@ -7,7 +7,7 @@ namespace ET
         public static void BaseOnInit(this ASkillHandler self, SkillInfo skillcmd, Unit theUnitFrom, Unit theUnitBelongto = null)
         {
             self.PassTime = 0f;
-            self.mSkillCmd = skillcmd;
+            self.SkillCmd = skillcmd;
             self.SkillConf = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
             int effctId = self.SkillConf.SkillEffectID[0];
             self.EffectConf = effctId != 0 ? EffectConfigCategory.Instance.Get(effctId) :null;
@@ -60,11 +60,11 @@ namespace ET
             if (self.EffectConf == null)
                 return;
             EffectData playEffectBuffData = new EffectData();
-            playEffectBuffData.TargetID = self.mSkillCmd.TargetID;
+            playEffectBuffData.TargetID = self.SkillCmd.TargetID;
             playEffectBuffData.SkillConfig = self.SkillConf;                   //技能相关配置
             playEffectBuffData.EffectConfig = self.EffectConf;                 //特效相关配置
             playEffectBuffData.EffectPosition = effectPostion;           //技能目标点
-            playEffectBuffData.TargetAngle = self.mSkillCmd.TargetAngle;         //技能角度
+            playEffectBuffData.TargetAngle = self.SkillCmd.TargetAngle;         //技能角度
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;              //特效类型
             playEffectBuffData.InstanceId = IdGenerater.Instance.GenerateInstanceId();
             self.EffectInstanceId = playEffectBuffData.InstanceId;

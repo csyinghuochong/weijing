@@ -32,7 +32,7 @@ namespace ET
             }
 
             float deltaTime = this.PassTime - passTime;
-            Unit TheUnitBelongto = TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(mSkillCmd.TargetID);
+            Unit TheUnitBelongto = TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(SkillCmd.TargetID);
             if (TheUnitBelongto != null)
             {
                 this.TargetPosition = TheUnitBelongto.Position;

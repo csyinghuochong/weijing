@@ -33,7 +33,7 @@ namespace ET
         /// </summary>
         public Unit TheUnitFrom;
 
-        public SkillInfo mSkillCmd;
+        public SkillInfo SkillCmd;
         public Vector3 TargetPosition;
 
         public abstract void OnInit(SkillInfo skillcmd, Unit theUnitFrom);
