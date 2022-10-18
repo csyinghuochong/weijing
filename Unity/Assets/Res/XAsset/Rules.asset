@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 277
+  version: 278
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -290,6 +290,12 @@ MonoBehaviour:
     path: Assets/Bundles/Config/TowerRewardConfigCategory.bytes
   - bundle: 834fd1170cc25a7679603034262ce44a.unity3d
     path: Assets/Bundles/Config/UnitConfigCategory.bytes
+  - bundle: fd9f7142c3962ece0a54dfdba9ba9a80.unity3d
+    path: Assets/Bundles/Config/ZuoQiConfigCategory.bytes
+  - bundle: 2788184868500131a228cadfdb50bff6.unity3d
+    path: Assets/Bundles/Config/ZuoQiNengLiConfigCategory.bytes
+  - bundle: c39fcb5db5b1ac816c199ca21de2e2fa.unity3d
+    path: Assets/Bundles/Config/ZuoQiShowConfigCategory.bytes
   - bundle: 3ddd0c36adbde5f91cfb31426ce7b526.unity3d
     path: Assets/Bundles/Effect/Eff_RoleUpLv.prefab
   - bundle: 819d0c9a96a11ce1b2550105f4e57949.unity3d
@@ -5199,6 +5205,15 @@ MonoBehaviour:
   - name: 834fd1170cc25a7679603034262ce44a.unity3d
     assets:
     - Assets/Bundles/Config/UnitConfigCategory.bytes
+  - name: fd9f7142c3962ece0a54dfdba9ba9a80.unity3d
+    assets:
+    - Assets/Bundles/Config/ZuoQiConfigCategory.bytes
+  - name: 2788184868500131a228cadfdb50bff6.unity3d
+    assets:
+    - Assets/Bundles/Config/ZuoQiNengLiConfigCategory.bytes
+  - name: c39fcb5db5b1ac816c199ca21de2e2fa.unity3d
+    assets:
+    - Assets/Bundles/Config/ZuoQiShowConfigCategory.bytes
   - name: 2efc619c3f96e68cc7eaeffd09addad3.unity3d
     assets:
     - Assets/Bundles/Unit/Unit.prefab

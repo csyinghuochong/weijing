@@ -83,6 +83,7 @@ namespace ET
             if (self.IsDisposed || skillIndicatorItem == null)
             {
                 GameObject.DestroyImmediate(gameObject);
+                TimerComponent.Instance?.Remove(ref self.Timer);
                 return;
             }
             UICommonHelper.SetParent(gameObject, GlobalComponent.Instance.Unit.gameObject);
@@ -274,7 +275,6 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Quaternion rotation;
             SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
-
             skillIndicatorItem.GameObject.transform.localPosition = unit.Position;
             switch (skillIndicatorItem.SkillZhishiType)
             {
