@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4264268915811239498}
   - component: {fileID: 3594139102137873130}
   m_Layer: 0
-  m_Name: Eff_ShanDianLian
+  m_Name: Eff_ShanDianLian_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -74,13 +74,9 @@ LineRenderer:
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
-  - {x: 0.74894077, y: -0.23472212, z: -0.27033493}
-  - {x: 0.4481463, y: 0.15817918, z: 0.60328245}
-  - {x: 1.4063756, y: 0.8587026, z: 0.3792098}
-  - {x: 1.3402951, y: 1.5704787, z: 0.96097857}
-  - {x: 1.241546, y: 1.3838001, z: 1.7055777}
-  - {x: 1.0178976, y: 1.7792308, z: 1.3937093}
-  - {x: 0.4084891, y: 1.3395169, z: 0.2275919}
+  - {x: -0.018933177, y: 0.4263317, z: 0.20634353}
+  - {x: -0.7379191, y: 0.07350981, z: 0.06842244}
+  - {x: -0.3456654, y: -0.026401997, z: -0.2973122}
   - {x: 0, y: 0, z: 0}
   m_Parameters:
     serializedVersion: 3
@@ -151,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   detail: 1
   displacement: 2
-  EndPostion: {fileID: 0}
-  StartPosition: {fileID: 0}
+  EndPostion: {fileID: 8242863893214108629}
+  StartPosition: {fileID: 8242863893214108629}
   yOffset: 0
-  PassTime: 0.38908756
+  IntervalTime: 0.025
