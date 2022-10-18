@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.33f1c2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\HotfixView\Danger\UI\OccTwo\UIOccTwoShowComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILobby\UICreateRoleListComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\Help\GlobalHelp.cs" />
@@ -271,6 +274,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UITeam\UITeamApplyListComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetHeXinSetComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIItemTips\UIEquipTipsComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UIMapMiniComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationSetComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChat\UIChatItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonMyComponent.cs" />
@@ -525,7 +529,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UILingDi\UILingDiRewardItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UIMapMiniComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -1160,5 +1163,8 @@
   -->
   <ItemGroup>
     <Compile Include="Codes\HotfixView\**\*.cs" />
+    <ProjectReference Include="..\Tools\Analyzer\Analyzer.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false">
+      <Project>{d1f2986b-b296-4a2d-8f12-be9f470014c3}</Project>
+    </ProjectReference>
   </ItemGroup>
 </Project>

@@ -2143,7 +2143,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: dfd567b97bc2bec4cb2f6a2906c2e197, type: 2}
+  - {fileID: 2100000, guid: b3797ce988bbb214e9290a9f2a864526, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -2252,7 +2252,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1204851568603242533}
-  - component: {fileID: 1204851568592315425}
   m_Layer: 0
   m_Name: Fire Dragon-Red
   m_TagString: Untagged
@@ -2269,7 +2268,7 @@ Transform:
   m_GameObject: {fileID: 1204851568603348165}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.25, y: 1.25, z: 1.25}
   m_Children:
   - {fileID: 1204851568603242531}
   - {fileID: 1204851568603242529}
@@ -2319,41 +2318,6 @@ Transform:
   m_Father: {fileID: 1204851567723025285}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!111 &1204851568592315425
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1204851568603348165}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 619fbc162d45ce744a0d2d875930d4cf, type: 3}
-  m_Animations:
-  - {fileID: 7400000, guid: 619fbc162d45ce744a0d2d875930d4cf, type: 3}
-  - {fileID: 7400000, guid: 33620971b10e5214cb85166aa77a011c, type: 3}
-  - {fileID: 7400000, guid: 9f77aba5b0279b74cb9db6c40fa61e8c, type: 3}
-  - {fileID: 7400000, guid: 3a37b78ee9454984c8390db14ee41a7e, type: 3}
-  - {fileID: 7400000, guid: ab864b308f767494b804124e22489482, type: 3}
-  - {fileID: 7400000, guid: 629ed3a3c4b5c3e45ab823206994a5bf, type: 3}
-  - {fileID: 7400000, guid: 9702a1885b7ec8f40be0bcb4740f1fb0, type: 3}
-  - {fileID: 7400000, guid: c3414356215ecae42914558aed324971, type: 3}
-  - {fileID: 7400000, guid: 99d661d101666c24c9b3dc07a2df062f, type: 3}
-  - {fileID: 7400000, guid: 9ef26d9c8235aa3448e92d1bf7a95d61, type: 3}
-  - {fileID: 7400000, guid: 8a6365cc2fd75004cb6c02902fcffd73, type: 3}
-  - {fileID: 7400000, guid: 0bb91916406e40e4ebd0659b4518b818, type: 3}
-  - {fileID: 7400000, guid: 610fdf2913bc59843b21237deaed7838, type: 3}
-  - {fileID: 7400000, guid: 4a91b66e5bcfffe42be4b5a11c2d1b0c, type: 3}
-  - {fileID: 7400000, guid: 3cf87e520c10861469a1032dcc8d34b6, type: 3}
-  - {fileID: 7400000, guid: a4dfcc9f5db14e2409b41c0e19d27e46, type: 3}
-  - {fileID: 7400000, guid: 7306d25194955904a8f23ff45c48e29e, type: 3}
-  - {fileID: 7400000, guid: 2aaf6704fb0003d4bb1db5edf2ddc417, type: 3}
-  - {fileID: 7400000, guid: 7181d07430234ba4bb0dae616abea88f, type: 3}
-  - {fileID: 7400000, guid: 2e5c8c359845fc043a4b3a6a1d78cd7b, type: 3}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 1
 --- !u!1 &1204851568603348353
 GameObject:
   m_ObjectHideFlags: 0
@@ -3663,7 +3627,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -3716,7 +3680,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -8437,7 +8401,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -8490,7 +8454,7 @@ ParticleSystem:
         m_RotationOrder: 4
     startSizeZ:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 1
       minScalar: 1
       maxCurve:
@@ -13402,7 +13366,7 @@ Transform:
   m_GameObject: {fileID: 1204851568938040553}
   m_LocalRotation: {x: -0, y: 0.00000008940697, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0.118003845}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children: []
   m_Father: {fileID: 1204851567723025285}
   m_RootOrder: 1

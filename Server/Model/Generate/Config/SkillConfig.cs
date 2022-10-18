@@ -120,51 +120,51 @@ namespace ET
 		/// <summary>被动技能触发一次</summary>
 		[ProtoMember(15)]
 		public int PassiveSkillTriggerOnce { get; set; }
-		/// <summary>连招技能ID</summary>
+		/// <summary>施法目标</summary>
 		[ProtoMember(16)]
+		public int SkillTargetType { get; set; }
+		/// <summary>连招技能ID</summary>
+		[ProtoMember(17)]
 		public int ComboSkillID { get; set; }
 		/// <summary>技能攻击类型</summary>
-		[ProtoMember(17)]
+		[ProtoMember(18)]
 		public int SkillActType { get; set; }
 		/// <summary>伤害类型</summary>
-		[ProtoMember(18)]
+		[ProtoMember(19)]
 		public int DamgeType { get; set; }
 		/// <summary>伤害元素攻击</summary>
-		[ProtoMember(19)]
+		[ProtoMember(20)]
 		public int DamgeElementType { get; set; }
 		/// <summary>攻击系数</summary>
-		[ProtoMember(20)]
+		[ProtoMember(21)]
 		public double ActDamge { get; set; }
 		/// <summary>固定伤害值</summary>
-		[ProtoMember(21)]
+		[ProtoMember(22)]
 		public int DamgeValue { get; set; }
 		/// <summary>是否必中</summary>
-		[ProtoMember(22)]
+		[ProtoMember(23)]
 		public int IfMustAct { get; set; }
 		/// <summary>消耗魔法</summary>
-		[ProtoMember(23)]
+		[ProtoMember(24)]
 		public int SkillUseMP { get; set; }
 		/// <summary>增加魔法</summary>
-		[ProtoMember(24)]
+		[ProtoMember(25)]
 		public int SkillAddMP { get; set; }
 		/// <summary>是否触发公共CD</summary>
-		[ProtoMember(25)]
+		[ProtoMember(26)]
 		public int IfPublicSkillCD { get; set; }
 		/// <summary>是否触发冷却技能CD</summary>
-		[ProtoMember(26)]
+		[ProtoMember(27)]
 		public int IfSkillCD { get; set; }
 		/// <summary>冷却CD</summary>
-		[ProtoMember(27)]
+		[ProtoMember(28)]
 		public int SkillCD { get; set; }
 		/// <summary>伤害范围类型</summary>
-		[ProtoMember(28)]
+		[ProtoMember(29)]
 		public int DamgeRangeType { get; set; }
 		/// <summary>伤害范围</summary>
-		[ProtoMember(29)]
-		public double[] DamgeRange { get; set; }
-		/// <summary>技能目标类型</summary>
 		[ProtoMember(30)]
-		public int SkillTargetType { get; set; }
+		public double[] DamgeRange { get; set; }
 		/// <summary>释放区域类型</summary>
 		[ProtoMember(31)]
 		public int SkillZhishiType { get; set; }
