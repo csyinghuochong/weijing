@@ -35,7 +35,7 @@ namespace ET
         public override void Destroy(SkillIndicatorComponent self)
         {
             self.RecoveryEffect();
-            TimerComponent.Instance?.Remove(ref self.Timer);
+            
         }
     }
 
@@ -247,6 +247,8 @@ namespace ET
 
         public static void RecoveryEffect(this SkillIndicatorComponent self)
         {
+            TimerComponent.Instance?.Remove(ref self.Timer);
+
             SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
             if (skillIndicatorItem == null || skillIndicatorItem.GameObject == null)
             {
