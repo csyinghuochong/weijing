@@ -85,6 +85,9 @@ namespace ET
                 return;
             }
             UICommonHelper.SetParent(gameObject, GlobalComponent.Instance.Unit.gameObject);
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            gameObject.transform.localPosition = unit.Position;
             skillIndicatorItem.GameObject = gameObject;
             skillIndicatorItem.GameObject.SetActive(true);
             self.InitZhishiEffect(skillIndicatorItem);

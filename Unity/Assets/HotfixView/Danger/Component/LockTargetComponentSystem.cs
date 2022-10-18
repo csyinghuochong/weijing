@@ -184,6 +184,7 @@ namespace ET
                 self.CheckLockEffect();
                 Unit unitTarget = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.LastLockId);
                 UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
+                self.LockUnitEffect.SetActive(true);
                 if (unitTarget.GetComponent<UnitInfoComponent>().Type == UnitType.Monster)
                 {
                     UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
@@ -207,6 +208,7 @@ namespace ET
         {
             self.CheckLockEffect();
             UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
+            self.LockUnitEffect.SetActive(true);
             self.SetEffectSize(1f);
         }
     }
