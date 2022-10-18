@@ -86,6 +86,10 @@ namespace ET
                 TimerComponent.Instance?.Remove(ref self.Timer);
                 return;
             }
+            if (skillIndicatorItem.GameObject != null)
+            {
+                GameObject.DestroyImmediate(skillIndicatorItem.GameObject);
+            }
             UICommonHelper.SetParent(gameObject, GlobalComponent.Instance.Unit.gameObject);
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             gameObject.transform.localPosition = unit.Position;
@@ -111,6 +115,7 @@ namespace ET
             //0  立即释放,自身中心点
             //1  技能指示器
             //2  立即释放,目标中心点
+            self.RecoveryEffect();
             self.mSkillConfig = skillconfig;
             self.SkillRangeSize = (float)self.mSkillConfig.SkillRangeSize;
             SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();

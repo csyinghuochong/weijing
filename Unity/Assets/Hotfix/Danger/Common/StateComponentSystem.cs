@@ -68,7 +68,7 @@ namespace ET
             {
                 return false;
             }
-            if (TimeHelper.ServerNow() < self.RigidityEndTime)
+            if (self.IsRigidity())
             {
                 return false;
             }

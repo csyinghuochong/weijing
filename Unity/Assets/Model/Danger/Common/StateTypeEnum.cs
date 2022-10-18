@@ -41,7 +41,7 @@ namespace ET
         /// <summary>
         /// 眩晕 不能放技能不能移动
         /// </summary>
-        public const long Dizziness = 1 << 7;
+        public const long Dizziness = 1 << 7; 
 
         /// <summary>
         /// 吟唱
@@ -67,6 +67,11 @@ namespace ET
         /// 遇到障碍物
         /// </summary>
         public const long Obstruct = 1 << 13;
+
+        /// <summary>
+        /// 眩晕免疫
+        /// </summary>
+        public const long DizzinessImmune = 1 << 14; 
 
         /// <summary>
         /// 无敌

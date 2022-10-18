@@ -109,6 +109,10 @@ namespace ET
             {
                 return;
             }
+            if (stateComponent.StateTypeGet(StateTypeEnum.DizzinessImmune) && buffData.BuffConfig.buffParameterType == StateTypeEnum.Dizziness)
+            {
+                return;
+            }
 
             int addBufStatus = 1;   //1新增buff  2 移除 3 重置 4同状态返回
             //判断玩家身上是否有相同的buff,如果有就重置此Buff
