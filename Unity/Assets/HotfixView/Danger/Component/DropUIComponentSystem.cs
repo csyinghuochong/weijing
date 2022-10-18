@@ -230,7 +230,7 @@ namespace ET
             if (self.HeadBar != null)
             {
                 self.HeadBar.SetActive(false);
-                GameObjectPoolComponent.Instance.InternalPut(ABPathHelper.GetUGUIPath("Battle/UIDropItem"), self.HeadBar);
+                GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUGUIPath("Battle/UIDropItem"), self.HeadBar);
                 self.HeadBar = null;
             }
             self.PositionIndex = 0;

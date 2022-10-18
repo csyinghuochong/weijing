@@ -12,7 +12,7 @@
                 case NumericType.Now_Stall:
                     int stallType = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Stall);
                     args.Unit.GetComponent<HeroHeadBarComponent>().OnUnitStallUpdate(stallType);
-                    args.Unit.GetComponent<GameObjectComponent>().OnUnitStallUpdate(stallType).Coroutine();
+                    args.Unit.GetComponent<GameObjectComponent>().OnUnitStallUpdate(stallType);
 
                     if (args.Unit.MainHero)
                     {

@@ -500,7 +500,7 @@ namespace ET
             }
             else
             {
-                self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>()?.ClearnsShow();
+                self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>()?.RecoveryEffect();
                 self.UIJoystickMoveComponent.HideUI();
             }
         }

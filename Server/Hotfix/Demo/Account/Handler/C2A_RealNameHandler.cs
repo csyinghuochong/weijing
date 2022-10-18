@@ -33,6 +33,11 @@ namespace ET
                     idNum = request.IdCardNO,
                 }, Fangchenmi.EType.Check);
             }
+            if (result_check == null)
+            {
+                reply();
+                return;
+            }
 
             PlayerInfo playerInfo = new PlayerInfo();
             if (result_check.errcode == 0)  //认证成功
@@ -42,9 +47,8 @@ namespace ET
                 playerInfo.RealName = 1;
             }
             response.ErrorCode = result_check.errcode;
-
             D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = accountInfo.Id, Component = accountInfo, ComponentType = DBHelper.DBAccountInfo });
-           
+
             long accountZone = DBHelper.GetAccountCenter();
             Center2A_SaveAccount saveAccount = (Center2A_SaveAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_SaveAccount()
             {

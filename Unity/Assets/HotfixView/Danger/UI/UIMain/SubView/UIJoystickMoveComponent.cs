@@ -69,13 +69,11 @@ namespace ET
         {
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
             uI.GetComponent<UIMainComponent>().OnMoveStart();
-            Scene zonescene = self.ZoneScene();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit == null || unit.IsDisposed)
             {
                 return;
             }
-            zonescene.CurrentScene().GetComponent<LockTargetComponent>()?.OnLockNpc(null);
             self.draging = true;
             self.SendMove(self.GetDirection(pdata));
         }

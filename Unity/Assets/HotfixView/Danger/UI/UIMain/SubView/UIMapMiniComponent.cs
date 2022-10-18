@@ -50,10 +50,14 @@ namespace ET
     {
         public static void OnMainHeroPosition(this UIMapMiniComponent self)
         {
-            Vector3 vector3 = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).Position;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (unit == null)
+            {
+                return;
+            }
+            Vector3 vector3 = unit.Position;
             Vector3 vector31 = new Vector3(vector3.x, vector3.z, 0f);
             Vector2 localPosition = self.GetWordToUIPositon(vector31);
-
             self.RawImage.transform.localPosition = new Vector2(localPosition.x * -1, localPosition.y * -1);
         }
 
@@ -73,8 +77,6 @@ namespace ET
 
         public static async ETTask LoadMapCamera(this UIMapMiniComponent self)
         {
-            Log.Debug("LoadMapCameraLoadMapCamera {}");
-
             GameObject mapCamera = GameObject.Find("MapCamera");
             if (mapCamera == null)
             {
