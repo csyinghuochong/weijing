@@ -27,12 +27,6 @@ namespace ET
     {
         public override void Awake(LockTargetComponent self)
         {
-            //MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-            //if (mapComponent.SceneTypeEnum >= (int)SceneTypeEnum.FubenScene)
-            //{
-            //    self.FrameTimer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.LockTarget, self);
-            //}
-
             DataUpdateComponent.Instance.AddListener(DataType.MainHeroPosition, self);
         }
     }
@@ -122,7 +116,6 @@ namespace ET
 
         public static long LockTargetUnit(this LockTargetComponent self, bool first = false)
         {
-            self.CheckLockEffect();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (first && self.LastLockId != 0)
             {
@@ -188,12 +181,9 @@ namespace ET
 
             if (self.LastLockId != 0)
             {
+                self.CheckLockEffect();
                 Unit unitTarget = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.LastLockId);
-                if (self.LockUnitEffect != null)
-                {
-                    self.LockUnitEffect.SetActive(true);
-                    UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
-                }
+                UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
                 if (unitTarget.GetComponent<UnitInfoComponent>().Type == UnitType.Monster)
                 {
                     UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
