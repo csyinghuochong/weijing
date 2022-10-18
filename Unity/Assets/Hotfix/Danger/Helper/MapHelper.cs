@@ -207,7 +207,11 @@ namespace ET
                 if (m2C_SkillCmd.Error == 0)
                 {
                     unit.GetComponent<SkillManagerComponent>().AddSkillCD(skillid, m2C_SkillCmd);
-                    unit.GetComponent<StateComponent>().RigidityEndTime = (long)(skillConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
+
+                    BagComponent bagComponent = zoneScene.GetComponent<BagComponent>();
+                    int weaponSkill = SkillHelp.GetWeaponSkillID(skillid, bagComponent.GetEquipType());
+                    SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+                    unit.GetComponent<StateComponent>().RigidityEndTime = (long)(skillWeaponConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
                 }
                 return m2C_SkillCmd.Error;
             }

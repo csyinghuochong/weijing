@@ -84,9 +84,9 @@ namespace ET
             {
                 return;
             }
+            UICommonHelper.SetParent(gameObject, GlobalComponent.Instance.Unit.gameObject);
             skillIndicatorItem.GameObject = gameObject;
             skillIndicatorItem.GameObject.SetActive(true);
-            UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);
             self.InitZhishiEffect(skillIndicatorItem);
             self.AddTimer();
         }

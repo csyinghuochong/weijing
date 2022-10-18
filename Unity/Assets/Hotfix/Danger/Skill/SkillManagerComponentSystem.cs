@@ -124,9 +124,9 @@ namespace ET
             skillcd.SkillID = skillId;
             skillcd.CDEndTime = skillCmd.CDEndTime + 100;
             self.SkillPublicCDTime = skillCmd.PublicCDTime + 100;
-            self.AddSkillTimer();
             EventType.SkillCD.Instance.Unit = self.GetParent<Unit>();
             Game.EventSystem.PublishClass(EventType.SkillCD.Instance);
+            self.AddSkillTimer();
         }
 
         public static void AddSkillTimer(this SkillManagerComponent self)
