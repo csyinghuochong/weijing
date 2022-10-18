@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 275
+  version: 276
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -17128,6 +17128,9 @@ MonoBehaviour:
   - name: b95943454f980d7c943ac24fe208ab1d.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Hair/Hair_00/Hair_00_00.mat
+  - name: a8b095edd8729aa05f73408ec57b1b58.unity3d
+    assets:
+    - Assets/Res/SD Unity-Chan Haon Custom/Texture/accessory/Hair_00_subAB_00.png
   - name: 7ade82881bcf37e697928eb16cd37bd5.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/_Bundle/Dummy Motions.controller
@@ -17140,9 +17143,6 @@ MonoBehaviour:
   - name: 5c11ecfcb12383737ddec7004125795f.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shitou_05.FBX
-  - name: a8b095edd8729aa05f73408ec57b1b58.unity3d
-    assets:
-    - Assets/Res/SD Unity-Chan Haon Custom/Texture/accessory/Hair_00_subAB_00.png
   - name: 7a17b82b36ae722d2c422e9decca4c74.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/Costume/Costume_01_00.png

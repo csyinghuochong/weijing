@@ -43,7 +43,12 @@ namespace ET
             {
                 return;
             }
+ 
             FlyFontObj.SetActive(false);
+            ReferenceCollector rc = FlyFontObj.GetComponent<ReferenceCollector>();
+            rc.Get<GameObject>("FlyText_Self").SetActive(false);
+            rc.Get<GameObject>("FlyText_Add").SetActive(false);
+            rc.Get<GameObject>("FlyText_Target").SetActive(false);
             string uIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
             GameObjectPoolComponent.Instance.RecoverGameObject(uIBattleFly, FlyFontObj);
 

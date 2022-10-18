@@ -338,6 +338,7 @@ namespace ET
                 GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), gameObject);
                 return;
             }
+            UICommonHelper.SetParent(gameObject, GlobalComponent.Instance.Unit.gameObject);
             self.BaiTan = gameObject;
             self.BaiTan.SetActive(true);
             self.BaiTan.transform.position = self.GameObject.transform.position;
