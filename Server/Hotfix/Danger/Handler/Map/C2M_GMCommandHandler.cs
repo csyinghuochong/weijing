@@ -112,6 +112,12 @@ namespace ET
 					unit.GetComponent<TaskComponent>().CompletCurrentTask();
 					return;
 				}
+				if (message.GMMsg.Contains("#addack"))
+				{
+					int addAck = int.Parse(commands[2]);
+					unit.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_MaxAct_Add, addAck);
+					return;
+				}
 				switch (int.Parse(commands[0]))
 				{
 					case 1:             //新增道具1#12000003#200 【添加道具/道具id/道具数量】
