@@ -34,6 +34,10 @@ namespace ET
             for (int i = 0; i < number; i++)
             {
                 this.PlaySkillEffects(this.TargetPosition, starAngle + i * delta);
+
+                SkillInfo skillInfo = ComHelp.DeepCopy<SkillInfo>(this.SkillCmd);
+                skillInfo.TargetAngle = starAngle + i * delta;
+                this.OnShowSkillIndicator(skillInfo);
             }
         }
 

@@ -41,6 +41,10 @@
 
                 buffData.SkillConfig = this.SkillConf;
                 this.TheUnitFrom.GetComponent<BuffManagerComponent>().BuffFactory(buffData);
+
+                SkillInfo skillInfo = ComHelp.DeepCopy<SkillInfo>(this.SkillCmd);
+                skillInfo.TargetAngle = starAngle + i * delta;
+                this.OnShowSkillIndicator(skillInfo);
             }
         }
 

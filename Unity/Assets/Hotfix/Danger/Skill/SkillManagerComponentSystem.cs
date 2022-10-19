@@ -154,7 +154,6 @@ namespace ET
                 ASkillHandler skillHandler = (ASkillHandler)ObjectPool.Instance.Fetch(SkillDispatcherComponent.Instance.SkillTypes[skillConfig1.GameObjectName]);
                 skillHandler.OnInit(skillcmd.SkillInfos[i], from);
                 self.Skills.Add(skillHandler);
-                self.OnShowSkillIndicator(skillcmd.SkillInfos[i]);
             }
             self.AddSkillTimer();
             if (skillcmd.SkillID == 0)
@@ -173,23 +172,6 @@ namespace ET
             }
         }
 
-        public static void  OnShowSkillIndicator(this SkillManagerComponent self, SkillInfo skillcmd)
-        {
-            Unit unit = self.GetParent<Unit>();
-            if (unit.GetComponent<UnitInfoComponent>().Type != UnitType.Monster)
-                return;
-
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
-            if (skillConfig.SkillZhishiType == 0)
-                return;
-            if (skillConfig.SkillDelayTime == 0)
-                return;
-
-            EventType.SkillYuJing.Instance.Unit = unit;
-            EventType.SkillYuJing.Instance.SkillInfo = skillcmd;
-            EventType.SkillYuJing.Instance.SkillConfig = skillConfig;
-            Game.EventSystem.PublishClass(EventType.SkillYuJing.Instance);
-        }
 
         public static void InterruptSkill(this SkillManagerComponent self, int skillId)
         {

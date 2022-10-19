@@ -94,30 +94,6 @@ namespace ET
             }
         }
 
-        public static bool ChangeState_2(this FsmComponent self, int targetFsm, string paramss = "")
-        {
-            switch (targetFsm)
-            {
-                case FsmStateEnum.FsmComboState:
-                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(int.Parse(paramss));
-                    int EquipType = (int)ItemEquipType.Common;
-                    int itemId = (int)self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
-                    if (itemId != 0)
-                    {
-                        ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-                        EquipType = itemConfig.EquipType;
-                    }
-                    paramss = $"{skillConfig.SkillAnimation}@{EquipType}";
-                    break;
-                case FsmStateEnum.FsmSkillState:
-                    skillConfig = SkillConfigCategory.Instance.Get(int.Parse(paramss));
-                    long SkillMoveTime = (skillConfig.Id >= 61012201 && skillConfig.Id <= 61012206) ? skillConfig.SkillLiveTime + TimeHelper.ClientNow() : 0;
-                    paramss = $"{SkillMoveTime}@{skillConfig.SkillAnimation}@{skillConfig.SkillSingTime}@{skillConfig.SkillRigidity}";
-                    break;
-            }
-            return true;
-        }
-
         public static void ChangeState(this FsmComponent self, int targetFsm, string parasmss = "")
         {
             if (self.Animator == null)
@@ -126,6 +102,12 @@ namespace ET
             }
             switch (self.CurrentFsm)
             {
+                case FsmStateEnum.FsmRunState:
+                    if (targetFsm == FsmStateEnum.FsmRunState)
+                    {
+                        return;
+                    }
+                    break;
                 case FsmStateEnum.FsmComboState:
                     break;
                 case FsmStateEnum.FsmDeathState:
@@ -165,6 +147,7 @@ namespace ET
                     break;
                 case FsmStateEnum.FsmIdleState:
                     self.OnEnterIdleState();
+                    Log.Debug("FsmStateEnum.FsmIdleState");
                     break;
                 case FsmStateEnum.FsmNpcSpeak:
                     //this.ClearnAnimator();
@@ -174,6 +157,7 @@ namespace ET
                     break;
                 case FsmStateEnum.FsmRunState:
                     self.OnEnterFsmFsmRunState(parasmss);
+                    Log.Debug("FsmStateEnum.FsmRunState");
                     break;
                 case FsmStateEnum.FsmShiQuItem:
                     self.Animator.SetBool("Idle", false);

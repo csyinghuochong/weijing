@@ -20,6 +20,7 @@ namespace ET
         public override void OnExecute()
         {
             this.PlaySkillEffects(this.NowPosition);
+            this.OnShowSkillIndicator(this.SkillCmd);
         }
 
         public override void OnUpdate()

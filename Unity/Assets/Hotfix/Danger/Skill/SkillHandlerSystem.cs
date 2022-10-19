@@ -53,6 +53,25 @@ namespace ET
             return self.SkillState == SkillState.Finished;
         }
 
+        public static void OnShowSkillIndicator(this ASkillHandler self, SkillInfo skillcmd)
+        {
+            Unit unit = self.TheUnitFrom;
+            if (unit.GetComponent<UnitInfoComponent>().Type != UnitType.Monster)
+            {
+                return;
+            }
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
+            if (skillConfig.SkillZhishiType == 0 || skillConfig.SkillDelayTime == 0)
+            {
+                return;
+            }
+
+            EventType.SkillYuJing.Instance.Unit = unit;
+            EventType.SkillYuJing.Instance.SkillInfo = skillcmd;
+            EventType.SkillYuJing.Instance.SkillConfig = skillConfig;
+            Game.EventSystem.PublishClass(EventType.SkillYuJing.Instance);
+        }
+
         //播放技能特效
         public static void PlaySkillEffects(this ASkillHandler self, Vector3 effectPostion, float effectAngle = 0f)
         {

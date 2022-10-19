@@ -16,8 +16,9 @@ namespace ET
 			{
 				return;
 			}
-			float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+			Log.Debug("FsmStateEnum.M2C_PathfindingResult");
 
+			float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
 			using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
 			{
 				for (int i = 0; i < message.Xs.Count; ++i)

@@ -14,6 +14,7 @@
         public override void OnExecute()
         {
             this.PlaySkillEffects(this.TargetPosition);
+            this.OnShowSkillIndicator(this.SkillCmd);
         }
 
         public override void OnUpdate()

@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using UnityEngine;
+
+namespace ET
 {
     //闪现
     [SkillHandler]
@@ -23,6 +25,8 @@
             {
                 this.PlaySkillEffects(this.TheUnitFrom.Position);
             }
+
+            this.OnShowSkillIndicator(this.SkillCmd);
         }
 
         public override void OnUpdate()

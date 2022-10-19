@@ -38,6 +38,7 @@ namespace ET
         public override void OnExecute()
         {
             PlayBullet_2();  //  播放特效
+            this.OnShowSkillIndicator(this.SkillCmd);
         }
 
         public override void OnUpdate()
