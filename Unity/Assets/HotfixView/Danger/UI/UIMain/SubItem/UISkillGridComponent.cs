@@ -160,13 +160,13 @@ namespace ET
             long targetId = self.DomainScene().CurrentScene().GetComponent<LockTargetComponent>().LastLockId;
             if (self.SkillWuqiConfig.SkillTargetType == (int)SkillTargetType.TargetOnly)
             {
-                Unit nearest = null;
+                Unit targetUnit = null;
                 Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 if (targetId != 0)
                 {
                     UnitComponent unitComponent = self.DomainScene().CurrentScene().GetComponent<UnitComponent>();
-                    nearest = unitComponent.Get(targetId);
-                    if (PositionHelper.Distance2D(nearest, myUnit) >= self.SkillWuqiConfig.SkillRangeSize)
+                    targetUnit = unitComponent.Get(targetId);
+                    if (PositionHelper.Distance2D(targetUnit, myUnit) >= self.SkillWuqiConfig.SkillRangeSize)
                     {
                         FloatTipManager.Instance.ShowFloatTip("距离过远!");
                         return;
@@ -174,19 +174,22 @@ namespace ET
                 }
                 if (targetId == 0)
                 {
-                    nearest = MapHelper.GetNearestUnit(myUnit);
-                    if (nearest == null)
+                    targetUnit = MapHelper.GetNearestUnit(myUnit);
+                    if (targetUnit == null)
                     {
                         FloatTipManager.Instance.ShowFloatTip("请选中施法目标");
                         return;
                     }
-                    if (nearest != null && PositionHelper.Distance2D(nearest, myUnit) >= self.SkillWuqiConfig.SkillRangeSize)
+                    if (targetUnit != null && PositionHelper.Distance2D(targetUnit, myUnit) >= self.SkillWuqiConfig.SkillRangeSize)
                     {
                         FloatTipManager.Instance.ShowFloatTip("请选中施法目标");
                         return;
                     }
-                    targetId = nearest.Id;
+                    targetId = targetUnit.Id;
                 }
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                Vector3 direction = targetUnit.Position - unit.Position;
+                angle = Mathf.FloorToInt(Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg);
             }
 
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);

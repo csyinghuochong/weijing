@@ -165,6 +165,7 @@ namespace ET
             if (!string.IsNullOrEmpty(skillConfig.SkillAnimation) && skillConfig.SkillAnimation != "0")
             {
                 from.Rotation = Quaternion.Euler(0, skillcmd.SkillInfos[0].TargetAngle, 0);
+
                 EventType.FsmChange.Instance.FsmHandlerType = skillConfig.ComboSkillID > 0 ? 5 : 4;
                 EventType.FsmChange.Instance.FsmValue = skillcmd.SkillInfos[0].WeaponSkillID;
                 EventType.FsmChange.Instance.Unit = from;
