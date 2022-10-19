@@ -82,7 +82,6 @@ namespace ET
         public static void Check(this SkillPassiveComponent self)
         {
             self.CheckHuiXue();
-
             self.OnTrigegerPassiveSkill( SkillPassiveTypeEnum.XueLiang_2 );
         }
 
@@ -211,6 +210,7 @@ namespace ET
                 return;
             }
 
+            Unit unit = self.GetParent<Unit>();
             SkillPassiveInfo skillIfo = skillPassiveInfos[RandomHelper.RandomNumber(0, skillPassiveInfos.Count)];
             if (skillPassiveTypeEnum == SkillPassiveTypeEnum.WandBuff_8)
             {
@@ -226,7 +226,7 @@ namespace ET
                     BuffData buffData_1 = new BuffData();
                     buffData_1.BuffConfig = SkillBuffConfigCategory.Instance.Get(buffId);
                     buffData_1.BuffClassScript = buffData_1.BuffConfig.BuffScript;
-                    self.GetParent<Unit>().GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, self.GetParent<Unit>(), null);
+                    unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, unit, null);
                 }
                 return;
             }
@@ -268,27 +268,37 @@ namespace ET
                 return;
             }
 
-            Unit unit = self.GetParent<Unit>();
             long rigidityEndTime = 0;
             if (unit.GetComponent<SkillManagerComponent>().IfCanUseSkill(skillIfo.SkillId) == ErrorCore.ERR_Success)
             {
-                C2M_SkillCmd cmd = new C2M_SkillCmd();
-                cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
-                cmd.SkillID = skillIfo.SkillId;
-                if (targetId == 0 && unit.GetComponent<AIComponent>() != null)
-                {
-                    targetId = unit.GetComponent<AIComponent>().TargetID;
-                }
-                cmd.TargetID = targetId;
-
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIfo.SkillId);
                 if (!string.IsNullOrEmpty(skillConfig.SkillAnimation) && skillConfig.SkillAnimation != "0")
                 {
                     unit.Stop(0);
                 }
-                unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd);
+
+                List<long> targetIdList = new List<long>();
+                AIComponent aIComponent = unit.GetComponent<AIComponent>();
+                if (targetId == 0 && aIComponent != null)
+                {
+                    targetId = aIComponent.TargetID;
+                    targetIdList.Add(targetId);
+                }
+                if (skillConfig.SkillTargetType > 0 && aIComponent != null)
+                {
+                    targetIdList.AddRange(AIHelp.GetNearestEnemy(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetType));
+                }
+                for (int i = 0; i < targetIdList.Count; i++)
+                {
+                    C2M_SkillCmd cmd = new C2M_SkillCmd();
+                    cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+                    cmd.SkillID = skillIfo.SkillId;
+                    cmd.TargetID = targetId;
+                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd,false);
+                }
+
                 skillIfo.LastTriggerTime = TimeHelper.ServerNow();
-                rigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + TimeHelper.ServerNow();
+                rigidityEndTime = (long)(skillConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
             }
             if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
             {

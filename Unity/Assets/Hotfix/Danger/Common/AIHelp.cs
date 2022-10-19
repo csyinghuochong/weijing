@@ -51,7 +51,7 @@ namespace ET
             List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
-                Unit uu = units[i]; 
+                Unit uu = units[i];
                 if (uu.IsDisposed || unit.Id == uu.Id)
                 {
                     continue;
@@ -70,6 +70,81 @@ namespace ET
             return nearest;
         }
 
+        public struct EnemyUnitInfo
+        {
+            public float Distacne;
+            public long UnitID;
+
+            public EnemyUnitInfo(float dis, long unitid)
+            {
+                this.Distacne = dis;
+                this.UnitID = unitid;
+            }
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="maxdis"></param>
+        /// <param name="numberType"></param>
+        /// <returns></returns>
+        public static List<long> GetNearestEnemy(Unit unit, float maxdis, int numberType)
+        {
+            List<EnemyUnitInfo> enemyUnitInfos = new List<EnemyUnitInfo>();
+            List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                Unit uu = units[i];
+                if (uu.IsDisposed || unit.Id == uu.Id)
+                {
+                    continue;
+                }
+                if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(unit))
+                {
+                    continue;
+                }
+                float dd = PositionHelper.Distance2D(unit, uu);
+                if (dd < maxdis)
+                {
+                    enemyUnitInfos.Add(new EnemyUnitInfo() { Distacne = dd, UnitID = uu.Id });
+                }
+            }
+            enemyUnitInfos.Sort(delegate (EnemyUnitInfo a, EnemyUnitInfo b)
+            {
+                return (int)(b.Distacne - a.Distacne);
+            });
+
+            List<long> unitIdList = new List<long>();
+            switch (numberType)
+            {
+                case 1:
+                    unitIdList.Add(enemyUnitInfos[RandomHelper.RandomNumber(0, enemyUnitInfos.Count)].UnitID);
+                    break;
+                case 2:
+                    unitIdList.Add(enemyUnitInfos[0].UnitID);
+                    break;
+                case 3:
+                    unitIdList.Add(enemyUnitInfos[enemyUnitInfos.Count - 1].UnitID);
+                    break;
+                case 21:
+                    int number = enemyUnitInfos.Count >= 2 ? 2 : enemyUnitInfos.Count;
+                    int[] index = RandomHelper.GetRandoms(number, 0, enemyUnitInfos.Count);
+                    for (int i= 0; i < index.Length; i++)
+                    {
+                        unitIdList.Add(enemyUnitInfos[index[i]].UnitID);
+                    }
+                    break;
+                case 101:
+                    for (int i = 0; i < enemyUnitInfos.Count; i++)
+                    {
+                        unitIdList.Add(enemyUnitInfos[i].UnitID);
+                    }
+                    break;
+            }
+
+            return unitIdList;
+        }
+
         public static Unit GetNearestUnit(Unit unit, float maxdis, List<long> ids, long mainId)
         {
             Unit nearest = null;
@@ -78,7 +153,7 @@ namespace ET
             for (int i = 0; i < units.Count; i++)
             {
                 Unit uu = units[i];
-                if (uu.Id  == unit.Id || uu.Id == mainId || ids.Contains(uu.Id) )
+                if (uu.Id == unit.Id || uu.Id == mainId || ids.Contains(uu.Id))
                 {
                     continue;
                 }
