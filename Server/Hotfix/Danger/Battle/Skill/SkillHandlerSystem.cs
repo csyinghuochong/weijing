@@ -328,7 +328,11 @@ namespace ET
             {
                 return;
             }
-
+            if (!SkillBuffConfigCategory.Instance.Contain(buffID))
+            {
+                Log.Debug($"config==null： buffid{buffID}");
+                return;
+            }
             SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffID);
             bool canBuff = false;
             switch (skillBuffConfig.TargetType)
