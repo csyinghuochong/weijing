@@ -228,18 +228,18 @@ namespace ET
 		/// <summary>技能描述</summary>
 		[ProtoMember(51)]
 		public string SkillDescribe { get; set; }
-		/// <summary>触发技能时附带技能</summary>
+		/// <summary>施法时面对目标时间</summary>
 		[ProtoMember(52)]
+		public double IfLookAtTatgetTime { get; set; }
+		/// <summary>触发技能时附带技能</summary>
+		[ProtoMember(53)]
 		public int AddSkillID { get; set; }
 		/// <summary>技能触发时间</summary>
-		[ProtoMember(53)]
+		[ProtoMember(54)]
 		public double PassiveSkillTriggerTime { get; set; }
 		/// <summary>施法时是否面对目标</summary>
-		[ProtoMember(54)]
-		public int IfLookAtTarget { get; set; }
-		/// <summary>施法时面对目标时间</summary>
 		[ProtoMember(55)]
-		public double IfLookAtTatgetTime { get; set; }
+		public int IfLookAtTarget { get; set; }
 		/// <summary>怪物技能延迟</summary>
 		[ProtoMember(56)]
 		public double MonsterDelayTime { get; set; }
