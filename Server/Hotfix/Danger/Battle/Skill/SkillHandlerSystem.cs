@@ -140,7 +140,6 @@ namespace ET
         public static void ExcuteSkillAction(this SkillHandler self)
         {
             List<Unit> entities = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll();
-
             for (int i = entities.Count - 1; i >= 0; i--)
             {
                 Unit uu = entities[i];
