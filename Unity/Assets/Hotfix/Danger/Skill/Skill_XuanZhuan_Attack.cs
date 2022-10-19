@@ -41,7 +41,7 @@ namespace ET
         {
             string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';');
             int range = int.Parse(paraminfos[0]);
-            int addrangle = (int)(this.PassTime * range * 0.001f / this.SkillConf.SkillLiveTime);
+            int addrangle = (int)(this.PassTime * range * 1f / LiveTime);
             int angle = this.SkillCmd.TargetAngle;
             int number = 1;
             int delta = 0;
