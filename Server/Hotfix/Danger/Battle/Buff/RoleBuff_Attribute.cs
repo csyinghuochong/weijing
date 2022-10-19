@@ -128,10 +128,16 @@ namespace ET
                     C2M_SkillCmd cmd = new C2M_SkillCmd();
                     cmd.SkillID = this.BuffData.BuffConfig.buffParameterType;
                     cmd.TargetID = this.TheUnitBelongto.Id;
-                    //cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(this.TheUnitBelongto.Rotation).y;
                     Vector3 direction = this.TheUnitBelongto.Position - this.TheUnitFrom.Position;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
-                    cmd.TargetAngle = Mathf.FloorToInt(ange);
+                    if (direction == Vector3.zero)
+                    {
+                        cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(this.TheUnitBelongto.Rotation).y;
+                    }
+                    else
+                    {
+                        cmd.TargetAngle = Mathf.FloorToInt(ange);
+                    }
                     cmd.TargetDistance = Vector3.Distance(this.TheUnitBelongto.Position, this.TheUnitFrom.Position);
                     this.TheUnitFrom.GetComponent<SkillManagerComponent>().OnUseSkill(cmd);
                     break;
