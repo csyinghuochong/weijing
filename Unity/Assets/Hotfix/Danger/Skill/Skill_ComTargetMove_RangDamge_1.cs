@@ -19,17 +19,8 @@
             int angle = this.SkillCmd.TargetAngle;
             int range = int.Parse(paraminfos[0]);
             int number = int.Parse(paraminfos[1]);
-            int delta = 0;
+            int delta = range / (number - 1);
             int starAngle = angle - (int)(range * 0.5f);
-            if (paraminfos.Length == 2)
-            {
-                range = int.Parse(paraminfos[0]);
-                number = int.Parse(paraminfos[1]);
-            }
-            if (number > 1)
-            {
-                delta = range / (number - 1);
-            }
 
             for (int i = 0; i < number; i++ )
             {
@@ -38,9 +29,6 @@
                 buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(6);
                 buffData.BuffClassScript = buffData.BuffConfig.BuffScript;
                 buffData.TargetAngle = starAngle + i * delta;
-
-                Log.Debug($"angle1111: {this.SkillCmd.TargetAngle} {starAngle} {buffData.TargetAngle}");
-
                 buffData.SkillConfig = this.SkillConf;
                 this.TheUnitFrom.GetComponent<BuffManagerComponent>().BuffFactory(buffData);
 

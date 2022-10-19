@@ -15,17 +15,9 @@ namespace ET
             int angle = this.SkillCmd.TargetAngle;
             int range = int.Parse(paraminfos[0]);
             int number = int.Parse(paraminfos[1]);
-            int delta = 0;
+            int delta = range / (number - 1);
             int starAngle = angle - (int)(range * 0.5f);
-            if (paraminfos.Length == 2)
-            {
-                range = int.Parse(paraminfos[0]);
-                number = int.Parse(paraminfos[1]);
-            }
-            if (number > 1)
-            {
-                delta = range / (number - 1);
-            }
+           
             for (int i = 0; i < 3; i++)
             {
                 this.ICheckShape.Add(this.CreateCheckShape(starAngle + i * delta));
@@ -56,17 +48,9 @@ namespace ET
             int angle = this.SkillCmd.TargetAngle;
             int range = int.Parse(paraminfos[0]);
             int number = int.Parse(paraminfos[1]);
-            int delta = 0;
+            int delta = range / (number - 1);
             int starAngle = angle - (int)(range * 0.5f);
-            if (paraminfos.Length == 2)
-            {
-                range = int.Parse(paraminfos[0]);
-                number = int.Parse(paraminfos[1]);
-            }
-            if (number > 1)
-            {
-                delta = range / (number - 1);
-            }
+           
             int addrangle = (int)(this.PassTime * range * 1f / this.SkillConf.SkillLiveTime);
             for (int i = 0; i < this.ICheckShape.Count; i++)
             {
