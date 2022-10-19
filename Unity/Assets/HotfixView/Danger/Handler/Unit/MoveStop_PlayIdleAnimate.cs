@@ -15,7 +15,6 @@ namespace ET
             int unitType = args.Unit.GetComponent<UnitInfoComponent>().Type;
             if (unitType == UnitType.Player && args.Unit.GetComponent<StateComponent>().StateTypeGet( StateTypeEnum.Obstruct))
             {
-                //args.Unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmRunState);
                 args.Unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.Obstruct);
             }
             else

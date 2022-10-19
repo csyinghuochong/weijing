@@ -20,8 +20,6 @@ namespace ET
 			Vector3 pos = new Vector3(message.X, message.Y, message.Z);
 			if (Vector3.Distance(unit.Position, pos) < 0.2f)
 			{
-				Log.Debug("FsmStateEnum.M2C_Stop < 0.2f");
-
 				Quaternion rotation = new Quaternion(message.A, message.B, message.C, message.W);
 				MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
 				moveComponent.Stop();

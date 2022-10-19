@@ -148,8 +148,6 @@ namespace ET
                 self.ShowObstructTip(obstruct);
                 return;
             }
-            Log.Debug("FsmStateEnum.MoveToAsync2");
-
             myUnit.MoveToAsync2(newv3, true).Coroutine();
             self.lastSendTime = Time.time;
             self.lastDirection = direction;
@@ -228,8 +226,6 @@ namespace ET
         {
             Log.Debug("FsmStateEnum.EndDrag");
 
-            Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            myUnit?.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.Obstruct);
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
             self.HideUI();
         }

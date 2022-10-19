@@ -147,7 +147,6 @@ namespace ET
                     break;
                 case FsmStateEnum.FsmIdleState:
                     self.OnEnterIdleState();
-                    Log.Debug("FsmStateEnum.FsmIdleState");
                     break;
                 case FsmStateEnum.FsmNpcSpeak:
                     //this.ClearnAnimator();
@@ -157,7 +156,6 @@ namespace ET
                     break;
                 case FsmStateEnum.FsmRunState:
                     self.OnEnterFsmFsmRunState(parasmss);
-                    Log.Debug("FsmStateEnum.FsmRunState");
                     break;
                 case FsmStateEnum.FsmShiQuItem:
                     self.Animator.SetBool("Idle", false);
