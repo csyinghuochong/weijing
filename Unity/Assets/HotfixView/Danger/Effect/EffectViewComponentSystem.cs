@@ -99,7 +99,7 @@ namespace ET
                 {
                     continue;
                 }
-                aEffectHandler.UpdateEffectPosition(self.GetParent<Unit>().Position);
+                aEffectHandler.UpdateEffectPosition(self.GetParent<Unit>().Position, -1);
             }
         }
 

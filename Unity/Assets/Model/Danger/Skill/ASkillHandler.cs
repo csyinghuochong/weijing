@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -26,7 +27,7 @@ namespace ET
 
         public Vector3 NowPosition;
 
-        public long EffectInstanceId;
+        public List<long> EffectInstanceId = new List<long>();
 
         /// <summary>
         /// 来自哪个Unit

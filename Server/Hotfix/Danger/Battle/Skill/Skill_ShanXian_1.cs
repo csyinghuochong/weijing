@@ -20,14 +20,14 @@ namespace ET
             {
                 //先触发伤害再跳过去
                 this.UpdateCheckPoint();
-                this.BaseOnExecute();
+                this.InitSelfBuff();
                 this.BaseOnUpdate();
             }
             else
             {
                 //先跳过去再触发伤害
                 TheUnitFrom.Position = this.TargetPosition;
-                this.BaseOnExecute();
+                this.InitSelfBuff();
                 this.BaseOnUpdate();
             }
         }

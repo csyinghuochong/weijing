@@ -46,9 +46,10 @@ namespace ET
             this.NowPosition = this.NowPosition + (move * dir);
             this.NowPosition.y = this.TargetPosition.y + 0.5f;
 
-            EventType.SkillEffectMove.Instance.EffectInstanceId = this.EffectInstanceId;
+            EventType.SkillEffectMove.Instance.EffectInstanceId = this.EffectInstanceId[0];
             EventType.SkillEffectMove.Instance.Unit = this.TheUnitFrom;
             EventType.SkillEffectMove.Instance.Postion = this.NowPosition;
+            EventType.SkillEffectMove.Instance.Angle = -1;
             EventSystem.Instance.PublishClass(EventType.SkillEffectMove.Instance);
 
             dis = PositionHelper.Distance2D(this.NowPosition, this.TargetPosition);

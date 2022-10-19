@@ -55,6 +55,7 @@ namespace ET
 
                 EventType.SkillEffectMove.Instance.Postion = sourcePoint + rotation * Vector3.forward * mRadius;
                 EventType.SkillEffectMove.Instance.Unit = this.TheUnitBelongto;
+                EventType.SkillEffectMove.Instance.Angle = mAngle;
                 EventType.SkillEffectMove.Instance.EffectInstanceId = this.EffectInstanceId;
                 EventSystem.Instance.PublishClass(EventType.SkillEffectMove.Instance);
             }

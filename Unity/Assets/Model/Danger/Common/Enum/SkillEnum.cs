@@ -160,6 +160,7 @@ namespace ET
         public EffectConfig EffectConfig;
 
         public Vector3 EffectPosition;
+        public float EffectAngle;
 
         public bool FollowUnitMove = true;
 

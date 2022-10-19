@@ -48,7 +48,7 @@ namespace ET
         /// </summary>
         public Unit TheUnitFrom;
 
-        public Shape ICheckShape;
+        public List<Shape> ICheckShape;
 
         /// <summary>
         /// 记录是否触发过技能伤害
