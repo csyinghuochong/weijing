@@ -51,9 +51,9 @@ namespace ET
                 Vector3 movePosition = rotation * Vector3.forward * ((PassTime - mDelayTime) * (float)(mSkillConf.SkillMoveSpeed));
                 Vector3 postition = this.StartPosition + movePosition;
 
-
                 EventType.SkillEffectMove.Instance.Postion = postition;
                 EventType.SkillEffectMove.Instance.Unit = this.TheUnitBelongto;
+                EventType.SkillEffectMove.Instance.Angle = this.BuffData.TargetAngle;
                 EventType.SkillEffectMove.Instance.EffectInstanceId = this.EffectInstanceId;
                 EventSystem.Instance.PublishClass(EventType.SkillEffectMove.Instance);
             }

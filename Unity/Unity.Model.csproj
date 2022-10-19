@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.33f1c2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Model\Demo\Move\MoveComponent.cs" />
     <Compile Include="Assets\Model\Core\Object\IUpdateSystem.cs" />
     <Compile Include="Assets\Model\Danger\Common\Helper\PaiMaiHelper.cs" />
@@ -73,6 +76,7 @@
     <Compile Include="Assets\Model\Danger\Common\Component\DropComponent.cs" />
     <Compile Include="Assets\Model\Danger\Common\Component\MapComponent.cs" />
     <Compile Include="Assets\Model\Module\Message\MessageHandlerAttribute.cs" />
+    <Compile Include="Assets\Model\Generate\Config\ZuoQiConfig.cs" />
     <Compile Include="Assets\Model\Generate\Config\TowerRewardConfig.cs" />
     <Compile Include="Assets\Model\Danger\Common\Component\NpcMoveComponent.cs" />
     <Compile Include="Assets\Model\Demo\Helper\PositionHelper.cs" />
@@ -115,6 +119,7 @@
     <Compile Include="Assets\Model\Demo\Unit\AccountInfoComponent.cs" />
     <Compile Include="Assets\Model\Generate\Config\OccupationConfig.cs" />
     <Compile Include="Assets\Model\Danger\Common\Enum\ItemEnum.cs" />
+    <Compile Include="Assets\Model\Generate\Config\ZuoQiNengLiConfig.cs" />
     <Compile Include="Assets\Model\Module\AI\AIConfig.cs" />
     <Compile Include="Assets\Model\Danger\Common\Component\SingingComponent.cs" />
     <Compile Include="Assets\Model\Danger\Common\SkillDispatcherComponent.cs" />
@@ -146,6 +151,7 @@
     <Compile Include="Assets\Model\Module\AI\AAIHandler.cs" />
     <Compile Include="Assets\Model\Core\Timer\TimerAttribute.cs" />
     <Compile Include="Assets\Model\Core\Timer\TimerComponent.cs" />
+    <Compile Include="Assets\Model\Generate\Config\ZuoQiShowConfig.cs" />
     <Compile Include="Assets\Model\Generate\Config\ChengJiuRewardConfig.cs" />
     <Compile Include="Assets\Model\Danger\Common\Helper\ComHelp.cs" />
     <Compile Include="Assets\Model\Generate\Config\TaskCountryConfig.cs" />
@@ -287,9 +293,6 @@
     <Compile Include="Assets\Model\Module\CoroutineLock\CoroutineLockType.cs" />
     <Compile Include="Assets\Model\Module\AI\AIComponent.cs" />
     <Compile Include="Assets\Model\Core\Entity\Scene.cs" />
-    <Compile Include="Assets\Model\Generate\Config\ZuoQiShowConfig.cs" />
-    <Compile Include="Assets\Model\Generate\Config\ZuoQiConfig.cs" />
-    <Compile Include="Assets\Model\Generate\Config\ZuoQiNengLiConfig.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -506,6 +509,9 @@
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -532,6 +538,12 @@
     </Reference>
     <Reference Include="DOTweenEditor">
       <HintPath>Assets\Mono\ThirdRes\GUI Pro Kit Fantasy RPG\SampleProject\Extensions\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -909,5 +921,8 @@
   -->
   <ItemGroup>
     <Compile Include="Codes\Model\**\*.cs" />
+    <ProjectReference Include="..\Tools\Analyzer\Analyzer.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false">
+      <Project>{d1f2986b-b296-4a2d-8f12-be9f470014c3}</Project>
+    </ProjectReference>
   </ItemGroup>
 </Project>

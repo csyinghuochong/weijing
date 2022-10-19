@@ -7,7 +7,6 @@ namespace ET
     [EffectHandler]
     public class RoleSkillEffect: AEffectHandler
     {
-
         public override void OnInit(EffectData effectData, Unit theUnitBelongto)
         {
             this.EffectPath = "";
@@ -39,7 +38,7 @@ namespace ET
                 return;
             }
             int skillParentID = EffectData.EffectConfig != null ? EffectData.EffectConfig.SkillParent : 0;
-            if (EffectData.SkillConfig != null)
+            if (this.EffectData.SkillConfig != null)
             {
                 int rangeType = EffectData.SkillConfig.DamgeRangeType;       //技能范围类型
                 float[] rangeValue = FunctionHelp.Instance.DoubleArrToFloatArr(EffectData.SkillConfig.DamgeRange);          //技能范围
@@ -62,7 +61,6 @@ namespace ET
                     EffectObj.transform.localScale = Vector3.one;
                     EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
                     break;
-
                 //实时跟随玩家位置,但是不跟随旋转
                 case 2:
                     EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);
@@ -70,7 +68,6 @@ namespace ET
                     EffectObj.transform.localScale = Vector3.one;
                     EffectObj.transform.localRotation = Quaternion.Euler(0, EffectData.TargetAngle, 0);
                     break;
-
                 //实时跟随位置,无指定绑点
                 case 3:
                     EffectObj.transform.SetParent(GlobalComponent.Instance.Unit);

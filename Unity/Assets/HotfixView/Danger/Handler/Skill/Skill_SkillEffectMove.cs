@@ -15,7 +15,7 @@ namespace ET
             AEffectHandler aEffectHandler = effectViewComponent.GetEffect(args.EffectInstanceId);
             if (aEffectHandler != null)
             {
-                aEffectHandler.UpdateEffectPosition(args.Postion);
+                aEffectHandler.UpdateEffectPosition(args.Postion, args.Angle);
             }
         }
 

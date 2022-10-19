@@ -27,7 +27,8 @@ namespace ET
             self.DelayHurtTime = (long)(1000 * self.SkillConf.SkillDelayTime);
             self.SkillLiveTime = self.SkillConf.SkillLiveTime + (long)(self.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime));
             self.TargetPosition = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ); //获取起始坐标
-            self.ICheckShape = self.CreateCheckShape();
+            self.ICheckShape = new List<Shape>();
+            self.ICheckShape.Add( self.CreateCheckShape(self.SkillCmd.TargetAngle) );
             self.NowPosition = self.TargetPosition;              //获取技能起始的坐标点
 
             //获取通用脚本参数
@@ -76,7 +77,7 @@ namespace ET
         }
 
         //初始化
-        public static void BaseOnExecute(this SkillHandler self)
+        public static void InitSelfBuff(this SkillHandler self)
         {
             //触发初始化BUFF
             if (self.SkillConf.InitBuffID[0] != 0)
@@ -197,7 +198,14 @@ namespace ET
 
         public static bool CheckShape(this SkillHandler self, Vector3 t_positon)
         {
-            return self.ICheckShape.Contains(t_positon);
+            for (int i = 0; i < self.ICheckShape.Count; i++)
+            {
+                if (self.ICheckShape[i].Contains(t_positon))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public static void TriggeSkillHurt(this SkillHandler self,  Unit uu)
@@ -212,7 +220,6 @@ namespace ET
             {
                 return;
             }
-
             bool clearnTemporary = false;
             if (self.SkillParValueHpUpAct!=null)
             {
@@ -248,7 +255,7 @@ namespace ET
             }
         }
 
-        public static Shape CreateCheckShape(this SkillHandler self)
+        public static Shape CreateCheckShape(this SkillHandler self, int targetAngle)
         {
             Shape ishape = null;
             float addRange = self.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageRange);
@@ -268,14 +275,14 @@ namespace ET
                 case 2:
                     ishape = new Rectangle();
                     (ishape as Rectangle).s_position = self.TargetPosition;
-                    (ishape as Rectangle).s_forward = (Quaternion.Euler(0, self.SkillCmd.TargetAngle, 0) * Vector3.forward).normalized;
+                    (ishape as Rectangle).s_forward = (Quaternion.Euler(0, targetAngle, 0) * Vector3.forward).normalized;
                     (ishape as Rectangle).x_range = (float)(self.SkillConf.DamgeRange[0] ) * 0.5f;
                     (ishape as Rectangle).z_range = (float)(self.SkillConf.DamgeRange[1]  +addRange);
                     break;
                 case 3:
                     ishape = new Fan();
                     (ishape as Fan).s_position = self.TargetPosition;
-                    (ishape as Fan).s_rotation = Quaternion.Euler(0, self.SkillCmd.TargetAngle, 0);
+                    (ishape as Fan).s_rotation = Quaternion.Euler(0, targetAngle, 0);
                     (ishape as Fan).skill_distance = (float)(self.SkillConf.DamgeRange[0]) + addRange;
                     (ishape as Fan).skill_angle = (float)(self.SkillConf.DamgeRange[1]);
                     break;
@@ -290,13 +297,13 @@ namespace ET
             {
                 case 0:
                 case 1:
-                    (self.ICheckShape as Circle).s_position = self.TheUnitFrom.Position;
+                    (self.ICheckShape[0] as Circle).s_position = self.TheUnitFrom.Position;
                     break;
                 case 2:
-                    (self.ICheckShape as Rectangle).s_position = self.TheUnitFrom.Position;
+                    (self.ICheckShape[0] as Rectangle).s_position = self.TheUnitFrom.Position;
                     break;
                 case 3:
-                    (self.ICheckShape as Fan).s_position = self.TheUnitFrom.Position;
+                    (self.ICheckShape[0] as Fan).s_position = self.TheUnitFrom.Position;
                     break;
             }
         }

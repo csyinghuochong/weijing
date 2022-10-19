@@ -39,12 +39,17 @@ namespace ET
         /// 实时更新当前特效位置
         /// </summary>
         
-        public static void UpdateEffectPosition(this AEffectHandler self, Vector3 vec3)
+        public static void UpdateEffectPosition(this AEffectHandler self, Vector3 vec3, float angle)
         {
-            if (self.EffectObj != null)
+            if (self.EffectObj == null)
             {
-                self.EffectObj.transform.position = vec3;
+                return;
             }
+            if (angle != -1)
+            {
+                self.EffectObj.transform.rotation = Quaternion.Euler(0, angle, 0);
+            }
+            self.EffectObj.transform.position = vec3;
         }
         
     }

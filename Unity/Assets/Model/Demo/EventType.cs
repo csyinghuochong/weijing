@@ -411,6 +411,7 @@ namespace ET
             public static readonly SkillEffectMove Instance = new SkillEffectMove();
             public long EffectInstanceId = 0;
             public Vector3 Postion;
+            public float Angle;
             public Unit Unit;
             public override void Dispose()
             {

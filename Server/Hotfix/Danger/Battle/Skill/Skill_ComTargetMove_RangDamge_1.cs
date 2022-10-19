@@ -24,7 +24,7 @@ namespace ET
 
         public override void OnExecute()
         {
-            this.BaseOnExecute();
+            this.InitSelfBuff();
 
             string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';') ;
             int angle = this.SkillCmd.TargetAngle;

@@ -13,7 +13,7 @@
 
         public override void OnExecute()
         {
-            this.BaseOnExecute();
+            this.InitSelfBuff();
             this.OnUpdate();
         }
 

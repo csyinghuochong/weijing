@@ -19,7 +19,7 @@ namespace ET
 
             self.TargetPosition = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ);
             self.LiveTime = (int)self.SkillConf.SkillLiveTime * 0.001f;
-            self.EffectInstanceId = 0;
+            self.EffectInstanceId.Clear();
         }
 
         public static void BaseOnUpdate(this ASkillHandler self)
@@ -54,7 +54,7 @@ namespace ET
         }
 
         //播放技能特效
-        public static void PlaySkillEffects(this ASkillHandler self, Vector3 effectPostion)
+        public static void PlaySkillEffects(this ASkillHandler self, Vector3 effectPostion, float effectAngle = 0f)
         {
             //特效为空直接返回
             if (self.EffectConf == null)
@@ -64,10 +64,11 @@ namespace ET
             playEffectBuffData.SkillConfig = self.SkillConf;                   //技能相关配置
             playEffectBuffData.EffectConfig = self.EffectConf;                 //特效相关配置
             playEffectBuffData.EffectPosition = effectPostion;           //技能目标点
+            playEffectBuffData.EffectAngle = effectAngle;
             playEffectBuffData.TargetAngle = self.SkillCmd.TargetAngle;         //技能角度
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;              //特效类型
             playEffectBuffData.InstanceId = IdGenerater.Instance.GenerateInstanceId();
-            self.EffectInstanceId = playEffectBuffData.InstanceId;
+            self.EffectInstanceId.Add(playEffectBuffData.InstanceId);
 
             EventType.SkillEffect.Instance.EffectData = playEffectBuffData;
             EventType.SkillEffect.Instance.Unit = self.TheUnitFrom;
@@ -76,13 +77,12 @@ namespace ET
 
         public static void EndSkillEffect(this ASkillHandler self)
         {
-            if (self.EffectInstanceId == 0)
+            for (int i = 0; i < self.EffectInstanceId.Count; i++)
             {
-                return;
+                EventType.SkillEffectFinish.Instance.EffectInstanceId = self.EffectInstanceId[i];
+                EventType.SkillEffectFinish.Instance.Unit = self.TheUnitFrom;
+                EventSystem.Instance.PublishClass(EventType.SkillEffectFinish.Instance);
             }
-            EventType.SkillEffectFinish.Instance.EffectInstanceId = self.EffectInstanceId;
-            EventType.SkillEffectFinish.Instance.Unit = self.TheUnitFrom;
-            EventSystem.Instance.PublishClass(EventType.SkillEffectFinish.Instance);
         }
 
         //播放受击特效
