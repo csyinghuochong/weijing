@@ -13,8 +13,8 @@ namespace ET
             this.ICheckShape.Clear();
             string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';');
             int angle = this.SkillCmd.TargetAngle;
-            int range = 0;
-            int number = 1;
+            int range = int.Parse(paraminfos[0]);
+            int number = int.Parse(paraminfos[1]);
             int delta = 0;
             int starAngle = angle - (int)(range * 0.5f);
             if (paraminfos.Length == 2)
@@ -53,9 +53,9 @@ namespace ET
                 return;
             }
             string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';');
-            int range = int.Parse(paraminfos[0]);
             int angle = this.SkillCmd.TargetAngle;
-            int number = 1;
+            int range = int.Parse(paraminfos[0]);
+            int number = int.Parse(paraminfos[1]);
             int delta = 0;
             int starAngle = angle - (int)(range * 0.5f);
             if (paraminfos.Length == 2)

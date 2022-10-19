@@ -28,8 +28,8 @@ namespace ET
 
             string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';') ;
             int angle = this.SkillCmd.TargetAngle;
-            int range = 0;
-            int number = 1;
+            int range = int.Parse(paraminfos[0]);
+            int number = int.Parse(paraminfos[1]);
             int delta = 0;
             int starAngle = angle - (int)(range * 0.5f);
             if (paraminfos.Length == 2)
@@ -49,6 +49,8 @@ namespace ET
                 buffData.BuffClassScript = buffData.BuffConfig.BuffScript;
                 buffData.SkillConfig = this.SkillConf;
                 buffData.TargetAngle = starAngle + i * delta;
+
+                Log.Debug($"angle1111: {angle} {buffData.TargetAngle}");
                 TheUnitFrom.GetComponent<BuffManagerComponent>().BulletFactory(buffData, TheUnitFrom, this);
             }
         }
