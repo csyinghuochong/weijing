@@ -18,6 +18,20 @@ namespace ET
             //1-10 表示 10%-100%
             double addPro = (double)theUnitFrom.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_JumpDisAdd) / 10;
             theUnitFrom.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Speed, (long)(10000 * SkillConf.SkillMoveSpeed *(1 + addPro)));
+
+            Unit targetUnit = theUnitFrom.GetParent<UnitComponent>().Get(skillId.TargetID);
+            if (targetUnit!=null)
+            {
+                if (PositionHelper.Distance2D(theUnitFrom, targetUnit) < 1f)
+                {
+                    TargetPosition = theUnitFrom.Position;
+                }
+                else
+                {
+                    Vector3 dir = theUnitFrom.Position - targetUnit.Position;
+                    TargetPosition = targetUnit.Position + dir.normalized;
+                }
+            }
             OnExecute();
         }
 
