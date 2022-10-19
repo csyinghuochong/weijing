@@ -69,18 +69,14 @@ namespace ET
             }
         }
 
-        public static async ETTask OnDisconnect(this DBSaveComponent self, int domainZone, long userId)
+        public static async ETTask OnExitTeam(this DBSaveComponent self, int domainZone, long userId)
         {
-            long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(domainZone, Enum.GetName(SceneType.Chat)).InstanceId;
             long teamServerId = StartSceneConfigCategory.Instance.GetBySceneName(domainZone, Enum.GetName(SceneType.Team)).InstanceId;
-
-            A2M_ChangeStatusResponse g_SendChatRequest1 = (A2M_ChangeStatusResponse)await ActorMessageSenderComponent.Instance.Call
-                (chatServerId, new M2A_ChangeStatusRequest() { SceneType = (int)SceneType.Chat, UserID = userId, UnitId = 0 });
             A2M_ChangeStatusResponse g_SendChatRequest2 = (A2M_ChangeStatusResponse)await ActorMessageSenderComponent.Instance.Call
-                (teamServerId, new M2A_ChangeStatusRequest() { SceneType = (int)SceneType.Team, UserID = userId, UnitId = 0 });
+                (teamServerId, new M2A_ChangeStatusRequest() { SceneType = (int)SceneType.Team,  UnitId = userId });
         }
 
-        public static async ETTask<int> OnRelogin(this DBSaveComponent self, long gateSessionId)
+        public static void OnRelogin(this DBSaveComponent self, long gateSessionId)
         {
             Unit unit = self.GetParent<Unit>();
             string offLineInfo = $"{unit.DomainZone()}区： " +
@@ -88,21 +84,11 @@ namespace ET
                $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                $"{  TimeHelper.DateTimeNow().ToString()}   二次登录";
             ComHelp.LoginInfo(offLineInfo);
+            //需要通知其他服务器吗？
             Log.Debug(offLineInfo);
-
-            long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Chat)).InstanceId;
-            A2M_ChangeStatusResponse g_SendChatRequest1 = (A2M_ChangeStatusResponse)await ActorMessageSenderComponent.Instance.Call
-                (chatServerId, new M2A_ChangeStatusRequest()
-                {
-                    UnitId = unit.Id,
-                    SceneType = (int)SceneType.Chat,
-                    UserID = unit.GetComponent<UserInfoComponent>().UserInfo.UserId,
-                    GateSessionId = gateSessionId
-                });
-            return g_SendChatRequest1.Error;
         }
 
-        public static async ETTask OnOffLine(this DBSaveComponent self)
+        public static  void OnOffLine(this DBSaveComponent self)
         {
             Unit unit = self.GetParent<Unit>();
             string offLineInfo = $"{unit.DomainZone()}区： " +
@@ -116,16 +102,6 @@ namespace ET
             numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
             unit.GetComponent<UserInfoComponent>().LastLoginTime = TimeHelper.ServerNow();
             DBHelper.UpdateCacheDB(self.GetParent<Unit>()).Coroutine();
-            
-            long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Chat)).InstanceId;
-            A2M_ChangeStatusResponse g_SendChatRequest1 = (A2M_ChangeStatusResponse)await ActorMessageSenderComponent.Instance.Call
-                (chatServerId, new M2A_ChangeStatusRequest()
-                {
-                    SceneType = (int)SceneType.Chat,
-                    UserID = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.UserId,
-                    UnitId = self.GetParent<Unit>().Id,
-                    GateSessionId = 0
-                });
         }
 
         public static void OnLogin(this DBSaveComponent self)
@@ -145,7 +121,7 @@ namespace ET
             }
         }
 
-        public static async ETTask<int> OnDisconnect(this DBSaveComponent self)
+        public static int OnDisconnect(this DBSaveComponent self)
         {
             Unit unit = self.GetParent<Unit>();
             string offLineInfo = $"{unit.DomainZone()}区： " +
@@ -166,7 +142,8 @@ namespace ET
             int domainZone = unit.DomainZone();
             long userId = userInfo.UserId;
 
-            await self.OnDisconnect(domainZone, userInfo.UserId);
+            self.OnExitTeam(domainZone, userInfo.UserId).Coroutine();
+
             Scene scene = unit.DomainScene();
             //TransferHelper.BeforeTransfer(unit);
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
@@ -191,7 +168,6 @@ namespace ET
             }
             if (sceneTypeEnum == (int)SceneTypeEnum.TeamDungeon)
             {
-                //Scene scene = Game.Scene.Get(sceneid);
                 bool haveplayer = scene.GetComponent<TeamDungeonComponent>().IsHavePlayer();
                 if (!haveplayer)
                 {

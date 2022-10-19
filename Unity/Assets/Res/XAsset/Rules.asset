@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 280
+  version: 281
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -4580,6 +4580,8 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Monster/72003012.prefab
   - bundle: 08740f0e48411a867c97676166acb61c.unity3d
     path: Assets/Bundles/Unit/Monster/72003013.prefab
+  - bundle: f0e9b93432814c2b1e8cf8d1188cf25c.unity3d
+    path: Assets/Bundles/Unit/Monster/72003014.prefab
   - bundle: 03a7939d7c54611063c2a598b9d8f8b5.unity3d
     path: Assets/Bundles/Unit/Monster/72004001.prefab
   - bundle: 8cc606394193e709349222d6ecdeb4fa.unity3d
@@ -5643,6 +5645,9 @@ MonoBehaviour:
   - name: 08740f0e48411a867c97676166acb61c.unity3d
     assets:
     - Assets/Bundles/Unit/Monster/72003013.prefab
+  - name: f0e9b93432814c2b1e8cf8d1188cf25c.unity3d
+    assets:
+    - Assets/Bundles/Unit/Monster/72003014.prefab
   - name: 03a7939d7c54611063c2a598b9d8f8b5.unity3d
     assets:
     - Assets/Bundles/Unit/Monster/72004001.prefab
@@ -9798,6 +9803,12 @@ MonoBehaviour:
   - name: e4dff3d3ad947050233550357f03572d.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/MonstersFlower/Animation/FlowersMonster/Monsterflower@Die.fbx
+  - name: e877b3745b402c06c309d9aca0a55f12.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/MonstersFlower/Material/MonstersFlower/MonsterflowerC2.mat
+  - name: 0b99c374687b2498bad791c3a68bbb76.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/MonstersFlower/Texture/MonstersFlower/MonsterflowerC2.png
   - name: 2f3870b3cadf4ccf0340450b9764c1d4.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/Tonton/Texture/tontonB.png
@@ -9883,90 +9894,30 @@ MonoBehaviour:
     assets:
     - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
       Dragon@BiteAttack.FBX
-  - name: 7cead6314009ab44f79cc4cc6dc4527c.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@FlyBiteAttackHigh.FBX
-  - name: 306132e44f352e6acd700906258cbc3b.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@FlyTakeDamage.FBX
-  - name: 2918aa8399dba386e87a512af0e14f65.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@FlyCastSpell.FBX
   - name: 68d60052a66d8c3ce0affdfd26ffca7f.unity3d
     assets:
     - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
       Dragon@Walk.FBX
-  - name: 2ac2313f0b8d92dc6bf7b9215f5ffc03.unity3d
+  - name: e047e61afb1db1281602962dd479ab73.unity3d
     assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@FireBreathAttack.FBX
-  - name: a8ec3801ce28d65bfbf5c128c92646d5.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@TakeDamage.FBX
-  - name: 65ae9a9b65d906021152a3fe11532d1c.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@FlyFireBreathAttackLow.FBX
+    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Textures/FX-Sparks.tga
   - name: ee0a070dc1b9994dc152e567692902c9.unity3d
     assets:
     - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
       Dragon@CastSpell.FBX
-  - name: e047e61afb1db1281602962dd479ab73.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Textures/FX-Sparks.tga
-  - name: f15c43723d7b58c26bbef400c6bf76ff.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@FlyIdle.FBX
-  - name: 9cf77a5691612da7ff7fa06286546013.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@FlyForward.FBX
-  - name: f7c0c043083c57b219b1fc24587f586b.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@FlyBiteAttackLow.FBX
   - name: 6ff9051581625e6e3b2d6e119f0f832f.unity3d
     assets:
     - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Materials/FX-Sparks.mat
-  - name: f55c20d4a33a872d469efadb920afc50.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@Die.FBX
-  - name: 7c997b6af95b04eb0302eb5b68a7e541.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@FlyProjectileAttackHigh.FBX
   - name: 26672021db0be5ce2ac0b44bf2226d36.unity3d
     assets:
     - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Materials/FX-FireBreath.mat
-  - name: d9bbef392ac047d27bbf80f10bdd9ce3.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@FlyProjectileAttackLow.FBX
   - name: 33f8ef97bb143824d7b2dc91eef3390a.unity3d
     assets:
     - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Textures/FX-FireBreath.tga
-  - name: 7f19328b83829c527c045b96cfe043af.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@ProjectileAttack.FBX
   - name: af553ad8cc71c8798c5ce3c163c9f444.unity3d
     assets:
     - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
       Dragon@Run.FBX
-  - name: f257f600db46cc910b82860f87cffc5b.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@FlyFireBreathAttackHigh.FBX
-  - name: 2753b6128ba153427fc8bef4af48d370.unity3d
-    assets:
-    - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/Animations/Fire
-      Dragon@FlyDie.FBX
   - name: b0aa4e1f4e4490999e91c97ddc639764.unity3d
     assets:
     - Assets/Res/MonsterSet/Fire Creatures Pack/Fire Dragon/Legacy/FBX/Fire Dragon.FBX

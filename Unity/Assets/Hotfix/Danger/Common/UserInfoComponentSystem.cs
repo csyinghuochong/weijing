@@ -100,7 +100,7 @@ namespace ET
             return index_2 - index_1;   
         }
 
-        public static async ETTask OnLogin(this UserInfoComponent self, string remoteIp)
+        public static void  OnLogin(this UserInfoComponent self, string remoteIp)
         {
             //跨天登录，则重新请求
             self.RemoteAddress = remoteIp;
@@ -156,19 +156,6 @@ namespace ET
 
             self.LastLoginTime = currentTime;
             self.UserName = self.UserInfo.Name;
-            long gateSeesionId = unit.GetComponent<UnitGateComponent>().GateSessionActorId;
-
-            //聊天服注册
-            long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Chat)).InstanceId;
-            A2M_ChangeStatusResponse g_SendChatRequest = (A2M_ChangeStatusResponse)await ActorMessageSenderComponent.Instance.Call
-                (chatServerId, new M2A_ChangeStatusRequest()
-                {
-                    SceneType = (int)SceneType.Chat,
-                    UnitId = 1,
-                    UserID = unit.GetComponent<UserInfoComponent>().UserInfo.UserId,
-                    UnionId = self.UserInfo.UnionId,
-                    GateSessionId = gateSeesionId
-                });
         }
 
         /// <summary>

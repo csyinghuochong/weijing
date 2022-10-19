@@ -2,44 +2,45 @@
 
 namespace ET
 {
+    [ObjectSystem]
+    public class ChatSceneComponentDestroy : DestroySystem<ChatSceneComponent>
+    {
+        public override void Destroy(ChatSceneComponent self)
+        {
+            foreach (var chatInfoUnit in self.ChatInfoUnitsDict.Values)
+            {
+                chatInfoUnit?.Dispose();
+            }
+        }
+    }
 
     public static class ChatSceneComponentSystem
     {
-
-        public static void OnUnitChangeStatus(this ChatSceneComponent self, M2A_ChangeStatusRequest request)
+        public static void Add(this ChatSceneComponent self, ChatInfoUnit chatInfoUnit)
         {
-            if ( request.UnitId != 0)
+            if (self.ChatInfoUnitsDict.ContainsKey(chatInfoUnit.Id))
             {
-                bool have = false;
-                for (int i = 0; i < self.WordActorList.Count; i++)
-                {
-                    if (self.WordActorList[i].UserId == request.UserID)
-                    {
-                        have = true;
-                        self.WordActorList[i].UnionId = request.UnionId;
-                        self.WordActorList[i].GateSessionActorId = request.GateSessionId;
-                    }
-                }
-                if (!have)
-                {
-                    self.WordActorList.Add(new ChatUnitInfo() { UserId = request.UserID, UnionId = request.UnionId, GateSessionActorId = request.GateSessionId });
-                }
+                Log.Error($"chatInfoUnit is exist! ： {chatInfoUnit.Id}");
+                return;
             }
-            else
-            {
-                for (int i = self.WordActorList.Count - 1; i >= 0; i--)
-                {
-                    if (self.WordActorList[i].UserId == request.UserID)
-                    {
-                        self.WordActorList.RemoveAt(i);
-                    }
-                }
-            }
+            self.ChatInfoUnitsDict.Add(chatInfoUnit.Id, chatInfoUnit);
         }
 
-        public static void OnUnitExitScene(this ChatSceneComponent self)
-        {
 
+        public static ChatInfoUnit Get(this ChatSceneComponent self, long id)
+        {
+            self.ChatInfoUnitsDict.TryGetValue(id, out ChatInfoUnit chatInfoUnit);
+            return chatInfoUnit;
+        }
+
+
+        public static void Remove(this ChatSceneComponent self, long id)
+        {
+            if (self.ChatInfoUnitsDict.TryGetValue(id, out ChatInfoUnit chatInfoUnit))
+            {
+                self.ChatInfoUnitsDict.Remove(id);
+                chatInfoUnit?.Dispose();
+            }
         }
     }
 }

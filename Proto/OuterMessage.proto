@@ -476,21 +476,6 @@ message M2C_Reload // IResponse
 	string Message = 92;
 }
 
-//ResponseType M2C_ServerStop
-message C2M_ServerStop // IRequest
-{
-	int32 RpcId = 90;
-	string Account = 1;
-	string Password = 2;
-}
-
-message M2C_ServerStop // IResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-}
-
 //ResponseType A2C_LoginAccount
 message C2A_LoginAccount // IRequest
 {
@@ -2622,23 +2607,6 @@ message E2C_GMEMailResponse // IMailActorResponse
 
 }
 
-//GM广播
-//ResponseType C2C_GMBroadcastResponse
-message C2C_GMBroadcastRequest // IChatActorRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	
-	string NoticeText = 1;
-}
-
-message C2C_GMBroadcastResponse // IChatActorResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-}
-
 //ResponseType R2C_DBServerInfoResponse
 message C2R_DBServerInfoRequest // IRankActorRequest
 {
@@ -3954,7 +3922,6 @@ message M2C_ActivityRechargeSignResponse // IActorLocationResponse
 }
 
 //组队副本返回
-//ResponseType M2C_TeamDungeonRBornResponse
 message C2M_TeamDungeonRBornRequest // IActorLocationMessage
 {
 	int32 RpcId = 90;

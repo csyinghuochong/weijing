@@ -22,7 +22,7 @@
 
 		public long DBCacheId { get; set; }
 
-		public long ChatServerID { get; set; }
+		public long ChatInfoInstanceId { get; set; }
 
 		public long MailServerID { get; set; }
 

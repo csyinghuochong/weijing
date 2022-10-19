@@ -10,6 +10,9 @@
             {
                 self.AccountId = a;
                 self.UnitId = roleId;
+                self.ChatInfoInstanceId = 0;
+                self.PlayerState = PlayerState.Disconnect;
+                self.ClientSession?.Dispose();
             }
         }
     }

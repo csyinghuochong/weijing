@@ -14,7 +14,7 @@ namespace ET
             //unitComponent.Remove(unit.Id);
 
             //TODD  保存玩家数据到数据库，执行相关下线操作
-            unit.GetComponent<DBSaveComponent>().OnDisconnect().Coroutine();
+            unit.GetComponent<DBSaveComponent>().OnDisconnect();
 
             await ETTask.CompletedTask;
         }

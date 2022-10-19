@@ -389,7 +389,7 @@ namespace ET
 		public long ActorId { get; set; }
 
 		[ProtoMember(1)]
-		public long UserID { get; set; }
+		public long UnitId { get; set; }
 
 		[ProtoMember(2)]
 		public long GateSessionId { get; set; }
@@ -399,9 +399,6 @@ namespace ET
 
 		[ProtoMember(4)]
 		public int SceneType { get; set; }
-
-		[ProtoMember(5)]
-		public long UnitId { get; set; }
 
 	}
 
@@ -2072,6 +2069,68 @@ namespace ET
 	[Message(InnerOpcode.L2A_LoginAccountResponse)]
 	[ProtoContract]
 	public partial class L2A_LoginAccountResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(Chat2G_EnterChat))]
+	[Message(InnerOpcode.G2Chat_EnterChat)]
+	[ProtoContract]
+	public partial class G2Chat_EnterChat: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string Name { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public long GateSessionActorId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Chat2G_EnterChat)]
+	[ProtoContract]
+	public partial class Chat2G_EnterChat: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public long ChatInfoUnitInstanceId { get; set; }
+
+	}
+
+	[ResponseType(nameof(Chat2G_RequestExitChat))]
+	[Message(InnerOpcode.G2Chat_RequestExitChat)]
+	[ProtoContract]
+	public partial class G2Chat_RequestExitChat: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Chat2G_RequestExitChat)]
+	[ProtoContract]
+	public partial class Chat2G_RequestExitChat: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

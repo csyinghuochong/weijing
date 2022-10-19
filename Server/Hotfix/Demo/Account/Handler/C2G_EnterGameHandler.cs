@@ -136,7 +136,7 @@ namespace ET
 						unit.AddComponent<HeroDataComponent>();
 						unit.AddComponent<DBSaveComponent>();
 						unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
-						unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString()).Coroutine();
+						unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString());
 						if (session.DomainZone() == 0)
 						{
 							Log.Debug($"LoginTest C2G_EnterGame session.DomainZone() == 0 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
@@ -146,8 +146,10 @@ namespace ET
 						}
 						Log.Debug($"LoginTest C2G_EnterGame TransferHelper.Transfer; player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId} {session.DomainZone()}");
 						long unitId = unit.Id;
+
+						player.ChatInfoInstanceId = await EnterWorldChatServer(unit);	//登录聊天服
+
 						player.DBCacheId = DBHelper.GetDbCacheId(session.DomainZone());
-						player.ChatServerID = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), Enum.GetName(SceneType.Chat)).InstanceId;
 						player.MailServerID = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
 						player.RankServerID = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
 						player.PaiMaiServerID = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), Enum.GetName(SceneType.PaiMai)).InstanceId;
@@ -183,6 +185,18 @@ namespace ET
 				}
 			}
 
+		}
+
+		private async ETTask<long> EnterWorldChatServer(Unit unit)
+		{
+			long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Chat)).InstanceId;
+			Chat2G_EnterChat chat2G_EnterChat = (Chat2G_EnterChat)await MessageHelper.CallActor(chatServerId, new G2Chat_EnterChat()
+			{ 
+				UnitId = unit.Id,
+				Name = unit.GetComponent<UserInfoComponent>().UserInfo.Name,
+				GateSessionActorId = unit.GetComponent<UnitGateComponent>().GateSessionActorId
+			});
+			return chat2G_EnterChat.ChatInfoUnitInstanceId;
 		}
 	}
 }

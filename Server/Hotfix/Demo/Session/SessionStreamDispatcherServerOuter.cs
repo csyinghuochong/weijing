@@ -58,32 +58,63 @@ namespace ET
                     ActorLocationSenderComponent.Instance.Send(unitId, actorLocationMessage);
                     break;
                 }
-                case IActorRequest actorRequest:  // 分发IActorRequest消息，目前没有用到，需要的自己添加
+				case IDBCacheActorRequest cacheActorRequest:
+				{
+					int rpcId = cacheActorRequest.RpcId;
+					long instanceId = session.InstanceId;
+					long dbCacheId = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().DBCacheId;
+					IResponse response = await ActorMessageSenderComponent.Instance.Call(dbCacheId, cacheActorRequest);
+					if (response == null)
+					{
+						break;
+					}
+					response.RpcId = rpcId;
+					if (session.InstanceId == instanceId)
+					{
+						session.Reply(response);
+					}
+					break;
+				}
+				case IChatActorRequest actorChatInfoRequest:
+					{
+						Player player = Game.EventSystem.Get(session.GetComponent<SessionPlayerComponent>().PlayerInstanceId) as Player;
+						if (player == null || player.IsDisposed || player.ChatInfoInstanceId == 0)
+						{
+							break;
+						}
+
+						int rpcId = actorChatInfoRequest.RpcId; // 这里要保存客户端的rpcId
+						long instanceId = session.InstanceId;
+						IResponse response = await ActorMessageSenderComponent.Instance.Call(player.ChatInfoInstanceId, actorChatInfoRequest);
+						response.RpcId = rpcId;
+						// session可能已经断开了，所以这里需要判断
+						if (session.InstanceId == instanceId)
+						{
+							session.Reply(response);
+						}
+						break;
+					}
+				case IChatActorMessage actorChatInfoMessage:
+					{
+						Player player = Game.EventSystem.Get(session.GetComponent<SessionPlayerComponent>().PlayerInstanceId) as Player;
+						if (player == null || player.IsDisposed || player.ChatInfoInstanceId == 0)
+						{
+							break;
+						}
+
+						ActorMessageSenderComponent.Instance.Send(player.ChatInfoInstanceId, actorChatInfoMessage);
+						break;
+					}
+				case IActorRequest actorRequest:  // 分发IActorRequest消息，目前没有用到，需要的自己添加
                 {
 						IResponse response = null;
 						int rpcId = actorRequest.RpcId;
-						if (actorRequest is IDBCacheActorRequest cacheActorRequest)
-						{
-							long dbCacheId = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().DBCacheId;
-							response = await ActorMessageSenderComponent.Instance.Call(dbCacheId, cacheActorRequest);
-						}
-						else if (actorRequest is IChatActorRequest chatActorRequest)
-						{
-							long chatId = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().ChatServerID;
-							response = await ActorMessageSenderComponent.Instance.Call(chatId, chatActorRequest);
-						}
-						else if (actorRequest is IMailActorRequest mailActorRequest)
+						long instanceId = session.InstanceId;
+						if (actorRequest is IMailActorRequest mailActorRequest)
 						{
 							long chatId = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().MailServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(chatId, mailActorRequest);
 						}
-						//else if (actorRequest is IRechargeActorRequest iRechargeActorRequest)
-						//{
-						//long unitId = session.GetComponent<SessionPlayerComponent>().Player.UnitId;
-						//(irechargeActorRequest as C2R_RechargeRequest).ActorId = unitId;
-						//	long chargeId = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().ChargetServerID;
-						//	response = await ActorMessageSenderComponent.Instance.Call(chargeId, iRechargeActorRequest);
-						//}
 						else if (actorRequest is IRankActorRequest iRankActorRequest)
 						{
 							long rankId = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().RankServerID;
@@ -119,12 +150,10 @@ namespace ET
 							long unionServerID = session.GetComponent<SessionPlayerComponent>().GetMyPlayer().UnionServerID;
 							response = await ActorMessageSenderComponent.Instance.Call(unionServerID, iUnionActorRequest);
 						}
-
 						if (response == null)
 						{
 							break;
 						}
-						long instanceId = session.InstanceId;
 						response.RpcId = rpcId;
 						if (session.InstanceId == instanceId)
 						{

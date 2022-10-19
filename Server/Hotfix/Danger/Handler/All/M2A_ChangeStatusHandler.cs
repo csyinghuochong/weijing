@@ -14,10 +14,6 @@ namespace ET
             {
                 switch (request.SceneType)
                 {
-                    case (int)SceneType.Chat:
-                        ChatSceneComponent chatComponent = scene.GetComponent<ChatSceneComponent>();
-                        chatComponent.OnUnitChangeStatus(request);
-                        break;
                     case (int)SceneType.Team:
                         //处理下线逻辑
                         TeamSceneComponent teamSceneComponent = scene.GetComponent<TeamSceneComponent>();
@@ -25,14 +21,10 @@ namespace ET
                         break;
                     case -1:
                         M2C_HorseNoticeInfo m2C_HorseNoticeInfo = new M2C_HorseNoticeInfo() { NoticeType = HorseType.StopSever, NoticeText = "停服维护" };
-                        chatComponent = scene.GetComponent<ChatSceneComponent>();
-                        for (int i = 0; i < chatComponent.WordActorList.Count; i++)
+                        ChatSceneComponent chatInfoUnitsComponent = scene.GetComponent<ChatSceneComponent>();
+                        foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
                         {
-                            if (chatComponent.WordActorList[i].GateSessionActorId == 0)
-                            {
-                                continue;
-                            }
-                            MessageHelper.SendActor(chatComponent.WordActorList[i].GateSessionActorId, m2C_HorseNoticeInfo);
+                            MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_HorseNoticeInfo);
                         }
                         reply();
                         break;

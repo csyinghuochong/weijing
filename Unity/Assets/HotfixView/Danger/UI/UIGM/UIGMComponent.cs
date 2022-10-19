@@ -31,8 +31,6 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Button_ServerClose = rc.Get<GameObject>("Button_ServerClose");
-            ButtonHelp.AddListenerEx( self.Button_ServerClose, () => { self.OnButton_ServerClose().Coroutine();  } );
-
             self.Button_ReLoad = rc.Get<GameObject>("Button_ReLoad");
             self.InputField_Broadcast = rc.Get<GameObject>("InputField_Broadcast");
             self.InputField_EmailTitle = rc.Get<GameObject>("InputField_EmailTitle");
@@ -43,7 +41,6 @@ namespace ET
             self.InputField_ReLoadType = rc.Get<GameObject>("InputField_ReLoadType");
 
             self.Button_Broadcast = rc.Get<GameObject>("Button_Broadcast");
-            self.Button_Broadcast.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Broadcast().Coroutine(); });
             self.Button_Email = rc.Get<GameObject>("Button_Email");
             self.Button_Email.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Email().Coroutine(); });
 
@@ -59,12 +56,6 @@ namespace ET
 
     public static class UIGMComponentSystem
     {
-
-        public static async ETTask OnButton_Broadcast(this UIGMComponent self)
-        {
-            C2C_GMBroadcastRequest c2S_SendChatRequest = new C2C_GMBroadcastRequest() { NoticeText = self.InputField_Broadcast.GetComponent<InputField>().text };
-            C2C_GMBroadcastResponse sendChatResponse = (C2C_GMBroadcastResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2S_SendChatRequest);
-        }
 
         public static async ETTask OnButton_Email(this UIGMComponent self)
         {
@@ -119,16 +110,6 @@ namespace ET
             }
             session.Dispose();
             //self.ZoneScene().GetComponent<SessionComponent>().Session.Call(new C2M_Reload() { Account = "tcg", Password = "tcg" }) as M2C_Reload;
-        }
-
-        public static async ETTask OnButton_ServerClose(this UIGMComponent self)
-        {
-            Session session = self.DomainScene().GetComponent<SessionComponent>().Session;
-            {
-                M2C_ServerStop m2C_Reload = await session.Call(new C2M_ServerStop() { Account = "tcg", Password = "tcg" }) as M2C_ServerStop;
-            }
-            session.Dispose();
-            await ETTask.CompletedTask;
         }
 
         public static async ETTask RequestGMInfo(this UIGMComponent self)

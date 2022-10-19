@@ -984,37 +984,6 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_ServerStop))]
-	[Message(OuterOpcode.C2M_ServerStop)]
-	[ProtoContract]
-	public partial class C2M_ServerStop: Object, IRequest
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(1)]
-		public string Account { get; set; }
-
-		[ProtoMember(2)]
-		public string Password { get; set; }
-
-	}
-
-	[Message(OuterOpcode.M2C_ServerStop)]
-	[ProtoContract]
-	public partial class M2C_ServerStop: Object, IResponse
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(91)]
-		public int Error { get; set; }
-
-		[ProtoMember(92)]
-		public string Message { get; set; }
-
-	}
-
 	[ResponseType(nameof(A2C_LoginAccount))]
 	[Message(OuterOpcode.C2A_LoginAccount)]
 	[ProtoContract]
@@ -5538,38 +5507,6 @@ namespace ET
 
 	}
 
-//GM广播
-	[ResponseType(nameof(C2C_GMBroadcastResponse))]
-	[Message(OuterOpcode.C2C_GMBroadcastRequest)]
-	[ProtoContract]
-	public partial class C2C_GMBroadcastRequest: Object, IChatActorRequest
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public string NoticeText { get; set; }
-
-	}
-
-	[Message(OuterOpcode.C2C_GMBroadcastResponse)]
-	[ProtoContract]
-	public partial class C2C_GMBroadcastResponse: Object, IChatActorResponse
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(91)]
-		public int Error { get; set; }
-
-		[ProtoMember(92)]
-		public string Message { get; set; }
-
-	}
-
 	[ResponseType(nameof(R2C_DBServerInfoResponse))]
 	[Message(OuterOpcode.C2R_DBServerInfoRequest)]
 	[ProtoContract]
@@ -8252,7 +8189,6 @@ namespace ET
 	}
 
 //组队副本返回
-	[ResponseType(nameof(M2C_TeamDungeonRBornResponse))]
 	[Message(OuterOpcode.C2M_TeamDungeonRBornRequest)]
 	[ProtoContract]
 	public partial class C2M_TeamDungeonRBornRequest: Object, IActorLocationMessage
@@ -8265,15 +8201,24 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_TeamDungeonRBornResponse)]
+	[Message(OuterOpcode.M2C_TeamDungeonRBornResult)]
 	[ProtoContract]
-	public partial class M2C_TeamDungeonRBornResponse: Object, IActorMessage
+	public partial class M2C_TeamDungeonRBornResult: Object, IActorMessage
 	{
 		[ProtoMember(1)]
 		public long ActorId { get; set; }
 
 		[ProtoMember(2)]
 		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public float X { get; set; }
+
+		[ProtoMember(4)]
+		public float Y { get; set; }
+
+		[ProtoMember(5)]
+		public float Z { get; set; }
 
 	}
 

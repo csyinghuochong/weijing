@@ -29,15 +29,16 @@
     {
     }
 
+    public interface IChatActorMessage : IActorMessage
+    { 
+    
+    }
+
     public interface IMailActorRequest : IActorRequest
     {
     }
 
     public interface IMailActorResponse : IActorResponse
-    {
-    }
-
-    public interface IRechargeActorRequest : IActorRequest
     {
     }
 

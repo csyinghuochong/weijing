@@ -6,24 +6,23 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, G2M_RequestEnterGameState request, M2G_RequestEnterGameState response, Action reply)
         {
-            int errorCode = ErrorCode.ERR_Success;
             try
             {
                 if (request.GateSessionActorId != 0)
                 {
-                    errorCode = await unit.GetComponent<DBSaveComponent>().OnRelogin(request.GateSessionActorId);
+                    unit.GetComponent<DBSaveComponent>().OnRelogin(request.GateSessionActorId);
                 }
                 else
                 {
-                    errorCode = await unit.GetComponent<DBSaveComponent>().OnDisconnect();
+                    unit.GetComponent<DBSaveComponent>().OnDisconnect();
                 }
             }
             catch (Exception ex)
             {
                 Log.Debug($" {unit.Id}  {ex.ToString()}");
             }
-            response.Error = errorCode; 
             reply();
+            await ETTask.CompletedTask; 
         }
     }
 }

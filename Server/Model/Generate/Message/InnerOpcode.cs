@@ -125,5 +125,9 @@ namespace ET
 		 public const ushort E2M_GMEMailSendResponse = 20122;
 		 public const ushort A2L_LoginAccountRequest = 20123;
 		 public const ushort L2A_LoginAccountResponse = 20124;
+		 public const ushort G2Chat_EnterChat = 20125;
+		 public const ushort Chat2G_EnterChat = 20126;
+		 public const ushort G2Chat_RequestExitChat = 20127;
+		 public const ushort Chat2G_RequestExitChat = 20128;
 	}
 }

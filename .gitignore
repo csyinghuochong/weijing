@@ -52,6 +52,7 @@ Server/.DS_Store
 .objs/
 /Unity/.gradle
 /*.user
+Unity2/
 /ToolsApp/
 /Unity/Unity.Editor.csproj
 /Unity/Unity.Hotfix.csproj
