@@ -333,13 +333,15 @@ namespace ET
             string[] attributeList_1 = summonInfo[4].Split(',');
             string[] attributeList_2 = summonInfo[5].Split(',');
 
-            numericComponent.Set((int)NumericType.Base_MaxHp_Base, (int)(monsterConfig.Hp), false);
-            numericComponent.Set((int)NumericType.Base_MinAct_Base, (int)(monsterConfig.Act), false);
-            numericComponent.Set((int)NumericType.Base_MaxAct_Base, (int)(monsterConfig.Act), false);
-            numericComponent.Set((int)NumericType.Base_MinDef_Base, monsterConfig.Def, false);
-            numericComponent.Set((int)NumericType.Base_MaxDef_Base, monsterConfig.Def, false);
-            numericComponent.Set((int)NumericType.Base_MinAdf_Base, monsterConfig.Adf, false);
-            numericComponent.Set((int)NumericType.Base_MaxAdf_Base, monsterConfig.Adf, false);
+            numericComponent.Set((int)NumericType.Now_Lv, masterUnit.GetComponent<UserInfoComponent>().UserInfo.Lv , false);
+            numericComponent.Set((int)NumericType.Base_MaxHp_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp) * float.Parse(attributeList_1[0])), false);
+            numericComponent.Set((int)NumericType.Base_MinAct_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MinAct) * float.Parse(attributeList_1[1])), false);
+            numericComponent.Set((int)NumericType.Base_MaxAct_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[1])), false);
+            numericComponent.Set((int)NumericType.Base_Mage_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Mage) * float.Parse(attributeList_1[2])), false);
+            numericComponent.Set((int)NumericType.Base_MinDef_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[3])), false);
+            numericComponent.Set((int)NumericType.Base_MaxDef_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[3])), false);
+            numericComponent.Set((int)NumericType.Base_MinAdf_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[4])), false);
+            numericComponent.Set((int)NumericType.Base_MaxAdf_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[4])), false);
             numericComponent.Set((int)NumericType.Base_Speed_Base, monsterConfig.MoveSpeed, false);
             numericComponent.Set((int)NumericType.Base_Cri_Base, monsterConfig.Cri, false);
             numericComponent.Set((int)NumericType.Base_Res_Base, monsterConfig.Res, false);
@@ -357,6 +359,7 @@ namespace ET
             //设置当前血量
             numericComponent.NumericDic[(int)NumericType.Now_Hp] = numericComponent.NumericDic[(int)NumericType.Now_MaxHp];
             //Log.Debug("初始化当前怪物血量:" + numericComponent.GetAsLong(NumericType.Now_Hp));
+
         }
 
         /// <summary>

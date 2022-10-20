@@ -61,6 +61,8 @@
         public const int UseMasterModel = 3058;                                  //使用主人形象
         public const int RechargeSign = 3059;                                    //签到充值奖励，每日重置
         public const int RechargeBuChang = 3060;                                 //充值补偿
+        public const int Now_Lv = 3061;                                         //当前等级
+
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值
