@@ -114,7 +114,7 @@ namespace ET
 
         public static void Draging(this UISkillGridComponent self, PointerEventData eventData)
         {
-            if (self.IfShowSkillZhishi() == false)
+            if (self.IfShowSkillZhishi() == false || !self.UseSkill)
             {
                 return;
             }
@@ -129,11 +129,10 @@ namespace ET
         public static void EndDrag(this UISkillGridComponent self, PointerEventData eventData)
         {
             self.SkillCancelHandler(false);
-            if (!self.UseSkill)
+            if (self.IfShowSkillZhishi() == false || !self.UseSkill)
+            {
                 return;
-            if (self.IfShowSkillZhishi() == false)
-                return;
-
+            }
             self.UseSkill = false;
             self.SendUseSkill(self.GetTargetAngle(), self.GetTargetDistance());
             self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
