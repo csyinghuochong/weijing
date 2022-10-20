@@ -75,7 +75,7 @@ namespace ET
             //刷新主界面
             UI ui = UIHelper.GetUI(scene, UIType.UIMain);
             UIMainComponent uimain = ui.GetComponent<UIMainComponent>();
-            uimain.OnEnterScene(sceneTypeEnum);
+            uimain.AfterEnterScene(sceneTypeEnum);
         }
 
         public static void  UpdateChuanSong(this SceneManagerComponent self, Scene scene, int sceneTypeEnum)

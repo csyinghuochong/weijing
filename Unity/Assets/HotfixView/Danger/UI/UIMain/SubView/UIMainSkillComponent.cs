@@ -122,6 +122,14 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
+        public static void CancelSkill(this UIMainSkillComponent self)
+        {
+            for (int i = 0; i < self.UISkillGirdList.Count; i++)
+            {
+                self.UISkillGirdList[i].UseSkill = false;
+            }
+        }
+
         public static void ResetUI(this UIMainSkillComponent self, bool reset)
         {
             if (!reset)

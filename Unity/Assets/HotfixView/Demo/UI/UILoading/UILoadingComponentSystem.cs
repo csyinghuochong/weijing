@@ -246,7 +246,7 @@ namespace ET
             Camera camera = UIComponent.Instance.MainCamera;
             camera.GetComponent<Camera>().fieldOfView = 50;
             sceneManagerComponent.SceneAssetRequest = null;
-            uimain.GetComponent<UIMainComponent>().OnEnterScene(sceneTypeEnum);
+            uimain.GetComponent<UIMainComponent>().AfterEnterScene(sceneTypeEnum);
             switch (sceneTypeEnum)
             {
                 case (int)SceneTypeEnum.CellDungeon:

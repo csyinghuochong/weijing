@@ -795,14 +795,22 @@ namespace ET
             //}
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
         public static void BeginChangeScene(this UIMainComponent self)
         {
             self.UIJoystickMoveComponent.draging = false;
+            self.UIMainSkillComponent.CancelSkill();
         }
-
        
-
-        public static void OnEnterScene(this UIMainComponent self, int sceneTypeEnum)
+        /// <summary>
+        /// 场景加载完成
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="sceneTypeEnum"></param>
+        public static void AfterEnterScene(this UIMainComponent self, int sceneTypeEnum)
         {
             self.UITiaoZhan.SetActive(sceneTypeEnum == SceneTypeEnum.Tower);
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);

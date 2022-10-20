@@ -64,11 +64,11 @@ namespace ET
 
         public static void OnCancel(this UISkillGridComponent self, PointerEventData eventData)
         {
-            Log.Debug("OnPointerOnCancel");
         }
 
         public static void ResetUI(this UISkillGridComponent self)
         {
+
             self.Text_SkillCD.SetActive(false);
             self.Img_SkillCD.SetActive(false);
         }
