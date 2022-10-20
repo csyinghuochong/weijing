@@ -49,7 +49,7 @@ namespace ET
         {
             List<long> selected = new List<long>();
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            RolePetInfo fightPetInfo = petComponent.GetFightPetInfo();
+            RolePetInfo fightPetInfo = petComponent.GetFightPet();
             List<long> petTeamList = new List<long>();
             petTeamList.AddRange( petComponent.TeamPetList);
             petTeamList.AddRange(petComponent.PetFormations);

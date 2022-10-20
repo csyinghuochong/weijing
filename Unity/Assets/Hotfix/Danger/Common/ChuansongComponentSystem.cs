@@ -57,9 +57,8 @@ namespace ET
                return;
             }
             self.ChuanSongOpen = false;
-
             //EnterFubenHelp.EnterSonFubenRequest(self.ZoneScene(), self.CellIndex, self.DirectionType).Coroutine();
-            int transfer = self.GetParent<Unit>().GetComponent<UnitInfoComponent>().UnitCondigID;
+            int transfer = self.GetParent<Unit>().ConfigId;
             EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.LocalDungeon,  0, transfer).Coroutine();
         }
     }

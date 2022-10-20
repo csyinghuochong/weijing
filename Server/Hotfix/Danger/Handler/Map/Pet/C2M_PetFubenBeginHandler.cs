@@ -14,8 +14,7 @@ namespace ET
             List<Unit> allunits = unit.DomainScene().GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < allunits.Count; i++)
             {
-                UnitInfoComponent unitInfoComponent = allunits[i].GetComponent<UnitInfoComponent>();
-                if (unitInfoComponent.Type!= UnitType.Pet && unitInfoComponent.Type!= UnitType.Monster)
+                if (allunits[i].Type!= UnitType.Pet && allunits[i].Type!= UnitType.Monster)
                 {
                     continue;
                 }

@@ -375,7 +375,7 @@ namespace ET
 
         public static void OnUpdateHP(this UIMainComponent self, Unit unit, int sceneType)
         {
-            int unitType = unit.GetComponent<UnitInfoComponent>().Type;
+            int unitType = unit.Type;
             if (sceneType == SceneTypeEnum.TeamDungeon && unitType == UnitType.Player)
             {
                 self.UIMainTeam.OnUpdateHP(unit);
@@ -533,7 +533,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (unit.GetComponent<UnitInfoComponent>().Type != UnitType.Npc)
+                if (unit.Type != UnitType.Npc)
                 {
                     continue;
                 }
@@ -990,7 +990,7 @@ namespace ET
             for (int i = 0; i < units.Count; i++)
             {
                 unitInfoComponent = units[i].GetComponent<UnitInfoComponent>();
-                if (unitInfoComponent.Type != UnitType.Npc)
+                if (units[i].Type != UnitType.Npc)
                 {
                     continue;
                 }
@@ -1007,7 +1007,7 @@ namespace ET
             {
                 return;
             }
-            self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc.GetComponent<UnitInfoComponent>().UnitCondigID);
+            self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc.ConfigId);
         }
 
         public static void OnShowFubenIndex(this UIMainComponent self)

@@ -3,7 +3,12 @@
 namespace ET
 {
 
-
+    public static class CampEnum
+    {
+        public const int CampPlayer_1 = 1;
+        public const int CampPlayer_2 = 2;
+        public const int CampMonster1 = 3;
+    }
 
     public static class LoginTypeEnum
     {

@@ -93,7 +93,7 @@ namespace ET
 						}
 						break;
 					case (int)SceneTypeEnum.LocalDungeon:
-						unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TaskDungeonID, request.ChapterId, false);
+						unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TaskDungeonId, request.ChapterId, false);
 						DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(request.ChapterId);
 						scene.GetComponent<MapComponent>().NavMeshId = dungeonConfig.MapID.ToString();
 
@@ -144,7 +144,7 @@ namespace ET
 						if (request.SceneType == (int)SceneTypeEnum.Tower)
 						{
 							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
-							unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Tower_ID, 0, true);
+							unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TowerId, 0, true);
 							scene.GetComponent<TowerComponent>().MainUnit = unit;
 							scene.GetComponent<TowerComponent>().BeginTower(request.ChapterId);
 							//FubenHelp.CreateMonsterList(scene, FubenDifficulty.Normal, sceneConfig.CreateMonster).Coroutine();

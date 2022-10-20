@@ -50,7 +50,7 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            int unitType = unitInfoComponent.Type;
+            int unitType = unit.Type;
             switch (unitType)
             {
                 case UnitType.Player:
@@ -61,17 +61,17 @@ namespace ET
                     {
                         return;
                     }
-                    int occId = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
+                    int occId = unit.ConfigId;
                     var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occId).ModelAsset}");
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     break;
                 case UnitType.Monster:
-                    int monsterId = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
+                    int monsterId = unit.ConfigId;
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(monsterId);
                     int userMaterModel = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UseMasterModel);
                     if (userMaterModel == 1)
                     {
-                        long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
+                        long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
                         Unit master = unit.GetParent<UnitComponent>().Get(masterId);
                         GameObject gameObject = GameObject.Instantiate(master.GetComponent<GameObjectComponent>().GameObject);
                         self.OnLoadGameObject(gameObject, self.InstanceId);
@@ -85,7 +85,7 @@ namespace ET
                     break;
                 case UnitType.Pet:
                     int skinId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetSkin);
-                    int configId = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
+                    int configId = unit.ConfigId;
                     PetConfig petConfig = PetConfigCategory.Instance.Get(configId);
                     if (skinId == 0)
                     {
@@ -96,7 +96,7 @@ namespace ET
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     break;
                 case UnitType.Npc:
-                    int npcId = unitInfoComponent.UnitCondigID;
+                    int npcId = unit.ConfigId;
                     NpcConfig config = NpcConfigCategory.Instance.Get(npcId);
                     path = ABPathHelper.GetUnitPath("Npc/" + config.Asset);
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
@@ -131,7 +131,7 @@ namespace ET
             self.GameObject = go;
 
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            int unitType = unitInfoComponent.Type;
+            int unitType = unit.Type;
             switch (unitType)
             {
                 case UnitType.Player:
@@ -167,7 +167,7 @@ namespace ET
                     break;
                 case UnitType.Monster:
                     go.transform.name = unit.Id.ToString();
-                    MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unitInfoComponent.UnitCondigID);
+                    MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                     if (monsterCof.AI != 0)
                     {
                         unit.AddComponent<EffectViewComponent>(true);            //添加特效组建
@@ -231,7 +231,7 @@ namespace ET
                         box.center = new Vector3(0f, 1f, 0f);
                     }
                     unit.UpdateUIType = HeadBarType.NpcHeadBarUI;
-                    go.name = unitInfoComponent.UnitCondigID.ToString();
+                    go.name = unit.ConfigId.ToString();
                     unit.AddComponent<AnimatorComponent>();
                     unit.AddComponent<HeroTransformComponent>();
                     unit.AddComponent<NpcHeadBarComponent>();
@@ -264,7 +264,7 @@ namespace ET
                             break;
                     }
                     unit.UpdateUIType = HeadBarType.TransferUI;
-                    unit.AddComponent<TransferUIComponent>().OnInitUI(unitInfoComponent.UnitCondigID).Coroutine();
+                    unit.AddComponent<TransferUIComponent>().OnInitUI(unit.ConfigId).Coroutine();
                     unit.GetComponent<ChuansongComponent>().ChuanSongOpen = true;
                     break;
             }

@@ -30,7 +30,7 @@ namespace ET
         {
             for (int i = 0; i < rolePetInfo.Ks.Count; i++)
             {
-                if (rolePetInfo.Ks[i] ==numericType)
+                if (rolePetInfo.Ks[i] == numericType)
                 {
                     return rolePetInfo.Vs[i];
                 }
@@ -52,7 +52,13 @@ namespace ET
             return null;
         }
 
-        public static RolePetInfo GetFightPetInfo(this PetComponent self)
+        public static long GetFightPetId(this PetComponent self)
+        {
+            RolePetInfo rolePetInfo = self.GetFightPet();
+            return rolePetInfo!=null ? rolePetInfo.Id : 0;  
+        }
+
+        public static RolePetInfo GetFightPet(this PetComponent self)
         {
             for (int i = self.RolePetInfos.Count - 1; i >= 0; i--)
             {

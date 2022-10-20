@@ -10,7 +10,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_RandomTowerBeginRequest request, M2C_RandomTowerBeginResponse response, Action reply)
         {
-            int randomTowerid = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerID);
+            int randomTowerid = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerId);
             if (randomTowerid == 0)
             {
                 List<RandomTowerConfig> randomTowerConfigs = RandomTowerConfigCategory.Instance.GetAll().Values.ToList();

@@ -10,7 +10,9 @@ namespace ET
 	        Unit unit = unitComponent.AddChildWithId<Unit, int>(unitInfo.UnitId, (int)unitInfo.ConfigId);
 	        unitComponent.Add(unit);
 			unit.MainHero = mainHero;
-	        unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
+			unit.Type = UnitType.Player;
+			unit.ConfigId = unitInfo.PlayerOcc;
+			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
 	        unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
 	        
 	        NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
@@ -26,12 +28,9 @@ namespace ET
 			unit.AddComponent<SkillManagerComponent>();
 
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-			unitInfoComponent.Type = UnitType.Player;
 			unitInfoComponent.UserID = unitInfo.UserId;
-			unitInfoComponent.RoleCamp = unitInfo.RoleCamp;
 			unitInfoComponent.PlayerName = unitInfo.PlayerName;
 			unitInfoComponent.StallName = unitInfo.StallName;
-			unitInfoComponent.UnitCondigID = unitInfo.PlayerOcc;
 			unitInfoComponent.UnionName = string.IsNullOrEmpty(unitInfo.UnionName) ? "" : unitInfo.UnionName;
 
 			unit.AddComponent<MoveComponent>();
@@ -59,7 +58,8 @@ namespace ET
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(unitInfo.UnitId, 1);
 			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
 			unitComponent.Add(unit);
-
+			unit.Type = UnitType.Monster;
+			unit.ConfigId = unitInfo.MonsterID;
 			unit.AddComponent<MoveComponent>();
 			NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 			for (int i = 0; i < unitInfo.Ks.Count; ++i)
@@ -71,9 +71,6 @@ namespace ET
 			unit.AddComponent<HeroDataComponent>(true);
 			unit.AddComponent<StateComponent>(true);
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-			unitInfoComponent.Type = UnitType.Monster;
-			unitInfoComponent.RoleCamp = unitInfo.RoleCamp;
-			unitInfoComponent.UnitCondigID = unitInfo.MonsterID;
 			unitInfoComponent.EnergySkillId = unitInfo.SkillId;
 			
 			MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unitInfo.MonsterID);
@@ -92,6 +89,8 @@ namespace ET
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(rolePetInfo.Id, 1);
 			unit.Position = new Vector3(rolePetInfo.X, rolePetInfo.Y, rolePetInfo.Z);
+			unit.Type = UnitType.Pet;
+			unit.ConfigId = rolePetInfo.ConfigId;
 			unitComponent.Add(unit);
 		
 			unit.AddComponent<MoveComponent>();
@@ -106,9 +105,6 @@ namespace ET
 			unit.AddComponent<SkillManagerComponent>();
 
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-			unitInfoComponent.Type = UnitType.Pet;
-			unitInfoComponent.RoleCamp = rolePetInfo.RoleCamp;
-			unitInfoComponent.UnitCondigID = rolePetInfo.ConfigId;
 			unitInfoComponent.PlayerName = rolePetInfo.PlayerName;
 
 			UnitHelper.OnAfterCreateUnit(unit);
@@ -121,12 +117,12 @@ namespace ET
 			long unitId = dropinfo.DropType == 1 ? IdGenerater.Instance.GenerateId() : dropinfo.UnitId;
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(unitId, 1);
 			unit.Position = new Vector3(dropinfo.X, dropinfo.Y, dropinfo.Z);
+			unit.Type = UnitType.DropItem;
 			unitComponent.Add(unit);
 
 			dropinfo.UnitId = unitId;
 			unit.AddComponent<DropComponent>().DropInfo =  dropinfo;
-			unit.AddComponent<UnitInfoComponent>().Type = UnitType.DropItem;
-
+			
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
 		}
@@ -137,15 +133,14 @@ namespace ET
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(transferInfo.UnitId, 1);
 			unit.Position = new Vector3(transferInfo.X, transferInfo.Y, transferInfo.Z);
+			unit.Type = UnitType.Chuansong;
+			unit.ConfigId = transferInfo.TransferId;
 			unitComponent.Add(unit);
 
 			ChuansongComponent chuansongComponent = unit.AddComponent<ChuansongComponent>();
 			chuansongComponent.CellIndex = transferInfo.CellIndex;
 			chuansongComponent.DirectionType = transferInfo.Direction;
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-			unitInfoComponent.Type = UnitType.Chuansong;
-			unitInfoComponent.UnitCondigID = transferInfo.TransferId;
-
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
 		}
@@ -158,6 +153,8 @@ namespace ET
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(npcInfo.UnitId, 1);
 			unit.Position = new Vector3(npcInfo.X, npcInfo.Y, npcInfo.Z);
 			unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
+			unit.Type = UnitType.Npc;
+			unit.ConfigId = npcInfo.NpcID;
 			unitComponent.Add(unit);
 
 			unit.AddComponent<MoveComponent>();
@@ -165,9 +162,6 @@ namespace ET
 			NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 			numericComponent.Set((int)NumericType.Now_Speed, 3.0f);
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-			unitInfoComponent.Type = UnitType.Npc;
-			unitInfoComponent.UnitCondigID = npcInfo.NpcID;
-
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
 		}

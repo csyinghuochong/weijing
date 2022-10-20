@@ -119,25 +119,25 @@ namespace ET
             for (int i = 0; i < entities.Count; i++)
             { 
                 UnitInfoComponent unitInfo = entities[i].GetComponent<UnitInfoComponent>();
-                if (unitInfo.Type == UnitType.Monster)
+                if (entities[i].Type == UnitType.Monster)
                 {
                     GameObject gameObject = GameObject.Instantiate(self.UIMonsterHp);
                     UICommonHelper.SetParent(gameObject, self.MonsterHpNode);
                     gameObject.SetActive(true);
 
-                    MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unitInfo.UnitCondigID);
+                    MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(entities[i].ConfigId);
                     gameObject.transform.Find("Lal_Name").GetComponent<TMPro.TextMeshProUGUI>().text = monsterCof.MonsterName;
                     gameObject.transform.Find("Lal_Lv").GetComponent<TextMeshProUGUI>().text = monsterCof.Lv.ToString();
                     self.HpList.Add(entities[i].Id, gameObject);
                     continue;
                 }
-                if (unitInfo.Type == UnitType.Pet)
+                if (entities[i].Type == UnitType.Pet)
                 {
                     GameObject gameObject = GameObject.Instantiate(self.UIPetHp);
                     UICommonHelper.SetParent(gameObject, self.PetHpNode);
                     gameObject.SetActive(true);
 
-                    gameObject.transform.Find("Lal_Name").GetComponent<TextMeshProUGUI>().text = PetConfigCategory.Instance.Get(unitInfo.UnitCondigID).PetName;
+                    gameObject.transform.Find("Lal_Name").GetComponent<TextMeshProUGUI>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
                     self.HpList.Add(entities[i].Id, gameObject);
                     continue;
                 }

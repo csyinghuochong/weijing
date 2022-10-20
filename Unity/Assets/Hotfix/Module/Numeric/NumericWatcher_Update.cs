@@ -24,7 +24,7 @@
 	[NumericWatcher((int)NumericType.Now_XiLian)]
 	[NumericWatcher((int)NumericType.PetChouKa)]
 	[NumericWatcher((int)NumericType.PetSkin)]
-	[NumericWatcher((int)NumericType.Tower_ID)]
+	[NumericWatcher((int)NumericType.TowerId)]
 	[NumericWatcher((int)NumericType.Ling_DiLv)]
 	[NumericWatcher((int)NumericType.Ling_DiExp)]
 	[NumericWatcher((int)NumericType.ZeroClock)]

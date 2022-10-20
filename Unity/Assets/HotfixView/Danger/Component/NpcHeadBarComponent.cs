@@ -50,7 +50,7 @@ namespace ET
         public static async ETTask Awake(this NpcHeadBarComponent self, Unit myUnit)
         {
             self.npcUnit = myUnit;
-            self.NpcId = myUnit.GetComponent<UnitInfoComponent>().UnitCondigID;
+            self.NpcId = myUnit.ConfigId;
 
             long instanceid = self.InstanceId;
             await ETTask.CompletedTask;

@@ -62,16 +62,16 @@ namespace ET
         public static Unit GetNpcByConfigId(Scene zongScene, int npcid)
         {
             Unit npc = null;
-            Entity[] units = zongScene.CurrentScene().GetComponent<UnitComponent>().Children.Values.ToArray();
+            List<Unit> units = zongScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
             UnitInfoComponent unitInfoComponent;
-            for (int i = 0; i < units.Length; i++)
+            for (int i = 0; i < units.Count; i++)
             {
                 unitInfoComponent = units[i].GetComponent<UnitInfoComponent>();
-                if (unitInfoComponent.Type != UnitType.Npc)
+                if (units[i].Type != UnitType.Npc)
                 {
                     continue;
                 }
-                if (unitInfoComponent.UnitCondigID == npcid)
+                if (units[i].ConfigId == npcid)
                 {
                     npc = units[i] as Unit;
                     break;

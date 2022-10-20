@@ -24,7 +24,7 @@ namespace ET
             if (!unitInfoComponent.IsMonster())
                 return;
 
-            int unitconfigId = unitInfoComponent.UnitCondigID;
+            int unitconfigId = bekill.ConfigId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitconfigId);
             bool isBoss = monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss;
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();

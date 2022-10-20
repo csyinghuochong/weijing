@@ -60,7 +60,7 @@ namespace ET
         {
             self.LockMonsterId = unit.Id;
 
-            int configid = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
+            int configid = unit.ConfigId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(configid);
             if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss)
             {
@@ -158,7 +158,7 @@ namespace ET
             }
             else
             {
-                int configid = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
+                int configid = unit.ConfigId;
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(configid);
                 self.LockBossId = unit.Id;
                 self.BossNode.SetActive(true);

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -16,10 +17,10 @@ namespace ET
             
             if (fubenCellInfo.ctype != (int)CellDungeonStatu.End)
             {
-                Entity[] allunits = args.ZoneScene.CurrentScene().GetComponent<UnitComponent>().Children.Values.ToArray();
-                for (int i = 0; i < allunits.Length; i++)
+                List<Unit> allunits = args.ZoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
+                for (int i = 0; i < allunits.Count; i++)
                 {
-                    if (allunits[i].GetComponent<UnitInfoComponent>().Type != UnitType.Chuansong)
+                    if (allunits[i].Type != UnitType.Chuansong)
                     {
                         continue;
                     }

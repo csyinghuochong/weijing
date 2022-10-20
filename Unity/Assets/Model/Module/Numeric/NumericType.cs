@@ -23,8 +23,8 @@
         public const int Born_X = 3019;
         public const int Born_Y = 3020;
         public const int Born_Z = 3021;
-        public const int Tower_ID = 3022;
-        public const int Master_ID = 3023;                                          //主人ID
+        public const int TowerId = 3022;
+        public const int MasterId = 3023;                                          //主人ID
         public const int UnionLeader = 3025;                                        //家族族长
         public const int LastGameTime = 3026;
         public const int Ling_DiLv = 3027;
@@ -34,11 +34,11 @@
         public const int XiuLian_CoinNumber = 3031;                                  //金币修炼次数
         public const int XiuLian_ExpTime = 3032;
         public const int XiuLian_CoinTime = 3033;
-        public const int TaskDungeonID = 3034;                                     //机器人用，记录当前的副本进度
+        public const int TaskDungeonId = 3034;                                     //机器人用，记录当前的副本进度
         public const int PetSkin = 3035;                                           //宠物皮肤
         public const int TiLiKillNumber = 3036;                                   //击杀单人副本5个普通怪会消耗1点体力,体力为0击杀普通怪物无任何经验和掉落奖励
         public const int HongBao = 3037;
-        public const int RandomTowerID = 3038;                                    //随机塔
+        public const int RandomTowerId = 3038;                                    //随机塔
         public const int ChouKa = 3039;
         public const int ChouKaOneTime = 3040;                                      //抽卡在线时间
         public const int ChouKaTenTime = 3041;                                      //抽卡在线时间
@@ -48,7 +48,7 @@
         public const int PointNaiLi = 3045;
         public const int PointMinJie = 3046;
         public const int PointRemain = 3047;
-        public const int CampID = 3048;
+        public const int CampId = 3048;
         public const int CangKuNumber = 3049;
         public const int MaoXianExp = 3050;
         public const int YueKa_EndTime = 3051;
@@ -62,7 +62,7 @@
         public const int RechargeSign = 3059;                                    //签到充值奖励，每日重置
         public const int RechargeBuChang = 3060;                                 //充值补偿
         public const int Now_Lv = 3061;                                         //当前等级
-
+        public const int BattleCamp = 3062;                                     //战斗阵营
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

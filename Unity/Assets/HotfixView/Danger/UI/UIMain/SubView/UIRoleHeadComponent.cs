@@ -83,7 +83,7 @@ namespace ET
 
         public static void OnPetFightSet(this UIRoleHeadComponent self)
         {
-            RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetFightPetInfo();
+            RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetFightPet();
             self.PetIconSet.SetActive(!GlobalHelp.IsBanHaoMode &&rolePetInfo != null);
             if (rolePetInfo == null)
             {
@@ -129,7 +129,7 @@ namespace ET
         //初始化界面基础信息
         public static void OnUpdatePetHP(this UIRoleHeadComponent self, Unit pet)
         {
-            RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetFightPetInfo();
+            RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetFightPet();
             if (rolePetInfo == null || pet.Id != rolePetInfo.Id)
             {
                 return;

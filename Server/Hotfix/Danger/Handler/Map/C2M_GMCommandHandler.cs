@@ -68,10 +68,10 @@ namespace ET
 				}
 				if (message.GMMsg == "#killall")
 				{
-					List<Entity> units = unit.GetParent<UnitComponent>().Children.Values.ToList();
+					List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
 					for(int i = units.Count - 1; i >= 0; i--)
 					{
-						if (units[i].GetComponent<UnitInfoComponent>().Type != UnitType.Monster)
+						if (units[i].Type != UnitType.Monster)
 						{
 							continue;
 						}
@@ -81,14 +81,14 @@ namespace ET
 				}
 				if (message.GMMsg == "#killmonster")
 				{
-					List<Entity> units = unit.GetParent<UnitComponent>().Children.Values.ToList();
+					List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
 					for (int i = units.Count - 1; i >= 0; i--)
 					{
-						UnitInfoComponent unitInfoComponent = units[i].GetComponent<UnitInfoComponent>();
-						if (unitInfoComponent.Type != UnitType.Monster)
+						if (units[i].Type != UnitType.Monster)
 						{
 							continue;
 						}
+						UnitInfoComponent unitInfoComponent = units[i].GetComponent<UnitInfoComponent>();
 						if (unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
 						{
 							continue;

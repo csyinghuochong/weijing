@@ -38,7 +38,7 @@ namespace ET
         public static async ETTask OnButtonEnter(this UIRandomTowerComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int randowTowerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerID);
+            int randowTowerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerId);
             List<RandomTowerConfig> randomTowerConfigs = RandomTowerConfigCategory.Instance.GetAll().Values.ToList();
             if (randomTowerConfigs[randomTowerConfigs.Count - 1].Id == randowTowerId)
             {
@@ -69,7 +69,7 @@ namespace ET
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
-            int towerId = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.RandomTowerID );
+            int towerId = unit.GetComponent<NumericComponent>().GetAsInt( NumericType.RandomTowerId );
             if (towerId == 0)
             {
                 self.Text_LayerNum.GetComponent<Text>().text = "0";

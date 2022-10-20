@@ -333,7 +333,7 @@ namespace ET
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int fubenId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TaskDungeonID);
+            int fubenId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TaskDungeonId);
             Log.ILog.Debug($"Behaviour_Task: GetTaskFubenId {fubenId}");
 
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(maxTask);

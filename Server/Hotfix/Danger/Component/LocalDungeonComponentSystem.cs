@@ -49,7 +49,7 @@ namespace ET
                 return;
             }
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitInfoComponent.UnitCondigID);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss)
             {
                 return;
@@ -114,7 +114,7 @@ namespace ET
             for (int i = 0; i < entities.Count; i++)
             {
                 Unit entity = entities[i];
-                if (entity.GetComponent<UnitInfoComponent>().Type != UnitType.Monster)
+                if (entity.Type != UnitType.Monster)
                 {
                     continue;
                 }
@@ -132,7 +132,7 @@ namespace ET
 
             self.RefreshMonsters.Add(new RefreshMonster()
             {
-                MonsterId = unitInfoComponent.UnitCondigID,
+                MonsterId = unit.ConfigId,
                 RefreshTime = TimeHelper.ServerNow() + aliveTime,
                 PositionX = bornpos.x,
                 PositionY = bornpos.y,
@@ -191,9 +191,8 @@ namespace ET
                     self.DomainScene().GetComponent<UnitComponent>().Add(chuansong);
                     chuansong.AddComponent<ChuansongComponent>();
                     UnitInfoComponent unitInfoComponent = chuansong.AddComponent<UnitInfoComponent>();
-                    unitInfoComponent.UnitCondigID = transferId;
-                    unitInfoComponent.Type = UnitType.Chuansong;
-                    chuansong.TestType = UnitType.Chuansong;
+                    chuansong.ConfigId = transferId;
+                    chuansong.Type = UnitType.Chuansong;
                     chuansong.Position = vector3;
                     chuansong.AddComponent<AOIEntity, int, Vector3>(9 * 1000, chuansong.Position);
                 }

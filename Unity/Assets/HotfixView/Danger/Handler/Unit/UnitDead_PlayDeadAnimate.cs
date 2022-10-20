@@ -26,7 +26,7 @@ namespace ET
 
                 MapComponent mapComponent = unit.ZoneScene().GetComponent<MapComponent>();
                 UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-                if (unitInfoComponent.Type == UnitType.Player)
+                if (unit.Type == UnitType.Player)
                 {
                     unit.GetComponent<EffectViewComponent>()?.OnDispose();
                     unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
@@ -47,13 +47,13 @@ namespace ET
                     unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmDeathState);
                 }
 
-                if (unitInfoComponent.Type == UnitType.Monster
+                if (unit.Type == UnitType.Monster
                 && unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
                 {
                     unit.GetComponent<MonsterActRangeComponent>()?.OnDead();
                 }
 
-                if (unitInfoComponent.Type == UnitType.Monster
+                if (unit.Type == UnitType.Monster
                     && mapComponent.SceneTypeEnum == (int)SceneTypeEnum.TeamDungeon)
                 {
                     GameObject Obstruct = GameObject.Find("Obstruct");
@@ -61,7 +61,7 @@ namespace ET
                     {
                         return;
                     }
-                    Obstruct.transform.Find(unitInfoComponent.UnitCondigID.ToString())?.gameObject.SetActive(false);
+                    Obstruct.transform.Find(unit.ConfigId.ToString())?.gameObject.SetActive(false);
                 }
             }
             catch (Exception e)

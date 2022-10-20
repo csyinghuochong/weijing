@@ -57,11 +57,11 @@ namespace ET
             {
                 Unit unit = allUnit[i] as Unit;
                 UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-                if (unitInfoComponent.Type != UnitType.Monster)
+                if (unit.Type != UnitType.Monster)
                 {
                     continue;
                 }
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitInfoComponent.UnitCondigID);
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                 if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss && PositionHelper.Distance2D(unit, main) < 5f)
                 {
                     haveBoss = unit;
@@ -185,11 +185,11 @@ namespace ET
                 Unit unitTarget = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.LastLockId);
                 UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
                 self.LockUnitEffect.SetActive(true);
-                if (unitTarget.GetComponent<UnitInfoComponent>().Type == UnitType.Monster)
+                if (unitTarget.Type == UnitType.Monster)
                 {
                     UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                     uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnLockUnit(unitTarget);
-                    MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitTarget.GetComponent<UnitInfoComponent>().UnitCondigID);
+                    MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitTarget.ConfigId);
                     self.SetEffectSize((float)monsterConfig.SelectSize);
                 }
             }

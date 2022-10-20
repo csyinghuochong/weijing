@@ -19,7 +19,7 @@
                     unit.GetComponent<UnitInfoComponent>().PlayerName = message.UpdateTypeValue;
                     break;
                 case (int)UserDataType.Lv:
-                    unit.GetComponent<UnitInfoComponent>().PlayerLevel = int.Parse(message.UpdateTypeValue);
+                    //int.Parse(message.UpdateTypeValue);
                     break;
                 case (int)UserDataType.StallName:
                     unit.GetComponent<UnitInfoComponent>().StallName = message.UpdateTypeValue;

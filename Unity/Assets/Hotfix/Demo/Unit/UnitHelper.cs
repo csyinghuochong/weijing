@@ -50,7 +50,7 @@ namespace ET
 
         public static bool IsCanChangeEquip(this Unit self)
         {
-            int configId = self.GetComponent<UnitInfoComponent>().UnitCondigID;
+            int configId = self.ConfigId;
             return OccupationConfigCategory.Instance.Get(configId).ChangeEquip == 1;
         }
 
@@ -78,6 +78,11 @@ namespace ET
             }
             EventType.AfterUnitCreate.Instance.Unit = self;
             Game.EventSystem.PublishClass(EventType.AfterUnitCreate.Instance);
+        }
+
+        public static int GetBattleCamp(this Unit self)
+        {
+            return self.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleCamp);
         }
     }
 }

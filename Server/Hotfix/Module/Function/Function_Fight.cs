@@ -98,13 +98,13 @@ namespace ET
             bool ifMonsterBoss_Def = false;
             //计算是否闪避
             int defendUnitLv = 0;
-            switch (defendUnit.GetComponent<UnitInfoComponent>().Type) 
+            switch (defendUnit.Type) 
             {
                 //怪物
                 case UnitType.Monster:
                     defendUnit.GetComponent<StateComponent>().BeAttacking(attackUnit);
                     defendUnit.GetComponent<AIComponent>()?.BeAttack(attackUnit);
-                    MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(defendUnit.GetComponent<UnitInfoComponent>().UnitCondigID);
+                    MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(defendUnit.ConfigId);
                     defendUnitLv = monsterCof.Lv;
                     if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
                     {
@@ -113,7 +113,7 @@ namespace ET
                     break;
                 //宠物
                 case UnitType.Pet:
-                    PetConfig petCof = PetConfigCategory.Instance.Get(defendUnit.GetComponent<UnitInfoComponent>().UnitCondigID);
+                    PetConfig petCof = PetConfigCategory.Instance.Get(defendUnit.ConfigId);
                     defendUnitLv = petCof.PetLv;
                     break;
                 //玩家
@@ -124,18 +124,18 @@ namespace ET
             }
 
             int attackUnitLv = 0;
-            switch (attackUnit.GetComponent<UnitInfoComponent>().Type)
+            switch (attackUnit.Type)
             {
                 //怪物
                 case UnitType.Monster:
-                    MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(attackUnit.GetComponent<UnitInfoComponent>().UnitCondigID);
+                    MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(attackUnit.ConfigId);
                     attackUnitLv = monsterCof.Lv;
                     if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
                         ifMonsterBoss_Def = true;
                     break;
                 //宠物
                 case UnitType.Pet:
-                    PetConfig petCof = PetConfigCategory.Instance.Get(attackUnit.GetComponent<UnitInfoComponent>().UnitCondigID);
+                    PetConfig petCof = PetConfigCategory.Instance.Get(attackUnit.ConfigId);
                     attackUnitLv = petCof.PetLv;
                     break;
                 //玩家
@@ -324,7 +324,7 @@ namespace ET
 
                 //种族抗性
                 if (ifMonsterBoss_Act) {
-                    switch (MonsterConfigCategory.Instance.Get(defendUnit.GetComponent<UnitInfoComponent>().UnitCondigID).MonsterRace) {
+                    switch (MonsterConfigCategory.Instance.Get(defendUnit.ConfigId).MonsterRace) {
                         //通用
                         case 0:
                             break;
@@ -345,7 +345,7 @@ namespace ET
 
                 //种族伤害
                 if (ifMonsterBoss_Def) {
-                    switch (MonsterConfigCategory.Instance.Get(attackUnit.GetComponent<UnitInfoComponent>().UnitCondigID).MonsterRace)
+                    switch (MonsterConfigCategory.Instance.Get(attackUnit.ConfigId).MonsterRace)
                     {
                         //通用
                         case 0:

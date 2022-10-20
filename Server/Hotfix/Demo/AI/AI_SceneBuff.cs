@@ -14,7 +14,7 @@ namespace ET
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = aiComponent.GetParent<Unit>();
-            MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.GetComponent<UnitInfoComponent>().UnitCondigID);
+            MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(monsterCof.ActSkillID);
 
             bool remove = false;

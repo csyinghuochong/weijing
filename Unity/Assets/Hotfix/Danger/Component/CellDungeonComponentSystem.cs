@@ -181,10 +181,10 @@ namespace ET
             if (!self.IsAllMonsterDead())
                 return;
 
-            List<Entity> entities = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Children.Values.ToList();
+            List<Unit> entities = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
             for(int i = 0; i < entities.Count; i++)
             {
-                if (entities[i].GetComponent<UnitInfoComponent>().Type == UnitType.Chuansong)
+                if (entities[i].Type == UnitType.Chuansong)
                 {
                     entities[i].GetComponent<ChuansongComponent>().ChuanSongOpen = true;
                 }

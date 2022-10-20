@@ -16,11 +16,8 @@ namespace ET
                     Unit unit = unitComponent.AddChildWithId<Unit, int>(id, 1001);
                     unit.AddComponent<MoveComponent>();
                     unit.Position = new Vector3(-10, 0, -10);
-                    unit.TestType = UnitType.Player;
+                    unit.Type = UnitType.Player;
                     UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-                    unitInfoComponent.Type = UnitType.Player;
-                    unitInfoComponent.RoleCamp = 1;
-
                     //NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
                     //numericComponent.Set((int)NumericType.Now_Speed, 6f); // 速度是6米每秒
                     //numericComponent.Set(NumericType.AOI, 15000); // 视野15米
@@ -42,14 +39,11 @@ namespace ET
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
             HeroDataComponent heroDataComponent = unit.AddComponent<HeroDataComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-            unitInfoComponent.Type = UnitType.Monster;
-            unitInfoComponent.RoleCamp = createMonsterInfo.Camp;
-            unitInfoComponent.UnitCondigID = monsterConfig.Id;
+            numericComponent.Set(NumericType.BattleCamp, createMonsterInfo.Camp);
             unitInfoComponent.EnergySkillId = createMonsterInfo.SkillId;
-            unit.TestType = UnitType.Monster;
+            unit.Type = UnitType.Monster;
             unit.Position = vector3;
-
-
+            unit.ConfigId = monsterConfig.Id;
             //51 场景怪
             //52 能量台子
             //53 传送门
@@ -78,7 +72,7 @@ namespace ET
                 unit.AddComponent<StateComponent>();         //添加状态组件
                 unit.AddComponent<BuffManagerComponent>();      //添加Buff管理器
               
-                numericComponent.Set(NumericType.Master_ID, createMonsterInfo.Master_ID);
+                numericComponent.Set(NumericType.MasterId, createMonsterInfo.Master_ID);
                 AIComponent aIComponent = unit.AddComponent<AIComponent, int>(createMonsterInfo.Master_ID > 0 ? 2 : monsterConfig.AI);
                 switch (mapComponent.SceneTypeEnum)
                 {
@@ -125,11 +119,10 @@ namespace ET
 
             Unit unit = domainScene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-            unitInfoComponent.Type = UnitType.Npc;
-            unitInfoComponent.UnitCondigID = npcId;
+            unit.ConfigId = npcId;
             unit.Position = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f);
             unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
-            unit.TestType = UnitType.Npc;
+            unit.Type = UnitType.Npc;
             if (npcConfig.MovePosition.Length > 0)
             {
                 unit.AddComponent<MoveComponent>();
@@ -151,21 +144,20 @@ namespace ET
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), monster);
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
-            unit.AddComponent<NumericComponent>();
+            NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
-            unit.GetComponent<NumericComponent>().Set(NumericType.Master_ID, master.Id);
+            unit.GetComponent<NumericComponent>().Set(NumericType.MasterId, master.Id);
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-            unitInfoComponent.Type = UnitType.Monster;
-            unitInfoComponent.UnitCondigID = monster;
-            unitInfoComponent.RoleCamp = master.GetComponent<UnitInfoComponent>().RoleCamp;
+            unit.ConfigId = monster;
+            numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
+            unit.Type = UnitType.Monster;
             unit.Position = new Vector3(master.Position.x + RandomHelper.RandFloat01() * 1f, master.Position.y, master.Position.z + RandomHelper.RandFloat01() * 1f);
-            unit.TestType = UnitType.Monster;
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitTempPet(master, monster);
 
@@ -185,20 +177,18 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-
+            numericComponent.Set(NumericType.BattleCamp, roleCamp);
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
-            numericComponent.Set(NumericType.Master_ID, masterId);
+            numericComponent.Set(NumericType.MasterId, masterId);
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-            unitInfoComponent.Type = UnitType.Pet;
-            unitInfoComponent.UnitCondigID = petinfo.ConfigId;
-            unitInfoComponent.RoleCamp = roleCamp;
+            unit.ConfigId = petinfo.ConfigId;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Position = postion;
-            unit.TestType = UnitType.Pet;
+            unit.Type = UnitType.Pet;
             unit.Rotation = Quaternion.Euler(0f,90f,0f);
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(1);     //AI行为树序号
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
@@ -227,21 +217,20 @@ namespace ET
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(petinfo.Id, 1);
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
-            unit.AddComponent<NumericComponent>();
+            NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
-            unit.GetComponent<NumericComponent>().Set(NumericType.Master_ID, master.Id);
+            numericComponent.Set(NumericType.MasterId, master.Id);
+            numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-            unitInfoComponent.Type = UnitType.Pet;
-            unitInfoComponent.UnitCondigID = petinfo.ConfigId;
-            unitInfoComponent.RoleCamp = master.GetComponent<UnitInfoComponent>().RoleCamp;
+            unit.ConfigId = petinfo.ConfigId;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Position = new Vector3(master.Position.x + RandomHelper.RandFloat01() * 1f, master.Position.y, master.Position.z + RandomHelper.RandFloat01() * 1f);
-            unit.TestType = UnitType.Pet;
+            unit.Type = UnitType.Pet;
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(2);     //AI行为树序号
             aIComponent.InitPet(petinfo.ConfigId);
             //添加其他组件
@@ -260,7 +249,7 @@ namespace ET
         public static void CreateDropItems(Unit unit, Unit main)
         {
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            if (unitInfoComponent.Type != UnitType.Monster)
+            if (unit.Type != UnitType.Monster)
             {
                 return;
             }
@@ -295,7 +284,7 @@ namespace ET
             }
 
             //创建掉落
-            MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.GetComponent<UnitInfoComponent>().UnitCondigID);
+            MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             if (main != null && monsterCof.MonsterSonType == 1)
             {
                 int nowUserLv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
@@ -318,8 +307,7 @@ namespace ET
                     UnitComponent unitComponent = unit.DomainScene().GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
                     unitInfoComponent = dropitem.AddComponent<UnitInfoComponent>();
-                    unitInfoComponent.Type = UnitType.DropItem;
-                    dropitem.TestType = UnitType.DropItem;
+                    dropitem.Type = UnitType.DropItem;
                     DropComponent dropCheckComponent = dropitem.AddComponent<DropComponent>();
                     dropCheckComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
                     float dropX = unit.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);
@@ -381,8 +369,7 @@ namespace ET
                     UnitComponent unitComponent = main.DomainScene().GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
                     UnitInfoComponent unitInfoComponent = dropitem.AddComponent<UnitInfoComponent>();
-                    unitInfoComponent.Type = UnitType.DropItem;
-                    dropitem.TestType = UnitType.DropItem;
+                    dropitem.Type = UnitType.DropItem;
                     DropComponent dropCheckComponent = dropitem.AddComponent<DropComponent>();
                     dropCheckComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
                     float dropX = main.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);

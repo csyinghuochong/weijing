@@ -10,7 +10,7 @@ namespace ET
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
             Unit unit = aiComponent.GetParent<Unit>();
-            long unitId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
+            long unitId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
             Unit master = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(unitId);
             if (master == null)
             {
@@ -66,7 +66,7 @@ namespace ET
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = aiComponent.GetParent<Unit>();
-            long unitId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
+            long unitId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
             Unit master = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(unitId);
 
             while (true)

@@ -50,7 +50,7 @@ namespace ET
             for (int i = 0; i < units.Count; i++)
             {
                 Unit unit = units[i] as Unit;
-                if (unit.GetComponent<UnitInfoComponent>().Type == UnitType.Player)
+                if (unit.Type == UnitType.Player)
                 {
                     haveplayer = true;
                     break;
@@ -75,13 +75,13 @@ namespace ET
         public static void OnKillEvent(this TeamDungeonComponent self, Unit unit)
         {
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            if (unitInfoComponent.Type != UnitType.Monster)
+            if (unit.Type != UnitType.Monster)
             {
                 return;
             }
 
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(self.TeamInfo.FubenId);
-            if (unitInfoComponent.UnitCondigID != sceneConfig.BossId)
+            if (unit.ConfigId != sceneConfig.BossId)
             {
                 return;
             }

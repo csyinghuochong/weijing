@@ -21,8 +21,7 @@ namespace ET
                     continue;
                 }
                 Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), unit.Id,
-                   unit.GetComponent<UnitInfoComponent>().RoleCamp,
-                   rolePetInfo, AIHelp.Formation_1[i]);
+                   unit.GetBattleCamp(), rolePetInfo, AIHelp.Formation_1[i]);
                 //petunit.GetComponent<AIComponent>().StopAI = true;
             }
 
@@ -107,14 +106,16 @@ namespace ET
         {
             int number_1 = 0;
             int number_2 = 0;
-            foreach ((long id, Entity value) in self.DomainScene().GetComponent<UnitComponent>().Children)
+            List<Unit> unitList = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for(int i = 0; i < unitList.Count; i++)
             {
-                UnitInfoComponent unitInfoComponent = value.GetComponent<UnitInfoComponent>();
+                Unit unit = unitList[i];    
+                UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
                 if (!unitInfoComponent.IsPet() || !unitInfoComponent.IsCanBeAttack())
                 {
                     continue;
                 }
-                if (unitInfoComponent.RoleCamp == 1)
+                if (unit.GetBattleCamp() == CampEnum.CampPlayer_1)
                 {
                     number_1++;
                 }

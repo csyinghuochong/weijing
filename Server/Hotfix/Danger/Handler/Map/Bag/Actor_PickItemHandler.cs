@@ -20,7 +20,7 @@ namespace ET
                 List<Unit> allPlayer = new List<Unit>();
                 foreach ((long id, Entity value) in unit.DomainScene().GetComponent<UnitComponent>().Children)
                 {
-                    if (value.GetComponent<UnitInfoComponent>().Type == UnitType.Player)
+                    if ((value as Unit).Type == UnitType.Player)
                     {
                         allPlayer.Add(value as Unit);
                     }

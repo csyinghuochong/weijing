@@ -184,11 +184,11 @@ namespace ET
             {
                 return;
             }
-            if (beKill.GetComponent<UnitInfoComponent>().Type != UnitType.Monster)
+            if (beKill.Type != UnitType.Monster)
             {
                 return;
             }
-            MonsterConfig mCof = MonsterConfigCategory.Instance.Get(beKill.GetComponent<UnitInfoComponent>().UnitCondigID);
+            MonsterConfig mCof = MonsterConfigCategory.Instance.Get(beKill.ConfigId);
             int playerLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
             if (rolePetInfo.PetLv >= playerLv + 5)
             {
@@ -458,6 +458,12 @@ namespace ET
             }
 
             return petInfo;
+        }
+
+        public static long GetFightPetId(this PetComponent self)
+        {
+            RolePetInfo rolePetInfo = self.GetFightPet();
+            return rolePetInfo != null ? rolePetInfo.Id : 0;
         }
 
         public static RolePetInfo GetFightPet(this PetComponent self)

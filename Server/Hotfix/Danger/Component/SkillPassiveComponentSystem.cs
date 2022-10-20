@@ -54,7 +54,7 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.SkillPassive, self);
 
             Unit unit = self.GetParent<Unit>();
-            if (unit.GetComponent<UnitInfoComponent>().Type == UnitType.Player)
+            if (unit.Type == UnitType.Player)
             {
                 int equipId = unit.GetComponent<BagComponent>().GetWuqiItemId();
                 self.OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WandBuff_8, equipId);
@@ -68,7 +68,7 @@ namespace ET
                 return;
 
             UnitInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UnitInfoComponent>();
-            if (unitInfoComponent.Type == UnitType.Pet)
+            if (self.GetParent<Unit>().Type == UnitType.Pet)
             {
                 numericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(numericComponent.GetAsLong((int)NumericType.Now_MaxHp) * 0.1f), 0, true);
             }
@@ -131,7 +131,7 @@ namespace ET
         public static void UpdateMonsterPassiveSkill(this SkillPassiveComponent self)
         {
             self.SkillPassiveInfos.Clear();
-            int configId = self.GetParent<Unit>().GetComponent<UnitInfoComponent>().UnitCondigID;
+            int configId = self.GetParent<Unit>().ConfigId;
             MonsterConfig MonsterCof = MonsterConfigCategory.Instance.Get(configId);
             int[] aiSkillIDList = MonsterCof.SkillID;
 
@@ -153,7 +153,7 @@ namespace ET
         public static void UpdatePetPassiveSkill(this SkillPassiveComponent self)
         {
             self.SkillPassiveInfos.Clear();
-            int configId = self.GetParent<Unit>().GetComponent<UnitInfoComponent>().UnitCondigID;
+            int configId = self.GetParent<Unit>().ConfigId;
             PetConfig MonsterCof = PetConfigCategory.Instance.Get(configId);
             int zhuanZhuSkillID = int.Parse(MonsterCof.ZhuanZhuSkillID);
 

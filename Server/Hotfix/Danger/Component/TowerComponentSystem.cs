@@ -72,7 +72,7 @@ namespace ET
             {
                 return;
             }
-            self.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Tower_ID, self.TowerId, true);
+            self.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.TowerId, self.TowerId, true);
             Scene scene = self.DomainScene();
             TowerConfig towerConfig = TowerConfigCategory.Instance.Get(self.TowerId);
             self.WaveTime = towerConfig.NextTime * 1000;

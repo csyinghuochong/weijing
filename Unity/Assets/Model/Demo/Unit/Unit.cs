@@ -6,6 +6,8 @@ namespace ET
 {
     public class Unit: Entity, IAwake<int>
     {
+        public int Type;
+
         public int ConfigId; //配置表id
 
         public bool MainHero;

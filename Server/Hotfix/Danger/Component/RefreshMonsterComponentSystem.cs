@@ -146,7 +146,7 @@ namespace ET
             List<Unit>  entities = self.GetParent<Scene>().GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < entities.Count; i++)
             {
-                if (entities[i].GetComponent<UnitInfoComponent>().Type == UnitType.Monster)
+                if (entities[i].Type == UnitType.Monster)
                 {
                     monsterNumber++;
                 }
@@ -175,7 +175,7 @@ namespace ET
             {
                 return;
             }
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitInfoComponent.UnitCondigID);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(defend.ConfigId);
             if (monsterConfig.ReviveTime == 0)
             {
                 return;

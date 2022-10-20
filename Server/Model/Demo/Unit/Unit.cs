@@ -8,11 +8,8 @@ namespace ET
     {
         public int ConfigId; //配置表id
 
-
         [BsonIgnore]
-        public int Type { get { return this.GetComponent<UnitInfoComponent>().Type; } }
-
-        public int TestType { get; set; }
+        public int Type;
 
         public bool SingleScene;
 

@@ -75,15 +75,15 @@ namespace ET
             UiCamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
             UnitInfoComponent unitInfoComponent1 = m_Hero.GetComponent<UnitInfoComponent>();
-            if (unitInfoComponent1.Type == UnitType.Player)
+            if (m_Hero.Type == UnitType.Player)
             {
                 HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIPlayerHp");
             }
-            if (unitInfoComponent1.Type == UnitType.Monster)
+            if (m_Hero.Type == UnitType.Monster)
             {
                 HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIMonsterHp");
             }
-            if (unitInfoComponent1.Type == UnitType.Pet)
+            if (m_Hero.Type == UnitType.Pet)
             {
                 HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIPetHp");
             }
@@ -100,12 +100,13 @@ namespace ET
             }
             HeadBar = gameObject;
             HeadBar.SetActive(true);
-            Unit m_Hero = this.GetParent<Unit>();
-            UnitInfoComponent unitInfoComponent1 = m_Hero.GetComponent<UnitInfoComponent>();
+            Unit unit = this.GetParent<Unit>();
+            UnitInfoComponent unitInfoComponent1 = unit.GetComponent<UnitInfoComponent>();
             ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
-            if (unitInfoComponent1.Type == UnitType.Monster)
+            if (unit.Type == UnitType.Monster)
             {
-                if (unitInfoComponent1.RoleCamp == 1)
+                Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(this.ZoneScene());
+                if (unit.GetBattleCamp() == mainUnit.GetBattleCamp())
                 {
                     rc.Get<GameObject>("Img_HpValue").SetActive(false);
                     rc.Get<GameObject>("Img_HpValue2").SetActive(true);
@@ -128,16 +129,16 @@ namespace ET
             Obj_PlayerNameSet = rc.Get<GameObject>("PlayerNameSet");
             JiaZuShowSet = rc.Get<GameObject>("JiaZuShowSet");
             Lal_JiaZuName = rc.Get<GameObject>("Lal_JiaZuName");
-            UIPosition = m_Hero.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
+            UIPosition = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
 
             HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
             HeadBar.transform.localScale = Vector3.one;
-            if (m_Hero.GetComponent<UnitInfoComponent>().Type == UnitType.Monster)
+            if (unit.Type == UnitType.Monster)
             {
                 rc.Get<GameObject>("Alive").SetActive(true);
                 rc.Get<GameObject>("Dead").SetActive(false);
             }
-            if (m_Hero.GetComponent<UnitInfoComponent>().Type == UnitType.Pet)
+            if (unit.Type == UnitType.Pet)
             {
                 this.Lal_NameOwner = rc.Get<GameObject>("Lal_NameOwner");
             }
@@ -150,19 +151,18 @@ namespace ET
                 HeadBar.AddComponent<HeadBarUI>();
             }
             HeadBarUI = HeadBar.GetComponent<HeadBarUI>();
-            HeadBarUI.enabled = !m_Hero.MainHero;
+            HeadBarUI.enabled = !unit.MainHero;
             HeadBarUI.HeadPos = UIPosition;
             HeadBarUI.HeadBar = HeadBar;
-            HeadBar.transform.localPosition = m_Hero.MainHero ? new Vector3(0f, 120f, 0f) : HeadBar.transform.localPosition;
+            HeadBar.transform.localPosition = unit.MainHero ? new Vector3(0f, 120f, 0f) : HeadBar.transform.localPosition;
         }
 
         //更新显示
         public void UpdateShow()
         {
             UnitInfoComponent infoComponent = this.Parent.GetComponent<UnitInfoComponent>();
-
             //显示玩家名称
-            if (infoComponent.Type == UnitType.Player)
+            if (this.GetParent<Unit>().Type == UnitType.Player)
             {
                 NumericComponent numericComponent = this.GetParent<Unit>().GetComponent<NumericComponent>();
                 this.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
@@ -179,9 +179,9 @@ namespace ET
                 }
             }
             //显示怪物名称
-            if (infoComponent.Type == UnitType.Monster)
+            if (this.GetParent<Unit>().Type == UnitType.Monster)
             {
-                MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(this.Parent.GetComponent<UnitInfoComponent>().UnitCondigID);
+                MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId);
                 bool isboos = monsterCof.MonsterType == (int)MonsterTypeEnum.Boss;
                 if (isboos)
                 {
@@ -206,9 +206,9 @@ namespace ET
                     rc.Get<GameObject>("Lal_Lv").GetComponent<TextMeshProUGUI>().text = monsterCof.Lv.ToString();
                 }
             }
-            if (infoComponent.Type == UnitType.Pet) 
+            if (this.GetParent<Unit>().Type == UnitType.Pet) 
             {
-                ObjName.GetComponent<TextMeshProUGUI>().text = PetConfigCategory.Instance.Get(infoComponent.UnitCondigID).PetName;
+                ObjName.GetComponent<TextMeshProUGUI>().text = PetConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId).PetName;
                 //ReferenceCollector rc = ObjSave.GetComponent<ReferenceCollector>();
                 //rc.Get<GameObject>("Lal_Lv").GetComponent<TextMeshProUGUI>().text = hero.GetComponent<UserInfoComponent>().UserInfo.Lv.ToString();
                 this.Lal_NameOwner.GetComponent<TextMeshProUGUI>().text = $"{this.GetParent<Unit>().GetComponent<UnitInfoComponent>().PlayerName }的宠物";
@@ -223,7 +223,7 @@ namespace ET
             }
             TimerComponent.Instance.Remove(ref this.Timer);
             UnitInfoComponent infoComponent = this.Parent.GetComponent<UnitInfoComponent>();
-            if (infoComponent.Type == UnitType.Monster)
+            if (this.GetParent<Unit>().Type == UnitType.Monster)
             {
                 ReferenceCollector rc = this.HeadBar.GetComponent<ReferenceCollector>();
                 rc.Get<GameObject>("Alive").SetActive(true);
@@ -234,11 +234,11 @@ namespace ET
 
         public void OnDead()
         {
-            if (this.Parent.GetComponent<UnitInfoComponent>().Type != UnitType.Monster)
+            if (this.GetParent<Unit>().Type != UnitType.Monster)
             {
                 return;
             }
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(this.Parent.GetComponent<UnitInfoComponent>().UnitCondigID);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId);
             if (monsterConfig.ReviveTime > 0)
             {
                 ReferenceCollector rc = this.HeadBar.GetComponent<ReferenceCollector>();
@@ -256,7 +256,7 @@ namespace ET
             blood = Mathf.Max(blood, 0f);
             if (ObjHp != null)
             {
-                if (this.Parent.GetComponent<UnitInfoComponent>().Type == UnitType.Player|| this.Parent.GetComponent<UnitInfoComponent>().Type == UnitType.Pet)
+                if (this.GetParent<Unit>().Type == UnitType.Player|| this.GetParent<Unit>().Type == UnitType.Pet)
                 {
                     ObjHp.GetComponent<Slider>().value = blood;
                 }
@@ -271,7 +271,7 @@ namespace ET
         {
             ReferenceCollector rc = this.HeadBar.GetComponent<ReferenceCollector>();
            
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(this.Parent.GetComponent<UnitInfoComponent>().UnitCondigID);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId);
             long leftTime = this.Parent.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) - TimeHelper.ClientNow();
             leftTime = leftTime / 1000;
             GameObject reviveTime = rc.Get<GameObject>("Dead").transform.Find("ReviveTime").gameObject;

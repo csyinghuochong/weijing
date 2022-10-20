@@ -61,7 +61,7 @@ namespace ET
                 }
                 if (args.UnitAttack.Type == UnitType.Pet || args.UnitAttack.Type == UnitType.Monster)
                 {
-                    long master = args.UnitAttack.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
+                    long master = args.UnitAttack.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
                     player = args.UnitAttack.GetParent<UnitComponent>().Get(master);
                 }
                 if (player != null)

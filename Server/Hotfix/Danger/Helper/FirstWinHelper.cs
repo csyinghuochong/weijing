@@ -23,7 +23,7 @@ namespace ET
                 Log.Info("SendFirstWinInfo:  difficulty == 0");
                 difficulty = 1;
             }
-            int firstwinid = GetFirstWinID(boss.GetComponent<UnitInfoComponent>().UnitCondigID, difficulty);
+            int firstwinid = GetFirstWinID(boss.ConfigId, difficulty);
             if (firstwinid == 0)
             {
                 return;

@@ -203,7 +203,7 @@ namespace ET
         public static  void OnKillUnit(this UserInfoComponent self, Unit beKill)
         {
             UnitInfoComponent unitInfoComponent = beKill.GetComponent<UnitInfoComponent>();
-            if (unitInfoComponent.Type != UnitType.Monster)
+            if (beKill.Type != UnitType.Monster)
             {
                 return;
             }
@@ -212,7 +212,7 @@ namespace ET
                 return;
             }
 
-            MonsterConfig mCof = MonsterConfigCategory.Instance.Get(beKill.GetComponent<UnitInfoComponent>().UnitCondigID);
+            MonsterConfig mCof = MonsterConfigCategory.Instance.Get(beKill.ConfigId);
             float expcoefficient = 1f;
             int addexp = (int)(expcoefficient * mCof.Exp);
             self.UpdateRoleData(UserDataType.Exp, addexp.ToString()).Coroutine();
@@ -373,7 +373,7 @@ namespace ET
             R2M_RankUpdateResponse m2m_TrasferUnitResponse = (R2M_RankUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                      (mapInstanceId, new M2R_RankUpdateRequest() 
                      {
-                            CampId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CampID),
+                            CampId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CampId),
                             RankingInfo = rankPetInfo
                      });
         }

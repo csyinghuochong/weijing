@@ -12,7 +12,7 @@ namespace ET
             {
                 return;
             }
-            int unitType = args.Unit.GetComponent<UnitInfoComponent>().Type;
+            int unitType = args.Unit.Type;
             if (unitType == UnitType.Player && args.Unit.GetComponent<StateComponent>().StateTypeGet( StateTypeEnum.Obstruct))
             {
                 args.Unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.Obstruct);

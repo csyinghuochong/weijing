@@ -344,11 +344,11 @@ namespace ET
                 case 2:
                 //队友
                 case 3:
-                    canBuff = self.TheUnitFrom.GetComponent<UnitInfoComponent>().RoleCamp == uu.GetComponent<UnitInfoComponent>().RoleCamp;
+                    canBuff = self.TheUnitFrom.GetBattleCamp() == uu.GetBattleCamp();
                     break;
                 //敌方
                 case 4:
-                    canBuff = self.TheUnitFrom.GetComponent<UnitInfoComponent>().RoleCamp != uu.GetComponent<UnitInfoComponent>().RoleCamp;
+                    canBuff = self.TheUnitFrom.GetBattleCamp() != uu.GetBattleCamp();
                     break;
                 //全部
                 case 5:

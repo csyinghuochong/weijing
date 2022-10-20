@@ -26,7 +26,6 @@ namespace ET
             UnitInfo unitInfo = new UnitInfo();
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             NumericComponent nc = unit.GetComponent<NumericComponent>();
-            unitInfo.RoleCamp = unitInfoComponent.RoleCamp;
             unitInfo.UnitId = unit.Id;
             unitInfo.ConfigId = unit.ConfigId;
             //unitInfo.Type = (int)unit.Type;
@@ -98,7 +97,7 @@ namespace ET
         {
             M2C_CreateUnits createUnits = new M2C_CreateUnits();
 
-            switch (sendUnit.GetComponent<UnitInfoComponent>().Type)
+            switch (sendUnit.Type)
             {
                 case UnitType.Player:
                     createUnits.Units.Add(CreateUnitInfo(sendUnit));
@@ -145,7 +144,6 @@ namespace ET
         {
             SpilingInfo spilingInfo = new SpilingInfo();
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            spilingInfo.RoleCamp = unitInfoComponent.RoleCamp;
             spilingInfo.X = unit.Position.x;
             spilingInfo.Y = unit.Position.y;
             spilingInfo.Z = unit.Position.z;
@@ -168,7 +166,7 @@ namespace ET
             spilingInfo.ReviveTime = reviveTime;
             //广播创建的是那个怪物ID
             spilingInfo.SkillId = unit.GetComponent<UnitInfoComponent>().EnergySkillId;
-            spilingInfo.MonsterID = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
+            spilingInfo.MonsterID = unit.ConfigId;
             return spilingInfo;
         }
 
@@ -177,13 +175,12 @@ namespace ET
             RolePetInfo rolePetInfo = new RolePetInfo();
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             rolePetInfo.Id = unit.Id;
-            rolePetInfo.ConfigId = unitInfoComponent.UnitCondigID;
-            rolePetInfo.RoleCamp = unitInfoComponent.RoleCamp;
+            rolePetInfo.ConfigId = unit.ConfigId;
             rolePetInfo.X = unit.Position.x;
             rolePetInfo.Y = unit.Position.y;
             rolePetInfo.Z = unit.Position.z;
 
-            long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
+            long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
             Unit player = unit.GetParent<UnitComponent>().Get(masterId);
             if (player != null)
             {
@@ -223,7 +220,7 @@ namespace ET
             NpcInfo npcInfo = new NpcInfo();
 
             npcInfo.UnitId = unit.Id;
-            npcInfo.NpcID = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
+            npcInfo.NpcID = unit.ConfigId;
             npcInfo.X = unit.Position.x;
             npcInfo.Y = unit.Position.y;
             npcInfo.Z = unit.Position.z;
@@ -241,7 +238,7 @@ namespace ET
             transferinfo.Z = unit.Position.z;
             transferinfo.CellIndex = chuansongComponent.CellIndex;
             transferinfo.Direction = chuansongComponent.DirectionType;
-            transferinfo.TransferId = unit.GetComponent<UnitInfoComponent>().UnitCondigID;
+            transferinfo.TransferId = unit.ConfigId;
             return transferinfo;
         }
 
@@ -261,6 +258,11 @@ namespace ET
             self.GetComponent<NumericComponent>().NumericDic[NumericType.MainCity_X] = 0;
             self.GetComponent<NumericComponent>().NumericDic[NumericType.MainCity_Y] = 0;
             self.GetComponent<NumericComponent>().NumericDic[NumericType.MainCity_Z] = 0;
+        }
+
+        public static int GetBattleCamp(this Unit self)
+        {
+            return self.GetComponent<NumericComponent>().GetAsInt(NumericType.CampId);
         }
     }
 }

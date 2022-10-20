@@ -26,20 +26,20 @@
 			}
 
 			//副本
-			if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon && unitInfoComponent.Type == UnitType.Player)
+			if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon && unit.Type == UnitType.Player)
 			{
 				DomainScene.GetComponent<CellDungeonComponent>().OnRecivedHurt(args.OldValue - args.NewValue);
 			}
 			if (sceneTypeEnum == (int)SceneTypeEnum.TeamDungeon && args.Attack != null && (args.OldValue > args.NewValue))
 			{
 				Unit player = null;
-				if (args.Attack.GetComponent<UnitInfoComponent>().Type == UnitType.Player)
+				if (args.Attack.Type == UnitType.Player)
 				{
 					player = args.Attack;
 				}
-				if (args.Attack.GetComponent<UnitInfoComponent>().Type == UnitType.Pet)
+				if (args.Attack.Type == UnitType.Pet)
 				{
-					long master = args.Attack.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
+					long master = args.Attack.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
 					player = args.Attack.GetParent<UnitComponent>().Get(master);
 				}
 
@@ -53,8 +53,8 @@
 #else
 			long nowHpValue = numericComponentDefend.GetAsLong(NumericType.Now_Hp);
 			long costHp = (nowHpValue - args.OldValue);
+			int unitType = unit.Type;
 
-			int unitType = unitInfoComponent.Type;
 			EventType.UnitHpUpdate.Instance.Unit = unit;
 			EventType.UnitHpUpdate.Instance.ChangeHpValue = costHp;
 			EventType.UnitHpUpdate.Instance.DamgeType = args.DamgeType;

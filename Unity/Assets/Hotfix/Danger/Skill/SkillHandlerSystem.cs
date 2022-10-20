@@ -56,7 +56,7 @@ namespace ET
         public static void OnShowSkillIndicator(this ASkillHandler self, SkillInfo skillcmd)
         {
             Unit unit = self.TheUnitFrom;
-            if (unit.GetComponent<UnitInfoComponent>().Type != UnitType.Monster)
+            if (unit.Type != UnitType.Monster)
             {
                 return;
             }

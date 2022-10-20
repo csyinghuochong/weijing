@@ -36,7 +36,7 @@ namespace ET
 
         public static async ETTask OnInitUI(this UISceneItemComponent self)
         {
-            int configId = self.MyUnit.GetComponent<UnitInfoComponent>().UnitCondigID;
+            int configId = self.MyUnit.ConfigId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(configId);
 
             //51 场景怪 有AI 不显示名称
@@ -82,7 +82,7 @@ namespace ET
         {
             await self.OnInitUI();
 
-            int configId = self.GetParent<Unit>().GetComponent<UnitInfoComponent>().UnitCondigID;
+            int configId = self.GetParent<Unit>().ConfigId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(configId);
             self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.MonsterName;
         }

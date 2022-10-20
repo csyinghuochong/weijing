@@ -16,12 +16,12 @@ namespace ET
 
         public Unit GetPetOrMaster()
         {
-            if (this.TheUnitFrom.GetComponent<UnitInfoComponent>().Type == UnitType.Pet)
+            if (this.TheUnitFrom.Type == UnitType.Pet)
             {
-                long unitid = this.TheUnitFrom.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
+                long unitid = this.TheUnitFrom.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
                 return this.TheUnitFrom.GetParent<UnitComponent>().Get(unitid);
             }
-            else if (this.TheUnitFrom.GetComponent<UnitInfoComponent>().Type == UnitType.Player)
+            else if (this.TheUnitFrom.Type == UnitType.Player)
             {
                 RolePetInfo rolePetInfo = this.TheUnitFrom.GetComponent<PetComponent>().GetFightPet();
                 return rolePetInfo == null ? null : this.TheUnitFrom.GetParent<UnitComponent>().Get(rolePetInfo.Id);

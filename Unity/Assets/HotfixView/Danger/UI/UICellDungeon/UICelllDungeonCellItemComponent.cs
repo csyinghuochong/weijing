@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -154,13 +155,13 @@ namespace ET
             //当前格子
             if (ifCurCell && fubenComponent.HaveFubenCellNpc(CellDungeonNpc.HuiFuItem, cellIndex))
             {
-                Entity[] unitList = self.DomainScene().CurrentScene().GetComponent<UnitComponent>().Children.Values.ToArray();
+                List<Unit> unitList = self.DomainScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
                 bool ifCostStatus = true;
-                for (int i = 0; i < unitList.Length; i++)
+                for (int i = 0; i < unitList.Count; i++)
                 {
-                    if (unitList[i].GetComponent<UnitInfoComponent>().Type == UnitType.Monster)
+                    if (unitList[i].Type == UnitType.Monster)
                     {
-                        if (unitList[i].GetComponent<UnitInfoComponent>().UnitCondigID == 80000001)
+                        if (unitList[i].ConfigId== 80000001)
                         {
                             ifCostStatus = false;
                         }

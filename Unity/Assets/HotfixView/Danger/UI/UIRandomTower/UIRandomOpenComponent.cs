@@ -33,7 +33,7 @@ namespace ET
         {
             int maxNumber = 0;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int randowTowerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerID);
+            int randowTowerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerId);
             if (randowTowerId == 0)
             {
                 maxNumber = 1;

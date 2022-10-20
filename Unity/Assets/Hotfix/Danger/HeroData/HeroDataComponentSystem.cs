@@ -156,7 +156,7 @@ namespace ET
             }
 
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitInfoComponent.UnitCondigID);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             int resurrection = (int)monsterConfig.ReviveTime;
             if (resurrection == 0)
             {
@@ -175,7 +175,7 @@ namespace ET
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
             {
                 LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
-                localDungeon.MainUnit.GetComponent<UserInfoComponent>().OnAddRevive(unitInfoComponent.UnitCondigID, TimeHelper.ServerNow() + resurrection * 1000);
+                localDungeon.MainUnit.GetComponent<UserInfoComponent>().OnAddRevive(unit.ConfigId, TimeHelper.ServerNow() + resurrection * 1000);
                 unit.RemoveComponent<ReviveTimeComponent>();
                 unit.AddComponent<ReviveTimeComponent, long>(TimeHelper.ServerNow() + resurrection * 1000);
                 FirstWinHelper.SendFirstWinInfo(localDungeon.MainUnit, unit, localDungeon.FubenDifficulty);
@@ -219,7 +219,7 @@ namespace ET
                 if (sceneTypeEnum != (int)SceneTypeEnum.PetTianTi
                     && sceneTypeEnum != (int)SceneTypeEnum.PetDungeon)
                 {
-                    long manster = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Master_ID);
+                    long manster = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
                     Unit unit_manster = unit.GetParent<UnitComponent>().Get(manster);
                     //修改宠物出战状态
                     unit_manster.GetComponent<PetComponent>().OnPetDead(unit.Id);
@@ -241,7 +241,7 @@ namespace ET
             long max_hp = self.Parent.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
             if (unit.Type == UnitType.Monster)
             {
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.GetComponent<UnitInfoComponent>().UnitCondigID);
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                 if (monsterConfig.AI > 0)
                 {
                     unit.RemoveComponent<AIComponent>();
@@ -411,7 +411,7 @@ namespace ET
             //判定是否为成长怪物
             if (monsterConfig.MonsterSonType == 2)
             {
-                MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(nowUnit.GetComponent<UnitInfoComponent>().UnitCondigID);
+                MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(nowUnit.ConfigId);
                 int nowUserLv = monsterCof.Lv;
                 //nowUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                 int playerLv = createMonsterInfo.PlayerLevel;
@@ -459,7 +459,7 @@ namespace ET
             unit.GetComponent<MoveComponent>()?.Stop();
 
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            int unitType = unitInfoComponent.Type;
+            int unitType = unit.Type;
             if (unitType == UnitType.Player)
             {
                 unit.GetComponent<SkillManagerComponent>().OnDispose();
@@ -478,8 +478,8 @@ namespace ET
             if (sceneTypeEnum == (int)SceneTypeEnum.LocalDungeon 
                 && unitType== UnitType.Monster && unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
             {
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitInfoComponent.UnitCondigID);
-                self.ZoneScene().GetComponent<UserInfoComponent>().OnAddRevive(unitInfoComponent.UnitCondigID,TimeHelper.ServerNow() + (long)monsterConfig.ReviveTime * 1000);
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
+                self.ZoneScene().GetComponent<UserInfoComponent>().OnAddRevive(unit.ConfigId,TimeHelper.ServerNow() + (long)monsterConfig.ReviveTime * 1000);
             }
         }
 #endif

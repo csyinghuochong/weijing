@@ -62,7 +62,7 @@ namespace ET
             for (int i = 0; i < units.Count; i++)
             {
                 Unit uu = units[i] as Unit;
-                if (uu.GetComponent<UnitInfoComponent>().Type != UnitType.DropItem)
+                if (uu.Type != UnitType.DropItem)
                 {
                     continue;
                 }
@@ -101,7 +101,7 @@ namespace ET
             for (int i = 0; i < units.Count; i++)
             {
                 Unit uu = units[i] as Unit;
-                if (uu.GetComponent<UnitInfoComponent>().Type != UnitType.DropItem)
+                if (uu.Type != UnitType.DropItem)
                 {
                     continue;
                 }

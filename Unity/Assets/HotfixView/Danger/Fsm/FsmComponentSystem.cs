@@ -51,7 +51,7 @@ namespace ET
         {
             if (self.Animator == null)
             {
-                int monsterId = self.GetParent<Unit>().GetComponent<UnitInfoComponent>().UnitCondigID;
+                int monsterId = self.GetParent<Unit>().ConfigId;
                 Log.Error($"{self.Animator == null} {self.GetParent<Unit>().UpdateUIType} {monsterId}");
                 self.EndTimer();
                 return;
