@@ -18,7 +18,7 @@ namespace ET
                 }
                 else
                 {
-                    entity.Stop(entity.GetComponent<MoveComponent>().IsArrived() ? 0 : -2);
+                    entity.Stop(-1);
                 }
                 M2C_SkillCmd m2C_SkillCmd = entity.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
                 response.Error = m2C_SkillCmd.Error;

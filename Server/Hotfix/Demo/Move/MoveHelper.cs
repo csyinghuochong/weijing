@@ -12,7 +12,7 @@ namespace ET
             float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
             if (speed < 0.01)
             {
-                unit.SendStop(-2);
+                unit.SendStop(-1);
                 return;
             }
 
@@ -22,7 +22,7 @@ namespace ET
             List<Vector3> path = list;
             if (path.Count < 2 && yaogan)
             {
-                unit.SendStop(-3);
+                unit.SendStop(-1);
                 return;
             }
             if (path.Count < 2 && !yaogan)
