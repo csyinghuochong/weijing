@@ -80,7 +80,7 @@ namespace ET
 
         public static  void OnUpdateUI(this UIPaiMaiStallComponent self, Unit unit)
         {
-            self.UserId = unit.GetComponent<UnitInfoComponent>().UserID;
+            self.UserId = unit.Id;
          
             long selfId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             bool ifSelf = selfId == self.UserId;

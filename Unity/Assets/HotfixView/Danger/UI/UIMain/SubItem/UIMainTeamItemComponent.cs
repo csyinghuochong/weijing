@@ -56,7 +56,7 @@ namespace ET
 
         public static void OnUpdateHP(this UIMainTeamItemComponent self, Unit unit)
         {
-            if (unit.GetComponent<UnitInfoComponent>().UserID != self.TeamPlayerInfo.UserID)
+            if (unit.Id != self.TeamPlayerInfo.UserID)
                 return;
 
             float curhp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp); 

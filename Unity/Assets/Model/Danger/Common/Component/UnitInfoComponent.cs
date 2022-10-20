@@ -6,8 +6,6 @@ namespace ET
 { 
     public class UnitInfoComponent : Entity, IAwake, ITransfer, IDestroy
     {
-        public long UserID { get; set; }
-
         public string PlayerName { get; set; }
 
         public int EnergySkillId { get; set; }

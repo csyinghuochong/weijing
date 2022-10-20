@@ -28,7 +28,6 @@ namespace ET
 			unit.AddComponent<SkillManagerComponent>();
 
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-			unitInfoComponent.UserID = unitInfo.UserId;
 			unitInfoComponent.PlayerName = unitInfo.PlayerName;
 			unitInfoComponent.StallName = unitInfo.StallName;
 			unitInfoComponent.UnionName = string.IsNullOrEmpty(unitInfo.UnionName) ? "" : unitInfo.UnionName;
