@@ -90,6 +90,7 @@ namespace ET
         /// <returns></returns>
         public static List<long> GetNearestEnemy(Unit unit, float maxdis, int numberType)
         {
+            List<long> unitIdList = new List<long>();
             List<EnemyUnitInfo> enemyUnitInfos = new List<EnemyUnitInfo>();
             List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
@@ -109,12 +110,15 @@ namespace ET
                     enemyUnitInfos.Add(new EnemyUnitInfo() { Distacne = dd, UnitID = uu.Id });
                 }
             }
+            if (enemyUnitInfos.Count == 0)
+            {
+                return unitIdList;
+            }
+
             enemyUnitInfos.Sort(delegate (EnemyUnitInfo a, EnemyUnitInfo b)
             {
                 return (int)(b.Distacne - a.Distacne);
             });
-
-            List<long> unitIdList = new List<long>();
             switch (numberType)
             {
                 case 1:

@@ -17,7 +17,7 @@ namespace ET
             response.ReceiveHuoYueIds = taskComponent.ReceiveHuoYueIds;
             if (taskComponent.TaskCountryList.Count == 0)
             {
-                Log.Warning("askComponent.TaskCountryList.Count == 0");
+                Log.Warning($"taskComponent.TaskCountryList.Count == 0: unitid{unit.Id}");
                 taskComponent.OnZeroClockUpdate(false);
             }
             response.TaskCountryList = taskComponent.TaskCountryList;

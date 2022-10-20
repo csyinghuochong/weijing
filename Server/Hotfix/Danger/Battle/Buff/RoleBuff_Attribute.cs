@@ -21,6 +21,13 @@ namespace ET
         {
             PassTime = TimeHelper.ServerNow() - this.BeginTime;
 
+            NumericComponent heroCom = this.TheUnitBelongto.GetComponent<NumericComponent>();
+            if (heroCom == null)
+            {
+                this.BuffState = BuffState.Finished;
+                return;
+            }
+
             //执行buff
             if (!IsTrigger && PassTime >= DelayTime)
             {

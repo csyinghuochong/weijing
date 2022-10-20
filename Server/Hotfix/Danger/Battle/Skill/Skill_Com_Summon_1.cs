@@ -21,6 +21,11 @@ namespace ET
 
                 string[] skillParList = summonParList[y].Split(';');
                 int createMonsterID = int.Parse(skillParList[0]);
+                if (!MonsterConfigCategory.Instance.Contain(createMonsterID))
+                {
+                    Log.Debug($"config==null  monsterid {createMonsterID}");
+                    break;
+                }
 
                 //触发召唤
                 string[] vec3Str = skillParList[1].Split(',');

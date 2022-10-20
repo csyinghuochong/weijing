@@ -77,9 +77,7 @@ namespace ET
                 //添加其他组件
                 unit.AddComponent<StateComponent>();         //添加状态组件
                 unit.AddComponent<BuffManagerComponent>();      //添加Buff管理器
-                unit.GetComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
-                unit.GetComponent<SkillPassiveComponent>().Activeted();
-
+              
                 numericComponent.Set(NumericType.Master_ID, createMonsterInfo.Master_ID);
                 AIComponent aIComponent = unit.AddComponent<AIComponent, int>(createMonsterInfo.Master_ID > 0 ? 2 : monsterConfig.AI);
                 switch (mapComponent.SceneTypeEnum)
@@ -113,6 +111,11 @@ namespace ET
             unit.AI = monsterConfig.AI;
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<AOIEntity, int, Vector3>(1 * 1000, unit.Position);
+            if (monsterConfig.AI > 0)
+            {
+                unit.GetComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
+                unit.GetComponent<SkillPassiveComponent>().Activeted();
+            }
             return unit;
         }
 
@@ -166,12 +169,13 @@ namespace ET
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitTempPet(master, monster);
 
-            unit.AddComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
-            unit.GetComponent<SkillPassiveComponent>().Activeted();
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(2);     //AI行为树序号
             aIComponent.InitTeampPet(monster);
 
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+
+            unit.AddComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
+            unit.GetComponent<SkillPassiveComponent>().Activeted();
             return unit;
         }
 
@@ -209,10 +213,11 @@ namespace ET
                     break;
             }
             unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill();
-            unit.GetComponent<SkillPassiveComponent>().Activeted();
+          
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitPet(petinfo, false);
             unit.AddComponent<AOIEntity, int, Vector3>(1 * 1000, unit.Position);
+            unit.GetComponent<SkillPassiveComponent>().Activeted();
             return unit;
         }
 
@@ -239,6 +244,9 @@ namespace ET
             unit.TestType = UnitType.Pet;
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(2);     //AI行为树序号
             aIComponent.InitPet(petinfo.ConfigId);
+            //添加其他组件
+            unit.AddComponent<HeroDataComponent>().InitPet(petinfo, false);
+            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
 
             if (scene.GetComponent<MapComponent>().SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
             {
@@ -246,9 +254,6 @@ namespace ET
                 unit.GetComponent<SkillPassiveComponent>().Activeted();
             }
 
-            //添加其他组件
-            unit.AddComponent<HeroDataComponent>().InitPet(petinfo,  false);
-            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
             return unit;
         }
 

@@ -288,10 +288,19 @@ namespace ET
                 {
                     targetIdList.AddRange(AIHelp.GetNearestEnemy(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetType));
                 }
+
+                int targetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+                Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
+                if (target != null)
+                {
+                    Vector3 direction = target.Position - unit.Position;
+                    targetAngle = (int)Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+                }
+
                 for (int i = 0; i < targetIdList.Count; i++)
                 {
                     C2M_SkillCmd cmd = new C2M_SkillCmd();
-                    cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
+                    cmd.TargetAngle = targetAngle;
                     cmd.SkillID = skillIfo.SkillId;
                     cmd.TargetID = targetId;
                     unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd,false);
