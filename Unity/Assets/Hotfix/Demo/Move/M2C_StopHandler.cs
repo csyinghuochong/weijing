@@ -8,15 +8,19 @@ namespace ET
 		protected override void Run(Session session, M2C_Stop message)
 		{
 			Unit unit = session.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(message.Id);
-			if (unit == null || message.Error == -3)
+			if (unit == null)
 			{
 				return;
 			}
 
-			if (unit.GetComponent<StateComponent>().StateTypeGet( StateTypeEnum.ChuanSong))
+			//立即停止
+			if (message.Error == -1)
 			{
+				MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+				moveComponent.Stop();
 				return;
 			}
+
 			Vector3 pos = new Vector3(message.X, message.Y, message.Z);
 			if (Vector3.Distance(unit.Position, pos) < 0.2f)
 			{

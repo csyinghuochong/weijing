@@ -43,7 +43,6 @@ namespace ET
 				switch (request.SceneType)
 				{
 					case (int)SceneTypeEnum.CellDungeon:
-						unit.ResetPostion();
 						int sonid = scene.GetComponent<CellDungeonComponent>().CurrentFubenCell.sonid;
 						ChapterSonConfig chapterSon = ChapterSonConfigCategory.Instance.Get(sonid);
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
@@ -97,7 +96,6 @@ namespace ET
 						unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TaskDungeonID, request.ChapterId, false);
 						DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(request.ChapterId);
 						scene.GetComponent<MapComponent>().NavMeshId = dungeonConfig.MapID.ToString();
-						unit.ResetPostion();
 
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
@@ -180,7 +178,6 @@ namespace ET
 						{
 							unit.Position = new Vector3(numericComponent.GetAsFloat(NumericType.MainCity_X), numericComponent.GetAsFloat(NumericType.MainCity_Y), numericComponent.GetAsFloat(NumericType.MainCity_Z));
 						}
-						unit.ResetPostion();
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 						unit.GetComponent<HeroDataComponent>().OnReturn();
 						// 通知客户端创建My Unit

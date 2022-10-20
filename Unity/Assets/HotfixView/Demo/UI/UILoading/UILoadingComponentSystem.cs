@@ -168,6 +168,26 @@ namespace ET
         }
     }
 
+    /// <summary>
+    /// 客户端登录流程：
+    /// LoginHelper.Login           C2A_LoginAccount
+    /// LoginHelper.GetRealmKey     C2A_GetRealmKey
+    /// LoginHelper.EnterGame       C2R_LoginRealm  C2G_LoginGameGate  C2G_EnterGame        二次登录成功到此为止
+    /// 服务器完成角色组装 登录流程
+    /// S TransferHelper.Transfer
+    /// S MessageHelper.SendToClient(unit, M2C_StartSceneChange);                   a
+    ///     C SceneChangeHelper.SceneChangeTo                                       通知客户端切场景
+    ///     C Game.EventSystem.PublishClass(EventType.SceneChangeStart.Instance);   加载场景
+    ///     C await ResourcesComponent.Instance.LoadSceneAsync(path);
+    ///     C 加载场景完成并且UIMain加载ok卸载uiloading
+    /// S M2M_UnitTransferRequest request = new M2M_UnitTransferRequest();          a   服务器完成切场景，并通知客户端生成Unit. 
+    ///     S MessageHelper.SendToClient(unit, M2C_CreateMyUnit);
+    ///     C WaitType.Wait_CreateMyUnit waitCreateMyUnit = await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_CreateMyUnit>();
+    ///     C await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_SceneChangeFinish>();
+    ///     C //请求角色数据
+    ///     C Game.EventSystem.PublishClass(EventType.EnterMapFinish.Instance);
+    ///     C UIHelper.Create(args.ZoneScene, UIType.UIMain).Coroutine();
+    /// </summary>
     [ObjectSystem]
     public class UiLoadingComponentUpdateSystem : UpdateSystem<UILoadingComponent>
     {
@@ -226,8 +246,7 @@ namespace ET
             Camera camera = UIComponent.Instance.MainCamera;
             camera.GetComponent<Camera>().fieldOfView = 50;
             sceneManagerComponent.SceneAssetRequest = null;
-            UIHelper.Remove(self.DomainScene(), UIType.UIPetMain);
-            uimain.GetComponent<UIMainComponent>().OnEnterScene(sceneTypeEnum);
+            uimain.GetComponent<UIMainComponent>().AfterEnterScene(sceneTypeEnum);
             switch (sceneTypeEnum)
             {
                 case (int)SceneTypeEnum.CellDungeon:

@@ -7,12 +7,12 @@ namespace ET
     {
 
         // 可以多次调用，多次调用的话会取消上一次的协程
-        public static async ETTask FindPathMoveToAsync(this Unit unit, Vector3 target, ETCancellationToken cancellationToken = null, bool zhuiji = false)
+        public static async ETTask FindPathMoveToAsync(this Unit unit, Vector3 target, ETCancellationToken cancellationToken = null, bool yaogan = false)
         {
             float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
             if (speed < 0.01)
             {
-                unit.SendStop(-2);
+                unit.SendStop(-1);
                 return;
             }
 
@@ -20,12 +20,12 @@ namespace ET
             unit.Domain.GetComponent<MapComponent>().SearchPath(unit, target, list);
 
             List<Vector3> path = list;
-            if (path.Count < 2 && !zhuiji)
+            if (path.Count < 2 && yaogan)
             {
-                unit.SendStop(-3);
+                unit.SendStop(-1);
                 return;
             }
-            if (path.Count < 2 && zhuiji)
+            if (path.Count < 2 && !yaogan)
             {
                 list.Clear();
                 list.Add(unit.Position + (target - unit.Position) * 0.5f);

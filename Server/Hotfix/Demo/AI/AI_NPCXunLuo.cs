@@ -20,7 +20,7 @@ namespace ET
             while (true)
             {
                 Vector3 nextTarget = npcMoveComponent.GetTargetPosition();
-                await unit.FindPathMoveToAsync(nextTarget, cancellationToken);
+                await unit.FindPathMoveToAsync(nextTarget, cancellationToken, false);
 
                 npcMoveComponent.UpdateMoveIndex();
                 bool timeRet = await TimerComponent.Instance.WaitAsync(5000, cancellationToken);

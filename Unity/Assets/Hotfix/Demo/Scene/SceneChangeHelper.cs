@@ -26,7 +26,6 @@ namespace ET
 
             long instanceid_1 = 0;
             long instanceid_2 = 0;
-
             try
             {  // 等待CreateMyUnit的消息
                 instanceid_1 = currentScene.InstanceId;

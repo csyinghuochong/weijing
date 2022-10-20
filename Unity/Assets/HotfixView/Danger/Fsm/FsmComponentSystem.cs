@@ -155,7 +155,7 @@ namespace ET
                     self.Animator.Play("Speak");
                     break;
                 case FsmStateEnum.FsmRunState:
-                    self.OnEnterFsmFsmRunState(parasmss);
+                    self.OnEnterFsmRunState(parasmss);
                     break;
                 case FsmStateEnum.FsmShiQuItem:
                     self.Animator.SetBool("Idle", false);
@@ -202,7 +202,7 @@ namespace ET
             self.BeginTimer();
         }
 
-        public static void OnEnterFsmFsmRunState(this FsmComponent self, string paramss = "")
+        public static void OnEnterFsmRunState(this FsmComponent self, string paramss = "")
         {
             if (TimeHelper.ClientNow() > self.SkillMoveTime)
             {

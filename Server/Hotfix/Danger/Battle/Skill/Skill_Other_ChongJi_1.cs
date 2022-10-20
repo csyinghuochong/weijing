@@ -47,7 +47,7 @@ namespace ET
             if (!this.IsTriggerHurt && this.PassTime >= this.DelayHurtTime)
             {
                 this.IsTriggerHurt = true;
-                TheUnitFrom.FindPathMoveToAsync(TargetPosition).Coroutine();
+                TheUnitFrom.FindPathMoveToAsync(TargetPosition, null, false).Coroutine();
             }
             if (PassTime > SkillLiveTime)
             {

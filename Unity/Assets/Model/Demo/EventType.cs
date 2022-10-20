@@ -469,6 +469,20 @@ namespace ET
             public Unit Unit;
         }
 
+        //动画
+        public class PlayAnimator : DisposeObject
+        {
+            public static readonly PlayAnimator Instance = new PlayAnimator();
+
+            public string Animator;
+            public Unit Unit;
+
+            public override void Dispose()
+            {
+                this.Unit = null;
+            }
+        }
+
         //状态机
         public class FsmChange : DisposeObject
         {

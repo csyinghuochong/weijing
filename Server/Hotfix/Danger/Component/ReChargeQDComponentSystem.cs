@@ -228,46 +228,47 @@ namespace ET
                 //读取数据流
                 StreamReader body = new StreamReader(request.InputStream, Encoding.UTF8);//读取流，用来获取支付宝请求的数据
                                                                                          //将传入的数据进行解码
-                string pay_notice = HttpUtility.UrlDecode(body.ReadToEnd(), Encoding.UTF8);//HttpUtility.UrlDecode：解码 url编码，将字符串格式为%的形式，解码就是将%转化为字符串信息
-                                                                                           //设置支付结果打印颜色并输出结果
-                                                                     //Console.WriteLine("支付结果来了：" + pay_notice);
+                string pay_notice = HttpUtility.UrlDecode(body.ReadToEnd(), Encoding.UTF8);//HttpUtility.UrlDecode：解码 url编码，将字符串格式为%的形式，解码就是将%转化为字符串信息                                                                       
                 if (pay_notice != null && pay_notice != "")
                 {
                     string[] pay_value1 = pay_notice.Split('&');
                     string nt_data = pay_value1[0].Split('=')[1];
                     Dictionary<string, string> payResults = self.ParsePayResult(nt_data);
-                    string dingdanid = payResults["game_order"];
-                    QudaoOrderInfo orderinfo = null;
-                    self.orderDic.TryGetValue(dingdanid, out orderinfo);
+                    if (payResults.ContainsKey("game_order"))
+                    {
+                        string dingdanid = payResults["game_order"];
+                        QudaoOrderInfo orderinfo = null;
+                        self.orderDic.TryGetValue(dingdanid, out orderinfo);
 
-                    if (orderinfo != null && self.CheckMd5Sign(pay_notice) && payResults["status"] == "0")
-                    {
-                        Console.WriteLine(dingdanid + ":支付成功！");
-                        //修改数据库订单描述
-                        string toClientMsg = "SendPay," + "1" + "@" + "1" + "@" + orderinfo.objID + "@" + dingdanid + "@" + "服务器支付";
-                        RechargeHelp.OnPaySucessToGate( orderinfo.zone, orderinfo.userId, orderinfo.amount).Coroutine();
-                    }
-                    else
-                    {
-                        //string toClientMsg11 = "SendPay," + "2" + "@" + "1" + "@" + orderinfo.objID + "@" + dingdanid + "@" + "服务器支付";
-                        //orderinfo.clientAgent.SendClientStr(toClientMsg11);
-                        Console.WriteLine(dingdanid + ":支付失败！");
-                    }
-                    if (orderinfo!=null)
-                    {
-                        self.orderDic.Remove(dingdanid);
-                        orderinfo.Dispose();
-                    }
+                        if (orderinfo != null && self.CheckMd5Sign(pay_notice) && payResults["status"] == "0")
+                        {
+                            Console.WriteLine(dingdanid + ":支付成功！");
+                            //修改数据库订单描述
+                            string toClientMsg = "SendPay," + "1" + "@" + "1" + "@" + orderinfo.objID + "@" + dingdanid + "@" + "服务器支付";
+                            RechargeHelp.OnPaySucessToGate(orderinfo.zone, orderinfo.userId, orderinfo.amount).Coroutine();
+                        }
+                        else
+                        {
+                            //string toClientMsg11 = "SendPay," + "2" + "@" + "1" + "@" + orderinfo.objID + "@" + dingdanid + "@" + "服务器支付";
+                            //orderinfo.clientAgent.SendClientStr(toClientMsg11);
+                            Console.WriteLine(dingdanid + ":支付失败！");
+                        }
+                        if (orderinfo != null)
+                        {
+                            self.orderDic.Remove(dingdanid);
+                            orderinfo.Dispose();
+                        }
 
-                    HttpListenerResponse response = context.Response;
-                    //给支付宝服务器返回success,如果不返回,支付宝服务器会间隔一段时间就向此服务器支付成功的回调信息
-                    string responseString = "SUCCESS";
-                    byte[] buffer = Encoding.UTF8.GetBytes(responseString);
-                    response.ContentLength64 = buffer.Length;
-                    Stream output = response.OutputStream;
-                    output.Write(buffer, 0, buffer.Length);//响应支付宝服务器本次的通知
-                    output.Close();
-                    response.Close();
+                        HttpListenerResponse response = context.Response;
+                        //给支付宝服务器返回success,如果不返回,支付宝服务器会间隔一段时间就向此服务器支付成功的回调信息
+                        string responseString = "SUCCESS";
+                        byte[] buffer = Encoding.UTF8.GetBytes(responseString);
+                        response.ContentLength64 = buffer.Length;
+                        Stream output = response.OutputStream;
+                        output.Write(buffer, 0, buffer.Length);//响应支付宝服务器本次的通知
+                        output.Close();
+                        response.Close();
+                    }
                 }
             }
             catch (Exception e)
