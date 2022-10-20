@@ -3938,3 +3938,4 @@ message M2C_TeamDungeonRBornResult // IActorMessage
 	float Y = 4;
 	float Z = 5;
 }
+
