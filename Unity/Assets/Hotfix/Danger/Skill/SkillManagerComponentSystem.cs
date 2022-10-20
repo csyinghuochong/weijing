@@ -161,6 +161,14 @@ namespace ET
                 return;
             }
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
+            Log.Debug($"skillcmd.ActorId:  {skillcmd.ActorId}");
+            if (skillcmd.ActorId > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
+            {
+                EventType.PlayAnimator.Instance.Animator = skillConfig.SkillAnimation;
+                EventType.PlayAnimator.Instance.Unit = unit;
+                Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
+                return;
+            }
             if (!string.IsNullOrEmpty(skillConfig.SkillAnimation) && skillConfig.SkillAnimation != "0")
             {
                 unit.Rotation = Quaternion.Euler(0, skillcmd.SkillInfos[0].TargetAngle, 0);

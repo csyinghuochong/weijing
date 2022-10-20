@@ -319,6 +319,7 @@ namespace ET
 
             M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill() {
                 UnitId = unit.Id,
+                ActorId = skillcmd.ItemId,
                 SkillID = skillcmd.SkillID,
                 TargetAngle = skillcmd.TargetAngle,
                 SkillInfos = skillList
