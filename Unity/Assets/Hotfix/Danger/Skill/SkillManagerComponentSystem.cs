@@ -139,7 +139,7 @@ namespace ET
 
         public static void OnUseSkill(this SkillManagerComponent self, M2C_UnitUseSkill skillcmd )
         {
-            Unit from = self.GetParent<Unit>();
+            Unit unit = self.GetParent<Unit>();
             //野怪技能指示器
             for (int i = 0; i < skillcmd.SkillInfos.Count; i++)
             {
@@ -152,7 +152,7 @@ namespace ET
                 }
 
                 ASkillHandler skillHandler = (ASkillHandler)ObjectPool.Instance.Fetch(SkillDispatcherComponent.Instance.SkillTypes[skillConfig1.GameObjectName]);
-                skillHandler.OnInit(skillcmd.SkillInfos[i], from);
+                skillHandler.OnInit(skillcmd.SkillInfos[i], unit);
                 self.Skills.Add(skillHandler);
             }
             self.AddSkillTimer();
@@ -163,10 +163,10 @@ namespace ET
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
             if (!string.IsNullOrEmpty(skillConfig.SkillAnimation) && skillConfig.SkillAnimation != "0")
             {
-                from.Rotation = Quaternion.Euler(0, skillcmd.SkillInfos[0].TargetAngle, 0);
+                unit.Rotation = Quaternion.Euler(0, skillcmd.SkillInfos[0].TargetAngle, 0);
                 EventType.FsmChange.Instance.FsmHandlerType = skillConfig.ComboSkillID > 0 ? 5 : 4;
                 EventType.FsmChange.Instance.FsmValue = skillcmd.SkillInfos[0].WeaponSkillID;
-                EventType.FsmChange.Instance.Unit = from;
+                EventType.FsmChange.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.FsmChange.Instance);
             }
         }
