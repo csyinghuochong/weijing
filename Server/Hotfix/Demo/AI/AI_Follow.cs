@@ -74,7 +74,7 @@ namespace ET
                 if (Vector3.Distance(unit.Position, master.Position) > 1.1f)
                 {
                     Vector3 nextTarget = GetFollowPosition(unit, master);
-                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, true).Coroutine();
+                    unit.FindPathMoveToAsync(nextTarget, cancellationToken, false).Coroutine();
                 }
 
                 bool timeRet = await TimerComponent.Instance.WaitAsync(500, cancellationToken);

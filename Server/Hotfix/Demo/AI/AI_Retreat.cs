@@ -30,7 +30,7 @@ namespace ET
 
                 if (unit.GetComponent<StateComponent>().CanMove())
                 {
-                    unit.FindPathMoveToAsync(bornVector3, cancellationToken, true).Coroutine();
+                    unit.FindPathMoveToAsync(bornVector3, cancellationToken, false).Coroutine();
                 }
                 bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet || Vector3.Distance(bornVector3, unit.Position) < 0.5f)

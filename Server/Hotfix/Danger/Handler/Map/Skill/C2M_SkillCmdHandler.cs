@@ -11,11 +11,14 @@ namespace ET
         {
             try
             {
-                entity.Stop(entity.GetComponent<MoveComponent>().IsArrived() ? 0 : -2);
                 int item = request.ItemId;
                 if (item > 0)
                 {
                     entity.GetComponent<BagComponent>().OnCostItemData($"{item};1");
+                }
+                else
+                {
+                    entity.Stop(entity.GetComponent<MoveComponent>().IsArrived() ? 0 : -2);
                 }
                 M2C_SkillCmd m2C_SkillCmd = entity.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
                 response.Error = m2C_SkillCmd.Error;
