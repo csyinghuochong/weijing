@@ -63,7 +63,7 @@ namespace ET
                     continue;
                 }
                 Unit petunit =  UnitFactory.CreateFubenPet(unit.DomainScene(), 0,
-                    1,  rolePetInfo, AIHelp.Formation_1[i]);
+                    CampEnum.CampPlayer_1,  rolePetInfo, AIHelp.Formation_1[i]);
                 petunit.GetComponent<AIComponent>().StopAI = true;
             }
             if (instanceId != self.InstanceId)
@@ -106,7 +106,7 @@ namespace ET
                     Vector3 vector3 = new Vector3(position.x + RandomHelper.RandomNumberFloat(-1 * range, range),
                         position.y, position.z + RandomHelper.RandomNumberFloat(-1 * range, range));
                     Unit monsterunit=  UnitFactory.CreateMonster(self.DomainScene(), monsterId, vector3,  new CreateMonsterInfo()
-                    { FubenDifficulty= FubenDifficulty.None, Camp = 2});
+                    { FubenDifficulty= FubenDifficulty.None, Camp = CampEnum.CampPlayer_2});
                     monsterunit.GetComponent<AIComponent>().StopAI = true;
                 }
             }

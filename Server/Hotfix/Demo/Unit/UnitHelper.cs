@@ -262,7 +262,7 @@ namespace ET
 
         public static int GetBattleCamp(this Unit self)
         {
-            return self.GetComponent<NumericComponent>().GetAsInt(NumericType.CampId);
+            return self.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleCamp);
         }
     }
 }

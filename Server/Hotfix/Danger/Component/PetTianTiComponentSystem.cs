@@ -39,7 +39,7 @@ namespace ET
                         continue;
                     }
                     Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), 0,
-                       2, rolePetInfo, AIHelp.Formation_2[i]);
+                       CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[i]);
                     //petunit.GetComponent<AIComponent>().StopAI = true;
                 }
             }
@@ -52,7 +52,7 @@ namespace ET
                     petComponent.PetXiLian(petInfo, 1);
                     petComponent.UpdatePetAttribute(petInfo);
                     Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), 0,
-                       2,  petInfo, AIHelp.Formation_2[k]);
+                       CampEnum.CampPlayer_2,  petInfo, AIHelp.Formation_2[k]);
                     //petunit.GetComponent<AIComponent>().StopAI = true;
                 }
             }

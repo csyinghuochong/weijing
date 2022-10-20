@@ -36,6 +36,9 @@ namespace ET
 				unit.AddComponent<ObjectWait>();
 				unit.AddComponent<SkillManagerComponent>();
 				unit.AddComponent<BuffManagerComponent>();
+
+				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+				numericComponent.Set(NumericType.BattleCamp, CampEnum.CampPlayer_1);
 				//添加消息类型, GateSession邮箱在收到消息的时候会立即转发给客户端，MessageDispatcher类型会再次对Actor消息进行分发到具体的Handler处理，默认的MailboxComponent类型是MessageDispatcher。
 				//await unit.AddLocation();                     
 				//注册消息机制的ID,可以通过消息ID让其他玩家对自己进行消息发送
@@ -93,7 +96,7 @@ namespace ET
 						}
 						break;
 					case (int)SceneTypeEnum.LocalDungeon:
-						unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TaskDungeonId, request.ChapterId, false);
+						numericComponent.ApplyValue(NumericType.TaskDungeonId, request.ChapterId, false);
 						DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(request.ChapterId);
 						scene.GetComponent<MapComponent>().NavMeshId = dungeonConfig.MapID.ToString();
 
@@ -144,7 +147,7 @@ namespace ET
 						if (request.SceneType == (int)SceneTypeEnum.Tower)
 						{
 							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
-							unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TowerId, 0, true);
+							numericComponent.ApplyValue(NumericType.TowerId, 0, true);
 							scene.GetComponent<TowerComponent>().MainUnit = unit;
 							scene.GetComponent<TowerComponent>().BeginTower(request.ChapterId);
 							//FubenHelp.CreateMonsterList(scene, FubenDifficulty.Normal, sceneConfig.CreateMonster).Coroutine();
@@ -169,7 +172,6 @@ namespace ET
 						break;
 					case (int)SceneTypeEnum.MainCityScene:
 						sceneConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());
-						NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 						if (numericComponent.GetAsFloat(NumericType.MainCity_X) == 0)
 						{
 							unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);

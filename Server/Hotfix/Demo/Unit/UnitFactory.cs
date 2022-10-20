@@ -17,7 +17,6 @@ namespace ET
                     unit.AddComponent<MoveComponent>();
                     unit.Position = new Vector3(-10, 0, -10);
                     unit.Type = UnitType.Player;
-                    UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
                     //NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
                     //numericComponent.Set((int)NumericType.Now_Speed, 6f); // 速度是6米每秒
                     //numericComponent.Set(NumericType.AOI, 15000); // 视野15米
@@ -151,9 +150,9 @@ namespace ET
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
             unit.GetComponent<NumericComponent>().Set(NumericType.MasterId, master.Id);
+            numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.ConfigId = monster;
-            numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Type = UnitType.Monster;
@@ -178,11 +177,11 @@ namespace ET
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
             numericComponent.Set(NumericType.BattleCamp, roleCamp);
+            numericComponent.Set(NumericType.MasterId, masterId);
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
-            numericComponent.Set(NumericType.MasterId, masterId);
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.ConfigId = petinfo.ConfigId;
             unit.AddComponent<StateComponent>();         //添加状态组件
