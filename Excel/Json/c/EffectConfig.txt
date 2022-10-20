@@ -151,6 +151,7 @@
 {"_t":"EffectConfig","_id":21103040,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_BaoZha_31","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":6000},
 {"_t":"EffectConfig","_id":22000010,"EffectType":2,"IfFollowCollider":0,"EffectName":"Eff_Skill_Target_1","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1000},
 {"_t":"EffectConfig","_id":22000020,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_BaoZha_10","SkillEffectDelayTime":0.5,"SkillParent":1,"SkillParentPosition":"Center","HideTime":1,"SkillEffectLiveTime":6000},
+{"_t":"EffectConfig","_id":22000030,"EffectType":1,"IfFollowCollider":1,"EffectName":"Eff_Skill_ChongFeng_ChiXu","SkillEffectDelayTime":0.5,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":5000},
 {"_t":"EffectConfig","_id":23000010,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_PenHuo_1","SkillEffectDelayTime":0,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":6000},
 {"_t":"EffectConfig","_id":23000020,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_XuanFengZhan_4","SkillEffectDelayTime":0.75,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":6000},
 {"_t":"EffectConfig","_id":23000030,"EffectType":1,"IfFollowCollider":0,"EffectName":"Eff_Skill_BaoZha_13","SkillEffectDelayTime":0.5,"SkillParent":1,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":6000},
