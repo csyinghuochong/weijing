@@ -835,6 +835,8 @@ namespace ET
             }
 
             self.UIMainTeam.OnReset();
+
+            self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
         }
 
         public static async ETTask OnButtonStallOpen(this UIMainComponent self)
