@@ -39,11 +39,16 @@ namespace ET
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
             HeroDataComponent heroDataComponent = unit.AddComponent<HeroDataComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
-            numericComponent.Set(NumericType.BattleCamp, createMonsterInfo.Camp);
             unitInfoComponent.EnergySkillId = createMonsterInfo.SkillId;
             unit.Type = UnitType.Monster;
             unit.Position = vector3;
             unit.ConfigId = monsterConfig.Id;
+
+            numericComponent.Set(NumericType.BattleCamp, createMonsterInfo.Camp);
+            //出生点
+            numericComponent.Set((int)NumericType.Born_X, unit.Position.x, false);
+            numericComponent.Set((int)NumericType.Born_Y, unit.Position.y, false);
+            numericComponent.Set((int)NumericType.Born_Z, unit.Position.z, false);
             //51 场景怪
             //52 能量台子
             //53 传送门

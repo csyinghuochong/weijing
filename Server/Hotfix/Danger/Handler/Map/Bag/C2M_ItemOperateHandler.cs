@@ -252,7 +252,7 @@ namespace ET
                                     Unit monster = UnitFactory.CreateMonster(unit.DomainScene(), int.Parse(ids[r_number]), vector3, new CreateMonsterInfo()
                                     { 
                                         FubenDifficulty = FubenDifficulty.None,
-                                        Camp = 2
+                                        Camp = CampEnum.CampMonster1
                                     });
                                 }
                                 break;

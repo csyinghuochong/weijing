@@ -33,8 +33,6 @@ namespace ET
             if (args.LastSceneType > (int)SceneTypeEnum.MainCityScene)
             {
                 GameObjectPoolComponent.Instance.DisposeAll();
-                UI uimain = UIHelper.GetUI(args.ZoneScene, UIType.UIMain);
-                uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnExitBattle();
             }
             Game.Scene.GetComponent<SceneManagerComponent>().SceneAssetRequest = null;
             UI uI = await UIHelper.Create(args.ZoneScene, UIType.UILoading);

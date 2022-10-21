@@ -105,7 +105,7 @@ namespace ET
         {
             UnitFactory.CreateMonster(self.GetParent<Scene>(), refreshMonster.MonsterId,
                 new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ),
-                new CreateMonsterInfo() { Camp = 2, FubenDifficulty = FubenDifficulty.Normal });
+                new CreateMonsterInfo() { Camp = CampEnum.CampMonster1, FubenDifficulty = FubenDifficulty.Normal });
         }
 
         public static void OnCleanMonsterCD(this LocalDungeonComponent self)

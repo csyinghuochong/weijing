@@ -351,11 +351,6 @@ namespace ET
             numericComponent.Set((int)NumericType.Base_MageDamgeSubPro_Base, monsterConfig.AdfAdd, false);
             numericComponent.Set((int)NumericType.Base_DamgeSubPro_Base, monsterConfig.DamgeAdd, false);
 
-            //出生点
-            numericComponent.Set((int)NumericType.Born_X, nowUnit.Position.x);
-            numericComponent.Set((int)NumericType.Born_Y, nowUnit.Position.y);
-            numericComponent.Set((int)NumericType.Born_Z, nowUnit.Position.z);
-
             //设置当前血量
             numericComponent.NumericDic[(int)NumericType.Now_Hp] = numericComponent.NumericDic[(int)NumericType.Now_MaxHp];
             //Log.Debug("初始化当前怪物血量:" + numericComponent.GetAsLong(NumericType.Now_Hp));
@@ -441,12 +436,6 @@ namespace ET
             numericComponent.Set((int)NumericType.Base_ActDamgeSubPro_Base, monsterConfig.DefAdd, false);
             numericComponent.Set((int)NumericType.Base_MageDamgeSubPro_Base, monsterConfig.AdfAdd, false);
             numericComponent.Set((int)NumericType.Base_DamgeSubPro_Base, monsterConfig.DamgeAdd, false);
-
-            //出生点
-            numericComponent.Set((int)NumericType.Born_X, nowUnit.Position.x, false);
-            numericComponent.Set((int)NumericType.Born_Y, nowUnit.Position.y, false);
-            numericComponent.Set((int)NumericType.Born_Z, nowUnit.Position.z, false);
-
             //设置当前血量
             numericComponent.NumericDic[(int)NumericType.Now_Hp] = numericComponent.NumericDic[(int)NumericType.Now_MaxHp];
             //Log.Debug("初始化当前怪物血量:" + numericComponent.GetAsLong(NumericType.Now_Hp));

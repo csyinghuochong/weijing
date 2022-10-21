@@ -341,7 +341,7 @@ namespace ET
                     UnitFactory.CreateMonster(self.DomainScene(), int.Parse(seneItems[1]), vector3,  new CreateMonsterInfo()
                     { 
                         FubenDifficulty = self.FubenDifficulty,
-                        Camp = 2
+                        Camp = CampEnum.CampMonster1
                     });
                 }
             }
@@ -363,7 +363,7 @@ namespace ET
                     UnitFactory.CreateMonster(self.DomainScene(), int.Parse(monsterInfo[2]), vector3,  new CreateMonsterInfo()
                     { 
                         FubenDifficulty = self.FubenDifficulty,
-                        Camp = 2,
+                        Camp = CampEnum.CampMonster1
                     });
                 }
             }

@@ -67,7 +67,7 @@ namespace ET
 							energySkills.Remove(skillId);
 							UnitFactory.CreateMonster(scene, monsterConfig.Id, vector3, new CreateMonsterInfo() 
 							{ 
-								SkillId = skillId, FubenDifficulty = fubenDifficulty, Camp = 2,
+								SkillId = skillId, FubenDifficulty = fubenDifficulty, Camp   = CampEnum.CampMonster1
 							});
 						}
 						else
@@ -75,7 +75,7 @@ namespace ET
 							UnitFactory.CreateMonster(scene, monsterConfig.Id, vector3,  new CreateMonsterInfo()
 							{
 								FubenDifficulty = fubenDifficulty,
-								Camp = 2,
+								Camp= CampEnum.CampMonster1
 							});
 						}
 					}
@@ -97,7 +97,7 @@ namespace ET
 						UnitFactory.CreateMonster(scene, int.Parse(monsterid[0]), vector3, new CreateMonsterInfo()
 						{ 
 							FubenDifficulty = fubenDifficulty,
-							Camp = 2,
+							Camp  = CampEnum.CampMonster1
 						});
 					}
 				}
@@ -119,7 +119,8 @@ namespace ET
 						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
 
 						UnitFactory.CreateMonster(scene, int.Parse(monsterid[0]), vector3,  new CreateMonsterInfo() {
-							PlayerLevel = playerLv, AttributeParams = mondels[4] + ";" + mondels[5] , FubenDifficulty = fubenDifficulty, Camp = 2,
+							PlayerLevel = playerLv, AttributeParams = mondels[4] + ";" + mondels[5] , FubenDifficulty = fubenDifficulty,
+							Camp = CampEnum.CampMonster1,
 						});
 					}
 				}

@@ -164,7 +164,7 @@ namespace ET
                 Vector3 to = new Vector3(form.x + RandomHelper.RandomNumberFloat(-1 * range, range), form.y, form.z + RandomHelper.RandomNumberFloat(-1 * range, range));
                 Vector3 vector3 = self.DomainScene().GetComponent<MapComponent>().GetCanReachPath(form, to);
                 UnitFactory.CreateMonster(self.GetParent<Scene>(), refreshMonster.MonsterId, vector3, new CreateMonsterInfo()
-                { Camp = 2, FubenDifficulty = FubenDifficulty.Normal });
+                { Camp = CampEnum.CampMonster1, FubenDifficulty = FubenDifficulty.Normal });
             }
         }
 

@@ -34,7 +34,7 @@ namespace ET
 						Unit monster = UnitFactory.CreateMonster(unit.DomainScene(), monsterConfigs[i].Id, vector3,  new CreateMonsterInfo()
 						{ 
 							FubenDifficulty = FubenDifficulty.None,
-							Camp = 2,
+							Camp  = CampEnum.CampMonster1
 						});
 					}
 					return;
@@ -142,7 +142,7 @@ namespace ET
 							Unit monster = UnitFactory.CreateMonster(unit.DomainScene(), monsterId, vector3, new CreateMonsterInfo()
 							{ 
 								FubenDifficulty = FubenDifficulty.None,
-								Camp = 2
+								Camp = CampEnum.CampMonster1
 							});
 
 							//M2C_CreateSpilings createSpilings = new M2C_CreateSpilings();

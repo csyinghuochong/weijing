@@ -804,6 +804,7 @@ namespace ET
         {
             self.UIJoystickMoveComponent.draging = false;
             self.UIMainSkillComponent.CancelSkill();
+            self.UIMainSkillComponent.OnExitBattle();
         }
        
         /// <summary>
