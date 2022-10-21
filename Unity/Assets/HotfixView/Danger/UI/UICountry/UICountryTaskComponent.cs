@@ -16,7 +16,7 @@ namespace ET
         public GameObject Image_progressvalue;
         public GameObject TaskListNode;
 
-        public List<UI> TaskList;
+        public List<UICountryTaskItemComponent> TaskList = new List<UICountryTaskItemComponent>();
         public UserInfoComponent UserInfoComponent;
     }
 
@@ -67,8 +67,7 @@ namespace ET
             self.Image_progressvalue = rc.Get<GameObject>("Image_progressvalue");
             self.TaskListNode = rc.Get<GameObject>("TaskListNode");
 
-            self.TaskList = new List<UI>();
-
+            self.TaskList.Clear();
             self.UserInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
@@ -146,28 +145,34 @@ namespace ET
                     return commitb - commita;           //已经完成的在前
             });
 
+            int number = 0;
             for (int i = 0; i < taskPros.Count; i++)
             {
-                UI ui_1 = null;
-                if (i < self.TaskList.Count)
+                TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPros[i].taskID);
+                if (taskConfig.TaskType != TaskCountryType.Country)
                 {
-                    ui_1 = self.TaskList[i];
+                    continue;
+                }
+
+                UICountryTaskItemComponent ui_1 = null;
+                if (number < self.TaskList.Count)
+                {
+                    ui_1 = self.TaskList[number];
                     ui_1.GameObject.SetActive(true);
                 }
                 else
                 {
                     GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(taskTypeItem, self.TaskListNode);
-                    ui_1 = self.AddChild<UI, string, GameObject>("taskTypeItem_" + i.ToString(), taskTypeItem);
-                    ui_1.AddComponent<UICountryTaskItemComponent>();
+                    ui_1 = self.AddChild<UICountryTaskItemComponent, GameObject>(taskTypeItem);
                     self.TaskList.Add(ui_1);
                 }
 
-                UICountryTaskItemComponent uIItemComponent = ui_1.GetComponent<UICountryTaskItemComponent>();
-                uIItemComponent.OnUpdateData(taskPros[i]);
+                ui_1.OnUpdateData(taskPros[i]);
+                number++;
             }
 
-            for (int k = taskPros.Count; k < self.TaskList.Count; k++)
+            for (int k = number; k < self.TaskList.Count; k++)
             {
                 self.TaskList[k].GameObject.SetActive(false);
             }
@@ -175,7 +180,6 @@ namespace ET
             long haveHuoyue = self.UserInfoComponent.UserInfo.HuoYue;
             int totalHuoyue = HuoYueRewardConfigCategory.Instance.Get(4).NeedPoint;
             self.Text_DayHuoYue.GetComponent<Text>().text = haveHuoyue.ToString();
-            //self.Image_progressvalue.transform.localScale = new Vector3(Mathf.Clamp01(haveHuoyue * 1f / totalHuoyue), 1f, 1f);
             self.Image_progressvalue.transform.GetComponent<RectTransform>().sizeDelta = new Vector2(Mathf.Clamp01(haveHuoyue * 1f / totalHuoyue)* 300f, 58);
         }
 

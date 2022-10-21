@@ -3,10 +3,14 @@
 namespace ET
 {
 
-    public class TaskHelp : Singleton<TaskHelp>
+    public static class TaskHelp
     {
 
-        public List<int> GetTaskCountrys()
+        /// <summary>
+        /// 活跃任务
+        /// </summary>
+        /// <returns></returns>
+        public static List<int> GetTaskCountrys()
         {
             //活跃任务
             List<int> taskCountryList = new List<int>();
@@ -38,27 +42,22 @@ namespace ET
             return taskCountryList;
         }
 
-        //1：杀怪
-        //2：道具ID
-        //3：找人
-        //4：等级达到指定等级
-        //5：击杀任意怪物
-        //6：击杀任意BOSS级别怪物
-        //7：通关某个副本
-        //101：击杀挑战难度的指定ID怪物(击杀地狱也算)
-        //102：击杀地狱你拿度指定ID怪物
-        //111：通关挑战难度的副本(通关地狱也算)
-        //112：通关地狱难度的副本
-        //121：击败挑战难度任意数量怪物(通关地狱也算)
-        //122：击败地狱难度任意数量怪物
-        //131：击败挑战难度任意boss怪物(通关地狱也算)
-        //132：击败地狱难度任意boss怪物
-        protected override void InternalInit()
-        {
-            base.InternalInit();
-        }
 
-        public List<RewardItem> GetTaskRewards(int taskid, TaskConfig taskConfig = null)
+        public static List<int> GetBattleTask()
+        {
+            List<int> taskIds = new List<int>();
+            Dictionary<int, TaskCountryConfig> keyValuePairs = TaskCountryConfigCategory.Instance.GetAll();
+            foreach (var item in keyValuePairs)
+            {
+                if (item.Value.TaskType == TaskCountryType.Battle)
+                {
+                    taskIds.Add(item.Key);
+                }
+            }
+            return taskIds;
+        }
+        
+        public static List<RewardItem> GetTaskRewards(int taskid, TaskConfig taskConfig = null)
         {
             if (taskConfig == null)
             {

@@ -66,7 +66,7 @@ namespace ET
                 }
                 if (player != null)
                 {
-                    player.GetComponent<TaskComponent>().OnKillUnit(defendUnit);
+                    player.GetComponent<TaskComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
                     player.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
                     player.GetComponent<PetComponent>().OnKillUnit(defendUnit);
                     UnitFactory.CreateDropItems(defendUnit, player);

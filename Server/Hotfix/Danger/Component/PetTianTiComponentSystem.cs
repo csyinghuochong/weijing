@@ -101,7 +101,12 @@ namespace ET
             R2M_PetRankUpdateResponse m2m_TrasferUnitResponse = (R2M_PetRankUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                      (mapInstanceId, new M2R_PetRankUpdateRequest() {  RankPetInfo = rankPetInfo, EnemyId = self.DomainScene().GetComponent<PetTianTiComponent>().EnemyId });
         }
-
+        
+        /// <summary>
+        /// 1 成功 2失败
+        /// </summary>
+        /// <param name="self"></param>
+        /// <returns></returns>
         public static int GetCombatResult(this PetTianTiComponent self)
         {
             int number_1 = 0;

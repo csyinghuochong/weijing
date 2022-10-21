@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace ET
 { 
-    public class UIStoreItemComponent : Entity, IAwake, IDestroy
+    public class UIStoreItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public StoreSellConfig StoreSellConfig;
 
@@ -11,28 +11,29 @@ namespace ET
         public GameObject ButtonBuy;
         public GameObject UIItem;
         public GameObject Image_gold;
-
-        public UI uIItemComponent;
+        public GameObject GameObject;
+        public UIItemComponent uIItemComponent;
     }
 
     [ObjectSystem]
-    public class UIStoreItemComponentAwakeSystem : AwakeSystem<UIStoreItemComponent>
+    public class UIStoreItemComponentAwakeSystem : AwakeSystem<UIStoreItemComponent, GameObject>
     {
 
-        public override void Awake(UIStoreItemComponent self)
+        public override void Awake(UIStoreItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Text_value = rc.Get<GameObject>("Text_value");
-            self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
             self.UIItem = rc.Get<GameObject>("UIItem");
             self.Image_gold = rc.Get<GameObject>("Image_gold");
 
-            UI ui_1 = self.AddChild<UI, string, GameObject>("UIItem", self.UIItem);
-            UIItemComponent uIItemComponent = ui_1.AddComponent<UIItemComponent>();
-            self.uIItemComponent = ui_1;
-
-            self.ButtonBuy.GetComponent<Button>().onClick.AddListener(() => { self.OnClickBuyButton(); });
+            self.uIItemComponent = self.AddChild<UIItemComponent, GameObject>(self.UIItem);
+            self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
+            if (self.ButtonBuy != null)
+            {
+                self.ButtonBuy.GetComponent<Button>().onClick.AddListener(() => { self.OnClickBuyButton(); });
+            }
         }
     }
 
@@ -42,7 +43,6 @@ namespace ET
 
         public override void Destroy(UIStoreItemComponent self)
         {
-            self.uIItemComponent.Dispose();
             self.uIItemComponent = null;
         }
     }
@@ -91,10 +91,10 @@ namespace ET
             bagInfo.ItemNum = storeSellConfig.SellItemNum;
             bagInfo.ItemID = storeSellConfig.SellItemID;
             self.Text_value.GetComponent<Text>().text = storeSellConfig.SellValue.ToString();
-            self.uIItemComponent.GetComponent<UIItemComponent>().UpdateItem(bagInfo, ItemOperateEnum.None);
+            self.uIItemComponent.UpdateItem(bagInfo, ItemOperateEnum.None);
             if (bagInfo.ItemNum <= 1)
             {
-                self.uIItemComponent.GetComponent<UIItemComponent>().Label_ItemNum.SetActive(false);
+                self.uIItemComponent.Label_ItemNum.SetActive(false);
             }
         }
 

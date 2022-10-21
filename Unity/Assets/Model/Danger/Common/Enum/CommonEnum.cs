@@ -3,6 +3,12 @@
 namespace ET
 {
 
+    public static class CombatResultEnum
+    {
+        public const int Win = 1;
+        public const int Fail = 2;
+    }
+
     public static class CampEnum
     {
         public const int CampPlayer_1 = 1;

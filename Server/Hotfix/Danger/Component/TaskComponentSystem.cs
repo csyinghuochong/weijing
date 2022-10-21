@@ -256,7 +256,7 @@ namespace ET
             Log.Debug($"Gold:  {unitInfoComponent.Id} {TaskCoin} task");
 
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
-            List<RewardItem> rewardItems = TaskHelp.Instance.GetTaskRewards(taskid, taskConfig);
+            List<RewardItem> rewardItems = TaskHelp.GetTaskRewards(taskid, taskConfig);
             bagComponent.OnAddItemData(rewardItems,0, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
             if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
             {
@@ -358,62 +358,71 @@ namespace ET
             }
         }
 
+        public static void OnWinCampBattle(this TaskComponent self)
+        {
+            self.TriggerTaskCountryEvent(TaskCountryTargetType.BattleWin_101, 0, 1);
+        }
+
         public static void OnPassTeamFuben(this TaskComponent self)
         {
             self.TriggerTaskCountryEvent(TaskCountryTargetType.PassTeamFuben_4, 0, 1);
         }
 
         //击杀怪物可触发多种类型的任务
-        public static void OnKillUnit(this TaskComponent self, Unit bekill)
+        public static void OnKillUnit(this TaskComponent self, Unit bekill, int sceneType)
         {
             if (bekill == null || bekill.IsDisposed)
                 return;
 
             UnitInfoComponent unitInfoComponent = bekill.GetComponent<UnitInfoComponent>();
-            if (!unitInfoComponent.IsMonster())
-                return;
-
-            int unitconfigId = bekill.ConfigId;
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitconfigId);
-            bool isBoss = monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss;
-            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
-            int fubenDifficulty = FubenDifficulty.None;
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
+            if (unitInfoComponent.IsPlayer() && sceneType == SceneTypeEnum.Battle)
             {
-                fubenDifficulty = self.GetParent<Unit>().DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
+                self.TriggerTaskCountryEvent(TaskCountryTargetType.BattleKillPlayer_102, 0, 1);
             }
-
-            self.TriggerTaskEvent(TaskTargetType.KillMonsterID_1, unitconfigId, 1);
-            self.TriggerTaskEvent(TaskTargetType.KillMonster_5, 0, 1);
-            self.TriggerTaskCountryEvent(TaskCountryTargetType.KillMonster_2, 0, 1);
-
-            if (isBoss)
+            if (unitInfoComponent.IsMonster())
             {
-                self.TriggerTaskEvent(TaskTargetType.KillBOSS_6, 0, 1);
-                self.TriggerTaskCountryEvent(TaskCountryTargetType.KillBoss_3, 0, 1);
-            }
-
-            if ((int)fubenDifficulty >= (int)FubenDifficulty.DiYu)  //地狱
-            {
-                self.TriggerTaskEvent(TaskTargetType.KillTiaoZhanMonsterID_101, unitconfigId, 1);
-                self.TriggerTaskEvent(TaskTargetType.KillDiYuMonsterID_102, unitconfigId, 1);
-                self.TriggerTaskEvent(TaskTargetType.KillTianZhanMonsterNumber_121, 0, 1);
-                self.TriggerTaskEvent(TaskTargetType.KillDiYuMonsterNumber_122, 0, 1);
-
-                if (isBoss)
+                int unitconfigId = bekill.ConfigId;
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitconfigId);
+                bool isBoss = monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss;
+                MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+                int fubenDifficulty = FubenDifficulty.None;
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
                 {
-                    self.TriggerTaskEvent(TaskTargetType.KillTianZhanBossNumber_131, 0, 1);
-                    self.TriggerTaskEvent(TaskTargetType.KillDiYuBossNumber_132, 0, 1);
+                    fubenDifficulty = self.GetParent<Unit>().DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
                 }
-            }
-            if((int)fubenDifficulty >= (int)FubenDifficulty.TiaoZhan) //挑战
-            {
-                self.TriggerTaskEvent(TaskTargetType.KillTiaoZhanMonsterID_101, unitconfigId, 1);
-                self.TriggerTaskEvent(TaskTargetType.KillTianZhanMonsterNumber_121, 0, 1);
+
+                self.TriggerTaskEvent(TaskTargetType.KillMonsterID_1, unitconfigId, 1);
+                self.TriggerTaskEvent(TaskTargetType.KillMonster_5, 0, 1);
+                self.TriggerTaskCountryEvent(TaskCountryTargetType.KillMonster_2, 0, 1);
 
                 if (isBoss)
                 {
-                    self.TriggerTaskEvent(TaskTargetType.KillTianZhanBossNumber_131, 0, 1);
+                    self.TriggerTaskEvent(TaskTargetType.KillBOSS_6, 0, 1);
+                    self.TriggerTaskCountryEvent(TaskCountryTargetType.KillBoss_3, 0, 1);
+                }
+
+                if ((int)fubenDifficulty >= (int)FubenDifficulty.DiYu)  //地狱
+                {
+                    self.TriggerTaskEvent(TaskTargetType.KillTiaoZhanMonsterID_101, unitconfigId, 1);
+                    self.TriggerTaskEvent(TaskTargetType.KillDiYuMonsterID_102, unitconfigId, 1);
+                    self.TriggerTaskEvent(TaskTargetType.KillTianZhanMonsterNumber_121, 0, 1);
+                    self.TriggerTaskEvent(TaskTargetType.KillDiYuMonsterNumber_122, 0, 1);
+
+                    if (isBoss)
+                    {
+                        self.TriggerTaskEvent(TaskTargetType.KillTianZhanBossNumber_131, 0, 1);
+                        self.TriggerTaskEvent(TaskTargetType.KillDiYuBossNumber_132, 0, 1);
+                    }
+                }
+                if ((int)fubenDifficulty >= (int)FubenDifficulty.TiaoZhan) //挑战
+                {
+                    self.TriggerTaskEvent(TaskTargetType.KillTiaoZhanMonsterID_101, unitconfigId, 1);
+                    self.TriggerTaskEvent(TaskTargetType.KillTianZhanMonsterNumber_121, 0, 1);
+
+                    if (isBoss)
+                    {
+                        self.TriggerTaskEvent(TaskTargetType.KillTianZhanBossNumber_131, 0, 1);
+                    }
                 }
             }
         }
@@ -451,7 +460,6 @@ namespace ET
         //收集道具
         public static void OnGetItem(this TaskComponent self, int itemId)
         {
-
             self.TriggerTaskEvent(TaskTargetType.ItemID_Number_2, itemId, 0);
         }
 
@@ -598,16 +606,13 @@ namespace ET
         {
             self.ReceiveHuoYueIds.Clear();
             self.TaskCountryList.Clear();
-            List<int> taskCountryList = TaskHelp.Instance.GetTaskCountrys();
-            if (taskCountryList.Count == 0)
-            {
-                Log.Error("taskCountryList.Count == 0");
-            }
+            List<int> taskCountryList = new List<int>();
+            taskCountryList.AddRange(TaskHelp.GetTaskCountrys());
+            taskCountryList.AddRange(TaskHelp.GetBattleTask());
             for (int i = 0; i < taskCountryList.Count; i++)
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
             }
-
             if (notice)
             {
                 M2C_TaskCountryUpdate m2C_TaskUpdate = new M2C_TaskCountryUpdate();

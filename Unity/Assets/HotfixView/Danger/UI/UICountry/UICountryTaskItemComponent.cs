@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UICountryTaskItemComponent : Entity, IAwake
+    public class UICountryTaskItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject ButtonComplete;
         public GameObject ButtonReceive;
@@ -14,17 +14,18 @@ namespace ET
         public GameObject ImageIcon;
         public GameObject ItemNumber;
 
-
+        public GameObject GameObject;
         public TaskPro TaskPro;
     }
 
     [ObjectSystem]
-    public class UICountryTaskItemComponentAwakeSystem : AwakeSystem<UICountryTaskItemComponent>
+    public class UICountryTaskItemComponentAwakeSystem : AwakeSystem<UICountryTaskItemComponent, GameObject>
     {
 
-        public override void Awake(UICountryTaskItemComponent self)
+        public override void Awake(UICountryTaskItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.ButtonComplete = rc.Get<GameObject>("ButtonComplete");
             self.ButtonReceive = rc.Get<GameObject>("ButtonReceive");

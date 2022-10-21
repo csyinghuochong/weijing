@@ -18,7 +18,12 @@ namespace ET
         Branch,         //支线任务
         EveryDay,       //每日任务
         Trial,          //试炼任务
-        CountryDay = 5, //每日活跃
+    }
+
+    public static class TaskCountryType
+    {
+        public const int Country = 1;    //活跃任务
+        public const int Battle = 2;     //战场任务
     }
 
     //1：杀怪
@@ -69,6 +74,9 @@ namespace ET
     //9：装备重铸
     //10：在线时间
     //11：回收装备行为
+
+    //101： 战场胜利
+    //102： 战场击杀玩家数量
     public enum TaskCountryTargetType
     { 
         Login_1 =1,
@@ -82,5 +90,8 @@ namespace ET
         EquipXiLian_9 = 9,
         OnLineTime_10 = 10,
         ItemHuiShou_11 =11,
+
+        BattleWin_101 = 101,
+        BattleKillPlayer_102 = 102,
     }
 }

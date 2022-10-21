@@ -12,7 +12,7 @@ namespace ET
         public GameObject RawImage;
 
         public UIModelShowComponent uIModelShowComponent;
-        public List<UI> SellList = new List<UI>();
+        public List<UIStoreItemComponent> SellList = new List<UIStoreItemComponent>();
     }
 
     [ObjectSystem]
@@ -31,7 +31,7 @@ namespace ET
             self.RawImage = rc.Get<GameObject>("RawImage");
 
             self.InitModelShowView().Coroutine();
-            self.InitData(UIHelper.CurrentNpcId).Coroutine();
+            self.InitData(UIHelper.CurrentNpcId);
         }
     }
 
@@ -59,13 +59,12 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), UIType.UIStore);
         }
 
-        public static async ETTask InitData(this UIStoreComponent self, int npcid)
+        public static  void InitData(this UIStoreComponent self, int npcid)
         {
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
             int shopSellid = npcConfig.ShopValue;
 
             string path_1 = ABPathHelper.GetUGUIPath("Main/Store/UIStoreItem");
-            await ETTask.CompletedTask;
             GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path_1);
             int playLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
 
@@ -81,12 +80,10 @@ namespace ET
                 GameObject storeItem = GameObject.Instantiate(bundleObj);
                 UICommonHelper.SetParent(storeItem, self.cellContainer1);
 
-                UI ui_1 = self.AddChild<UI, string, GameObject>("storeItem_" + storeSellConfig.Id.ToString(), storeItem);
-                UIStoreItemComponent uIItemComponent = ui_1.AddComponent<UIStoreItemComponent>();
+                UIStoreItemComponent uIItemComponent = self.AddChild<UIStoreItemComponent, GameObject>(storeItem);
                 uIItemComponent.OnUpdateData(storeSellConfig);
-                self.SellList.Add(ui_1);
+                self.SellList.Add(uIItemComponent);
             }
-
 
             self.uIModelShowComponent.ShowOtherModel("Npc/" + npcConfig.Asset.ToString()).Coroutine();
         }
