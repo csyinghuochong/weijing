@@ -11,7 +11,7 @@ namespace ET
         {
             List<long> mapIdList = new List<long>();
             FubenCenterComponent fubenCenterComponent = scene.GetComponent<FubenCenterComponent>();
-            mapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), "Map1").InstanceId);
+            mapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), $"Map{ComHelp.MainCityID()}").InstanceId);
             mapIdList.AddRange(fubenCenterComponent.FubenInstanceList );
             for (int i = mapIdList.Count - 1; i >= 0; i--)
             {

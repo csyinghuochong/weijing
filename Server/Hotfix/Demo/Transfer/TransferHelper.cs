@@ -8,7 +8,7 @@
             int sceneTypeEnum = mapComponent.SceneTypeEnum;
             long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
             //传送回主场景
-            long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), "Map1").InstanceId;
+            long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), $"Map{ComHelp.MainCityID()}").InstanceId;
             long oldsceneid = unit.DomainScene().Id;
             TransferHelper.BeforeTransfer(unit);
             await  TransferHelper.Transfer(unit, mapInstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);

@@ -25,11 +25,6 @@ namespace ET
 
         public static void InitNpc(this NpcComponent self, int sceneId)
         {
-            if (sceneId == 1)
-            {
-                sceneId = ComHelp.MainCityID(); //主城
-            }
-
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
             int[] npcs =sceneConfig.NpcList;
             if (npcs == null)
