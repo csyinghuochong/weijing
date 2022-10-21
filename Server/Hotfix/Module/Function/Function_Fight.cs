@@ -422,16 +422,19 @@ namespace ET
                     {
                         Log.Debug($"statcomponent == null {defendUnit.Type}");
                     }
-                    if (stateComponent!= null &&stateComponent.StateTypeGet(StateTypeEnum.Shield))
+                    if (stateComponent!= null && stateComponent.StateTypeGet(StateTypeEnum.Shield))
                     {
-                        shield_Hp = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_HP);
+                        shield_Hp = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_DamgeCostPro);
                         shield_Type = numericComponentDefend.GetAsInt(NumericType.Now_Shield_Type);
                     }
                     if (shield_Type == 1)
                     {
-                        long maxHp = numericComponentDefend.GetAsLong(NumericType.Now_MaxHp);
-                        damge -= (int)(maxHp * shield_Hp);
+                        //long maxHp = numericComponentDefend.GetAsLong(NumericType.Now_MaxHp);
+
+                        int dunDamge = (int)((float)damge * shield_Hp);
+                        damge -= dunDamge;
                         damge = Math.Max(0, damge);
+                        numericComponentDefend.ApplyChange(attackUnit, NumericType.Now_Shield_HP, dunDamge, skillconfig.Id, false, DamgeType);
                     }
                     if (shield_Type == 2)
                     {

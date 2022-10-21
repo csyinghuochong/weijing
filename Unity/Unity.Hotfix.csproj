@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.33f1c2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\Hotfix\Demo\Scene\SceneChangeHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\MailComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\CellDungeonComponentSystem.cs" />
@@ -65,6 +68,7 @@
     <Compile Include="Assets\Hotfix\Danger\Helper\MapHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_Other_XuanFengZhan_1.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\SingingComponentSystem.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Skill\Skill_XuanZhuan_Attack.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\AccountInfoComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\SkillHandlerSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\ReddotComponentSystem.cs" />
@@ -193,7 +197,6 @@
     <Compile Include="Assets\Hotfix\Demo\Login\EnterMapHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericWatcher_Update.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetKcpComponentSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Skill\Skill_XuanZhuan_Attack.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -817,5 +820,8 @@
   -->
   <ItemGroup>
     <Compile Include="Codes\Hotfix\**\*.cs" />
+    <ProjectReference Include="..\Tools\Analyzer\Analyzer.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false">
+      <Project>{d1f2986b-b296-4a2d-8f12-be9f470014c3}</Project>
+    </ProjectReference>
   </ItemGroup>
 </Project>

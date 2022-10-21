@@ -11,21 +11,35 @@
             //1百分比 2固定伤害
             numericComponent.ApplyValue(NumericType.Now_Shield_Type, buffData.BuffConfig.buffParameterType,  false);
             if (numericComponent.GetAsLong(NumericType.Now_Shield_Type) == 1)
-                numericComponent.Set(NumericType.Now_Shield_HP, buffData.BuffConfig.buffParameterValue);
+            {
+                //numericComponent.Set(NumericType.Now_Shield_HP, buffData.BuffConfig.buffParameterValue);
+                numericComponent.ApplyValue(NumericType.Now_Shield_HP, (int)buffData.BuffConfig.buffParameterValue * theUnitFrom.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp), true);
+                numericComponent.ApplyValue(NumericType.Now_Shield_HP, (int)buffData.BuffConfig.buffParameterValue * theUnitFrom.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp), true);
+            }
             else
-                numericComponent.ApplyValue( NumericType.Now_Shield_HP, (int)buffData.BuffConfig.buffParameterValue, true);
-
+            {
+                numericComponent.ApplyValue(NumericType.Now_Shield_HP, (int)buffData.BuffConfig.buffParameterValue, true);
+            }
             this.OnUpdate();
         }
 
         public override void OnUpdate()
         {
             NumericComponent numericComponent = this.TheUnitBelongto.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsLong(NumericType.Now_Shield_Type) == 2 &&  numericComponent.GetAsLong(NumericType.Now_Shield_HP) <= 0)
+
+            if (numericComponent.GetAsLong(NumericType.Now_Shield_Type) == 1 &&  numericComponent.GetAsLong(NumericType.Now_Shield_HP) <= 0)
             {
                 this.BuffState = BuffState.Finished;
                 return;
             }
+
+            if (numericComponent.GetAsLong(NumericType.Now_Shield_Type) == 2 && numericComponent.GetAsLong(NumericType.Now_Shield_HP) <= 0)
+            {
+                this.BuffState = BuffState.Finished;
+                return;
+            }
+
+
             if (TimeHelper.ServerNow() > this.BuffEndTime)
             {
                 this.BuffState = BuffState.Finished;
