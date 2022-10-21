@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
@@ -12,7 +13,11 @@ namespace ET
         public GameObject UIItem;
         public GameObject Image_gold;
         public GameObject GameObject;
+        public GameObject Image_bg;
+        public GameObject ImageSelect;
         public UIItemComponent uIItemComponent;
+
+        public Action<int> ClickHandle;
     }
 
     [ObjectSystem]
@@ -32,7 +37,18 @@ namespace ET
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
             if (self.ButtonBuy != null)
             {
-                self.ButtonBuy.GetComponent<Button>().onClick.AddListener(() => { self.OnClickBuyButton(); });
+                ButtonHelp.AddListenerEx(self.ButtonBuy, () => { self.OnClickBuyButton(); });
+            }
+            self.Image_bg = rc.Get<GameObject>("Image_bg");
+            if (self.Image_bg != null)
+            {
+                ButtonHelp.AddListenerEx(self.Image_bg, () => { self.OnClickImageBg(); });
+            }
+
+            self.ImageSelect = rc.Get<GameObject>("ImageSelect");
+            if (self.ImageSelect != null)
+            {
+                self.ImageSelect.SetActive(false);
             }
         }
     }
@@ -49,35 +65,24 @@ namespace ET
 
     public static class UIStoreItemComponentSystem
     {
+        public static void OnClickImageBg(this UIStoreItemComponent self)
+        {
+            self.ClickHandle(self.StoreSellConfig.Id);
+        }
+
+        public static void SetClickHandler(this UIStoreItemComponent self, Action<int> action)
+        { 
+            self.ClickHandle = action;  
+        }
+
+        public static void SetSelected(this UIStoreItemComponent self, int sellId)
+        {
+            self.ImageSelect.SetActive(self.StoreSellConfig.Id == sellId);
+        }
 
         public static void OnClickBuyButton(this UIStoreItemComponent self)
         {
-            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            int costType = self.StoreSellConfig.SellType;
-
-            if (bagComponent.GetLeftSpace() == 0)
-            {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_BagIsFull);
-                return;
-            }
-            if (costType == 1 && userInfo.Gold < self.StoreSellConfig.SellValue)
-            {
-                FloatTipManager.Instance.ShowFloatTip("金币不足！");
-                return;
-            }
-            if (costType == 3 && userInfo.Diamond < self.StoreSellConfig.SellValue)
-            {
-                FloatTipManager.Instance.ShowFloatTip("钻石不足！");
-                return;
-            }
-            if (bagComponent.GetItemNumber(costType) < self.StoreSellConfig.SellValue)
-            {
-                FloatTipManager.Instance.ShowFloatTip("道具不足！");
-                return;
-            }
-
-            bagComponent.SendBuyItem(self.StoreSellConfig.Id).Coroutine() ;
+            self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.StoreSellConfig.Id).Coroutine() ;
         }
 
         public static void OnUpdateData(this UIStoreItemComponent self, StoreSellConfig storeSellConfig)

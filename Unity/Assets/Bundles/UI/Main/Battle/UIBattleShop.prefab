@@ -231,6 +231,8 @@ MonoBehaviour:
   data:
   - key: ItemListNode
     gameObject: {fileID: 5031333071011794499}
+  - key: ButtonBuy
+    gameObject: {fileID: 5405368848949761608}
 --- !u!1 &5031333071011794499
 GameObject:
   m_ObjectHideFlags: 0

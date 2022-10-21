@@ -25,7 +25,7 @@ namespace ET
             return new List<long>();
         }
 
-        public static void CreateZone(Entity parent, int zone)
+        public static void CreateYeWaiScene(Entity parent, int zone)
         {
             Dictionary<int, int> keyValuePairs = new Dictionary<int, int>();
             keyValuePairs.Add(2000001,17) ;

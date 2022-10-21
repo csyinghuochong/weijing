@@ -104,6 +104,31 @@ namespace ET
         //商店购买
         public static async ETTask SendBuyItem(this BagComponent self, int sellId)
         {
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            StoreSellConfig storeSellConfig = StoreSellConfigCategory.Instance.Get(sellId);
+
+            int costType = storeSellConfig.SellType;
+            if (self.GetLeftSpace() == 0)
+            {
+                HintHelp.GetInstance().ShowHint("背包已满");
+                return;
+            }
+            if (costType == 1 && userInfo.Gold < storeSellConfig.SellValue)
+            {
+                HintHelp.GetInstance().ShowHint("金币不足");
+                return;
+            }
+            if (costType == 3 && userInfo.Diamond < storeSellConfig.SellValue)
+            {
+                HintHelp.GetInstance().ShowHint("钻石不足");
+                return;
+            }
+            if (self.GetItemNumber(costType) < storeSellConfig.SellValue)
+            {
+                HintHelp.GetInstance().ShowHint("道具不足");
+                return;
+            }
+
             C2M_StoreBuyRequest c2M_StoreBuyRequest = new C2M_StoreBuyRequest() { SellItemID = sellId };
             M2C_StoreBuyResponse r2c_roleEquip = (M2C_StoreBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_StoreBuyRequest);
         }
