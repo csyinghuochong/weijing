@@ -60,7 +60,7 @@ namespace ET
                          SceneFactory.Create(Game.Scene, startConfig.Id, startConfig.InstanceId, startConfig.Zone, startConfig.Name,
                             startConfig.Type, startConfig);
                     }
-                    SceneFactory.CreateMap(Game.Scene);
+                    //SceneFactory.CreateYeWaiScene(Game.Scene);
                     break;
                 }
                 case AppType.MergeZone:

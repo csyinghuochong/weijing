@@ -3,35 +3,37 @@
 "Realm*Realm0“û
 "Gate*Gate10”û
 "Queue*Queue0‘û
-"Map*Map1
-"DBCache*DBCache
-"Chat*Chat
-"EMail*EMail
-	"Activity*Activity
-
-"Rank*Rank
-"PaiMai*PaiMai
-"Team*Team
-"Friend*Friend
-"Union*Union
- "FubenCenter*FubenCenter
-"Battle*Battle
+"DBCache*DBCache
+"Chat*Chat
+"EMail*EMail
+"Activity*Activity
+	"Rank*Rank
+
+"PaiMai*PaiMai
+"Team*Team
+"Friend*Friend
+"Union*Union
+ "FubenCenter*FubenCenter
+"Battle*Battle
+"Map*Map101
+"Map*Map102
 …"Account*Account0Âû
  "Realm*Realm0Êû
 À"Gate*Gate10Áû
 Ã"Queue*Queue0Ëû
-Õ"Map*Map1
-Œ"DBCache*DBCache
-œ"Chat*Chat
-–"EMail*EMail
-—"Activity*Activity
-“"Rank*Rank
-”"PaiMai*PaiMai
-‘"Team*Team
-’"Friend*Friend
-÷"Union*Union
-!◊"FubenCenter*FubenCenter
-ÿ"Battle*Battle
+Õ"DBCache*DBCache
+Œ"Chat*Chat
+œ"EMail*EMail
+–"Activity*Activity
+—"Rank*Rank
+“"PaiMai*PaiMai
+”"Team*Team
+‘"Friend*Friend
+’"Union*Union
+!÷"FubenCenter*FubenCenter
+◊"Battle*Battle
+ÿ"Map*Map101
+Ÿ"Map*Map102
 Èù "Center*Center
 #Íù "LoginCenter*LoginCenter
 Îù "Location*Location
