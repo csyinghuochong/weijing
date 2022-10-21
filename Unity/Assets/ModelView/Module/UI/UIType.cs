@@ -100,6 +100,7 @@ namespace ET
 		public const string UIGemMake = "Main/Make/UIGemMake";
 		public const string UIPetChallenge = "Main/PetSet/UIPetChallenge";
 		public const string UIPetFormation = "Main/PetSet/UIPetFormation";
+		public const string UIBattle = "Main/Battle/UIBattle";
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
 		{

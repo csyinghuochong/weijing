@@ -24,7 +24,7 @@ namespace ET
                     //unitComponent.Add(unit);
                     //// 加入aoi
                     //unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
-                        return unit;
+                    return unit;
                 }
                 default:
                     throw new Exception($"not such unit type: {unitType}");

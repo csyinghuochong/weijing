@@ -75,21 +75,21 @@ namespace ET
             self.Obj_Lab_EquipBangDing = rc.Get<GameObject>("Lab_BangDing");
             self.Obj_Img_EquipBangDing = rc.Get<GameObject>("Img_BangDing");
 
-            self.Imagebg.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseTips(); });
-            self.Btn_Sell.GetComponent<Button>().onClick.AddListener(() => { self.OnClickSell(); });
-            self.Btn_Use.GetComponent<Button>().onClick.AddListener(() => { self.OnClickUse().Coroutine(); });
-
+            ButtonHelp.AddListenerEx(self.Imagebg, () => { self.OnCloseTips(); });
+            ButtonHelp.AddListenerEx(self.Btn_Sell, () => { self.OnClickSell(); });
+            ButtonHelp.AddListenerEx(self.Btn_Use, () => { self.OnClickUse().Coroutine(); });
+           
             self.Btn_StoreHouse = rc.Get<GameObject>("Btn_StoreHouse");
-            self.Btn_StoreHouse.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_StoreHouse(); });
+            ButtonHelp.AddListenerEx(self.Btn_StoreHouse, () => { self.OnBtn_StoreHouse(); });
             self.Btn_StoreHouse.SetActive(false);
 
             self.Btn_PutBag = rc.Get<GameObject>("Btn_PutBag");
             self.Btn_PutBag.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PutBag(); });
             self.Btn_PutBag.SetActive(false);
 
-            self.Obj_Btn_HuiShouCancle.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_HuiShouCancle(); });
-            self.Obj_Btn_HuiShou.GetComponent<Button>().onClick.AddListener(() => { self.On_Btn_HuiShou(); });
-            self.Obj_Btn_XieXiaGemSet.GetComponent<Button>().onClick.AddListener(() => { self.On_Btn_XieXiaGemSet(); });
+            ButtonHelp.AddListenerEx(self.Obj_Btn_HuiShouCancle, () => { self.OnBtn_HuiShouCancle(); });
+            ButtonHelp.AddListenerEx(self.Obj_Btn_HuiShou, () => { self.On_Btn_HuiShou(); });
+            ButtonHelp.AddListenerEx(self.Obj_Btn_XieXiaGemSet, () => { self.On_Btn_XieXiaGemSet(); });
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
         }
     }

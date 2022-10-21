@@ -82,7 +82,7 @@ namespace ET
         public static void Check(this SkillPassiveComponent self)
         {
             self.CheckHuiXue();
-            self.OnTrigegerPassiveSkill( SkillPassiveTypeEnum.XueLiang_2 );
+            self.OnTrigegerPassiveSkill( SkillPassiveTypeEnum.XueLiang_2 , self.GetParent<Unit>().Id);
         }
 
         public static void AddRolePassiveSkill(this SkillPassiveComponent self, int skilId)
@@ -267,7 +267,6 @@ namespace ET
             {
                 return;
             }
-
             long rigidityEndTime = 0;
             if (unit.GetComponent<SkillManagerComponent>().IfCanUseSkill(skillIfo.SkillId) == ErrorCore.ERR_Success)
             {
@@ -279,24 +278,35 @@ namespace ET
 
                 List<long> targetIdList = new List<long>();
                 AIComponent aIComponent = unit.GetComponent<AIComponent>();
-                if (targetId == 0 && aIComponent != null)
+                if (aIComponent != null)
                 {
                     targetId = aIComponent.TargetID;
+                    if (skillConfig.SkillTargetType > 0)
+                    {
+                        targetIdList.AddRange(AIHelp.GetNearestEnemy(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetType));
+                    }
+                    else
+                    {
+                        targetIdList.Add(targetId);
+                    }
+                }
+                if (targetIdList.Count == 0)
+                {
+                    if (targetId == 0)
+                    {
+                        targetId = self.GetParent<Unit>().Id;
+                    }
                     targetIdList.Add(targetId);
                 }
-                if (skillConfig.SkillTargetType > 0 && aIComponent != null)
-                {
-                    targetIdList.AddRange(AIHelp.GetNearestEnemy(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetType));
-                }
-
+                
                 int targetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y;
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
-                if (target != null)
+                if (target != null && target.Id != targetId)
                 {
                     Vector3 direction = target.Position - unit.Position;
                     targetAngle = (int)Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
                 }
-
+               
                 for (int i = 0; i < targetIdList.Count; i++)
                 {
                     C2M_SkillCmd cmd = new C2M_SkillCmd();

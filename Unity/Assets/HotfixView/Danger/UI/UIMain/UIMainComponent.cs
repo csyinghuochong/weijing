@@ -55,6 +55,7 @@ namespace ET
         public GameObject Obj_Btn_ShouSuo;
         public GameObject Btn_Email;
         public GameObject Btn_MakeItem;
+        public GameObject Btn_Battle;
 
 
         public UI UIMainTask;
@@ -110,15 +111,13 @@ namespace ET
 
             self.Button_HongBao = rc.Get<GameObject>("Button_HongBao");
             ButtonHelp.AddListenerEx(self.Button_HongBao, () => { self.OnButton_HongBao(); });
-            self.Button_HongBao.SetActive(!GlobalHelp.IsBanHaoMode && self.IsHaveHongBao());
+            self.Button_HongBao.SetActive(self.IsHaveHongBao());
 
             self.Button_Tower = rc.Get<GameObject>("Button_Tower");
             ButtonHelp.AddListenerEx(self.Button_Tower, () => { self.OnButton_Tower(); });
-            self.Button_Tower.SetActive(!GlobalHelp.IsBanHaoMode);
 
             self.Button_ZhenYing = rc.Get<GameObject>("Button_ZhenYing");
             ButtonHelp.AddListenerEx(self.Button_ZhenYing, () => { self.OnButton_ZhenYing(); });
-            self.Button_ZhenYing.SetActive(!GlobalHelp.IsBanHaoMode);
 
             self.Button_WorldLv = rc.Get<GameObject>("Button_WorldLv");
             ButtonHelp.AddListenerEx(self.Button_WorldLv, () => { self.OnButton_WorldLv(); });
@@ -127,6 +126,9 @@ namespace ET
             ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
             UI mailHintTipUI = self.AddChild<UI, string, GameObject>("MailHintTip", self.MailHintTip);
             self.UIMailHintTip = mailHintTipUI;
+
+            self.Btn_Battle = rc.Get<GameObject>("Btn_Battle");
+            ButtonHelp.AddListenerEx(self.Btn_Battle, self.OnBtn_Battle);
 
             self.Fps = rc.Get<GameObject>("Fps");
             self.Fps.SetActive(false);
@@ -200,7 +202,6 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_Recharge, () => { self.OnButton_Recharge(); });
 
             self.Button_ChouKa = rc.Get<GameObject>("Button_ChouKa");
-            self.Button_ChouKa.SetActive(!GlobalHelp.IsBanHaoMode);
             //self.Button_ChouKa.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_ChouKa(); });
             ButtonHelp.AddListenerEx(self.Button_ChouKa, () => { self.OnButton_ChouKa(); });
 
@@ -338,7 +339,7 @@ namespace ET
         public static bool IsHaveHongBao(this UIMainComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
-            return unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0;
+            return unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) != 0;
         }
 
         public static void OnUpdateCombat(this UIMainComponent self)
@@ -877,6 +878,11 @@ namespace ET
             self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(1000008);
         }
 
+        public static void OnBtn_Battle(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIBattle).Coroutine();
+        }
+
         public static void OnBtn_Friend(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UIFriend).Coroutine();
@@ -899,6 +905,7 @@ namespace ET
 
         public static void OnButton_WorldLv(this UIMainComponent self)
         {
+            Log.Debug("OnButton_WorldLv");
             UIHelper.Create(self.DomainScene(), UIType.UIWorldLv).Coroutine();
         }
 
