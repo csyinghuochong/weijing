@@ -403,7 +403,7 @@ namespace ET
                     }
                     catch(Exception ex)
                     {
-                        Log.Info($"{attriStr} {ex.ToString()}");
+                        Log.Info($"attriStrexc Eption： {attriStr} {ex.ToString()}");
                     }
                 }
             }

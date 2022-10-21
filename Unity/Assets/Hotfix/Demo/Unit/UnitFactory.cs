@@ -121,7 +121,8 @@ namespace ET
 
 			dropinfo.UnitId = unitId;
 			unit.AddComponent<DropComponent>().DropInfo =  dropinfo;
-			
+			unit.AddComponent<UnitInfoComponent>();
+
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
 		}

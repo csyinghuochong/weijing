@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.33f1c2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\HotfixView\Danger\UI\OccTwo\UIOccTwoShowComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILobby\UICreateRoleListComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\Help\GlobalHelp.cs" />
@@ -209,7 +206,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonEnterShowComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UICommonRewardComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampRewardComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleShopComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityTeHuiComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIWorldLv\UIWorldLvComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIEnergy\UIEnergyEvent.cs" />
@@ -228,7 +224,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellChapterSelectEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityLvLiBaoComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleTaskComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonCellComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampSelectComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillMakeComponent.cs" />
@@ -244,7 +239,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityMaoXianComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetHeXinHeChengComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIRoleGemHoleComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\OccTwo\UIOccTwoComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILoading\UILoadingEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianShowComponent.cs" />
@@ -530,10 +524,13 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIDungeon\UIDungeonItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskFubenItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMakeLearn\UIMakeLearnItemComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILingDi\UILingDiRewardItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleShopComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleTaskComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
   </ItemGroup>
   <ItemGroup />
@@ -751,6 +748,9 @@
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -777,6 +777,12 @@
     </Reference>
     <Reference Include="DOTweenEditor">
       <HintPath>Assets\Mono\ThirdRes\GUI Pro Kit Fantasy RPG\SampleProject\Extensions\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEditor.iOS.Extensions.Common">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
@@ -1169,8 +1175,5 @@
   -->
   <ItemGroup>
     <Compile Include="Codes\HotfixView\**\*.cs" />
-    <ProjectReference Include="..\Tools\Analyzer\Analyzer.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false">
-      <Project>{d1f2986b-b296-4a2d-8f12-be9f470014c3}</Project>
-    </ProjectReference>
   </ItemGroup>
 </Project>

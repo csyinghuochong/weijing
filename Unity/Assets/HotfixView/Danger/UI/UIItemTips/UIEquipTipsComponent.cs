@@ -182,17 +182,15 @@ namespace ET
             self.Obj_UIEquipGemHoleIconList[2] = rc.Get<GameObject>("Obj_UIEquipGemHoleIcon_3");
             self.Obj_UIEquipGemHoleIconList[3] = rc.Get<GameObject>("Obj_UIEquipGemHoleIcon_4");
 
-            self.Img_back_btn.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseTips(); });
-            self.Btn_Use.GetComponent<Button>().onClick.AddListener(() => { self.OnClickWearEquip(); });
-            self.Btn_Takeoff.GetComponent<Button>().onClick.AddListener(() => { self.OnClickTakeEquip(); });
-            self.Btn_Sell.GetComponent<Button>().onClick.AddListener(() => { self.OnClickSellEquip(); });
-            self.Obj_Btn_ShowEquipSuit.GetComponent<Button>().onClick.AddListener(() => { self.OnClickShowSuitEquip(); });
-
-            self.Obj_Btn_HuiShou.GetComponent<Button>().onClick.AddListener(() => { self.On_Btn_HuiShou(); });
-            self.Obj_Btn_HuiShouCancle.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_HuiShouCancle(); });
-
-            self.Obj_SaveStoreHouse.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PutStoreHouse(); });
-            self.Obj_Btn_StoreHouseSet.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PutBag(); });
+            ButtonHelp.AddListenerEx(self.Img_back_btn, self.OnCloseTips);
+            ButtonHelp.AddListenerEx(self.Btn_Use, self.OnClickWearEquip);
+            ButtonHelp.AddListenerEx(self.Btn_Takeoff, self.OnClickTakeEquip);
+            ButtonHelp.AddListenerEx(self.Btn_Sell, self.OnClickSellEquip);
+            ButtonHelp.AddListenerEx(self.Obj_Btn_ShowEquipSuit, self.OnClickShowSuitEquip);
+            ButtonHelp.AddListenerEx(self.Obj_Btn_HuiShou, self.On_Btn_HuiShou);
+            ButtonHelp.AddListenerEx(self.Obj_Btn_HuiShouCancle, self.OnBtn_HuiShouCancle);
+            ButtonHelp.AddListenerEx(self.Obj_SaveStoreHouse, self.OnBtn_PutStoreHouse);
+            ButtonHelp.AddListenerEx(self.Obj_Btn_StoreHouseSet, self.OnBtn_PutBag);
 
             self.TitleBigHeight_160 = 160f;              //标题底框高度
             self.TitleMiniHeight_50 = 50;                //条目标题高度
@@ -1253,7 +1251,6 @@ namespace ET
                 }
             }
             langStr = GameSettingLanguge.LoadLocalization("等级");
-            Log.Info(langStr + " : " + equipLv);
             self.Obj_EquipWearNeed.GetComponent<Text>().text = langStr + " : " + equipLv;
 
             if (int.Parse(equipLv) > self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv)

@@ -3939,3 +3939,11 @@ message M2C_TeamDungeonRBornResult // IActorMessage
 	float Z = 5;
 }
 
+//重连成功刷新Unit
+message C2M_RefreshUnitRequest // IActorLocationMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+

@@ -13,7 +13,7 @@
 
 			foreach (UnitInfo unitInfo in message.Units)
 			{
-				Unit unit = UnitFactory.CreateUnit(currentScene, unitInfo);
+				UnitFactory.CreateUnit(currentScene, unitInfo);
 			}
 			foreach (SpilingInfo unitInfo in message.Spilings)
 			{
