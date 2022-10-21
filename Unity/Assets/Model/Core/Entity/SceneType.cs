@@ -27,6 +27,7 @@
 		Queue = 22,
 		AccountCenter = 23,
 		FubenCenter = 24,
+		Battle = 25,
 
 		// 客户端Model层
 		Client = 30,
