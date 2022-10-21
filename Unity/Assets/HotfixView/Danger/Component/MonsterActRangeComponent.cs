@@ -19,13 +19,7 @@ namespace ET
             self.IsInAck = false;
             self.MonsterActRange = null;
             self.AckRange = (float)MonsterConfigCategory.Instance.Get(configId).ChaseRange;
-
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            self.BornPositon = new Vector3(
-                    numericComponent.GetAsFloat(NumericType.Born_X),
-                    numericComponent.GetAsFloat(NumericType.Born_Y),
-                    numericComponent.GetAsFloat(NumericType.Born_Z)
-                );
+            self.BornPositon = self.GetParent<Unit>().GetComponent<HeroDataComponent>().GetBornPostion();
         }
     }
 
