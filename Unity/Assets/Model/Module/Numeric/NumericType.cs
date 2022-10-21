@@ -11,6 +11,7 @@
         public const int ReviveTime = 3003;
         public const int Now_Shield_HP = 3004;
         public const int Now_Shield_Type = 3005;
+        public const int Now_Shield_DamgeCostPro = 3006;                        //护盾减免系数
         public const int Now_Stall = 3010;                                       //摆摊状态
         public const int Now_Weapon = 3011;
         public const int Now_Damage = 3012;
