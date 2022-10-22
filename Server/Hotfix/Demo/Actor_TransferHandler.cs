@@ -106,7 +106,7 @@ namespace ET
 						mapComponent = unit.DomainScene().GetComponent<MapComponent>();
 						int sceneTypeEnum = mapComponent.SceneTypeEnum;
 						long mapInstanceId = DBHelper.GetBattleServerId(unit.DomainZone());
-						B2M_BattleEnterResponse createUnit = (B2M_BattleEnterResponse)await ActorMessageSenderComponent.Instance.Call(
+						B2M_BattleEnterResponse battleEnter = (B2M_BattleEnterResponse)await ActorMessageSenderComponent.Instance.Call(
 						mapInstanceId, new M2B_BattleEnterRequest() { UserID = unit.Id });
 
 						if (sceneTypeEnum == SceneTypeEnum.CellDungeon
