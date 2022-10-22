@@ -2157,6 +2157,9 @@ namespace ET
 		[ProtoMember(1)]
 		public long UserID { get; set; }
 
+		[ProtoMember(2)]
+		public int SceneId { get; set; }
+
 	}
 
 	[Message(InnerOpcode.B2M_BattleEnterResponse)]

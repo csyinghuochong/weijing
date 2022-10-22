@@ -1035,6 +1035,7 @@ message M2B_BattleEnterRequest // IActorRequest
 	int64 ActorId = 93;
 
 	int64 UserID = 1;
+	int32 SceneId = 2;
 }
 
 message B2M_BattleEnterResponse // IActorResponse

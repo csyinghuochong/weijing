@@ -975,6 +975,14 @@ namespace ET
                 return subType == 114 || subType == 121;
         }
 
+        public static bool IsSingleFuben(int sceneTypeEnum)
+        {
+            return sceneTypeEnum == SceneTypeEnum.CellDungeon
+                || sceneTypeEnum == SceneTypeEnum.Tower
+                || sceneTypeEnum == SceneTypeEnum.RandomTower
+                || sceneTypeEnum == SceneTypeEnum.LocalDungeon;
+        }
+
         /// <summary>
         /// 根据出生日期，计算精确的年龄
         /// </summary>

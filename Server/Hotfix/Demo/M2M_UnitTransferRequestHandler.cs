@@ -128,6 +128,9 @@ namespace ET
 						scene.GetComponent<LocalDungeonComponent>().MainUnit = unit;
 						scene.GetComponent<LocalDungeonComponent>().GenerateFubenScene(request.ChapterId);
 						break;
+					case (int)SceneTypeEnum.Battle:
+
+						break;
 					case (int)SceneTypeEnum.TeamDungeon:
 					case (int)SceneTypeEnum.YeWaiScene:
 					case (int)SceneTypeEnum.RandomTower:

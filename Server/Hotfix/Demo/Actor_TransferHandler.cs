@@ -34,7 +34,7 @@ namespace ET
 					response.Error = ErrorCore.ERR_RequestRepeatedly;
 					reply();
 					return;
-				}
+				}.
 
 				switch (request.SceneType)
 				{
@@ -108,11 +108,9 @@ namespace ET
 						long mapInstanceId = DBHelper.GetBattleServerId(unit.DomainZone());
 						B2M_BattleEnterResponse battleEnter = (B2M_BattleEnterResponse)await ActorMessageSenderComponent.Instance.Call(
 						mapInstanceId, new M2B_BattleEnterRequest() { UserID = unit.Id });
-
-						if (sceneTypeEnum == SceneTypeEnum.CellDungeon
-							|| sceneTypeEnum == SceneTypeEnum.Tower
-							|| sceneTypeEnum == SceneTypeEnum.RandomTower
-							|| sceneTypeEnum == SceneTypeEnum.LocalDungeon)
+						TransferHelper.BeforeTransfer(unit);
+						TransferHelper.Transfer(unit, battleEnter.FubenInstanceId, (int)SceneTypeEnum.Battle, request.SceneId, battleEnter.Camp).Coroutine();
+						if (ComHelp.IsSingleFuben(sceneTypeEnum))
 						{
 							TransferHelper.NoticeFubenCenter(unit.DomainScene(), 2).Coroutine();
 							unit.DomainScene().Dispose();
@@ -130,10 +128,7 @@ namespace ET
 						mapInstanceId, new M2T_TeamDungeonEnterRequest() { UserID = unit.GetComponent<UserInfoComponent>().UserInfo.UserId });
 						TransferHelper.BeforeTransfer(unit);
 						TransferHelper.Transfer(unit, createUnit.FubenInstanceId, (int)SceneTypeEnum.TeamDungeon, createUnit.FubenId, 0).Coroutine();
-						if (sceneTypeEnum == SceneTypeEnum.CellDungeon 
-							|| sceneTypeEnum == SceneTypeEnum.Tower
-							|| sceneTypeEnum == SceneTypeEnum.RandomTower
-							|| sceneTypeEnum == SceneTypeEnum.LocalDungeon)
+						if (ComHelp.IsSingleFuben(sceneTypeEnum))
 						{
 							TransferHelper.NoticeFubenCenter(unit.DomainScene(), 2).Coroutine();
 							unit.DomainScene().Dispose();
