@@ -16,7 +16,6 @@ namespace ET
                 return;
             }
 
-
             int needCost = 0;
             ItemConfig itemConf = ItemConfigCategory.Instance.Get(rolePetEgg.ItemId);
             string[] petinfos = itemConf.ItemUsePar.Split('@');
@@ -24,11 +23,14 @@ namespace ET
             {
                 needCost = int.Parse(petinfos[1]);
             }
-            if (needCost > 0)
+            UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
+            if (userInfo.Diamond < needCost)
             {
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(  UserDataType.Diamond,(needCost * -1).ToString() ).Coroutine();
+                response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                reply();
+                return;
             }
-
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (needCost * -1).ToString()).Coroutine();
             List<int> weights = new List<int>();
             List<int> petlists = new List<int>();
             for (int i = 2; i < petinfos.Length; i++)
