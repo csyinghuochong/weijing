@@ -96,10 +96,12 @@ namespace ET
 						TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetTianTi, request.SceneId, 0).Coroutine();
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 						break;
+					case (int)SceneTypeEnum.Battle:
+						break;
 					case (int)SceneTypeEnum.LocalDungeon:
 						LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
 						request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
-						TransferHelper.DungeonTransfer( unit, request.SceneId, request.TransferId, request.Difficulty );
+						TransferHelper.LocalDungeonTransfer( unit, request.SceneId, request.TransferId, request.Difficulty );
 						break;
 					case (int)SceneTypeEnum.TeamDungeon:
 						//当前在副本需要先释放副本scene.

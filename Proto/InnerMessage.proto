@@ -683,7 +683,6 @@ message G2G_UnitListResponse // IActorResponse
      int32 OnLineNumber = 1;
 }
 
-//进入组队副本
 //ResponseType T2M_TeamDungeonOffResponse
 message M2T_TeamDungeonOffRequest // IActorRequest
 {
@@ -1026,4 +1025,24 @@ message Chat2G_RequestExitChat //IActorResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+}
+
+//进入战场
+//ResponseType T2M_BattleEnterResponse
+message M2T_BattleEnterRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int64 UserID = 1;
+}
+
+message T2M_BattleEnterResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	int64 FubenInstanceId = 2;
+	int32 Camp = 3;
 }

@@ -1,6 +1,6 @@
 using System.Collections.Generic;
-using System.Net;
 using System.Linq;
+using System.Net;
 
 namespace ET
 {
@@ -147,6 +147,9 @@ namespace ET
                     scene.AddComponent<ReChargeQDComponent>();
                     scene.AddComponent<ReChargeAliComponent>();
                     break;
+                case SceneType.Battle:
+                    scene.AddComponent<BattleSceneComponent>();
+                    break;
                 case SceneType.Fuben:           //临时副本
                     scene.AddComponent<MapComponent>();
                     scene.AddComponent<UnitComponent>();
@@ -159,8 +162,8 @@ namespace ET
                     scene.AddComponent<UnitComponent>();
                     scene.AddComponent<ServerInfoComponent>();
                     scene.AddComponent<AOIManagerComponent>();
-                    scene.AddComponent<WaitReviveComponent>();
-                    scene.AddComponent<RefreshMonsterComponent>();
+                    scene.AddComponent<YeWaiReviveComponent>();
+                    scene.AddComponent<YeWaiRefreshComponent>();
                     scene.AddComponent<NpcComponent>();
                     //scene.AddComponent<RecastPathComponent>();
                     break;

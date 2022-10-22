@@ -167,11 +167,6 @@ namespace ET
             }
         }
 
-        public static void HideCommonAttackZhishi(this SkillIndicatorComponent self)
-        {
-            self.RecoveryEffect();
-        }
-
         //鼠标按下
         public static void OnMouseDown(this SkillIndicatorComponent self, long targetId = 0)
         {
@@ -259,14 +254,14 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
 
             SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
+            self.SkillIndicator = null;
+            self.StartIndicator = Vector2.zero;
             if (skillIndicatorItem == null || skillIndicatorItem.GameObject == null)
             {
                 return;
             }
             skillIndicatorItem.GameObject.SetActive(false);
             GameObjectPoolComponent.Instance.RecoverGameObject(skillIndicatorItem.EffectPath, skillIndicatorItem.GameObject);
-            self.StartIndicator = Vector2.zero;
-            self.SkillIndicator = null;
         }
 
         public static void OnUpdate(this SkillIndicatorComponent self)

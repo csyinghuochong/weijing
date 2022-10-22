@@ -34,14 +34,13 @@
             }
         }
 
-        public static void DungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty = 0)
+        public static void LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty = 0)
         {
             long oldsceneid = unit.DomainScene().Id;
 
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "LocalDungeon" + fubenid.ToString(), SceneType.Fuben);
-            fubnescene.AddComponent<WaitReviveComponent>();
             LocalDungeonComponent localDungeon = fubnescene.AddComponent<LocalDungeonComponent>();
             localDungeon.FubenDifficulty = difficulty;
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;

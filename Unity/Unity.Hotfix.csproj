@@ -53,6 +53,7 @@
     <UnityVersion>2020.3.33f1c2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Hotfix\Danger\Common\YeWaiReviveComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Demo\Scene\SceneChangeHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\MailComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\CellDungeonComponentSystem.cs" />
@@ -142,7 +143,6 @@
     <Compile Include="Assets\Hotfix\Demo\Unit\M2C_CreateMyUnitHandler.cs" />
     <Compile Include="Assets\Hotfix\Demo\Move\MoveHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamDungeonApplyHandler.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\WaitReviveComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\FriendComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\ReferencePool\ReferencePoolInfo.cs" />
     <Compile Include="Assets\Hotfix\Module\Config\ConfigComponentSystem.cs" />

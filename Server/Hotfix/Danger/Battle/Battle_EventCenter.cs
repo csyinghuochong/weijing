@@ -101,7 +101,7 @@ namespace ET
                         args.UnitAttack.DomainScene().GetComponent<TeamDungeonComponent>().OnKillEvent(args.UnitDefend);
                         break;
                     case (int)SceneTypeEnum.YeWaiScene:
-                        args.UnitAttack.DomainScene().GetComponent<RefreshMonsterComponent>().OnKillEvent(args.UnitDefend);
+                        args.UnitAttack.DomainScene().GetComponent<YeWaiRefreshComponent>().OnKillEvent(args.UnitDefend);
                         break;
                     case (int)SceneTypeEnum.Tower:
                         args.UnitAttack.DomainScene().GetComponent<TowerComponent>().OnKillEvent();

@@ -1440,7 +1440,6 @@ namespace ET
 
 	}
 
-//进入组队副本
 	[ResponseType(nameof(T2M_TeamDungeonOffResponse))]
 	[Message(InnerOpcode.M2T_TeamDungeonOffRequest)]
 	[ProtoContract]
@@ -2140,6 +2139,44 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+	}
+
+//进入战场
+	[ResponseType(nameof(T2M_BattleEnterResponse))]
+	[Message(InnerOpcode.M2T_BattleEnterRequest)]
+	[ProtoContract]
+	public partial class M2T_BattleEnterRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UserID { get; set; }
+
+	}
+
+	[Message(InnerOpcode.T2M_BattleEnterResponse)]
+	[ProtoContract]
+	public partial class T2M_BattleEnterResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(2)]
+		public long FubenInstanceId { get; set; }
+
+		[ProtoMember(3)]
+		public int Camp { get; set; }
 
 	}
 

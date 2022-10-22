@@ -1699,6 +1699,9 @@ namespace ET
 		[ProtoMember(4)]
 		public List<SkillInfo> SkillInfos = new List<SkillInfo>();
 
+		[ProtoMember(6)]
+		public int ItemId { get; set; }
+
 	}
 
 //闪电链
@@ -8219,6 +8222,19 @@ namespace ET
 
 		[ProtoMember(5)]
 		public float Z { get; set; }
+
+	}
+
+//重连成功刷新Unit
+	[Message(OuterOpcode.C2M_RefreshUnitRequest)]
+	[ProtoContract]
+	public partial class C2M_RefreshUnitRequest: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
 
 	}
 

@@ -8,6 +8,7 @@ mklink/J H:\GitWeiJing\Unity2\ProjectSettings H:\GitWeiJing\Unity\ProjectSetting
 
 mklink/J H:\GitWeiJing\Unity2\Packages H:\GitWeiJing\Unity\Packages
 
+mklink/J H:\GitWeiJing\Unity2\ProjectSettings H:\GitWeiJing\Unity\ProjectSettings
 
 
 pause
