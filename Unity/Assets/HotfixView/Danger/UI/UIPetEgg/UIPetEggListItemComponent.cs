@@ -150,7 +150,23 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("已达到最大宠物数量");
                 return;
             }
-
+            RolePetEgg rolePetEgg = petComponent.RolePetEggs[self.Index];
+            if (rolePetEgg.ItemId == 0)
+            {
+                return;
+            }
+            int needCost = 0;
+            ItemConfig itemConf = ItemConfigCategory.Instance.Get(rolePetEgg.ItemId);
+            string[] petinfos = itemConf.ItemUsePar.Split('@');
+            if (TimeHelper.ServerNow() < rolePetEgg.EndTime)
+            {
+                needCost = int.Parse(petinfos[1]);
+            }
+            if (userInfo.Diamond < needCost)
+            {
+                FloatTipManager.Instance.ShowFloatTip("钻石不足！");
+                return;
+            }
             C2M_RolePetEggOpen c2M_RolePetEggHatch = new C2M_RolePetEggOpen()
             {
                 Index = self.Index,

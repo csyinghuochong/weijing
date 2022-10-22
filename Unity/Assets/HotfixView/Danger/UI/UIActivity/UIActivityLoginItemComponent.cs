@@ -1,5 +1,7 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace ET
 {
@@ -35,10 +37,42 @@ namespace ET
 
     public static class UIActivityLoginItemComponentSystem
     {
+        public static bool CanReceive(this UIActivityLoginItemComponent self, int activityId)
+        {
+            List<int> allIds = new List<int>();
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < activityConfigs.Count; i++)
+            {
+                if (activityConfigs[i].ActivityType != 31)
+                {
+                    continue;
+                }
+                if (activityConfigs[i].Id < activityId)
+                {
+                    allIds.Add(activityConfigs[i].Id);
+                }
+            }
+            for (int i = 0; i < allIds.Count; i++)
+            {
+                if (!activityComponent.ActivityReceiveIds.Contains(allIds[i]))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public static async ETTask OnBtn_Receive(this UIActivityLoginItemComponent self)
         {
-            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            if (!self.CanReceive(self.ActivityConfig.Id))
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
+                return;
+            }
+
             long time = TimeHelper.ServerNow();
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             if (ComHelp.GetDateByTime(activityComponent.LastLoginTime) == ComHelp.GetDateByTime(time))
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
