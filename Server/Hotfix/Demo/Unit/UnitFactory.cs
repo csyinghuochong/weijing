@@ -76,7 +76,7 @@ namespace ET
                 //添加其他组件
                 unit.AddComponent<StateComponent>();         //添加状态组件
                 unit.AddComponent<BuffManagerComponent>();      //添加Buff管理器
-              
+                unit.GetComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
                 numericComponent.Set(NumericType.MasterId, createMonsterInfo.Master_ID);
                 AIComponent aIComponent = unit.AddComponent<AIComponent, int>(createMonsterInfo.Master_ID > 0 ? 2 : monsterConfig.AI);
                 switch (mapComponent.SceneTypeEnum)
@@ -110,10 +110,12 @@ namespace ET
             unit.AI = monsterConfig.AI;
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<AOIEntity, int, Vector3>(1 * 1000, unit.Position);
-            unit.GetComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
-            if (monsterConfig.AI > 0 && numericComponent.GetAsInt(NumericType.Now_Dead)==0)
+            if (monsterConfig.AI > 0)
             {
-                unit.GetComponent<SkillPassiveComponent>().Activeted();
+                if (numericComponent.GetAsInt(NumericType.Now_Dead) == 0)
+                {
+                    unit.GetComponent<SkillPassiveComponent>().Activeted();
+                }
             }
             return unit;
         }

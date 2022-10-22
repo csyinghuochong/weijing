@@ -96,20 +96,34 @@ namespace ET
 						TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetTianTi, request.SceneId, 0).Coroutine();
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 						break;
-					case (int)SceneTypeEnum.Battle:
-						break;
 					case (int)SceneTypeEnum.LocalDungeon:
 						LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
 						request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
 						TransferHelper.LocalDungeonTransfer( unit, request.SceneId, request.TransferId, request.Difficulty );
 						break;
-					case (int)SceneTypeEnum.TeamDungeon:
+					case (int)SceneTypeEnum.Battle:
 						//当前在副本需要先释放副本scene.
 						mapComponent = unit.DomainScene().GetComponent<MapComponent>();
 						int sceneTypeEnum = mapComponent.SceneTypeEnum;
+						long mapInstanceId = DBHelper.GetBattleServerId(unit.DomainZone());
+
+
+						if (sceneTypeEnum == SceneTypeEnum.CellDungeon
+							|| sceneTypeEnum == SceneTypeEnum.Tower
+							|| sceneTypeEnum == SceneTypeEnum.RandomTower
+							|| sceneTypeEnum == SceneTypeEnum.LocalDungeon)
+						{
+							TransferHelper.NoticeFubenCenter(unit.DomainScene(), 2).Coroutine();
+							unit.DomainScene().Dispose();
+						}
+						break;
+					case (int)SceneTypeEnum.TeamDungeon:
+						//当前在副本需要先释放副本scene.
+						mapComponent = unit.DomainScene().GetComponent<MapComponent>();
+						sceneTypeEnum = mapComponent.SceneTypeEnum;
 						int fubenTimes = unit.GetComponent<UserInfoComponent>().UserInfo.TeamDungeonTimes + 1;
 						unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.TeamDungeonTimes, fubenTimes.ToString(), true).Coroutine();
-						long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Team)).InstanceId;
+						mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Team)).InstanceId;
 						//[创建副本Scene]
 						T2M_TeamDungeonEnterResponse createUnit = (T2M_TeamDungeonEnterResponse)await ActorMessageSenderComponent.Instance.Call(
 						mapInstanceId, new M2T_TeamDungeonEnterRequest() { UserID = unit.GetComponent<UserInfoComponent>().UserInfo.UserId });

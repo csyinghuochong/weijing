@@ -195,6 +195,16 @@ namespace ET
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Activity)).InstanceId;
         }
 
+        public static long GetTeamServerId(int zone)
+        {
+            return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Team)).InstanceId;
+        }
+
+        public static long GetBattleServerId(int zone)
+        {
+            return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Battle)).InstanceId;
+        }
+
         public static long GetAccountCenter()
         {
             return StartSceneConfigCategory.Instance.AccountCenterConfig.InstanceId;
