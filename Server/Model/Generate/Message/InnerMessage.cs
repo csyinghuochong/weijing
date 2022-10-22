@@ -2143,10 +2143,10 @@ namespace ET
 	}
 
 //进入战场
-	[ResponseType(nameof(T2M_BattleEnterResponse))]
-	[Message(InnerOpcode.M2T_BattleEnterRequest)]
+	[ResponseType(nameof(B2M_BattleEnterResponse))]
+	[Message(InnerOpcode.M2B_BattleEnterRequest)]
 	[ProtoContract]
-	public partial class M2T_BattleEnterRequest: Object, IActorRequest
+	public partial class M2B_BattleEnterRequest: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -2159,9 +2159,9 @@ namespace ET
 
 	}
 
-	[Message(InnerOpcode.T2M_BattleEnterResponse)]
+	[Message(InnerOpcode.B2M_BattleEnterResponse)]
 	[ProtoContract]
-	public partial class T2M_BattleEnterResponse: Object, IActorResponse
+	public partial class B2M_BattleEnterResponse: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

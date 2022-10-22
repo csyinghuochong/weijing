@@ -1028,8 +1028,8 @@ message Chat2G_RequestExitChat //IActorResponse
 }
 
 //进入战场
-//ResponseType T2M_BattleEnterResponse
-message M2T_BattleEnterRequest // IActorRequest
+//ResponseType B2M_BattleEnterResponse
+message M2B_BattleEnterRequest // IActorRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
@@ -1037,7 +1037,7 @@ message M2T_BattleEnterRequest // IActorRequest
 	int64 UserID = 1;
 }
 
-message T2M_BattleEnterResponse // IActorResponse
+message B2M_BattleEnterResponse // IActorResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

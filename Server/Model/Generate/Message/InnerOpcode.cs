@@ -129,7 +129,7 @@ namespace ET
 		 public const ushort Chat2G_EnterChat = 20126;
 		 public const ushort G2Chat_RequestExitChat = 20127;
 		 public const ushort Chat2G_RequestExitChat = 20128;
-		 public const ushort M2T_BattleEnterRequest = 20129;
-		 public const ushort T2M_BattleEnterResponse = 20130;
+		 public const ushort M2B_BattleEnterRequest = 20129;
+		 public const ushort B2M_BattleEnterResponse = 20130;
 	}
 }
