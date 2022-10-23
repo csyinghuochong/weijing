@@ -79,12 +79,12 @@ namespace ET
             self.Lab_ItemSubType = rc.Get<GameObject>("Lab_ItemSubType");
 
             self.Imagebg.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseTips(); });
-            self.Btn_Sell.GetComponent<Button>().onClick.AddListener(() => { self.OnClickSell(); });
-            self.Btn_Use.GetComponent<Button>().onClick.AddListener(() => { self.OnClickUse().Coroutine(); });
-            self.Obj_Btn_HuiShou.GetComponent<Button>().onClick.AddListener(() => { self.On_Btn_HuiShou(); });
-            self.Obj_Btn_HuiShouCancle.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_HuiShouCancle(); });
-            self.Obj_SaveStoreHouse.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PutStoreHouse(); });
-            self.Btn_TakeStoreHouse.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PutBag(); });
+            ButtonHelp.AddListenerEx(self.Btn_Sell, self.OnClickSell);
+            ButtonHelp.AddListenerEx(self.Btn_Use, () => { self.OnClickUse().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Obj_Btn_HuiShou, self.On_Btn_HuiShou);
+            ButtonHelp.AddListenerEx(self.Obj_Btn_HuiShouCancle, self.OnBtn_HuiShouCancle);
+            ButtonHelp.AddListenerEx(self.Obj_SaveStoreHouse, self.OnBtn_PutStoreHouse);
+            ButtonHelp.AddListenerEx(self.Btn_TakeStoreHouse, self.OnBtn_PutBag);
 
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
         }

@@ -57,7 +57,7 @@ namespace ET
             self.Button_YiJianInput = rc.Get<GameObject>("Button_YiJianInput");
             self.Button_YiJianInput.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_YiJianInput(); });
             self.Button_HuiShou = rc.Get<GameObject>("Button_HuiShou");
-            self.Button_HuiShou.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_HuiShou(); });
+            ButtonHelp.AddListenerEx(self.Button_HuiShou, self.OnButton_HuiShou);     
 
             self.Img_YiJianZiSe = rc.Get<GameObject>("Img_YiJianZiSe");
             self.BagListNode = rc.Get<GameObject>("BagListNode");
