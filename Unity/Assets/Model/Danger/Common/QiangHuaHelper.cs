@@ -7,6 +7,12 @@ namespace ET
     public static class QiangHuaHelper
     {
 
+        public static int GetQiangHuaId(int index, int level)
+        {
+            EquipQiangHuaConfig equipQiangHuaConfig = GetQiangHuaConfig(index, level);
+            return equipQiangHuaConfig.Id;
+        }
+
         public static EquipQiangHuaConfig GetQiangHuaConfig(int index, int level)
         { 
             List<EquipQiangHuaConfig> qiangHuaConfigs = EquipQiangHuaConfigCategory.Instance.GetAll().Values.ToList();
