@@ -31,6 +31,7 @@ namespace ET
                 bagComponent.QiangHuaFails[request.WeiZhi]++;
             }
             response.QiangHuaLevel = bagComponent.QiangHuaLevel[request.WeiZhi];
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
             reply();
             await ETTask.CompletedTask;
         }

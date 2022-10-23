@@ -575,6 +575,9 @@ namespace ET
             UserInfo userInfo = UnitInfoComponent.UserInfo;
             int roleLv = userInfo.Lv;
 
+            //强化登录（List长度13， 13个位置）
+            List<int> qianghuaLv = unit.GetComponent<BagComponent>().QiangHuaLevel;
+
             //初始化属性
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.ResetProperty();
