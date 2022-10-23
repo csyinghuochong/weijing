@@ -36,7 +36,6 @@ namespace ET
 				unit.AddComponent<ObjectWait>();
 				unit.AddComponent<SkillManagerComponent>();
 				unit.AddComponent<BuffManagerComponent>();
-
 				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 				numericComponent.Set(NumericType.BattleCamp, CampEnum.CampPlayer_1);
 				//添加消息类型, GateSession邮箱在收到消息的时候会立即转发给客户端，MessageDispatcher类型会再次对Actor消息进行分发到具体的Handler处理，默认的MailboxComponent类型是MessageDispatcher。
@@ -129,7 +128,24 @@ namespace ET
 						scene.GetComponent<LocalDungeonComponent>().GenerateFubenScene(request.ChapterId);
 						break;
 					case (int)SceneTypeEnum.Battle:
+						numericComponent.Set(NumericType.BattleCamp, request.SonId); //1 2
+						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
+						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
+						int startIndex = request.SonId == 1 ? 0 : 3;
+						unit.Position = new Vector3(sceneConfig.InitPos[startIndex+0] * 0.01f, sceneConfig.InitPos[startIndex + 1] * 0.01f, sceneConfig.InitPos[startIndex + 2] * 0.01f);
+						unit.Rotation = Quaternion.identity;
+						// 通知客户端创建My Unit
+						m2CCreateUnits = new M2C_CreateMyUnit();
+						m2CCreateUnits.Unit = UnitHelper.CreateUnitInfo(unit);
+						MessageHelper.SendToClient(unit, m2CCreateUnits);
+						// 加入aoi
+						unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
 
+						fightId = unit.GetComponent<PetComponent>().GetFightPet();
+						if (fightId != null)
+						{
+							UnitFactory.CreatePet(unit, fightId);
+						}
 						break;
 					case (int)SceneTypeEnum.TeamDungeon:
 					case (int)SceneTypeEnum.YeWaiScene:

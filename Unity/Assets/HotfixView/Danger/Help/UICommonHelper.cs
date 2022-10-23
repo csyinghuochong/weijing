@@ -36,7 +36,8 @@ namespace ET
                 || sceneType == (int)SceneTypeEnum.TeamDungeon
                  || sceneType == (int)SceneTypeEnum.YeWaiScene
                  || sceneType == (int)SceneTypeEnum.Tower
-                  || sceneType == (int)SceneTypeEnum.LocalDungeon;
+                  || sceneType == (int)SceneTypeEnum.LocalDungeon
+                  || sceneType == (int)SceneTypeEnum.Battle;
         }
 
         public static void ShowOccIcon(GameObject go, int occ)

@@ -96,8 +96,7 @@ namespace ET
                 mapCamera.transform.eulerAngles = new Vector3(90, 0, (float)dungeonConfig.CameraPos[3]);
                 camera.orthographicSize = (float)dungeonConfig.CameraPos[4];
             }
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MainCityScene
-                || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.TeamDungeon)
+            else
             {
                 SceneConfig dungeonConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
                 mapCamera.transform.position = new Vector3((float)dungeonConfig.CameraPos[0], (float)dungeonConfig.CameraPos[1], (float)dungeonConfig.CameraPos[2]);
@@ -130,17 +129,14 @@ namespace ET
                 //显示地图名称
                 self.Lab_MapName.GetComponent<Text>().text = ChapterConfigCategory.Instance.Get(sceneId).ChapterName;
             }
-            if (sceneTypeEnum == (int)SceneTypeEnum.MainCityScene
-                || sceneTypeEnum == (int)SceneTypeEnum.TeamDungeon
-                || sceneTypeEnum == (int)SceneTypeEnum.YeWaiScene
-                || sceneTypeEnum == (int)SceneTypeEnum.Tower)
+            else if (sceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+            {
+                self.Lab_MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(sceneId).ChapterName;
+            }
+            else
             {
                 //显示地图名称
                 self.Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).Name;
-            }
-            if (sceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
-            {
-                self.Lab_MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(sceneId).ChapterName;
             }
         }
     }

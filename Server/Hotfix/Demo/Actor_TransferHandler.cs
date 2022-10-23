@@ -34,7 +34,7 @@ namespace ET
 					response.Error = ErrorCore.ERR_RequestRepeatedly;
 					reply();
 					return;
-				}.
+				};
 
 				switch (request.SceneType)
 				{
@@ -107,7 +107,7 @@ namespace ET
 						int sceneTypeEnum = mapComponent.SceneTypeEnum;
 						long mapInstanceId = DBHelper.GetBattleServerId(unit.DomainZone());
 						B2M_BattleEnterResponse battleEnter = (B2M_BattleEnterResponse)await ActorMessageSenderComponent.Instance.Call(
-						mapInstanceId, new M2B_BattleEnterRequest() { UserID = unit.Id });
+						mapInstanceId, new M2B_BattleEnterRequest() { UserID = unit.Id, SceneId = request.SceneId });
 						TransferHelper.BeforeTransfer(unit);
 						TransferHelper.Transfer(unit, battleEnter.FubenInstanceId, (int)SceneTypeEnum.Battle, request.SceneId, battleEnter.Camp).Coroutine();
 						if (ComHelp.IsSingleFuben(sceneTypeEnum))

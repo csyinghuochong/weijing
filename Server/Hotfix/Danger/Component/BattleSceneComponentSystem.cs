@@ -33,8 +33,8 @@
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.Battle, sceneId, 0);
             mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(sceneId).MapID.ToString();
-            
-            BattleInfo battleInfo = new BattleInfo() { PlayerNumber = 0, FubenInstanceId = fubenInstanceId }
+            Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
+            BattleInfo battleInfo = new BattleInfo() { PlayerNumber = 0, FubenInstanceId = fubenInstanceId };
             self.BattleInfos.Add(battleInfo);
             return battleInfo;
         }

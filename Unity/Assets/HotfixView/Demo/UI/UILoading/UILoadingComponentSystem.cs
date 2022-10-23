@@ -49,6 +49,7 @@ namespace ET
                 case (int)SceneTypeEnum.RandomTower:
                 case (int)SceneTypeEnum.PetDungeon:
                 case (int)SceneTypeEnum.PetTianTi:
+                case (int)SceneTypeEnum.Battle:
                     loadResName = backpngs[index];
                     self.PreLoadAssets.AddRange( self.GetRoleSkillEffect() );
                     self.PreLoadAssets.AddRange( self.GetCommonAssets( ) );
@@ -58,6 +59,9 @@ namespace ET
                     self.PreLoadAssets.AddRange(self.GetRoleSkillEffect());
                     self.PreLoadAssets.AddRange(self.GetCommonAssets());
                     self.PreLoadAssets.AddRange(self.GetLocalDungeonMonsters());
+                    break;
+                default:
+                    loadResName = backpngs[index];
                     break;
             }
 
