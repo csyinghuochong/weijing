@@ -155,12 +155,19 @@ namespace ET
         {
             self.SkillCancelHandler(false);
             if (self.CancelSkill)
+            {
                 return;
+            }
+
+            Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (myUnit.GetComponent<FsmComponent>().IsSkillMove())
+            {
+                return;
+            }
             long targetId = self.DomainScene().CurrentScene().GetComponent<LockTargetComponent>().LastLockId;
             if (self.SkillWuqiConfig.SkillTargetType == (int)SkillTargetType.TargetOnly)
             {
                 Unit targetUnit = null;
-                Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 if (targetId != 0)
                 {
                     UnitComponent unitComponent = self.DomainScene().CurrentScene().GetComponent<UnitComponent>();

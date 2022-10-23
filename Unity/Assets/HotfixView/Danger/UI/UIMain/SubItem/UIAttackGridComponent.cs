@@ -134,6 +134,16 @@ namespace ET
             {
                 return;
             }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (unit == null)
+            {
+                return;
+            }
+            if (unit.GetComponent<FsmComponent>().IsSkillMove())
+            {
+                return;
+            }
+
             LockTargetComponent lockTargetComponent = curscene.GetComponent<LockTargetComponent>();
             long targetId = lockTargetComponent.LockTargetUnit(true);
             Unit targetUnit = curscene.GetComponent<UnitComponent>().Get(targetId);
