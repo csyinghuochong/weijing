@@ -54,9 +54,9 @@ namespace ET
         public Transform UIPosition;
         public string HeadBarPath;
         public Vector2 LastPositon;
-        public GameObject Obj_Lal_ShopName;
-        public GameObject Obj_ShopShowSet;
-        public GameObject Obj_PlayerNameSet;
+        public GameObject Lal_ShopName;
+        public GameObject ShopShowSet;
+        public GameObject PlayerNameSet;
         public GameObject Lal_NameOwner;
         public GameObject JiaZuShowSet;
         public GameObject Lal_JiaZuName;
@@ -124,9 +124,9 @@ namespace ET
                 ObjHp = rc.Get<GameObject>("Img_HpValue");
             }
             ObjName = rc.Get<GameObject>("Lal_Name");
-            Obj_Lal_ShopName = rc.Get<GameObject>("Lal_ShopName");
-            Obj_ShopShowSet = rc.Get<GameObject>("ShopShowSet");
-            Obj_PlayerNameSet = rc.Get<GameObject>("PlayerNameSet");
+            Lal_ShopName = rc.Get<GameObject>("Lal_ShopName");
+            ShopShowSet = rc.Get<GameObject>("ShopShowSet");
+            PlayerNameSet = rc.Get<GameObject>("PlayerNameSet");
             JiaZuShowSet = rc.Get<GameObject>("JiaZuShowSet");
             Lal_JiaZuName = rc.Get<GameObject>("Lal_JiaZuName");
             UIPosition = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
@@ -308,7 +308,7 @@ namespace ET
 
         public static void UpdateStallName(this HeroHeadBarComponent self, string stallName)
         {
-            self.Obj_Lal_ShopName.GetComponent<TextMeshProUGUI>().text = stallName;
+            self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = stallName;
         }
 
         public static void OnUnitStallUpdate(this HeroHeadBarComponent self, int stallType)
@@ -319,14 +319,14 @@ namespace ET
             if (stallType == 0)
             {
                 self.ObjName.GetComponent<TextMeshProUGUI>().text = infoComponent.PlayerName;
-                self.Obj_ShopShowSet.SetActive(false);
-                self.Obj_PlayerNameSet.SetActive(true);
+                self.ShopShowSet.SetActive(false);
+                self.PlayerNameSet.SetActive(true);
             }
             else
             {
-                self.Obj_Lal_ShopName.GetComponent<TextMeshProUGUI>().text = infoComponent.StallName;
-                self.Obj_ShopShowSet.SetActive(true);
-                self.Obj_PlayerNameSet.SetActive(false);
+                self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = infoComponent.StallName;
+                self.ShopShowSet.SetActive(true);
+                self.PlayerNameSet.SetActive(false);
             }
         }
     }
