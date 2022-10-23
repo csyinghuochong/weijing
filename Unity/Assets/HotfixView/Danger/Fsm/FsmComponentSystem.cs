@@ -202,6 +202,11 @@ namespace ET
             self.BeginTimer();
         }
 
+        public static bool IsSkillMove(this FsmComponent self)
+        {
+            return TimeHelper.ClientNow() < self.SkillMoveTime;
+        }
+
         public static void OnEnterFsmRunState(this FsmComponent self, string paramss = "")
         {
             if (TimeHelper.ClientNow() > self.SkillMoveTime)

@@ -62,7 +62,7 @@ namespace ET
             {
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 rewardItems.Add(new RewardItem() { ItemID = equipMakeConfig.MakeItemID, ItemNum = equipMakeConfig.MakeEquipNum });
-                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, unit.GetComponent<UserInfoComponent>().UserInfo.UserId);       //传入制造装备和制造玩家的ID
+                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, unit.GetComponent<UserInfoComponent>().UserInfo.Name);       //传入制造装备和制造玩家的ID
                 unit.GetComponent<TaskComponent>().OnMakeItem();
                 response.ItemId = equipMakeConfig.MakeItemID;
             }

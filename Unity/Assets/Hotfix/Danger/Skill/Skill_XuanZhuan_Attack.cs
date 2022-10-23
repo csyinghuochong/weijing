@@ -51,7 +51,6 @@ namespace ET
                 EventSystem.Instance.PublishClass(EventType.SkillEffectMove.Instance);
             }
             this.TheUnitFrom.Rotation = Quaternion.Euler(0, this.SkillCmd.TargetAngle + addrangle, 0);
-            Log.Debug($"addrangle:   {addrangle}");
             this.BaseOnUpdate();
         }
 

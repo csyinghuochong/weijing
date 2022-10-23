@@ -1567,14 +1567,14 @@ namespace ET
 		[ProtoMember(14)]
 		public List<HideProList> XiLianHideTeShuProLists = new List<HideProList>();
 
-		[ProtoMember(15)]
-		public long MakeUserId { get; set; }
-
 		[ProtoMember(16)]
 		public string GetWay { get; set; }
 
 		[ProtoMember(17)]
 		public string GemIDNew { get; set; }
+
+		[ProtoMember(18)]
+		public string MakePlayer { get; set; }
 
 	}
 

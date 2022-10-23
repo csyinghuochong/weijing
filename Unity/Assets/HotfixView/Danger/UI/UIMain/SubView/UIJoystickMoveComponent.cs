@@ -224,10 +224,12 @@ namespace ET
 
         public static void EndDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
-            Log.Debug("FsmStateEnum.EndDrag");
-
-            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
             self.HideUI();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (unit!= null && !unit.GetComponent<MoveComponent>().IsArrived())
+            {
+                self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
+            }
         }
 
     }

@@ -1462,25 +1462,6 @@ namespace ET
             //显示装备制造者的名字[名字直接放入baginfo]
         }
 
-        //需要异步的初始化
-        public static async ETTask InitDataAsyn(this UIEquipTipsComponent self, BagInfo baginfo)
-        {
-            self.Obj_Lab_EquipMake.SetActive(false);
-            //显示装备制造玩家
-            if (baginfo.MakeUserId != 0)
-            {
-                C2F_WatchPlayerRequest c2M_SkillSet = new C2F_WatchPlayerRequest() { UserId = baginfo.MakeUserId, WatchType = 1 };
-                F2C_WatchPlayerResponse m2C_SkillSet = (F2C_WatchPlayerResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
-                self.Obj_Lab_EquipMake.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("制造者") + ": " + m2C_SkillSet.Name;
-                self.Obj_Lab_EquipMake.SetActive(true);
-            }
-            else
-            {
-                self.Obj_Lab_EquipMake.SetActive(false);
-            }
-        }
-
-
         //获取装备子类型名称
         public static string GetEquipType(this UIEquipTipsComponent self, int type) {
 
