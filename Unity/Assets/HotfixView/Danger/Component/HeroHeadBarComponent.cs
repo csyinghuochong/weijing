@@ -160,9 +160,10 @@ namespace ET
         //更新显示
         public void UpdateShow()
         {
+            Unit unit = this.GetParent<Unit>();
             UnitInfoComponent infoComponent = this.Parent.GetComponent<UnitInfoComponent>();
             //显示玩家名称
-            if (this.GetParent<Unit>().Type == UnitType.Player)
+            if (unit.Type == UnitType.Player)
             {
                 NumericComponent numericComponent = this.GetParent<Unit>().GetComponent<NumericComponent>();
                 this.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
@@ -179,7 +180,7 @@ namespace ET
                 }
             }
             //显示怪物名称
-            if (this.GetParent<Unit>().Type == UnitType.Monster)
+            if (unit.Type == UnitType.Monster)
             {
                 MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId);
                 bool isboos = monsterCof.MonsterType == (int)MonsterTypeEnum.Boss;
@@ -196,10 +197,15 @@ namespace ET
                 //怪物等级显示
                 ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
                 MapComponent mapComponent = this.ZoneScene().GetComponent<MapComponent>();
+                int monsterLv = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Lv);
                 if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Tower)
                 {
                     UserInfoComponent userInfoComponent = this.ZoneScene().GetComponent<UserInfoComponent>();
                     rc.Get<GameObject>("Lal_Lv").GetComponent<TextMeshProUGUI>().text = userInfoComponent.UserInfo.Lv.ToString();
+                }
+                else if (monsterLv > 0)
+                {
+                    rc.Get<GameObject>("Lal_Lv").GetComponent<TextMeshProUGUI>().text = monsterLv.ToString();
                 }
                 else
                 {
