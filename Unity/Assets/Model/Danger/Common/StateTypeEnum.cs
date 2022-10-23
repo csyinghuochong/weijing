@@ -11,7 +11,7 @@ namespace ET
         /// <summary>
         /// 传送
         /// </summary>
-        public const long ChuanSong = 1 << 1;
+        public const long NetWait = 1 << 1;
 
         /// <summary>
         /// 空闲

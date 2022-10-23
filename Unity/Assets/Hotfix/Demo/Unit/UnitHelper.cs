@@ -6,6 +6,18 @@ namespace ET
     {
         public static bool LoadingScene = false;
 
+
+        public static Unit GetMyUnitFromZoneScene_2(Scene zoneScene)
+        {
+            AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
+            Scene currentScene = zoneScene.GetComponent<CurrentScenesComponent>().Scene;
+            if (currentScene == null)
+            {
+                return null;
+            }
+            return currentScene.GetComponent<UnitComponent>().Get(playerComponent.MyId);
+        }
+
         public static Unit GetMyUnitFromZoneScene(Scene zoneScene)
         {
             AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();

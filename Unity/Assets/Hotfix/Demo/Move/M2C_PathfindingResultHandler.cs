@@ -12,11 +12,6 @@ namespace ET
 			{
 				return;
 			}
-			if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.ChuanSong))
-			{
-				return;
-			}
-			Log.Debug("FsmStateEnum.M2C_PathfindingResult");
 
 			float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
 			using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())

@@ -65,15 +65,18 @@ namespace ET
             {
                 return;
             }
+          
             if (self.DisconnectType == 0)
             {
                 EventType.BeginRelink.Instance.ZoneScene = self.DomainScene();
                 Game.EventSystem.PublishClass(EventType.BeginRelink.Instance);
-                return;
             }
-            EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
-            EventType.ReturnLogin.Instance.ErrorCode = self.DisconnectType;
-            Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
+            else
+            {
+                EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();
+                EventType.ReturnLogin.Instance.ErrorCode = self.DisconnectType;
+                Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
+            }
         }
     }
 }

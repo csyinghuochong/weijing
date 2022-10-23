@@ -201,9 +201,9 @@ namespace ET
                     return ErrorCore.ERR_Success;
                 }
                 unit.GetComponent<StateComponent>().BeginMoveOrSkill();
-                unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.SkillRigidity);
+                unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NetWait);
                 M2C_SkillCmd m2C_SkillCmd = await zoneScene.GetComponent<SessionComponent>().Session.Call(SkillCmd) as M2C_SkillCmd;
-                unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.SkillRigidity);
+                unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);
                 if (m2C_SkillCmd.Error == 0)
                 {
                     unit.GetComponent<SkillManagerComponent>().AddSkillCD(skillid, m2C_SkillCmd);
