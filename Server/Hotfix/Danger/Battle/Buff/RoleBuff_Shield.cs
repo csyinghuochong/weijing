@@ -14,7 +14,7 @@
             {
                 //numericComponent.Set(NumericType.Now_Shield_HP, buffData.BuffConfig.buffParameterValue);
                 numericComponent.ApplyValue(NumericType.Now_Shield_HP, (int)buffData.BuffConfig.buffParameterValue * theUnitFrom.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp), true);
-                numericComponent.Set(NumericType.Now_Shield_DamgeCostPro, buffData.BuffConfig.DamgePro, true);
+                numericComponent.ApplyValue(NumericType.Now_Shield_HP, (int)buffData.BuffConfig.buffParameterValue * theUnitFrom.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp), true);
             }
             else
             {

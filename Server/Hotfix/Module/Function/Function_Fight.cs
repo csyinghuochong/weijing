@@ -813,51 +813,6 @@ namespace ET
                     mEquipCon.Equip_MinAct = mEquipCon.Equip_MaxAct;
                 }
 
-                //强化属性
-                switch (itemCof.ItemSubType) {
-
-                    case 1:
-                        //addPro = equipq qianghuaLv[0]
-                        break;
-
-                    case 2:
-                        break;
-
-                    case 3:
-                        break;
-
-                    case 4:
-                        break;
-
-                    case 5:
-                        break;
-
-                    case 6:
-                        break;
-
-                    case 7:
-                        break;
-
-                    case 8:
-                        break;
-
-                    case 9:
-                        break;
-
-                    case 10:
-                        break;
-
-                    case 11:
-                        break;
-
-                    case 12:
-                        break;
-
-                    case 13:
-                        break;
-
-                }
-
                 //存储基础属性
                 equipHpSum = (int)(equipHpSum + mEquipCon.Equip_Hp * (1 + occMastery + addPro));
                 equipMinActSum = (int)(equipMinActSum + mEquipCon.Equip_MinAct * (1 + occMastery + addPro));
