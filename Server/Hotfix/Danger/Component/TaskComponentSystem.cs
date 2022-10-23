@@ -257,7 +257,7 @@ namespace ET
 
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
             List<RewardItem> rewardItems = TaskHelp.GetTaskRewards(taskid, taskConfig);
-            bagComponent.OnAddItemData(rewardItems,0, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
+            bagComponent.OnAddItemData(rewardItems, "", $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
             if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
             {
                 bagComponent.OnCostItemData($"{taskConfig.Target[0]};{taskConfig.TargetValue[0]}");

@@ -365,7 +365,7 @@ namespace ET
                 int itemNum = int.Parse(itemInfo[1]);
                 costItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
             }
-            return self.OnAddItemData(costItems, 0, getType, notice);
+            return self.OnAddItemData(costItems, "", getType, notice);
         }
 
         public static void OnAddItemData(this BagComponent self, List<BagInfo> bagInfos, string getType)
@@ -400,7 +400,7 @@ namespace ET
         }
 
         //添加背包道具道具[支持同时添加多个]
-        public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems, long makeUserID = 0, string getWay = "0", bool notice = true, bool gm = false)
+        public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems, string makeUserID = "", string getWay = "0", bool notice = true, bool gm = false)
         {
             int bagCellNumber = 0;
             int petHeXinNumber = 0;
@@ -531,11 +531,7 @@ namespace ET
                     leftNum -= useBagInfo.ItemNum;
 
                     //记录制造的玩家
-                    if (makeUserID != 0)
-                    {
-                        useBagInfo.MakeUserId = makeUserID;
-                    }
-                   
+                    useBagInfo.MakePlayer = makeUserID;
                     //蓝色品质的装备需要可以进行鉴定
                     if (!ItemHelper.IsBuyItem(getType) && itemCof.ItemType == 3)
                     {

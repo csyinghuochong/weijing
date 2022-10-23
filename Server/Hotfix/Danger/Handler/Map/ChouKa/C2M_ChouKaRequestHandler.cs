@@ -39,7 +39,7 @@ namespace ET
             {
                 DropHelper.DropIDToDropItem_2(dropid, droplist);
             }
-            bagComponent.OnAddItemData(droplist, 0,$"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
+            bagComponent.OnAddItemData(droplist, "",$"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
             
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ChouKa, request.ChouKaType, 0);
             if (mianfei)

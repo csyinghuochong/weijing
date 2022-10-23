@@ -30,7 +30,7 @@ namespace ET
   
             List<RewardItem> rewardItems = new List<RewardItem>();
             rewardItems.Add(request.RewardItem);
-            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems,0,$"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
+            unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
 
             M2C_TeamDungeonBoxRewardResult m2C_HorseNoticeInfo = new M2C_TeamDungeonBoxRewardResult()
             { 

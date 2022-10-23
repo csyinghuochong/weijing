@@ -14,7 +14,7 @@ namespace ET
             {
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 DropHelper.DropIDToDropItem_2(config.DropID, rewardItems);
-                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, 0, $"{ItemGetWay.PetEggDuiHuan}_{TimeHelper.ServerNow()}");
+                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.PetEggDuiHuan}_{TimeHelper.ServerNow()}");
             }
             reply();
             await ETTask.CompletedTask;

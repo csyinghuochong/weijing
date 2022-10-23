@@ -738,9 +738,9 @@ message BagInfo
 	repeated int32 HideSkillLists = 12;
 	bool isBinging = 13;
 	repeated HideProList XiLianHideTeShuProLists = 14;
-	int64 MakeUserId = 15;
 	string GetWay = 16; //来源方式
 	string GemIDNew = 17;	//对应的宝石ID
+	string MakePlayer = 18;	//制作玩家名字
 }
 
 message HideProList

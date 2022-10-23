@@ -125,7 +125,7 @@ namespace ET
                 unit1.GetComponent<TaskComponent>().OnPassTeamFuben();
                 if (unit1.GetComponent<UserInfoComponent>().UserInfo.UserId == idExtra)
                 {
-                    unit1.GetComponent<BagComponent>().OnAddItemData(m2C_FubenSettlement.RewardExtraItem, 0, $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
+                    unit1.GetComponent<BagComponent>().OnAddItemData(m2C_FubenSettlement.RewardExtraItem, "", $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
                 }
                 MessageHelper.SendToClient(unit1, m2C_FubenSettlement);
             }

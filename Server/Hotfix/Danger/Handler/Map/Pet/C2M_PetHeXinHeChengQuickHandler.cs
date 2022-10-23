@@ -49,7 +49,7 @@ namespace ET
                 }
             }
 
-            bagComponent.OnAddItemData(rewardItems, 0, $"{ItemGetWay.PetHeXinHeCheng}_{TimeHelper.ServerNow()}");
+            bagComponent.OnAddItemData(rewardItems, "", $"{ItemGetWay.PetHeXinHeCheng}_{TimeHelper.ServerNow()}");
             bagComponent.OnCostItemData(costList, ItemLocType.ItemPetHeXinBag);
 
             reply();

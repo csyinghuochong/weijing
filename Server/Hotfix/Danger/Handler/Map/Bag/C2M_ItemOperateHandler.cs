@@ -157,7 +157,7 @@ namespace ET
                             case 6:
                                 List<RewardItem> rewardItems = new List<RewardItem>();
                                 DropHelper.DropIDToDropItem_2(int.Parse(itemCof.ItemUsePar), rewardItems);
-                                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems,0, $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}");
+                                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}");
                                 break;
                             //兑换：
                             case 8:
@@ -172,7 +172,7 @@ namespace ET
                                 rewardItems = new List<RewardItem>();
                                 string[] rewardInfos = itemCof.ItemUsePar.Split(';');
                                 DropHelper.DropIDToDropItem(int.Parse(rewardInfos[1]), rewardItems);
-                                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems,0, $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}");
+                                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}");
                                 break;
                             //冷却时间清空卷轴"
                             case 12:
@@ -203,7 +203,7 @@ namespace ET
                                 break;
                             //随机盒子
                             case 104:
-                                unit.GetComponent<BagComponent>().OnAddItemData(droplist,0, $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}");
+                                unit.GetComponent<BagComponent>().OnAddItemData(droplist, "", $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}");
                                 break;
                             //指定道具
                             case 106:
