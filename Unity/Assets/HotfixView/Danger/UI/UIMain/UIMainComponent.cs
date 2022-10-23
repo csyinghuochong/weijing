@@ -1103,9 +1103,10 @@ namespace ET
                 case (int)SceneTypeEnum.LocalDungeon:
                     self.OnOpenBigMap();        //打开主城
                     break;
-                case (int)SceneTypeEnum.TeamDungeon:
-                case (int)SceneTypeEnum.YeWaiScene:
-                case (int)SceneTypeEnum.Tower:
+                case (int)SceneTypeEnum.CellDungeon:
+                    self.OnShowFubenIndex();        //打开副本小地图
+                    break;
+                default:
                     SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
                     if (sceneConfig.ifShowMinMap == 1)
                     {
@@ -1115,9 +1116,6 @@ namespace ET
                     {
                         self.OnOpenBigMap();        //打开主城
                     }
-                    break;
-                case (int)SceneTypeEnum.CellDungeon:
-                    self.OnShowFubenIndex();        //打开副本小地图
                     break;
             }
         }
