@@ -48,6 +48,10 @@ namespace ET
             {
                 return false;
             }
+            if (self.IsRigidity())
+            {
+                return false;
+            }
 
             if (self.Parent.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
