@@ -83,17 +83,10 @@ namespace ET
         public static void OnUpdateRoleData(this UICountryComponent self, string updateType)
         {
             UserDataType userDataType = (UserDataType)int.Parse(updateType.Split('_')[0]);
-            if (userDataType == UserDataType.HuoYue && self.UIPageView.UISubViewList[(int)CountryPageEnum.CountryTask]!=null)
+            UI uI = self.UIPageView.UISubViewList[(int)CountryPageEnum.CountryTask];
+            if (userDataType == UserDataType.HuoYue && uI != null)
             {
-                self.UIPageView.UISubViewList[(int)CountryPageEnum.CountryTask].GetComponent<UICountryTaskComponent>().OnTaskCountryUpdate();
-            }
-        }
-
-        public static void OnTaskCountryUpdate(this UICountryComponent self)
-        {
-            if (self.UIPageView.UISubViewList[(int)CountryPageEnum.CountryTask] != null)
-            {
-                self.UIPageView.UISubViewList[(int)CountryPageEnum.CountryTask].GetComponent<UICountryTaskComponent>().OnTaskCountryUpdate();
+                uI.GetComponent<UICountryTaskComponent>().OnTaskCountryUpdate();
             }
         }
 

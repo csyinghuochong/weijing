@@ -36,7 +36,6 @@ namespace ET
             DataUpdatelegateDics.Add(DataType.ChengJiuUpdate, OnChengJiuUpdate);
             DataUpdatelegateDics.Add(DataType.PetItemSelect, OnPetItemSelect);
             DataUpdatelegateDics.Add(DataType.PetUpStarUpdate, OnPetUpStarUpdate);
-            DataUpdatelegateDics.Add(DataType.TaskCountryUpdate, OnTaskCountryUpdate);
             DataUpdatelegateDics.Add(DataType.SettingUpdate, OnSettingUpdate);
             DataUpdatelegateDics.Add(DataType.PetFenJieUpdate, OnPetFenJieUpdate);
             DataUpdatelegateDics.Add(DataType.EquipHuiShow, OnEquipHuiShow);
@@ -202,18 +201,6 @@ namespace ET
                 if (component is UIMainComponent uiComponent)
                 {
                     uiComponent.OnSettingUpdate();
-                    continue;
-                }
-            }
-        }
-
-        public void OnTaskCountryUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
-        {
-            foreach (var component in dataUpdateComponentDic.Values)
-            {
-                if (component is UICountryComponent uiComponent)
-                {
-                    uiComponent.OnTaskCountryUpdate();
                     continue;
                 }
             }
