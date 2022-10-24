@@ -196,7 +196,6 @@ namespace ET
 
             float rigibTime = float.Parse(animationinfos[3]);
             long skillRigibTime = TimeHelper.ClientNow() + (int)(1000f * rigibTime);
-            self.Animator.Play(animationinfos[1]);
 
             if (self.SkillMoveTime > TimeHelper.ClientNow()
                || self.SkillSingTime > TimeHelper.ClientNow())
@@ -205,6 +204,12 @@ namespace ET
                 self.Animator.SetBool("Run", false);
                 self.BeginTimer();
             }
+            else
+            {
+                self.Animator.SetBool("Run", false);
+                self.Animator.SetBool("Idle", true);
+            }
+            self.Animator.Play(animationinfos[1]);
         }
 
         public static bool IsSkillMove(this FsmComponent self)
