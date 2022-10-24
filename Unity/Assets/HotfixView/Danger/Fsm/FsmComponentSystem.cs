@@ -147,7 +147,6 @@ namespace ET
                     self.OnEnterIdleState();
                     break;
                 case FsmStateEnum.FsmNpcSpeak:
-                    //this.ClearnAnimator();
                     self.Animator.SetBool("Idle", false);
                     self.Animator.SetBool("Run", false);
                     self.Animator.Play("Speak");
