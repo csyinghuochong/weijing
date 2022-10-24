@@ -819,45 +819,55 @@ namespace ET
                     addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[itemCof.ItemSubType - 1])).EquipPropreAdd);
                 }
 
-                /*
+                
                 switch (itemCof.ItemSubType) {
 
+                    //武器
                     case 1:
+                        addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[0])).EquipPropreAdd);
                         break;
-
+                    //衣服
                     case 2:
+                        addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[1])).EquipPropreAdd);
                         break;
-
+                    //护符
                     case 3:
+                        addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[2])).EquipPropreAdd);
                         break;
-
+                    //灵石
                     case 4:
+                        addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[3])).EquipPropreAdd);
                         break;
-
+                    //饰品
                     case 5:
+                        addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[4])).EquipPropreAdd);
                         break;
-
+                    //鞋子
                     case 6:
+                        addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[7])).EquipPropreAdd);
                         break;
-
+                    //裤子
                     case 7:
+                        addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[8])).EquipPropreAdd);
                         break;
-
+                    //腰带
                     case 8:
+                        addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[9])).EquipPropreAdd);
                         break;
-
+                    //手套
                     case 9:
+                        addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[10])).EquipPropreAdd);
                         break;
-
+                    //头盔
                     case 10:
+                        addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[11])).EquipPropreAdd);
                         break;
-
+                    //项链
                     case 11:
+                        addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[12])).EquipPropreAdd);
                         break;
-                
-
                 }
-                */
+                
                 //存储基础属性
                 equipHpSum = (int)(equipHpSum + mEquipCon.Equip_Hp * (1 + occMastery + addPro) + BaseHp_EquipSuit);
                 equipMinActSum = (int)(equipMinActSum + mEquipCon.Equip_MinAct * (1 + occMastery + addPro) + BaseMinAct_EquipSuit);
