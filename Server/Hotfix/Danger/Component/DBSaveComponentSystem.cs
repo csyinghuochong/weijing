@@ -148,7 +148,6 @@ namespace ET
             //TransferHelper.BeforeTransfer(unit);
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
             unit.RemoveComponent<MailBoxComponent>();
-            unit.RecordPostion();
             unit.GetParent<UnitComponent>().Remove(unitId);
             if (fightId != null)
             {

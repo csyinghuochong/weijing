@@ -96,7 +96,11 @@ namespace ET
                 mapCamera.transform.eulerAngles = new Vector3(90, 0, (float)dungeonConfig.CameraPos[3]);
                 camera.orthographicSize = (float)dungeonConfig.CameraPos[4];
             }
-            else
+            if(mapComponent.SceneTypeEnum == SceneTypeEnum.MainCityScene
+                 || mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon
+                 || mapComponent.SceneTypeEnum == SceneTypeEnum.YeWaiScene
+                 || mapComponent.SceneTypeEnum == SceneTypeEnum.Tower
+                 || mapComponent.SceneTypeEnum == SceneTypeEnum.Battle)
             {
                 SceneConfig dungeonConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
                 mapCamera.transform.position = new Vector3((float)dungeonConfig.CameraPos[0], (float)dungeonConfig.CameraPos[1], (float)dungeonConfig.CameraPos[2]);
