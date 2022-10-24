@@ -79,10 +79,15 @@ namespace ET
             self.LeftTime--;
         }
 
+        public static bool IsNoAutoExit(this UICellDungeonReviveComponent self, int sceneType)
+        {
+            return sceneType == SceneTypeEnum.TeamDungeon || sceneType == SceneTypeEnum.Battle;
+        }
+
         public static void OnInitUI(this UICellDungeonReviveComponent self, int seneTypeEnum)
         {
             self.SceneType = seneTypeEnum;
-            self.LeftTime = seneTypeEnum == SceneTypeEnum.TeamDungeon ? 20 : 10;
+            self.LeftTime = self.IsNoAutoExit(seneTypeEnum) ? 20 : 10;
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.DungeonReviveTimer, self);
 
             self.Check();
@@ -129,7 +134,7 @@ namespace ET
         public static void OnAuto_Exit(this UICellDungeonReviveComponent self)
         {
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum != SceneTypeEnum.TeamDungeon)
+            if (!self.IsNoAutoExit(mapComponent.SceneTypeEnum))
             {
                 EnterFubenHelp.RequestQuitFuben(self.DomainScene());
                 UIHelper.Remove(self.DomainScene(), UIType.UICellDungeonRevive);
@@ -145,7 +150,7 @@ namespace ET
         public static void OnButton_Exit(this UICellDungeonReviveComponent self)
         {
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
+            if (self.IsNoAutoExit(mapComponent.SceneTypeEnum))
             {
                 if (self.LeftTime > 0)
                 {

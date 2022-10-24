@@ -88,29 +88,32 @@ namespace ET
                 }
                 switch (sceneTypeEnum)
                 {
-                    case (int)SceneTypeEnum.PetDungeon:
+                    case SceneTypeEnum.PetDungeon:
                         args.UnitAttack.DomainScene().GetComponent<PetFubenSceneComponent>().OnKillEvent();
                         break;
-                    case (int)SceneTypeEnum.CellDungeon:
+                    case SceneTypeEnum.CellDungeon:
                         args.UnitAttack.DomainScene().GetComponent<CellDungeonComponent>().OnKillEvent();
                         break;
-                    case (int)SceneTypeEnum.PetTianTi:
+                    case SceneTypeEnum.PetTianTi:
                         args.UnitAttack.DomainScene().GetComponent<PetTianTiComponent>().OnKillEvent();
                         break;
-                    case (int)SceneTypeEnum.TeamDungeon:
+                    case SceneTypeEnum.TeamDungeon:
                         args.UnitAttack.DomainScene().GetComponent<TeamDungeonComponent>().OnKillEvent(args.UnitDefend);
                         break;
-                    case (int)SceneTypeEnum.YeWaiScene:
+                    case SceneTypeEnum.YeWaiScene:
                         args.UnitAttack.DomainScene().GetComponent<YeWaiRefreshComponent>().OnKillEvent(args.UnitDefend);
                         break;
-                    case (int)SceneTypeEnum.Tower:
+                    case SceneTypeEnum.Tower:
                         args.UnitAttack.DomainScene().GetComponent<TowerComponent>().OnKillEvent();
                         break;
-                    case (int)SceneTypeEnum.RandomTower:
+                    case SceneTypeEnum.RandomTower:
                         args.UnitAttack.DomainScene().GetComponent<RandomTowerComponent>().OnKillEvent(args.UnitDefend);
                         break;
-                    case (int)SceneTypeEnum.LocalDungeon:
+                    case SceneTypeEnum.LocalDungeon:
                         args.UnitAttack.DomainScene().GetComponent<LocalDungeonComponent>().OnKillEvent(args.UnitDefend);
+                        break;
+                    case SceneTypeEnum.Battle:
+                        args.UnitAttack.DomainScene().GetComponent<BattleDungeonComponent>().OnKillEvent(args.UnitDefend);
                         break;
                 }
             }

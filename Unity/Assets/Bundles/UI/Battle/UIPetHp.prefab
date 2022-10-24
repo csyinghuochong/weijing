@@ -365,6 +365,8 @@ MonoBehaviour:
     gameObject: {fileID: 5686951827985924147}
   - key: Lal_NameOwner
     gameObject: {fileID: 7635559083979518022}
+  - key: ImageHpFill
+    gameObject: {fileID: 5686951829422881869}
 --- !u!1 &1888445702330170
 GameObject:
   m_ObjectHideFlags: 0
@@ -789,7 +791,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
-  m_Value: 0.79
+  m_Value: 0.855
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1149,7 +1151,7 @@ GameObject:
   - component: {fileID: 5686951829422881870}
   - component: {fileID: 5686951829422881871}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: ImageHpFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -46,11 +46,6 @@
 
         public const int EquipHuiShow = 14;
 
-        /// <summary>
-        /// 每日活跃
-        /// </summary>
-        public const int TaskCountryUpdate = 15;
-
         //任务更新通知
         public const int TaskUpdate = 16;
         //任务追踪

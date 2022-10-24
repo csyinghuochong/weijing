@@ -69,10 +69,10 @@ namespace ET
                     int monsterId = unit.ConfigId;
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(monsterId);
                     int userMaterModel = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UseMasterModel);
-                    if (userMaterModel == 1)
+                    long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
+                    Unit master = unit.GetParent<UnitComponent>().Get(masterId);
+                    if (userMaterModel == 1 && master!=null)
                     {
-                        long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-                        Unit master = unit.GetParent<UnitComponent>().Get(masterId);
                         GameObject gameObject = GameObject.Instantiate(master.GetComponent<GameObjectComponent>().GameObject);
                         self.OnLoadGameObject(gameObject, self.InstanceId);
                     }

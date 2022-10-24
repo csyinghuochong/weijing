@@ -103,26 +103,34 @@ namespace ET
             Unit unit = this.GetParent<Unit>();
             UnitInfoComponent unitInfoComponent1 = unit.GetComponent<UnitInfoComponent>();
             ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
-            if (unit.Type == UnitType.Monster)
+
+            Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(this.ZoneScene());
+            bool sameCamp = unit.GetBattleCamp() == mainUnit.GetBattleCamp();
+            ObjHp = rc.Get<GameObject>("Img_HpValue");
+            switch (unit.Type)
             {
-                Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(this.ZoneScene());
-                if (unit.GetBattleCamp() == mainUnit.GetBattleCamp())
-                {
-                    rc.Get<GameObject>("Img_HpValue").SetActive(false);
-                    rc.Get<GameObject>("Img_HpValue2").SetActive(true);
-                    ObjHp = rc.Get<GameObject>("Img_HpValue2");
-                }
-                else
-                {
+                case UnitType.Monster:
+                    string imageHp = sameCamp ? "UI_pro_3_2" : "UI_pro_4_2";
+                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, imageHp);
                     rc.Get<GameObject>("Img_HpValue").SetActive(true);
-                    rc.Get<GameObject>("Img_HpValue2").SetActive(false);
-                    ObjHp = rc.Get<GameObject>("Img_HpValue");
-                }
+                    ObjHp.GetComponent<Image>().sprite = sp;
+                    break;
+                case UnitType.Player:
+                    imageHp = sameCamp ? "UI_pro_3_2" : "UI_pro_4_2";
+                    GameObject ImageHpFill = rc.Get<GameObject>("ImageHpFill");
+                    sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, imageHp);
+                    ImageHpFill.GetComponent<Image>().sprite = sp;
+                    break;
+                case UnitType.Pet:
+                    imageHp = sameCamp ? "UI_pro_3_4" : "UI_pro_4_2";
+                    ImageHpFill = rc.Get<GameObject>("ImageHpFill");
+                    sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, imageHp);
+                    ImageHpFill.GetComponent<Image>().sprite = sp;
+                    break;
+                default:
+                    break;
             }
-            else
-            {
-                ObjHp = rc.Get<GameObject>("Img_HpValue");
-            }
+            
             ObjName = rc.Get<GameObject>("Lal_Name");
             Lal_ShopName = rc.Get<GameObject>("Lal_ShopName");
             ShopShowSet = rc.Get<GameObject>("ShopShowSet");
@@ -215,8 +223,6 @@ namespace ET
             if (this.GetParent<Unit>().Type == UnitType.Pet) 
             {
                 ObjName.GetComponent<TextMeshProUGUI>().text = PetConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId).PetName;
-                //ReferenceCollector rc = ObjSave.GetComponent<ReferenceCollector>();
-                //rc.Get<GameObject>("Lal_Lv").GetComponent<TextMeshProUGUI>().text = hero.GetComponent<UserInfoComponent>().UserInfo.Lv.ToString();
                 this.Lal_NameOwner.GetComponent<TextMeshProUGUI>().text = $"{this.GetParent<Unit>().GetComponent<UnitInfoComponent>().PlayerName }的宠物";
             }
         }
@@ -260,16 +266,20 @@ namespace ET
             float curhp = this.Parent.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp); // + value;
             float blood = curhp / this.Parent.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
             blood = Mathf.Max(blood, 0f);
-            if (ObjHp != null)
+            if (ObjHp == null)
             {
-                if (this.GetParent<Unit>().Type == UnitType.Player|| this.GetParent<Unit>().Type == UnitType.Pet)
-                {
+                return;
+            }
+            int unitType = this.GetParent<Unit>().Type;
+            switch (unitType)
+            {
+                case UnitType.Player:
+                case UnitType.Pet:
                     ObjHp.GetComponent<Slider>().value = blood;
-                }
-                else 
-                {
+                    break;
+                default:
                     ObjHp.GetComponent<Image>().fillAmount = blood;
-                }
+                    break;
             }
         }
 

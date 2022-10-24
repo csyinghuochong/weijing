@@ -88,8 +88,8 @@ namespace ET
             self.ZoneScene().GetComponent<TaskComponent>().SendCommitTaskCountry(self.TaskPro.taskID).Coroutine();
 
             //显示领取
-            //self.ButtonComplete.SetActive(true);
-            //self.ButtonReceive.SetActive(false);
+            self.ButtonComplete.SetActive(true);
+            self.ButtonReceive.SetActive(false);
         }
     }
 }

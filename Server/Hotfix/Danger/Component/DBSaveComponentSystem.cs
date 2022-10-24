@@ -153,12 +153,8 @@ namespace ET
             {
                 scene.GetComponent<UnitComponent>().Remove(fightId.Id);
             }
-            if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon
-                || sceneTypeEnum == (int)SceneTypeEnum.PetTianTi
-                || sceneTypeEnum == (int)SceneTypeEnum.Tower
-                || sceneTypeEnum == (int)SceneTypeEnum.RandomTower
-                || sceneTypeEnum == (int)SceneTypeEnum.LocalDungeon
-                || sceneTypeEnum == (int)SceneTypeEnum.PetDungeon)
+           
+            if (ComHelp.IsSingleFuben(sceneTypeEnum))
             {
                 //动态删除副本
                 //Scene scene = Game.Scene.Get(sceneid);

@@ -20,6 +20,8 @@ namespace ET
             self.ButtonEnter = rc.Get<GameObject>("ButtonEnter");
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
 
+            GlobalValueConfig globalValue = GlobalValueConfigCategory.Instance.Get(56);
+            UICommonHelper.ShowItemList( globalValue.Value, self.ItemListNode, self,1f).Coroutine();
             ButtonHelp.AddListenerEx(self.ButtonEnter, () => { self.OnButtonEnter().Coroutine(); } );
         }
     }

@@ -200,8 +200,8 @@ namespace ET
                 }
                 zhaohuan.GetComponent<NumericComponent>().ApplyChange(args.Attack, NumericType.Now_Hp, -1000000, args.SkillId);
             }
+            unitInfoComponent.ZhaohuanIds.Clear();
             int waitRevive =  self.OnWaitRevive();
-
             unit.RemoveComponent<AIComponent>();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
             if (unitInfoComponent.IsPlayer())
