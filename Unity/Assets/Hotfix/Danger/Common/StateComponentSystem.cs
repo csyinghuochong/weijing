@@ -43,6 +43,7 @@ namespace ET
             //判断当前是否是眩晕状态
             if (self.StateTypeGet(StateTypeEnum.Dizziness)
                 || self.StateTypeGet(StateTypeEnum.JiTui)
+                || self.StateTypeGet(StateTypeEnum.NetWait)
                 || self.StateTypeGet(StateTypeEnum.Silence))
             {
                 return false;

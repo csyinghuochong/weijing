@@ -9,7 +9,7 @@ namespace ET
         public const long None = 1 << 0;
 
         /// <summary>
-        /// 传送
+        /// 等待
         /// </summary>
         public const long NetWait = 1 << 1;
 
