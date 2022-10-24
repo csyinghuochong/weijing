@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 8973814479826434203}
   - component: {fileID: 5527797790020219472}
   m_Layer: 5
-  m_Name: Image (5)
+  m_Name: Image_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -348,7 +348,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -86, y: -110}
+  m_AnchoredPosition: {x: 84, y: -273.3}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3502062093963345276
@@ -368,7 +368,7 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 3
+  m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 120}
@@ -650,7 +650,7 @@ GameObject:
   - component: {fileID: 6824571137812200079}
   - component: {fileID: 1627994687872989771}
   m_Layer: 5
-  m_Name: TextDesc4 (2)
+  m_Name: TextDesc4_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -804,7 +804,7 @@ GameObject:
   - component: {fileID: 1697811187303009939}
   - component: {fileID: 1353831518414893445}
   m_Layer: 5
-  m_Name: TextDesc4 (1)
+  m_Name: TextDesc4_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

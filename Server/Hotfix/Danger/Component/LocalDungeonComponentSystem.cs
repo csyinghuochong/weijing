@@ -48,7 +48,6 @@ namespace ET
             {
                 return;
             }
-            UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss)
             {

@@ -79,7 +79,8 @@ namespace ET
           
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene
                 || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Tower
-                 || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.RandomTower)
+                 || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.RandomTower
+                 || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Battle)
             {
                 SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
                 if (sceneConfig.IfUseRes == 1)
