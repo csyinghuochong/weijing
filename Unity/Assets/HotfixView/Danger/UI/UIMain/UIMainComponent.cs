@@ -330,6 +330,7 @@ namespace ET
         public override void Update(UIMainComponent self)
         {
             self.UIJoystickMoveComponent.OnUpdate();
+            self.UIMainBuffComponent.OnUpdate();
         }
     }
 
@@ -662,6 +663,7 @@ namespace ET
             GameObject UIMainBuff = rc.Get<GameObject>("UIMainBuff");
             UI ui_mainbuff = self.AddChild<UI, string, GameObject>("UIMainBuff", UIMainBuff);
             self.UIMainBuffComponent = ui_mainbuff.AddComponent<UIMainBuffComponent>();
+            UIMainBuff.SetActive(!GlobalHelp.IsBanHaoMode);
 
             GameObject UIOpenBox = rc.Get<GameObject>("UIOpenBox");
             UI uiopenbox = self.AddChild<UI, string, GameObject>("UIMainBuff", UIOpenBox);
@@ -805,6 +807,7 @@ namespace ET
             self.UIJoystickMoveComponent.draging = false;
             self.UIMainSkillComponent.CancelSkill();
             self.UIMainSkillComponent.OnExitBattle();
+            self.UIMainBuffComponent.ResetUI();
         }
        
         /// <summary>

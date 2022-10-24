@@ -1495,7 +1495,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &7861770157762527133
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1976,7 +1976,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &3659879192005661615
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2890,7 +2890,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1907199801668043910
 RectTransform:
   m_ObjectHideFlags: 0
@@ -28929,7 +28929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1547317579272110992
 RectTransform:
   m_ObjectHideFlags: 0
@@ -32179,7 +32179,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2790609399121242274
 RectTransform:
   m_ObjectHideFlags: 0
@@ -34641,12 +34641,12 @@ GameObject:
   - component: {fileID: 1212774726464152049}
   - component: {fileID: 8582233059418934304}
   m_Layer: 5
-  m_Name: ImgBufflIcon (1)
+  m_Name: ImgBufflIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &5411857778724403635
 RectTransform:
   m_ObjectHideFlags: 0

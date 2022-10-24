@@ -59,15 +59,6 @@ namespace ET
             }
         }
 
-        public static void SetEnable(this UIMainBuffComponent self, bool enabled)
-        {
-            self.GetParent<UI>().GameObject.SetActive(enabled);
-            if (!enabled)
-            {
-                self.ResetUI();
-            }
-        }
-
         public static void OnBuffUpdate(this UIMainBuffComponent self, string dataParams)
         {
             //1添加  2移除 3重置
@@ -96,6 +87,7 @@ namespace ET
             }
             self.MainBuffUIList.Clear();
         }
+
         public static void OnInitBuff(this UIMainBuffComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

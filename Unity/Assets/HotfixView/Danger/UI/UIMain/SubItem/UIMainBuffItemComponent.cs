@@ -65,7 +65,8 @@ namespace ET
             {
                 self.showTimeStr = leftTime + GameSettingLanguge.LoadLocalization("秒");
             }
-            else {
+            else 
+            {
                 self.showTimeStr = (int)(leftTime / 60+1) + GameSettingLanguge.LoadLocalization("分");
             }
 
