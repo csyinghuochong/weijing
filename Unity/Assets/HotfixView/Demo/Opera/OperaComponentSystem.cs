@@ -368,9 +368,9 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmNpcSpeak);
             unit.Rotation = Quaternion.LookRotation(vector3 - self.UnitStartPosition);
-            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.SkillRigidity);
+            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NetWait);
             await TimerComponent.Instance.WaitAsync(200);
-            unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.SkillRigidity);
+            unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);
         }
 
         public static async ETTask MoveToNpc(this OperaComponent self, Vector3 position, Action action = null)

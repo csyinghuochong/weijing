@@ -30,26 +30,23 @@ namespace ET
                 {
                     locType = (ItemLocType)(int.Parse(request.OperatePar));
                 }
-                if (request.OperateType == 10)
-                {
-                    locType = ItemLocType.ItemLocGem;
-                }
 
                 int weizhi = -1;
                 ItemConfig itemCof = null;
                 BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(locType, bagInfoID);
-                if (useBagInfo != null)
-                {
-                    itemCof = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
-                    weizhi = ItemHelper.ReturnEquipSpaceNum(itemCof.ItemSubType);
-                }
-                else
+                if (useBagInfo == null && request.OperateType!= 8)
                 {
                     Log.Debug($"{request.OperateType} {request.OperateBagID}");
                     reply();
                     return;
                 }
 
+                if (useBagInfo != null)
+                {
+                    itemCof = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
+                    weizhi = ItemHelper.ReturnEquipSpaceNum(itemCof.ItemSubType);
+                }
+               
                 //通知客户端背包刷新
                 M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
                 //通知客户端背包道具发生改变

@@ -191,14 +191,8 @@ namespace ET
 						break;
 					case (int)SceneTypeEnum.MainCityScene:
 						sceneConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());
-						if (numericComponent.GetAsFloat(NumericType.MainCity_X) == 0)
-						{
-							unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
-						}
-						else
-						{
-							unit.Position = new Vector3(numericComponent.GetAsFloat(NumericType.MainCity_X), numericComponent.GetAsFloat(NumericType.MainCity_Y), numericComponent.GetAsFloat(NumericType.MainCity_Z));
-						}
+						unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
+						//unit.Position = new Vector3(numericComponent.GetAsFloat(NumericType.MainCity_X), numericComponent.GetAsFloat(NumericType.MainCity_Y), numericComponent.GetAsFloat(NumericType.MainCity_Z));
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 						unit.GetComponent<HeroDataComponent>().OnReturn();
 						// 通知客户端创建My Unit
