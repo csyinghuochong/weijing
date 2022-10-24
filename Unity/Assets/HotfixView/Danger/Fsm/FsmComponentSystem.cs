@@ -57,27 +57,25 @@ namespace ET
                 return;
             }
 
-            switch (self.CurrentFsm)
+            Log.Debug($"self.CurrentFsm:  {self.CurrentFsm}");
+            if (self.SkillMoveTime != 0 && TimeHelper.ClientNow() >= self.SkillMoveTime)
             {
-                case FsmStateEnum.FsmRunState:
-                    if (TimeHelper.ClientNow() >= self.SkillMoveTime && self.SkillMoveTime != 0)
-                    {
-                        self.SetRunState();
-                        self.EndTimer();
-                    }
-                    break;
-                case FsmStateEnum.FsmSkillState:
-                    if (self.SkillSingTime > 0 && TimeHelper.ClientNow() >= self.SkillSingTime)
-                    {
-                        self.Animator.SetBool("Idle", true);
-                        self.EndTimer();
-                    }
-                    if (self.SkillSingTime == 0 && TimeHelper.ClientNow() >= self.SkillRigibTime)
-                    {
-                        self.Animator.SetBool("Idle", true);
-                        self.EndTimer();
-                    }
-                    break;
+                self.SkillMoveTime = 0;
+                if (self.CurrentFsm == FsmStateEnum.FsmIdleState)
+                {
+                    self.SetIdleState();
+                }
+                if (self.CurrentFsm == FsmStateEnum.FsmRunState)
+                {
+                    self.SetRunState();
+                }
+                self.EndTimer();
+            }
+            if (self.SkillSingTime > 0 && TimeHelper.ClientNow() >= self.SkillSingTime)
+            {
+                self.SkillSingTime = 0;
+                self.SetIdleState();
+                self.EndTimer();
             }
         }
 
@@ -192,14 +190,21 @@ namespace ET
 
             string[] animationinfos = paramss.Split('@');
             self.SkillMoveTime = long.Parse(animationinfos[0]);
-            self.Animator.Play(animationinfos[1]);
 
             float singTime = float.Parse(animationinfos[2]);
             self.SkillSingTime = singTime == 0f ? 0 : TimeHelper.ClientNow() + (int)(1000f * singTime);
 
             float rigibTime = float.Parse(animationinfos[3]);
-            self.SkillRigibTime = TimeHelper.ClientNow() + (int)(1000f * rigibTime);
-            self.BeginTimer();
+            long skillRigibTime = TimeHelper.ClientNow() + (int)(1000f * rigibTime);
+            self.Animator.Play(animationinfos[1]);
+
+            if (self.SkillMoveTime > TimeHelper.ClientNow()
+               || self.SkillSingTime > TimeHelper.ClientNow())
+            {
+                self.Animator.SetBool("Idle", false);
+                self.Animator.SetBool("Run", false);
+                self.BeginTimer();
+            }
         }
 
         public static bool IsSkillMove(this FsmComponent self)
@@ -212,10 +217,6 @@ namespace ET
             if (TimeHelper.ClientNow() > self.SkillMoveTime)
             {
                 self.SetRunState();
-            }
-            else
-            {
-                self.BeginTimer();
             }
         }
 
@@ -241,7 +242,6 @@ namespace ET
 
         public static void SetRunState(this FsmComponent self)
         {
-            self.SkillMoveTime = 0;
             self.Animator.SetBool("Idle", false);
             self.Animator.SetBool("Run", true);
             self.Animator.Play("Run");

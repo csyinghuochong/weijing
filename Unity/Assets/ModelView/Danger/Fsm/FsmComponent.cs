@@ -12,11 +12,11 @@ namespace ET
 
         public Animator Animator;
 
-        public long SkillMoveTime;  //1旋风斩之类的技能
+        public long SkillMoveTime;  //1旋风斩之类的技能. 可以移动但是需要保持技能动作
 
-        public long SkillRigibTime;
+        public long SkillRigibTime;  
 
-        public long SkillSingTime;
+        public long SkillSingTime;  //吟唱， 移动会打断施法动作
 
         public long Timer;
     }
