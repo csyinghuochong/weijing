@@ -57,7 +57,6 @@ namespace ET
                 return;
             }
 
-            Log.Debug($"self.CurrentFsm:  {self.CurrentFsm}");
             if (self.SkillMoveTime != 0 && TimeHelper.ClientNow() >= self.SkillMoveTime)
             {
                 self.SkillMoveTime = 0;
