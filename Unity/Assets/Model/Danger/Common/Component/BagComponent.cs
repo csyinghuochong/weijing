@@ -28,6 +28,8 @@ namespace ET
         public int CurrentHouse;
 
         public BagInfo HuiShouSelect;
+
+        public bool ShowTip;
 #endif
     }
 }

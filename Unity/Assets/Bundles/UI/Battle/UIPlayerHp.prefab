@@ -218,6 +218,8 @@ MonoBehaviour:
     gameObject: {fileID: 5553721032984547908}
   - key: Lal_JiaZuName
     gameObject: {fileID: 4987598356623444949}
+  - key: ImageHpFill
+    gameObject: {fileID: 2709995280877907679}
 --- !u!1 &1888445702330170
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,7 +517,7 @@ GameObject:
   - component: {fileID: 2709995280877907676}
   - component: {fileID: 2709995280877907677}
   m_Layer: 5
-  m_Name: Fill
+  m_Name: ImageHpFill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -569,7 +571,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b0c4c6996cb2b9343aed681609af4e28, type: 3}
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

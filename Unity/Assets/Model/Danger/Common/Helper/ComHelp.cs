@@ -975,12 +975,19 @@ namespace ET
                 return subType == 114 || subType == 121;
         }
 
+        /// <summary>
+        /// 单人副本
+        /// </summary>
+        /// <param name="sceneTypeEnum"></param>
+        /// <returns></returns>
         public static bool IsSingleFuben(int sceneTypeEnum)
         {
             return sceneTypeEnum == SceneTypeEnum.CellDungeon
+                || sceneTypeEnum == SceneTypeEnum.PetTianTi
                 || sceneTypeEnum == SceneTypeEnum.Tower
-                || sceneTypeEnum == SceneTypeEnum.RandomTower
-                || sceneTypeEnum == SceneTypeEnum.LocalDungeon;
+                || sceneTypeEnum == SceneTypeEnum.LocalDungeon
+                || sceneTypeEnum == SceneTypeEnum.PetDungeon
+                || sceneTypeEnum == SceneTypeEnum.RandomTower;
         }
 
         /// <summary>

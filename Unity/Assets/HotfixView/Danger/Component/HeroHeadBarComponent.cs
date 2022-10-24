@@ -105,24 +105,30 @@ namespace ET
             ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
 
             Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(this.ZoneScene());
+            bool sameCamp = unit.GetBattleCamp() == mainUnit.GetBattleCamp();
+            ObjHp = rc.Get<GameObject>("Img_HpValue");
             switch (unit.Type)
             {
                 case UnitType.Monster:
-                    if (unit.GetBattleCamp() == mainUnit.GetBattleCamp())
-                    {
-                        rc.Get<GameObject>("Img_HpValue").SetActive(false);
-                        rc.Get<GameObject>("Img_HpValue2").SetActive(true);
-                        ObjHp = rc.Get<GameObject>("Img_HpValue2");
-                    }
-                    else
-                    {
-                        rc.Get<GameObject>("Img_HpValue").SetActive(true);
-                        rc.Get<GameObject>("Img_HpValue2").SetActive(false);
-                        ObjHp = rc.Get<GameObject>("Img_HpValue");
-                    }
+                    string imageHp = sameCamp ? "UI_pro_3_2" : "UI_pro_4_2";
+                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, imageHp);
+                    rc.Get<GameObject>("Img_HpValue").SetActive(true);
+                    ObjHp.GetComponent<Image>().sprite = sp;
+                    break;
+                case UnitType.Player:
+                    imageHp = sameCamp ? "UI_pro_3_2" : "UI_pro_4_2";
+                    Log.ILog.Debug($" id: {unit.Id} name : {unitInfoComponent1.PlayerName}  camp: { unit.GetBattleCamp()}  {imageHp}");
+                    GameObject ImageHpFill = rc.Get<GameObject>("ImageHpFill");
+                    sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, imageHp);
+                    ImageHpFill.GetComponent<Image>().sprite = sp;
+                    break;
+                case UnitType.Pet:
+                    imageHp = sameCamp ? "UI_pro_3_4" : "UI_pro_4_2";
+                    ImageHpFill = rc.Get<GameObject>("ImageHpFill");
+                    sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, imageHp);
+                    ImageHpFill.GetComponent<Image>().sprite = sp;
                     break;
                 default:
-                    ObjHp = rc.Get<GameObject>("Img_HpValue");
                     break;
             }
             

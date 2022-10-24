@@ -14,6 +14,11 @@
             await  TransferHelper.Transfer(unit, mapInstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);
             //动态删除副本
             Scene scene = Game.Scene.Get(oldsceneid);
+            if (ComHelp.IsSingleFuben(sceneTypeEnum))
+            {
+                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
+                scene.Dispose();
+            }
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
                 bool haveplayer = scene.GetComponent<TeamDungeonComponent>().IsHavePlayer();
@@ -21,14 +26,6 @@
                 {
                     TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                     scene.GetComponent<TeamDungeonComponent>().OnDungeonOff(userId).Coroutine();
-                    scene.Dispose();
-                }
-            }
-            else
-            {
-                if (sceneTypeEnum != SceneTypeEnum.YeWaiScene)
-                {
-                    TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                     scene.Dispose();
                 }
             }
