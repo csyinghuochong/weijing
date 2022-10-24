@@ -117,7 +117,6 @@ namespace ET
                     break;
                 case UnitType.Player:
                     imageHp = sameCamp ? "UI_pro_3_2" : "UI_pro_4_2";
-                    Log.ILog.Debug($" id: {unit.Id} name : {unitInfoComponent1.PlayerName}  camp: { unit.GetBattleCamp()}  {imageHp}");
                     GameObject ImageHpFill = rc.Get<GameObject>("ImageHpFill");
                     sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, imageHp);
                     ImageHpFill.GetComponent<Image>().sprite = sp;
