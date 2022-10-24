@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 299
+  version: 300
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -2938,6 +2938,10 @@ MonoBehaviour:
     path: Assets/Bundles/Icon/OtherIcon/Start_1.png
   - bundle: dd8c93c2c97a4003265ecdd911235731.unity3d
     path: Assets/Bundles/Icon/OtherIcon/Start_2.png
+  - bundle: dd8c93c2c97a4003265ecdd911235731.unity3d
+    path: Assets/Bundles/Icon/OtherIcon/UI_pro_3_2.png
+  - bundle: dd8c93c2c97a4003265ecdd911235731.unity3d
+    path: Assets/Bundles/Icon/OtherIcon/UI_pro_4_2.png
   - bundle: dd8c93c2c97a4003265ecdd911235731.unity3d
     path: Assets/Bundles/Icon/OtherIcon/WuQi_1.png
   - bundle: dd8c93c2c97a4003265ecdd911235731.unity3d
@@ -8815,6 +8819,8 @@ MonoBehaviour:
     - Assets/Bundles/Icon/OtherIcon/Occ_2.png
     - Assets/Bundles/Icon/OtherIcon/Start_1.png
     - Assets/Bundles/Icon/OtherIcon/Start_2.png
+    - Assets/Bundles/Icon/OtherIcon/UI_pro_3_2.png
+    - Assets/Bundles/Icon/OtherIcon/UI_pro_4_2.png
     - Assets/Bundles/Icon/OtherIcon/WuQi_1.png
     - Assets/Bundles/Icon/OtherIcon/WuQi_2.png
     - Assets/Bundles/Icon/OtherIcon/WuQi_3.png
@@ -10542,9 +10548,6 @@ MonoBehaviour:
   - name: 477c61c9ef38fec6d1e664abc936f6d3.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/Slider10_Frame.png
-  - name: d4fbf79d405079e872afad8a5deb45af.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Pro/UI_pro_3_2.png
   - name: 5220cb2d7f740ddb05115fa8ae2b2c7c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Image/UI_Image_81.png
@@ -10773,6 +10776,9 @@ MonoBehaviour:
   - name: edcea1872a9110610dbe777d90e861cc.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_281.png
+  - name: 91d9ee885a50231ff75a1cdefa281e71.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_90.png
   - name: 113f99598e418e3618f7c0d62066fb82.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_382.png
@@ -10812,9 +10818,6 @@ MonoBehaviour:
   - name: caf55d071646e82a4ce3831d4de5e326.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_92.png
-  - name: 91d9ee885a50231ff75a1cdefa281e71.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_90.png
   - name: 3fee61081d4e30121bdc822a28dbf69f.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/EmojiOne.png
@@ -10839,6 +10842,9 @@ MonoBehaviour:
   - name: f20faf0e7c55bf860c320300b0530a90.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_144.png
+  - name: e859c443da163c61ec58bbe8914b7ae9.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_318.png
   - name: 0cd674abc641bca99ec141eaa477d6f2.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_92.png
@@ -11001,6 +11007,9 @@ MonoBehaviour:
   - name: a6136c5cdf74d19b0a34d0f991f16d27.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_398.Png
+  - name: 66b79c41bb658dcd9b14278171ee0bbb.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_78.png
   - name: fd7a295fb7aa555f5898529e8f43025d.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_89.png
@@ -11058,9 +11067,6 @@ MonoBehaviour:
   - name: 4627121ad72acd24bf042550f2ee404f.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_343.png
-  - name: 66b79c41bb658dcd9b14278171ee0bbb.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_78.png
   - name: c6fc4c296c9f95f77aec39de9a8b13b4.unity3d
     assets:
     - Assets/Res/RenderTexture/RoleRenderTexture2.renderTexture
@@ -11139,9 +11145,6 @@ MonoBehaviour:
   - name: 5d2383459e75c9d84111758904827d4c.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/Pro_13.png
-  - name: 5c40661422f5391a2ebaf115f11e33f6.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Pro/UI_pro_4_2.png
   - name: be3414f77fc92cb95df3e9934b09de27.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/UI_pro_4_1.png
@@ -11151,9 +11154,6 @@ MonoBehaviour:
   - name: 562147e9e1153c0cd7f6c6d17b3f8a15.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_372.png
-  - name: e859c443da163c61ec58bbe8914b7ae9.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_318.png
   - name: c0c32fd33fdd0bb0eaa4b2da41b5992e.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_6.png
@@ -11292,6 +11292,9 @@ MonoBehaviour:
   - name: cca5d0dbb891de0ec9be063294bdec21.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_277.png
+  - name: b88b07e83d709f2711682433b420b801.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_292.png
   - name: 18e7691838b2d9ee2323b18016d66d41.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/HintDian.png
