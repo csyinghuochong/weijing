@@ -377,10 +377,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(A2M_ChangeStatusResponse))]
-	[Message(InnerOpcode.M2A_ChangeStatusRequest)]
+	[ResponseType(nameof(A2A_ServerMessageRResponse))]
+	[Message(InnerOpcode.A2A_ServerMessageRequest)]
 	[ProtoContract]
-	public partial class M2A_ChangeStatusRequest: Object, IActorRequest
+	public partial class A2A_ServerMessageRequest: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -392,19 +392,19 @@ namespace ET
 		public long UnitId { get; set; }
 
 		[ProtoMember(2)]
-		public long GateSessionId { get; set; }
-
-		[ProtoMember(3)]
-		public long UnionId { get; set; }
+		public int MessageType { get; set; }
 
 		[ProtoMember(4)]
 		public int SceneType { get; set; }
 
+		[ProtoMember(5)]
+		public string Message { get; set; }
+
 	}
 
-	[Message(InnerOpcode.A2M_ChangeStatusResponse)]
+	[Message(InnerOpcode.A2A_ServerMessageRResponse)]
 	[ProtoContract]
-	public partial class A2M_ChangeStatusResponse: Object, IActorResponse
+	public partial class A2A_ServerMessageRResponse: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

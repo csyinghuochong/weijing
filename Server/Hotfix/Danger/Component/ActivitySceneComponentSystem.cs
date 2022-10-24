@@ -56,11 +56,7 @@ namespace ET
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
   
-            //if (self.DBDayActivityInfo.Day != dateTime.Day)
-            //{
-            //    self.DBDayActivityInfo.Day = dateTime.Day;
-            //    self.NoticeActivityUpdate_Day().Coroutine();
-            //}
+            
             if (self.DBDayActivityInfo.LastHour != dateTime.Hour)
             {
                 self.DBDayActivityInfo.LastHour = dateTime.Hour;
@@ -132,6 +128,8 @@ namespace ET
             {
                 long openServerTime = await DBHelper.GetOpenServerTime(self.DomainZone());
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerTime);
+                
+
             }
         }
     }

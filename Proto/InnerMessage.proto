@@ -176,18 +176,18 @@ message C2C_CenterServerInfoRespone // IActorResponse
     string Value = 1;
 }
 
-//ResponseType A2M_ChangeStatusResponse
-message M2A_ChangeStatusRequest // IActorRequest
+//ResponseType A2A_ServerMessageRResponse
+message A2A_ServerMessageRequest // IActorRequest
 {
     int32 RpcId = 90;
     int64 ActorId = 93;
     int64 UnitId = 1;
-    int64 GateSessionId = 2;
-    int64 UnionId = 3;
+    int32 MessageType = 2;
     int32 SceneType = 4;
+    string Message = 5;
 }
 
-message A2M_ChangeStatusResponse // IActorResponse
+message A2A_ServerMessageRResponse // IActorResponse
 {
     int32 RpcId = 90;
     int32 Error = 91;

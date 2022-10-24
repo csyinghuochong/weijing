@@ -44,13 +44,12 @@ namespace ET
                     for (int i = 0; i < zoneList.Count; i++)
                     {
                         long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Chat").InstanceId;
-                        A2M_ChangeStatusResponse g_SendChatRequest = (A2M_ChangeStatusResponse)await ActorMessageSenderComponent.Instance.Call
-                            (chatServerId, new M2A_ChangeStatusRequest()
+                        A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
+                            (chatServerId, new A2A_ServerMessageRequest()
                             {
-                                SceneType = -1,
+                                SceneType = (int)SceneType.Chat,
+                                MessageType = -1
                             });
-
-
                     }
                     break;
             }

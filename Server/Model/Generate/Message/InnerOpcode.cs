@@ -23,8 +23,8 @@ namespace ET
 		 public const ushort Center2A_RegisterAccount = 20020;
 		 public const ushort C2C_CenterServerInfoReuest = 20021;
 		 public const ushort C2C_CenterServerInfoRespone = 20022;
-		 public const ushort M2A_ChangeStatusRequest = 20023;
-		 public const ushort A2M_ChangeStatusResponse = 20024;
+		 public const ushort A2A_ServerMessageRequest = 20023;
+		 public const ushort A2A_ServerMessageRResponse = 20024;
 		 public const ushort G2G_LockReleaseRequest = 20025;
 		 public const ushort G2G_LockReleaseResponse = 20026;
 		 public const ushort ObjectAddRequest = 20027;

@@ -87,69 +87,66 @@ namespace ET
             }
         }
 
-        public static async ETTask OnUnitChangeStatus(this TeamSceneComponent self, M2A_ChangeStatusRequest request)
+        public static async ETTask OnUnitDisconnect(this TeamSceneComponent self, A2A_ServerMessageRequest request)
         {
-            if (request.GateSessionId == 0)
+            TeamInfo teamInfo = null;
+            for (int i = 0; i < self.TeamList.Count; i++)
             {
-                TeamInfo teamInfo = null;
-                for (int i = 0; i < self.TeamList.Count; i++)
+                TeamInfo tempTeampInfo = self.TeamList[i];
+                if (tempTeampInfo.TeamId == request.UnitId)
                 {
-                    TeamInfo tempTeampInfo = self.TeamList[i];
-                    if (tempTeampInfo.TeamId == request.UnitId)
+                    teamInfo = tempTeampInfo;
+                    if (teamInfo.PlayerList.Count > 0)
+                    {
+                        teamInfo.PlayerList.RemoveAt(0);
+                    }
+                    else
+                    {
+                        Log.Debug($"TeamScene UnitChangeStatus {request.UnitId}");
+                    }
+                    self.TeamList.Remove(teamInfo);
+                    break;
+                }
+
+                for (int k = tempTeampInfo.PlayerList.Count - 1; k >= 0; k--)
+                {
+                    if (tempTeampInfo.PlayerList[k].UserID == request.UnitId)
                     {
                         teamInfo = tempTeampInfo;
-                        if (teamInfo.PlayerList.Count > 0)
-                        {
-                            teamInfo.PlayerList.RemoveAt(0);
-                        }
-                        else
-                        {
-                            Log.Debug($"TeamScene UnitChangeStatus {request.UnitId}");
-                        }
-                        self.TeamList.Remove(teamInfo);
-                        break;
-                    }
-
-                    for (int k = tempTeampInfo.PlayerList.Count - 1; k >= 0; k--)
-                    {
-                        if (tempTeampInfo.PlayerList[k].UserID == request.UnitId)
-                        {
-                            teamInfo = tempTeampInfo;
-                            tempTeampInfo.PlayerList.RemoveAt(k);
-                            break;
-                        }
-                    }
-
-                    if (teamInfo != null)
-                    {
+                        tempTeampInfo.PlayerList.RemoveAt(k);
                         break;
                     }
                 }
 
                 if (teamInfo != null)
                 {
-                    M2C_TeamUpdateResult m2C_HorseNoticeInfo = new M2C_TeamUpdateResult() { TeamInfo = teamInfo };
-                    long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId;
+                    break;
+                }
+            }
 
-                    if (teamInfo.TeamId == request.UnitId)
-                    {
-                        m2C_HorseNoticeInfo.TeamInfo = new TeamInfo();
-                        m2C_HorseNoticeInfo.TeamInfo.TeamId = teamInfo.TeamId;
-                    }
+            if (teamInfo != null)
+            {
+                M2C_TeamUpdateResult m2C_HorseNoticeInfo = new M2C_TeamUpdateResult() { TeamInfo = teamInfo };
+                long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId;
 
-                    for (int i = 0; i < teamInfo.PlayerList.Count; i++)
-                    {
+                if (teamInfo.TeamId == request.UnitId)
+                {
+                    m2C_HorseNoticeInfo.TeamInfo = new TeamInfo();
+                    m2C_HorseNoticeInfo.TeamInfo.TeamId = teamInfo.TeamId;
+                }
 
-                        G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
-                            (gateServerId, new T2G_GateUnitInfoRequest()
-                            {
-                                UserID = teamInfo.PlayerList[i].UserID
-                            });
+                for (int i = 0; i < teamInfo.PlayerList.Count; i++)
+                {
 
-                        if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+                    G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                        (gateServerId, new T2G_GateUnitInfoRequest()
                         {
-                            MessageHelper.SendActor(g2M_UpdateUnitResponse.SessionInstanceId, m2C_HorseNoticeInfo);
-                        }
+                            UserID = teamInfo.PlayerList[i].UserID
+                        });
+
+                    if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+                    {
+                        MessageHelper.SendActor(g2M_UpdateUnitResponse.SessionInstanceId, m2C_HorseNoticeInfo);
                     }
                 }
             }

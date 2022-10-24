@@ -72,8 +72,8 @@ namespace ET
         public static async ETTask OnExitTeam(this DBSaveComponent self, int domainZone, long userId)
         {
             long teamServerId = StartSceneConfigCategory.Instance.GetBySceneName(domainZone, Enum.GetName(SceneType.Team)).InstanceId;
-            A2M_ChangeStatusResponse g_SendChatRequest2 = (A2M_ChangeStatusResponse)await ActorMessageSenderComponent.Instance.Call
-                (teamServerId, new M2A_ChangeStatusRequest() { SceneType = (int)SceneType.Team,  UnitId = userId });
+            A2A_ServerMessageRResponse g_SendChatRequest2 = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
+                (teamServerId, new A2A_ServerMessageRequest() { SceneType = (int)SceneType.Team,  UnitId = userId });
         }
 
         public static void OnRelogin(this DBSaveComponent self, long gateSessionId)
