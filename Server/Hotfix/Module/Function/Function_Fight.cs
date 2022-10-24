@@ -973,15 +973,15 @@ namespace ET
             }
 
             //汇总属性
-            long BaseHp = occBaseHp + equipHpSum;
-            long BaseMinAct = occBaseMinAct + equipMinActSum;
-            long BaseMaxAct = occBaseMaxAct + equipMaxActSum;
-            long BaseMinMage = occBaseMinMage + equipMinMageSum;
-            long BaseMaxMage = occBaseMaxMage + equipMaxMageSum;
-            long BaseMinDef = occBaseMinDef + equipMinDefSum;
-            long BaseMaxDef = occBaseMaxDef + equipMaxDefSum;
-            long BaseMinAdf = occBaseMinAdf + equipMinAdfSum;
-            long BaseMaxAdf = occBaseMaxAdf + equipMaxAdfSum;
+            long BaseHp = occBaseHp + equipHpSum + BaseHp_EquipSuit;
+            long BaseMinAct = occBaseMinAct + equipMinActSum + BaseMinAct_EquipSuit;
+            long BaseMaxAct = occBaseMaxAct + equipMaxActSum+ BaseMaxAct_EquipSuit;
+            long BaseMinMage = occBaseMinMage + equipMinMageSum + BaseMinMage_EquipSuit;
+            long BaseMaxMage = occBaseMaxMage + equipMaxMageSum + BaseMaxMage_EquipSuit;
+            long BaseMinDef = occBaseMinDef + equipMinDefSum + BaseMinDef_EquipSuit;
+            long BaseMaxDef = occBaseMaxDef + equipMaxDefSum + BaseMaxDef_EquipSuit;
+            long BaseMinAdf = occBaseMinAdf + equipMinAdfSum + BaseMinAdf_EquipSuit;
+            long BaseMaxAdf = occBaseMaxAdf + equipMaxAdfSum + BaseMaxAdf_EquipSuit;
             double BaseMoveSpeed = occBaseMoveSpeed;
             double BaseCri = occBaseCri;
             double BaseHit = occBaseHit;
