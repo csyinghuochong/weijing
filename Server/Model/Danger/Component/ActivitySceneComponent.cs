@@ -2,6 +2,9 @@
 
 namespace ET
 {
+    /// <summary>
+    /// 活动中心服
+    /// </summary>
     public class ActivitySceneComponent : Entity, IAwake, IDestroy
     {
 

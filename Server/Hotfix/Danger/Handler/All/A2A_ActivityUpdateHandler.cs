@@ -5,8 +5,22 @@ namespace ET
 {
 
     [ActorMessageHandler]
-    public  class A2M_ActivityUpdateHandler : AMActorRpcHandler<Scene, A2M_ActivityUpdateRequest, M2A_ActivityUpdateResponse>
+    public  class A2A_ActivityUpdateHandler : AMActorRpcHandler<Scene, A2A_ActivityUpdateRequest, A2A_ActivityUpdateResponse>
     {
+        protected override async ETTask Run(Scene scene, A2A_ActivityUpdateRequest request, A2A_ActivityUpdateResponse response, Action reply)
+        {
+            if (request.ActivityType == 0)
+            {
+                ActivityUpdate_Day(scene);
+            }
+            if (request.ActivityType > 0)
+            {
+                ActivityUpdate_Hour(scene, request.ActivityType);
+            }
+
+            reply();
+            await ETTask.CompletedTask;
+        }
 
         private void PrintAllEntity()
         {
@@ -26,7 +40,7 @@ namespace ET
                         {
                             continue;
                         }
-                        ActorLocationSenderComponent.Instance.Send(players[i].UnitId, new G2M_ActivityUpdate() {  ActivityType = activityType });
+                        ActorLocationSenderComponent.Instance.Send(players[i].UnitId, new G2M_ActivityUpdate() { ActivityType = activityType });
                     }
                     break;
                 case SceneType.Rank:
@@ -70,21 +84,6 @@ namespace ET
                     scene.GetComponent<FangChenMiComponent>().CheckHoliday().Coroutine();
                     break;
             }
-        }
-
-        protected override async ETTask Run(Scene scene, A2M_ActivityUpdateRequest request, M2A_ActivityUpdateResponse response, Action reply)
-        {
-            if (request.ActivityType == 0)
-            {
-                ActivityUpdate_Day(scene);
-            }
-            if (request.ActivityType > 0)
-            {
-                ActivityUpdate_Hour(scene, request.ActivityType);
-            }
-
-            reply();
-            await ETTask.CompletedTask;
         }
 
     }

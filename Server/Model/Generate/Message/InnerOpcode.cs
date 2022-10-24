@@ -64,8 +64,8 @@ namespace ET
 		 public const ushort E2M_EMailSendResponse = 20061;
 		 public const ushort M2E_EMailReceiveRequest = 20062;
 		 public const ushort E2M_EMailReceiveResponse = 20063;
-		 public const ushort A2M_ActivityUpdateRequest = 20064;
-		 public const ushort M2A_ActivityUpdateResponse = 20065;
+		 public const ushort A2A_ActivityUpdateRequest = 20064;
+		 public const ushort A2A_ActivityUpdateResponse = 20065;
 		 public const ushort M2A_ZhanQuInfoRequest = 20066;
 		 public const ushort A2M_ZhanQuInfoResponse = 20067;
 		 public const ushort M2A_ZhanQuReceiveRequest = 20068;

@@ -489,8 +489,8 @@ message E2M_EMailReceiveResponse // IActorResponse
     MailInfo MailInfo = 4;
 }
 
-//ResponseType M2A_ActivityUpdateResponse
-message A2M_ActivityUpdateRequest // IActorRequest
+//ResponseType A2A_ActivityUpdateResponse
+message A2A_ActivityUpdateRequest // IActorRequest
 {
     int32 RpcId = 90;
     int64 ActorId = 93;
@@ -498,7 +498,7 @@ message A2M_ActivityUpdateRequest // IActorRequest
     int32 Zone = 2;
 }
 
-message M2A_ActivityUpdateResponse // IActorResponse
+message A2A_ActivityUpdateResponse // IActorResponse
 {
     int32 RpcId = 90;
     int32 Error = 91;

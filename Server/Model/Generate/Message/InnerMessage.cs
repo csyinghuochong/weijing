@@ -1038,10 +1038,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2A_ActivityUpdateResponse))]
-	[Message(InnerOpcode.A2M_ActivityUpdateRequest)]
+	[ResponseType(nameof(A2A_ActivityUpdateResponse))]
+	[Message(InnerOpcode.A2A_ActivityUpdateRequest)]
 	[ProtoContract]
-	public partial class A2M_ActivityUpdateRequest: Object, IActorRequest
+	public partial class A2A_ActivityUpdateRequest: Object, IActorRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -1057,9 +1057,9 @@ namespace ET
 
 	}
 
-	[Message(InnerOpcode.M2A_ActivityUpdateResponse)]
+	[Message(InnerOpcode.A2A_ActivityUpdateResponse)]
 	[ProtoContract]
-	public partial class M2A_ActivityUpdateResponse: Object, IActorResponse
+	public partial class A2A_ActivityUpdateResponse: Object, IActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

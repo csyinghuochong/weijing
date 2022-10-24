@@ -120,8 +120,8 @@ namespace ET
         {
             for (int i = 0; i < self.MapIdList.Count; i++)
             {
-                M2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (M2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                        (self.MapIdList[i], new A2M_ActivityUpdateRequest() { ActivityType = hour });
+                A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                        (self.MapIdList[i], new A2A_ActivityUpdateRequest() { ActivityType = hour });
             }
 
             if (hour == 0)
