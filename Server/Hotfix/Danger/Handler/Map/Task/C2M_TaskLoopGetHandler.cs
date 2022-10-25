@@ -24,7 +24,7 @@ namespace ET
                 }
             }
             int taskId = allTaskIds[RandomHelper.RandomNumber(0, allTaskIds.Count)];
-            TaskPro taskPro = taskComponent.OnAddTask(taskId);
+            TaskPro taskPro = taskComponent.OnGetTask(taskId);
             response.TaskLoop = taskPro;
 
             reply();

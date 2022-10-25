@@ -11,14 +11,20 @@ namespace ET
         public delegate bool FunctionDelegate(Unit unit, int param);
 
         //功能开启条件判断
-        public Dictionary<int, FunctionDelegate> functionCheck;
+        public Dictionary<int, FunctionDelegate> FunctionCheck;
 
         protected override void InternalInit()
         {
             base.InternalInit();
-            functionCheck = new Dictionary<int, FunctionDelegate>();
-            functionCheck.Add(FunctionContionEnum.PlayerLv, CheckPlayerLv);
-            functionCheck.Add(FunctionContionEnum.TaskId, CheckTaskID);
+            FunctionCheck = new Dictionary<int, FunctionDelegate>();
+            FunctionCheck.Add(FunctionContionEnum.None, CheckPlayerLv);
+            FunctionCheck.Add(FunctionContionEnum.PlayerLv, CheckPlayerLv);
+            FunctionCheck.Add(FunctionContionEnum.TaskId, CheckTaskID);
+        }
+
+        public bool DonotCheck(Unit unit, int parame)
+        {
+            return true;
         }
 
         //检测函数也可以放在对应的功能模块
@@ -38,7 +44,7 @@ namespace ET
             int[] contion_2 = funtionOpenConfig.ConditionParam;
             for (int i = 0; i < contion_1.Length; i++)
             {
-                if (!functionCheck[contion_1[i]](unit, contion_2[i]))
+                if (!FunctionCheck[contion_1[i]](unit, contion_2[i]))
                     return false;
             }
             return true;
@@ -46,8 +52,10 @@ namespace ET
 
         public bool CheckTaskOn(Unit unit, TaskConfig taskConfig)
         {
-            if (!functionCheck[taskConfig.TriggerType](unit, taskConfig.TriggerValue))
+            if (!FunctionCheck[taskConfig.TriggerType](unit, taskConfig.TriggerValue))
+            {
                 return false;
+            }
             return true;
         }
 
