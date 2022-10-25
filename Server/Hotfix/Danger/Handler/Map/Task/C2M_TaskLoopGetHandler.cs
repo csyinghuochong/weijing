@@ -23,7 +23,10 @@ namespace ET
                     allTaskIds.Add(item.Key);
                 }
             }
-            
+            int taskId = allTaskIds[RandomHelper.RandomNumber(0, allTaskIds.Count)];
+            TaskPro taskPro = taskComponent.OnAddTask(taskId);
+            response.TaskLoop = taskPro;
+
             reply();
             await ETTask.CompletedTask;
         }
