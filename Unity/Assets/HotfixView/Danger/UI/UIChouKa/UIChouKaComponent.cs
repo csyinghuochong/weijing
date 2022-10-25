@@ -128,10 +128,20 @@ namespace ET
         {
             int cindex = self.TakeCardId % 1000;
             self.Text_Chapter.GetComponent<Text>().text = string.Format("第{0}章探宝", cindex);
+            UICommonHelper.DestoryChild(self.chouKaShowItemNode);
 
-            string dropShow = TakeCardConfigCategory.Instance.Get(self.TakeCardId).DropShow;
-            UICommonHelper.DestoryChild( self.chouKaShowItemNode );
-            UICommonHelper.ShowItemList(  dropShow, self.chouKaShowItemNode, self, 0.8f).Coroutine();
+            TakeCardConfig takeCardConfig = TakeCardConfigCategory.Instance.Get(self.TakeCardId);
+            string dropShow = takeCardConfig.DropShow;
+            List<RewardItem> droplist = new List<RewardItem>();
+            DropHelper.DropIDToDropItem(takeCardConfig.DropID, droplist);
+            string itemList = "";
+            for (int i = 0; i < droplist.Count; i++)
+            {
+                itemList = itemList + $"@{droplist[i].ItemID};{1}";
+            }
+            //itemList = itemList.Substring(0, itemList.Length - 1);
+            itemList = dropShow + itemList;
+            UICommonHelper.ShowItemList(itemList, self.chouKaShowItemNode, self, 0.8f).Coroutine();
         }
 
         public static void OnBtn_ZhangJieXuanZe(this UIChouKaComponent self)
