@@ -229,7 +229,7 @@ namespace ET
             return taskPros;
         }
 
-        public static List<TaskPro> GetTrackTaskTypeList(this TaskComponent self, TaskTypeEnum taskTypeEnum)
+        public static List<TaskPro> GetTrackTaskTypeList(this TaskComponent self, int taskTypeEnum)
         {
             List<TaskPro> taskPros = new List<TaskPro>();
             for (int i = 0; i < self.RoleTaskList.Count; i++)
@@ -244,7 +244,7 @@ namespace ET
             return taskPros;
         }
 
-        public static List<TaskPro> GetTaskTypeList(this TaskComponent self, TaskTypeEnum taskTypeEnum)
+        public static List<TaskPro> GetTaskTypeList(this TaskComponent self, int taskTypeEnum)
         {
             List<TaskPro> taskPros = new List<TaskPro>();
             for (int i = 0; i < self.RoleTaskList.Count; i++)

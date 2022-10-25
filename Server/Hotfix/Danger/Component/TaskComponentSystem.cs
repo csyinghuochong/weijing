@@ -98,23 +98,37 @@ namespace ET
         /// <param name="request"></param>
         /// <param name="response"></param>
         /// <returns></returns>
-        public static bool OnGetTask(this TaskComponent self, C2M_TaskGetRequest request, M2C_TaskGetResponse response)
+        public static TaskPro OnGetTask(this TaskComponent self, int taskid)
         {
-            int taskid = request.TaskId;
             bool canget = FunctionHelp.Instance.CheckTaskOn(self.GetParent<Unit>(), TaskConfigCategory.Instance.Get(taskid));
             if (!canget)
             {
-                return false;
+                return null;
             }
-            if (self.IsHaveTask(request.TaskId))
+            if (self.IsHaveTask(taskid))
             {
-                return false;
+                return null;
             }
 
             TaskPro taskPro = self.OnAddTask(taskid);
-            response.TaskPro = taskPro;
             self.RoleTaskList.Add(taskPro);
-            return canget;
+            return taskPro;
+        }
+
+        public static List<TaskPro> GetTaskList(this TaskComponent self, int taskType)
+        { 
+            List<TaskPro> taskPros = new List<TaskPro>();
+            for (int i = 0; i < self.RoleTaskList.Count; i++)
+            {
+                TaskPro taskPro = self.RoleTaskList[i];
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
+                if (taskConfig.TaskType!= (int)taskType)
+                {
+                    continue;
+                }
+                taskPros.Add(taskPro);
+            }
+            return taskPros;
         }
 
         public static bool IsHaveTask(this TaskComponent self, int taskId)

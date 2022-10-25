@@ -11,13 +11,13 @@ namespace ET
         Commited,       //已领取
     }
 
-    public enum TaskTypeEnum
+    public static class TaskTypeEnum
     {
-        None = 0,
-        Main =  1,      //主线任务
-        Branch,         //支线任务
-        EveryDay,       //每日任务
-        Trial,          //试炼任务
+        public const int None = 0;
+        public const int Main = 1;              //主线任务
+        public const int Branch = 2;            //支线任务
+        public const int EveryDay = 3;          //每日任务
+        public const int Trial = 4;             //试炼任务
     }
 
     public static class TaskCountryType
