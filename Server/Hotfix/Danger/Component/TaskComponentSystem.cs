@@ -110,7 +110,7 @@ namespace ET
                 return null;
             }
 
-            TaskPro taskPro = self.OnAddTask(taskid);
+            TaskPro taskPro = self.CreateTask(taskid);
             self.RoleTaskList.Add(taskPro);
             return taskPro;
         }
@@ -147,8 +147,7 @@ namespace ET
             return false;
         }
 
-
-        public static TaskPro OnAddTask(this TaskComponent self, int taskid)
+        public static TaskPro CreateTask(this TaskComponent self, int taskid)
         {
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
             TaskPro taskPro = new TaskPro();
@@ -221,7 +220,7 @@ namespace ET
                 }
             }
 
-            TaskPro taskPro = self.OnAddTask(taskid);
+            TaskPro taskPro = self.CreateTask(taskid);
             self.RoleTaskList.Add(taskPro);
 
             M2C_TaskUpdate m2C_TaskUpdate = new M2C_TaskUpdate();
