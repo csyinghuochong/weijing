@@ -262,6 +262,9 @@ namespace ET
                 case (int)SceneTypeEnum.RandomTower:
                     UIHelper.Create(self.ZoneScene(), UIType.UIRandomOpen).Coroutine();
                     break;
+                case (int)SceneTypeEnum.Battle:
+                    UIHelper.Create(self.ZoneScene(), UIType.UIBattleMain).Coroutine();
+                    break;
             }
             Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
             UIHelper.Remove(self.DomainScene(), UIType.UILoading);

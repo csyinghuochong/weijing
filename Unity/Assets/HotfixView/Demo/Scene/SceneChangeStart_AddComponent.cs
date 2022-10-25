@@ -45,6 +45,10 @@ namespace ET
             {
                 UIHelper.Remove(args.ZoneScene, UIType.UIPetMain);
             }
+            if (args.LastSceneType == SceneTypeEnum.Battle)
+            {
+                UIHelper.Remove(args.ZoneScene, UIType.UIBattleMain);
+            }
             Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.ChapterId).Coroutine();
         }
     }
