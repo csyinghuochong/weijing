@@ -24170,7 +24170,6 @@ GameObject:
   - component: {fileID: 464264}
   - component: {fileID: 19899644}
   - component: {fileID: 19965176}
-  - component: {fileID: 11480976}
   - component: {fileID: 11440846}
   m_Layer: 0
   m_Name: Eff_Skill_BaoZha_2 (2)
@@ -28978,19 +28977,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &11480976
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 129666}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760e21c6793f79a4ea96b659e2823eb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 1
 --- !u!114 &11440846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38648,7 +38634,6 @@ GameObject:
   - component: {fileID: 430430}
   - component: {fileID: 19826642}
   - component: {fileID: 19963762}
-  - component: {fileID: 11445018}
   - component: {fileID: 11489682}
   m_Layer: 0
   m_Name: Eff_Skill_BaoZha_2 (4)
@@ -43456,19 +43441,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &11445018
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 138998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760e21c6793f79a4ea96b659e2823eb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 1
 --- !u!114 &11489682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -129276,7 +129248,6 @@ GameObject:
   - component: {fileID: 412390}
   - component: {fileID: 19815990}
   - component: {fileID: 19950964}
-  - component: {fileID: 11452666}
   - component: {fileID: 11407146}
   m_Layer: 0
   m_Name: Eff_Skill_BaoZha_2 (1)
@@ -134084,19 +134055,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &11452666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 184634}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760e21c6793f79a4ea96b659e2823eb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 1
 --- !u!114 &11407146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -138824,7 +138782,6 @@ GameObject:
   - component: {fileID: 426304}
   - component: {fileID: 19888594}
   - component: {fileID: 19990662}
-  - component: {fileID: 11487290}
   - component: {fileID: 11447234}
   m_Layer: 0
   m_Name: Eff_Skill_BaoZha_2 (3)
@@ -143632,19 +143589,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &11487290
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 187856}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760e21c6793f79a4ea96b659e2823eb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 1
 --- !u!114 &11447234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -162980,7 +162924,6 @@ GameObject:
   - component: {fileID: 462250}
   - component: {fileID: 19892436}
   - component: {fileID: 19904912}
-  - component: {fileID: 11447394}
   - component: {fileID: 11480652}
   m_Layer: 0
   m_Name: Eff_Skill_BaoZha_2
@@ -167788,19 +167731,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &11447394
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 199568}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 760e21c6793f79a4ea96b659e2823eb6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lifetime: 1
 --- !u!114 &11480652
 MonoBehaviour:
   m_ObjectHideFlags: 0
