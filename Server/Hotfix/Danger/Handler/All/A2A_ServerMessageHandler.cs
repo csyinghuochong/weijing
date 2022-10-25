@@ -17,7 +17,7 @@ namespace ET
                     case SceneType.Battle:
                         if (request.MessageType == NoticeType.BattleClose)
                         {
-                            scene.GetComponent<BattleDungeonComponent>().OnBattleOver();
+                            scene.GetComponent<BattleSceneComponent>().OnBattleOver();
                         }
                         break;
                     case SceneType.Chat:

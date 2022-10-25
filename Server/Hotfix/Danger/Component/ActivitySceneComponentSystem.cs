@@ -58,17 +58,16 @@ namespace ET
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
   
-
             if (self.DBDayActivityInfo.LastHour != dateTime.Hour)
             {
                 self.DBDayActivityInfo.LastHour = dateTime.Hour;
                 self.NoticeActivityUpdate_Hour(dateTime.Hour).Coroutine();
             }
-            if (!self.OnBattleOpen && dateTime.Hour == 20 && dateTime.Minute == 30)
+            if (!self.OnBattleOpen && dateTime.Hour == 12 && dateTime.Minute == 38)
             {
                 self.OnBattleOpen();
             }
-            if (!self.OnBattleClose && dateTime.Hour == 20 && dateTime.Minute == 59)
+            if (!self.OnBattleClose && dateTime.Hour == 12 && dateTime.Minute == 40)
             {
                 self.OnBattleClose().Coroutine();
             }

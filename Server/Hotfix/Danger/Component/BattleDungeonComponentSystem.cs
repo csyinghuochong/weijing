@@ -42,7 +42,7 @@ namespace ET
             {
                 return;
             }
-            GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(58);
+            GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(56);
             List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
             long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < units.Count; i++)

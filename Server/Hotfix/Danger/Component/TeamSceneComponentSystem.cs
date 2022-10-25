@@ -85,17 +85,12 @@ namespace ET
                 }
             }
 
-            //队伍人数为0
-            if (teamInfo.PlayerList.Count == 0)
+            if (teamInfo.PlayerList.Count == 0 || teamInfo.TeamId == userId)
             {
+                teamInfo.PlayerList.Clear();
                 self.TeamList.Remove(teamInfo);
             }
-            //队长离开，选出新的队长
-            if (teamInfo.PlayerList.Count > 0 && teamInfo.TeamId == userId)
-            {
-                teamInfo.TeamId = teamInfo.PlayerList[0].UserID;
-            }
-
+            
             long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId;
             for (int i = 0; i < userIDList.Count; i++)
             {
