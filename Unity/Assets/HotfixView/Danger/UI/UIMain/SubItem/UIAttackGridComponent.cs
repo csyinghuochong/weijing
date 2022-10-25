@@ -97,6 +97,7 @@ namespace ET
 
         public static void OnLockUnit(this UIAttackGridComponent self, Unit targetUnit)
         {
+            self.OnMoveStart();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (targetUnit == null)
             {
