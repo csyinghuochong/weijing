@@ -107,6 +107,8 @@ namespace ET
             numericComponent.ApplyValue(NumericType.ChouKa, 0, notice);
             numericComponent.ApplyValue(NumericType.ExpToGoldTimes, 0, notice);
             numericComponent.ApplyValue(NumericType.RechargeSign, 0, notice);
+            numericComponent.ApplyValue(NumericType.TaskLoopNumber, 0, notice);
+            numericComponent.ApplyValue(NumericType.TaskLoopGiveId, 0, notice);
         }
 
         /// <summary>
