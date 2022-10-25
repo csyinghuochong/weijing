@@ -48,6 +48,20 @@ namespace ET
             {
                 return; 
             }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.BattleNumber) > 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("已经参加过！");
+                return;
+            }
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            bool canEnter = dateTime.Hour == 20 && dateTime.Minute >= 30 && dateTime.Minute <= 59;
+            if (!canEnter)
+            {
+                FloatTipManager.Instance.ShowFloatTip("不在时间段内！");
+                return;
+            }
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Battle, sceneId);
             if (errorCode == ErrorCore.ERR_Success)
             {

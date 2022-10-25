@@ -128,6 +128,7 @@ namespace ET
 						break;
 					case (int)SceneTypeEnum.Battle:
 						numericComponent.Set(NumericType.BattleCamp, request.SonId); //1 2
+						numericComponent.Set(NumericType.BattleNumber, 1); //1 2
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						int startIndex = request.SonId == 1 ? 0 : 3;

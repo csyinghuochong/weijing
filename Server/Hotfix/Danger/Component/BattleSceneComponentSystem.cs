@@ -4,7 +4,7 @@
     {
         public override void Awake(BattleSceneComponent self)
         {
-            self.BattleInfos.Clear();
+              self.BattleInfos.Clear();
         }
     }
 

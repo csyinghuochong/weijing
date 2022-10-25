@@ -65,7 +65,8 @@
         public const int Now_Lv = 3061;                                         //当前等级
         public const int BattleCamp = 3062;                                     //战斗阵营
         public const int TaskLoopNumber = 3063;                                 //赏金任务完成数量                           //赏金任务放弃时间
-        public const int TaskLoopGiveId = 3064;                                 //
+        public const int TaskLoopGiveId = 3064;
+        public const int BattleNumber = 3065;
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值
