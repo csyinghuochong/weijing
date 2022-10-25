@@ -36,8 +36,8 @@ namespace ET
 
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.ImageProgress = rc.Get<GameObject>("ImageProgress");
-            self.ButtonRight.SetActive(false);
-            self.ButtonLeft.SetActive(false);
+            //self.ButtonRight.SetActive(false);
+            //self.ButtonLeft.SetActive(false);
 
             self.Btn_GoToSupport = rc.Get<GameObject>("Btn_GoToSupport");
             ButtonHelp.AddListenerEx(self.Btn_GoToSupport, () => { self.OnBtn_GoToSupport(); });
