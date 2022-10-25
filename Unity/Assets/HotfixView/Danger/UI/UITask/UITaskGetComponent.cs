@@ -141,7 +141,8 @@ namespace ET
             }
             else if (npcConfig.NpcType == 3)    //循环任务
             {
-                self.UILoopTask.SetActive(true);
+                self.ScrollView1.SetActive(self.UpdataTask());
+                self.UILoopTask.SetActive(!self.UpdataTask());
             }
             else if (npcConfig.NpcType == 4)       //魔能老人
             {
