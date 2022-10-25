@@ -144,7 +144,6 @@ namespace ET
             }
             else if (npcConfig.NpcType == 4)       //魔能老人
             {
-                //显示消耗
                 int costItemID = 12000006;
                 long itemNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(costItemID);
                 self.EnergySkill.SetActive(true);
