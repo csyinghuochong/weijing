@@ -12,22 +12,22 @@ namespace ET
         {
             try
             {
-                switch (request.SceneType)
+                switch (scene.SceneType)
                 {
-                    case (int)SceneType.Team:
-                        //处理下线逻辑
-                        TeamSceneComponent teamSceneComponent = scene.GetComponent<TeamSceneComponent>();
-                        teamSceneComponent.OnUnitDisconnect(request).Coroutine();
-                        break;
-                    case (int)SceneType.Chat:
-                        if (request.MessageType == -1)
+                    case SceneType.Battle:
+                        if (request.MessageType == NoticeType.BattleClose)
                         {
-                            M2C_HorseNoticeInfo m2C_HorseNoticeInfo = new M2C_HorseNoticeInfo() { NoticeType = HorseType.StopSever, NoticeText = "停服维护" };
-                            ChatSceneComponent chatInfoUnitsComponent = scene.GetComponent<ChatSceneComponent>();
-                            foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
-                            {
-                                MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_HorseNoticeInfo);
-                            }
+                            scene.GetComponent<BattleDungeonComponent>().OnBattleOver();
+                        }
+                        break;
+                    case SceneType.Chat:
+                        M2C_HorseNoticeInfo m2C_HorseNoticeInfo = new M2C_HorseNoticeInfo() { 
+                            NoticeType = request.MessageType,
+                            NoticeText = request.MessageValue };
+                        ChatSceneComponent chatInfoUnitsComponent = scene.GetComponent<ChatSceneComponent>();
+                        foreach (var otherUnit in chatInfoUnitsComponent.ChatInfoUnitsDict.Values)
+                        {
+                            MessageHelper.SendActor(otherUnit.GateSessionActorId, m2C_HorseNoticeInfo);
                         }
                         reply();
                         break;

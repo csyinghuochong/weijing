@@ -10,10 +10,10 @@
             //传送回主场景
             long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), $"Map{ComHelp.MainCityID()}").InstanceId;
             long oldsceneid = unit.DomainScene().Id;
-            TransferHelper.BeforeTransfer(unit);
-            await  TransferHelper.Transfer(unit, mapInstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);
             //动态删除副本
-            Scene scene = Game.Scene.Get(oldsceneid);
+            Scene scene = unit.DomainScene();
+            TransferHelper.BeforeTransfer(unit);
+            await TransferHelper.Transfer(unit, mapInstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);
             if (ComHelp.IsSingleFuben(sceneTypeEnum))
             {
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
@@ -21,17 +21,13 @@
             }
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
-                bool haveplayer = scene.GetComponent<TeamDungeonComponent>().IsHavePlayer();
-                if (!haveplayer)
-                {
-                    TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
-                    scene.GetComponent<TeamDungeonComponent>().OnDungeonOff(userId).Coroutine();
-                    scene.Dispose();
-                }
+                TeamSceneComponent teamSceneComponent = scene.GetParent<TeamSceneComponent>();
+                teamSceneComponent.OnUnitReturn(scene, userId);
             }
+            await ETTask.CompletedTask;
         }
 
-        public static void LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty = 0)
+        public static async void LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty = 0)
         {
             long oldsceneid = unit.DomainScene().Id;
 
@@ -42,7 +38,7 @@
             localDungeon.FubenDifficulty = difficulty;
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;
             TransferHelper.BeforeTransfer(unit);
-            TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, 0, transferId).Coroutine();
+            await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, 0, transferId);
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             if (transferId != 0)
             {
@@ -53,6 +49,16 @@
             }
         }
 
+        /// <summary>
+        /// 必须等待返回才能执行销毁场景的操作
+        /// </summary>
+        /// <param name="unit"></param>
+        /// <param name="sceneInstanceId"></param>
+        /// <param name="sceneType"></param>
+        /// <param name="chapterId"></param>
+        /// <param name="sonId"></param>
+        /// <param name="transferId"></param>
+        /// <returns></returns>
         public static async ETTask Transfer(Unit unit, long sceneInstanceId, int sceneType, int chapterId, int sonId, int transferId=0)
         {
             // 通知客户端开始切场景
@@ -78,11 +84,12 @@
             // location加锁
             long oldInstanceId = unit.InstanceId;
             await LocationProxyComponent.Instance.Lock(unit.Id, unit.InstanceId);
+            UnitComponent unitComponent = unit.GetParent<UnitComponent>();
             M2M_UnitTransferResponse response = await ActorMessageSenderComponent.Instance.Call(sceneInstanceId, request) as M2M_UnitTransferResponse;
             await LocationProxyComponent.Instance.UnLock(unit.Id, oldInstanceId, response.NewInstanceId);
             if (oldInstanceId == unit.InstanceId)
             {
-                unit.GetParent<UnitComponent>().Remove(unit.Id);
+                unitComponent.Remove(unit.Id);
             }
             //unit.Dispose();
         }

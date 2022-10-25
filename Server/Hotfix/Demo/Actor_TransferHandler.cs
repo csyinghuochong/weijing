@@ -28,13 +28,20 @@ namespace ET
 			try
 			{
 				int oldScene = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-				if (oldScene == request.SceneType && request.SceneType!= SceneTypeEnum.LocalDungeon)
+				if (oldScene == request.SceneType && request.SceneType != SceneTypeEnum.LocalDungeon)
 				{
-					Log.Error($"LoginTest  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
+					Log.Error($"LoginTest1  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
 					response.Error = ErrorCore.ERR_RequestRepeatedly;
 					reply();
 					return;
 				};
+				if (oldScene != request.SceneType && oldScene > SceneTypeEnum.MainCityScene && request.SceneType > SceneTypeEnum.MainCityScene)
+				{
+					Log.Error($"LoginTest2  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
+					response.Error = ErrorCore.ERR_RequestRepeatedly;
+					reply();
+					return;
+				}
 
 				switch (request.SceneType)
 				{
@@ -52,7 +59,7 @@ namespace ET
 						Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "PetFuben" + fubenid.ToString(), SceneType.Fuben);
 						fubnescene.AddComponent<PetFubenSceneComponent>();
 						TransferHelper.BeforeTransfer(unit);
-						TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetDungeon, 2100001, request.SceneId).Coroutine();
+						await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetDungeon, 2100001, request.SceneId);
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 						break;
 					case (int)SceneTypeEnum.YeWaiScene:
@@ -99,7 +106,7 @@ namespace ET
                         fubnescene =  SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "Fuben" + fubenid.ToString(), SceneType.Fuben);
                         fubnescene.AddComponent<PetTianTiComponent>().EnemyId = enemyId;
                         TransferHelper.BeforeTransfer(unit);
-						TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetTianTi, request.SceneId, 0).Coroutine();
+						await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetTianTi, request.SceneId, 0);
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 						break;
 					case (int)SceneTypeEnum.LocalDungeon:
@@ -117,12 +124,7 @@ namespace ET
 						B2M_BattleEnterResponse battleEnter = (B2M_BattleEnterResponse)await ActorMessageSenderComponent.Instance.Call(
 						mapInstanceId, new M2B_BattleEnterRequest() { UserID = unit.Id, SceneId = request.SceneId });
 						TransferHelper.BeforeTransfer(unit);
-						TransferHelper.Transfer(unit, battleEnter.FubenInstanceId, (int)SceneTypeEnum.Battle, request.SceneId, battleEnter.Camp).Coroutine();
-						if (ComHelp.IsSingleFuben(sceneTypeEnum))
-						{
-							TransferHelper.NoticeFubenCenter(unit.DomainScene(), 2).Coroutine();
-							unit.DomainScene().Dispose();
-						}
+						await TransferHelper.Transfer(unit, battleEnter.FubenInstanceId, (int)SceneTypeEnum.Battle, request.SceneId, battleEnter.Camp);
 						break;
 					case (int)SceneTypeEnum.TeamDungeon:
 						UnitHelper.RecordPostion(unit);
@@ -136,12 +138,7 @@ namespace ET
 						T2M_TeamDungeonEnterResponse createUnit = (T2M_TeamDungeonEnterResponse)await ActorMessageSenderComponent.Instance.Call(
 						mapInstanceId, new M2T_TeamDungeonEnterRequest() { UserID = unit.GetComponent<UserInfoComponent>().UserInfo.UserId });
 						TransferHelper.BeforeTransfer(unit);
-						TransferHelper.Transfer(unit, createUnit.FubenInstanceId, (int)SceneTypeEnum.TeamDungeon, createUnit.FubenId, 0).Coroutine();
-						if (ComHelp.IsSingleFuben(sceneTypeEnum))
-						{
-							TransferHelper.NoticeFubenCenter(unit.DomainScene(), 2).Coroutine();
-							unit.DomainScene().Dispose();
-						}
+						await TransferHelper.Transfer(unit, createUnit.FubenInstanceId, (int)SceneTypeEnum.TeamDungeon, createUnit.FubenId, 0);
 						break;
 					default:
 						break;

@@ -109,12 +109,12 @@ namespace ET
             //<link=“id”>111111111</link>点击取出“id”
             TeamComponent teamComponent = self.ZoneScene().GetComponent<TeamComponent>();
             TeamInfo teamInfo = teamComponent.GetSelfTeam();
-            if (teamInfo == null || teamInfo.FubenId == 0)
+            if (teamInfo == null || teamInfo.SceneId == 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("没有副本队伍");
                 return;
             }
-            string text = $" 副本:{SceneConfigCategory.Instance.Get(teamInfo.FubenId).Name}开启冒险,现邀请你的加入！ <link=team_{teamInfo.TeamId}_{teamInfo.FubenId}><color=#B5FF28><u>点击申请加入</u></color></link>";
+            string text = $" 副本:{SceneConfigCategory.Instance.Get(teamInfo.SceneId).Name}开启冒险,现邀请你的加入！ <link=team_{teamInfo.TeamId}_{teamInfo.SceneId}><color=#B5FF28><u>点击申请加入</u></color></link>";
             self.ZoneScene().GetComponent<ChatComponent>().SendChat(ChannelEnum.Word, text).Coroutine();
         }
 
@@ -146,7 +146,7 @@ namespace ET
                 ui_1.GetComponent<UITeamItemComponent>().OnUpdateItem(teamInfo.PlayerList[i]);
             }
 
-            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.FubenId);
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
             self.Obj_Lab_FuBenName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("挑战副本") + ":" + sceneConfig.Name;
             self.Lab_FuBenLv.GetComponent<Text>().text = $"{GameSettingLanguge.LoadLocalization("等级")}: {sceneConfig.EnterLv} - 50";
         }

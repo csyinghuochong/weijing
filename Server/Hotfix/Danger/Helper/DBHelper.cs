@@ -175,6 +175,11 @@ namespace ET
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Account)).InstanceId;
         }
 
+        public static long GetChatServerId(int zone)
+        {
+            return StartSceneConfigCategory.Instance.GetBySceneName(zone, "Chat").InstanceId;
+        }
+
         public static long GetQueueServerId(int zone)
         {
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Queue)).InstanceId;

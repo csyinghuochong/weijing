@@ -69,13 +69,6 @@ namespace ET
             }
         }
 
-        public static async ETTask OnExitTeam(this DBSaveComponent self, int domainZone, long userId)
-        {
-            long teamServerId = StartSceneConfigCategory.Instance.GetBySceneName(domainZone, Enum.GetName(SceneType.Team)).InstanceId;
-            A2A_ServerMessageRResponse g_SendChatRequest2 = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
-                (teamServerId, new A2A_ServerMessageRequest() { SceneType = (int)SceneType.Team,  UnitId = userId });
-        }
-
         public static void OnRelogin(this DBSaveComponent self, long gateSessionId)
         {
             Unit unit = self.GetParent<Unit>();
@@ -139,13 +132,8 @@ namespace ET
             long unitId = unit.Id;
             //通知其他服务器
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
-            int domainZone = unit.DomainZone();
             long userId = userInfo.UserId;
-
-            self.OnExitTeam(domainZone, userInfo.UserId).Coroutine();
-
             Scene scene = unit.DomainScene();
-            //TransferHelper.BeforeTransfer(unit);
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
             unit.RemoveComponent<MailBoxComponent>();
             unit.GetParent<UnitComponent>().Remove(unitId);
@@ -157,19 +145,13 @@ namespace ET
             if (ComHelp.IsSingleFuben(sceneTypeEnum))
             {
                 //动态删除副本
-                //Scene scene = Game.Scene.Get(sceneid);
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
             }
             if (sceneTypeEnum == (int)SceneTypeEnum.TeamDungeon)
             {
-                bool haveplayer = scene.GetComponent<TeamDungeonComponent>().IsHavePlayer();
-                if (!haveplayer)
-                {
-                    TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
-                    scene.GetComponent<TeamDungeonComponent>().OnDungeonOff(userId).Coroutine();
-                    scene.Dispose();
-                }
+                TeamSceneComponent teamSceneComponent = scene.GetParent<TeamSceneComponent>();
+                teamSceneComponent.OnUnitDisconnect(scene, userId);
             }
             return ErrorCode.ERR_Success;
         }

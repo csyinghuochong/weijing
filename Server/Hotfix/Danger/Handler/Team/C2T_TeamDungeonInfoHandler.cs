@@ -21,7 +21,7 @@ namespace ET
                     teamList.RemoveAt(i);
                     continue;
                 }
-                if (teamInfo.FubenId != 0)
+                if (teamInfo.SceneId != 0)
                 {
                     teamInfos.Add(teamInfo);
                     continue;

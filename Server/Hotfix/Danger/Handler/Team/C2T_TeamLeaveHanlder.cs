@@ -9,9 +9,7 @@ namespace ET
         protected override async ETTask Run(Scene scene, C2T_TeamLeaveRequest request, T2C_TeamLeaveResponse response, Action reply)
         {
             TeamInfo teamInfo = scene.GetComponent<TeamSceneComponent>().GetTeamInfo(request.UserId);
-
             scene.GetComponent<TeamSceneComponent>().OnRecvUnitLeave(request.UserId).Coroutine();
-
             reply();
             await ETTask.CompletedTask;
         }

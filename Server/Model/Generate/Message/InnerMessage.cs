@@ -388,17 +388,11 @@ namespace ET
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
 
-		[ProtoMember(1)]
-		public long UnitId { get; set; }
-
 		[ProtoMember(2)]
 		public int MessageType { get; set; }
 
-		[ProtoMember(4)]
-		public int SceneType { get; set; }
-
 		[ProtoMember(5)]
-		public string Message { get; set; }
+		public string MessageValue { get; set; }
 
 	}
 
@@ -1437,37 +1431,6 @@ namespace ET
 
 		[ProtoMember(1)]
 		public int OnLineNumber { get; set; }
-
-	}
-
-	[ResponseType(nameof(T2M_TeamDungeonOffResponse))]
-	[Message(InnerOpcode.M2T_TeamDungeonOffRequest)]
-	[ProtoContract]
-	public partial class M2T_TeamDungeonOffRequest: Object, IActorRequest
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public long UserID { get; set; }
-
-	}
-
-	[Message(InnerOpcode.T2M_TeamDungeonOffResponse)]
-	[ProtoContract]
-	public partial class T2M_TeamDungeonOffResponse: Object, IActorResponse
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(91)]
-		public int Error { get; set; }
-
-		[ProtoMember(92)]
-		public string Message { get; set; }
 
 	}
 

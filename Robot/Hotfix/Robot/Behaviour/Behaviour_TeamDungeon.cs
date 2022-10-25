@@ -40,7 +40,7 @@ namespace ET
                 if (teamInfo != null)
                 {
                     //有可加入队伍再直接加入
-                    errorCode = await teamComponent.SendTeamApply(teamInfo.TeamId, teamInfo.FubenId);
+                    errorCode = await teamComponent.SendTeamApply(teamInfo.TeamId, teamInfo.SceneId);
                 }
                 else
                 {

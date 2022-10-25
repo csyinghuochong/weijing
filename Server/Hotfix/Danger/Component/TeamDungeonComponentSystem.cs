@@ -18,13 +18,6 @@ namespace ET
     public static class TeamDungeonComponentSystem
     {
 
-        public static async ETTask OnDungeonOff(this TeamDungeonComponent self, long userId)
-        {
-            long teamServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Team").InstanceId;
-            T2M_TeamDungeonOffResponse g2M_UpdateUnitResponse = (T2M_TeamDungeonOffResponse)await ActorMessageSenderComponent.Instance.Call
-                (teamServerId, new M2T_TeamDungeonOffRequest() { UserID = userId });
-        }
-
         public static void OnUpdateDamage(this TeamDungeonComponent self, Unit unit, int damage)
         {
             if (self.TeamInfo == null)
@@ -80,7 +73,7 @@ namespace ET
                 return;
             }
 
-            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(self.TeamInfo.FubenId);
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(self.TeamInfo.SceneId);
             if (unit.ConfigId != sceneConfig.BossId)
             {
                 return;

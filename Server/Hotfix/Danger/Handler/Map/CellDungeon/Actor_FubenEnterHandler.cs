@@ -32,7 +32,7 @@ namespace ET
 				mapComponent.NavMeshId = ChapterSonConfigCategory.Instance.Get(curCell.sonid).MapID.ToString();
 
 				TransferHelper.BeforeTransfer(unit);
-				TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.CellDungeon, request.ChapterId, curCell.sonid).Coroutine();
+				await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.CellDungeon, request.ChapterId, curCell.sonid);
 			}
 			else
 			{

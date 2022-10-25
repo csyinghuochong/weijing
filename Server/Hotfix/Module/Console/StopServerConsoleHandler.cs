@@ -47,9 +47,9 @@ namespace ET
                         A2A_ServerMessageRResponse g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
                             (chatServerId, new A2A_ServerMessageRequest()
                             {
-                                SceneType = (int)SceneType.Chat,
-                                MessageType = -1
-                            });
+                                MessageType = NoticeType.StopSever,
+                                MessageValue = "停服维护"
+                            }) ;
                     }
                     break;
             }

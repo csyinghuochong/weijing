@@ -581,7 +581,7 @@ namespace ET
         public static async ETTask OnHorseNotice(this UIMainComponent self)
         {
             M2C_HorseNoticeInfo m2C_HorseNoticeInfo = self.ZoneScene().GetComponent<ChatComponent>().HorseNoticeInfo;
-            if (m2C_HorseNoticeInfo.NoticeType == HorseType.StopSever)
+            if (m2C_HorseNoticeInfo.NoticeType == NoticeType.StopSever)
             {
                 self.OnServerStop().Coroutine();
                 return;
