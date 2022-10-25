@@ -1441,15 +1441,15 @@ message M2C_TaskInitResponse    // IActorLocationResponse
 }
 
 //接取任务
-//ResponseType M2C_GetTaskResponse
-message C2M_GetTaskRequest    // IActorLocationRequest
+//ResponseType M2C_TaskGetResponse
+message C2M_TaskGetRequest    // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int32 TaskId = 1;
 	int32 TaskStatus = 2; //0未激活 1已接取 2已完成 3已领取
 }
 
-message M2C_GetTaskResponse    // IActorLocationResponse
+message M2C_TaskGetResponse    // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;
@@ -3956,4 +3956,19 @@ message M2C_BattleInfoResult // IActorMessage
 
 	int32 CampKill_1 = 3;
 	int32 CampKill_2 = 4;
+}
+
+//循环赏金任务
+//ResponseType M2C_TaskLoopGetResponse
+message C2M_TaskLoopGetRequest    // IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_TaskLoopGetResponse    // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	TaskPro TaskLoop = 1;
 }

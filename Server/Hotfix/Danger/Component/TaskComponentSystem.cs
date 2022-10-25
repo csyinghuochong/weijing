@@ -98,7 +98,7 @@ namespace ET
         /// <param name="request"></param>
         /// <param name="response"></param>
         /// <returns></returns>
-        public static bool OnGetTask(this TaskComponent self, C2M_GetTaskRequest request, M2C_GetTaskResponse response)
+        public static bool OnGetTask(this TaskComponent self, C2M_TaskGetRequest request, M2C_TaskGetResponse response)
         {
             int taskid = request.TaskId;
             bool canget = FunctionHelp.Instance.CheckTaskOn(self.GetParent<Unit>(), TaskConfigCategory.Instance.Get(taskid));

@@ -3058,10 +3058,10 @@ namespace ET
 	}
 
 //接取任务
-	[ResponseType(nameof(M2C_GetTaskResponse))]
-	[Message(OuterOpcode.C2M_GetTaskRequest)]
+	[ResponseType(nameof(M2C_TaskGetResponse))]
+	[Message(OuterOpcode.C2M_TaskGetRequest)]
 	[ProtoContract]
-	public partial class C2M_GetTaskRequest: Object, IActorLocationRequest
+	public partial class C2M_TaskGetRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -3074,9 +3074,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_GetTaskResponse)]
+	[Message(OuterOpcode.M2C_TaskGetResponse)]
 	[ProtoContract]
-	public partial class M2C_GetTaskResponse: Object, IActorLocationResponse
+	public partial class M2C_TaskGetResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -8262,6 +8262,35 @@ namespace ET
 
 		[ProtoMember(4)]
 		public int CampKill_2 { get; set; }
+
+	}
+
+//循环赏金任务
+	[ResponseType(nameof(M2C_TaskLoopGetResponse))]
+	[Message(OuterOpcode.C2M_TaskLoopGetRequest)]
+	[ProtoContract]
+	public partial class C2M_TaskLoopGetRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TaskLoopGetResponse)]
+	[ProtoContract]
+	public partial class M2C_TaskLoopGetResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public TaskPro TaskLoop { get; set; }
 
 	}
 
