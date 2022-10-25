@@ -102,12 +102,14 @@ namespace ET
 
         public static async ETTask OnButtonLoopTask(this UITaskGetComponent self)
         {
-            C2M_TaskLoopGetRequest m_GetTaskRequest = new C2M_TaskLoopGetRequest() {  };
-            M2C_TaskLoopGetResponse m2C_GetTaskResponse = (M2C_TaskLoopGetResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_GetTaskRequest);
-            if (m2C_GetTaskResponse.Error != 0)
+            C2M_TaskLoopGetRequest request = new C2M_TaskLoopGetRequest() {  };
+            M2C_TaskLoopGetResponse response = (M2C_TaskLoopGetResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (response.Error != 0)
             {
                 return;
             }
+            self.ZoneScene().GetComponent<TaskComponent>().RoleTaskList.Add(response.TaskLoop);
+            HintHelp.GetInstance().DataUpdate(DataType.TaskGet, response.TaskLoop.taskID.ToString());
             self.OnCloseNpcTask();
         }
 
