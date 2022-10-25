@@ -2733,10 +2733,11 @@ message TokenRecvive
 
 message TeamInfo
 {
-	int32 FubenId = 1;
+	int32 SceneId = 1;
 	repeated TeamPlayerInfo PlayerList = 2;
 	int64 TeamId = 3;
 	int64 FubenInstanceId = 4;
+	int64 FubenUUId = 5;
 }
 
 message TeamPlayerInfo
@@ -2749,6 +2750,7 @@ message TeamPlayerInfo
 	int32 Damage = 6;
 	int64 Combat = 7;
 	int32 Occ = 8;
+	int32 InFuben = 9;
 }
 
 //邀请组队

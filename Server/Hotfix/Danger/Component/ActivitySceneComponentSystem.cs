@@ -27,6 +27,8 @@ namespace ET
     {
         public override void Awake(ActivitySceneComponent self)
         {
+            self.OnBattleOpen = false;
+            self.OnBattleClose = false;
             self.MapIdList.Clear();
 ;
             self.MapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId);
@@ -36,7 +38,7 @@ namespace ET
             self.InitDayActivity().Coroutine();
 
             //每日活动
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000, TimerType.ActivityTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(30000, TimerType.ActivityTimer, self);
         }
     }
 
@@ -56,13 +58,40 @@ namespace ET
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
   
-            
             if (self.DBDayActivityInfo.LastHour != dateTime.Hour)
             {
                 self.DBDayActivityInfo.LastHour = dateTime.Hour;
                 self.NoticeActivityUpdate_Hour(dateTime.Hour).Coroutine();
             }
+            if (!self.OnBattleOpen && dateTime.Hour == 12 && dateTime.Minute == 38)
+            {
+                self.OnBattleOpen();
+            }
+            if (!self.OnBattleClose && dateTime.Hour == 12 && dateTime.Minute == 40)
+            {
+                self.OnBattleClose().Coroutine();
+            }
+
             self.SaveDB().Coroutine();
+        }
+
+        public static void OnBattleOpen(this ActivitySceneComponent self)
+        {
+            self.OnBattleOpen = true;
+            ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), 
+               NoticeType.BattleOpen, "战场已开启。请前往战场").Coroutine();
+        }
+
+        public static  async ETTask OnBattleClose(this ActivitySceneComponent self)
+        {
+            self.OnBattleClose = true;
+            ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()),
+               NoticeType.BattleNotice, "战场即将关闭。请退出战场").Coroutine();
+
+            await TimerComponent.Instance.WaitAsync(60000);
+
+            ServerMessageHelper.SendServerMessage(DBHelper.GetBattleServerId(self.DomainZone()),
+               NoticeType.BattleClose, "战场即将关闭。请退出战场").Coroutine();
         }
 
         public static async ETTask InitDayActivity(this ActivitySceneComponent self)
@@ -128,8 +157,9 @@ namespace ET
             {
                 long openServerTime = await DBHelper.GetOpenServerTime(self.DomainZone());
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerTime);
-                
 
+                self.OnBattleOpen = false;
+                self.OnBattleClose = false;
             }
         }
     }

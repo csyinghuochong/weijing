@@ -181,10 +181,8 @@ message A2A_ServerMessageRequest // IActorRequest
 {
     int32 RpcId = 90;
     int64 ActorId = 93;
-    int64 UnitId = 1;
     int32 MessageType = 2;
-    int32 SceneType = 4;
-    string Message = 5;
+    string MessageValue = 5;
 }
 
 message A2A_ServerMessageRResponse // IActorResponse
@@ -683,21 +681,6 @@ message G2G_UnitListResponse // IActorResponse
      int32 OnLineNumber = 1;
 }
 
-//ResponseType T2M_TeamDungeonOffResponse
-message M2T_TeamDungeonOffRequest // IActorRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-
-	int64 UserID = 1;
-}
-
-message T2M_TeamDungeonOffResponse // IActorResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-}
 
 //进入组队副本
 //ResponseType T2M_TeamDungeonEnterResponse

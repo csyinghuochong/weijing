@@ -74,7 +74,7 @@ namespace ET
             self.MoveNeedTime = (self.MoveStartX * 2) / self.MoveSpeed;
 
             self.CurPosition.x = self.MoveStartX;
-            self.Imagebg.GetComponent<RectTransform>().sizeDelta = new Vector2(textMeshProUGUI.preferredWidth, 100);
+            //self.Imagebg.GetComponent<RectTransform>().sizeDelta = new Vector2(textMeshProUGUI.preferredWidth, 100);
         }
 
         public static void OnRecvHorseNotice(this UIHorseNoticeComponent self, M2C_HorseNoticeInfo m2C_HorseNoticeInfo)

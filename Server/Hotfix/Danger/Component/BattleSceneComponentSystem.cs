@@ -18,6 +18,16 @@
 
     public static class BattleSceneComponentSystem
     {
+        public static void OnBattleOver(this BattleSceneComponent self)
+        {
+            for (int i = 0; i < self.BattleInfos.Count;i++)
+            {
+                Scene scene = Game.Scene.Get(self.BattleInfos[i].FubenId);
+                scene.GetComponent<BattleDungeonComponent>().OnBattleOver();
+                TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
+            }
+        }
+
         public static BattleInfo GetBattleInstanceId(this BattleSceneComponent self, int sceneId)
         {
             int number = self.BattleInfos.Count;
@@ -29,12 +39,13 @@
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, self.DomainZone(), "Battle" + fubenid.ToString(), SceneType.Fuben);
-            BattleDungeonComponent teamDungeonComponent = fubnescene.AddComponent<BattleDungeonComponent>();
+            fubnescene.AddComponent<BattleDungeonComponent>();
+            TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.Battle, sceneId, 0);
             mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(sceneId).MapID.ToString();
             Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
-            BattleInfo battleInfo = new BattleInfo() { PlayerNumber = 0, FubenInstanceId = fubenInstanceId };
+            BattleInfo battleInfo = new BattleInfo() { FubenId = fubenid, PlayerNumber = 0, FubenInstanceId = fubenInstanceId };
             self.BattleInfos.Add(battleInfo);
             return battleInfo;
         }

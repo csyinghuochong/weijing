@@ -36,12 +36,41 @@ namespace ET
             }
         }
 
-        public static async ETTask SendReward(this BattleDungeonComponent self, int winCamp)
+        public static  void SendReward(this BattleDungeonComponent self, int winCamp)
         {
-            await TimerComponent.Instance.WaitAsync(1000);
             if (winCamp == 0)
             {
                 return;
+            }
+            GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(56);
+            List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            long serverTime = TimeHelper.ServerNow();
+            for (int i = 0; i < units.Count; i++)
+            {
+                if (units[i].Type != UnitType.Player)
+                {
+                    continue;
+                }
+
+                MailInfo mailInfo = new MailInfo();
+                mailInfo.Status = 0;
+                mailInfo.Context = "战场奖励";
+                mailInfo.Title = "战场奖励";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+                string[] needList = globalValueConfig.Value.Split('@');
+                for (int k = 0; k < needList.Length; k++)
+                {
+                    string[] itemInfo = needList[k].Split(';');
+                    if (itemInfo.Length < 2)
+                    {
+                        continue;
+                    }
+                    int itemId = int.Parse(itemInfo[0]);
+                    int itemNum = int.Parse(itemInfo[1]);
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.BattleWin}_{serverTime}" });
+                }
+                units[i].GetComponent<TaskComponent>().OnWinCampBattle();
+                MailHelp.SendUserMail(self.DomainZone(), units[i].Id, mailInfo).Coroutine();
             }
         }
 
@@ -49,16 +78,23 @@ namespace ET
         /// 踢出还在副本的玩家
         /// </summary>
         /// <param name="self"></param>
-        public static async ETTask KickOutPlayer(this BattleDungeonComponent self)
+        public static void KickOutPlayer(this BattleDungeonComponent self)
         {
-            await TimerComponent.Instance.WaitAsync(2000);
-
-
+            List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            long serverTime = TimeHelper.ServerNow();
+            for (int i = 0; i < units.Count; i++)
+            {
+                if (units[i].Type != UnitType.Player)
+                {
+                    continue;
+                }
+                TransferHelper.MainCityTransfer(units[i]).Coroutine();
+            }
         }
 
         public static void OnBattleOver(this BattleDungeonComponent self)
         {
-            int winCamp = 0;
+            int winCamp = 1;
             if (self.CampKillNumber_1 > self.CampKillNumber_2)
             {
                 winCamp = CampEnum.CampPlayer_1;
@@ -67,8 +103,8 @@ namespace ET
             {
                 winCamp = CampEnum.CampPlayer_2;
             }
-            self.SendReward(winCamp).Coroutine();
-            self.KickOutPlayer().Coroutine();
+            self.SendReward(winCamp);
+            self.KickOutPlayer();
         }
     }
 }

@@ -53,7 +53,7 @@ namespace ET
 
         public static void OnButton_Apply(this UITeamDungeonItemComponent self)
         {
-            self.ZoneScene().GetComponent<TeamComponent>().SendTeamApply(self.TeamInfo.TeamId, self.TeamInfo.FubenId).Coroutine();
+            self.ZoneScene().GetComponent<TeamComponent>().SendTeamApply(self.TeamInfo.TeamId, self.TeamInfo.SceneId).Coroutine();
         }
 
         public static void OnUpdateUI(this UITeamDungeonItemComponent self, TeamInfo teamInfo)
@@ -77,7 +77,7 @@ namespace ET
                 UICommonHelper.ShowOccIcon(self.ImagePlayerList[i].transform.Find("ImageMask/ImageHead").gameObject, teamPlayerInfo.Occ);
             }
 
-            SceneConfig teamDungeonConfig = SceneConfigCategory.Instance.Get(teamInfo.FubenId);
+            SceneConfig teamDungeonConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
             self.Text_Condition.GetComponent<Text>().text = $"进入条件: {teamDungeonConfig.EnterLv}级";
             self.Text_Name.GetComponent<Text>().text = teamDungeonConfig.Name;
             self.Text_Tuijian.GetComponent<Text>().text = $"推荐等级： {teamDungeonConfig.TuiJianLv[0]}-{teamDungeonConfig.TuiJianLv[1]}级";

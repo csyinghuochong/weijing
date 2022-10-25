@@ -19,7 +19,7 @@ namespace ET
             MailInfo mailInfo = g_SendChatRequest.MailInfo;
             if (mailInfo != null)
             {
-                unit.GetComponent<BagComponent>().OnAddItemData(mailInfo.ItemList, $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
+                unit.GetComponent<BagComponent>().OnAddItemData(mailInfo.ItemList, $"{ItemGetWay.ReceieMail}_{TimeHelper.ServerNow()}");
             }
 
             reply();

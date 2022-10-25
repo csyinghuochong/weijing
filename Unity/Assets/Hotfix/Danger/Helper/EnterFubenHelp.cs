@@ -5,7 +5,7 @@ namespace ET
     public static class EnterFubenHelp
     {
         public static long LastQuitTime = 0;
-        public static async ETTask<int> RequestTransfer(Scene zoneScene, int sceneType, int sceneId, int transferId = 0, int difficulty = FubenDifficulty.None, string paraminfo = "")
+        public static async ETTask<int> RequestTransfer(Scene zoneScene, int newsceneType, int sceneId, int transferId = 0, int difficulty = FubenDifficulty.None, string paraminfo = "")
         {
             try
             {
@@ -15,12 +15,18 @@ namespace ET
                 }
                 LastQuitTime = TimeHelper.ServerNow();
                 MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
-                if (mapComponent.SceneTypeEnum == sceneType 
-                    && sceneType!= SceneTypeEnum.LocalDungeon)
+                int oldSceneType = mapComponent.SceneTypeEnum;
+                if (oldSceneType == newsceneType && newsceneType!= SceneTypeEnum.LocalDungeon)
                 {
                     return ErrorCore.ERR_RequestRepeatedly;
                 }
-                Actor_TransferRequest c2M_ItemHuiShouRequest = new Actor_TransferRequest() { SceneType = sceneType, SceneId = sceneId, TransferId = transferId, Difficulty = difficulty, paramInfo = paraminfo };
+                if (oldSceneType != newsceneType
+                    && oldSceneType > SceneTypeEnum.MainCityScene
+                    && newsceneType > SceneTypeEnum.MainCityScene)
+                {
+                    return ErrorCore.ERR_RequestRepeatedly;
+                }
+                Actor_TransferRequest c2M_ItemHuiShouRequest = new Actor_TransferRequest() { SceneType = newsceneType, SceneId = sceneId, TransferId = transferId, Difficulty = difficulty, paramInfo = paraminfo };
                 Actor_TransferResponse r2c_roleEquip = (Actor_TransferResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
                 return r2c_roleEquip.Error;
             }

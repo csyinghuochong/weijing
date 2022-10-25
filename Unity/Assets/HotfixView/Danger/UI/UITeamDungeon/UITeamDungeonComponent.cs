@@ -88,7 +88,7 @@ namespace ET
 
             //判定当前是否有副本队伍
             TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
-            if (teamInfo == null || teamInfo.FubenId == 0)
+            if (teamInfo == null || teamInfo.SceneId == 0)
             {
                 //无副本队伍
                 self.UIPageButtonComponent_1.OnSelectIndex(0);
@@ -118,7 +118,7 @@ namespace ET
             {
                 //判断当前是否有队伍
                 TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
-                if (teamInfo == null || teamInfo.FubenId == 0)
+                if (teamInfo == null || teamInfo.SceneId == 0)
                 {
                     FloatTipManager.Instance.ShowFloatTip("请先创建或加入副本队伍");
                     return false;
@@ -152,7 +152,7 @@ namespace ET
         public static async ETTask  OnButton_Create(this UITeamDungeonComponent self)
         {
             TeamInfo  teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
-            if (teamInfo != null && teamInfo.FubenId != 0)
+            if (teamInfo != null && teamInfo.SceneId != 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("已经有队伍了");
                 return;
@@ -173,7 +173,7 @@ namespace ET
             int number = 0;
             for (int i = 0; i < teamList.Count; i++)
             {
-                if (teamList[i].FubenId == 0)
+                if (teamList[i].SceneId == 0)
                 {
                     continue;
                 }

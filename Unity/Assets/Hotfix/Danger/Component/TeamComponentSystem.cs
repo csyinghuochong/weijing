@@ -87,7 +87,7 @@ namespace ET
             try
             {
                 TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
-                if (teamInfo != null && teamInfo.FubenId != 0)
+                if (teamInfo != null && teamInfo.SceneId != 0)
                 {
                     EventType.CommonHintError.Instance.errorValue = ErrorCore.ERR_IsHaveTeam;
                     EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
@@ -210,7 +210,7 @@ namespace ET
             for (int i = 0; i < self.TeamList.Count; i++)
             {
                 TeamInfo teamInfo = self.TeamList[i];
-                if (teamInfo.FubenId > 0 && teamInfo.PlayerList.Count < 3)
+                if (teamInfo.SceneId > 0 && teamInfo.PlayerList.Count < 3)
                 {
                     return teamInfo;
                 }
@@ -237,7 +237,7 @@ namespace ET
                 {
                     return ErrorCore.ERR_TimesIsNot;
                 }
-                SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.FubenId);
+                SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
                 if (teamInfo.PlayerList.Count < sceneConfig.PlayerLimit)
                 {
                     return ErrorCore.ERR_PlayerIsNot;
@@ -277,7 +277,7 @@ namespace ET
                 TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
                 if (teamInfo != null)
                 {
-                    if (teamInfo.FubenId == fubenId)
+                    if (teamInfo.SceneId == fubenId)
                     {
                         return ErrorCore.ERR_IsHaveTeam;
                     }

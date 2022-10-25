@@ -5768,7 +5768,7 @@ namespace ET
 	public partial class TeamInfo: Object
 	{
 		[ProtoMember(1)]
-		public int FubenId { get; set; }
+		public int SceneId { get; set; }
 
 		[ProtoMember(2)]
 		public List<TeamPlayerInfo> PlayerList = new List<TeamPlayerInfo>();
@@ -5778,6 +5778,9 @@ namespace ET
 
 		[ProtoMember(4)]
 		public long FubenInstanceId { get; set; }
+
+		[ProtoMember(5)]
+		public long FubenUUId { get; set; }
 
 	}
 
@@ -5808,6 +5811,9 @@ namespace ET
 
 		[ProtoMember(8)]
 		public int Occ { get; set; }
+
+		[ProtoMember(9)]
+		public int InFuben { get; set; }
 
 	}
 

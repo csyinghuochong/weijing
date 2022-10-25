@@ -21,13 +21,13 @@ namespace ET
             //无队伍
             if (teamInfo == null)
             {
-                teamInfo = new TeamInfo() { TeamId = request.TeamPlayerInfo.UserID, FubenId = request.FubenId };
+                teamInfo = new TeamInfo() { TeamId = request.TeamPlayerInfo.UserID, SceneId = request.FubenId };
                 teamInfo.PlayerList.Add(request.TeamPlayerInfo);
                 teamList.Add(teamInfo);
             }
             else
             {
-                teamInfo.FubenId = request.FubenId;
+                teamInfo.SceneId = request.FubenId;
             }
 
             M2C_TeamUpdateResult m2C_HorseNoticeInfo = new M2C_TeamUpdateResult() { TeamInfo = teamInfo };

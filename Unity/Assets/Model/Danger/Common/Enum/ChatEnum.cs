@@ -12,11 +12,16 @@ namespace ET
         Friend = 11,             //私聊
     }
 
-    public static class HorseType
+    public static class NoticeType
     { 
         public const int Notice = 0;
         public const int StopSever = 1;  //停服
         public const int RemoteLogin = 2;//异地登录
+
+        public const int UnitDisconnect = 3;
+        public const int BattleOpen = 3;
+        public const int BattleNotice = 4;
+        public const int BattleClose = 5;
     }
 
 }
