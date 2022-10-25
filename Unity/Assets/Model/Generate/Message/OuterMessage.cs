@@ -764,6 +764,9 @@ namespace ET
 		[ProtoMember(7)]
 		public List<RolePetInfo> Pets = new List<RolePetInfo>();
 
+		[ProtoMember(8)]
+		public int UpdateAll { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_CreateMyUnit)]
