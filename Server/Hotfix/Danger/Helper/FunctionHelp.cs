@@ -17,7 +17,7 @@ namespace ET
         {
             base.InternalInit();
             FunctionCheck = new Dictionary<int, FunctionDelegate>();
-            FunctionCheck.Add(FunctionContionEnum.None, CheckPlayerLv);
+            FunctionCheck.Add(FunctionContionEnum.None, DonotCheck);
             FunctionCheck.Add(FunctionContionEnum.PlayerLv, CheckPlayerLv);
             FunctionCheck.Add(FunctionContionEnum.TaskId, CheckTaskID);
         }
