@@ -156,8 +156,8 @@ namespace ET
 		 public const ushort M2C_TaskCountryUpdate = 10153;
 		 public const ushort C2M_TaskInitRequest = 10154;
 		 public const ushort M2C_TaskInitResponse = 10155;
-		 public const ushort C2M_GetTaskRequest = 10156;
-		 public const ushort M2C_GetTaskResponse = 10157;
+		 public const ushort C2M_TaskGetRequest = 10156;
+		 public const ushort M2C_TaskGetResponse = 10157;
 		 public const ushort C2M_TaskGiveUpRequest = 10158;
 		 public const ushort M2C_TaskGiveUpResponse = 10159;
 		 public const ushort C2M_TaskTrackRequest = 10160;
@@ -460,5 +460,7 @@ namespace ET
 		 public const ushort M2C_TeamDungeonRBornResult = 10457;
 		 public const ushort C2M_RefreshUnitRequest = 10458;
 		 public const ushort M2C_BattleInfoResult = 10459;
+		 public const ushort C2M_TaskLoopGetRequest = 10460;
+		 public const ushort M2C_TaskLoopGetResponse = 10461;
 	}
 }

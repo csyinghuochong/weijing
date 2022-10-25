@@ -182,8 +182,8 @@ namespace ET
         //接取任务
         public static async ETTask SendGetTask(this TaskComponent self, int taskId)
         {
-            C2M_GetTaskRequest m_GetTaskRequest = new C2M_GetTaskRequest() { TaskId = taskId };
-            M2C_GetTaskResponse m2C_GetTaskResponse = (M2C_GetTaskResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_GetTaskRequest);
+            C2M_TaskGetRequest m_GetTaskRequest = new C2M_TaskGetRequest() { TaskId = taskId };
+            M2C_TaskGetResponse m2C_GetTaskResponse = (M2C_TaskGetResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_GetTaskRequest);
             if (m2C_GetTaskResponse.Error != 0)
                 return;
 
@@ -229,7 +229,7 @@ namespace ET
             return taskPros;
         }
 
-        public static List<TaskPro> GetTrackTaskTypeList(this TaskComponent self, TaskTypeEnum taskTypeEnum)
+        public static List<TaskPro> GetTrackTaskTypeList(this TaskComponent self, int taskTypeEnum)
         {
             List<TaskPro> taskPros = new List<TaskPro>();
             for (int i = 0; i < self.RoleTaskList.Count; i++)
@@ -244,7 +244,7 @@ namespace ET
             return taskPros;
         }
 
-        public static List<TaskPro> GetTaskTypeList(this TaskComponent self, TaskTypeEnum taskTypeEnum)
+        public static List<TaskPro> GetTaskTypeList(this TaskComponent self, int taskTypeEnum)
         {
             List<TaskPro> taskPros = new List<TaskPro>();
             for (int i = 0; i < self.RoleTaskList.Count; i++)

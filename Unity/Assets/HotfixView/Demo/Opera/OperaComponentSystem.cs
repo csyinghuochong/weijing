@@ -331,10 +331,14 @@ namespace ET
         public static void OnArriveToNpc(this OperaComponent self)
         {
             int functionId = NpcConfigCategory.Instance.Get(self.NpcId).NpcType;
-            if (functionId < 10)
+            if (functionId < 100)
+            {
                 self.OpenNpcTaskUI(self.NpcId).Coroutine();
+            }
             else
+            {
                 FunctionUI.GetInstance().OpenFunctionUI(self.ZoneScene(), self.NpcId, functionId);
+            }
         }
 
         public static async ETTask OpenNpcTaskUI(this OperaComponent self, int npcid)

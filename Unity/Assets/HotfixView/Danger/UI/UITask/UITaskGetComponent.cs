@@ -22,6 +22,8 @@ namespace ET
         public GameObject Lab_NpcSpeak;
         public GameObject Lab_NpcName;
         public GameObject Img_button;
+        public GameObject UILoopTask;
+        public GameObject ButtonLoopTask;
         public GameObject Obj_Lab_MoNnengHint;
         public List<UI> TaskUIList;
     }
@@ -63,6 +65,10 @@ namespace ET
             self.Img_button = rc.Get<GameObject>("Img_button");
             self.Img_button.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseNpcTask(); });
 
+            self.UILoopTask = rc.Get<GameObject>("UILoopTask");
+            self.ButtonLoopTask = rc.Get<GameObject>("ButtonLoopTask");
+            self.ButtonLoopTask.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonLoopTask().Coroutine(); });
+
             DataUpdateComponent.Instance.AddListener(DataType.TaskGet, self);
         }
     }
@@ -94,6 +100,11 @@ namespace ET
             UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
         }
 
+        public static async ETTask OnButtonLoopTask(this UITaskGetComponent self)
+        { 
+            
+        }
+
         public static void InitData(this UITaskGetComponent self, int npcID)
         {
             self.NpcID = npcID;
@@ -105,6 +116,7 @@ namespace ET
             self.TaskFubenList.SetActive(false);
             self.ScrollView1.SetActive(false);
             self.EnergySkill.SetActive(false);
+            self.UILoopTask.SetActive(false);
 
             if (npcConfig.NpcType == 1//神兽兑换
                || npcConfig.NpcType == 2)  //挑戰之地
@@ -117,10 +129,14 @@ namespace ET
                     go.SetActive(true);
                     UICommonHelper.SetParent(go, self.TaskFubenList);
                     UITaskFubenItemComponent uITaskFubenItemComponent = self.AddChild<UITaskFubenItemComponent, GameObject>(go);
-                    uITaskFubenItemComponent.OnInitData((int npcType,int fubenId) => { self.OnClickFubenItem(npcType,fubenId); }, npcConfig.NpcType, fubenList[i]);
+                    uITaskFubenItemComponent.OnInitData((int npcType, int fubenId) => { self.OnClickFubenItem(npcType, fubenId); }, npcConfig.NpcType, fubenList[i]);
                 }
             }
-            else if (npcID == 1000014)       //魔能老人
+            else if (npcConfig.NpcType == 3)    //循环任务
+            {
+                self.UILoopTask.SetActive(true);
+            }
+            else if (npcConfig.NpcType == 4)       //魔能老人
             {
                 //显示消耗
                 int costItemID = 12000006;
@@ -129,7 +145,7 @@ namespace ET
                 //获取
                 self.Obj_Lab_MoNnengHint.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(costItemID).ItemName + "  " + itemNum + "/" + 5;
             }
-            else if (npcID == 20000016) //补偿大师
+            else if (npcConfig.NpcType == 5) //补偿大师
             {
                 self.TaskFubenList.SetActive(true);
                 UICommonHelper.DestoryChild(self.TaskFubenList);
@@ -141,7 +157,7 @@ namespace ET
                     goitem.SetActive(true);
                     UICommonHelper.SetParent(goitem, self.TaskFubenList);
                     UIBuChangItemComponent uIBuChangItem = self.AddChild<UIBuChangItemComponent, GameObject>(goitem);
-                    uIBuChangItem.OnInitUI((long userid)=> { self.OnClickBuChangItem(userid); }, accountInfo.PlayerInfo.DeleteUserList[i]);
+                    uIBuChangItem.OnInitUI((long userid) => { self.OnClickBuChangItem(userid); }, accountInfo.PlayerInfo.DeleteUserList[i]);
                 }
             }
             else
