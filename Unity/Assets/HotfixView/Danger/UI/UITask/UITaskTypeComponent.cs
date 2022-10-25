@@ -80,7 +80,7 @@ namespace ET
                 return;
             }
 
-            List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().GetTaskTypeList((TaskTypeEnum)self.TaskTypeEnum);
+            List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().GetTaskTypeList(self.TaskTypeEnum);
             for (int i = 0; i < taskPros.Count; i++)
             {
                 UI ui_1 = null;

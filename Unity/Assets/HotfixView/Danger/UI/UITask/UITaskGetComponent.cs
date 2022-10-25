@@ -101,8 +101,14 @@ namespace ET
         }
 
         public static async ETTask OnButtonLoopTask(this UITaskGetComponent self)
-        { 
-            
+        {
+            C2M_TaskLoopGetRequest m_GetTaskRequest = new C2M_TaskLoopGetRequest() {  };
+            M2C_TaskLoopGetResponse m2C_GetTaskResponse = (M2C_TaskLoopGetResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_GetTaskRequest);
+            if (m2C_GetTaskResponse.Error != 0)
+            {
+                return;
+            }
+            self.OnCloseNpcTask();
         }
 
         public static void InitData(this UITaskGetComponent self, int npcID)
