@@ -67,8 +67,7 @@ namespace ET
 
             self.UILoopTask = rc.Get<GameObject>("UILoopTask");
             self.ButtonLoopTask = rc.Get<GameObject>("ButtonLoopTask");
-            self.ButtonLoopTask.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonLoopTask().Coroutine(); });
-
+            ButtonHelp.AddListenerEx(self.ButtonLoopTask, () => { self.OnButtonLoopTask().Coroutine(); });
             DataUpdateComponent.Instance.AddListener(DataType.TaskGet, self);
         }
     }

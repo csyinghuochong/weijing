@@ -18,7 +18,7 @@ namespace ET
             Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();
             foreach (var item in keyValuePairs)
             {
-                if (item.Value.TargetType == TaskTypeEnum.EveryDay)
+                if (item.Value.TaskType == TaskTypeEnum.EveryDay)
                 {
                     allTaskIds.Add(item.Key);
                 }
