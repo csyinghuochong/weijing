@@ -20,9 +20,7 @@ namespace ET
         public GameObject InputFieldIDCard;
         public GameObject InputFieldName;
         public GameObject FangChenMiSet;
-
         public AccountInfoComponent PlayerComponent;
-
         public long AccountId;
         public float LoginTime;
     }

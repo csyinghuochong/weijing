@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -24,9 +25,10 @@ namespace ET
 
     public static class UIBattleMainComponentSystem
     {
-        public static void OnUpdateUI(this UIBattleMainComponent self)
-        { 
-            
+        public static void OnUpdateUI(this UIBattleMainComponent self, M2C_BattleInfoResult message)
+        {
+            self.TextVS_1.GetComponent<Text>().text = message.CampKill_1.ToString();
+            self.TextVS_2.GetComponent<Text>().text = message.CampKill_2.ToString();
         }
     }
 }

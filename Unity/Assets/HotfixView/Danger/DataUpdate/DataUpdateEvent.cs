@@ -46,7 +46,7 @@ namespace ET
             DataUpdatelegateDics.Add(DataType.FriendChat, OnFriendChat);
             DataUpdatelegateDics.Add(DataType.PetXiLianUpdate, OnPetXiLianUpdate);
             DataUpdatelegateDics.Add(DataType.PetHeChengUpdate, OnHeChengReturn);
-            DataUpdatelegateDics.Add(DataType.MainHeroPosition, OnMainHeroPosition);
+            DataUpdatelegateDics.Add(DataType.MainHeroMove, OnMainHeroPosition);
         }
 
         public void OnMainHeroPosition(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)

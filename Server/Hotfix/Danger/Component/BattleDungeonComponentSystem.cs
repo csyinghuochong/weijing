@@ -34,6 +34,19 @@ namespace ET
             {
                 self.CampKillNumber_1++;
             }
+            List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                if (units[i].Type != UnitType.Player)
+                {
+                    continue;
+                }
+
+                M2C_BattleInfoResult m2C_Battle = self.m2C_BattleInfoResult;
+                m2C_Battle.CampKill_1 = self.CampKillNumber_1;
+                m2C_Battle.CampKill_2 = self.CampKillNumber_2;
+                MessageHelper.SendToClient(units[i], m2C_Battle);
+            }
         }
 
         public static  void SendReward(this BattleDungeonComponent self, int winCamp)

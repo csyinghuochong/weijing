@@ -53,7 +53,8 @@ namespace ET
             self.MakeListNode = rc.Get<GameObject>("MakeListNode");
 
             self.OnInitUI();
-            self.UpdateMakeList(4).Coroutine();
+            int showValue = NpcConfigCategory.Instance.Get(UIHelper.CurrentNpcId).ShopValue;
+            self.UpdateMakeList(showValue).Coroutine();
         }
     }
 

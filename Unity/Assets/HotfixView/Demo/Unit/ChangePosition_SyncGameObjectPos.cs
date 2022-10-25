@@ -22,7 +22,7 @@ namespace ET
                 //主角
                 if (unit.MainHero)
                 {
-                    EventType.DataUpdate.Instance.DataType = DataType.MainHeroPosition;
+                    EventType.DataUpdate.Instance.DataType = DataType.MainHeroMove;
                     EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
 
                     UICommonHelper.UpdateAllNpcBar(unit);

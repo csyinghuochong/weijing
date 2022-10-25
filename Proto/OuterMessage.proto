@@ -3948,3 +3948,12 @@ message C2M_RefreshUnitRequest // IActorLocationMessage
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 }
+
+message M2C_BattleInfoResult // IActorMessage
+{
+	int64 ActorId = 1;
+	int64 UnitId = 2;
+
+	int32 CampKill_1 = 3;
+	int32 CampKill_2 = 4;
+}

@@ -24,7 +24,7 @@ namespace ET
     {
         public override void Destroy(UIMapMiniComponent self)
         {
-            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroPosition, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
         }
     }
 
@@ -42,7 +42,7 @@ namespace ET
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.MainCityShow = rc.Get<GameObject>("MainCityShow");
 
-            DataUpdateComponent.Instance.AddListener(DataType.MainHeroPosition, self);
+            DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
         }
     }
 

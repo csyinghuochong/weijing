@@ -188,6 +188,13 @@ namespace ET
             public string DataParams;
         }
 
+        public class BattleInfo : DisposeObject
+        {
+            public static readonly BattleInfo Instance = new BattleInfo();
+            public M2C_BattleInfoResult m2C_Battle;
+            public Scene ZoneScene;
+        }
+
         /// <summary>
         /// 通用提示
         /// </summary>

@@ -459,5 +459,6 @@ namespace ET
 		 public const ushort C2M_TeamDungeonRBornRequest = 10456;
 		 public const ushort M2C_TeamDungeonRBornResult = 10457;
 		 public const ushort C2M_RefreshUnitRequest = 10458;
+		 public const ushort M2C_BattleInfoResult = 10459;
 	}
 }

@@ -35,7 +35,7 @@ namespace ET
     {
         public override void Destroy(UIMapBigComponent self)
         {
-            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroPosition, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
         }
     }
 
@@ -79,7 +79,7 @@ namespace ET
             self.OnAwake().Coroutine();
             self.InitNpcList().Coroutine();
 
-            DataUpdateComponent.Instance.AddListener(DataType.MainHeroPosition, self);
+            DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
         }
     }
 

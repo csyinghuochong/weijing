@@ -73,7 +73,6 @@ namespace ET
 						scene.GetComponent<MapComponent>().NavMeshId = sceneConfig.MapID.ToString();
 						unit.AddComponent<PathfindingComponent, string>(sceneConfig.MapID.ToString());
 						Game.Scene.GetComponent<RecastPathComponent>().Update(sceneConfig.MapID);
-
 						//更新unit坐标
 						unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
 						unit.Rotation = Quaternion.identity;

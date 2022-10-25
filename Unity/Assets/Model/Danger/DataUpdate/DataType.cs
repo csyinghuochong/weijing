@@ -97,6 +97,6 @@
 
         public const int UnitHpUpdate = 36;
 
-        public const int MainHeroPosition = 37;
+        public const int MainHeroMove = 37;
     }
 }

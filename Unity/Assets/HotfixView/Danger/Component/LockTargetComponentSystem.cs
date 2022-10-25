@@ -27,7 +27,7 @@ namespace ET
     {
         public override void Awake(LockTargetComponent self)
         {
-            DataUpdateComponent.Instance.AddListener(DataType.MainHeroPosition, self);
+            DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
         }
     }
 
@@ -42,7 +42,7 @@ namespace ET
                 self.LockUnitEffect = null;
             }
 
-            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroPosition, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
         }
     }
 

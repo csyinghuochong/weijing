@@ -8247,4 +8247,22 @@ namespace ET
 
 	}
 
+	[Message(OuterOpcode.M2C_BattleInfoResult)]
+	[ProtoContract]
+	public partial class M2C_BattleInfoResult: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public int CampKill_1 { get; set; }
+
+		[ProtoMember(4)]
+		public int CampKill_2 { get; set; }
+
+	}
+
 }
