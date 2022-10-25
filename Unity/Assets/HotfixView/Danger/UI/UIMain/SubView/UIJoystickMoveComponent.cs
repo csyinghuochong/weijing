@@ -226,10 +226,19 @@ namespace ET
         {
             self.HideUI();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit!= null && !unit.GetComponent<MoveComponent>().IsArrived())
+            if (unit == null)
             {
-                self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
+                return;
             }
+            if (!unit.GetComponent<StateComponent>().CanMove())
+            {
+                return;
+            }
+            if (unit.GetComponent<MoveComponent>().IsArrived())
+            {
+                return;
+            }
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
         }
 
     }

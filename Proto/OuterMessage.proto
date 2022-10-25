@@ -369,6 +369,7 @@ message M2C_CreateUnits // IActorMessage
 	repeated TransferInfo Transfers = 5;
 	repeated NpcInfo Npcs = 6;
 	repeated RolePetInfo Pets = 7;
+	int32 UpdateAll = 8;
 }
 
 message M2C_CreateMyUnit // IActorMessage
@@ -3947,5 +3948,3 @@ message C2M_RefreshUnitRequest // IActorLocationMessage
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 }
-
-
