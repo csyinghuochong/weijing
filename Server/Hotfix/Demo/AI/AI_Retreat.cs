@@ -9,7 +9,7 @@ namespace ET
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
             Unit unit = aiComponent.GetParent<Unit>();
-            float distance =  PositionHelper.Distance2D(unit.GetComponent<HeroDataComponent>().GetBornPostion(), unit.Position);
+            float distance =  PositionHelper.Distance2D(unit.GetBornPostion(), unit.Position);
             return distance >= aiComponent.ChaseRange;
         }
 
@@ -23,7 +23,7 @@ namespace ET
             aiComponent.TargetID = 0;
             aiComponent.IsRetreat = true;
             unit.Stop(0);
-            Vector3 bornVector3 = unit.GetComponent<HeroDataComponent>().GetBornPostion();
+            Vector3 bornVector3 = unit.GetBornPostion();
 
             while (true)
             {

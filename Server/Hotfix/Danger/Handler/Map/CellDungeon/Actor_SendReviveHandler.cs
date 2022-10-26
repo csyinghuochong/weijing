@@ -14,10 +14,7 @@ namespace ET
 
             if (success)
             {
-                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                numericComponent.ApplyValue(NumericType.Born_X, (long)(unit.Position.x * 10000));
-                numericComponent.ApplyValue(NumericType.Born_Y, (long)(unit.Position.y * 10000));
-                numericComponent.ApplyValue(NumericType.Born_Z, (long)(unit.Position.z * 10000));
+                unit.SetBornPosition(unit.Position);
                 unit.GetComponent<HeroDataComponent>().OnRevive();
                 unit.GetComponent<ChengJiuComponent>().OnRevive();
             }

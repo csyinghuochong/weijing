@@ -71,7 +71,7 @@ namespace ET
                 Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
                 if (unit != null)
                 {
-                    DropHelper.SendPickMessage(unit, teamDropItem.DropInfo, self.m2C_SyncChatInfo);
+                    FubenHelp.SendPickMessage(unit, teamDropItem.DropInfo, self.m2C_SyncChatInfo);
                 }
             }
         }

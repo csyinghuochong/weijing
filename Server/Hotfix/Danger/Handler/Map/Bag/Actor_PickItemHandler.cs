@@ -35,7 +35,7 @@ namespace ET
                     unit.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);       //移除掉落ID
                     removeIds.Add(drops[i].UnitId);
                 }
-                DropHelper.SendPickMessage(unit, drops[i], m2C_SyncChatInfo);
+                FubenHelp.SendPickMessage(unit, drops[i], m2C_SyncChatInfo);
             }
             
             return ErrorCode.ERR_Success;

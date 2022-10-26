@@ -475,23 +475,5 @@ namespace ET
 			return dropNumNow;
 		}
 
-		public static void SendPickMessage(Unit unit, DropInfo dropInfo, M2C_SyncChatInfo m2C_SyncChatInfo)
-		{
-			UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-			m2C_SyncChatInfo.ChatInfo = new ChatInfo();
-			m2C_SyncChatInfo.ChatInfo.PlayerLevel = userInfoComponent.UserInfo.Lv;
-			m2C_SyncChatInfo.ChatInfo.Occ = userInfoComponent.UserInfo.Occ;
-			m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.System;
-
-			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
-			string numShow = "";
-			if (itemConfig.Id == 1)
-			{
-				numShow = dropInfo.ItemID.ToString();
-			}
-			string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
-			m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
-			MessageHelper.Broadcast(unit, m2C_SyncChatInfo);
-		}
 	}
 }

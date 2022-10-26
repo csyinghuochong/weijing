@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -95,6 +96,14 @@ namespace ET
         public static int GetBattleCamp(this Unit self)
         {
             return self.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleCamp);
+        }
+
+        public static Vector3 GetBornPostion(this Unit self)
+        {
+            NumericComponent numericComponent = self.GetComponent<NumericComponent>();
+            return new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),
+                numericComponent.GetAsFloat(NumericType.Born_Y),
+                numericComponent.GetAsFloat(NumericType.Born_Z));
         }
     }
 }

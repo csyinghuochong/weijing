@@ -155,6 +155,7 @@
     <Compile Include="Assets\HotfixView\Demo\UI\UILoading\UILoadingComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiSellPriceEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Fsm_OnFsmChange.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Battle_OnBattleInfo.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeam\UITeamEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonCellMiniComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIEquipSetItemComponent.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Assets\HotfixView\Danger\Help\ItemViewHelp.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILingDi\UILingDiRewardComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellChapterSelectEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleMainComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityLvLiBaoComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleTaskComponent.cs" />
@@ -368,6 +370,7 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Skill_SkillEffectMove.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIZhanQu\UIZhanQuLevelItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetChallengeEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Team_TeamPickNotice.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILogin\UILoginEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UITypeViewComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMake\UIMakeNeedComponent.cs" />
@@ -419,6 +422,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiStallComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubItem\UISkillGridComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Sound\SoundComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeam\UITeamItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuTypeItemComponent.cs" />
@@ -444,6 +448,7 @@
     <Compile Include="Assets\HotfixView\Danger\Help\PlayerPrefsHelp.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIItemTips\UIItemExpBoxEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuShowComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleMainEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChat\UIChatEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\CameraComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendEvent.cs" />
@@ -482,6 +487,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityLvLiBaoItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiDuiHuanComponet.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampFuLiComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIWorldLv\UIWorldLvEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMakeLearn\UIMakeLearnEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISetting\UISettingEvent.cs" />
@@ -535,12 +541,6 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleMainComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleMainEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Battle_OnBattleInfo.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Team_TeamPickNotice.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

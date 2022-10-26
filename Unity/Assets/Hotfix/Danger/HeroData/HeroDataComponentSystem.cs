@@ -256,7 +256,7 @@ namespace ET
             unit.GetComponent<NumericComponent>().NumericDic[NumericType.Now_Hp] = 0;
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.Now_Hp, max_hp, 0);
             unit.GetComponent<SkillPassiveComponent>()?.Activeted();
-            unit.Position = self.GetBornPostion();
+            unit.Position = unit.GetBornPostion();
         }
 
         public static void InitTempPet(this HeroDataComponent self, Unit matster, int monster)
@@ -475,16 +475,6 @@ namespace ET
             }
         }
 #endif
-
-        public static Vector3 GetBornPostion(this HeroDataComponent self)
-        {
-            Unit unit = self.GetParent<Unit>();
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            return new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),
-                numericComponent.GetAsFloat(NumericType.Born_Y),
-                numericComponent.GetAsFloat(NumericType.Born_Z));
-        }
-
         /// <summary>
         /// 更新当前角色身上的buff信息, 更新基础属性
         /// </summary>

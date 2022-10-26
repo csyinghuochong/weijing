@@ -278,5 +278,21 @@ namespace ET
         {
             return self.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleCamp);
         }
+
+        public static void SetBornPosition(this Unit self, Vector3 vector3)
+        { 
+            NumericComponent numericComponent = self.GetComponent<NumericComponent>();
+            numericComponent.ApplyValue(NumericType.Born_X, (long)(vector3.x * 10000));
+            numericComponent.ApplyValue(NumericType.Born_Y, (long)(vector3.y * 10000));
+            numericComponent.ApplyValue(NumericType.Born_Z, (long)(vector3.z * 10000));
+        }
+
+        public static Vector3 GetBornPostion(this Unit self)
+        {
+            NumericComponent numericComponent = self.GetComponent<NumericComponent>();
+            return new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),
+                numericComponent.GetAsFloat(NumericType.Born_Y),
+                numericComponent.GetAsFloat(NumericType.Born_Z));
+        }
     }
 }
