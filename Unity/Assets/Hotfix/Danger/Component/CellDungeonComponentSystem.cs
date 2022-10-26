@@ -127,11 +127,11 @@ namespace ET
 
         public static bool IsAllMonsterDead(this CellDungeonComponent self)
         {
-            List<Entity> entities = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Children.Values.ToList();
+            List<Unit> entities = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
             for(int i = 0; i < entities.Count; i++)
             {
                 UnitInfoComponent unitInfoComponent = entities[i].GetComponent<UnitInfoComponent>();
-                if (unitInfoComponent.IsMonster() && unitInfoComponent.IsCanBeAttack())
+                if (entities[i].Type == UnitType.Monster && unitInfoComponent.IsCanBeAttack())
                     return false;
             }
 

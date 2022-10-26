@@ -88,8 +88,7 @@ namespace ET
 						{
 							continue;
 						}
-						UnitInfoComponent unitInfoComponent = units[i].GetComponent<UnitInfoComponent>();
-						if (unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
+						if (units[i].GetMonsterType() == (int)MonsterTypeEnum.Boss)
 						{
 							continue;
 						}

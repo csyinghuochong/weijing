@@ -24,42 +24,6 @@ namespace ET
 
     public static class UnitInfoComponentSystem
     {
-
-        public static bool IsMonster(this UnitInfoComponent self)
-        {
-            return self.GetParent<Unit>().Type == UnitType.Monster;
-        }
-
-        public static bool IsPlayer(this UnitInfoComponent self)
-        {
-            return self.GetParent<Unit>().Type == UnitType.Player;
-        }
-
-        public static bool IsPet(this UnitInfoComponent self)
-        {
-            return self.GetParent<Unit>().Type == UnitType.Pet;
-        }
-
-        public static bool IsChest(this UnitInfoComponent self)
-        {
-            return self.IsMonster() && MonsterConfigCategory.Instance.Get(self.GetParent<Unit>().ConfigId).MonsterSonType == 55;
-        }
-
-        public static int GetMonsterType(this UnitInfoComponent self)
-        {
-            return MonsterConfigCategory.Instance.Get(self.GetParent<Unit>().ConfigId).MonsterType;
-        }
-
-        public static int GetMonsterSonType(this UnitInfoComponent self)
-        {
-            return MonsterConfigCategory.Instance.Get(self.GetParent<Unit>().ConfigId).MonsterSonType;
-        }
-
-        public static bool IsMonsterHaveAI(this UnitInfoComponent self)
-        {
-            return MonsterConfigCategory.Instance.Get(self.GetParent<Unit>().ConfigId).AI > 0;
-        }
-
         public static bool IsCanBeAttack(this UnitInfoComponent self)
         {
             Unit unit = self.GetParent<Unit>();
@@ -73,7 +37,7 @@ namespace ET
             if (numericComponent.GetAsLong((int)NumericType.Now_Hp) <= 0
                 || numericComponent.GetAsLong((int)NumericType.Now_Dead) == 1)
                 return false;
-            if (self.IsMonster() && (self.GetMonsterType() == (int)MonsterTypeEnum.SceneItem))
+            if (unit.Type == UnitType.Monster && (unit.GetMonsterType() == (int)MonsterTypeEnum.SceneItem))
                 return false;
             return true;
         }
@@ -112,11 +76,11 @@ namespace ET
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene)
             {
                 //除了宠物都可以攻击
-                if (self.IsPet() && unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == beattack.Id)
+                if (unit.Type == UnitType.Pet && unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == beattack.Id)
                 {
                     return false;
                 }
-                if (self.IsPlayer() && petComponent.GetFightPetId() == beattack.Id)
+                if (unit.Type == UnitType.Player && petComponent.GetFightPetId() == beattack.Id)
                 {
                     return false;
                 }

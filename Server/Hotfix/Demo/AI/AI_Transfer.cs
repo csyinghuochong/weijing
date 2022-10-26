@@ -10,7 +10,6 @@ namespace ET
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
             Unit unit = aiComponent.GetParent<Unit>();
-            Vector3
             return true;
         }
 

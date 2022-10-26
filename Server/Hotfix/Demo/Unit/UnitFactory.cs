@@ -255,19 +255,18 @@ namespace ET
 
         public static void CreateDropItems(Unit unit, Unit main)
         {
-            UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             if (unit.Type != UnitType.Monster)
             {
                 return;
             }
-            if (unitInfoComponent.GetMonsterType() != (int)MonsterTypeEnum.Boss
-                && unitInfoComponent.GetMonsterType() != (int)MonsterTypeEnum.SceneItem
+            if (unit.GetMonsterType() != (int)MonsterTypeEnum.Boss
+                && unit.GetMonsterType() != (int)MonsterTypeEnum.SceneItem
                 && main.GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0)
             {
                 return;
             }
             float dropAdd_Pro = 1;
-            if (unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
+            if (unit.GetMonsterType() == (int)MonsterTypeEnum.Boss)
             {
                 int fubenDifficulty = FubenDifficulty.None;
                 dropAdd_Pro += main.GetComponent<NumericComponent>().GetAsFloat(NumericType.Base_DropAdd_Pro_Add);
@@ -313,7 +312,7 @@ namespace ET
                 {
                     UnitComponent unitComponent = unit.DomainScene().GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
-                    unitInfoComponent = dropitem.AddComponent<UnitInfoComponent>();
+                    dropitem.AddComponent<UnitInfoComponent>();
                     dropitem.Type = UnitType.DropItem;
                     DropComponent dropCheckComponent = dropitem.AddComponent<DropComponent>();
                     dropCheckComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);

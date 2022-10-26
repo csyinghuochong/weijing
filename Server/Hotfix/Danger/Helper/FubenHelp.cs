@@ -130,11 +130,12 @@ namespace ET
 
 		public static bool IsAllMonsterDead(Scene scene)
 		{
-			foreach ((long id, Entity value) in scene.GetComponent<UnitComponent>().Children)
+			List<Unit> units = scene.GetComponent<UnitComponent>().GetAll();
+			for(int i = 0; i < units.Count; i++)
 			{
-				UnitInfoComponent unitInfoComponent = value.GetComponent<UnitInfoComponent>();
-				if (unitInfoComponent.IsMonster() && unitInfoComponent.IsCanBeAttack()
-					 && value.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
+				if (units[i].Type == UnitType.Monster
+				&& units[i].GetComponent<UnitInfoComponent>().IsCanBeAttack()
+				&& units[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
 				{
 					return false;
 				}
@@ -146,10 +147,10 @@ namespace ET
 		public static int GetAlivePetNumber(Scene scene)
 		{
 			int petNumber = 0;
-			foreach ((long id, Entity value) in scene.GetComponent<UnitComponent>().Children)
+			List<Unit> units = scene.GetComponent<UnitComponent>().GetAll();
+			for(int i = 0; i < units.Count; i++)
 			{
-				UnitInfoComponent unitInfoComponent = value.GetComponent<UnitInfoComponent>();
-				if (unitInfoComponent.IsPet() && value.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
+				if (units[i].Type == UnitType.Pet && units[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
 				{
 					petNumber++;
 				}

@@ -116,7 +116,7 @@ namespace ET
             {
                 Unit unit = unitList[i];    
                 UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-                if (!unitInfoComponent.IsPet() || !unitInfoComponent.IsCanBeAttack())
+                if (unit.Type != UnitType.Pet || !unitInfoComponent.IsCanBeAttack())
                 {
                     continue;
                 }

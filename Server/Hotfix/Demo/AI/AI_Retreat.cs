@@ -16,7 +16,7 @@ namespace ET
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = aiComponent.GetParent<Unit>();
-            if (aiComponent.IsBoss)
+            if (unit.IsBoss())
             {
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 0);
             }

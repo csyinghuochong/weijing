@@ -21,14 +21,15 @@ namespace ET
             }
             //获取附近是否有少于?米的玩家,是:开始追击 否:不触发
             aiComponent.TargetID = 0;
+            Unit unit = aiComponent.GetParent<Unit>();
             float distance = Vector3.Distance(nearest.Position, aiComponent.GetParent<Unit>().Position);
             if (distance < aiComponent.ActRange)
             {
                 aiComponent.TargetID = nearest.Id;
             }
-            if (aiComponent.TargetID != 0 && aiComponent.IsBoss)
+            if (aiComponent.TargetID != 0 && unit.IsBoss())
             {
-                aiComponent.GetParent<Unit>().GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 1, true, true);
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BossInCombat, 1, true, true);
             }
             return true;
         }

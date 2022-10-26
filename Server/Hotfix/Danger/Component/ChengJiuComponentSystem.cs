@@ -20,8 +20,7 @@ namespace ET
             if (bekill == null || bekill.IsDisposed)
                 return;
 
-            UnitInfoComponent unitInfoComponent = bekill.GetComponent<UnitInfoComponent>();
-            if (!unitInfoComponent.IsMonster())
+            if (bekill.Type != UnitType.Monster)
                 return;
 
             int unitconfigId = bekill.ConfigId;

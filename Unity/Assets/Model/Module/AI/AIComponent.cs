@@ -19,11 +19,6 @@ namespace ET
         public int Current;
 
         /// <summary>
-        /// 攻击间隔
-        /// </summary>
-        public long ActInterValTime;
-
-        /// <summary>
         /// 攻击范围
         /// </summary>
         public double ActRange;

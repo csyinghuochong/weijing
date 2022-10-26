@@ -136,15 +136,7 @@ namespace ET
 
         public static bool IsAllMonsterDead(this TeamDungeonComponent self)
         {
-            List<Entity> allunits = self.DomainScene().GetComponent<UnitComponent>().Children.Values.ToList() ;
-            for (int i = 0; i < allunits.Count; i++)
-            {
-                UnitInfoComponent unitInfoComponent = allunits[i].GetComponent<UnitInfoComponent>();
-                if (unitInfoComponent.IsMonster() && unitInfoComponent.IsCanBeAttack())
-                    return false;
-            }
-
-            return true;
+            return FubenHelp.IsAllMonsterDead(self.DomainScene());
         }
 
         public static void OnKillEvent(this TeamDungeonComponent self, Unit unit)

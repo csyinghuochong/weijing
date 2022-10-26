@@ -24,7 +24,6 @@ namespace ET
     {
         public override void Awake(AIComponent self, int aiConfigId)
         {
-            self.IsBoss = false;
             self.TargetID = 0;
             self.StopAI = false;
             self.IsRetreat = false;
@@ -106,7 +105,6 @@ namespace ET
         {
             MonsterConfig MonsterCof = MonsterConfigCategory.Instance.Get(monsteConfigId);
             //初始化AI组件的一些东西
-            self.ActInterValTime = MonsterCof.ActInterValTime;
             self.ActRange = 100;        //5-10  与主角距离小于此值时,向主角发动追击
             self.ChaseRange = 100;    //超出会返回到出生点
             self.PatrolRange = MonsterCof.PatrolRange;  //巡逻范围
@@ -119,22 +117,17 @@ namespace ET
         {
             MonsterConfig MonsterCof = MonsterConfigCategory.Instance.Get(monsteConfigId);
             //初始化AI组件的一些东西
-            self.ActInterValTime = MonsterCof.ActInterValTime;
-
             self.ActRange = MonsterCof.ActRange + self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MonsterDis);        //5-10  与主角距离小于此值时,向主角发动追击
             self.ChaseRange = MonsterCof.ChaseRange;    //超出会返回到出生点
             self.PatrolRange = MonsterCof.PatrolRange;  //巡逻范围
             self.ActDistance = MonsterCof.ActDistance;  //2    小于转攻击
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
-            self.IsBoss = MonsterCof.MonsterType == (int)MonsterTypeEnum.Boss;
         }
 
         public static void InitTeampPet(this AIComponent self, int monsteConfigId)
         {
             MonsterConfig MonsterCof = MonsterConfigCategory.Instance.Get(monsteConfigId);
             //初始化AI组件的一些东西
-            self.ActInterValTime = MonsterCof.ActInterValTime;
-
             self.ActRange = MonsterCof.ActRange;        //5-10  与主角距离小于此值时,向主角发动追击
             self.ChaseRange = MonsterCof.ChaseRange;    //超出会返回到出生点
             self.PatrolRange = MonsterCof.PatrolRange;  //巡逻范围
@@ -149,7 +142,6 @@ namespace ET
             self.ChaseRange = 100;
             self.ActRange = 100;
             self.ActDistance = 2;
-            self.ActInterValTime = 500L;
             self.AISkillIDList.Add(petConfig.ActSkillID);
             self.StopAI = false;
         }
@@ -165,13 +157,7 @@ namespace ET
             self.ChaseRange = 100;
             self.ActRange = petConfig.ChaseRange;
             self.ActDistance = 2;
-            self.ActInterValTime = 500L;
             self.AISkillIDList.Add(petConfig.ActSkillID);
-        }
-
-        public static long GetActInterValTime(this AIComponent self)
-        {
-            return self.ActInterValTime;
         }
 
         public static int GetActSkillId(this AIComponent self)        {

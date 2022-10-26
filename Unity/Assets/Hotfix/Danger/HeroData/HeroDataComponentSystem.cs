@@ -207,7 +207,7 @@ namespace ET
             int waitRevive =  self.OnWaitRevive();
             unit.RemoveComponent<AIComponent>();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
-            if (unitInfoComponent.IsPlayer())
+            if (unit.Type == UnitType.Player)
             {
                 RolePetInfo rolePetInfo = unit.GetComponent<PetComponent>().GetFightPet();
                 if (rolePetInfo != null)
@@ -216,7 +216,7 @@ namespace ET
                     unit.GetComponent<PetComponent>().OnPetDead(rolePetInfo.Id);
                 }
             }
-            if (unitInfoComponent.IsPet())
+            if (unit.Type == UnitType.Pet)
             {
                 int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
                 if (sceneTypeEnum != (int)SceneTypeEnum.PetTianTi
@@ -468,7 +468,7 @@ namespace ET
                 args.Parent.ZoneScene().GetComponent<CellDungeonComponent>().CheckChuansongOpen();
             }
             if (sceneTypeEnum == (int)SceneTypeEnum.LocalDungeon 
-                && unitType== UnitType.Monster && unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
+                && unitType== UnitType.Monster && unit.GetMonsterType() == (int)MonsterTypeEnum.Boss)
             {
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                 self.ZoneScene().GetComponent<UserInfoComponent>().OnAddRevive(unit.ConfigId,TimeHelper.ServerNow() + (long)monsterConfig.ReviveTime * 1000);

@@ -14,9 +14,8 @@
 					continue;
 				}
 				bool async = false;
-				UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();	
-				if (unitInfoComponent.IsMonster()
-					&& unitInfoComponent.GetMonsterType() != 5)
+				if (unit.Type == UnitType.Monster
+					&& unit.GetMonsterType() != 5)
 				{
 					async = true;
 				}

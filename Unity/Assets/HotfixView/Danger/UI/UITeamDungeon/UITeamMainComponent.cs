@@ -94,9 +94,8 @@ namespace ET
 
         public static async ETTask SendTeamPick(this UITeamMainComponent self, int needType)
         {
+            await ETTask.CompletedTask;
             DropInfo dropInfo = self.CurDrop;
-
-
             self.LeftTime = 0;
             self.CurDrop = null;
         }

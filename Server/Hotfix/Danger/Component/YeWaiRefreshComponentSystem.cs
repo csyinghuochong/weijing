@@ -170,8 +170,7 @@ namespace ET
 
         public static void OnKillEvent(this YeWaiRefreshComponent self, Unit defend)
         {
-            UnitInfoComponent unitInfoComponent = defend.GetComponent<UnitInfoComponent>();
-            if (!unitInfoComponent.IsMonster())
+            if (defend.Type != UnitType.Monster)
             {
                 return;
             }
