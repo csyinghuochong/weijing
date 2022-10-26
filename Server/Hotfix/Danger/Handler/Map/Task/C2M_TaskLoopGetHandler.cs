@@ -26,6 +26,14 @@ namespace ET
                 return;
             }
 
+            //获取当前任务是否已达上限
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TaskLoopNumber) >= GlobalValueConfigCategory.Instance.Get(58).Value2)
+            {
+                response.Error = ErrorCore.ERR_ShangJinNumFull;
+                reply();
+                return;
+            }
+
             List<int> allTaskIds = new List<int>();
             Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();
             int roleLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
