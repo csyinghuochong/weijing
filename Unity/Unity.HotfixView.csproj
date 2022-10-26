@@ -8,7 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace />
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{D31345DE-9B88-525C-8E9C-744C99AE7509}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -22,7 +23,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\</OutputPath>
-    <DefineConstants>UNITY_2020_3_33;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_NATIVE_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_RUNTIME_PERMISSIONS;ENABLE_ENGINE_CODE_STRIPPING;ENABLE_ONSCREEN_KEYBOARD;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;ENABLE_VIDEO;PLATFORM_ANDROID;UNITY_ANDROID;UNITY_ANDROID_API;ENABLE_EGL;ENABLE_NETWORK;ENABLE_RUNTIME_GI;ENABLE_CRUNCH_TEXTURE_COMPRESSION;UNITY_CAN_SHOW_SPLASH_SCREEN;UNITY_HAS_GOOGLEVR;UNITY_HAS_TANGO;ENABLE_SPATIALTRACKING;PLATFORM_EXTENDS_VULKAN_DEVICE;PLATFORM_HAS_MULTIPLE_SWAPCHAINS;UNITY_ANDROID_SUPPORTS_SHADOWFILES;ENABLE_UNITYADS_RUNTIME;UNITY_UNITYADS_API;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_IG;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_CLOUD_FEATURES;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;NET452;DISABLE_ILRUNTIME_DEBUG;ILRuntime:UNITY_EDITO:QQ;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>UNITY_2020_3_33;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;ENABLE_MANAGED_UNITYTLS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;UNITY_UGP_API;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_4_6;ENABLE_PROFILER;DEBUG;TRACE;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_IG;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_CLOUD_FEATURES;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;ILRuntime;SUBSTANCE_PLUGIN_ENABLED;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -49,16 +50,14 @@
     <UnityProjectGenerator>Package</UnityProjectGenerator>
     <UnityProjectGeneratorVersion>2.0.14</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
-    <UnityBuildTarget>Android:13</UnityBuildTarget>
+    <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.3.33f1c2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Battle_OnBattleInfo.cs" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\HotfixView\Danger\UI\OccTwo\UIOccTwoShowComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleMainComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleMainEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainEvent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILobby\UICreateRoleListComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\Help\GlobalHelp.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryTipsComponent.cs" />
@@ -137,8 +136,8 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetSelectEvent.cs" />
     <Compile Include="Assets\HotfixView\Demo\Config\ConfigComponent_SetConfigLoader_Awake.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIRoleQiangHuaComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskGetComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskGetComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIItemTips\UIItemTipsComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UIBuffTipsComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonSettlementPlayerComponent.cs" />
@@ -169,15 +168,15 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIGuide\UIGuideEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryTaskItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Register\UIRegisterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Component\HeroTransformComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITuZhiMake\UITuZhiMakeNeedComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Component\HeroTransformComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRealName\UIRealNameComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIZhanQu\UIZhanQuCombatItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianSkillItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Skill_OnSkillEffectReset.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIUnion\UIUnionMyComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetUpStarComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Team_OnRecvTeamInvite.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetUpStarComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIShouJi\UIShouJiItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILingDi\UILingDiRewardLevelComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRandomTower\UIRandomOpenEvent.cs" />
@@ -211,6 +210,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonEnterShowComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UICommonRewardComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampRewardComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleShopComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityTeHuiComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIWorldLv\UIWorldLvComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIEnergy\UIEnergyEvent.cs" />
@@ -229,6 +229,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellChapterSelectEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityLvLiBaoComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleTaskComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonCellComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampSelectComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillMakeComponent.cs" />
@@ -244,6 +245,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityMaoXianComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetHeXinHeChengComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIRoleGemHoleComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\OccTwo\UIOccTwoComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILoading\UILoadingEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianShowComponent.cs" />
@@ -270,8 +272,8 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIMystery\UIMysteryItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Skill_PlayAnimator.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankPetItemComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIZhanQu\UIZhanQuEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Queue\UIQueueComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIZhanQu\UIZhanQuEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Help\TaskViewHelp.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityTokenItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeam\UITeamApplyListComponent.cs" />
@@ -324,8 +326,8 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIShouJi\UIShouJiChapterComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\FingerTouchComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UISingingComponent.cs" />
-    <Compile Include="Assets\HotfixView\Demo\UI\UILobby\UILobbyEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRecharge\UIRechargeComponent.cs" />
+    <Compile Include="Assets\HotfixView\Demo\UI\UILobby\UILobbyEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Effect\EffectViewComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuTypeComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UIPageViewComponent.cs" />
@@ -337,8 +339,8 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankRewardEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetEgg\UIPetChouKaComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuRewardItemComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendChatItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIWatch\UIWatchMenuComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendChatItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChouKa\UIChouKaRewardItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMail\UIMailEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIRoleHuiShouComponent.cs" />
@@ -383,8 +385,8 @@
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UIPageButtonComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellChapterItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\ChangeEquipComponentSystem.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendBlackItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonCreateEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendBlackItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILingDi\UILingDiComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILingDi\UILingDiRewardEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UIDigTreasureComponent.cs" />
@@ -392,9 +394,9 @@
     <Compile Include="Assets\HotfixView\Demo\Opera\OperaComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonSelectComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UI_CommonHint_2.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Component\DropUIComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\OccTwo\UIOccTwoShowEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Component\DropUIComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIEnergy\UIEnergyComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UIModelShowComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILogin\AppStartInitFinish_CreateLoginUI.cs" />
@@ -405,8 +407,8 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetEgg\UIPetEggListComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryTaskComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Unit\MoveStart_PlayMoveAnimate.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Server\UISelectGameServerSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendApplyItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Server\UISelectGameServerSystem.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UIHelp\SceneChangeFinishEvent_CreateUIHelp.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICreateRole\UICreateRoleComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetListComponent.cs" />
@@ -529,16 +531,15 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIDungeon\UIDungeonItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskFubenItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMakeLearn\UIMakeLearnItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILingDi\UILingDiRewardItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleShopComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleTaskComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Assets\HotfixView\Unity.HotfixView.asmdef" />
+  </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
@@ -564,11 +565,20 @@
     <Reference Include="UnityEngine.AudioModule">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.AudioModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.AutoStreamingModule">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.AutoStreamingModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.ClothModule">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.ClothModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CloudFoundationModule">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.CloudFoundationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.ClusterRendererModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.CoreModule">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.CoreModule.dll</HintPath>
@@ -648,6 +658,9 @@
     <Reference Include="UnityEngine.SubstanceModule">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.SubstanceModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.TLSModule">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.TLSModule.dll</HintPath>
     </Reference>
@@ -711,14 +724,23 @@
     <Reference Include="UnityEngine.VFXModule">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.VFXModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.VehiclesModule">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.VehiclesModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.VideoModule">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.VideoModule.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.VirtualTexturingModule">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.VirtualTexturingModule.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine.WindModule">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEngine.XRModule.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\Managed\UnityEngine\UnityEditor.dll</HintPath>
@@ -762,17 +784,17 @@
     <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
-    <Reference Include="dnlib">
-      <HintPath>Library\PackageCache\com.focus-creative-games.hybridclr_unity@8eb94be37e\Plugins\dnlib.dll</HintPath>
+    <Reference Include="log4netPlastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\log4netPlastic.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Mono\ThirdRes\GUI Pro Kit Fantasy RPG\SampleProject\Extensions\Demigiant\DOTween\DOTween.dll</HintPath>
     </Reference>
-    <Reference Include="ICSharpCode.NRefactory">
-      <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.8.1\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
+    <Reference Include="Unity.Plastic.Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="LZ4">
-      <HintPath>Library\PackageCache\com.focus-creative-games.hybridclr_unity@8eb94be37e\Plugins\LZ4.dll</HintPath>
+    <Reference Include="Unity.Plastic.Antlr3.Runtime">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="CommandLine">
       <HintPath>Assets\Plugins\BuglyPlugins\CommandLine.dll</HintPath>
@@ -782,6 +804,9 @@
     </Reference>
     <Reference Include="DOTweenEditor">
       <HintPath>Assets\Mono\ThirdRes\GUI Pro Kit Fantasy RPG\SampleProject\Extensions\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@1.15.15\Lib\Editor\PlasticSCM\unityplastic.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.iOS.Extensions.Xcode">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
@@ -1149,23 +1174,23 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Unity.Hotfix.csproj">
-      <Project>{1066F652-6A89-D1C4-9881-1A19DF7AB80E}</Project>
+      <Project>{9833C6D5-7314-8D23-A872-FA46C9069ADB}</Project>
       <Name>Unity.Hotfix</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Model.csproj">
-      <Project>{B4BF9894-F5D9-41C4-13E3-3F26F7700E29}</Project>
+      <Project>{E528FD1F-F771-88EC-D5B3-AD3AC2E7D530}</Project>
       <Name>Unity.Model</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.ModelView.csproj">
-      <Project>{2F8409C1-DA01-D464-DBF2-00C6449E459E}</Project>
+      <Project>{F0CF7780-8C1C-A3E9-2F32-F05C6C211880}</Project>
       <Name>Unity.ModelView</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.Mono.csproj">
-      <Project>{29FA1059-9757-9C19-985B-FC9FC473328E}</Project>
+      <Project>{1B645181-9272-9993-3A8A-0268892809DC}</Project>
       <Name>Unity.Mono</Name>
     </ProjectReference>
     <ProjectReference Include="Unity.ThirdParty.csproj">
-      <Project>{E15BADD2-3A26-309A-AB0F-DC5B08044350}</Project>
+      <Project>{54B557BD-F834-1501-114A-61992339DC38}</Project>
       <Name>Unity.ThirdParty</Name>
     </ProjectReference>
   </ItemGroup>
@@ -1178,7 +1203,4 @@
   <Target Name="AfterBuild">
   </Target>
   -->
-  <ItemGroup>
-    <Compile Include="Codes\HotfixView\**\*.cs" />
-  </ItemGroup>
 </Project>

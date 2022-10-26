@@ -11,12 +11,10 @@ namespace ET
         {
             List<DropInfo> drops = request.ItemIds;
             List<long> removeIds = new List<long>();
-
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
                 TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
-
                 List<Unit> allPlayer = unit.GetUnitList(UnitType.Player);
                 M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
                 for (int i = 0; i < drops.Count; i++)
@@ -26,16 +24,24 @@ namespace ET
                     {
                         continue;
                     }
+                    int addItemID = drops[i].ItemID;
+                    int addItemNum = drops[i].ItemNum;
+                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
+                    //紫色品质通知客户端抉择
+                    if (itemConfig.ItemQuality >= 4)
+                    {
+                        M2C_TeamPickMessage teamPickMessage = teamDungeonComponent.m2C_TeamPickMessage;
+                        teamPickMessage.DropItems.Add(drops[i]);
+                        MessageHelper.Broadcast(unit, teamPickMessage);
+                        continue;
+                    }
+
                     m2C_SyncChatInfo.ChatInfo = new ChatInfo();
                     m2C_SyncChatInfo.ChatInfo.PlayerLevel = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                     m2C_SyncChatInfo.ChatInfo.Occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
                     m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.System;
 
-                    int addItemID = drops[i].ItemID;
-                    int addItemNum = drops[i].ItemNum;
-                    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
-
-                    Unit owner = null;
+                    Unit owner = null;                    
                     //已经有归属了
                     if (teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                     {
@@ -86,7 +92,7 @@ namespace ET
             else
             {
                 M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
-
+                //DropType == 0公共掉落  1私有掉落
                 for (int i = 0; i < drops.Count; i++)
                 {
                     Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);

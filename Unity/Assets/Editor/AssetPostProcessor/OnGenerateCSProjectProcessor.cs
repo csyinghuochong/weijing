@@ -75,9 +75,9 @@ namespace ET
             itemGroup.AppendChild(compile);
 
             var projectReference = newDoc.CreateElement("ProjectReference", newDoc.DocumentElement.NamespaceURI);
-            //projectReference.SetAttribute("Include", @"..\Tools\Analyzer\Analyzer.csproj");
-            //projectReference.SetAttribute("OutputItemType", @"Analyzer");
-            //projectReference.SetAttribute("ReferenceOutputAssembly", @"false");
+            projectReference.SetAttribute("Include", @"..\Tools\Analyzer\Analyzer.csproj");
+            projectReference.SetAttribute("OutputItemType", @"Analyzer");
+            projectReference.SetAttribute("ReferenceOutputAssembly", @"false");
 
             var project = newDoc.CreateElement("Project", newDoc.DocumentElement.NamespaceURI);
             project.InnerText = @"{d1f2986b-b296-4a2d-8f12-be9f470014c3}";
