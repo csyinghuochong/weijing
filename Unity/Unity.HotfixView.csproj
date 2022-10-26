@@ -57,6 +57,8 @@
     <Compile Include="Assets\HotfixView\Danger\UI\OccTwo\UIOccTwoShowComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleMainComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleMainEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainEvent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILobby\UICreateRoleListComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\Help\GlobalHelp.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryTipsComponent.cs" />

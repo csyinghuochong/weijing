@@ -17,15 +17,7 @@ namespace ET
             {
                 TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
 
-                List<Unit> allPlayer = new List<Unit>();
-                foreach ((long id, Entity value) in unit.DomainScene().GetComponent<UnitComponent>().Children)
-                {
-                    if ((value as Unit).Type == UnitType.Player)
-                    {
-                        allPlayer.Add(value as Unit);
-                    }
-                }
-
+                List<Unit> allPlayer = unit.GetUnitList(UnitType.Player);
                 M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
                 for (int i = 0; i < drops.Count; i++)
                 {
@@ -78,12 +70,9 @@ namespace ET
                     rewardItems.Add(new RewardItem() { ItemID = addItemID, ItemNum = addItemNum });
 
                     bool success = owner.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
-                    if (!success)
+                    if (!success && !teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                     {
-                        if (!teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
-                        {
-                            teamDungeonComponent.ItemFlags.Add(unitDrop.Id, owner.Id);
-                        }
+                        teamDungeonComponent.ItemFlags.Add(unitDrop.Id, owner.Id);
                         continue;
                     }
 
