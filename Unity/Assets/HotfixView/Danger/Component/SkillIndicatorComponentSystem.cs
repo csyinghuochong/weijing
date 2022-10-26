@@ -267,14 +267,14 @@ namespace ET
         public static void OnUpdate(this SkillIndicatorComponent self)
         {
             SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
-            if (self.SkillIndicator == null || skillIndicatorItem.GameObject == null)
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (self.SkillIndicator == null || skillIndicatorItem.GameObject == null || unit == null)
             {
                 TimerComponent.Instance?.Remove(ref self.Timer);
                 return;
             }
 
             Quaternion rotation;
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             skillIndicatorItem.GameObject.transform.localPosition = unit.Position;
             switch (skillIndicatorItem.SkillZhishiType)
             {
