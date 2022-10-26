@@ -266,6 +266,7 @@ namespace ET
 			{
 				UI uitex = await UIHelper.Create( self.ZoneScene(), UIType.UIRoleXiLianTen );
 				uitex.GetComponent<UIRoleXiLianTenComponent>().OnInitUI(bagInfo, r2c_roleEquip.ItemXiLianResults);
+				self.OnXiLianReturn();
 			}
 		}
 	}

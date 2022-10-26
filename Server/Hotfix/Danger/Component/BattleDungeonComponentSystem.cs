@@ -15,6 +15,7 @@ namespace ET
         {
             self.CampKillNumber_1 = 0;
             self.CampKillNumber_2 = 0;
+            self.SendReward = false;
         }
     }
 
@@ -47,13 +48,29 @@ namespace ET
                 m2C_Battle.CampKill_2 = self.CampKillNumber_2;
                 MessageHelper.SendToClient(units[i], m2C_Battle);
             }
+
+            int score = GlobalValueConfigCategory.Instance.Get(57).Value2;
+            if (self.CampKillNumber_1 > score || self.CampKillNumber_2 > score)
+            {
+                self.SendReward();
+            }
         }
 
-        public static  void SendReward(this BattleDungeonComponent self, int winCamp)
+        public static  void SendReward(this BattleDungeonComponent self)
         {
-            if (winCamp == 0)
+            if (!self.SendReward)
             {
                 return;
+            }
+            self.SendReward = true;
+            int winCamp = 1;
+            if (self.CampKillNumber_1 > self.CampKillNumber_2)
+            {
+                winCamp = CampEnum.CampPlayer_1;
+            }
+            if (self.CampKillNumber_2 > self.CampKillNumber_1)
+            {
+                winCamp = CampEnum.CampPlayer_2;
             }
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(56);
             List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
@@ -61,6 +78,10 @@ namespace ET
             for (int i = 0; i < units.Count; i++)
             {
                 if (units[i].Type != UnitType.Player)
+                {
+                    continue;
+                }
+                if (UnitHelper.GetBattleCamp(units[i])!=winCamp)
                 {
                     continue;
                 }
@@ -107,16 +128,7 @@ namespace ET
 
         public static void OnBattleOver(this BattleDungeonComponent self)
         {
-            int winCamp = 1;
-            if (self.CampKillNumber_1 > self.CampKillNumber_2)
-            {
-                winCamp = CampEnum.CampPlayer_1;
-            }
-            if (self.CampKillNumber_2 > self.CampKillNumber_1)
-            {
-                winCamp = CampEnum.CampPlayer_2;
-            }
-            self.SendReward(winCamp);
+            self.SendReward();
             self.KickOutPlayer();
         }
     }

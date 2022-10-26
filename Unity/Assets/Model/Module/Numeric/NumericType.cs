@@ -9,8 +9,8 @@
         public const int Now_Hp = 3001;                                         //生命值
         public const int Now_Dead = 3002;                                       //0活 1死
         public const int ReviveTime = 3003;
-        public const int Now_Shield_HP = 3004;
-        public const int Now_Shield_Type = 3005;
+        public const int Now_Shield_HP = 3004;                                  //护盾当前值
+        public const int Now_Shield_MaxHP = 3005;                               //护盾最大格挡值
         public const int Now_Shield_DamgeCostPro = 3006;                        //护盾减免系数
         public const int Now_Stall = 3010;                                       //摆摊状态
         public const int Now_Weapon = 3011;
@@ -65,7 +65,8 @@
         public const int Now_Lv = 3061;                                         //当前等级
         public const int BattleCamp = 3062;                                     //战斗阵营
         public const int TaskLoopNumber = 3063;                                 //赏金任务完成数量                           //赏金任务放弃时间
-        public const int TaskLoopGiveId = 3064;                                 //
+        public const int TaskLoopGiveId = 3064;
+        public const int BattleNumber = 3065;
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

@@ -74,6 +74,7 @@ namespace ET
 		public const string UITeam = "Main/Team/UITeam";
 		public const string UITeamApplyList = "Main/Team/UITeamApplyList";
 		public const string UITeamDungeon = "TeamDungeon/UITeamDungeon";
+		public const string UITeamMain = "TeamDungeon/UITeamMain";
 		public const string UITeamDungeonCreate = "TeamDungeon/UITeamDungeonCreate";
 		public const string UITeamDungeonSettlement = "TeamDungeon/UITeamDungeonSettlement";
 		public const string UIFriend = "Main/Friend/UIFriend";

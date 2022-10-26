@@ -7,19 +7,21 @@
             this.OnBaseBuffInit(buffData,  theUnitFrom,  theUnitBelongto);
 
             NumericComponent numericComponent = this.TheUnitBelongto.GetComponent<NumericComponent>();
-            this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.Shield);
+            int maxHp = numericComponent.GetAsInt(NumericType.Now_MaxHp);
             //1百分比 2固定伤害
-            numericComponent.ApplyValue(NumericType.Now_Shield_Type, buffData.BuffConfig.buffParameterType,  false);
-            if (numericComponent.GetAsLong(NumericType.Now_Shield_Type) == 1)
+            int totalValue = 0;
+            if (buffData.BuffConfig.buffParameterType == 1)
             {
-                //numericComponent.Set(NumericType.Now_Shield_HP, buffData.BuffConfig.buffParameterValue);
                 numericComponent.ApplyValue(NumericType.Now_Shield_HP, (int)buffData.BuffConfig.buffParameterValue * theUnitFrom.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp), true);
-                numericComponent.Set(NumericType.Now_Shield_DamgeCostPro, buffData.BuffConfig.DamgePro, true);
+                totalValue = (int)(maxHp * 1f * buffData.BuffConfig.buffParameterValue);
             }
             else
             {
-                numericComponent.ApplyValue(NumericType.Now_Shield_HP, (int)buffData.BuffConfig.buffParameterValue, true);
+                totalValue = (int)buffData.BuffConfig.buffParameterValue;
             }
+            numericComponent.ApplyValue(NumericType.Now_Shield_HP, totalValue, true);
+            numericComponent.ApplyValue(NumericType.Now_Shield_MaxHP, totalValue, true);
+            numericComponent.Set(NumericType.Now_Shield_DamgeCostPro, buffData.BuffConfig.DamgePro, false);
             this.OnUpdate();
         }
 
@@ -27,19 +29,11 @@
         {
             NumericComponent numericComponent = this.TheUnitBelongto.GetComponent<NumericComponent>();
 
-            if (numericComponent.GetAsLong(NumericType.Now_Shield_Type) == 1 &&  numericComponent.GetAsLong(NumericType.Now_Shield_HP) <= 0)
+            if (numericComponent.GetAsLong(NumericType.Now_Shield_HP) <= 0)
             {
                 this.BuffState = BuffState.Finished;
                 return;
             }
-
-            if (numericComponent.GetAsLong(NumericType.Now_Shield_Type) == 2 && numericComponent.GetAsLong(NumericType.Now_Shield_HP) <= 0)
-            {
-                this.BuffState = BuffState.Finished;
-                return;
-            }
-
-
             if (TimeHelper.ServerNow() > this.BuffEndTime)
             {
                 this.BuffState = BuffState.Finished;
@@ -48,7 +42,8 @@
 
         public override void OnFinished()
         {
-            this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.Shield);
+            NumericComponent numericComponent = this.TheUnitBelongto.GetComponent<NumericComponent>();
+            numericComponent.ApplyValue(NumericType.Now_Shield_HP, 0);
         }
     }
 }

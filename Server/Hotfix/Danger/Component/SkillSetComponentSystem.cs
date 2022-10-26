@@ -438,6 +438,7 @@ namespace ET
 			}
 			itemSkills.AddRange(bagInfo.HideSkillLists);
 
+			BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
 			for (int i = 0; i < itemSkills.Count; i++)
 			{
 				int skillId = itemSkills[i];
@@ -447,11 +448,10 @@ namespace ET
 				}
 
 				//其他装备也持有该技能
-				if (self.GetParent<Unit>().GetComponent<BagComponent>().IsHaveEquipSkill(skillId))
+				if (bagComponent.IsHaveEquipSkill(skillId))
 				{
 					continue;
 				}
-
 				for (int k = self.SkillList.Count - 1; k >= 0; k--)
 				{
 					if (self.SkillList[k].SkillSource == (int)SkillSourceEnum.Equip && self.SkillList[k].SkillID == skillId)

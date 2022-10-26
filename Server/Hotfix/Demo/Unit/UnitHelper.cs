@@ -260,6 +260,20 @@ namespace ET
             self.GetComponent<NumericComponent>().NumericDic[NumericType.MainCity_Z] = 0;
         }
 
+        public static List<Unit> GetUnitList(this Unit self, int unitType)
+        {
+            List<Unit> units = new List<Unit>();
+            List<Unit> allunits = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                if (allunits[i].Type == unitType)
+                { 
+                    units.Add(allunits[i]);
+                }
+            }
+            return units;
+        }
+
         public static int GetBattleCamp(this Unit self)
         {
             return self.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleCamp);

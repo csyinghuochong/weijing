@@ -5,6 +5,7 @@ namespace ET
 
     public static class CombatResultEnum
     {
+        public const int None = 0;
         public const int Win = 1;
         public const int Fail = 2;
     }

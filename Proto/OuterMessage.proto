@@ -3972,3 +3972,27 @@ message M2C_TaskLoopGetResponse    // IActorLocationResponse
 	string Message = 92;
 	TaskPro TaskLoop = 1;
 }
+
+//紫色道具判断是否需要拾取
+message M2C_TeamPickMessage // IActorMessage
+{
+	int64 ActorId = 1;
+	int64 UnitId = 2;
+
+	repeated DropInfo DropItems = 1;
+}
+
+//ResponseType M2C_TeamPickResponse
+message C2M_TeamPickRequest    // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	DropInfo ItemIds = 1;
+	int32 Need = 2;
+}
+
+message M2C_TeamPickResponse    // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

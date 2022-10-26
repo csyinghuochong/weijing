@@ -8294,4 +8294,51 @@ namespace ET
 
 	}
 
+//紫色道具判断是否需要拾取
+	[Message(OuterOpcode.M2C_TeamPickMessage)]
+	[ProtoContract]
+	public partial class M2C_TeamPickMessage: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(1)]
+		public List<DropInfo> DropItems = new List<DropInfo>();
+
+	}
+
+	[ResponseType(nameof(M2C_TeamPickResponse))]
+	[Message(OuterOpcode.C2M_TeamPickRequest)]
+	[ProtoContract]
+	public partial class C2M_TeamPickRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public DropInfo ItemIds { get; set; }
+
+		[ProtoMember(2)]
+		public int Need { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TeamPickResponse)]
+	[ProtoContract]
+	public partial class M2C_TeamPickResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }
