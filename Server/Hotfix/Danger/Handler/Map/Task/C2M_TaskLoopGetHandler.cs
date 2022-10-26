@@ -28,9 +28,10 @@ namespace ET
 
             List<int> allTaskIds = new List<int>();
             Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();
+            int roleLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
             foreach (var item in keyValuePairs)
             {
-                if (item.Value.TaskType == TaskTypeEnum.EveryDay)
+                if (item.Value.TaskType == TaskTypeEnum.EveryDay && roleLv >= item.Value.TaskLv && roleLv <= item.Value.TaskMaxLv)
                 {
                     allTaskIds.Add(item.Key);
                 }
