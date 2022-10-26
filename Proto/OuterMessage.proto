@@ -3982,17 +3982,9 @@ message M2C_TeamPickMessage // IActorMessage
 	repeated DropInfo DropItems = 1;
 }
 
-//ResponseType M2C_TeamPickResponse
-message C2M_TeamPickRequest    // IActorLocationRequest
+message C2M_TeamPickRequest    // IActorLocationMessage
 {
 	int32 RpcId = 90;
 	DropInfo DropItem = 1;
 	int32 Need = 2;      //1需求 2丢弃
-}
-
-message M2C_TeamPickResponse    // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
 }

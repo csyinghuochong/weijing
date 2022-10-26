@@ -185,7 +185,9 @@ namespace ET
             C2M_TaskGetRequest m_GetTaskRequest = new C2M_TaskGetRequest() { TaskId = taskId };
             M2C_TaskGetResponse m2C_GetTaskResponse = (M2C_TaskGetResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_GetTaskRequest);
             if (m2C_GetTaskResponse.Error != 0)
+            {
                 return;
+            }
 
             TaskPro taskPro = m2C_GetTaskResponse.TaskPro;
             self.RoleTaskList.Add(taskPro);

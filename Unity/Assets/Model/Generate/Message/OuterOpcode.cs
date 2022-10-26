@@ -464,6 +464,5 @@ namespace ET
 		 public const ushort M2C_TaskLoopGetResponse = 10461;
 		 public const ushort M2C_TeamPickMessage = 10462;
 		 public const ushort C2M_TeamPickRequest = 10463;
-		 public const ushort M2C_TeamPickResponse = 10464;
 	}
 }

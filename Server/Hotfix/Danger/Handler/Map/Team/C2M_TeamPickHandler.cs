@@ -5,9 +5,9 @@ using System.Collections.Generic;
 namespace ET
 {
     [ActorMessageHandler]
-    public class C2M_TeamPickHandlerr : AMActorLocationRpcHandler<Unit, C2M_TeamPickRequest, M2C_TeamPickResponse>
+    public class C2M_TeamPickHandlerr : AMActorLocationHandler<Unit, C2M_TeamPickRequest>
     {
-        protected override async ETTask Run(Unit unit, C2M_TeamPickRequest request, M2C_TeamPickResponse response, Action reply)
+        protected override async ETTask Run(Unit unit, C2M_TeamPickRequest request)
         {
             TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
             List<TeamDropItem> teamDropItems = teamDungeonComponent.TeamDropItems;
@@ -22,7 +22,6 @@ namespace ET
             }
             if (teamDropItem == null)
             {
-                reply();
                 return;
             }
             if (request.Need == 1 && !teamDropItem.NeedPlayers.Contains(unit.Id))
@@ -33,7 +32,6 @@ namespace ET
             {
                 teamDropItem.GivePlayers.Add(unit.Id);
             }
-            reply();
             await ETTask.CompletedTask;
         }
     }
