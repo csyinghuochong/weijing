@@ -166,7 +166,6 @@ namespace ET
 		{
 			//钥匙类 返回1
 			return (itemID == 10010034);
-
 		}
 
 		//传入掉落ID，生成掉落数据
@@ -182,7 +181,6 @@ namespace ET
 			int dropNumNow = 0;                     //当前掉落道具的数量
 			int dropLoopNum = 0;                    //掉落循环次数
 			int dropIDInitial = dropID;          //设置初始掉落
-
 			int oldNumber = dropItemList.Count;
 
 			do
@@ -477,5 +475,23 @@ namespace ET
 			return dropNumNow;
 		}
 
+		public static void SendPickMessage(Unit unit, DropInfo dropInfo, M2C_SyncChatInfo m2C_SyncChatInfo)
+		{
+			UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+			m2C_SyncChatInfo.ChatInfo = new ChatInfo();
+			m2C_SyncChatInfo.ChatInfo.PlayerLevel = userInfoComponent.UserInfo.Lv;
+			m2C_SyncChatInfo.ChatInfo.Occ = userInfoComponent.UserInfo.Occ;
+			m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.System;
+
+			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
+			string numShow = "";
+			if (itemConfig.Id == 1)
+			{
+				numShow = dropInfo.ItemID.ToString();
+			}
+			string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
+			m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
+			MessageHelper.Broadcast(unit, m2C_SyncChatInfo);
+		}
 	}
 }

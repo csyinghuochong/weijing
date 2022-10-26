@@ -1,8 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ET
 {
+    [Timer(TimerType.TeamDropTimer)]
+    public class TeamDropTimer : ATimer<TeamDungeonComponent>
+    {
+        public override void Run(TeamDungeonComponent self)
+        {
+            try
+            {
+                self.Check();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
 
     [ObjectSystem]
     public class TeamDungeonComponentAwakeSystem : AwakeSystem<TeamDungeonComponent>
@@ -12,11 +28,77 @@ namespace ET
             self.EnterTime = 0;
             self.BoxReward.Clear();
             self.ItemFlags.Clear();
+            self.TeamDropItems.Clear();
+        }
+    }
+
+    [ObjectSystem]
+    public class TeamDungeonComponentDestroySystem : DestroySystem<TeamDungeonComponent>
+    {
+        public override void Destroy(TeamDungeonComponent self)
+        {
+            TimerComponent.Instance.Remove(ref self.Timer);
         }
     }
 
     public static class TeamDungeonComponentSystem
     {
+
+        public static void Check(this TeamDungeonComponent self)
+        {
+            if (self.TeamDropItems.Count == 0)
+            {
+                TimerComponent.Instance.Remove(ref self.Timer);
+                return;
+            }
+
+            long serverTime = TimeHelper.ServerNow();
+            for (int i = self.TeamDropItems.Count - 1; i >= 0; i--)
+            {
+                TeamDropItem teamDropItem = self.TeamDropItems[i];
+                List<long> needIds = teamDropItem.NeedPlayers;
+                List<long> giveIds = teamDropItem.GivePlayers;
+                if (teamDropItem.EndTime < serverTime && (needIds.Count + giveIds.Count) < 3)
+                {
+                    continue;
+                }
+                self.TeamDropItems.RemoveAt(i);
+                if (needIds.Count == 0)
+                {
+                    continue;
+                }
+                long unitid = teamDropItem.NeedPlayers[RandomHelper.RandomNumber(0, teamDropItem.NeedPlayers.Count)];
+                Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
+                if (unit != null)
+                {
+                    DropHelper.SendPickMessage(unit, teamDropItem.DropInfo, self.m2C_SyncChatInfo);
+                }
+            }
+        }
+
+        public static TeamDropItem AddTeamDropItem(this TeamDungeonComponent self, Unit unit, DropInfo dropInfo)
+        {
+            for (int i = 0; i < self.TeamDropItems.Count; i++)
+            {
+                if (self.TeamDropItems[i].DropInfo.UnitId == dropInfo.UnitId)
+                {
+                    return null;
+                }
+            }
+
+            TeamDropItem teamDropItem = self.AddChildWithId<TeamDropItem>(dropInfo.UnitId);
+            teamDropItem.DropInfo = dropInfo;
+            teamDropItem.EndTime = TimeHelper.ServerNow() + 20 * 1000;
+            self.TeamDropItems.Add(teamDropItem);
+            if (self.Timer == 0)
+            {
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.TeamDropTimer, self);
+            }
+            M2C_TeamPickMessage teamPickMessage = self.m2C_TeamPickMessage;
+            teamPickMessage.DropItems.Add(dropInfo);
+            MessageHelper.Broadcast(unit, teamPickMessage);
+            return teamDropItem;
+        }
 
         public static void OnUpdateDamage(this TeamDungeonComponent self, Unit unit, int damage)
         {

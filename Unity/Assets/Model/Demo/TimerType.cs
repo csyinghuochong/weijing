@@ -51,6 +51,7 @@
         public const int GameObjectPoolTimer = 1059;
         public const int FsmTimer = 1060;
         public const int DungeonReviveTimer = 1061;
+        public const int TeamDropTimer = 1062;
         // 不能超过10000
     }
 }

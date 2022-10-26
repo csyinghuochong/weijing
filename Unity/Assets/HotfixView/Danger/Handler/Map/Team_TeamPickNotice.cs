@@ -6,7 +6,11 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.TeamPickNotice args = (EventType.TeamPickNotice)cls;
-            Log.Debug($"Team_TeamPickNotice:  {args.m2C_TeamPickMessage}");
+            UI uI = UIHelper.GetUI(args.ZoneScene, UIType.UITeamMain);
+            if (uI != null)
+            {
+                uI.GetComponent<UITeamMainComponent>().OnTeamPickNotice(args.m2C_TeamPickMessage.DropItems);
+            }
         }
     }
 }
