@@ -53,7 +53,7 @@
     <UnityVersion>2020.3.33f1c2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\HotfixView\Danger\UI\OccTwo\UIOccTwoShowComponent.cs" />
@@ -370,7 +370,6 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Skill_SkillEffectMove.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIZhanQu\UIZhanQuLevelItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetChallengeEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Team_TeamPickNotice.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILogin\UILoginEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UITypeViewComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMake\UIMakeNeedComponent.cs" />
@@ -422,7 +421,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiStallComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubItem\UISkillGridComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Sound\SoundComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeam\UITeamItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuTypeItemComponent.cs" />
@@ -487,7 +485,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityLvLiBaoItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiDuiHuanComponet.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampFuLiComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIWorldLv\UIWorldLvEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMakeLearn\UIMakeLearnEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISetting\UISettingEvent.cs" />
@@ -541,6 +538,9 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Team_TeamPickNotice.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
@@ -757,9 +757,6 @@
     <Reference Include="UnityEditor.Android.Extensions">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions">
-      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
@@ -786,12 +783,6 @@
     </Reference>
     <Reference Include="DOTweenEditor">
       <HintPath>Assets\Mono\ThirdRes\GUI Pro Kit Fantasy RPG\SampleProject\Extensions\Demigiant\DOTween\Editor\DOTweenEditor.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Xcode">
-      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.iOS.Extensions.Common">
-      <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\PlaybackEngines\iOSSupport\UnityEditor.iOS.Extensions.Common.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:\unityhub\2020.3.33f1c2\Editor\Data\MonoBleedingEdge\lib\mono\4.7.1-api\mscorlib.dll</HintPath>
