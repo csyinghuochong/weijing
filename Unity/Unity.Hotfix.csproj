@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Assets\Hotfix\Danger\Common\YeWaiReviveComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_BattleInfoResultHandler.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamPickMessageHandler.cs" />
     <Compile Include="Assets\Hotfix\Demo\Scene\SceneChangeHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\MailComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\CellDungeonComponentSystem.cs" />

@@ -438,6 +438,13 @@ namespace ET
             }
         }
 
+        public class TeamPickNotice : DisposeObject
+        {
+            public static readonly TeamPickNotice Instance = new TeamPickNotice();
+            
+            public Scene ZoneScene;
+        }
+
         public class SkillChainLight : DisposeObject
         {
             public static readonly SkillChainLight Instance = new SkillChainLight();
