@@ -28,6 +28,7 @@ namespace ET
         public GameObject Label_LeftTime;
         public GameObject Btn_Close;
         public GameObject Btn_Need;
+        public GameObject TeamDropItem;
 
         public int LeftTime;
         public DropInfo CurDrop;
@@ -57,13 +58,15 @@ namespace ET
             self.Label_LeftTime = rc.Get<GameObject>("Label_LeftTime");
 
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
-            ButtonHelp.AddListenerEx( self.Btn_Close, () => { } );
+            ButtonHelp.AddListenerEx( self.Btn_Close, self.OnBtn_Close);
 
             self.Btn_Need = rc.Get<GameObject>("Btn_Need");
-            ButtonHelp.AddListenerEx(self.Btn_Need, () => { });
+            ButtonHelp.AddListenerEx(self.Btn_Need, self.OnBtn_Need);
 
             self.BottomNode = rc.Get<GameObject>("BottomNode");
-            self.BottomNode.SetActive(false);
+
+            self.TeamDropItem = rc.Get<GameObject>("BottomNode");
+            self.TeamDropItem.SetActive(false);
 
             GameObject UICommonItem = rc.Get<GameObject>("UICommonItem");
             self.UIItem = self.AddChild<UIItemComponent, GameObject>(UICommonItem);
@@ -90,24 +93,28 @@ namespace ET
             self.CurDrop = self.DropInfos[0];
             self.LeftTime = 20;
             self.DropInfos.RemoveAt(0);
+            self.TeamDropItem.SetActive(true);
+            self.UIItem.UpdateItem(new BagInfo() { ItemID = self.CurDrop.ItemID });
         }
 
-        public static async ETTask SendTeamPick(this UITeamMainComponent self, int needType)
+        public static  void SendTeamPick(this UITeamMainComponent self, int needType)
         {
-            await ETTask.CompletedTask;
             DropInfo dropInfo = self.CurDrop;
+            C2M_TeamPickRequest request = new C2M_TeamPickRequest() { DropItem = dropInfo, Need = needType };
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(request);
+            self.TeamDropItem.SetActive(false);
             self.LeftTime = 0;
             self.CurDrop = null;
         }
 
         public static void OnBtn_Close(this UITeamMainComponent self)
         {
-            self.SendTeamPick(2).Coroutine();
+            self.SendTeamPick(2);
         }
 
         public static void OnBtn_Need(this UITeamMainComponent self)
         {
-            self.SendTeamPick(1).Coroutine();
+            self.SendTeamPick(1);
         }
 
         public static void Check(this UITeamMainComponent self)

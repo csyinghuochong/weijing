@@ -8310,10 +8310,9 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_TeamPickResponse))]
 	[Message(OuterOpcode.C2M_TeamPickRequest)]
 	[ProtoContract]
-	public partial class C2M_TeamPickRequest: Object, IActorLocationRequest
+	public partial class C2M_TeamPickRequest: Object, IActorLocationMessage
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -8323,21 +8322,6 @@ namespace ET
 
 		[ProtoMember(2)]
 		public int Need { get; set; }
-
-	}
-
-	[Message(OuterOpcode.M2C_TeamPickResponse)]
-	[ProtoContract]
-	public partial class M2C_TeamPickResponse: Object, IActorLocationResponse
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(91)]
-		public int Error { get; set; }
-
-		[ProtoMember(92)]
-		public string Message { get; set; }
 
 	}
 

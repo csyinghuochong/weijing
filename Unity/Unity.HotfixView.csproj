@@ -370,7 +370,6 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Skill_SkillEffectMove.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIZhanQu\UIZhanQuLevelItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetChallengeEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Team_TeamPickNotice.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILogin\UILoginEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UITypeViewComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMake\UIMakeNeedComponent.cs" />
@@ -541,6 +540,7 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Team_TeamPickNotice.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

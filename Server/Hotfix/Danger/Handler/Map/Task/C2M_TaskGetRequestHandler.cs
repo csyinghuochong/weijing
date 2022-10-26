@@ -11,6 +11,7 @@ namespace ET
         {
             TaskPro taskPro =  unit.GetComponent<TaskComponent>().OnGetTask(request.TaskId);
             response.Error = taskPro!=null ? ErrorCore.ERR_Success : ErrorCore.ERR_TaskCanNotGet;
+            response.TaskPro  = taskPro;
             reply();
             await ETTask.CompletedTask;
         }

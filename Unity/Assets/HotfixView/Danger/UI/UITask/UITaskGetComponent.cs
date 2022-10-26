@@ -88,7 +88,7 @@ namespace ET
         {
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(self.NpcID);
             bool update = self.UpdataTask();
-            if (!update && npcConfig.NpcType != 3)
+            if (!update)
             {
                 self.OnCloseNpcTask();
             }
@@ -121,8 +121,8 @@ namespace ET
                 return;
             }
             taskComponent.RoleTaskList.Add(response.TaskLoop);
-            HintHelp.GetInstance().DataUpdate(DataType.TaskGet, response.TaskLoop.taskID.ToString());
             self.OnCloseNpcTask();
+            HintHelp.GetInstance().DataUpdate(DataType.TaskGet, response.TaskLoop.taskID.ToString());
         }
 
         public static void InitData(this UITaskGetComponent self, int npcID)

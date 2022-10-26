@@ -549,10 +549,16 @@ MonoBehaviour:
   data:
   - key: BottomNode
     gameObject: {fileID: 6137711627342775206}
-  - key: BottomNode
-    gameObject: {fileID: 6137711627342775206}
   - key: TeamDropItem
     gameObject: {fileID: 8817729041231090325}
+  - key: UICommonItem
+    gameObject: {fileID: 3809846902047735093}
+  - key: Btn_Need
+    gameObject: {fileID: 996830249999353307}
+  - key: Btn_Close
+    gameObject: {fileID: 2644628785751457719}
+  - key: Label_LeftTime
+    gameObject: {fileID: 1612827790461407155}
 --- !u!1 &4585484027339711358
 GameObject:
   m_ObjectHideFlags: 0
@@ -783,7 +789,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8817729041231090325}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
