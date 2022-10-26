@@ -166,7 +166,6 @@ namespace ET
 		{
 			//钥匙类 返回1
 			return (itemID == 10010034);
-
 		}
 
 		//传入掉落ID，生成掉落数据
@@ -182,7 +181,6 @@ namespace ET
 			int dropNumNow = 0;                     //当前掉落道具的数量
 			int dropLoopNum = 0;                    //掉落循环次数
 			int dropIDInitial = dropID;          //设置初始掉落
-
 			int oldNumber = dropItemList.Count;
 
 			do

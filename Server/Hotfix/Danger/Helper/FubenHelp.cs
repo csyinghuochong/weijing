@@ -130,11 +130,12 @@ namespace ET
 
 		public static bool IsAllMonsterDead(Scene scene)
 		{
-			foreach ((long id, Entity value) in scene.GetComponent<UnitComponent>().Children)
+			List<Unit> units = scene.GetComponent<UnitComponent>().GetAll();
+			for(int i = 0; i < units.Count; i++)
 			{
-				UnitInfoComponent unitInfoComponent = value.GetComponent<UnitInfoComponent>();
-				if (unitInfoComponent.IsMonster() && unitInfoComponent.IsCanBeAttack()
-					 && value.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
+				if (units[i].Type == UnitType.Monster
+				&& units[i].GetComponent<UnitInfoComponent>().IsCanBeAttack()
+				&& units[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
 				{
 					return false;
 				}
@@ -146,16 +147,35 @@ namespace ET
 		public static int GetAlivePetNumber(Scene scene)
 		{
 			int petNumber = 0;
-			foreach ((long id, Entity value) in scene.GetComponent<UnitComponent>().Children)
+			List<Unit> units = scene.GetComponent<UnitComponent>().GetAll();
+			for(int i = 0; i < units.Count; i++)
 			{
-				UnitInfoComponent unitInfoComponent = value.GetComponent<UnitInfoComponent>();
-				if (unitInfoComponent.IsPet() && value.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
+				if (units[i].Type == UnitType.Pet && units[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
 				{
 					petNumber++;
 				}
 			}
 
 			return petNumber;
+		}
+
+		public static void SendPickMessage(Unit unit, DropInfo dropInfo, M2C_SyncChatInfo m2C_SyncChatInfo)
+		{
+			UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+			m2C_SyncChatInfo.ChatInfo = new ChatInfo();
+			m2C_SyncChatInfo.ChatInfo.PlayerLevel = userInfoComponent.UserInfo.Lv;
+			m2C_SyncChatInfo.ChatInfo.Occ = userInfoComponent.UserInfo.Occ;
+			m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.System;
+
+			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
+			string numShow = "";
+			if (itemConfig.Id == 1)
+			{
+				numShow = dropInfo.ItemID.ToString();
+			}
+			string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
+			m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
+			MessageHelper.Broadcast(unit, m2C_SyncChatInfo);
 		}
 	}
 }

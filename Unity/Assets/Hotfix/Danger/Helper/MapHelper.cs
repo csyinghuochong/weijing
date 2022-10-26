@@ -82,7 +82,7 @@ namespace ET
             for (int i = 0; i < units.Count; i++)
             {
                 Unit uu = units[i];
-                if (!uu.GetComponent<UnitInfoComponent>().IsChest())
+                if (!uu.IsChest())
                 {
                     continue;
                 }

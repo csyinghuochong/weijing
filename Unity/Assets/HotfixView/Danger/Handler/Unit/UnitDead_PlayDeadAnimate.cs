@@ -48,7 +48,7 @@ namespace ET
                 }
 
                 if (unit.Type == UnitType.Monster
-                && unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
+                 && unit.GetMonsterType() == (int)MonsterTypeEnum.Boss)
                 {
                     unit.GetComponent<MonsterActRangeComponent>()?.OnDead();
                 }

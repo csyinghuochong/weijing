@@ -56,11 +56,13 @@
 
   </ItemGroup>
   <ItemGroup>
+    <None Remove="Demo\AI\AI_Transfer.cs~RF1d944a39.TMP" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Model\Server.Model.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Danger\Handler\Realm\" />
-    <Folder Include="Demo\AI\" />
     <Folder Include="Module\Function\" />
   </ItemGroup>
   <ItemGroup>

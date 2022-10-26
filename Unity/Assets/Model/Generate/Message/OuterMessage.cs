@@ -8319,7 +8319,7 @@ namespace ET
 		public int RpcId { get; set; }
 
 		[ProtoMember(1)]
-		public DropInfo ItemIds { get; set; }
+		public DropInfo DropItem { get; set; }
 
 		[ProtoMember(2)]
 		public int Need { get; set; }

@@ -65,7 +65,7 @@ namespace ET
 			DataUpdateComponent.Instance.AddListener(DataType.TaskUpdate, self);
 			DataUpdateComponent.Instance.AddListener(DataType.TaskGiveUp, self);
 
-			self.InitTaskTypeList().Coroutine();
+			self.InitTaskTypeList();
 		}
 	}
 
@@ -87,10 +87,9 @@ namespace ET
 			self.TaskTypeUIList[1].GetComponent<UITaskTypeComponent>().OnTaskGiveUp();
 		}
 
-		public static async ETTask InitTaskTypeList(this UITaskComponent self)
+		public static  void InitTaskTypeList(this UITaskComponent self)
 		{
 			string path = ABPathHelper.GetUGUIPath("Main/Task/UITaskType");
-			await ETTask.CompletedTask;
 			GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
 			List<int> ids = new List<int>() { (int)TaskTypeEnum.Main, (int)TaskTypeEnum.Branch, (int)TaskTypeEnum.EveryDay };

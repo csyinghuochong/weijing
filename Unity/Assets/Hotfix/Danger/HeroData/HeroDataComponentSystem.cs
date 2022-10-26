@@ -207,7 +207,7 @@ namespace ET
             int waitRevive =  self.OnWaitRevive();
             unit.RemoveComponent<AIComponent>();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
-            if (unitInfoComponent.IsPlayer())
+            if (unit.Type == UnitType.Player)
             {
                 RolePetInfo rolePetInfo = unit.GetComponent<PetComponent>().GetFightPet();
                 if (rolePetInfo != null)
@@ -216,7 +216,7 @@ namespace ET
                     unit.GetComponent<PetComponent>().OnPetDead(rolePetInfo.Id);
                 }
             }
-            if (unitInfoComponent.IsPet())
+            if (unit.Type == UnitType.Pet)
             {
                 int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
                 if (sceneTypeEnum != (int)SceneTypeEnum.PetTianTi
@@ -256,7 +256,7 @@ namespace ET
             unit.GetComponent<NumericComponent>().NumericDic[NumericType.Now_Hp] = 0;
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.Now_Hp, max_hp, 0);
             unit.GetComponent<SkillPassiveComponent>()?.Activeted();
-            unit.Position = self.GetBornPostion();
+            unit.Position = unit.GetBornPostion();
         }
 
         public static void InitTempPet(this HeroDataComponent self, Unit matster, int monster)
@@ -468,23 +468,13 @@ namespace ET
                 args.Parent.ZoneScene().GetComponent<CellDungeonComponent>().CheckChuansongOpen();
             }
             if (sceneTypeEnum == (int)SceneTypeEnum.LocalDungeon 
-                && unitType== UnitType.Monster && unitInfoComponent.GetMonsterType() == (int)MonsterTypeEnum.Boss)
+                && unitType== UnitType.Monster && unit.GetMonsterType() == (int)MonsterTypeEnum.Boss)
             {
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                 self.ZoneScene().GetComponent<UserInfoComponent>().OnAddRevive(unit.ConfigId,TimeHelper.ServerNow() + (long)monsterConfig.ReviveTime * 1000);
             }
         }
 #endif
-
-        public static Vector3 GetBornPostion(this HeroDataComponent self)
-        {
-            Unit unit = self.GetParent<Unit>();
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            return new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),
-                numericComponent.GetAsFloat(NumericType.Born_Y),
-                numericComponent.GetAsFloat(NumericType.Born_Z));
-        }
-
         /// <summary>
         /// 更新当前角色身上的buff信息, 更新基础属性
         /// </summary>

@@ -207,7 +207,7 @@ namespace ET
             {
                 return;
             }
-            if (unitInfoComponent.GetMonsterType() != (int)MonsterTypeEnum.Boss && self.UserInfo.PiLao <= 0)
+            if (beKill.GetMonsterType() != (int)MonsterTypeEnum.Boss && self.UserInfo.PiLao <= 0)
             {
                 return;
             }

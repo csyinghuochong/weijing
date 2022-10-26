@@ -388,11 +388,11 @@ namespace ET
                 return;
 
             UnitInfoComponent unitInfoComponent = bekill.GetComponent<UnitInfoComponent>();
-            if (unitInfoComponent.IsPlayer() && sceneType == SceneTypeEnum.Battle)
+            if (bekill.Type == UnitType.Player && sceneType == SceneTypeEnum.Battle)
             {
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.BattleKillPlayer_102, 0, 1);
             }
-            if (unitInfoComponent.IsMonster())
+            if (bekill.Type == UnitType.Monster)
             {
                 int unitconfigId = bekill.ConfigId;
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitconfigId);

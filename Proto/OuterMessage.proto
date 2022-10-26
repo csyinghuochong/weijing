@@ -3986,8 +3986,8 @@ message M2C_TeamPickMessage // IActorMessage
 message C2M_TeamPickRequest    // IActorLocationRequest
 {
 	int32 RpcId = 90;
-	DropInfo ItemIds = 1;
-	int32 Need = 2;
+	DropInfo DropItem = 1;
+	int32 Need = 2;      //1需求 2丢弃
 }
 
 message M2C_TeamPickResponse    // IActorLocationResponse

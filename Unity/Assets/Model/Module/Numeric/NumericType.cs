@@ -67,6 +67,9 @@
         public const int TaskLoopNumber = 3063;                                 //赏金任务完成数量                           //赏金任务放弃时间
         public const int TaskLoopGiveId = 3064;
         public const int BattleNumber = 3065;
+        public const int Init_X = 3066;     
+        public const int Init_Y = 3067;
+        public const int Init_Z = 3068;
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值
