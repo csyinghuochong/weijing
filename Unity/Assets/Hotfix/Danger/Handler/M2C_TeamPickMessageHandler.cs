@@ -6,7 +6,9 @@ namespace ET
     {
         protected override void Run(Session session, M2C_TeamPickMessage message)
         {
-            
+            EventType.TeamPickNotice.Instance.m2C_TeamPickMessage = message;
+            EventType.TeamPickNotice.Instance.ZoneScene = session.ZoneScene();
+            EventSystem.Instance.PublishClass(EventType.TeamPickNotice.Instance);
         }
     }
 }

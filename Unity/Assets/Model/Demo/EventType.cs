@@ -441,7 +441,7 @@ namespace ET
         public class TeamPickNotice : DisposeObject
         {
             public static readonly TeamPickNotice Instance = new TeamPickNotice();
-            
+            public M2C_TeamPickMessage m2C_TeamPickMessage;
             public Scene ZoneScene;
         }
 
