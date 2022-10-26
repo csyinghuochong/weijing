@@ -211,7 +211,7 @@ namespace ET
 						}
 					}
 					//循环10次强制结束循环
-					if (dropLoopNum > 10)
+					if (dropLoopNum > 100)
 					{
 						DropSonStatus = false;
 						//return true;
@@ -237,6 +237,131 @@ namespace ET
 				dropItemList.Add(new RewardItem() { ItemID = dropconf.DropItemID1, ItemNum = 1 });
 			}
 			return true;
+		}
+
+
+		//传入掉落ID，生成掉落数据
+		public static List<RewardItem> DropIDToShowItem(int dropID, int needQuality = 4)
+		{
+			List<RewardItem> dropItemList = new List<RewardItem>();
+			List<int> showID = new List<int>();
+			DropConfig dropconf = DropConfigCategory.Instance.Get(dropID);
+			int dropLimit = dropconf.DropLimit;
+
+			//是否有子掉落
+			bool DropSonStatus = false;
+
+			//设置掉落最大数量
+			int dropLoopNum = 0;                 //掉落循环次数
+			int dropIDInitial = dropID;          //设置初始掉落
+
+			do
+			{
+				DropSonStatus = true;
+
+				//获取子掉落
+				dropconf = DropConfigCategory.Instance.Get(dropID);
+
+				for (int i = 1; i <= 10; i++)
+				{
+					//Debug.Log("Str1111 = " + i);
+					//获取掉落道具的ID
+					int dropItemID = 0;
+					int dropChance = 0;
+					int dropMinNum = 0;
+					int dropMaxNum = 0;
+					switch (i)
+					{
+						case 1:
+							dropItemID = dropconf.DropItemID1;
+							dropChance = dropconf.DropChance1;
+							dropMinNum = dropconf.DropItemMinNum1;
+							dropMaxNum = dropconf.DropItemMaxNum1;
+							break;
+						case 2:
+							dropItemID = dropconf.DropItemID2;
+							dropChance = dropconf.DropChance2;
+							dropMinNum = dropconf.DropItemMinNum2;
+							dropMaxNum = dropconf.DropItemMaxNum2;
+							break;
+						case 3:
+							dropItemID = dropconf.DropItemID3;
+							dropChance = dropconf.DropChance3;
+							dropMinNum = dropconf.DropItemMinNum3;
+							dropMaxNum = dropconf.DropItemMaxNum3;
+							break;
+						case 4:
+							dropItemID = dropconf.DropItemID4;
+							dropChance = dropconf.DropChance4;
+							dropMinNum = dropconf.DropItemMinNum4;
+							dropMaxNum = dropconf.DropItemMaxNum4;
+							break;
+						case 5:
+							dropItemID = dropconf.DropItemID5;
+							dropChance = dropconf.DropChance5;
+							dropMinNum = dropconf.DropItemMinNum5;
+							dropMaxNum = dropconf.DropItemMaxNum5;
+							break;
+						case 6:
+							dropItemID = dropconf.DropItemID6;
+							dropChance = dropconf.DropChance6;
+							dropMinNum = dropconf.DropItemMinNum6;
+							dropMaxNum = dropconf.DropItemMaxNum6;
+							break;
+						case 7:
+							dropItemID = dropconf.DropItemID7;
+							dropChance = dropconf.DropChance7;
+							dropMinNum = dropconf.DropItemMinNum7;
+							dropMaxNum = dropconf.DropItemMaxNum7;
+							break;
+						case 8:
+							dropItemID = dropconf.DropItemID8;
+							dropChance = dropconf.DropChance8;
+							dropMinNum = dropconf.DropItemMinNum8;
+							dropMaxNum = dropconf.DropItemMaxNum8;
+							break;
+						case 9:
+							dropItemID = dropconf.DropItemID9;
+							dropChance = dropconf.DropChance9;
+							dropMinNum = dropconf.DropItemMinNum9;
+							dropMaxNum = dropconf.DropItemMaxNum9;
+							break;
+						case 10:
+							dropItemID = dropconf.DropItemID10;
+							dropChance = dropconf.DropChance10;
+							dropMinNum = dropconf.DropItemMinNum10;
+							dropMaxNum = dropconf.DropItemMaxNum10;
+							break;
+					}
+					if (dropItemID >= 100000)
+					{
+						ItemConfig itemCof = ItemConfigCategory.Instance.Get(dropItemID);
+						if (itemCof.ItemQuality >= needQuality && showID.Contains(dropItemID) == false)
+						{
+							showID.Add(dropItemID);
+							dropItemList.Add(new RewardItem() { ItemID = dropItemID, ItemNum = 1 });
+						}
+					}
+				}
+
+				dropID = dropconf.DropSonID;
+
+				//没有子掉落循环取消（因为掉落ID里面可以套掉落ID）
+				if (dropID == 0)
+				{
+					DropSonStatus = false;
+
+					//循环100次强制结束循环
+					if (dropLoopNum > 1000)
+					{
+						DropSonStatus = false;
+					}
+				}
+
+			}
+			while (DropSonStatus);
+
+			return dropItemList;
 		}
 
 		//行掉落ID数据

@@ -106,8 +106,9 @@ namespace ET
             {
                 return;
             }
+
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TaskLoopNumber)>=10)
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TaskLoopNumber)>= GlobalValueConfigCategory.Instance.Get(58).Value2)
             {
                 FloatTipManager.Instance.ShowFloatTip("当日接取已达上限");
                 return;

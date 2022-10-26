@@ -133,14 +133,14 @@ namespace ET
             TakeCardConfig takeCardConfig = TakeCardConfigCategory.Instance.Get(self.TakeCardId);
             string dropShow = takeCardConfig.DropShow;
             List<RewardItem> droplist = new List<RewardItem>();
-            DropHelper.DropIDToDropItem(takeCardConfig.DropID, droplist);
+            droplist = DropHelper.DropIDToShowItem(takeCardConfig.DropID, 5);
             string itemList = "";
             for (int i = 0; i < droplist.Count; i++)
             {
-                itemList = itemList + $"@{droplist[i].ItemID};{1}";
+                itemList = itemList + $"{droplist[i].ItemID};{1}@";
             }
             //itemList = itemList.Substring(0, itemList.Length - 1);
-            itemList = dropShow + itemList;
+            itemList = itemList + dropShow;
             UICommonHelper.ShowItemList(itemList, self.chouKaShowItemNode, self, 0.8f).Coroutine();
         }
 

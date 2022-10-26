@@ -158,6 +158,10 @@
         public const int ERR_Union_Same_Name = 301001;                              //同名的家族
         public const int ERR_MysteryItem_Max = 301002;                              //改道具每日购买次数已达上限
 
+        //赏金任务
+        public const int ERR_ShangJinNumFull = 301101;                              //赏金任务完成上限
+        
+
 
 
         public static bool IsRpcNeedThrowException(int error)
