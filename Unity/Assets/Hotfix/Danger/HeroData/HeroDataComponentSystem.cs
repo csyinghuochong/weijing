@@ -122,7 +122,8 @@ namespace ET
             numericComponent.NumericDic[NumericType.Now_Dead] = 0;
             numericComponent.NumericDic[NumericType.Now_Damage] = 0;
             numericComponent.NumericDic[NumericType.Now_Shield_HP] = 0;
-            numericComponent.NumericDic[NumericType.Now_Shield_Type] = 0;
+            numericComponent.NumericDic[NumericType.Now_Shield_MaxHP] = 0;
+            numericComponent.NumericDic[NumericType.Now_Shield_DamgeCostPro] = 0;
             if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Dead) <= 0)
             {
                 long max_hp = self.Parent.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);

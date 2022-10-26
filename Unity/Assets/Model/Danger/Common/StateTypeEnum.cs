@@ -81,8 +81,5 @@ namespace ET
         /// 秒杀
         /// </summary>
         public const long MiaoSha = 1 << 19;
-
-        //护盾
-        public const long Shield = 1 << 20;
     }
 }

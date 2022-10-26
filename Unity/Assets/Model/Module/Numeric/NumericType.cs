@@ -9,8 +9,8 @@
         public const int Now_Hp = 3001;                                         //生命值
         public const int Now_Dead = 3002;                                       //0活 1死
         public const int ReviveTime = 3003;
-        public const int Now_Shield_HP = 3004;
-        public const int Now_Shield_Type = 3005;
+        public const int Now_Shield_HP = 3004;                                  //护盾当前值
+        public const int Now_Shield_MaxHP = 3005;                               //护盾最大格挡值
         public const int Now_Shield_DamgeCostPro = 3006;                        //护盾减免系数
         public const int Now_Stall = 3010;                                       //摆摊状态
         public const int Now_Weapon = 3011;

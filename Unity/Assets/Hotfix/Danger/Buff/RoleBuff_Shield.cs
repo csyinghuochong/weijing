@@ -8,7 +8,7 @@
             this.BaseOnUpdate();
 
             NumericComponent numericComponent = this.TheUnitBelongto.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsLong(NumericType.Now_Shield_Type) == 2 && numericComponent.GetAsLong(NumericType.Now_Shield_HP) <= 0)
+            if (numericComponent.GetAsLong(NumericType.Now_Shield_HP) <= 0)
             {
                 this.BuffState = BuffState.Finished;
                 return;

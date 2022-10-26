@@ -414,35 +414,15 @@ namespace ET
                         attackUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.Critical_4, defendUnit.Id);
                     }
 
-                    float shield_Hp = 0;
-                    int shield_Type = 0;    //1百分比  2固定值
-
-                    StateComponent stateComponent = defendUnit.GetComponent<StateComponent>();
-                    if (stateComponent == null)
+                    int shield_Hp = numericComponentDefend.GetAsInt(NumericType.Now_Shield_HP);
+                    float shield_pro = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_DamgeCostPro);
+                    if (shield_Hp >= 0)
                     {
-                        Log.Debug($"statcomponent == null {defendUnit.Type}");
-                    }
-                    if (stateComponent!= null && stateComponent.StateTypeGet(StateTypeEnum.Shield))
-                    {
-                        shield_Hp = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_DamgeCostPro);
-                        shield_Type = numericComponentDefend.GetAsInt(NumericType.Now_Shield_Type);
-                    }
-                    if (shield_Type == 1)
-                    {
-                        //long maxHp = numericComponentDefend.GetAsLong(NumericType.Now_MaxHp);
-
-                        int dunDamge = (int)((float)damge * shield_Hp);
+                        int dunDamge = (int)((float)damge * shield_pro);
                         damge -= dunDamge;
                         damge = Math.Max(0, damge);
-                        numericComponentDefend.ApplyChange(attackUnit, NumericType.Now_Shield_HP, dunDamge, skillconfig.Id, false, DamgeType);
+                        numericComponentDefend.ApplyChange(attackUnit, NumericType.Now_Shield_HP, -1 * dunDamge, skillconfig.Id, true, DamgeType);
                     }
-                    if (shield_Type == 2)
-                    {
-                        damge -= (int)shield_Hp;
-                        numericComponentDefend.ApplyChange(attackUnit, NumericType.Now_Shield_HP, (int)shield_Hp - damge, skillconfig.Id, false, DamgeType);
-                        damge = Math.Max(0, damge);
-                    }
-
                     damge *= -1;
                     //Now_HuShiMagePro吸血
                     float hushi = numericComponentAttack.GetAsFloat(NumericType.Now_XiXuePro);

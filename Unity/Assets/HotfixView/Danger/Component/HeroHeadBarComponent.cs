@@ -51,6 +51,7 @@ namespace ET
         public GameObject ObjName;
         public GameObject ObjHp;
         public GameObject HeadBar;
+        public GameObject BuffShieldValue;
         public Transform UIPosition;
         public string HeadBarPath;
         public Vector2 LastPositon;
@@ -120,6 +121,7 @@ namespace ET
                     GameObject ImageHpFill = rc.Get<GameObject>("ImageHpFill");
                     sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, imageHp);
                     ImageHpFill.GetComponent<Image>().sprite = sp;
+                    this.BuffShieldValue = rc.Get<GameObject>("BuffShieldValue");
                     break;
                 case UnitType.Pet:
                     imageHp = sameCamp ? "UI_pro_3_4" : "UI_pro_4_2";
@@ -263,8 +265,9 @@ namespace ET
 
         public void UpdateBlood()
         {
-            float curhp = this.Parent.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp); // + value;
-            float blood = curhp / this.Parent.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
+            NumericComponent numericComponent = this.Parent.GetComponent<NumericComponent>();
+            float curhp = numericComponent.GetAsLong(NumericType.Now_Hp); // + value;
+            float blood = curhp / numericComponent.GetAsLong(NumericType.Now_MaxHp);
             blood = Mathf.Max(blood, 0f);
             if (ObjHp == null)
             {
@@ -274,6 +277,20 @@ namespace ET
             switch (unitType)
             {
                 case UnitType.Player:
+                    ObjHp.GetComponent<Slider>().value = blood;
+                    int shieldHp = numericComponent.GetAsInt(NumericType.Now_Shield_HP);
+                    int shieldMax = numericComponent.GetAsInt(NumericType.Now_Shield_MaxHP);
+
+                    Log.Debug($"shieldHp:   {shieldHp} {shieldMax}");
+                    if (shieldMax > 0)
+                    {
+                        this.BuffShieldValue.GetComponent<Image>().fillAmount = shieldHp * 1f / shieldMax;
+                    }
+                    else
+                    {
+                        this.BuffShieldValue.GetComponent<Image>().fillAmount = 0f;
+                    }
+                    break;
                 case UnitType.Pet:
                     ObjHp.GetComponent<Slider>().value = blood;
                     break;
@@ -319,6 +336,11 @@ namespace ET
         public static void UpdateStallName(this HeroHeadBarComponent self, string stallName)
         {
             self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = stallName;
+        }
+
+        public static void UpdateShield(this HeroHeadBarComponent self)
+        { 
+            
         }
 
         public static void OnUnitStallUpdate(this HeroHeadBarComponent self, int stallType)
