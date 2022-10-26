@@ -60,7 +60,7 @@ namespace ET
                 int addItemNum = drops[i].ItemNum;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
                 //紫色品质通知客户端抉择
-                //if (itemConfig.ItemQuality >= 1)
+                //if (itemConfig.ItemQuality >= 2)
                 //{
                 //    teamDungeonComponent.AddTeamDropItem(unit, drops[i]);
                 //    continue;

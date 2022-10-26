@@ -58,10 +58,11 @@ namespace ET
                 TeamDropItem teamDropItem = self.TeamDropItems[i];
                 List<long> needIds = teamDropItem.NeedPlayers;
                 List<long> giveIds = teamDropItem.GivePlayers;
-                if (teamDropItem.EndTime < serverTime && (needIds.Count + giveIds.Count) < 3)
+                if (serverTime < teamDropItem.EndTime && (needIds.Count + giveIds.Count) < 3)
                 {
                     continue;
                 }
+                teamDropItem.Dispose();
                 self.TeamDropItems.RemoveAt(i);
                 if (needIds.Count == 0)
                 {

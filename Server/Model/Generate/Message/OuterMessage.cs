@@ -8305,7 +8305,7 @@ namespace ET
 		[ProtoMember(2)]
 		public long UnitId { get; set; }
 
-		[ProtoMember(1)]
+		[ProtoMember(3)]
 		public List<DropInfo> DropItems = new List<DropInfo>();
 
 	}

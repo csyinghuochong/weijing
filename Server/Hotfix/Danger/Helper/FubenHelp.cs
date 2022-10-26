@@ -171,7 +171,7 @@ namespace ET
 			string numShow = "";
 			if (itemConfig.Id == 1)
 			{
-				numShow = dropInfo.ItemID.ToString();
+				numShow = dropInfo.ItemNum.ToString();
 			}
 			string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
 			m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";

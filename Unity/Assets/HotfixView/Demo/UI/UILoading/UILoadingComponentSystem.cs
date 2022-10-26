@@ -265,6 +265,9 @@ namespace ET
                 case (int)SceneTypeEnum.Battle:
                     UIHelper.Create(self.ZoneScene(), UIType.UIBattleMain).Coroutine();
                     break;
+                case (int)SceneTypeEnum.TeamDungeon:
+                    UIHelper.Create(self.ZoneScene(), UIType.UITeamMain).Coroutine();
+                    break;
             }
             Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
             UIHelper.Remove(self.DomainScene(), UIType.UILoading);

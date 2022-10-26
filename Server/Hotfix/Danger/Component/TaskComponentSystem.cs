@@ -449,8 +449,16 @@ namespace ET
         //登录
         public static void OnLogin(this TaskComponent self)
         {
-            self.TriggerTaskCountryEvent(  TaskCountryTargetType.Login_1, 0, 1, false );
+            for (int i = self.RoleTaskList.Count - 1; i >=0; i--)
+            { 
+                if (!TaskConfigCategory.Instance.Contain(self.RoleTaskList[i].taskID))
+                {
+                    Log.Debug($"OnLogin Remove:{self.RoleTaskList[i].taskID}");
+                    self.RoleTaskList.RemoveAt(i);
+                }
+            }
 
+            self.TriggerTaskCountryEvent(  TaskCountryTargetType.Login_1, 0, 1, false );
             //触发一下搜集道具类型的任务
             for (int i = 0; i < self.RoleTaskList.Count; i++)
             {

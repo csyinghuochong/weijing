@@ -65,7 +65,7 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public static async ETTask OnRecvUnitLeave(this TeamSceneComponent self, long userId)
+        public static async ETTask OnRecvUnitLeave(this TeamSceneComponent self, long userId, bool exitgame = false)
         {
             TeamInfo teamInfo = self.GetTeamInfo(userId);
 
@@ -75,7 +75,11 @@ namespace ET
             {
                 userIDList.Add(teamInfo.PlayerList[i].UserID);
             }
-            
+            if (exitgame && userIDList.Contains(userId))
+            {
+                userIDList.Remove(userId);
+            }
+
             for (int k = teamInfo.PlayerList.Count - 1; k >= 0; k--)
             {
                 if (teamInfo.PlayerList[k].UserID == userId)
@@ -137,7 +141,7 @@ namespace ET
         /// <returns></returns>
         public static void  OnUnitDisconnect(this TeamSceneComponent self, Scene fubnescene, long unitId)
         {
-            self.OnRecvUnitLeave(unitId).Coroutine();
+            self.OnRecvUnitLeave(unitId, true).Coroutine();
             if (!fubnescene.GetComponent<TeamDungeonComponent>().IsHavePlayer())
             {
                 TeamInfo teamInfo = self.GetTeamInfo(unitId);

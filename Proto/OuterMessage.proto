@@ -3979,7 +3979,7 @@ message M2C_TeamPickMessage // IActorMessage
 	int64 ActorId = 1;
 	int64 UnitId = 2;
 
-	repeated DropInfo DropItems = 1;
+	repeated DropInfo DropItems = 3;
 }
 
 message C2M_TeamPickRequest    // IActorLocationMessage

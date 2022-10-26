@@ -54,7 +54,8 @@ namespace ET
             self.CurDrop = null;
             self.DropInfos.Clear();
 
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            GameObject gameObject = self.GetParent<UI>().GameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.Label_LeftTime = rc.Get<GameObject>("Label_LeftTime");
 
             self.Btn_Close = rc.Get<GameObject>("Btn_Close");
@@ -65,7 +66,7 @@ namespace ET
 
             self.BottomNode = rc.Get<GameObject>("BottomNode");
 
-            self.TeamDropItem = rc.Get<GameObject>("BottomNode");
+            self.TeamDropItem = rc.Get<GameObject>("TeamDropItem");
             self.TeamDropItem.SetActive(false);
 
             GameObject UICommonItem = rc.Get<GameObject>("UICommonItem");
@@ -121,12 +122,15 @@ namespace ET
         {
             if (self.LeftTime  < 0)
             {
-                if (self.DropInfos.Count > 0)
+                if (self.DropInfos.Count == 0)
+                {
+                    self.SendTeamPick(2);
+                    TimerComponent.Instance.Remove(ref self.Timer);
+                }
+                else
                 {
                     self.UpdateDropItem();
-                    return;
                 }
-                TimerComponent.Instance.Remove(ref self.Timer);
             }
             self.LeftTime--;
             self.Label_LeftTime.GetComponent<Text>().text = $"{self.LeftTime}秒";

@@ -475,7 +475,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9159628418335788584}
-  - component: {fileID: 5918155798646465805}
   - component: {fileID: 7773459154868803949}
   - component: {fileID: 2889216736086330583}
   m_Layer: 5
@@ -505,19 +504,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5918155798646465805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4429022105529118177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data: []
 --- !u!114 &7773459154868803949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -553,12 +539,12 @@ MonoBehaviour:
     gameObject: {fileID: 8817729041231090325}
   - key: UICommonItem
     gameObject: {fileID: 3809846902047735093}
+  - key: Label_LeftTime
+    gameObject: {fileID: 1612827790461407155}
   - key: Btn_Need
     gameObject: {fileID: 996830249999353307}
   - key: Btn_Close
     gameObject: {fileID: 2644628785751457719}
-  - key: Label_LeftTime
-    gameObject: {fileID: 1612827790461407155}
 --- !u!1 &4585484027339711358
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +760,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6296272639014534248}
-  - component: {fileID: 7422788536872072286}
   m_Layer: 5
   m_Name: TeamDropItem
   m_TagString: Untagged
@@ -806,27 +791,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 145}
   m_SizeDelta: {x: 600, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7422788536872072286
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8817729041231090325}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  data:
-  - key: UICommonItem
-    gameObject: {fileID: 3809846902047735093}
-  - key: Btn_Need
-    gameObject: {fileID: 996830249999353307}
-  - key: Btn_Close
-    gameObject: {fileID: 2644628785751457719}
-  - key: Label_LeftTime
-    gameObject: {fileID: 1612827790461407155}
 --- !u!1001 &3809846902047849773
 PrefabInstance:
   m_ObjectHideFlags: 0

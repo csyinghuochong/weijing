@@ -41,13 +41,17 @@ namespace ET
             //{
             //    UIHelper.Remove(args.ZoneScene, UIType.UILobby);   //EnterMapFinish_CreateMainUI. Remove(UILobby)
             //}
-            if (args.LastSceneType == SceneTypeEnum.PetDungeon)
+            switch (args.LastSceneType)
             {
-                UIHelper.Remove(args.ZoneScene, UIType.UIPetMain);
-            }
-            if (args.LastSceneType == SceneTypeEnum.Battle)
-            {
-                UIHelper.Remove(args.ZoneScene, UIType.UIBattleMain);
+                case SceneTypeEnum.PetDungeon:
+                    UIHelper.Remove(args.ZoneScene, UIType.UIPetMain);
+                    break;
+                case SceneTypeEnum.Battle:
+                    UIHelper.Remove(args.ZoneScene, UIType.UIBattleMain);
+                    break;
+                case SceneTypeEnum.TeamDungeon:
+                    UIHelper.Remove(args.ZoneScene, UIType.UITeamMain);
+                    break;
             }
             Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.ChapterId).Coroutine();
         }

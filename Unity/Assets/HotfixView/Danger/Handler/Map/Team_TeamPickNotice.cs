@@ -5,6 +5,7 @@ namespace ET
     {
         protected override void Run(object cls)
         {
+            Log.Debug("Team_TeamPickNotice");
             EventType.TeamPickNotice args = (EventType.TeamPickNotice)cls;
             UI uI = UIHelper.GetUI(args.ZoneScene, UIType.UITeamMain);
             if (uI != null)

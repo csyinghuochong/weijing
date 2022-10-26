@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 303
+  version: 305
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -4318,6 +4318,8 @@ MonoBehaviour:
     path: Assets/Bundles/UI/TeamDungeon/UITeamDungeonItem.prefab
   - bundle: 5cb781f50875db49b69622ddcb376a3d.unity3d
     path: Assets/Bundles/UI/TeamDungeon/UITeamDungeonSettlement.prefab
+  - bundle: 3fc62d23bd4eaf1b01677c1530daf5f0.unity3d
+    path: Assets/Bundles/UI/TeamDungeon/UITeamMain.prefab
   - bundle: e152e539ac6ce2d6448b497da3a19350.unity3d
     path: Assets/Bundles/UI/UIHelp.prefab
   - bundle: fcb592ef9cb6692e515fb238ae307bbd.unity3d
@@ -4570,6 +4572,10 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Monster/72001005.prefab
   - bundle: 288ed0d4feac2430a0eba8a6f27d371a.unity3d
     path: Assets/Bundles/Unit/Monster/72001006.prefab
+  - bundle: b6b8f51f8f031b0ce27a05465e64b547.unity3d
+    path: Assets/Bundles/Unit/Monster/72001007.prefab
+  - bundle: fea6c68f81cbc7c1a464ccd0aac67523.unity3d
+    path: Assets/Bundles/Unit/Monster/72001008.prefab
   - bundle: 22065292875eb87f18aa26fdd56ed85e.unity3d
     path: Assets/Bundles/Unit/Monster/72001011.prefab
   - bundle: 4cf4647d4983d6fe985b81c057d3b276.unity3d
@@ -5640,6 +5646,12 @@ MonoBehaviour:
   - name: 288ed0d4feac2430a0eba8a6f27d371a.unity3d
     assets:
     - Assets/Bundles/Unit/Monster/72001006.prefab
+  - name: b6b8f51f8f031b0ce27a05465e64b547.unity3d
+    assets:
+    - Assets/Bundles/Unit/Monster/72001007.prefab
+  - name: fea6c68f81cbc7c1a464ccd0aac67523.unity3d
+    assets:
+    - Assets/Bundles/Unit/Monster/72001008.prefab
   - name: 22065292875eb87f18aa26fdd56ed85e.unity3d
     assets:
     - Assets/Bundles/Unit/Monster/72001011.prefab
@@ -6852,6 +6864,9 @@ MonoBehaviour:
   - name: 5cb781f50875db49b69622ddcb376a3d.unity3d
     assets:
     - Assets/Bundles/UI/TeamDungeon/UITeamDungeonSettlement.prefab
+  - name: 3fc62d23bd4eaf1b01677c1530daf5f0.unity3d
+    assets:
+    - Assets/Bundles/UI/TeamDungeon/UITeamMain.prefab
   - name: 55ef7382f5a509040b488a114573722e.unity3d
     assets:
     - Assets/Bundles/Independent/Code.prefab
@@ -10863,6 +10878,9 @@ MonoBehaviour:
   - name: f20faf0e7c55bf860c320300b0530a90.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_144.png
+  - name: ba8744259bb3e9bab82210311b7d01eb.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_44.png
   - name: 113f99598e418e3618f7c0d62066fb82.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_382.png
@@ -10896,9 +10914,6 @@ MonoBehaviour:
   - name: 9ffc8462c60b8d78364e6802e6d031c7.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_213.png
-  - name: ba8744259bb3e9bab82210311b7d01eb.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_44.png
   - name: caf55d071646e82a4ce3831d4de5e326.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_92.png
@@ -11001,6 +11016,9 @@ MonoBehaviour:
   - name: 5a18fe696277b55d06139cc32ec583b5.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_29.png
+  - name: fd91049ee6b939c843cc004390e04fac.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_319.png
   - name: e694d5d8b1657f29b947c926c2870a5e.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_201.png
@@ -11061,15 +11079,9 @@ MonoBehaviour:
   - name: 9601a4256ad24f2b06f69c271ac41ba2.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_216.png
-  - name: 4dc7cf43ae835f792bfdea297eb8f60f.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_231.png
   - name: 26127c36397d1ec9808c54cd75f329ca.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_67.Png
-  - name: fd91049ee6b939c843cc004390e04fac.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_319.png
   - name: 2e45f63350462b2ae9170698facdc071.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_4.png
@@ -11256,9 +11268,6 @@ MonoBehaviour:
   - name: c7381305f1790e60a8edbd24394888ec.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_259.png
-  - name: d5242b583eb87a818c261360229e1287.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_252.png
   - name: d01f7c89078b78b7265062fb4a740677.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_14.png
@@ -11307,6 +11316,9 @@ MonoBehaviour:
   - name: 84b45ef3b3611bbd643fa493d2f1f1ca.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Icon/UI_Icon_23.png
+  - name: d5242b583eb87a818c261360229e1287.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_252.png
   - name: c2fa3019443e27dd953e04dc831dcfe5.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_380.png
@@ -11373,9 +11385,6 @@ MonoBehaviour:
   - name: cca5d0dbb891de0ec9be063294bdec21.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_277.png
-  - name: b88b07e83d709f2711682433b420b801.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_292.png
   - name: 18e7691838b2d9ee2323b18016d66d41.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/HintDian.png
@@ -14934,27 +14943,15 @@ MonoBehaviour:
   - name: d7073abb86d1d18ea72ef545604d12e4.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/Crystal5.fbx
-  - name: 0b0d1d602ac5045603fc190a470c74c1.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Bones_02.fbx
   - name: ff6b3723c04ccc19bae0e1b9b4c7f28d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Wagon_tracks2.fbx
-  - name: d99ae84a8a75a63231d05b0e76c63d9d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Bones_05.fbx
   - name: bc446d7b3a5bf66dd72df3da6ddb761f.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/TerrainTexture/a1dun_caves_CaveFloor_A.png
   - name: 443422bf0b98ce847355d016116005a6.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Prop_Chest1.fbx
-  - name: 92c51192f09c07aefad0becf86951384.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Bones_03.fbx
-  - name: 93ac6961e0e253381305401e52cfa325.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Bones_04.fbx
   - name: 1b3a80f2fea0d60cfe177cea32ce9229.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Prop_Barrel.fbx
@@ -15006,6 +15003,9 @@ MonoBehaviour:
   - name: d123f7629cccb92edc5a289893f8606a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_white.fbx
+  - name: d99ae84a8a75a63231d05b0e76c63d9d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Bones_05.fbx
   - name: ff53c6a6e3447e17695709cbffca1323.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/House/Texture/BANDIT_ROPE_01.png
@@ -15049,6 +15049,9 @@ MonoBehaviour:
   - name: c9511305a11caa0b0438ea6d2c23ccd4.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelTree01_2.fbx
+  - name: 92c51192f09c07aefad0becf86951384.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Bones_03.fbx
   - name: 9e35f40123f8a057e57a7ae00bace80c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/Materials/environment_common_weilan_001_01.mat
@@ -15092,9 +15095,6 @@ MonoBehaviour:
   - name: ae41fca129e796591690dc18ba5de574.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/House/Materials/ci_shop_pillar_01.001.mat
-  - name: b3106b00cbb7722dcd8cacc78c924911.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/obj_small_059_01.TGA
   - name: 8c8d5e1c053d89b271bd8fe53a83bdd4.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/ba_bandit_rope_01_mat.mat
@@ -15110,15 +15110,18 @@ MonoBehaviour:
   - name: d696902d92f65d395a1e1f57f4fdde13.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/ban_bandit_wood01.005.mat
+  - name: 93ac6961e0e253381305401e52cfa325.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Bones_04.fbx
+  - name: 4e40d8ffcbb5f1af068a8668130c3460.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/Texture/TROLL_SWAMP.png
   - name: 52ca62922cbe4fdf78ab1488a54e56f6.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/House/Materials/cit_shop_cloth_01.001.mat
   - name: 24d1572fe16c574826a6b2ef2bffbb6d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/BANDIT_CAGE_01.fbx
-  - name: 4e40d8ffcbb5f1af068a8668130c3460.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/Texture/TROLL_SWAMP.png
   - name: ad782bb3690a4f08d78156922462b349.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/House/Materials/ban_bandit_hut_01.004.mat
@@ -15600,9 +15603,6 @@ MonoBehaviour:
   - name: c887be2ef0d8eaf041cf3bcebfe59adb.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.mat
-  - name: 4eb7ec892c29ab65d8beffecbc7c4fca.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/obj_small_047_01.mat
   - name: 70c4a5e949cf3f5d91c46f4bff0a3c0b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/PangXie_1.controller
@@ -15621,9 +15621,6 @@ MonoBehaviour:
   - name: 30036884da56635e4933f108f2b6f8e7.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/Materials/environment_common_liaogaotai_001_01.mat
-  - name: 21fe3a3a36f71a32b7e7a86d323061af.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/obj_small_047_01.tga
   - name: 78f3d75065667ce2994b0e8509d7833c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Building/Textures/environment_Building_cunzhuang_004_01.png
@@ -15633,9 +15630,6 @@ MonoBehaviour:
   - name: c1404578d3f70b934851f41db77f903f.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Materials/environment_common_kuangkengwall_002_01.mat
-  - name: 4601b39cf35dd710dce8cac8c2f2363d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/obj_small_047.FBX
   - name: d823262a83d3ec90925b3e6843f7819e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_yellow.mat
@@ -15669,6 +15663,9 @@ MonoBehaviour:
   - name: e45d429868ecd14859c59d405afce06e.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/NPC_YongShi/merc.mat
+  - name: b3106b00cbb7722dcd8cacc78c924911.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/obj_small_059_01.TGA
   - name: 43b402ba295a35cd962683da5ac4bf60.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Stone/modelRock03.fbx
@@ -15684,9 +15681,6 @@ MonoBehaviour:
   - name: df310d129dec17201b060d9120adfac6.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBucket2.fbx
-  - name: 933fba1496bd4940dc40a6a5e1aa515c.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/obj_small_047_02.mat
   - name: 97212ea14b2cd952438184d0b50dd1bd.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Building/Materials/environment_Building_fenghuotai_02.mat
@@ -15723,6 +15717,9 @@ MonoBehaviour:
   - name: d91a75685917dccf25e978df4aa9d6df.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/environment_common_juma_001_b.FBX
+  - name: 4eb7ec892c29ab65d8beffecbc7c4fca.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/obj_small_047_01.mat
   - name: 8269faa5edc4505b3536c9359b75f02b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/caOut_groundSand_14_diff.png
@@ -15738,6 +15735,9 @@ MonoBehaviour:
   - name: 0002b970812de887cd8c057367e55cc8.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Stone/Model/obj_metope_010.FBX
+  - name: 21fe3a3a36f71a32b7e7a86d323061af.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/obj_small_047_01.tga
   - name: 45a40d8854655238a8168da29b88bac6.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/Textures/environment_common_daocaoduo_001_01.png
@@ -15762,6 +15762,9 @@ MonoBehaviour:
   - name: 6ed765d6001d6f8c00183de0b6065eaa.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/PangXie_3.controller
+  - name: 4601b39cf35dd710dce8cac8c2f2363d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/obj_small_047.FBX
   - name: 50f9d8c9b1d42591cee9c6766e4e4ec4.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/Textures/environment_common_zhangpeng_04_01.png
@@ -15798,6 +15801,9 @@ MonoBehaviour:
   - name: 3483fbb962a3cf3014c111520a44e264.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/environment_common_daocaoduo_001_b.FBX
+  - name: 933fba1496bd4940dc40a6a5e1aa515c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/obj_small_047_02.mat
   - name: b0e43f15d6f7801c9a7da6f2acbb935b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Building/Materials/environment_common_kuangkengwall_002_01.mat
@@ -16303,9 +16309,6 @@ MonoBehaviour:
   - name: e553ca183c97ee7347c4364d1b78ceef.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_Ice_12.prefab
-  - name: fffb9bbe1cbd16eb5ba2428c92e07b1e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/Textures/environment_common_muza_002_a.png
   - name: c1d99b6bccacec0eb63072fa9a834c32.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_Ice_3.FBX
@@ -16327,9 +16330,6 @@ MonoBehaviour:
   - name: c60ccafdeccc7bb8fc220be17afeb92d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Ice/Boss_LangShouLing.controller
-  - name: 9646227c58aceec9f801b7277836507c.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/environment_common_muza_002_a.FBX
   - name: 18c3fe2b607ed9b89d6044ebdabe548c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Ice/Boss_LangShouLing.fbx
@@ -16345,9 +16345,6 @@ MonoBehaviour:
   - name: 327aa270848392b0ba8bdcf4ed4ccc90.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_Ice_5.prefab
-  - name: 3a602f6d0c7c892b3f697671984408b9.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/Materials/environment_common_muza_002_a.mat
   - name: 1e24f9d191033bdfd4dc9e5ddbdcfb7e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/Materials/environment_common_xuedimuxiang_003_02.mat
@@ -16414,6 +16411,9 @@ MonoBehaviour:
   - name: 98f0d05ce78b546c0fb23c564a6d615c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Ice/Materials/Sturm_CasterChamp_mat.mat
+  - name: fffb9bbe1cbd16eb5ba2428c92e07b1e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/Textures/environment_common_muza_002_a.png
   - name: bfb23020ae7380265e1f2547aedcca28.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/Textures/environment_common_jiazi_001_01.png
@@ -16438,6 +16438,9 @@ MonoBehaviour:
   - name: d6efe9e1f8c5ac63744898b312fc915e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/environment_common_men_001_c.FBX
+  - name: 9646227c58aceec9f801b7277836507c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/environment_common_muza_002_a.FBX
   - name: f9cf4521e75d12e1677329d6794126f6.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/Textures/environment_common_men_001_03.png
@@ -16468,6 +16471,9 @@ MonoBehaviour:
   - name: 556e0de434d250cb8c956facd1d5cf07.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/ZhangJie_4/JingLing/BingJingLing_1.controller
+  - name: 3a602f6d0c7c892b3f697671984408b9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/Materials/environment_common_muza_002_a.mat
   - name: 32fb4b4a813a96df3fa78a346402b632.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Ice/BingXiong.controller
@@ -16549,6 +16555,9 @@ MonoBehaviour:
   - name: c15eb4a45e1fa0a6911798f587e29b72.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/ban_bandit_wood01.007.mat
+  - name: 0b0d1d602ac5045603fc190a470c74c1.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Bones_02.fbx
   - name: 18fd56492768e9035cc9266ceafcbb97.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/BANDIT_WALL_01.fbx
