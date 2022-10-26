@@ -11,8 +11,9 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_TeamDungeonRBornRequest request)
         {
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
+
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
-            unit.SetBornPosition(new Vector3(sceneConfig.InitPos[0]*0.01f, sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[0] * 0.01f));
+            unit.SetBornPosition(new Vector3(sceneConfig.InitPos[0]*0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f));
             unit.GetComponent<HeroDataComponent>().OnRevive();
             await ETTask.CompletedTask;
         }
