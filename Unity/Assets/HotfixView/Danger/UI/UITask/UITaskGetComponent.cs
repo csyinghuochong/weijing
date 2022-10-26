@@ -86,12 +86,12 @@ namespace ET
     {
         public static  void OnTaskGet(this UITaskGetComponent self)
         {
+            NpcConfig npcConfig = NpcConfigCategory.Instance.Get(self.NpcID);
             bool update = self.UpdataTask();
-            if (update)
+            if (!update && npcConfig.NpcType != 3)
             {
-                return;
+                self.OnCloseNpcTask();
             }
-            self.OnCloseNpcTask();
         }
 
         public static void OnCloseNpcTask(this UITaskGetComponent self)
@@ -101,13 +101,25 @@ namespace ET
 
         public static async ETTask OnButtonLoopTask(this UITaskGetComponent self)
         {
-            C2M_TaskLoopGetRequest request = new C2M_TaskLoopGetRequest() {  };
-            M2C_TaskLoopGetResponse response = (M2C_TaskLoopGetResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error != 0)
+            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+            if (taskComponent.GetTaskTypeList(TaskTypeEnum.EveryDay).Count > 0)
             {
                 return;
             }
-            self.ZoneScene().GetComponent<TaskComponent>().RoleTaskList.Add(response.TaskLoop);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TaskLoopNumber)>=10)
+            {
+                FloatTipManager.Instance.ShowFloatTip("当日接取已达上限");
+                return;
+            }
+
+            C2M_TaskLoopGetRequest request = new C2M_TaskLoopGetRequest() {  };
+            M2C_TaskLoopGetResponse response = (M2C_TaskLoopGetResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (response.Error != 0 || response.TaskLoop==null)
+            {
+                return;
+            }
+            taskComponent.RoleTaskList.Add(response.TaskLoop);
             HintHelp.GetInstance().DataUpdate(DataType.TaskGet, response.TaskLoop.taskID.ToString());
             self.OnCloseNpcTask();
         }
@@ -141,7 +153,9 @@ namespace ET
             }
             else if (npcConfig.NpcType == 3)    //循环任务
             {
-                self.UILoopTask.SetActive(true);
+                bool update = self.UpdataTask();
+                self.ScrollView1.SetActive(update);
+                self.UILoopTask.SetActive(!update);
             }
             else if (npcConfig.NpcType == 4)       //魔能老人
             {

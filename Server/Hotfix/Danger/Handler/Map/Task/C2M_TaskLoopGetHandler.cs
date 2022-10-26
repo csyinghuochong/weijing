@@ -14,6 +14,18 @@ namespace ET
                 reply();
                 return;
             }
+            TaskPro taskPro = null;
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int giveUpId = numericComponent.GetAsInt(NumericType.TaskLoopGiveId);
+            if (giveUpId > 0)
+            {
+                taskPro = taskComponent.OnGetTask(giveUpId);
+                response.TaskLoop = taskPro;
+                numericComponent.ApplyChange(null,NumericType.TaskLoopNumber,1,0);
+                reply();
+                return;
+            }
+
             List<int> allTaskIds = new List<int>();
             Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();
             foreach (var item in keyValuePairs)
@@ -24,9 +36,9 @@ namespace ET
                 }
             }
             int taskId = allTaskIds[RandomHelper.RandomNumber(0, allTaskIds.Count)];
-            TaskPro taskPro = taskComponent.OnGetTask(taskId);
+            taskPro = taskComponent.OnGetTask(taskId);
             response.TaskLoop = taskPro;
-
+            numericComponent.ApplyChange(null, NumericType.TaskLoopNumber, 1, 0);
             reply();
             await ETTask.CompletedTask;
         }

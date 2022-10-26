@@ -255,11 +255,6 @@ namespace ET
 				FloatTipManager.Instance.ShowFloatTip("主线任务不能放弃");
 				return;
 			}
-			if (taskConfig.TaskType != (int)TaskTypeEnum.Branch)
-			{
-				return;
-			}
-
 			self.ZoneScene().GetComponent<TaskComponent>().SendGiveUpTask(self.TaskPro.taskID).Coroutine();
 		}
 
