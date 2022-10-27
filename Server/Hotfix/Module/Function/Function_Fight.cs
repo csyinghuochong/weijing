@@ -63,6 +63,53 @@ namespace ET
             long attack_MinDef = numericComponentAttack.GetAsLong(NumericType.Now_MinDef);
             long attack_MaxDef = numericComponentAttack.GetAsLong(NumericType.Now_MaxDef);
 
+
+            //当前幸运
+            int nowluck = numericComponentAttack.GetAsInt(NumericType.Now_Luck);
+            float luckPro = 0;
+            switch (nowluck)
+            {
+                case 0:
+                    luckPro = 0.01f;
+                    break;
+                case 1:
+                    luckPro = 0.02f;
+                    break;
+                case 2:
+                    luckPro = 0.04f;
+                    break;
+                case 3:
+                    luckPro = 0.08f;
+                    break;
+                case 4:
+                    luckPro = 0.12f;
+                    break;
+                case 5:
+                    luckPro = 0.2f;
+                    break;
+                case 6:
+                    luckPro = 0.3f;
+                    break;
+                case 7:
+                    luckPro = 0.4f;
+                    break;
+                case 8:
+                    luckPro = 0.5f;
+                    break;
+                case 9:
+                    luckPro = 1f;
+                    break;
+
+                default :
+                    luckPro = 1f;
+                    break;
+            }
+
+            if (RandomHelper.RandFloat01() <= luckPro)
+            {
+                attack_MinAct = attack_MaxAct;
+            }
+
             long attack_Act = (long)RandomHelper.RandomNumberFloat(attack_MinAct, attack_MaxAct);
             long attack_def = (long)RandomHelper.RandomNumberFloat(attack_MinDef, attack_MaxDef);
 
@@ -88,7 +135,6 @@ namespace ET
             defend_MaxDef = defend_MaxDef < 0 ? 0 : defend_MaxDef;
             defend_MinAdf = defend_MinAdf < 0 ? 0 : defend_MinAdf;
             defend_MaxAdf = defend_MaxAdf < 0 ? 0 : defend_MaxAdf;
-
 
             long defend_Act = (long)RandomHelper.RandomNumberFloat(defend_MinAct, defend_MaxAct);
             long defend_def = (long)RandomHelper.RandomNumberFloat(defend_MinDef, defend_MaxDef);
@@ -859,6 +905,7 @@ namespace ET
                 equipMaxDefSum = (int)(equipMaxDefSum + mEquipCon.Equip_MaxDef * (1 + occMastery + addPro));
                 equipMinAdfSum = (int)(equipMinAdfSum + mEquipCon.Equip_MinAdf * (1 + occMastery + addPro));
                 equipMaxAdfSum = (int)(equipMaxAdfSum + mEquipCon.Equip_MaxAdf * (1 + occMastery + addPro));
+
                 /*
                 equipHpSum = (int)(equipHpSum + mEquipCon.Equip_Hp * (1 + occMastery + addPro) + BaseHp_EquipSuit);
                 equipMinActSum = (int)(equipMinActSum + mEquipCon.Equip_MinAct * (1 + occMastery + addPro) + BaseMinAct_EquipSuit);
@@ -1073,6 +1120,46 @@ namespace ET
             foreach (var Item in NumericHelp.ZhanLi_ActPro)
             {
                 ShiLi_ActPro += (int)((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
+
+                //幸运副本附加
+                int luck = numericComponent.GetAsInt(NumericType.Now_Luck);
+                switch (luck)
+                {
+                    case 0:
+                        ShiLi_ActPro += 0.01f;
+                        break;
+                    case 1:
+                        ShiLi_ActPro += 0.02f;
+                        break;
+                    case 2:
+                        ShiLi_ActPro += 0.04f;
+                        break;
+                    case 3:
+                        ShiLi_ActPro += 0.08f;
+                        break;
+                    case 4:
+                        ShiLi_ActPro += 0.12f;
+                        break;
+                    case 5:
+                        ShiLi_ActPro += 0.2f;
+                        break;
+                    case 6:
+                        ShiLi_ActPro += 0.3f;
+                        break;
+                    case 7:
+                        ShiLi_ActPro += 0.4f;
+                        break;
+                    case 8:
+                        ShiLi_ActPro += 0.5f;
+                        break;
+                    case 9:
+                        ShiLi_ActPro += 1f;
+                        break;
+
+                    default:
+                        ShiLi_ActPro = 1f;
+                        break;
+                }
             }
 
             //防御部分
