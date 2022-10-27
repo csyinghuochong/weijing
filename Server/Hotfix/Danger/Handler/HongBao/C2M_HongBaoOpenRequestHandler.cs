@@ -40,7 +40,6 @@ namespace ET
                     maxGold = 150000;
                 }
 
-
                 if (playerLv >= 50)
                 {
                     minGold = 50000;

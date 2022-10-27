@@ -87,6 +87,9 @@ namespace ET
 		/// <summary>开启条件参数</summary>
 		[ProtoMember(4)]
 		public int[] ConditionParam { get; set; }
+		/// <summary>开启时间</summary>
+		[ProtoMember(5)]
+		public string OpenTime { get; set; }
 
 	}
 }

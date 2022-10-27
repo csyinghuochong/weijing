@@ -76,6 +76,8 @@ namespace ET
         public UISingingComponent UISingingComponent;
         public UITiaoZhanComponent UITiaoZhanComponent;
         public UIDigTreasureComponent UIDigTreasureComponent;
+
+        public float CheckButtonTime;
     }
 
     [ObjectSystem]
@@ -111,7 +113,7 @@ namespace ET
 
             self.Button_HongBao = rc.Get<GameObject>("Button_HongBao");
             ButtonHelp.AddListenerEx(self.Button_HongBao, () => { self.OnButton_HongBao(); });
-            self.Button_HongBao.SetActive(self.IsHaveHongBao());
+            self.Button_HongBao.SetActive(false);
 
             self.Button_Tower = rc.Get<GameObject>("Button_Tower");
             ButtonHelp.AddListenerEx(self.Button_Tower, () => { self.OnButton_Tower(); });
@@ -331,16 +333,17 @@ namespace ET
         {
             self.UIJoystickMoveComponent.OnUpdate();
             self.UIMainBuffComponent.OnUpdate();
+
+            self.CheckButton();
         }
     }
 
     public static class UIMainComponentSystem
     {
-
         public static bool IsHaveHongBao(this UIMainComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
-            return unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) != 0;
+            return unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0;
         }
 
         public static void OnUpdateCombat(this UIMainComponent self)
@@ -724,6 +727,21 @@ namespace ET
             {
                 self.SetFenBianLv2();
             }
+        }
+
+        public static void CheckButton(this UIMainComponent self)
+        {
+            if (Time.time - self.CheckButtonTime < 1f)
+            {
+                return;
+            }
+            self.CheckButtonTime = Time.time;
+            self.CheckButtonItem(self.Button_HongBao, 1023);
+        }
+
+        public static void CheckButtonItem(this UIMainComponent self , GameObject gameObject, int functionId)
+        { 
+            
         }
 
         public static void SetFenBianLv1(this UIMainComponent self)
