@@ -112,6 +112,7 @@ namespace ET
             self.TeamDropItem.SetActive(false);
             self.LeftTime = 0;
             self.CurDrop = null;
+            self.Check();
         }
 
         public static void OnBtn_Close(this UITeamMainComponent self)
