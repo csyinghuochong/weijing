@@ -22,7 +22,7 @@ namespace ET
                 reply();
                 return;
             }
-            int monsterId = boxUnit.ConfigId;
+            int monsterid = boxUnit.ConfigId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
             string itemneeds = "";
             if (monsterConfig.Parameter != null && monsterConfig.Parameter.Length > 0)
