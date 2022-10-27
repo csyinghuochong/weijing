@@ -159,6 +159,20 @@ namespace ET
 			return petNumber;
 		}
 
+		public static List<Unit> GetUnitList(Scene scene, int unitType)
+		{
+			List<Unit> units = new List<Unit>();
+			List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
+			for (int i = 0; i < allunits.Count; i++)
+			{
+				if (allunits[i].Type == unitType)
+				{
+					units.Add(allunits[i]);
+				}
+			}
+			return units;
+		}
+
 		public static void SendPickMessage(Unit unit, DropInfo dropInfo, M2C_SyncChatInfo m2C_SyncChatInfo)
 		{
 			UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();

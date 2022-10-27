@@ -60,11 +60,11 @@ namespace ET
                 int addItemNum = drops[i].ItemNum;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
                 //紫色品质通知客户端抉择
-                //if (itemConfig.ItemQuality >= 2)
-                //{
-                //    teamDungeonComponent.AddTeamDropItem(unit, drops[i]);
-                //    continue;
-                //}
+                if (itemConfig.ItemQuality >= 4)
+                {
+                    teamDungeonComponent.AddTeamDropItem(unit, drops[i]);
+                    continue;
+                }
                 m2C_SyncChatInfo.ChatInfo = new ChatInfo();
                 m2C_SyncChatInfo.ChatInfo.PlayerLevel = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                 m2C_SyncChatInfo.ChatInfo.Occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;

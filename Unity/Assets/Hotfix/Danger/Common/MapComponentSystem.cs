@@ -83,11 +83,11 @@ namespace ET
 					target = list[list.Count - 1];
 					break;
 				}
-				if (Vector3.Distance(start, target) < 0.2f)
+				if (Vector3.Distance(start, target) < 0.5f)
 				{
 					break;
 				}
-				target = target + (0.2f * dir);
+				target = target + (0.5f * dir);
 			}
 			return target;
 		}

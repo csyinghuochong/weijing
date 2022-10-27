@@ -95,12 +95,18 @@ namespace ET
             self.LeftTime = 20;
             self.DropInfos.RemoveAt(0);
             self.TeamDropItem.SetActive(true);
-            self.UIItem.UpdateItem(new BagInfo() { ItemID = self.CurDrop.ItemID });
+            self.UIItem.UpdateItem(new BagInfo() { ItemID = self.CurDrop.ItemID, ItemNum = self.CurDrop.ItemNum });
+
+            Log.Debug($"self.DropInfos {self.DropInfos.Count}");
         }
 
         public static  void SendTeamPick(this UITeamMainComponent self, int needType)
         {
             DropInfo dropInfo = self.CurDrop;
+            if (dropInfo == null)
+            {
+                return;
+            }
             C2M_TeamPickRequest request = new C2M_TeamPickRequest() { DropItem = dropInfo, Need = needType };
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(request);
             self.TeamDropItem.SetActive(false);

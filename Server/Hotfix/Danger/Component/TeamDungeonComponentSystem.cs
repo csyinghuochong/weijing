@@ -53,27 +53,30 @@ namespace ET
             }
 
             long serverTime = TimeHelper.ServerNow();
+            int playerCount = FubenHelp.GetUnitList(self.DomainScene(),  UnitType.Player).Count;
             for (int i = self.TeamDropItems.Count - 1; i >= 0; i--)
             {
+         
                 TeamDropItem teamDropItem = self.TeamDropItems[i];
+                if (teamDropItem.EndTime == -1)
+                {
+                    continue;
+                }
                 List<long> needIds = teamDropItem.NeedPlayers;
                 List<long> giveIds = teamDropItem.GivePlayers;
-                if (serverTime < teamDropItem.EndTime && (needIds.Count + giveIds.Count) < 3)
+                bool finish = serverTime >= teamDropItem.EndTime || (needIds.Count + giveIds.Count >= playerCount);
+                if (!finish)
                 {
                     continue;
                 }
-                teamDropItem.Dispose();
-                self.TeamDropItems.RemoveAt(i);
-                if (needIds.Count == 0)
-                {
-                    continue;
-                }
-                long unitid = teamDropItem.NeedPlayers[RandomHelper.RandomNumber(0, teamDropItem.NeedPlayers.Count)];
+                teamDropItem.EndTime = -1;
+                long unitid = needIds.Count == 0 ? 0 : teamDropItem.NeedPlayers[RandomHelper.RandomNumber(0, teamDropItem.NeedPlayers.Count)];
                 Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
                 if (unit != null)
                 {
                     FubenHelp.SendPickMessage(unit, teamDropItem.DropInfo, self.m2C_SyncChatInfo);
                 }
+                self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
             }
         }
 
@@ -96,6 +99,7 @@ namespace ET
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.TeamDropTimer, self);
             }
             M2C_TeamPickMessage teamPickMessage = self.m2C_TeamPickMessage;
+            teamPickMessage.DropItems.Clear();
             teamPickMessage.DropItems.Add(dropInfo);
             MessageHelper.Broadcast(unit, teamPickMessage);
             return teamDropItem;
