@@ -747,6 +747,7 @@ namespace ET
             {
                 return;
             }
+
             DateTime dateTime = TimeHelper.DateTimeNow();
             string[] openTimes = funtionConfig.OpenTime.Split('@');
             int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);
@@ -757,7 +758,7 @@ namespace ET
             int endTime = closeTime_1 * 100 + closeTime_2;
             int curTime = dateTime.Hour * 100 + dateTime.Minute;
             bool inTime = curTime  >= startTime && curTime <= endTime;
-
+            Log.Debug("curTime" + curTime);
             switch (functionId)
             {
                 case 1023: //红包

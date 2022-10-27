@@ -14,4 +14,9 @@
 {"_t":"AIConfig","_id":603,"AIConfigId":6,"Order":3,"Name":"AI_ZhuiJi","NodeParams":""},
 {"_t":"AIConfig","_id":604,"AIConfigId":6,"Order":4,"Name":"AI_Attack","NodeParams":""},
 {"_t":"AIConfig","_id":605,"AIConfigId":6,"Order":5,"Name":"AI_Transfer","NodeParams":"1"},
+{"_t":"AIConfig","_id":701,"AIConfigId":7,"Order":1,"Name":"AI_Target","NodeParams":"-4589;0;1100@3604;0;3884"},
+{"_t":"AIConfig","_id":702,"AIConfigId":7,"Order":2,"Name":"AI_TargetRetreat","NodeParams":""},
+{"_t":"AIConfig","_id":703,"AIConfigId":7,"Order":3,"Name":"AI_ZhuiJi","NodeParams":""},
+{"_t":"AIConfig","_id":704,"AIConfigId":7,"Order":4,"Name":"AI_Attack","NodeParams":""},
+{"_t":"AIConfig","_id":705,"AIConfigId":7,"Order":5,"Name":"AI_Transfer","NodeParams":"1"},
 ]}
