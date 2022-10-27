@@ -87,7 +87,7 @@ namespace ET
             if (unit.GetComponent<BagComponent>().CheckNeedItem(itemneeds))
             {
                 FloatTipManager.Instance.ShowFloatTip("道具不足！");
-                return false;
+                return;
             }
 
             if (unitId > 0)
