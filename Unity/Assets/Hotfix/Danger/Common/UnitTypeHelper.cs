@@ -19,6 +19,15 @@ namespace ET
             return MonsterConfigCategory.Instance.Get(self.ConfigId).MonsterSonType;
         }
 
+        public static bool IsSceneItem(this Unit self)
+        {
+            if (self.Type != UnitType.Monster)
+            {
+                return false;
+            }
+            return self.GetMonsterType() == MonsterTypeEnum.SceneItem;
+        }
+
         public static bool IsBoss(this Unit self)
         {
             if (self.Type != UnitType.Monster)

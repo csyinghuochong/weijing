@@ -253,30 +253,33 @@ namespace ET
             return unit;
         }
 
-        public static void CreateDropItems(Unit unit, Unit main)
+        public static void CreateDropItems(Unit bekill, Unit main, int sceneType)
         {
-            if (unit.Type != UnitType.Monster)
+            if (bekill.Type != UnitType.Monster)
             {
                 return;
             }
-            if (unit.GetMonsterType() != (int)MonsterTypeEnum.Boss
-                && unit.GetMonsterType() != (int)MonsterTypeEnum.SceneItem
-                && main.GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0)
+            bool drop = true;
+            if (ComHelp.IsSingleFuben(sceneType))
+            {
+                drop =  main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || bekill.IsBoss();
+            }
+            if (!drop)
             {
                 return;
             }
             float dropAdd_Pro = 1;
-            if (unit.GetMonsterType() == (int)MonsterTypeEnum.Boss)
+            if (bekill.IsBoss())
             {
                 int fubenDifficulty = FubenDifficulty.None;
                 dropAdd_Pro += main.GetComponent<NumericComponent>().GetAsFloat(NumericType.Base_DropAdd_Pro_Add);
-                if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
+                if (bekill.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
                 {
-                    fubenDifficulty = unit.DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
+                    fubenDifficulty = bekill.DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
                 }
-                if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+                if (bekill.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
                 {
-                    fubenDifficulty = unit.DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
+                    fubenDifficulty = bekill.DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
                 }
                 switch (fubenDifficulty)
                 {
@@ -290,7 +293,7 @@ namespace ET
             }
 
             //创建掉落
-            MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.ConfigId);
+            MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
             if (main != null && monsterCof.MonsterSonType == 1)
             {
                 int nowUserLv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
@@ -310,15 +313,15 @@ namespace ET
                 List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro);
                 for (int i = 0; i < droplist.Count; i++)
                 {
-                    UnitComponent unitComponent = unit.DomainScene().GetComponent<UnitComponent>();
+                    UnitComponent unitComponent = bekill.DomainScene().GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
                     dropitem.AddComponent<UnitInfoComponent>();
                     dropitem.Type = UnitType.DropItem;
                     DropComponent dropCheckComponent = dropitem.AddComponent<DropComponent>();
                     dropCheckComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
-                    float dropX = unit.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);
-                    float dropY = unit.Position.y;
-                    float dropZ = unit.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f);
+                    float dropX = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);
+                    float dropY = bekill.Position.y;
+                    float dropZ = bekill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f);
                     dropitem.Position = new UnityEngine.Vector3(dropX, dropY, dropZ);
                     dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
                 }
@@ -326,9 +329,9 @@ namespace ET
             else
             {
                 List<long> beattackIds = new List<long>();
-                if (unit.GetComponent<AIComponent>() != null)
+                if (bekill.GetComponent<AIComponent>() != null)
                 {
-                    beattackIds = unit.GetComponent<AIComponent>().BeAttackList;
+                    beattackIds = bekill.GetComponent<AIComponent>().BeAttackList;
                 }
                 else
                 {
@@ -336,7 +339,7 @@ namespace ET
                 }
                 for (int i = 0; i < beattackIds.Count; i++)
                 {
-                    Unit beAttack = unit.DomainScene().GetComponent<UnitComponent>().Get(beattackIds[i]);
+                    Unit beAttack = bekill.DomainScene().GetComponent<UnitComponent>().Get(beattackIds[i]);
                     if (beAttack == null)
                     {
                         continue;
@@ -348,9 +351,9 @@ namespace ET
                     {
                         m2C_CreateDropItems.Drops.Add(new DropInfo() {
                             DropType = 1, ItemID = droplist[k].ItemID, ItemNum = droplist[k].ItemNum,
-                            X = unit.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f),
-                            Y = unit.Position.y,
-                            Z = unit.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
+                            X = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f),
+                            Y = bekill.Position.y,
+                            Z = bekill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
                     }) ;
                     }                    
                     MessageHelper.SendToClient(beAttack, m2C_CreateDropItems);

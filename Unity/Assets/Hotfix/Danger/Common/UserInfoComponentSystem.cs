@@ -200,14 +200,20 @@ namespace ET
         /// </summary>
         /// <param name="self"></param>
         /// <param name="beKill"></param>
-        public static  void OnKillUnit(this UserInfoComponent self, Unit beKill)
+        public static  void OnKillUnit(this UserInfoComponent self, Unit beKill, int sceneType)
         {
             UnitInfoComponent unitInfoComponent = beKill.GetComponent<UnitInfoComponent>();
             if (beKill.Type != UnitType.Monster)
             {
                 return;
             }
-            if (beKill.GetMonsterType() != (int)MonsterTypeEnum.Boss && self.UserInfo.PiLao <= 0)
+            Unit main = self.GetParent<Unit>();
+            bool drop = true;
+            if (ComHelp.IsSingleFuben(sceneType))
+            {
+                drop = main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || beKill.IsBoss();
+            }
+            if (!drop)
             {
                 return;
             }

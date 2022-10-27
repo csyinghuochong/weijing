@@ -69,7 +69,7 @@ namespace ET
                     player.GetComponent<TaskComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
                     player.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
                     player.GetComponent<PetComponent>().OnKillUnit(defendUnit);
-                    UnitFactory.CreateDropItems(defendUnit, player);
+                    UnitFactory.CreateDropItems(defendUnit, player, sceneTypeEnum);
                 }
                 if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
                 {
@@ -78,13 +78,13 @@ namespace ET
                     {
                         if (units[k].Type == UnitType.Player)
                         {
-                            units[k].GetComponent<UserInfoComponent>().OnKillUnit(defendUnit);
+                            units[k].GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
                         }
                     }
                 }
                 else if(player != null)
                 {
-                    player.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit);
+                    player.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
                 }
                 switch (sceneTypeEnum)
                 {

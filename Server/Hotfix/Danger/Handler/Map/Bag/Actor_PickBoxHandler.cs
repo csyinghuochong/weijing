@@ -18,7 +18,8 @@ namespace ET
             }
             if (boxUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
             {
-                UnitFactory.CreateDropItems(boxUnit, unit);
+                MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
+                UnitFactory.CreateDropItems(boxUnit, unit, mapComponent.SceneTypeEnum);
                 EventType.NumericChangeEvent.Instance.Attack = unit;
                 EventType.NumericChangeEvent.Instance.Parent = boxUnit;
                 boxUnit.GetComponent<HeroDataComponent>().OnDead(EventType.NumericChangeEvent.Instance);
