@@ -115,28 +115,18 @@ namespace ET
             }
 
             int addBufStatus = 1;   //1新增buff  2 移除 3 重置 4同状态返回
-            //判断玩家身上是否有相同的buff,如果有就重置此Buff
             BuffHandler buffHandler = null;
             List<BuffHandler> nowAllBuffList = self.m_Buffs;
             for (int i = nowAllBuffList.Count - 1; i >=0 ; i--)
             {
+                bool remove = false;
                 buffHandler = nowAllBuffList[i];
                 SkillBuffConfig tempBuffConfig = buffHandler.BuffData.BuffConfig;
                 if (tempBuffConfig.Id == buffData.BuffConfig.Id && buffData.BuffConfig.BuffAddClass == 0)
                 {
-                    //如果是血量参数 则重置血量buff
-                    if (buffData.BuffConfig.buffParameterType == 3001 && buffData.BuffConfig.BuffLoopTime==0)
-                    {
-                        //操控当前血量buff为恢复效果,需要重新触发技能,不能直接重置CD
-                    }
-                    else 
-                    {
-                        buffHandler.PassTime = 0;     //重置Buff时间
-                        buffHandler.BuffEndTime = TimeHelper.ServerNow() + buffData.BuffConfig.BuffTime;
-                        addBufStatus = 3;
-                    }
-                    continue;
+                    remove = true;
                 }
+
                 //操作同状态的Buff
                 if (tempBuffConfig.BuffType == 2 && tempBuffConfig.BuffType == buffData.BuffConfig.BuffType
                     && tempBuffConfig.buffParameterType == buffData.BuffConfig.buffParameterType)   
@@ -146,14 +136,15 @@ namespace ET
                     {
                         addBufStatus = 4;
                     }
-                    else
-                    {
-                        MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitBuffUpdate() { UnitIdBelongTo = unit.Id, BuffID = tempBuffConfig.Id, BuffOperateType = 2 });
-                        buffHandler.BuffState = BuffState.Finished;
-                        ObjectPool.Instance.Recycle(buffHandler);
-                        buffHandler.OnFinished();
-                        self.m_Buffs.RemoveAt(i);
-                    }
+                }
+
+                if (remove)
+                {
+                    MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitBuffUpdate() { UnitIdBelongTo = unit.Id, BuffID = tempBuffConfig.Id, BuffOperateType = 2 });
+                    buffHandler.BuffState = BuffState.Finished;
+                    ObjectPool.Instance.Recycle(buffHandler);
+                    buffHandler.OnFinished();
+                    self.m_Buffs.RemoveAt(i);
                 }
             }
 
