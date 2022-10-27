@@ -136,6 +136,10 @@ namespace ET
                     {
                         addBufStatus = 4;
                     }
+                    else
+                    {
+                        remove = true;
+                    }
                 }
 
                 if (remove)

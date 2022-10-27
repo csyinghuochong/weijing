@@ -44,5 +44,11 @@ namespace ET
         public List<long> BeAttackList = new List<long>();
 
         public C2M_SkillCmd c2M_SkillCmd = new C2M_SkillCmd();
+
+        public List<Vector3> TargetPoint = new List<Vector3>();
+
+        public Vector3 TargetZhuiJi;
+
+        public int TargetIndex = -1;
     }
 }

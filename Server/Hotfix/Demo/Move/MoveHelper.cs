@@ -7,13 +7,13 @@ namespace ET
     {
 
         // 可以多次调用，多次调用的话会取消上一次的协程
-        public static async ETTask FindPathMoveToAsync(this Unit unit, Vector3 target, ETCancellationToken cancellationToken = null, bool yaogan = false)
+        public static async ETTask<int> FindPathMoveToAsync(this Unit unit, Vector3 target, ETCancellationToken cancellationToken = null, bool yaogan = false)
         {
             float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
             if (speed < 0.01)
             {
                 unit.SendStop(-1);
-                return;
+                return -1;
             }
 
             using var list = ListComponent<Vector3>.Create();
@@ -23,7 +23,7 @@ namespace ET
             if (path.Count < 2 && yaogan)
             {
                 unit.SendStop(-1);
-                return;
+                return -1;
             }
             if (path.Count < 2 && !yaogan)
             {
@@ -50,7 +50,9 @@ namespace ET
             if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
             {
                 unit.SendStop(0);
+                return 0;
             }
+            return -1;
         }
 
         public static void Stop(this Unit unit, int error)

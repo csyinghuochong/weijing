@@ -29,9 +29,11 @@ namespace ET
             self.IsRetreat = false;
             self.LastBeAttack = 0;
             self.BeAttackTime = 0;
+            self.TargetIndex = -1;
             self.AIConfigId = aiConfigId;
             self.AISkillIDList.Clear();
             self.BeAttackList.Clear();
+            self.TargetPoint.Clear();
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.AITimer, self);
         }
     }
@@ -78,7 +80,6 @@ namespace ET
                 {
                     continue;
                 }
-
                 if (self.Current == aiConfig.Id)
                 {
                     break;
@@ -120,6 +121,7 @@ namespace ET
             self.ChaseRange = MonsterCof.ChaseRange;    //超出会返回到出生点
             self.ActDistance = MonsterCof.ActDistance;  //2    小于转攻击
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
+            self.TargetPoint.Clear();
         }
 
         public static void InitTeampPet(this AIComponent self, int monsteConfigId)
@@ -188,7 +190,7 @@ namespace ET
                 self.LastBeAttack = attack.Id;
                 self.BeAttackTime = 1;
             }
-            if (self.BeAttackTime >= 3 || self.TargetID == 0)
+            if ((self.BeAttackTime >= 3 || self.TargetID == 0)&& !self.IsRetreat)
             {
                 self.TargetID = attack.Id;
             }

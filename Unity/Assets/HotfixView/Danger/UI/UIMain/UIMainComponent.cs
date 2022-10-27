@@ -753,8 +753,10 @@ namespace ET
             int openTime_2 = int.Parse(openTimes[0].Split(';')[1]);
             int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
             int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
-            bool inTime = dateTime.Hour >= openTime_1 && dateTime.Hour <= closeTime_1
-             && dateTime.Minute >= openTime_2 && dateTime.Minute <= closeTime_2;
+            int startTime = openTime_1 * 100 + openTime_2;
+            int endTime = closeTime_1 * 100 + closeTime_2;
+            int curTime = dateTime.Hour * 100 + dateTime.Minute;
+            bool inTime = curTime  >= startTime && curTime <= endTime;
 
             switch (functionId)
             {
