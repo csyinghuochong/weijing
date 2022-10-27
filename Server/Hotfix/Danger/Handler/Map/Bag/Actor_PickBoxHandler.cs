@@ -16,6 +16,8 @@ namespace ET
                 reply();
                 return;
             }
+            int monsterId =  boxUnit.ConfigId;
+
             if (boxUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
             {
                 MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();

@@ -75,16 +75,20 @@ namespace ET
             self.GetParent<UI>().GameObject.SetActive(unitId != 0);
             TimerComponent.Instance?.Remove(ref self.Timer);
 
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit box = unit.GetParent<UnitComponent>().Get(unitId);
+            int monsterid =  box.ConfigId; 
+            //判断道具
+
             if (unitId > 0)
             {
                 self.EndTime = TimeHelper.ClientNow() + self.TotalTime;
                 self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.OpenBoxTimer, self);
             }
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            
             if (unitId > 0)
             {
                 //unit.GetComponent<FsmComponent>().ChangeState(FsmHandlerType.FsmOpenBox);
-                Unit box = unit.GetParent<UnitComponent>().Get(unitId);
                 Vector3 direction = box.Position - unit.Position;
                 int ange = Mathf.FloorToInt(Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z));
                 MapHelper.SendUpdateState(self.ZoneScene(), 1, StateTypeEnum.OpenBox, ange.ToString());
