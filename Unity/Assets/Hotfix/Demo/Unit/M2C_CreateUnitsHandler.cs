@@ -1,8 +1,21 @@
-﻿namespace ET
+﻿using UnityEngine;
+
+namespace ET
 {
 	[MessageHandler]
 	public class M2C_CreateUnitsHandler : AMHandler<M2C_CreateUnits>
 	{
+
+		private bool CheckUnitExist(UnitComponent unitComponent, long unitid, float x,float y,float z)
+		{
+			if (unitComponent.Get(unitid) != null)
+			{
+				unitComponent.Get(unitid).Position = new Vector3(x,y,z);
+				return true;
+			}
+			return false;
+		}
+
 		protected override void Run(Session session, M2C_CreateUnits message)
 		{
 			Scene currentScene = session.ZoneScene().CurrentScene();
@@ -10,30 +23,54 @@
 			{
 				return;
 			}
-
+			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 			foreach (UnitInfo unitInfo in message.Units)
 			{
+				if (CheckUnitExist(unitComponent, unitInfo.UnitId,unitInfo.X,unitInfo.Y,unitInfo.Z))
+				{
+					continue;
+				}
 				UnitFactory.CreateUnit(currentScene, unitInfo);
 			}
 			foreach (SpilingInfo unitInfo in message.Spilings)
 			{
+				if (CheckUnitExist(unitComponent, unitInfo.UnitId, unitInfo.X, unitInfo.Y, unitInfo.Z))
+   				{
+					continue;
+				}
 				UnitFactory.CreateSpiling(currentScene, unitInfo);
 			}
 			foreach (DropInfo unitInfo in message.Drops)
 			{
+				if (CheckUnitExist(unitComponent, unitInfo.UnitId, unitInfo.X, unitInfo.Y, unitInfo.Z))
+				{
+					continue;
+				}
 				UnitFactory.CreateDropItem(currentScene, unitInfo);
 			}
-			foreach (TransferInfo transferInfo in message.Transfers)
+			foreach (TransferInfo unitInfo in message.Transfers)
 			{
-				UnitFactory.CreateTransferItem(currentScene, transferInfo);
+				if (CheckUnitExist(unitComponent, unitInfo.UnitId, unitInfo.X, unitInfo.Y, unitInfo.Z))
+				{
+					continue;
+				}
+				UnitFactory.CreateTransferItem(currentScene, unitInfo);
 			}
-			foreach (NpcInfo npcInfo in message.Npcs)
+			foreach (NpcInfo unitInfo in message.Npcs)
 			{
-				UnitFactory.CreateNpcItem(currentScene, npcInfo);
+				if (CheckUnitExist(unitComponent, unitInfo.UnitId, unitInfo.X, unitInfo.Y, unitInfo.Z))
+				{
+					continue;
+				}
+				UnitFactory.CreateNpcItem(currentScene, unitInfo);
 			}
-			foreach (RolePetInfo petInfo in message.Pets)
+			foreach (RolePetInfo unitInfo in message.Pets)
 			{
-				UnitFactory.CreateRolePet(currentScene, petInfo);
+				if (CheckUnitExist(unitComponent, unitInfo.Id, unitInfo.X, unitInfo.Y, unitInfo.Z))
+				{
+					continue;
+				}
+				UnitFactory.CreateRolePet(currentScene, unitInfo);
 			}
 		}
 	}

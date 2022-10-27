@@ -107,6 +107,7 @@ namespace ET
                 {
                     self.Relink = false;
                     Log.ILog.Debug("重连成功！！");
+                    self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_RefreshUnitRequest());
                     UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
                     break;
                 }

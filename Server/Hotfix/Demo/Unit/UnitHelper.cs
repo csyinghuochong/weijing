@@ -96,7 +96,12 @@ namespace ET
         public static void NoticeUnitAdd(Unit unit, Unit sendUnit)
         {
             M2C_CreateUnits createUnits = new M2C_CreateUnits();
+            GetUnitInfo(sendUnit, createUnits);
+            MessageHelper.SendToClient(unit, createUnits);
+        }
 
+        public static void GetUnitInfo(Unit sendUnit, M2C_CreateUnits createUnits)
+        {
             switch (sendUnit.Type)
             {
                 case UnitType.Player:
@@ -129,8 +134,6 @@ namespace ET
                     createUnits.Pets.Add(CreatePetInfo(sendUnit));
                     break;
             }
-           
-            MessageHelper.SendToClient(unit, createUnits);
         }
 
         public static void NoticeUnitRemove(Unit unit, Unit sendUnit)
