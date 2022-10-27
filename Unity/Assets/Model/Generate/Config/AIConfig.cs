@@ -89,7 +89,7 @@ namespace ET
 		public string Name { get; set; }
 		/// <summary>节点参数</summary>
 		[ProtoMember(5)]
-		public int[] NodeParams { get; set; }
+		public string NodeParams { get; set; }
 
 	}
 }

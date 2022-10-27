@@ -5,6 +5,7 @@
     {
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
+
             return true;
         }
 

@@ -19,7 +19,7 @@ namespace ET
             Unit unit = aiComponent.GetParent<Unit>();
             unit.Stop(0);
             unit.SetBornPosition(unit.Position);
-            aiComponent.AIConfigId = aiConfig.NodeParams[0];
+            aiComponent.AIConfigId = int.Parse(aiConfig.NodeParams);
         }
     }
 }
