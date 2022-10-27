@@ -122,7 +122,6 @@ namespace ET
 						{
 							UnitFactory.CreatePet(unit, fightId);
 						}
-
 						scene.GetComponent<LocalDungeonComponent>().MainUnit = unit;
 						scene.GetComponent<LocalDungeonComponent>().GenerateFubenScene(request.ChapterId);
 						break;

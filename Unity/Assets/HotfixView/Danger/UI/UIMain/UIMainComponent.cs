@@ -78,6 +78,7 @@ namespace ET
         public UIDigTreasureComponent UIDigTreasureComponent;
 
         public float CheckButtonTime;
+        public Unit MainUnit;
     }
 
     [ObjectSystem]
@@ -740,8 +741,28 @@ namespace ET
         }
 
         public static void CheckButtonItem(this UIMainComponent self , GameObject gameObject, int functionId)
-        { 
-            
+        {
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(functionId);
+            if (string.IsNullOrEmpty(funtionConfig.OpenTime))
+            {
+                return;
+            }
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            string[] openTimes = funtionConfig.OpenTime.Split('@');
+            int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);
+            int openTime_2 = int.Parse(openTimes[0].Split(';')[1]);
+            int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
+            int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
+            bool inTime = dateTime.Hour >= openTime_1 && dateTime.Hour <= closeTime_1
+             && dateTime.Minute >= openTime_2 && dateTime.Minute <= closeTime_2;
+
+            switch (functionId)
+            {
+                case 1023: //红包
+                    inTime = inTime && self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0;
+                    break;
+            }
+            gameObject.SetActive(inTime);
         }
 
         public static void SetFenBianLv1(this UIMainComponent self)
@@ -868,6 +889,8 @@ namespace ET
             self.UIMainTeam.OnReset();
 
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
+
+            self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
         }
 
         public static async ETTask OnButtonStallOpen(this UIMainComponent self)
