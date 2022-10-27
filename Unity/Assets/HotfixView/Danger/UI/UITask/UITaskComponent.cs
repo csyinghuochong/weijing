@@ -170,7 +170,8 @@ namespace ET
 				rewardStr = "1;2";
 				rewardNum = self.TaskConfig.TaskCoin + ";" + self.TaskConfig.TaskExp;
 			}
-			else {
+			else 
+			{
 				rewardStr = "1;2;" + rewardStr;
 				rewardNum = self.TaskConfig.TaskCoin + ";" + self.TaskConfig.TaskExp + ";" + rewardNum;
 			}
@@ -178,17 +179,18 @@ namespace ET
 			string[] rewarditems = rewardStr.Split(';');
 			string[] rewardItemNums = rewardNum.Split(';');
 
+			int number = 0;
 			for (int i = 0; i < rewarditems.Length; i++)
 			{
 				UI ui_1;
-				if (rewarditems[i] == "0")
+				if (rewarditems[i] == "0" || rewardItemNums[i] == "0")
 				{
 					continue;
 				}
 
-				if (i < self.RewardUIList.Count)
+				if (number < self.RewardUIList.Count)
 				{
-					ui_1 = self.RewardUIList[i];
+					ui_1 = self.RewardUIList[number];
 					ui_1.GameObject.SetActive(true);
 				}
 				else
@@ -203,9 +205,9 @@ namespace ET
 				UIItemComponent uIItemComponent = ui_1.GetComponent<UIItemComponent>();
 				uIItemComponent.ItemNum = rewardItemNums[i];
 				uIItemComponent.UpdateItem(new BagInfo() { ItemID = int.Parse(rewarditems[i]), ItemNum = int.Parse(rewardItemNums[i]) }, ItemOperateEnum.TaskItem);
-
+				number++;
 			}
-			for (int i = rewarditems.Length; i < self.RewardUIList.Count; i++)
+			for (int i = number; i < self.RewardUIList.Count; i++)
 			{
 				self.RewardUIList[i].GameObject.SetActive(false);
 			}

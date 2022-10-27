@@ -6,7 +6,6 @@ namespace ET
     // 客户端挂在ZoneScene上，服务端挂在Unit上
     public class AIComponent: Entity, IAwake<int>, IDestroy
     {
-        public bool IsBoss;
 
         public bool IsRetreat;
 
@@ -19,25 +18,24 @@ namespace ET
         public int Current;
 
         /// <summary>
-        /// 攻击范围
+        /// 索敌范围，范围内追击
         /// </summary>
         public double ActRange;
 
         /// <summary>
-        /// 
+        /// 追击范围，超出则撤退
         /// </summary>
         public double ChaseRange;
 
-        public double PatrolRange;
+        /// <summary>
+        /// 攻击范围，范围内攻击
+        /// </summary>
+        public double ActDistance;
 
         public List<int> AISkillIDList = new List<int>();     //当前所有技能
 
-        //攻击距离
-        public double ActDistance;
-
         //攻击目标
         public long TargetID;
-
         public long LastBeAttack = 0;
         public long BeAttackTime = 0;
 
