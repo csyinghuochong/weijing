@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -84,7 +85,6 @@ namespace ET
                 {
                     break;
                 }
-
                 self.Cancel(); // 取消之前的行为
                 ETCancellationToken cancellationToken = new ETCancellationToken();
                 self.CancellationToken = cancellationToken;
@@ -122,6 +122,24 @@ namespace ET
             self.ActDistance = (float)MonsterCof.ActDistance;  //2    小于转攻击
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
             self.TargetPoint.Clear();
+        }
+
+        public static void InitTargetPoints(AIComponent aiComponent, MonsterConfig MonsterCof)
+        {
+            if (MonsterCof.AIParameter == null || MonsterCof.AIParameter.Length == 0)
+            {
+                return;
+            }
+            string[] targetpoints = MonsterCof.AIParameter.Split('@');
+            for (int i = 0; i < targetpoints.Length; i++)
+            {
+                string[] potioninfo = targetpoints[i].Split(';');
+                float x = int.Parse(potioninfo[0]) * 0.01f;
+                float y = int.Parse(potioninfo[1]) * 0.01f;
+                float z = int.Parse(potioninfo[2]) * 0.01f;
+                aiComponent.TargetPoint.Add(new Vector3(x, y, z));
+            }
+            aiComponent.TargetIndex = 0;
         }
 
         public static void InitTeampPet(this AIComponent self, int monsteConfigId)

@@ -5,32 +5,13 @@ namespace ET
     [AIHandler]
     public class AI_Target : AAIHandler
     {
-        private void InitTargetPoints(AIComponent aiComponent, AIConfig aiConfig)
-        {
-            Unit unit = aiComponent.GetParent<Unit>();
-            string[] targetpoints = aiConfig.NodeParams.Split('@');
-            for (int i = 0; i < targetpoints.Length; i++)
-            {
-                string[] potioninfo = targetpoints[i].Split(';');
-                float x = int.Parse(potioninfo[0]) * 0.01f;
-                float y = int.Parse(potioninfo[1]) * 0.01f;
-                float z = int.Parse(potioninfo[2]) * 0.01f;
-                aiComponent.TargetPoint.Add( new Vector3(x, y, z));
-            }
-            aiComponent.TargetIndex = 0;
-        }
-
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
-            if (aiComponent.TargetIndex == -1)
-            {
-                InitTargetPoints(aiComponent, aiConfig);
-            }
-            if (aiComponent.TargetIndex >= aiComponent.TargetPoint.Count)
+            if (aiComponent.TargetID != 0)
             {
                 return false;
             }
-            if (aiComponent.TargetID != 0)
+            if (aiComponent.TargetIndex >= aiComponent.TargetPoint.Count)
             {
                 return false;
             }
