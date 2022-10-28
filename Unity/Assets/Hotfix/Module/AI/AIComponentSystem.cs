@@ -127,20 +127,33 @@ namespace ET
 
         public static void InitTargetPoints(this AIComponent self, MonsterConfig MonsterCof)
         {
+
+            if (MonsterCof.Id == 81000013)
+            {
+                Log.Debug("1111");
+            }
             if (MonsterCof.AIParameter == null || MonsterCof.AIParameter.Length == 0)
             {
                 return;
             }
-            string[] targetpoints = MonsterCof.AIParameter.Split('@');
-            for (int i = 0; i < targetpoints.Length; i++)
+
+            try
             {
-                string[] potioninfo = targetpoints[i].Split(';');
-                float x = int.Parse(potioninfo[0]) * 0.01f;
-                float y = int.Parse(potioninfo[1]) * 0.01f;
-                float z = int.Parse(potioninfo[2]) * 0.01f;
-                self.TargetPoint.Add(new Vector3(x, y, z));
+                string[] targetpoints = MonsterCof.AIParameter.Split('@');
+                for (int i = 0; i < targetpoints.Length; i++)
+                {
+                    string[] potioninfo = targetpoints[i].Split(';');
+                    float x = float.Parse(potioninfo[0]);
+                    float y = float.Parse(potioninfo[1]);
+                    float z = float.Parse(potioninfo[2]);
+                    self.TargetPoint.Add(new Vector3(x, y, z));
+                }
+                self.TargetIndex = 0;
             }
-            self.TargetIndex = 0;
+            catch (Exception ex)
+            {
+                Log.Debug(ex.ToString());
+            }
         }
 
         public static void InitTeampPet(this AIComponent self, int monsteConfigId)
