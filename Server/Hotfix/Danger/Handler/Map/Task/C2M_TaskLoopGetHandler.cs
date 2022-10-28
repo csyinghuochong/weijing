@@ -39,7 +39,9 @@ namespace ET
             int roleLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
             foreach (var item in keyValuePairs)
             {
-                if (item.Value.TaskType == TaskTypeEnum.EveryDay && roleLv >= item.Value.TaskLv && roleLv <= item.Value.TaskMaxLv)
+                if (item.Value.TaskType == TaskTypeEnum.EveryDay 
+                    && roleLv >= item.Value.TaskLv 
+                    && roleLv <= item.Value.TaskMaxLv)
                 {
                     allTaskIds.Add(item.Key);
                 }

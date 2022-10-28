@@ -34,6 +34,15 @@ namespace ET
     {
         public override void Destroy(BuffManagerComponent self)
         {
+            self.OnDispose();
+        }
+    }
+
+    public static class BuffManagerComponentSystem
+    {
+
+        public static void OnDispose(this BuffManagerComponent self)
+        {
             for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
             {
                 BuffHandler buffHandler = self.m_Buffs[i];
@@ -42,10 +51,6 @@ namespace ET
             }
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
-    }
-
-    public static class BuffManagerComponetSystem
-    {
 
         public static bool HaveBuff(this BuffManagerComponent self, int buffId)
         {

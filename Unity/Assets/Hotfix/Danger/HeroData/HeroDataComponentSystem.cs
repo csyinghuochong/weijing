@@ -207,6 +207,8 @@ namespace ET
             int waitRevive =  self.OnWaitRevive();
             unit.RemoveComponent<AIComponent>();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
+            unit.GetComponent<SkillManagerComponent>()?.OnDispose();
+            unit.GetComponent<BuffManagerComponent>()?.OnDispose();
             if (unit.Type == UnitType.Player)
             {
                 RolePetInfo rolePetInfo = unit.GetComponent<PetComponent>().GetFightPet();

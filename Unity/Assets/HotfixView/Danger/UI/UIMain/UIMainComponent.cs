@@ -748,17 +748,7 @@ namespace ET
                 return;
             }
 
-            DateTime dateTime = TimeHelper.DateTimeNow();
-            string[] openTimes = funtionConfig.OpenTime.Split('@');
-            int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);
-            int openTime_2 = int.Parse(openTimes[0].Split(';')[1]);
-            int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
-            int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
-            int startTime = openTime_1 * 100 + openTime_2;
-            int endTime = closeTime_1 * 100 + closeTime_2;
-            int curTime = dateTime.Hour * 100 + dateTime.Minute;
-            bool inTime = curTime  >= startTime && curTime <= endTime;
-            Log.Debug("curTime" + curTime);
+            bool inTime = TimeHelper.IsInTime(funtionConfig.OpenTime);
             switch (functionId)
             {
                 case 1023: //红包
