@@ -122,9 +122,10 @@ namespace ET
             self.ActDistance = (float)MonsterCof.ActDistance;  //2    小于转攻击
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
             self.TargetPoint.Clear();
+            self.InitTargetPoints(MonsterCof);
         }
 
-        public static void InitTargetPoints(AIComponent aiComponent, MonsterConfig MonsterCof)
+        public static void InitTargetPoints(this AIComponent self, MonsterConfig MonsterCof)
         {
             if (MonsterCof.AIParameter == null || MonsterCof.AIParameter.Length == 0)
             {
