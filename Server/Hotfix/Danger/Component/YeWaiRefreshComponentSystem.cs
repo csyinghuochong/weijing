@@ -51,7 +51,8 @@ namespace ET
             }
             Scene scene = self.GetParent<Scene>();
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
-            if (sceneConfig.MapType != (int)SceneTypeEnum.YeWaiScene)
+            if (sceneConfig.MapType != (int)SceneTypeEnum.YeWaiScene
+                && sceneConfig.MapType != (int)SceneTypeEnum.Battle)
             {
                 return;
             }
