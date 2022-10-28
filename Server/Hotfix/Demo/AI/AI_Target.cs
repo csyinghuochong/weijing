@@ -5,49 +5,28 @@ namespace ET
     [AIHandler]
     public class AI_Target : AAIHandler
     {
-        private void InitTargetPoints(AIComponent aiComponent, AIConfig aiConfig)
-        {
-            Unit unit = aiComponent.GetParent<Unit>();
-            string[] targetpoints = aiConfig.NodeParams.Split('@');
-            for (int i = 0; i < targetpoints.Length; i++)
-            {
-                string[] potioninfo = targetpoints[i].Split(';');
-                float x = int.Parse(potioninfo[0]) * 0.01f;
-                float y = int.Parse(potioninfo[1]) * 0.01f;
-                float z = int.Parse(potioninfo[2]) * 0.01f;
-                aiComponent.TargetPoint.Add( new Vector3(x, y, z));
-            }
-            aiComponent.TargetIndex = 0;
-        }
-
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
-            if (aiComponent.TargetIndex == -1)
+            if (aiComponent.TargetID != 0)
             {
-                InitTargetPoints(aiComponent, aiConfig);
+                return false;
             }
             if (aiComponent.TargetIndex >= aiComponent.TargetPoint.Count)
             {
                 return false;
             }
-            if (aiComponent.TargetID != 0)
-            {
-                return false;
-            }
             Unit unit = aiComponent.GetParent<Unit>();
-            Unit nearest = AIHelp.GetNearestEnemy(unit);
-            if (nearest!= null  && !aiComponent.IsRetreat
-             && PositionHelper.Distance2D(unit, nearest) < aiComponent.ActRange)
+            Unit nearest = AIHelp.GetNearestEnemy(unit, aiComponent.ActRange);
+            if (nearest!= null  && !aiComponent.IsRetreat)
             {
                 aiComponent.TargetZhuiJi = unit.Position;
                 aiComponent.TargetID = nearest.Id;
                 return false;
             }
-            
-            float distance_1 = PositionHelper.Distance2D(aiComponent.TargetZhuiJi, unit.Position);
+            //float distance_1 = PositionHelper.Distance2D(aiComponent.TargetZhuiJi, unit.Position);
             Vector3 target = aiComponent.TargetPoint[aiComponent.TargetIndex];
             float distance_2 = Vector3.Distance(target, unit.Position);
-            bool gotoTarget = distance_1 >= aiComponent.ChaseRange || distance_2 > 0.5;
+            bool gotoTarget = distance_2 > 0.5;
             return gotoTarget;
         }
 
@@ -72,7 +51,7 @@ namespace ET
                 {
                    unit.FindPathMoveToAsync(target, cancellationToken, false).Coroutine();
                 }
-                bool timeRet = await TimerComponent.Instance.WaitAsync(20000, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)
                 {
                     return;

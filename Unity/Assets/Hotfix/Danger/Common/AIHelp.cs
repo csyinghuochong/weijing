@@ -61,6 +61,10 @@ namespace ET
                     continue;
                 }
                 float dd = PositionHelper.Distance2D(unit, uu);
+                if (maxdis > 0f && maxdis < dd)
+                {
+                    continue;
+                }
                 if (distance < 0f || dd < distance)
                 {
                     nearest = uu;
