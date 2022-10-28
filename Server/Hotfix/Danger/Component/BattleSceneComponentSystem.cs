@@ -46,7 +46,7 @@
             mapComponent.SetMapInfo((int)SceneTypeEnum.Battle, sceneId, 0);
             mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(sceneId).MapID.ToString();
             Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
-            //FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(sceneId).CreateMonster, FubenDifficulty.None);
+            FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(sceneId).CreateMonster, FubenDifficulty.None);
             BattleInfo battleInfo = new BattleInfo() { FubenId = fubenid, PlayerNumber = 0, FubenInstanceId = fubenInstanceId };
             self.BattleInfos.Add(battleInfo);
             return battleInfo;
