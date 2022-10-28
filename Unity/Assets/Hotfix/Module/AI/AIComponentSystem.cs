@@ -108,7 +108,7 @@ namespace ET
             //初始化AI组件的一些东西
             self.ActRange = 100;        //5-10  与主角距离小于此值时,向主角发动追击
             self.ChaseRange = 100;    //超出会返回到出生点
-            self.ActDistance = MonsterCof.ActDistance;  //2    小于转攻击
+            self.ActDistance = (float)MonsterCof.ActDistance;  //2    小于转攻击
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
         }
 
@@ -117,9 +117,9 @@ namespace ET
         {
             MonsterConfig MonsterCof = MonsterConfigCategory.Instance.Get(monsteConfigId);
             //初始化AI组件的一些东西
-            self.ActRange = MonsterCof.ActRange + self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MonsterDis);        //5-10  与主角距离小于此值时,向主角发动追击
-            self.ChaseRange = MonsterCof.ChaseRange;    //超出会返回到出生点
-            self.ActDistance = MonsterCof.ActDistance;  //2    小于转攻击
+            self.ActRange = (float)MonsterCof.ActRange + self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MonsterDis);        //5-10  与主角距离小于此值时,向主角发动追击
+            self.ChaseRange = (float)MonsterCof.ChaseRange;    //超出会返回到出生点
+            self.ActDistance = (float)MonsterCof.ActDistance;  //2    小于转攻击
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
             self.TargetPoint.Clear();
         }
@@ -128,9 +128,9 @@ namespace ET
         {
             MonsterConfig MonsterCof = MonsterConfigCategory.Instance.Get(monsteConfigId);
             //初始化AI组件的一些东西
-            self.ActRange = MonsterCof.ActRange;        //5-10  与主角距离小于此值时,向主角发动追击
-            self.ChaseRange = MonsterCof.ChaseRange;    //超出会返回到出生点
-            self.ActDistance = MonsterCof.ActDistance;  //2    小于转攻击
+            self.ActRange = (float)MonsterCof.ActRange;        //5-10  与主角距离小于此值时,向主角发动追击
+            self.ChaseRange = (float)MonsterCof.ChaseRange;    //超出会返回到出生点
+            self.ActDistance = (float)MonsterCof.ActDistance;  //2    小于转攻击
             self.AISkillIDList.Add(MonsterCof.ActSkillID);
         }
 
@@ -190,7 +190,7 @@ namespace ET
                 self.LastBeAttack = attack.Id;
                 self.BeAttackTime = 1;
             }
-            if ((self.BeAttackTime >= 3 || self.TargetID == 0)&& !self.IsRetreat)
+            if ((self.BeAttackTime >= 3 || self.TargetID == 0) &&!self.IsRetreat)
             {
                 self.TargetID = attack.Id;
             }
@@ -198,6 +198,11 @@ namespace ET
             {
                 self.BeAttackList.Add(attack.Id);
             }
+        }
+
+        public static void OnChaoFeng(this AIComponent self)
+        { 
+            
         }
 
         public static void Begin(this AIComponent self)

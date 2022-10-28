@@ -35,9 +35,8 @@ namespace ET
                 return false;
             }
             Unit unit = aiComponent.GetParent<Unit>();
-            Unit nearest = AIHelp.GetNearestEnemy(unit);
-            if (nearest!= null  && !aiComponent.IsRetreat
-             && PositionHelper.Distance2D(unit, nearest) < aiComponent.ActRange)
+            Unit nearest = AIHelp.GetNearestEnemy(unit, aiComponent.ActRange);
+            if (nearest!= null  && !aiComponent.IsRetreat)
             {
                 aiComponent.TargetZhuiJi = unit.Position;
                 aiComponent.TargetID = nearest.Id;

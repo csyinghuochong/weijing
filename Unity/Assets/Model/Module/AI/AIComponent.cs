@@ -20,17 +20,17 @@ namespace ET
         /// <summary>
         /// 索敌范围，范围内追击
         /// </summary>
-        public double ActRange;
+        public float ActRange;
 
         /// <summary>
         /// 追击范围，超出则撤退
         /// </summary>
-        public double ChaseRange;
+        public float ChaseRange;
 
         /// <summary>
         /// 攻击范围，范围内攻击
         /// </summary>
-        public double ActDistance;
+        public float ActDistance;
 
         public List<int> AISkillIDList = new List<int>();     //当前所有技能
 
