@@ -42,11 +42,10 @@ namespace ET
                 aiComponent.TargetID = nearest.Id;
                 return false;
             }
-            
-            float distance_1 = PositionHelper.Distance2D(aiComponent.TargetZhuiJi, unit.Position);
+            //float distance_1 = PositionHelper.Distance2D(aiComponent.TargetZhuiJi, unit.Position);
             Vector3 target = aiComponent.TargetPoint[aiComponent.TargetIndex];
             float distance_2 = Vector3.Distance(target, unit.Position);
-            bool gotoTarget = distance_1 >= aiComponent.ChaseRange || distance_2 > 0.5;
+            bool gotoTarget = distance_2 > 0.5;
             return gotoTarget;
         }
 
@@ -71,7 +70,7 @@ namespace ET
                 {
                    unit.FindPathMoveToAsync(target, cancellationToken, false).Coroutine();
                 }
-                bool timeRet = await TimerComponent.Instance.WaitAsync(20000, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)
                 {
                     return;
