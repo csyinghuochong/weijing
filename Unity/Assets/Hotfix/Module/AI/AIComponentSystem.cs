@@ -138,9 +138,9 @@ namespace ET
                 float x = int.Parse(potioninfo[0]) * 0.01f;
                 float y = int.Parse(potioninfo[1]) * 0.01f;
                 float z = int.Parse(potioninfo[2]) * 0.01f;
-                aiComponent.TargetPoint.Add(new Vector3(x, y, z));
+                self.TargetPoint.Add(new Vector3(x, y, z));
             }
-            aiComponent.TargetIndex = 0;
+            self.TargetIndex = 0;
         }
 
         public static void InitTeampPet(this AIComponent self, int monsteConfigId)
