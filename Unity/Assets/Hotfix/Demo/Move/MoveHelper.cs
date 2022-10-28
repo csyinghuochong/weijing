@@ -5,8 +5,6 @@ namespace ET
 {
     public static class MoveHelper
     {
-
-        public static ETCancellationToken cancellationToken = new ETCancellationToken();
         public static C2M_PathfindingResult c2M_PathfindingResult = new C2M_PathfindingResult();
 
         /// <summary>
@@ -16,7 +14,7 @@ namespace ET
         /// <param name="targetPos"></param>
         /// <param name="yangan"></param>
         /// <returns></returns>
-        public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos, bool yangan=false)
+        public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos,bool yangan=false, ETCancellationToken cancellationToken = null)
         {
             unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.Obstruct);
             unit.GetComponent<StateComponent>().BeginMoveOrSkill();
@@ -24,10 +22,6 @@ namespace ET
             {
                 return -1;
             }
-
-            cancellationToken?.Cancel();
-            cancellationToken = null;
-            cancellationToken = new ETCancellationToken();
 
             C2M_PathfindingResult msg = c2M_PathfindingResult;
             msg.X = targetPos.x;
@@ -43,7 +37,6 @@ namespace ET
 
             // 一直等到unit发送stop
             WaitType.Wait_UnitStop waitUnitStop = await objectWait.Wait<WaitType.Wait_UnitStop>(cancellationToken);
-           
             return waitUnitStop.Error;
         }
 

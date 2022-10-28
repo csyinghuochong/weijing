@@ -70,9 +70,9 @@ namespace ET
                 }
                 if (unit.GetComponent<StateComponent>().CanMove())
                 {
-                    unit.FindPathMoveToAsync(target, cancellationToken, false).Coroutine();
+                   unit.FindPathMoveToAsync(target, cancellationToken, false).Coroutine();
                 }
-                bool timeRet = await TimerComponent.Instance.WaitAsync(2000, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(20000, cancellationToken);
                 if (!timeRet)
                 {
                     return;
