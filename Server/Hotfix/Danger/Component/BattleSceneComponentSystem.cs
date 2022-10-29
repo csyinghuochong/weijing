@@ -40,13 +40,14 @@
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, self.DomainZone(), "Battle" + fubenid.ToString(), SceneType.Fuben);
-            BattleDungeonComponent battleDungeon = fubnescene.AddComponent<BattleDungeonComponent>();
+            fubnescene.AddComponent<BattleDungeonComponent>();
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
             mapComponent.SetMapInfo((int)SceneTypeEnum.Battle, sceneId, 0);
             mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(sceneId).MapID.ToString();
             Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
             FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(sceneId).CreateMonster, FubenDifficulty.None);
+            fubnescene.AddComponent<YeWaiRefreshComponent>().OnAwake(sceneId);
             BattleInfo battleInfo = new BattleInfo() { FubenId = fubenid, PlayerNumber = 0, FubenInstanceId = fubenInstanceId };
             self.BattleInfos.Add(battleInfo);
             return battleInfo;

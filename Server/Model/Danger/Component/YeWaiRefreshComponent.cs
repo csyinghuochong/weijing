@@ -5,14 +5,13 @@ namespace ET
     public struct RefreshMonster
     {
         public int MonsterId;
-        public long RefreshTime;
         public float PositionX;
         public float PositionY;
         public float PositionZ;
+        public long NextTime;
         public float Range;
         public int Number;
-
-        public string Time;
+        public int Interval;
     }
 
     public class YeWaiRefreshComponent : Entity, IAwake, IDestroy

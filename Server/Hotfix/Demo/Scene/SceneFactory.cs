@@ -163,7 +163,6 @@ namespace ET
                     scene.AddComponent<ServerInfoComponent>();
                     scene.AddComponent<AOIManagerComponent>();
                     scene.AddComponent<YeWaiReviveComponent>();
-                    scene.AddComponent<YeWaiRefreshComponent>();
                     scene.AddComponent<NpcComponent>();
                     //scene.AddComponent<RecastPathComponent>();
                     break;

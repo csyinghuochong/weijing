@@ -128,7 +128,7 @@ namespace ET
         public static void InitTargetPoints(this AIComponent self, MonsterConfig MonsterCof)
         {
 
-            if (MonsterCof.Id == 81000013)
+            if (MonsterCof.Id == 81000004)
             {
                 Log.Debug("1111");
             }

@@ -26,8 +26,7 @@ namespace ET
     {
         public override void Awake(YeWaiRefreshComponent self)
         {
-            int sceneId = SceneHelper.GetSceneId(self.GetParent<Scene>());
-            self.OnAwake(sceneId);
+            
         }
     }
 
@@ -51,11 +50,6 @@ namespace ET
             }
             Scene scene = self.GetParent<Scene>();
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
-            if (sceneConfig.MapType != (int)SceneTypeEnum.YeWaiScene
-                && sceneConfig.MapType != (int)SceneTypeEnum.Battle)
-            {
-                return;
-            }
             string timingMonster = sceneConfig.CreateMonster;
             string[] monsters = timingMonster.Split('@');
             for (int i = 0; i < monsters.Length; i++)
@@ -64,36 +58,31 @@ namespace ET
                 {
                     continue;
                 }
-                //3;-63.68,0.00,-19.01;71010001;1,1,1500
+                //3;-63.68,0.00,-19.01;71010001;1,1,100,600
                 string[] mondels = monsters[i].Split(';');
-                string[] mtype = mondels[0].Split(',');
+                string mtype = mondels[0];
                 string[] position = mondels[1].Split(',');
-                string[] monsterid = mondels[2].Split(',');
+                string monsterid = mondels[2];
                 string[] mcount = mondels[3].Split(',');
                
-                if (mtype[0] == "3")    //定时刷新
+                if (mtype == "3")    //定时刷新
                 {
-                    string[] timers = mondels[4].Split(',');
-                    for (int t = 0; t < timers.Length; t++)
+                    //long leftTime = self.LeftTime(timers[t]);
+                    //if (leftTime == 0)
+                    //{
+                    //    continue;
+                    //}
+                    self.RefreshMonsters.Add(new RefreshMonster()
                     {
-                        long leftTime = self.LeftTime(timers[t]);
-                        if (leftTime == 0)
-                        {
-                            continue;
-                        }
-
-                        self.RefreshMonsters.Add(new RefreshMonster()
-                        {
-                            MonsterId = int.Parse(monsterid[0]),
-                            RefreshTime = TimeHelper.ServerNow() + leftTime,
-                            PositionX = float.Parse(position[0]),
-                            PositionY = float.Parse(position[1]),
-                            PositionZ = float.Parse(position[2]),
-                            Number = int.Parse(mcount[0]),
-                            Range = int.Parse(mcount[1]),
-                            Time = mondels[4],
-                        });
-                    }
+                        MonsterId = int.Parse(monsterid),
+                        NextTime = TimeHelper.ServerNow() + int.Parse(mcount[2])*1000,
+                        PositionX = float.Parse(position[0]),
+                        PositionY = float.Parse(position[1]),
+                        PositionZ = float.Parse(position[2]),
+                        Number = int.Parse(mcount[0]),
+                        Range = int.Parse(mcount[1]),
+                        Interval = int.Parse(mcount[3]) * 1000,
+                    });
                 }
             }
             FubenHelp.CreateMonsterList(scene, timingMonster, FubenDifficulty.Normal);
@@ -124,7 +113,7 @@ namespace ET
             for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
             {
                 RefreshMonster refreshMonster = self.RefreshMonsters[i];
-                if (time < refreshMonster.RefreshTime)
+                if (time < refreshMonster.NextTime)
                 {
                     continue;
                 }
@@ -133,10 +122,10 @@ namespace ET
                 Log.Info($"CreateMonsters: {dateTime.ToString()}");
 
                 //根据refreshMonster.Time可以纠正时间
-                refreshMonster.RefreshTime = refreshMonster.RefreshTime + 24 * 60 * 60 * 1000;
+                refreshMonster.NextTime = refreshMonster.NextTime + refreshMonster.Interval;
                 self.RefreshMonsters[i] = refreshMonster;
 
-                self.CreateMonsters(refreshMonster).Coroutine() ;
+                self.CreateMonsters(refreshMonster).Coroutine();
             }
         }
 

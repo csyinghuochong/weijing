@@ -80,7 +80,7 @@ namespace ET
                 for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
                 {
                     RefreshMonster refreshMonster = self.RefreshMonsters[i];
-                    if (time < refreshMonster.RefreshTime)
+                    if (time < refreshMonster.NextTime)
                     {
                         continue;
                     }
@@ -132,7 +132,7 @@ namespace ET
             self.RefreshMonsters.Add(new RefreshMonster()
             {
                 MonsterId = unit.ConfigId,
-                RefreshTime = TimeHelper.ServerNow() + aliveTime,
+                NextTime = TimeHelper.ServerNow() + aliveTime,
                 PositionX = bornpos.x,
                 PositionY = bornpos.y,
                 PositionZ = bornpos.z,
