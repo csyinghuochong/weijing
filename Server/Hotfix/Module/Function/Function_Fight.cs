@@ -949,7 +949,17 @@ namespace ET
                     for (int a = 0;  a < attributeList.Length; a++)
                     {
                         string[] attributeInfo = attributeList[a].Split(';');
-                        int gemPro = int.Parse(attributeInfo[0]);
+                        int gemPro = 0;
+                        try
+                        {
+                            gemPro = int.Parse(attributeInfo[0]);
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Debug("attri: " + ex.ToString());
+                            continue;
+                        }
+
                         long gemValue = long.Parse(attributeInfo[1]);
 
                         //宝石专精
