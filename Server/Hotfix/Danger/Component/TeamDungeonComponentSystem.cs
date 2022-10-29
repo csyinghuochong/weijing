@@ -74,6 +74,9 @@ namespace ET
                 Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
                 if (unit != null)
                 {
+                    List<RewardItem> rewardItems = new List<RewardItem>();
+                    rewardItems.Add(new RewardItem() { ItemID = teamDropItem.DropInfo.ItemID, ItemNum = teamDropItem.DropInfo.ItemNum });
+                    unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                     FubenHelp.SendPickMessage(unit, teamDropItem.DropInfo, self.m2C_SyncChatInfo);
                 }
                 self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
