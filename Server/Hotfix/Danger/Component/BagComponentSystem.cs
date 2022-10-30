@@ -618,6 +618,7 @@ namespace ET
         //字符串删除道具
         public static bool OnCostItemData(this BagComponent self, string rewardItems)
         {
+           
             List<RewardItem> costItems = new List<RewardItem>();
             string[] needList = rewardItems.Split('@');
             for (int i = 0; i < needList.Length; i++)

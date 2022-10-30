@@ -77,14 +77,20 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit box = unit.GetParent<UnitComponent>().Get(unitId);
+            if (box == null)
+            {
+                return;
+            }
+
             int monsterid =  box.ConfigId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
             string itemneeds = "";
-            if (monsterConfig.Parameter != null && monsterConfig.Parameter.Length > 0)
+            if (monsterConfig.Parameter != null && monsterConfig.Parameter.Length > 0
+                && monsterConfig.Parameter[0] > 0)
             {
                 itemneeds = $"{monsterConfig.Parameter[0]};{monsterConfig.Parameter[1]}";
             }
-            if (!unit.GetComponent<BagComponent>().CheckNeedItem(itemneeds))
+            if (itemneeds.Length > 2 && !unit.GetComponent<BagComponent>().CheckNeedItem(itemneeds))
             {
                 FloatTipManager.Instance.ShowFloatTip("道具不足！");
                 return;
