@@ -84,7 +84,7 @@ namespace ET
             {
                 itemneeds = $"{monsterConfig.Parameter[0]};{monsterConfig.Parameter[1]}";
             }
-            if (unit.GetComponent<BagComponent>().CheckNeedItem(itemneeds))
+            if (!unit.GetComponent<BagComponent>().CheckNeedItem(itemneeds))
             {
                 FloatTipManager.Instance.ShowFloatTip("道具不足！");
                 return;
