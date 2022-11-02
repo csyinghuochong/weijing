@@ -56,7 +56,7 @@ namespace ET
                 return;
             }
            
-            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1024);
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1025);
             bool inTime = TimeHelper.IsInTime(funtionConfig.OpenTime);
             if (!inTime)
             {
