@@ -211,7 +211,7 @@ namespace ET
             if (gaiLv)
             {
                 Unit unit = self.GetParent<Unit>();
-                gaiLv = !self.IsRetreat && !unit.StateTypeGet(StateTypeEnum.ChaoFeng);
+                gaiLv = !self.IsRetreat && !unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.ChaoFeng);
             }
 
             if (gaiLv)
