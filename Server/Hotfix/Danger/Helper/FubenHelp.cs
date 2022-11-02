@@ -33,16 +33,21 @@ namespace ET
 				return;
 			}
 			for (int i = 0; i < monsterPos.Length;i++)
-			{ 
-				CreateMonsterByPos(scene, monsterPos[i], fubenDifficulty);
+			{
+				int monsterId = monsterPos[i];
+
+				while (monsterId != 0)
+				{
+					monsterId = CreateMonsterByPos(scene, monsterId, fubenDifficulty);
+				}
 			}
 		}
 
-		public static void CreateMonsterByPos(Scene scene, int monsterPos, int fubenDifficulty)
+		public static int CreateMonsterByPos(Scene scene, int monsterPos, int fubenDifficulty)
 		{
 			if (monsterPos == 0)
 			{
-				return;
+				return 0;
 			}
 			//Id      NextID  Type Position             MonsterID CreateRange CreateNum Create    Par(3代表刷新时间)
 			//10001   10002   2    - 71.46,0.34,-5.35   81000002       0           1       90    30,60
@@ -103,6 +108,7 @@ namespace ET
 			if (mtype == 3)
 			{
 				//定时刷新  YeWaiRefreshComponent
+				scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterByPos(monsterPosition.Id, fubenDifficulty);
 			}
 			if (mtype == 4)
 			{
@@ -129,6 +135,8 @@ namespace ET
 					});
 				}
 			}
+
+			return monsterPosition.NextID;
 		}
 
 		public static  void CreateMonsterList(Scene scene, string createMonster, int fubenDifficulty)
@@ -212,8 +220,9 @@ namespace ET
 					}
 				}
 				if (mtype[0] == "3")
-				{ 
+				{
 					//野外场景定时刷新
+					scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList(createMonster, fubenDifficulty);
 				}
 				if (mtype[0] == "4")
 				{
