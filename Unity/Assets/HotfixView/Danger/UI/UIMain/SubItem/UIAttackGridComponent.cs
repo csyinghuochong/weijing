@@ -41,7 +41,7 @@ namespace ET
         public float AttackDistance = 0f;
 
         public List<int> Weights = new List<int>();
-        public List<int> SkillList = new List<int>() { 50000101, 50000102, 50000102 };
+        public List<int> SkillList = new List<int>() { };
 
         public ETCancellationToken CancellationToken;
         public readonly C2M_SkillCmd c2mSkillCmd = new C2M_SkillCmd();
