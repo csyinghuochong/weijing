@@ -127,7 +127,7 @@ namespace ET
             float progress = starNum * 1f / shouJiConfig.ProList3_StartNum;
             progress = Mathf.Min(1f, progress);
 
-            self.ImageProgress.transform.localScale = new Vector3(progress, 1f, 1f);
+            self.ImageProgress.GetComponent<Image>().fillAmount = progress;
             self.Text_Name.GetComponent<Text>().text = shouJiConfig.ChapterDes;
             self.Text_StarNum.GetComponent<Text>().text = $"{starNum}/{shouJiConfig.ProList3_StartNum}";
             self.Text_Star1.GetComponent<Text>().text = shouJiConfig.ProList1_StartNum.ToString();
@@ -158,7 +158,7 @@ namespace ET
             }
             int row = (itemNum / 10);
             row += (itemNum % 10 > 0 ? 1 : 0);
-            self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1600f, 250 + row * 250f);
+            self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1600f, 380 + row * 300f);
 
             while (itemId!= 0)
             {
