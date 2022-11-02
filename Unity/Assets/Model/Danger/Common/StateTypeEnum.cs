@@ -54,6 +54,11 @@ namespace ET
         public const long OpenBox = 1 << 9;
 
         /// <summary>
+        /// 嘲讽
+        /// </summary>
+        public const long ChaoFeng = 1<< 10;    
+
+        /// <summary>
         /// 禁锢 不能移动
         /// </summary>
         public const long Shackle = 1 << 11;

@@ -28,8 +28,6 @@ namespace ET
             self.TargetID = 0;
             self.StopAI = false;
             self.IsRetreat = false;
-            self.LastBeAttack = 0;
-            self.BeAttackTime = 0;
             self.TargetIndex = -1;
             self.AIConfigId = aiConfigId;
             self.AISkillIDList.Clear();
@@ -127,11 +125,6 @@ namespace ET
 
         public static void InitTargetPoints(this AIComponent self, MonsterConfig MonsterCof)
         {
-
-            if (MonsterCof.Id == 81000004)
-            {
-                Log.Debug("1111");
-            }
             if (MonsterCof.AIParameter == null || MonsterCof.AIParameter.Length == 0)
             {
                 return;
@@ -213,16 +206,15 @@ namespace ET
 
         public static void BeAttack(this AIComponent self, Unit attack)
         {
-            if (self.LastBeAttack == attack.Id)
+            //0.1的概率概率转移仇恨
+            bool gaiLv = RandomHelper.RandFloat01() < 0.1f;
+            if (gaiLv)
             {
-                self.BeAttackTime++;
+                Unit unit = self.GetParent<Unit>();
+                gaiLv = !self.IsRetreat && !unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.ChaoFeng);
             }
-            else
-            {
-                self.LastBeAttack = attack.Id;
-                self.BeAttackTime = 1;
-            }
-            if ((self.BeAttackTime >= 3 || self.TargetID == 0) &&!self.IsRetreat)
+
+            if (gaiLv)
             {
                 self.TargetID = attack.Id;
             }
