@@ -7,6 +7,7 @@ namespace ET
     public static class FubenHelp
 	{
 		public static List<int> energySkills = new List<int>() { 64000001, 64000002, 64000003, 64000004, 64000005, 64000006, 64000007, 64000008 };
+
 		/// <summary>
 		/// 寻找一个可通行的随机位置
 		/// </summary>
@@ -132,6 +133,11 @@ namespace ET
 
 		public static  void CreateMonsterList(Scene scene, string createMonster, int fubenDifficulty)
 		{
+			if (ComHelp.IfNull(createMonster))
+            {
+				return;
+            }
+
 			long instanceId = scene.InstanceId;
 			string[] monsters = createMonster.Split('@');
 			//1;37.65,0,3.2;70005005;1@138.43,0,0.06;70005010;1
