@@ -51,7 +51,16 @@ namespace ET
             Scene scene = self.GetParent<Scene>();
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
             string timingMonster = sceneConfig.CreateMonster;
-            string[] monsters = timingMonster.Split('@');
+            self.CreateMonsterList(sceneConfig.CreateMonster, FubenDifficulty.Normal);
+            self.CreateMonsterList(sceneConfig.CreateMonsterPosi, FubenDifficulty.Normal);
+            FubenHelp.CreateMonsterList(scene, timingMonster, FubenDifficulty.Normal);
+            FubenHelp.CreateMonsterList(scene, sceneConfig.CreateMonsterPosi, FubenDifficulty.Normal);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.RefreshMonsterTimer, self);
+        }
+
+        public static void CreateMonsterList(this YeWaiRefreshComponent self, string createMonster, int fubenDifficulty)
+        {
+            string[] monsters = createMonster.Split('@');
             for (int i = 0; i < monsters.Length; i++)
             {
                 if (string.IsNullOrEmpty(monsters[i]))
@@ -64,18 +73,13 @@ namespace ET
                 string[] position = mondels[1].Split(',');
                 string monsterid = mondels[2];
                 string[] mcount = mondels[3].Split(',');
-               
+
                 if (mtype == "3")    //定时刷新
                 {
-                    //long leftTime = self.LeftTime(timers[t]);
-                    //if (leftTime == 0)
-                    //{
-                    //    continue;
-                    //}
                     self.RefreshMonsters.Add(new RefreshMonster()
                     {
                         MonsterId = int.Parse(monsterid),
-                        NextTime = TimeHelper.ServerNow() + int.Parse(mcount[2])*1000,
+                        NextTime = TimeHelper.ServerNow() + int.Parse(mcount[2]) * 1000,
                         PositionX = float.Parse(position[0]),
                         PositionY = float.Parse(position[1]),
                         PositionZ = float.Parse(position[2]),
@@ -85,10 +89,49 @@ namespace ET
                     });
                 }
             }
-            FubenHelp.CreateMonsterList(scene, timingMonster, FubenDifficulty.Normal);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.RefreshMonsterTimer, self);
         }
 
+        public static void CreateMonsterList(this YeWaiRefreshComponent self, int[] monsterPos, int fubenDifficulty)
+        {
+            if (monsterPos == null || monsterPos.Length == 0)
+            {
+                return;
+            }
+            for (int i = 0; i < monsterPos.Length; i++)
+            {
+                self.CreateMonsterByPos(monsterPos[i], fubenDifficulty);
+            }
+
+        }
+
+        public static void CreateMonsterByPos(this YeWaiRefreshComponent self, int monsterPos, int fubenDifficulty)
+        {
+            if (monsterPos == 0)
+            {
+                return;
+            }
+            //Id      NextID  Type Position             MonsterID CreateRange CreateNum Create    Par(3代表刷新时间)
+            //10001   10002   2    - 71.46,0.34,-5.35   81000002       0           1       90    30,60
+            MonsterPositionConfig monsterPosition = MonsterPositionConfigCategory.Instance.Get(monsterPos);
+            int mtype = monsterPosition.Type;
+            if (mtype != 3)
+            {
+                return;
+            }
+            string[] position = monsterPosition.Position.Split(',');
+            string[] refreshPar = monsterPosition.Par.Split(',');
+            self.RefreshMonsters.Add(new RefreshMonster()
+            {
+                MonsterId = monsterPosition.MonsterID,
+                NextTime = TimeHelper.ServerNow() + int.Parse(refreshPar[0]) * 1000,
+                PositionX = float.Parse(position[0]),
+                PositionY = float.Parse(position[1]),
+                PositionZ = float.Parse(position[2]),
+                Number = monsterPosition.CreateNum,
+                Range = (float)monsterPosition.CreateRange,
+                Interval = int.Parse(refreshPar[1]) * 1000,
+            });
+        }
         public static long LeftTime(this YeWaiRefreshComponent self, string targetTime)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
