@@ -90,9 +90,10 @@ namespace ET
             {
                 itemneeds = $"{monsterConfig.Parameter[0]};{monsterConfig.Parameter[1]}";
             }
-            if (itemneeds.Length > 2 && !unit.GetComponent<BagComponent>().CheckNeedItem(itemneeds))
+            if (itemneeds.Length > 2 && !self.ZoneScene().GetComponent<BagComponent>().CheckNeedItem(itemneeds))
             {
-                FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                self.GetParent<UI>().GameObject.SetActive(false);
+                FloatTipManager.Instance.ShowFloatTip($"需要道具 {UICommonHelper.GetNeedItemDesc(itemneeds)}！");
                 return;
             }
 
