@@ -210,7 +210,8 @@ namespace ET
             bool gaiLv = RandomHelper.RandFloat01() < 0.1f;
             if (gaiLv)
             {
-                gaiLv = !self.IsRetreat && !self.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.ChaoFeng);
+                Unit unit = self.GetParent<Unit>();
+                gaiLv = !self.IsRetreat && !unit.StateTypeGet(StateTypeEnum.ChaoFeng);
             }
 
             if (gaiLv)
