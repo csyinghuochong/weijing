@@ -204,7 +204,7 @@ namespace ET
             return true;
         }
 
-        public static void BeAttack(this AIComponent self, Unit attack)
+        public static void BeAttacking(this AIComponent self, Unit attack)
         {
             //0.1的概率概率转移仇恨
             bool gaiLv = RandomHelper.RandFloat01() < 0.1f;

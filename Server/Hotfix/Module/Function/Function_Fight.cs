@@ -144,6 +144,7 @@ namespace ET
             bool ifMonsterBoss_Def = false;
             //计算是否闪避
             int defendUnitLv = 0;
+            defendUnit.GetComponent<StateComponent>().BeAttacking(attackUnit);
             switch (defendUnit.Type) 
             {
                 //怪物
@@ -151,8 +152,7 @@ namespace ET
                     int sceneType = defendUnit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
                     bool petfuben = sceneType == SceneTypeEnum.PetDungeon;
 
-                    defendUnit.GetComponent<StateComponent>().BeAttacking(attackUnit);
-                    defendUnit.GetComponent<AIComponent>()?.BeAttack(attackUnit);
+                    defendUnit.GetComponent<AIComponent>()?.BeAttacking(attackUnit);
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(defendUnit.ConfigId);
                     defendUnitLv = monsterCof.Lv;
                     if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
@@ -167,7 +167,6 @@ namespace ET
                     break;
                 //玩家
                 case UnitType.Player:
-                    defendUnit.GetComponent<StateComponent>().BeAttacking(attackUnit);
                     defendUnitLv = defendUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                     break;
             }
