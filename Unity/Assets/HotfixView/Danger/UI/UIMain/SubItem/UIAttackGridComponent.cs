@@ -222,9 +222,9 @@ namespace ET
             int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();  
-            float attackSpped = 1f;
-            float = EquipType == (int)ItemEquipType.Knife ? 1000 : 800;
-            self.CDTime = (int)(1f * self.CDTime / attackSpped);
+            float attackSpped = 1f + numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
+            float cdTime = EquipType == (int)ItemEquipType.Knife ? 1000 : 800;
+            self.CDTime = (int)(cdTime / attackSpped);
         }
 
         public static void SetComboSkill(this UIAttackGridComponent self)
@@ -242,7 +242,6 @@ namespace ET
             if (PositionHelper.Distance2D(unit, taretUnit) > self.AttackDistance)
             {
                 cancellationToken?.Cancel();
-                //self.BeginAutoAttack();
                 return;
             }
             if (taretUnit.IsDisposed || taretUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
