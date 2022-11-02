@@ -36,9 +36,6 @@ namespace ET
 
         //攻击目标
         public long TargetID;
-        public long LastBeAttack = 0;
-        public long BeAttackTime = 0;
-
         public bool StopAI;
 
         public List<long> BeAttackList = new List<long>();

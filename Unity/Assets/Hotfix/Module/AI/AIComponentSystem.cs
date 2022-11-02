@@ -28,8 +28,6 @@ namespace ET
             self.TargetID = 0;
             self.StopAI = false;
             self.IsRetreat = false;
-            self.LastBeAttack = 0;
-            self.BeAttackTime = 0;
             self.TargetIndex = -1;
             self.AIConfigId = aiConfigId;
             self.AISkillIDList.Clear();
@@ -213,16 +211,15 @@ namespace ET
 
         public static void BeAttack(this AIComponent self, Unit attack)
         {
-            if (self.LastBeAttack == attack.Id)
+            //0.1的概率概率转移仇恨
+            bool gaiLv = RandomHelper.RandFloat01() < 0.1f;
+            bool tranf = false;
+            if (gaiLv)
             {
-                self.BeAttackTime++;
+                tranf = !self.IsRetreat && !self.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.ChaoFeng);
             }
-            else
-            {
-                self.LastBeAttack = attack.Id;
-                self.BeAttackTime = 1;
-            }
-            if ((self.BeAttackTime >= 3 || self.TargetID == 0) &&!self.IsRetreat)
+
+            if (gaiLv && tranf)
             {
                 self.TargetID = attack.Id;
             }
