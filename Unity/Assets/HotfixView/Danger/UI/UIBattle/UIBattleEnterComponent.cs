@@ -55,13 +55,15 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("已经参加过！");
                 return;
             }
-            DateTime dateTime = TimeHelper.DateTimeNow();
-            bool canEnter = dateTime.Hour == 20 && dateTime.Minute >= 30 && dateTime.Minute <= 59;
-            if (!canEnter)
+           
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1024);
+            bool inTime = TimeHelper.IsInTime(funtionConfig.OpenTime);
+            if (!inTime)
             {
                 FloatTipManager.Instance.ShowFloatTip("不在时间段内！");
                 return;
             }
+
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Battle, sceneId);
             if (errorCode == ErrorCore.ERR_Success)
             {
