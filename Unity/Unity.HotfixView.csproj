@@ -533,6 +533,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonSettlementComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\UIMainComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIDungeon\UIDungeonItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Team_TeamPickNotice.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskFubenItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMakeLearn\UIMakeLearnItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleComponent.cs" />
@@ -540,7 +541,6 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Team_TeamPickNotice.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
