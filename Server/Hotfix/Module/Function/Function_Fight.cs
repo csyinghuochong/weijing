@@ -148,6 +148,9 @@ namespace ET
             {
                 //怪物
                 case UnitType.Monster:
+                    int sceneType = defendUnit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+                    bool petfuben = sceneType == SceneTypeEnum.PetDungeon;
+
                     defendUnit.GetComponent<StateComponent>().BeAttacking(attackUnit);
                     defendUnit.GetComponent<AIComponent>()?.BeAttack(attackUnit);
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(defendUnit.ConfigId);
