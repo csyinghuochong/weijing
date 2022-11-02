@@ -8,8 +8,9 @@ namespace ET
 
     public enum CountryPageEnum : int
     {
-        CountryTask = 0,
+        Task = 0,
         SingIn = 1,
+        HuoDong = 2,
 
         Number ,
     }
@@ -38,12 +39,12 @@ namespace ET
             pageViewComponent.UISubViewPath = new string[(int)CountryPageEnum.Number];
             pageViewComponent.UISubViewType = new Type[(int)CountryPageEnum.Number];
             //增加每日活跃
-            pageViewComponent.UISubViewPath[(int)CountryPageEnum.CountryTask] = ABPathHelper.GetUGUIPath("Main/Country/UICountryTask");
-            pageViewComponent.UISubViewType[(int)CountryPageEnum.CountryTask] = typeof(UICountryTaskComponent);
+            pageViewComponent.UISubViewPath[(int)CountryPageEnum.Task] = ABPathHelper.GetUGUIPath("Main/Country/UICountryTask");
+            pageViewComponent.UISubViewType[(int)CountryPageEnum.Task] = typeof(UICountryTaskComponent);
 
             //增加活动列表
-            //pageViewComponent.UISubViewPath[(int)CountryPageEnum.CountryHuoDong] = ABPathHelper.GetUGUIPath("Main/Country/UICountryHuoDong");
-            //pageViewComponent.UISubViewType[(int)CountryPageEnum.CountryHuoDong] = typeof(UICountryHuoDongComponent);
+            pageViewComponent.UISubViewPath[(int)CountryPageEnum.HuoDong] = ABPathHelper.GetUGUIPath("Main/Country/UICountryHuoDong");
+            pageViewComponent.UISubViewType[(int)CountryPageEnum.HuoDong] = typeof(UICountryHuoDongComponent);
 
             //增加宝箱活动
             //pageViewComponent.UISubViewPath[(int)CountryPageEnum.CountryChest] = ABPathHelper.GetUGUIPath("Main/Country/UICountryChest");
@@ -83,7 +84,7 @@ namespace ET
         public static void OnUpdateRoleData(this UICountryComponent self, string updateType)
         {
             UserDataType userDataType = (UserDataType)int.Parse(updateType.Split('_')[0]);
-            UI uI = self.UIPageView.UISubViewList[(int)CountryPageEnum.CountryTask];
+            UI uI = self.UIPageView.UISubViewList[(int)CountryPageEnum.Task];
             if (userDataType == UserDataType.HuoYue && uI != null)
             {
                 uI.GetComponent<UICountryTaskComponent>().OnTaskCountryUpdate();
