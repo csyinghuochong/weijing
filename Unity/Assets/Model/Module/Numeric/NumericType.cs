@@ -571,6 +571,13 @@
         public const int Extra_Buff_ActDodgePro_Add = Now_ActDodgePro * 100 + 11;              //属性Buff附加加法
         public const int Extra_Buff_ActDodgePro_Mul = Now_ActDodgePro * 100 + 12;              //属性Buff附加乘法
 
+        public const int Now_ActSpeedPro = 2050;          //当前攻击速度
+        public const int Base_ActSpeedPro_Base = Now_ActSpeedPro * 100 + 1;                  //属性累加
+        public const int Base_ActSpeedPro_Mul = Now_ActSpeedPro * 100 + 2;                   //属性乘法
+        public const int Base_ActSpeedPro_Add = Now_ActSpeedPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_ActSpeedPro_Add = Now_ActSpeedPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_ActSpeedPro_Mul = Now_ActSpeedPro * 100 + 12;            //属性Buff附加乘法
+
         //----------------抗性-------------
 
         public const int Now_Resistance_Shine_Pro = 2101;          //当前神圣抗性
