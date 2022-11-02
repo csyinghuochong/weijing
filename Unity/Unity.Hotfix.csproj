@@ -56,7 +56,6 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuff_ChaoFeng.cs" />
     <Compile Include="Assets\Hotfix\Demo\Scene\SceneChangeHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\MailComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\CellDungeonComponentSystem.cs" />
@@ -181,6 +180,7 @@
     <Compile Include="Assets\Hotfix\Danger\Helper\TaskHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetThreadComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_PetDataBroadcastHandler.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\UnitTypeHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_BattleInfoResultHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\XiLianHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_Pet_AddBuff.cs" />
@@ -200,7 +200,7 @@
     <Compile Include="Assets\Hotfix\Demo\Login\EnterMapHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericWatcher_Update.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetKcpComponentSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\UnitTypeHelper.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuff_ChaoFeng.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

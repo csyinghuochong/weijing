@@ -125,11 +125,6 @@ namespace ET
 
         public static void InitTargetPoints(this AIComponent self, MonsterConfig MonsterCof)
         {
-
-            if (MonsterCof.Id == 81000004)
-            {
-                Log.Debug("1111");
-            }
             if (MonsterCof.AIParameter == null || MonsterCof.AIParameter.Length == 0)
             {
                 return;
@@ -213,13 +208,12 @@ namespace ET
         {
             //0.1的概率概率转移仇恨
             bool gaiLv = RandomHelper.RandFloat01() < 0.1f;
-            bool tranf = false;
             if (gaiLv)
             {
-                tranf = !self.IsRetreat && !self.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.ChaoFeng);
+                gaiLv = !self.IsRetreat && !self.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.ChaoFeng);
             }
 
-            if (gaiLv && tranf)
+            if (gaiLv)
             {
                 self.TargetID = attack.Id;
             }
