@@ -125,11 +125,11 @@ namespace ET
                 refreshMonster.NextTime = refreshMonster.NextTime + refreshMonster.Interval;
                 self.RefreshMonsters[i] = refreshMonster;
 
-                self.CreateMonsters(refreshMonster).Coroutine();
+                self.CreateMonsters(refreshMonster);
             }
         }
 
-        public static async ETTask CreateMonsters(this YeWaiRefreshComponent self, RefreshMonster refreshMonster)
+        public static  void CreateMonsters(this YeWaiRefreshComponent self, RefreshMonster refreshMonster)
         {
             //防止无限刷宝箱
             int monsterNumber = 0;
@@ -148,13 +148,13 @@ namespace ET
 
             for (int i = 0; i < refreshMonster.Number; i++)
             {
-                await TimerComponent.Instance.WaitFrameAsync();
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(refreshMonster.MonsterId);
                 float range = refreshMonster.Range;
                 Vector3 form = new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ);
                 Vector3 to = new Vector3(form.x + RandomHelper.RandomNumberFloat(-1 * range, range), form.y, form.z + RandomHelper.RandomNumberFloat(-1 * range, range));
                 Vector3 vector3 = self.DomainScene().GetComponent<MapComponent>().GetCanReachPath(form, to);
                 UnitFactory.CreateMonster(self.GetParent<Scene>(), refreshMonster.MonsterId, vector3, new CreateMonsterInfo()
-                { Camp = CampEnum.CampMonster1, FubenDifficulty = FubenDifficulty.Normal });
+                { Camp = monsterConfig.MonsterCamp, FubenDifficulty = FubenDifficulty.Normal });
             }
         }
 
