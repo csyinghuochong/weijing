@@ -28,44 +28,18 @@ namespace ET
 
     public static class UIBattleEnterComponentSystem
     {
-        public static int GetBattFubenId(this UIBattleEnterComponent self)
-        {
-            List<SceneConfig> sceneConfigs = SceneConfigCategory.Instance.GetAll().Values.ToList();
-            for (int i = 0; i < sceneConfigs.Count; i++)
-            {
-                if (sceneConfigs[i].MapType == SceneTypeEnum.Battle)
-                {
-                    return sceneConfigs[i].Id;
-                }
-            }
-            return 0;
-        }
-
+        
         public static async ETTask OnButtonEnter(this UIBattleEnterComponent self)
         {
-            
-            int sceneId = self.GetBattFubenId();
-            
-            if (sceneId == 0)
-            {
-                return; 
-            }
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.BattleNumber) > 0)
-            {
-                FloatTipManager.Instance.ShowFloatTip("已经参加过！");
-                return;
-            }
-            
-            //bool   = TimeHelper.IsInTime();
-
-            int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Battle, sceneId);
+            int errorCode = await BattleHelper.OnButtonEnter(self.ZoneScene());
             if (errorCode == ErrorCore.ERR_Success)
             {
                 UIHelper.Remove(self.ZoneScene(), UIType.UIBattle);
             }
-            
+            else
+            {
+                HintHelp.GetInstance().ShowHint(ErrorHelp.Instance.ErrorHintList[errorCode]);
+            }
         }
     }
 }

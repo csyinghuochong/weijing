@@ -7,6 +7,7 @@
         public const string Behaviour_Stroll = "Behaviour_Stroll";
         public const string Behaviour_ZhuiJi = "Behaviour_ZhuiJi";
         public const string Behaviour_Attack = "Behaviour_Attack";
+        public const string Behaviour_Battle = "Behaviour_Battle";
         public const string Behaviour_TeamDungeon = "Behaviour_TeamDungeon";
     }
 

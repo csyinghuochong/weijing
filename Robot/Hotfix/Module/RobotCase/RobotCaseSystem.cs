@@ -64,9 +64,10 @@ namespace ET
             Scene zoneScene = null;
             try
             {
+                bool outnet = false;
                 zoneScene = SceneFactory.CreateZoneScene(zone, name, self);
-                await LoginHelper.Register(zoneScene, true, VersionMode.Beta, zone.ToString(), zone.ToString());
-                await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(1, 1), zone.ToString(), zone.ToString());
+                await LoginHelper.Register(zoneScene, outnet, VersionMode.Beta, zone.ToString(), zone.ToString());
+                await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(outnet), zone.ToString(), zone.ToString());
                 A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, zone.ToString());
                 zoneScene.GetComponent<AccountInfoComponent>().CurrentServerId = 1;
                 zoneScene.GetComponent<AccountInfoComponent>().CurrentRoleId = g2cCreateRole.createRoleInfo.UserID;

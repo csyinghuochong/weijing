@@ -31,7 +31,8 @@ namespace ET
             self.Behaviours.Add(BehaviourType.Behaviour_Stroll);
             self.Behaviours.Add(BehaviourType.Behaviour_ZhuiJi);
             self.Behaviours.Add(BehaviourType.Behaviour_Attack);
-            //self.Behaviours.Add(BehaviourType.Behaviour_TeamDungeon);
+            self.Behaviours.Add(BehaviourType.Behaviour_TeamDungeon);
+
         }
     }
 

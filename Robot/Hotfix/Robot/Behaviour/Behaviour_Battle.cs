@@ -1,18 +1,22 @@
-﻿namespace ET
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ET
 {
-
-    //组队副本
-    public class Behaviour_TeamDungeon : BehaviourHandler
+    //战场
+    public class Behaviour_Battle : BehaviourHandler
     {
-
         public override string BehaviourId()
         {
-            return BehaviourType.Behaviour_TeamDungeon;
+            return BehaviourType.Behaviour_Battle;
         }
 
         public override int Check(BehaviourComponent aiComponent, AIConfig aiConfig)
         {
-            if (aiComponent.NewBehaviour == BehaviourType.Behaviour_TeamDungeon)
+            if (aiComponent.NewBehaviour == BehaviourType.Behaviour_Battle)
             {
                 return 0;
             }
@@ -29,19 +33,7 @@
                 Log.ILog.Debug("Behaviour_TeamDungeon: Execute");
 
                 //获取队伍列表
-                int errorCode = await teamComponent.RequestTeamDungeonList();
-                TeamInfo teamInfo = teamComponent.GetCanJoinTeam();
-                if (teamInfo != null)
-                {
-                    //有可加入队伍再直接加入
-                    errorCode = await teamComponent.SendTeamApply(teamInfo.TeamId, teamInfo.SceneId);
-                }
-                else
-                {
-                    //没有队伍则请求创建队伍
-                    errorCode = await teamComponent.RequestTeamDungeonCreate(110001);
-                }
-                errorCode = await teamComponent.RequestTeamDungeonOpn();
+                int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, 1);
                 if (errorCode != 0)
                 {
                     Log.Info($"Behaviour_TeamDungeon: Execute {errorCode}");

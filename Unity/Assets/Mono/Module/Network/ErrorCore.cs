@@ -130,7 +130,7 @@
         public const int ERR_FangChengMi_Tip6 = 300506;
         public const int ERR_FangChengMi_Tip7 = 300507;
 
-        public const int ERR_TaskCommited = 300601;                             //已经已经领取
+        public const int ERR_TaskCommited = 300601;                             //已经领取
         public const int ERR_NotFindLevel = 300602;                             //找不到对应关卡
         public const int ERR_TiLiNoEnough = 300603;                             //体力不足
         public const int ERR_LevelNotOpen = 300604;                             //前置关卡未通关
@@ -160,8 +160,9 @@
 
         //赏金任务
         public const int ERR_ShangJinNumFull = 301101;                              //赏金任务完成上限
-        
 
+        //战场
+        public const int ERR_BattleJoined = 301201;                                //已经参与过战场活动
 
 
         public static bool IsRpcNeedThrowException(int error)

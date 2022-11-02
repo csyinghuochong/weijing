@@ -286,23 +286,19 @@ namespace ET
         //Alpha = 0,              //仅内部人员使用。一般不向外部发布
         //Beta = 1,               //公开测试版
         //BanHao = 2,
-        public static string GetServerIpList(int serverid, int version)
+        public static string GetServerIpList(bool outnet)
         {
             Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
-            switch (version)
+            switch (outnet)
             {
-                case 0:
+                case true:
                     keyValuePairs.Add(1, "127.0.0.1:20305");
-                    keyValuePairs.Add(2, "127.0.0.1:20315");
                     break;
-                case 1:
+                case false:
                     keyValuePairs.Add(1, "39.96.194.143:20305");
-                    keyValuePairs.Add(2, "39.96.194.143:20315");
-                    break;
-                case 2:
                     break;
             }
-            return keyValuePairs[serverid];
+            return keyValuePairs[0];
         }
 
         //注册账号

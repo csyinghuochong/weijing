@@ -280,8 +280,6 @@ namespace ET
                     ObjHp.GetComponent<Slider>().value = blood;
                     int shieldHp = numericComponent.GetAsInt(NumericType.Now_Shield_HP);
                     int shieldMax = numericComponent.GetAsInt(NumericType.Now_Shield_MaxHP);
-
-                    Log.Debug($"shieldHp:   {shieldHp} {shieldMax}");
                     if (shieldMax > 0)
                     {
                         this.BuffShieldValue.GetComponent<Image>().fillAmount = shieldHp * 1f / shieldMax;

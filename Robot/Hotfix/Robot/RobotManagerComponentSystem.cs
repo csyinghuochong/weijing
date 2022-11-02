@@ -14,10 +14,10 @@ namespace ET
             try
             {
                 zoneScene = SceneFactory.CreateZoneScene(zone, "Robot", self);
-                
-                int registerCode = await LoginHelper.Register(zoneScene,true, VersionMode.Beta, zone.ToString(), ComHelp.RobotPassWord);
-                int errorCode = await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(1, 1), zone.ToString(), ComHelp.RobotPassWord);
 
+                bool outnet = false;
+                int registerCode = await LoginHelper.Register(zoneScene, outnet, VersionMode.Beta, zone.ToString(), ComHelp.RobotPassWord);
+                int errorCode = await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(outnet), zone.ToString(), ComHelp.RobotPassWord);
                 if (registerCode == ErrorCore.ERR_Success)
                 {
                     A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());
