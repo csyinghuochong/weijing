@@ -9,6 +9,9 @@ namespace ET
         public GameObject Button_Back;
         public GameObject Text_Amount;
         public GameObject Button_Open;
+        public GameObject JiaGeSet;
+        public GameObject DiSet;
+        
     }
 
     [ObjectSystem]
@@ -25,6 +28,10 @@ namespace ET
             self.Button_Back.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove( self.ZoneScene(), UIType.UIHongBao);  });
 
             self.Text_Amount = rc.Get<GameObject>("Text_Amount");
+
+            self.JiaGeSet = rc.Get<GameObject>("JiaGeSet");
+            self.DiSet = rc.Get<GameObject>("DiSet");
+            
         }
     }
 
@@ -35,6 +42,8 @@ namespace ET
             C2M_HongBaoOpenRequest c2M_HongBaoOpenRequest = new C2M_HongBaoOpenRequest();
             M2C_HongBaoOpenResponse m2C_HongBaoOpenResponse = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_HongBaoOpenRequest) as M2C_HongBaoOpenResponse;
 
+            self.JiaGeSet.SetActive(true);
+            self.DiSet.SetActive(false);
             self.Text_Amount.GetComponent<Text>().text = m2C_HongBaoOpenResponse.HongbaoAmount.ToString();
             self.Button_Open.SetActive(false);
         }

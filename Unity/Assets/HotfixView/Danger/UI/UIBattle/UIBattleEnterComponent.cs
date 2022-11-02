@@ -45,7 +45,7 @@ namespace ET
         {
             
             int sceneId = self.GetBattFubenId();
-            /*
+            
             if (sceneId == 0)
             {
                 return; 
@@ -64,7 +64,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("不在时间段内！");
                 return;
             }
-            */
+            
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Battle, sceneId);
             if (errorCode == ErrorCore.ERR_Success)
             {
