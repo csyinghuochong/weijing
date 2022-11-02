@@ -12,6 +12,8 @@ namespace ET
             zoneScene.AddComponent<FloatTipManager>();
             zoneScene.AddComponent<ReddotViewComponent>();
             zoneScene.AddComponent<ResourcesLoaderComponent>();
+            zoneScene.AddComponent<SkillIndicatorComponent>();
+            zoneScene.AddComponent<LockTargetComponent>();
         }
     }
 }

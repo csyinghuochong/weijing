@@ -303,7 +303,7 @@ namespace ET
 
             if (npc != null)
             {
-                self.ZoneScene().CurrentScene().GetComponent<LockTargetComponent>().OnLockNpc(npc);
+                self.ZoneScene().GetComponent<LockTargetComponent>().OnLockNpc(npc);
             }
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
             if (npcConfig.MovePosition.Length == 0 && npc != null && npc.GetComponent<AnimatorComponent>() != null)

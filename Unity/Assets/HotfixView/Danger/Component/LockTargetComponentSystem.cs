@@ -51,8 +51,8 @@ namespace ET
         public static void OnMainHeroPosition(this LockTargetComponent self)
         {
             Unit haveBoss = null;
-            List<Unit> allUnit = self.DomainScene().GetComponent<UnitComponent>().GetAll();
             Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            List<Unit> allUnit = main.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < allUnit.Count; i++)
             {
                 Unit unit = allUnit[i] as Unit;

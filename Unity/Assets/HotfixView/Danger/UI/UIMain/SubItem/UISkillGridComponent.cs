@@ -54,7 +54,6 @@ namespace ET
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.EndDrag(pdata); }, EventTriggerType.EndDrag);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.OnPointDown(pdata); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.PointerUp(pdata); }, EventTriggerType.PointerUp);
-
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.OnCancel(pdata); }, EventTriggerType.Cancel);
         }
     }
@@ -118,7 +117,7 @@ namespace ET
             {
                 return;
             }
-            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().OnMouseDrag(eventData.delta);
+            self.ZoneScene().GetComponent<SkillIndicatorComponent>().OnMouseDrag(eventData.delta);
         }
 
         public static void SetSkillCancelHandler(this UISkillGridComponent self, Action<bool> action)
@@ -135,7 +134,7 @@ namespace ET
             }
             self.UseSkill = false;
             self.SendUseSkill(self.GetTargetAngle(), self.GetTargetDistance());
-            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
+            self.ZoneScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
         }
 
         /// <summary>
@@ -164,7 +163,7 @@ namespace ET
             {
                 return;
             }
-            long targetId = self.DomainScene().CurrentScene().GetComponent<LockTargetComponent>().LastLockId;
+            long targetId = self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId;
             if (self.SkillWuqiConfig.SkillTargetType == (int)SkillTargetType.TargetOnly)
             {
                 Unit targetUnit = null;
@@ -224,7 +223,7 @@ namespace ET
             }
             self.UseSkill = false;
             self.SendUseSkill(self.GetTargetAngle(), self.GetTargetDistance());
-            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
+            self.ZoneScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
         }
 
         public static void OnPointDown(this UISkillGridComponent self, PointerEventData eventData)
@@ -240,26 +239,26 @@ namespace ET
                 self.UseSkill = false;
                 self.SkillCancelHandler(false);
                 self.SendUseSkill((int)unit.Rotation.eulerAngles.y, 0);
-                self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
+                self.ZoneScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
                 return;
             }
             
             self.UseSkill = true;
             self.SkillCancelHandler(true);
-            Scene curscene = self.ZoneScene().CurrentScene();
+            Scene curscene = self.ZoneScene();
             curscene.GetComponent<SkillIndicatorComponent>().ShowSkillIndicator(self.SkillWuqiConfig);
             curscene.GetComponent<SkillIndicatorComponent>().OnMouseDown(curscene.GetComponent<LockTargetComponent>().LastLockId);
         }
 
         public static int GetTargetAngle(this UISkillGridComponent self)
         {
-            return self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().GetIndicatorAngle();
+            return self.ZoneScene().GetComponent<SkillIndicatorComponent>().GetIndicatorAngle();
         }
 
         //X100
         public static float GetTargetDistance(this UISkillGridComponent self)
         {
-            return self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().GetIndicatorDistance();
+            return self.ZoneScene().GetComponent<SkillIndicatorComponent>().GetIndicatorDistance();
         }
 
         public static void OnEnterCancelButton(this UISkillGridComponent self)

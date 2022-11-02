@@ -92,7 +92,7 @@ namespace ET
         {
             self.FightEffect.SetActive(false);
 
-            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
+            self.ZoneScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
         }
 
         public static void OnLockUnit(this UIAttackGridComponent self, Unit targetUnit)
@@ -125,11 +125,7 @@ namespace ET
         public static void PointerUp(this UIAttackGridComponent self, PointerEventData pdata)
         {
             self.FightEffect.SetActive(false);
-            Scene curscene = self.ZoneScene().CurrentScene();
-            if (curscene == null)
-            {
-                return;
-            }
+            Scene curscene = self.ZoneScene();
             curscene.GetComponent<SkillIndicatorComponent>().RecoveryEffect();
             if (TimeHelper.ClientNow() < self.CDEndTime)
             {
@@ -147,7 +143,7 @@ namespace ET
 
             LockTargetComponent lockTargetComponent = curscene.GetComponent<LockTargetComponent>();
             long targetId = lockTargetComponent.LockTargetUnit(true);
-            Unit targetUnit = curscene.GetComponent<UnitComponent>().Get(targetId);
+            Unit targetUnit = unit.GetParent<UnitComponent>().Get(targetId);
             self.OnLockUnit(targetUnit);
         }
 
@@ -207,7 +203,7 @@ namespace ET
         public static void PointerDown(this UIAttackGridComponent self, PointerEventData pdata)
         {
             self.ShowFightEffect().Coroutine();
-            self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().ShowCommonAttackZhishi();
+            self.ZoneScene().GetComponent<SkillIndicatorComponent>().ShowCommonAttackZhishi();
         }
         
         public static void OnMoveStart(this UIAttackGridComponent self)
@@ -354,18 +350,17 @@ namespace ET
                     break;
                 }
             }
-
-            if (self.SkillList.Count == 3)
+            switch (self.SkillList.Count)
             {
-                self.Weights = new List<int>() { 70, 20, 20 };
-            }
-            if (self.SkillList.Count == 2)
-            {
-                self.Weights = new List<int>() { 70, 20};
-            }
-            if (self.SkillList.Count == 1)
-            {
-                self.Weights = new List<int>() { 100 };
+                case 3:
+                    self.Weights = new List<int>() { 70, 20, 20 };
+                    break;
+                case 2:
+                    self.Weights = new List<int>() { 70, 20 };
+                    break;
+                case 1:
+                    self.Weights = new List<int>() { 100 };
+                    break;
             }
         }
 

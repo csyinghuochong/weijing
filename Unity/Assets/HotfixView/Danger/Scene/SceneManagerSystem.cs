@@ -65,8 +65,8 @@ namespace ET
 
         public static async ETTask ChangeSonScene(this SceneManagerComponent self, Scene scene, int sceneTypeEnum, string paramss)
         {
-            scene.CurrentScene().GetComponent<SkillIndicatorComponent>().OnChangeSonScene();
-            scene.CurrentScene().GetComponent<LockTargetComponent>().OnChangeSonScene();
+            scene.GetComponent<SkillIndicatorComponent>().OnChangeSonScene();
+            scene.GetComponent<LockTargetComponent>().OnChangeSonScene();
 
             var path = ABPathHelper.GetScenePath(paramss);
             await ResourcesComponent.Instance.LoadSceneAdditive(path);

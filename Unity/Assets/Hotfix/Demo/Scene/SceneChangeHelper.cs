@@ -12,6 +12,7 @@ namespace ET
             zoneScene.GetComponent<MapComponent>().SetMapInfo(sceneType, chapterId, sonId);
             CurrentScenesComponent currentScenesComponent = zoneScene.GetComponent<CurrentScenesComponent>();
             currentScenesComponent.Scene?.Dispose(); // 删除之前的CurrentScene，创建新的
+            UnitHelper.MainUnit = null;
             //Scene currentScene = SceneFactory.CreateCurrentScene(sceneInstanceId, zoneScene.Zone, chapterId.ToString(), currentScenesComponent);
             Scene currentScene = SceneFactory.CreateCurrentScene(IdGenerater.Instance.GenerateInstanceId(), zoneScene.Zone, chapterId.ToString(), currentScenesComponent);
             UnitComponent unitComponent = currentScene.AddComponent<UnitComponent>();
@@ -46,7 +47,8 @@ namespace ET
                 Unit unit  = UnitFactory.CreateUnit(currentScene, m2CCreateMyUnit.Unit, true);
                 unitComponent.Add(unit);
                 zoneScene.GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
-  
+                UnitHelper.MainUnit = unit;
+
                 EventType.SceneChangeFinish.Instance.ZoneScene = zoneScene;
                 EventType.SceneChangeFinish.Instance.CurrentScene = currentScene;
                 Game.EventSystem.PublishClass(EventType.SceneChangeFinish.Instance);   //挂在当前Scene组件

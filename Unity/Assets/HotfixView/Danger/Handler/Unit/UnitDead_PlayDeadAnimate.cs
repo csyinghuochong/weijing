@@ -35,7 +35,7 @@ namespace ET
                 else
                 {
                     unit.GetComponent<EffectViewComponent>()?.OnDispose();
-                    unit.ZoneScene().CurrentScene().GetComponent<LockTargetComponent>().OnUnitDead(unit);
+                    unit.ZoneScene().GetComponent<LockTargetComponent>().OnUnitDead(unit);
                 }
 
                 if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ReviveTime) > 0)
@@ -97,7 +97,7 @@ namespace ET
                 }
             }
 
-            unit.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>().OnSelfDead();
+            unit.ZoneScene().GetComponent<SkillIndicatorComponent>().OnSelfDead();
             UI uI =await UIHelper.Create(unit.ZoneScene(), UIType.UICellDungeonRevive);
             uI.GetComponent<UICellDungeonReviveComponent>().OnInitUI(mapComponent.SceneTypeEnum);
         }

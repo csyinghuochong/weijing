@@ -506,7 +506,7 @@ namespace ET
             }
             else
             {
-                self.ZoneScene().CurrentScene().GetComponent<SkillIndicatorComponent>()?.RecoveryEffect();
+                self.ZoneScene().GetComponent<SkillIndicatorComponent>()?.RecoveryEffect();
                 self.UIJoystickMoveComponent.HideUI();
             }
         }
