@@ -161,8 +161,7 @@ namespace ET
                 return;
             }
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
-            Log.Debug($"skillcmd.ActorId:  {skillcmd.ActorId}");
-            if (skillcmd.ActorId > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
+            if (skillcmd.ItemId > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
             {
                 EventType.PlayAnimator.Instance.Animator = skillConfig.SkillAnimation;
                 EventType.PlayAnimator.Instance.Unit = unit;

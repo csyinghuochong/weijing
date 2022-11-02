@@ -3,6 +3,8 @@
 namespace ET
 {
 
+    
+
     //闲逛
     public class Behaviour_Stroll : BehaviourHandler
     {
@@ -29,8 +31,8 @@ namespace ET
             while (number > 0)
             {
                 Log.ILog.Debug("Behaviour_Stroll: Execute");
-                int random = RandomHelper.RandomNumber(0, aiComponent.PositionList.Count);
-                Vector3 vector3 = aiComponent.PositionList[random];
+                int random = RandomHelper.RandomNumber(0, BehaviourComponent.StrollPositionList.Count);
+                Vector3 vector3 = BehaviourComponent.StrollPositionList[random];
                 int ret = await myUnit.MoveToAsync2(vector3);
                 if (ret != 0)
                 {

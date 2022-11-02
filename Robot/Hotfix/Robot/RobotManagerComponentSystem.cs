@@ -16,8 +16,8 @@ namespace ET
                 zoneScene = SceneFactory.CreateZoneScene(zone, "Robot", self);
 
                 bool outnet = false;
-                int registerCode = await LoginHelper.Register(zoneScene, outnet, VersionMode.Beta, zone.ToString(), ComHelp.RobotPassWord);
-                int errorCode = await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(outnet), zone.ToString(), ComHelp.RobotPassWord);
+                int registerCode = await LoginHelper.Register(zoneScene, outnet, VersionMode.Beta, zone.ToString()+"1211aa1", ComHelp.RobotPassWord);
+                int errorCode = await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(outnet, 1), zone.ToString(), ComHelp.RobotPassWord);
                 if (registerCode == ErrorCore.ERR_Success)
                 {
                     A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());
