@@ -217,6 +217,26 @@ namespace ET
             self.FinishAutoAttack();
         }
 
+        public static void SetAttackSpeed(this UIAttackGridComponent self)
+        {
+            int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();  
+            float attackSpped = 1f;
+            float = EquipType == (int)ItemEquipType.Knife ? 1000 : 800;
+            self.CDTime = (int)(1f * self.CDTime / attackSpped);
+        }
+
+        public static void SetComboSkill(this UIAttackGridComponent self)
+        {
+            int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
+            if ((EquipType == (int)ItemEquipType.Sword
+                || EquipType == (int)ItemEquipType.Common))
+            {
+                self.ComboSkillId = self.RandomGetSkill();
+            }
+        }
+
         public static async ETTask AutoAttack_1(this UIAttackGridComponent self, Unit unit, Unit taretUnit, ETCancellationToken cancellationToken = null)
         {
             if (PositionHelper.Distance2D(unit, taretUnit) > self.AttackDistance)
@@ -239,14 +259,9 @@ namespace ET
             {
                 self.ComboSkillId = SkillConfigCategory.Instance.Get(self.ComboSkillId).ComboSkillID;
             }
-            int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
-            self.CDTime = EquipType == (int)ItemEquipType.Knife ? 1000 : 800;
-            if ((EquipType == (int)ItemEquipType.Sword
-                || EquipType == (int)ItemEquipType.Common))
-            {
-                self.ComboSkillId = self.RandomGetSkill();
-            }
-            
+            self.SetAttackSpeed();
+            self.SetComboSkill();
+
             int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), taretUnit);
             MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, 0, targetAngle, taretUnit.Id, 0).Coroutine();
             self.LastSkillTime = Time.time;
