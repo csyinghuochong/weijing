@@ -142,6 +142,7 @@ namespace ET
 
             bool ifMonsterBoss_Act = false;
             bool ifMonsterBoss_Def = false;
+            bool petfuben = false;
             //计算是否闪避
             int defendUnitLv = 0;
             defendUnit.GetComponent<StateComponent>().BeAttacking(attackUnit);
@@ -150,7 +151,7 @@ namespace ET
                 //怪物
                 case UnitType.Monster:
                     int sceneType = defendUnit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-                    bool petfuben = sceneType == SceneTypeEnum.PetDungeon;
+                    petfuben = sceneType == SceneTypeEnum.PetDungeon;
 
                     defendUnit.GetComponent<AIComponent>()?.BeAttacking(attackUnit);
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(defendUnit.ConfigId);
@@ -286,6 +287,12 @@ namespace ET
 
                 //计算战斗公式
                 long damge = (actValue - nowdef);
+
+                //怪物打宠物降低80% （如果有需要 后期需要加入判定是不是当前怪物的普通攻击来判断躲避技能）
+                if (attackUnit.Type == UnitType.Monster && defendUnit.Type == UnitType.Pet && petfuben == false)
+                {
+                    damge = (int)((float)damge * 0.2f);
+                }
 
                 //技能倍伤
                 if (skillconfig.SkillActType == 1)
