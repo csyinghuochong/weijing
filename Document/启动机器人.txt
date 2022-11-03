@@ -8,3 +8,6 @@
 1 启动服务器 dotnet Server.App.dll --Process=1 --Console=1
 2 启动机器人 dotnet Robot.App.dll --AppType=Robot --Process=202 --Console=1
 3 机器人进程中使用命令行创建机器人 CreateRobot --Num=1 --RobotId=2001 创建3个机器人
+
+CreateRobot --Num=1 --RobotId=2001
+CreateRobot --Num=1 --RobotId=3001

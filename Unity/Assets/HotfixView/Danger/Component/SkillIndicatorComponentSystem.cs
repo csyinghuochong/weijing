@@ -206,7 +206,6 @@ namespace ET
             }
 
             self.StartIndicator += indicator;
-            //只有 IfSelectSkillRange 为1 可以选中释放距离
             if (skillIndicatorItem.SkillZhishiType == SkillZhishiType.Position)
             {
                 float rate = 1;

@@ -44,28 +44,6 @@ namespace ET
             {
                 numericComponent.Set(NumericType.CangKuNumber, 1, false);
             }
-
-            //初始化属性点
-            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-            int PointLiLiang = numericComponent.GetAsInt(NumericType.PointLiLiang);
-            int PointZhiLi = numericComponent.GetAsInt(NumericType.PointZhiLi);
-            int PointTiZhi = numericComponent.GetAsInt(NumericType.PointTiZhi);
-            int PointNaiLi = numericComponent.GetAsInt(NumericType.PointNaiLi);
-            int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
-            int PointLeftNumber = (userInfoComponent.UserInfo.Lv - 1) * 5 - PointLiLiang - PointZhiLi - PointTiZhi - PointNaiLi - PointMinJie;
-            if (PointLeftNumber < 0)
-            {
-                numericComponent.Set(NumericType.PointRemain, (userInfoComponent.UserInfo.Lv - 1) * 5);
-                numericComponent.Set(NumericType.PointLiLiang, 0);
-                numericComponent.Set(NumericType.PointZhiLi, 0);
-                numericComponent.Set(NumericType.PointTiZhi, 0);
-                numericComponent.Set(NumericType.PointNaiLi, 0);
-                numericComponent.Set(NumericType.PointMinJie, 0);
-            }
-            else
-            {
-                numericComponent.Set(NumericType.PointRemain, PointLeftNumber);
-            }
         }
 
         public static void OnLogin(this HeroDataComponent self)

@@ -5,7 +5,7 @@ namespace ET
 {
     public class UICountryTipsComponent : Entity, IAwake
     {
-
+        public GameObject Img_back;
         public GameObject ImageButton;
         public GameObject ItemListNode;
         public GameObject PositionNode;
@@ -22,6 +22,7 @@ namespace ET
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.PositionNode = rc.Get<GameObject>("PositionNode");
             self.ImageButton = rc.Get<GameObject>("ImageButton");
+            self.Img_back = rc.Get<GameObject>("Img_back");
 
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.DomainScene(), UIType.UICountryTips); });
         }
@@ -32,22 +33,35 @@ namespace ET
         public static void OnUpdateUI(this UICountryTipsComponent self, string rewards, Vector3 vector3, int showType = 0)
         {
             UICommonHelper.ShowItemList(rewards, self.ItemListNode, self).Coroutine();
+            string[] rewardItems = rewards.Split('@');
+            int width = rewardItems.Length * 120 + (rewardItems.Length - 1) * 10;
+            float halfwidth = UnityEngine.Screen.width * 0.5f;
+
+            if (width > 600)
+            {
+                self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(width, 200);
+            }
+            else
+            {
+                width = 600;
+            }
 
             //宠物布阵
             if (showType == 1)
             {
-                vector3.x -= 300;
                 vector3.y += 200;
                 self.PositionNode.transform.localPosition = vector3;
                 return;
             }
-
-            if (vector3.x > 400)
+  
+            if (vector3.x + width >= halfwidth)
             {
-                self.PositionNode.transform.localPosition = vector3 + new Vector3(-400, 0, 0);
+                vector3.x = halfwidth - width;
+                self.PositionNode.transform.localPosition = vector3;
             }
             else
             {
+                vector3.x += 300f;
                 self.PositionNode.transform.localPosition = vector3;
             }
 

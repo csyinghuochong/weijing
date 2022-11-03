@@ -49,6 +49,7 @@ namespace ET
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Battle, Value = "Behaviour_Battle" });
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Target, Value = "Behaviour_Target" });
                     break;
             }
             self.NewBehaviour = BehaviourType.Behaviour_Stroll;
@@ -72,7 +73,13 @@ namespace ET
     {
         public static void ChangeBehaviour(this BehaviourComponent self, int behaviour)
         {
-            Log.ILog.Debug($"ChangeBehaviour: {behaviour}");
+            for (int i = 0; i < self.Behaviours.Count; i++)
+            {
+                if (self.Behaviours[i].KeyId == behaviour)
+                {
+                    Log.ILog.Debug($"ChangeBehaviour: {self.Behaviours[i].Value}");
+                }
+            }
             self.NewBehaviour = behaviour;
         }
 

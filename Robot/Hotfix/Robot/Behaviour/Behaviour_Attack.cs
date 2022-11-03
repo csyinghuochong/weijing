@@ -22,7 +22,7 @@ namespace ET
                 return false;
             }
             float distance = PositionHelper.Distance2D(target, UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene()));
-            if (distance < 1f)
+            if (distance < 3f)
             {
                 return true;
             }
@@ -46,16 +46,16 @@ namespace ET
                 }
                 //Log.ILog.Debug("Behaviour_Attack: Execute");
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
-                if (target != null && target.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp) > 0
-                   && PositionHelper.Distance2D(target, unit) <= 1)
+                if (target != null && target.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Dead) == 0)
                 {
                     Vector3 direction = target.Position - unit.Position;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
 
                     //触发技能
                     int skillID = aiComponent.ZoneScene().GetComponent<SkillSetComponent>().GetCanUseSkill();
-                    float targetDistance = Vector3.Distance(unit.Position, target.Position);
-                    MapHelper.SendUseSkill(aiComponent.ZoneScene(), skillID, 0,Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillID);
+                    float targetDistance = skillConfig.SkillZhishiType == 1 ?  Vector3.Distance(unit.Position, target.Position):0;
+                    target.GetComponent<SkillManagerComponent>().SendUseSkill(skillID, 0,Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
                 }
                 else
                 {

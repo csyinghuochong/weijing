@@ -153,8 +153,6 @@ namespace ET
                 }
 
                 DateTime dateTime =  TimeHelper.DateTimeNow();
-                Log.Info($"CreateMonsters: {dateTime.ToString()}");
-
                 //根据refreshMonster.Time可以纠正时间
                 refreshMonster.NextTime = refreshMonster.NextTime + refreshMonster.Interval;
                 self.RefreshMonsters[i] = refreshMonster;

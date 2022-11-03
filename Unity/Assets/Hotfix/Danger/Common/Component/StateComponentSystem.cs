@@ -165,7 +165,7 @@ namespace ET
             if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))
             {
                 //打打断吟唱
-                MapHelper.SendUpdateState(self.ZoneScene(), 2, StateTypeEnum.Singing, "0");
+                unit.GetComponent<SkillManagerComponent>().SendUpdateState(2, StateTypeEnum.Singing, "0");
             }
         }
 #endif

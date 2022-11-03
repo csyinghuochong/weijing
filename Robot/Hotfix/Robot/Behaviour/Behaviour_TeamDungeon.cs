@@ -31,7 +31,6 @@
 
                 //获取队伍列表
                 int errorCode = await teamComponent.RequestTeamDungeonList();
-
                 TeamInfo selfTeam = teamComponent.GetSelfTeam();
                 if (selfTeam == null)
                 {
@@ -42,18 +41,17 @@
                         Log.Info($"Behaviour_TeamDungeon: 有可加入的队伍直接加入");
                         errorCode = await teamComponent.SendTeamApply(teamInfo.TeamId, teamInfo.SceneId);
                     }
-                    else
-                    {
-                        //没有队伍则请求创建队伍
-                        Log.Info($"Behaviour_TeamDungeon: 没有队伍则请求创建队伍");
-                        errorCode = await teamComponent.RequestTeamDungeonCreate(BattleHelper.GetTeamFubenId(userInfo.Lv));
-                    }
+                    //else
+                    //{
+                    //    //没有队伍则请求创建队伍
+                    //    Log.Info($"Behaviour_TeamDungeon: 没有队伍则请求创建队伍");
+                    //    errorCode = await teamComponent.RequestTeamDungeonCreate(BattleHelper.GetTeamFubenId(userInfo.Lv));
+                    //}
                 }
                 else 
                 {
                     Log.Info($"Behaviour_TeamDungeon: selfTeam ！= null");
                 }
-
                 errorCode = await teamComponent.RequestTeamDungeonOpen();
                 if (errorCode != 0)
                 {

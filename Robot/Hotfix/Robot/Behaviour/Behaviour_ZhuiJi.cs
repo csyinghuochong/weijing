@@ -25,7 +25,7 @@ namespace ET
 
             aiComponent.TargetID = target.Id;
             float distance = PositionHelper.Distance2D(target, unit);
-            if (distance < 1)
+            if (distance < 3)
             {
                 return false;
             }

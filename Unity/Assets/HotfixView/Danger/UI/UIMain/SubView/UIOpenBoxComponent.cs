@@ -108,12 +108,12 @@ namespace ET
                 //unit.GetComponent<FsmComponent>().ChangeState(FsmHandlerType.FsmOpenBox);
                 Vector3 direction = box.Position - unit.Position;
                 int ange = Mathf.FloorToInt(Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z));
-                MapHelper.SendUpdateState(self.ZoneScene(), 1, StateTypeEnum.OpenBox, ange.ToString());
+                unit.GetComponent<SkillManagerComponent>().SendUpdateState(1, StateTypeEnum.OpenBox, ange.ToString());
             }
             else
             {
                 //unit.GetComponent<FsmComponent>().ChangeState(FsmHandlerType.FsmIdleState);
-                MapHelper.SendUpdateState(self.ZoneScene(), 2, StateTypeEnum.OpenBox, "0");
+                unit.GetComponent<SkillManagerComponent>().SendUpdateState( 2, StateTypeEnum.OpenBox, "0");
             }
         }
 

@@ -522,28 +522,29 @@ namespace ET
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             List<BagInfo> bagList = self.GetBagList();
-            List<int> weilist = new List<int>();
             for (int i = 0; i < bagList.Count; i++)
             {
+                
+                if (bagList[i].IfJianDing)
+                {
+                    continue;
+                }
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagList[i].ItemID);
                 if (itemConfig.ItemType != (int)ItemTypeEnum.Equipment)
                 {
                     continue;
                 }
-                int weizhi = ItemHelper.ReturnEquipSpaceNum(itemConfig.ItemSubType);
-                if (weilist.Contains(weizhi))
-                {
-                    continue;
-                }
-                weilist.Add(weizhi);
-                BagInfo equipInfo = self.GetEquipByWeizhi(weizhi);
                 if (userInfoComponent.UserInfo.Lv < itemConfig.UseLv)
                 {
                     continue;
                 }
+
+                int weizhi = ItemHelper.ReturnEquipSpaceNum(itemConfig.ItemSubType);
+                
+                BagInfo equipInfo = self.GetEquipByWeizhi(weizhi);
                 if (equipInfo == null)
                 {
-                    Log.ILog.Debug($"Behaviour_Attack: SendWearEquip1:  {bagList[i].ItemID}");
+                    Log.ILog.Debug($"SendWearEquip1:  {bagList[i].ItemID}");
                     await self.SendWearEquip(bagList[i]);
                     continue;
                 }

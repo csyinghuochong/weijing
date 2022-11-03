@@ -29,6 +29,12 @@ namespace ET
                 {
                     self.OnAddItemData($"{equipList[i]};1", $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", false);
                 }
+                NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+                numericComponent.ApplyValue(NumericType.PointLiLiang, robotConfig.PointList[0] * 10);
+                numericComponent.ApplyValue(NumericType.PointZhiLi, robotConfig.PointList[1] * 10);
+                numericComponent.ApplyValue(NumericType.PointTiZhi, robotConfig.PointList[2] * 10);
+                numericComponent.ApplyValue(NumericType.PointNaiLi, robotConfig.PointList[3] * 10);
+                numericComponent.ApplyValue(NumericType.PointMinJie, robotConfig.PointList[4] * 10);
             }
         }
     }
@@ -547,7 +553,7 @@ namespace ET
 
                     //记录制造的玩家
                     useBagInfo.MakePlayer = makeUserID;
-                    //蓝色品质的装备需要可以进行鉴定
+                    //蓝色品质的装备需要进行鉴定
                     if (!ItemHelper.IsBuyItem(getType) && itemCof.ItemType == 3)
                     {
                         if (itemCof.ItemQuality >= 4)
@@ -598,9 +604,14 @@ namespace ET
                         useBagInfo.XiLianHideTeShuProLists = itemXiLian.XiLianHideTeShuProLists;    //特殊属性洗炼
                     }
                     //掉落的橙色装备默认为绑定的物品
-                    if ((getType == ItemGetWay.PickItem || getType == ItemGetWay.ChouKa) && itemCof.ItemQuality >= 5)
+                    if ((getType == ItemGetWay.PickItem || getType == ItemGetWay.ChouKa) 
+                        && itemCof.ItemQuality >= 5)
                     {
                         useBagInfo.isBinging = true;
+                    }
+                    if (getType == ItemGetWay.System)
+                    {
+                        useBagInfo.IfJianDing = false;
                     }
                     //藏宝图
                     if (itemCof.ItemSubType == 113)

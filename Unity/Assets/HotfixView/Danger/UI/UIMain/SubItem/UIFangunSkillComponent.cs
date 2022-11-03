@@ -60,7 +60,7 @@ namespace ET
             int skillID = unit.GetComponent<SkillManagerComponent>().FangunSkillId;
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
             uimain.GetComponent<UIMainComponent>().OnSpellStart();
-            MapHelper.SendUseSkill(self.DomainScene(), skillID, 0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
+            unit.GetComponent<SkillManagerComponent>().SendUseSkill(skillID, 0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
 
             self.LastSkillTime = Time.time;
         }

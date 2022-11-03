@@ -103,7 +103,7 @@ namespace ET
                 self.MoveAttackId = 0;
                 Unit unit = UnitHelper.MainUnit;
                 int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), null);
-                MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, 0, targetAngle, 0, 0).Coroutine();
+                unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId, 0, targetAngle, 0, 0).Coroutine();
                 self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
             }
             else
@@ -235,7 +235,7 @@ namespace ET
             self.SetComboSkill();
 
             int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), taretUnit);
-            MapHelper.SendUseSkill(self.DomainScene(), self.ComboSkillId, 0, targetAngle, taretUnit.Id, 0).Coroutine();
+            unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId, 0, targetAngle, taretUnit.Id, 0).Coroutine();
             self.LastSkillTime = Time.time;
             self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
             if (self.ComboSkillId == 60000103 || self.ComboSkillId == 60000203)

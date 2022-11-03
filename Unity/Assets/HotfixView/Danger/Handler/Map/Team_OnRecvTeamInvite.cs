@@ -32,8 +32,7 @@
         {
             TeamComponent teamComponent = args.ZoneScene.GetComponent<TeamComponent>();
             TeamInfo teamInfo = teamComponent.GetSelfTeam();
-            teamComponent.FubenOpen = true;
-  
+
             int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
             int times = args.ZoneScene.GetComponent<UserInfoComponent>().GetTeamDungeonTimes();
             if (totalTimes - times <= 0)

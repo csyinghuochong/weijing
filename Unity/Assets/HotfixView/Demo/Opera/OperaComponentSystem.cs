@@ -80,7 +80,7 @@ namespace ET
                 //UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                 //uI.GetComponent<UIMainComponent>().UIMainSkillComponent.UIAttackGrid.PointerUp(null);
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                MapHelper.SendUseSkill( self.ZoneScene(), 61023101, 0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
+                unit.GetComponent<SkillManagerComponent>().SendUseSkill(61023101, 0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
                 self.LastSendTime = Time.time;
             }
             Vector3 dir = Vector3.zero;

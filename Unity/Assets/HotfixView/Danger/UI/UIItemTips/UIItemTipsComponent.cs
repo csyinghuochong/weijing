@@ -275,7 +275,7 @@ namespace ET
             if (itemConfig.ItemSubType == 101)
             {
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                MapHelper.SendUseSkill(self.DomainScene(), int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
+                unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
                     Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
                 self.OnCloseTips();
                 return;

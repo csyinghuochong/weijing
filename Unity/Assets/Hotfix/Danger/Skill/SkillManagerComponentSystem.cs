@@ -112,6 +112,91 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="zoneScene"></param>
+        /// <param name="operatype">1新增  2移除</param>
+        /// <param name="stateType"></param>
+        /// <param name="stateValue"></param>
+        public static void SendUpdateState(this SkillManagerComponent self, int operatype, long stateType, string stateValue)
+        {
+            C2M_UnitStateUpdate c2M_UnitStateUpdate = new C2M_UnitStateUpdate() { StateOperateType = operatype, StateType = stateType, StateValue = stateValue };
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(c2M_UnitStateUpdate);
+            if (operatype == 2 && stateType == (long)StateTypeEnum.Singing)
+            {
+                return;
+            }
+            if (operatype == 1 && stateType == (long)StateTypeEnum.Singing)
+            {
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(int.Parse(stateValue));
+                self.WaitUseSkill((long)(skillConfig.SkillFrontSingTime * 1000)).Coroutine();
+            }
+        }
+        public static async ETTask WaitUseSkill(this SkillManagerComponent self, long waitTime)
+        {
+            await TimerComponent.Instance.WaitAsync(waitTime);
+            Unit unit = self.GetParent<Unit>();
+            if (!unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))
+            {
+                return;
+            }
+            C2M_SkillCmd skillCmd = self.SkillCmd;
+            self.SendUseSkill(skillCmd.SkillID, skillCmd.ItemId, skillCmd.TargetAngle, skillCmd.TargetID, skillCmd.TargetDistance, false).Coroutine();
+        }
+
+        public static async ETTask<int> SendUseSkill(this SkillManagerComponent self, int skillid, int itemId, int angle, long targetId, float distance, bool checksing = true)
+        {
+            try
+            {
+                Unit unit = self.GetParent<Unit>();
+                C2M_SkillCmd skillCmd = self.SkillCmd;
+                skillCmd.SkillID = skillid;
+                skillCmd.TargetAngle = angle;
+                skillCmd.TargetID = targetId;
+                skillCmd.ItemId = itemId;
+                skillCmd.TargetDistance = distance;
+                int errorCode = self.CanUseSkill(skillid);
+                if (errorCode != ErrorCore.ERR_Success)
+                {
+                    return errorCode;
+                }
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
+                if (skillConfig.SkillFrontSingTime == 0f)
+                {
+                    checksing = false;
+                }
+                if (checksing && skillConfig.SkillFrontSingTime > 0)
+                {
+                    if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))
+                    {
+                        return errorCode;
+                    }
+                    self.SendUpdateState(1, (int)StateTypeEnum.Singing, skillCmd.SkillID.ToString());
+                    return ErrorCore.ERR_Success;
+                }
+                unit.GetComponent<StateComponent>().BeginMoveOrSkill();
+                unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NetWait);
+                M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;
+                unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);
+                if (m2C_SkillCmd.Error == 0)
+                {
+                    self.AddSkillCD(skillid, m2C_SkillCmd);
+                    BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+                    int weaponSkill = SkillHelp.GetWeaponSkillID(skillid, bagComponent.GetEquipType());
+                    SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+                    unit.GetComponent<StateComponent>().RigidityEndTime = (long)(skillWeaponConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
+                }
+                return m2C_SkillCmd.Error;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                return ErrorCore.ERR_NetWorkError;
+            }
+        }
+
+
         public static void AddSkillCD(this SkillManagerComponent self, int skillId, M2C_SkillCmd skillCmd)
         {
             //添加技能CD列表

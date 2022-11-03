@@ -64,7 +64,6 @@ namespace ET
                 HintHelp.GetInstance().ShowHint("副本中不能离开队伍");
                 return;
             }
-            self.FubenOpen = false;
             C2T_TeamLeaveRequest c2M_ItemHuiShouRequest = new C2T_TeamLeaveRequest() { UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId };
             T2C_TeamLeaveResponse r2c_roleEquip = (T2C_TeamLeaveResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
         }

@@ -192,8 +192,7 @@ namespace ET
                     }
                     targetId = targetUnit.Id;
                 }
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                Vector3 direction = targetUnit.Position - unit.Position;
+                Vector3 direction = targetUnit.Position - myUnit.Position;
                 angle = Mathf.FloorToInt(Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg);
             }
 
@@ -201,7 +200,7 @@ namespace ET
             uimain.GetComponent<UIMainComponent>().OnSpellStart();
             if (self.skillPro.SkillSetType == (int)SkillSetEnum.Skill)
             {
-                MapHelper.SendUseSkill(self.DomainScene(), self.SkillBaseConfig.Id, 0, angle,  targetId, distance).Coroutine();
+                myUnit.GetComponent<SkillManagerComponent>().SendUseSkill(self.SkillBaseConfig.Id, 0, angle,  targetId, distance).Coroutine();
             }
             else
             {
@@ -211,7 +210,7 @@ namespace ET
                     return;
                 }
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.skillPro.SkillID);
-                MapHelper.SendUseSkill(self.DomainScene(), int.Parse(itemConfig.ItemUsePar), self.skillPro.SkillID, angle, targetId, distance).Coroutine();
+                myUnit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), self.skillPro.SkillID, angle, targetId, distance).Coroutine();
             }
         }
 

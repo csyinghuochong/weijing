@@ -21,22 +21,27 @@
         {
             Scene zoneScene = aiComponent.ZoneScene();
             TeamComponent teamComponent = zoneScene.GetComponent<TeamComponent>();
-            Log.ILog.Debug("Behaviour_TeamDungeon: Enter");
+            Log.ILog.Debug("Behaviour_Battle: Enter");
             while (true)
             {
-                Log.ILog.Debug("Behaviour_TeamDungeon: Execute");
-
-                //获取队伍列表
-                int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, 1);
+                Log.ILog.Debug("Behaviour_Battle: Execute");
+               
+                int errorCode = await BattleHelper.OnButtonEnter(zoneScene);
                 if (errorCode != 0)
                 {
-                    Log.Info($"Behaviour_TeamDungeon: Execute {errorCode}");
+                    Log.Info($"Behaviour_Battle: errorCode {errorCode}");
                 }
+                else
+                {
+                    zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
+                    return;
+                }
+
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
                 bool ret = await TimerComponent.Instance.WaitAsync(10000, cancellationToken);
                 if (!ret)
                 {
-                    Log.ILog.Debug("Behaviour_TeamDungeon: Exit1");
+                    Log.ILog.Debug("Behaviour_Battle: Exit1");
                     return;
                 }
             }

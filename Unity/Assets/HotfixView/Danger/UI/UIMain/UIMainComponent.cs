@@ -732,7 +732,11 @@ namespace ET
 
         public static void CheckButton(this UIMainComponent self)
         {
-            if (Time.time - self.CheckButtonTime < 1f)
+            if (Time.time - self.CheckButtonTime < 1f )
+            {
+                return;
+            }
+            if (self.MainUnit  == null || self.MainUnit.IsDisposed)
             {
                 return;
             }

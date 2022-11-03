@@ -11,7 +11,6 @@ namespace ET
             EventType.TeamDungeonSettlement.Instance.m2C_FubenSettlement = message;
 
             TeamComponent teamComponent = session.DomainScene().GetComponent<TeamComponent>();
-            teamComponent.FubenOpen = false;
             EventSystem.Instance.PublishClass(EventType.TeamDungeonSettlement.Instance);
         }
     }
