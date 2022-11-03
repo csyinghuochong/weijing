@@ -623,6 +623,9 @@ namespace ET
 		[ProtoMember(30)]
 		public List<KeyValuePairInt> MysteryItems = new List<KeyValuePairInt>();
 
+		[ProtoMember(31)]
+		public int RobotId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

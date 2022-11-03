@@ -15,6 +15,21 @@ namespace ET
             {
                 self.OnAddItemData($"10030001;1", $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", false);
             }
+
+            int robotId = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.RobotId;
+            if (robotId != 0)
+            { 
+                int[] equipList = new int[0];
+                RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
+                if (robotConfig.EquipList != null)
+                {
+                    equipList = robotConfig.EquipList!=null ? robotConfig.EquipList: equipList;
+                }
+                for (int i = 0; i < equipList.Length; i++)
+                {
+                    self.OnAddItemData($"{equipList[i]};1", $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", false);
+                }
+            }
         }
     }
 

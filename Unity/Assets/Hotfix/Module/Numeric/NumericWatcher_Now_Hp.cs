@@ -88,21 +88,36 @@
 			}
 
 #if !SERVER && NOT_UNITY
-			RunAsync(args).Coroutine();
+			OnRobotDead(args).Coroutine();
 #endif
 #endif
 		}
 
 #if !SERVER && NOT_UNITY
-		public async ETTask RunAsync(EventType.NumericChangeEvent args)
+		public async ETTask OnRobotDead(EventType.NumericChangeEvent args)
 		{
 			Unit unit = args.Parent;
 			if (args.NewValue == 1 && unit.IsRobot())
 			{
 				Scene zoneScene = unit.ZoneScene();
-				EnterFubenHelp.RequestQuitFuben(unit.ZoneScene());
-				await TimerComponent.Instance.WaitAsync(1000);
-				zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Stroll);
+				MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
+				switch (mapComponent.SceneTypeEnum)
+				{
+					case SceneTypeEnum.Battle:
+						break;
+					case SceneTypeEnum.TeamDungeon:
+						await TimerComponent.Instance.WaitAsync(20000);
+						C2M_TeamDungeonRBornRequest request = new C2M_TeamDungeonRBornRequest() { };
+						zoneScene.GetComponent<SessionComponent>().Session.Send(request);
+						await TimerComponent.Instance.WaitAsync(1000);
+						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
+						break;
+					default:
+						EnterFubenHelp.RequestQuitFuben(unit.ZoneScene());
+						await TimerComponent.Instance.WaitAsync(1000);
+						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Stroll);
+						break;
+				}
 			}
 		}
 #endif

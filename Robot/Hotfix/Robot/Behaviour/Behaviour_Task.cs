@@ -12,6 +12,15 @@ namespace ET
 
         public override bool Check(BehaviourComponent aiComponent, AIConfig aiConfig)
         {
+            //有任务完成
+            TaskComponent taskComponent = aiComponent.ZoneScene().GetComponent<TaskComponent>();
+            if (1 == RandomHelper.RandomNumber(0, 100) && taskComponent.GetCompltedTaskList().Count > 0)
+            {
+                Log.ILog.Debug("Behaviour_Attack:To Behaviour_Task");
+                aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Task);
+                return true;
+            }
+
             if (aiComponent.NewBehaviour == BehaviourType.Behaviour_Task)
             {
                 return true;

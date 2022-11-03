@@ -36,6 +36,7 @@ namespace ET
         {
             Log.ILog.Debug("Behaviour_Attack: Enter");
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene());
+
             long instanceId = unit.InstanceId;
             while (true)
             {
@@ -51,7 +52,6 @@ namespace ET
                     Vector3 direction = target.Position - unit.Position;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
 
-                    C2M_SkillCmd cmd = aiComponent.c2mSkillCmd;
                     //触发技能
                     int skillID = aiComponent.ZoneScene().GetComponent<SkillSetComponent>().GetCanUseSkill();
                     float targetDistance = Vector3.Distance(unit.Position, target.Position);
@@ -64,17 +64,8 @@ namespace ET
                     if (ids.Count > 0)
                     {
                         Log.ILog.Debug("Behaviour_Attack: SendShiquItem");
-                        await aiComponent.ZoneScene().GetComponent<BagComponent>().CheckItemList_1();
                         await MapHelper.SendShiquItem(aiComponent.ZoneScene(), ids);
-                    }
-
-                    //有任务完成
-                    TaskComponent taskComponent = aiComponent.ZoneScene().GetComponent<TaskComponent>();
-                    if (1 == RandomHelper.RandomNumber(0,100) && taskComponent.GetCompltedTaskList().Count > 0)
-                    {
-                        Log.ILog.Debug("Behaviour_Attack:To Behaviour_Task");
-                        aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Task);
-                        return;
+                        await aiComponent.ZoneScene().GetComponent<BagComponent>().CheckYaoShui();
                     }
                     aiComponent.ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
                     return;

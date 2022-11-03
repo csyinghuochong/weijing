@@ -31,23 +31,33 @@
 
                 //获取队伍列表
                 int errorCode = await teamComponent.RequestTeamDungeonList();
-                TeamInfo teamInfo = teamComponent.GetCanJoinTeam();
-                if (teamInfo != null)
+
+                TeamInfo selfTeam = teamComponent.GetSelfTeam();
+                if (selfTeam == null)
                 {
-                    //有可加入队伍再直接加入
-                    errorCode = await teamComponent.SendTeamApply(teamInfo.TeamId, teamInfo.SceneId);
+                    TeamInfo teamInfo = teamComponent.GetCanJoinTeam();
+                    if (teamInfo != null)
+                    {
+                        //有可加入的队伍直接加入
+                        Log.Info($"Behaviour_TeamDungeon: 有可加入的队伍直接加入");
+                        errorCode = await teamComponent.SendTeamApply(teamInfo.TeamId, teamInfo.SceneId);
+                    }
+                    else
+                    {
+                        //没有队伍则请求创建队伍
+                        Log.Info($"Behaviour_TeamDungeon: 没有队伍则请求创建队伍");
+                        errorCode = await teamComponent.RequestTeamDungeonCreate(BattleHelper.GetTeamFubenId(userInfo.Lv));
+                    }
                 }
-                else
+                else 
                 {
-                    //没有队伍则请求创建队伍
-                    errorCode = await teamComponent.RequestTeamDungeonCreate(BattleHelper.GetTeamFubenId(userInfo.Lv));
+                    Log.Info($"Behaviour_TeamDungeon: selfTeam ！= null");
                 }
+
                 errorCode = await teamComponent.RequestTeamDungeonOpen();
                 if (errorCode != 0)
                 {
                     Log.Info($"Behaviour_TeamDungeon: Execute {errorCode}");
-                    aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Stroll);
-                    return;
                 }
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
                 bool ret = await TimerComponent.Instance.WaitAsync(60000, cancellationToken);

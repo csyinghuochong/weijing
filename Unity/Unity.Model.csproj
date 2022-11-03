@@ -294,6 +294,7 @@
     <Compile Include="Assets\Model\Module\AI\AIComponent.cs" />
     <Compile Include="Assets\Model\Core\Entity\Scene.cs" />
     <Compile Include="Assets\Model\Generate\Config\MonsterPositionConfig.cs" />
+    <Compile Include="Assets\Model\Generate\Config\RobotConfig.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

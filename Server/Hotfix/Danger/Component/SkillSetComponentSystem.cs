@@ -9,7 +9,7 @@ namespace ET
 	{
 		public override void Awake(SkillSetComponent self)
 		{
-			//根据不同的职业初始化技能.默认职业为1
+			//根据不同的职业初始化技能
 			if (self.SkillList.Count == 0)
 			{
 				int[] SkillList = OccupationConfigCategory.Instance.Get(self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Occ).InitSkillID;

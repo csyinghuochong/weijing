@@ -34,7 +34,7 @@ namespace ET
 			}
 			else
 			{
-				Log.Debug("FsmStateEnum.M2C_Stop > 0.2f");
+				Log.Debug($"FsmStateEnum.M2C_Stop > 0.2f");
 				float speed = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
 				var list = ListComponent<Vector3>.Create();
 				list.Add(unit.Position + (pos - unit.Position) * 0.5f);

@@ -309,6 +309,8 @@ message UserInfo
 	repeated int32 XiLianRewardIds = 29;
 
 	repeated KeyValuePairInt  MysteryItems = 30;
+
+	int32 RobotId = 31;
 }
 
 message KeyValuePair

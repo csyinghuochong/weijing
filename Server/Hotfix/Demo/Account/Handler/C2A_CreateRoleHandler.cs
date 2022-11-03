@@ -47,12 +47,26 @@ namespace ET
 				userInfo.UserId = userId;
 				userInfo.AccInfoID = newAccount.Id;
 				userInfo.Name = request.CreateName;
-				userInfo.Occ = request.CreateOcc;           //职业暂时默认为1
-				userInfo.Lv = newAccount.Password == ComHelp.RobotPassWord ? 20 : 1;
-				userInfo.Gold = newAccount.Password == ComHelp.RobotPassWord ? 1000000 : 0;
 				userInfo.PiLao = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);        //初始化疲劳
 				userInfo.Vitality = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
 				userInfo.MakeList.AddRange(ComHelp.StringArrToIntList(GlobalValueConfigCategory.Instance.Get(18).Value.Split(';')));
+
+				if (newAccount.Password == ComHelp.RobotPassWord)
+				{
+					int robotId = int.Parse(newAccount.Account.Split('_')[0]);
+					RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
+					userInfo.Lv = robotConfig.Level;
+					userInfo.Gold = 1000000;
+					userInfo.Occ = robotConfig.Occ;
+					userInfo.OccTwo = robotConfig.OccTwo;
+					userInfo.RobotId = robotId;	
+				}
+				else
+				{
+					userInfo.Lv =  1;
+					userInfo.Gold = 0;
+					userInfo.Occ = request.CreateOcc;
+				}
 				D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = userId, Component = userInfoComponent, ComponentType = DBHelper.UserInfoComponent });
 				userInfoComponent.Dispose();
 

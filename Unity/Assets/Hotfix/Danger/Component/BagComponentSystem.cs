@@ -518,7 +518,7 @@ namespace ET
             return false;
         }
 
-        public static async ETTask CheckItemList_1(this BagComponent self)
+        public static async ETTask CheckEquipList(this BagComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             List<BagInfo> bagList = self.GetBagList();
@@ -554,22 +554,28 @@ namespace ET
                     continue;
                 }
             }
-            await TimerComponent.Instance.WaitAsync(1000);
-            bagList = self.GetBagList();
+        }
+
+        public static async ETTask CheckYaoShui(this BagComponent self)
+        {
+            List<BagInfo> bagList = self.GetBagList();
             if (bagList.Count >= ComHelp.BagMaxCapacity())
             {
                 await self.SendSellItem(bagList[0]);
             }
 
             //购买生命药水
-            if (self.GetItemNumber(10010001) < 20)
+            int lv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
+            int itemId = 10010001;
+            int storeId = 10001101;
+            if (self.GetItemNumber(itemId) < 20)
             {
-                Log.ILog.Debug("Behaviour_Attack: SendBuyItem");
-                await self.SendBuyItem(10001101);
-                await self.SendBuyItem(10001101);
-                await self.SendBuyItem(10001101);
-                await self.SendBuyItem(10001101);
-                await self.SendBuyItem(10001101);
+                Log.ILog.Debug("Behaviour_Attack: SendBuyYaoShui");
+                await self.SendBuyItem(storeId);
+                await self.SendBuyItem(storeId);
+                await self.SendBuyItem(storeId);
+                await self.SendBuyItem(storeId);
+                await self.SendBuyItem(storeId);
             }
         }
 
