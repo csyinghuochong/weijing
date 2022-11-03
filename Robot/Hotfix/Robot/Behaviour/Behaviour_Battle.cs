@@ -9,18 +9,18 @@ namespace ET
     //战场
     public class Behaviour_Battle : BehaviourHandler
     {
-        public override string BehaviourId()
+        public override int BehaviourId()
         {
             return BehaviourType.Behaviour_Battle;
         }
 
-        public override int Check(BehaviourComponent aiComponent, AIConfig aiConfig)
+        public override bool Check(BehaviourComponent aiComponent, AIConfig aiConfig)
         {
             if (aiComponent.NewBehaviour == BehaviourType.Behaviour_Battle)
             {
-                return 0;
+                return true;
             }
-            return 1;
+            return false;
         }
 
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)

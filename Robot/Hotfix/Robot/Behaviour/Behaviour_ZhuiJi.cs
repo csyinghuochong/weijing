@@ -5,33 +5,33 @@ namespace ET
     //追击
     public class Behaviour_ZhuiJi : BehaviourHandler
     {
-        public override string BehaviourId()
+        public override int BehaviourId()
         {
             return BehaviourType.Behaviour_ZhuiJi;
         }
 
-        public override int Check(BehaviourComponent aiComponent, AIConfig aiConfig)
+        public override bool Check(BehaviourComponent aiComponent, AIConfig aiConfig)
         {
             if (aiComponent.NewBehaviour != BehaviourType.Behaviour_ZhuiJi)
             {
-                return 1;
+                return false;
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene());
             Unit target = AIHelp.GetNearestEnemy(unit);
             if (target == null)
             { 
-                return 1;
+                return false;
             }
 
             aiComponent.TargetID = target.Id;
             float distance = PositionHelper.Distance2D(target, unit);
             if (distance < 1)
             {
-                return 1;
+                return false;
             }
             else
             {
-                return 0;
+                return true;
             }
         }
 

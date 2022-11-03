@@ -8,15 +8,15 @@ namespace ET
     public class BehaviourComponent : Entity, IAwake, IDestroy
     {
 
-        public List<string> Behaviours = new List<string>();
+        public List<KeyValuePair> Behaviours = new List<KeyValuePair>();
 
         public ETCancellationToken CancellationToken;
 
         public long Timer;
 
-        public string Current;
+        public int Current;
 
-        public string NewBehaviour;
+        public int NewBehaviour;
 
         public long TargetID;
 

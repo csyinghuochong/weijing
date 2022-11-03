@@ -5,18 +5,18 @@ namespace ET
     public class Behaviour_Task : BehaviourHandler
     {
 
-        public override string BehaviourId()
+        public override int BehaviourId()
         {
             return BehaviourType.Behaviour_Task;
         }
 
-        public override int Check(BehaviourComponent aiComponent, AIConfig aiConfig)
+        public override bool Check(BehaviourComponent aiComponent, AIConfig aiConfig)
         {
             if (aiComponent.NewBehaviour == BehaviourType.Behaviour_Task)
             {
-                return 0;
+                return true;
             }
-            return 1;
+            return false;
         }
 
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)

@@ -5,34 +5,30 @@ namespace ET
 {
     public class Behaviour_Attack : BehaviourHandler
     {
-        public override string BehaviourId()
+        public override int BehaviourId()
         {
             return BehaviourType.Behaviour_Attack;
         }
 
-        public override int Check(BehaviourComponent aiComponent, AIConfig aiConfig)
+        public override bool Check(BehaviourComponent aiComponent, AIConfig aiConfig)
         {
-            //if (!string.IsNullOrEmpty(aiComponent.NewBehaviour))
-            //{
-            //    return 1;
-            //}
             if (aiComponent.TargetID == 0)
             {
-                return 1;
+                return false;
             }
             Unit target = aiComponent.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
             if (target == null || target.IsDisposed)
             {
-                return 1;
+                return false;
             }
             float distance = PositionHelper.Distance2D(target, UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene()));
             if (distance < 1f)
             {
-                return 0;
+                return true;
             }
             else
             {
-                return 1;
+                return false;
             }
         }
 

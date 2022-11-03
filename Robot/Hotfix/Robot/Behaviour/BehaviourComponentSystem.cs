@@ -25,14 +25,15 @@ namespace ET
         {
             self.TargetID = 0;
             self.Behaviours.Clear();
+            self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Task, Value = "Behaviour_Task" });
+            self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Stroll, Value = "Behaviour_Stroll" });
+            self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });
+            self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
+            self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Battle, Value = "Behaviour_Battle" });
+            self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_TeamDungeon, Value = "Behaviour_TeamDungeon" });
+
             self.NewBehaviour = BehaviourType.Behaviour_Task;
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(10000, TimerType.BehaviourTimer, self);
-            self.Behaviours.Add(BehaviourType.Behaviour_Task);
-            self.Behaviours.Add(BehaviourType.Behaviour_Stroll);
-            self.Behaviours.Add(BehaviourType.Behaviour_ZhuiJi);
-            self.Behaviours.Add(BehaviourType.Behaviour_Attack);
-            self.Behaviours.Add(BehaviourType.Behaviour_TeamDungeon);
-
         }
     }
 
@@ -44,21 +45,21 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
             self.CancellationToken?.Cancel();
             self.CancellationToken = null;
-            self.Current = null;
+            self.Current = 0;
         }
     }
 
     public static class BehaviourComponentSystem
     {
-        public static void ChangeBehaviour(this BehaviourComponent self, string behaviour)
+        public static void ChangeBehaviour(this BehaviourComponent self, int behaviour)
         {
             Log.ILog.Debug($"ChangeBehaviour: {behaviour}");
             self.NewBehaviour = behaviour;
         }
 
-        public static bool RandomBehaviour(this BehaviourComponent self, string behaviour)
+        public static bool RandomBehaviour(this BehaviourComponent self, int behaviour)
         {
-            string target = self.Behaviours[RandomHelper.RandomNumber(0, self.Behaviours.Count)];
+            int target = self.Behaviours[RandomHelper.RandomNumber(0, self.Behaviours.Count)].KeyId;
             if (target == behaviour)
             {
                 return false;
@@ -77,16 +78,15 @@ namespace ET
 
             for (int i = 0; i < self.Behaviours.Count; i++)
             {
-                BehaviourDispatcherComponent.Instance.AIHandlers.TryGetValue(self.Behaviours[i], out BehaviourHandler aaiHandler);
-
+                BehaviourDispatcherComponent.Instance.AIHandlers.TryGetValue(self.Behaviours[i].Value, out BehaviourHandler aaiHandler);
                 if (aaiHandler == null)
                 {
-                    Log.Error($"not found aihandler: {self.Behaviours[i]}");
+                    Log.Error($"not found aihandler: {self.Behaviours[i].Value}");
                     continue;
                 }
 
-                int ret = aaiHandler.Check(self, null);
-                if (ret != 0)   //不满足条件
+                bool ret = aaiHandler.Check(self, null);
+                if (!ret)   //不满足条件
                 {
                     continue;
                 }
@@ -95,7 +95,7 @@ namespace ET
                 {
                     break;
                 }
-                self.NewBehaviour = "";
+                self.NewBehaviour = 0;
                 self.Cancel(); // 取消之前的行为
                 ETCancellationToken cancellationToken = new ETCancellationToken();
                 self.CancellationToken = cancellationToken;
@@ -109,8 +109,8 @@ namespace ET
         private static void Cancel(this BehaviourComponent self)
         {
             self.CancellationToken?.Cancel();
-            self.Current = null;
             self.CancellationToken = null;
+            self.Current = 0;
         }
     }
 }
