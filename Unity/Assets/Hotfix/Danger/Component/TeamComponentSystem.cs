@@ -219,7 +219,7 @@ namespace ET
         }
 
         //开启组队副本
-        public static async ETTask<int> RequestTeamDungeonOpn(this TeamComponent self)
+        public static async ETTask<int> RequestTeamDungeonOpen(this TeamComponent self)
         {
             try
             {

@@ -1,0 +1,10 @@
+{"list":[
+{"_t":"RobotConfig","_id":1001,"Level":1,"Behaviour":1,"Occ":1,"OccTwo":0,"EquipList":[],"PointList":[]},
+{"_t":"RobotConfig","_id":2001,"Level":20,"Behaviour":2,"Occ":1,"OccTwo":101,"EquipList":[],"PointList":[]},
+{"_t":"RobotConfig","_id":2002,"Level":20,"Behaviour":2,"Occ":2,"OccTwo":202,"EquipList":[],"PointList":[]},
+{"_t":"RobotConfig","_id":2003,"Level":35,"Behaviour":2,"Occ":1,"OccTwo":101,"EquipList":[],"PointList":[]},
+{"_t":"RobotConfig","_id":2004,"Level":45,"Behaviour":2,"Occ":1,"OccTwo":102,"EquipList":[],"PointList":[]},
+{"_t":"RobotConfig","_id":2005,"Level":55,"Behaviour":2,"Occ":2,"OccTwo":203,"EquipList":[],"PointList":[]},
+{"_t":"RobotConfig","_id":3001,"Level":30,"Behaviour":3,"Occ":1,"OccTwo":101,"EquipList":[],"PointList":[]},
+{"_t":"RobotConfig","_id":3002,"Level":30,"Behaviour":3,"Occ":2,"OccTwo":202,"EquipList":[],"PointList":[]},
+]}

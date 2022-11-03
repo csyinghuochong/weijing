@@ -4,20 +4,39 @@ using UnityEngine;
 
 namespace ET
 {
+    [ObjectSystem]
+    public class RobotManagerComponentAwakeSystem : AwakeSystem<RobotManagerComponent>
+    {
+        public override void Awake(RobotManagerComponent self)
+        {
+            self.ZoneIndex = Game.Options.Process * 10000;
+            self.RobotList.Clear();
+        }
+    }
 
     public static class RobotManagerComponentSystem
     {
 
-        public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone)
+        public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone, int robotId)
         {
             Scene zoneScene = null;
             try
             {
                 zoneScene = SceneFactory.CreateZoneScene(zone, "Robot", self);
 
+                int number = 1;
+                if (!self.RobotList.ContainsKey(robotId))
+                {
+                    self.RobotList.Add(robotId, 1);
+                }
+                else
+                {
+                    number = self.RobotList[robotId]++;
+                }
+                string account = $"{robotId}_{number}";
                 bool outnet = false;
-                int registerCode = await LoginHelper.Register(zoneScene, outnet, VersionMode.Beta, zone.ToString()+"1211aa1", ComHelp.RobotPassWord);
-                int errorCode = await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(outnet, 1), zone.ToString(), ComHelp.RobotPassWord);
+                int registerCode = await LoginHelper.Register(zoneScene, outnet, VersionMode.Beta, account, ComHelp.RobotPassWord);
+                int errorCode = await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(outnet, 1), account, ComHelp.RobotPassWord);
                 if (registerCode == ErrorCore.ERR_Success)
                 {
                     A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());

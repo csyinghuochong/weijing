@@ -5,7 +5,7 @@ namespace ET
 {
 
     // 客户端挂在ZoneScene上，服务端挂在Unit上
-    public class BehaviourComponent : Entity, IAwake, IDestroy
+    public class BehaviourComponent : Entity, IAwake<int>, IDestroy
     {
 
         public List<KeyValuePair> Behaviours = new List<KeyValuePair>();

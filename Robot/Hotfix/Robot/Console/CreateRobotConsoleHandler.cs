@@ -41,8 +41,10 @@ namespace ET
                             StartSceneConfig robotSceneConfig = thisProcessRobotScenes[index];
                             Scene robotScene = Game.Scene.Get(robotSceneConfig.Id);
                             RobotManagerComponent robotManagerComponent = robotScene.GetComponent<RobotManagerComponent>();
-                            Scene robot = await robotManagerComponent.NewRobot(Game.Options.Process * 10000 + i);
-                            robot?.AddComponent<BehaviourComponent>();
+
+                            int zone = robotManagerComponent.ZoneIndex++;
+                            Scene robot = await robotManagerComponent.NewRobot(zone, options.RobotId);
+                            robot?.AddComponent<BehaviourComponent, int>(options.RobotId);
                             Log.Console($"create robot {robot.Zone}");
                             await TimerComponent.Instance.WaitAsync(1000);
                         }

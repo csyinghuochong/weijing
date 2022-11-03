@@ -121,7 +121,7 @@ namespace ET
         public static async ETTask OnButton_Enter(this UITeamDungeonMyComponent self)
         {
             TeamComponent teamComponent = self.ZoneScene().GetComponent<TeamComponent>();
-            int errorCode = await teamComponent.RequestTeamDungeonOpn();
+            int errorCode = await teamComponent.RequestTeamDungeonOpen();
             if (errorCode != ErrorCore.ERR_Success)
             {
                 ErrorHelp.Instance.ErrorHint(errorCode);

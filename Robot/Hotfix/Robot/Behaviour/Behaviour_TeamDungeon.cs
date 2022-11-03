@@ -23,6 +23,7 @@
         {
             Scene zoneScene = aiComponent.ZoneScene();
             TeamComponent teamComponent = zoneScene.GetComponent<TeamComponent>();
+            UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
             Log.ILog.Debug("Behaviour_TeamDungeon: Enter");
             while (true)
             {
@@ -39,15 +40,17 @@
                 else
                 {
                     //没有队伍则请求创建队伍
-                    errorCode = await teamComponent.RequestTeamDungeonCreate(110001);
+                    errorCode = await teamComponent.RequestTeamDungeonCreate(BattleHelper.GetTeamFubenId(userInfo.Lv));
                 }
-                errorCode = await teamComponent.RequestTeamDungeonOpn();
+                errorCode = await teamComponent.RequestTeamDungeonOpen();
                 if (errorCode != 0)
                 {
                     Log.Info($"Behaviour_TeamDungeon: Execute {errorCode}");
+                    aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Stroll);
+                    return;
                 }
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
-                bool ret = await TimerComponent.Instance.WaitAsync(10000, cancellationToken);
+                bool ret = await TimerComponent.Instance.WaitAsync(60000, cancellationToken);
                 if (!ret)
                 {
                     Log.ILog.Debug("Behaviour_TeamDungeon: Exit1");

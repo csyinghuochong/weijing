@@ -19,20 +19,39 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class BehaviourComponentAwakeSystem : AwakeSystem<BehaviourComponent>
+    public class BehaviourComponentAwakeSystem : AwakeSystem<BehaviourComponent,int>
     {
-        public override void Awake(BehaviourComponent self)
+        public override void Awake(BehaviourComponent self, int robotId)
         {
             self.TargetID = 0;
             self.Behaviours.Clear();
-            self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Task, Value = "Behaviour_Task" });
-            self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Stroll, Value = "Behaviour_Stroll" });
-            self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });
-            self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
-            self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Battle, Value = "Behaviour_Battle" });
-            self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_TeamDungeon, Value = "Behaviour_TeamDungeon" });
 
-            self.NewBehaviour = BehaviourType.Behaviour_Task;
+            //1   任务机器人
+            //2   组队副本机器人
+            //3   战场机器人
+            RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
+            switch (robotConfig.Behaviour)
+            {
+                case 1:
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Stroll, Value = "Behaviour_Stroll" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Task, Value = "Behaviour_Task" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
+                    break;
+                case 2:
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Stroll, Value = "Behaviour_Stroll" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_TeamDungeon, Value = "Behaviour_TeamDungeon" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
+                    break;
+                case 3:
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Stroll, Value = "Behaviour_Stroll" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Battle, Value = "Behaviour_Battle" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
+                    break;
+            }
+            self.NewBehaviour = BehaviourType.Behaviour_Stroll;
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(10000, TimerType.BehaviourTimer, self);
         }
     }
@@ -55,17 +74,6 @@ namespace ET
         {
             Log.ILog.Debug($"ChangeBehaviour: {behaviour}");
             self.NewBehaviour = behaviour;
-        }
-
-        public static bool RandomBehaviour(this BehaviourComponent self, int behaviour)
-        {
-            int target = self.Behaviours[RandomHelper.RandomNumber(0, self.Behaviours.Count)].KeyId;
-            if (target == behaviour)
-            {
-                return false;
-            }
-            self.ChangeBehaviour(target);
-            return true;
         }
 
         public static void Check(this BehaviourComponent self)

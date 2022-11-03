@@ -3,12 +3,12 @@
 
     public static class BehaviourType
     {
-        public const int Behaviour_Task = 1;
-        public const int Behaviour_Stroll = 2;
-        public const int Behaviour_ZhuiJi = 3;
-        public const int Behaviour_Attack = 4;
-        public const int Behaviour_Battle = 5;
-        public const int Behaviour_TeamDungeon = 6;
+        public const int Behaviour_Stroll = 1;              //闲逛
+        public const int Behaviour_Task = 2;                //任务
+        public const int Behaviour_ZhuiJi = 3;              //追击
+        public const int Behaviour_Attack = 4;              //攻击
+        public const int Behaviour_Battle = 5;              //战场
+        public const int Behaviour_TeamDungeon = 6;         //组队
     }
 
     public class BehaviourHandlerAttribute : BaseAttribute

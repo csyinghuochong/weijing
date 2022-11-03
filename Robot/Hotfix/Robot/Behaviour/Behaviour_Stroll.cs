@@ -43,10 +43,10 @@ namespace ET
                     Log.ILog.Debug("Behaviour_Stroll: Eixt2");
                     return;
                 }
-                //几率转任务
+                //几率转其他
                 if (0.02f >= RandomHelper.RandFloat01())
                 {
-                    aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Task);
+                    aiComponent.ChangeBehaviour(aiComponent.Behaviours[1].KeyId);
                     return;
                 }
 

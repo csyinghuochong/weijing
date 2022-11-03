@@ -40,5 +40,19 @@ namespace ET
             return 0;
         }
 
+        public static int GetTeamFubenId(int lv)
+        {
+            int fubenId = 0;
+            List<SceneConfig> sceneConfigs = SceneConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < sceneConfigs.Count; i++)
+            {
+                if (sceneConfigs[i].MapType == SceneTypeEnum.TeamDungeon
+                    && sceneConfigs[i].CreateLv <= lv)
+                {
+                    fubenId = sceneConfigs[i].Id;
+                }
+            }
+            return fubenId;
+        }
     }
 }
