@@ -120,6 +120,7 @@ namespace ET
                 Number = monsterPosition.CreateNum,
                 Range = (float)monsterPosition.CreateRange,
                 Interval = int.Parse(refreshPar[1]) * 1000,
+                Rotation = monsterPosition.Create,
             });
         }
         public static long LeftTime(this YeWaiRefreshComponent self, string targetTime)
@@ -187,7 +188,10 @@ namespace ET
                 Vector3 to = new Vector3(form.x + RandomHelper.RandomNumberFloat(-1 * range, range), form.y, form.z + RandomHelper.RandomNumberFloat(-1 * range, range));
                 Vector3 vector3 = self.DomainScene().GetComponent<MapComponent>().GetCanReachPath(form, to);
                 UnitFactory.CreateMonster(self.GetParent<Scene>(), refreshMonster.MonsterId, vector3, new CreateMonsterInfo()
-                { Camp = monsterConfig.MonsterCamp, FubenDifficulty = FubenDifficulty.Normal });
+                {   Camp = monsterConfig.MonsterCamp,
+                    FubenDifficulty = FubenDifficulty.Normal,
+                    Rotation = refreshMonster.Rotation, 
+                });
             }
         }
 

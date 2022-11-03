@@ -12,6 +12,7 @@ namespace ET
         public float Range;
         public int Number;
         public int Interval;
+        public int Rotation;
     }
 
     public class YeWaiRefreshComponent : Entity, IAwake, IDestroy

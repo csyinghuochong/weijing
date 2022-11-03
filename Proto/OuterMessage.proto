@@ -862,6 +862,9 @@ message SpilingInfo
 	int32 MonsterID = 9;
 	int32 SkillId = 10;	//目前只有能量台子用到，可以作为通常参数
 	int64 ReviveTime = 11;
+	float ForwardX = 12;
+	float ForwardY = 13;
+	float ForwardZ = 14;
 }
 
 message M2C_UnitNumericUpdate // IActorMessage

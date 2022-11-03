@@ -150,6 +150,10 @@ namespace ET
             spilingInfo.X = unit.Position.x;
             spilingInfo.Y = unit.Position.y;
             spilingInfo.Z = unit.Position.z;
+            Vector3 forward = unit.Forward;
+            spilingInfo.ForwardX = forward.x;
+            spilingInfo.ForwardY = forward.y;
+            spilingInfo.ForwardZ = forward.z;
             spilingInfo.UnitId = unit.Id;
 
             NumericComponent nc = unit.GetComponent<NumericComponent>();

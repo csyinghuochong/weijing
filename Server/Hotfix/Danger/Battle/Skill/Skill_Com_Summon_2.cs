@@ -30,7 +30,7 @@ namespace ET
                 float ran_z = RandomHelper.RandomNumberFloat(-1 * range, range);
                 Vector3  initPosi = new Vector3(theUnitFrom.Position.x + ran_x, theUnitFrom.Position.y, theUnitFrom.Position.z + ran_z); ;
                 Unit unitMonster = UnitFactory.CreateMonster(theUnitFrom.DomainScene(), monsterId, initPosi, new CreateMonsterInfo()
-                { FubenDifficulty = fubenDifficulty, Camp = theUnitFrom.GetBattleCamp(), Master_ID = theUnitFrom.Id, AttributeParams = gameObjectParameter });
+                { FubenDifficulty = fubenDifficulty, Camp = theUnitFrom.GetBattleCamp(), MasterID = theUnitFrom.Id, AttributeParams = gameObjectParameter });
                 theUnitFrom.GetComponent<UnitInfoComponent>().ZhaohuanIds.Add(unitMonster.Id);
             }
         }

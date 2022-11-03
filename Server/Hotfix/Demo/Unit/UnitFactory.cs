@@ -43,7 +43,7 @@ namespace ET
             unit.Type = UnitType.Monster;
             unit.Position = vector3;
             unit.ConfigId = monsterConfig.Id;
-
+            unit.Rotation = Quaternion.Euler(0, createMonsterInfo.Rotation, 0);
             numericComponent.Set(NumericType.BattleCamp, createMonsterInfo.Camp);
             //出生点
             numericComponent.Set((int)NumericType.Born_X, unit.Position.x, false);
@@ -56,7 +56,7 @@ namespace ET
             //55 宝箱
             if (monsterConfig.AI != 0)
             {
-                if (createMonsterInfo.Master_ID > 0)
+                if (createMonsterInfo.MasterID > 0)
                 {
                     heroDataComponent.InitMonsterInfo_Summon2(monsterConfig, createMonsterInfo);
                 }
@@ -77,8 +77,8 @@ namespace ET
                 unit.AddComponent<StateComponent>();         //添加状态组件
                 unit.AddComponent<BuffManagerComponent>();      //添加Buff管理器
                 unit.GetComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
-                numericComponent.Set(NumericType.MasterId, createMonsterInfo.Master_ID);
-                AIComponent aIComponent = unit.AddComponent<AIComponent, int>(createMonsterInfo.Master_ID > 0 ? 2 : monsterConfig.AI);
+                numericComponent.Set(NumericType.MasterId, createMonsterInfo.MasterID);
+                AIComponent aIComponent = unit.AddComponent<AIComponent, int>(createMonsterInfo.MasterID > 0 ? 2 : monsterConfig.AI);
                 switch (mapComponent.SceneTypeEnum)
                 {
                     case (int)SceneTypeEnum.PetDungeon:

@@ -1849,6 +1849,15 @@ namespace ET
 		[ProtoMember(11)]
 		public long ReviveTime { get; set; }
 
+		[ProtoMember(12)]
+		public float ForwardX { get; set; }
+
+		[ProtoMember(13)]
+		public float ForwardY { get; set; }
+
+		[ProtoMember(14)]
+		public float ForwardZ { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_UnitNumericUpdate)]

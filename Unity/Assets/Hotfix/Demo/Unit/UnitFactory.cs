@@ -56,6 +56,7 @@ namespace ET
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(unitInfo.UnitId, 1);
 			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
+			unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
 			unitComponent.Add(unit);
 			unit.Type = UnitType.Monster;
 			unit.ConfigId = unitInfo.MonsterID;

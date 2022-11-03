@@ -10,7 +10,8 @@ namespace ET
         public string AttributeParams;
         public int FubenDifficulty; //副本难度
         public int Camp;            //阵营
-        public long Master_ID;
+        public long MasterID;
+        public int Rotation;         //朝向
     }
 
     public static class FubenDifficulty

@@ -77,7 +77,8 @@ namespace ET
 						{
 							SkillId = skillId,
 							FubenDifficulty = fubenDifficulty,
-							Camp = monsterConfig.MonsterCamp
+							Camp = monsterConfig.MonsterCamp,
+							Rotation = monsterPosition.Create,
 						});
 					}
 					else
@@ -85,7 +86,8 @@ namespace ET
 						UnitFactory.CreateMonster(scene, monsterConfig.Id, vector3, new CreateMonsterInfo()
 						{
 							FubenDifficulty = fubenDifficulty,
-							Camp = monsterConfig.MonsterCamp
+							Camp = monsterConfig.MonsterCamp,
+							Rotation = monsterPosition.Create,
 						});
 					}
 				}
@@ -102,7 +104,8 @@ namespace ET
 					UnitFactory.CreateMonster(scene, monsterPosition.MonsterID, vector3, new CreateMonsterInfo()
 					{
 						FubenDifficulty = fubenDifficulty,
-						Camp = monsterConfig.MonsterCamp
+						Camp = monsterConfig.MonsterCamp,
+						Rotation = monsterPosition.Create,
 					});
 				}
 			}
@@ -132,7 +135,8 @@ namespace ET
 						PlayerLevel = playerLv,
 						AttributeParams = monsterPosition.Par,
 						FubenDifficulty = fubenDifficulty,
-						Camp = monsterConfig.MonsterCamp
+						Camp = monsterConfig.MonsterCamp,
+						Rotation = monsterPosition.Create,
 					});
 				}
 			}
