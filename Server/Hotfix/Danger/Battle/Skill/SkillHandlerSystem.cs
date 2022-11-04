@@ -85,7 +85,7 @@ namespace ET
                 Log.Error($"self.SkillConf == null {self.SkillCmd.WeaponSkillID}");
             }
 
-            if (self.SkillConf.InitBuffID[0] != 0)
+            if (self.SkillConf.InitBuffID!= null &&self.SkillConf.InitBuffID[0] != 0)
             {
                 for (int y = 0; y < self.SkillConf.InitBuffID.Length; y++)
                 {

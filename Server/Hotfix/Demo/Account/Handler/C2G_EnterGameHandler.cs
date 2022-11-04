@@ -117,8 +117,8 @@ namespace ET
 						gateMapComponent.Scene = SceneFactory.Create(gateMapComponent, "GateMap", SceneType.GateMap);
 
 						Unit unit = UnitFactory.Create(gateMapComponent.Scene, request.UserID, UnitType.Player);
-						await DBHelper.AddDataComponent<NumericComponent>(unit, request.UserID, DBHelper.NumericComponent);
 						await DBHelper.AddDataComponent<UserInfoComponent>(unit, request.UserID, DBHelper.UserInfoComponent);
+						await DBHelper.AddDataComponent<NumericComponent>(unit, request.UserID, DBHelper.NumericComponent);
 						await DBHelper.AddDataComponent<TaskComponent>(unit, request.UserID, DBHelper.TaskComponent);
 						await DBHelper.AddDataComponent<ShoujiComponent>(unit, request.UserID, DBHelper.ShoujiComponent);
 						await DBHelper.AddDataComponent<BagComponent>(unit, request.UserID, DBHelper.BagComponent);

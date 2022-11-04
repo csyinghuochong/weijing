@@ -20,6 +20,13 @@ namespace ET
 
         public long TargetID;
 
+        public Vector3 TargetPosition;
+
+        /// <summary>
+        /// 攻击范围，范围内攻击
+        /// </summary>
+        public float ActDistance = 3;
+
         public readonly C2M_SkillCmd c2mSkillCmd = new C2M_SkillCmd();
 
         public static List<Vector3> StrollPositionList = new List<Vector3>()

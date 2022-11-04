@@ -43,6 +43,7 @@ namespace ET
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_TeamDungeon, Value = "Behaviour_TeamDungeon" });
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Target, Value = "Behaviour_Target" });
                     break;
                 case 3:
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Stroll, Value = "Behaviour_Stroll" });
@@ -52,8 +53,15 @@ namespace ET
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Target, Value = "Behaviour_Target" });
                     break;
             }
+
+            if (!ComHelp.IfNull(robotConfig.AIParameter))
+            {
+                string[] positions = robotConfig.AIParameter.Split(';');
+                self.TargetPosition = new UnityEngine.Vector3(float.Parse(positions[0]), float.Parse(positions[1]), float.Parse(positions[2]));
+            }
+            
             self.NewBehaviour = BehaviourType.Behaviour_Stroll;
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(10000, TimerType.BehaviourTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.BehaviourTimer, self);
         }
     }
 

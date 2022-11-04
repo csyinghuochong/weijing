@@ -21,21 +21,23 @@ namespace ET
 
             Log.ILog.Debug("Behaviour_Target: Enter");
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene());
-            Vector3 targetPosition = new Vector3(9.96f, 0.05f, -1.8f);
+            Vector3 targetPosition = aiComponent.TargetPosition;
 
             while (true)
             {
-                if (Vector3.Distance(unit.Position, targetPosition) > 1f)
-                {
-                    unit.MoveToAsync2(targetPosition).Coroutine();
-                }
-                else
+                Unit target = AIHelp.GetNearestEnemy(unit);
+                if (target!=null && Vector3.Distance(target.Position, unit.Position) < 3f)
                 {
                     aiComponent.ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
                     return;
                 }
 
-                bool timeRet = await TimerComponent.Instance.WaitAsync(2000, cancellationToken);
+                if (Vector3.Distance(unit.Position, targetPosition) > 1f)
+                {
+                    unit.MoveToAsync2(targetPosition).Coroutine();
+                }
+                
+                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)
                 {
                     Log.ILog.Debug("Behaviour_Target: Exit1");

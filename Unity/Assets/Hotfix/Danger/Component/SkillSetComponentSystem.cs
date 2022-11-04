@@ -445,10 +445,6 @@ namespace ET
 		public static SkillPro GetCanUseSkill(this SkillSetComponent self)
 		{
 			SkillPro skillPro = self.SkillList[RandomHelper.RandomNumber(0, self.SkillList.Count)];
-			if (skillPro.SkillSetType == (int)SkillSetEnum.Item)
-			{
-				return null;
-			}
 			return skillPro;
 		}
 

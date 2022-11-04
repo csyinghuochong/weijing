@@ -48,6 +48,16 @@ namespace ET
 
     public static class SkillManagerComponentSystem
     {
+        public static bool IsSkillMoveTime(this SkillManagerComponent self)
+        {
+            return TimeHelper.ClientNow() < self.SkillMoveTime;
+        }
+
+        public static bool IsSkillSingTime(this SkillManagerComponent self)
+        {
+            return TimeHelper.ClientNow() < self.SkillSingTime;
+        }
+
         public static SkillCDItem GetSkillCD(this SkillManagerComponent self, int skillId)
         {
             for (int i = 0; i < self.SkillCDs.Count; i++)
@@ -292,6 +302,10 @@ namespace ET
             if (!unit.GetComponent<StateComponent>().CanUseSkill())
             {
                 return 3;
+            }
+            if (self.IsSkillMoveTime())
+            {
+                return 4;
             }
             return 0;
         }

@@ -30,11 +30,11 @@ namespace ET
                     self.OnAddItemData($"{equipList[i]};1", $"{ItemGetWay.System}_{TimeHelper.ServerNow()}", false);
                 }
                 NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-                numericComponent.ApplyValue(NumericType.PointLiLiang, robotConfig.PointList[0] * 10);
-                numericComponent.ApplyValue(NumericType.PointZhiLi, robotConfig.PointList[1] * 10);
-                numericComponent.ApplyValue(NumericType.PointTiZhi, robotConfig.PointList[2] * 10);
-                numericComponent.ApplyValue(NumericType.PointNaiLi, robotConfig.PointList[3] * 10);
-                numericComponent.ApplyValue(NumericType.PointMinJie, robotConfig.PointList[4] * 10);
+                numericComponent.ApplyValue(NumericType.PointLiLiang, robotConfig.PointList[0]);
+                numericComponent.ApplyValue(NumericType.PointZhiLi, robotConfig.PointList[1]);
+                numericComponent.ApplyValue(NumericType.PointTiZhi, robotConfig.PointList[2]);
+                numericComponent.ApplyValue(NumericType.PointNaiLi, robotConfig.PointList[3]);
+                numericComponent.ApplyValue(NumericType.PointMinJie, robotConfig.PointList[4]);
             }
         }
     }

@@ -35,11 +35,6 @@ namespace ET
 				D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = request.AccountId, Component = DBHelper.DBAccountInfo });
 				DBAccountInfo newAccount = d2GGetUnit.Component as DBAccountInfo;
 
-				//创建角色组件
-				await DBHelper.AddDataComponent<NumericComponent>(zone, userId, DBHelper.NumericComponent);
-				await DBHelper.AddDataComponent<DBFriendInfo>(zone, userId, DBHelper.DBFriendInfo);
-				await DBHelper.AddDataComponent<DBMailInfo>(zone, userId, DBHelper.DBMailInfo);
-
 				UserInfoComponent userInfoComponent = session.AddChildWithId<UserInfoComponent>(userId);
 				userInfoComponent.Account = newAccount.Account;
 				UserInfo userInfo = userInfoComponent.UserInfo;
@@ -69,6 +64,11 @@ namespace ET
 				}
 				D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = userId, Component = userInfoComponent, ComponentType = DBHelper.UserInfoComponent });
 				userInfoComponent.Dispose();
+
+				//创建角色组件
+				await DBHelper.AddDataComponent<NumericComponent>(zone, userId, DBHelper.NumericComponent);
+				await DBHelper.AddDataComponent<DBFriendInfo>(zone, userId, DBHelper.DBFriendInfo);
+				await DBHelper.AddDataComponent<DBMailInfo>(zone, userId, DBHelper.DBMailInfo);
 
 				//存储账号信息
 				newAccount.UserList.Add(userId);

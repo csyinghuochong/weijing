@@ -96,6 +96,9 @@ namespace ET
 		/// <summary>属性点</summary>
 		[ProtoMember(7)]
 		public int[] PointList { get; set; }
+		/// <summary>参数</summary>
+		[ProtoMember(8)]
+		public string AIParameter { get; set; }
 
 	}
 }

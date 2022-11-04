@@ -1072,7 +1072,7 @@ namespace ET
                 return;
             }
             Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (main.GetComponent<FsmComponent>().IsSkillMoveTime())
+            if (main.GetComponent<SkillManagerComponent>().IsSkillMoveTime())
             {
                 return;
             }

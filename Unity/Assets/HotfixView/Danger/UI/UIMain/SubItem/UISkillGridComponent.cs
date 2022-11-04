@@ -159,10 +159,6 @@ namespace ET
             }
 
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (myUnit.GetComponent<FsmComponent>().IsSkillMove())
-            {
-                return;
-            }
             long targetId = self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId;
             if (self.SkillWuqiConfig.SkillTargetType == (int)SkillTargetType.TargetOnly)
             {

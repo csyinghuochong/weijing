@@ -35,7 +35,8 @@ namespace ET
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Log.ILog.Debug("Behaviour_Attack: Enter");
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene());
+            Scene zoneScene = aiComponent.ZoneScene();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
 
             long instanceId = unit.InstanceId;
             while (true)
@@ -47,23 +48,21 @@ namespace ET
                 //Log.ILog.Debug("Behaviour_Attack: Execute");
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
                 if (target != null && target.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Dead) == 0
-                    && Vector3.Distance(unit.Position,target.Position) < 3f)
+                    && Vector3.Distance(unit.Position,target.Position) < aiComponent.ActDistance)
                 {
-                    Vector3 direction = target.Position - unit.Position;
-                    float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
-
                     float value = RandomHelper.RandFloat01();
-                    int actSkillId =  aiComponent.ZoneScene().GetComponent<SkillSetComponent>().GetAckSkillId();
-                    if (value > 0.1f)
+                    if (value > 0.01f)
                     {
-                        target.GetComponent<SkillManagerComponent>().SendUseSkill(actSkillId, 0, Mathf.FloorToInt(ange), target.Id, 0f).Coroutine();
+                        zoneScene.GetComponent<AttackComponent>().AutoAttack_1(unit, target);
                     }
                     else
                     {
                         //触发技能
                         SkillPro skillPro = aiComponent.ZoneScene().GetComponent<SkillSetComponent>().GetCanUseSkill();
-                        if (skillPro != null)
+                        if (skillPro.SkillSetType == (int)SkillSetEnum.Skill)
                         {
+                            Vector3 direction = target.Position - unit.Position;
+                            float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
                             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
                             float targetDistance = skillConfig.SkillZhishiType == 1 ? Vector3.Distance(unit.Position, target.Position) : 0;
                             target.GetComponent<SkillManagerComponent>().SendUseSkill(skillPro.SkillID, 0, Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
@@ -92,7 +91,6 @@ namespace ET
                     BagInfo bagInfo = aiComponent.ZoneScene().GetComponent<BagComponent>().GetBagInfo(10010001);
                     if (bagInfo != null)
                     {
-                        Log.ILog.Debug("Behaviour_Attack: SendUseItem->AddHp");
                         ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
                         unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
                             (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();

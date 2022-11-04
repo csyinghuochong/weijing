@@ -103,7 +103,7 @@ namespace ET
             Scene curscene = self.ZoneScene();
             curscene.GetComponent<SkillIndicatorComponent>().RecoveryEffect();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit == null || unit.GetComponent<FsmComponent>().IsSkillMove())
+            if (unit == null)
             {
                 return;
             }

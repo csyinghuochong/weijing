@@ -42,6 +42,12 @@ namespace ET
                     target = AIHelp.GetNearestEnemy(unit);
                     aiComponent.TargetID = target!= null ? target.Id : 0;
                 }
+                if (target == null)
+                {
+                    aiComponent.TargetID = 0;
+                    aiComponent.ChangeBehaviour(BehaviourType.Behaviour_Target);
+                    return;
+                }
                 
                 bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)

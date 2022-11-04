@@ -57,9 +57,10 @@ namespace ET
                 return;
             }
 
-            if (self.SkillMoveTime != 0 && TimeHelper.ClientNow() >= self.SkillMoveTime)
+            SkillManagerComponent skillManagerComponent = self.GetParent<Unit>().GetComponent<SkillManagerComponent>(); 
+            if (skillManagerComponent.SkillMoveTime != 0 && TimeHelper.ClientNow() >= skillManagerComponent.SkillMoveTime)
             {
-                self.SkillMoveTime = 0;
+                skillManagerComponent.SkillMoveTime = 0;
                 if (self.CurrentFsm == FsmStateEnum.FsmIdleState)
                 {
                     self.SetIdleState();
@@ -70,9 +71,9 @@ namespace ET
                 }
                 self.EndTimer();
             }
-            if (self.SkillSingTime > 0 && TimeHelper.ClientNow() >= self.SkillSingTime)
+            if (skillManagerComponent.SkillSingTime > 0 && TimeHelper.ClientNow() >= skillManagerComponent.SkillSingTime)
             {
-                self.SkillSingTime = 0;
+                skillManagerComponent.SkillSingTime = 0;
                 self.SetIdleState();
                 self.EndTimer();
             }
@@ -182,21 +183,22 @@ namespace ET
 
         public static void OnEnterFsmSkillState(this FsmComponent self, string paramss = "")
         {
+            SkillManagerComponent skillManagerComponent = self.GetParent<Unit>().GetComponent<SkillManagerComponent>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(int.Parse(paramss));
             long SkillMoveTime = (skillConfig.Id >= 61012201 && skillConfig.Id <= 61012206) ? skillConfig.SkillLiveTime + TimeHelper.ClientNow() : 0;
             paramss = $"{SkillMoveTime}@{skillConfig.SkillAnimation}@{skillConfig.SkillSingTime}@{skillConfig.SkillRigidity}";
 
             string[] animationinfos = paramss.Split('@');
-            self.SkillMoveTime = long.Parse(animationinfos[0]);
+            skillManagerComponent.SkillMoveTime = long.Parse(animationinfos[0]);
 
             float singTime = float.Parse(animationinfos[2]);
-            self.SkillSingTime = singTime == 0f ? 0 : TimeHelper.ClientNow() + (int)(1000f * singTime);
+            skillManagerComponent.SkillSingTime = singTime == 0f ? 0 : TimeHelper.ClientNow() + (int)(1000f * singTime);
 
             float rigibTime = float.Parse(animationinfos[3]);
             long skillRigibTime = TimeHelper.ClientNow() + (int)(1000f * rigibTime);
 
-            if (self.SkillMoveTime > TimeHelper.ClientNow()
-               || self.SkillSingTime > TimeHelper.ClientNow())
+            if (skillManagerComponent.SkillMoveTime > TimeHelper.ClientNow()
+               || skillManagerComponent.SkillSingTime > TimeHelper.ClientNow())
             {
                 self.Animator.SetBool("Idle", false);
                 self.Animator.SetBool("Run", false);
@@ -210,27 +212,19 @@ namespace ET
             self.Animator.Play(animationinfos[1]);
         }
 
-        public static bool IsSkillMove(this FsmComponent self)
-        {
-            return TimeHelper.ClientNow() < self.SkillMoveTime;
-        }
-
         public static void OnEnterFsmRunState(this FsmComponent self, string paramss = "")
         {
-            if (TimeHelper.ClientNow() > self.SkillMoveTime)
+            SkillManagerComponent skillManagerComponent = self.GetParent<Unit>().GetComponent<SkillManagerComponent>();
+            if (TimeHelper.ClientNow() > skillManagerComponent.SkillMoveTime)
             {
                 self.SetRunState();
             }
         }
 
-        public static bool IsSkillMoveTime(this FsmComponent self)
-        {
-            return TimeHelper.ClientNow() < self.SkillMoveTime;
-        }
-
         public static void OnEnterIdleState(this FsmComponent self)
         {
-            if (TimeHelper.ClientNow() > self.SkillMoveTime)
+            SkillManagerComponent skillManagerComponent = self.GetParent<Unit>().GetComponent<SkillManagerComponent>();
+            if (TimeHelper.ClientNow() > skillManagerComponent.SkillMoveTime)
             {
                 self.SetIdleState();
             }

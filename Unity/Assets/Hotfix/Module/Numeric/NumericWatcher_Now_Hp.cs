@@ -111,7 +111,7 @@
 							C2M_TeamDungeonRBornRequest request = new C2M_TeamDungeonRBornRequest() { };
 							zoneScene.GetComponent<SessionComponent>().Session.Send(request);
 							await TimerComponent.Instance.WaitAsync(1000);
-							zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
+							zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
 						}
 						break;
 					case SceneTypeEnum.TeamDungeon:
@@ -128,7 +128,7 @@
 							C2M_TeamDungeonRBornRequest request = new C2M_TeamDungeonRBornRequest() { };
 							zoneScene.GetComponent<SessionComponent>().Session.Send(request);
 							await TimerComponent.Instance.WaitAsync(1000);
-							zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
+							zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
 						}
 						break;
 					default:

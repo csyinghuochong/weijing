@@ -24,8 +24,7 @@
                     return;
                 }
 
-                int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.TeamDungeon, 0);
-                zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
+                EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.TeamDungeon, 0).Coroutine();
                 return;
             }
 #else
