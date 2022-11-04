@@ -244,11 +244,5 @@ namespace ET
 
 			}
 		}
-
-		public void Check()
-		{
-			this.ApplyChange(null, NumericType.ChouKaOneTime, 60 * 1000, 0);
-			this.ApplyChange(null, NumericType.ChouKaTenTime, 60 * 1000, 0);
-		}
 	}
 }

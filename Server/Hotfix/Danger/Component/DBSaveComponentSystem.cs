@@ -167,7 +167,6 @@ namespace ET
             }
             unit.GetComponent<TaskComponent>().Check();
             unit.GetComponent<UserInfoComponent>().Check();
-            unit.GetComponent<NumericComponent>().Check();
             return false;
         }
     }
