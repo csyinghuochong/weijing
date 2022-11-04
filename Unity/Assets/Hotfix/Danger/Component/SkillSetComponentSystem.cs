@@ -436,6 +436,12 @@ namespace ET
 			self.SkillList.Add(skillPro);
 		}
 
+		public static int GetAckSkillId(this SkillSetComponent self)
+		{
+			OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ);
+			return occConfig.InitActSkillID;
+		}
+
 		public static SkillPro GetCanUseSkill(this SkillSetComponent self)
 		{
 			SkillPro skillPro = self.SkillList[RandomHelper.RandomNumber(0, self.SkillList.Count)];

@@ -157,8 +157,6 @@ namespace ET
                 skillCmd.ItemId = itemId;
                 skillCmd.TargetDistance = distance;
                 int errorCode = self.CanUseSkill(skillid);
-
-                Log.Debug($"errorCode: {errorCode}");
                 if (errorCode != ErrorCore.ERR_Success)
                 {
                     return errorCode;

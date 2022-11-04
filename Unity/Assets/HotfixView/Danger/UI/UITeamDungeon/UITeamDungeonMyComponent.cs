@@ -70,8 +70,7 @@ namespace ET
 
         public static void Reddot_TeamApply(this UITeamDungeonMyComponent self, int num)
         {
-            Log.ILog.Debug("Reddot_TeamApply:" + num.ToString());
-            //self.ButtonApplyList.transform.Find("Reddot").gameObject.SetActive(num > 0);
+            self.ButtonApplyList.transform.Find("Reddot").gameObject.SetActive(num > 0);
         }
 
         public static void OnInitUI(this UITeamDungeonMyComponent self)

@@ -51,13 +51,22 @@ namespace ET
                     Vector3 direction = target.Position - unit.Position;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
 
-                    //触发技能
-                    SkillPro skillPro = aiComponent.ZoneScene().GetComponent<SkillSetComponent>().GetCanUseSkill();
-                    if (skillPro != null)
+                    float value = RandomHelper.RandFloat01();
+                    int actSkillId =  aiComponent.ZoneScene().GetComponent<SkillSetComponent>().GetAckSkillId();
+                    if (value > 0.1f)
                     {
-                        SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
-                        float targetDistance = skillConfig.SkillZhishiType == 1 ? Vector3.Distance(unit.Position, target.Position) : 0;
-                        target.GetComponent<SkillManagerComponent>().SendUseSkill(skillPro.SkillID, 0, Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
+                        target.GetComponent<SkillManagerComponent>().SendUseSkill(actSkillId, 0, Mathf.FloorToInt(ange), target.Id, 0f).Coroutine();
+                    }
+                    else
+                    {
+                        //触发技能
+                        SkillPro skillPro = aiComponent.ZoneScene().GetComponent<SkillSetComponent>().GetCanUseSkill();
+                        if (skillPro != null)
+                        {
+                            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
+                            float targetDistance = skillConfig.SkillZhishiType == 1 ? Vector3.Distance(unit.Position, target.Position) : 0;
+                            target.GetComponent<SkillManagerComponent>().SendUseSkill(skillPro.SkillID, 0, Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
+                        }
                     }
                 }
                 else
@@ -70,6 +79,7 @@ namespace ET
                         await MapHelper.SendShiquItem(aiComponent.ZoneScene(), ids);
                         await aiComponent.ZoneScene().GetComponent<BagComponent>().CheckYaoShui();
                     }
+                    aiComponent.TargetID = 0;
                     aiComponent.ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
                     return;
                 }

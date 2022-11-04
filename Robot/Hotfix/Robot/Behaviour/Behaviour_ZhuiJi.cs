@@ -12,27 +12,7 @@ namespace ET
 
         public override bool Check(BehaviourComponent aiComponent, AIConfig aiConfig)
         {
-            if (aiComponent.NewBehaviour != BehaviourType.Behaviour_ZhuiJi)
-            {
-                return false;
-            }
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene());
-            Unit target = AIHelp.GetNearestEnemy(unit);
-            if (target == null)
-            { 
-                return false;
-            }
-
-            aiComponent.TargetID = target.Id;
-            float distance = PositionHelper.Distance2D(target, unit);
-            if (distance < 3)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
+            return aiComponent.NewBehaviour == BehaviourType.Behaviour_ZhuiJi;
         }
 
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
@@ -48,7 +28,6 @@ namespace ET
                 {
                     return;
                 }
-
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
                 if (target != null)
                 {
@@ -60,11 +39,11 @@ namespace ET
                 }
                 else
                 {
-                    //Log.ILog.Debug("Behaviour_ZhuiJi: Execute22222");
-                    return;
+                    target = AIHelp.GetNearestEnemy(unit);
+                    aiComponent.TargetID = target!= null ? target.Id : 0;
                 }
                 
-                bool timeRet = await TimerComponent.Instance.WaitAsync(2000, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)
                 {
                     Log.ILog.Debug("Behaviour_ZhuiJi: Exit1");
