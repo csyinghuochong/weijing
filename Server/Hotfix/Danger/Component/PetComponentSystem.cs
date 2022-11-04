@@ -310,11 +310,11 @@ namespace ET
         public static void UpdatePetAttribute(this PetComponent self, RolePetInfo rolePetInfo, Unit petUnit = null)
         {
             //获取宠物资质
-            float actPro = rolePetInfo.ZiZhi_Act / 1500.0f;
-            float magePro = rolePetInfo.ZiZhi_MageAct / 3000.0f;
-            float defPro = rolePetInfo.ZiZhi_Def / 1500.0f;
-            float adfPro = rolePetInfo.ZiZhi_Def / 1500.0f;
-            float hpPro = rolePetInfo.ZiZhi_Hp / 1500.0f;
+            float actPro = 1f - ((1500 - rolePetInfo.ZiZhi_Act) / 750.0f);
+            float magePro = 1f - ((1500 - rolePetInfo.ZiZhi_MageAct) / 750.0f);
+            float defPro = 1f - ((1500 - rolePetInfo.ZiZhi_Def) / 750.0f);
+            float adfPro = 1f - ((1500 - rolePetInfo.ZiZhi_Def) / 750.0f);
+            float hpPro = 1f - ((3000 - rolePetInfo.ZiZhi_Hp) / 1500.0f);
 
             //属性加点对应属性 力量-攻击 智力-魔法 体质-血量 耐力就是物防和魔防
             PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
