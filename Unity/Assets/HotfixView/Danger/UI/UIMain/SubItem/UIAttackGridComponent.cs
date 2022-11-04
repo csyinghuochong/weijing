@@ -100,7 +100,7 @@ namespace ET
             {
                 self.MoveAttackId = 0;
                 Unit unit = UnitHelper.MainUnit;
-                int targetAngle = unit.GetComponent<AttackComponent>().GetTargetAnagle(null);
+                int targetAngle = self.ZoneScene().GetComponent<AttackComponent>().GetTargetAnagle(null);
                 unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId, 0, targetAngle, 0, 0).Coroutine();
                 self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
             }
@@ -189,7 +189,7 @@ namespace ET
             }
             if (PositionHelper.Distance2D(unit, taretUnit) <= self.AttackDistance)
             {
-                unit.GetComponent<AttackComponent>().AutoAttack_1(unit, taretUnit);
+                self.ZoneScene().GetComponent<AttackComponent>().AutoAttack_1(unit, taretUnit);
             }
             else
             {

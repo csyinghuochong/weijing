@@ -25,16 +25,20 @@ namespace ET
     {
         public override void Awake(AttackComponent self)
         {
+            
+        }
+    }
+
+    public static class AttackComponentSystem
+    {
+        public static void OnInit(this AttackComponent self)
+        {
             //普通攻击
             OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ);
             self.UpdateSkillInfo(occConfig.InitActSkillID);
 
             self.UpdateComboTime();
         }
-    }
-
-    public static class AttackComponentSystem
-    {
 
         public static void SetAttackSpeed(this AttackComponent self)
         {
