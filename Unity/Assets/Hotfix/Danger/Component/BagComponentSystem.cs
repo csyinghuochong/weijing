@@ -100,6 +100,9 @@ namespace ET
             {
                 ItemModelID = itemConfig.ItemModelID;
             }
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            unit.GetComponent<AttackComponent>().UpdateComboTime();
             HintHelp.GetInstance().DataUpdate(DataType.EquipWear, ItemModelID);
         }
 
@@ -146,6 +149,8 @@ namespace ET
                 return;
             }
             self.ZoneScene().GetComponent<SkillSetComponent>().OnTakeOffEquip(bagInfo);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            unit.GetComponent<AttackComponent>().UpdateComboTime();
             HintHelp.GetInstance().DataUpdate(DataType.EquipWear);
         }
 

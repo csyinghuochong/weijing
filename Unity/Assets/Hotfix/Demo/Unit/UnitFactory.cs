@@ -47,6 +47,7 @@ namespace ET
 					}
 			}
 			unit.GetComponent<BuffManagerComponent>().InitBuff(unitInfo.Buffs);
+			unit.AddComponent<AttackComponent>();
 			UnitHelper.OnAfterCreateUnit(unit);
             return unit;
         }

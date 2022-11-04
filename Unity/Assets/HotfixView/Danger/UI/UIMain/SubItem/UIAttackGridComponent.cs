@@ -83,8 +83,6 @@ namespace ET
             ButtonHelp.AddEventTriggers(self.Btn_SkillStart, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.Btn_SkillStart, (PointerEventData pdata) => { self.OnEndDrag(pdata); }, EventTriggerType.EndDrag);
             ButtonHelp.AddEventTriggers(self.Btn_SkillStart, (PointerEventData pdata) => { self.PointerUp(pdata); }, EventTriggerType.PointerUp);
-
-            self.UpdateComboTime();
         }
 
         public static void OnEndDrag(this UIAttackGridComponent self, PointerEventData pdata)
@@ -102,7 +100,7 @@ namespace ET
             {
                 self.MoveAttackId = 0;
                 Unit unit = UnitHelper.MainUnit;
-                int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), null);
+                int targetAngle = unit.GetComponent<AttackComponent>().GetTargetAnagle(null);
                 unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId, 0, targetAngle, 0, 0).Coroutine();
                 self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
             }
@@ -155,37 +153,6 @@ namespace ET
              }
         }
 
-        //连击
-        public static void UpdateComboTime(this UIAttackGridComponent self)
-        {
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-
-            if (bagComponent.GetEquipType() == ItemEquipType.Sword)
-            {
-                //剑
-                self.ComboStartTime = 0.5f;
-                self.CombatEndTime = 1f;
-            }
-            else if (bagComponent.GetEquipType() == ItemEquipType.Knife)
-            {
-                //刀
-                self.ComboStartTime = 1f;
-                self.CombatEndTime = 2f;
-            }
-            else
-            {
-                //空手默认是剑
-                self.ComboStartTime = 0.5f;
-                self.CombatEndTime = 1f;
-            }
-        }
-
-        public static int  RandomGetSkill(this UIAttackGridComponent self)
-        {
-            int index =  RandomHelper.RandomByWeight(self.Weights);
-            return self.SkillList[index];
-        }
-
         public static void PointerDown(this UIAttackGridComponent self, PointerEventData pdata)
         {
             self.ShowFightEffect().Coroutine();
@@ -196,53 +163,6 @@ namespace ET
         {
             self.MoveAttackId = 0;
             TimerComponent.Instance?.Remove(ref self.Timer);
-        }
-
-        public static void SetAttackSpeed(this UIAttackGridComponent self)
-        {
-            int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
-            NumericComponent numericComponent = UnitHelper.MainUnit.GetComponent<NumericComponent>();  
-            float attackSpped = 1f + numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
-            float cdTime = EquipType == (int)ItemEquipType.Knife ? 1000 : 800;
-            self.CDTime = (int)(cdTime / attackSpped);
-        }
-
-        public static void SetComboSkill(this UIAttackGridComponent self)
-        {
-            int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
-            if ((EquipType == (int)ItemEquipType.Sword
-                || EquipType == (int)ItemEquipType.Common))
-            {
-                self.ComboSkillId = self.RandomGetSkill();
-            }
-        }
-
-        public static  void AutoAttack_1(this UIAttackGridComponent self, Unit unit, Unit taretUnit)
-        {
-            if (TimeHelper.ClientNow() <= self.CDEndTime)
-            {
-                return;
-            }
-            if (Time.time - self.LastSkillTime > self.CombatEndTime)
-            {
-                self.ComboSkillId = self.SkillId;
-            }
-            else
-            {
-                self.ComboSkillId = SkillConfigCategory.Instance.Get(self.ComboSkillId).ComboSkillID;
-            }
-            self.SetAttackSpeed();
-            self.SetComboSkill();
-
-            int targetAngle = self.GetTargetAnagle(Mathf.FloorToInt(unit.Rotation.eulerAngles.y), taretUnit);
-            unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId, 0, targetAngle, taretUnit.Id, 0).Coroutine();
-            self.LastSkillTime = Time.time;
-            self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
-            if (self.ComboSkillId == 60000103 || self.ComboSkillId == 60000203)
-            {
-                self.ComboStartTime = 1.25f;
-                self.CombatEndTime = 2f;
-            }
         }
 
         public static void BeginAutoAttack(this UIAttackGridComponent self)
@@ -269,65 +189,13 @@ namespace ET
             }
             if (PositionHelper.Distance2D(unit, taretUnit) <= self.AttackDistance)
             {
-                self.AutoAttack_1(unit, taretUnit);
+                unit.GetComponent<AttackComponent>().AutoAttack_1(unit, taretUnit);
             }
             else
             {
                 unit.MoveToAsync2(taretUnit.Position, false).Coroutine();
             }
         }
-
-        public static int GetTargetAnagle(this UIAttackGridComponent self, int angle, Unit taretUnit)
-        {
-            if (taretUnit == null || taretUnit.IsDisposed)
-            {
-                return angle;
-            }
-            Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            Vector3 direction = taretUnit.Position - myUnit.Position;
-            float ange = Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z);
-            return Mathf.FloorToInt(ange);
-        }
-
-        public static void UpdateAttackDis(this UIAttackGridComponent self, int skillid)
-        {
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkillID(skillid, bagComponent.GetEquipType()));
-            self.AttackDistance = (float)skillConfig.SkillRangeSize;
-        }
-
-        public static void UpdateSkillInfo(this UIAttackGridComponent self, int skillid)
-        {
-            self.SkillId = skillid;
-            self.SkillConfig = SkillConfigCategory.Instance.Get(skillid);
-            self.ComboSkillId = self.SkillConfig.ComboSkillID;
-            self.UpdateAttackDis(skillid);
-
-            self.SkillList.Clear();
-            while (skillid != 0 && self.SkillList.Count < 3)
-            {
-                self.SkillList.Add(skillid);
-                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
-                skillid = skillConfig.ComboSkillID;
-                if (!SkillConfigCategory.Instance.Contain(skillid))
-                {
-                    break;
-                }
-            }
-            switch (self.SkillList.Count)
-            {
-                case 3:
-                    self.Weights = new List<int>() { 70, 20, 20 };
-                    break;
-                case 2:
-                    self.Weights = new List<int>() { 70, 20 };
-                    break;
-                case 1:
-                    self.Weights = new List<int>() { 100 };
-                    break;
-            }
-        }
-
     }
 
 }

@@ -46,7 +46,8 @@ namespace ET
                 }
                 //Log.ILog.Debug("Behaviour_Attack: Execute");
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
-                if (target != null && target.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Dead) == 0)
+                if (target != null && target.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Dead) == 0
+                    && Vector3.Distance(unit.Position,target.Position) < 3f)
                 {
                     Vector3 direction = target.Position - unit.Position;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));

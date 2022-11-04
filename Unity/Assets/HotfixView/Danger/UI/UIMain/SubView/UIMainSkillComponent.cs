@@ -67,7 +67,6 @@ namespace ET
             //普通攻击
             OccupationConfig occConfig = OccupationConfigCategory.Instance.Get(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ);
             self.UIAttackGrid = self.AddChild<UIAttackGridComponent, GameObject>(self.UI_MainRose_attack); ;
-            self.UIAttackGrid.UpdateSkillInfo(occConfig.InitActSkillID);
 
             //翻滚技能
             self.UIFangunComponet = self.AddChild<UIFangunSkillComponent, GameObject>(self.Btn_FanGun);
@@ -181,7 +180,6 @@ namespace ET
                 SkillPro skillid = skillSetComponent.GetByPosition(i + 1);
                 skillgrid.UpdateSkillInfo(skillid);
             }
-            self.UIAttackGrid.UpdateComboTime();
         }
     }
 }
