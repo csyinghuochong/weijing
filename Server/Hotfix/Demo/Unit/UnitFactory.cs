@@ -40,7 +40,7 @@ namespace ET
             {
                 mainUnit = scene.GetComponent<LocalDungeonComponent>().MainUnit;
                 UserInfoComponent userInfoComponent = mainUnit.GetComponent<UserInfoComponent>();
-                if (!userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterID))
+                if (userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterID))
                 {
                     return null;
                 }
