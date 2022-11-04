@@ -144,7 +144,7 @@ namespace ET
 
         public static void OnLockTargetUnit(this UIMainSkillComponent self)
         {
-            LockTargetComponent lockTargetComponent = self.ZoneScene().CurrentScene().GetComponent<LockTargetComponent>();
+            LockTargetComponent lockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
             lockTargetComponent.LockTargetUnit();
 
         }

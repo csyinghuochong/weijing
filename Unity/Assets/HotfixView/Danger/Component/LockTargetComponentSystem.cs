@@ -119,13 +119,13 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (first && self.LastLockId != 0)
             {
-                Unit unitTarget = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.LastLockId);
+                Unit unitTarget = unit.GetParent<UnitComponent>().Get(self.LastLockId);
                 if (unitTarget != null && PositionHelper.Distance2D(unit, unitTarget) < 10f)
                 {
                     return self.LastLockId;
                 }
             }
-            Entity[] units = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Children.Values.ToArray();
+            Entity[] units = unit.GetParent<UnitComponent>().Children.Values.ToArray();
             float distance = 10f;
             ListComponent<UnitLockRange> UnitLockRanges = new ListComponent<UnitLockRange>();
             for (int i = 0; i < units.Length; i++)
