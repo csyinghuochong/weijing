@@ -566,7 +566,7 @@ namespace ET
             }
 
             //购买生命药水
-            int lv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
+            int lv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             int itemId = 10010001;
             int storeId = 10001101;
             if (self.GetItemNumber(itemId) < 20)
