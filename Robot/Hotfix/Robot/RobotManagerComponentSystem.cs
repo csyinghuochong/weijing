@@ -31,9 +31,10 @@ namespace ET
                 }
                 else
                 {
-                    number = self.RobotList[robotId]++;
+                    number = ++self.RobotList[robotId];
                 }
-                string account = $"{robotId}_{number}111ccc121";
+                string account = $"{robotId}_{number}_aaacc";
+                Log.Debug($"NewRobot  :{zone}  {account}");
                 bool outnet = false;
                 int registerCode = await LoginHelper.Register(zoneScene, outnet, VersionMode.Beta, account, ComHelp.RobotPassWord);
                 int errorCode = await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(outnet, 1), account, ComHelp.RobotPassWord);

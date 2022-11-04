@@ -11,18 +11,18 @@ namespace ET
         public static async ETTask<int> OnButtonEnter(Scene zoneScene)
         {
             int sceneId = BattleHelper.GetBattFubenId();
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.BattleNumber) > 0)
-            {
-                return ErrorCore.ERR_BattleJoined;
-            }
-            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1025);
-            bool intime = TimeHelper.IsInTime(funtionConfig.OpenTime);
-            if (!intime)
-            {
-                return ErrorCore.ERR_AlreadyFinish;
-            }
+            //Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            //NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            //if (numericComponent.GetAsInt(NumericType.BattleNumber) > 0)
+            //{
+            //    return ErrorCore.ERR_BattleJoined;
+            //}
+            //FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1025);
+            //bool intime = TimeHelper.IsInTime(funtionConfig.OpenTime);
+            //if (!intime)
+            //{
+            //    return ErrorCore.ERR_AlreadyFinish;
+            //}
             int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, sceneId);
             return errorCode;
         }
