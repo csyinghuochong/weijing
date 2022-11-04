@@ -1,5 +1,5 @@
 {"list":[
-{"_t":"RobotConfig","_id":1001,"Level":1,"Behaviour":1,"Occ":1,"OccTwo":0,"EquipList":[],"PointList":[]},
+{"_t":"RobotConfig","_id":1001,"Level":1,"Behaviour":1,"Occ":1,"OccTwo":0,"EquipList":[],"PointList":[10,10,0,0,0]},
 {"_t":"RobotConfig","_id":2001,"Level":20,"Behaviour":2,"Occ":1,"OccTwo":101,"EquipList":[14050001,14090003,14080003,15203006],"PointList":[50,50,50,50,50]},
 {"_t":"RobotConfig","_id":2002,"Level":20,"Behaviour":2,"Occ":2,"OccTwo":202,"EquipList":[14050001,14090003,14080003,15203006],"PointList":[50,50,50,50,50]},
 {"_t":"RobotConfig","_id":2003,"Level":35,"Behaviour":2,"Occ":1,"OccTwo":101,"EquipList":[14050001,14090003,14080003,15203006],"PointList":[50,50,50,50,50]},
