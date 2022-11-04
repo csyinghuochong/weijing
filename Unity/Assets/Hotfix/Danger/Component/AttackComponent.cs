@@ -43,7 +43,8 @@ namespace ET
         public static void SetAttackSpeed(this AttackComponent self)
         {
             int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
-            NumericComponent numericComponent = UnitHelper.MainUnit.GetComponent<NumericComponent>();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float attackSpped = 1f + numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
             float cdTime = EquipType == (int)ItemEquipType.Knife ? 1000 : 800;
             self.CDTime = (int)(cdTime / attackSpped);
