@@ -42,7 +42,7 @@ namespace ET
                 {
                     Vector3 dir = unit.Position - target.Position;
                     Vector3 ttt = target.Position + dir.normalized * ((float)aiComponent.ActDistance - 0.5f);
-                    ttt = ttt + new Vector3(RandomHelper.RandFloat01() * 0.5f, 0f, RandomHelper.RandFloat01() * 0.5f);
+                    ttt = ttt + new Vector3(RandomHelper.RandFloat01() * 1f, 0f, RandomHelper.RandFloat01() * 0.5f);
                     unit.FindPathMoveToAsync(ttt, cancellationToken, false).Coroutine();
                 }
 
