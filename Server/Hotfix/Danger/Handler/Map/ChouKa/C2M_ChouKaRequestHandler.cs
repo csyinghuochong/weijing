@@ -21,8 +21,9 @@ namespace ET
 
             bool mianfei = false;
             long cdTime = long.Parse(GlobalValueConfigCategory.Instance.Get(request.ChouKaType == 1 ? 35:36).Value) * 1000;
-            long onlineTime = unit.GetComponent<NumericComponent>().GetAsLong(request.ChouKaType == 1 ? NumericType.ChouKaOneTime: NumericType.ChouKaTenTime);
-            mianfei = onlineTime >= cdTime;
+            
+            long lastTime = unit.GetComponent<NumericComponent>().GetAsLong(request.ChouKaType == 1 ? NumericType.ChouKaOneTime: NumericType.ChouKaTenTime);
+            mianfei = TimeHelper.ServerNow() - lastTime >= cdTime;
 
             TakeCardConfig takeCardConfig = TakeCardConfigCategory.Instance.Get(request.ChapterId);
             int needZuanshi = request.ChouKaType == 1 ? takeCardConfig.ZuanShiNum : takeCardConfig.ZuanShiNum_Ten;
@@ -44,7 +45,7 @@ namespace ET
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ChouKa, request.ChouKaType, 0);
             if (mianfei)
             {
-                unit.GetComponent<NumericComponent>().ApplyValue(request.ChouKaType == 1 ? NumericType.ChouKaOneTime : NumericType.ChouKaTenTime, 0);
+                unit.GetComponent<NumericComponent>().ApplyValue(request.ChouKaType == 1 ? NumericType.ChouKaOneTime : NumericType.ChouKaTenTime, TimeHelper.ServerNow());
             }
             else
             {

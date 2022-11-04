@@ -208,16 +208,13 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            long curTime = TimeHelper.ServerNow();
+            long passTime_1 = curTime - numericComponent.GetAsLong(NumericType.ChouKaOneTime);
+            long passTime_2 = curTime - numericComponent.GetAsLong(NumericType.ChouKaTenTime);
             long cdTime_1 = long.Parse(GlobalValueConfigCategory.Instance.Get(35).Value) * 1000;
             long cdTime_2 = long.Parse(GlobalValueConfigCategory.Instance.Get(36).Value) * 1000;
-
-            numericComponent.ApplyChange(null, NumericType.ChouKaOneTime, 1000, 0, false);
-            numericComponent.ApplyChange(null, NumericType.ChouKaTenTime, 1000, 0, false);
-            long onlineTime_1 = numericComponent.GetAsLong(NumericType.ChouKaOneTime);      //抽卡在线时间
-            long onlineTime_2 = numericComponent.GetAsLong(NumericType.ChouKaTenTime);
-
-            self.Text_MianFeiTime_1.GetComponent<Text>().text = onlineTime_1 > cdTime_1 ? "免费抽卡" : TimeHelper.ShowLeftTime(cdTime_1 - onlineTime_1);
-            self.Text_MianFeiTime_2.GetComponent<Text>().text = onlineTime_2 > cdTime_2 ? "免费抽卡" : TimeHelper.ShowLeftTime(cdTime_2 - onlineTime_2);
+            self.Text_MianFeiTime_1.GetComponent<Text>().text = passTime_1 > cdTime_1 ? "免费抽卡" : TimeHelper.ShowLeftTime(cdTime_1 - passTime_1);
+            self.Text_MianFeiTime_2.GetComponent<Text>().text = passTime_2 > cdTime_2 ? "免费抽卡" : TimeHelper.ShowLeftTime(cdTime_2 - passTime_2);
         }
 
         public static void OnUpdateUI(this UIChouKaComponent self)
