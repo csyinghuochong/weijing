@@ -288,9 +288,6 @@ namespace ET
 
             //判断技能是否可以释放
             int errorCode = self.IfCanUseSkill(skillcmd.SkillID);
-
-            Log.Debug($"OnUseSkill: {errorCode}");
-
             if (check && errorCode != ErrorCore.ERR_Success)
             {
                 m2C_Skill.Error = errorCode;

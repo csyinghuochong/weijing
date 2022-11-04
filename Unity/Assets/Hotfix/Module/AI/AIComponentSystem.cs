@@ -33,6 +33,7 @@ namespace ET
             self.AISkillIDList.Clear();
             self.BeAttackList.Clear();
             self.TargetPoint.Clear();
+            self.TargetZhuiJi = Vector3.zero;
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.AITimer, self);
         }
     }

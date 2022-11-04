@@ -9,6 +9,10 @@ namespace ET
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
             Unit unit = aiComponent.GetParent<Unit>();
+            if (aiComponent.TargetZhuiJi == Vector3.zero)
+            {
+                return false;
+            }
             float distance = PositionHelper.Distance2D(aiComponent.TargetZhuiJi, unit.Position);
             return !aiComponent.IsRetreat && distance >= aiComponent.ChaseRange;
         }
