@@ -20,6 +20,7 @@ namespace ET
         public float LastTime;
         public HeadBarUI HeadBarUI;
         public long Timer;
+        public bool IfPlayEffect;
 
     }
 

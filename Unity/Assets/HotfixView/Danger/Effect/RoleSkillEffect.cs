@@ -103,6 +103,7 @@ namespace ET
                     break;
             }
 
+            //this.EffectObj = 
             this.EffectObj.SetActive(true);
         }
 

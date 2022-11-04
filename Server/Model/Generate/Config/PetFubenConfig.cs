@@ -84,32 +84,35 @@ namespace ET
 		/// <summary>推荐战力</summary>
 		[ProtoMember(3)]
 		public int Combat { get; set; }
-		/// <summary>格子1</summary>
+		/// <summary>推荐等级</summary>
 		[ProtoMember(4)]
+		public int Lv { get; set; }
+		/// <summary>格子1</summary>
+		[ProtoMember(5)]
 		public string Cell_1 { get; set; }
 		/// <summary>格子2</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public string Cell_2 { get; set; }
 		/// <summary>格子3</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public string Cell_3 { get; set; }
 		/// <summary>格子4</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public string Cell_4 { get; set; }
 		/// <summary>格子5</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public string Cell_5 { get; set; }
 		/// <summary>格子6</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public string Cell_6 { get; set; }
 		/// <summary>格子7</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public string Cell_7 { get; set; }
 		/// <summary>格子8</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public string Cell_8 { get; set; }
 		/// <summary>格子9</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public string Cell_9 { get; set; }
 
 	}

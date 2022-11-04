@@ -298,7 +298,6 @@ namespace ET
                 if (skillconfig.SkillActType == 1)
                 {
                     nowdef = adfValue;
-
                 }
 
                 //魔法伤害无法被抵消是固定伤害,技能附带加成

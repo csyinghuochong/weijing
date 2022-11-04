@@ -51,5 +51,18 @@ namespace ET
             unit.GetComponent<EffectViewComponent>()?.EffectFactory(playEffectBuffData);
         }
 
+        public void PlayDropEffect(Unit unit, int effectID)
+        {
+            EffectData playEffectBuffData = new EffectData();
+            EffectConfig hitSkillConfig = EffectConfigCategory.Instance.Get(effectID);
+            playEffectBuffData.EffectConfig = hitSkillConfig;                  //特效相关配置
+            playEffectBuffData.EffectPosition = Vector3.zero;
+            playEffectBuffData.TargetAngle = 0;
+            playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;
+            AEffectHandler aeEffect = unit.GetComponent<EffectViewComponent>()?.EffectFactory(playEffectBuffData);
+            //aeEffect.EffectObj.transform.SetParent(unit.GetComponent<GameObjectComponent>().GameObject.transform);
+            //aeEffect.EffectObj.transform.localPosition = Vector3.zero;
+        }
+
     }
 }
