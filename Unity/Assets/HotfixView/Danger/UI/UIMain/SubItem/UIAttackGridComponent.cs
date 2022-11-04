@@ -28,27 +28,12 @@ namespace ET
         public SkillConfig SkillConfig;
         public GameObject FightEffect;
 
-        public int SkillId;
-        public float LastSkillTime;
-        public bool IsComboSkill;
-        public int ComboSkillId;
         public bool InitEffect;
         public long MoveAttackId;
 
-        public float ComboStartTime;
-        public float CombatEndTime;
-
-        public float AttackDistance = 0f;
-
-        public List<int> Weights = new List<int>();
-        public List<int> SkillList = new List<int>() { };
-
-        public readonly C2M_SkillCmd c2mSkillCmd = new C2M_SkillCmd();
-
-        public long CDTime = 800;
-        public long CDEndTime;
-
         public long Timer;
+
+        public AttackComponent AttackComponent;
     }
 
     [ObjectSystem]
@@ -83,6 +68,8 @@ namespace ET
             ButtonHelp.AddEventTriggers(self.Btn_SkillStart, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.Btn_SkillStart, (PointerEventData pdata) => { self.OnEndDrag(pdata); }, EventTriggerType.EndDrag);
             ButtonHelp.AddEventTriggers(self.Btn_SkillStart, (PointerEventData pdata) => { self.PointerUp(pdata); }, EventTriggerType.PointerUp);
+
+            self.AttackComponent = self.ZoneScene().GetComponent<AttackComponent>();
         }
 
         public static void OnEndDrag(this UIAttackGridComponent self, PointerEventData pdata)
@@ -99,10 +86,9 @@ namespace ET
             if (targetUnit == null)
             {
                 self.MoveAttackId = 0;
-                Unit unit = UnitHelper.MainUnit;
-                int targetAngle = self.ZoneScene().GetComponent<AttackComponent>().GetTargetAnagle(null);
-                unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId, 0, targetAngle, 0, 0).Coroutine();
-                self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                int targetAngle = self.AttackComponent.GetTargetAnagle(unit, null);
+                unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.AttackComponent.ComboSkillId, 0, targetAngle, 0, 0).Coroutine();
             }
             else
             {
@@ -116,11 +102,7 @@ namespace ET
             self.FightEffect.SetActive(false);
             Scene curscene = self.ZoneScene();
             curscene.GetComponent<SkillIndicatorComponent>().RecoveryEffect();
-            if (TimeHelper.ClientNow() < self.CDEndTime)
-            {
-                return;
-            }
-            Unit unit = UnitHelper.MainUnit;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit == null || unit.GetComponent<FsmComponent>().IsSkillMove())
             {
                 return;
@@ -173,7 +155,7 @@ namespace ET
 
         public static void OnUpdate(this UIAttackGridComponent self)
         {
-            Unit unit = UnitHelper.MainUnit;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (self.MoveAttackId == 0 || unit == null || unit.IsDisposed)
             {
                 TimerComponent.Instance?.Remove( ref self.Timer);
@@ -187,7 +169,7 @@ namespace ET
                 TimerComponent.Instance?.Remove(ref self.Timer);
                 return;
             }
-            if (PositionHelper.Distance2D(unit, taretUnit) <= self.AttackDistance)
+            if (PositionHelper.Distance2D(unit, taretUnit) <= self.AttackComponent.AttackDistance)
             {
                 self.ZoneScene().GetComponent<AttackComponent>().AutoAttack_1(unit, taretUnit);
             }
