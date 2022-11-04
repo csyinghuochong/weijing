@@ -6,7 +6,6 @@ namespace ET
     public static class UnitHelper
     {
         public static bool LoadingScene = false;
-        public static Unit MainUnit = null;
 
         public static Unit GetMyUnitFromZoneScene_2(Scene zoneScene)
         {

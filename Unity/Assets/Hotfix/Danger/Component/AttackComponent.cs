@@ -43,7 +43,8 @@ namespace ET
         public static void SetAttackSpeed(this AttackComponent self)
         {
             int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
-            NumericComponent numericComponent = UnitHelper.MainUnit.GetComponent<NumericComponent>();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float attackSpped = 1f + numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
             float cdTime = EquipType == (int)ItemEquipType.Knife ? 1000 : 800;
             self.CDTime = (int)(cdTime / attackSpped);
@@ -90,9 +91,8 @@ namespace ET
             return self.SkillList[index];
         }
 
-        public static int GetTargetAnagle(this AttackComponent self,  Unit taretUnit)
+        public static int GetTargetAnagle(this AttackComponent self, Unit unit,  Unit taretUnit)
         {
-            Unit unit = self.GetParent<Unit>();
             if (taretUnit == null || taretUnit.IsDisposed)
             {
 #if !SERVER && NOT_UNITY
@@ -132,7 +132,7 @@ namespace ET
             }
             self.SetAttackSpeed();
             self.SetComboSkill();
-            int targetAngle = self.GetTargetAnagle(taretUnit);
+            int targetAngle = self.GetTargetAnagle(unit, taretUnit);
             unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId, 0, targetAngle, taretUnit.Id, 0).Coroutine();
             self.LastSkillTime = TimeHelper.ClientNow();
             self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
