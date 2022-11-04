@@ -17,7 +17,7 @@ namespace ET
             {
                 return ErrorCore.ERR_BattleJoined;
             }
-            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(2025);
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1025);
             bool intime = TimeHelper.IsInTime(funtionConfig.OpenTime);
             if (!intime)
             {

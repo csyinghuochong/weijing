@@ -44,7 +44,7 @@ namespace ET
                     return;
                 }
                 //几率转其他
-                if (0.4f >= RandomHelper.RandFloat01())
+                if (0.8f >= RandomHelper.RandFloat01())
                 {
                     aiComponent.ChangeBehaviour(aiComponent.Behaviours[1].KeyId);
                     return;

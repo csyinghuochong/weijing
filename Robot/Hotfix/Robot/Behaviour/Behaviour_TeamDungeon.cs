@@ -58,7 +58,7 @@
                     Log.Info($"Behaviour_TeamDungeon: Execute {errorCode}");
                 }
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
-                bool ret = await TimerComponent.Instance.WaitAsync(60000, cancellationToken);
+                bool ret = await TimerComponent.Instance.WaitAsync(2000, cancellationToken);
                 if (!ret)
                 {
                     Log.ILog.Debug("Behaviour_TeamDungeon: Exit1");
