@@ -52,7 +52,7 @@
                 {
                     Log.Info($"Behaviour_TeamDungeon: selfTeam ！= null");
                 }
-                errorCode = await teamComponent.RequestTeamDungeonOpen();
+                //errorCode = await teamComponent.RequestTeamDungeonOpen();
                 if (errorCode != 0)
                 {
                     Log.Info($"Behaviour_TeamDungeon: Execute {errorCode}");
