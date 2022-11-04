@@ -33,7 +33,7 @@ namespace ET
                 {
                     number = self.RobotList[robotId]++;
                 }
-                string account = $"{robotId}_{number}ccc121";
+                string account = $"{robotId}_{number}111ccc121";
                 bool outnet = false;
                 int registerCode = await LoginHelper.Register(zoneScene, outnet, VersionMode.Beta, account, ComHelp.RobotPassWord);
                 int errorCode = await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(outnet, 1), account, ComHelp.RobotPassWord);

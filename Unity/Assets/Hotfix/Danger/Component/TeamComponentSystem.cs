@@ -26,7 +26,7 @@ namespace ET
                     break;
                 }
             }
-            if (!have)
+            if (!have && self.ApplyList.Count < 10)
             {
                 self.ApplyList.Add(teamPlayerInfo);
             }

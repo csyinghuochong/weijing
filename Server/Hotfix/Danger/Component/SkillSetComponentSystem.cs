@@ -30,6 +30,14 @@ namespace ET
 				string[] itemInfo = needList[0].Split(';');
 				self.SkillList.Add(new SkillPro() { SkillID = int.Parse(itemInfo[0]), SkillPosition = 9, SkillSetType = (int)SkillSetEnum.Item });
 			}
+
+
+			int robotId = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.RobotId;
+			if (robotId != 0)
+			{
+				RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
+				self.OnChangeOccTwoRequest(robotConfig.OccTwo);
+			}
 		}
 	}
 
@@ -398,6 +406,10 @@ namespace ET
 		//转换职业
 		public static void OnChangeOccTwoRequest(this SkillSetComponent self, int occTwo)
 		{
+			if (occTwo == 0)
+			{
+				return;
+			}
 			UserInfo useInfo = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo;
 			if (useInfo.OccTwo != 0)
 			{

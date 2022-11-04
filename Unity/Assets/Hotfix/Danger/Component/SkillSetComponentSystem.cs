@@ -436,9 +436,14 @@ namespace ET
 			self.SkillList.Add(skillPro);
 		}
 
-		public static int GetCanUseSkill(this SkillSetComponent self)
+		public static SkillPro GetCanUseSkill(this SkillSetComponent self)
 		{
-			return self.SkillList[0].SkillID;
+			SkillPro skillPro = self.SkillList[RandomHelper.RandomNumber(0, self.SkillList.Count)];
+			if (skillPro.SkillSetType == (int)SkillSetEnum.Item)
+			{
+				return null;
+			}
+			return skillPro;
 		}
 
 		/// <summary>

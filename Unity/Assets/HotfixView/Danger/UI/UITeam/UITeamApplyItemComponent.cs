@@ -52,7 +52,7 @@ namespace ET
             await self.ZoneScene().GetComponent<TeamComponent>().AgreeTeamApply(self.TeamPlayerInfo, 1);
 
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UITeamApplyList);
-            uI.GetComponent<UITeamApplyListComponent>().OnUpdateUI().Coroutine();
+            uI.GetComponent<UITeamApplyListComponent>().OnUpdateUI();
         }
 
         public static async ETTask OnButtonRefuse(this UITeamApplyItemComponent self)
@@ -60,7 +60,7 @@ namespace ET
             await self.ZoneScene().GetComponent<TeamComponent>().AgreeTeamApply(self.TeamPlayerInfo, 0);
 
             UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UITeamApplyList  );
-            uI.GetComponent<UITeamApplyListComponent>().OnUpdateUI().Coroutine();
+            uI.GetComponent<UITeamApplyListComponent>().OnUpdateUI();
         }
     }
 

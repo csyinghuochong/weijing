@@ -25,7 +25,7 @@ namespace ET
             self.ApplyListNode = rc.Get<GameObject>("ApplyListNode");
 
             self.ApplyUIList.Clear();
-            self.OnUpdateUI().Coroutine();
+            self.OnUpdateUI();
         }
     }
 
@@ -36,12 +36,11 @@ namespace ET
             UIHelper.Remove(self.ZoneScene(), UIType.UITeamApplyList);
         }
 
-        public static async ETTask OnUpdateUI(this UITeamApplyListComponent self)
+        public static void  OnUpdateUI(this UITeamApplyListComponent self)
         {
             List<TeamPlayerInfo> teamPlayerInfos = self.ZoneScene().GetComponent<TeamComponent>().ApplyList;
 
             var path = ABPathHelper.GetUGUIPath("Main/Team/UITeamApplyItem");
-            await ETTask.CompletedTask;
             var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             for (int i = 0; i < teamPlayerInfos.Count; i++)

@@ -52,10 +52,13 @@ namespace ET
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
 
                     //触发技能
-                    int skillID = aiComponent.ZoneScene().GetComponent<SkillSetComponent>().GetCanUseSkill();
-                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillID);
-                    float targetDistance = skillConfig.SkillZhishiType == 1 ?  Vector3.Distance(unit.Position, target.Position):0;
-                    target.GetComponent<SkillManagerComponent>().SendUseSkill(skillID, 0,Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
+                    SkillPro skillPro = aiComponent.ZoneScene().GetComponent<SkillSetComponent>().GetCanUseSkill();
+                    if (skillPro != null)
+                    {
+                        SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
+                        float targetDistance = skillConfig.SkillZhishiType == 1 ? Vector3.Distance(unit.Position, target.Position) : 0;
+                        target.GetComponent<SkillManagerComponent>().SendUseSkill(skillPro.SkillID, 0, Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
+                    }
                 }
                 else
                 {
@@ -75,11 +78,13 @@ namespace ET
                 int curHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp);
                 if (curHp < maxHp * 0.5)
                 {
-                    Log.ILog.Debug("Behaviour_Attack: SendUseItem->AddHp");
                     BagInfo bagInfo = aiComponent.ZoneScene().GetComponent<BagComponent>().GetBagInfo(10010001);
                     if (bagInfo != null)
                     {
-                        await aiComponent.ZoneScene().GetComponent<BagComponent>().SendUseItem(bagInfo);
+                        Log.ILog.Debug("Behaviour_Attack: SendUseItem->AddHp");
+                        ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                        unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
+                            (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();
                     }
                 }
 
