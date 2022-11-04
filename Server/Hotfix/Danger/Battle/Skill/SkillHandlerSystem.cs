@@ -80,6 +80,11 @@ namespace ET
         public static void InitSelfBuff(this SkillHandler self)
         {
             //触发初始化BUFF
+            if (self.SkillConf == null)
+            {
+                Log.Error($"self.SkillConf == null {self.SkillCmd.WeaponSkillID}");
+            }
+
             if (self.SkillConf.InitBuffID[0] != 0)
             {
                 for (int y = 0; y < self.SkillConf.InitBuffID.Length; y++)
