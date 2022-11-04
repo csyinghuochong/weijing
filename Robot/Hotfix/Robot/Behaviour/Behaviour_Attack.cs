@@ -99,7 +99,7 @@ namespace ET
                     }
                 }
 
-                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
                 if (!timeRet)
                 {
                     Log.ILog.Debug("Behaviour_Attack: Eixt2");
