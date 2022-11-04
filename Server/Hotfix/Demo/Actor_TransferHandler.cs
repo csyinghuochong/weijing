@@ -49,11 +49,9 @@ namespace ET
 						TransferHelper.MainCityTransfer(unit).Coroutine();
 						break;
 					case (int)SceneTypeEnum.CellDungeon:
-						UnitHelper.ResetPostion(unit);
 						break;
 						//宠物闯关
 					case (int)SceneTypeEnum.PetDungeon:
-						UnitHelper.RecordPostion(unit);
 						long fubenid = IdGenerater.Instance.GenerateId();
 						long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
 						Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "PetFuben" + fubenid.ToString(), SceneType.Fuben);
@@ -63,13 +61,11 @@ namespace ET
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 						break;
 					case (int)SceneTypeEnum.YeWaiScene:
-						UnitHelper.RecordPostion(unit);
 						StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), $"Map{request.SceneId}");
 						TransferHelper.BeforeTransfer(unit);
 						await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, (int)SceneTypeEnum.YeWaiScene, request.SceneId, 0);
 						break;
 					case (int)SceneTypeEnum.RandomTower:
-						UnitHelper.RecordPostion(unit);
 						//2200001
 						fubenid = IdGenerater.Instance.GenerateId();
 						fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
@@ -83,7 +79,6 @@ namespace ET
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 						break;
 					case (int)SceneTypeEnum.Tower:
-						UnitHelper.RecordPostion(unit);
 						//动态创建副本
 						fubenid = IdGenerater.Instance.GenerateId();
 						fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
@@ -98,7 +93,6 @@ namespace ET
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 						break;
 					case (int)SceneTypeEnum.PetTianTi:
-						UnitHelper.RecordPostion(unit);
 						////动态创建副本
 						long enemyId = long.Parse(request.paramInfo);
 						fubenid = IdGenerater.Instance.GenerateId();
@@ -110,13 +104,11 @@ namespace ET
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 						break;
 					case (int)SceneTypeEnum.LocalDungeon:
-						UnitHelper.ResetPostion(unit);
 						LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
 						request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
 						TransferHelper.LocalDungeonTransfer( unit, request.SceneId, request.TransferId, request.Difficulty );
 						break;
 					case (int)SceneTypeEnum.Battle:
-						UnitHelper.RecordPostion(unit);
 						//当前在副本需要先释放副本scene.
 						mapComponent = unit.DomainScene().GetComponent<MapComponent>();
 						int sceneTypeEnum = mapComponent.SceneTypeEnum;
@@ -127,7 +119,6 @@ namespace ET
 						await TransferHelper.Transfer(unit, battleEnter.FubenInstanceId, (int)SceneTypeEnum.Battle, request.SceneId, battleEnter.Camp);
 						break;
 					case (int)SceneTypeEnum.TeamDungeon:
-						UnitHelper.RecordPostion(unit);
 						//当前在副本需要先释放副本scene.
 						mapComponent = unit.DomainScene().GetComponent<MapComponent>();
 						sceneTypeEnum = mapComponent.SceneTypeEnum;

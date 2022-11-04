@@ -14,11 +14,6 @@ namespace ET
             return MonsterConfigCategory.Instance.Get(self.ConfigId).MonsterType;
         }
 
-        public static int GetMonsterSonType(this Unit self)
-        {
-            return MonsterConfigCategory.Instance.Get(self.ConfigId).MonsterSonType;
-        }
-
         public static bool IsSceneItem(this Unit self)
         {
             if (self.Type != UnitType.Monster)
@@ -39,7 +34,12 @@ namespace ET
 
         public static bool IsChest(this Unit self)
         {
-            return self.Type == UnitType.Monster && MonsterConfigCategory.Instance.Get(self.ConfigId).MonsterSonType == 55;
+            if (self.Type != UnitType.Monster)
+            {
+                return false;
+            }
+            int sonType = MonsterConfigCategory.Instance.Get(self.ConfigId).MonsterSonType;
+            return sonType == 55 || sonType == 56;
         }
     }
 }

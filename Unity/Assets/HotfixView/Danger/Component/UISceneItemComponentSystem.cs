@@ -48,7 +48,9 @@ namespace ET
             {
                 path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
             }
-            else if (monsterConfig.MonsterSonType == 54 || monsterConfig.MonsterSonType == 55)
+            else if (monsterConfig.MonsterSonType == 54 
+                  || monsterConfig.MonsterSonType == 55
+                  || monsterConfig.MonsterSonType == 56)
             {
                 path = ABPathHelper.GetUGUIPath("Battle/UISceneItem");
             }

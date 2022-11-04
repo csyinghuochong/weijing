@@ -241,7 +241,6 @@ namespace ET
 				args.SkillId = skillID;
 				args.DamgeType = DamgeType;
 				Game.EventSystem.PublishClass(args);
-
 			}
 		}
 	}

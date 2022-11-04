@@ -35,7 +35,18 @@ namespace ET
         {
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterID);
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
-            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
+            Unit mainUnit = null;
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterSonType == 55)
+            {
+                mainUnit = scene.GetComponent<LocalDungeonComponent>().MainUnit;
+                UserInfoComponent userInfoComponent = mainUnit.GetComponent<UserInfoComponent>();
+                if (!userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterID))
+                {
+                    return null;
+                }
+            }
+
+           Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
             HeroDataComponent heroDataComponent = unit.AddComponent<HeroDataComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
@@ -93,7 +104,6 @@ namespace ET
             {
                 unit.AddComponent<DeathTimeComponent, long>(monsterConfig.DeathTime * 1000);
             }
-            Unit mainUnit = null;
             long revetime = 0;
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
             {

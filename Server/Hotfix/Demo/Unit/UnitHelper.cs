@@ -249,24 +249,6 @@ namespace ET
             return transferinfo;
         }
 
-        public static void RecordPostion(this Unit self)
-        {
-            int sceneTypeEnum = self.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-            if (sceneTypeEnum == (int)SceneTypeEnum.MainCityScene)
-            {
-                self.GetComponent<NumericComponent>().NumericDic[NumericType.MainCity_X] = (long)(10000 * self.Position.x);
-                self.GetComponent<NumericComponent>().NumericDic[NumericType.MainCity_Y] = (long)(10000 * self.Position.y);
-                self.GetComponent<NumericComponent>().NumericDic[NumericType.MainCity_Z] = (long)(10000 * self.Position.z);
-            }
-        }
-
-        public static void ResetPostion(this Unit self)
-        {
-            self.GetComponent<NumericComponent>().NumericDic[NumericType.MainCity_X] = 0;
-            self.GetComponent<NumericComponent>().NumericDic[NumericType.MainCity_Y] = 0;
-            self.GetComponent<NumericComponent>().NumericDic[NumericType.MainCity_Z] = 0;
-        }
-
         public static List<Unit> GetUnitList(this Unit self, int unitType)
         {
             List<Unit> units = new List<Unit>();

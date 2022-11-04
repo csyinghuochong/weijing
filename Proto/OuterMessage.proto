@@ -311,6 +311,8 @@ message UserInfo
 	repeated KeyValuePairInt  MysteryItems = 30;
 
 	int32 RobotId = 31;
+
+	repeated KeyValuePair  OpenChestList = 32;
 }
 
 message KeyValuePair

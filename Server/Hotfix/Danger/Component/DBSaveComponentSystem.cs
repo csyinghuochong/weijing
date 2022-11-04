@@ -123,8 +123,6 @@ namespace ET
               $"{  TimeHelper.DateTimeNow().ToString()}  移除";
             ComHelp.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
-
-            unit.RecordPostion();
             unit.GetComponent<EnergyComponent>().OnDisconnect();
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             DBHelper.UpdateCacheDB(unit).Coroutine();

@@ -37,8 +37,6 @@ namespace ET
                 return;
             }
            
-            MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
-            UnitFactory.CreateDropItems(boxUnit, unit, mapComponent.SceneTypeEnum);
             EventType.NumericChangeEvent.Instance.Attack = unit;
             EventType.NumericChangeEvent.Instance.Parent = boxUnit;
             boxUnit.GetComponent<HeroDataComponent>().OnDead(EventType.NumericChangeEvent.Instance);

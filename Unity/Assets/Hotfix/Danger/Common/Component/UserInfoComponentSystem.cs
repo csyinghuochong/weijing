@@ -200,14 +200,19 @@ namespace ET
         /// </summary>
         /// <param name="self"></param>
         /// <param name="beKill"></param>
-        public static  void OnKillUnit(this UserInfoComponent self, Unit beKill, int sceneType)
+        public static  void OnKillUnit(this UserInfoComponent self, Unit beKill, int sceneType, int sceneId)
         {
-            UnitInfoComponent unitInfoComponent = beKill.GetComponent<UnitInfoComponent>();
+            Unit main = self.GetParent<Unit>();
             if (beKill.Type != UnitType.Monster)
             {
                 return;
             }
-            Unit main = self.GetParent<Unit>();
+            int sonType = MonsterConfigCategory.Instance.Get(beKill.ConfigId).MonsterSonType;
+            if (sceneType == SceneTypeEnum.LocalDungeon && sonType == 55)
+            {
+                self.OnAddChests(sceneId, beKill.ConfigId);
+            }
+
             bool drop = true;
             if (ComHelp.IsSingleFuben(sceneType))
             {
@@ -408,6 +413,37 @@ namespace ET
             }
         }
 #endif
+        public static void OnAddChests(this UserInfoComponent self, int fubenId, int monsterId)
+        {
+            bool have = false;
+            List<KeyValuePair> chestList = self.UserInfo.OpenChestList;
+            for (int i = 0; i < chestList.Count; i++)
+            {
+                if (chestList[i].KeyId == fubenId)
+                {
+                    chestList[i].Value += ($"_{monsterId}");
+                    have = true;
+                }
+            }
+            if (!have)
+            {
+                self.UserInfo.OpenChestList.Add(new KeyValuePair(){ KeyId= fubenId, Value = monsterId.ToString() });
+            }    
+        }
+
+        public static bool IsCheskOpen(this UserInfoComponent self, int fubenId, int monsterId)
+        {
+            List<KeyValuePair> chestList = self.UserInfo.OpenChestList;
+            for (int i = 0; i < chestList.Count; i++)
+            {
+                if (chestList[i].KeyId == fubenId)
+                {
+                    return chestList[i].Value.Contains(monsterId.ToString());
+                }
+            }
+            return false;
+        }
+
         public static void OnAddRevive(this UserInfoComponent self, int monsterId, long reviveTime)
         {
             for (int i = 0; i < self.UserInfo.MonsterRevives.Count; i++)

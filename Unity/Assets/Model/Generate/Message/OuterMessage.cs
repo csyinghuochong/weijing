@@ -626,6 +626,9 @@ namespace ET
 		[ProtoMember(31)]
 		public int RobotId { get; set; }
 
+		[ProtoMember(32)]
+		public List<KeyValuePair> OpenChestList = new List<KeyValuePair>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

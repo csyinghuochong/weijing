@@ -54,7 +54,9 @@ namespace ET
             if (args.UnitAttack != null && !args.UnitAttack.IsDisposed)
             {
                 Unit player = null;
-                int sceneTypeEnum = args.UnitAttack.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+                MapComponent mapComponent = args.UnitAttack.DomainScene().GetComponent<MapComponent>();
+                int sceneTypeEnum = mapComponent.SceneTypeEnum;
+                int sceneId = mapComponent.SceneId;
                 if (args.UnitAttack.Type == UnitType.Player)
                 {
                     player = args.UnitAttack;
@@ -78,13 +80,13 @@ namespace ET
                     {
                         if (units[k].Type == UnitType.Player)
                         {
-                            units[k].GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
+                            units[k].GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum,sceneId);
                         }
                     }
                 }
                 else if(player != null)
                 {
-                    player.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
+                    player.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
                 }
                 switch (sceneTypeEnum)
                 {

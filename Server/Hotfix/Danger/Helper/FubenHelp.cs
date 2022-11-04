@@ -68,7 +68,8 @@ namespace ET
 					//51 场景怪 有AI 不显示名称
 					//52 能量台子 无AI
 					//54 场景怪 有AI 显示名称
-					//55 宝箱类 无AI
+					//55 宝箱类(一次) 无AI
+					//56 宝箱类(无限) 无AI
 					if (monsterConfig.MonsterSonType == 52)
 					{
 						int skillId = energySkills[RandomHelper.RandomNumber(0, energySkills.Count)];
