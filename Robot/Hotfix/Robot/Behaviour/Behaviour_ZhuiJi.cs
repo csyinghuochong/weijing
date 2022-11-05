@@ -29,13 +29,12 @@ namespace ET
                     return;
                 }
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
-                if (target != null)
+                if (target != null && Vector3.Distance(target.Position, unit.Position) > aiComponent.ActDistance)
                 {
                     Vector3 dir = unit.Position - target.Position;
-                    Vector3 vector3 = target.Position + dir.normalized * (1f - 0.5f);
+                    Vector3 vector3 = target.Position + dir.normalized * (aiComponent.ActDistance - 0.5f);
                     vector3 = vector3 + new Vector3(RandomHelper.RandFloat01() * 0.5f, 0f, RandomHelper.RandFloat01() * 0.5f);
                     unit.MoveToAsync2(vector3).Coroutine();
-                    //Log.ILog.Debug("Behaviour_ZhuiJi: Execute11111");
                 }
                 else
                 {

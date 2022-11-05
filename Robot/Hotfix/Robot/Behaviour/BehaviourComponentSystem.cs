@@ -61,7 +61,7 @@ namespace ET
             }
             
             self.NewBehaviour = BehaviourType.Behaviour_Stroll;
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.BehaviourTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(500, TimerType.BehaviourTimer, self);
         }
     }
 

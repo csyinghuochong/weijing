@@ -10,9 +10,6 @@ namespace ET
         {
             EventType.UnitRevive args = cls as EventType.UnitRevive;
             Unit unit = args.Unit;
-            unit.Position = unit.GetBornPostion();
-
-            unit.GetComponent<StateComponent>().Reset();
             unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmIdleState);
             unit.GetComponent<HeroHeadBarComponent>()?.OnRevive();
 

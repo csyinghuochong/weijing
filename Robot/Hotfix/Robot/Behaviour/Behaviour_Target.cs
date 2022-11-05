@@ -26,8 +26,9 @@ namespace ET
             while (true)
             {
                 Unit target = AIHelp.GetNearestEnemy(unit);
-                if (target!=null && Vector3.Distance(target.Position, unit.Position) < 3f)
+                if (target!=null)
                 {
+                    aiComponent.TargetID = target.Id;
                     aiComponent.ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
                     return;
                 }
