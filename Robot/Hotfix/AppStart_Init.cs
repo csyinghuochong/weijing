@@ -43,7 +43,7 @@ namespace ET
             {
                 await RobotSceneFactory.Create(Game.Scene, startConfig.Id, startConfig.InstanceId, startConfig.Zone, startConfig.Name, startConfig.Type, startConfig);
             }
-            
+
             if (Game.Options.Console == 1)
             {
                 Game.Scene.AddComponent<ConsoleComponent>();

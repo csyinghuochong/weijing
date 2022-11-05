@@ -63,21 +63,37 @@ namespace ET
                 self.DBDayActivityInfo.LastHour = dateTime.Hour;
                 self.NoticeActivityUpdate_Hour(dateTime.Hour).Coroutine();
             }
-            if (!self.OnBattleOpen && dateTime.Hour == 20 && dateTime.Minute == 30)
-            {
-                self.OnBattleOpen();
-            }
-            if (!self.OnBattleClose && dateTime.Hour == 20 && dateTime.Minute == 59)
-            {
-                self.OnBattleClose().Coroutine();
-            }
 
+            if (!self.OnBattleOpen)
+            {
+                int openTime = FunctionHelp.GetOpenTime(1025);
+                int curMinte = dateTime.Hour * 60 + dateTime.Minute;
+                if (curMinte >= openTime - 1)
+                {
+                    self.OnBattleOpen().Coroutine();
+                }
+            }
+            if (!self.OnBattleClose)
+            {
+                int closeTime = FunctionHelp.GetCloseTime(1025);
+                int curMinte = dateTime.Hour * 60 + dateTime.Minute;
+                if (curMinte  >= closeTime - 1)
+                {
+                    self.OnBattleClose().Coroutine();
+                }
+            }
+            
             self.SaveDB().Coroutine();
         }
 
-        public static void OnBattleOpen(this ActivitySceneComponent self)
+        public static async ETTask OnBattleOpen(this ActivitySceneComponent self)
         {
             self.OnBattleOpen = true;
+
+            long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+            MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOpen });
+            await TimerComponent.Instance.WaitAsync(60000);
+
             ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), 
                NoticeType.BattleOpen, "战场已开启。请前往战场").Coroutine();
         }
@@ -85,6 +101,10 @@ namespace ET
         public static  async ETTask OnBattleClose(this ActivitySceneComponent self)
         {
             self.OnBattleClose = true;
+
+            long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+            MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleClose });
+
             ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()),
                NoticeType.BattleNotice, "战场即将关闭。请退出战场").Coroutine();
 

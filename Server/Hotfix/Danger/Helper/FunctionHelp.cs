@@ -1,63 +1,65 @@
-﻿
+﻿using System;
+using System.Globalization;
 using System.Collections.Generic;
 using System.Reflection;
 
 namespace ET
 {
 
-    public class FunctionHelp : Singleton<FunctionHelp>
+    public static class FunctionHelp
     {
-
-        public delegate bool FunctionDelegate(Unit unit, int param);
-
-        //功能开启条件判断
-        public Dictionary<int, FunctionDelegate> FunctionCheck;
-
-        protected override void InternalInit()
-        {
-            base.InternalInit();
-            FunctionCheck = new Dictionary<int, FunctionDelegate>();
-            FunctionCheck.Add(FunctionContionEnum.None, DonotCheck);
-            FunctionCheck.Add(FunctionContionEnum.PlayerLv, CheckPlayerLv);
-            FunctionCheck.Add(FunctionContionEnum.TaskId, CheckTaskID);
-        }
-
-        public bool DonotCheck(Unit unit, int parame)
+        public static bool DonotCheck(Unit unit, int parame)
         {
             return true;
         }
 
         //检测函数也可以放在对应的功能模块
-        public bool CheckPlayerLv(Unit unit, int parame)
+        public static bool CheckPlayerLv(Unit unit, int parame)
         {
             return unit.GetComponent<UserInfoComponent>().UserInfo.Lv >= parame;
         }
 
-        public bool CheckTaskID(Unit unit, int parame)
+        public static bool CheckTaskID(Unit unit, int parame)
         {
             return unit.GetComponent<TaskComponent>().IsTaskComplete(parame);
         }
 
-        public bool CheckFuncitonOn(Unit unit, FuntionConfig funtionOpenConfig)
+        public static bool CheckTaskOn(Unit unit, TaskConfig taskConfig)
         {
-            int[] contion_1 = funtionOpenConfig.ConditionType;
-            int[] contion_2 = funtionOpenConfig.ConditionParam;
-            for (int i = 0; i < contion_1.Length; i++)
+            bool open = false;
+            switch (taskConfig.TriggerType)
             {
-                if (!FunctionCheck[contion_1[i]](unit, contion_2[i]))
-                    return false;
+                case FunctionContionEnum.None:
+                    open = DonotCheck(unit, taskConfig.TriggerValue);
+                    break;
+                case FunctionContionEnum.PlayerLv:
+                    open = CheckPlayerLv(unit, taskConfig.TriggerValue);
+                    break;
+                case FunctionContionEnum.TaskId:
+                    open = CheckTaskID(unit, taskConfig.TriggerValue);
+                    break;
             }
-            return true;
+            return open;   
         }
 
-        public bool CheckTaskOn(Unit unit, TaskConfig taskConfig)
+        public static int GetOpenTime(int function)
         {
-            if (!FunctionCheck[taskConfig.TriggerType](unit, taskConfig.TriggerValue))
-            {
-                return false;
-            }
-            return true;
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
+            string[] openTimes = funtionConfig.OpenTime.Split('@');
+            int openTime_1 = int.Parse(openTimes[0].Split(';')[0]);
+            int openTime_2 = int.Parse(openTimes[0].Split(';')[1]);
+            int startTime = openTime_1 * 60 + openTime_2;
+            return startTime;
         }
 
+        public static int GetCloseTime(int function)
+        {
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
+            string[] openTimes = funtionConfig.OpenTime.Split('@');
+            int closeTime_1 = int.Parse(openTimes[1].Split(';')[0]);
+            int closeTime_2 = int.Parse(openTimes[1].Split(';')[1]);
+            int endTime = closeTime_1 * 60 + closeTime_2;
+            return endTime;
+        }
     }
 }

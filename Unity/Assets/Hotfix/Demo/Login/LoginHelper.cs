@@ -34,15 +34,15 @@ namespace ET
             return ErrorCore.ERR_Success;
         }
 
-        public static long LastTime = 0;
         public static async ETTask<int> Login(Scene zoneScene, string address, string account, string password, bool relink = false, string token = "", string thirdLogin = "")
         {
-            if (TimeHelper.ClientNow() - LastTime < 1000)
+            AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
+            if (TimeHelper.ClientNow() - playerComponent.LastTime < 1000)
             {
                 Log.Error("TimeHelper.ClientNow() - LastTime < 1000");
                 return ErrorCore.ERR_OperationOften;
             }
-            LastTime = TimeHelper.ClientNow();
+            playerComponent.LastTime = TimeHelper.ClientNow();
             A2C_LoginAccount a2CLoginAccount = null;
             Session accountSession = null;
 
@@ -59,7 +59,6 @@ namespace ET
                 return ErrorCore.ERR_NetWorkError;
             }
 
-            AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
             if (a2CLoginAccount.Error == ErrorCore.ERR_EnterQueue)
             {
                 playerComponent.AccountId = a2CLoginAccount.AccountId;

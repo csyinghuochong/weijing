@@ -8,6 +8,13 @@ namespace ET
     public static class BattleHelper
     {
 
+        public static async ETTask<int> OnRobotEnter(Scene zoneScene)
+        {
+            int sceneId = BattleHelper.GetBattFubenId();
+            int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, sceneId);
+            return errorCode;
+        }
+
         public static async ETTask<int> OnButtonEnter(Scene zoneScene)
         {
             int sceneId = BattleHelper.GetBattFubenId();

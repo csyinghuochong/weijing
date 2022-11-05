@@ -25,24 +25,11 @@ namespace ET
             EventType.SceneChangeStart.Instance.SonId = sonId;
             Game.EventSystem.PublishClass(EventType.SceneChangeStart.Instance);
 
-            long instanceid_1 = 0;
-            long instanceid_2 = 0;
             try
             {  // 等待CreateMyUnit的消息
-                instanceid_1 = currentScene.InstanceId;
+
                 WaitType.Wait_CreateMyUnit waitCreateMyUnit = await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_CreateMyUnit>();
                 M2C_CreateMyUnit m2CCreateMyUnit = waitCreateMyUnit.Message;
-                instanceid_2 = currentScene.InstanceId;
-                if (currentScene == null || currentScene.IsDisposed || currentScene.InstanceId == 0)
-                {
-                    Log.Error($"SceneChangeHelper1 {currentScene} {instanceid_1} {instanceid_2}");
-                    return;
-                }
-                if (currentScene.GetComponent<UnitComponent>().Get(m2CCreateMyUnit.Unit.UnitId)!=null)
-                {
-                    Log.Error("SceneChangeHelper2 Get(m2CCreateMyUnit.Unit.UnitId)!=null");
-                    return;
-                }
 
                 Unit unit  = UnitFactory.CreateUnit(currentScene, m2CCreateMyUnit.Unit, true);
                 unitComponent.Add(unit);

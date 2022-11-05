@@ -99,7 +99,7 @@
 		public async ETTask OnRobotDead(EventType.NumericChangeEvent args)
 		{
 			Unit unit = args.Parent;
-			long instanceId = unit.InstanceId;
+			long InstanceId = unit.InstanceId;
 			if (args.NewValue == 1 && unit.IsRobot())
 			{
 				Scene zoneScene = unit.ZoneScene();
@@ -108,9 +108,13 @@
 				{
 					case SceneTypeEnum.Battle:
 						await TimerComponent.Instance.WaitAsync(10000);
+						if (InstanceId != unit.InstanceId)
+						{
+							Log.Debug("InstanceId != unit.InstanceId");
+							return;
+						}
 						C2M_TeamDungeonRBornRequest request = new C2M_TeamDungeonRBornRequest() { };
 						zoneScene.GetComponent<SessionComponent>().Session.Send(request);
-						await TimerComponent.Instance.WaitAsync(1000);
 						zoneScene.GetComponent<BehaviourComponent>().TargetID = 0;
 						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
 						break;
@@ -118,7 +122,6 @@
 						await TimerComponent.Instance.WaitAsync(20000);
 						request = new C2M_TeamDungeonRBornRequest() { };
 						zoneScene.GetComponent<SessionComponent>().Session.Send(request);
-						await TimerComponent.Instance.WaitAsync(1000);
 						zoneScene.GetComponent<BehaviourComponent>().TargetID = 0;
 						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
 						break;

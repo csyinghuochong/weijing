@@ -75,7 +75,6 @@ namespace ET
                     List<DropInfo> ids = MapHelper.GetCanShiQu(aiComponent.ZoneScene());
                     if (ids.Count > 0)
                     {
-                        Log.ILog.Debug("Behaviour_Attack: SendShiquItem");
                         await MapHelper.SendShiquItem(aiComponent.ZoneScene(), ids);
                         await aiComponent.ZoneScene().GetComponent<BagComponent>().CheckYaoShui();
                     }

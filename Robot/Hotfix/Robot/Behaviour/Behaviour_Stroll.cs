@@ -28,7 +28,6 @@ namespace ET
             Log.ILog.Debug("Behaviour_Stroll: Enter");
             while (number > 0)
             {
-                Log.ILog.Debug("Behaviour_Stroll: Execute");
                 int random = RandomHelper.RandomNumber(0, BehaviourComponent.StrollPositionList.Count);
                 Vector3 vector3 = BehaviourComponent.StrollPositionList[random];
 

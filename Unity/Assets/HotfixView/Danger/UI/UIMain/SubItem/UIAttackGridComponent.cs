@@ -149,7 +149,9 @@ namespace ET
         public static void BeginAutoAttack(this UIAttackGridComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
+
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.AttackGridTimer, self);
+            self.OnUpdate();
         }
 
         public static void OnUpdate(this UIAttackGridComponent self)

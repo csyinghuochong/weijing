@@ -133,6 +133,14 @@ namespace ET
             }
         }
 
+        /// <summary>
+        /// key一样才会排队
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="coroutineLockType"></param>
+        /// <param name="key"></param>
+        /// <param name="time"></param>
+        /// <returns></returns>
         public static async ETTask<CoroutineLock> Wait(this CoroutineLockComponent self, int coroutineLockType, long key, int time = 60000)
         {
             CoroutineLockQueueType coroutineLockQueueType = self.list[coroutineLockType];

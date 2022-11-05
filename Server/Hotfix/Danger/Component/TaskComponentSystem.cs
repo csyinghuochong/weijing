@@ -100,7 +100,7 @@ namespace ET
         /// <returns></returns>
         public static TaskPro OnGetTask(this TaskComponent self, int taskid)
         {
-            bool canget = FunctionHelp.Instance.CheckTaskOn(self.GetParent<Unit>(), TaskConfigCategory.Instance.Get(taskid));
+            bool canget = FunctionHelp.CheckTaskOn(self.GetParent<Unit>(), TaskConfigCategory.Instance.Get(taskid));
             if (!canget)
             {
                 return null;

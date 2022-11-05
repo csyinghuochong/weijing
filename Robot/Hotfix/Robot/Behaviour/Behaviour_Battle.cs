@@ -20,13 +20,10 @@
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Scene zoneScene = aiComponent.ZoneScene();
-            TeamComponent teamComponent = zoneScene.GetComponent<TeamComponent>();
             Log.ILog.Debug("Behaviour_Battle: Enter");
             while (true)
             {
-                Log.ILog.Debug("Behaviour_Battle: Execute");
-               
-                int errorCode = await BattleHelper.OnButtonEnter(zoneScene);
+                int errorCode = await BattleHelper.OnRobotEnter(zoneScene);
                 if (errorCode != 0)
                 {
                     Log.Info($"Behaviour_Battle: errorCode {errorCode}");

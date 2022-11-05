@@ -35,7 +35,7 @@ namespace ET
                     number = ++self.RobotList[robotId];
                 }
 
-                string account = $"{robotId}_{zone}_{number}_rggncc";
+                string account = $"{robotId}_{zone}_{number}_rgqwgncc";
                 Log.Debug($"NewRobot  :{robotZone}  {account}");
                 bool innernet = ComHelp.IsInnerNet();
                 int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, ComHelp.RobotPassWord);
@@ -44,7 +44,7 @@ namespace ET
                 {
                     A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());
                     AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
-                    playerComponent.CurrentServerId = 1;
+                    playerComponent.CurrentServerId = zone;
                     playerComponent.CurrentRoleId = g2cCreateRole.createRoleInfo.UserID;
 
                     errorCode = await LoginHelper.GetRealmKey(zoneScene);
@@ -53,7 +53,7 @@ namespace ET
                 if (registerCode == ErrorCore.ERR_AccountAlreadyRegister)
                 {
                     AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
-                    playerComponent.CurrentServerId = 1;
+                    playerComponent.CurrentServerId = zone;
                     playerComponent.CurrentRoleId = playerComponent.CreateRoleList[0].UserID;
 
                     errorCode = await LoginHelper.GetRealmKey(zoneScene);
