@@ -4,17 +4,17 @@ namespace ET
 {
     public static class EnterFubenHelp
     {
-        public static long LastQuitTime = 0;
+
         public static async ETTask<int> RequestTransfer(Scene zoneScene, int newsceneType, int sceneId, int transferId = 0, int difficulty = FubenDifficulty.None, string paraminfo = "")
         {
             try
             {
-                if (TimeHelper.ServerNow() - LastQuitTime < 1000)
+                MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
+                if (TimeHelper.ServerNow() - mapComponent.LastQuitTime < 1000)
                 {
                     return ErrorCore.ERR_OperationOften;
                 }
-                LastQuitTime = TimeHelper.ServerNow();
-                MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
+                mapComponent.LastQuitTime = TimeHelper.ServerNow();
                 int oldSceneType = mapComponent.SceneTypeEnum;
                 if (oldSceneType == newsceneType && newsceneType!= SceneTypeEnum.LocalDungeon)
                 {

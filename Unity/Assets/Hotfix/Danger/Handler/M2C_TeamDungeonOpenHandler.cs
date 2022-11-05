@@ -13,7 +13,7 @@
         {
             await ETTask.CompletedTask;
             AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
-            Log.Debug($"M2C_TeamDungeonOpen:  {accountInfoComponent.Account}");
+            Log.Debug($"M2C_TeamDungeonOpen:  {accountInfoComponent.MyId}");
 #if NOT_UNITY
             if (accountInfoComponent.Password == ComHelp.RobotPassWord)
             {

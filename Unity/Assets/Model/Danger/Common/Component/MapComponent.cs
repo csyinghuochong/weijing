@@ -6,6 +6,7 @@
         public int SceneId;
         public int SonSceneId;
         public string NavMeshId;
+        public long LastQuitTime = 0;
 
         public bool OldNavMesh = true;
     }
