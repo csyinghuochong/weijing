@@ -57,7 +57,11 @@ namespace ET
             if (!ComHelp.IfNull(robotConfig.AIParameter))
             {
                 string[] positions = robotConfig.AIParameter.Split(';');
-                self.TargetPosition = new UnityEngine.Vector3(float.Parse(positions[0]), float.Parse(positions[1]), float.Parse(positions[2]));
+                float range  = float.Parse(positions[3]);
+                self.TargetPosition = new UnityEngine.Vector3(
+                    float.Parse(positions[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), 
+                    float.Parse(positions[1]),
+                    float.Parse(positions[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
             }
             
             self.NewBehaviour = BehaviourType.Behaviour_Stroll;
