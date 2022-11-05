@@ -283,24 +283,6 @@ namespace ET
             }
         }
 
-        //Alpha = 0,              //仅内部人员使用。一般不向外部发布
-        //Beta = 1,               //公开测试版
-        //BanHao = 2,
-        public static string GetServerIpList(bool outnet, int serverid)
-        {
-            Dictionary<int, string> keyValuePairs = new Dictionary<int, string>();
-            switch (outnet)
-            {
-                case true:
-                    keyValuePairs.Add(1, "39.96.194.143:20305");
-                    break;
-                case false:
-                    keyValuePairs.Add(1, "127.0.0.1:20305");
-                    break;
-            }
-            return keyValuePairs[serverid];
-        }
-
         //注册账号
         public static async ETTask<int> Register(Scene zoneScene, bool outNet,  VersionMode versionCode, string account, string password)
         {

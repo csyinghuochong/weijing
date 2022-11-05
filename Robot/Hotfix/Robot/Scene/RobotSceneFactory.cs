@@ -17,7 +17,6 @@ namespace ET
             Scene scene = EntitySceneFactory.CreateScene(id, instanceId, zone, sceneType, name, parent);
 
             scene.AddComponent<MailBoxComponent, MailboxType>(MailboxType.UnOrderMessageDispatcher);
-
             switch (scene.SceneType)
             {
                 case SceneType.Robot:

@@ -96,8 +96,11 @@ namespace ET
 		/// <summary>行为</summary>
 		[ProtoMember(7)]
 		public int Behaviour { get; set; }
-		/// <summary>参数</summary>
+		/// <summary>行为ID</summary>
 		[ProtoMember(8)]
+		public int BehaviourID { get; set; }
+		/// <summary>参数</summary>
+		[ProtoMember(9)]
 		public string AIParameter { get; set; }
 
 	}

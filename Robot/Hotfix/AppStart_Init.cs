@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Net;
+
 namespace ET
 {
     public class AppStart_Init: AEvent<EventType.AppStart>
@@ -28,7 +32,12 @@ namespace ET
             Game.Scene.AddComponent<BuffDispatcherComponent>();
             Game.Scene.AddComponent<ShouJiChapterInfoComponent>();
             Game.Scene.AddComponent<SkillDispatcherComponent>();
-            
+
+            Game.Scene.AddComponent<ActorMessageDispatcherComponent>();
+
+            StartProcessConfig processConfig = StartProcessConfigCategory.Instance.Get(Game.Options.Process);
+            Game.Scene.AddComponent<NetInnerComponent, IPEndPoint, int>(processConfig.InnerIPPort, SessionStreamDispatcherType.SessionStreamDispatcherServerInner);
+
             var processScenes = StartSceneConfigCategory.Instance.GetByProcess(Game.Options.Process);
             foreach (StartSceneConfig startConfig in processScenes)
             {
