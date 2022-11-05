@@ -51,7 +51,7 @@ namespace ET
                     && Vector3.Distance(unit.Position,target.Position) < aiComponent.ActDistance)
                 {
                     float value = RandomHelper.RandFloat01();
-                    if (value > 0.01f)
+                    if (value > 0.1f)
                     {
                         zoneScene.GetComponent<AttackComponent>().AutoAttack_1(unit, target);
                     }

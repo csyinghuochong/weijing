@@ -112,21 +112,21 @@ namespace ET
 
             //获取攻击值
             long attack_Act = (long)RandomHelper.RandomNumberFloat(attack_MinAct, attack_MaxAct);
-
-            //攻击强度和法术强度
-            switch (attackUnit.GetComponent<UserInfoComponent>().UserInfo.Occ) {
-
-                //战士
-                case 1:
-                    attack_Act += numericComponentAttack.GetAsLong(NumericType.Now_ActQiangDuAdd);
-                    break;
-
-                //法师
-                case 2:
-                    attack_Act += numericComponentAttack.GetAsLong(NumericType.Now_MageQiangDuAdd);
-                    break;
+            if (attackUnit.Type == UnitType.Player)
+            {
+                //攻击强度和法术强度
+                switch (attackUnit.GetComponent<UserInfoComponent>().UserInfo.Occ)
+                {
+                    //战士
+                    case 1:
+                        attack_Act += numericComponentAttack.GetAsLong(NumericType.Now_ActQiangDuAdd);
+                        break;
+                    //法师
+                    case 2:
+                        attack_Act += numericComponentAttack.GetAsLong(NumericType.Now_MageQiangDuAdd);
+                        break;
+                }
             }
-
             //long attack_def = (long)RandomHelper.RandomNumberFloat(attack_MinDef, attack_MaxDef);
 
             //获取受击方属性
