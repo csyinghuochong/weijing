@@ -8,9 +8,11 @@ namespace ET
         private async ETTask OnRobotExit(Scene zonescene)
         {
             EnterFubenHelp.RequestQuitFuben(zonescene);
-            await TimerComponent.Instance.WaitAsync(1000);
+            await TimerComponent.Instance.WaitAsync(2000);
             zonescene.GetComponent<BehaviourComponent>().TargetID = 0;
             zonescene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Stroll);
+            zonescene.GetComponent<TeamComponent>().SendLeaveRequest().Coroutine();
+            //退出队伍
         }
 
         protected override  void Run(Session session, M2C_TeamDungeonSettlement message)
