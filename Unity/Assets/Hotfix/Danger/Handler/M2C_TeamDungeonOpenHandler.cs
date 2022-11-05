@@ -11,8 +11,10 @@
 
         private async ETTask RunAsync(Scene zoneScene)
         {
-#if NOT_UNITY
+            await ETTask.CompletedTask;
             AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
+            Log.Debug($"M2C_TeamDungeonOpen:  {accountInfoComponent.Account}");
+#if NOT_UNITY
             if (accountInfoComponent.Password == ComHelp.RobotPassWord)
             {
                 TeamComponent teamComponent = zoneScene.GetComponent<TeamComponent>();
@@ -30,7 +32,6 @@
 #else
             EventType.RecvTeamDungeonOpen.Instance.ZoneScene = zoneScene;
             EventSystem.Instance.PublishClass(EventType.RecvTeamDungeonOpen.Instance);
-            await ETTask.CompletedTask;
 #endif
         }
 

@@ -224,7 +224,7 @@ namespace ET
         public static void OnEnterIdleState(this FsmComponent self)
         {
             SkillManagerComponent skillManagerComponent = self.GetParent<Unit>().GetComponent<SkillManagerComponent>();
-            if (TimeHelper.ClientNow() > skillManagerComponent.SkillMoveTime)
+            if (skillManagerComponent == null || TimeHelper.ClientNow() > skillManagerComponent.SkillMoveTime)
             {
                 self.SetIdleState();
             }

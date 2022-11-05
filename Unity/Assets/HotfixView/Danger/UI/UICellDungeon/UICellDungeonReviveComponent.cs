@@ -87,7 +87,7 @@ namespace ET
         public static void OnInitUI(this UICellDungeonReviveComponent self, int seneTypeEnum)
         {
             self.SceneType = seneTypeEnum;
-            self.LeftTime = self.IsNoAutoExit(seneTypeEnum) ? 20 : 10;
+            self.LeftTime = seneTypeEnum == SceneTypeEnum.TeamDungeon ? 20 : 10;
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.DungeonReviveTimer, self);
 
             self.Check();
