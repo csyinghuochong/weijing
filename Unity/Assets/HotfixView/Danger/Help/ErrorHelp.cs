@@ -19,6 +19,8 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_LoginInfoIsNull, "未找到账号数据,请确认账号是否已经注册");
             ErrorHintList.Add(ErrorCore.ERR_AccountOrPasswordError, "密码错误,请检查重新输入");
             ErrorHintList.Add(ErrorCore.ERR_OtherAccountLogin, "账号异地登录");
+            ErrorHintList.Add(ErrorCore.ERR_RequestRepeatedly, "请求重复");
+            
 
             //ErrorHintList.Add(ErrorCore.ERR_AccountOrPasswordError, "账号未注册!");
             ErrorHintList.Add(ErrorCore.ERR_GoldNotEnoughError, "金币不足!");

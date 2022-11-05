@@ -29,6 +29,7 @@ namespace ET
         public GameObject Text_ExitTip;
         public GameObject Button_Revive;
         public GameObject Button_Exit;
+        public GameObject Text_ExitDes;
 
         public long Timer;
         public int LeftTime;
@@ -48,6 +49,7 @@ namespace ET
             self.Text_ExitTip = rc.Get<GameObject>("Text_ExitTip");
             self.Button_Revive = rc.Get<GameObject>("Button_Revive");
             self.Button_Exit = rc.Get<GameObject>("Button_Exit");
+            self.Text_ExitDes = rc.Get<GameObject>("Text_ExitDes");
 
             self.Button_Revive.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Revive(); });
             self.Button_Exit.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Exit(); });
@@ -114,6 +116,10 @@ namespace ET
                 self.Text_Cost.GetComponent<Text>().text = selfNum + "/" + needNum + "("+"道具不足"+")";
                 self.Text_Cost.GetComponent<Text>().color = Color.yellow;
             }
+
+            if (self.SceneType != SceneTypeEnum.LocalDungeon) {
+                self.Text_ExitDes.GetComponent<Text>().text = "返回出生点";
+            }
         }
 
         public static void OnButton_Revive(this UICellDungeonReviveComponent self)
@@ -154,7 +160,13 @@ namespace ET
             {
                 if (self.LeftTime > 0)
                 {
-                    FloatTipManager.Instance.ShowFloatTip($"{self.LeftTime}秒后可复活！");
+                    if (self.SceneType == SceneTypeEnum.LocalDungeon)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip($"{self.LeftTime}秒后可返回主城！");
+                    }
+                    else {
+                        FloatTipManager.Instance.ShowFloatTip($"{self.LeftTime}秒后可返回出生点！");
+                    }
                 }
                 else
                 {
