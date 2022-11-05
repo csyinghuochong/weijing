@@ -5,6 +5,7 @@ namespace ET
     public class M2C_TeamDungeonSettlementHandler : AMHandler<M2C_TeamDungeonSettlement>
     {
 
+#if NOT_UNITY
         private async ETTask OnRobotExit(Scene zonescene)
         {
             EnterFubenHelp.RequestQuitFuben(zonescene);
@@ -14,6 +15,7 @@ namespace ET
             zonescene.GetComponent<TeamComponent>().SendLeaveRequest().Coroutine();
             //退出队伍
         }
+#endif
 
         protected override  void Run(Session session, M2C_TeamDungeonSettlement message)
         {
