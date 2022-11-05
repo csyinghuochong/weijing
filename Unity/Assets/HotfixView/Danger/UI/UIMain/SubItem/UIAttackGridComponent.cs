@@ -87,8 +87,7 @@ namespace ET
             {
                 self.MoveAttackId = 0;
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                int targetAngle = self.AttackComponent.GetTargetAnagle(unit, null);
-                unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.AttackComponent.ComboSkillId, 0, targetAngle, 0, 0).Coroutine();
+                self.ZoneScene().GetComponent<AttackComponent>().AutoAttack_1(unit, null);
             }
             else
             {

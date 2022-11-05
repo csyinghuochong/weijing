@@ -81,21 +81,21 @@ namespace ET
 		/// <summary>等级</summary>
 		[ProtoMember(2)]
 		public int Level { get; set; }
-		/// <summary>行为</summary>
-		[ProtoMember(3)]
-		public int Behaviour { get; set; }
 		/// <summary>第一职业</summary>
-		[ProtoMember(4)]
+		[ProtoMember(3)]
 		public int Occ { get; set; }
 		/// <summary>第二职业</summary>
-		[ProtoMember(5)]
+		[ProtoMember(4)]
 		public int OccTwo { get; set; }
 		/// <summary>装备</summary>
-		[ProtoMember(6)]
+		[ProtoMember(5)]
 		public int[] EquipList { get; set; }
 		/// <summary>属性点</summary>
-		[ProtoMember(7)]
+		[ProtoMember(6)]
 		public int[] PointList { get; set; }
+		/// <summary>行为</summary>
+		[ProtoMember(7)]
+		public int Behaviour { get; set; }
 		/// <summary>参数</summary>
 		[ProtoMember(8)]
 		public string AIParameter { get; set; }
