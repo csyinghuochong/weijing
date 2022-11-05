@@ -29,8 +29,12 @@ namespace ET
                     List<Entity> ts = robotManagerComponent.Children.Values.ToList();
                     for (int i = 0; i < ts.Count; i++)
                     {
-                        (ts[i] as Scene).GetComponent<SessionComponent>().Session.Dispose();
-                        ts[i].Dispose();
+                        Scene robotScene = ts[i] as Scene;
+                        if (robotScene.GetComponent<SessionComponent>().Session != null)
+                        {
+                            robotScene.GetComponent<SessionComponent>().Session.Dispose();
+                        }
+                        robotScene.Dispose();
                         await TimerComponent.Instance.WaitFrameAsync();
                     }
                     break;

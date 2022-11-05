@@ -13,6 +13,7 @@ namespace ET
 				return;
 			}
 
+			Vector3 pos = new Vector3(message.X, message.Y, message.Z);
 			//立即停止
 			if (message.Error == -1)
 			{
@@ -21,7 +22,10 @@ namespace ET
 				return;
 			}
 
-			Vector3 pos = new Vector3(message.X, message.Y, message.Z);
+			if (!unit.MainHero)
+			{
+				Log.Debug($"M2C_Stop  {message.Error } {pos}");
+			}
 			if (Vector3.Distance(unit.Position, pos) < 0.2f)
 			{
 				Quaternion rotation = new Quaternion(message.A, message.B, message.C, message.W);

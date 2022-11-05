@@ -30,7 +30,7 @@ namespace ET
             self.OnBattleOpen = false;
             self.OnBattleClose = false;
             self.MapIdList.Clear();
-;
+
             self.MapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId);
             self.MapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "PaiMai").InstanceId);
             self.MapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Rank").InstanceId);
@@ -68,7 +68,7 @@ namespace ET
             {
                 int openTime = FunctionHelp.GetOpenTime(1025);
                 int curMinte = dateTime.Hour * 60 + dateTime.Minute;
-                if (curMinte >= openTime - 1)
+                if (curMinte == openTime - 1)
                 {
                     self.OnBattleOpen().Coroutine();
                 }
@@ -77,7 +77,7 @@ namespace ET
             {
                 int closeTime = FunctionHelp.GetCloseTime(1025);
                 int curMinte = dateTime.Hour * 60 + dateTime.Minute;
-                if (curMinte  >= closeTime - 1)
+                if (curMinte == closeTime - 1)
                 {
                     self.OnBattleClose().Coroutine();
                 }

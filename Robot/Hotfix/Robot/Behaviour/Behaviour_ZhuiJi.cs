@@ -32,9 +32,9 @@ namespace ET
                 if (target != null && Vector3.Distance(target.Position, unit.Position) > aiComponent.ActDistance)
                 {
                     Vector3 dir = unit.Position - target.Position;
-                    Vector3 vector3 = target.Position + dir.normalized * (aiComponent.ActDistance - 0.5f);
-                    vector3 = vector3 + new Vector3(RandomHelper.RandFloat01() * 0.5f, 0f, RandomHelper.RandFloat01() * 0.5f);
-                    unit.MoveToAsync2(vector3).Coroutine();
+                    Vector3 vector3 = target.Position + dir.normalized * (aiComponent.ActDistance - 2f);
+                    //vector3 = vector3 + new Vector3(RandomHelper.RandFloat01() * 0.5f, 0f, RandomHelper.RandFloat01() * 0.5f);
+                    unit.MoveToAsync2(vector3, false).Coroutine();
                 }
                 else
                 {
@@ -48,7 +48,7 @@ namespace ET
                     return;
                 }
                 
-                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(500, cancellationToken);
                 if (!timeRet)
                 {
                     Log.ILog.Debug("Behaviour_ZhuiJi: Exit1");

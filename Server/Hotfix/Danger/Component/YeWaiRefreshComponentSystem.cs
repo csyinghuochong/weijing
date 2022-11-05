@@ -26,7 +26,7 @@ namespace ET
     {
         public override void Awake(YeWaiRefreshComponent self)
         {
-            
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.RefreshMonsterTimer, self);
         }
     }
 
@@ -42,17 +42,12 @@ namespace ET
     public static class YeWaiRefreshComponentSystem
     {
 
-        public static void OnAwake(this YeWaiRefreshComponent self, int sceneId)
+        public static void OnAwake(this YeWaiRefreshComponent self)
         {
-            if (sceneId == 0)
-            {
-                return;
-            }
-            Scene scene = self.GetParent<Scene>();
-            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
-            FubenHelp.CreateMonsterList(scene, sceneConfig.CreateMonster, FubenDifficulty.Normal);
-            FubenHelp.CreateMonsterList(scene, sceneConfig.CreateMonsterPosi, FubenDifficulty.Normal);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.RefreshMonsterTimer, self);
+            //Scene scene = self.GetParent<Scene>();
+            //SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
+            //FubenHelp.CreateMonsterList(scene, sceneConfig.CreateMonster, FubenDifficulty.Normal);
+            //FubenHelp.CreateMonsterList(scene, sceneConfig.CreateMonsterPosi, FubenDifficulty.Normal);
         }
 
         public static void CreateMonsterList(this YeWaiRefreshComponent self, string createMonster, int fubenDifficulty)
