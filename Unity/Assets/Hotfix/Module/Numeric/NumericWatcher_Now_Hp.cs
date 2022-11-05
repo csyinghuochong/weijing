@@ -105,18 +105,16 @@
 				switch (mapComponent.SceneTypeEnum)
 				{
 					case SceneTypeEnum.Battle:
-						if (instanceId == unit.InstanceId)
-						{
-							await TimerComponent.Instance.WaitAsync(20000);
-							C2M_TeamDungeonRBornRequest request = new C2M_TeamDungeonRBornRequest() { };
-							zoneScene.GetComponent<SessionComponent>().Session.Send(request);
-							await TimerComponent.Instance.WaitAsync(1000);
-							zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
-						}
+						await TimerComponent.Instance.WaitAsync(10000);
+						C2M_TeamDungeonRBornRequest request = new C2M_TeamDungeonRBornRequest() { };
+						zoneScene.GetComponent<SessionComponent>().Session.Send(request);
+						await TimerComponent.Instance.WaitAsync(1000);
+						zoneScene.GetComponent<BehaviourComponent>().TargetID = 0;
+						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
 						break;
 					case SceneTypeEnum.TeamDungeon:
 						await TimerComponent.Instance.WaitAsync(20000);
-						C2M_TeamDungeonRBornRequest request = new C2M_TeamDungeonRBornRequest() { };
+						request = new C2M_TeamDungeonRBornRequest() { };
 						zoneScene.GetComponent<SessionComponent>().Session.Send(request);
 						await TimerComponent.Instance.WaitAsync(1000);
 						zoneScene.GetComponent<BehaviourComponent>().TargetID = 0;
