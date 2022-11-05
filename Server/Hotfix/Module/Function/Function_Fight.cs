@@ -110,13 +110,29 @@ namespace ET
                 attack_MinAct = attack_MaxAct;
             }
 
+            //获取攻击值
             long attack_Act = (long)RandomHelper.RandomNumberFloat(attack_MinAct, attack_MaxAct);
-            long attack_def = (long)RandomHelper.RandomNumberFloat(attack_MinDef, attack_MaxDef);
+
+            //攻击强度和法术强度
+            switch (attackUnit.GetComponent<UserInfoComponent>().UserInfo.Occ) {
+
+                //战士
+                case 1:
+                    attack_Act += numericComponentAttack.GetAsLong(NumericType.Now_ActQiangDuAdd);
+                    break;
+
+                //法师
+                case 2:
+                    attack_Act += numericComponentAttack.GetAsLong(NumericType.Now_MageQiangDuAdd);
+                    break;
+            }
+
+            //long attack_def = (long)RandomHelper.RandomNumberFloat(attack_MinDef, attack_MaxDef);
 
             //获取受击方属性
             NumericComponent numericComponentDefend = defendUnit.GetComponent<NumericComponent>();
-            long defend_Hp = numericComponentDefend.GetAsLong(NumericType.Now_Hp);
-            long defend_MaxHp = numericComponentDefend.GetAsLong(NumericType.Now_MaxHp);
+            //long defend_Hp = numericComponentDefend.GetAsLong(NumericType.Now_Hp);
+            //long defend_MaxHp = numericComponentDefend.GetAsLong(NumericType.Now_MaxHp);
             long defend_MinAct = numericComponentDefend.GetAsLong(NumericType.Now_MinAct);
             long defend_MaxAct = numericComponentDefend.GetAsLong(NumericType.Now_MaxAct);
             long defend_MinDef = numericComponentDefend.GetAsLong(NumericType.Now_MinDef);
@@ -525,7 +541,7 @@ namespace ET
       
         //暴击等级等属性转换成实际暴击率的方法
         private float LvProChange(long value, int lv) {
-            float proValue = value / (10000 + lv * 500);
+            float proValue = value / (5000 + lv * 250);
             return proValue;
         }
 

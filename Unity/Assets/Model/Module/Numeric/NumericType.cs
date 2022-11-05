@@ -284,6 +284,21 @@
         public const int Extra_Buff_JumpDisAdd_Add = Now_JumpDisAdd * 100 + 11;           //属性Buff附加加法
         public const int Extra_Buff_JumpDisAdd_Mul = Now_JumpDisAdd * 100 + 12;           //属性Buff附加乘法
 
+        public const int Now_ActQiangDuAdd = 1206;          //攻击强度
+        public const int Base_ActQiangDuAdd_Base = Now_ActQiangDuAdd * 100 + 1;                 //属性累加
+        public const int Base_ActQiangDuAdd_Mul = Now_ActQiangDuAdd * 100 + 2;                  //属性乘法
+        public const int Base_ActQiangDuAdd_Add = Now_ActQiangDuAdd * 100 + 3;                  //属性附加
+        public const int Extra_Buff_ActQiangDuAdd_Add = Now_ActQiangDuAdd * 100 + 11;           //属性Buff附加加法
+        public const int Extra_Buff_ActQiangDuAdd_Mul = Now_ActQiangDuAdd * 100 + 12;           //属性Buff附加乘法
+
+        public const int Now_MageQiangDuAdd = 1207;          //法术强度
+        public const int Base_MageQiangDuAdd_Base = Now_ActQiangDuAdd * 100 + 1;                 //属性累加
+        public const int Base_MageQiangDuAdd_Mul = Now_ActQiangDuAdd * 100 + 2;                  //属性乘法
+        public const int Base_MageQiangDuAdd_Add = Now_ActQiangDuAdd * 100 + 3;                  //属性附加
+        public const int Extra_Buff_MageQiangDuAdd_Add = Now_ActQiangDuAdd * 100 + 11;           //属性Buff附加加法
+        public const int Extra_Buff_MageQiangDuAdd_Mul = Now_ActQiangDuAdd * 100 + 12;           //属性Buff附加乘法
+
+
         //浮点数 2001-2999   其余区间为整数
         public const int Now_Cri = 2001;          //当前暴击概率
         public const int Base_Cri_Base = Now_Cri * 100 + 1;                  //属性累加
