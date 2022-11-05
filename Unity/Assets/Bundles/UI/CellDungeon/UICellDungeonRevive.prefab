@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 3025062332562086623}
   - component: {fileID: 209279983950701491}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Text_ExitDes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -551,7 +551,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -253.29999, y: -342.7}
+  m_AnchoredPosition: {x: -253.2998, y: -342.7}
   m_SizeDelta: {x: 500, y: 80}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7016556204408872180
@@ -1159,6 +1159,8 @@ MonoBehaviour:
     gameObject: {fileID: 4132618897102202621}
   - key: Text_CostName
     gameObject: {fileID: 5596120968033342628}
+  - key: Text_ExitDes
+    gameObject: {fileID: 1529989565558951874}
 --- !u!1 &5090851531794870799
 GameObject:
   m_ObjectHideFlags: 0
