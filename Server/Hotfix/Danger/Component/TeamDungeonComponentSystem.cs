@@ -149,7 +149,6 @@ namespace ET
 
         public static void OnKillEvent(this TeamDungeonComponent self, Unit unit)
         {
-            UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             if (unit.Type != UnitType.Monster)
             {
                 return;
