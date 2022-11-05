@@ -1,6 +1,6 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
 
 namespace ET
 {
@@ -17,12 +17,13 @@ namespace ET
     public static class RobotManagerComponentSystem
     {
 
-        public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone, int robotId)
+        public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone, int robotZone, int robotId)
         {
             Scene zoneScene = null;
             try
             {
-                zoneScene = SceneFactory.CreateZoneScene(zone, "Robot", self);
+                //同一个进程robotZone是自增的
+                zoneScene = SceneFactory.CreateZoneScene(robotZone, "Robot", self);
 
                 int number = 1;
                 if (!self.RobotList.ContainsKey(robotId))
@@ -33,11 +34,12 @@ namespace ET
                 {
                     number = ++self.RobotList[robotId];
                 }
-                string account = $"{robotId}_{number}_a1bncc";
-                Log.Debug($"NewRobot  :{zone}  {account}");
-                bool outnet = false;
-                int registerCode = await LoginHelper.Register(zoneScene, outnet, VersionMode.Beta, account, ComHelp.RobotPassWord);
-                int errorCode = await LoginHelper.Login(zoneScene, LoginHelper.GetServerIpList(outnet, 1), account, ComHelp.RobotPassWord);
+
+                string account = $"{robotId}_{zone}_{number}_rggncc";
+                Log.Debug($"NewRobot  :{robotZone}  {account}");
+                bool innernet = ComHelp.IsInnerNet();
+                int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, ComHelp.RobotPassWord);
+                int errorCode = await LoginHelper.Login(zoneScene, ServerHelper.GetServerIpList(innernet, zone), account, ComHelp.RobotPassWord);
                 if (registerCode == ErrorCore.ERR_Success)
                 {
                     A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());
@@ -57,13 +59,13 @@ namespace ET
                     errorCode = await LoginHelper.GetRealmKey(zoneScene);
                     errorCode = await LoginHelper.EnterGame(zoneScene);
                 }
-                Log.Debug($"create robot ok: {zone}");
+                Log.Debug($"create robot ok: {robotZone}");
                 return errorCode == ErrorCore.ERR_Success ?  zoneScene : null;
             }
             catch (Exception e)
             {
                 zoneScene?.Dispose();
-                throw new Exception($"RobotSceneManagerComponent create robot fail, zone: {zone}", e);
+                throw new Exception($"RobotSceneManagerComponent create robot fail, zone: {robotZone}", e);
             }
         }
 

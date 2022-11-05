@@ -3995,3 +3995,21 @@ message C2M_TeamPickRequest    // IActorLocationMessage
 	DropInfo DropItem = 1;
 	int32 Need = 2;      //1需求 2丢弃
 }
+
+//ResponseType G2C_ExitGameGate
+message C2G_LoginRobotRequest // IRequest
+{
+	int32 RpcId = 90;
+	string Key = 1;
+	int64 RoleId = 2;
+	int64 Account = 3;
+}
+
+message G2C_LoginRobotResponse // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	// 自己的unit id
+	int64 PlayerId = 1;
+}

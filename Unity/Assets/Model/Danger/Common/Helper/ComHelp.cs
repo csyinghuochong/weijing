@@ -109,7 +109,7 @@ namespace ET
             return pro;
         }
 
-#if SERVER
+#if NOT_UNITY
         public static bool IsInnerNet()
         {
             if (StartMachineConfigCategory.Instance.Get(1).OuterIP.Contains("127.0.0.1")
@@ -120,6 +120,9 @@ namespace ET
             return false;
         }
 
+#endif
+
+#if SERVER
         public static void LoginInfo(string log)
         {
             string filePath = "../Logs/login.txt"; 

@@ -2146,4 +2146,26 @@ namespace ET
 
 	}
 
+//通知机器人进程
+	[Message(InnerOpcode.G2Robot_MessageRequest)]
+	[ProtoContract]
+	public partial class G2Robot_MessageRequest: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int Zone { get; set; }
+
+		[ProtoMember(2)]
+		public int MessageType { get; set; }
+
+		[ProtoMember(3)]
+		public string Message { get; set; }
+
+	}
+
 }

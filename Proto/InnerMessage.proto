@@ -1030,3 +1030,15 @@ message B2M_BattleEnterResponse // IActorResponse
 	int64 FubenInstanceId = 2;
 	int32 Camp = 3;
 }
+
+
+//通知机器人进程
+message G2Robot_MessageRequest // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int32 Zone = 1;
+	int32 MessageType = 2;
+	string Message = 3;
+}
