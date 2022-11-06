@@ -10,7 +10,12 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2T_TeamDungeonAgreeRequest request, T2C_TeamDungeonAgreeResponse response, Action reply)
         {
-            TeamInfo teamInfo = null;
+            TeamSceneComponent teamSceneComponent = scene.GetComponent<TeamSceneComponent>();
+            if (teamSceneComponent.GetTeamInfo(request.TeamPlayerInfo.UserID) != null)
+            {
+                reply();
+                return;
+            }
 
             long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), "Gate1").InstanceId;
             G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
@@ -25,21 +30,13 @@ namespace ET
                 return;
             }
 
-            teamInfo = scene.GetComponent<TeamSceneComponent>().GetTeamInfo(request.TeamId);
+            TeamInfo teamInfo = teamSceneComponent.GetTeamInfo(request.TeamId);
             if (teamInfo == null || teamInfo.PlayerList.Count == 3)
             {
                 reply();
                 return;
             }
-            for (int i = 0; i < teamInfo.PlayerList.Count; i++)
-            {
-                if (teamInfo.PlayerList[i].UserID == request.TeamPlayerInfo.UserID)
-                {
-                    reply();
-                    return;
-                }
-            }
-
+           
             teamInfo.PlayerList.Add(request.TeamPlayerInfo);
             M2C_TeamUpdateResult m2C_HorseNoticeInfo = new M2C_TeamUpdateResult() { TeamInfo = teamInfo };
             for (int i = 0; i < teamInfo.PlayerList.Count; i++)

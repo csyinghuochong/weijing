@@ -28,25 +28,31 @@
             while (true)
             {
                 //获取队伍列表
+                bool ret = true;
                 int errorCode = await teamComponent.RequestTeamDungeonList();
                 TeamInfo selfTeam = teamComponent.GetSelfTeam();
-                if (selfTeam == null)
+                if (selfTeam != null)
                 {
-                    TeamInfo teamInfo = teamComponent.GetCanJoinTeam();
-                    if (teamInfo != null)
+                    ret = await TimerComponent.Instance.WaitAsync(60000, cancellationToken);
+                    if (!ret)
                     {
-                        //有可加入的队伍直接加入
-                        errorCode = await teamComponent.SendTeamApply(teamInfo.TeamId, teamInfo.SceneId);
+                        Log.ILog.Debug("Behaviour_TeamDungeon: Exit1");
+                        return;
                     }
+                    continue;
+                }
+                TeamInfo teamInfo = teamComponent.GetCanJoinTeam(aiComponent.RobotConfig.BehaviourID);
+                if (teamInfo != null)
+                {
+                    errorCode = await teamComponent.SendTeamApply(teamInfo.TeamId, teamInfo.SceneId);
                 }
 
-                //errorCode = await teamComponent.RequestTeamDungeonOpen();
                 if (errorCode != 0)
                 {
                     Log.Info($"Behaviour_TeamDungeon: Execute {errorCode}");
                 }
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
-                bool ret = await TimerComponent.Instance.WaitAsync(2000, cancellationToken);
+                ret = await TimerComponent.Instance.WaitAsync(2000, cancellationToken);
                 if (!ret)
                 {
                     Log.ILog.Debug("Behaviour_TeamDungeon: Exit1");

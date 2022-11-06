@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -204,17 +205,25 @@ namespace ET
             }
         }
 
-        public static TeamInfo GetCanJoinTeam(this TeamComponent self)
+        public static TeamInfo GetCanJoinTeam(this TeamComponent self, int sceneId)
         {
+            List<TeamInfo> teamList = new List<TeamInfo>();
             for (int i = 0; i < self.TeamList.Count; i++)
             {
                 TeamInfo teamInfo = self.TeamList[i];
-                if (teamInfo.SceneId > 0 && teamInfo.PlayerList.Count < 3)
+                if (teamInfo.SceneId == sceneId && teamInfo.PlayerList.Count < 3)
                 {
-                    return teamInfo;
+                    teamList.Add(teamInfo);
                 }
             }
-            return null;
+            if (teamList.Count > 0)
+            {
+                return teamList[RandomHelper.RandomNumber(0, teamList.Count)];
+            }
+            else
+            {
+                return null;
+            }
         }
 
         //开启组队副本

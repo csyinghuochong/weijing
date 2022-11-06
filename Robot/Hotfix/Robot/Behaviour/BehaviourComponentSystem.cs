@@ -30,6 +30,7 @@ namespace ET
             //2   组队副本机器人
             //3   战场机器人
             RobotConfig robotConfig = RobotConfigCategory.Instance.Get(robotId);
+            self.RobotConfig = robotConfig;
             switch (robotConfig.Behaviour)
             {
                 case 1:

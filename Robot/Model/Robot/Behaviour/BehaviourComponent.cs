@@ -22,6 +22,8 @@ namespace ET
 
         public Vector3 TargetPosition;
 
+        public RobotConfig RobotConfig;
+
         /// <summary>
         /// 攻击范围，范围内攻击
         /// </summary>

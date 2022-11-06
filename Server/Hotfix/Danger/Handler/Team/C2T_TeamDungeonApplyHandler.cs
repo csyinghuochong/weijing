@@ -9,16 +9,14 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2T_TeamDungeonApplyRequest request, T2C_TeamDungeonApplyResponse response, Action reply)
         {
-            List<TeamInfo> teamList = scene.GetComponent<TeamSceneComponent>().TeamList;
-
-            TeamInfo teamInfo = null;
-            for (int i = 0; i < teamList.Count; i++)
+            TeamSceneComponent teamSceneComponent = scene.GetComponent<TeamSceneComponent>();
+            if (teamSceneComponent.GetTeamInfo(request.TeamPlayerInfo.UserID) != null)
             {
-                if (teamList[i].TeamId == request.TeamId)
-                {
-                    teamInfo = teamList[i];
-                }
+                reply();
+                return;
             }
+
+            TeamInfo teamInfo = teamSceneComponent.GetTeamInfo(request.TeamId);
             if (teamInfo == null || teamInfo.PlayerList.Count == 3)
             {
                 response.Error = ErrorCore.ERR_TeamIsFull;
@@ -26,7 +24,7 @@ namespace ET
                 return;
             }
 
-            //判断次数(需补充)
+            //判断次数
             long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
             D2G_GetComponent d2GGetUnit_1 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = request.TeamPlayerInfo.UserID, Component = DBHelper.UserInfoComponent });
             UserInfoComponent userinfo = d2GGetUnit_1.Component as UserInfoComponent;
@@ -38,7 +36,6 @@ namespace ET
             }
 
             M2C_TeamDungeonApplyResult m2C_HorseNoticeInfo = new M2C_TeamDungeonApplyResult() { TeamPlayerInfo = request.TeamPlayerInfo };
-
             long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), "Gate1").InstanceId;
             G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
                   (gateServerId, new T2G_GateUnitInfoRequest()
