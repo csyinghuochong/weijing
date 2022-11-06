@@ -84,7 +84,7 @@
 			}
 			if (args.NewValue == 1)//死亡
 			{
-				unit.GetComponent<HeroDataComponent>().OnDead(args);
+				//unit.GetComponent<HeroDataComponent>().OnDead(args);
 				EventType.UnitDead.Instance.Unit = unit;
 				Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
 			}

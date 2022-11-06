@@ -35,7 +35,7 @@ namespace ET
                     number = ++self.RobotList[robotId];
                 }
 
-                string account = $"{robotId}_{zone}_{number}_rgqwgncc";
+                string account = $"{robotId}_{zone}_{number}_abcd";
                 Log.Debug($"NewRobot  :{robotZone}  {account}");
                 bool innernet = ComHelp.IsInnerNet();
                 int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, ComHelp.RobotPassWord);

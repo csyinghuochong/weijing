@@ -22,10 +22,6 @@ namespace ET
 				return;
 			}
 
-			if (!unit.MainHero)
-			{
-				Log.Debug($"M2C_Stop  {message.Error } {pos}");
-			}
 			if (Vector3.Distance(unit.Position, pos) < 0.2f)
 			{
 				Quaternion rotation = new Quaternion(message.A, message.B, message.C, message.W);

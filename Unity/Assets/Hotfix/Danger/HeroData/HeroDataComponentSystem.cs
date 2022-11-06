@@ -136,7 +136,6 @@ namespace ET
                 return 0;
             }
 
-            UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
             int resurrection = (int)monsterConfig.ReviveTime;
             if (resurrection == 0)
@@ -171,6 +170,10 @@ namespace ET
         public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
         {
             Unit unit = self.GetParent<Unit>();
+            if (unit.GetComponent<MoveComponent>() != null)
+            {
+                unit.Stop(-1);
+            }
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             for (int i = unitInfoComponent.ZhaohuanIds.Count - 1; i >= 0; i--)
             {
@@ -185,8 +188,8 @@ namespace ET
             int waitRevive =  self.OnWaitRevive();
             unit.RemoveComponent<AIComponent>();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
-            unit.GetComponent<SkillManagerComponent>()?.OnDispose();
-            unit.GetComponent<BuffManagerComponent>()?.OnDispose();
+            unit.GetComponent<SkillManagerComponent>()?.OnDead();
+            unit.GetComponent<BuffManagerComponent>()?.OnDead();
             if (unit.Type == UnitType.Player)
             {
                 RolePetInfo rolePetInfo = unit.GetComponent<PetComponent>().GetFightPet();
