@@ -31,9 +31,10 @@ namespace ET
                 if (target != null && Vector3.Distance(target.Position, unit.Position) > aiComponent.ActDistance)
                 {
                     Vector3 dir = unit.Position - target.Position;
-                    Vector3 vector3 = target.Position + dir.normalized * (aiComponent.ActDistance - 2f);
-                    //vector3 = vector3 + new Vector3(RandomHelper.RandFloat01() * 0.5f, 0f, RandomHelper.RandFloat01() * 0.5f);
-                    unit.MoveToAsync2(vector3, false).Coroutine();
+                    Vector3 ttt = target.Position + dir.normalized * (aiComponent.ActDistance - 1f);
+                    ttt.x += unit.Id % 10 * 0.05f * (unit.Id % 2 == 0 ? 1 : -1);
+                    ttt.z += unit.Id % 10 * 0.05f * (unit.Id % 2 == 0 ? 1 : -1);
+                    unit.MoveToAsync2(ttt, false).Coroutine();
                 }
                 else
                 {
