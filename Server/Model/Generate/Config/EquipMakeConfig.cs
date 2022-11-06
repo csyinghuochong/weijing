@@ -132,11 +132,14 @@ namespace ET
 		/// <summary>熟练点数转换概率</summary>
 		[ProtoMember(19)]
 		public double ProficiencyProValue { get; set; }
-		/// <summary>制造消耗金币</summary>
+		/// <summary>制造冷却时间</summary>
 		[ProtoMember(20)]
+		public int MakeTime { get; set; }
+		/// <summary>制造消耗金币</summary>
+		[ProtoMember(21)]
 		public int MakeNeedGold { get; set; }
 		/// <summary>需要道具</summary>
-		[ProtoMember(21)]
+		[ProtoMember(22)]
 		public string NeedItems { get; set; }
 
 	}

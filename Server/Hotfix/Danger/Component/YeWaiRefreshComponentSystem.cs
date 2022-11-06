@@ -147,7 +147,7 @@ namespace ET
                     continue;
                 }
 
-                DateTime dateTime =  TimeHelper.DateTimeNow();
+                //DateTime dateTime =  TimeHelper.DateTimeNow();
                 //根据refreshMonster.Time可以纠正时间
                 refreshMonster.NextTime = refreshMonster.NextTime + refreshMonster.Interval;
                 self.RefreshMonsters[i] = refreshMonster;
@@ -158,17 +158,8 @@ namespace ET
 
         public static  void CreateMonsters(this YeWaiRefreshComponent self, RefreshMonster refreshMonster)
         {
-            //防止无限刷宝箱
-            int monsterNumber = 0;
-            List<Unit>  entities = self.GetParent<Scene>().GetComponent<UnitComponent>().GetAll();
-            for (int i = 0; i < entities.Count; i++)
-            {
-                if (entities[i].Type == UnitType.Monster)
-                {
-                    monsterNumber++;
-                }
-            }
-            if (monsterNumber >= 200)
+            int monsterNumber = FubenHelp.GetUnitList(self.GetParent<Scene>(), UnitType.Monster).Count;
+            if (monsterNumber >= GlobalValueConfigCategory.Instance.Get(59).Value2)
             {
                 return;
             }
