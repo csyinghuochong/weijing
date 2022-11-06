@@ -264,6 +264,8 @@ namespace ET
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            int occTwo = userInfo.OccTwo;
+
             if (itemconf.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
             {
                 if (!ItemViewHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
@@ -282,7 +284,6 @@ namespace ET
                     return;
                 }
             }
-            int occTwo = userInfo.OccTwo;
             if (itemconf.ItemSubType != (int)ItemSubTypeEnum.Wuqi && occTwo != 0)
             {
                 OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
