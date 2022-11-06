@@ -10,6 +10,6 @@
 3 机器人进程中使用命令行创建机器人 CreateRobot --Num=1 --RobotId=2001 创建3个机器人
 
 CreateRobot --Zone=4 --Num=1 --RobotId=2001
-CreateRobot --Zone=4 --Num=10 --RobotId=3001
+CreateRobot --Zone=4 --Num=2 --RobotId=3001
 
 

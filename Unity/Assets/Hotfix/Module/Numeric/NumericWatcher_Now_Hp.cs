@@ -104,6 +104,7 @@
 			{
 				Scene zoneScene = unit.ZoneScene();
 				MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
+				zoneScene.GetComponent<BehaviourComponent>().Stop();
 				switch (mapComponent.SceneTypeEnum)
 				{
 					case SceneTypeEnum.Battle:
@@ -115,19 +116,20 @@
 						}
 						C2M_TeamDungeonRBornRequest request = new C2M_TeamDungeonRBornRequest() { };
 						zoneScene.GetComponent<SessionComponent>().Session.Send(request);
-						zoneScene.GetComponent<BehaviourComponent>().TargetID = 0;
+						zoneScene.GetComponent<BehaviourComponent>().Start();
 						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
 						break;
 					case SceneTypeEnum.TeamDungeon:
 						await TimerComponent.Instance.WaitAsync(20000);
 						request = new C2M_TeamDungeonRBornRequest() { };
 						zoneScene.GetComponent<SessionComponent>().Session.Send(request);
-						zoneScene.GetComponent<BehaviourComponent>().TargetID = 0;
+						zoneScene.GetComponent<BehaviourComponent>().Start();
 						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
 						break;
 					default:
 						EnterFubenHelp.RequestQuitFuben(unit.ZoneScene());
 						await TimerComponent.Instance.WaitAsync(1000);
+						zoneScene.GetComponent<BehaviourComponent>().Start();
 						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Stroll);
 						break;
 				}

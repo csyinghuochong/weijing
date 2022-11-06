@@ -109,7 +109,7 @@ namespace ET
                 case FsmStateEnum.FsmComboState:
                     break;
                 case FsmStateEnum.FsmDeathState:
-                    self.Animator.SetBool("Death", false);
+
                     break;
                 case FsmStateEnum.FsmNpcSpeak:
                     self.Animator.SetBool("Idle", true);
@@ -144,6 +144,13 @@ namespace ET
                     self.Animator.Play("Hui");
                     break;
                 case FsmStateEnum.FsmIdleState:
+                    if (self.GetParent<Unit>().Type == UnitType.Player
+                        && self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
+                    {
+                        Log.ILog.Error("fsmcomponent dead->idea");
+                    }
+     
+                    self.Animator.SetBool("Death", false);
                     self.OnEnterIdleState();
                     break;
                 case FsmStateEnum.FsmNpcSpeak:

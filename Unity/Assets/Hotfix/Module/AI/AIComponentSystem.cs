@@ -34,7 +34,20 @@ namespace ET
             self.BeAttackList.Clear();
             self.TargetPoint.Clear();
             self.TargetZhuiJi = Vector3.zero;
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.AITimer, self);
+
+            int time = 1000;
+            int sceneType = self.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+            switch (sceneType)
+            {
+                case SceneTypeEnum.PetDungeon:
+                case SceneTypeEnum.PetTianTi:
+                    time = 200;
+                    break;
+                default:
+                    time = 1000;
+                    break;
+            }
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(time, TimerType.AITimer, self);
         }
     }
 

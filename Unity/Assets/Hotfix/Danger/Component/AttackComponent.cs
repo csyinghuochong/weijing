@@ -133,7 +133,7 @@ namespace ET
             self.SetAttackSpeed();
             self.SetComboSkill();
             int targetAngle = self.GetTargetAnagle(unit, taretUnit);
-            unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId, 0, targetAngle, taretUnit.Id, 0).Coroutine();
+            unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId, 0, targetAngle, taretUnit!=null?taretUnit.Id:0, 0).Coroutine();
             self.LastSkillTime = TimeHelper.ClientNow();
             self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
             if (self.ComboSkillId == 60000103 || self.ComboSkillId == 60000203)

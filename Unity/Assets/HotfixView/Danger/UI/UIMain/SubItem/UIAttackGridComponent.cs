@@ -79,25 +79,9 @@ namespace ET
             self.ZoneScene().GetComponent<SkillIndicatorComponent>().RecoveryEffect();
         }
 
-        public static void OnLockUnit(this UIAttackGridComponent self, Unit targetUnit)
-        {
-            self.OnMoveStart();
-
-            if (targetUnit == null)
-            {
-                self.MoveAttackId = 0;
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                self.ZoneScene().GetComponent<AttackComponent>().AutoAttack_1(unit, null);
-            }
-            else
-            {
-                self.MoveAttackId = targetUnit.Id;
-                self.BeginAutoAttack();
-            }
-        }
-
         public static void PointerUp(this UIAttackGridComponent self, PointerEventData pdata)
         {
+            self.OnMoveStart();
             self.FightEffect.SetActive(false);
             Scene curscene = self.ZoneScene();
             curscene.GetComponent<SkillIndicatorComponent>().RecoveryEffect();
@@ -109,7 +93,16 @@ namespace ET
             LockTargetComponent lockTargetComponent = curscene.GetComponent<LockTargetComponent>();
             long targetId = lockTargetComponent.LockTargetUnit(true);
             Unit targetUnit = unit.GetParent<UnitComponent>().Get(targetId);
-            self.OnLockUnit(targetUnit);
+            if (targetUnit == null)
+            {
+                self.MoveAttackId = 0;
+                curscene.GetComponent<AttackComponent>().AutoAttack_1(unit, null);
+            }
+            else
+            {
+                self.MoveAttackId = targetUnit.Id;
+                self.BeginAutoAttack();
+            }
         }
 
         public static async ETTask ShowFightEffect(this UIAttackGridComponent self)

@@ -18,7 +18,6 @@ namespace ET
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene());
-            aiComponent.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
             long instanceId = unit.InstanceId;
             Log.ILog.Debug("Behaviour_ZhuiJi: Enter");
 

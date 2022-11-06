@@ -41,8 +41,9 @@ namespace ET
                 if (unit.GetComponent<StateComponent>().CanMove())
                 {
                     Vector3 dir = unit.Position - target.Position;
-                    Vector3 ttt = target.Position + dir.normalized * ((float)aiComponent.ActDistance - 0.5f);
-                    ttt = ttt + new Vector3(RandomHelper.RandFloat01() * 1f, 0f, RandomHelper.RandFloat01() * 0.5f);
+                    Vector3 ttt = target.Position + dir.normalized * ((float)aiComponent.ActDistance - 1f);
+                    ttt.x += unit.Id % 10 * 0.05f * (unit.Id % 2 == 0 ? 1 : -1);
+                    ttt.z += unit.Id % 10 * 0.05f * (unit.Id % 2 == 0 ? 1 : -1);
                     unit.FindPathMoveToAsync(ttt, cancellationToken, false).Coroutine();
                 }
 

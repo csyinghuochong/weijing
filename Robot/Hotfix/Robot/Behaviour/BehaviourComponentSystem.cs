@@ -135,6 +135,18 @@ namespace ET
             }
         }
 
+        public static void Start(this BehaviourComponent self)
+        {
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(500, TimerType.BehaviourTimer, self);
+        }
+
+        public static void Stop(this BehaviourComponent self)
+        {
+            self.TargetID = 0;
+            self.NewBehaviour = 0;
+            self.Cancel();
+        }
+
         private static void Cancel(this BehaviourComponent self)
         {
             self.CancellationToken?.Cancel();
