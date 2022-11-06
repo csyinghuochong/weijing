@@ -6,33 +6,30 @@
     {
         protected override void  Run(Session session, M2C_TeamDungeonOpenResult message)
         {
-            RunAsync(session.ZoneScene()).Coroutine();
+            Scene zoneScene = session.ZoneScene();
+#if NOT_UNITY
+            OnRobotEnterFuben(zoneScene).Coroutine();
+#else
+            EventType.RecvTeamDungeonOpen.Instance.ZoneScene = zoneScene;
+            EventSystem.Instance.PublishClass(EventType.RecvTeamDungeonOpen.Instance);
+#endif
         }
 
-        private async ETTask RunAsync(Scene zoneScene)
+        private async ETTask OnRobotEnterFuben(Scene zoneScene)
         {
-            await ETTask.CompletedTask;
             AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
-            Log.Debug($"M2C_TeamDungeonOpen:  {accountInfoComponent.MyId}");
-#if NOT_UNITY
             if (accountInfoComponent.Password == ComHelp.RobotPassWord)
             {
-                TeamComponent teamComponent = zoneScene.GetComponent<TeamComponent>();
-                TeamInfo teamInfo = teamComponent.GetSelfTeam();
                 int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
                 int times = zoneScene.GetComponent<UserInfoComponent>().GetTeamDungeonTimes();
                 if (totalTimes - times <= 0)
                 {
                     return;
                 }
-
+                await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(100, 500));
                 EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.TeamDungeon, 0).Coroutine();
                 return;
             }
-#else
-            EventType.RecvTeamDungeonOpen.Instance.ZoneScene = zoneScene;
-            EventSystem.Instance.PublishClass(EventType.RecvTeamDungeonOpen.Instance);
-#endif
         }
 
     }

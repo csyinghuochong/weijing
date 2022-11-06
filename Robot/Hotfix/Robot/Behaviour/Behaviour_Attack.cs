@@ -51,11 +51,36 @@ namespace ET
                     && Vector3.Distance(unit.Position,target.Position) < aiComponent.ActDistance)
                 {
                     float value = RandomHelper.RandFloat01();
-                    if (value > 0.1f)
+                    int[] weights = new int[] { 80, 10, 10};
+                    int index = RandomHelper.RandomByWeight(weights);
+                    if (index == 0)
                     {
                         zoneScene.GetComponent<AttackComponent>().AutoAttack_1(unit, target);
                     }
-                    else
+                    if (index == 1)
+                    {
+                        //拾取道具
+                        List<DropInfo> ids = MapHelper.GetCanShiQu(aiComponent.ZoneScene());
+                        if (ids.Count > 0)
+                        {
+                            await MapHelper.SendShiquItem(aiComponent.ZoneScene(), ids);
+                            await aiComponent.ZoneScene().GetComponent<BagComponent>().CheckYaoShui();
+                        }
+
+                        int maxHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
+                        int curHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp);
+                        if (curHp < maxHp * 0.5)
+                        {
+                            BagInfo bagInfo = aiComponent.ZoneScene().GetComponent<BagComponent>().GetBagInfo(10010001);
+                            if (bagInfo != null)
+                            {
+                                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                                unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
+                                    (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();
+                            }
+                        }
+                    }
+                    if (index == 2)
                     {
                         //触发技能
                         SkillPro skillPro = aiComponent.ZoneScene().GetComponent<SkillSetComponent>().GetCanUseSkill();
@@ -71,29 +96,9 @@ namespace ET
                 }
                 else
                 {
-                    //拾取道具
-                    List<DropInfo> ids = MapHelper.GetCanShiQu(aiComponent.ZoneScene());
-                    if (ids.Count > 0)
-                    {
-                        await MapHelper.SendShiquItem(aiComponent.ZoneScene(), ids);
-                        await aiComponent.ZoneScene().GetComponent<BagComponent>().CheckYaoShui();
-                    }
                     aiComponent.TargetID = 0;
                     aiComponent.ChangeBehaviour(BehaviourType.Behaviour_ZhuiJi);
                     return;
-                }
-
-                int maxHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
-                int curHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp);
-                if (curHp < maxHp * 0.5)
-                {
-                    BagInfo bagInfo = aiComponent.ZoneScene().GetComponent<BagComponent>().GetBagInfo(10010001);
-                    if (bagInfo != null)
-                    {
-                        ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-                        unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
-                            (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();
-                    }
                 }
 
                 bool timeRet = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
