@@ -148,6 +148,7 @@ namespace ET
     {
         public int SkillID;
         public long CDEndTime;
+        public long CDPassive;
     }
 
     public class EffectData

@@ -27,7 +27,7 @@ namespace ET
                 cmd.SkillID = skills[RandomHelper.RandomNumber(0, skills.Count)];
                 cmd.TargetAngle = 0;
                 cmd.TargetID = unit.Id;
-                unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd);
+                unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true, false);
             }
             else {
                 response.Error = ErrorCore.ERR_ItemNotEnoughError;

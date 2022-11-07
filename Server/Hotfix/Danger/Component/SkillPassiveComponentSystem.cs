@@ -268,7 +268,7 @@ namespace ET
                 return;
             }
             long rigidityEndTime = 0;
-            if (unit.GetComponent<SkillManagerComponent>().IfCanUseSkill(skillIfo.SkillId) == ErrorCore.ERR_Success)
+            if (unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillIfo.SkillId, true) == ErrorCore.ERR_Success)
             {
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIfo.SkillId);
                 if (!string.IsNullOrEmpty(skillConfig.SkillAnimation) && skillConfig.SkillAnimation != "0")
@@ -313,7 +313,7 @@ namespace ET
                     cmd.TargetAngle = targetAngle;
                     cmd.SkillID = skillIfo.SkillId;
                     cmd.TargetID = targetId;
-                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd,false);
+                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd,false, false);
                 }
 
                 skillIfo.LastTriggerTime = TimeHelper.ServerNow();

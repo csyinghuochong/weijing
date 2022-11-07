@@ -12,7 +12,7 @@ namespace ET
             try
             {
                 int item = request.ItemId;
-                M2C_SkillCmd m2C_SkillCmd = entity.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
+                M2C_SkillCmd m2C_SkillCmd = entity.GetComponent<SkillManagerComponent>().OnUseSkill(request, true, false);
                 if (item > 0 && m2C_SkillCmd.Error == ErrorCore.ERR_Success)
                 {
                     entity.GetComponent<BagComponent>().OnCostItemData($"{item};1");
