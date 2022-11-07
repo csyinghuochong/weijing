@@ -94,7 +94,25 @@ namespace ET
             self.FubenId = fubenId;
             SceneConfig teamDungeonConfig = SceneConfigCategory.Instance.Get(fubenId);
             UICommonHelper.DestoryChild(self.ItemNodeList);
-            UICommonHelper.ShowItemList(teamDungeonConfig.RewardShow, self.ItemNodeList, self, 0.8f).Coroutine();
+
+            string rewardShow = teamDungeonConfig.RewardShow;
+            int bossId = teamDungeonConfig.BossId;
+            List<RewardItem> rewardItems = DropHelper.AI_MonsterDrop(bossId);
+            for (int i = rewardItems.Count - 1; i >= 0; i--)
+            {
+                if (rewardShow.Contains(rewardItems[i].ItemID.ToString()))
+                {
+                    continue;
+                }
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(rewardItems[i].ItemID);
+                if (itemConfig.ItemQuality < 4)
+                {
+                    continue;
+                }
+                rewardShow += $"@{rewardItems[i].ItemID};{rewardItems[i].ItemNum}";
+            }
+
+            UICommonHelper.ShowItemList(rewardShow, self.ItemNodeList, self, 1f).Coroutine();
             self.TextLevelLimit.GetComponent<Text>().text = teamDungeonConfig.EnterLv.ToString();
             self.TextPlayerLimit.GetComponent<Text>().text = $"{teamDungeonConfig.PlayerLimit}-3人";
             self.TextFubenDesc.GetComponent<Text>().text = teamDungeonConfig.ChapterDes;
