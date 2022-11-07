@@ -84,62 +84,65 @@ namespace ET
 		/// <summary>制造装备</summary>
 		[ProtoMember(3)]
 		public int MakeItemID { get; set; }
-		/// <summary>学习等级</summary>
+		/// <summary>学习类型</summary>
 		[ProtoMember(4)]
+		public int LearnType { get; set; }
+		/// <summary>学习等级</summary>
+		[ProtoMember(5)]
 		public int LearnLv { get; set; }
 		/// <summary>学习消耗金币</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int LearnGoldValue { get; set; }
 		/// <summary>消耗活力值</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public int CostVitality { get; set; }
 		/// <summary>学习需要道具</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public string LearnNeedItems { get; set; }
 		/// <summary>制造装备数量</summary>
-		[ProtoMember(8)]
+		[ProtoMember(9)]
 		public int MakeEquipNum { get; set; }
 		/// <summary>制作成功概率</summary>
-		[ProtoMember(9)]
+		[ProtoMember(10)]
 		public double MakeSuccesPro { get; set; }
 		/// <summary>领悟概率</summary>
-		[ProtoMember(10)]
+		[ProtoMember(11)]
 		public double LearnPro { get; set; }
 		/// <summary>触发隐藏属性概率</summary>
-		[ProtoMember(11)]
+		[ProtoMember(12)]
 		public string MakeHintPro { get; set; }
 		/// <summary>制造装备等级</summary>
-		[ProtoMember(12)]
+		[ProtoMember(13)]
 		public int MakeLv { get; set; }
 		/// <summary>制造装备最大等级</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public int MakeLvMax { get; set; }
 		/// <summary>制造星级</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public int MakeStar { get; set; }
 		/// <summary>需要熟练度</summary>
-		[ProtoMember(15)]
+		[ProtoMember(16)]
 		public int NeedProficiencyValue { get; set; }
 		/// <summary>增长熟练度上限</summary>
-		[ProtoMember(16)]
+		[ProtoMember(17)]
 		public int ProficiencyMax { get; set; }
 		/// <summary>增长熟练点数</summary>
-		[ProtoMember(17)]
+		[ProtoMember(18)]
 		public int[] ProficiencyValue { get; set; }
 		/// <summary>熟练度转换概率生效值</summary>
-		[ProtoMember(18)]
+		[ProtoMember(19)]
 		public double ProficiencyStartProValue { get; set; }
 		/// <summary>熟练点数转换概率</summary>
-		[ProtoMember(19)]
+		[ProtoMember(20)]
 		public double ProficiencyProValue { get; set; }
 		/// <summary>制造冷却时间</summary>
-		[ProtoMember(20)]
+		[ProtoMember(21)]
 		public int MakeTime { get; set; }
 		/// <summary>制造消耗金币</summary>
-		[ProtoMember(21)]
+		[ProtoMember(22)]
 		public int MakeNeedGold { get; set; }
 		/// <summary>需要道具</summary>
-		[ProtoMember(22)]
+		[ProtoMember(23)]
 		public string NeedItems { get; set; }
 
 	}
