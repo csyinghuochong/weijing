@@ -3,12 +3,10 @@ using System.Collections.Generic;
 
 namespace ET
 {
-
     public static class PetTianTiComponentSystem
     {
         public static  async ETTask GeneratePetFuben(this PetTianTiComponent self)
         {
-            long instanceId = self.InstanceId;
             Unit unit = self.MainUnit;
             unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.WuDi);
 
@@ -22,7 +20,7 @@ namespace ET
                 }
                 Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), unit.Id,
                    unit.GetBattleCamp(), rolePetInfo, AIHelp.Formation_1[i]);
-                //petunit.GetComponent<AIComponent>().StopAI = true;
+                petunit.GetComponent<AIComponent>().StopAI = true;
             }
 
             //先查找真实玩家。再查找
@@ -40,7 +38,7 @@ namespace ET
                     }
                     Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), 0,
                        CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[i]);
-                    //petunit.GetComponent<AIComponent>().StopAI = true;
+                    petunit.GetComponent<AIComponent>().StopAI = true;
                 }
             }
             else
@@ -53,7 +51,7 @@ namespace ET
                     petComponent.UpdatePetAttribute(petInfo);
                     Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), 0,
                        CampEnum.CampPlayer_2,  petInfo, AIHelp.Formation_2[k]);
-                    //petunit.GetComponent<AIComponent>().StopAI = true;
+                    petunit.GetComponent<AIComponent>().StopAI = true;
                 }
             }
         }

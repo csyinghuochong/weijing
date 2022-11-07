@@ -32,7 +32,8 @@
             UI mainui = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
             mainui?.GetComponent<UIMainComponent>().OnUpdateHP(args.Unit, mapComponent.SceneTypeEnum);
 
-            if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetDungeon)
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetDungeon
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi)
             {
                 UI petmain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIPetMain);
                 petmain?.GetComponent<UIPetMainComponent>().OnUnitHpUpdate(args.Unit);

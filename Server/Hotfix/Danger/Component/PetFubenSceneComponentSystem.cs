@@ -66,10 +66,6 @@ namespace ET
                     CampEnum.CampPlayer_1,  rolePetInfo, AIHelp.Formation_1[i]);
                 petunit.GetComponent<AIComponent>().StopAI = true;
             }
-            if (instanceId != self.InstanceId)
-            {
-                return;
-            }
 
             PetFubenConfig petFubenConfig = PetFubenConfigCategory.Instance.Get(sceneId);
             self.GenerateCellMonsters(petFubenConfig.Cell_1, 0);

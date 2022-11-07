@@ -57,7 +57,6 @@ namespace ET
     {
         public override void Destroy(UIPetMainComponent self)
         {
-            //DataUpdateComponent.Instance.RemoveListener(DataType.SkillSetting, self);
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
@@ -74,9 +73,12 @@ namespace ET
             self.Btn_RerurnBuilding.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_RerurnBuilding(); });
             self.PetFubenFinger = rc.Get<GameObject>("PetFubenFinger");
             self.PetFubenFinger.GetComponent<Image>().color = new Color(255, 255, 255, 0);
+
             ButtonHelp.AddEventTriggers(self.PetFubenFinger, (PointerEventData pdata) => { self.BeginDrag(pdata); }, EventTriggerType.BeginDrag);
             ButtonHelp.AddEventTriggers(self.PetFubenFinger, (PointerEventData pdata) => { self.Draging(pdata); }, EventTriggerType.Drag);
             ButtonHelp.AddEventTriggers(self.PetFubenFinger, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.EndDrag);
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            self.PetFubenFinger.SetActive(mapComponent.SceneTypeEnum== SceneTypeEnum.PetDungeon);
 
             self.HpList.Clear();
             self.UIMonsterHp = rc.Get<GameObject>("UIMonsterHp");
@@ -117,8 +119,32 @@ namespace ET
         {
             List<Unit> entities = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < entities.Count; i++)
-            { 
-                UnitInfoComponent unitInfo = entities[i].GetComponent<UnitInfoComponent>();
+            {
+                if (entities[i].Type == UnitType.Player)
+                {
+                    continue;
+                }
+                int camp = entities[i].GetBattleCamp();
+                if (camp == CampEnum.CampPlayer_1)
+                {
+                    GameObject gameObject = GameObject.Instantiate(self.UIPetHp);
+                    UICommonHelper.SetParent(gameObject, self.PetHpNode);
+                    gameObject.SetActive(true);
+
+                    gameObject.transform.Find("Lal_Name").GetComponent<TextMeshProUGUI>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
+                    self.HpList.Add(entities[i].Id, gameObject);
+                    continue;
+                }
+                if (entities[i].Type == UnitType.Pet)
+                {
+                    GameObject gameObject = GameObject.Instantiate(self.UIMonsterHp);
+                    UICommonHelper.SetParent(gameObject, self.MonsterHpNode);
+                    gameObject.SetActive(true);
+
+                    gameObject.transform.Find("Lal_Name").GetComponent<TextMeshProUGUI>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
+                    self.HpList.Add(entities[i].Id, gameObject);
+                    continue;
+                }
                 if (entities[i].Type == UnitType.Monster)
                 {
                     GameObject gameObject = GameObject.Instantiate(self.UIMonsterHp);
@@ -128,16 +154,6 @@ namespace ET
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(entities[i].ConfigId);
                     gameObject.transform.Find("Lal_Name").GetComponent<TMPro.TextMeshProUGUI>().text = monsterCof.MonsterName;
                     gameObject.transform.Find("Lal_Lv").GetComponent<TextMeshProUGUI>().text = monsterCof.Lv.ToString();
-                    self.HpList.Add(entities[i].Id, gameObject);
-                    continue;
-                }
-                if (entities[i].Type == UnitType.Pet)
-                {
-                    GameObject gameObject = GameObject.Instantiate(self.UIPetHp);
-                    UICommonHelper.SetParent(gameObject, self.PetHpNode);
-                    gameObject.SetActive(true);
-
-                    gameObject.transform.Find("Lal_Name").GetComponent<TextMeshProUGUI>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
                     self.HpList.Add(entities[i].Id, gameObject);
                     continue;
                 }
@@ -213,7 +229,6 @@ namespace ET
                () =>
                {
                    EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
-                   UIHelper.Remove(self.ZoneScene(), UIType.UIPetMain);
                },
                null).Coroutine();
         }

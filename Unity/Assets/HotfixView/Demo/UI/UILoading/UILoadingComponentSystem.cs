@@ -246,7 +246,6 @@ namespace ET
                 return;
             }
             int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
-            uimain.GameObject.transform.localScale = sceneTypeEnum !=SceneTypeEnum.PetDungeon ? Vector3.one : Vector3.zero;
             Camera camera = UIComponent.Instance.MainCamera;
             camera.GetComponent<Camera>().fieldOfView = 50;
             sceneManagerComponent.SceneAssetRequest = null;
@@ -255,18 +254,27 @@ namespace ET
             {
                 case (int)SceneTypeEnum.CellDungeon:
                     uimain.GetComponent<UIMainComponent>().OnCellDungeonEnterShow(self.ChapterId);
+                    uimain.GameObject.transform.localScale = Vector3.one;
                     break;
                 case (int)SceneTypeEnum.PetDungeon:
+                case (int)SceneTypeEnum.PetTianTi:
                     UIHelper.Create(self.ZoneScene(), UIType.UIPetMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.zero;
                     break;
                 case (int)SceneTypeEnum.RandomTower:
                     UIHelper.Create(self.ZoneScene(), UIType.UIRandomOpen).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
                     break;
                 case (int)SceneTypeEnum.Battle:
                     UIHelper.Create(self.ZoneScene(), UIType.UIBattleMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
                     break;
                 case (int)SceneTypeEnum.TeamDungeon:
                     UIHelper.Create(self.ZoneScene(), UIType.UITeamMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
+                default:
+                    uimain.GameObject.transform.localScale = Vector3.one;
                     break;
             }
             Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);

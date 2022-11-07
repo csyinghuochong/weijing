@@ -13,7 +13,7 @@ namespace ET
 
             if (theUnitBelongto.Type == UnitType.Monster)
             {
-                theUnitBelongto.GetComponent<AIComponent>().TargetID = theUnitFrom.Id;
+                theUnitBelongto.GetComponent<AIComponent>().ChangeTarget ( theUnitFrom.Id);
                 this.TheUnitBelongto.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.ChaoFeng);
             }
         }

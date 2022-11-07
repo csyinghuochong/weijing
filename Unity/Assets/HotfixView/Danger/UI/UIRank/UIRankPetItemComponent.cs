@@ -46,13 +46,20 @@ namespace ET
             self.RankPetInfo = rankPetInfo;
             self.Lab_TeamName.GetComponent<Text>().text = rankPetInfo.TeamName;
 
+            int number = 0;
             for (int i = 0; i < rankPetInfo.PetConfigId.Count; i++ )
             {
+                if (rankPetInfo.PetConfigId[i] == 0)
+                {
+                    continue;
+                }
+
                 PetConfig petConfig = PetConfigCategory.Instance.Get(rankPetInfo.PetConfigId[i]);
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
                 self.ImageIconList[i].GetComponent<Image>().sprite = sp;
 
                 self.Lab_PaiMing.GetComponent<Text>().text = rankPetInfo.RankId.ToString();
+                number++;
             }
         }
 

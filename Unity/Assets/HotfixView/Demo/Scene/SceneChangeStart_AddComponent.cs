@@ -37,12 +37,10 @@ namespace ET
             Game.Scene.GetComponent<SceneManagerComponent>().SceneAssetRequest = null;
             UI uI = await UIHelper.Create(args.ZoneScene, UIType.UILoading);
             uI.GetComponent<UILoadingComponent>().OnInitUI(args.SceneType, args.ChapterId);
-            //if (UIHelper.GetUI(args.ZoneScene, UIType.UILobby) != null)
-            //{
-            //    UIHelper.Remove(args.ZoneScene, UIType.UILobby);   //EnterMapFinish_CreateMainUI. Remove(UILobby)
-            //}
+
             switch (args.LastSceneType)
             {
+                case SceneTypeEnum.PetTianTi:
                 case SceneTypeEnum.PetDungeon:
                     UIHelper.Remove(args.ZoneScene, UIType.UIPetMain);
                     break;

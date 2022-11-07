@@ -72,9 +72,13 @@ namespace ET
             }
 
             if (m2C_RolePetXiLian.RankNumber == 0)
+            {
                 self.Text_Rank.GetComponent<Text>().text = "无";
+            }
             else
+            {
                 self.Text_Rank.GetComponent<Text>().text = m2C_RolePetXiLian.RankNumber.ToString();
+            }
         }
 
         public static void OnButton_Add(this UIRankPetComponent self)

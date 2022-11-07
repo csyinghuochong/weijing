@@ -224,13 +224,7 @@ namespace ET
             bool gaiLv = RandomHelper.RandFloat01() < 0.1f;
             if (gaiLv)
             {
-                Unit unit = self.GetParent<Unit>();
-                gaiLv = !self.IsRetreat && !unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.ChaoFeng);
-            }
-
-            if (gaiLv)
-            {
-                self.TargetID = attack.Id;
+                self.ChangeTarget(attack.Id);
             }
             if (!self.BeAttackList.Contains(attack.Id))
             {
@@ -238,9 +232,12 @@ namespace ET
             }
         }
 
-        public static void OnChaoFeng(this AIComponent self)
-        { 
-            
+        public static void ChangeTarget(this AIComponent self, long targetId)
+        {
+            if (!self.IsRetreat)
+            {
+                self.TargetID = targetId;
+            }
         }
 
         public static void Begin(this AIComponent self)
