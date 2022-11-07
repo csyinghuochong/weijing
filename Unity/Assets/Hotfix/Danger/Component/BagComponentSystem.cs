@@ -530,7 +530,7 @@ namespace ET
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             List<BagInfo> bagList = new List<BagInfo>();
-            bagList.AddRange( self.GetBagList())
+            bagList.AddRange( self.GetBagList() );
             for (int i = bagList.Count - 1; i >= 0; i--)
             {
                 if (bagList[i].IfJianDing)
