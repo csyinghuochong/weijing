@@ -47,9 +47,18 @@ namespace ET
             return 0;
         }
 
-        public static int GetBattleRobotId()
+        public static int GetBattleRobotId(int behaviour)
         {
-            return 3001;
+            List<int> ids = new List<int>();
+            List<RobotConfig> robots = RobotConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < robots.Count; i++)
+            {
+                if (robots[i].Behaviour == behaviour)
+                {
+                    ids.Add(robots[i].Id);
+                }
+            }
+            return ids[RandomHelper.RandomNumber(0, ids.Count)];
         }
 
         public static int GetTeamFubenId(int lv)

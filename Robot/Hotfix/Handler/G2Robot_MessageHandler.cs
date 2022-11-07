@@ -20,8 +20,9 @@ namespace ET
                         for (int i = 0; i < 10; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
-                            Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, 3001);
-                            robotScene?.AddComponent<BehaviourComponent, int>(3001);
+                            int robotId = BattleHelper.GetBattleRobotId(3);
+                            Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                            robotScene?.AddComponent<BehaviourComponent, int>(robotId);
                             await TimerComponent.Instance.WaitAsync(200);
                         }
                     }
