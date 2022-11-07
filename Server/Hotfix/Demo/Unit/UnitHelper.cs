@@ -268,6 +268,11 @@ namespace ET
             return self.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleCamp);
         }
 
+        public static bool IsRobot(this Unit self)
+        {
+            return self.GetComponent<UserInfoComponent>().UserInfo.RobotId > 0;
+        }
+
         public static void SetBornPosition(this Unit self, Vector3 vector3)
         { 
             NumericComponent numericComponent = self.GetComponent<NumericComponent>();

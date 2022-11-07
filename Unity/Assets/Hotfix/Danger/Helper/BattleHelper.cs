@@ -47,6 +47,11 @@ namespace ET
             return 0;
         }
 
+        public static int GetBattleRobotId()
+        {
+            return 3001;
+        }
+
         public static int GetTeamFubenId(int lv)
         {
             int fubenId = 0;

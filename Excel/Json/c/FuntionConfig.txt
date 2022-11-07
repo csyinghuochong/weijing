@@ -23,5 +23,5 @@
 {"_t":"FuntionConfig","_id":1022,"Name":"UIGemMake","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1023,"Name":"UIHongBao","ConditionType":[1],"ConditionParam":[1],"OpenTime":"19;30@20;00"},
 {"_t":"FuntionConfig","_id":1024,"Name":"UIShouJi","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
-{"_t":"FuntionConfig","_id":1025,"Name":"UIBattle","ConditionType":[1],"ConditionParam":[1],"OpenTime":"11;43@21;00"},
+{"_t":"FuntionConfig","_id":1025,"Name":"UIBattle","ConditionType":[1],"ConditionParam":[1],"OpenTime":"12;25@21;00"},
 ]}
