@@ -529,10 +529,10 @@ namespace ET
         public static async ETTask CheckEquipList(this BagComponent self)
         {
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            List<BagInfo> bagList = self.GetBagList();
-            for (int i = 0; i < bagList.Count; i++)
+            List<BagInfo> bagList = new List<BagInfo>();
+            bagList.AddRange( self.GetBagList())
+            for (int i = bagList.Count - 1; i >= 0; i--)
             {
-                
                 if (bagList[i].IfJianDing)
                 {
                     continue;
