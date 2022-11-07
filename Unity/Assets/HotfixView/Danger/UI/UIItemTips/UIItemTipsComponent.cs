@@ -272,6 +272,16 @@ namespace ET
                 self.OnCloseTips();
                 return;
             }
+            if (itemConfig.ItemSubType == 15)   //附魔
+            {
+                string[] itemparams = itemConfig.ItemUsePar.Split('@');
+                BagInfo bagInfo =  self.ZoneScene().GetComponent<BagComponent>().GetEquipBySubType(int.Parse(itemparams[0]));
+                if (bagInfo == null)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("对应的位置没有装备！");
+                    return;
+                }
+            }
             if (itemConfig.ItemSubType == 101)
             {
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

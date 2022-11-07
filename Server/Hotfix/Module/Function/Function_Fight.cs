@@ -863,13 +863,6 @@ namespace ET
                     mEquipCon.Equip_MinAct = mEquipCon.Equip_MaxAct;
                 }
 
-                //强化属性
-                /*
-                if (qianghuaLv[itemCof.ItemSubType-1] > 0)
-                {
-                    addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[itemCof.ItemSubType - 1])).EquipPropreAdd);
-                }
-                */
                 addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[itemCof.ItemSubType])).EquipPropreAdd);
                 //switch (itemCof.ItemSubType) {
 

@@ -74,7 +74,7 @@ namespace ET
             gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 70f, 150f);
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            BagInfo bagInfo = bagComponent.GetEquipByWeizhi((int)ItemSubTypeEnum.Wuqi);
+            BagInfo bagInfo = bagComponent.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
             self.uIModelShowComponent.ShowPlayerModel(bagInfo, userInfo.Occ).Coroutine();
 
             await TimerComponent.Instance.WaitAsync(200);

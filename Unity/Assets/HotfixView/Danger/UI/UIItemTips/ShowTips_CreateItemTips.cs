@@ -43,7 +43,7 @@ namespace ET
 
             if (itemConfig.ItemType == (int)ItemTypeEnum.Equipment)
             {
-                BagInfo haveEquip = args.ZoneScene.GetComponent<BagComponent>().GetEquipByWeizhi(itemConfig.ItemSubType);
+                BagInfo haveEquip = args.ZoneScene.GetComponent<BagComponent>().GetEquipBySubType(itemConfig.ItemSubType);
 
                 UI uI = await UIHelper.Create(args.ZoneScene, UIType.UIEquipDuiBiTips);
                 if (haveEquip != null && args.itemOperateEnum == ItemOperateEnum.Bag)

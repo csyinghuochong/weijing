@@ -154,7 +154,7 @@ namespace ET
 			self.UIEquipSetComponent = uiEquipset.AddComponent<UIEquipSetComponent,int>(0);
 
 			BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-			BagInfo bagInfo = bagComponent.GetEquipByWeizhi((int)ItemSubTypeEnum.Wuqi);
+			BagInfo bagInfo = bagComponent.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
 
 			self.UIEquipSetComponent.ShowPlayerModel(bagInfo, userInfo.Occ).Coroutine();
 			int occTwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
@@ -189,7 +189,7 @@ namespace ET
 		{
 			BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-			BagInfo bagInfo = bagComponent.GetEquipByWeizhi((int)ItemSubTypeEnum.Wuqi);
+			BagInfo bagInfo = bagComponent.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
 			self.UIEquipSetComponent.ChangeWeapon(bagInfo, userInfoComponent.UserInfo.Occ).Coroutine();
 		}
 

@@ -185,7 +185,7 @@ namespace ET
             }
             else
             {
-                if (key >= 10000 && key < 2000)
+                if (key >= 10000 && key < 20000)
                 {
                     if (key.ToString().Substring(key.ToString().Length - 1, 1) == "2")
                     {

@@ -95,7 +95,7 @@ namespace ET
             }
             else
             {
-                beforeequip = self.GetEquipByWeizhi(weizhi);
+                beforeequip = self.GetEquipBySubType(weizhi);
             }
 
             C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 3, OperateBagID = bagInfo.BagInfoID };
@@ -560,7 +560,7 @@ namespace ET
                     continue;
                 }
 
-                BagInfo equipInfo = self.GetEquipByWeizhi(itemConfig.ItemSubType);
+                BagInfo equipInfo = self.GetEquipBySubType(itemConfig.ItemSubType);
                 if (equipInfo == null)
                 {
                     Log.ILog.Debug($"SendWearEquip1:  {bagList[i].ItemID}");
@@ -699,13 +699,13 @@ namespace ET
             return null;
         }
 
-        public static BagInfo GetEquipByWeizhi(this BagComponent self, int pos)
+        public static BagInfo GetEquipBySubType(this BagComponent self, int subType)
         {
             List<BagInfo> bagInfos = self.GetEquipList();
             for (int i = 0; i < bagInfos.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
-                if (itemConfig.ItemSubType == pos)
+                if (itemConfig.ItemSubType == subType)
                 {
                     return bagInfos[i];
                 }

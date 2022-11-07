@@ -40,7 +40,7 @@ namespace ET
         public static TeamPlayerInfo GetSelfTeamPlayerInfo(Scene zoneScene)
         {
             UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
-            BagInfo bagInfo = zoneScene.GetComponent<BagComponent>().GetEquipByWeizhi((int)ItemSubTypeEnum.Wuqi);
+            BagInfo bagInfo = zoneScene.GetComponent<BagComponent>().GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
         
             return new TeamPlayerInfo()
             {

@@ -57,7 +57,7 @@ namespace ET
             self.UIEquipSetComponent2.PlayerName(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Name);
             self.UIEquipSetComponent2.UpdateBagUI(self.ZoneScene().GetComponent<BagComponent>().GetEquipList(), selfOcc, ItemOperateEnum.Watch);
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            BagInfo bagInfo2 = bagComponent.GetEquipByWeizhi((int)ItemSubTypeEnum.Wuqi);
+            BagInfo bagInfo2 = bagComponent.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
             self.UIEquipSetComponent2.ShowPlayerModel(bagInfo2, selfOcc).Coroutine();
         }
     }

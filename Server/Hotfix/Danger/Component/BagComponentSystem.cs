@@ -343,27 +343,13 @@ namespace ET
             return bagInfos;
         }
 
-        public static BagInfo GetEquipBySubtype(this BagComponent self, int position)
-        {
-            for (int i = 0; i < self.EquipList.Count; i++)
-            {
-                ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
-                if (itemCof.ItemSubType == position)
-                {
-                    return self.EquipList[i];
-                }
-            }
-            return null;
-        }
-
         //获取某个装备位置的道具数据
-        public static BagInfo GetEquipByWeizhi(this BagComponent self, int position)
+        public static BagInfo GetEquipBySubType(this BagComponent self, int subType)
         {
             for (int i = 0; i < self.EquipList.Count; i++)
             {
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
-                int weizhi = itemCof.ItemSubType;
-                if (weizhi == position)
+                if (itemCof.ItemSubType == subType)
                 {
                     return self.EquipList[i];
                 }
@@ -373,13 +359,13 @@ namespace ET
 
         public static int GetWuqiItemId(this BagComponent self)
         {
-            BagInfo bagInfo = self.GetEquipByWeizhi((int)ItemSubTypeEnum.Wuqi);
+            BagInfo bagInfo = self.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
             return bagInfo != null ? bagInfo.ItemID : 0;
         }
 
         public static int GetEquipType(this BagComponent self)
         {
-            BagInfo bagInfo = self.GetEquipByWeizhi((int)ItemSubTypeEnum.Wuqi);
+            BagInfo bagInfo = self.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
             return ComHelp.GetEquipType(bagInfo!= null ? bagInfo.ItemID:0);
         }
 
@@ -820,7 +806,31 @@ namespace ET
         {
             string[] itemparams = itemParams.Split('@');
             int weizhi = int.Parse(itemparams[0]);
-            BagInfo bagInfo = self.GetEquipByWeizhi(weizhi);
+            BagInfo bagInfo = self.GetEquipBySubType(weizhi);
+            if (bagInfo == null)
+            {
+                return;
+            }
+            //9@200103; 0.03; 0.03
+            bagInfo.FumoProLists.Clear();
+            for(int i = 1; i < itemparams.Length; i++)
+            {
+                string[] proInfos = itemparams[1].Split(';');
+                int hideId = int.Parse(proInfos[0]);
+                int hideValue_1 = 0;
+                int hideValue_2 = 0;
+                if (1 == NumericHelp.GetNumericValueType(hideId))
+                {
+                    hideValue_1 = int.Parse(proInfos[1]);
+                    hideValue_2 = int.Parse(proInfos[2]);
+                }
+                else
+                {
+                    hideValue_1 = (int)(10000 * float.Parse(proInfos[1]));
+                    hideValue_2 = (int)(10000 * float.Parse(proInfos[2]));
+                }
+                bagInfo.FumoProLists.Add(new HideProList() {HideID = hideId,HideValue = RandomHelper.RandomNumber(hideValue_1, hideValue_2) });
+            }
         }
 
         public static bool OnCostItemData(this BagComponent self, BagInfo bagInfo, ItemLocType locType,  int number)

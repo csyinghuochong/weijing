@@ -409,7 +409,7 @@ namespace ET
                     }
                     else
                     {
-                        beforeequip = unit.GetComponent<BagComponent>().GetEquipByWeizhi(weizhi);
+                        beforeequip = unit.GetComponent<BagComponent>().GetEquipBySubType(weizhi);
                     }
                     if (beforeequip != null)
                     {
