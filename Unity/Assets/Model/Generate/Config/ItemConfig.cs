@@ -144,6 +144,9 @@ namespace ET
 		/// <summary>是否禁止拍卖行上架</summary>
 		[ProtoMember(23)]
 		public int IfStopPaiMai { get; set; }
+		/// <summary>获取是否绑定</summary>
+		[ProtoMember(24)]
+		public int IfLock { get; set; }
 
 	}
 }
