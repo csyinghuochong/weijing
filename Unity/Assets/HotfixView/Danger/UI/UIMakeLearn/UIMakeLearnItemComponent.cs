@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMakeLearnItemComponent : Entity,IAwake
+    public class UIMakeLearnItemComponent : Entity,IAwake<GameObject>
     {
         public GameObject ImageSelect;
         public GameObject Label_LearnLv;
@@ -16,14 +16,16 @@ namespace ET
 
         public int MakeId;
         public Action<int> ClickHandler;
+        public GameObject GameObject;
     }
 
     [ObjectSystem]
-    public class UIMakeLearnItemComponentAwakeSystem : AwakeSystem<UIMakeLearnItemComponent>
+    public class UIMakeLearnItemComponentAwakeSystem : AwakeSystem<UIMakeLearnItemComponent, GameObject>
     {
-        public override void Awake(UIMakeLearnItemComponent self)
+        public override void Awake(UIMakeLearnItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Label_LearnLv = rc.Get<GameObject>("Label_LearnLv");
             self.Label_ItemName = rc.Get<GameObject>("Label_ItemName");

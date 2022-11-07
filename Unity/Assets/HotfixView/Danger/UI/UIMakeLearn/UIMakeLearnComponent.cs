@@ -28,8 +28,8 @@ namespace ET
         public GameObject Obj_Lab_LearnItemCost;
 
         public int MakeId;
-        public List<UI> LearnUIList;
-        public List<UI> CostUIList;
+        public List<UIMakeLearnItemComponent> LearnUIList = new List<UIMakeLearnItemComponent>();
+        public List<UIItemComponent> CostUIList = new List<UIItemComponent>();
         public UserInfoComponent userInfoComponent;
         public int MakeType;
     }
@@ -41,8 +41,8 @@ namespace ET
         {
             self.MakeId = 0;
             self.MakeType = 1;
-            self.CostUIList = new List<UI>();
-            self.LearnUIList = new List<UI>();
+            self.LearnUIList.Clear();
+            self.CostUIList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Button_Select_3 = rc.Get<GameObject>("Button_Select_3");
@@ -163,7 +163,7 @@ namespace ET
                     continue;
                 }
 
-                if (playeLv < item.Value.LearnLv)
+                if (playeLv < item.Value.LearnLv || item.Value.LearnType != 0)
                 {
                     continue;
                 }
@@ -171,24 +171,23 @@ namespace ET
                 {
                     continue;
                 }
-                UI uI_1 = null;
+                UIMakeLearnItemComponent uI_1 = null;
                 if (number < self.LearnUIList.Count)
                 {
-                    self.LearnUIList[number].GameObject.SetActive(true);
                     uI_1 = self.LearnUIList[number];
+                    uI_1.GameObject.SetActive(true);
                 }
                 else
                 {
                     GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
                     itemSpace.SetActive(true);
                     UICommonHelper.SetParent(itemSpace, self.LearnListNode);
-                    uI_1 = self.AddChild<UI, string, GameObject>("UIMakeLearnItem_" + item.Key.ToString(), itemSpace);
-                    UIMakeLearnItemComponent uIMakeItemComponent = uI_1.AddComponent<UIMakeLearnItemComponent>();
-                    uIMakeItemComponent.SetClickHandler((int itemid) => { self.OnSelectLearnItem(itemid); });
+                    uI_1 = self.AddChild<UIMakeLearnItemComponent, GameObject>(itemSpace);
+                    uI_1.SetClickHandler((int itemid) => { self.OnSelectLearnItem(itemid); });
                     self.LearnUIList.Add(uI_1);
                 }
 
-                uI_1.GetComponent<UIMakeLearnItemComponent>().OnUpdateUI(item.Key);
+                uI_1.OnUpdateUI(item.Key);
                 number++;
             }
             for (int i = number; i < self.LearnUIList.Count; i++)
@@ -197,7 +196,7 @@ namespace ET
             }
             if (self.LearnUIList.Count > 0)
             {
-                self.LearnUIList[0].GetComponent<UIMakeLearnItemComponent>().OnImageButton();
+                self.LearnUIList[0].OnImageButton();
             }
             if (self.MakeId != 0)
             {
@@ -210,12 +209,12 @@ namespace ET
             self.MakeId = makeid;
             for (int i = 0; i < self.LearnUIList.Count; i++)
             {
-                self.LearnUIList[i].GetComponent<UIMakeLearnItemComponent>().SetSelected(makeid);
+                self.LearnUIList[i].SetSelected(makeid);
             }
             self.OnUpdateLearn(makeid);
         }
 
-        public static async void OnUpdateLearn(this UIMakeLearnComponent self, int makeid)
+        public static  void OnUpdateLearn(this UIMakeLearnComponent self, int makeid)
         {
             EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeid);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID);
@@ -236,7 +235,6 @@ namespace ET
 
             string[] costItems = equipMakeConfig.NeedItems.Split('@');
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            await ETTask.CompletedTask;
             var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             for (int i = 0; i < costItems.Length; i++)
             {
@@ -246,7 +244,7 @@ namespace ET
                     continue;
                 }
 
-                UI ui_2 = null;
+                UIItemComponent ui_2 = null;
                 if (i < self.CostUIList.Count)
                 {
                     ui_2 = self.CostUIList[i];
@@ -257,13 +255,11 @@ namespace ET
                     GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
                     itemSpace.SetActive(true);
                     UICommonHelper.SetParent(itemSpace, self.CostListNode);
-                    ui_2 = self.AddChild<UI, string, GameObject>( "UICommonItem_" + i, itemSpace);
-                    ui_2.AddComponent<UIItemComponent>();
+                    ui_2 = self.AddChild<UIItemComponent, GameObject>( itemSpace);
                     self.CostUIList.Add(ui_2);
                 }
-                UIItemComponent uIItemComponent = ui_2.GetComponent<UIItemComponent>();
-                uIItemComponent.UpdateItem( new BagInfo() {  ItemID = int.Parse(itemInfo[0]), ItemNum = int.Parse(itemInfo[1]) }, ItemOperateEnum.None );
-                uIItemComponent.Label_ItemName.SetActive(true);
+                ui_2.UpdateItem( new BagInfo() {  ItemID = int.Parse(itemInfo[0]), ItemNum = int.Parse(itemInfo[1]) }, ItemOperateEnum.None );
+                ui_2.Label_ItemName.SetActive(true);
             }
             for (int i = costItems.Length; i < self.CostUIList.Count; i++)
             {
