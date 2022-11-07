@@ -111,5 +111,27 @@
             };
             F2C_FriendBlacklistResponse f2C_FriendApplyResponse = (F2C_FriendBlacklistResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2F_FriendApplyReplyRequest);
         }
+
+        public static async ETTask<int> RequestEquipMake(Scene zoneScene, long  baginfoId, int makeId)
+        {
+            C2M_MakeEquipRequest request = new C2M_MakeEquipRequest() { BagInfoID = baginfoId, MakeId = makeId };
+            M2C_MakeEquipResponse response = (M2C_MakeEquipResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
+            if (response.ItemId == 0)
+            {
+                HintHelp.GetInstance().ShowHint("制作失败!");
+            }
+            if (response.NewMakeId != 0)
+            {
+                EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(response.NewMakeId);
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID);
+                HintHelp.GetInstance().ShowHint($"恭喜你领悟到新的制作技能 {itemConfig.ItemName}");
+                zoneScene.GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(response.NewMakeId);
+            }
+            if (baginfoId == 0)
+            {
+                zoneScene.GetComponent<UserInfoComponent>().OnMakeItem(makeId);
+            }
+            return response.Error;
+        }
     }
 }

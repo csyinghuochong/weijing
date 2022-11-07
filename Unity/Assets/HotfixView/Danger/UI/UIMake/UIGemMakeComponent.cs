@@ -2,10 +2,27 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using System;
 
 namespace ET
 {
-    public class UIGemMakeComponent : Entity, IAwake
+    [Timer(TimerType.MakeCDTimer)]
+    public class GemMakeTimer : ATimer<UIGemMakeComponent>
+    {
+        public override void Run(UIGemMakeComponent self)
+        {
+            try
+            {
+                self.OnUpdate();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+    public class UIGemMakeComponent : Entity, IAwake,IDestroy
     {
         public GameObject TextVitality;
         public GameObject ImageSelect;
@@ -17,11 +34,22 @@ namespace ET
         public GameObject NeedListNode;
         public GameObject MakeINeedNode;
         public GameObject MakeListNode;
+        public GameObject Lab_MakeCDTime;
 
         public List<UIMakeItemComponent> MakeListUI = new List<UIMakeItemComponent>();
         public List<UIMakeNeedComponent> NeedListUI = new List<UIMakeNeedComponent>();
         public UIItemComponent MakeItemUI;
         public int MakeId;
+        public long Timer;
+    }
+
+    [ObjectSystem]
+    public class UIGemMakeComponentDestroySystem : DestroySystem<UIGemMakeComponent>
+    {
+        public override void Destroy(UIGemMakeComponent self)
+        {
+            TimerComponent.Instance.Remove(ref self.Timer);
+        }
     }
 
     [ObjectSystem]
@@ -40,7 +68,8 @@ namespace ET
             self.Text_Current = rc.Get<GameObject>("Text_Current");
             self.TextVitality = rc.Get<GameObject>("TextVitality");
             self.Lab_MakeName = rc.Get<GameObject>("Lab_MakeName");
-            self.Lab_MakeNum = rc.Get<GameObject>("Lab_MakeNum");
+            self.Lab_MakeNum = rc.Get<GameObject>("Lab_MakeNum"); self.Lab_MakeCDTime = rc.Get<GameObject>("Lab_MakeCDTime");
+            self.Lab_MakeCDTime = rc.Get<GameObject>("Lab_MakeCDTime");
 
             self.Btn_Make = rc.Get<GameObject>("Btn_Make");
             ButtonHelp.AddListenerEx(self.Btn_Make, () => { self.OnBtn_Make().Coroutine(); });
@@ -80,6 +109,13 @@ namespace ET
             {
                 return;
             }
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            long cdEndTime = userInfoComponent.GetMakeTime(self.MakeId);
+            if (cdEndTime > TimeHelper.ServerNow())
+            {
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCore.ERR_InMakeCD]);
+                return;
+            }
 
             EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(self.MakeId);
             if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Gold < equipMakeConfig.MakeNeedGold)
@@ -95,13 +131,7 @@ namespace ET
                 return;
             }
 
-            C2M_MakeEquipRequest m_ItemOperateWear = new C2M_MakeEquipRequest() { MakeId = self.MakeId };
-            M2C_MakeEquipResponse r2c_roleEquip = (M2C_MakeEquipResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
-            if (r2c_roleEquip.ItemId == 0)
-            {
-                FloatTipManager.Instance.ShowFloatTip("制作失败！");
-            }
-
+            await NetHelper.RequestEquipMake(self.ZoneScene(), 0, self.MakeId);
             self.OnCostItemUpdate().Coroutine();
         }
 
@@ -173,10 +203,46 @@ namespace ET
             }
         }
 
+        public static void OnUpdate(this UIGemMakeComponent self)
+        {
+            int makeId = self.MakeId;
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            long cdEndTime = userInfoComponent.GetMakeTime(makeId);
+            if (cdEndTime <= TimeHelper.ServerNow())
+            {
+                self.Lab_MakeCDTime.SetActive(false);
+                TimerComponent.Instance?.Remove(ref self.Timer);
+                return;
+            }
+            self.Lab_MakeCDTime.GetComponent<Text>().text = TimeHelper.ShowLeftTime(cdEndTime - TimeHelper.ServerNow());
+        }
+
+        public static void ShowCDTime(this UIGemMakeComponent self)
+        {
+            self.Lab_MakeCDTime.SetActive(false);
+            TimerComponent.Instance?.Remove(ref self.Timer);
+            int makeId = self.MakeId;
+            if (makeId == 0)
+            {
+                return;
+            }
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            long cdEndTime = userInfoComponent.GetMakeTime(makeId);
+            if (cdEndTime <= TimeHelper.ServerNow())
+            {
+                return;
+            }
+            self.Lab_MakeCDTime.SetActive(true);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.MakeCDTimer, self);
+            self.OnUpdate();
+        }
+
+
         public static void OnSelectMakeItem(this UIGemMakeComponent self, int makeid)
         {
             self.MakeId = makeid;
             self.MakeINeedNode.SetActive(makeid!=0);
+            self.ShowCDTime();
             self.UpateMakeItemUI();
             self.OnCostItemUpdate().Coroutine();
 

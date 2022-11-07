@@ -111,6 +111,7 @@
         public const int ERR_MailFull = 300301;                                     //邮箱已满
         public const int ERR_CreateRoleName = 300302;
         public const int ERR_WordChat = 300303;                                     //世界频道发消息 1分钟1次
+        public const int ERR_InMakeCD = 300304;
 
         //队伍
         public const int ERR_TeamIsFull = 300401;                                   //队伍已满

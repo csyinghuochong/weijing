@@ -1,10 +1,27 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISkillMakeComponent : Entity, IAwake
+    [Timer(TimerType.MakeCDTimer)]
+    public class SkillMakeTimer : ATimer<UISkillMakeComponent>
+    {
+        public override void Run(UISkillMakeComponent self)
+        {
+            try
+            {
+                self.OnUpdate();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+    public class UISkillMakeComponent : Entity, IAwake,IDestroy
     {
 
         public GameObject Lab_ShuLianDu;
@@ -28,11 +45,23 @@ namespace ET
 
         public GameObject Lab_MakeName;
         public GameObject Lab_MakeNum;
+        public GameObject Lab_MakeCDTime;
 
         public List<UIMakeItemComponent> MakeListUI = new List<UIMakeItemComponent>();
         public List<UIMakeNeedComponent> NeedListUI = new List<UIMakeNeedComponent>();
         public UIItemComponent MakeItemUI;
         public int MakeId;
+
+        public long Timer;
+    }
+
+    [ObjectSystem]
+    public class UISkillMakeComponentDestroySystem : DestroySystem<UISkillMakeComponent>
+    {
+        public override void Destroy(UISkillMakeComponent self)
+        {
+            TimerComponent.Instance.Remove(ref self.Timer);
+        }
     }
 
     [ObjectSystem]
@@ -70,6 +99,8 @@ namespace ET
 
             self.Lab_MakeName = rc.Get<GameObject>("Lab_MakeName");
             self.Lab_MakeNum = rc.Get<GameObject>("Lab_MakeNum");
+
+            self.Lab_MakeCDTime = rc.Get<GameObject>("Lab_MakeCDTime");
 
             GameObject Button_Select_1 = rc.Get<GameObject>("Button_Select_1");
             GameObject Button_Select_2 = rc.Get<GameObject>("Button_Select_2");
@@ -146,6 +177,13 @@ namespace ET
             {
                 return;
             }
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            long cdEndTime = userInfoComponent.GetMakeTime(self.MakeId);
+            if (cdEndTime > TimeHelper.ServerNow())
+            {
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCore.ERR_InMakeCD]);
+                return;
+            }
 
             EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(self.MakeId);
             List<RewardItem> costItems = new List<RewardItem>();
@@ -170,22 +208,9 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("材料不足！");
                 return;
             }
+            await NetHelper.RequestEquipMake(self.ZoneScene(), 0, self.MakeId);
 
-            C2M_MakeEquipRequest m_ItemOperateWear = new C2M_MakeEquipRequest() { MakeId = self.MakeId };
-            M2C_MakeEquipResponse r2c_roleEquip = (M2C_MakeEquipResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
-            if (r2c_roleEquip.ItemId == 0)
-            {
-                FloatTipManager.Instance.ShowFloatTip("制作失败！");
-            }
-            if (r2c_roleEquip.NewMakeId != 0)
-            {
-                equipMakeConfig = EquipMakeConfigCategory.Instance.Get(r2c_roleEquip.NewMakeId);
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID);
-                FloatTipManager.Instance.ShowFloatTip($"恭喜你领悟到新的制作技能 {itemConfig.ItemName}");
-                self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(r2c_roleEquip.NewMakeId);
-                self.OnUpdateMakeType();
-            }
-
+            self.OnUpdateMakeType();
             self.UpdateShuLianDu();
             self.OnBagItemUpdate().Coroutine();
         }
@@ -260,6 +285,40 @@ namespace ET
             }
         }
 
+        public static void OnUpdate(this UISkillMakeComponent self)
+        {
+            int makeId = self.MakeId;
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            long cdEndTime = userInfoComponent.GetMakeTime(makeId);
+            if (cdEndTime <= TimeHelper.ServerNow())
+            {
+                self.Lab_MakeCDTime.SetActive(false);
+                TimerComponent.Instance?.Remove(ref self.Timer);
+                return;
+            }
+            self.Lab_MakeCDTime.GetComponent<Text>().text = TimeHelper.ShowLeftTime(cdEndTime - TimeHelper.ServerNow());
+        }
+
+        public static void ShowCDTime(this UISkillMakeComponent self)
+        {
+            self.Lab_MakeCDTime.SetActive(false);
+            TimerComponent.Instance?.Remove(ref self.Timer);
+            int makeId = self.MakeId;
+            if (makeId == 0)
+            {
+                return;
+            }
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            long cdEndTime = userInfoComponent.GetMakeTime(makeId);
+            if (cdEndTime <= TimeHelper.ServerNow())
+            {
+                return;
+            }
+            self.Lab_MakeCDTime.SetActive(true);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.MakeCDTimer, self);
+            self.OnUpdate();
+        }
+
         public static void OnSelectMakeItem(this UISkillMakeComponent self, int makeid)
         {
             self.MakeId = makeid;
@@ -269,8 +328,8 @@ namespace ET
                 return;
             }
 
+            self.ShowCDTime();
             self.MakeINeedNode.SetActive(true);
-
             self.OnBagItemUpdate().Coroutine();
 
             //设置选中框

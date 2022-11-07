@@ -775,13 +775,15 @@ namespace ET
             self.PetHeXinSetComponent.OnUpdateItemList().Coroutine();
         }
 
-        public static void OnUpdatePetPoint(this UIPetListComponent self, RolePetInfo rolePetInfo)
+        public static void OnUpdatePetPoint(this UIPetListComponent self, RolePetInfo rolePetItem)
         {
-            self.ButtonAddPoint.transform.Find("Reddot").gameObject.SetActive(rolePetInfo!=null && rolePetInfo.AddPropretyNum > 0);
+            self.LastSelectItem = rolePetItem;
+            self.ButtonAddPoint.transform.Find("Reddot").gameObject.SetActive(rolePetItem != null && rolePetItem.AddPropretyNum > 0);
             for (int i = 0; i < self.PetUIList.Count; i++)
             {
-                self.PetUIList[i].GetComponent<UIPetListItemComponent>().OnUpdatePetPoint(rolePetInfo);
+                self.PetUIList[i].GetComponent<UIPetListItemComponent>().OnUpdatePetPoint(rolePetItem);
             }
+            self.UpdateAttribute(self.LastSelectItem);
         }
 
         public static void OnEquipPetHeXin(this UIPetListComponent self)
@@ -793,13 +795,6 @@ namespace ET
             self.PetHeXinSetComponent.SelectItemHandlder(null);
             self.PetHeXinSetComponent.UpdatePetHexinItem();
             self.PetHeXinSetComponent.OnUpdateItemList().Coroutine();
-        }
-
-        public static void OnRolePetJiadian(this UIPetListComponent self)
-        {
-            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            self.LastSelectItem = petComponent.GetPetInfoByID(self.LastSelectItem.Id);
-            self.UpdateAttribute(self.LastSelectItem);
         }
 
         public static void OnUpdatePetInfo(this UIPetListComponent self, RolePetInfo rolePetInfo)

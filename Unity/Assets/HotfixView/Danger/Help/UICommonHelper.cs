@@ -170,6 +170,10 @@ namespace ET
             string[] rewardItems = itemList.Split('@');
             for (int i = 0; i < rewardItems.Length; i++)
             {
+                if (ComHelp.IfNull(rewardItems[i]))
+                {
+                    continue;
+                }
                 string[] itemInfo = rewardItems[i].Split(';');
                 GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(itemSpace, itemNodeList);

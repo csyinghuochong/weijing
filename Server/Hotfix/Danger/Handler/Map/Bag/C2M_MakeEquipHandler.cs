@@ -56,7 +56,10 @@ namespace ET
 
             unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Gold, (equipMakeConfig.MakeNeedGold * -1).ToString()).Coroutine();
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Vitality, (equipMakeConfig.CostVitality * -1).ToString()).Coroutine();
-
+            if (request.BagInfoID == 0)
+            {
+                unit.GetComponent<UserInfoComponent>().OnMakeItem(equipMakeConfig.Id);
+            }
             float rate = RandomHelper.RandFloat01();
             if (success && equipMakeConfig.MakeSuccesPro > rate)
             {
