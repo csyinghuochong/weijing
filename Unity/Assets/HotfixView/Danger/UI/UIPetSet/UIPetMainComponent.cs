@@ -211,7 +211,7 @@ namespace ET
         public static async ETTask BeginCountdown(this UIPetMainComponent self)
         {
             long instanceId = self.InstanceId;
-            int cdTime = 10;// GlobalValueConfigCategory.Instance.Get(60).Value2;
+            int cdTime =  GlobalValueConfigCategory.Instance.Get(60).Value2;
             for (int i = cdTime; i >= 0; i--)
             {
                 if (instanceId != self.InstanceId)
