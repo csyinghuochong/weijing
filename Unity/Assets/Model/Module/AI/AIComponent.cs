@@ -45,7 +45,5 @@ namespace ET
         public List<Vector3> TargetPoint = new List<Vector3>();
 
         public Vector3 TargetZhuiJi;
-
-        public int TargetIndex = -1;
     }
 }

@@ -11,7 +11,7 @@ namespace ET
             {
                 return false;
             }
-            if (aiComponent.TargetIndex >= aiComponent.TargetPoint.Count)
+            if (aiComponent.TargetPoint.Count == 0)
             {
                 return false;
             }
@@ -23,11 +23,7 @@ namespace ET
                 aiComponent.TargetID = nearest.Id;
                 return false;
             }
-            //float distance_1 = PositionHelper.Distance2D(aiComponent.TargetZhuiJi, unit.Position);
-            Vector3 target = aiComponent.TargetPoint[aiComponent.TargetIndex];
-            float distance_2 = Vector3.Distance(target, unit.Position);
-            bool gotoTarget = distance_2 > 0.5;
-            return gotoTarget;
+            return true;
         }
 
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
@@ -37,15 +33,16 @@ namespace ET
 
             while (true)
             {
-                Vector3 target = aiComponent.TargetPoint[aiComponent.TargetIndex];
+                if (aiComponent.TargetPoint.Count == 0)
+                {
+                    return;
+                }
+                Vector3 target = aiComponent.TargetPoint[0];
                 float distance = Vector3.Distance(target, unit.Position);
                 if (distance < 0.5f)
                 {
-                    aiComponent.TargetIndex++;
-                }
-                if (aiComponent.TargetIndex >= aiComponent.TargetPoint.Count)
-                {
-                    return;
+                    aiComponent.TargetPoint.RemoveAt(0);
+                    continue;
                 }
                 if (unit.GetComponent<StateComponent>().CanMove())
                 {

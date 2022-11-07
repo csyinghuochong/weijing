@@ -28,7 +28,6 @@ namespace ET
             self.TargetID = 0;
             self.StopAI = false;
             self.IsRetreat = false;
-            self.TargetIndex = -1;
             self.AIConfigId = aiConfigId;
             self.AISkillIDList.Clear();
             self.BeAttackList.Clear();
@@ -155,7 +154,6 @@ namespace ET
                     float z = float.Parse(potioninfo[2]);
                     self.TargetPoint.Add(new Vector3(x, y, z));
                 }
-                self.TargetIndex = 0;
             }
             catch (Exception ex)
             {

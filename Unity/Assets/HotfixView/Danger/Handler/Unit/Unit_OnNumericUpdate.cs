@@ -30,7 +30,7 @@
                     break;
                 case NumericType.Now_Weapon:
                     int weaponId = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
-                    args.Unit.GetComponent<ChangeEquipComponent>().ChangeWeapon(weaponId);
+                    args.Unit.GetComponent<ChangeEquipComponent>()?.ChangeWeapon(weaponId);
                     break;
                 case NumericType.Now_XiLian:
                     break;

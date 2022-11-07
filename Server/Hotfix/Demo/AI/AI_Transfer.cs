@@ -9,15 +9,7 @@ namespace ET
     {
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
-            if (aiComponent.TargetIndex <= 0)
-            {
-                return false;
-            }
-
-            Unit unit = aiComponent.GetParent<Unit>();
-            Vector3 target = aiComponent.TargetPoint[aiComponent.TargetIndex - 1];
-            float distance = Vector3.Distance(target, unit.Position);
-            return distance < 0.5f;
+            return aiComponent.TargetPoint.Count == 0;
         }
 
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
