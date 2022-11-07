@@ -3,8 +3,32 @@ using System.Collections.Generic;
 
 namespace ET
 {
+
+    [ObjectSystem]
+    public class PetFubenSceneComponentDestroySystem : DestroySystem<PetFubenSceneComponent>
+    {
+        public override void Destroy(PetFubenSceneComponent self)
+        {
+            TimerComponent.Instance.Remove(ref self.Timer);
+        }
+    }
     public static class PetFubenSceneComponentSystem
     {
+
+        public static void OnGameOver(this PetFubenSceneComponent self, int combatResult)
+        {
+            List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0;i < units.Count; i++)
+            {
+                AIComponent aIComponent = units[i].GetComponent<AIComponent>();
+                aIComponent?.Stop();
+            }
+
+            M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
+            m2C_FubenSettlement.StarInfos = new List<int>() { 0, 0, 0 };
+            m2C_FubenSettlement.BattleResult = combatResult;
+            MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
+        }
 
         public static void OnKillEvent(this PetFubenSceneComponent self)
         {
@@ -23,7 +47,7 @@ namespace ET
             }
             int petfubeId = self.DomainScene().GetComponent<MapComponent>().SonSceneId;
             M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
-            m2C_FubenSettlement.BattleResult = allMonsterDead ? 1 : 0;
+            m2C_FubenSettlement.BattleResult = allMonsterDead ? CombatResultEnum.Win : CombatResultEnum.Fail;
             if (!allMonsterDead)
             {
                 m2C_FubenSettlement.StarInfos = new List<int>() { 0, 0, 0 };
@@ -50,7 +74,6 @@ namespace ET
 
         public static void  GeneratePetFuben(this PetFubenSceneComponent self, Unit unit, int sceneId)
         {
-            long instanceId = self.InstanceId;
             unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.WuDi);
 
             PetComponent petComponent = unit.GetComponent<PetComponent>();

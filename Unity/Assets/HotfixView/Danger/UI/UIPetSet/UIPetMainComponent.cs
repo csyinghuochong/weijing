@@ -40,6 +40,7 @@ namespace ET
 
         public GameObject PetFubenFinger;
         public GameObject Btn_RerurnBuilding;
+        public GameObject CountdownTime;
 
         //手指第一次触摸点的位置
         public Vector2 m_scenePos = new Vector2();
@@ -95,6 +96,8 @@ namespace ET
             self.Image_3.SetActive(false);
             self.Image_2.SetActive(false);
             self.Image_1.SetActive(false);
+
+            self.CountdownTime = rc.Get<GameObject>("CountdownTime");
 
             //DataUpdateComponent.Instance.RemoveListener(DataType.UnitHpUpdate, self);
             self.OnPlayAnimation().Coroutine();
@@ -202,6 +205,30 @@ namespace ET
             self.Di.SetActive(false);
             C2M_PetFubenBeginRequest c2M_PetFubenBeginRequest = new C2M_PetFubenBeginRequest();
             await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_PetFubenBeginRequest);
+            self.BeginCountdown().Coroutine();
+        }
+
+        public static async ETTask BeginCountdown(this UIPetMainComponent self)
+        {
+            long instanceId = self.InstanceId;
+            int cdTime = 10;// GlobalValueConfigCategory.Instance.Get(60).Value2;
+            for (int i = cdTime; i >= 0; i--)
+            {
+                if (instanceId != self.InstanceId)
+                {
+                    return;
+                }
+                if (i == 0)
+                {
+                    self.CountdownTime.GetComponent<Text>().text = i.ToString();
+                    self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_PetFubenOverRequest());
+                }
+                else
+                {
+                    self.CountdownTime.GetComponent<Text>().text = i.ToString();
+                    await TimerComponent.Instance.WaitAsync(1000);
+                }
+            }
         }
 
         public static void BeginDrag(this UIPetMainComponent self, PointerEventData pdata)

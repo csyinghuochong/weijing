@@ -9,7 +9,8 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_PetFubenBeginRequest request, M2C_PetFubenBeginResponse response, Action reply)
         {
-            List<Unit> allunits = unit.DomainScene().GetComponent<UnitComponent>().GetAll();
+            Scene domainScene = unit.DomainScene();
+            List<Unit> allunits = domainScene.GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < allunits.Count; i++)
             {
                 if (allunits[i].Type!= UnitType.Pet && allunits[i].Type!= UnitType.Monster)
@@ -18,7 +19,6 @@ namespace ET
                 }
                 allunits[i].GetComponent<AIComponent>().StopAI = false;
             }
-
             reply();
             await ETTask.CompletedTask;
         }

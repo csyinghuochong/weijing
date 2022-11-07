@@ -13,7 +13,7 @@
         {
             await TimerComponent.Instance.WaitAsync(2000);
 
-            PopupTipHelp.OpenPopupTip_2(args.Scene, args.m2C_PetRankSettlement.BattleResult == 1 ? "胜利" : "失败", "获取奖励",
+            PopupTipHelp.OpenPopupTip_2(args.Scene, args.m2C_PetRankSettlement.BattleResult == CombatResultEnum.Win ? "胜利" : "失败", "获取奖励",
                  () => { EnterFubenHelp.RequestQuitFuben(args.Scene); }
                  ).Coroutine();
         }

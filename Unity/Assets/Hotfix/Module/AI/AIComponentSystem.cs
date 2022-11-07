@@ -249,6 +249,7 @@ namespace ET
         {
             self.StopAI = true;
             self.TargetID = 0;
+            self.Cancel();
         }
 #endif
 

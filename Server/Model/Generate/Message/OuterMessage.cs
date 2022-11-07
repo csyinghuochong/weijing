@@ -7344,6 +7344,19 @@ namespace ET
 
 	}
 
+//宠物副本结束战斗
+	[Message(OuterOpcode.C2M_PetFubenOverRequest)]
+	[ProtoContract]
+	public partial class C2M_PetFubenOverRequest: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
 	[ResponseType(nameof(M2C_PetFubenRewardResponse))]
 //宠物副本星级奖励
 	[Message(OuterOpcode.C2M_PetFubenRewardRequest)]

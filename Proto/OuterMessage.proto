@@ -3504,6 +3504,14 @@ message M2C_PetFubenBeginResponse // IActorLocationResponse
 	string Message = 92;
 }
 
+//宠物副本结束战斗
+message C2M_PetFubenOverRequest // IActorLocationMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+
 //ResponseType M2C_PetFubenRewardResponse
 //宠物副本星级奖励
 message C2M_PetFubenRewardRequest // IActorLocationRequest

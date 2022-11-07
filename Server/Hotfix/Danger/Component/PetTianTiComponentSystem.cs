@@ -3,6 +3,16 @@ using System.Collections.Generic;
 
 namespace ET
 {
+
+    [ObjectSystem]
+    public class PetTianTiComponentDestroySystem : DestroySystem<PetTianTiComponent>
+    {
+        public override void Destroy(PetTianTiComponent self)
+        {
+            TimerComponent.Instance.Remove(ref self.Timer);
+        }
+    }
+
     public static class PetTianTiComponentSystem
     {
         public static  async ETTask GeneratePetFuben(this PetTianTiComponent self)
@@ -59,12 +69,22 @@ namespace ET
         public static void OnKillEvent(this PetTianTiComponent self)
         {
             int result = self.GetCombatResult();
-            if (result == 0)
+            if (result != CombatResultEnum.None)
             {
-                return;
+                self.OnGameOver(result);
+            }
+        }
+
+        public static void OnGameOver(this PetTianTiComponent self, int result)
+        {
+            List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                AIComponent aIComponent = units[i].GetComponent<AIComponent>();
+                aIComponent?.Stop();
             }
 
-            if (result == 1)
+            if (result == CombatResultEnum.Win)
             {
                 self.NoticeRankServer().Coroutine();
             }
