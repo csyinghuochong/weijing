@@ -99,9 +99,7 @@ namespace ET
                 return;
             }
 
-            C2M_MakeEquipRequest m_ItemOperateWear = new C2M_MakeEquipRequest() { BagInfoID = self.BagInfo.BagInfoID, MakeId = self.MakeId };
-            M2C_MakeEquipResponse r2c_roleEquip = (M2C_MakeEquipResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
-
+            await NetHelper.RequestEquipMake(self.ZoneScene(), self.BagInfo.BagInfoID, self.MakeId);
             self.OnBagItemUpdate().Coroutine();
         }
 

@@ -38,6 +38,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_Occ_Hint_2, "请不要重复进行转职噢");
             ErrorHintList.Add(ErrorCore.ERR_NotRealName, "请先实名认证");
             ErrorHintList.Add(ErrorCore.ERR_WordChat, "世界频道发消息 1分钟1次");
+            ErrorHintList.Add(ErrorCore.ERR_InMakeCD, "制作冷却中!");
 
             ErrorHintList.Add(ErrorCore.ERR_TeamIsFull, "队伍已满");
             ErrorHintList.Add(ErrorCore.ERR_LevelIsNot, "等级不足");

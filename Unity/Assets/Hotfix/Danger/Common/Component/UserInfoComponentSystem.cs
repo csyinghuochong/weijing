@@ -413,6 +413,41 @@ namespace ET
             }
         }
 #endif
+
+        public static long GetMakeTime(this UserInfoComponent self, int makeId)
+        {
+            List<KeyValuePairInt> makeList = self.UserInfo.MakeIdList;
+            for (int i = 0; i < makeList.Count; i++)
+            {
+                if (makeList[i].KeyId == makeId)
+                {
+                    return makeList[i].Value;
+                }
+            }
+            return 0;
+        }
+
+        public static void OnMakeItem(this UserInfoComponent self, int makeId)
+        {
+            EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeId);
+            List<KeyValuePairInt> makeList = self.UserInfo.MakeIdList;
+
+            bool have = false;
+            long endTime = TimeHelper.ServerNow() + equipMakeConfig.MakeTime * 1000 + 12*1000; 
+            for (int i = 0; i < makeList.Count; i++)
+            {
+                if (makeList[i].KeyId == makeId)
+                {
+                    makeList[i].Value = endTime;
+                    have = true;
+                }
+            }
+            if (!have)
+            {
+                self.UserInfo.MakeIdList.Add(new KeyValuePairInt() { KeyId = makeId, Value = endTime });
+            }
+        }
+
         public static void OnAddChests(this UserInfoComponent self, int fubenId, int monsterId)
         {
             bool have = false;

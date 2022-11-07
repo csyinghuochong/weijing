@@ -313,6 +313,8 @@ message UserInfo
 	int32 RobotId = 31;
 
 	repeated KeyValuePair  OpenChestList = 32;
+
+	repeated KeyValuePairInt  MakeIdList = 33;
 }
 
 message KeyValuePair

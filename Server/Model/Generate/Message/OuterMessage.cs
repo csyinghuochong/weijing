@@ -629,6 +629,9 @@ namespace ET
 		[ProtoMember(32)]
 		public List<KeyValuePair> OpenChestList = new List<KeyValuePair>();
 
+		[ProtoMember(33)]
+		public List<KeyValuePairInt> MakeIdList = new List<KeyValuePairInt>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]
