@@ -100,7 +100,7 @@
 		{
 			Unit unit = args.Parent;
 			long InstanceId = unit.InstanceId;
-			if (args.NewValue == 1 && unit.IsRobot())
+			if (args.NewValue == 1 && unit.MainHero && unit.IsRobot())
 			{
 				Scene zoneScene = unit.ZoneScene();
 				MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
