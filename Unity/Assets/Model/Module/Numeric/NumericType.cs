@@ -175,7 +175,7 @@
         public const int Base_GeDang_Mul = Now_GeDang * 100 + 2;                  //属性乘法
         public const int Base_GeDang_Add = Now_GeDang * 100 + 3;                  //属性附加
         public const int Extra_Buff_GeDang_Add = Now_GeDang * 100 + 11;           //属性Buff附加加法
-        public const int Extra_Buff_GeDang_Mul = Now_GeDang * 100 + 12;           //属性Buff附加乘法
+        public const int Extra_Buff_GeDang_Mul = Now_GeDang * 100 + 12;           //属性Buff附加乘法 
 
         public const int Now_ZhongJi = 1102;          //当前重击固定值
         public const int Base_ZhongJi_Base = Now_ZhongJi * 100 + 1;                 //属性累加
