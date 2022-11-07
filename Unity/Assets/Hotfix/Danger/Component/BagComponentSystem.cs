@@ -80,10 +80,23 @@ namespace ET
             }
 
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            int weizhi = ItemHelper.ReturnEquipSpaceNum(itemCof.ItemSubType);
+            int weizhi = itemCof.ItemSubType;
 
             //获取之前的位置是否有装备
-            BagInfo beforeequip = self.GetEquipByWeizhi(weizhi);
+            //BagInfo beforeequip = self.GetEquipByWeizhi(weizhi);
+
+            //获取之前的位置是否有装备
+            BagInfo beforeequip = null;
+            AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (weizhi == (int)ItemSubTypeEnum.Shiping && !ComHelp.IsBanHaoZone(accountInfo.CurrentServerId))
+            {
+                List<BagInfo> equipList = self.GetEquipListByWeizhi(weizhi);
+                beforeequip = equipList.Count < 3 ? null : equipList[0];
+            }
+            else
+            {
+                beforeequip = self.GetEquipByWeizhi(weizhi);
+            }
 
             C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 3, OperateBagID = bagInfo.BagInfoID };
             M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
@@ -547,9 +560,7 @@ namespace ET
                     continue;
                 }
 
-                int weizhi = ItemHelper.ReturnEquipSpaceNum(itemConfig.ItemSubType);
-                
-                BagInfo equipInfo = self.GetEquipByWeizhi(weizhi);
+                BagInfo equipInfo = self.GetEquipByWeizhi(itemConfig.ItemSubType);
                 if (equipInfo == null)
                 {
                     Log.ILog.Debug($"SendWearEquip1:  {bagList[i].ItemID}");
@@ -666,7 +677,7 @@ namespace ET
             for (int i = 0; i < equipList.Count; i++)
             {
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(equipList[i].ItemID);
-                int weizhi = ItemHelper.ReturnEquipSpaceNum(itemCof.ItemSubType);
+                int weizhi = itemCof.ItemSubType;
                 if (weizhi == position)
                 {
                     bagInfos.Add(equipList[i]);

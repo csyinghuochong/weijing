@@ -20,7 +20,6 @@ namespace ET
         };
 #endif
 
-
         public static List<string> GetChuJi()
         {
             List<string> vs = new List<string>();

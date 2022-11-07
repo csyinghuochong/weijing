@@ -44,7 +44,7 @@ namespace ET
                 if (useBagInfo != null)
                 {
                     itemCof = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
-                    weizhi = ItemHelper.ReturnEquipSpaceNum(itemCof.ItemSubType);
+                    weizhi = itemCof.ItemSubType;
                 }
                
                 //通知客户端背包刷新
@@ -185,6 +185,9 @@ namespace ET
                                 {
                                     UnitFactory.CreateTempPet(unit, int.Parse(itemCof.ItemUsePar));
                                 }
+                                break;
+                            case 15:    //附魔道具
+                                unit.GetComponent<BagComponent>().OnEquipFuMo(itemCof.ItemUsePar);
                                 break;
                             //使用技能
                             case 101:
@@ -399,7 +402,7 @@ namespace ET
 
                     //获取之前的位置是否有装备
                     BagInfo beforeequip = null;
-                    if (weizhi == 5 && !ComHelp.IsBanHaoZone(unit.DomainZone()))
+                    if (weizhi == (int)ItemSubTypeEnum.Shiping && !ComHelp.IsBanHaoZone(unit.DomainZone()))
                     {
                         List<BagInfo> equipList = unit.GetComponent<BagComponent>().GetEquipListByWeizhi(weizhi);
                         beforeequip = equipList.Count < 3 ? null : equipList[0];

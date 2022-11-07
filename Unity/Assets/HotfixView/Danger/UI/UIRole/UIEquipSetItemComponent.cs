@@ -53,13 +53,13 @@ namespace ET
             Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
         }
 
-        public static void InitUI(this UIEquipSetItemComponent self, int weizhi)
+        public static void InitUI(this UIEquipSetItemComponent self, int subType)
         {
             self.Img_EquipIcon.SetActive(false);
             self.Img_EquipQuality.SetActive(false);
             self.Img_EquipBangDing.SetActive(false);
 
-            string qianghuaName = ItemViewHelp.EquipWeiZhiToName[weizhi].Icon;
+            string qianghuaName = ItemViewHelp.EquipWeiZhiToName[subType].Icon;
             ABAtlasHelp.GetIconSprite( ABAtlasTypes.OtherIcon, qianghuaName);
 
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, qianghuaName);

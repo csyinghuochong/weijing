@@ -96,19 +96,17 @@ namespace ET
         /// </summary>
         public static Dictionary<int, EquipWeiZhiInfo> EquipWeiZhiToName = new Dictionary<int, EquipWeiZhiInfo>()
         {
-           {  0,  new EquipWeiZhiInfo(){ Icon = "Img_24",   Name = "武器" } },
-           {  1,  new EquipWeiZhiInfo(){ Icon = "Img_28",   Name = "衣服" } },
-           {  2,  new EquipWeiZhiInfo(){ Icon = "Img_29",   Name = "护符" } },
-           {  3,  new EquipWeiZhiInfo(){ Icon = "Img_19",   Name = "戒指" } },
-           {  4,  new EquipWeiZhiInfo(){ Icon = "Img_21",   Name = "饰品" } },
+           {  1,  new EquipWeiZhiInfo(){ Icon = "Img_24",   Name = "武器" } },
+           {  2,  new EquipWeiZhiInfo(){ Icon = "Img_28",   Name = "衣服" } },
+           {  3,  new EquipWeiZhiInfo(){ Icon = "Img_29",   Name = "护符" } },
+           {  4,  new EquipWeiZhiInfo(){ Icon = "Img_19",   Name = "戒指" } },
            {  5,  new EquipWeiZhiInfo(){ Icon = "Img_21",   Name = "饰品" } },
-           {  6,  new EquipWeiZhiInfo(){ Icon = "Img_21",   Name = "饰品" } },
-           {  7,  new EquipWeiZhiInfo(){ Icon = "Img_26",   Name = "鞋子" } },
-           {  8,  new EquipWeiZhiInfo(){ Icon = "Img_20",   Name = "裤子" } },
-           {  9,  new EquipWeiZhiInfo(){ Icon = "Img_27",   Name = "腰带" } },
-           {  10,  new EquipWeiZhiInfo(){ Icon = "Img_22",  Name = "手镯" } },
-           {  11,  new EquipWeiZhiInfo(){ Icon = "Img_23",  Name = "头盔" } },
-           {  12,  new EquipWeiZhiInfo(){ Icon = "Img_25",  Name = "项链" } },
+           {  6,  new EquipWeiZhiInfo(){ Icon = "Img_26",   Name = "鞋子" } },
+           {  7,  new EquipWeiZhiInfo(){ Icon = "Img_20",   Name = "裤子" } },
+           {  8,  new EquipWeiZhiInfo(){ Icon = "Img_27",   Name = "腰带" } },
+           {  9,  new EquipWeiZhiInfo(){ Icon = "Img_22",  Name = "手镯" } },
+           {  10,  new EquipWeiZhiInfo(){ Icon = "Img_23",  Name = "头盔" } },
+           {  11,  new EquipWeiZhiInfo(){ Icon = "Img_25",  Name = "项链" } },
         };
 
         //宝石槽位

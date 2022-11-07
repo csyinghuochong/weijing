@@ -26,7 +26,7 @@ namespace ET
         public GameObject QiangHuaLevelList;
         public GameObject EquipSet;
 
-        public int QiangHuaIndex;
+        public int ItemSubType;
         public UIEquipSetItemComponent QiangHuaEquipItem;
         public List<UIRoleQiangHuaItemComponent> QiangHuaItemList = new List<UIRoleQiangHuaItemComponent>();
     }
@@ -60,11 +60,12 @@ namespace ET
             self.QiangHuaLevelList = rc.Get<GameObject>("QiangHuaLevelList");
 
             self.EquipSet = rc.Get<GameObject>("EquipSet");
-            for (int i = 0; i < 13; i++)
+
+            for (int i = 0; i < 11; i++)
             {
                 GameObject gameObject = self.EquipSet.transform.Find($"Equip_{i+1}").gameObject;
                 UIRoleQiangHuaItemComponent qianghuaItem = self.AddChild<UIRoleQiangHuaItemComponent,GameObject>(gameObject);
-                qianghuaItem.OnInitUI(i);
+                qianghuaItem.OnInitUI(i + 1);
                 qianghuaItem.SetClickHandler(self.OnBtn_EquipHandler);
                 self.QiangHuaItemList.Add(qianghuaItem);
             }
@@ -80,31 +81,31 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             for (int i = 0; i < self.QiangHuaItemList.Count; i++)
             {
-                self.QiangHuaItemList[i].OnUpateUI(bagComponent.QiangHuaLevel[i]);
+                self.QiangHuaItemList[i].OnUpateUI(bagComponent.QiangHuaLevel[i+1]);
             }
             self.QiangHuaItemList[0].OnBtn_Equip();
         }
 
         public static void OnBtn_EquipHandler(this UIRoleQiangHuaComponent self, int index)
         { 
-            self.QiangHuaIndex = index;
+            self.ItemSubType = index;
             self.OnUpdateQiangHuaUI(index);
         }
 
-        public static void OnUpdateQiangHuaUI(this UIRoleQiangHuaComponent self, int index)
+        public static void OnUpdateQiangHuaUI(this UIRoleQiangHuaComponent self, int subType)
         {
-            self.QiangHuaEquipItem.InitUI(index);
+            self.QiangHuaEquipItem.InitUI(subType);
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            int qianghuaLevel = bagComponent.QiangHuaLevel[index];
-            int maxLevel = QiangHuaHelper.GetQiangHuaMaxLevel(index);
+            int qianghuaLevel = bagComponent.QiangHuaLevel[subType];
+            int maxLevel = QiangHuaHelper.GetQiangHuaMaxLevel(subType);
             self.NextNode.SetActive(qianghuaLevel < maxLevel);
             self.MaxNode.SetActive(qianghuaLevel >= maxLevel);
-            UICommonHelper.SetParent(self.ImageSelect, self.QiangHuaItemList[index].GameObject);
+            UICommonHelper.SetParent(self.ImageSelect, self.QiangHuaItemList[subType-1].GameObject);
             self.ImageSelect.transform.localPosition = new Vector3(1f, -2f, 0f);
-            string qianghuaName = ItemViewHelp.EquipWeiZhiToName[index].Name;
+            string qianghuaName = ItemViewHelp.EquipWeiZhiToName[subType].Name;
             self.TextQiangHuaName.GetComponent<Text>().text = $"{qianghuaName}强化 +{qianghuaLevel}";
-            EquipQiangHuaConfig equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(index, qianghuaLevel);
+            EquipQiangHuaConfig equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(subType, qianghuaLevel);
 
             float fvalue = float.Parse( equipQiangHuaConfig.EquipPropreAdd )* 100f;
             //string svalue = string.Format("{0:F}", fvalue);
@@ -112,14 +113,14 @@ namespace ET
             self.TextAttribute1.GetComponent<Text>().text = $"对应部位提升 { svalue}%属性";
 
             self.Text_QiangHuaLv.GetComponent<Text>().text = $"+{qianghuaLevel}";
-            self.Text_QiangHuaName.GetComponent<Text>().text = ItemViewHelp.EquipWeiZhiToName[index].Name;
-            self.QiangHuaItemList[index].OnUpateUI(qianghuaLevel);
+            self.Text_QiangHuaName.GetComponent<Text>().text = ItemViewHelp.EquipWeiZhiToName[subType].Name;
+            self.QiangHuaItemList[subType - 1].OnUpateUI(qianghuaLevel);
             if (qianghuaLevel >= maxLevel)
             {
                 return;
             }
 
-            EquipQiangHuaConfig next_equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(index, qianghuaLevel+1);
+            EquipQiangHuaConfig next_equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(subType, qianghuaLevel+1);
 
             fvalue = float.Parse(next_equipQiangHuaConfig.EquipPropreAdd) * 100f;
             svalue = fvalue.ToString("0.#####"); ;/// string.Format("{0:P}", fvalue);
@@ -131,7 +132,7 @@ namespace ET
             UICommonHelper.ShowCostItemList(costItems, self.QiangHuaCostNode, self, 1f).Coroutine();
 
             self.TextSuccessRate.GetComponent<Text>().text = $"强化成功率: {(int)(equipQiangHuaConfig.SuccessPro * 100)}%";
-            double addPro = QiangHuaHelper.GetQiangHuaConfig(index, qianghuaLevel).AdditionPro * bagComponent.QiangHuaFails[index];
+            double addPro = QiangHuaHelper.GetQiangHuaConfig(subType, qianghuaLevel).AdditionPro * bagComponent.QiangHuaFails[subType];
             self.TextSuccessAddition.GetComponent<Text>().text = $"附加成功率 { (int)(addPro *100)}%";
 
             for (int i = 0; i < self.QiangHuaLevelList.transform.childCount; i++)
@@ -143,14 +144,14 @@ namespace ET
         public static async ETTask OnButtonQiangHua(this UIRoleQiangHuaComponent self)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            int qianghuaLevel = bagComponent.QiangHuaLevel[self.QiangHuaIndex];
-            int maxLevel = QiangHuaHelper.GetQiangHuaMaxLevel(self.QiangHuaIndex);
+            int qianghuaLevel = bagComponent.QiangHuaLevel[self.ItemSubType];
+            int maxLevel = QiangHuaHelper.GetQiangHuaMaxLevel(self.ItemSubType);
             if (maxLevel <= qianghuaLevel)
             {
                 return;
             }
 
-            EquipQiangHuaConfig equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(self.QiangHuaIndex, qianghuaLevel);
+            EquipQiangHuaConfig equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(self.ItemSubType, qianghuaLevel);
             string costItems = equipQiangHuaConfig.CostItem;
             costItems += $"@1;{equipQiangHuaConfig.CostGold}";
             if (!bagComponent.CheckNeedItem(costItems))
@@ -161,7 +162,7 @@ namespace ET
 
             C2M_ItemQiangHuaRequest c2M_ItemQiangHuaRequest = new C2M_ItemQiangHuaRequest()
             { 
-                WeiZhi = self.QiangHuaIndex,
+                WeiZhi = self.ItemSubType,
             };
             M2C_ItemQiangHuaResponse m2C_ItemQiangHuaResponse = (M2C_ItemQiangHuaResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemQiangHuaRequest);
             if (m2C_ItemQiangHuaResponse.Error != ErrorCore.ERR_Success)
@@ -169,17 +170,17 @@ namespace ET
                 return;
             }
 
-            if (bagComponent.QiangHuaLevel[self.QiangHuaIndex] == m2C_ItemQiangHuaResponse.QiangHuaLevel)
+            if (bagComponent.QiangHuaLevel[self.ItemSubType] == m2C_ItemQiangHuaResponse.QiangHuaLevel)
             {
-                bagComponent.QiangHuaFails[self.QiangHuaIndex]++;
+                bagComponent.QiangHuaFails[self.ItemSubType]++;
                 FloatTipManager.Instance.ShowFloatTip("强化失败！");
             }
             else
             {
-                bagComponent.QiangHuaLevel[self.QiangHuaIndex] = m2C_ItemQiangHuaResponse.QiangHuaLevel;
-                bagComponent.QiangHuaFails[self.QiangHuaIndex] = 0;
+                bagComponent.QiangHuaLevel[self.ItemSubType] = m2C_ItemQiangHuaResponse.QiangHuaLevel;
+                bagComponent.QiangHuaFails[self.ItemSubType] = 0;
             }
-            self.OnUpdateQiangHuaUI(self.QiangHuaIndex);
+            self.OnUpdateQiangHuaUI(self.ItemSubType);
         }
 
     }

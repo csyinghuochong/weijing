@@ -334,7 +334,7 @@ namespace ET
             for (int i = 0; i < self.EquipList.Count; i++)
             {
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
-                int weizhi = ItemHelper.ReturnEquipSpaceNum(itemCof.ItemSubType);
+                int weizhi = itemCof.ItemSubType;
                 if (weizhi == position)
                 {
                     bagInfos.Add(self.EquipList[i]);
@@ -343,13 +343,26 @@ namespace ET
             return bagInfos;
         }
 
+        public static BagInfo GetEquipBySubtype(this BagComponent self, int position)
+        {
+            for (int i = 0; i < self.EquipList.Count; i++)
+            {
+                ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
+                if (itemCof.ItemSubType == position)
+                {
+                    return self.EquipList[i];
+                }
+            }
+            return null;
+        }
+
         //获取某个装备位置的道具数据
         public static BagInfo GetEquipByWeizhi(this BagComponent self, int position)
         {
             for (int i = 0; i < self.EquipList.Count; i++)
             {
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
-                int weizhi = ItemHelper.ReturnEquipSpaceNum(itemCof.ItemSubType);
+                int weizhi = itemCof.ItemSubType;
                 if (weizhi == position)
                 {
                     return self.EquipList[i];
@@ -803,6 +816,12 @@ namespace ET
             return true;
         }
 
+        public static void OnEquipFuMo(this BagComponent self, string itemParams)
+        {
+            string[] itemparams = itemParams.Split('@');
+            int weizhi = int.Parse(itemparams[0]);
+            BagInfo bagInfo = self.GetEquipByWeizhi(weizhi);
+        }
 
         public static bool OnCostItemData(this BagComponent self, BagInfo bagInfo, ItemLocType locType,  int number)
         {

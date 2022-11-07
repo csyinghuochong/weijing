@@ -110,7 +110,6 @@ namespace ET
     //9 手镯
     //10 头盔
     //11 项链
-    //12 宠物之核
     public enum ItemSubTypeEnum : int
     {
         Wuqi    = 1,

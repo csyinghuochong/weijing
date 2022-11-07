@@ -555,7 +555,7 @@ namespace ET
                 int itemid = equiplist[i].ItemID;
                 ItemConfig itemconf = ItemConfigCategory.Instance.Get(itemid);
 
-                int position = this.ReturnEquipSpaceNum(itemconf.ItemSubType);
+                int position = itemconf.ItemSubType;
                 if (weizhi == position)
                 {
                     return equiplist[i];
@@ -588,61 +588,6 @@ namespace ET
             //vec3 = RetrunScreenV2(vec3);
             return vec3;
 
-        }
-
-        //传入装备类型返回对应的角色装备格子
-        public int ReturnEquipSpaceNum(int equipType)
-        {
-            int equipSpaceNum = 0;
-            switch (equipType)
-            {
-                //武器
-                case 1:
-                    equipSpaceNum = 1;
-                    break;
-                //衣服
-                case 2:
-                    equipSpaceNum = 2;
-                    break;
-                //护符
-                case 3:
-                    equipSpaceNum = 3;
-                    break;
-                //灵石
-                case 4:
-                    equipSpaceNum = 4;
-                    break;
-                //饰品
-                case 5:
-                    equipSpaceNum = 5;
-                    break;
-                //鞋子
-                case 6:
-                    equipSpaceNum = 8;
-                    break;
-                //裤子
-                case 7:
-                    equipSpaceNum = 9;
-                    break;
-                //腰带
-                case 8:
-                    equipSpaceNum = 10;
-                    break;
-                //手镯
-                case 9:
-                    equipSpaceNum = 11;
-                    break;
-                //头盔
-                case 10:
-                    equipSpaceNum = 12;
-                    break;
-                //项链
-                case 11:
-                    equipSpaceNum = 13;
-                    break;
-
-            }
-            return equipSpaceNum;
         }
 
         //检测字符内是否有特殊字符
@@ -721,6 +666,24 @@ namespace ET
             ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
             itemObj.GetComponent<Text>().text = itemCof.ItemName;
             itemObj.GetComponent<Text>().color = FunctionUI.GetInstance().QualityReturnColor(itemCof.ItemQuality);
+        }
+
+        //weizhi 0 -12
+        public static int GetItemSubtypeByWeizhi(int weizhi)
+        {
+            if (weizhi < 4)
+            {
+                return weizhi + 1;
+            }
+            if (weizhi == 4 || weizhi == 5 || weizhi == 6)
+            {
+                return 5 ;
+            }
+            if (weizhi > 6)
+            {
+                return weizhi - 1;
+            }
+            return weizhi;
         }
 
         //传入道具ID显示道具图标

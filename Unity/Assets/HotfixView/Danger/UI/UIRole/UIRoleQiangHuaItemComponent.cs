@@ -6,7 +6,7 @@ namespace ET
 {
     public class UIRoleQiangHuaItemComponent : Entity, IAwake<GameObject>
     {
-        public int Index;
+        public int ItemSubType;
         public Action<int> ClickHandler;
 
         public GameObject GameObject;
@@ -31,12 +31,12 @@ namespace ET
     {
         public static void OnInitUI(this UIRoleQiangHuaItemComponent self,int index)
         { 
-            self.Index = index;
+            self.ItemSubType = index;
         }
 
         public static void OnBtn_Equip(this UIRoleQiangHuaItemComponent self)
         {
-            self.ClickHandler(self.Index);
+            self.ClickHandler(self.ItemSubType);
         }
 
         public static void SetClickHandler(this UIRoleQiangHuaItemComponent self, Action<int> action)

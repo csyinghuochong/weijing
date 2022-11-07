@@ -1588,6 +1588,9 @@ namespace ET
 		[ProtoMember(18)]
 		public string MakePlayer { get; set; }
 
+		[ProtoMember(20)]
+		public List<HideProList> FumoProLists = new List<HideProList>();
+
 	}
 
 	[Message(OuterOpcode.HideProList)]

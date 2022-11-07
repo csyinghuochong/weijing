@@ -97,7 +97,7 @@ namespace ET
         {
             for (int i = 0; i < self.EquipList.Count; i++)
             {
-                self.EquipList[i].InitUI(i);
+                self.EquipList[i].InitUI(FunctionUI.GetItemSubtypeByWeizhi(i));
             }
         }
 
@@ -129,16 +129,19 @@ namespace ET
             for (int i = 0; i < equiplist.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID);
-                int pos =  ItemHelper.ReturnEquipSpaceNum(itemConfig.ItemSubType) - 1;
 
-                if (pos == 4)
+                if (itemConfig.ItemSubType < (int)ItemSubTypeEnum.Shiping)
                 {
-                    self.EquipList[pos + shipingIndex].UpdateData(equiplist[i], occ, itemOperateEnum, self.EquipIdList);
+                    self.EquipList[itemConfig.ItemSubType - 1].UpdateData(equiplist[i], occ, itemOperateEnum, self.EquipIdList);
+                }
+                if (itemConfig.ItemSubType == (int)ItemSubTypeEnum.Shiping)
+                {
+                    self.EquipList[itemConfig.ItemSubType + shipingIndex - 1].UpdateData(equiplist[i], occ, itemOperateEnum, self.EquipIdList);
                     shipingIndex++;
                 }
-                else
+                if (itemConfig.ItemSubType > (int)ItemSubTypeEnum.Shiping)
                 {
-                    self.EquipList[pos].UpdateData(equiplist[i], occ, itemOperateEnum, self.EquipIdList);
+                    self.EquipList[itemConfig.ItemSubType + 1].UpdateData(equiplist[i], occ, itemOperateEnum, self.EquipIdList);
                 }
             }
         }
