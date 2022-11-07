@@ -158,7 +158,8 @@ namespace ET
 
         public static  void CreateMonsters(this YeWaiRefreshComponent self, RefreshMonster refreshMonster)
         {
-            int monsterNumber = FubenHelp.GetUnitList(self.GetParent<Scene>(), UnitType.Monster).Count;
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(refreshMonster.MonsterId);
+            int monsterNumber = FubenHelp.GetUnitListByCamp(self.GetParent<Scene>(), UnitType.Monster, monsterConfig.MonsterCamp).Count;
             if (monsterNumber >= GlobalValueConfigCategory.Instance.Get(59).Value2)
             {
                 return;
@@ -166,7 +167,6 @@ namespace ET
 
             for (int i = 0; i < refreshMonster.Number; i++)
             {
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(refreshMonster.MonsterId);
                 float range = refreshMonster.Range;
                 Vector3 form = new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ);
                 Vector3 to = new Vector3(form.x + RandomHelper.RandomNumberFloat(-1 * range, range), form.y, form.z + RandomHelper.RandomNumberFloat(-1 * range, range));

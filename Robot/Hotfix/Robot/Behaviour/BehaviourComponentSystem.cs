@@ -59,7 +59,8 @@ namespace ET
 
             if (!ComHelp.IfNull(robotConfig.AIParameter))
             {
-                string[] positions = robotConfig.AIParameter.Split(';');
+                string[] positionList = robotConfig.AIParameter.Split('@');
+                string[] positions = positionList[RandomHelper.RandomNumber(0, positionList.Length)].Split(';');
                 float range  = float.Parse(positions[3]);
                 self.TargetPosition = new UnityEngine.Vector3(
                     float.Parse(positions[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), 
