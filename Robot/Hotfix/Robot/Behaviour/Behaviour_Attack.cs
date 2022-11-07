@@ -51,7 +51,7 @@ namespace ET
                     && Vector3.Distance(unit.Position,target.Position) < aiComponent.ActDistance)
                 {
                     float value = RandomHelper.RandFloat01();
-                    int[] weights = new int[] { 80, 10, 10};
+                    int[] weights = new int[] { 60, 10, 30};
                     int index = RandomHelper.RandomByWeight(weights);
                     if (index == 0)
                     {
