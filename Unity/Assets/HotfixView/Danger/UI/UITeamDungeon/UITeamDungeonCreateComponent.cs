@@ -97,7 +97,16 @@ namespace ET
 
             string rewardShow = teamDungeonConfig.RewardShow;
             int bossId = teamDungeonConfig.BossId;
-            List<RewardItem> rewardItems = DropHelper.AI_MonsterDrop(bossId);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
+            List<RewardItem> rewardItems = new List<RewardItem>();
+            for (int i = 0; i < monsterConfig.DropID.Length; i++)
+            {
+                if (monsterConfig.DropID[i]!= 0)
+                {
+                    rewardItems.AddRange(DropHelper.DropIDToShowItem(monsterConfig.DropID[i], 5));
+                }
+            }
+
             for (int i = rewardItems.Count - 1; i >= 0; i--)
             {
                 if (rewardShow.Contains(rewardItems[i].ItemID.ToString()))
