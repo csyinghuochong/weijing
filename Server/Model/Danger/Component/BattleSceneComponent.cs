@@ -7,6 +7,7 @@ namespace ET
         public long FubenId = 0;
         public long FubenInstanceId = 0;
         public int PlayerNumber = 0;
+        public int SceneId = 0;
     }
 
     public class BattleSceneComponent : Entity, IAwake, IDestroy

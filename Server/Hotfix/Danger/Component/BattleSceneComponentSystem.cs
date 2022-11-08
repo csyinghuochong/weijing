@@ -31,11 +31,21 @@
 
         public static BattleInfo GetBattleInstanceId(this BattleSceneComponent self, int sceneId)
         {
+            BattleInfo battleInfo = null;
             int number = self.BattleInfos.Count;
-            if (number > 0 && self.BattleInfos[number - 1].PlayerNumber < 40)
+            for(int i = 0; i < self.BattleInfos.Count; i++)
             {
-                return self.BattleInfos[number - 1];
+                battleInfo = self.BattleInfos[i];
+                if (battleInfo.SceneId != sceneId)
+                {
+                    continue;
+                }
+                if (battleInfo.PlayerNumber < ComHelp.GetPlayerLimit(sceneId))
+                {
+                    return battleInfo;
+                }
             }
+            
             //动态创建副本
             long fubenid = IdGenerater.Instance.GenerateId();
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
@@ -49,7 +59,7 @@
             fubnescene.AddComponent<YeWaiRefreshComponent>().OnAwake();
             FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(sceneId).CreateMonster, FubenDifficulty.None);
             FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(sceneId).CreateMonsterPosi, FubenDifficulty.None);
-            BattleInfo battleInfo = new BattleInfo() { FubenId = fubenid, PlayerNumber = 0, FubenInstanceId = fubenInstanceId };
+            battleInfo = new BattleInfo() { FubenId = fubenid, PlayerNumber = 0, FubenInstanceId = fubenInstanceId,SceneId = sceneId };
             self.BattleInfos.Add(battleInfo);
             return battleInfo;
         }

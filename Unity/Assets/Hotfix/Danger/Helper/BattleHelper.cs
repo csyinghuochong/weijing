@@ -10,14 +10,14 @@ namespace ET
 
         public static async ETTask<int> OnRobotEnter(Scene zoneScene)
         {
-            int sceneId = BattleHelper.GetBattFubenId();
+            int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
             int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, sceneId);
             return errorCode;
         }
 
         public static async ETTask<int> OnButtonEnter(Scene zoneScene)
         {
-            int sceneId = BattleHelper.GetBattFubenId();
+            int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
             //Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             //NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             //if (numericComponent.GetAsInt(NumericType.BattleNumber) > 0)
@@ -34,12 +34,16 @@ namespace ET
             return errorCode;
         }
 
-        public static int GetBattFubenId()
+        public static int GetBattFubenId(int level)
         {
             List<SceneConfig> sceneConfigs = SceneConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < sceneConfigs.Count; i++)
             {
-                if (sceneConfigs[i].MapType == SceneTypeEnum.Battle)
+                if (sceneConfigs[i].MapType != SceneTypeEnum.Battle)
+                {
+                    continue;
+                }
+                if (sceneConfigs[i].TuiJianLv[0] <= level && sceneConfigs[i].TuiJianLv[1] >= level)
                 {
                     return sceneConfigs[i].Id;
                 }

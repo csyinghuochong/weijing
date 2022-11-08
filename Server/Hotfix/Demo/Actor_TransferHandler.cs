@@ -109,7 +109,6 @@ namespace ET
 						TransferHelper.LocalDungeonTransfer( unit, request.SceneId, request.TransferId, request.Difficulty );
 						break;
 					case (int)SceneTypeEnum.Battle:
-						//当前在副本需要先释放副本scene.
 						mapComponent = unit.DomainScene().GetComponent<MapComponent>();
 						int sceneTypeEnum = mapComponent.SceneTypeEnum;
 						long mapInstanceId = DBHelper.GetBattleServerId(unit.DomainZone());
@@ -119,7 +118,6 @@ namespace ET
 						await TransferHelper.Transfer(unit, battleEnter.FubenInstanceId, (int)SceneTypeEnum.Battle, request.SceneId, battleEnter.Camp);
 						break;
 					case (int)SceneTypeEnum.TeamDungeon:
-						//当前在副本需要先释放副本scene.
 						mapComponent = unit.DomainScene().GetComponent<MapComponent>();
 						sceneTypeEnum = mapComponent.SceneTypeEnum;
 						int fubenTimes = unit.GetComponent<UserInfoComponent>().UserInfo.TeamDungeonTimes + 1;

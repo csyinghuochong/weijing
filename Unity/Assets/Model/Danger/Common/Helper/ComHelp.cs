@@ -123,6 +123,11 @@ namespace ET
 #endif
 
 #if SERVER
+        public static int GetPlayerLimit(int sceneId)
+        {
+            return SceneConfigCategory.Instance.Get(sceneId).PlayerLimit;
+        }
+
         public static void LoginInfo(string log)
         {
             string filePath = "../Logs/login.txt"; 
