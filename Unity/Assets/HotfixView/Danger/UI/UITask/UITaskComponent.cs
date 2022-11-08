@@ -22,8 +22,8 @@ namespace ET
 		public TaskPro TaskPro;
 		public TaskConfig TaskConfig;
 
-		public List<UI> TaskTypeUIList;
-		public List<UI> RewardUIList;
+		public List<UITaskTypeComponent> TaskTypeUIList = new List<UITaskTypeComponent>();
+		public List<UIItemComponent> RewardUIList = new List<UIItemComponent>();
 		public TaskComponent TaskComponent;
 	}
 
@@ -32,8 +32,8 @@ namespace ET
 	{
 		public override void Awake(UITaskComponent self)
 		{
-			self.RewardUIList = new List<UI>();
-			self.TaskTypeUIList = new List<UI>();
+			self.RewardUIList.Clear();
+			self.TaskTypeUIList.Clear();
 			ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
 			self.Text_expValue = rc.Get<GameObject>("Text_expValue");
@@ -84,7 +84,16 @@ namespace ET
 
 		public static void OnTaskGiveUp(this UITaskComponent self)
 		{
-			self.TaskTypeUIList[1].GetComponent<UITaskTypeComponent>().OnTaskGiveUp();
+			int index = 0;
+			for (int i = 0; i < self.TaskTypeUIList.Count; i++)
+			{
+				if (self.TaskTypeUIList[i].bSelected == true)
+				{
+					index = i;
+					break;
+				}
+			}
+			self.TaskTypeUIList[index].OnTaskGiveUp();
 		}
 
 		public static  void InitTaskTypeList(this UITaskComponent self)
@@ -98,12 +107,11 @@ namespace ET
 				GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
 				UICommonHelper.SetParent(taskTypeItem, self.TypeListNode);
 
-				UI ui_1 = self.AddChild<UI, string, GameObject>( "taskTypeItem_" + i.ToString(), taskTypeItem);
-				UITaskTypeComponent uIItemComponent = ui_1.AddComponent<UITaskTypeComponent>();
+				UITaskTypeComponent uIItemComponent = self.AddChild<UITaskTypeComponent, GameObject>(taskTypeItem);
 				uIItemComponent.OnUpdateData(ids[i]);
 				uIItemComponent.SetClickTypeHandler((int typeid) => { self.OnClickTaskType(typeid); });
 				uIItemComponent.SetClickTypeItemHandler((int typeid, int chapterId) => { self.OnClickTaskTypeItem(typeid, chapterId); });
-				self.TaskTypeUIList.Add(ui_1);
+				self.TaskTypeUIList.Add(uIItemComponent);
 			}
 
 			TaskPro taskPro = self.TaskComponent.GetTaskById(self.TaskId);
@@ -122,7 +130,7 @@ namespace ET
 		{
 			for (int i = 0; i < self.TaskTypeUIList.Count; i++)
 			{
-				self.TaskTypeUIList[i].GetComponent<UITaskTypeComponent>().SetSelected(type, taskId);
+				self.TaskTypeUIList[i].SetSelected(type, taskId);
 			}
 		}
 
@@ -182,7 +190,7 @@ namespace ET
 			int number = 0;
 			for (int i = 0; i < rewarditems.Length; i++)
 			{
-				UI ui_1;
+				UIItemComponent ui_1;
 				if (rewarditems[i] == "0" || rewardItemNums[i] == "0")
 				{
 					continue;
@@ -197,14 +205,10 @@ namespace ET
 				{
 					GameObject skillItem = GameObject.Instantiate(bundleObj);
 					UICommonHelper.SetParent(skillItem, self.RewardListNode);
-					ui_1 = self.AddChild<UI, string, GameObject>( "skillItem_" + i.ToString(), skillItem);
-					ui_1.AddComponent<UIItemComponent>();
+					ui_1 = self.AddChild<UIItemComponent, GameObject>(skillItem);
 					self.RewardUIList.Add(ui_1);
 				}
-
-				UIItemComponent uIItemComponent = ui_1.GetComponent<UIItemComponent>();
-				uIItemComponent.ItemNum = rewardItemNums[i];
-				uIItemComponent.UpdateItem(new BagInfo() { ItemID = int.Parse(rewarditems[i]), ItemNum = int.Parse(rewardItemNums[i]) }, ItemOperateEnum.TaskItem);
+				ui_1.UpdateItem(new BagInfo() { ItemID = int.Parse(rewarditems[i]), ItemNum = int.Parse(rewardItemNums[i]) }, ItemOperateEnum.TaskItem);
 				number++;
 			}
 			for (int i = number; i < self.RewardUIList.Count; i++)

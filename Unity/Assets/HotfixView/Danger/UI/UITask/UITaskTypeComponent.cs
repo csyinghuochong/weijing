@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UITaskTypeComponent : Entity, IAwake
+    public class UITaskTypeComponent : Entity, IAwake<GameObject>
     {
         public GameObject TaskTypeName;
         public GameObject ImageButton;
@@ -14,24 +14,26 @@ namespace ET
         public GameObject ImageSelect;
         public int TaskTypeEnum;
 
-        public List<UI> UITaskTypeItemList;
+        public List<UITaskTypeItemComponent> UITaskTypeItemList = new List<UITaskTypeItemComponent>();
         public Action<int> ClickTaskTypeHandler;
         public Action<int, int> ClickTaskTypeItemHandler;
 
         public bool bSelected;
         public bool bExpandState;
+        public GameObject GameObject;
     }
 
     [ObjectSystem]
-    public class UITaskTypeComponentAwakeSystem : AwakeSystem<UITaskTypeComponent>
+    public class UITaskTypeComponentAwakeSystem : AwakeSystem<UITaskTypeComponent, GameObject>
     {
 
-        public override void Awake(UITaskTypeComponent self)
+        public override void Awake(UITaskTypeComponent self, GameObject gameObject)
         {
             self.bSelected = false;
             self.bExpandState = false;
-            self.UITaskTypeItemList = new List<UI>();
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            self.UITaskTypeItemList.Clear();
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.TaskTypeName  = rc.Get<GameObject>("TaskTypeName");
             self.UIPointTaskDate = rc.Get<GameObject>("UIPointTaskDate");
@@ -57,23 +59,22 @@ namespace ET
             {
                 self.UITaskTypeItemList[i].GameObject.SetActive(false);
             }
-            self.GetParent<UI>().GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(702, 90f);
-            self.GetParent<UI>().GameObject.transform.parent.gameObject.SetActive(false);
-            self.GetParent<UI>().GameObject.transform.parent.gameObject.SetActive(true);
+            self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(702, 90f);
+            self.GameObject.transform.parent.gameObject.SetActive(false);
+            self.GameObject.transform.parent.gameObject.SetActive(true);
         }
 
         /// <summary>
         /// 展开状态
         /// </summary>
         /// <param name="self"></param>
-        public static async ETTask SetExpand(this UITaskTypeComponent self, int taskId = 0)
+        public static  void SetExpand(this UITaskTypeComponent self, int taskId = 0)
         {
             self.bExpandState = true;
             int index = -1;
 
             long instanceid = self.InstanceId;
             string path = ABPathHelper.GetUGUIPath("Main/Task/UITaskTypeItem");
-            await ETTask.CompletedTask;
             GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
@@ -83,7 +84,7 @@ namespace ET
             List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().GetTaskTypeList(self.TaskTypeEnum);
             for (int i = 0; i < taskPros.Count; i++)
             {
-                UI ui_1 = null;
+                UITaskTypeItemComponent ui_1 = null;
                 if (i < self.UITaskTypeItemList.Count)
                 {
                     ui_1 = self.UITaskTypeItemList[i];
@@ -94,16 +95,15 @@ namespace ET
                     GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(taskTypeItem, self.UIPointTaskDate);
                     taskTypeItem.transform.localPosition = new Vector3(0f, i * -65f, 0f);
-                    ui_1 = self.AddChild<UI, string, GameObject>( "taskTypeItem_" + i.ToString(), taskTypeItem);
-                    UITaskTypeItemComponent uIItemComponent = ui_1.AddComponent<UITaskTypeItemComponent>();
-                    uIItemComponent.SetClickTypeHandler((int taskid) => { self.OnClickTaskTypeItem(taskid); });
+                    ui_1 = self.AddChild<UITaskTypeItemComponent, GameObject>( taskTypeItem);
+                    ui_1.SetClickTypeHandler((int taskid) => { self.OnClickTaskTypeItem(taskid); });
                     self.UITaskTypeItemList.Add(ui_1);
                 }
                 if (taskPros[i].taskID == taskId)
                 {
                     index = i;
                 }
-                ui_1.GetComponent<UITaskTypeItemComponent>().OnUpdateData(taskPros[i]);
+                ui_1.OnUpdateData(taskPros[i]);
             }
             for (int i = taskPros.Count; i < self.UITaskTypeItemList.Count; i++)
             {
@@ -112,20 +112,20 @@ namespace ET
 
             if (index >= 0)
             {
-                self.UITaskTypeItemList[index].GetComponent<UITaskTypeItemComponent>().OnClickTaskTypeItem();
+                self.UITaskTypeItemList[index].OnClickTaskTypeItem();
             }
             else if (taskPros.Count > 0)
             {
-                self.UITaskTypeItemList[0].GetComponent<UITaskTypeItemComponent>().OnClickTaskTypeItem();
+                self.UITaskTypeItemList[0].OnClickTaskTypeItem();
             }
             else
             {
                 self.OnClickTaskTypeItem(0);
             }
 
-            self.GetParent<UI>().GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(702, 90f + 60 * taskPros.Count);
-            self.GetParent<UI>().GameObject.transform.parent.gameObject.SetActive(false);
-            self.GetParent<UI>().GameObject.transform.parent.gameObject.SetActive(true);
+            self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(702, 90f + 60 * taskPros.Count);
+            self.GameObject.transform.parent.gameObject.SetActive(false);
+            self.GameObject.transform.parent.gameObject.SetActive(true);
         }
 
         public static void SetSelected(this UITaskTypeComponent self, int typeid, int taskId = 0)
@@ -141,7 +141,7 @@ namespace ET
                 return;
             }
 
-            self.SetExpand(taskId).Coroutine();
+            self.SetExpand(taskId);
         }
 
         public static void OnClickTypeButton(this UITaskTypeComponent self)
@@ -153,7 +153,7 @@ namespace ET
             }
             if (self.bSelected && !self.bExpandState)
             {
-                self.SetExpand().Coroutine();
+                self.SetExpand();
                 return;
             }
 
@@ -163,9 +163,8 @@ namespace ET
 
         public static void OnTaskGiveUp(this UITaskTypeComponent self)
         {
-            self.SetExpand().Coroutine();
+            self.SetExpand();
         }
-
 
         public static void OnTaskTrackUpdate(this UITaskTypeComponent self)
         {
@@ -207,7 +206,7 @@ namespace ET
                 {
                     continue;
                 }
-                self.UITaskTypeItemList[i].GetComponent<UITaskTypeItemComponent>().SetSelected(taskId);
+                self.UITaskTypeItemList[i].SetSelected(taskId);
             }
 
             self.ClickTaskTypeItemHandler(self.TaskTypeEnum, taskId);

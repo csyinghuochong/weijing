@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UITaskTypeItemComponent : Entity, IAwake
+    public class UITaskTypeItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject Ima_DiButton;
         public GameObject Lab_TaskName;
@@ -15,14 +15,17 @@ namespace ET
 
         public TaskPro TaskPro;
         public Action<int> ClickTaskHandler;
+
+        public GameObject GameObject;
     }
 
     [ObjectSystem]
-    public class UITaskTypeItemComponentAwakeSystem : AwakeSystem<UITaskTypeItemComponent>
+    public class UITaskTypeItemComponentAwakeSystem : AwakeSystem<UITaskTypeItemComponent, GameObject>
     {
-        public override void Awake(UITaskTypeItemComponent self)
+        public override void Awake(UITaskTypeItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Ima_DiButton = rc.Get<GameObject>("Ima_DiButton");
             self.Lab_TaskName = rc.Get<GameObject>("Lab_TaskName");
