@@ -838,12 +838,13 @@ namespace ET
         /// 
         /// </summary>
         /// <param name="self"></param>
-        public static void BeginChangeScene(this UIMainComponent self)
+        public static void BeginChangeScene(this UIMainComponent self, int lastScene)
         {
             self.UIJoystickMoveComponent.draging = false;
             self.UIMainSkillComponent.CancelSkill();
             self.UIMainSkillComponent.OnExitBattle();
             self.UIMainBuffComponent.ResetUI();
+            self.UIMapMini.BeginChangeScene(lastScene);
         }
        
         /// <summary>

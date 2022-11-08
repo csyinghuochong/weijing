@@ -1,9 +1,27 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
+    
+    [Timer(TimerType.MapMiniTimer)]
+    public class MapMiniTimer : ATimer<UIMapMiniComponent>
+    {
+        public override void Run(UIMapMiniComponent self)
+        {
+            try
+            {
+                self.OnUpdate();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
     public class UIMapMiniComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject GameObject;
@@ -12,11 +30,21 @@ namespace ET
         public GameObject MiniMapButton;
         public GameObject RawImage;
         public GameObject MainCityShow;
+        public GameObject HeadList;
+        public GameObject HeadSelf;
+        public GameObject Teammer;
+        public GameObject Enemyer;
 
         public GameObject MapCamera;
-        public int SceneId;
         public float ScaleRateX;
         public float ScaleRateY;
+        public int SceneId;
+        public long Timer;
+
+        public List<GameObject> TeamPointList = new List<GameObject>();
+        public List<GameObject> EnemyPointList = new List<GameObject>();
+
+        public Vector3 NoVector3 = new Vector3(-2000, -2000, 0);
     }
 
     [ObjectSystem]
@@ -25,6 +53,7 @@ namespace ET
         public override void Destroy(UIMapMiniComponent self)
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
@@ -34,13 +63,21 @@ namespace ET
         public override void Awake(UIMapMiniComponent self, GameObject a)
         {
             self.GameObject = a;
-
+            self.TeamPointList.Clear();
+            self.EnemyPointList.Clear();
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
 
             self.Lab_MapName = rc.Get<GameObject>("Lab_MapName");
             self.MiniMapButton = rc.Get<GameObject>("MiniMapButton");
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.MainCityShow = rc.Get<GameObject>("MainCityShow");
+            self.HeadList = rc.Get<GameObject>("HeadList");
+            self.HeadSelf = rc.Get<GameObject>("HeadSelf");
+            self.Teammer = rc.Get<GameObject>("Teammer");
+            self.Enemyer = rc.Get<GameObject>("Enemyer");
+            self.Teammer.SetActive(false);
+            self.Enemyer.SetActive(false);
+            self.HeadList.SetActive(false);
 
             DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
         }
@@ -59,6 +96,82 @@ namespace ET
             Vector3 vector31 = new Vector3(vector3.x, vector3.z, 0f);
             Vector2 localPosition = self.GetWordToUIPositon(vector31);
             self.RawImage.transform.localPosition = new Vector2(localPosition.x * -1, localPosition.y * -1);
+            self.HeadList.transform.localPosition = new Vector2(localPosition.x * -1, localPosition.y * -1);
+        }
+
+        public static void OnUpdate(this UIMapMiniComponent self)
+        {
+            Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            List<Unit> allUnit = main.GetParent<UnitComponent>().GetAll();
+
+            int teamNumber = 0;
+            int enemNumber = 0;
+            int selfCamp_1 = main.GetBattleCamp();
+            for (int i = 0; i < allUnit.Count; i++)
+            {
+                Unit unit = allUnit[i];
+                if (unit.Type != UnitType.Player)
+                {
+                    continue;
+                }
+
+                Vector3 vector31 = new Vector3(unit.Position.x, unit.Position.z, 0f);
+                Vector3 vector32 = self.GetWordToUIPositon(vector31);
+                GameObject headItem = null;
+                if (unit.MainHero)
+                {
+                    headItem = self.HeadSelf;
+                }
+                else if (selfCamp_1 == unit.GetBattleCamp())
+                {
+                    headItem = self.GetTeamPointObj(teamNumber);
+                    teamNumber++;
+                }
+                else
+                {
+                    headItem = self.GetEnemyPointObj(enemNumber);
+                    enemNumber++;
+                }
+                
+                headItem.transform.localPosition = new Vector2(vector32.x, vector32.y);
+            }
+
+            for (int i = teamNumber; i < self.TeamPointList.Count; i++)
+            {
+                self.TeamPointList[i].transform.localPosition = self.NoVector3;
+            }
+            for (int i = enemNumber; i < self.EnemyPointList.Count; i++)
+            {
+                self.EnemyPointList[i].transform.localPosition = self.NoVector3;
+            }
+        }
+
+        public static GameObject GetTeamPointObj(this UIMapMiniComponent self, int index)
+        {
+            if (self.TeamPointList.Count > index)
+            {
+                return self.TeamPointList[index];
+            }
+            GameObject go = GameObject.Instantiate(self.Teammer);
+            go.transform.SetParent(self.Teammer.transform.parent);
+            go.transform.localScale = Vector3.one;
+            go.SetActive(true);
+            self.TeamPointList.Add(go);
+            return go;
+        }
+
+        public static GameObject GetEnemyPointObj(this UIMapMiniComponent self, int index)
+        {
+            if (self.EnemyPointList.Count > index)
+            {
+                return self.EnemyPointList[index];
+            }
+            GameObject go = GameObject.Instantiate(self.Enemyer);
+            go.transform.SetParent(self.Enemyer.transform.parent);
+            go.transform.localScale = Vector3.one;
+            go.SetActive(true);
+            self.EnemyPointList.Add(go);
+            return go;
         }
 
         public static Vector3 GetWordToUIPositon(this UIMapMiniComponent self, Vector3 vector3)
@@ -119,6 +232,14 @@ namespace ET
             self.OnMainHeroPosition();
         }
 
+        public static void BeginChangeScene(this UIMapMiniComponent self, int lastScene)
+        {
+            if (lastScene == SceneTypeEnum.Battle)
+            {
+                TimerComponent.Instance?.Remove(ref self.Timer);
+            }
+        }
+
         public static void OnEnterScene(this UIMapMiniComponent self, int sceneType)
         {
             self.LoadMapCamera().Coroutine();
@@ -141,6 +262,14 @@ namespace ET
             {
                 //显示地图名称
                 self.Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).Name;
+            }
+
+            self.HeadList.SetActive(sceneType == SceneTypeEnum.Battle);
+
+            if (sceneType == SceneTypeEnum.Battle)
+            {
+                TimerComponent.Instance?.Remove(ref self.Timer);
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.MapMiniTimer, self);
             }
         }
     }

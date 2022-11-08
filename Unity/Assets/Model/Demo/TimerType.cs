@@ -53,6 +53,7 @@
         public const int DungeonReviveTimer = 1061;
         public const int TeamDropTimer = 1062;
         public const int MakeCDTimer = 1063;
+        public const int MapMiniTimer = 1064;
         // 不能超过10000
     }
 }

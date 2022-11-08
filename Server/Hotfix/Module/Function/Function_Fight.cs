@@ -965,7 +965,9 @@ namespace ET
                     string[] attributeList = gemitemCof.ItemUsePar.Split('@');
                     for (int a = 0;  a < attributeList.Length; a++)
                     {
-                        string[] attributeInfo = attributeList[a].Split(';');
+                        //100203;113
+                        string attributeItem = attributeList[a];
+                        string[] attributeInfo = attributeItem.Split(';');
                         int gemPro = 0;
                         try
                         {
@@ -978,7 +980,6 @@ namespace ET
                         }
 
                         long gemValue = long.Parse(attributeInfo[1]);
-
                         //宝石专精
                         if (equipList[i].HideSkillLists.Contains(68000108))
                         {

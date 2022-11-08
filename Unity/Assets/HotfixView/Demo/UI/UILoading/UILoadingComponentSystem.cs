@@ -23,7 +23,7 @@ namespace ET
 
     public static class UILoadingComponentSystem
     {
-        public static void  OnInitUI(this UILoadingComponent self, int sceneTypeEnum, int chapterId)
+        public static void  OnInitUI(this UILoadingComponent self,int lastScene, int sceneTypeEnum, int chapterId)
         {
             UnitHelper.LoadingScene = true;
             string loadResName = "Back_1";
@@ -78,7 +78,7 @@ namespace ET
             if (uimain != null)
             {
                 UIHelper.Remove(self.ZoneScene(), UIType.UIMapBig);
-                uimain.GetComponent<UIMainComponent>().BeginChangeScene();
+                uimain.GetComponent<UIMainComponent>().BeginChangeScene(lastScene);
             }
         }
 
