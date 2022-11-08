@@ -795,6 +795,29 @@ namespace ET
                 properShowNum += 1;
             }
 
+            //显示装备附加属性
+            for (int i = 0; i < equipconf.AddPropreListType.Length; i++)
+            { 
+                int numericType = equipconf.AddPropreListType[i];
+                if (numericType == 0)
+                {
+                    continue;
+                }
+                string attribute = "";
+                long numericValue = equipconf.AddPropreListValue[i];
+                int showType = NumericHelp.GetNumericValueType(numericType);
+                if (showType == 2)
+                {
+                    attribute = $"附魔 {ItemViewHelp.GetAttributeName(showType)} + {numericValue * 0.01f}%";
+                }
+                else
+                {
+                    attribute = $"附魔 {ItemViewHelp.GetAttributeName(showType)} + {numericValue}";
+                }
+                ShowPropertyText(attribute, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                properShowNum += 1;
+            }
+
             return properShowNum;
         }
     }
