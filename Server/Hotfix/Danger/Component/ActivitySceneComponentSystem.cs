@@ -105,9 +105,6 @@ namespace ET
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
             MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleClose });
 
-            ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()),
-               NoticeType.BattleNotice, "战场即将关闭。请退出战场").Coroutine();
-
             await TimerComponent.Instance.WaitAsync(60000);
 
             ServerMessageHelper.SendServerMessage(DBHelper.GetBattleServerId(self.DomainZone()),

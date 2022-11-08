@@ -331,6 +331,7 @@ namespace ET
                     break;
                 case UserDataType.TeamDungeonTimes:
                     self.UserInfo.TeamDungeonTimes = int.Parse(value);
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BattleNumber, 0);
                     saveValue = self.UserInfo.TeamDungeonTimes.ToString();
                     break;
                 case UserDataType.Union:
