@@ -160,17 +160,6 @@ namespace ET
             self.ClickTaskTypeHandler(self.TaskTypeEnum);
         }
 
-
-        public static void OnTaskGiveUp(this UITaskTypeComponent self)
-        {
-            self.SetExpand();
-        }
-
-        public static void OnTaskTrackUpdate(this UITaskTypeComponent self)
-        {
-            
-        }
-
         public static void OnUpdateData(this UITaskTypeComponent self, int taskTypeEnum)
         {
             self.TaskTypeEnum = taskTypeEnum;
