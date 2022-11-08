@@ -166,7 +166,7 @@ namespace ET
                 return;
             }
             long instanceid = entity.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != entity.InstanceId)
             {
