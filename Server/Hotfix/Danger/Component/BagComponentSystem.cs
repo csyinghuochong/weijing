@@ -805,6 +805,7 @@ namespace ET
 
         public static void OnEquipFuMo(this BagComponent self, string itemParams)
         {
+
             string[] itemparams = itemParams.Split('@');
             int weizhi = int.Parse(itemparams[0]);
             BagInfo bagInfo = self.GetEquipBySubType(weizhi);
@@ -812,6 +813,10 @@ namespace ET
             {
                 return;
             }
+            //通知客户端背包刷新
+            M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
+            m2c_bagUpdate.BagInfoUpdate.Add(bagInfo);
+
             //9@200103; 0.03; 0.03
             bagInfo.FumoProLists.Clear();
             for(int i = 1; i < itemparams.Length; i++)
@@ -833,6 +838,8 @@ namespace ET
                 bagInfo.FumoProLists.Add(new HideProList() {HideID = hideId,HideValue = RandomHelper.RandomNumber(hideValue_1, hideValue_2) });
             }
 
+            //通知客户端背包道具发生改变
+            MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);
             Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>());
         }
 
