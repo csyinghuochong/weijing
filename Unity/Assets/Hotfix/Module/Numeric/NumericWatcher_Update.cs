@@ -1,7 +1,7 @@
 ﻿namespace ET
 {
 
-    [NumericWatcher((int)NumericType.Now_Damage)]
+	[NumericWatcher((int)NumericType.Now_Damage)]
 	public class NumericWatcher_Change_Now_Damage : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)
@@ -32,18 +32,36 @@
 	[NumericWatcher((int)NumericType.BossInCombat)]
 	[NumericWatcher((int)NumericType.XiuLian_ExpNumber)]
 	[NumericWatcher((int)NumericType.XiuLian_CoinNumber)]
-	public class NumericWatcher_Change_Update : INumericWatcher
+	public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{
 
 #if SERVER
-;
+			;
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
 			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
 			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
 			Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
+#endif
+		}
+	}
+
+	[NumericWatcher((int)NumericType.Now_Speed)]
+	public class NumericWatcher_Now_Speed : INumericWatcher
+	{
+		public void Run(EventType.NumericChangeEvent args)
+		{
+
+#if SERVER
+			Log.Debug("Now_SpeedNow_SpeedNow_SpeedNow_Speed");
+			float speed = args.Parent.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+			args.Parent.GetComponent<MoveComponent>().ChangeSpeed(speed);
+#else
+			Log.Debug("Now_SpeedNow_SpeedNow_SpeedNow_Speed");
+			float speed = args.Parent.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+			args.Parent.GetComponent<MoveComponent>().ChangeSpeed(speed);
 #endif
 		}
 	}
