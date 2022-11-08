@@ -209,8 +209,9 @@ namespace ET
         {
             try
             {
+                UserInfoComponent infoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-                int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+                int occ = infoComponent.UserInfo.Occ;
                 if (itemConfig.UseOcc != 0 && itemConfig.UseOcc != occ)
                 {
                     return ErrorCore.ERR_ItemOnlyUseOcc;
@@ -226,6 +227,12 @@ namespace ET
                 if (itemConfig.ItemSubType == 2)
                 {
                     HintHelp.GetInstance().ShowHint($"恭喜你获得{itemConfig.ItemUsePar}经验!");
+                }
+                if (itemConfig.ItemSubType == 16)
+                {
+                    EquipMakeConfig equipMake = EquipMakeConfigCategory.Instance.Get(int.Parse(itemConfig.ItemUsePar));
+                    HintHelp.GetInstance().ShowHint($"恭喜你学习 {ItemConfigCategory.Instance.Get(equipMake.MakeItemID).ItemName}!");
+                    infoComponent.UserInfo.MakeList.Add(int.Parse(itemConfig.ItemUsePar));
                 }
                 if (itemConfig.ItemSubType == 112)
                 {

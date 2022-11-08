@@ -832,6 +832,8 @@ namespace ET
                 }
                 bagInfo.FumoProLists.Add(new HideProList() {HideID = hideId,HideValue = RandomHelper.RandomNumber(hideValue_1, hideValue_2) });
             }
+
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>());
         }
 
         public static bool OnCostItemData(this BagComponent self, BagInfo bagInfo, ItemLocType locType,  int number)

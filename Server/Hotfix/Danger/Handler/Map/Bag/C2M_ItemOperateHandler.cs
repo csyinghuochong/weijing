@@ -189,6 +189,9 @@ namespace ET
                             case 15:    //附魔道具
                                 unit.GetComponent<BagComponent>().OnEquipFuMo(itemCof.ItemUsePar);
                                 break;
+                            case 16:
+                                unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(int.Parse(itemCof.ItemUsePar));
+                                break;
                             //使用技能
                             case 101:
                                 break;

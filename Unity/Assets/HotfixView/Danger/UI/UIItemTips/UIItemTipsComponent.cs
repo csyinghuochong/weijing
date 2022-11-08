@@ -282,6 +282,18 @@ namespace ET
                     return;
                 }
             }
+            if (itemConfig.ItemSubType == 16)   //锻造精灵
+            {
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                int makeType = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType);
+                int makeNew = int.Parse(itemConfig.ItemUsePar);
+                EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(makeNew);
+                if (makeType != equipMakeConfig.ProficiencyType)
+                {
+                    ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_MakeTypeError);
+                    return;
+                }
+            }
             if (itemConfig.ItemSubType == 101)
             {
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

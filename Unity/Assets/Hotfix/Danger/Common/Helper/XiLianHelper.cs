@@ -59,7 +59,6 @@ namespace ET
             //获取装备等级和装备类型
             int equipID = itemConfig.ItemEquipID;
             //默认送四个宝石位
-            string fuMoStr = ComHelp.GetHideFuMoValue(bagInfo.HideID);
             List<HideProList> HideProList = new List<HideProList>();    //专精属性
             List<HideProList> BaseHideProList = new List<HideProList>();    //基础洗炼属性
             List<HideProList> TeShuHideProList = new List<HideProList>();    //基础洗炼属性

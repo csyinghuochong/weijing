@@ -572,17 +572,6 @@ namespace ET
             return retunrnValue;
         }
 
-
-        //获取附魔相关字符串
-        public static string GetHideFuMoValue(int hideID)
-        {
-            string fuMoStr = "";
-            if (hideID != 0)
-            {
-            }
-            return fuMoStr;
-        }
-
         //获取装备的专精属性
         public static List<HideProList> GetEquipZhuanJingHidePro(int equipID,int itemID ,int jianDingPinZhi)
         {

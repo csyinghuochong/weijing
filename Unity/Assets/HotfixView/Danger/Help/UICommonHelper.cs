@@ -8,6 +8,11 @@ namespace ET
     public static class UICommonHelper
     {
 
+        /// <summary>
+        /// 保留两位小数
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public static string ShowFloatValue(float value)
         {
             string svalue = value.ToString("0.##");
