@@ -776,6 +776,25 @@ namespace ET
                     properShowNum += 1;
                 }
             }
+
+            //显示附魔属性
+            for (int i = 0; i < baginfo.FumoProLists.Count; i++)
+            {
+                HideProList hideProList = baginfo.FumoProLists[i]; 
+                int showType = NumericHelp.GetNumericValueType(hideProList.HideID);
+                string attribute;
+                if (showType == 2)
+                {
+                    attribute = $"附魔 {ItemViewHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue * 100}%";
+                }
+                else
+                {
+                    attribute = $"附魔 {ItemViewHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue}";
+                }
+                ShowPropertyText(attribute, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                properShowNum += 1;
+            }
+
             return properShowNum;
         }
     }
