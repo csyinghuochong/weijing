@@ -103,7 +103,7 @@ namespace ET
             {
                 if (monsterConfig.DropID[i]!= 0)
                 {
-                    rewardItems.AddRange(DropHelper.DropIDToShowItem(monsterConfig.DropID[i], 5));
+                    rewardItems.AddRange(DropHelper.DropIDToShowItem(monsterConfig.DropID[i], 4));
                 }
             }
 

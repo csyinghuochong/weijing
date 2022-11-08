@@ -269,7 +269,7 @@ namespace ET
             if (sceneType == SceneTypeEnum.Battle)
             {
                 TimerComponent.Instance?.Remove(ref self.Timer);
-                self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.MapMiniTimer, self);
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.MapMiniTimer, self);
             }
         }
     }

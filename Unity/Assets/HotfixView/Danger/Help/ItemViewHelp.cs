@@ -785,13 +785,14 @@ namespace ET
                 string attribute;
                 if (showType == 2)
                 {
-                    attribute = $"附魔 {ItemViewHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue * 100}%";
+                    float value = (float)hideProList.HideValue / 100f;
+                    attribute = $"附魔属性: {ItemViewHelp.GetAttributeName(hideProList.HideID)} + "+ value.ToString("0.##") + "%";
                 }
                 else
                 {
-                    attribute = $"附魔 {ItemViewHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue}";
+                    attribute = $"附魔属性: {ItemViewHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue}";
                 }
-                ShowPropertyText(attribute, "2", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                ShowPropertyText(attribute, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                 properShowNum += 1;
             }
 
