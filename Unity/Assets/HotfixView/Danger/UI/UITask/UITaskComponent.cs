@@ -93,7 +93,7 @@ namespace ET
 					break;
 				}
 			}
-			self.TaskTypeUIList[index].OnTaskGiveUp();
+			self.TaskTypeUIList[index].SetExpand();
 		}
 
 		public static  void InitTaskTypeList(this UITaskComponent self)
