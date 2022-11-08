@@ -101,9 +101,8 @@ namespace ET
 
         public static void OnClickItem(this UISettlementRewardComponent self)
         {
-            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            if (self.Index >= 3 && !userInfoComponent.IsYueKaStates(numericComponent))
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (self.Index >= 3 && !unit.IsYueKaStates())
             {
                 FloatTipManager.Instance.ShowFloatTip("月卡用户才能开启！");
                 return;

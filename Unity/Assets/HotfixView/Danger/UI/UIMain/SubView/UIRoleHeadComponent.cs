@@ -115,7 +115,7 @@ namespace ET
         public static void UpdateShowRolePiLao(this UIRoleHeadComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int maxPiLao = self.UserInfoComponent.GetMaxPiLao(unit.GetComponent<NumericComponent>());
+            int maxPiLao = unit.GetMaxPiLao();
             self.Obj_Img_RolePiLao.GetComponent<Image>().fillAmount = (float)self.UserInfoComponent.UserInfo.PiLao / maxPiLao;
             self.Obj_Lab_RolePiLao.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("体力:") + self.UserInfoComponent.UserInfo.PiLao + "/" + maxPiLao;
         }

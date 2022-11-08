@@ -42,9 +42,8 @@ namespace ET
     {
         public static void OnUpdateUI(this UIActivityYueKaComponent self)
         {
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
-            if (userInfoComponent.IsYueKaStates(numericComponent))
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (unit.IsYueKaStates())
             {
                 self.Img_JiHuo.SetActive(true);
                 self.BtnOpenYueKaSet.SetActive(false);
@@ -52,12 +51,7 @@ namespace ET
                 self.Btn_GoPay.SetActive(true);
                 self.Btn_OpenYueKa.SetActive(false);
 
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                long yuekaTime = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.YueKa_EndTime);
-                long nowTime = TimeHelper.ServerNow();
-                int leftDay = ComHelp.DateDiff_Time(yuekaTime, nowTime);
-                leftDay -= unit.GetComponent<NumericComponent>().GetAsInt(NumericType.YueKa_Award);
-                leftDay = Mathf.Max(0, leftDay);
+                int leftDay = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.YueKaRemainTimes);
                 self.Text_Remainingtimes.GetComponent<Text>().text = $"{leftDay}/7";
             }
             else 
@@ -81,15 +75,14 @@ namespace ET
 
         public static async ETTask ReceiveReward(this UIActivityYueKaComponent self)
         {
-            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
-            if (!self.ZoneScene().GetComponent<UserInfoComponent>().IsYueKaStates(numericComponent))
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (!unit.IsYueKaStates())
             {
                 FloatTipManager.Instance.ShowFloatTip("请先开启月卡！");
                 return;
             }
 
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.YueKa_Award) == 1)
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.YueKaAward) == 1)
             {
                 //当天已领取
                 FloatTipManager.Instance.ShowFloatTip("当天奖励已领取！");

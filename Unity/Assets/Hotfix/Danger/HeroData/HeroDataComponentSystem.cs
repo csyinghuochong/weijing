@@ -44,6 +44,15 @@ namespace ET
             {
                 numericComponent.Set(NumericType.CangKuNumber, 1, false);
             }
+
+            long yuekeEndTime = numericComponent.GetAsLong(NumericType.YueKaEndTime) - TimeHelper.ServerNow();
+            if (yuekeEndTime > 0)
+            {
+                int leftDay = Mathf.CeilToInt(yuekeEndTime * 1f / ( 24 * 60 * 60 * 1000 ));
+                leftDay = Mathf.Min(7, leftDay);
+                numericComponent.Set(NumericType.YueKaEndTime, 0);
+                numericComponent.Set(NumericType.YueKaRemainTimes, leftDay);
+            }
         }
 
         public static void OnLogin(this HeroDataComponent self)
@@ -76,7 +85,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.HongBao, 0, notice);
             numericComponent.ApplyValue(NumericType.Now_XiLian, 0, notice);
             numericComponent.ApplyValue(NumericType.PetChouKa, 0, notice);
-            numericComponent.ApplyValue(NumericType.YueKa_Award, 0, notice);
+            numericComponent.ApplyValue(NumericType.YueKaAward, 0, notice);
             numericComponent.ApplyValue(NumericType.XiuLian_ExpNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.XiuLian_CoinNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.XiuLian_ExpTime, 0, notice);

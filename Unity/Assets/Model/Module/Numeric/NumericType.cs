@@ -20,7 +20,7 @@
         public const int MainCity_Y = 3015;
         public const int MainCity_Z = 3016;
         public const int PetChouKa = 3017;
-        public const int YueKa_Award = 3018;                                       //领取时间戳
+        public const int YueKaAward = 3018;                                       //领取时间戳
         public const int Born_X = 3019;
         public const int Born_Y = 3020;
         public const int Born_Z = 3021;
@@ -52,7 +52,7 @@
         public const int CampId = 3048;
         public const int CangKuNumber = 3049;
         public const int MaoXianExp = 3050;
-        public const int YueKa_EndTime = 3051;
+        public const int YueKaEndTime = 3051;
         public const int MakeType = 3052;
         public const int ExpToGoldTimes = 3053;
         public const int MakeShuLianDu = 3054;
@@ -64,12 +64,10 @@
         public const int RechargeBuChang = 3060;                                 //充值补偿
         public const int Now_Lv = 3061;                                         //当前等级
         public const int BattleCamp = 3062;                                     //战斗阵营
-        public const int TaskLoopNumber = 3063;                                 //赏金任务完成数量                           //赏金任务放弃时间
+        public const int TaskLoopNumber = 3063;                                 //赏金任务完成数量                          
         public const int TaskLoopGiveId = 3064;
         public const int BattleNumber = 3065;
-        public const int Init_X = 3066;     
-        public const int Init_Y = 3067;
-        public const int Init_Z = 3068;
+        public const int YueKaRemainTimes = 3066;                               //月卡剩余次数                    
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

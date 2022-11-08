@@ -216,5 +216,22 @@ namespace ET
             }
 
         }
+
+        public static bool IsYueKaStates(this Unit self)
+        { 
+            return self.GetComponent<NumericComponent>().GetAsInt(NumericType.YueKaRemainTimes) > 0;
+        }
+
+        public static void UpdateYueKaTimes(this Unit self)
+        {
+            NumericComponent numericComponent = self.GetComponent<NumericComponent>();
+            numericComponent.ApplyValue(NumericType.YueKaRemainTimes, 7);
+        }
+
+        public static int GetMaxPiLao(this Unit self)
+        {
+            return int.Parse(GlobalValueConfigCategory.Instance.Get(self.IsYueKaStates() ? 26 : 10).Value);
+        }
+
     }
 }

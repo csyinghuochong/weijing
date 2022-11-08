@@ -152,8 +152,8 @@ namespace ET
                 self.RewardUIList[0].OnClickItem();
             }
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
-            if (!self.bottomSelect && userInfoComponent.IsYueKaStates(numericComponent))
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (!self.bottomSelect && unit.IsYueKaStates())
             {
                 self.RewardUIList[3].OnClickItem();
             }
@@ -161,9 +161,8 @@ namespace ET
 
         public static async ETTask OnClickRewardItem(this UICellDungeonSettlementComponent self, int index)
         {
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
-            if (index >= 3 && !userInfoComponent.IsYueKaStates(numericComponent))
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (index >= 3 && !unit.IsYueKaStates())
             {
                 FloatTipManager.Instance.ShowFloatTip("月卡用户才能开启！");
                 return;

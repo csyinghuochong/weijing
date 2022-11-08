@@ -192,9 +192,8 @@ namespace ET
                 return;
             }
             self.SendGetTime = TimeHelper.ServerNow();
-            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            if (index >= 3 && !userInfoComponent.IsYueKaStates(numericComponent))
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (index >= 3 && !unit.IsYueKaStates())
             {
                 FloatTipManager.Instance.ShowFloatTip("月卡用户才能开启！");
                 return;

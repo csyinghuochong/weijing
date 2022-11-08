@@ -138,7 +138,7 @@ namespace ET
         public static void UpdateShowRoleExp(this UIRolePropertyComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int maxPiLao = self.UserInfoComponent.GetMaxPiLao(unit.GetComponent<NumericComponent>());
+            int maxPiLao = unit.GetMaxPiLao();
             self.ImagePiLao.GetComponent<Image>().fillAmount = (float)self.UserInfoComponent.UserInfo.PiLao / maxPiLao;
             self.Text_PiLao.GetComponent<Text>().text = self.UserInfoComponent.UserInfo.PiLao + "/" + maxPiLao;
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;

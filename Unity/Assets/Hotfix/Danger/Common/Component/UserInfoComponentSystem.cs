@@ -30,7 +30,7 @@ namespace ET
 
         public static void CheckTiLi(this UserInfoComponent self)
         {
-            long maxPilao = self.GetMaxPiLao(self.GetParent<Unit>().GetComponent<NumericComponent>());
+            long maxPilao = self.GetParent<Unit>().GetMaxPiLao();
             self.UserInfo.PiLao = Math.Min( maxPilao, self.UserInfo.PiLao );
         }
 
@@ -173,7 +173,7 @@ namespace ET
 
         public static void RecoverPiLao(this UserInfoComponent self, int addValue, bool notice)
         {
-            long recoverPiLao = self.GetMaxPiLao(self.GetParent<Unit>().GetComponent<NumericComponent>()) - self.UserInfo.PiLao;
+            long recoverPiLao = self.GetParent<Unit>().GetMaxPiLao() - self.UserInfo.PiLao;
             recoverPiLao = Math.Min(recoverPiLao, addValue);
             self.UpdateRoleData(UserDataType.PiLao, recoverPiLao.ToString(), notice).Coroutine();
         }
@@ -319,7 +319,7 @@ namespace ET
                     unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.MaoXianExp, long.Parse(value), 0);
                     break;
                 case UserDataType.PiLao:
-                    int maxValue = self.IsYueKaStates(unit.GetComponent<NumericComponent>()) ? int.Parse(GlobalValueConfigCategory.Instance.Get(26).Value) : int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
+                    int maxValue = unit.IsYueKaStates() ? int.Parse(GlobalValueConfigCategory.Instance.Get(26).Value) : int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
                     long newValue = long.Parse(value) + self.UserInfo.PiLao;
                     newValue = Math.Min(Math.Max(0, newValue), maxValue);
                     self.UserInfo.PiLao = newValue;
@@ -629,28 +629,6 @@ namespace ET
                 }
             }
             return false;
-        }
-
-        public static bool IsYueKaStates(this UserInfoComponent self, NumericComponent numericComponent)
-        {
-            long xx = TimeHelper.ServerNow();
-            return numericComponent.GetAsLong(NumericType.YueKa_EndTime) >= xx;
-        }
-
-        public static int GetMaxPiLao(this UserInfoComponent self, NumericComponent numericComponent)
-        {
-            bool isYueKa = self.IsYueKaStates(numericComponent);
-            return int.Parse(GlobalValueConfigCategory.Instance.Get(isYueKa?26:10).Value);
-        }
-
-        public static void UpdateYueKaTime(this UserInfoComponent self)
-        {
-            long xx = TimeHelper.ServerNow();
-            GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(24);
-            long time = (long.Parse(globalValueConfig.Value)) * 24 * 60 * 60 * 1000;
-            //self.UserInfo.YueKaEndTime = xx + time;
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            numericComponent.ApplyValue( NumericType.YueKa_EndTime, xx + time);
         }
 
         public static bool IsChapterOpen(this UserInfoComponent self, int chapterid)
