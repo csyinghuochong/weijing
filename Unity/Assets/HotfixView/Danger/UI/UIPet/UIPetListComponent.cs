@@ -649,7 +649,7 @@ namespace ET
         public static string GetAttributeShow(this UIPetListComponent self, RolePetInfo rolePetInfo, int numericType)
         {
             NumericAttribute numericAttribute = ItemViewHelp.AttributeToName[numericType];
-            if (numericAttribute.Float)
+            if (NumericHelp.GetNumericValueType(numericType) == 2)
             {
                 float fvalue = (self.PetComponent.GetAttributeValue(rolePetInfo, numericType)) * 0.001f;
                 //string svalue = string.Format("{0:F}", fvalue);

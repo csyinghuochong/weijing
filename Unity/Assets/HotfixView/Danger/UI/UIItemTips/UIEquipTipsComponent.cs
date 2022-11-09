@@ -483,6 +483,7 @@ namespace ET
 
 
         //展示隐藏属性
+        /*
         public static string ShowHidePro(this UIEquipTipsComponent self, string AddPropreListStr)
         {
             string proprety = AddPropreListStr.Split(',')[0];
@@ -950,6 +951,7 @@ namespace ET
             }
             return textShow;
         }
+        */
 
         //专精状态
         public static void ZhuanJingStatus(this UIEquipTipsComponent self, int occTwoValue, ItemConfig itemconf, BagInfo baginfo)

@@ -96,7 +96,7 @@ namespace ET
             {
                 NumericAttribute numericAttribute = ItemViewHelp.AttributeToName[equipXiLianConfig.ProList_Type[0]];
 
-                if (numericAttribute.Float)
+                if (NumericHelp.GetNumericValueType(equipXiLianConfig.ProList_Type[0]) == 2)
                 {
                     float fvalue = equipXiLianConfig.ProList_Value[0] * 0.001f;
                     string svalue = fvalue.ToString("0.#####");

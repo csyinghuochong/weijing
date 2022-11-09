@@ -40,7 +40,7 @@
 {"_t":"GlobalValueConfig","_id":40,"Value":"1350@601800041","Value2":0},
 {"_t":"GlobalValueConfig","_id":41,"Value":"60","Value2":60},
 {"_t":"GlobalValueConfig","_id":42,"Value":"1;18@2;25@3;30@4;35@5;40@6;45@7;50@8;55@9;58@10;60","Value2":0},
-{"_t":"GlobalValueConfig","_id":43,"Value":"100119;300003;100101;100102;100103;200001;200002","Value2":0},
+{"_t":"GlobalValueConfig","_id":43,"Value":"100119;300003;100101;100102;100103;200001;200002;6101001","Value2":0},
 {"_t":"GlobalValueConfig","_id":44,"Value":"20","Value2":20},
 {"_t":"GlobalValueConfig","_id":45,"Value":"500","Value2":500},
 {"_t":"GlobalValueConfig","_id":46,"Value":"500","Value2":500},
