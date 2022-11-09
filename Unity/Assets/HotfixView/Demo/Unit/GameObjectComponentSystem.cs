@@ -214,7 +214,6 @@ namespace ET
 
                     if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
                     {
-                        Log.ILog.Debug($"monsterConfig.Id1 :   {monsterCof.Id}");
                         EventType.UnitDead.Instance.Unit = unit;
                         Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
                     }

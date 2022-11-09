@@ -139,7 +139,7 @@ namespace ET
 			self.TaskPro = self.ZoneScene().GetComponent<TaskComponent>().GetTaskById(taskId);
 			self.TaskId = taskId;
 
-			self.UpdateTaskInfo(self.TaskPro).Coroutine();
+			self.UpdateTaskInfo(self.TaskPro);
 		}
 
 		public static void OnCloseTask(this UITaskComponent self)
@@ -147,7 +147,7 @@ namespace ET
 			UIHelper.Remove(self.DomainScene(), UIType.UITask);
 		}
 
-		public static async ETTask UpdateTaskInfo(this UITaskComponent self, TaskPro taskPro)
+		public static void  UpdateTaskInfo(this UITaskComponent self, TaskPro taskPro)
 		{
 			self.TaskPro = taskPro;
 			self.GetParent<UI>().GameObject.transform.Find("Right").gameObject.SetActive(taskPro != null);
@@ -168,7 +168,6 @@ namespace ET
 			self.Button_CancelZhuizong.SetActive(taskPro.TrackStatus == 1);
 
 			string path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-			await ETTask.CompletedTask;
 			GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
 			string rewardStr = self.TaskConfig.ItemID;
@@ -208,6 +207,7 @@ namespace ET
 					ui_1 = self.AddChild<UIItemComponent, GameObject>(skillItem);
 					self.RewardUIList.Add(ui_1);
 				}
+				ui_1.Label_ItemNum.SetActive(true);
 				ui_1.UpdateItem(new BagInfo() { ItemID = int.Parse(rewarditems[i]), ItemNum = int.Parse(rewardItemNums[i]) }, ItemOperateEnum.TaskItem);
 				number++;
 			}
@@ -219,7 +219,7 @@ namespace ET
 
 		public static void OnRecvTaskUpdate(this UITaskComponent self)
 		{
-			self.UpdateTaskInfo(self.TaskComponent.GetTaskById(self.TaskPro.taskID)).Coroutine();
+			self.UpdateTaskInfo(self.TaskComponent.GetTaskById(self.TaskPro.taskID));
 		}
 
 		public static void OnTrackTask(this UITaskComponent self, bool track)
