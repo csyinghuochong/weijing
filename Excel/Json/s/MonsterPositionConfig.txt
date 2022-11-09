@@ -24,5 +24,6 @@
 {"_t":"MonsterPositionConfig","_id":10023,"NextID":10024,"Type":3,"Position":"69.49,0.34,-2.75","MonsterID":81000015,"CreateRange":0,"CreateNum":1,"Create":270,"Par":"30,60"},
 {"_t":"MonsterPositionConfig","_id":10024,"NextID":10025,"Type":3,"Position":"-54.66,0.34,-0.15","MonsterID":81000003,"CreateRange":0,"CreateNum":1,"Create":90,"Par":"30,60"},
 {"_t":"MonsterPositionConfig","_id":10025,"NextID":10026,"Type":3,"Position":"-54.66,0.34,-0.15","MonsterID":81000004,"CreateRange":0,"CreateNum":1,"Create":90,"Par":"30,60"},
-{"_t":"MonsterPositionConfig","_id":10026,"NextID":0,"Type":3,"Position":"-54.66,0.34,-0.15","MonsterID":81000005,"CreateRange":0,"CreateNum":1,"Create":90,"Par":"30,60"},
+{"_t":"MonsterPositionConfig","_id":10026,"NextID":10027,"Type":3,"Position":"-54.66,0.34,-0.15","MonsterID":81000005,"CreateRange":0,"CreateNum":1,"Create":90,"Par":"30,60"},
+{"_t":"MonsterPositionConfig","_id":10027,"NextID":0,"Type":2,"Position":"99,0.34,-2.75","MonsterID":90000003,"CreateRange":0,"CreateNum":1,"Create":270,"Par":""},
 ]}

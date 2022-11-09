@@ -38,24 +38,25 @@ namespace ET
             //计算玩家与敌人的距离
             //float distance = Vector3.Distance(s_position, t_point);
             //玩家与敌人的方向向量
-            Vector3 temVec = t_point - s_position;
-            if (temVec == Vector3.zero)
+            //攻击者位置指向目标位置的向量
+            Vector3 direction = t_point - s_position;
+            if (direction == Vector3.zero)
             {
                 return true;
             }
-            //与玩家正前方做点积
-            float forwardDistance = Vector3.Dot(temVec, s_forward.normalized);
-            if (forwardDistance > 0 && forwardDistance <= z_range)
-            {
-                Vector3 newVec = Quaternion.Euler(0f, 90f, 0f) * s_forward;
-                float rightDistance = Vector3.Dot(temVec, newVec.normalized);
+            //与玩家正前方做点积  或者一条向量在另外一条向量上的投影
+            //点乘结果 如果大于0表示目标在攻击者前方 90度=0 <90度 >0 >90度 <0
+            float dot = Vector3.Dot(direction, s_forward.normalized);
 
-                if (Mathf.Abs(rightDistance) <= x_range)
-                {
-                    return true;
-                }
+            //取绝对值与矩形宽度的一半进行比较
+            if (dot <= 0 || dot > z_range)
+            {
+                return false;
             }
-            return false;
+
+            Vector3 newVec = Quaternion.Euler(0f, 90f, 0f) * s_forward;
+            float rightDistance = Vector3.Dot(direction, newVec.normalized);
+            return Mathf.Abs(rightDistance) <= x_range;
         }
     }
 

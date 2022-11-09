@@ -109,7 +109,7 @@ namespace ET
             ButtonHelp.AddListenerEx(Button_Select_1, () => { self.RequestMakeSelect(1).Coroutine(); });
             ButtonHelp.AddListenerEx(Button_Select_2, () => { self.RequestMakeSelect(2).Coroutine(); });
             ButtonHelp.AddListenerEx(Button_Select_3, () => { self.RequestMakeSelect(3).Coroutine(); });
-            ButtonHelp.AddListenerEx(Button_Select_4, () => { self.RequestMakeSelect(4).Coroutine(); });
+            ButtonHelp.AddListenerEx(Button_Select_4, () => { self.RequestMakeSelect(6).Coroutine(); });
 
             self.Btn_Reset = rc.Get<GameObject>("Btn_Reset");
             ButtonHelp.AddListenerEx(self.Btn_Reset, () => { self.OnBtn_Reset(); });
