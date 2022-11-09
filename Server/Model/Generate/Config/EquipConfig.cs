@@ -153,6 +153,9 @@ namespace ET
 		/// <summary>附加属性值</summary>
 		[ProtoMember(26)]
 		public long[] AddPropreListValue { get; set; }
+		/// <summary>是否显示属性</summary>
+		[ProtoMember(27)]
+		public long[] AddPropreListIfShow { get; set; }
 
 	}
 }

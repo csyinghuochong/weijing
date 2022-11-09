@@ -1069,7 +1069,7 @@ namespace ET
         {
             int properShowNum = 0;
             string skillIDStr = itemconf.SkillID;
-            if (skillIDStr != "" && skillIDStr != "0")
+            if (skillIDStr != "" && skillIDStr != "0" && itemconf.SkillIDIfShow == 0)
             {
                 string[] skillID = skillIDStr.Split(',');
 

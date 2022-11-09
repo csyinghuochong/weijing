@@ -126,26 +126,29 @@ namespace ET
 		/// <summary>道具技能</summary>
 		[ProtoMember(17)]
 		public string SkillID { get; set; }
-		/// <summary>洗练石数量</summary>
+		/// <summary>道具Tips显示技能</summary>
 		[ProtoMember(18)]
+		public int SkillIDIfShow { get; set; }
+		/// <summary>洗练石数量</summary>
+		[ProtoMember(19)]
 		public int[] XiLianStone { get; set; }
 		/// <summary>回收获取物品</summary>
-		[ProtoMember(19)]
+		[ProtoMember(20)]
 		public string HuiShouGetItem { get; set; }
 		/// <summary>道具描述</summary>
-		[ProtoMember(20)]
+		[ProtoMember(21)]
 		public string ItemDes { get; set; }
 		/// <summary>道具背景描述</summary>
-		[ProtoMember(21)]
+		[ProtoMember(22)]
 		public string ItemBlackDes { get; set; }
 		/// <summary>是否自动使用</summary>
-		[ProtoMember(22)]
+		[ProtoMember(23)]
 		public int IfAutoUse { get; set; }
 		/// <summary>是否禁止拍卖行上架</summary>
-		[ProtoMember(23)]
+		[ProtoMember(24)]
 		public int IfStopPaiMai { get; set; }
 		/// <summary>获取是否绑定</summary>
-		[ProtoMember(24)]
+		[ProtoMember(25)]
 		public int IfLock { get; set; }
 
 	}

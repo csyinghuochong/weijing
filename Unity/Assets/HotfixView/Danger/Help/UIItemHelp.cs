@@ -846,28 +846,37 @@ namespace ET
             //显示装备附加属性
             for (int i = 0; i < equipconf.AddPropreListType.Length; i++)
             {
-                int numericType = equipconf.AddPropreListType[i];
-                if (numericType == 0)
+                if (equipconf.AddPropreListIfShow[i] == 0)
                 {
-                    continue;
+                    int numericType = equipconf.AddPropreListType[i];
+                    if (numericType == 0)
+                    {
+                        continue;
+                    }
+                    string attribute = "";
+                    long numericValue = equipconf.AddPropreListValue[i];
+                    int showType = NumericHelp.GetNumericValueType(numericType);
+                    if (showType == 2)
+                    {
+                        float value = (float)numericValue / 100f;
+                        //attribute = $"{ItemViewHelp.GetAttributeName(showType)} + {numericValue * 0.01f}%";
+                        attribute = $"{UIItemHelp.GetAttributeName(numericType)} + " + value.ToString("0.##") + "%";
+                    }
+                    else
+                    {
+                        attribute = $"{UIItemHelp.GetAttributeName(numericType)} + {numericValue}";
+                    }
+                    ShowPropertyText(attribute, "0", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                    properShowNum += 1;
                 }
-                string attribute = "";
-                long numericValue = equipconf.AddPropreListValue[i];
-                int showType = NumericHelp.GetNumericValueType(numericType);
-                if (showType == 2)
-                {
-                    float value = (float)numericValue / 100f;
-                    //attribute = $"{ItemViewHelp.GetAttributeName(showType)} + {numericValue * 0.01f}%";
-                    attribute = $"{UIItemHelp.GetAttributeName(numericType)} + " + value.ToString("0.##") + "%";
-                }
-                else
-                {
-                    attribute = $"{UIItemHelp.GetAttributeName(numericType)} + {numericValue}";
-                }
-                ShowPropertyText(attribute, "0", Obj_EquipPropertyText, Obj_EquipBaseSetList);
-                properShowNum += 1;
             }
 
+            //显示描述
+            if (itemconf.ItemDes != "" && itemconf.ItemDes != "0" &&itemconf.ItemDes != null )
+            {
+                ShowPropertyText(itemconf.ItemDes, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                properShowNum += 2;
+            }
 
             //显示附魔属性
             for (int i = 0; i < baginfo.FumoProLists.Count; i++)
