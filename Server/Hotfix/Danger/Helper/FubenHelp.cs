@@ -56,8 +56,6 @@ namespace ET
 			int mtype = monsterPosition.Type;
 			int monsterid = monsterPosition.MonsterID;
 			string[] position = monsterPosition.Position.Split(',');
-			Vector3 initpos = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-
 			if (mtype == 1)    //固定位置刷怪
 			{
 				for (int c = 0; c < monsterPosition.CreateNum; c++)

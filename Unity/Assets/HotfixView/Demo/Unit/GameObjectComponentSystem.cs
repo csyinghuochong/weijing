@@ -175,21 +175,20 @@ namespace ET
                         unit.AddComponent<FsmComponent>(true);                 //当前状态组建
                         unit.AddComponent<SkillYujingComponent>(true);
                     }
-                    //51 场景怪 有AI 不显示名称
-                    //52 能量台子 无AI
-                    //54 场景怪 有AI 显示名称
-                    //55 宝箱类 无AI
-                    if (monsterCof.MonsterType != (int)MonsterTypeEnum.SceneItem)
-                    {
-                        unit.UpdateUIType = HeadBarType.HeroHeadBar;
-                        unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
-                        unit.AddComponent<HeroHeadBarComponent>();         //血条UI组件
-                    }
+                   
                     if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
                     {
                         unit.AddComponent<MonsterActRangeComponent, int>(monsterCof.Id);         //血条UI组件
                     }
 
+                    //51 场景怪 有AI 不显示名称
+                    //52 能量台子 无AI
+                    //54 场景怪 有AI 显示名称
+                    //55 宝箱类 无AI
+                    if (monsterCof.MonsterSonType == 51)
+                    {
+                        unit.UpdateUIType = -1;
+                    }
                     if (monsterCof.MonsterSonType == 52)
                     {
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
@@ -206,6 +205,13 @@ namespace ET
                         unit.AddComponent<UISceneItemComponent>().InitSceneData().Coroutine();         //血条UI组件
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Box);
                     }
+                    else if (monsterCof.MonsterType != (int)MonsterTypeEnum.SceneItem )
+                    {
+                        unit.UpdateUIType = HeadBarType.HeroHeadBar;
+                        unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
+                        unit.AddComponent<HeroHeadBarComponent>();         //血条UI组件
+                    }
+
                     if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
                     {
                         Log.ILog.Debug($"monsterConfig.Id1 :   {monsterCof.Id}");
