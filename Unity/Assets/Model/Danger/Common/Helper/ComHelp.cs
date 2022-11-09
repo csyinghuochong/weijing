@@ -51,6 +51,9 @@ namespace ET
         public const int PetRankNumber = 100;
         public const int PetHeXinMax = 120;
 
+        //熔炼获得道具
+        public const int MeltingItemId = 1;
+
         public static int BagMaxCapacity()
         {
             return GlobalValueConfigCategory.Instance.Get(3).Value2;

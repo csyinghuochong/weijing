@@ -541,6 +541,7 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillMeltingComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

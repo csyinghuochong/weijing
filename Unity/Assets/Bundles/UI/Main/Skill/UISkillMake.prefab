@@ -7370,6 +7370,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8800116348155176057}
+  - component: {fileID: 6378780008181428123}
   m_Layer: 5
   m_Name: Melt
   m_TagString: Untagged
@@ -7407,6 +7408,35 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &6378780008181428123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2817274863284145594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: UIGetItem
+    gameObject: {fileID: 8565537149134427431}
+  - key: IconDi_1
+    gameObject: {fileID: 8525828829484504494}
+  - key: IconDi_2
+    gameObject: {fileID: 5297649777349731429}
+  - key: IconDi_3
+    gameObject: {fileID: 4218059900152447590}
+  - key: IconDi_4
+    gameObject: {fileID: 3479758162267483488}
+  - key: IconDi_5
+    gameObject: {fileID: 3556645923651810829}
+  - key: Btn_MeltBegin
+    gameObject: {fileID: 2548901390258661367}
+  - key: BagListNode
+    gameObject: {fileID: 8370098682745756033}
 --- !u!1 &3091121269197660852
 GameObject:
   m_ObjectHideFlags: 0
@@ -26760,6 +26790,11 @@ PrefabInstance:
       propertyPath: m_Padding.m_Left
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 3302004869569387748, guid: f87c3fd9c1c023c438e2c9c2642b35a7,
+        type: 3}
+      propertyPath: m_Name
+      value: BagListNode
+      objectReference: {fileID: 0}
     - target: {fileID: 3487363670466208854, guid: f87c3fd9c1c023c438e2c9c2642b35a7,
         type: 3}
       propertyPath: m_Pivot.x
@@ -26878,6 +26913,12 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6483920712448705893}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &8370098682745756033 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3302004869569387748, guid: f87c3fd9c1c023c438e2c9c2642b35a7,
+    type: 3}
+  m_PrefabInstance: {fileID: 6483920712448705893}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8565537149134542143
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -26887,7 +26928,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 147480, guid: 7d3e17a09bed927428cd5f79cad4250f, type: 3}
       propertyPath: m_Name
-      value: UICommonItem
+      value: UIGetItem
       objectReference: {fileID: 0}
     - target: {fileID: 22482004, guid: 7d3e17a09bed927428cd5f79cad4250f, type: 3}
       propertyPath: m_Pivot.x
@@ -26978,6 +27019,12 @@ PrefabInstance:
 --- !u!224 &8565537149154531691 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 22482004, guid: 7d3e17a09bed927428cd5f79cad4250f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8565537149134542143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8565537149134427431 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 147480, guid: 7d3e17a09bed927428cd5f79cad4250f,
     type: 3}
   m_PrefabInstance: {fileID: 8565537149134542143}
   m_PrefabAsset: {fileID: 0}

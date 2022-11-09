@@ -184,7 +184,7 @@ namespace ET
         public static async ETTask OnPointerDown(this UIRoleXiLianTransferComponent self, BagInfo binfo, PointerEventData pdata)
         {
             self.IsHoldDown = true;
-            HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, "1");
+            HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"1_{binfo.BagInfoID}");
             await TimerComponent.Instance.WaitAsync(400);
             if (!self.IsHoldDown)
                 return;
