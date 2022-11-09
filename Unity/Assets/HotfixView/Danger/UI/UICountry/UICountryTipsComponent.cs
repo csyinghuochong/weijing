@@ -32,7 +32,7 @@ namespace ET
     {
         public static void OnUpdateUI(this UICountryTipsComponent self, string rewards, Vector3 vector3, int showType = 0)
         {
-            UICommonHelper.ShowItemList(rewards, self.ItemListNode, self).Coroutine();
+            UICommonHelper.ShowItemList(rewards, self.ItemListNode, self);
             string[] rewardItems = rewards.Split('@');
             int width = rewardItems.Length * 120 + (rewardItems.Length - 1) * 10;
             float halfwidth = UnityEngine.Screen.width * 0.5f;

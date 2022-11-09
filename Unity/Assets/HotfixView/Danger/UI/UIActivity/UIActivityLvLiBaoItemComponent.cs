@@ -79,7 +79,7 @@ namespace ET
             self.Lab_LvDes.GetComponent<Text>().text = $"{activityConfig.Par_1}级开启";
             self.Lab_BuyValue.GetComponent<Text>().text = activityConfig.Par_2.Split(';')[1];
 
-            UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemNodeList, self, 0.8f).Coroutine();
+            UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemNodeList, self, 0.8f);
         }
 
         public static void SetSelected(this UIActivityLvLiBaoItemComponent self, bool value)

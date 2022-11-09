@@ -145,54 +145,53 @@ namespace ET
             }
         }
 
-        public static void ShowItemList(List<RewardItem> itemList, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true)
+        public static void ShowItemList(List<RewardItem> rewardItems, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true)
         {
             string iteminfos = "";
-            for (int i = 0; i < itemList.Count; i++)
+            rewardItems.Sort(delegate (RewardItem a, RewardItem b)
             {
-                iteminfos += $"{itemList[i].ItemID};{itemList[i].ItemNum}@";
-            }
-            if (iteminfos.Length > 0)
-            {
-                iteminfos = iteminfos.Substring(0, iteminfos.Length - 1);
-            }
-            ShowItemList(iteminfos, itemNodeList, entity, scale, showNumber).Coroutine();
-        }
-
-        public static async ETTask ShowItemList(string itemList, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true)
-        {
-            if (string.IsNullOrEmpty(itemList))
-            {
-                return;
-            }
-            long instanceid = entity.InstanceId;
-            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            if (instanceid != entity.InstanceId)
-            {
-                return;
-            }
-            string[] rewardItems = itemList.Split('@');
-            for (int i = 0; i < rewardItems.Length; i++)
-            {
-                if (ComHelp.IfNull(rewardItems[i]))
+                int itemIda = a.ItemID;
+                int itemIdb = b.ItemID;
+                int quliatya = ItemConfigCategory.Instance.Get(itemIda).ItemQuality;
+                int quliatyb = ItemConfigCategory.Instance.Get(itemIdb).ItemQuality;
+                if (quliatya == quliatyb)
                 {
-                    continue;
+                    if (itemIda == itemIdb)
+                        return b.ItemNum - a.ItemNum;
+                    else
+                        return itemIda - itemIdb;
                 }
-                string[] itemInfo = rewardItems[i].Split(';');
+                else
+                {
+                    return quliatyb - quliatya;
+                }
+            });
+
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            for (int i = 0; i < rewardItems.Count; i++)
+            {
                 GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(itemSpace, itemNodeList);
                 UI ui_2 = entity.AddChild<UI, string, GameObject>("UICommonItem_" + i, itemSpace);
                 UIItemComponent uIItemComponent = ui_2.AddComponent<UIItemComponent>();
-                uIItemComponent.UpdateItem(new BagInfo() { ItemID = int.Parse(itemInfo[0]), ItemNum = int.Parse(itemInfo[1]) }, ItemOperateEnum.None);
+                uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
                 uIItemComponent.Label_ItemName.SetActive(false);
                 uIItemComponent.Label_ItemNum.SetActive(showNumber);
                 itemSpace.transform.localScale = Vector3.one * scale;
             }
         }
 
+        public static void ShowItemList(string itemList, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true)
+        {
+            if (string.IsNullOrEmpty(itemList))
+            {
+                return;
+            }
+            ShowItemList(ItemHelper.GetRewardItems(itemList), itemNodeList,entity, scale,showNumber);
+        }
 
-        public static async ETTask ShowCostItemList(string itemList, GameObject itemNodeList, Entity entity, float scale = 1f)
+        public static  void ShowCostItemList(string itemList, GameObject itemNodeList, Entity entity, float scale = 1f)
         {
             if (string.IsNullOrEmpty(itemList))
             {
@@ -200,7 +199,6 @@ namespace ET
             }
             long instanceid = entity.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonCostItem");
-            await ETTask.CompletedTask;
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != entity.InstanceId)
             {

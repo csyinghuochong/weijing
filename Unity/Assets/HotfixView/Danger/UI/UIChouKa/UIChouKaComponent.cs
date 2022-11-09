@@ -141,7 +141,7 @@ namespace ET
             }
             //itemList = itemList.Substring(0, itemList.Length - 1);
             itemList = itemList + dropShow;
-            UICommonHelper.ShowItemList(itemList, self.chouKaShowItemNode, self, 0.8f).Coroutine();
+            UICommonHelper.ShowItemList(itemList, self.chouKaShowItemNode, self, 0.8f);
         }
 
         public static void OnBtn_ZhangJieXuanZe(this UIChouKaComponent self)

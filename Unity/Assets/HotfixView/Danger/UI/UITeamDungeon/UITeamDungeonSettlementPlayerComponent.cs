@@ -42,7 +42,7 @@ namespace ET
             if (rewardItems != null)
             {
                 string itemList = $"{rewardItems[0].ItemID};{rewardItems[0].ItemNum}";
-                UICommonHelper.ShowItemList(itemList, self.ItemNode, self, 0.6f ).Coroutine();
+                UICommonHelper.ShowItemList(itemList, self.ItemNode, self, 0.6f );
             }
         }
 

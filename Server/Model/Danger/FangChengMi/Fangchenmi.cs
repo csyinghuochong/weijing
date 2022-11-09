@@ -21,9 +21,8 @@ namespace ET
 		//public const string FangChenMi_appid = "46d6895c5d544f1685f4cf343954c018";
 		//public const string FangChenMi_secretkey = "f8dbf17bb15192931d4cc096e52f5104";
 		//public const string FangChenMi_bizid = "1101999999";
-
 		public const string FangChenMi_appid = "764a47910a4a4cce8aa957f6e1b4a535";
-		public const string FangChenMi_secretkey = "b0deb1f502c5669127acf0b97826ef99";
+		public const string FangChenMi_secretkey = "711a8f9fd43add8672c3d258fb27aa7b";
 		public const string FangChenMi_bizid = "1199015682";
 
 		public static long SecondsFrom19700101ms()

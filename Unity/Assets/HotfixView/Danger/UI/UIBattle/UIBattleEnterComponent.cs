@@ -21,7 +21,7 @@ namespace ET
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
 
             GlobalValueConfig globalValue = GlobalValueConfigCategory.Instance.Get(56);
-            UICommonHelper.ShowItemList( globalValue.Value, self.ItemListNode, self,1f).Coroutine();
+            UICommonHelper.ShowItemList(globalValue.Value, self.ItemListNode, self, 1f);
             ButtonHelp.AddListenerEx(self.ButtonEnter, () => { self.OnButtonEnter().Coroutine(); } );
         }
     }

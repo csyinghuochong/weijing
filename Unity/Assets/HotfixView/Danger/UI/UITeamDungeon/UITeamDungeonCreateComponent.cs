@@ -95,33 +95,44 @@ namespace ET
             SceneConfig teamDungeonConfig = SceneConfigCategory.Instance.Get(fubenId);
             UICommonHelper.DestoryChild(self.ItemNodeList);
 
-            string rewardShow = teamDungeonConfig.RewardShow;
             int bossId = teamDungeonConfig.BossId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
-            List<RewardItem> rewardItems = new List<RewardItem>();
+            List<RewardItem> allRewardItems = new List<RewardItem>();
             for (int i = 0; i < monsterConfig.DropID.Length; i++)
             {
                 if (monsterConfig.DropID[i]!= 0)
                 {
-                    rewardItems.AddRange(DropHelper.DropIDToShowItem(monsterConfig.DropID[i], 4));
+                    allRewardItems.AddRange(DropHelper.DropIDToShowItem(monsterConfig.DropID[i], 4));
                 }
             }
+            allRewardItems.AddRange(ItemHelper.GetRewardItems(teamDungeonConfig.RewardShow));
 
-            for (int i = rewardItems.Count - 1; i >= 0; i--)
+            List<RewardItem> rewardItems = new List<RewardItem>();
+            for (int i = allRewardItems.Count - 1; i >= 0; i--)
             {
-                if (rewardShow.Contains(rewardItems[i].ItemID.ToString()))
+                bool have = false;
+                RewardItem rewardItem = allRewardItems[i];
+                for (int k = 0; k< rewardItems.Count; k++  )
+                {
+                    if (rewardItems[k].ItemID == rewardItem.ItemID)
+                    {
+                        have = true;
+                        break;
+                    }
+                }
+                if (have)
                 {
                     continue;
                 }
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(rewardItems[i].ItemID);
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(allRewardItems[i].ItemID);
                 if (itemConfig.ItemQuality < 4)
                 {
                     continue;
                 }
-                rewardShow += $"@{rewardItems[i].ItemID};{rewardItems[i].ItemNum}";
+                rewardItems.Add(rewardItem);
             }
 
-            UICommonHelper.ShowItemList(rewardShow, self.ItemNodeList, self, 1f).Coroutine();
+            UICommonHelper.ShowItemList(rewardItems, self.ItemNodeList, self, 1f);
             self.TextLevelLimit.GetComponent<Text>().text = teamDungeonConfig.EnterLv.ToString();
             self.TextPlayerLimit.GetComponent<Text>().text = $"{teamDungeonConfig.PlayerLimit}-3人";
             self.TextFubenDesc.GetComponent<Text>().text = teamDungeonConfig.ChapterDes;

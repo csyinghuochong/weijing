@@ -31,8 +31,8 @@ namespace ET
         public static void OnInitUI(this UICampRewardItemComponent self, CampRewardConfig config)
         {
             self.TextRank.GetComponent<Text>().text = $"第{config.RankRange[0]}-{config.RankRange[1]}名";
-            UICommonHelper.ShowItemList(config.Win_RewardList,  self.ItemListNode_1, self, 0.8f).Coroutine();
-            UICommonHelper.ShowItemList(config.Fail_RewardList, self.ItemListNode_2, self, 0.8f).Coroutine();
+            UICommonHelper.ShowItemList(config.Win_RewardList,  self.ItemListNode_1, self, 0.8f);
+            UICommonHelper.ShowItemList(config.Fail_RewardList, self.ItemListNode_2, self, 0.8f);
         }
     }
 }

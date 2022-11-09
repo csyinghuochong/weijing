@@ -43,9 +43,9 @@ namespace ET
             UICommonHelper.DestoryChild(self.RewardListNode3);
 
             FirstWinConfig firstWin = FirstWinConfigCategory.Instance.Get(firstWinId);
-            UICommonHelper.ShowItemList(firstWin.RewardList_1, self.RewardListNode1, self, 0.9f, true).Coroutine();
-            UICommonHelper.ShowItemList(firstWin.RewardList_2, self.RewardListNode2, self, 0.9f, true).Coroutine();
-            UICommonHelper.ShowItemList(firstWin.RewardList_3, self.RewardListNode3, self, 0.9f, true).Coroutine();
+            UICommonHelper.ShowItemList(firstWin.RewardList_1, self.RewardListNode1, self, 0.9f, true);
+            UICommonHelper.ShowItemList(firstWin.RewardList_2, self.RewardListNode2, self, 0.9f, true);
+            UICommonHelper.ShowItemList(firstWin.RewardList_3, self.RewardListNode3, self, 0.9f, true);
         }
 
     }

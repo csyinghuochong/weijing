@@ -93,7 +93,7 @@ namespace ET
 
             self.Lab_Name.GetComponent<Text>().text = activityConfig.Par_4;
             UICommonHelper.DestoryChild(self.ItemNodeList);
-            UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemNodeList, self, 0.8f).Coroutine();
+            UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemNodeList, self, 0.8f);
         }
 
         public static void SetReceived(this UIActivityLoginItemComponent self, bool received)

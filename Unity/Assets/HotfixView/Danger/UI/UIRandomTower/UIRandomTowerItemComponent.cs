@@ -34,7 +34,7 @@ namespace ET
         {
             self.TowerRewardConfig = towerRewardConfig;
             self.TextLevel.GetComponent<Text>().text =  $"{towerRewardConfig.CengNum[1]} 层";
-            UICommonHelper.ShowItemList(towerRewardConfig.RewardList, self.ItemListNode, self).Coroutine();
+            UICommonHelper.ShowItemList(towerRewardConfig.RewardList, self.ItemListNode, self);
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             self.SetRewarded( userInfo.TowerRewardIds.Contains(towerRewardConfig.Id) );

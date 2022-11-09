@@ -129,7 +129,7 @@ namespace ET
             string costItems = equipQiangHuaConfig.CostItem;
             costItems += $"@1;{equipQiangHuaConfig.CostGold}";
             UICommonHelper.DestoryChild(self.QiangHuaCostNode);
-            UICommonHelper.ShowCostItemList(costItems, self.QiangHuaCostNode, self, 1f).Coroutine();
+            UICommonHelper.ShowCostItemList(costItems, self.QiangHuaCostNode, self, 1f);
 
             self.TextSuccessRate.GetComponent<Text>().text = $"强化成功率: {(int)(equipQiangHuaConfig.SuccessPro * 100)}%";
             double addPro = QiangHuaHelper.GetQiangHuaConfig(subType, qianghuaLevel).AdditionPro * bagComponent.QiangHuaFails[subType];

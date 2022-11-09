@@ -63,7 +63,7 @@ namespace ET
             self.TextType.GetComponent<Text>().text = activityConfig.Par_4;
 
             UICommonHelper.DestoryChild(self.ItemListNode);
-            UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemListNode, self, 1f, true).Coroutine();
+            UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemListNode, self, 1f, true);
         }
     }
 }

@@ -53,7 +53,7 @@ namespace ET
         public static void OnInitUI(this UIEnergyAnswerComponent self)
         {
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(15);
-            UICommonHelper.ShowItemList( globalValueConfig.Value, self.ItemNodeList, self ).Coroutine();
+            UICommonHelper.ShowItemList( globalValueConfig.Value, self.ItemNodeList, self );
         }
 
         public static void OnUpdateUI(this UIEnergyAnswerComponent self)

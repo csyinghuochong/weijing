@@ -34,7 +34,7 @@ namespace ET
         {
 
             self.Text_Rank.GetComponent<Text>().text = $"{rankRewardConfig.NeedPoint[0]}-{rankRewardConfig.NeedPoint[1]}名";
-            UICommonHelper.ShowItemList(rankRewardConfig.RewardItems, self.ItemListNode, self, 0.9f).Coroutine();
+            UICommonHelper.ShowItemList(rankRewardConfig.RewardItems, self.ItemListNode, self, 0.9f);
 
             if (rankRewardConfig.NeedPoint[0] == 1) 
             {

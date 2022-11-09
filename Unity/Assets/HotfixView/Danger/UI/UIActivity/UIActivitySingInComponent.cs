@@ -108,10 +108,10 @@ namespace ET
             }
 
             UICommonHelper.DestoryChild(self.RewardListNode);
-            UICommonHelper.ShowItemList(ActivityConfig.Par_3,  self.RewardListNode, self, 1f).Coroutine();
+            UICommonHelper.ShowItemList(ActivityConfig.Par_3,  self.RewardListNode, self, 1f);
 
             UICommonHelper.DestoryChild(self.RewardListNode2);
-            UICommonHelper.ShowItemList(ActivityConfig.Par_2, self.RewardListNode2, self, 1f).Coroutine();
+            UICommonHelper.ShowItemList(ActivityConfig.Par_2, self.RewardListNode2, self, 1f);
 
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             long serverNow = TimeHelper.ServerNow();

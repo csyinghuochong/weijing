@@ -68,7 +68,7 @@ namespace ET
         public static void InitReward(this UIActivityYueKaComponent self)
         {
             string reward = GlobalValueConfigCategory.Instance.Get(28).Value;
-            UICommonHelper.ShowItemList(reward, self.ItemListNode, self, 1f).Coroutine();
+            UICommonHelper.ShowItemList(reward, self.ItemListNode, self, 1f);
 
             self.TextYueKaCost.GetComponent<Text>().text = GlobalValueConfigCategory.Instance.Get(37).Value;
         }

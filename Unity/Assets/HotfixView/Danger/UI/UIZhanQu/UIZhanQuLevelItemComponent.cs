@@ -43,7 +43,7 @@ namespace ET
         {
             self.ActivityConfig = activityInfo;
             self.OnUpdateLeftNumber();
-            UICommonHelper.ShowItemList(activityInfo.Par_3, self.ItemListNode, self, 0.8f ).Coroutine();
+            UICommonHelper.ShowItemList(activityInfo.Par_3, self.ItemListNode, self, 0.8f );
         }
 
         public static void OnUpdateLeftNumber(this UIZhanQuLevelItemComponent self)

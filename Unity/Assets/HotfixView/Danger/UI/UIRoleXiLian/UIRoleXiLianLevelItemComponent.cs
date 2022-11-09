@@ -67,7 +67,7 @@ namespace ET
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             UICommonHelper.DestoryChild(self.ItemListNode);
-            UICommonHelper.ShowItemList(equipXiLianConfig.RewardList, self.ItemListNode, self, 1f).Coroutine();
+            UICommonHelper.ShowItemList(equipXiLianConfig.RewardList, self.ItemListNode, self, 1f);
 
             int xilianLevel = EquipXiLianConfigCategory.Instance.Get(xilianId).XiLianLevel;
             List<KeyValuePairInt> xilianSkill = XiLianHelper.GetLevelSkill(xilianLevel);
