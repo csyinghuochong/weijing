@@ -97,8 +97,8 @@ namespace ET
 
         public static void OnHuiShouSelect(this UIRoleHuiShouComponent self, string dataparams)
         {
-            self.OnUpdateSelect(dataparams);
-            self.OnUpdateHuiShou();
+            self.UpdateHuiShouInfo(dataparams);
+            self.UpdateHuiShouUI();
             self.OnUpdateGetList();
             self.UpdateSelected();
         }
@@ -107,7 +107,7 @@ namespace ET
         {
             self.HuiShouInfos = new BagInfo[self.HuiShouInfos.Length];
             self.UpdateBagUI();
-            self.OnUpdateHuiShou();
+            self.UpdateHuiShouUI();
             self.OnUpdateGetList();
             self.UpdateSelected();
         }
@@ -117,7 +117,7 @@ namespace ET
             self.OnUpdateUI();
         }
 
-        public static void OnUpdateSelect(this UIRoleHuiShouComponent self, string dataparams)
+        public static void UpdateHuiShouInfo(this UIRoleHuiShouComponent self, string dataparams)
         {
             string[] huishouInfo = dataparams.Split('_');
             BagInfo bagInfo = self.BagComponent.GetBagInfo(long.Parse(huishouInfo[1]));
@@ -152,7 +152,7 @@ namespace ET
             }
         }
 
-        public static void OnUpdateHuiShou(this UIRoleHuiShouComponent self)
+        public static void UpdateHuiShouUI(this UIRoleHuiShouComponent self)
         {
             for (int i = 0; i < self.HuiShouInfos.Length; i++)
             {
@@ -330,7 +330,7 @@ namespace ET
                 }
             }
 
-            self.OnUpdateHuiShou();
+            self.UpdateHuiShouUI();
             self.OnUpdateGetList();
             self.UpdateSelected();
         }

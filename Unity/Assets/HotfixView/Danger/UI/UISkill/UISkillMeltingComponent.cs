@@ -42,7 +42,7 @@ namespace ET
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Btn_MeltBegin = rc.Get<GameObject>("Btn_MeltBegin");
-            ButtonHelp.AddListenerEx(self.Btn_MeltBegin, () => {   });
+            ButtonHelp.AddListenerEx(self.Btn_MeltBegin, () => { self.OnBtn_MeltBegin().Coroutine();  });
 
             self.BagListNode = rc.Get<GameObject>("BagListNode");
 
@@ -74,18 +74,18 @@ namespace ET
         {
             self.HuiShouInfos = new BagInfo[self.HuiShouInfos.Length];
             self.UpdateBagUI();
-            self.OnUpdateHuiShou();
+            self.UpdateHuiShouUI();
             self.UpdateSelected();
         }
 
         public static void OnHuiShouSelect(this UISkillMeltingComponent self, string dataparams)
         {
-            self.OnUpdateSelect(dataparams);
-            self.OnUpdateHuiShou();
+            self.UpdateHuiShouInfo(dataparams);
+            self.UpdateHuiShouUI();
             self.UpdateSelected();
         }
 
-        public static void OnUpdateSelect(this UISkillMeltingComponent self, string dataparams)
+        public static void UpdateHuiShouInfo(this UISkillMeltingComponent self, string dataparams)
         {
             string[] huishouInfo = dataparams.Split('_');
             BagInfo bagInfo = self.BagComponent.GetBagInfo(long.Parse(huishouInfo[1]));
@@ -162,7 +162,7 @@ namespace ET
             }
         }
 
-        public static void OnUpdateHuiShou(this UISkillMeltingComponent self)
+        public static void UpdateHuiShouUI(this UISkillMeltingComponent self)
         {
             for (int i = 0; i < self.HuiShouInfos.Length; i++)
             {
