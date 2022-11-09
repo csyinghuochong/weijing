@@ -31,12 +31,14 @@ namespace ET
         public GameObject Select;
         public GameObject Left;
         public GameObject Right;
+        public GameObject Melt;
 
         public GameObject Text_Current;
         public GameObject TextVitality;
 
         public GameObject ImageSelect;
         public GameObject Btn_Make;
+        public GameObject Btn_Melt;
 
         public GameObject NeedListNode;
         public GameObject UIItemMake;
@@ -49,9 +51,9 @@ namespace ET
 
         public List<UIMakeItemComponent> MakeListUI = new List<UIMakeItemComponent>();
         public List<UIMakeNeedComponent> NeedListUI = new List<UIMakeNeedComponent>();
+        public UISkillMeltingComponent MeltingComponent;
         public UIItemComponent MakeItemUI;
         public int MakeId;
-
         public long Timer;
     }
 
@@ -85,10 +87,12 @@ namespace ET
             self.Right = rc.Get<GameObject>("Right");
             self.Left = rc.Get<GameObject>("Left");
             self.Select = rc.Get<GameObject>("Select");
+            self.Btn_Melt = rc.Get<GameObject>("Btn_Melt");
 
             self.TextVitality = rc.Get<GameObject>("Lab_HuoLi");
             self.Btn_Make = rc.Get<GameObject>("Btn_Make");
             ButtonHelp.AddListenerEx(self.Btn_Make, () => { self.OnBtn_Make().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Btn_Melt, self.OnBtn_Melt);
 
             self.NeedListNode = rc.Get<GameObject>("NeedListNode");
 
@@ -114,7 +118,10 @@ namespace ET
             self.Btn_Reset = rc.Get<GameObject>("Btn_Reset");
             ButtonHelp.AddListenerEx(self.Btn_Reset, () => { self.OnBtn_Reset(); });
 
-            self.OnInitUI().Coroutine();
+            self.Melt = rc.Get<GameObject>("Melt");
+            self.MeltingComponent = self.AddChild<UISkillMeltingComponent, GameObject>(self.Melt);
+
+            self.OnInitUI();
             self.OnUpdateMakeType();
             self.UpdateShuLianDu();
         }
@@ -142,10 +149,10 @@ namespace ET
             self.OnUpdateMakeType();
         }
 
-        public static async ETTask OnInitUI(this UISkillMakeComponent self)
+        public static  void OnInitUI(this UISkillMakeComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(bagSpace, self.UIItemMake);
             UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(bagSpace);
@@ -167,10 +174,19 @@ namespace ET
             self.Right.SetActive(makeId != 0);
             self.Left.SetActive(makeId != 0);
             self.Select.SetActive(makeId == 0);
+            self.Melt.SetActive(false);
             if (makeId > 0)
             {
                 self.UpdateMakeList(makeId).Coroutine();
             }
+        }
+
+        public static void OnBtn_Melt(this UISkillMakeComponent self)
+        {
+            self.Right.SetActive(false);
+            self.Select.SetActive(false);
+            self.Melt.SetActive(true);
+            self.MeltingComponent.OnUpdateUI();
         }
 
         public static async ETTask OnBtn_Make(this UISkillMakeComponent self)
@@ -331,6 +347,9 @@ namespace ET
             }
 
             self.ShowCDTime();
+            self.Right.SetActive(true);
+            self.Select.SetActive(false);
+            self.Melt.SetActive(false);
             self.MakeINeedNode.SetActive(true);
             self.OnBagItemUpdate().Coroutine();
 

@@ -17,11 +17,9 @@ namespace ET
 
         public GameObject BagListNode;
         public GameObject RewardListNode;
-        public const int HuiShouMaxNumber = 8;
 
-        public BagInfo[] HuiShouInfos = new BagInfo[HuiShouMaxNumber];
-
-        public UIItemComponent[] HuiShouUIList = new UIItemComponent[HuiShouMaxNumber];
+        public BagInfo[] HuiShouInfos = new BagInfo[8];
+        public UIItemComponent[] HuiShouUIList = new UIItemComponent[8];
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
         public List<UIItemComponent> GetUIList = new List<UIItemComponent>();
 
@@ -85,7 +83,7 @@ namespace ET
             {
                 return;
             }
-            for (int i = 0; i < UIRoleHuiShouComponent.HuiShouMaxNumber; i++)
+            for (int i = 0; i < self.HuiShouUIList.Length; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(go, rc.Get<GameObject>("IconDi_" + (i+1)));
@@ -107,7 +105,7 @@ namespace ET
 
         public static void OnUpdateUI(this UIRoleHuiShouComponent self) 
         {
-            self.HuiShouInfos = new BagInfo[UIRoleHuiShouComponent.HuiShouMaxNumber];
+            self.HuiShouInfos = new BagInfo[self.HuiShouInfos.Length];
             self.UpdateBagUI();
             self.OnUpdateHuiShou();
             self.OnUpdateGetList();
@@ -312,7 +310,7 @@ namespace ET
             bool qulity_set = self.Img_YiJianZiSe.activeSelf;
 
             //最多选取五个
-            self.HuiShouInfos = new BagInfo[UIRoleHuiShouComponent.HuiShouMaxNumber];
+            self.HuiShouInfos = new BagInfo[self.HuiShouInfos.Length];
 
             int number = 0;
             List<BagInfo> bagInfos = self.BagComponent.GetItemsByType(ItemTypeEnum.Equipment);

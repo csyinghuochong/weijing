@@ -6145,6 +6145,8 @@ MonoBehaviour:
     gameObject: {fileID: 2013028808193867139}
   - key: Melt
     gameObject: {fileID: 2817274863284145594}
+  - key: Btn_Melt
+    gameObject: {fileID: 8029193557697631576}
 --- !u!1 &1679095062265195746
 GameObject:
   m_ObjectHideFlags: 0
@@ -19201,7 +19203,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2345786233049746313
 RectTransform:
   m_ObjectHideFlags: 0
@@ -26779,6 +26781,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289135659897606879, guid: f87c3fd9c1c023c438e2c9c2642b35a7,
+        type: 3}
+      propertyPath: m_CellSize.x
+      value: 120
+      objectReference: {fileID: 0}
+    - target: {fileID: 3289135659897606879, guid: f87c3fd9c1c023c438e2c9c2642b35a7,
+        type: 3}
+      propertyPath: m_CellSize.y
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 3289135659897606879, guid: f87c3fd9c1c023c438e2c9c2642b35a7,
         type: 3}

@@ -507,7 +507,13 @@ namespace ET
                     uiequipComponent.OnHuiShouSelect(DataParams);
                     continue;
                 }
+                if (component is UISkillMeltingComponent uiSkillMeltComponent)
+                {
+                    uiSkillMeltComponent.OnHuiShouSelect(DataParams);
+                    continue;
+                }
             }
+
         }
 
         //穿戴装备

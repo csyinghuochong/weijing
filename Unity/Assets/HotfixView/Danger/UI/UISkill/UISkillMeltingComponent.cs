@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -8,17 +7,28 @@ namespace ET
     /// <summary>
     /// 熔炼组件
     /// </summary>
-    public class UISkillMeltingComponent : Entity, IAwake<GameObject>
+    public class UISkillMeltingComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Btn_MeltBegin;
         public GameObject BagListNode;
         public GameObject GameObject;
 
         public UIItemComponent UIGetItem;
+        public BagInfo[] HuiShouInfos = new BagInfo[5];
         public UIItemComponent[] HuiShouUIList = new UIItemComponent[5];
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
+        public BagComponent BagComponent;
 
         public bool IsHoldDown = false;
+    }
+
+    [ObjectSystem]
+    public class UISkillMeltingComponentDestroySystem : DestroySystem<UISkillMeltingComponent>
+    {
+        public override void Destroy(UISkillMeltingComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.HuiShouSelect, self);
+        }
     }
 
     [ObjectSystem]
@@ -34,10 +44,11 @@ namespace ET
             self.Btn_MeltBegin = rc.Get<GameObject>("Btn_MeltBegin");
             ButtonHelp.AddListenerEx(self.Btn_MeltBegin, () => {   });
 
-            self.BagListNode = rc.Get<GameObject>("BuildingList");
+            self.BagListNode = rc.Get<GameObject>("BagListNode");
 
             self.UIGetItem = self.AddChild<UIItemComponent, GameObject>(rc.Get<GameObject>("UIGetItem"));
             self.UIGetItem.UpdateItem(new BagInfo() { ItemID = ComHelp.MeltingItemId });
+            self.UIGetItem.Label_ItemNum.SetActive(false);
 
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -51,11 +62,114 @@ namespace ET
                 uiitem.UpdateItem(null);
                 self.HuiShouUIList[i] = uiitem;
             }
+
+            self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            DataUpdateComponent.Instance.AddListener(DataType.HuiShouSelect, self);
         }
     }
 
     public static class UISkillMeltingComponentSystem
     {
+        public static void OnUpdateUI(this UISkillMeltingComponent self)
+        {
+            self.HuiShouInfos = new BagInfo[self.HuiShouInfos.Length];
+            self.UpdateBagUI();
+            self.OnUpdateHuiShou();
+            self.UpdateSelected();
+        }
+
+        public static void OnHuiShouSelect(this UISkillMeltingComponent self, string dataparams)
+        {
+            self.OnUpdateSelect(dataparams);
+            self.OnUpdateHuiShou();
+            self.UpdateSelected();
+        }
+
+        public static void OnUpdateSelect(this UISkillMeltingComponent self, string dataparams)
+        {
+            string[] huishouInfo = dataparams.Split('_');
+            BagInfo bagInfo = self.BagComponent.GetBagInfo(long.Parse(huishouInfo[1]));
+            if (huishouInfo[0] == "1")
+            {
+                for (int i = 0; i < self.HuiShouInfos.Length; i++)
+                {
+                    if (self.HuiShouInfos[i] == bagInfo)
+                    {
+                        return;
+                    }
+                }
+                for (int i = 0; i < self.HuiShouInfos.Length; i++)
+                {
+                    if (self.HuiShouInfos[i] == null)
+                    {
+                        self.HuiShouInfos[i] = bagInfo;
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < self.HuiShouInfos.Length; i++)
+                {
+                    if (self.HuiShouInfos[i] == bagInfo)
+                    {
+                        self.HuiShouInfos[i] = null;
+                        break;
+                    }
+                }
+            }
+        }
+
+        public static async ETTask OnBtn_MeltBegin(this UISkillMeltingComponent self)
+        {
+            List<long> huishouList = new List<long>();
+            for (int i = 0; i < self.HuiShouInfos.Length; i++)
+            {
+                if (self.HuiShouInfos[i] != null)
+                {
+                    huishouList.Add(self.HuiShouInfos[i].BagInfoID);
+                }
+            }
+            if (huishouList.Count == 0)
+            {
+                return;
+            }
+            C2M_ItemMeltingRequest request = new C2M_ItemMeltingRequest() { OperateBagID = huishouList };
+            M2C_ItemMeltingResponse response = (M2C_ItemMeltingResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            self.OnUpdateUI();
+        }
+
+        public static void UpdateSelected(this UISkillMeltingComponent self)
+        {
+            for (int i = 0; i < self.ItemUIlist.Count; i++)
+            {
+                UIItemComponent uIItemComponent = self.ItemUIlist[i];
+                BagInfo bagInfo = uIItemComponent.Baginfo;
+                if (bagInfo == null)
+                {
+                    continue;
+                }
+                bool have = false;
+                for (int h = 0; h < self.HuiShouInfos.Length; h++)
+                {
+                    if (self.HuiShouInfos[h] != null && self.HuiShouInfos[h].BagInfoID == bagInfo.BagInfoID)
+                    {
+                        have = true;
+                    }
+                }
+                uIItemComponent.Image_XuanZhong.SetActive(have);
+            }
+        }
+
+        public static void OnUpdateHuiShou(this UISkillMeltingComponent self)
+        {
+            for (int i = 0; i < self.HuiShouInfos.Length; i++)
+            {
+                self.HuiShouUIList[i].UpdateItem(self.HuiShouInfos[i], ItemOperateEnum.HuishouShow);
+            }
+        }
+
         public static void UpdateBagUI(this UISkillMeltingComponent self, int itemType = -1)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
