@@ -2421,6 +2421,35 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_ItemMeltingResponse))]
+//装备熔炼
+	[Message(OuterOpcode.C2M_ItemMeltingRequest)]
+	[ProtoContract]
+	public partial class C2M_ItemMeltingRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(2)]
+		public List<long> OperateBagID = new List<long>();
+
+	}
+
+	[Message(OuterOpcode.M2C_ItemMeltingResponse)]
+	[ProtoContract]
+	public partial class M2C_ItemMeltingResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+	}
+
 	[ResponseType(nameof(M2C_ItemQiangHuaResponse))]
 //强化槽位
 	[Message(OuterOpcode.C2M_ItemQiangHuaRequest)]

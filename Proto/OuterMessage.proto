@@ -1128,6 +1128,21 @@ message M2C_ItemHuiShouResponse // IActorLocationResponse
 	int32 Error = 92;
 }
 
+//ResponseType M2C_ItemMeltingResponse
+//装备熔炼
+message C2M_ItemMeltingRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	repeated int64 OperateBagID = 2;				
+}
+
+message M2C_ItemMeltingResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+}
+
 //ResponseType M2C_ItemQiangHuaResponse
 //强化槽位
 message C2M_ItemQiangHuaRequest // IActorLocationRequest
