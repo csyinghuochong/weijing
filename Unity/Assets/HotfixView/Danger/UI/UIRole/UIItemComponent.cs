@@ -215,7 +215,7 @@ namespace ET
 
                 ItemConfig itemconfig = ItemConfigCategory.Instance.Get(self.ItemID);
 
-                if (itemOperateEnum != ItemOperateEnum.Shop && itemOperateEnum != ItemOperateEnum.TaskItem)
+                if (itemOperateEnum != ItemOperateEnum.Shop)
                 {
                     self.Label_ItemNum.SetActive(true);
                     self.ItemNum = bagInfo.ItemNum.ToString();
