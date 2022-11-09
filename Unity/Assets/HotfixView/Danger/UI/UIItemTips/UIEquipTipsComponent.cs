@@ -213,15 +213,13 @@ namespace ET
 
         public static void On_Btn_HuiShou(this UIEquipTipsComponent self)
         {
-            self.BagComponent.HuiShouSelect = self.BagInfo;
-            HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, "1");
+            HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"1_{self.BagInfo.BagInfoID}");
             self.OnCloseTips();
         }
 
         public static void OnBtn_HuiShouCancle(this UIEquipTipsComponent self)
         {
-            self.BagComponent.HuiShouSelect = self.BagInfo;
-            HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, "0");
+            HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"0_{self.BagInfo.BagInfoID}");
             self.OnCloseTips();
         }
 

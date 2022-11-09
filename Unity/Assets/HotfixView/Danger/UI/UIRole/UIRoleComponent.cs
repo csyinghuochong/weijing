@@ -218,7 +218,8 @@ namespace ET
 
 		public static void OnHuiShouSelect(this UIRoleComponent self, string param_1)
 		{
-			self.UIPageView.UISubViewList[(int)RolePageEnum.RoleHuiShou].GetComponent<UIRoleHuiShouComponent>().OnHuiShouSelect(param_1);
+			UI uI = self.UIPageView.UISubViewList[(int)RolePageEnum.RoleHuiShou];
+			uI?.GetComponent<UIRoleHuiShouComponent>().OnHuiShouSelect(param_1);
 		}
 
 

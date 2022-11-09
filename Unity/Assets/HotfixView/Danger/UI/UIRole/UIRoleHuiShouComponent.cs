@@ -121,8 +121,9 @@ namespace ET
 
         public static void OnUpdateSelect(this UIRoleHuiShouComponent self, string dataparams)
         {
-            BagInfo bagInfo = self.BagComponent.HuiShouSelect;
-            if (dataparams == "1")
+            string[] huishouInfo = dataparams.Split('_');
+            BagInfo bagInfo = self.BagComponent.GetBagInfo(long.Parse(huishouInfo[1]));
+            if (huishouInfo[0] == "1")
             {
                 for (int i = 0; i < self.HuiShouInfos.Length; i++)
                 {
@@ -261,8 +262,7 @@ namespace ET
         public static async ETTask OnPointerDown(this UIRoleHuiShouComponent self, BagInfo binfo, PointerEventData pdata)
         {
             self.IsHoldDown = true;
-            self.BagComponent.HuiShouSelect = binfo;
-            HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, "1");
+            HintHelp.GetInstance().DataUpdate(DataType.HuiShouSelect, $"1_{binfo.BagInfoID}");
             await TimerComponent.Instance.WaitAsync(500);
             if (!self.IsHoldDown)
                 return;
