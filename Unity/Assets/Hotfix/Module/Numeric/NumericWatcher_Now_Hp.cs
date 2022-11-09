@@ -70,10 +70,7 @@
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{
-#if SERVER
-			;
-#else
-
+#if !SERVER
 			Unit unit = args.Parent;
 			if (args.NewValue == 0)//复活
 			{
@@ -88,10 +85,10 @@
 				EventType.UnitDead.Instance.Unit = unit;
 				Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
 			}
+#endif
 
 #if !SERVER && NOT_UNITY
 			OnRobotDead(args).Coroutine();
-#endif
 #endif
 		}
 

@@ -22,6 +22,8 @@ namespace ET
         public const int BattleOpen = 3;
         public const int BattleNotice = 4;
         public const int BattleClose = 5;
+
+        public const int TeamDungeon = 6;
     }
 
 }

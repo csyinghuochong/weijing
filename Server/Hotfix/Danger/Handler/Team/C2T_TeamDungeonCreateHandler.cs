@@ -34,7 +34,6 @@ namespace ET
             long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), "Gate1").InstanceId;
             for (int i = 0; i < teamInfo.PlayerList.Count; i++)
             {
-
                 G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
                     (gateServerId, new T2G_GateUnitInfoRequest()
                     {
@@ -46,6 +45,12 @@ namespace ET
                     MessageHelper.SendActor(g2M_UpdateUnitResponse.SessionInstanceId, m2C_HorseNoticeInfo);
                 }
             }
+
+            //启动机器人
+            long robotSceneId = DBHelper.GetRobotServerId();
+            MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = scene.DomainZone(),
+                MessageType = NoticeType.TeamDungeon,
+                Message = $"{teamInfo.SceneId}_{teamInfo.TeamId}"});
 
             reply();
             await ETTask.CompletedTask;

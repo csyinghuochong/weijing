@@ -65,6 +65,20 @@ namespace ET
             return ids[RandomHelper.RandomNumber(0, ids.Count)];
         }
 
+        public static int GetTeamRobotId(int fubenId)
+        {
+            List<int> ids = new List<int>();
+            List<RobotConfig> robots = RobotConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < robots.Count; i++)
+            {
+                if (robots[i].Behaviour == 2 && robots[i].BehaviourID == fubenId)
+                {
+                    ids.Add(robots[i].Id);
+                }
+            }
+            return ids[RandomHelper.RandomNumber(0, ids.Count)];
+        }
+
         public static int GetTeamFubenId(int lv)
         {
             int fubenId = 0;

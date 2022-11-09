@@ -210,6 +210,12 @@ namespace ET
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Battle)).InstanceId;
         }
 
+        public static long GetRobotServerId()
+        {
+            long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+            return robotSceneId;
+        }
+
         public static long GetAccountCenter()
         {
             return StartSceneConfigCategory.Instance.AccountCenterConfig.InstanceId;

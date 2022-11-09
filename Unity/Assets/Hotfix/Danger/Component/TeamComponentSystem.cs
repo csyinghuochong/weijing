@@ -15,7 +15,7 @@ namespace ET
             T2C_TeamAgreeResponse m2C_SkillSet = (T2C_TeamAgreeResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
         }
 
-        public static void OnRecvTeamApply(this TeamComponent self,  TeamPlayerInfo teamPlayerInfo)
+        public static void OnRecvTeamApply(this TeamComponent self, TeamPlayerInfo teamPlayerInfo)
         {
             bool have = false;
             for (int i = 0; i < self.ApplyList.Count; i++)
@@ -106,13 +106,13 @@ namespace ET
                         return ErrorCore.ERR_LevelIsNot;
                     }
                     //判断次数
-                    if (userInfoComponent.UserInfo.TeamDungeonTimes >= int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value)) 
+                    if (userInfoComponent.UserInfo.TeamDungeonTimes >= int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value))
                     {
                         EventType.CommonHintError.Instance.errorValue = ErrorCore.ERR_TimesIsNot;
                         EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
                         return ErrorCore.ERR_TimesIsNot;
                     }
-                    
+
                 }
 
                 C2T_TeamDungeonApplyRequest c2M_ItemHuiShouRequest = new C2T_TeamDungeonApplyRequest()
@@ -124,10 +124,44 @@ namespace ET
                 return r2c_roleEquip.Error;
             }
             catch (Exception e)
-            { 
+            {
                 Log.Error(e);
                 return ErrorCore.ERR_NetWorkError;
             }
+        }
+
+        public static TeamInfo GetCanJoinTeam(this TeamComponent self, int sceneId)
+        {
+            List<TeamInfo> teamList = new List<TeamInfo>();
+            for (int i = 0; i < self.TeamList.Count; i++)
+            {
+                TeamInfo teamInfo = self.TeamList[i];
+                if (teamInfo.SceneId == sceneId && teamInfo.PlayerList.Count < 3)
+                {
+                    teamList.Add(teamInfo);
+                }
+            }
+            if (teamList.Count > 0)
+            {
+                return teamList[RandomHelper.RandomNumber(0, teamList.Count)];
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public static TeamInfo GetTeamInfo(this TeamComponent self, long teamId)
+        {
+            for (int i = 0; i < self.TeamList.Count; i++)
+            {
+                TeamInfo teamInfo = self.TeamList[i];
+                if (teamInfo.TeamId == teamId)
+                {
+                    return teamInfo;
+                }
+            }
+            return null;
         }
 
         public static TeamInfo GetSelfTeam(this TeamComponent self)
@@ -202,27 +236,6 @@ namespace ET
             {
                 Log.Error(e);
                 return ErrorCore.ERR_NetWorkError;
-            }
-        }
-
-        public static TeamInfo GetCanJoinTeam(this TeamComponent self, int sceneId)
-        {
-            List<TeamInfo> teamList = new List<TeamInfo>();
-            for (int i = 0; i < self.TeamList.Count; i++)
-            {
-                TeamInfo teamInfo = self.TeamList[i];
-                if (teamInfo.SceneId == sceneId && teamInfo.PlayerList.Count < 3)
-                {
-                    teamList.Add(teamInfo);
-                }
-            }
-            if (teamList.Count > 0)
-            {
-                return teamList[RandomHelper.RandomNumber(0, teamList.Count)];
-            }
-            else
-            {
-                return null;
             }
         }
 

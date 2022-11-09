@@ -8,12 +8,25 @@ namespace ET
     [ActorMessageHandler]
     public class G2Robot_MessageHandler : AMActorHandler<Scene, G2Robot_MessageRequest>
     {
-
         protected override async ETTask Run(Scene scene, G2Robot_MessageRequest message)
         {
             RobotManagerComponent robotManagerComponent = scene.GetComponent<RobotManagerComponent>();
             switch (message.MessageType)
             {
+                case NoticeType.TeamDungeon:
+                    for (int i = 0; i < 2; i++)
+                    {
+                        int robotZone = robotManagerComponent.ZoneIndex++;
+                        string[] teamInfo = message.Message.Split('_');
+                        int fubenId = int.Parse(teamInfo[0]);
+                        long teamId = long.Parse(teamInfo[1]);
+                        int robotId = BattleHelper.GetTeamRobotId(fubenId);
+                        Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                        BehaviourComponent behaviourComponent =  robotScene?.AddComponent<BehaviourComponent, int>(robotId);
+                        behaviourComponent.MessageValue = message.Message;
+                        await TimerComponent.Instance.WaitAsync(200);
+                    }
+                    break;
                 case NoticeType.BattleOpen:
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
@@ -32,14 +45,15 @@ namespace ET
                     for (int i = 0; i < ts.Count; i++)
                     {
                         Scene robotScene = ts[i] as Scene;
-                        if (robotScene.GetComponent<SessionComponent>().Session != null)
+                        if (robotScene.GetComponent<BehaviourComponent>().GetBehaviour() != 3)
                         {
-                            robotScene.GetComponent<SessionComponent>().Session.Dispose();
+                            continue;
                         }
                         robotScene.Dispose();
                         await TimerComponent.Instance.WaitFrameAsync();
                     }
                     break;
+
             }
             await ETTask.CompletedTask;
         }

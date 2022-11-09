@@ -20,6 +20,8 @@ namespace ET
 
         public long TargetID;
 
+        public string MessageValue;
+
         public Vector3 TargetPosition;
 
         public RobotConfig RobotConfig;

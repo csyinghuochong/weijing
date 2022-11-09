@@ -25,6 +25,7 @@ namespace ET
         {
             self.TargetID = 0;
             self.Behaviours.Clear();
+            self.MessageValue = string.Empty;
 
             //1   任务机器人
             //2   组队副本机器人
@@ -46,7 +47,7 @@ namespace ET
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Target, Value = "Behaviour_Target" });
-                    self.NewBehaviour = BehaviourType.Behaviour_Stroll;
+                    self.NewBehaviour = BehaviourType.Behaviour_TeamDungeon;
                     break;
                 case 3:
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Battle, Value = "Behaviour_Battle" });
@@ -86,6 +87,11 @@ namespace ET
 
     public static class BehaviourComponentSystem
     {
+        public static int GetBehaviour(this BehaviourComponent self)
+        {
+            return self.RobotConfig.Behaviour;
+        }
+
         public static void ChangeBehaviour(this BehaviourComponent self, int behaviour)
         {
             for (int i = 0; i < self.Behaviours.Count; i++)
