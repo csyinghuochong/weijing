@@ -13,7 +13,7 @@ namespace ET
         public bool Float;
     }
 
-    public static class ItemViewHelp
+    public static class UIItemHelp
     {
 
         public static Dictionary<int, List<int>> OccWeaponList = new Dictionary<int, List<int>>()
@@ -531,7 +531,7 @@ namespace ET
             }
             else
             {
-                text.GetComponent<Text>().text = ItemViewHelp.GemHoleName[gemHole];
+                text.GetComponent<Text>().text = UIItemHelp.GemHoleName[gemHole];
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"Img_hole_{gemHole}");
                 icon.GetComponent<Image>().sprite = sp;
             }
@@ -858,11 +858,11 @@ namespace ET
                 {
                     float value = (float)numericValue / 100f;
                     //attribute = $"{ItemViewHelp.GetAttributeName(showType)} + {numericValue * 0.01f}%";
-                    attribute = $"{ItemViewHelp.GetAttributeName(numericType)} + " + value.ToString("0.##") + "%";
+                    attribute = $"{UIItemHelp.GetAttributeName(numericType)} + " + value.ToString("0.##") + "%";
                 }
                 else
                 {
-                    attribute = $"{ItemViewHelp.GetAttributeName(numericType)} + {numericValue}";
+                    attribute = $"{UIItemHelp.GetAttributeName(numericType)} + {numericValue}";
                 }
                 ShowPropertyText(attribute, "0", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                 properShowNum += 1;
@@ -878,11 +878,11 @@ namespace ET
                 if (showType == 2)
                 {
                     float value = (float)hideProList.HideValue / 100f;
-                    attribute = $"附魔属性: {ItemViewHelp.GetAttributeName(hideProList.HideID)} + "+ value.ToString("0.##") + "%";
+                    attribute = $"附魔属性: {UIItemHelp.GetAttributeName(hideProList.HideID)} + "+ value.ToString("0.##") + "%";
                 }
                 else
                 {
-                    attribute = $"附魔属性: {ItemViewHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue}";
+                    attribute = $"附魔属性: {UIItemHelp.GetAttributeName(hideProList.HideID)} + {hideProList.HideValue}";
                 }
                 ShowPropertyText(attribute, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
                 properShowNum += 1;

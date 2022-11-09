@@ -48,7 +48,7 @@ namespace ET
                 GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(bagSpace, self.ItemNode);
                 UICommonSkillItemComponent ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(bagSpace);
-                ui_item.OnUpdateUI((int)xilianSkill[i].Value, ABAtlasTypes.RoleSkillIcon, ItemViewHelp.XiLianWeiZhiTip(xilianSkill[i].KeyId ));
+                ui_item.OnUpdateUI((int)xilianSkill[i].Value, ABAtlasTypes.RoleSkillIcon, UIItemHelp.XiLianWeiZhiTip(xilianSkill[i].KeyId ));
                 
                 Log.Info("xilianSkill[i] = " + xilianSkill[i]);
                 SkillConfig skillcof = SkillConfigCategory.Instance.Get((int)xilianSkill[i].Value);

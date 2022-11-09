@@ -224,7 +224,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UIMainTeamComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITuZhiMake\UITuZhiMakeComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Unit\UnitRevive_PlayIdleAnimate.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Help\ItemViewHelp.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Help\UIItemHelp.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILingDi\UILingDiRewardComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellChapterSelectEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleMainComponent.cs" />

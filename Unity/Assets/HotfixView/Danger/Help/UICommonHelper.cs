@@ -242,17 +242,17 @@ namespace ET
                 GameObject gameObject = GameObject.Instantiate(attributeItem);
                 gameObject.SetActive(true);
                 SetParent(gameObject, itemNodeList);
-                Sprite sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, ItemViewHelp.GetAttributeIcon(numberType));
+                Sprite sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, UIItemHelp.GetAttributeIcon(numberType));
                 gameObject.transform.Find("Img_Icon").GetComponent<Image>().sprite = sprite;
 
                 int showType = NumericHelp.GetNumericValueType(numberType);
                 string attribute;
                 if (showType == 2)
                 {
-                    attribute = $"{ItemViewHelp.GetAttributeName(numberType)} + {numberValue*100}%";
+                    attribute = $"{UIItemHelp.GetAttributeName(numberType)} + {numberValue*100}%";
                 }
                 else {
-                    attribute = $"{ItemViewHelp.GetAttributeName(numberType)} + {numberValue}";
+                    attribute = $"{UIItemHelp.GetAttributeName(numberType)} + {numberValue}";
                 }
 
                 gameObject.transform.Find("Lab_ProTypeValue").GetComponent<Text>().text = attribute;

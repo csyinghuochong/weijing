@@ -59,7 +59,7 @@ namespace ET
             self.Img_EquipQuality.SetActive(false);
             self.Img_EquipBangDing.SetActive(false);
 
-            string qianghuaName = ItemViewHelp.EquipWeiZhiToName[subType].Icon;
+            string qianghuaName = UIItemHelp.EquipWeiZhiToName[subType].Icon;
             ABAtlasHelp.GetIconSprite( ABAtlasTypes.OtherIcon, qianghuaName);
 
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, qianghuaName);

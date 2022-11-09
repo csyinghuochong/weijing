@@ -53,43 +53,43 @@ namespace ET
             TypeButtonInfo typeButtonInfo = new TypeButtonInfo();
             List<TypeButtonInfo> typeButtonInfos = new List<TypeButtonInfo>();
             typeButtonInfo = new TypeButtonInfo();
-            foreach (int key in ItemViewHelp.ItemSubType1Name.Keys) 
+            foreach (int key in UIItemHelp.ItemSubType1Name.Keys) 
             {
                 //typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = 1, ItemName = name });
-                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType1Name[key] });
+                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = UIItemHelp.ItemSubType1Name[key] });
             }
 
 
             typeButtonInfo.TypeId = 1;
             //typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
-            typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Consume];
+            typeButtonInfo.TypeName = UIItemHelp.ItemTypeName[ItemTypeEnum.Consume];
 
             typeButtonInfos.Add(typeButtonInfo);
 
             typeButtonInfo = new TypeButtonInfo();
-            foreach (int key in ItemViewHelp.ItemSubType2Name.Keys)
+            foreach (int key in UIItemHelp.ItemSubType2Name.Keys)
             {
                 //typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = 2, ItemName = name });
-                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType2Name[key] });
+                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = UIItemHelp.ItemSubType2Name[key] });
             }
 
 
             typeButtonInfo.TypeId = 2;
             //typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
-            typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Material];
+            typeButtonInfo.TypeName = UIItemHelp.ItemTypeName[ItemTypeEnum.Material];
 
             typeButtonInfos.Add(typeButtonInfo);
 
             typeButtonInfo = new TypeButtonInfo();
-            foreach (int key in ItemViewHelp.ItemSubType3Name.Keys)
+            foreach (int key in UIItemHelp.ItemSubType3Name.Keys)
             {
-                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = ItemViewHelp.ItemSubType3Name[key] });
+                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = UIItemHelp.ItemSubType3Name[key] });
             }
 
 
             typeButtonInfo.TypeId = 3;
             //typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
-            typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[ItemTypeEnum.Equipment];
+            typeButtonInfo.TypeName = UIItemHelp.ItemTypeName[ItemTypeEnum.Equipment];
 
             typeButtonInfos.Add(typeButtonInfo);
             

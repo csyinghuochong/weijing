@@ -36,7 +36,7 @@ namespace ET
         { 
             self.BagInfo = bagInfo;
             self.ItemXiLianResult = index;
-            ItemViewHelp.ShowBaseAttribute(bagInfo, self.Obj_EquipPropertyText, self.EquipBaseSetList);
+            UIItemHelp.ShowBaseAttribute(bagInfo, self.Obj_EquipPropertyText, self.EquipBaseSetList);
         }
 
         public static async ETTask OnButtonSelect(this UIRoleXiLianTenItemComponent self)

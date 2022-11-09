@@ -623,19 +623,19 @@ namespace ET
         public static void UpdateAttribute(this UIPetListComponent self, RolePetInfo rolePetInfo)
         {
             //基础属性
-            self.UpdateAttributeItem(0, self.PetProSetItem_1, self.PetProSetNode_1, ItemViewHelp.GetAttributeIcon(NumericType.Now_MaxAct),
+            self.UpdateAttributeItem(0, self.PetProSetItem_1, self.PetProSetNode_1, UIItemHelp.GetAttributeIcon(NumericType.Now_MaxAct),
                 self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxAct));
 
-            self.UpdateAttributeItem(1, self.PetProSetItem_1, self.PetProSetNode_1, ItemViewHelp.GetAttributeIcon(NumericType.Now_Mage),
+            self.UpdateAttributeItem(1, self.PetProSetItem_1, self.PetProSetNode_1, UIItemHelp.GetAttributeIcon(NumericType.Now_Mage),
                 self.GetAttributeShow(rolePetInfo, NumericType.Now_Mage));
 
-            self.UpdateAttributeItem(2, self.PetProSetItem_1, self.PetProSetNode_1, ItemViewHelp.GetAttributeIcon(NumericType.Now_MaxDef),
+            self.UpdateAttributeItem(2, self.PetProSetItem_1, self.PetProSetNode_1, UIItemHelp.GetAttributeIcon(NumericType.Now_MaxDef),
                  self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxDef));
 
-            self.UpdateAttributeItem(3, self.PetProSetItem_1, self.PetProSetNode_1, ItemViewHelp.GetAttributeIcon(NumericType.Now_MaxAdf),
+            self.UpdateAttributeItem(3, self.PetProSetItem_1, self.PetProSetNode_1, UIItemHelp.GetAttributeIcon(NumericType.Now_MaxAdf),
                   self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxAdf));
 
-            self.UpdateAttributeItem(4, self.PetProSetItem_1, self.PetProSetNode_1, ItemViewHelp.GetAttributeIcon(NumericType.Now_MaxHp),
+            self.UpdateAttributeItem(4, self.PetProSetItem_1, self.PetProSetNode_1, UIItemHelp.GetAttributeIcon(NumericType.Now_MaxHp),
                  self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxHp));
 
 
@@ -648,17 +648,17 @@ namespace ET
 
         public static string GetAttributeShow(this UIPetListComponent self, RolePetInfo rolePetInfo, int numericType)
         {
-            NumericAttribute numericAttribute = ItemViewHelp.AttributeToName[numericType];
+            NumericAttribute numericAttribute = UIItemHelp.AttributeToName[numericType];
             if (NumericHelp.GetNumericValueType(numericType) == 2)
             {
                 float fvalue = (self.PetComponent.GetAttributeValue(rolePetInfo, numericType)) * 0.001f;
                 //string svalue = string.Format("{0:F}", fvalue);
                 string svalue = fvalue.ToString("0.#####");
-                return $"{ItemViewHelp.GetAttributeName(numericType)} {svalue}%";
+                return $"{UIItemHelp.GetAttributeName(numericType)} {svalue}%";
             }
             else
             {
-               return $"{ItemViewHelp.GetAttributeName(numericType)} {self.PetComponent.GetAttributeValue(rolePetInfo, numericType)}";
+               return $"{UIItemHelp.GetAttributeName(numericType)} {self.PetComponent.GetAttributeValue(rolePetInfo, numericType)}";
             }
         }
 

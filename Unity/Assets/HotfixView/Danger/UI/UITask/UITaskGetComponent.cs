@@ -215,7 +215,7 @@ namespace ET
             }
             if (npcType == 1)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "神兽兑换", ItemViewHelp.ShowDuiHuanPet(configId),
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "神兽兑换", UIItemHelp.ShowDuiHuanPet(configId),
                    () =>
                    {
                        self.ReqestPetDuiHuan(configId).Coroutine();
