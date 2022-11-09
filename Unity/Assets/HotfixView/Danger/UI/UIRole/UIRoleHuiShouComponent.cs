@@ -19,11 +19,11 @@ namespace ET
         public GameObject RewardListNode;
         public const int HuiShouMaxNumber = 8;
 
-        public UI[] HuiShouUIList = new UI[HuiShouMaxNumber];
         public BagInfo[] HuiShouInfos = new BagInfo[HuiShouMaxNumber];
 
-        public List<UI> ItemUIlist = new List<UI>();
-        public List<UI> GetUIList = new List<UI>();
+        public UIItemComponent[] HuiShouUIList = new UIItemComponent[HuiShouMaxNumber];
+        public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
+        public List<UIItemComponent> GetUIList = new List<UIItemComponent>();
 
         public BagComponent BagComponent;
 
@@ -90,10 +90,9 @@ namespace ET
                 GameObject go = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(go, rc.Get<GameObject>("IconDi_" + (i+1)));
                 go.transform.localScale = Vector3.one;
-                UI uiitem = self.AddChild<UI, string, GameObject>("UIItem_" + i, go);
-                UIItemComponent  uIItemComponent = uiitem.AddComponent<UIItemComponent>();
-                uIItemComponent.Label_ItemName.SetActive(false);
-                uIItemComponent.UpdateItem(null);
+                UIItemComponent uiitem = self.AddChild<UIItemComponent, GameObject>( go);
+                uiitem.Label_ItemName.SetActive(false);
+                uiitem.UpdateItem(null);
                 self.HuiShouUIList[i] = uiitem;
             }
         }
@@ -102,7 +101,7 @@ namespace ET
         {
             self.OnUpdateSelect(dataparams);
             self.OnUpdateHuiShou();
-            self.OnUpdateGetList().Coroutine();
+            self.OnUpdateGetList();
             self.UpdateSelected();
         }
 
@@ -111,7 +110,7 @@ namespace ET
             self.HuiShouInfos = new BagInfo[UIRoleHuiShouComponent.HuiShouMaxNumber];
             self.UpdateBagUI();
             self.OnUpdateHuiShou();
-            self.OnUpdateGetList().Coroutine();
+            self.OnUpdateGetList();
             self.UpdateSelected();
         }
 
@@ -158,11 +157,11 @@ namespace ET
         {
             for (int i = 0; i < self.HuiShouInfos.Length; i++)
             {
-                self.HuiShouUIList[i].GetComponent<UIItemComponent>().UpdateItem(self.HuiShouInfos[i], ItemOperateEnum.HuishouShow);
+                self.HuiShouUIList[i].UpdateItem(self.HuiShouInfos[i], ItemOperateEnum.HuishouShow);
             }
         }
 
-        public static async ETTask OnUpdateGetList(this UIRoleHuiShouComponent self)
+        public static void  OnUpdateGetList(this UIRoleHuiShouComponent self)
         {
             Dictionary<int, BagInfo> huishouGet = new Dictionary<int, BagInfo>();
             for (int i = 0; i < self.HuiShouInfos.Length; i++)
@@ -194,12 +193,11 @@ namespace ET
 
             List<BagInfo> bagInfos = huishouGet.Values.ToList();
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            await ETTask.CompletedTask;
             var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             for (int i = 0; i < bagInfos.Count; i++)
             {
-                UI uI_1 = null;
+                UIItemComponent uI_1 = null;
                 if (i < self.GetUIList.Count)
                 {
                     uI_1 = self.GetUIList[i];
@@ -211,12 +209,11 @@ namespace ET
                     UICommonHelper.SetParent(go, self.RewardListNode);
                     go.transform.localScale = Vector3.one;
 
-                    uI_1 = self.AddChild<UI, string, GameObject>( "UIItem_" + i, go);
-                    UIItemComponent uIItemComponent = uI_1.AddComponent<UIItemComponent>();
-                    uIItemComponent.Label_ItemNum.SetActive(true);
+                    uI_1 = self.AddChild<UIItemComponent, GameObject>( go);
+                    uI_1.Label_ItemNum.SetActive(true);
                     self.GetUIList.Add(uI_1);
                 }
-                uI_1.GetComponent<UIItemComponent>().UpdateItem(bagInfos[i]);
+                uI_1.UpdateItem(bagInfos[i]);
             }
             for (int i = bagInfos.Count; i < self.GetUIList.Count; i++)
             {
@@ -232,7 +229,7 @@ namespace ET
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByType(ItemTypeEnum.Equipment);
             for (int i = 0; i < bagInfos.Count; i++)
             {
-                UI uI_1 = null;
+                UIItemComponent uI_1 = null;
                 if (i < self.ItemUIlist.Count)
                 {
                     uI_1 = self.ItemUIlist[i];
@@ -244,17 +241,15 @@ namespace ET
                     UICommonHelper.SetParent(go, self.BagListNode);
                     go.transform.localScale = Vector3.one;
 
-                    uI_1 = self.AddChild<UI, string, GameObject>("UIItem_" + i, go);
-                    UIItemComponent uIItemComponent =  uI_1.AddComponent<UIItemComponent>();
-
-                    uIItemComponent.SetEventTrigger(true);
-                    uIItemComponent.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
-                    uIItemComponent.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
+                    uI_1 = self.AddChild<UIItemComponent, GameObject>( go);
+                    uI_1.SetEventTrigger(true);
+                    uI_1.PointerDownHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerDown(binfo, pdata).Coroutine(); };
+                    uI_1.PointerUpHandler = (BagInfo binfo, PointerEventData pdata) => { self.OnPointerUp(binfo, pdata); };
 
                     self.ItemUIlist.Add(uI_1);
                 }
-                uI_1.GetComponent<UIItemComponent>().UpdateItem(bagInfos[i], ItemOperateEnum.HuishouBag);
-                uI_1.GetComponent<UIItemComponent>().Label_ItemName.SetActive(true);
+                uI_1.UpdateItem(bagInfos[i], ItemOperateEnum.HuishouBag);
+                uI_1.Label_ItemName.SetActive(true);
             }
 
             for (int i = bagInfos.Count; i< self.ItemUIlist.Count; i++ )
@@ -289,7 +284,7 @@ namespace ET
         {
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
-                UIItemComponent uIItemComponent = self.ItemUIlist[i].GetComponent<UIItemComponent>();
+                UIItemComponent uIItemComponent = self.ItemUIlist[i];
                 BagInfo bagInfo = uIItemComponent.Baginfo;
                 if (bagInfo == null)
                 {
@@ -338,7 +333,7 @@ namespace ET
             }
 
             self.OnUpdateHuiShou();
-            self.OnUpdateGetList().Coroutine();
+            self.OnUpdateGetList();
             self.UpdateSelected();
         }
 
