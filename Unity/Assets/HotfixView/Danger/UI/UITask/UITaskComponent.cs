@@ -207,8 +207,9 @@ namespace ET
 					ui_1 = self.AddChild<UIItemComponent, GameObject>(skillItem);
 					self.RewardUIList.Add(ui_1);
 				}
+				
+				ui_1.UpdateItem(new BagInfo() { ItemID = int.Parse(rewarditems[number]), ItemNum = int.Parse(rewardItemNums[number]) }, ItemOperateEnum.TaskItem);
 				ui_1.Label_ItemNum.SetActive(true);
-				ui_1.UpdateItem(new BagInfo() { ItemID = int.Parse(rewarditems[i]), ItemNum = int.Parse(rewardItemNums[i]) }, ItemOperateEnum.TaskItem);
 				number++;
 			}
 			for (int i = number; i < self.RewardUIList.Count; i++)
