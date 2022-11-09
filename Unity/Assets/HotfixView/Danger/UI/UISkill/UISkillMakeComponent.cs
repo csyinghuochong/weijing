@@ -60,7 +60,7 @@ namespace ET
     {
         public override void Destroy(UISkillMakeComponent self)
         {
-            TimerComponent.Instance.Remove(ref self.Timer);
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
