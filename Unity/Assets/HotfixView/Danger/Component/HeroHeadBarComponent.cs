@@ -194,10 +194,13 @@ namespace ET
             {
                 MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId);
                 NumericComponent numericComponent = this.Parent.GetComponent<NumericComponent>();
+                TextMeshProUGUI textMeshProUGUI = this.ObjName.GetComponent<TextMeshProUGUI>();
                 bool isboos = monsterCof.MonsterType == (int)MonsterTypeEnum.Boss;
-                this.ObjName.GetComponent<TextMeshProUGUI>().fontSize = isboos ? 32 : 26;
-                this.ObjName.GetComponent<TextMeshProUGUI>().text = $"<color=#FF5FFF>{monsterCof.MonsterName}_{numericComponent.GetAsInt(NumericType.Now_AI)}</color>";
-                //this.ObjName.GetComponent<TextMeshProUGUI>().color = isboos ? new Color(255, 95, 255) : Color.white;
+                textMeshProUGUI.fontSize = isboos ? 32 : 26;
+                textMeshProUGUI.color = isboos ? new Color(255,95,255): Color.white;
+                string colorstr = isboos ? "<color=#FF5FFF>" : "<color=#FFFFFF>";
+                this.ObjName.GetComponent<TextMeshProUGUI>().text = $"{colorstr}{monsterCof.MonsterName}_{numericComponent.GetAsInt(NumericType.Now_AI)}</color>";
+
                 //怪物等级显示
                 ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
                 MapComponent mapComponent = this.ZoneScene().GetComponent<MapComponent>();
