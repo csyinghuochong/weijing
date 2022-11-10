@@ -11,16 +11,20 @@ namespace ET
             TeamComponent teamComponent = session.ZoneScene().GetComponent<TeamComponent>();
             teamComponent.OnRecvTeamUpdate(message);
 
-#if !SERVER && NOT_UNITY
-            Log.Debug("队伍解算");
-            RobotManagerComponent manage = session.ZoneScene().GetParent<RobotManagerComponent>();  
+#if !SERVER && NOT_UNITY 
             TeamInfo teamInfo = session.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
             if (teamInfo == null)
             {
+                Log.Debug("队伍解算");
                 session.ZoneScene().Dispose();  
             }
 #else
-            Log.Debug("队伍解算"); 
+            TeamInfo teamInfo = session.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
+            if (teamInfo == null)
+            {
+                Log.Debug("队伍解算");
+                session.ZoneScene().Dispose();  
+            }
 #endif
         }
 
