@@ -125,6 +125,7 @@ namespace ET
 
             await TimerComponent.Instance.WaitAsync(200);
             camera.enabled = false;
+            GameObject.DestroyImmediate(mapCamera);
         }
 
         public static void ShowStallArea(this UIMapBigComponent self)

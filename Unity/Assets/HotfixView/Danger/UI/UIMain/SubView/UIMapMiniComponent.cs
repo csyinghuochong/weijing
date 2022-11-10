@@ -228,6 +228,7 @@ namespace ET
             self.RawImage.transform.localPosition = Vector2.zero;
             await TimerComponent.Instance.WaitAsync(200);
             camera.enabled = false;
+            GameObject.DestroyImmediate(mapCamera);
 
             self.OnMainHeroPosition();
         }

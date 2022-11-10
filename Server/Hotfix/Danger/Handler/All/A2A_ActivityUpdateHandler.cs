@@ -19,6 +19,7 @@ namespace ET
         {
             Log.Info("PrintAllEntity");
             Log.Info(EventSystem.Instance.ToString());
+            Log.Info(ObjectPool.Instance.ToString());
         }
 
         private void ActivityUpdate_Hour(Scene scene, int activityType)
