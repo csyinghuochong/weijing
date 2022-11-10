@@ -43,7 +43,7 @@
         public const int ChainLightningTimer = 1041;
         public const int PetEggListItemTimer = 1042;
         public const int UIChouKaTimer = 1043;
-        public const int BattleCountDown = 1044;
+        public const int PetMainTimer = 1044;
         public const int DungeonSettlement = 1055;
         public const int RoleXiLianLevel = 1056;
         public const int AttackGridTimer = 1057;
@@ -54,6 +54,7 @@
         public const int TeamDropTimer = 1062;
         public const int MakeCDTimer = 1063;
         public const int MapMiniTimer = 1064;
+        public const int BattleMainTimer = 1065;
         // 不能超过10000
     }
 }

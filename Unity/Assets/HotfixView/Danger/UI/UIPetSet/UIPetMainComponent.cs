@@ -1,14 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using DG.Tweening;
-using System.Collections.Generic;
-using TMPro;
 
 namespace ET
 {
-    [Timer(TimerType.BattleCountDown)]
+    [Timer(TimerType.PetMainTimer)]
     public class PetMainTimer : ATimer<UIPetMainComponent>
     {
         public override void Run(UIPetMainComponent self)
@@ -176,7 +175,7 @@ namespace ET
             await TimerComponent.Instance.WaitAsync(500);
             self.Image_3.SetActive(true);
             self.BeginTime = Time.time;
-            self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.BattleCountDown, self);
+            self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.PetMainTimer, self);
             DoTweenHelp.DOScale(self.Image_3.transform, Vector3.zero, 1f);
             await TimerComponent.Instance.WaitAsync(1000);
             if (instanceId != self.InstanceId)

@@ -5,7 +5,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    [Timer(TimerType.BattleCountDown)]
+    [Timer(TimerType.BattleMainTimer)]
     public class BattleMainTimer : ATimer<UIBattleMainComponent>
     {
         public override void Run(UIBattleMainComponent self)
@@ -45,10 +45,11 @@ namespace ET
             DateTime dateTime = TimeHelper.DateTimeNow();
             int huor = dateTime.Hour;
             int minute = dateTime.Minute;
-            
-            int leftTime = (60 - minute) * 60 - dateTime.Second;
-            self.CDTime = leftTime * 1000;
-            self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.BattleCountDown, self);
+
+            int curTime = (huor * 60 * 60 + minute * 60 + dateTime.Second) * 1000;
+            int closeTime = FunctionHelp.GetCloseTime(1025) * 60 * 1000;
+            self.CDTime = closeTime - curTime;
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.BattleMainTimer, self);
         }
     }
 
