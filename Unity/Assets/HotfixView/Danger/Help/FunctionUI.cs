@@ -27,11 +27,9 @@ namespace ET
             return _instance;
         }
 
-
         //传入随机范围,生成一个随机数(平均概率)
         public int ReturnRamdomValueInt(int randomMinValue, int randomMaxValue)
         {
-
             int randomChaValue = randomMaxValue - randomMinValue;
             float randomRangeValue_Now = UnityEngine.Random.value;
 

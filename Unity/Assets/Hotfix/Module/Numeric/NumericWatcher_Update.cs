@@ -18,6 +18,8 @@
 	}
 
 
+	
+	[NumericWatcher((int)NumericType.Now_AI)]
 	[NumericWatcher((int)NumericType.Now_Stall)]
 	[NumericWatcher((int)NumericType.Now_Weapon)]
 	[NumericWatcher((int)NumericType.Now_MaxHp)]

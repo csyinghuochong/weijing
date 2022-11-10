@@ -24,6 +24,7 @@ namespace ET
             NumericType.Born_X,
             NumericType.Born_Y,
             NumericType.Born_Z,
+            NumericType.Now_AI,
         };
 
         //1 整数  2 浮点数

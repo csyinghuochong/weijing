@@ -65,6 +65,9 @@
                     args.Unit.GetComponent<MonsterActRangeComponent>()?.OnBossInCombat(incombat);
                     Log.ILog.Debug($"BossInCombat {args.Unit.Id} {incombat}");
                     break;
+                case NumericType.Now_AI:
+                    args.Unit.GetComponent<HeroHeadBarComponent>()?.UpdateAI();
+                    break;
                 case NumericType.TowerId:
                     int towerId = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
                     if (towerId != 0)

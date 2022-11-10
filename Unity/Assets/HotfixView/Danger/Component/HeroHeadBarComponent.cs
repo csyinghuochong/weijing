@@ -193,16 +193,10 @@ namespace ET
             if (unit.Type == UnitType.Monster)
             {
                 MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId);
+                NumericComponent numericComponent = this.Parent.GetComponent<NumericComponent>();
                 bool isboos = monsterCof.MonsterType == (int)MonsterTypeEnum.Boss;
-                if (isboos)
-                {
-                    this.ObjName.GetComponent<TextMeshProUGUI>().text = $"<color=#FF5FFF>{monsterCof.MonsterName}</color>";
-                    this.ObjName.GetComponent<TextMeshProUGUI>().fontSize = 32;
-                }
-                else
-                {
-                    this.ObjName.GetComponent<TextMeshProUGUI>().text = $"<color=#FFFFFF>{monsterCof.MonsterName}</color>";
-                }
+                this.ObjName.GetComponent<TextMeshProUGUI>().fontSize = isboos ? 32 : 26;
+                this.ObjName.GetComponent<TextMeshProUGUI>().text = $"<color=#FF5FFF>{monsterCof.MonsterName}_{numericComponent.GetAsInt(NumericType.Now_AI)}</color>";
                 //this.ObjName.GetComponent<TextMeshProUGUI>().color = isboos ? new Color(255, 95, 255) : Color.white;
                 //怪物等级显示
                 ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
@@ -236,7 +230,6 @@ namespace ET
                 return;
             }
             TimerComponent.Instance.Remove(ref this.Timer);
-            UnitInfoComponent infoComponent = this.Parent.GetComponent<UnitInfoComponent>();
             if (this.GetParent<Unit>().Type == UnitType.Monster)
             {
                 ReferenceCollector rc = this.HeadBar.GetComponent<ReferenceCollector>();
@@ -261,6 +254,11 @@ namespace ET
                 TimerComponent.Instance.Remove(ref this.Timer);
                 this.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.HeroHeadBarTimer, this);
             }
+        }
+
+        public void UpdateAI()
+        {
+            UpdateShow();
         }
 
         public void UpdateBlood()

@@ -69,6 +69,7 @@
         public const int BattleNumber = 3065;
         public const int YueKaRemainTimes = 3066;                               //月卡剩余次数                    
         public const int TeamDungeonTimes = 3067;
+        public const int Now_AI = 3068;
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值
