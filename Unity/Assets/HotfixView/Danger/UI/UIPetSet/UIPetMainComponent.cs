@@ -8,7 +8,7 @@ using TMPro;
 
 namespace ET
 {
-    [Timer(TimerType.PetMainTimer)]
+    [Timer(TimerType.BattleCountDown)]
     public class PetMainTimer : ATimer<UIPetMainComponent>
     {
         public override void Run(UIPetMainComponent self)
@@ -31,12 +31,10 @@ namespace ET
         public GameObject PetHpNode;
         public GameObject UIMonsterHp;
         public GameObject UIPetHp;
-
-        public GameObject Di;
-
         public GameObject Image_3;
         public GameObject Image_2;
         public GameObject Image_1;
+        public GameObject Di;
 
         public GameObject PetFubenFinger;
         public GameObject Btn_RerurnBuilding;
@@ -178,7 +176,7 @@ namespace ET
             await TimerComponent.Instance.WaitAsync(500);
             self.Image_3.SetActive(true);
             self.BeginTime = Time.time;
-            self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.PetMainTimer, self);
+            self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.BattleCountDown, self);
             DoTweenHelp.DOScale(self.Image_3.transform, Vector3.zero, 1f);
             await TimerComponent.Instance.WaitAsync(1000);
             if (instanceId != self.InstanceId)

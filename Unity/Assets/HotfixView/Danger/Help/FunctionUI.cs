@@ -67,7 +67,7 @@ namespace ET
             }
 
             FuntionConfig funtionOpenConfig = FuntionConfigCategory.Instance.Get(functionid);
-            bool functionOn = FunctionHelp.Instance.CheckFuncitonOn(zoneScene, funtionOpenConfig);
+            bool functionOn = FunctionHelp.CheckFuncitonOn(zoneScene, funtionOpenConfig);
             if (!functionOn)
             {
                 Log.Debug("功能未开启： " + functionid);

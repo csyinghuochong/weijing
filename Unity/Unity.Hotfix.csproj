@@ -172,10 +172,11 @@
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_ChatUpdateInfoHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericHelp.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\TeamComponentSystem.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ServerHelper.cs" />
     <Compile Include="Assets\Hotfix\Demo\Login\LoginHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Component\DropComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamDungeonSettlementHandler.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Helper\FunctionHelp.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\FunctionHelp.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\MessageDispatcherComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_BagUpdateHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Component\StateComponentSystem.cs" />
@@ -203,7 +204,15 @@
     <Compile Include="Assets\Hotfix\Danger\Common\Component\MapComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericWatcher_Update.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetKcpComponentSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ServerHelper.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ComHelp.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\DropHelper.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ChengJiuHelper.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\GMHelp.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ItemHelper.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\QiangHuaHelper.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\SkillHelp.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\PaiMaiHelper.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\GettotalFeeTool.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

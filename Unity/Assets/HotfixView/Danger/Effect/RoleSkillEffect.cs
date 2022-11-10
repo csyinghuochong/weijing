@@ -41,7 +41,7 @@ namespace ET
             if (this.EffectData.SkillConfig != null)
             {
                 int rangeType = EffectData.SkillConfig.DamgeRangeType;       //技能范围类型
-                float[] rangeValue = FunctionHelp.Instance.DoubleArrToFloatArr(EffectData.SkillConfig.DamgeRange);          //技能范围
+                float[] rangeValue = FunctionHelp.DoubleArrToFloatArr(EffectData.SkillConfig.DamgeRange);          //技能范围
                 this.AddCollider(this.EffectObj, rangeType, rangeValue);
             }
             switch (skillParentID)

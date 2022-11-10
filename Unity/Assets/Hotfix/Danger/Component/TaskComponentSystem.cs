@@ -42,8 +42,12 @@ namespace ET
                     Log.Debug($"无效的任务ID {taskid[i]}");
                     continue;
                 }
-                if (FunctionHelp.Instance.CheckTaskOn(unit, TaskConfigCategory.Instance.Get(taskid[i])))
+
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid[i]);
+                if (FunctionHelp.CheckTaskOn(unit.DomainScene(),taskConfig.TriggerType,taskConfig.TriggerValue))
+                {
                     openTaskids.Add(taskid[i]);
+                }
             }
             return openTaskids;
         }

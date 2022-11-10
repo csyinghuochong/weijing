@@ -147,7 +147,6 @@ namespace ET
 
         public static void ShowItemList(List<RewardItem> rewardItems, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true)
         {
-            string iteminfos = "";
             rewardItems.Sort(delegate (RewardItem a, RewardItem b)
             {
                 int itemIda = a.ItemID;

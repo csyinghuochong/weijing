@@ -43,7 +43,7 @@
         public const int ChainLightningTimer = 1041;
         public const int PetEggListItemTimer = 1042;
         public const int UIChouKaTimer = 1043;
-        public const int PetMainTimer = 1044;
+        public const int BattleCountDown = 1044;
         public const int DungeonSettlement = 1055;
         public const int RoleXiLianLevel = 1056;
         public const int AttackGridTimer = 1057;

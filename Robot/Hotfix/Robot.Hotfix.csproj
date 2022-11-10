@@ -113,6 +113,10 @@
     </ItemGroup>
     
     <ItemGroup>
+      <Compile Remove="..\..\Unity\Assets\Hotfix\Danger\Helper\FunctionHelp.cs" />
+    </ItemGroup>
+    
+    <ItemGroup>
       <Folder Include="Server" />
     </ItemGroup>
 
