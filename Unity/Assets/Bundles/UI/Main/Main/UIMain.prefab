@@ -10134,6 +10134,10 @@ MonoBehaviour:
     gameObject: {fileID: 1857130645247648132}
   - key: Btn_Battle
     gameObject: {fileID: 2307802226386525848}
+  - key: Btn_TopRight_1
+    gameObject: {fileID: 1014999501132458388}
+  - key: Btn_TopRight_2
+    gameObject: {fileID: 3563791113412481647}
 --- !u!114 &8254875540501795357
 MonoBehaviour:
   m_ObjectHideFlags: 0

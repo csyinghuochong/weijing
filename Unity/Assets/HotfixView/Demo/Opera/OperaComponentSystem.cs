@@ -82,6 +82,10 @@ namespace ET
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 unit.GetComponent<SkillManagerComponent>().SendUseSkill(61023101, 0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
                 self.LastSendTime = Time.time;
+
+                Log.Info("PrintAllEntity");
+                Log.Error(EventSystem.Instance.ToString());
+                Log.Error(ObjectPool.Instance.ToString());
             }
             Vector3 dir = Vector3.zero;
             if (keyCode == 119)

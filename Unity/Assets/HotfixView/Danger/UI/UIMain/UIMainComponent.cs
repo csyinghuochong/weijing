@@ -56,7 +56,8 @@ namespace ET
         public GameObject Btn_Email;
         public GameObject Btn_MakeItem;
         public GameObject Btn_Battle;
-
+        public GameObject Btn_TopRight_2;
+        public GameObject Btn_TopRight_1;
 
         public UI UIMainTask;
         public UI UILevelGuideMini;
@@ -244,6 +245,8 @@ namespace ET
 
             self.HomeButton = rc.Get<GameObject>("HomeButton");
             self.UIMainSkill = rc.Get<GameObject>("UIMainSkill");
+            self.Btn_TopRight_1 = rc.Get<GameObject>("Btn_TopRight_1");
+            self.Btn_TopRight_2 = rc.Get<GameObject>("Btn_TopRight_2");
 
             //初始化子UI
             self.initSubUI();
@@ -854,20 +857,21 @@ namespace ET
         /// <param name="sceneTypeEnum"></param>
         public static void AfterEnterScene(this UIMainComponent self, int sceneTypeEnum)
         {
+            self.Btn_TopRight_1.SetActive(sceneTypeEnum != SceneTypeEnum.Battle);
+            self.Btn_TopRight_2.SetActive(sceneTypeEnum != SceneTypeEnum.Battle);
             self.UITiaoZhan.SetActive(sceneTypeEnum == SceneTypeEnum.Tower);
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.UIMainSkillComponent.ResetUI(sceneTypeEnum == SceneTypeEnum.MainCityScene);
             self.UIMapMini.OnEnterScene(sceneTypeEnum);
+            
+            self.UpdateShadow();
+            self.UpdateNpcTaskUI();
+
             if (sceneTypeEnum == SceneTypeEnum.CellDungeon)
             {
                 self.UILevelGuideMini.GetComponent<UICellDungeonCellMiniComponent>().OnUpdateUI();
             }
-
-            self.UpdateShadow();
-            self.UpdateNpcTaskUI();
-
-            //进入主城默认不显示目标
             if (sceneTypeEnum == SceneTypeEnum.MainCityScene)
             {
                 self.UIMainHpBar.MonsterNode.SetActive(false);
