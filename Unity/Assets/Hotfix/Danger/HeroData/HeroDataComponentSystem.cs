@@ -96,6 +96,8 @@ namespace ET
             numericComponent.ApplyValue(NumericType.RechargeSign, 0, notice);
             numericComponent.ApplyValue(NumericType.TaskLoopNumber, 0, notice);
             numericComponent.ApplyValue(NumericType.TaskLoopGiveId, 0, notice);
+            numericComponent.ApplyValue(NumericType.BattleNumber, 0, notice);
+            numericComponent.ApplyValue(NumericType.TeamDungeonTimes, 0, notice);
         }
 
         /// <summary>

@@ -12,13 +12,15 @@ namespace ET
             teamComponent.OnRecvTeamUpdate(message);
 
 #if !SERVER && NOT_UNITY
+            Log.Debug("队伍解算");
+            RobotManagerComponent manage = session.ZoneScene().GetParent<RobotManagerComponent>();  
             TeamInfo teamInfo = session.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
             if (teamInfo == null)
             {
                 session.ZoneScene().Dispose();  
             }
 #else
-            Log.Debug("队伍结算"); 
+            Log.Debug("队伍解算"); 
 #endif
         }
 

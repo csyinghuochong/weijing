@@ -228,6 +228,12 @@ namespace ET
             numericComponent.ApplyValue(NumericType.YueKaRemainTimes, 7);
         }
 
+        public static int GetTeamDungeonTimes(this Unit self)
+        {
+            NumericComponent numericComponent = self.GetComponent<NumericComponent>();
+            return numericComponent.GetAsInt(NumericType.TeamDungeonTimes);
+        }
+
         public static int GetMaxPiLao(this Unit self)
         {
             return int.Parse(GlobalValueConfigCategory.Instance.Get(self.IsYueKaStates() ? 26 : 10).Value);

@@ -103,7 +103,8 @@ namespace ET
 				}
 				if (message.GMMsg == "#resetfuben")
 				{
-					unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.TeamDungeonTimes, "0").Coroutine();
+					unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, 0);
+					unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BattleNumber, 0);
 					return;
 				}
 				if (message.GMMsg == "#completetask")

@@ -30,11 +30,8 @@
 
         private async ETTask RunAsync(EventType.RecvTeamDungeonOpen args)
         {
-            TeamComponent teamComponent = args.ZoneScene.GetComponent<TeamComponent>();
-            TeamInfo teamInfo = teamComponent.GetSelfTeam();
-
             int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
-            int times = args.ZoneScene.GetComponent<UserInfoComponent>().GetTeamDungeonTimes();
+            int times = UnitHelper.GetMyUnitFromZoneScene(args.ZoneScene).GetTeamDungeonTimes();
             if (totalTimes - times <= 0)
             {
                 ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_TimesIsNot);

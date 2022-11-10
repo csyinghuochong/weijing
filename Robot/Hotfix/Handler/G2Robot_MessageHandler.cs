@@ -50,6 +50,7 @@ namespace ET
                             continue;
                         }
                         robotScene.Dispose();
+                        robotManagerComponent.ZoneIndex--;  
                         await TimerComponent.Instance.WaitFrameAsync();
                     }
                     break;

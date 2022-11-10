@@ -183,7 +183,6 @@ namespace ET
             int updatevalue = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value) - self.UserInfo.Vitality;
             self.UpdateRoleData(UserDataType.Vitality, updatevalue.ToString(), notice).Coroutine();
             self.UpdateRoleData(UserDataType.HuoYue, (0 - self.UserInfo.HuoYue).ToString(), notice).Coroutine();
-            self.UpdateRoleData(UserDataType.TeamDungeonTimes,"0", notice).Coroutine();
             self.GetParent<Unit>().GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1,  notice);
             self.UserInfo.DayFubenTimes.Clear();
             self.UserInfo.ChouKaRewardIds.Clear();
@@ -329,10 +328,9 @@ namespace ET
                     self.UserInfo.HuoYue += long.Parse(value);
                     saveValue = self.UserInfo.HuoYue.ToString();
                     break;
-                case UserDataType.TeamDungeonTimes:
-                    self.UserInfo.TeamDungeonTimes = int.Parse(value);
+                case UserDataType.DungeonTimes:
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, 0);
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BattleNumber, 0);
-                    saveValue = self.UserInfo.TeamDungeonTimes.ToString();
                     break;
                 case UserDataType.Union:
                     self.UserInfo.UnionId = long.Parse(value);
@@ -533,11 +531,6 @@ namespace ET
                 }
             }
             self.UserInfo.DayFubenTimes.Add(new KeyValuePairInt() { KeyId = sceneId, Value =1 });
-        }
-
-        public static int GetTeamDungeonTimes(this UserInfoComponent self)
-        {
-            return self.UserInfo.TeamDungeonTimes;
         }
 
         public static string GetGameSettingValue(this UserInfoComponent self, GameSettingEnum gameSettingEnum)

@@ -68,7 +68,8 @@ namespace ET
                     float.Parse(positions[1]),
                     float.Parse(positions[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
             }
-            
+
+            self.ActDistance = self.ZoneScene().GetComponent<AttackComponent>().AttackDistance;
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(500, TimerType.BehaviourTimer, self);
         }
     }

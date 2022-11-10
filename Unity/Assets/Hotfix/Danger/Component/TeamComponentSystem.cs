@@ -96,6 +96,8 @@ namespace ET
 
                 if (fubenId != 0)
                 {
+                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                     UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                     SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenId);
                     //判断等级
@@ -106,7 +108,7 @@ namespace ET
                         return ErrorCore.ERR_LevelIsNot;
                     }
                     //判断次数
-                    if (userInfoComponent.UserInfo.TeamDungeonTimes >= int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value))
+                    if (numericComponent.GetAsInt(NumericType.TeamDungeonTimes) >= int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value))
                     {
                         EventType.CommonHintError.Instance.errorValue = ErrorCore.ERR_TimesIsNot;
                         EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
@@ -253,7 +255,7 @@ namespace ET
                 }
 
                 int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
-                int times = self.ZoneScene().GetComponent<UserInfoComponent>().GetTeamDungeonTimes();
+                int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
                 if (totalTimes - times <= 0)
                 {
                     return ErrorCore.ERR_TimesIsNot;
@@ -281,7 +283,7 @@ namespace ET
             try
             {
                 int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
-                int times = self.ZoneScene().GetComponent<UserInfoComponent>().GetTeamDungeonTimes();
+                int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
                 if (totalTimes - times <= 0)
                 {
                     return ErrorCore.ERR_TimesIsNot;

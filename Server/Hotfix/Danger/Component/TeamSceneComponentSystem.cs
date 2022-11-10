@@ -68,6 +68,10 @@ namespace ET
         public static async ETTask OnRecvUnitLeave(this TeamSceneComponent self, long userId, bool exitgame = false)
         {
             TeamInfo teamInfo = self.GetTeamInfo(userId);
+            if (teamInfo == null)
+            {
+                return;
+            }
 
             //玩家Id
             List<long> userIDList = new List<long>();

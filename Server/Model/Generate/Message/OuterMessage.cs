@@ -590,9 +590,6 @@ namespace ET
 		[ProtoMember(18)]
 		public int Vitality { get; set; }
 
-		[ProtoMember(19)]
-		public int TeamDungeonTimes { get; set; }
-
 		[ProtoMember(21)]
 		public long UnionId { get; set; }
 

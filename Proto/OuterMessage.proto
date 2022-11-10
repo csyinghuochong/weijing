@@ -288,8 +288,6 @@ message UserInfo
 
 	int32 Vitality = 18;	//活力
 
-	int32 TeamDungeonTimes = 19;
-
 	int64 UnionId = 21;
 
 	repeated int32 CompleteGuideIds = 22;

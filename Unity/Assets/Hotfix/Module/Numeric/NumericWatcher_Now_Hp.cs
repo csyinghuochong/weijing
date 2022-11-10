@@ -118,6 +118,11 @@
 						break;
 					case SceneTypeEnum.TeamDungeon:
 						await TimerComponent.Instance.WaitAsync(20000);
+						if (InstanceId != unit.InstanceId)
+						{
+							Log.Debug("InstanceId != unit.InstanceId");
+							return;
+						}
 						request = new C2M_TeamDungeonRBornRequest() { };
 						zoneScene.GetComponent<SessionComponent>().Session.Send(request);
 						zoneScene.GetComponent<BehaviourComponent>().Start();

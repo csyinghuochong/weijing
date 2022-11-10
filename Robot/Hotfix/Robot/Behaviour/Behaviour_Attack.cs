@@ -22,7 +22,7 @@ namespace ET
                 return false;
             }
             float distance = PositionHelper.Distance2D(target, UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene()));
-            if (distance < 3f)
+            if (distance < aiComponent.ActDistance)
             {
                 return true;
             }

@@ -49,8 +49,7 @@ namespace ET
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.PiLao).ToString();
                     userInfo.PiLao = long.Parse(message.UpdateTypeValue);
                     break;
-                case (int)UserDataType.TeamDungeonTimes:
-                    userInfo.TeamDungeonTimes = int.Parse(message.UpdateTypeValue);
+                case (int)UserDataType.DungeonTimes:
                     break;
                 case (int)UserDataType.HuoYue:
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.HuoYue).ToString();

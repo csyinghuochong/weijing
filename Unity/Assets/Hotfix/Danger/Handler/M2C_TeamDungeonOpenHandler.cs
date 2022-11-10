@@ -20,12 +20,6 @@
             AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
             if (accountInfoComponent.Password == ComHelp.RobotPassWord)
             {
-                int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
-                int times = zoneScene.GetComponent<UserInfoComponent>().GetTeamDungeonTimes();
-                if (totalTimes - times <= 0)
-                {
-                    return;
-                }
                 await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(100, 500));
                 EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.TeamDungeon, 0).Coroutine();
                 return;
