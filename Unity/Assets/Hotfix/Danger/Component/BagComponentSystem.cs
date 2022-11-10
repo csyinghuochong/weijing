@@ -597,7 +597,6 @@ namespace ET
             int storeId = 10001101;
             if (self.GetItemNumber(itemId) < 20)
             {
-                Log.ILog.Debug("Behaviour_Attack: SendBuyYaoShui");
                 await self.SendBuyItem(storeId);
                 await self.SendBuyItem(storeId);
                 await self.SendBuyItem(storeId);

@@ -9,8 +9,8 @@ namespace ET
     public class UIMainBuffComponent : Entity, IAwake, IDestroy
     {
         public GameObject UIMainBuffItem;
-        public List<UI> MainBuffUIList = new List<UI>();
-        public List<UI> CacheUIList = new List<UI>();
+        public List<UIMainBuffItemComponent> MainBuffUIList = new List<UIMainBuffItemComponent>();
+        public List<UIMainBuffItemComponent> CacheUIList = new List<UIMainBuffItemComponent>();
     }
 
     [ObjectSystem]
@@ -18,8 +18,9 @@ namespace ET
     {
 
         public override void Awake(UIMainBuffComponent self)
-        {;
+        {
             self.MainBuffUIList.Clear();
+            self.CacheUIList.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.UIMainBuffItem = rc.Get<GameObject>("UIMainBuffItem");
@@ -47,7 +48,7 @@ namespace ET
         {
             for (int i = self.MainBuffUIList.Count - 1; i >= 0; i--)
             {
-                UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i].GetComponent<UIMainBuffItemComponent>();
+                UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
                 bool update = uIMainBuffItemComponent.OnUpdate();
                 if (!update)
                 {
@@ -81,7 +82,7 @@ namespace ET
         {
             for (int i = 0; i < self.MainBuffUIList.Count; i++)
             {
-                self.MainBuffUIList[i].GetComponent<UIMainBuffItemComponent>().BuffID = 0;
+                self.MainBuffUIList[i].BuffID = 0;
                 self.MainBuffUIList[i].GameObject.SetActive(false);
                 self.CacheUIList.Add(self.MainBuffUIList[i]);
             }
@@ -105,11 +106,10 @@ namespace ET
 
         public static void OnAddBuff(this UIMainBuffComponent self, int buffID, long endTime)
         {
-            UI ui_buff = self.CacheUIList.Count > 0 ? self.CacheUIList[0] : null ;
+            UIMainBuffItemComponent ui_buff = self.CacheUIList.Count > 0 ? self.CacheUIList[0] : null ;
             if (ui_buff == null)
             {
-                ui_buff = self.AddChild<UI, string, GameObject>("UIMainBuffItemComponent", GameObject.Instantiate<GameObject>(self.UIMainBuffItem));
-                ui_buff.AddComponent<UIMainBuffItemComponent>();
+                ui_buff = self.AddChild<UIMainBuffItemComponent, GameObject>(GameObject.Instantiate(self.UIMainBuffItem));
             }
             else
             {
@@ -117,7 +117,7 @@ namespace ET
             }
             self.MainBuffUIList.Add(ui_buff);
             ui_buff.GameObject.SetActive(true);
-            ui_buff.GetComponent<UIMainBuffItemComponent>().OnAddBuff(buffID, endTime);
+            ui_buff.OnAddBuff(buffID, endTime);
             UICommonHelper.SetParent(ui_buff.GameObject, self.GetParent<UI>().GameObject);
         }
 
@@ -125,7 +125,7 @@ namespace ET
         {
             for (int i = 0; i < self.MainBuffUIList.Count; i++)
             {
-                UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i].GetComponent<UIMainBuffItemComponent>();
+                UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
                 if (uIMainBuffItemComponent.BuffID == buffID)
                 {
                     uIMainBuffItemComponent.OnResetBuff();
@@ -137,7 +137,7 @@ namespace ET
         {
             for (int i = self.MainBuffUIList.Count - 1; i >= 0; i--)
             {
-                UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i].GetComponent<UIMainBuffItemComponent>();
+                UIMainBuffItemComponent uIMainBuffItemComponent = self.MainBuffUIList[i];
                 if (uIMainBuffItemComponent.BuffID == buffID)
                 {
                     uIMainBuffItemComponent.BuffID = 0;

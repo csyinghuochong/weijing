@@ -6,11 +6,12 @@ namespace ET
 {
 
 	[ObjectSystem]
-	public class FloatTipComponentAwakeSystem : AwakeSystem<FloatTipComponent, string>
+	public class FloatTipComponentAwakeSystem : AwakeSystem<FloatTipComponent, GameObject, string>
 	{
-		public override void Awake(FloatTipComponent self, string tip)
+		public override void Awake(FloatTipComponent self, GameObject gameObject, string tip)
 		{
 			self.passTime = 0f;
+			self.GameObject = gameObject;	
 			self.Awake(tip);
 		}
 	}
@@ -19,21 +20,19 @@ namespace ET
     {
 		public static void Awake(this FloatTipComponent self, string tip)
 		{
-			ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-			//self.tipText = rc.Get<GameObject>("Text (TMP)");
-			//self.tipText.GetComponent<TextMeshProUGUI>().text = tip;
+			ReferenceCollector rc = self.GameObject.GetComponent<ReferenceCollector>();
+			
 			self.tipNode = rc.Get<GameObject>("Tips");
-
 			self.tipText = rc.Get<GameObject>("Text");
 			self.tipText.GetComponent<Text>().text = tip;
 		}
 
 		public static void CrossFadeAlpha(this FloatTipComponent self, int tipType)
 		{
-			self.GetParent<UI>().GameObject.Get<GameObject>("Text").GetComponent<Text>().CrossFadeAlpha(0f, 2f, false);
+			self.GameObject.Get<GameObject>("Text").GetComponent<Text>().CrossFadeAlpha(0f, 2f, false);
 			if (tipType != 0)
 			{
-				self.GetParent<UI>().GameObject.Get<GameObject>("Image").GetComponent<Image>().CrossFadeAlpha(0f, 2f, false);
+				self.GameObject.Get<GameObject>("Image").GetComponent<Image>().CrossFadeAlpha(0f, 2f, false);
 			}
 		}
 

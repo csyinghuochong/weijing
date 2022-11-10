@@ -271,7 +271,7 @@ namespace ET
             if (unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillIfo.SkillId, true) == ErrorCore.ERR_Success)
             {
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIfo.SkillId);
-                if (!string.IsNullOrEmpty(skillConfig.SkillAnimation) && skillConfig.SkillAnimation != "0")
+                if (!ComHelp.IfNull(skillConfig.SkillAnimation))
                 {
                     unit.Stop(0);
                 }

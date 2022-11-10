@@ -132,27 +132,6 @@ namespace ET
             }
         }
 
-        public static TeamInfo GetCanJoinTeam(this TeamComponent self, int sceneId)
-        {
-            List<TeamInfo> teamList = new List<TeamInfo>();
-            for (int i = 0; i < self.TeamList.Count; i++)
-            {
-                TeamInfo teamInfo = self.TeamList[i];
-                if (teamInfo.SceneId == sceneId && teamInfo.PlayerList.Count < 3)
-                {
-                    teamList.Add(teamInfo);
-                }
-            }
-            if (teamList.Count > 0)
-            {
-                return teamList[RandomHelper.RandomNumber(0, teamList.Count)];
-            }
-            else
-            {
-                return null;
-            }
-        }
-
         public static TeamInfo GetTeamInfo(this TeamComponent self, long teamId)
         {
             for (int i = 0; i < self.TeamList.Count; i++)

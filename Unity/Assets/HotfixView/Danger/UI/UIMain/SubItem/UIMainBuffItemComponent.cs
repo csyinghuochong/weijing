@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMainBuffItemComponent : Entity, IAwake
+    public class UIMainBuffItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject TextNumber;
         public GameObject TextLeftTime;
         public GameObject TextBuffName;
         public GameObject Img_BuffCD;
         public GameObject ImgBufflIcon;
+        public GameObject GameObject;
 
         public int BuffID;
         public long BuffTime;
@@ -21,12 +22,13 @@ namespace ET
 
 
     [ObjectSystem]
-    public class UIMainBuffItemComponentAwakeSystem : AwakeSystem<UIMainBuffItemComponent>
+    public class UIMainBuffItemComponentAwakeSystem : AwakeSystem<UIMainBuffItemComponent, GameObject>
     {
 
-        public override void Awake(UIMainBuffItemComponent self)
+        public override void Awake(UIMainBuffItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;   
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.TextBuffName = rc.Get<GameObject>("TextBuffName");
             self.Img_BuffCD = rc.Get<GameObject>("Img_BuffCD");
             self.ImgBufflIcon = rc.Get<GameObject>("ImgBufflIcon");

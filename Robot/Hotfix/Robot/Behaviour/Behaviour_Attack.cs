@@ -37,7 +37,7 @@ namespace ET
             Log.ILog.Debug("Behaviour_Attack: Enter");
             Scene zoneScene = aiComponent.ZoneScene();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-
+            aiComponent.ZoneScene().GetComponent<BagComponent>().CheckYaoShui().Coroutine();
             long instanceId = unit.InstanceId;
             while (true)
             {
@@ -50,8 +50,7 @@ namespace ET
                 if (target != null && target.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Dead) == 0
                     && Vector3.Distance(unit.Position,target.Position) < aiComponent.ActDistance)
                 {
-                    float value = RandomHelper.RandFloat01();
-                    int[] weights = new int[] { 60, 10, 30};
+                    int[] weights = new int[] { 70, 10, 30};
                     int index = RandomHelper.RandomByWeight(weights);
                     if (index == 0)
                     {
@@ -59,25 +58,14 @@ namespace ET
                     }
                     if (index == 1)
                     {
-                        //拾取道具
-                        List<DropInfo> ids = MapHelper.GetCanShiQu(aiComponent.ZoneScene());
-                        if (ids.Count > 0)
-                        {
-                            await MapHelper.SendShiquItem(aiComponent.ZoneScene(), ids);
-                            await aiComponent.ZoneScene().GetComponent<BagComponent>().CheckYaoShui();
-                        }
-
                         int maxHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
                         int curHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp);
-                        if (curHp < maxHp * 0.5)
+                        BagInfo bagInfo = aiComponent.ZoneScene().GetComponent<BagComponent>().GetBagInfo(10010001);
+                        if (curHp < maxHp * 0.5 && bagInfo != null)
                         {
-                            BagInfo bagInfo = aiComponent.ZoneScene().GetComponent<BagComponent>().GetBagInfo(10010001);
-                            if (bagInfo != null)
-                            {
-                                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-                                unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
-                                    (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();
-                            }
+                            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                            unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
+                                (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();
                         }
                     }
                     if (index == 2)

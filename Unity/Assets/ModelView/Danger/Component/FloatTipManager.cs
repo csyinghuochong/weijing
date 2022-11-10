@@ -11,8 +11,8 @@ namespace ET
     public class FloatTipManager : Entity, IAwake, IDestroy
     {
         public static FloatTipManager Instance;
-        public List<UI> floatTipList;
-        public List<FloatTipType> WaitFloatTip;
+        public List<FloatTipComponent> FloatTipList = new List<FloatTipComponent>();
+        public List<FloatTipType> WaitFloatTip = new List<FloatTipType>();
         public float IntervalTime = 0.5f;
         public float PassTime = 0.5f;
         public long Timer;

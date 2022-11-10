@@ -10,7 +10,7 @@ namespace ET
         public GameObject ChapterContent;
         public GameObject ChapterList;
         public GameObject Lab_ChapterName;
-        public UI NowChapterObj;
+        public UICellChapterItemComponent NowChapterObj;
 
         public bool EnterScale;
         public bool ExitScale;
@@ -19,7 +19,7 @@ namespace ET
         public float ClickPositionX;
         public float ClickPositionY;
 
-        public List<UI> ChapterListUI = new List<UI>();
+        public List<UICellChapterItemComponent> ChapterListUI = new List<UICellChapterItemComponent>();
     }
 
     [ObjectSystem]
@@ -52,11 +52,7 @@ namespace ET
     {
         public override void Destroy(UICellChapterSelectComponent self)
         {
-            for (int i = 0; i < self.ChapterListUI.Count; i++)
-            {
-                self.ChapterListUI[i].Dispose();
-            }
-            self.ChapterListUI = null;
+            
         }
     }
 
@@ -89,7 +85,7 @@ namespace ET
                     self.ScaleValue = 1;
                     self.ExitScale = false;
                     //显示
-                    self.NowChapterObj.GetComponent<UICellChapterItemComponent>().Obj_ShowLv.SetActive(true);
+                    self.NowChapterObj.Obj_ShowLv.SetActive(true);
                 }
                 float newX = self.ClickPositionX * (self.ScaleValue - 1f);
                 float newY = self.ClickPositionY * (self.ScaleValue - 1f);
@@ -150,11 +146,10 @@ namespace ET
                 GameObject go = self.ChapterList.transform.GetChild(i).gameObject;
                 int chapterid = int.Parse(go.name);
 
-                UI uiitem = self.AddChild<UI, string, GameObject>("ChapterItem_" + chapterid, go);
-                UICellChapterItemComponent uIChapterItemComponent = uiitem.AddComponent<UICellChapterItemComponent>();
+                UICellChapterItemComponent uIChapterItemComponent = self.AddChild<UICellChapterItemComponent, GameObject>(go);
                 uIChapterItemComponent.OnInitData(chapterid, null);
                 uIChapterItemComponent.SetClickHandler((int cid) => { self.OnClickHandler(cid); });
-                self.ChapterListUI.Add(uiitem);
+                self.ChapterListUI.Add(uIChapterItemComponent);
             }
         }
     }

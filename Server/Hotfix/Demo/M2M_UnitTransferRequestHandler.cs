@@ -162,6 +162,10 @@ namespace ET
 						// 加入aoi
 						unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
 
+						if (!unit.IsRobot() && request.SceneType == SceneTypeEnum.TeamDungeon)
+						{
+							unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() + 1);
+						}
 						if (request.SceneType == (int)SceneTypeEnum.Tower)
 						{
 							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));

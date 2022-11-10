@@ -120,7 +120,6 @@ namespace ET
 					case (int)SceneTypeEnum.TeamDungeon:
 						mapComponent = unit.DomainScene().GetComponent<MapComponent>();
 						sceneTypeEnum = mapComponent.SceneTypeEnum;
-						unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() + 1);
 						mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Team)).InstanceId;
 						//[创建副本Scene]
 						T2M_TeamDungeonEnterResponse createUnit = (T2M_TeamDungeonEnterResponse)await ActorMessageSenderComponent.Instance.Call(

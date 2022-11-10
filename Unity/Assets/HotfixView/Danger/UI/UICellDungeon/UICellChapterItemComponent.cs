@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UICellChapterItemComponent : Entity, IAwake
+    public class UICellChapterItemComponent : Entity, IAwake<GameObject>
     {
 
         public GameObject Image_DI;
@@ -14,16 +14,18 @@ namespace ET
         public GameObject Obj_ShowLv;
         public GameObject ShowTargetPosi;
         public Action<int> ClickHandler;
+        public GameObject GameObject;
 
         public int ChapterId;
     }
 
     [ObjectSystem]
-    public class UICellChapterItemComponentAwakeSystem : AwakeSystem<UICellChapterItemComponent>
+    public class UICellChapterItemComponentAwakeSystem : AwakeSystem<UICellChapterItemComponent,GameObject>
     {
-        public override void Awake(UICellChapterItemComponent self)
+        public override void Awake(UICellChapterItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Image_DI = rc.Get<GameObject>("Image_DI");
             self.UnLock = rc.Get<GameObject>("UnLock");

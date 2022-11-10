@@ -45,8 +45,8 @@ namespace ET
 	{
 		public static void Awake(this FloatTipManager self)
 		{
-			self.floatTipList = new List<UI>();
-			self.WaitFloatTip = new List<FloatTipType>();
+			self.FloatTipList.Clear();
+			self.WaitFloatTip.Clear();
 		}
 
 		public static void OnUpdate(this FloatTipManager self)
@@ -63,17 +63,17 @@ namespace ET
 				}
 			}
 
-			for (int i = self.floatTipList.Count - 1; i >= 0; i--)
+			for (int i = self.FloatTipList.Count - 1; i >= 0; i--)
 			{
-				bool value = self.floatTipList[i].GetComponent<FloatTipComponent>().OnUpdate();
+				bool value = self.FloatTipList[i].OnUpdate();
 				if (value)
 				{
-					self.floatTipList[i].Dispose();
-					self.floatTipList.RemoveAt(i);
+					self.FloatTipList[i].Dispose();
+					self.FloatTipList.RemoveAt(i);
 				}
 			}
 
-			if (self.floatTipList.Count == 0 &&  self.WaitFloatTip.Count == 0)
+			if (self.FloatTipList.Count == 0 &&  self.WaitFloatTip.Count == 0)
 			{
 				TimerComponent.Instance?.Remove(ref self.Timer);
 			}
@@ -90,9 +90,9 @@ namespace ET
 			gotip.transform.localPosition = Vector3.zero;
 			gotip.transform.localScale = Vector3.one;
 
-			UI uiitem = self.AddChild<UI, string, GameObject>( "UITips", gotip);
-			uiitem.AddComponent<FloatTipComponent, string>(tip.tip).CrossFadeAlpha(tip.type);
-			self.floatTipList.Add(uiitem);
+			FloatTipComponent uiitem = self.AddChild<FloatTipComponent, GameObject, string>(gotip, tip.tip);
+			uiitem.CrossFadeAlpha(tip.type);
+			self.FloatTipList.Add(uiitem);
 		}
 		
 		//不带底图的Tips
