@@ -26,12 +26,6 @@ namespace ET
                     EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
 
                     UICommonHelper.UpdateAllNpcBar(unit);
-                    MapComponent mapComponent = unit.ZoneScene().GetComponent<MapComponent>();
-                    if (mapComponent.SceneTypeEnum == SceneTypeEnum.MainCityScene)
-                    {
-                        Camera camera = UIComponent.Instance.MainCamera;
-                        camera.GetComponent<MyCamera_1>().OnUpdate();
-                    }
                 }
             }
             catch (Exception ex)

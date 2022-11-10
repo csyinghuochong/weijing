@@ -63,15 +63,6 @@ namespace ET
 
             self.Img_BuffCD.GetComponent<Image>().fillAmount = (self.BuffTime - leftTime) * 1f /  self.BuffTime;
             leftTime = leftTime / 1000;
-            if (leftTime < 60)
-            {
-                self.showTimeStr = leftTime + GameSettingLanguge.LoadLocalization("秒");
-            }
-            else 
-            {
-                self.showTimeStr = (int)(leftTime / 60+1) + GameSettingLanguge.LoadLocalization("分");
-            }
-
             self.TextLeftTime.GetComponent<Text>().text = self.showTimeStr;
             return leftTime > 0;
         }

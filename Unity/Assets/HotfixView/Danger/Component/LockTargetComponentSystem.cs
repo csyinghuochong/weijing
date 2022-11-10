@@ -28,6 +28,9 @@ namespace ET
         public override void Awake(LockTargetComponent self)
         {
             DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
+
+            Camera camera = UIComponent.Instance.MainCamera;
+            self.MyCamera_1 =  camera.GetComponent<MyCamera_1>();
         }
     }
 
@@ -52,24 +55,31 @@ namespace ET
         {
             Unit haveBoss = null;
             Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            List<Unit> allUnit = main.GetParent<UnitComponent>().GetAll();
-            for (int i = 0; i < allUnit.Count; i++)
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != SceneTypeEnum.MainCityScene)
             {
-                Unit unit = allUnit[i] as Unit;
-                UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-                if (unit.Type != UnitType.Monster)
+                List<Unit> allUnit = main.GetParent<UnitComponent>().GetAll();
+                for (int i = 0; i < allUnit.Count; i++)
                 {
-                    continue;
+                    Unit unit = allUnit[i] as Unit;
+                    if (unit.Type != UnitType.Monster)
+                    {
+                        continue;
+                    }
+                    MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
+                    if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss && PositionHelper.Distance2D(unit, main) < 5f)
+                    {
+                        haveBoss = unit;
+                        break;
+                    }
                 }
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
-                if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss && PositionHelper.Distance2D(unit, main) < 5f)
-                {
-                    haveBoss = unit;
-                    break;
-                }
+                UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                uimain.GetComponent<UIMainComponent>().UIMainHpBar.ShowBossHPBar(haveBoss);
             }
-            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain?.GetComponent<UIMainComponent>().UIMainHpBar.ShowBossHPBar(haveBoss);
+            else
+            {
+                self.MyCamera_1.OnUpdate();
+            }
         }
 
         public static void OnChangeSonScene(this LockTargetComponent self)
