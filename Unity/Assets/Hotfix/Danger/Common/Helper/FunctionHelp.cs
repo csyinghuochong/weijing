@@ -1,10 +1,25 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
 
     public static class FunctionHelp
     {
+
+        public static bool IsInTime(List<int> openTime)
+        {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            int openTime_1 = openTime[0];
+            int openTime_2 = openTime[1];
+            int closeTime_1 = openTime[2];
+            int closeTime_2 = openTime[3];
+            int startTime = openTime_1 * 100 + openTime_2;
+            int endTime = closeTime_1 * 100 + closeTime_2;
+            int curTime = dateTime.Hour * 100 + dateTime.Minute;
+            bool inTime = curTime >= startTime && curTime <= endTime;
+            return inTime;
+        }
         public static int GetOpenTime(int function)
         {
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
