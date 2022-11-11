@@ -24,7 +24,6 @@ namespace ET
             int number = 100000;
             Scene zoneScene = aiComponent.ZoneScene();
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-            await zoneScene.GetComponent<BagComponent>().CheckEquipList();
             Log.ILog.Debug("Behaviour_Stroll: Enter");
             while (number > 0)
             {

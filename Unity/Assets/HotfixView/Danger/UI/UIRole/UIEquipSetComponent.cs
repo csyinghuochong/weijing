@@ -12,6 +12,7 @@ namespace ET
         public List<UIEquipSetItemComponent> EquipList = new List<UIEquipSetItemComponent>();
         public List<int> EquipIdList = new List<int>();
         public int Index;
+        public int Position;
     }
 
     [ObjectSystem]
@@ -39,6 +40,7 @@ namespace ET
             self.RawImage.SetActive(false);
             self.UIModelShowComponent = null;
             self.Index = index;
+            self.Position = index;
         }
     }
 
@@ -52,7 +54,7 @@ namespace ET
             GameObject bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(gameObject, self.RawImage);
-            gameObject.transform.localPosition = new Vector3(index * 1000, 0, 0);
+            gameObject.transform.localPosition = new Vector3(self.Position * 2000, 0, 0);
             gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 70f, 150f);
 
             UI ui = self.AddChild<UI, string, GameObject>( "UIModelShow", gameObject);

@@ -23,6 +23,7 @@
         {
             Scene zoneScene = aiComponent.ZoneScene();
             TeamComponent teamComponent = zoneScene.GetComponent<TeamComponent>();
+            await zoneScene.GetComponent<BagComponent>().CheckEquipList();
             Log.ILog.Debug("Behaviour_TeamDungeon: Enter");
             while (true)
             {

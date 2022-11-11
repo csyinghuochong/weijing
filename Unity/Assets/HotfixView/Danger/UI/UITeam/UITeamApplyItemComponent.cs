@@ -37,11 +37,9 @@ namespace ET
 
     public static class UITeamApplyItemComponentSystem
     {
-
         public static void OnUpdateUI(this UITeamApplyItemComponent self, TeamPlayerInfo teamPlayerInfo)
         {
             self.TeamPlayerInfo = teamPlayerInfo;
-
             self.TextName.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
             self.TextCombat.GetComponent<Text>().text = $"战力：{teamPlayerInfo.Combat}";
             self.TextLevel.GetComponent<Text>().text = $"等级：{teamPlayerInfo.PlayerLv}";

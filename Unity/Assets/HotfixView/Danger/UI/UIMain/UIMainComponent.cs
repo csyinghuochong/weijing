@@ -747,13 +747,7 @@ namespace ET
 
         public static void CheckButtonItem(this UIMainComponent self , GameObject gameObject, int functionId)
         {
-            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(functionId);
-            if (string.IsNullOrEmpty(funtionConfig.OpenTime))
-            {
-                return;
-            }
-
-            bool inTime = TimeHelper.IsInTime(funtionConfig.OpenTime);
+            bool inTime = TimeHelper.IsInTime(FuntionConfigCategory.Instance.OpenTimeList[functionId]);
             switch (functionId)
             {
                 case 1023: //红包
