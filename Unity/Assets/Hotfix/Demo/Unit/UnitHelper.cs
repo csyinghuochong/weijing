@@ -51,6 +51,7 @@ namespace ET
                 Occ = userInfoComponent.UserInfo.Occ,
                 Combat = userInfoComponent.UserInfo.Combat,
                 RobotId = userInfoComponent.UserInfo.RobotId,
+                OccTwo = userInfoComponent.UserInfo.OccTwo, 
             };
         }
 

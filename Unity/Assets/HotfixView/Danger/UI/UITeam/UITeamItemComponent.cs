@@ -11,6 +11,7 @@ namespace ET
         public GameObject TextName;
         public GameObject Text_Wait_2;
         public GameObject TextCombat;
+        public GameObject TextOcc;
 
         public TeamPlayerInfo TeamPlayerInfo;
         public UIModelShowComponent UIModelShowComponent;
@@ -28,6 +29,8 @@ namespace ET
             self.TextName = goParent.transform.Find("TextName").gameObject;
             self.Text_Wait_2 = goParent.transform.Find("Text_Wait_2").gameObject;
             self.TextCombat = goParent.transform.Find("TextCombat").gameObject;
+            self.TextOcc = goParent.transform.Find("TextOcc").gameObject;
+
             self.UIModelShowComponent = null;
             self.OnInitUI(index).Coroutine();
         }
@@ -83,6 +86,16 @@ namespace ET
                 self.TextLevel.GetComponent<Text>().text = $"{teamPlayerInfo.PlayerLv} 级";
                 self.TextName.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
                 self.TextCombat.GetComponent<Text>().text = $"战力: {teamPlayerInfo.Combat}";
+
+                self.TextOcc.SetActive(teamPlayerInfo.Occ!=0 || teamPlayerInfo.OccTwo!=0);
+                if (teamPlayerInfo.Occ != 0)
+                {
+                    self.TextOcc.GetComponent<Text>().text = OccupationConfigCategory.Instance.Get(teamPlayerInfo.Occ).OccupationName;
+                }
+                if (teamPlayerInfo.OccTwo != 0)
+                {
+                    self.TextOcc.GetComponent<Text>().text = OccupationTwoConfigCategory.Instance.Get(teamPlayerInfo.Occ).OccupationName;
+                }
             }
 
             if (teamPlayerInfo != null && self.UIModelShowComponent != null)

@@ -5871,6 +5871,9 @@ namespace ET
 		[ProtoMember(10)]
 		public int RobotId { get; set; }
 
+		[ProtoMember(11)]
+		public int OccTwo { get; set; }
+
 	}
 
 //邀请组队
