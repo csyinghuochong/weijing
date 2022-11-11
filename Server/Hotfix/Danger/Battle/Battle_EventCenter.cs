@@ -71,22 +71,20 @@ namespace ET
                     player.GetComponent<TaskComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
                     player.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
                     player.GetComponent<PetComponent>().OnKillUnit(defendUnit);
-                    UnitFactory.CreateDropItems(defendUnit, player, sceneTypeEnum);
                 }
                 if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
                 {
-                    List<Unit> units = args.UnitAttack.DomainScene().GetComponent<UnitComponent>().GetAll();
+                    List<Unit> units = FubenHelp.GetUnitList(args.UnitAttack.DomainScene(), UnitType.Player);
                     for (int k = 0; k < units.Count; k++)
                     {
-                        if (units[k].Type == UnitType.Player)
-                        {
-                            units[k].GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum,sceneId);
-                        }
+                        units[k].GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
                     }
+                    UnitFactory.CreateDropItems(defendUnit, player, sceneTypeEnum, units.Count);
                 }
                 else if(player != null)
                 {
                     player.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
+                    UnitFactory.CreateDropItems(defendUnit, player, sceneTypeEnum, 1);
                 }
                 switch (sceneTypeEnum)
                 {

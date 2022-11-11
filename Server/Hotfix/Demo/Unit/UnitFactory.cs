@@ -260,7 +260,7 @@ namespace ET
             return unit;
         }
 
-        public static void CreateDropItems(Unit bekill, Unit main, int sceneType)
+        public static void CreateDropItems(Unit bekill, Unit main, int sceneType, int playerNumer)
         {
             if (bekill.Type != UnitType.Monster)
             {
@@ -280,11 +280,11 @@ namespace ET
             {
                 int fubenDifficulty = FubenDifficulty.None;
                 dropAdd_Pro += main.GetComponent<NumericComponent>().GetAsFloat(NumericType.Base_DropAdd_Pro_Add);
-                if (bekill.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
+                if (sceneType == (int)SceneTypeEnum.CellDungeon)
                 {
                     fubenDifficulty = bekill.DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
                 }
-                if (bekill.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+                if (sceneType == (int)SceneTypeEnum.LocalDungeon)
                 {
                     fubenDifficulty = bekill.DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
                 }
@@ -297,6 +297,10 @@ namespace ET
                         dropAdd_Pro += 0.6f;
                         break;
                 }
+            }
+            if (sceneType == SceneTypeEnum.TeamDungeon && playerNumer >= 3)
+            {
+                dropAdd_Pro += 0.3f;
             }
 
             //创建掉落
