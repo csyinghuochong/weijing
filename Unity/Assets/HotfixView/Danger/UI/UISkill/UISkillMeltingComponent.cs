@@ -47,7 +47,11 @@ namespace ET
             self.BagListNode = rc.Get<GameObject>("BagListNode");
 
             self.UIGetItem = self.AddChild<UIItemComponent, GameObject>(rc.Get<GameObject>("UIGetItem"));
-            self.UIGetItem.UpdateItem(new BagInfo() { ItemID = ComHelp.MeltingItemId });
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int makeType = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType);
+
+            self.UIGetItem.UpdateItem(new BagInfo() { ItemID = ComHelp.ReturnMeltingItem(makeType) });
             self.UIGetItem.Label_ItemNum.SetActive(false);
 
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");

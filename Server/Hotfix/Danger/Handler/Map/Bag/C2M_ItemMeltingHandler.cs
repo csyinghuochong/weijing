@@ -15,8 +15,37 @@ namespace ET
             int getItemId = ComHelp.MeltingItemId;
             int getNumber = 1;
 
+
+            //根据不同的专业技能熔炼不同的道具
+            switch (request.MakeType){
+
+                //锻造
+                case 1:
+                    getItemId = 10000144;
+                    break;
+
+                //裁缝
+                case 2:
+                    getItemId = 10000145;
+                    break;
+
+                //炼金
+                case 3:
+                    getItemId = 10000146;
+                    break;
+
+                //附魔
+                case 6:
+                    getItemId = 10000147;
+                    break;
+
+            }
+
             List<long> huishouIdList = request.OperateBagID;
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
+            int minNum = 0;
+            int minMax = 0;
+
             for (int i = 0; i < huishouIdList.Count; i++)
             {
                 BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouIdList[i]);
@@ -25,8 +54,40 @@ namespace ET
                     Log.Info("C2M_ItemMelting无效的物品ID: " + huishouIdList[i]);
                     continue;
                 }
-                
+
                 //to do
+                
+                ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                if (itemCof.ItemQuality >= 4) {
+
+                    if (itemCof.UseLv >= 1 && itemCof.UseLv < 20)
+                    {
+                        minNum = 1;
+                        minMax = 3;
+
+                    } else if (itemCof.UseLv >= 20) {
+
+                        minNum = 1;
+                        minMax = 4;
+
+                    } else if (itemCof.UseLv >= 30) {
+
+                        minNum = 2;
+                        minMax = 4;
+                    }
+                    else if (itemCof.UseLv >= 40)
+                    {
+                        minNum = 2;
+                        minMax = 5;
+                    }
+                    else if (itemCof.UseLv >= 50)
+                    {
+                        minNum = 3;
+                        minMax = 5;
+                    }
+                }
+
+                getNumber += RandomHelper.NextInt(minNum, minMax);
             }
 
             //扣除装备

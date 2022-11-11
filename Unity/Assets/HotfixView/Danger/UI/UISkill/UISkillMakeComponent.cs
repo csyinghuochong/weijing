@@ -132,7 +132,7 @@ namespace ET
 
         public static void OnBtn_Reset(this UISkillMakeComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "制造", "是否重新学习", ()=>
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "遗忘技能", "遗忘后将可以重新学习其他的生活技能，之前学习的所有技能将重置,请谨慎选择", ()=>
             {
                 self.Right.SetActive(false);
                 self.Left.SetActive(false);

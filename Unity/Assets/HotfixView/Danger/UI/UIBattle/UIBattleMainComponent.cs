@@ -72,7 +72,7 @@ namespace ET
                 return;
             }
             self.CDTime-=1000;
-            self.CountDownTime.text = TimeHelper.ShowLeftTime(self.CDTime);
+            self.CountDownTime.text = "倒计时: " + TimeHelper.ShowLeftTime(self.CDTime);
         }
 
         public static void OnUpdateUI(this UIBattleMainComponent self, M2C_BattleInfoResult message)
