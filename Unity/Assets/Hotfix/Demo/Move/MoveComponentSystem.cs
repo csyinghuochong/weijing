@@ -179,10 +179,6 @@ namespace ET
                 {
                     return;
                 }
-                if (self.N >= self.Targets.Count)
-                {
-                    Log.Info($"MoveError {self.GetParent<Unit>().Type} {self.N } {self.Targets.Count}");
-                }
 
                 // 如果是最后一个点
                 if (self.N >= self.Targets.Count - 1)
