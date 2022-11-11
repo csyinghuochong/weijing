@@ -1131,7 +1131,8 @@ message M2C_ItemHuiShouResponse // IActorLocationResponse
 message C2M_ItemMeltingRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
-	repeated int64 OperateBagID = 2;				
+	repeated int64 OperateBagID = 2;		
+	int32 MakeType = 3;
 }
 
 message M2C_ItemMeltingResponse // IActorLocationResponse

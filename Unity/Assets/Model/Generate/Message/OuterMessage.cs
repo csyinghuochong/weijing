@@ -2430,6 +2430,9 @@ namespace ET
 		[ProtoMember(2)]
 		public List<long> OperateBagID = new List<long>();
 
+		[ProtoMember(3)]
+		public int MakeType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_ItemMeltingResponse)]
