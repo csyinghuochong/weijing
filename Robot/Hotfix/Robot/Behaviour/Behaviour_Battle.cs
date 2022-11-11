@@ -21,6 +21,7 @@
         {
             Scene zoneScene = aiComponent.ZoneScene();
             Log.ILog.Debug("Behaviour_Battle: Enter");
+            await zoneScene.GetComponent<BagComponent>().CheckEquipList();
             while (true)
             {
                 int errorCode = await BattleHelper.OnRobotEnter(zoneScene);
