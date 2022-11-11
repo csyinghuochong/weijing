@@ -89,6 +89,7 @@ namespace ET
         public static async ETTask OnBattleOpen(this ActivitySceneComponent self)
         {
             self.OnBattleOpen = true;
+            self.OnBattleClose = false;
 
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
             MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOpen });
@@ -101,6 +102,7 @@ namespace ET
         public static  async ETTask OnBattleClose(this ActivitySceneComponent self)
         {
             self.OnBattleClose = true;
+            self.OnBattleOpen = false;
 
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
             MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleClose });
