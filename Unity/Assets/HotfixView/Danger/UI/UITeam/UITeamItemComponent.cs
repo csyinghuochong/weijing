@@ -94,7 +94,7 @@ namespace ET
                 }
                 if (teamPlayerInfo.OccTwo != 0)
                 {
-                    self.TextOcc.GetComponent<Text>().text = OccupationTwoConfigCategory.Instance.Get(teamPlayerInfo.Occ).OccupationName;
+                    self.TextOcc.GetComponent<Text>().text = OccupationTwoConfigCategory.Instance.Get(teamPlayerInfo.OccTwo).OccupationName;
                 }
             }
 
