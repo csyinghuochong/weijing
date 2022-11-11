@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Assets\Model\Demo\Move\MoveComponent.cs" />
     <Compile Include="Assets\Model\Core\Object\IUpdateSystem.cs" />
+    <Compile Include="Assets\Model\Generate\ConfigPartial\FuntionConfig.cs" />
     <Compile Include="Assets\Model\Generate\Config\CampRewardConfig.cs" />
     <Compile Include="Assets\Model\Generate\Config\DungeonSectionConfig.cs" />
     <Compile Include="Assets\Model\Core\Entity\EntitySceneFactory.cs" />
