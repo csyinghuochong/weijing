@@ -22,7 +22,6 @@ namespace ET
             }
             aiComponent.TargetID = 0;
             aiComponent.IsRetreat = true;
-            unit.Stop(0);
             Vector3 bornVector3 = unit.GetBornPostion();
 
             while (true)

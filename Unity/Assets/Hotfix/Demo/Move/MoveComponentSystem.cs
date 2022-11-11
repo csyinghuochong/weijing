@@ -64,7 +64,7 @@ namespace ET
             {
                 return false;
             }
-            
+
             Unit unit = self.GetParent<Unit>();
 
             using (ListComponent<Vector3> path = ListComponent<Vector3>.Create())
@@ -178,6 +178,10 @@ namespace ET
                 if (moveTime < 0)
                 {
                     return;
+                }
+                if (self.N >= self.Targets.Count)
+                {
+                    Log.Info($"MoveError {self.GetParent<Unit>().Type} {self.N } {self.Targets.Count}");
                 }
 
                 // 如果是最后一个点

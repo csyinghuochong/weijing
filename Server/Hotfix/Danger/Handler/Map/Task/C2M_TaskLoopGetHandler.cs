@@ -46,6 +46,13 @@ namespace ET
                     allTaskIds.Add(item.Key);
                 }
             }
+            if (allTaskIds.Count == 0)
+            {
+                response.Error = ErrorCore.ERR_LevelNoEnough;
+                reply();
+                return;
+            }
+                
             int taskId = allTaskIds[RandomHelper.RandomNumber(0, allTaskIds.Count)];
             taskPro = taskComponent.OnGetTask(taskId);
             response.TaskLoop = taskPro;

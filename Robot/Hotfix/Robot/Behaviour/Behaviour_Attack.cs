@@ -52,6 +52,12 @@ namespace ET
                 {
                     int[] weights = new int[] { 70, 10, 30};
                     int index = RandomHelper.RandomByWeight(weights);
+                    if (zoneScene.GetComponent<AttackComponent>() == null)
+                    {
+                        Log.Debug($"AttackComponent == null {zoneScene.Id}:{zoneScene.IsDisposed}");
+                        Log.Debug($"AttackComponent == null {zoneScene.GetComponent<UserInfoComponent>()!=null}");
+                        return;
+                    }
                     if (index == 0)
                     {
                         zoneScene.GetComponent<AttackComponent>().AutoAttack_1(unit, target);

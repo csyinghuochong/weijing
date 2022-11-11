@@ -98,6 +98,7 @@ namespace ET
             }
 
             unit.ZoneScene().GetComponent<SkillIndicatorComponent>().OnSelfDead();
+            unit.ZoneScene().GetComponent<LockTargetComponent>().LastLockId = 0;
             UI uI =await UIHelper.Create(unit.ZoneScene(), UIType.UICellDungeonRevive);
             uI.GetComponent<UICellDungeonReviveComponent>().OnInitUI(mapComponent.SceneTypeEnum);
         }

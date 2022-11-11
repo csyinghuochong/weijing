@@ -302,10 +302,6 @@ namespace ET
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
             self.InterruptSkill(skillcmd.SkillID);
-            if (unit.Type == UnitType.Player)
-            {
-                unit.Stop(-1);
-            }
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             int EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;

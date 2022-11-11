@@ -55,8 +55,8 @@
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{
-			float speed = args.Parent.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-			args.Parent.GetComponent<MoveComponent>().ChangeSpeed(speed);
+			//float speed = args.Parent.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+			//args.Parent.GetComponent<MoveComponent>().ChangeSpeed(speed);
 		}
 	}
 }
