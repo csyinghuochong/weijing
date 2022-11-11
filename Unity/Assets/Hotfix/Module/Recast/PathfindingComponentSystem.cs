@@ -11,13 +11,7 @@ namespace ET
         {
             public override void Awake(PathfindingComponent self, string name)
             {
-                //self.Name = name;
-                //self.NavMesh = NavmeshComponent.Instance.Get(name);
-
-                //if (self.NavMesh == 0)
-                //{
-                //    throw new Exception($"nav load fail: {name}");
-                //}
+                //self.Update(name);
             }
         }
 
@@ -162,13 +156,13 @@ namespace ET
         }
         public static void Update(this PathfindingComponent self, string name)
         {
-            //self.Name = name;
-            //self.NavMesh = NavmeshComponent.Instance.Get(name);
+            self.Name = name;
+            self.NavMesh = NavmeshComponent.Instance.Get(name);
 
-            //if (self.NavMesh == 0)
-            //{
-            //    throw new Exception($"nav load fail: {name}");
-            //}
+            if (self.NavMesh == 0)
+            {
+                throw new Exception($"nav load fail: {name}");
+            }
         }
     }
 }
