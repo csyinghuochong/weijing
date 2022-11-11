@@ -2776,6 +2776,7 @@ message TeamPlayerInfo
 	int64 Combat = 7;
 	int32 Occ = 8;
 	int32 InFuben = 9;
+	int32 RobotId = 10;
 }
 
 //邀请组队

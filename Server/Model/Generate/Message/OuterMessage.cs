@@ -5868,6 +5868,9 @@ namespace ET
 		[ProtoMember(9)]
 		public int InFuben { get; set; }
 
+		[ProtoMember(10)]
+		public int RobotId { get; set; }
+
 	}
 
 //邀请组队

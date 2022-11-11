@@ -50,9 +50,9 @@ namespace ET
                 return ErrorCore.ERR_Success;
             }
 
-            C2T_TeamDungeonAgreeRequest c2M_SkillSet = new C2T_TeamDungeonAgreeRequest() { TeamId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId, TeamPlayerInfo = m2C_Team };
-            T2C_TeamDungeonAgreeResponse m2C_SkillSet = (T2C_TeamDungeonAgreeResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
-            return m2C_SkillSet.Error;
+            C2T_TeamDungeonAgreeRequest request = new C2T_TeamDungeonAgreeRequest() { TeamId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId, TeamPlayerInfo = m2C_Team };
+            T2C_TeamDungeonAgreeResponse repose = (T2C_TeamDungeonAgreeResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
+            return repose.Error;
         }
 
         public static async ETTask SendLeaveRequest(this TeamComponent self)
@@ -117,13 +117,13 @@ namespace ET
 
                 }
 
-                C2T_TeamDungeonApplyRequest c2M_ItemHuiShouRequest = new C2T_TeamDungeonApplyRequest()
+                C2T_TeamDungeonApplyRequest request = new C2T_TeamDungeonApplyRequest()
                 {
                     TeamId = teamId,
                     TeamPlayerInfo = UnitHelper.GetSelfTeamPlayerInfo(self.ZoneScene())
                 };
-                T2C_TeamDungeonApplyResponse r2c_roleEquip = (T2C_TeamDungeonApplyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
-                return r2c_roleEquip.Error;
+                T2C_TeamDungeonApplyResponse response = (T2C_TeamDungeonApplyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
+                return response.Error;
             }
             catch (Exception e)
             {

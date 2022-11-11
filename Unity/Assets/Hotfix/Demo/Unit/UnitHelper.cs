@@ -49,7 +49,8 @@ namespace ET
                 PlayerName = userInfoComponent.UserInfo.Name,
                 WeaponId = bagInfo != null ? bagInfo.ItemID : 0,
                 Occ = userInfoComponent.UserInfo.Occ,
-                Combat = zoneScene.GetComponent<UserInfoComponent>().UserInfo.Combat,
+                Combat = userInfoComponent.UserInfo.Combat,
+                RobotId = userInfoComponent.UserInfo.RobotId,
             };
         }
 
