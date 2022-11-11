@@ -329,7 +329,7 @@ namespace ET
                     saveValue = self.UserInfo.HuoYue.ToString();
                     break;
                 case UserDataType.DungeonTimes:
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, 0);
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() - 1);
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.BattleNumber, 0);
                     break;
                 case UserDataType.Union:
