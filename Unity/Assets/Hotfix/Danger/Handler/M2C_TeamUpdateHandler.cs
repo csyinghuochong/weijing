@@ -11,7 +11,7 @@ namespace ET
             TeamComponent teamComponent = session.ZoneScene().GetComponent<TeamComponent>();
             teamComponent.OnRecvTeamUpdate(message);
 
-#if !SERVER && NOT_UNITY 
+#if !SERVER && NOT_UNITY
             TeamInfo teamInfo = session.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
             if (teamInfo == null)
             {
@@ -19,12 +19,7 @@ namespace ET
                 session.ZoneScene().Dispose();  
             }
 #else
-            TeamInfo teamInfo = session.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
-            if (teamInfo == null)
-            {
-                Log.Debug("队伍解算");
-                session.ZoneScene().Dispose();  
-            }
+            Log.Debug("队伍解算");
 #endif
         }
 
