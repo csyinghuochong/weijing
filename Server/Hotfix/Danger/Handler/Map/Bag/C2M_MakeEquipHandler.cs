@@ -84,7 +84,9 @@ namespace ET
                 response.NewMakeId = newMakeId;
             }
 
-            if (equipMakeConfig.ProficiencyType != 4)
+            if (equipMakeConfig.ProficiencyType != 4 
+                && equipMakeConfig.ProficiencyValue!=null 
+                && equipMakeConfig.ProficiencyValue.Length > 1)
             {
                 int curShuLian = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
                 int addShuLian = RandomHelper.RandomNumber(equipMakeConfig.ProficiencyValue[0], equipMakeConfig.ProficiencyValue[1]);

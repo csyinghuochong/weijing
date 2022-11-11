@@ -44,8 +44,11 @@ namespace ET
                 m2CPathfindingResult.Zs.Add(vector3.z);
             }
 
+            if (path.Count < 2)
+            {
+                Log.Info("path.Count < 2");
+            }
             MessageHelper.Broadcast(unit, m2CPathfindingResult);
-
             bool ret = await unit.GetComponent<MoveComponent>().MoveToAsync(path, speed, 100, cancellationToken);
             if (ret) // 如果返回false，说明被其它移动取消了，这时候不需要通知客户端stop
             {

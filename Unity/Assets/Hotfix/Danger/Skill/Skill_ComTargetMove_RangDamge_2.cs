@@ -1,8 +1,4 @@
-﻿using ET;
-using UnityEngine;
-using System.Collections.Generic;
-
-namespace ET
+﻿namespace ET
 {
 
     //子弹2
