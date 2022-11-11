@@ -87,6 +87,10 @@
             <Link>Config\%(RecursiveDir)%(FileName)%(Extension)</Link>
         </Compile>
 
+		<Compile Include="..\..\Server\Hotfix\Danger\Handler\M2A_ReloadHandler.cs">
+			<Link>Handler\M2A_ReloadHandler.cs</Link>
+		</Compile>
+		
 		<Compile Include="..\..\Unity\Assets\Hotfix\Danger\Skill\**\*.cs">
 			<Link>Danger\Skill\%(RecursiveDir)%(FileName)%(Extension)</Link>
 		</Compile>

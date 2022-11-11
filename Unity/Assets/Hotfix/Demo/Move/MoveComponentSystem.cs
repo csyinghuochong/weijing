@@ -175,8 +175,19 @@ namespace ET
                 {
                     return;
                 }
-                
+
                 // 到这里说明这个点已经走完
+                //出错了
+                if (self.N >= self.Targets.Count)
+                {
+                    Log.Error($"MoveError {self.N} {self.Targets.Count}");
+                    Action<bool> callback = self.Callback;
+                    self.Callback = null;
+
+                    self.Clear();
+                    callback?.Invoke(!needCancel);
+                    return;
+                }
                 
                 // 如果是最后一个点
                 if (self.N >= self.Targets.Count - 1)

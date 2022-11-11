@@ -42,6 +42,7 @@ namespace ET
                     }
                     break;
                 case 3:
+#if SERVER
                     if (string.IsNullOrEmpty(request.LoadValue))
                     {
                         Game.Scene.GetComponent<RecastPathComponent>().OnLoad();
@@ -50,6 +51,7 @@ namespace ET
                     {
                         Game.Scene.GetComponent<RecastPathComponent>().OnLoadSingle(int.Parse(request.LoadValue));
                     }
+#endif
                     break;
             }
 
