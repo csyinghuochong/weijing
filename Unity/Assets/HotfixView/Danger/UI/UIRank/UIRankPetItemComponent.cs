@@ -56,7 +56,7 @@ namespace ET
 
                 PetConfig petConfig = PetConfigCategory.Instance.Get(rankPetInfo.PetConfigId[i]);
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
-                self.ImageIconList[i].GetComponent<Image>().sprite = sp;
+                self.ImageIconList[number].GetComponent<Image>().sprite = sp;
 
                 self.Lab_PaiMing.GetComponent<Text>().text = rankPetInfo.RankId.ToString();
                 number++;
