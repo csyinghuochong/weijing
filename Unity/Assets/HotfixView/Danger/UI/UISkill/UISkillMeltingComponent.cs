@@ -134,7 +134,9 @@ namespace ET
             {
                 return;
             }
-            C2M_ItemMeltingRequest request = new C2M_ItemMeltingRequest() { OperateBagID = huishouList };
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int makeId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType);
+            C2M_ItemMeltingRequest request = new C2M_ItemMeltingRequest() { OperateBagID = huishouList, MakeType = makeId };
             M2C_ItemMeltingResponse response = (M2C_ItemMeltingResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
 
             self.OnUpdateUI();
