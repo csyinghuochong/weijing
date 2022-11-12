@@ -44,7 +44,7 @@ namespace ET
                     }
                     break;
                 case NoticeType.BattleClose:
-                    List<Entity> ts = robotManagerComponent.Children.Values.ToList();
+                    ts = robotManagerComponent.Children.Values.ToList();
                     for (int i = 0; i < ts.Count; i++)
                     {
                         Scene robotScene = ts[i] as Scene;
@@ -52,8 +52,8 @@ namespace ET
                         {
                             continue;
                         }
+                        robotManagerComponent.RemoveRobot(robotScene);
                         robotScene.Dispose();
-                        robotManagerComponent.ZoneIndex--;  
                         await TimerComponent.Instance.WaitFrameAsync();
                     }
                     break;

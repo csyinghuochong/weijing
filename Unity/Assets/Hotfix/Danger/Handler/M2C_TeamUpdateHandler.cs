@@ -16,6 +16,8 @@ namespace ET
             if (teamInfo == null)
             {
                 Log.Debug("队伍解算");
+                RobotManagerComponent robotManager = session.ZoneScene().GetParent<RobotManagerComponent>();
+                robotManager.RemoveRobot(session.ZoneScene());
                 session.ZoneScene().Dispose();  
             }
 #else

@@ -17,6 +17,11 @@ namespace ET
     public static class RobotManagerComponentSystem
     {
 
+        public static void RemoveRobot(this RobotManagerComponent self, Scene robotScene)
+        {
+            self.ZoneIndex--;
+        }
+
         public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone, int robotZone, int robotId)
         {
             Scene zoneScene = null;
@@ -25,17 +30,7 @@ namespace ET
                 //同一个进程robotZone是自增的
                 zoneScene = SceneFactory.CreateZoneScene(robotZone, "Robot", self);
 
-                int number = 1;
-                if (!self.RobotList.ContainsKey(robotId))
-                {
-                    self.RobotList.Add(robotId, 1);
-                }
-                else
-                {
-                    number = ++self.RobotList[robotId];
-                }
-
-                string account = $"{robotId}_{zone}_{number}_abe";
+                string account = $"{robotId}_{zone}_{robotZone}_abe";
                 Log.Debug($"NewRobot  :{robotZone}  {account}");
                 bool innernet = ComHelp.IsInnerNet();
                 int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, ComHelp.RobotPassWord);
