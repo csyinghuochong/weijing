@@ -24,7 +24,7 @@ namespace ET
         public void OnLoadGameObject(GameObject gameObject, long instanceId)
         {
             this.EffectObj = gameObject;
-            if (this.EffectData == null || gameObject == null)
+            if (this.EffectData == null || gameObject == null || instanceId!=this.InstanceId)
             {
                 this.EffectState = BuffState.Finished;
             }

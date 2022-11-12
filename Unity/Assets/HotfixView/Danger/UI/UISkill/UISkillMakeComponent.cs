@@ -209,6 +209,10 @@ namespace ET
             string[] needList = neadItems.Split('@');
             for (int i = 0; i < needList.Length; i++)
             {
+                if (ComHelp.IfNull(needList[i]))
+                {
+                    continue;
+                }
                 string[] itemInfo = needList[i].Split(';');
                 int itemId = int.Parse(itemInfo[0]);
                 int itemNum = int.Parse(itemInfo[1]);
