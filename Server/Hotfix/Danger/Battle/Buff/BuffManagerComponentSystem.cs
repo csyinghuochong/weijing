@@ -249,11 +249,12 @@ namespace ET
             for (int i = 0; i < self.m_Buffs.Count; i++)
             {
                 BuffHandler buffHandler = self.m_Buffs[i];
-                if (buffHandler.BuffData.BuffConfig == null)
+                SkillBuffConfig skillBuffConfig = buffHandler.BuffData.BuffConfig;
+                if (skillBuffConfig == null || skillBuffConfig.Id < 10) //子弹
                 {
                     continue;
                 }
-                self.Buffs.Add(new KeyValuePair() { KeyId = buffHandler.BuffData.BuffConfig.Id, Value2 = buffHandler.BuffEndTime.ToString() });
+                self.Buffs.Add(new KeyValuePair() { KeyId = skillBuffConfig.Id, Value2 = buffHandler.BuffEndTime.ToString() });
             }
             return self.Buffs;
         }

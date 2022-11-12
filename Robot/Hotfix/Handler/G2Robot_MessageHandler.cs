@@ -14,6 +14,9 @@ namespace ET
             switch (message.MessageType)
             {
                 case NoticeType.TeamDungeon:
+                    List<Entity> ts = robotManagerComponent.Children.Values.ToList();
+                    Log.Debug($"机器人数量:{ts.Count}");
+
                     for (int i = 0; i < 2; i++)
                     {
                         int robotZone = robotManagerComponent.ZoneIndex++;
@@ -28,7 +31,7 @@ namespace ET
                     }
                     break;
                 case NoticeType.BattleOpen:
-                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, message.Zone))
                     {
                         for (int i = 0; i < 10; i++)
                         {

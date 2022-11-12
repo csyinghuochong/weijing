@@ -14,7 +14,7 @@ namespace ET
 
             OnExecute();
 
-            int fubenDifficulty = UnitHelper.GetSceneType(theUnitFrom);
+            int fubenDifficulty = UnitHelper.GetFubenDifficulty(theUnitFrom);
             //获取参数
             string[] summonParList = SkillConfigCategory.Instance.Get(skillId.WeaponSkillID).GameObjectParameter.Split('@');
             for (int y = 0; y < summonParList.Length; y++) {

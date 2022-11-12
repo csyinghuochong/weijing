@@ -6,7 +6,7 @@ namespace ET
 {
     public static class UnitHelper
     {
-        public static int GetSceneType(Unit unit)
+        public static int GetFubenDifficulty(Unit unit)
         {
             int fubenDifficulty = FubenDifficulty.None;
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();

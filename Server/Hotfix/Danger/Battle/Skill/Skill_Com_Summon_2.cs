@@ -13,7 +13,7 @@ namespace ET
 
             OnExecute();
 
-            int fubenDifficulty = UnitHelper.GetSceneType(theUnitFrom);
+            int fubenDifficulty = UnitHelper.GetFubenDifficulty(theUnitFrom);
 
             //'90000001;1;1;1;0.5,0.5,0.5,0.5,0.5;0,0,0,0,0
             //召唤ID；是否复刻玩家形象（0不是，1是）；范围；数量；血量比例,攻击比例,魔法比例,物防比例，魔防比例；血量固定值,攻击固定值，魔法固定值，物防固定值，魔防固定值
