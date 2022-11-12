@@ -170,10 +170,6 @@ namespace ET
 				{
 					for (int c = 0; c < int.Parse(mcount[0]); c++)
 					{
-						if (instanceId != scene.InstanceId)
-						{
-							return;
-						}
 
 						MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(int.Parse(monsterid[0]));
 						Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));

@@ -261,7 +261,10 @@ namespace ET
 
         public void UpdateAI()
         {
-            UpdateShow();
+            if (this.ObjName != null)
+            {
+                UpdateShow();
+            }
         }
 
         public void UpdateBlood()

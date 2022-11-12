@@ -7,6 +7,25 @@ namespace ET
     public static class MergeZoneHelper
     {
 
+        public static async ETTask QueryAccount(int newzone, long userid)
+        {
+            ListComponent<int> mergezones = new ListComponent<int>() { newzone };
+            for (int i = 0; i < mergezones.Count; i++)
+            {
+                var startZoneConfig = StartZoneConfigCategory.Instance.Get(mergezones[i]);
+                Game.Scene.GetComponent<DBComponent>().InitDatabase(startZoneConfig);
+            }
+
+            List<DBAccountInfo> dBAccountInfos_new = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(newzone, d => d.Id > 0);
+            foreach (var entity in dBAccountInfos_new)
+            {
+                if (entity.UserList.Contains(userid))
+                {
+                    Log.Debug(entity.Account);
+                }
+            }
+        }
+
         public static async ETTask MergeZone(int oldzone, int newzone)
         {
             ListComponent<int> mergezones = new ListComponent<int>() { oldzone, newzone };
