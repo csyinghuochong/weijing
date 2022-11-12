@@ -90,7 +90,7 @@ namespace libx
                     break;
             }
 
-            var rules = GetBuildRules();
+            BuildRules rules = GetBuildRules();
             BuildRules.nameByHash = hash;
             rules.Apply();
         }

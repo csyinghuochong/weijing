@@ -96,7 +96,7 @@ namespace libx
 
     public class BuildRules : ScriptableObject
     {
-        private readonly Dictionary<string, string> _asset2Bundles = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> _asset2Bundles = new Dictionary<string, string>();  //key是路径  value是路径的hash值
         private readonly Dictionary<string, string[]> _conflicted = new Dictionary<string, string[]>();
         private readonly List<string> _duplicated = new List<string>();
         private readonly Dictionary<string, HashSet<string>> _tracker = new Dictionary<string, HashSet<string>>();
