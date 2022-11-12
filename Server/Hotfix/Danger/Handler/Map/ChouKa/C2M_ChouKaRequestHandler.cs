@@ -49,7 +49,7 @@ namespace ET
             }
             else
             {
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (needZuanshi * -1).ToString()).Coroutine();
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (needZuanshi * -1).ToString());
             }
             if (request.ChouKaType == 10)
             {

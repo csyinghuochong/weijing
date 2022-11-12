@@ -54,8 +54,8 @@ namespace ET
                 return;
             }
 
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Gold, (equipMakeConfig.MakeNeedGold * -1).ToString()).Coroutine();
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Vitality, (equipMakeConfig.CostVitality * -1).ToString()).Coroutine();
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Gold, (equipMakeConfig.MakeNeedGold * -1).ToString());
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Vitality, (equipMakeConfig.CostVitality * -1).ToString());
             if (request.BagInfoID == 0)
             {
                 unit.GetComponent<UserInfoComponent>().OnMakeItem(equipMakeConfig.Id);

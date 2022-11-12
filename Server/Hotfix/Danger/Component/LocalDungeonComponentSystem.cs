@@ -58,7 +58,7 @@ namespace ET
             if (killNumber >= 4)
             {
                 numericComponent.ApplyValue(NumericType.TiLiKillNumber, 0, false);
-                self.MainUnit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.PiLao, "-1", true).Coroutine();
+                self.MainUnit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.PiLao, "-1", true);
             }
             else
             {

@@ -24,7 +24,6 @@
                 TeamSceneComponent teamSceneComponent = scene.GetParent<TeamSceneComponent>();
                 teamSceneComponent.OnUnitReturn(scene, userId);
             }
-            await ETTask.CompletedTask;
         }
 
         public static async void LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty = 0)

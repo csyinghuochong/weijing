@@ -25,13 +25,13 @@ namespace ET
 			switch (request.OperationType)
 			{
 				case 1:
-					userInfoComponent.UpdateRoleData(UserDataType.Diamond, (needGold * -1).ToString()).Coroutine();
-					userInfoComponent.UpdateRoleData(UserDataType.Sp, (level - sp - 1).ToString()).Coroutine();
+					userInfoComponent.UpdateRoleData(UserDataType.Diamond, (needGold * -1).ToString());
+					userInfoComponent.UpdateRoleData(UserDataType.Sp, (level - sp - 1).ToString());
 					unit.GetComponent<SkillSetComponent>().OnSkillReset();
 					break;
 				case 2:
 					sp =unit.GetComponent<SkillSetComponent>().OnOccReset();
-					userInfoComponent.UpdateRoleData(UserDataType.Sp, sp.ToString()).Coroutine();
+					userInfoComponent.UpdateRoleData(UserDataType.Sp, sp.ToString());
 					break;
 			}
 

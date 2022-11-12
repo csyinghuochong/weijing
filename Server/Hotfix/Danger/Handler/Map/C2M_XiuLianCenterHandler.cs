@@ -24,7 +24,7 @@ namespace ET
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.XiuLian_ExpTime, TimeHelper.ServerNow());
                 float coefficient = float.Parse(GlobalValueConfigCategory.Instance.Get(29).Value);
                 int addValue = Mathf.CeilToInt(coefficient * level);
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Exp, addValue.ToString()).Coroutine();
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Exp, addValue.ToString());
             }
             if (request.XiuLianType == 2)
             {
@@ -38,7 +38,7 @@ namespace ET
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.XiuLian_CoinTime, TimeHelper.ServerNow());
                 float coefficient = float.Parse(GlobalValueConfigCategory.Instance.Get(30).Value);
                 int addValue = Mathf.CeilToInt(coefficient * level);
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, addValue.ToString()).Coroutine();
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, addValue.ToString());
                 Log.Debug($"Gold:  {unit.Id} {addValue} xiuliancenter");
             }
             reply();

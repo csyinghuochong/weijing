@@ -42,8 +42,8 @@ namespace ET
 			}
 	
 			response.NewSkillID = nextSkillID;
-			await unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (costGoldValue*-1).ToString());
-			await unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Sp, (costSPValue * -1).ToString());
+			unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (costGoldValue*-1).ToString());
+			unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Sp, (costSPValue * -1).ToString());
 
 			//测试跑马灯
 			//string text = "";
@@ -60,6 +60,7 @@ namespace ET
 			//	(mailServerId, new M2E_EMailSendRequest() {  Id = unit.GetComponent<UnitInfoComponent>().UserID });
 
 			reply();
+			await ETTask.CompletedTask;
 		}
 
 	}

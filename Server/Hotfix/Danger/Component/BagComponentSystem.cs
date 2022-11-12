@@ -484,7 +484,7 @@ namespace ET
                 }
                 if (userDataType != UserDataType.None)
                 {
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(userDataType, leftNum.ToString()).Coroutine();
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(userDataType, leftNum.ToString());
                     continue;
                 }
 
@@ -742,19 +742,19 @@ namespace ET
                 if (itemID == (int)UserDataType.Gold)
                 {
                     itemNum = -1 * itemNum;
-                    self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, itemNum.ToString()).Coroutine();
+                    self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, itemNum.ToString());
                     continue;
                 }
                 if (itemID == (int)UserDataType.Diamond)
                 {
                     itemNum = -1 * itemNum;
-                    self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, itemNum.ToString()).Coroutine();
+                    self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, itemNum.ToString());
                     continue;
                 }
                 if (itemID == (int)UserDataType.RongYu)
                 {
                     itemNum = -1 * itemNum;
-                    self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.RongYu, itemNum.ToString()).Coroutine();
+                    self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.RongYu, itemNum.ToString());
                     continue;
                 }
 

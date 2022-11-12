@@ -42,7 +42,7 @@ namespace ET
                 bool success = unit.GetComponent<BagComponent>().OnCostItemData(costItems);
                 if (success)
                 {
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Gold, (equipMakeConfig.LearnGoldValue * -1).ToString()).Coroutine();
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (equipMakeConfig.LearnGoldValue * -1).ToString());
                     unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(request.MakeId);
                 }
                 else

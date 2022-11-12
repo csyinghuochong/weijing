@@ -27,10 +27,10 @@ namespace ET
             //开启月卡
             unit.UpdateYueKaTimes();
 
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (cost * -1).ToString()).Coroutine();
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (cost * -1).ToString());
 
             long addPilao = int.Parse(GlobalValueConfigCategory.Instance.Get(26).Value) - int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.PiLao, addPilao.ToString()).Coroutine();
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.PiLao, addPilao.ToString());
 
             reply();
             await ETTask.CompletedTask;

@@ -12,7 +12,7 @@ namespace ET
         {
             if (StringHelper.IsSafeSqlString(request.NewName))
             {
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Name, request.NewName).Coroutine();
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Name, request.NewName);
 
                 M2C_RoleDataBroadcast m2C_BroadcastRoleData = new M2C_RoleDataBroadcast();
                 m2C_BroadcastRoleData.UnitId = unit.Id;

@@ -39,7 +39,7 @@ namespace ET
                     PaiMaiItemInfo = request.PaiMaiItemInfo
                 });
 
-            await unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (needGold * -1).ToString());
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (needGold * -1).ToString());
 
             //背包添加道具
             unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo, $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");

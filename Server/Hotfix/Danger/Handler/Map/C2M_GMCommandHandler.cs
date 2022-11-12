@@ -63,7 +63,7 @@ namespace ET
 				if (message.GMMsg == "#resetlv")
 				{
 					int level = unit.GetComponent<UserInfoComponent>().UserInfo.Lv - 1;
-					unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Lv, (level*-1).ToString()).Coroutine();
+					unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Lv, (level*-1).ToString());
 					return;
 				}
 				if (message.GMMsg == "#killall")
@@ -160,7 +160,7 @@ namespace ET
 					case 6:
 						int newLevel = int.Parse(commands[1]);
 						int level = newLevel - unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-						unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Lv, level.ToString()).Coroutine();
+						unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Lv, level.ToString());
 						break;
 					case 7:
 						long userID = long.Parse(commands[1]);

@@ -30,7 +30,7 @@ namespace ET
                 reply();
                 return;
             }
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (needCost * -1).ToString()).Coroutine();
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (needCost * -1).ToString());
             List<int> weights = new List<int>();
             List<int> petlists = new List<int>();
             for (int i = 2; i < petinfos.Length; i++)

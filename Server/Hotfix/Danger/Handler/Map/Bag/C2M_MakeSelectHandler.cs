@@ -19,7 +19,7 @@ namespace ET
                     reply();
                     return;
                 }
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Diamond,(cost* -1).ToString() ).Coroutine();
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Diamond,(cost* -1).ToString() );
             }
 
             unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Clear();

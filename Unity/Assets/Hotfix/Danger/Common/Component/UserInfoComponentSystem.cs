@@ -53,8 +53,8 @@ namespace ET
             LingDiConfig lingDiConfig = LingDiConfigCategory.Instance.Get(lingdiLv);
 
             //unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Exp, (coefficient *lingDiConfig.HoureExp).ToString(), notice).Coroutine();
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.FangRong, (coefficient * lingDiConfig.HoureExp).ToString(), notice).Coroutine();
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.RongYu, (coefficient * lingDiConfig.HoureHonor).ToString(), notice).Coroutine();
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.FangRong, (coefficient * lingDiConfig.HoureExp).ToString(), notice);
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.RongYu, (coefficient * lingDiConfig.HoureHonor).ToString(), notice);
         }
 
         public static void OpenAll(this UserInfoComponent self)
@@ -175,14 +175,14 @@ namespace ET
         {
             long recoverPiLao = self.GetParent<Unit>().GetMaxPiLao() - self.UserInfo.PiLao;
             recoverPiLao = Math.Min(recoverPiLao, addValue);
-            self.UpdateRoleData(UserDataType.PiLao, recoverPiLao.ToString(), notice).Coroutine();
+            self.UpdateRoleData(UserDataType.PiLao, recoverPiLao.ToString(), notice);
         }
 
         public static void OnZeroClockUpdate(this UserInfoComponent self, bool notice)
         {
             int updatevalue = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value) - self.UserInfo.Vitality;
-            self.UpdateRoleData(UserDataType.Vitality, updatevalue.ToString(), notice).Coroutine();
-            self.UpdateRoleData(UserDataType.HuoYue, (0 - self.UserInfo.HuoYue).ToString(), notice).Coroutine();
+            self.UpdateRoleData(UserDataType.Vitality, updatevalue.ToString(), notice);
+            self.UpdateRoleData(UserDataType.HuoYue, (0 - self.UserInfo.HuoYue).ToString(), notice);
             self.GetParent<Unit>().GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1,  notice);
             self.UserInfo.DayFubenTimes.Clear();
             self.UserInfo.ChouKaRewardIds.Clear();
@@ -225,7 +225,7 @@ namespace ET
             MonsterConfig mCof = MonsterConfigCategory.Instance.Get(beKill.ConfigId);
             float expcoefficient = 1f;
             int addexp = (int)(expcoefficient * mCof.Exp);
-            self.UpdateRoleData(UserDataType.Exp, addexp.ToString()).Coroutine();
+            self.UpdateRoleData(UserDataType.Exp, addexp.ToString());
         }
 
         public static void  UpdateRoleDataBroadcast(this UserInfoComponent self, UserDataType Type, string value)
@@ -264,7 +264,7 @@ namespace ET
         }
 
         //需要通知客户端
-        public static  async ETTask UpdateRoleData(this UserInfoComponent self, UserDataType Type, string value,  bool notice = true)
+        public static  void UpdateRoleData(this UserInfoComponent self, UserDataType Type, string value,  bool notice = true)
         {
             Unit unit = self.GetParent<Unit>();
             string saveValue = "";
@@ -290,7 +290,7 @@ namespace ET
                     unit.GetComponent<NumericComponent>().ApplyChange(null,NumericType.PointRemain, int.Parse(value) * 5, 0);
                     unit.GetComponent<TaskComponent>().OnUpdateLevel(self.UserInfo.Lv);
                     unit.GetComponent<ChengJiuComponent>().OnUpdateLevel(self.UserInfo.Lv);
-                    self.UpdateRoleData(UserDataType.Sp, value,notice).Coroutine();
+                    self.UpdateRoleData(UserDataType.Sp, value,notice);
                     self.UpdateRankInfo().Coroutine();
                     break;
                 case UserDataType.Sp:
@@ -365,7 +365,6 @@ namespace ET
                 m2C_RoleDataUpdate1.UpdateTypeValue = saveValue;
                 MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RoleDataUpdate1);
             }
-            await ETTask.CompletedTask;
         }
 
         public static async ETTask UpdateRankInfo(this UserInfoComponent self)
@@ -408,7 +407,7 @@ namespace ET
             if (self.UserInfo.Exp >= upNeedExp)
             {
                 self.UserInfo.Exp -= upNeedExp;
-                self.UpdateRoleData(UserDataType.Lv,"1", notice).Coroutine();
+                self.UpdateRoleData(UserDataType.Lv,"1", notice);
             }
         }
 #endif

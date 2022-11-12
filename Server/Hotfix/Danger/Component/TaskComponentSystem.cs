@@ -60,7 +60,7 @@ namespace ET
         }
 
         //对话之类的任务由客户端触发完成
-        public static async ETTask OnTaskNotice(this TaskComponent self, C2M_TaskNoticeRequest request)
+        public static void  OnTaskNotice(this TaskComponent self, C2M_TaskNoticeRequest request)
         {
             int taskid = request.TaskId;
             for (int i = 0; i < self.RoleTaskList.Count; i++)
@@ -71,7 +71,6 @@ namespace ET
                     self.RoleTaskList[i].taskStatus = (int)TaskStatuEnum.Completed;
                 }
             }
-            await ETTask.CompletedTask;
         }
 
         /// <summary>
@@ -264,8 +263,8 @@ namespace ET
             int TaskCoin = taskConfig.TaskCoin;
 
             UserInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
-            unitInfoComponent.UpdateRoleData(UserDataType.Exp, TaskExp.ToString()).Coroutine();
-            unitInfoComponent.UpdateRoleData(UserDataType.Gold, TaskCoin.ToString()).Coroutine();
+            unitInfoComponent.UpdateRoleData(UserDataType.Exp, TaskExp.ToString());
+            unitInfoComponent.UpdateRoleData(UserDataType.Gold, TaskCoin.ToString());
             Log.Debug($"Gold:  {unitInfoComponent.Id} {TaskCoin} task");
 
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();

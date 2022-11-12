@@ -17,8 +17,8 @@ namespace ET
             });
 
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.UnionLeader, 0);
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Union, "0").Coroutine();
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, "").Coroutine();
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Union, "0");
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, "");
             unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, "");
             reply();
             await ETTask.CompletedTask;

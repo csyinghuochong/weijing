@@ -10,8 +10,9 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, C2M_TaskNoticeRequest request, M2C_TaskNoticeResponse response, Action reply)
         {
-            await unit.GetComponent<TaskComponent>().OnTaskNotice(request);
+            unit.GetComponent<TaskComponent>().OnTaskNotice(request);
             reply();
+            await ETTask.CompletedTask;
         }
     }
 }

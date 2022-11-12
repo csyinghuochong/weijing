@@ -32,7 +32,7 @@ namespace ET
 			//消耗金币
 			if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold >= costGold)
 			{
-				await unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (costGold * -1).ToString());
+				unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (costGold * -1).ToString());
 
 				//添加道具
 				List<RewardItem> rewardItems = new List<RewardItem>();

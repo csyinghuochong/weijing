@@ -39,7 +39,7 @@ namespace ET
                     reply();
                     return;
                 }
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (-1 * needDimanond).ToString()).Coroutine();
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (-1 * needDimanond).ToString());
                 //unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.Pet_ChouKa, 1, 0);
             }
 

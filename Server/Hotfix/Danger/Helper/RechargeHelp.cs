@@ -20,7 +20,7 @@ namespace ET
                 return; 
             }
             int number = ComHelp.GetDiamondNumber(rechargeNumber);
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString(), notice).Coroutine();
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString(), notice);
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0, notice);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RechargeSign, 1, notice);
         }

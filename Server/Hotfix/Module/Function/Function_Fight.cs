@@ -1215,7 +1215,7 @@ namespace ET
             int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.25f) * (1 + ShiLi_HpPro));
 
             //更新战力
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(  UserDataType.Combat, zhanliValue.ToString(), notice).Coroutine();
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(  UserDataType.Combat, zhanliValue.ToString(), notice);
         }
     }
 

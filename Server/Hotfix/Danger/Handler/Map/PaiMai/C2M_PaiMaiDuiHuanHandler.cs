@@ -16,8 +16,8 @@ namespace ET
             //判断钻石是否足够
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Diamond >= diamond)
             {
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (diamond * -1).ToString()).Coroutine();
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (diamond * d2GGetUnit.ServerInfo.ExChangeGold).ToString()).Coroutine();
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (diamond * -1).ToString());
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (diamond * d2GGetUnit.ServerInfo.ExChangeGold).ToString());
             }
             else 
             {

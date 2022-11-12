@@ -132,12 +132,12 @@ namespace ET
                         {
                             //增加金币
                             case 1:
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, itemCof.ItemUsePar).Coroutine();
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, itemCof.ItemUsePar);
                                 Log.Debug($"Gold:  {unit.Id} {itemCof.ItemUsePar} itemoperate1");
                                 break;
                             //增加经验
                             case 2:
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Exp, itemCof.ItemUsePar).Coroutine();
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Exp, itemCof.ItemUsePar);
                                 break;
                             //回城卷轴[返回另外一个副本场景]
                             case 4:
@@ -265,7 +265,7 @@ namespace ET
                                 int userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                                 ExpConfig expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addCoin = (int)RandomHelper.RandomNumberFloat(float.Parse(jinbiInfos[0]) * expConfig.RoseGoldPro, float.Parse(jinbiInfos[1]) * expConfig.RoseGoldPro);
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, addCoin.ToString()).Coroutine();
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, addCoin.ToString());
                                 Log.Debug($"Gold:  {unit.Id} {addCoin} itemoperate111");
                                 break;
                             //经验木桩
@@ -276,8 +276,8 @@ namespace ET
                                 userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                                 expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addExp = (int)RandomHelper.RandomNumberFloat(float.Parse(paramInfo[0]) * expConfig.RoseExpPro, float.Parse(paramInfo[1]) * expConfig.RoseExpPro);
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Exp, addExp.ToString()).Coroutine();
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (needZuanshi * -1).ToString()).Coroutine();
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Exp, addExp.ToString());
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (needZuanshi * -1).ToString());
                                 response.OperatePar = addExp.ToString();
                                 break;
                                 //藏宝图
@@ -338,7 +338,7 @@ namespace ET
                         gemIdList.Add(long.Parse(gemids[i]));
                         BagInfo bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocGem, long.Parse(gemids[i]));
                         itemConf = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-                        unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConf.SellMoneyType, (bagInfo.ItemNum * itemConf.SellMoneyValue).ToString()).Coroutine();
+                        unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConf.SellMoneyType, (bagInfo.ItemNum * itemConf.SellMoneyValue).ToString());
                     }
                     unit.GetComponent<BagComponent>().OnCostItemData(gemIdList, ItemLocType.ItemLocGem);
 
@@ -349,7 +349,7 @@ namespace ET
                     }
 
                     itemConf = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConf.SellMoneyType, (useBagInfo.ItemNum * sellValue).ToString()).Coroutine();
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConf.SellMoneyType, (useBagInfo.ItemNum * sellValue).ToString());
                     unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, locType, useBagInfo.ItemNum);
                     if (useBagInfo.ItemNum == 0)
                     {
@@ -365,7 +365,7 @@ namespace ET
                 {
                     //默认出售全部
                     //给与对应金币或货币奖励
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemCof.SellMoneyType, (useBagInfo.ItemNum * itemCof.SellMoneyValue).ToString()).Coroutine();
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemCof.SellMoneyType, (useBagInfo.ItemNum * itemCof.SellMoneyValue).ToString());
                     unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, locType, useBagInfo.ItemNum);
                     if (useBagInfo.ItemNum == 0)
                     {

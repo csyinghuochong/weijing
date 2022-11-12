@@ -13,7 +13,7 @@ namespace ET
 			CellDungeonInfo curCell = null;
 			CellDungeonComponent fubenComponent = null;
 			unit.GetComponent<MoveComponent>().Stop();
-			unit.GetComponent<UserInfoComponent>().UpdateRoleData(  UserDataType.PiLao, "-1").Coroutine();
+			unit.GetComponent<UserInfoComponent>().UpdateRoleData(  UserDataType.PiLao, "-1");
 
 			//首次进入
 			if (request.RepeatEnter == 0)

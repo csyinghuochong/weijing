@@ -33,7 +33,7 @@ namespace ET
             //}
             //unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Ling_DiExp, addExp + lingdiExp);
             LingDiHelp.OnAddLingDiExp(unit, addExp, true);
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Gold, (needCoin * -1).ToString()).Coroutine();
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Gold, (needCoin * -1).ToString());
 
             reply();
             await ETTask.CompletedTask;

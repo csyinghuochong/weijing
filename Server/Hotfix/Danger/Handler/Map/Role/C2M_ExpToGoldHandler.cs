@@ -26,8 +26,8 @@ namespace ET
 
             int sendGold = (int)(10000 + expCof.RoseGoldPro * 10);
 
-            userInfoComponent.UpdateRoleData(UserDataType.Gold, sendGold.ToString()).Coroutine();
-            userInfoComponent.UpdateRoleData(UserDataType.Exp , (costExp * -1).ToString()).Coroutine();
+            userInfoComponent.UpdateRoleData(UserDataType.Gold, sendGold.ToString());
+            userInfoComponent.UpdateRoleData(UserDataType.Exp , (costExp * -1).ToString());
             Log.Debug($"Gold:  {userInfoComponent.Id} {sendGold} excharge");
 
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ExpToGoldTimes, 1, 0);

@@ -37,8 +37,8 @@ namespace ET
             if (d2GGetUnit.Error == ErrorCore.ERR_Success)
             {
                 unit.GetComponent<NumericComponent>().ApplyValue( NumericType.UnionLeader, 1, true);
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Union, d2GGetUnit.UnionId.ToString()).Coroutine();
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, request.UnionName).Coroutine();
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Union, d2GGetUnit.UnionId.ToString());
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.UnionName, request.UnionName);
                 unit.GetComponent<UserInfoComponent>().UpdateRoleDataBroadcast(UserDataType.UnionName, request.UnionName);
             }
             response.Error = d2GGetUnit.Error;
