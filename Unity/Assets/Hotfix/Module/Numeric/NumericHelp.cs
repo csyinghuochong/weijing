@@ -188,14 +188,18 @@ namespace ET
             {
                 if (key >= 10000 && key < 20000)
                 {
-                    if (key.ToString().Substring(key.ToString().Length - 1, 1) == "2")
+                    string str = key.ToString().Substring(key.ToString().Length - 1, 1);
+                    if (str == "2")
                     {
                         return 2;
+                    }
+                    else {
+                        return 1;
                     }
                 }
 
                 //最后排除
-                int value = 0;
+                int value = 1;
                 NumericValueType.TryGetValue(key, out value);
                 if (value == 1)
                     return 1;
