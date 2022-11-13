@@ -3,29 +3,22 @@ using UnityEngine;
 
 namespace ET
 {
-    public  class AttackComponent : Entity, IAwake
-    {
-        public int SkillId;
-        public int ComboSkillId;
-        public long LastSkillTime;
-        public long ComboStartTime;
-        public long CombatEndTime;
-
-        public float AttackDistance;
-        public List<int> Weights = new List<int>();
-        public List<int> SkillList = new List<int> { };
-        public SkillConfig SkillConfig;
-        public readonly C2M_SkillCmd c2mSkillCmd = new C2M_SkillCmd();
-        public long CDTime = 800;
-        public long CDEndTime;
-    }
 
     [ObjectSystem]
     public class AttackComponentAwakeSystem : AwakeSystem<AttackComponent>
     {
         public override void Awake(AttackComponent self)
         {
-            
+
+        }
+    }
+
+    [ObjectSystem]
+    public class AttackComponentDestroySystemm : DestroySystem<AttackComponent>
+    {
+        public override void Destroy(AttackComponent self)
+        {
+            Log.Error("AttackComponentDestroySystemm");
         }
     }
 
@@ -91,7 +84,7 @@ namespace ET
             return self.SkillList[index];
         }
 
-        public static int GetTargetAnagle(this AttackComponent self, Unit unit,  Unit taretUnit)
+        public static int GetTargetAnagle(this AttackComponent self, Unit unit, Unit taretUnit)
         {
             if (taretUnit == null || taretUnit.IsDisposed)
             {
@@ -133,7 +126,7 @@ namespace ET
             self.SetAttackSpeed();
             self.SetComboSkill();
             int targetAngle = self.GetTargetAnagle(unit, taretUnit);
-            unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId, 0, targetAngle, taretUnit!=null?taretUnit.Id:0, 0).Coroutine();
+            unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId, 0, targetAngle, taretUnit != null ? taretUnit.Id : 0, 0).Coroutine();
             self.LastSkillTime = TimeHelper.ClientNow();
             self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
             if (self.ComboSkillId == 60000103 || self.ComboSkillId == 60000203)
