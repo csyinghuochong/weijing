@@ -113,13 +113,6 @@ namespace ET
 
         public static async ETTask ChangeScene(this SceneManagerComponent self, Scene scene, int sceneTypeEnum,int lastScene, int chapterId)
         {
-            UI uimain = UIHelper.GetUI(self.DomainScene(), UIType.UIMain);
-            if (uimain != null && sceneTypeEnum != SceneTypeEnum.LoginScene)
-            {
-                UIHelper.Remove(self.ZoneScene(), UIType.UIMapBig);
-                uimain.GetComponent<UIMainComponent>().BeginEnterScene(lastScene);
-            }
-
             string paramss = "";
             switch (sceneTypeEnum)
             {
