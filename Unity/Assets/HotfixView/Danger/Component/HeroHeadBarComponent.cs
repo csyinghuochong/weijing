@@ -102,7 +102,6 @@ namespace ET
             HeadBar = gameObject;
             HeadBar.SetActive(true);
             Unit unit = this.GetParent<Unit>();
-            UnitInfoComponent unitInfoComponent1 = unit.GetComponent<UnitInfoComponent>();
             ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
 
             Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(this.ZoneScene());
