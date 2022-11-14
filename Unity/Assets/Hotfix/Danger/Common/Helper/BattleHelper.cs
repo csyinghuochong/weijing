@@ -8,30 +8,18 @@ namespace ET
     public static class BattleHelper
     {
 
-        public static async ETTask<int> OnRobotEnter(Scene zoneScene)
+        public static int GetSceneIdByType(int sceneType)
         {
-            int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
-            int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, sceneId);
-            return errorCode;
-        }
-
-        public static async ETTask<int> OnButtonEnter(Scene zoneScene)
-        {
-            int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            if (numericComponent.GetAsInt(NumericType.BattleNumber) > 0)
+            List<SceneConfig> sceneConfigs = SceneConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < sceneConfigs.Count; i++)
             {
-                return ErrorCore.ERR_BattleJoined;
+                if (sceneConfigs[i].MapType != sceneType)
+                {
+                    continue;
+                }
+                return sceneConfigs[i].Id;
             }
-            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1025);
-            bool intime = TimeHelper.IsInTime(funtionConfig.OpenTime);
-            if (!intime)
-            {
-                return ErrorCore.ERR_AlreadyFinish;
-            }
-            int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, sceneId);
-            return errorCode;
+            return 0;
         }
 
         public static int GetBattFubenId(int level)
@@ -51,6 +39,33 @@ namespace ET
             return 0;
         }
 
+        public static int GetPetTianTiId()
+        {
+            List<SceneConfig> sceneConfigs = SceneConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < sceneConfigs.Count; i++)
+            {
+                if (sceneConfigs[i].MapType != SceneTypeEnum.PetTianTi)
+                {
+                    continue;
+                }
+                return sceneConfigs[i].Id;
+            }
+            return 0;
+        }
+
+        public static int GetPetFubenId()
+        {
+            List<SceneConfig> sceneConfigs = SceneConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < sceneConfigs.Count; i++)
+            {
+                if (sceneConfigs[i].MapType != SceneTypeEnum.PetDungeon)
+                {
+                    continue;
+                }
+                return sceneConfigs[i].Id;
+            }
+            return 0;
+        }
         public static int GetBattleRobotId(int behaviour)
         {
             List<int> ids = new List<int>();

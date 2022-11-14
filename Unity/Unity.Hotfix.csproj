@@ -204,7 +204,7 @@
     <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuff_ChaoFeng.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Component\ShouJiChapterInfoComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Core\Scene\ZoneSceneManagerComponentSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Helper\BattleHelper.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\BattleHelper.cs" />
     <Compile Include="Assets\Hotfix\Demo\Unit\M2C_CreateUnitsHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Component\UserInfoComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\BagComponentSystem.cs" />

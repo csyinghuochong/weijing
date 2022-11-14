@@ -31,7 +31,7 @@ namespace ET
         
         public static async ETTask OnButtonEnter(this UIBattleEnterComponent self)
         {
-            int errorCode = await BattleHelper.OnButtonEnter(self.ZoneScene());
+            int errorCode = await NetHelper.OnButtonEnter(self.ZoneScene());
             if (errorCode == ErrorCore.ERR_Success)
             {
                 UIHelper.Remove(self.ZoneScene(), UIType.UIBattle);

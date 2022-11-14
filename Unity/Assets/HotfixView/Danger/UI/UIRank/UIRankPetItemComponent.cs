@@ -82,7 +82,7 @@ namespace ET
                 return;
             }
 
-            EnterFubenHelp.RequestTransfer(self.DomainScene(), (int)SceneTypeEnum.PetTianTi, 2100001, 0, 0, self.RankPetInfo.UserId.ToString()).Coroutine();
+            EnterFubenHelp.RequestTransfer(self.DomainScene(), (int)SceneTypeEnum.PetTianTi, BattleHelper.GetPetTianTiId(), 0, 0, self.RankPetInfo.UserId.ToString()).Coroutine();
             UIHelper.Remove( self.DomainScene(), UIType.UIRank);
         }
 

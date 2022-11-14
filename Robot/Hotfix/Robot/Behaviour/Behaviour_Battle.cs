@@ -24,7 +24,7 @@
             await zoneScene.GetComponent<BagComponent>().CheckEquipList();
             while (true)
             {
-                int errorCode = await BattleHelper.OnRobotEnter(zoneScene);
+                int errorCode = await NetHelper.OnRobotEnter(zoneScene);
                 if (errorCode != 0)
                 {
                     Log.Info($"Behaviour_Battle: errorCode {errorCode}");

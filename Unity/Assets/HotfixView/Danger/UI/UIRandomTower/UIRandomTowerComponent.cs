@@ -46,7 +46,7 @@ namespace ET
                 return;
             }
 
-            int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.RandomTower, 2200001);
+            int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.RandomTower, BattleHelper.GetSceneIdByType(SceneTypeEnum.RandomTower));
             if (errorCode != ErrorCore.ERR_Success)
             {
                 return;

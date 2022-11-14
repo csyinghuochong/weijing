@@ -6,7 +6,6 @@ namespace ET
 
     public static class FunctionHelp
     {
-
         public static bool IsInTime(List<int> openTime)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();

@@ -4,6 +4,32 @@
     public static class NetHelper
     {
 
+        public static async ETTask<int> OnRobotEnter(Scene zoneScene)
+        {
+            int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
+            int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, sceneId);
+            return errorCode;
+        }
+
+        public static async ETTask<int> OnButtonEnter(Scene zoneScene)
+        {
+            int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            if (numericComponent.GetAsInt(NumericType.BattleNumber) > 0)
+            {
+                return ErrorCore.ERR_BattleJoined;
+            }
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1025);
+            bool intime = TimeHelper.IsInTime(funtionConfig.OpenTime);
+            if (!intime)
+            {
+                return ErrorCore.ERR_AlreadyFinish;
+            }
+            int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, sceneId);
+            return errorCode;
+        }
+
         public static async ETTask SendReddotRead(Scene scene, int reddotType)
         {
             C2M_ReddotReadRequest m_ReddotReadRequest = new C2M_ReddotReadRequest() { ReddotType = reddotType };
