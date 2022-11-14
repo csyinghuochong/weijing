@@ -131,7 +131,7 @@ namespace ET
 
         public string  GetDescKillMonster(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = GameSettingLanguge.LoadLocalization("击败任意怪物 {0}/{1}";
+            string progress = GameSettingLanguge.LoadLocalization("击败任意怪物 {0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
