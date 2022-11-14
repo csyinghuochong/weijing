@@ -10,7 +10,6 @@ namespace ET
         public override void Awake(RobotManagerComponent self)
         {
             self.ZoneIndex = Game.Options.Process * 10000;
-            self.RobotList.Clear();
         }
     }
 
@@ -19,7 +18,7 @@ namespace ET
 
         public static void RemoveRobot(this RobotManagerComponent self, Scene robotScene)
         {
-            self.ZoneIndex--;
+            //self.ZoneIndex--;
         }
 
         public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone, int robotZone, int robotId)
@@ -27,10 +26,20 @@ namespace ET
             Scene zoneScene = null;
             try
             {
+                int robotNumber = 0;
+                List<Entity> ts = self.Children.Values.ToList();
+                for (int i = 0; i < ts.Count; i++)
+                {
+                    Scene robotScene = ts[i] as Scene;
+                    if (robotScene.GetComponent<BehaviourComponent>().RobotConfig.Id == robotId)
+                    {
+                        robotNumber++;
+                    }
+                }
+
                 //同一个进程robotZone是自增的
                 zoneScene = SceneFactory.CreateZoneScene(robotZone, "Robot", self);
-
-                string account = $"{robotId}_{zone}_{robotZone}_abe";
+                string account = $"{robotId}_{zone}_{robotNumber}_abe";
                 Log.Debug($"NewRobot  :{robotZone}  {account}");
                 bool innernet = ComHelp.IsInnerNet();
                 int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, ComHelp.RobotPassWord);
