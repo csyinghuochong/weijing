@@ -96,9 +96,11 @@
     <Compile Include="Assets\Hotfix\Core\Scene\ZoneSceneFlagComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Demo\Account\A2C_DisconnectHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuff_Shield.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\DropHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\PetComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\Q2C_EnterGameHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_Action_Common.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\QiangHuaHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_ComSelfRang_Damge_1.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericWatcherComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_ComTargetMove_RangDamge_2.cs" />
@@ -110,6 +112,7 @@
     <Compile Include="Assets\Hotfix\Danger\Common\Component\YeWaiReviveComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Helper\HintHelp.cs" />
     <Compile Include="Assets\Hotfix\Danger\Buff\BuffManagerComponentSystem.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\GettotalFeeTool.cs" />
     <Compile Include="Assets\Hotfix\Demo\Move\M2C_PathfindingResultHandler.cs" />
     <Compile Include="Assets\Hotfix\Demo\Unit\UnitComponent.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Component\ChuansongComponentSystem.cs" />
@@ -129,7 +132,6 @@
     <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuffBullet_1.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\EnergyComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Demo\Unit\UnitSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Component\AttackComponent.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_ChainLightningHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\ChatComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Component\ShoujiComponentSystem.cs" />
@@ -151,7 +153,9 @@
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamDungeonApplyHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\FriendComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\ReferencePool\ReferencePoolInfo.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\SkillHelp.cs" />
     <Compile Include="Assets\Hotfix\Module\Config\ConfigComponentSystem.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ChengJiuHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Recast\PathfindingComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_ComTargetMove_Damge_1.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\GuideComponentSystem.cs" />
@@ -159,6 +163,7 @@
     <Compile Include="Assets\Hotfix\Danger\Helper\NetHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\SessionIdleCheckerComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_PetDataUpdateHandler.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ComHelp.cs" />
     <Compile Include="Assets\Hotfix\Demo\Move\M2C_StopHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_UnitUseSkillHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_FubenSettlementHandler.cs" />
@@ -167,18 +172,21 @@
     <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuff_Attribute.cs" />
     <Compile Include="Assets\Hotfix\Demo\Unit\M2C_RemoveUnitsHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Buff\BuffHandlerSystem.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ItemHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\FangChenMiComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_ChainLightning.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_ChatUpdateInfoHandler.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericHelp.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\TeamComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Helper\ServerHelper.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Component\AttackComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Demo\Login\LoginHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Component\DropComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamDungeonSettlementHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Helper\FunctionHelp.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\MessageDispatcherComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_BagUpdateHandler.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\PaiMaiHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Component\StateComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Helper\TaskHelper.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetThreadComponentSystem.cs" />
@@ -188,6 +196,7 @@
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_CreateSpilingsHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\HeroData\HeroProfession.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Helper\UnitTypeHelper.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\GMHelp.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_UnitStateUpdateHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Helper\AIHelp.cs" />
     <Compile Include="Assets\Hotfix\Module\Recast\NavmeshComponentSystem.cs" />
@@ -204,15 +213,6 @@
     <Compile Include="Assets\Hotfix\Danger\Common\Component\MapComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericWatcher_Update.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetKcpComponentSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ComHelp.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Helper\DropHelper.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ChengJiuHelper.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Helper\GMHelp.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ItemHelper.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Helper\QiangHuaHelper.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Helper\SkillHelp.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Helper\PaiMaiHelper.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Helper\GettotalFeeTool.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -52,7 +52,7 @@ namespace ET
         {
             DBServerInfo dBServerInfo = null;
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = self.DomainZone(), Component = DBHelper.DBServerInfo });
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBServerInfo });
             if (d2GGetUnit.Component != null)
             {
                 dBServerInfo = d2GGetUnit.Component as DBServerInfo;
@@ -175,7 +175,7 @@ namespace ET
         public static async ETTask InitDBRankInfo(this RankSceneComponent self)
         {
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = self.DomainZone(), Component = DBHelper.DBRankInfo });
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBRankInfo });
 
             if (d2GGetUnit.Component == null)
             {
@@ -194,8 +194,8 @@ namespace ET
         {
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
 
-            await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = self.DomainZone(), Component = self.DBRankInfo, ComponentType = DBHelper.DBRankInfo });
-            await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = self.DomainZone(), Component = self.DBServerInfo, ComponentType = DBHelper.DBServerInfo });
+            await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = self.DBRankInfo, ComponentType = DBHelper.DBRankInfo });
+            await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = self.DBServerInfo, ComponentType = DBHelper.DBServerInfo });
         }
 
         public static void UpdateRankList(this RankSceneComponent self, RankingInfo rankingInfo)

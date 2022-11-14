@@ -28,14 +28,14 @@ namespace ET
             if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.None)
             {
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
-                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = dBUnionInfo.UnionInfo.LeaderId, Component = DBHelper.ReddotComponent });
+                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = dBUnionInfo.UnionInfo.LeaderId, Component = DBHelper.ReddotComponent });
                 if (d2GGetUnit.Component != null)
                 {
                     ReddotComponent reddotComponent = d2GGetUnit.Component as ReddotComponent;
                     if (reddotComponent != null)
                     {
                         reddotComponent.AddReddont((int)ReddotType.UnionApply);
-                        D2M_SaveComponent d2M_SaveComponent = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = dBUnionInfo.UnionInfo.LeaderId, Component = reddotComponent, ComponentType = DBHelper.ReddotComponent });
+                        D2M_SaveComponent d2M_SaveComponent = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = dBUnionInfo.UnionInfo.LeaderId, Component = reddotComponent, ComponentType = DBHelper.ReddotComponent });
                     }
                 }
             }

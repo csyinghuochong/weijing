@@ -64,7 +64,7 @@ namespace ET
 		public string Component { get; set; }
 
 		[ProtoMember(2)]
-		public long CharacterId { get; set; }
+		public long UnitId { get; set; }
 
 	}
 
@@ -138,7 +138,7 @@ namespace ET
 		public Entity Component { get; set; }
 
 		[ProtoMember(2)]
-		public long CharacterId { get; set; }
+		public long UnitId { get; set; }
 
 		[ProtoMember(3)]
 		public string ComponentType { get; set; }
@@ -168,14 +168,14 @@ namespace ET
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
 		[ProtoMember(1)]
-		public List<Entity> Components = new List<Entity>();
+		public long UnitId { get; set; }
 
 		[ProtoMember(2)]
-		public long CharacterId { get; set; }
+		public List<string> EntityTypes = new List<string>();
+
+		[ProtoMember(3)]
+		public List<byte[]> EntityBytes = new List<byte[]>();
 
 	}
 

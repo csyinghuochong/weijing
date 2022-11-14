@@ -260,6 +260,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIHongBao\UIHongBaoComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UIMainTaskComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillMeltingComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonReviveEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryTipsEvent.cs" />
@@ -541,7 +542,6 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillMeltingComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

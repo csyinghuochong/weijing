@@ -28,7 +28,7 @@ message G2D_GetComponent // IDBCacheActorRequest
     int32 RpcId = 90;
     int64 ActorId = 93;
     string Component = 1;
-    int64 CharacterId = 2;
+    int64 UnitId = 2;
 }
 
 message D2G_GetComponent // IDBCacheActorResponse
@@ -63,7 +63,7 @@ message M2D_SaveComponent // IDBCacheActorRequest
     int32 RpcId = 90;
     int64 ActorId = 93;
     Entity Component = 1;
-    int64 CharacterId = 2;
+    int64 UnitId = 2;
     string ComponentType = 3;
 }
 
@@ -78,9 +78,10 @@ message D2M_SaveComponent // IDBCacheActorResponse
 message M2D_SaveUnit // IDBCacheActorRequest
 {
     int32 RpcId = 90;
-    int64 ActorId = 93;
-    repeated Entity Components = 1;
-    int64 CharacterId = 2;
+
+    int64 UnitId = 1;
+    repeated string EntityTypes = 2; 
+    repeated bytes EntityBytes = 3;
 }
 
 message D2M_SaveUnit // IDBCacheActorResponse

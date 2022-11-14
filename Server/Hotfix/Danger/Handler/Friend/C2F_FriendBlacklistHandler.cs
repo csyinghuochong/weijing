@@ -8,7 +8,7 @@ namespace ET
         protected override async ETTask Run(Scene scene, C2F_FriendBlacklistRequest request, F2C_FriendBlacklistResponse response, Action reply)
         {
             long dbCacheId = StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), Enum.GetName(SceneType.DBCache)).InstanceId;
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = request.UserID, Component = DBHelper.DBFriendInfo });
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserID, Component = DBHelper.DBFriendInfo });
             DBFriendInfo dBFriendInfo = d2GGetUnit.Component as DBFriendInfo;
             
             if (dBFriendInfo.FriendList.Contains(request.FriendId))
@@ -36,7 +36,7 @@ namespace ET
                 }
                 dBFriendInfo.Blacklist.Remove(request.FriendId);
             }
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = request.UserID, Component = dBFriendInfo, ComponentType = DBHelper.DBFriendInfo });
+            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserID, Component = dBFriendInfo, ComponentType = DBHelper.DBFriendInfo });
             reply();
         }
     }

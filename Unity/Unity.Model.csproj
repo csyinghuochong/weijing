@@ -120,6 +120,7 @@
     <Compile Include="Assets\Model\Generate\Config\ZuoQiNengLiConfig.cs" />
     <Compile Include="Assets\Model\Module\AI\AIConfig.cs" />
     <Compile Include="Assets\Model\Danger\Common\Component\SingingComponent.cs" />
+    <Compile Include="Assets\Model\Generate\ConfigPartial\FuntionConfig.cs" />
     <Compile Include="Assets\Model\Danger\Common\SkillDispatcherComponent.cs" />
     <Compile Include="Assets\Model\Module\ActorLocation\ActorResponse.cs" />
     <Compile Include="Assets\Model\Generate\Config\EquipQiangHuaConfig.cs" />
@@ -151,9 +152,9 @@
     <Compile Include="Assets\Model\Core\Timer\TimerComponent.cs" />
     <Compile Include="Assets\Model\Generate\Config\ZuoQiShowConfig.cs" />
     <Compile Include="Assets\Model\Generate\Config\ChengJiuRewardConfig.cs" />
+    <Compile Include="Assets\Model\Core\Pool.cs" />
     <Compile Include="Assets\Model\Generate\Config\TaskCountryConfig.cs" />
     <Compile Include="Assets\Model\Core\Object\IdGenerater.cs" />
-    <Compile Include="Assets\Model\Core\Pool.cs" />
     <Compile Include="Assets\Model\Core\Object\BaseAttribute.cs" />
     <Compile Include="Assets\Model\Core\Object\ObjectSystemAttribute.cs" />
     <Compile Include="Assets\Model\Core\Object\ProtoObject.cs" />
@@ -197,6 +198,7 @@
     <Compile Include="Assets\Model\Generate\Message\OuterMessage.cs" />
     <Compile Include="Assets\Model\Generate\Config\PetFubenRewardConfig.cs" />
     <Compile Include="Assets\Model\Generate\Config\RobotConfig.cs" />
+    <Compile Include="Assets\Model\Danger\Component\AttackComponent.cs" />
     <Compile Include="Assets\Model\Core\Object\ITransfer.cs" />
     <Compile Include="Assets\Model\Core\PoolHelper.cs" />
     <Compile Include="Assets\Model\Generate\Config\NpcConfig.cs" />
@@ -285,7 +287,6 @@
     <Compile Include="Assets\Model\Module\CoroutineLock\CoroutineLockType.cs" />
     <Compile Include="Assets\Model\Module\AI\AIComponent.cs" />
     <Compile Include="Assets\Model\Core\Entity\Scene.cs" />
-    <Compile Include="Assets\Model\Generate\ConfigPartial\FuntionConfig.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

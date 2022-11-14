@@ -16,7 +16,7 @@ namespace ET
             List<UnionPlayerInfo> unionPlayers = new List<UnionPlayerInfo>();
             for(int i = 0; i < dBServerInfo.UnionInfo.ApplyList.Count; i++)
             {
-                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = dBServerInfo.UnionInfo.ApplyList[i], Component = DBHelper.UserInfoComponent });
+                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = dBServerInfo.UnionInfo.ApplyList[i], Component = DBHelper.UserInfoComponent });
                 UserInfoComponent userInfoComponent = d2GGetUnit.Component as UserInfoComponent;
                 unionPlayers.Add( new UnionPlayerInfo() {  
                     PlayerLevel = userInfoComponent.UserInfo.Lv,

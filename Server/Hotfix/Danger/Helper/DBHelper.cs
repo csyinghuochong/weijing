@@ -51,32 +51,6 @@ namespace ET
                 { "ShoujiComponent", typeof(ShoujiComponent) },
         };
 
-        public static async ETTask UpdateCacheDB(Unit unit)
-        {
-            try
-            {
-                List<Entity> components = new List<Entity>();
-
-                DBSaveComponent dBSaveComponent = unit.GetComponent<DBSaveComponent>();
-                for (int i = 0; i < dBSaveComponent.ChangeComponent.Count; i++)
-                {
-                    string changeComponet = dBSaveComponent.ChangeComponent[i];
-                    components.Add(unit.GetComponent(keyValuePairs[changeComponet]));
-                }
-                dBSaveComponent.ChangeComponent.Clear();
-                long dbCacheId = DBHelper.GetDbCacheId(unit.DomainZone());
-                D2M_SaveUnit response = (D2M_SaveUnit)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveUnit() { CharacterId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId, Components = components });
-                if (response.Error != ErrorCore.ERR_Success)
-                {
-                    Log.Error("更新缓存服Unit数据出错");
-                }
-            }
-            catch (Exception ex)
-            {
-                Log.Error("更新缓存服Unit数据出错: " + ex.ToString());
-            }
-        }
-
         public static async ETTask<Entity> AddDataComponent<K>(int zone, long userID, string componentType) where K : Entity, new()
         {
             Type type = typeof(K);
@@ -85,7 +59,7 @@ namespace ET
             long dBCacheId = DBHelper.GetDbCacheId(zone);
             D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dBCacheId, new M2D_SaveComponent()
             {
-                CharacterId = userID,
+                UnitId = userID,
                 Component = entity,
                 ComponentType = componentType
             });
@@ -96,7 +70,7 @@ namespace ET
         public static async ETTask<bool> AddDataComponent<K>(Unit unit, long userID, string componentType) where K : Entity, new()
         {
             long dbCacheId = DBHelper.GetDbCacheId(unit.DomainZone());
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userID, Component = componentType });
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userID, Component = componentType });
             if (d2GGetUnit.Component != null)
             {
                 unit.AddComponent(d2GGetUnit.Component);
@@ -145,7 +119,7 @@ namespace ET
                         break;
                 }
                
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = userID, Component = unit.GetComponent<K>(), ComponentType = componentType });
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, Component = unit.GetComponent<K>(), ComponentType = componentType });
                 return true;
             }
         }
@@ -229,7 +203,7 @@ namespace ET
         public static async ETTask<long> GetOpenServerTime( int zone)
         {
             long dbCacheId = DBHelper.GetDbCacheId(zone);
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = zone, Component = DBHelper.DBServerInfo });
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = zone, Component = DBHelper.DBServerInfo });
             long serverOpenTime = d2GGetUnit.Component != null ? (d2GGetUnit.Component as DBServerInfo).ServerInfo.OpenServerTime : 0;
             serverOpenTime = serverOpenTime != 0 ? serverOpenTime : TimeHelper.ServerNow();
             return serverOpenTime;

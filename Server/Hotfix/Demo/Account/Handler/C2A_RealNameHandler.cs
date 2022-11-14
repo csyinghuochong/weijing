@@ -10,7 +10,7 @@ namespace ET
         protected override async ETTask Run(Session session, C2A_RealNameRequest request, A2C_RealNameResponse response, Action reply)
         {
             long dbCacheId = DBHelper.GetDbCacheId(session.DomainZone());
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = request.AccountId, Component = DBHelper.DBAccountInfo });
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.AccountId, Component = DBHelper.DBAccountInfo });
             DBAccountInfo accountInfo = d2GGetUnit.Component as DBAccountInfo;
 
             RealNameResult result_check = new RealNameResult();
@@ -47,7 +47,7 @@ namespace ET
                 playerInfo.RealName = 1;
             }
             response.ErrorCode = result_check.errcode;
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = accountInfo.Id, Component = accountInfo, ComponentType = DBHelper.DBAccountInfo });
+            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = accountInfo.Id, Component = accountInfo, ComponentType = DBHelper.DBAccountInfo });
 
             long accountZone = DBHelper.GetAccountCenter();
             Center2A_SaveAccount saveAccount = (Center2A_SaveAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_SaveAccount()

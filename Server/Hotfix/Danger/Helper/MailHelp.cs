@@ -27,7 +27,7 @@
         public static async ETTask<int> SendUserMail(int zone,long userID, MailInfo mailInfo )
         {
             long dbCacheId = DBHelper.GetDbCacheId(zone);
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userID, Component = DBHelper.DBMailInfo });
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userID, Component = DBHelper.DBMailInfo });
             DBMailInfo dBMainInfo=  d2GGetUnit.Component as DBMailInfo;
             if (dBMainInfo == null)
             {
@@ -41,7 +41,7 @@
             */
             //存储邮件
             dBMainInfo.MailInfoList.Add(mailInfo);
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = userID, Component = dBMainInfo, ComponentType = DBHelper.DBMailInfo });
+            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, Component = dBMainInfo, ComponentType = DBHelper.DBMailInfo });
             return ErrorCore.ERR_Success;
         }
     }

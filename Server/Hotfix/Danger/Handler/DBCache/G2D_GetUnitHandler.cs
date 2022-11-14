@@ -12,15 +12,15 @@ namespace ET
                 DBCacheComponent db = scene.Domain.GetComponent<DBCacheComponent>();
                 List<Entity> Components = new List<Entity>();
 
-                Components.Add(await db.Query<UserInfoComponent>(request.CharacterId));
-                Components.Add(await db.Query<BagComponent>(request.CharacterId));
-                Components.Add(await db.Query<TaskComponent>(request.CharacterId));
-                Components.Add(await db.Query<ChengJiuComponent>(request.CharacterId));
-                Components.Add(await db.Query<PetComponent>(request.CharacterId));
-                Components.Add(await db.Query<SkillSetComponent>(request.CharacterId));
-                Components.Add(await db.Query<EnergyComponent>(request.CharacterId));
-                Components.Add(await db.Query<ActivityComponent>(request.CharacterId));
-                Components.Add(await db.Query<ShoujiComponent>(request.CharacterId));
+                Components.Add(await db.Get<UserInfoComponent>(request.CharacterId));
+                Components.Add(await db.Get<BagComponent>(request.CharacterId));
+                Components.Add(await db.Get<TaskComponent>(request.CharacterId));
+                Components.Add(await db.Get<ChengJiuComponent>(request.CharacterId));
+                Components.Add(await db.Get<PetComponent>(request.CharacterId));
+                Components.Add(await db.Get<SkillSetComponent>(request.CharacterId));
+                Components.Add(await db.Get<EnergyComponent>(request.CharacterId));
+                Components.Add(await db.Get<ActivityComponent>(request.CharacterId));
+                Components.Add(await db.Get<ShoujiComponent>(request.CharacterId));
          
                 response.Components = Components;
                 reply();
