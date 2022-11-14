@@ -5,28 +5,8 @@ using System.Linq;
 namespace ET
 {
 
-    public class TaskViewHelp : Singleton<TaskViewHelp>
+    public class UITaskViewHelp : Singleton<UITaskViewHelp>
     {
-
-        public Dictionary<TaskTargetType, string> TaskProgress = new Dictionary<TaskTargetType, string>()
-        {
-            {  TaskTargetType.KillMonsterID_1,  GameSettingLanguge.LoadLocalization("击败{0} {1}/{2}") },
-            {  TaskTargetType.ItemID_Number_2,   GameSettingLanguge.LoadLocalization("寻找道具{0} {1}/{2}") },
-            {  TaskTargetType.LookingFor_3,  GameSettingLanguge.LoadLocalization("找 {0} 谈一谈") },
-            {  TaskTargetType.PlayerLv_4,  GameSettingLanguge.LoadLocalization("等级提升至{0}级 {1}/{2}") },
-            {  TaskTargetType.KillMonster_5,  GameSettingLanguge.LoadLocalization("击败任意怪物 {0}/{1}") },
-            {  TaskTargetType.KillBOSS_6,  GameSettingLanguge.LoadLocalization("击败任意领主级怪物 {0}/{1}") },
-            {  TaskTargetType.PassFubenID_7,  GameSettingLanguge.LoadLocalization("通关副本{0} {1}/{2}") },
-            {  TaskTargetType.ChangeOcc_8,  GameSettingLanguge.LoadLocalization("进行转职{0} {1}/{2}") },
-            {  TaskTargetType.KillTiaoZhanMonsterID_101,  GameSettingLanguge.LoadLocalization("击败挑战级的 {0} {1}/{2}") },
-            {  TaskTargetType.KillDiYuMonsterID_102,  GameSettingLanguge.LoadLocalization("击败地狱级的 {0} {1}/{2}") },
-            {  TaskTargetType.PassTianZhanFubenID_111,  GameSettingLanguge.LoadLocalization("通关挑战级-{0}副本 {1}/{2}") },
-            {  TaskTargetType.PassDiYuFubenID_112,  GameSettingLanguge.LoadLocalization("通关地狱级-{0}副本 {1}/{2}") },
-            {  TaskTargetType.KillTianZhanMonsterNumber_121,  GameSettingLanguge.LoadLocalization("击败挑战级任意怪物{0}/{1}") },
-            {  TaskTargetType.KillDiYuMonsterNumber_122,  GameSettingLanguge.LoadLocalization("击败地狱级任意怪物{0}/{1}") },
-            {  TaskTargetType.KillTianZhanBossNumber_131,  GameSettingLanguge.LoadLocalization("击败挑战级任意领主怪物{0}/{1}") },
-            {  TaskTargetType.KillDiYuBossNumber_132,  GameSettingLanguge.LoadLocalization("击败地狱级任意领主怪物{0}/{1}") },
-        };
 
         public delegate bool TaskExcuteDelegate(Scene scene, TaskPro taskPro, TaskConfig taskConfig);
         public delegate string TaskDescDelegate(TaskPro taskPro, TaskConfig taskConfig);
@@ -36,10 +16,7 @@ namespace ET
             public TaskExcuteDelegate taskExcute;
             public TaskDescDelegate taskProgess;
         }
-
         public Dictionary<TaskTargetType, TaskLogic> TaskTypeLogic;
-
-        public Scene domainscene;
 
         protected override void InternalInit()
         {
@@ -82,10 +59,6 @@ namespace ET
         }
         public bool ExcuteItemId(Scene domainscene, TaskPro taskPro, TaskConfig taskConfig)
         {
-            if (domainscene.GetComponent<MapComponent>().SceneId == 1001)
-            {
-                Log.Debug("请到对应的副本收集！");
-            }
             return true;
         }
 
@@ -111,21 +84,24 @@ namespace ET
 
         public string GetDescKillMonsterID(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
-            
             string desc = "";
+            string progress = "击败{0} {1}/{2} {3}";
+            
             for (int i = 0; i < taskConfig.Target.Length; i++)
             {
                 int monsterId = taskConfig.Target[i];
+                int fubenId = BattleHelper.GetFubenByMonster(monsterId);
+                string fubenName = fubenId > 0 ? DungeonConfigCategory.Instance.Get(fubenId).ChapterName : "";
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
+
                 string text1 = "";
                 if (i == 0)
                 {
-                    text1 = string.Format(progress, monsterConfig.MonsterName, taskPro.taskTargetNum_1, taskConfig.TargetValue[i]);
+                    text1 = string.Format(progress, monsterConfig.MonsterName, taskPro.taskTargetNum_1, taskConfig.TargetValue[i], fubenName);
                 }
                 if (i == 1)
                 {
-                    text1 = string.Format(progress, monsterConfig.MonsterName, taskPro.taskTargetNum_2, taskConfig.TargetValue[i]);
+                    text1 = string.Format(progress, monsterConfig.MonsterName, taskPro.taskTargetNum_2, taskConfig.TargetValue[i], fubenName);
                 }
                  
                 desc = desc + text1 + "\n";
@@ -136,36 +112,40 @@ namespace ET
 
         public string GetDescLookingFor(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("找 {0} {1} 谈一谈");
+
+            int fubenId = BattleHelper.GetFubenByMonster(taskConfig.Target[0]);
+            string fubenName = fubenId > 0 ? DungeonConfigCategory.Instance.Get(fubenId).ChapterName : "";
+
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(taskConfig.Target[0]);
-            string text1 = string.Format(progress, npcConfig.Name, taskPro.taskTargetNum_1);
+            string text1 = string.Format(progress, npcConfig.Name, taskPro.taskTargetNum_1, fubenName);
             return text1;
         }
 
         public string GetDescPlayerLv(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("等级提升至{0}级 {1}/{2}");
             string text1 = string.Format(progress, taskConfig.TargetValue[0], taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
 
         public string  GetDescKillMonster(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("击败任意怪物 {0}/{1}";
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
 
         public string GetDescKillBOSS(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("击败任意领主级怪物 {0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
 
         public string GetDescPassFubenID(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("通关副本{0} {1}/{2}");
             string fubenName = ChapterConfigCategory.Instance.Get(taskConfig.Target[0]).ChapterName;
             string text1 = string.Format(progress, fubenName, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
@@ -173,7 +153,7 @@ namespace ET
 
         public string GetChangeOcc(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("进行转职{0} {1}/{2}");
             string fubenName = "";
             string text1 = string.Format(progress, fubenName, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
@@ -181,7 +161,7 @@ namespace ET
 
         public string GetDescKillChallengeMonsterID(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("击败挑战级的 {0} {1}/{2}");
             string monsterName = MonsterConfigCategory.Instance.Get(taskConfig.Target[0]).MonsterName;
             string text1 = string.Format(progress, monsterName, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
@@ -189,7 +169,7 @@ namespace ET
 
         public string GetDescKillInfernalMonsterID(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("击败地狱级的 {0} {1}/{2}");
             string monsterName = MonsterConfigCategory.Instance.Get(taskConfig.Target[0]).MonsterName;
             string text1 = string.Format(progress, monsterName, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
@@ -197,7 +177,7 @@ namespace ET
 
         public string GetDescPassChallengeFubenID(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("通关挑战级-{0}副本 {1}/{2}");
             string chapterName = ChapterConfigCategory.Instance.Get(taskConfig.Target[0]).ChapterName;
             string text1 = string.Format(progress, chapterName, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
@@ -205,7 +185,7 @@ namespace ET
 
         public string GetDescPassInfernalFubenID(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("通关地狱级-{0}副本 {1}/{2}");
             string chapterName = ChapterConfigCategory.Instance.Get(taskConfig.Target[0]).ChapterName;
             string text1 = string.Format(progress, chapterName, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
@@ -213,35 +193,35 @@ namespace ET
 
         public string GetDescKillChallengeMonsterNumber(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("击败挑战级任意怪物{0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
 
         public string GetDescKillInfernalMonsterNumber(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("击败地狱级任意怪物{0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
 
         public string GetDescKillChallengeBossNumber(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("击败挑战级任意领主怪物{0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
 
         public string GetDescKillInfernalBossNumber(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("击败地狱级任意领主怪物{0}/{1}");
             string text1 = string.Format(progress, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);
             return text1;
         }
 
         public string GetDescItemId(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = TaskProgress[(TaskTargetType)taskConfig.TargetType];
+            string progress = GameSettingLanguge.LoadLocalization("寻找道具{0} {1}/{2}");
             int itemId = taskConfig.Target[0];
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
             string text1 = string.Format(progress, itemConfig.ItemName, taskPro.taskTargetNum_1, taskConfig.TargetValue[0]);

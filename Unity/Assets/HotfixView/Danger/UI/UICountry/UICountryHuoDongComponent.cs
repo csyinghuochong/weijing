@@ -27,13 +27,13 @@ namespace ET
     {
         public static void Go_HuoDong_1(this UICountryHuoDongComponent self) 
         {
-            TaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 1000024);
+            UITaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 1000024);
             self.OnBtn_Close();
         }
 
         public static void Go_HuoDong_2(this UICountryHuoDongComponent self)
         {
-            TaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 1000023);
+            UITaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 1000023);
             self.OnBtn_Close();
         }
 

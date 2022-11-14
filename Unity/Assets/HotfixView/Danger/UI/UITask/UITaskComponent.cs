@@ -161,7 +161,7 @@ namespace ET
 			self.Text_expValue.GetComponent<Text>().text = self.TaskConfig.TaskExp.ToString();
 			self.Text_jinbiValue.GetComponent<Text>().text = self.TaskConfig.TaskCoin.ToString();
 
-			self.Text_taskTarget.GetComponent<Text>().text = TaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
+			self.Text_taskTarget.GetComponent<Text>().text = UITaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
 			self.Text_jiangliText.GetComponent<Text>().text = self.TaskConfig.TaskDes;
 
 			self.Button_Zhuizong.SetActive(taskPro.TrackStatus == 0);
@@ -327,7 +327,7 @@ namespace ET
 				self.OnCloseTask();
 				return;
 			}
-			TaskViewHelp.Instance.TaskTypeLogic[(TaskTargetType)target].taskExcute(self.DomainScene(), self.TaskPro, self.TaskConfig);
+			UITaskViewHelp.Instance.TaskTypeLogic[(TaskTargetType)target].taskExcute(self.DomainScene(), self.TaskPro, self.TaskConfig);
 			self.OnCloseTask();
 		}
 	}

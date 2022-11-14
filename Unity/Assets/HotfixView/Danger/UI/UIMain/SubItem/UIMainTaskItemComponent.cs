@@ -47,7 +47,7 @@ namespace ET
 
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
             self.TaskName.GetComponent<Text>().text = taskConfig.TaskName;
-            self.TaskTargetDes.GetComponent<Text>().text = TaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
+            self.TaskTargetDes.GetComponent<Text>().text = UITaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
 
             if (taskPro.taskStatus == (int)TaskStatuEnum.Completed)
             {

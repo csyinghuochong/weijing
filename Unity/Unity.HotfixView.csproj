@@ -276,7 +276,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankPetItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIZhanQu\UIZhanQuEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Queue\UIQueueComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Help\TaskViewHelp.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Help\UITaskViewHelp.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityTokenItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeam\UITeamApplyListComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetHeXinSetComponent.cs" />
