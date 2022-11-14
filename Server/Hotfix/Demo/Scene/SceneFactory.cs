@@ -12,62 +12,6 @@ namespace ET
             return Create(parent, instanceId, instanceId, parent.DomainZone(), name, sceneType);
         }
 
-        public static Dictionary<int, List<int>> GetAllYeWaiScene()
-        {
-            Dictionary<int, List<int>> keyValuePairs = new Dictionary<int, List<int>>();
-            if (ComHelp.IsInnerNet())
-            {
-                keyValuePairs.Add(1, new List<int>() { 101, 102 });
-            }
-            else
-            {
-                keyValuePairs.Add(1, new List<int>() { 101, 102 });
-            }
-            return keyValuePairs;
-        }
-
-        public static List<int> GetAllZoneList()
-        {
-            List<int> idList = new List<int> { };
-            List<StartZoneConfig> zoneList = StartZoneConfigCategory.Instance.GetAll().Values.ToList();
-            for (int i = 0; i < zoneList.Count; i++)
-            {
-                if (zoneList[i].Id >= ComHelp.MaxZone)
-                {
-                    continue;
-                }
-                if (!StartSceneConfigCategory.Instance.Gates.ContainsKey(zoneList[i].Id))
-                {
-                    continue;
-                }
-                idList.Add(zoneList[i].Id);
-            }
-            return idList;
-        }
-
-        public static void CreateYeWaiScene(Entity parent)
-        {
-            List<int> zoneList = GetAllZoneList();
-
-            Dictionary<int, List<int>> keyValuePairs = GetAllYeWaiScene();
-            foreach (var item in keyValuePairs)
-            {
-                int process = item.Key;
-                List<int> mapidList = item.Value;
-                for (int i = 0; i < mapidList.Count; i++)
-                {
-                    uint mapId = (uint)mapidList[i];
-                    InstanceIdStruct instanceIdStruct = new InstanceIdStruct(process, mapId);
-                    long instanceId = instanceIdStruct.ToLong();
-
-                    for (int z = 0; z < zoneList.Count; z++)
-                    {
-                        SceneFactory.Create(parent, mapId, instanceId, zoneList[i], $"Map{mapId}", SceneType.Map, null);
-                    }
-                }
-            }
-        }
-
         public static Scene Create(Entity parent, long id, long instanceId, int zone, string name, SceneType sceneType, StartSceneConfig startSceneConfig = null)
         {
             var startZoneConfig = StartZoneConfigCategory.Instance.Get(zone);
@@ -162,7 +106,6 @@ namespace ET
                     scene.AddComponent<UnitComponent>();
                     scene.AddComponent<ServerInfoComponent>();
                     scene.AddComponent<AOIManagerComponent>();
-                    scene.AddComponent<YeWaiReviveComponent>();
                     scene.AddComponent<NpcComponent>();
                     //scene.AddComponent<RecastPathComponent>();
                     break;

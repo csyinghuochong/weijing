@@ -139,6 +139,11 @@ namespace ET
 					});
 				}
 			}
+			if (mtype == 5)
+			{
+				//固定时间刷新  YeWaiRefreshComponent
+				scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterByPos_2(monsterPosition.Id, fubenDifficulty);
+			}
 
 			return monsterPosition.NextID;
 		}
@@ -226,7 +231,7 @@ namespace ET
 				}
 				if (mtype[0] == "4")
 				{
-					//4; 0,0,0; 71020001; 2,2; 2, 2
+					//4; 0,0,0; 71020001; 2,2; 2, 2  //是随机塔附加属性
 					int playerLv = 1;
 					if (fubenDifficulty == FubenDifficulty.Tower)
 					{
@@ -246,6 +251,11 @@ namespace ET
 							Camp = monsterConfig.MonsterCamp
 						});
 					}
+				}
+				//固定时间刷新
+				if (mtype[0] == "5")
+				{
+					scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList_2(createMonster, fubenDifficulty);
 				}
 			}
 		}

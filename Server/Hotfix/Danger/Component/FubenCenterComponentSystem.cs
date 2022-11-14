@@ -1,0 +1,51 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ET
+{
+    [ObjectSystem]
+    public class FubenCenterComponentAwakeSystem : AwakeSystem<FubenCenterComponent>
+    {
+        public override void Awake(FubenCenterComponent self)
+        {
+            self.InitYeWaiScene().Coroutine();
+        }
+    }
+
+    public static class FubenCenterComponentSystem
+    {
+        public static async ETTask InitYeWaiScene(this FubenCenterComponent self)
+        {
+            await TimerComponent.Instance.WaitAsync(1000 * self.DomainZone());
+
+            List<SceneConfig> sceneConfigs =  SceneConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < sceneConfigs.Count; i++)
+            {
+                if (sceneConfigs[i].MapType != SceneTypeEnum.YeWaiScene)
+                {
+                    continue;
+                }
+
+                //动态创建副本
+                long fubenid = IdGenerater.Instance.GenerateId();
+                long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
+
+                self.FubenInstanceList.Add(fubenInstanceId);
+                self.YeWaiFubenList.Add(sceneConfigs[i].Id, fubenInstanceId);
+
+                Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, self.DomainZone(), "YeWai" + fubenid.ToString(), SceneType.Map);
+                MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
+                mapComponent.SetMapInfo((int)SceneTypeEnum.Battle, sceneConfigs[i].Id, 0);
+                mapComponent.NavMeshId = sceneConfigs[i].MapID.ToString();
+                fubnescene.AddComponent<YeWaiReviveComponent>();
+                fubnescene.AddComponent<YeWaiRefreshComponent>().OnAwake();
+                fubnescene.GetComponent<ServerInfoComponent>().ServerInfo = self.ServerInfo;
+                FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonster, FubenDifficulty.None);
+                FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonsterPosi, FubenDifficulty.None);
+            }
+        }
+    }
+}

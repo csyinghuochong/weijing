@@ -61,9 +61,12 @@ namespace ET
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 						break;
 					case (int)SceneTypeEnum.YeWaiScene:
-						StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), $"Map{request.SceneId}");
 						TransferHelper.BeforeTransfer(unit);
-						await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, (int)SceneTypeEnum.YeWaiScene, request.SceneId, 0);
+
+						F2M_YeWaiSceneIdResponse f2M_YeWaiSceneIdResponse = (F2M_YeWaiSceneIdResponse)await ActorMessageSenderComponent.Instance.Call(
+						DBHelper.GetFubenCenterId(unit.DomainZone()), new M2F_YeWaiSceneIdRequest() { SceneId = request.SceneId });
+
+						await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, (int)SceneTypeEnum.YeWaiScene, request.SceneId, 0);
 						break;
 					case (int)SceneTypeEnum.RandomTower:
 						//2200001

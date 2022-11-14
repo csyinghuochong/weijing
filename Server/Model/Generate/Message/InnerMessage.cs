@@ -2196,4 +2196,39 @@ namespace ET
 
 	}
 
+//野外副本Id
+	[ResponseType(nameof(F2M_YeWaiSceneIdResponse))]
+	[Message(InnerOpcode.M2F_YeWaiSceneIdRequest)]
+	[ProtoContract]
+	public partial class M2F_YeWaiSceneIdRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public int SceneId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.F2M_YeWaiSceneIdResponse)]
+	[ProtoContract]
+	public partial class F2M_YeWaiSceneIdResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(2)]
+		public long FubenInstanceId { get; set; }
+
+	}
+
 }

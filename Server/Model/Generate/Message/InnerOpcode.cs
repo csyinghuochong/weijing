@@ -132,5 +132,7 @@ namespace ET
 		 public const ushort G2Robot_MessageRequest = 20129;
 		 public const ushort M2D_DeleteUnit = 20130;
 		 public const ushort D2M_DeleteUnit = 20131;
+		 public const ushort M2F_YeWaiSceneIdRequest = 20132;
+		 public const ushort F2M_YeWaiSceneIdResponse = 20133;
 	}
 }

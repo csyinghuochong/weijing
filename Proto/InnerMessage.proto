@@ -1057,3 +1057,20 @@ message D2M_DeleteUnit // IActorResponse
     int32 Error = 91;
     string Message = 92;
 }
+
+//野外副本Id
+//ResponseType F2M_YeWaiSceneIdResponse
+message M2F_YeWaiSceneIdRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 SceneId = 2;
+}
+
+message F2M_YeWaiSceneIdResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int64 FubenInstanceId = 2;
+}

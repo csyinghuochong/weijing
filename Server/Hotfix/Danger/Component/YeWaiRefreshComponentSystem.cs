@@ -50,6 +50,12 @@ namespace ET
             //FubenHelp.CreateMonsterList(scene, sceneConfig.CreateMonsterPosi, FubenDifficulty.Normal);
         }
 
+        /// <summary>
+        /// 兵线
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="createMonster"></param>
+        /// <param name="fubenDifficulty"></param>
         public static void CreateMonsterList(this YeWaiRefreshComponent self, string createMonster, int fubenDifficulty)
         {
             if (ComHelp.IfNull(createMonster))
@@ -70,10 +76,6 @@ namespace ET
                 string monsterid = mondels[2];
                 string[] mcount = mondels[3].Split(',');
 
-                if (mtype != "3")    //定时刷新
-                {
-                    continue;
-                }
                 self.RefreshMonsters.Add(new RefreshMonster()
                 {
                     MonsterId = int.Parse(monsterid),
@@ -88,7 +90,60 @@ namespace ET
             }
         }
 
-        
+        /// <summary>
+        /// 定时刷新
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="createMonster"></param>
+        /// <param name="fubenDifficulty"></param>
+        public static void CreateMonsterList_2(this YeWaiRefreshComponent self, string createMonster, int fubenDifficulty)
+        {
+            if (ComHelp.IfNull(createMonster))
+            {
+                return;
+            }
+            string[] monsters = createMonster.Split('@');
+            for (int i = 0; i < monsters.Length; i++)
+            {
+                if (string.IsNullOrEmpty(monsters[i]))
+                {
+                    continue;
+                }
+                //5;-50,0,2;80002001;10,25;1230,2030
+                string[] mondels = monsters[i].Split(';');
+                string[] position = mondels[1].Split(',');  //-50,0,2
+                int monsterid = int.Parse(mondels[2]);              //80002001
+                string[] mcount = mondels[3].Split(',');    //10,25
+                string[] timers = mondels[4].Split(','); //1230,2030
+                for (int t = 0; t < timers.Length; t++)
+                {
+                    long leftTime = self.LeftTime(timers[t]);
+                    if (leftTime == 0)
+                    {
+                        continue;
+                    }
+
+                    self.RefreshMonsters.Add(new RefreshMonster()
+                    {
+                        MonsterId = monsterid,
+                        NextTime = TimeHelper.ServerNow() + leftTime,
+                        PositionX = float.Parse(position[0]),
+                        PositionY = float.Parse(position[1]),
+                        PositionZ = float.Parse(position[2]),
+                        Number = int.Parse(mcount[0]),
+                        Range = int.Parse(mcount[1]),
+                        Interval = 24 * 60 * 60 * 1000,
+                    });
+                }
+            }
+        }
+
+        /// <summary>
+        /// 兵线
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="monsterPos"></param>
+        /// <param name="fubenDifficulty"></param>
         public static void CreateMonsterByPos(this YeWaiRefreshComponent self, int monsterPos, int fubenDifficulty)
         {
             if (monsterPos == 0)
@@ -99,10 +154,6 @@ namespace ET
             //10001   10002   2    - 71.46,0.34,-5.35   81000002       0           1       90    30,60
             MonsterPositionConfig monsterPosition = MonsterPositionConfigCategory.Instance.Get(monsterPos);
             int mtype = monsterPosition.Type;
-            if (mtype != 3)
-            {
-                return;
-            }
             string[] position = monsterPosition.Position.Split(',');
             string[] refreshPar = monsterPosition.Par.Split(',');
             self.RefreshMonsters.Add(new RefreshMonster()
@@ -118,6 +169,48 @@ namespace ET
                 Rotation = monsterPosition.Create,
             });
         }
+
+        /// <summary>
+        /// 固定时间刷新
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="monsterPos"></param>
+        /// <param name="fubenDifficulty"></param>
+        public static void CreateMonsterByPos_2(this YeWaiRefreshComponent self, int monsterPos, int fubenDifficulty)
+        {
+            if (monsterPos == 0)
+            {
+                return;
+            }
+            //5;-50,0,2;80002001;10,25;1230,203060
+            MonsterPositionConfig monsterPosition = MonsterPositionConfigCategory.Instance.Get(monsterPos);
+            int mtype = monsterPosition.Type;
+            string[] position = monsterPosition.Position.Split(',');
+
+            string[] timers = monsterPosition.Par.Split(',');//1230,2030
+            for (int t = 0; t < timers.Length; t++)
+            {
+                long leftTime = self.LeftTime(timers[t]);
+                if (leftTime == 0)
+                {
+                    continue;
+                }
+
+                self.RefreshMonsters.Add(new RefreshMonster()
+                {
+                    MonsterId = monsterPosition.MonsterID,
+                    NextTime = TimeHelper.ServerNow() + leftTime,
+                    PositionX = float.Parse(position[0]),
+                    PositionY = float.Parse(position[1]),
+                    PositionZ = float.Parse(position[2]),
+                    Number = monsterPosition.CreateNum,
+                    Range = (float)monsterPosition.CreateRange,
+                    Interval = 24 * 60 * 60 * 1000,
+                    Rotation = monsterPosition.Create,
+                });
+            }
+        }
+
         public static long LeftTime(this YeWaiRefreshComponent self, string targetTime)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();

@@ -127,5 +127,7 @@
                 scene.GetComponent<ServerInfoComponent>().ServerInfo = response.ServerInfo;
             }
         }
+
+
     }
 }
