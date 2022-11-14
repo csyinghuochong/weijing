@@ -427,6 +427,7 @@
         public const int Base_MageReboundDamgePro_Add = Now_MageReboundDamgePro * 100 + 3;                   //属性附加
         public const int Extra_Buff_MageReboundDamgePro_Add = Now_MageReboundDamgePro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_MageReboundDamgePro_Mul = Now_MageReboundDamgePro * 100 + 12;            //属性Buff附加乘法
+
         /*
         public const int Now_HuiXuePro = 2029;          //当前回血加成
         public const int Base_HuiXuePro_Base = Now_HuiXuePro * 100 + 1;                  //属性累加
