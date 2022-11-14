@@ -62,9 +62,6 @@ namespace ET
 
 		public static void OnActiveTianfu(this SkillSetComponent self, C2M_TianFuActiveRequest request)
 		{
-			if (self.TianFuList == null)
-				self.TianFuList = new List<int>();
-
 			int tianfuId = request.TianFuId;
 			TalentConfig talentConfig = TalentConfigCategory.Instance.Get(tianfuId);
 			int learnLv = talentConfig.LearnRoseLv;
@@ -99,6 +96,11 @@ namespace ET
 		/// <param name="tianfuId"></param>
 		public static void AddTianFuAttribute(this SkillSetComponent self, int tianfuId, bool add)
 		{
+			if (tianfuId == 0)
+			{
+				return;
+			}
+
 			string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuId).AddPropreListStr.Split("@");
 
 			for (int k = 0; k < addPropreListStr.Length; k++)
@@ -474,6 +476,14 @@ namespace ET
 					}
 				}
 			}
+
+			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
+			int tianFuid = equipConfig.TianFuId;
+			if (tianFuid > 0 && self.TianFuList.Contains(tianFuid))
+			{
+				self.TianFuList.Remove(tianFuid);
+				self.AddTianFuAttribute(tianFuid, false);
+			}
 		}
 
 		/// <summary>
@@ -510,6 +520,14 @@ namespace ET
 				skillPro.SkillSource = (int)SkillSourceEnum.Equip;
 				self.SkillList.Add(skillPro);
 				self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().AddRolePassiveSkill(skillId);
+			}
+
+			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
+			int tianFuid = equipConfig.TianFuId;
+			if (tianFuid > 0 && !self.TianFuList.Contains(tianFuid))
+			{
+				self.TianFuList.Add(tianFuid);
+				self.AddTianFuAttribute(tianFuid, true);
 			}
 		}
 

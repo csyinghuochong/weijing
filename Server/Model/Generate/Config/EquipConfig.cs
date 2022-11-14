@@ -158,7 +158,7 @@ namespace ET
 		public long[] AddPropreListIfShow { get; set; }
 		/// <summary>附加</summary>
 		[ProtoMember(28)]
-		public string AddPropreListStr { get; set; }
+		public int TianFuId { get; set; }
 
 	}
 }
