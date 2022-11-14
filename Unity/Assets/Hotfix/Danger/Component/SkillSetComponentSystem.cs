@@ -287,6 +287,14 @@ namespace ET
 					}
 				}
 			}
+
+			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
+			int tianFuid = equipConfig.TianFuId;
+			if (tianFuid > 0 && self.TianFuList.Contains(tianFuid))
+			{
+				self.TianFuList.Remove(tianFuid);
+				self.AddTianFuAttribute(tianFuid, false);
+			}
 		}
 
 		/// <summary>
@@ -322,6 +330,14 @@ namespace ET
 				skillPro.SkillSetType = (int)SkillSetEnum.Skill;
 				skillPro.SkillSource = (int)SkillSourceEnum.Equip;
 				self.SkillList.Add(skillPro);
+			}
+
+			EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
+			int tianFuid = equipConfig.TianFuId;
+			if (tianFuid > 0 && !self.TianFuList.Contains(tianFuid))
+			{
+				self.TianFuList.Add(tianFuid);
+				self.AddTianFuAttribute(tianFuid, true);
 			}
 		}
 
