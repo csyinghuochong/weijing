@@ -46,7 +46,7 @@ namespace ET
         public static async ETTask InitDBData(this PaiMaiSceneComponent self)
         {
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = self.DomainZone(), Component = DBHelper.DBPaiMainInfo });
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBPaiMainInfo });
          
             if (d2GGetUnit.Component == null)
             {
@@ -59,7 +59,7 @@ namespace ET
                 dBPaiMainInfo.PaiMaiShopItemInfos = PaiMaiHelper.Instance.InitPaiMaiShopItemList();
 
                 //存储数据库数据
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = self.DomainZone(), Component = dBPaiMainInfo, ComponentType = DBHelper.DBPaiMainInfo });
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = dBPaiMainInfo, ComponentType = DBHelper.DBPaiMainInfo });
 
             }
             else
@@ -221,7 +221,7 @@ namespace ET
             }
 
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-           D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = self.DomainZone(), Component = self.dBPaiMainInfo, ComponentType = DBHelper.DBPaiMainInfo });
+           D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = self.dBPaiMainInfo, ComponentType = DBHelper.DBPaiMainInfo });
         }
     }
 }

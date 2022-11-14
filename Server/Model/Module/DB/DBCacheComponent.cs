@@ -3,17 +3,19 @@ using System.Collections.Generic;
 
 namespace ET
 {
+    public class UnitCache : Entity, IAwake, IDestroy
+    {
+        public string key;
+
+        public Dictionary<long, Entity> CacheCompoenntsDictionary = new Dictionary<long, Entity>();
+    }
+
     /// <summary>
     /// 数据库缓存组件
     /// </summary>
-    public class DBCacheComponent : Entity, IAwake
+    public class DBCacheComponent : Entity, IAwake, IDestroy
     {
-        public int LRUCapacity = 10000;
-        public Dictionary<long, LRUCacheNode> LruCacheNodes = new Dictionary<long, LRUCacheNode>();
-        public LRUCacheNode HeadCacheNode;
-        public LRUCacheNode TailCacheNode;
-        public Dictionary<long, Dictionary<Type, Entity>> UnitCaches = new Dictionary<long, Dictionary<Type, Entity>>();
-        public Pool<Dictionary<Type, Entity>> UnitCachePool = new Pool<Dictionary<Type, Entity>>();
-        public Pool<LRUCacheNode> CacheNodePool = new Pool<LRUCacheNode>();
+        public Dictionary<string, UnitCache> UnitCaches = new Dictionary<string, UnitCache>();
+        public List<string> UnitCacheKeyList = new List<string>();
     }
 }

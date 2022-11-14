@@ -8,6 +8,6 @@ namespace ET
         public long Timer;
         public long DBInterval;
 
-        public List<string> ChangeComponent = new List<string>();
+        public HashSet<Type> EntityChangeTypeSet { get; } = new HashSet<Type>();
     }
 }

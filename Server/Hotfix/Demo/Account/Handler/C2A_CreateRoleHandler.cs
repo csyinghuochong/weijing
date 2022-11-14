@@ -32,7 +32,7 @@ namespace ET
 				long dbCacheId = DBHelper.GetDbCacheId(zone);
 
 				//通过账号ID获取列表  //获取UserID,默认使用第一个角色
-				D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = request.AccountId, Component = DBHelper.DBAccountInfo });
+				D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.AccountId, Component = DBHelper.DBAccountInfo });
 				DBAccountInfo newAccount = d2GGetUnit.Component as DBAccountInfo;
 
 				UserInfoComponent userInfoComponent = session.AddChildWithId<UserInfoComponent>(userId);
@@ -62,7 +62,7 @@ namespace ET
 					userInfo.Gold = 0;
 					userInfo.Occ = request.CreateOcc;
 				}
-				D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = userId, Component = userInfoComponent, ComponentType = DBHelper.UserInfoComponent });
+				D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userId, Component = userInfoComponent, ComponentType = DBHelper.UserInfoComponent });
 				userInfoComponent.Dispose();
 
 				//创建角色组件
@@ -72,7 +72,7 @@ namespace ET
 
 				//存储账号信息
 				newAccount.UserList.Add(userId);
-				d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = newAccount.Id, Component = newAccount, ComponentType = DBHelper.DBAccountInfo });
+				d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = newAccount.Id, Component = newAccount, ComponentType = DBHelper.DBAccountInfo });
 
 				//返回角色信息
 				CreateRoleListInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userInfo, newAccount.UserList.Count - 1, userId);

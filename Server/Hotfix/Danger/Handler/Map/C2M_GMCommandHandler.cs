@@ -170,11 +170,11 @@ namespace ET
 						componentList.Add(DBHelper.BagComponent);
 						componentList.Add(DBHelper.TaskComponent);
 
-						D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userID, Component = DBHelper.UserInfoComponent });
+						D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userID, Component = DBHelper.UserInfoComponent });
 						UserInfoComponent userInfoComponent = d2GGetUnit.Component as UserInfoComponent;
 						for (int i = 0; i < componentList.Count; i++)
 						{
-							d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userID, Component = componentList[i] });
+							d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userID, Component = componentList[i] });
 							if (d2GGetUnit.Component == null)
 							{
 								continue;

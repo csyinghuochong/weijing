@@ -35,7 +35,7 @@ namespace ET
             if (!exist)
             {
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
-                D2G_GetComponent d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = request.UserId, Component = DBHelper.UserInfoComponent });
+                D2G_GetComponent d2GGet = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.UserInfoComponent });
                 UserInfoComponent userInfoComponent = d2GGet.Component as UserInfoComponent;
                 dBUnionInfo.UnionInfo.UnionPlayerList.Add(new UnionPlayerInfo()
                 {
@@ -57,7 +57,7 @@ namespace ET
                 else
                 {
                     userInfoComponent.UserInfo.UnionId = request.UnionId;
-                    D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = request.UserId, Component = userInfoComponent, ComponentType = DBHelper.UserInfoComponent });
+                    D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.UserId, Component = userInfoComponent, ComponentType = DBHelper.UserInfoComponent });
                 }
             }
             reply();

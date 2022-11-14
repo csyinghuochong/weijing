@@ -34,12 +34,12 @@ namespace ET
             if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.None)
             {
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
-                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = request.Id, Component = DBHelper.ReddotComponent });
+                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.Id, Component = DBHelper.ReddotComponent });
                 if (d2GGetUnit.Component != null)
                 {
                     ReddotComponent reddotComponent = d2GGetUnit.Component as ReddotComponent;
                     reddotComponent.AddReddont((int)ReddotType.Email);
-                    D2M_SaveComponent d2M_SaveComponent = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = request.Id, Component = reddotComponent, ComponentType = DBHelper.ReddotComponent });
+                    D2M_SaveComponent d2M_SaveComponent = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.Id, Component = reddotComponent, ComponentType = DBHelper.ReddotComponent });
                 }
             }
             

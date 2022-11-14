@@ -25,7 +25,7 @@ namespace ET
         public override void Awake(DBSaveComponent self)
         {
             self.DBInterval = 0;
-            self.ChangeComponent.Clear();
+            self.EntityChangeTypeSet.Clear();
         }
     }
 
@@ -61,11 +61,41 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000, TimerType.DBSaveTimer, self);
         }
 
-        public static void AddChange(this DBSaveComponent self, Type type)
+        public static void AddChange(this DBSaveComponent self, Type t)
         {
-            if (!self.ChangeComponent.Contains(type.Name))
+            self.EntityChangeTypeSet.Add(t);
+        }
+
+        public static void UpdateCacheDB(this DBSaveComponent self)
+        {
+            try
             {
-                self.ChangeComponent.Add(type.Name);
+                if (self.EntityChangeTypeSet.Count <= 0)
+                {
+                    return;
+                }
+                Unit unit = self.GetParent<Unit>();
+
+                long dbCacheId = DBHelper.GetDbCacheId(unit.DomainZone());
+                M2D_SaveUnit message = new M2D_SaveUnit() { UnitId = unit.Id };
+                message.EntityTypes.Add(unit.GetType().FullName);
+                message.EntityBytes.Add(MongoHelper.ToBson(unit));
+                foreach (Type type in self.EntityChangeTypeSet)
+                {
+                    Entity entity = unit.GetComponent(type);
+                    if (entity == null || entity.IsDisposed)
+                    {
+                        continue;
+                    }
+                    message.EntityTypes.Add(type.FullName);
+                    message.EntityBytes.Add(MongoHelper.ToBson(entity));
+                }
+                self.EntityChangeTypeSet.Clear();
+                MessageHelper.CallActor(dbCacheId, message).Coroutine();
+            }
+            catch (Exception ex)
+            {
+                Log.Error("更新缓存服Unit数据出错: " + ex.ToString());
             }
         }
 
@@ -94,7 +124,7 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
             unit.GetComponent<UserInfoComponent>().LastLoginTime = TimeHelper.ServerNow();
-            DBHelper.UpdateCacheDB(self.GetParent<Unit>()).Coroutine();
+            self.UpdateCacheDB();
         }
 
         public static void OnLogin(this DBSaveComponent self)
@@ -125,7 +155,7 @@ namespace ET
             Log.Debug(offLineInfo);
             unit.GetComponent<EnergyComponent>().OnDisconnect();
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
-            DBHelper.UpdateCacheDB(unit).Coroutine();
+            self.UpdateCacheDB();
 
             long unitId = unit.Id;
             //通知其他服务器
@@ -161,7 +191,7 @@ namespace ET
             if (self.DBInterval >= 5)
             {
                 self.DBInterval = 0;
-                DBHelper.UpdateCacheDB(unit).Coroutine();
+                self.UpdateCacheDB();
             }
             unit.GetComponent<TaskComponent>().Check();
             unit.GetComponent<UserInfoComponent>().Check();

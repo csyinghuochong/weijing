@@ -55,7 +55,7 @@ namespace ET
             }
 
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            D2G_GetComponent d2GSave = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = unionId, Component = DBHelper.DBUnionInfo });
+            D2G_GetComponent d2GSave = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = unionId, Component = DBHelper.DBUnionInfo });
             unionInfo = d2GSave.Component as DBUnionInfo;
             if (unionInfo == null)
             {
@@ -70,7 +70,7 @@ namespace ET
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
             foreach (var item in self.UnionList)
             {
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { CharacterId = self.DomainZone(), Component = item.Value, ComponentType = DBHelper.DBUnionInfo });
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = item.Value, ComponentType = DBHelper.DBUnionInfo });
             }
         }
     }

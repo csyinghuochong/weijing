@@ -56,17 +56,17 @@ namespace ET
                 //直接存数据库
                 //int number = ComHelp.GetDiamondNumber(rechargeNumber);
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
-                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userId, Component = DBHelper.NumericComponent });
+                D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userId, Component = DBHelper.NumericComponent });
                 NumericComponent numericComponent = (d2GGetUnit.Component as NumericComponent);
                 numericComponent.ApplyChange(null, NumericType.RechargeBuChang, rechargeNumber, 0, false);
                 D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent()
                 {
-                    CharacterId = userId,
+                    UnitId = userId,
                     Component = numericComponent,
                     ComponentType = DBHelper.NumericComponent
                 });
 
-                d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { CharacterId = userId, Component = DBHelper.UserInfoComponent });
+                d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = userId, Component = DBHelper.UserInfoComponent });
                 UserInfoComponent userInfoComponent = (d2GGetUnit.Component as UserInfoComponent);
                 
                 long accountId = userInfoComponent.UserInfo.AccInfoID;
