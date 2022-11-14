@@ -159,6 +159,7 @@ namespace ET
             bool ifMonsterBoss_Act = false;
             bool ifMonsterBoss_Def = false;
             bool petfuben = false;
+
             //计算是否闪避
             int defendUnitLv = 0;
             defendUnit.GetComponent<StateComponent>().BeAttacking(attackUnit);
@@ -527,6 +528,19 @@ namespace ET
                 }
                 //设置目标当前
                 defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, damge, skillconfig.Id, true, DamgeType);
+
+                //普通攻击反弹伤害
+                if (defendUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ActReboundDamgePro) > 0 && skillconfig.DamgeType == 1) {
+                    int fantanValue = (int)((float)damge * defendUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ActReboundDamgePro));
+                    attackUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, fantanValue, skillconfig.Id, true, DamgeType);
+                }
+
+                //攻击方反弹即将死亡
+                if (attackUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) <= 0)
+                {
+                    //死亡
+                    attackUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WillDead_6, attackUnit.Id);
+                }
             }
             else
             {
@@ -711,6 +725,16 @@ namespace ET
                     for (int y = 0; y < userBagInfo.XiLianHideProLists.Count; y++)
                     {
                         HideProList hidePro = userBagInfo.XiLianHideProLists[y];
+                        AddUpdateProDicList(hidePro.HideID, hidePro.HideValue, UpdateProDicList);
+                    }
+                }
+
+                //存储附魔属性
+                if (userBagInfo.FumoProLists != null)
+                {
+                    for (int y = 0; y < userBagInfo.FumoProLists.Count; y++)
+                    {
+                        HideProList hidePro = userBagInfo.FumoProLists[y];
                         AddUpdateProDicList(hidePro.HideID, hidePro.HideValue, UpdateProDicList);
                     }
                 }
