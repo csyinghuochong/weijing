@@ -33,6 +33,7 @@ namespace ET
             switch (sceneTypeEnum)
             {
                 case (int)SceneTypeEnum.MainCityScene:
+                    SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(chapterId);
                     self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath(UIType.UIRole));
                     self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Main/Role/UIRoleBag"));
                     self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Common/UIModelShow1"));
@@ -40,9 +41,13 @@ namespace ET
                     self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath(UIType.UIPet));
                     self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Main/Pet/UIPetList"));
                     self.PreLoadAssets.Add(ABPathHelper.GetUGUIPath("Main/Pet/UIPetListItem"));
-                    loadResName = "MainCity";
+                    loadResName = !ComHelp.IfNull(sceneConfig.LoadingRes) ? sceneConfig.LoadingRes : "MainCity";
                     break;
                 case (int)SceneTypeEnum.CellDungeon:
+                    loadResName = backpngs[index];
+                    self.PreLoadAssets.AddRange(self.GetRoleSkillEffect());
+                    self.PreLoadAssets.AddRange(self.GetCommonAssets());
+                    break;
                 case (int)SceneTypeEnum.TeamDungeon:
                 case (int)SceneTypeEnum.YeWaiScene:
                 case (int)SceneTypeEnum.Tower:
@@ -51,6 +56,8 @@ namespace ET
                 case (int)SceneTypeEnum.PetTianTi:
                 case (int)SceneTypeEnum.Battle:
                     loadResName = backpngs[index];
+                    sceneConfig = SceneConfigCategory.Instance.Get(chapterId);
+                    loadResName = !ComHelp.IfNull(sceneConfig.LoadingRes) ? sceneConfig.LoadingRes : "MainCity";
                     self.PreLoadAssets.AddRange( self.GetRoleSkillEffect() );
                     self.PreLoadAssets.AddRange( self.GetCommonAssets( ) );
                     break;
