@@ -414,6 +414,7 @@
         public const int Extra_Buff_MageReboundPro_Add = Now_MageReboundPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_MageReboundPro_Mul = Now_MageReboundPro * 100 + 12;            //属性Buff附加乘法
         */
+
         public const int Now_ActReboundDamgePro = 2027;          //当前攻击反弹伤害比例
         public const int Base_ActReboundDamgePro_Base = Now_ActReboundDamgePro * 100 + 1;              //属性累加
         public const int Base_ActReboundDamgePro_Mul = Now_ActReboundDamgePro * 100 + 2;               //属性乘法
@@ -467,15 +468,15 @@
 
         /*
         public const int Now_PetDamgeAddPro = 2034;          //当前宠物攻击加成
-        public const int Base_PetDamgeAddPro_Base = Now_PetDamgeAddPro * 100 + 1;              //属性累加
-        public const int Base_PetDamgeAddPro_Mul = Now_PetDamgeAddPro * 100 + 2;               //属性乘法
+        public const int Base_PetDamgeAddPro_Base = Now_PetDamgeAddPro * 100 + 1;                  //属性累加
+        public const int Base_PetDamgeAddPro_Mul = Now_PetDamgeAddPro * 100 + 2;                   //属性乘法
         public const int Base_PetDamgeAddPro_Add = Now_PetDamgeAddPro * 100 + 3;                   //属性附加
         public const int Extra_Buff_PetDamgeAddPro_Add = Now_PetDamgeAddPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_PetDamgeAddPro_Mul = Now_PetDamgeAddPro * 100 + 12;            //属性Buff附加乘法
 
         public const int Now_PetDamgeSubPro = 2035;          //当前宠物受到伤害减免
-        public const int Base_PetDamgeSubPro_Base = Now_PetDamgeSubPro * 100 + 1;              //属性累加
-        public const int Base_PetDamgeSubPro_Mul = Now_PetDamgeSubPro * 100 + 2;               //属性乘法
+        public const int Base_PetDamgeSubPro_Base = Now_PetDamgeSubPro * 100 + 1;                  //属性累加
+        public const int Base_PetDamgeSubPro_Mul = Now_PetDamgeSubPro * 100 + 2;                   //属性乘法
         public const int Base_PetDamgeSubPro_Add = Now_PetDamgeSubPro * 100 + 3;                   //属性附加
         public const int Extra_Buff_PetDamgeSubPro_Add = Now_PetDamgeSubPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_PetDamgeSubPro_Mul = Now_PetDamgeSubPro * 100 + 12;            //属性Buff附加乘法
