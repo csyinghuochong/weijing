@@ -160,22 +160,29 @@ namespace ET
                 {
                     unit.DomainScene().GetComponent<LocalDungeonComponent>().OnAddRefreshList(unit, resurrection * 1000);
                 }
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene)
+                {
+                    unit.DomainScene().GetComponent<YeWaiRefreshComponent>().OnAddRefreshList(unit, resurrection * 1000);
+                }
                 return 0;
             }
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ReviveTime, TimeHelper.ServerNow() + resurrection * 1000);
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+            else
             {
-                LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
-                localDungeon.MainUnit.GetComponent<UserInfoComponent>().OnAddRevive(unit.ConfigId, TimeHelper.ServerNow() + resurrection * 1000);
-                unit.RemoveComponent<ReviveTimeComponent>();
-                unit.AddComponent<ReviveTimeComponent, long>(TimeHelper.ServerNow() + resurrection * 1000);
-                FirstWinHelper.SendFirstWinInfo(localDungeon.MainUnit, unit, localDungeon.FubenDifficulty);
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ReviveTime, TimeHelper.ServerNow() + resurrection * 1000);
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+                {
+                    LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
+                    localDungeon.MainUnit.GetComponent<UserInfoComponent>().OnAddRevive(unit.ConfigId, TimeHelper.ServerNow() + resurrection * 1000);
+                    unit.RemoveComponent<ReviveTimeComponent>();
+                    unit.AddComponent<ReviveTimeComponent, long>(TimeHelper.ServerNow() + resurrection * 1000);
+                    FirstWinHelper.SendFirstWinInfo(localDungeon.MainUnit, unit, localDungeon.FubenDifficulty);
+                }
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene)
+                {
+                    unit.DomainScene().GetComponent<YeWaiReviveComponent>().Add(unit.Id, resurrection * 1000);
+                }
+                return 1;
             }
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene)
-            {
-                unit.DomainScene().GetComponent<YeWaiReviveComponent>().Add(unit.Id, resurrection * 1000);
-            }
-            return 1;
         }
 
         public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)

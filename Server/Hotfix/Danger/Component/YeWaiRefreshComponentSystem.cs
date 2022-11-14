@@ -50,6 +50,22 @@ namespace ET
             //FubenHelp.CreateMonsterList(scene, sceneConfig.CreateMonsterPosi, FubenDifficulty.Normal);
         }
 
+        public static void OnAddRefreshList(this YeWaiRefreshComponent self, Unit unit, long reTime)
+        {
+            Vector3 vector3 = unit.GetBornPostion();
+            self.RefreshMonsters.Add(new RefreshMonster()
+            {
+                MonsterId = unit.ConfigId,
+                NextTime = TimeHelper.ServerNow() + reTime,
+                PositionX = vector3.x,
+                PositionY = vector3.y,
+                PositionZ = vector3.z,
+                Number = 1,
+                Range = 0,
+                Interval = -1,
+            });
+        }
+
         /// <summary>
         /// 兵线
         /// </summary>
@@ -240,12 +256,20 @@ namespace ET
                     continue;
                 }
 
+                if (refreshMonster.Interval == -1)
+                {
+                    self.RefreshMonsters.RemoveAt(i);
+                }
+                else
+                {
+                    refreshMonster.NextTime = refreshMonster.NextTime + refreshMonster.Interval;
+                    self.RefreshMonsters[i] = refreshMonster;
+                }
+
                 //DateTime dateTime =  TimeHelper.DateTimeNow();
                 //根据refreshMonster.Time可以纠正时间
-                refreshMonster.NextTime = refreshMonster.NextTime + refreshMonster.Interval;
-                self.RefreshMonsters[i] = refreshMonster;
-
                 self.CreateMonsters(refreshMonster);
+
             }
         }
 

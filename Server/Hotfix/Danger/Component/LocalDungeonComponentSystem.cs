@@ -126,7 +126,6 @@ namespace ET
 
         public static void OnAddRefreshList(this LocalDungeonComponent self, Unit unit, long aliveTime)
         {
-            UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             Vector3 bornpos = unit.GetBornPostion();
 
             self.RefreshMonsters.Add(new RefreshMonster()
