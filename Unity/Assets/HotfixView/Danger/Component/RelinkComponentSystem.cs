@@ -81,13 +81,6 @@ namespace ET
             {
                 return;
             }
-            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
-            if (mapComponent == null ||
-                mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LoginScene ||
-                mapComponent.SceneTypeEnum == (int)SceneTypeEnum.NONE)
-            {
-                return;
-            }
             self.Relink = true;
             UIHelper.Create(self.DomainScene(), UIType.UIRelink).Coroutine();
             for (int i = 0; i < 10; i++)

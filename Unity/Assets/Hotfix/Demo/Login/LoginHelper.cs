@@ -133,7 +133,7 @@ namespace ET
 
             zoneScene.GetComponent<AccountInfoComponent>().RealmKey = a2CGetRealmKey.RealmKey;
             zoneScene.GetComponent<AccountInfoComponent>().RealmAddress = a2CGetRealmKey.RealmAddress;
-            zoneScene.GetComponent<SessionComponent>().Session.GetComponent<PingComponent>().DisconnectType = 1;
+            zoneScene.GetComponent<SessionComponent>().Session.GetComponent<PingComponent>().DisconnectType = -1;
             zoneScene.GetComponent<SessionComponent>().Session.Dispose();
             return ErrorCore.ERR_Success;
         }

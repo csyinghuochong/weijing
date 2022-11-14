@@ -60,13 +60,13 @@ namespace ET
         public override void Destroy(PingComponent self)
         {
             self.Ping = default;
-            //self.DisconnectType == 1 主动断开不处理}
-            if (self.DisconnectType == 1)
+            //self.DisconnectType == -1 主动断开不处理}
+            if (self.DisconnectType == -1)
             {
                 return;
             }
-          
-            if (self.DisconnectType == 0)
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+            if (self.DisconnectType == 0 && mapComponent.SceneTypeEnum >= SceneTypeEnum.MainCityScene)
             {
                 EventType.BeginRelink.Instance.ZoneScene = self.DomainScene();
                 Game.EventSystem.PublishClass(EventType.BeginRelink.Instance);
