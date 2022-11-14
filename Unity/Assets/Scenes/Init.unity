@@ -825,9 +825,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff906ecbbd0163f4094f8fa4e305d39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Development: 0
+  Development: 1
   EditorMode: 1
-  OueNetMode: 1
+  OueNetMode: 0
   BigVersion: 9
   Updater: {fileID: 2018631435}
   FenXiang_Title: 
@@ -887,20 +887,20 @@ MonoBehaviour:
     qq:
       Enable: 1
       SortId: 2
-      AppId: 1105893765
-      AppKey: 8DpWsEXj40TfCKzz
+      AppId: 101883752
+      AppKey: ab9d332ee43d3259991047c7796767dd
       ShareByAppClient: 1
     qzone:
       Enable: 1
       SortId: 1
-      AppId: 1105893765
-      AppKey: 8DpWsEXj40TfCKzz
+      AppId: 101883752
+      AppKey: ab9d332ee43d3259991047c7796767dd
       ShareByAppClient: 1
     wechat:
       Enable: 1
       SortId: 5
-      AppId: wx74d544161221d62f
-      AppSecret: 8cc10edcf1969478005ad631fec57b37
+      AppId: wx0f24f5e538739f0d
+      AppSecret: dd075324e0a4ab44bd49d972efcffedc
       UserName: gh_afb25ac019c9@app
       Path: /page/API/pages/share/share
       BypassApproval: 0
@@ -909,14 +909,14 @@ MonoBehaviour:
     wechatMoments:
       Enable: 1
       SortId: 6
-      AppId: wx74d544161221d62f
-      AppSecret: 8cc10edcf1969478005ad631fec57b37
+      AppId: wx0f24f5e538739f0d
+      AppSecret: dd075324e0a4ab44bd49d972efcffedc
       BypassApproval: 1
     wechatFavorites:
       Enable: 1
       SortId: 7
-      AppId: wx74d544161221d62f
-      AppSecret: 8cc10edcf1969478005ad631fec57b37
+      AppId: wx0f24f5e538739f0d
+      AppSecret: dd075324e0a4ab44bd49d972efcffedc
 --- !u!114 &575235022
 MonoBehaviour:
   m_ObjectHideFlags: 0

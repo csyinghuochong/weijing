@@ -90,7 +90,7 @@ namespace ET
 		/// <summary>天赋描述</summary>
 		[ProtoMember(5)]
 		public string talentDes { get; set; }
-		/// <summary>附加(暂时无视此字段)</summary>
+		/// <summary>附加</summary>
 		[ProtoMember(6)]
 		public string AddPropreListStr { get; set; }
 

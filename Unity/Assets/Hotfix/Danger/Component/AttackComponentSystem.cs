@@ -18,7 +18,7 @@ namespace ET
     {
         public override void Destroy(AttackComponent self)
         {
-            Log.Error("AttackComponentDestroySystemm");
+            
         }
     }
 
