@@ -3,7 +3,7 @@
 {"_t":"StartSceneConfig","_id":2,"Process":1,"Zone":1,"SceneType":"Realm","Name":"Realm","OuterPort":20306},
 {"_t":"StartSceneConfig","_id":3,"Process":1,"Zone":1,"SceneType":"Gate","Name":"Gate1","OuterPort":20307},
 {"_t":"StartSceneConfig","_id":4,"Process":1,"Zone":1,"SceneType":"Queue","Name":"Queue","OuterPort":20308},
-{"_t":"StartSceneConfig","_id":5,"Process":1,"Zone":1,"SceneType":"DBCache","Name":"DBCache","OuterPort":0},
+{"_t":"StartSceneConfig","_id":5,"Process":2,"Zone":1,"SceneType":"DBCache","Name":"DBCache","OuterPort":0},
 {"_t":"StartSceneConfig","_id":6,"Process":1,"Zone":1,"SceneType":"Chat","Name":"Chat","OuterPort":0},
 {"_t":"StartSceneConfig","_id":7,"Process":1,"Zone":1,"SceneType":"EMail","Name":"EMail","OuterPort":0},
 {"_t":"StartSceneConfig","_id":8,"Process":1,"Zone":1,"SceneType":"Activity","Name":"Activity","OuterPort":0},
@@ -54,6 +54,6 @@
 {"_t":"StartSceneConfig","_id":20202,"Process":1,"Zone":202,"SceneType":"LoginCenter","Name":"LoginCenter","OuterPort":0},
 {"_t":"StartSceneConfig","_id":20203,"Process":1,"Zone":202,"SceneType":"Location","Name":"Location","OuterPort":0},
 {"_t":"StartSceneConfig","_id":20204,"Process":1,"Zone":202,"SceneType":"AccountCenter","Name":"AccountCenter","OuterPort":20304},
-{"_t":"StartSceneConfig","_id":20205,"Process":2,"Zone":202,"SceneType":"ReCharge","Name":"ReCharge","OuterPort":0},
+{"_t":"StartSceneConfig","_id":20205,"Process":1,"Zone":202,"SceneType":"ReCharge","Name":"ReCharge","OuterPort":0},
 {"_t":"StartSceneConfig","_id":20301,"Process":203,"Zone":203,"SceneType":"Robot","Name":"Robot01","OuterPort":0},
 ]}

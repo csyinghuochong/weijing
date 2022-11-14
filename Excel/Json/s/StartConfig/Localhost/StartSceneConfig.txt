@@ -3,7 +3,7 @@
 {"_t":"StartSceneConfig","_id":2,"Process":1,"Zone":1,"SceneType":"Realm","Name":"Realm","OuterPort":20306},
 {"_t":"StartSceneConfig","_id":3,"Process":1,"Zone":1,"SceneType":"Gate","Name":"Gate1","OuterPort":20307},
 {"_t":"StartSceneConfig","_id":4,"Process":1,"Zone":1,"SceneType":"Queue","Name":"Queue","OuterPort":20308},
-{"_t":"StartSceneConfig","_id":5,"Process":2,"Zone":1,"SceneType":"DBCache","Name":"DBCache","OuterPort":0},
+{"_t":"StartSceneConfig","_id":5,"Process":1,"Zone":1,"SceneType":"DBCache","Name":"DBCache","OuterPort":0},
 {"_t":"StartSceneConfig","_id":6,"Process":1,"Zone":1,"SceneType":"Chat","Name":"Chat","OuterPort":0},
 {"_t":"StartSceneConfig","_id":7,"Process":1,"Zone":1,"SceneType":"EMail","Name":"EMail","OuterPort":0},
 {"_t":"StartSceneConfig","_id":8,"Process":1,"Zone":1,"SceneType":"Activity","Name":"Activity","OuterPort":0},
