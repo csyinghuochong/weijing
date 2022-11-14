@@ -25,6 +25,6 @@ namespace ET
 		public ETCancellationToken eTCancellation = null;
 		public AccountInfoComponent PlayerComponent;
 
-		public int LoginErroCode;
+		public float LastLoginTime;
 	}
 }

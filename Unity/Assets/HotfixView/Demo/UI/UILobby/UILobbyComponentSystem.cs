@@ -9,7 +9,6 @@ namespace ET
     {
         public override void Awake(UILobbyComponent self)
         {
-            self.LoginErroCode = -1;
             self.SeletRoleInfo = null;
             self.createRoleListUI = new List<UI>();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
@@ -139,7 +138,7 @@ namespace ET
         //选择角色进入游戏
         public static async ETTask EnterGame(this UILobbyComponent self)
         {
-            if (self.LoginErroCode == ErrorCore.ERR_Success)
+            if (Time.time - self.LastLoginTime < 3)
             {
                 return;
             }
@@ -153,17 +152,24 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("进入角色为空!"));
                 return;
             }
-            self.LoginErroCode = ErrorCore.ERR_Success;
-            PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastUserID, self.SeletRoleInfo.UserID.ToString());
-            self.PlayerComponent.CurrentRoleId = self.SeletRoleInfo.UserID;
-            self.LoginErroCode = await LoginHelper.GetRealmKey(self.ZoneScene());
-            if (self.LoginErroCode != ErrorCore.ERR_Success)
+
+            Session session = self.ZoneScene().GetComponent<SessionComponent>().Session;
+            if (session == null || session.IsDisposed)
             {
-                Log.Error(self.LoginErroCode.ToString());
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已掉线，请重新连接!"));
                 return;
             }
 
-            self.LoginErroCode = await  LoginHelper.EnterGame(self.ZoneScene());
+            self.LastLoginTime = Time.time;
+            PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastUserID, self.SeletRoleInfo.UserID.ToString());
+            self.PlayerComponent.CurrentRoleId = self.SeletRoleInfo.UserID;
+            int loginErroCode = await LoginHelper.GetRealmKey(self.ZoneScene());
+            if (loginErroCode != ErrorCore.ERR_Success)
+            {
+                Log.Error(loginErroCode.ToString());
+                return;
+            }
+            await  LoginHelper.EnterGame(self.ZoneScene());
         }
 
         //删除角色

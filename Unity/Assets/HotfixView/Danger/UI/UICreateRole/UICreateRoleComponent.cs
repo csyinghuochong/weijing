@@ -102,6 +102,13 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("名字不合法!");
                 return;
             }
+            Session session = self.ZoneScene().GetComponent<SessionComponent>().Session;
+            if (session == null || session.IsDisposed)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("已掉线，请重新连接!"));
+                return;
+            }
+
             A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(self.DomainScene(), self.Occ, createName);
             if (g2cCreateRole.Error != 0)
             {
