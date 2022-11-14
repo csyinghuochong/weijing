@@ -40,10 +40,12 @@
                     Log.Info($"Behaviour_TeamDungeon: Execute {errorCode}");
                 }
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
-                bool ret = await TimerComponent.Instance.WaitAsync(3600000, cancellationToken);
+                bool ret = await TimerComponent.Instance.WaitAsync(20000, cancellationToken);
                 if (ret)
                 {
                     zoneScene.Parent.GetComponent<RobotManagerComponent>().RemoveRobot(zoneScene);
+                    zoneScene.Dispose();
+                    return;
                 }
                 else
                 {
