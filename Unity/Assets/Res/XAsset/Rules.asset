@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 322
+  version: 323
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -4696,6 +4696,12 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Monster/80000101.prefab
   - bundle: 6461d9751814a20c21f23df7eee24381.unity3d
     path: Assets/Bundles/Unit/Monster/80000101a.prefab
+  - bundle: b7bd7ae17a6d08e936b2806c0283973e.unity3d
+    path: Assets/Bundles/Unit/Monster/80002001.prefab
+  - bundle: 4679e77b3fff3480147c9446861fff5f.unity3d
+    path: Assets/Bundles/Unit/Monster/80002002.prefab
+  - bundle: 9dd3a525c543bae9643cd6e5ed1b138e.unity3d
+    path: Assets/Bundles/Unit/Monster/80002003.prefab
   - bundle: d376f9e0af5363d85941c315fe09de9f.unity3d
     path: Assets/Bundles/Unit/Monster/90000003.prefab
   - bundle: 3189e1f8e73a80254d930fe7b57baf88.unity3d
@@ -4924,6 +4930,12 @@ MonoBehaviour:
     path: Assets/Scenes/100102.unity
   - bundle: 58a36d7696ea9b7f174ba8afd17c4146.unity3d
     path: Assets/Scenes/101.unity
+  - bundle: b603ae711ddfe5f9c1acfae8fd190b1b.unity3d
+    path: Assets/Scenes/2000001.unity
+  - bundle: 7ba63d578bc228161e309443de2ec4c2.unity3d
+    path: Assets/Scenes/2000002.unity
+  - bundle: 61074c80cda18042d8592984fd5087ad.unity3d
+    path: Assets/Scenes/2000003.unity
   - bundle: bdab3c00de37f18ae2a6372769878af5.unity3d
     path: Assets/Scenes/20001.unity
   - bundle: 2612a6a2fa201d501ce955d63efb1c29.unity3d
@@ -5813,6 +5825,15 @@ MonoBehaviour:
   - name: 6461d9751814a20c21f23df7eee24381.unity3d
     assets:
     - Assets/Bundles/Unit/Monster/80000101a.prefab
+  - name: b7bd7ae17a6d08e936b2806c0283973e.unity3d
+    assets:
+    - Assets/Bundles/Unit/Monster/80002001.prefab
+  - name: 4679e77b3fff3480147c9446861fff5f.unity3d
+    assets:
+    - Assets/Bundles/Unit/Monster/80002002.prefab
+  - name: 9dd3a525c543bae9643cd6e5ed1b138e.unity3d
+    assets:
+    - Assets/Bundles/Unit/Monster/80002003.prefab
   - name: d376f9e0af5363d85941c315fe09de9f.unity3d
     assets:
     - Assets/Bundles/Unit/Monster/90000003.prefab
@@ -7838,6 +7859,15 @@ MonoBehaviour:
   - name: 58a36d7696ea9b7f174ba8afd17c4146.unity3d
     assets:
     - Assets/Scenes/101.unity
+  - name: b603ae711ddfe5f9c1acfae8fd190b1b.unity3d
+    assets:
+    - Assets/Scenes/2000001.unity
+  - name: 7ba63d578bc228161e309443de2ec4c2.unity3d
+    assets:
+    - Assets/Scenes/2000002.unity
+  - name: 61074c80cda18042d8592984fd5087ad.unity3d
+    assets:
+    - Assets/Scenes/2000003.unity
   - name: bdab3c00de37f18ae2a6372769878af5.unity3d
     assets:
     - Assets/Scenes/20001.unity
@@ -9484,6 +9514,8 @@ MonoBehaviour:
     - Assets/Mono/GameDemo/ArtResource/Shaders/Toony-Basic.shader
     - Assets/T4M/Shaders/ShaderModel2/Diffuse/T4M 4 Textures.shader
     - Assets/Mono/GameDemo/OldResources/Water (Basic)/Sources/Shaders/FX-Water Simple.shader
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/IceEffect/Effects/Magic
+      Ice Vol.1/Shaders/ParticleCook-Transparent-AlphaBlend-Diffuse-Z.shader
     - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonBasic.shader
     - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/ToonColor_ShadingGradeMap.shader
     - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/Toon_ShadingGradeMap_Mobile.shader
@@ -10222,6 +10254,27 @@ MonoBehaviour:
   - name: 2ab1358fd4faf8effc456e2dba51dc9e.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/ZhangJie_1/shuguai/Boss_Idle.FBX
+  - name: c9861a69a108f84daa4aea255ed9edf8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Materials/props1.tif
+  - name: f8dc79b027a1e5f43428179c2ce6ff09.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Animator/UI_duizhan_baoxiang/UI_duizhan_baoxiang.controller
+  - name: 3aec9cd0bbe859c9bb65f6f20e1f98d6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Animator/UI_duizhan_baoxiang/on.anim
+  - name: c6bb77d310da3250ec52f76d5d782aa9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/Role/RoleAct/UI_Item_baoxiang/realtimeplay_bxIicon_3.FBX
+  - name: cf96dfdf47ac2881a3c569f758f01c66.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Animator/UI_duizhan_baoxiang/idle.anim
+  - name: 12bbd6e0afd871b122c51e89059964ff.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Animator/UI_duizhan_baoxiang/Opening.anim
+  - name: 7ae56286fd56948fc278f091ed80cede.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Animator/UI_duizhan_baoxiang/run.anim
   - name: d0f84d128600f1ff140375e6b5907323.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/Materials/NPC_vanquisher_01_mat.mat
@@ -14108,9 +14161,15 @@ MonoBehaviour:
   - name: 4e02260fcd14ca7ac3a7383d041bf56c.unity3d
     assets:
     - Assets/Res/Effect/Scenece/DoorWay.prefab
+  - name: 5859862143a5aced1c5c631c7e321587.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/BaoXiang_1/Materials/Tx_Chest.mat
   - name: 70777ce7515091fdb2c139818e0d32e0.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C13_1.FBX
+  - name: fac70c0574401eb104aa54ba6350a7c8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/BaoXiang_1/modelChest.fbx
   - name: 0efbcbf1c5f6f9f49819493eed8c64b1.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/Materials/NPC_Gambler.mat
@@ -14487,9 +14546,6 @@ MonoBehaviour:
   - name: 9268a2fadd3cf2daf2aab8c95594d31c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A16.FBX
-  - name: 5859862143a5aced1c5c631c7e321587.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/BaoXiang_1/Materials/Tx_Chest.mat
   - name: 9703504eeb5408a5909b9b65e0dd7003.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Cloud/Cloud.prefab
@@ -14523,9 +14579,6 @@ MonoBehaviour:
   - name: de7b0d4de77729933b50cc54dcb16db5.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_K1.FBX
-  - name: fac70c0574401eb104aa54ba6350a7c8.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/BaoXiang_1/modelChest.fbx
   - name: d49b63149c6cfe15053ef56d83832f9b.unity3d
     assets:
     - Assets/Scenes/TerrGuang_2.mat
@@ -14851,6 +14904,9 @@ MonoBehaviour:
   - name: d9032b7781da333920201cf1ec029163.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/tent_stump_glow.tif
+  - name: d35f8df9bfa515c9f7b589e53ccc5327.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/BaoXiang_1/Tx_Chest.mat
   - name: 8fe7da1d3382d2ea8441c6fb9570fca3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Barrel.mat
@@ -14890,6 +14946,9 @@ MonoBehaviour:
   - name: b48b97f27f6acb136eba6800e7f186a8.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/UseModel/LiuLang.FBX
+  - name: f47fef72af208ebd8b34b1a9543e5f55.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/BaoXiang_1/Tx_Chest.jpg
   - name: e4642ac360b3a02a9c25bcf0c084cda2.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/UseModel/CunZhang.controller
@@ -15007,9 +15066,6 @@ MonoBehaviour:
   - name: 51581c5d27d30d130fed0f0ba200e54e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFence01.fbx
-  - name: c9861a69a108f84daa4aea255ed9edf8.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Materials/props1.tif
   - name: 6c3cf92298a3f8fe47ba1d84d51579be.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Prop_Cargo1.fbx
@@ -15088,6 +15144,9 @@ MonoBehaviour:
   - name: 85e1a563985d8737dbebed736a0c207c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/KuangDong/Bianfu_2.fbx
+  - name: ac536446970a1ee48c1ff91c18a1f79c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/props1.mat
   - name: d4a37b037ff601ba0a3e0748854dd831.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/Materials/props1.mat
@@ -15166,9 +15225,6 @@ MonoBehaviour:
   - name: d1223b5fbdd4192d14bae2156a33e370.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Wagon_wagon.fbx
-  - name: ac536446970a1ee48c1ff91c18a1f79c.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/props1.mat
   - name: fd3155a9f3da4ab4e24190b3da103845.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/Water (Basic)/Sources/Textures/oceangradient.psd
@@ -15772,6 +15828,90 @@ MonoBehaviour:
   - name: c887be2ef0d8eaf041cf3bcebfe59adb.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.mat
+  - name: 6154bd59bf8a0c52a6697634b2a35b2b.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shu_02.FBX
+  - name: 6ec0d645077d81495405e8bcf6600753.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/100101_1.terrainlayer
+  - name: 3116bfa818aa41a16f069ae0863310cc.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shu_01.FBX
+  - name: 6ed2d1b88859881c8ad63a62cf93bd0c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/Tx_Log.mat
+  - name: 509ff7904340965f67661ac3b1cc5ee8.unity3d
+    assets:
+    - Assets/Res/TerrainTieTuSet/Textures/Grass/Grass5.tga
+  - name: b712eef5c747ff00b36af9a4746982e5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/Tx_Log.jpg
+  - name: 18e7a694e678cf05dae0cae748d37f2b.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_mogu_02.FBX
+  - name: cfebaaf16701d3a65ea85b2e492e4c01.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cao_01.FBX
+  - name: c1bafd1bca82a937a0f5d0bde86020c3.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cigu_02.FBX
+  - name: 7a9bc972a6ad08132fb5a032707fafbc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_pink.jpg
+  - name: 5c11ecfcb12383737ddec7004125795f.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shitou_05.FBX
+  - name: 5b20539850edcd917eaa038cb76dd3f7.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cao_02.FBX
+  - name: c3d1f88ffa36b01a52e46fffdb52c733.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/texture/build/stsm_build_002.tga
+  - name: 10e6979486401c223d680233c594b431.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cigu_01.FBX
+  - name: 4fc16e3af1356ffbc261bed7269e938d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/objectB/scene/build/stsm_build_diaoxiang_001.FBX
+  - name: c6ebd1413d331fd0bb55e44f0d35a472.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_pink.fbx
+  - name: 0049db98f1d3a0f774ac897bd865a100.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_pink.mat
+  - name: 5f2354a54074e285f98c1c7d38aec298.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_xiaoshitou_01.FBX
+  - name: 45868f5be65d39d6f395c3884357e516.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/prefab/objectB/build/stsm_build_diaoxiang_001.prefab
+  - name: 2ef374597f51dead52da8ee1360a95bb.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_xiaoshitou_03.FBX
+  - name: d1033835515b94c92cfd15f963986bf7.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_mogu_01.FBX
+  - name: 05c99a5d46c3318686955f2ad3ac30b5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/objectB/scene/build/Materials/stsm_build_002.mat
+  - name: 7f2b5408c4f4cd9a7b9274c9fc88cd2a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Mushroom3A.fbx
+  - name: 1983e93e3280baafb41ead8a75f7396f.unity3d
+    assets:
+    - Assets/Res/OldRes/OldMonster/chuansong.prefab
+  - name: 6b32be062885a5f82945fbdaa44c25e3.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_B21_3.prefab
+  - name: 8d1c67878ea87b372d584e1add352d0c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B21_3.FBX
+  - name: e2bd648893822b27d24d2ccd75739c7c.unity3d
+    assets:
+    - Assets/Scenes/texiao/Prefab/Teleport_9.prefab
+  - name: a41ed5773d08211d0efcaff0025d07d5.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_chuansongzhen.FBX
   - name: 70c4a5e949cf3f5d91c46f4bff0a3c0b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/PangXie_1.controller
@@ -16006,6 +16146,9 @@ MonoBehaviour:
   - name: 84c5353c346988ba08a004c003634bdf.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/environment_common_shitigutou_002_a.FBX
+  - name: b10d9abccba1c81660ddb159f0b8a237.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Prop_Chest2.fbx
   - name: e69d59810972cbbbf1b5353b50a9b88d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C8_4.prefab
@@ -16184,9 +16327,36 @@ MonoBehaviour:
   - name: a412713813ab5305c3680f3ccc38bc79.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_A4.prefab
-  - name: 509ff7904340965f67661ac3b1cc5ee8.unity3d
+  - name: db763d69edb45dfee7fac612704665dc.unity3d
     assets:
-    - Assets/Res/TerrainTieTuSet/Textures/Grass/Grass5.tga
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Tree_A10.FBX
+  - name: cdbf3ed873c29b0e532e432ff2f49117.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Textures/Tree_A_1.jpg
+  - name: 75b2026996176eabc34d30fa6dc78dae.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Materials/Tree_A.mat
+  - name: 61d9fc680090511eb37b2cb5e9c56d79.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Tree_A12.prefab
+  - name: 210543dd27d955b585c357c5465c9dd0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Tree_A9.prefab
+  - name: cb638067fa829f31171dd15d557375bf.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Tree_A10.prefab
+  - name: 7560dde6392b21248ed6557006a19300.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Tree_A9.FBX
+  - name: 55a1cb512d0f6f796381160e74b341ca.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Tree_A12.FBX
+  - name: 4acbfc94790d5f719c5803610b40c424.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Tree_A13.prefab
+  - name: 1d4d4e8eaebef995e7646580ddee3d75.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Tree_A13.FBX
   - name: 5de30053e40283897855fab475efe824.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Tree_04.fbx
@@ -17076,9 +17246,6 @@ MonoBehaviour:
   - name: fe3197859d55dc6a5f37c9117e8ef334.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Grass01.mat
-  - name: 7a9bc972a6ad08132fb5a032707fafbc.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_pink.jpg
   - name: db08ac9ab1ad6d3fbb92dba93ecbe8bc.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_purple.jpg
@@ -17091,9 +17258,6 @@ MonoBehaviour:
   - name: 699328d3a76664fef44e19a812b584de.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/prefab/Tx_TablePotion.jpg
-  - name: b712eef5c747ff00b36af9a4746982e5.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/Tx_Log.jpg
   - name: 67490585716c911a3f4520edf1d4311d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Materials/plant_vege_064_01.mat
@@ -17151,9 +17315,6 @@ MonoBehaviour:
   - name: 53187a94e3eedb63a78612efee61b2c1.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelPond2.fbx
-  - name: c6ebd1413d331fd0bb55e44f0d35a472.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_pink.fbx
   - name: 515ab03e2ba263e91a0a4e7d93ef434e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Texture/plant_vege_061_01.tga
@@ -17163,15 +17324,9 @@ MonoBehaviour:
   - name: 0f0e1f8ca0eacde7d905ed5e782eca3c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Bonfire.mat
-  - name: 0049db98f1d3a0f774ac897bd865a100.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_pink.mat
   - name: 4118afb0beafc6361fa84c529f09aee8.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Fence02.mat
-  - name: d35f8df9bfa515c9f7b589e53ccc5327.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/BaoXiang_1/Tx_Chest.mat
   - name: bfc6ccbed3134802e2af4e49d5e0de71.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelTree01_3.fbx
@@ -17220,9 +17375,6 @@ MonoBehaviour:
   - name: fbae0c7ec6de8f8b657019f0bcd5ab71.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelChair.fbx
-  - name: f47fef72af208ebd8b34b1a9543e5f55.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/BaoXiang_1/Tx_Chest.jpg
   - name: faee0cb8c5744773368900067bcb05d3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Floor.jpg
@@ -17256,9 +17408,6 @@ MonoBehaviour:
   - name: e2d8f324759eaf9997745754b130c287.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/objectB/modelWeapon2.fbx
-  - name: 6ed2d1b88859881c8ad63a62cf93bd0c.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/Tx_Log.mat
   - name: b9d6866c411ca90b345eca9412e4815e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_pond1.mat
@@ -17421,15 +17570,12 @@ MonoBehaviour:
   - name: 6d28f831dc88584c87597d012c06b7b6.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/EyeLight_02_R.prefab
-  - name: 18e7a694e678cf05dae0cae748d37f2b.unity3d
+  - name: 0fcaa9231dcdc2a61c8c5f8ab4102d35.unity3d
     assets:
-    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_mogu_02.FBX
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shitou_02.FBX
   - name: b1e2e85ad1b6aa51f30a285373b0c8df.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/Eye-EyeBall_00_00.mat
-  - name: cfebaaf16701d3a65ea85b2e492e4c01.unity3d
-    assets:
-    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cao_01.FBX
   - name: 7ef4b0bf8687ba9ad0dde3324624ca1d.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Emotion 2.controller
@@ -17457,6 +17603,9 @@ MonoBehaviour:
   - name: 137344cba5f9f1ae3eb02713c859d803.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandA_idleAXiuGai.FBX
+  - name: 10cc938e7e1611439ccd7850c1b9e4ec.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Model/YeWai/YeWai_1/model/Materials/FB1_Zhenghe04.mat
   - name: b95943454f980d7c943ac24fe208ab1d.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Hair/Hair_00/Hair_00_00.mat
@@ -17472,15 +17621,12 @@ MonoBehaviour:
   - name: a86baeed0fe713390899f89dcc522468.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/Faceskin/FaceSkin_00_00.png
-  - name: 5c11ecfcb12383737ddec7004125795f.unity3d
+  - name: 18570bb985a31e94b3e5a0fede7640d2.unity3d
     assets:
-    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shitou_05.FBX
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/prefab/objectB/skybox/skybox_stsm_yun_002.prefab
   - name: 7a17b82b36ae722d2c422e9decca4c74.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/Costume/Costume_01_00.png
-  - name: c3d1f88ffa36b01a52e46fffdb52c733.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/texture/build/stsm_build_002.tga
   - name: 5ea67627ed684a78711c7a2b808accbc.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/RunA_Front.FBX
@@ -17505,9 +17651,6 @@ MonoBehaviour:
   - name: 6d98b66c0849d225b4cd46a1a855481b.unity3d
     assets:
     - Assets/Res/Models/Warrior/Role_FaShi.controller
-  - name: 10e6979486401c223d680233c594b431.unity3d
-    assets:
-    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cigu_01.FBX
   - name: 2fca4170f1dd667c9249995e9f210cbd.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Setting/_Humanoid and Add-Bone
@@ -17521,9 +17664,15 @@ MonoBehaviour:
   - name: 649e0e9534dec0499979e8d5f788c24f.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Hair/Hair_00/Hair_00_subAB_00.mat
-  - name: 4fc16e3af1356ffbc261bed7269e938d.unity3d
+  - name: 917976a49d48eac4e98a78117bc2fc38.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/objectB/scene/build/stsm_build_diaoxiang_001.FBX
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/objectB/scene/skybox/Materials/skybox_yun_00.mat
+  - name: e731b0584a594d8cc1721e1cdd4a6bf6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/texture/build/skybox_yun_01.tga
+  - name: caf61334d9b1596d21c86eceee5f9ce8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/texture/build/skybox_yun_00.tga
   - name: ffa542384dfc7e62dd4fefeb8cf87c6c.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/Common/StandB.FBX
@@ -17537,21 +17686,9 @@ MonoBehaviour:
   - name: 0be0bf0cb0a3bdfa5ea5c7ee9e156245.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eyeblow/Eyeblow_00_00.png
-  - name: 2ef374597f51dead52da8ee1360a95bb.unity3d
-    assets:
-    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_xiaoshitou_03.FBX
-  - name: d1033835515b94c92cfd15f963986bf7.unity3d
-    assets:
-    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_mogu_01.FBX
-  - name: 05c99a5d46c3318686955f2ad3ac30b5.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/objectB/scene/build/Materials/stsm_build_002.mat
   - name: 17f5e9c0602b6d0c7f37856de522bcc4.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/Eye_00_R.prefab
-  - name: 7f2b5408c4f4cd9a7b9274c9fc88cd2a.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Mushroom3A.fbx
   - name: ad32c5c035064d8f6fc797244339b657.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Faceskin/FaceSkin_00_00.mat
@@ -17561,6 +17698,9 @@ MonoBehaviour:
   - name: a13f0e80c67cce394476d64f8033cd3f.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_02_R.fbx
+  - name: 919dc19ea1e485e264653ed09421b9a3.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/objectB/scene/skybox/Materials/skybox_yun_01.mat
   - name: 5fd2314245a14527deab3baf001573fd.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/WeaponMaster Twin dagger(WTD)/WTD_Run_Front.FBX
@@ -17579,15 +17719,12 @@ MonoBehaviour:
   - name: 676ac023f2248940e6306477f6b34dec.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/_Guide/Materials/_DummyMesh00.mat
-  - name: c1bafd1bca82a937a0f5d0bde86020c3.unity3d
-    assets:
-    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cigu_02.FBX
   - name: e8d5681a871d1198fc5f0f269570c815.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Eye_00_L.fbx
-  - name: 3116bfa818aa41a16f069ae0863310cc.unity3d
+  - name: ead377ab1a98717017a0ae3512c17ca1.unity3d
     assets:
-    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shu_01.FBX
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/objectB/scene/skybox/skybox_stsm_yun_002.FBX
   - name: 3cb411ac4add3c68e46a8fe06df513c6.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animations/Action Adventure(Adv)/Emotion_Clap(StandC).FBX
@@ -17603,21 +17740,18 @@ MonoBehaviour:
   - name: 2add8d236fcc862516ae790347584ee1.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Eye_00_R.fbx
+  - name: dfe8f427076795c889c34763effb8c16.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shitou_03.FBX
   - name: 51f8c36eeba6575fe394a3c954b76c0a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_H2.prefab
-  - name: 5b20539850edcd917eaa038cb76dd3f7.unity3d
-    assets:
-    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cao_02.FBX
   - name: 918e9a653f890296482dae0bf4191965.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Accessory/Accessory_00.prefab
   - name: 6d3b8e87991b44f217fb734c66b54423.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Hair/Hair_00_Front.prefab
-  - name: 6154bd59bf8a0c52a6697634b2a35b2b.unity3d
-    assets:
-    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shu_02.FBX
   - name: 477c3bcac83803c5751acf4d7f030b65.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/EyeLight_02_L.fbx
@@ -17630,24 +17764,27 @@ MonoBehaviour:
   - name: 561b9f64200930d32a3821b933108c87.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Accessory/Accessory_00_00.mat
+  - name: 67e46c260fdfe714d356802c223970e9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Model/YeWai/YeWai_1/model/Materials/FB1_Zhenghe04.tga
   - name: ab5da315d2406138dd517e10324dde57.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Prefabs/Eye/Eye_00_L.prefab
-  - name: 5f2354a54074e285f98c1c7d38aec298.unity3d
-    assets:
-    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_xiaoshitou_01.FBX
   - name: 59f79ecceb740741127cfffb6ecf5fa6.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Emotion 1.controller
   - name: 1e924a807c0dc7345b678cc11d31a7fa.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Eye/EyeLight_00.mat
+  - name: 991254e7129256d7f49c687f769af943.unity3d
+    assets:
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shitou_04.FBX
   - name: 81784648cf126cfa001c30607e1028f2.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Controller/LS/LS Squat A.controller
-  - name: 45868f5be65d39d6f395c3884357e516.unity3d
+  - name: d396fc24f16c936bf779ffc342c9b0e5.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/prefab/objectB/build/stsm_build_diaoxiang_001.prefab
+    - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shitou_01.FBX
   - name: 4189f7401f0eae9b333fb1ef14c91d7c.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/_Guide/Texture/_maskGuide.png
@@ -17660,6 +17797,9 @@ MonoBehaviour:
   - name: b84f7beee5fa5d461f879ff78f7a8ce7.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Models/Parts/Hair_00_Base.fbx
+  - name: ace42913dbb96d015b9a58d18afcb822.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/objectB/scene/Animation/skybox_stsm_yun_002.anim
   - name: 7c32e4432e0f237df57a341504bf6cbb.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/Texture/STONE_03.png
