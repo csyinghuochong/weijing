@@ -302,7 +302,7 @@ namespace ET
             {
                 dropAdd_Pro += 0.3f;
             }
-
+            int playerLv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
             //创建掉落
             MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
             if (main != null && monsterCof.MonsterSonType == 1)
@@ -321,7 +321,13 @@ namespace ET
 
             if (monsterCof.DropType == 0) //公共掉落
             {
-                List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro);
+                List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro, false);
+                List<RewardItem> droplist_2 = DropHelper.AI_DropByPlayerLv(monsterCof.Id, playerLv, dropAdd_Pro, false);
+                if (droplist_2 != null)
+                {
+                    droplist.AddRange(droplist_2);
+                }
+                
                 for (int i = 0; i < droplist.Count; i++)
                 {
                     UnitComponent unitComponent = bekill.DomainScene().GetComponent<UnitComponent>();
@@ -356,8 +362,12 @@ namespace ET
                         continue;
                     }
                     M2C_CreateDropItems m2C_CreateDropItems = new M2C_CreateDropItems();
-
-                    List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro);
+                    List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro, false);
+                    List<RewardItem> droplist_2 = DropHelper.AI_DropByPlayerLv(monsterCof.Id, playerLv, dropAdd_Pro, false);
+                    if (droplist_2 != null)
+                    {
+                        droplist.AddRange(droplist_2);
+                    }
                     for (int k = 0; k < droplist.Count; k++)
                     {
                         m2C_CreateDropItems.Drops.Add(new DropInfo() {

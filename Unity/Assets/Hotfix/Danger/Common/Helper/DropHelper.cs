@@ -137,6 +137,34 @@ namespace ET
 			dropItemList.Add(new RewardItem() { ItemID = dropItemInfo.ItemID, ItemNum = newNumber });
 		}
 
+		public static List<RewardItem> AI_DropByPlayerLv(int monsterID, int playerLv, float dropProValue, bool all)
+		{
+			MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(monsterID);
+			//最小等级;最大等级;掉落ID1,掉落ID2
+			string LvDropID = monsterCof.LvDropID;
+			if (ComHelp.IfNull(LvDropID))
+			{
+				return null;
+			}
+			string[] lvDropInfos = LvDropID.Split(';');
+			if (playerLv < int.Parse(lvDropInfos[0]) || playerLv > int.Parse(lvDropInfos[1]))
+			{
+				return null;
+			}
+			List<int> dropIds = new List<int>();
+			string[] dropList = lvDropInfos[2].Split(',');
+			for (int i = 0; i < dropList.Length; i++)
+			{
+				dropIds.Add(int.Parse(dropList[i]));
+			}
+
+			List<RewardItem> dropItemList = new List<RewardItem>();
+			for (int i = 0; i < dropIds.Count; i++)
+			{
+				DropIDToDropItem(dropIds[i], dropItemList, monsterID, dropProValue, all);
+			}
+			return dropItemList;
+		}
 
 		/// <summary>
 		/// dropProValue 掉落概率多个道具
@@ -144,7 +172,7 @@ namespace ET
 		/// <param name="monsterID"></param>
 		/// <param name="dropProValue"></param>
 		/// <returns></returns>
-		public static List<RewardItem> AI_MonsterDrop(int monsterID, float dropProValue = 1, bool all = false)
+		public static List<RewardItem> AI_MonsterDrop(int monsterID, float dropProValue, bool all)
 		{
 			//根据怪物ID获得掉落ID
 			MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(monsterID);
