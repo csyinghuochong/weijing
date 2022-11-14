@@ -52,26 +52,15 @@ namespace ET
                 {
                     int[] weights = new int[] { 70, 10, 30};
                     int index = RandomHelper.RandomByWeight(weights);
-                    if (zoneScene.GetComponent<AttackComponent>() == null)
-                    {
-                        Log.Debug($"AttackComponent == null {zoneScene.Id}:{zoneScene.IsDisposed}");
-                        Log.Debug($"AttackComponent == null {zoneScene.GetComponent<UserInfoComponent>()!=null}");
-                        return;
-                    }
                     if (index == 0)
                     {
                         zoneScene.GetComponent<AttackComponent>().AutoAttack_1(unit, target);
                     }
                     if (index == 1)
                     {
-                        int maxHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
-                        int curHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp);
-                        if (curHp < maxHp * 0.5)
-                        {
-                            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(10010001);
-                            unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
-                                (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();
-                        }
+                        ItemConfig itemConfig = ItemConfigCategory.Instance.Get(10010001);
+                        unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
+                            (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();
                     }
                     if (index == 2)
                     {
