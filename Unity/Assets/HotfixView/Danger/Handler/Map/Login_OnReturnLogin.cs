@@ -25,7 +25,11 @@ namespace ET
 
             //not  reload dll
             //int lastScene = args.ZoneScene.GetComponent<MapComponent>().SceneTypeEnum;
-            args.ZoneScene.GetComponent<SessionComponent>().Session.GetComponent<PingComponent>().DisconnectType = -1;
+            Session session = args.ZoneScene.GetComponent<SessionComponent>().Session;
+            if (session != null && !session.IsDisposed)
+            {
+                session.GetComponent<PingComponent>().DisconnectType = -1;
+            }
             Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.LoginScene, SceneTypeEnum.NONE, 1).Coroutine();
             args.ZoneScene.Dispose();
             GameObjectPoolComponent.Instance.DisposeAll();
