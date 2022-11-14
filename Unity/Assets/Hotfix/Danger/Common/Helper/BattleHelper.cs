@@ -8,6 +8,19 @@ namespace ET
     public static class BattleHelper
     {
 
+        public static int GetYaoShuiItemID(int level)
+        {
+            if (level < 20)
+                return 10010001;
+            if (level < 30)
+                return 10010002;
+            if (level < 40)
+                return 10010003;
+            if (level < 50)
+                return 10010004;
+            return 10010005;
+        }
+
         public static int GetSceneIdByType(int sceneType)
         {
             List<SceneConfig> sceneConfigs = SceneConfigCategory.Instance.GetAll().Values.ToList();

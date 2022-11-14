@@ -50,19 +50,13 @@ namespace ET
                 if (target != null && target.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Dead) == 0
                     && Vector3.Distance(unit.Position,target.Position) < aiComponent.ActDistance)
                 {
-                    int[] weights = new int[] { 70, 10, 30};
+                    int[] weights = new int[] { 70, 30};
                     int index = RandomHelper.RandomByWeight(weights);
                     if (index == 0)
                     {
                         zoneScene.GetComponent<AttackComponent>().AutoAttack_1(unit, target);
                     }
                     if (index == 1)
-                    {
-                        ItemConfig itemConfig = ItemConfigCategory.Instance.Get(10010001);
-                        unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
-                            (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();
-                    }
-                    if (index == 2)
                     {
                         //触发技能
                         SkillPro skillPro = aiComponent.ZoneScene().GetComponent<SkillSetComponent>().GetCanUseSkill();
@@ -74,6 +68,16 @@ namespace ET
                             float targetDistance = skillConfig.SkillZhishiType == 1 ? Vector3.Distance(unit.Position, target.Position) : 0;
                             target.GetComponent<SkillManagerComponent>().SendUseSkill(skillPro.SkillID, 0, Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
                         }
+                    }
+
+                    int maxHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
+                    int curHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp);
+                    if (curHp < maxHp * 0.75)
+                    {
+                        UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
+                        ItemConfig itemConfig = ItemConfigCategory.Instance.Get(BattleHelper.GetYaoShuiItemID(userInfo.Lv));
+                        unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
+                            (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();
                     }
                 }
                 else
