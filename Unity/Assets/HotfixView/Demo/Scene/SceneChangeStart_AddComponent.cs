@@ -51,7 +51,7 @@ namespace ET
                     UIHelper.Remove(args.ZoneScene, UIType.UITeamMain);
                     break;
             }
-            Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.ChapterId).Coroutine();
+            Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.LastSceneType, args.ChapterId).Coroutine();
         }
     }
 }

@@ -42,7 +42,7 @@ namespace ET
     public static class SkillIndicatorComponentSystem
     {
     
-        public static void OnChangeSonScene(this SkillIndicatorComponent self)
+        public static void BeginEnterScene(this SkillIndicatorComponent self)
         {
             self.RecoveryEffect();
         }

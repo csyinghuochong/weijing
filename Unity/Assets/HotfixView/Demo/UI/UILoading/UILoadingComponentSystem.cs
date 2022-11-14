@@ -73,13 +73,6 @@ namespace ET
             }
             self.PassTime = 0f;
             self.ChapterId = sceneTypeEnum == (int)SceneTypeEnum.CellDungeon ? chapterId : 0;
-
-            UI uimain = UIHelper.GetUI(self.DomainScene(), UIType.UIMain);
-            if (uimain != null)
-            {
-                UIHelper.Remove(self.ZoneScene(), UIType.UIMapBig);
-                uimain.GetComponent<UIMainComponent>().BeginChangeScene(lastScene);
-            }
         }
 
         public static List<string> GetLocalDungeonMonsters(this UILoadingComponent self)

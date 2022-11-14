@@ -31,11 +31,11 @@ namespace ET
         public static async ETTask<int> MoveToNpc(Scene zoneScene, TaskPro taskPro)
         {
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
-            Vector3 targetPos;
             if (!HaveNpc(zoneScene, taskConfig.CompleteNpcID))
             {
                 return ErrorCore.ERR_NotFindNpc;
             }
+            Vector3 targetPos;
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(taskConfig.CompleteNpcID);
             targetPos = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f );
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);

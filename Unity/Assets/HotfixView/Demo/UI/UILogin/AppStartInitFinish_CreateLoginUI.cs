@@ -13,7 +13,7 @@ namespace ET
 			await UIHelper.Create(args.ZoneScene, UIType.UILogin);
 			GameObject.Find("Global").GetComponent<Init>().Updater.SetActive(false);
 			args.ZoneScene.GetComponent<MapComponent>().SceneTypeEnum = (int)SceneTypeEnum.LoginScene;
-			Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.LoginScene, 1).Coroutine();
+			Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.LoginScene, SceneTypeEnum.NONE, 1).Coroutine();
 		}
 	}
 }

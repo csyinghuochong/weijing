@@ -833,13 +833,15 @@ namespace ET
         /// 
         /// </summary>
         /// <param name="self"></param>
-        public static void BeginChangeScene(this UIMainComponent self, int lastScene)
+        public static void BeginEnterScene(this UIMainComponent self, int lastScene)
         {
             self.UIJoystickMoveComponent.draging = false;
             self.UIMainSkillComponent.CancelSkill();
             self.UIMainSkillComponent.OnExitBattle();
             self.UIMainBuffComponent.ResetUI();
             self.UIMapMini.BeginChangeScene(lastScene);
+            self.ZoneScene().GetComponent<SkillIndicatorComponent>().BeginEnterScene();
+            self.ZoneScene().GetComponent<LockTargetComponent>().BeginEnterScene();
         }
        
         /// <summary>

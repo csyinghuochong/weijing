@@ -82,12 +82,12 @@ namespace ET
             }
         }
 
-        public static void OnChangeSonScene(this LockTargetComponent self)
+        public static void BeginEnterScene(this LockTargetComponent self)
         {
             self.HideLockEffect();
 
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnChangeSonScene();
+            uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnChangeScene();
         }
 
         public static void HideLockEffect(this LockTargetComponent self)

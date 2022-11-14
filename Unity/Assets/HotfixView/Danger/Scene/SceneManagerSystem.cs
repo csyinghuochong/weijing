@@ -65,8 +65,8 @@ namespace ET
 
         public static async ETTask ChangeSonScene(this SceneManagerComponent self, Scene scene, int sceneTypeEnum, string paramss)
         {
-            scene.GetComponent<SkillIndicatorComponent>().OnChangeSonScene();
-            scene.GetComponent<LockTargetComponent>().OnChangeSonScene();
+            scene.GetComponent<SkillIndicatorComponent>().BeginEnterScene();
+            scene.GetComponent<LockTargetComponent>().BeginEnterScene();
 
             var path = ABPathHelper.GetScenePath(paramss);
             await ResourcesComponent.Instance.LoadSceneAdditive(path);
@@ -111,8 +111,15 @@ namespace ET
             }
         }
 
-        public static async ETTask ChangeScene(this SceneManagerComponent self, Scene scene, int sceneTypeEnum, int chapterId)
+        public static async ETTask ChangeScene(this SceneManagerComponent self, Scene scene, int sceneTypeEnum,int lastScene, int chapterId)
         {
+            UI uimain = UIHelper.GetUI(self.DomainScene(), UIType.UIMain);
+            if (uimain != null && sceneTypeEnum!= SceneTypeEnum.NONE)
+            {
+                UIHelper.Remove(self.ZoneScene(), UIType.UIMapBig);
+                uimain.GetComponent<UIMainComponent>().BeginEnterScene(lastScene);
+            }
+
             string paramss = "";
             switch (sceneTypeEnum)
             {

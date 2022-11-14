@@ -24,7 +24,8 @@ namespace ET
             //CodeLoader.Instance.Dispose();              //this.monoTypes.Clear()
 
             //not  reload dll
-            Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.LoginScene, 1).Coroutine();
+            //int lastScene = args.ZoneScene.GetComponent<MapComponent>().SceneTypeEnum;
+            Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, (int)SceneTypeEnum.LoginScene, SceneTypeEnum.NONE, 1).Coroutine();
             args.ZoneScene.Dispose();
             GameObjectPoolComponent.Instance.DisposeAll();
             Scene zoneScene = SceneFactory.CreateZoneScene(1, "Game", Game.Scene);

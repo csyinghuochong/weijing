@@ -49,12 +49,11 @@ namespace ET
 
     public static class UIMainHpBarComponentSystem
     {
-
-        public static void OnChangeSonScene(this UIMainHpBarComponent self)
+        public static void OnChangeScene(this UIMainHpBarComponent self)
         {
             self.MonsterNode.SetActive(false);
             self.BossNode.SetActive(false);
-         }
+        }
 
         public static void OnLockUnit(this UIMainHpBarComponent self, Unit unit)
         {
