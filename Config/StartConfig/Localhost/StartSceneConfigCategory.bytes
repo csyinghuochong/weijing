@@ -21,7 +21,7 @@
 Ê"Realm*Realm0æ
 Ë"Gate*Gate10ç
 Ì"Queue*Queue0è
-Í"DBCache*DBCache
+Í"DBCache*DBCache
 Î"Chat*Chat
 Ï"EMail*EMail
 Ğ"Activity*Activity
@@ -38,7 +38,7 @@
 ®"Realm*Realm0ğ
 ¯"Gate*Gate10ñ
 °"Queue*Queue0ò
-±"DBCache*DBCache
+±"DBCache*DBCache
 ²"Chat*Chat
 ³"EMail*EMail
 ´"Activity*Activity
@@ -55,5 +55,5 @@
 #êÊ"LoginCenter*LoginCenter
 ëÊ"Location*Location
 +ìÊ"AccountCenter*AccountCenter0Ğ
-íÊ"ReCharge*ReCharge
+íÊ"ReCharge*ReCharge
 ÍËË"Robot*Robot01
