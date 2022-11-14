@@ -130,5 +130,7 @@ namespace ET
 		 public const ushort M2B_BattleEnterRequest = 20127;
 		 public const ushort B2M_BattleEnterResponse = 20128;
 		 public const ushort G2Robot_MessageRequest = 20129;
+		 public const ushort M2D_DeleteUnit = 20130;
+		 public const ushort D2M_DeleteUnit = 20131;
 	}
 }

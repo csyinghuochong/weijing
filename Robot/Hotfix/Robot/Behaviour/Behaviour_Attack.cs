@@ -37,7 +37,7 @@ namespace ET
             Log.ILog.Debug("Behaviour_Attack: Enter");
             Scene zoneScene = aiComponent.ZoneScene();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-            aiComponent.ZoneScene().GetComponent<BagComponent>().CheckYaoShui().Coroutine();
+            aiComponent.ZoneScene().GetComponent<BagComponent>().CheckBagIsFull();
             long instanceId = unit.InstanceId;
             while (true)
             {
@@ -66,10 +66,9 @@ namespace ET
                     {
                         int maxHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
                         int curHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp);
-                        BagInfo bagInfo = aiComponent.ZoneScene().GetComponent<BagComponent>().GetBagInfo(10010001);
-                        if (curHp < maxHp * 0.5 && bagInfo != null)
+                        if (curHp < maxHp * 0.5)
                         {
-                            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(10010001);
                             unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
                                 (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();
                         }

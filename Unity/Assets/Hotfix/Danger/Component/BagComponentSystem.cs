@@ -583,25 +583,12 @@ namespace ET
             }
         }
 
-        public static async ETTask CheckYaoShui(this BagComponent self)
+        public static void  CheckBagIsFull(this BagComponent self)
         {
             List<BagInfo> bagList = self.GetBagList();
             if (bagList.Count >= ComHelp.BagMaxCapacity())
             {
-                await self.SendSellItem(bagList[0]);
-            }
-
-            //购买生命药水
-            int lv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
-            int itemId = 10010001;
-            int storeId = 10001101;
-            if (self.GetItemNumber(itemId) < 20)
-            {
-                await self.SendBuyItem(storeId);
-                await self.SendBuyItem(storeId);
-                await self.SendBuyItem(storeId);
-                await self.SendBuyItem(storeId);
-                await self.SendBuyItem(storeId);
+                self.SendSellItem(bagList[0]).Coroutine();
             }
         }
 

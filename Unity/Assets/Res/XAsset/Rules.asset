@@ -9436,7 +9436,6 @@ MonoBehaviour:
     - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonBasicOutline.shader
     - Assets/Res/MonsterModel/Monster/M09001/texture/ToonBasicOutline.shader
     - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonLitOutline.shader
-    - Assets/Res/Models/Occ/zhanshi123/Toony-BasicOutline.shader
     - Assets/Res/Models/Warrior/Suriyun/UnityChanShader/Shader/Unitychan_chara_hada.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-Top.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-DetachAlpha-Top.shader
@@ -9486,7 +9485,6 @@ MonoBehaviour:
     - Assets/T4M/Shaders/ShaderModel2/Diffuse/T4M 4 Textures.shader
     - Assets/Mono/GameDemo/OldResources/Water (Basic)/Sources/Shaders/FX-Water Simple.shader
     - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonBasic.shader
-    - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/Toon_ShadingGradeMap.shader
     - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/ToonColor_ShadingGradeMap.shader
     - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/Toon_ShadingGradeMap_Mobile.shader
   - name: f25cddffc2bb2503ef64e3bf9f053512.unity3d

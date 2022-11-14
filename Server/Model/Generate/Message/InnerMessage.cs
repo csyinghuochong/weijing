@@ -2168,4 +2168,32 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(D2M_DeleteUnit))]
+	[Message(InnerOpcode.M2D_DeleteUnit)]
+	[ProtoContract]
+	public partial class M2D_DeleteUnit: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.D2M_DeleteUnit)]
+	[ProtoContract]
+	public partial class D2M_DeleteUnit: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

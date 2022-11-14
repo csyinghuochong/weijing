@@ -1042,3 +1042,18 @@ message G2Robot_MessageRequest // IActorMessage
 	int32 MessageType = 2;
 	string Message = 3;
 }
+
+//ResponseType D2M_DeleteUnit
+message M2D_DeleteUnit // IActorRequest
+{
+    int32 RpcId = 90;
+
+    int64 UnitId = 1;
+}
+
+message D2M_DeleteUnit // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+}

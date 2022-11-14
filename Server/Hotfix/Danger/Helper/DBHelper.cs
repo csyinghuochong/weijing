@@ -35,22 +35,6 @@ namespace ET
         public const string DBAccountInfo = "DBAccountInfo";
         public const string DBCenterAccountInfo = "DBCenterAccountInfo";
 
-        public static Dictionary<string, Type> keyValuePairs = new Dictionary<string, Type>()
-        {
-                { "UserInfoComponent", typeof(UserInfoComponent) },
-                { "BagComponent", typeof(BagComponent) },
-                { "TaskComponent", typeof(TaskComponent) },
-                { "ChengJiuComponent", typeof(ChengJiuComponent) },
-                { "PetComponent", typeof(PetComponent) },
-                { "SkillSetComponent", typeof(SkillSetComponent) },
-                { "EnergyComponent", typeof(EnergyComponent) },
-                { "ActivityComponent", typeof(ActivityComponent) },
-                { "NumericComponent", typeof(NumericComponent) },
-                { "RechargeComponent", typeof(RechargeComponent) },
-                { "ReddotComponent", typeof(ReddotComponent) },
-                { "ShoujiComponent", typeof(ShoujiComponent) },
-        };
-
         public static async ETTask<Entity> AddDataComponent<K>(int zone, long userID, string componentType) where K : Entity, new()
         {
             Type type = typeof(K);
@@ -65,7 +49,6 @@ namespace ET
             });
             return entity;
         }
-
 
         public static async ETTask<bool> AddDataComponent<K>(Unit unit, long userID, string componentType) where K : Entity, new()
         {
@@ -209,5 +192,34 @@ namespace ET
             return serverOpenTime;
         }
 
+        /// <summary>
+        /// 删除玩家缓存
+        /// </summary>
+        /// <param name="unitId"></param>
+        public static async ETTask DeleteUnitCache(int zone, long unitId)
+        {
+            M2D_DeleteUnit message = new M2D_DeleteUnit() { UnitId = unitId };
+            long instanceId = DBHelper.GetDbCacheId(zone);
+            await MessageHelper.CallActor(instanceId, message);
+        }
+
+        /// <summary>
+        /// 获取玩家组件缓存
+        /// </summary>
+        /// <param name="unitId"></param>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static async ETTask<T> GetUnitComponentCache<T>(int zone, long unitId) where T : Entity, IUnitCache
+        {
+            G2D_GetComponent message = new G2D_GetComponent() { UnitId = unitId };
+            message.Component = typeof(T).Name;
+            long instanceId = DBHelper.GetDbCacheId(zone);
+            D2G_GetComponent queryUnit = (D2G_GetComponent)await MessageHelper.CallActor(instanceId, message);
+            if (queryUnit.Error == ErrorCode.ERR_Success && queryUnit.Component!=null)
+            {
+                return queryUnit.Component as T;
+            }
+            return null;
+        }
     }
 }
