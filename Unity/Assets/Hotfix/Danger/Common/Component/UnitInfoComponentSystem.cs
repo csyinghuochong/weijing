@@ -67,10 +67,7 @@ namespace ET
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon
                 || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi)
             {
-                if (unit.Type == UnitType.Player || beattack.Type == UnitType.Player)
-                {
-                    return false;
-                }
+                return unit.Type != UnitType.Player && beattack.Type == UnitType.Player;
             }
 
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene)
@@ -84,6 +81,7 @@ namespace ET
                 {
                     return false;
                 }
+                return true;
             }
 
             return unit.GetBattleCamp() != beattack.GetBattleCamp();

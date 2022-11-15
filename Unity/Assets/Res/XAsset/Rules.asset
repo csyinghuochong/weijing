@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 324
+  version: 325
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -254,6 +254,8 @@ MonoBehaviour:
     path: Assets/Bundles/Config/RobotConfigCategory.bytes
   - bundle: 51b07267e6349c76218950459b041f77.unity3d
     path: Assets/Bundles/Config/SceneConfigCategory.bytes
+  - bundle: d33a6fa96ffd083a7f13964e5230c2fd.unity3d
+    path: Assets/Bundles/Config/ServerDayConfigCategory.bytes
   - bundle: 74a685124624321959e253e03983e713.unity3d
     path: Assets/Bundles/Config/ShouJiConfigCategory.bytes
   - bundle: 1db9907d2462e18613ff60fdfbbd6a16.unity3d
@@ -294,6 +296,8 @@ MonoBehaviour:
     path: Assets/Bundles/Config/TowerRewardConfigCategory.bytes
   - bundle: 834fd1170cc25a7679603034262ce44a.unity3d
     path: Assets/Bundles/Config/UnitConfigCategory.bytes
+  - bundle: 3c88597e245cb7b5bd8a43d877873710.unity3d
+    path: Assets/Bundles/Config/WorldSayConfigCategory.bytes
   - bundle: fd9f7142c3962ece0a54dfdba9ba9a80.unity3d
     path: Assets/Bundles/Config/ZuoQiConfigCategory.bytes
   - bundle: 2788184868500131a228cadfdb50bff6.unity3d
@@ -1192,6 +1196,8 @@ MonoBehaviour:
     path: Assets/Bundles/Icon/ItemIcon/10010044.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/10010045.png
+  - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
+    path: Assets/Bundles/Icon/ItemIcon/10010046.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/10010051.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
@@ -4622,6 +4628,8 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Monster/70009303.prefab
   - bundle: 645c0d7b96a59fdff8b2f28eeee2c9fe.unity3d
     path: Assets/Bundles/Unit/Monster/70009502.prefab
+  - bundle: 48447ce8fc025ce2dafbde3f70910146.unity3d
+    path: Assets/Bundles/Unit/Monster/72000001.prefab
   - bundle: 8f2719fff8e1c6a3c473ca2b0bf84255.unity3d
     path: Assets/Bundles/Unit/Monster/72001001.prefab
   - bundle: e583d2f841ae60c1d0b8e703abbd3a61.unity3d
@@ -5285,6 +5293,9 @@ MonoBehaviour:
   - name: 51b07267e6349c76218950459b041f77.unity3d
     assets:
     - Assets/Bundles/Config/SceneConfigCategory.bytes
+  - name: d33a6fa96ffd083a7f13964e5230c2fd.unity3d
+    assets:
+    - Assets/Bundles/Config/ServerDayConfigCategory.bytes
   - name: 74a685124624321959e253e03983e713.unity3d
     assets:
     - Assets/Bundles/Config/ShouJiConfigCategory.bytes
@@ -5345,6 +5356,9 @@ MonoBehaviour:
   - name: 834fd1170cc25a7679603034262ce44a.unity3d
     assets:
     - Assets/Bundles/Config/UnitConfigCategory.bytes
+  - name: 3c88597e245cb7b5bd8a43d877873710.unity3d
+    assets:
+    - Assets/Bundles/Config/WorldSayConfigCategory.bytes
   - name: fd9f7142c3962ece0a54dfdba9ba9a80.unity3d
     assets:
     - Assets/Bundles/Config/ZuoQiConfigCategory.bytes
@@ -5714,6 +5728,9 @@ MonoBehaviour:
   - name: 645c0d7b96a59fdff8b2f28eeee2c9fe.unity3d
     assets:
     - Assets/Bundles/Unit/Monster/70009502.prefab
+  - name: 48447ce8fc025ce2dafbde3f70910146.unity3d
+    assets:
+    - Assets/Bundles/Unit/Monster/72000001.prefab
   - name: 8f2719fff8e1c6a3c473ca2b0bf84255.unity3d
     assets:
     - Assets/Bundles/Unit/Monster/72001001.prefab
@@ -8131,6 +8148,7 @@ MonoBehaviour:
     - Assets/Bundles/Icon/ItemIcon/10010043.png
     - Assets/Bundles/Icon/ItemIcon/10010044.png
     - Assets/Bundles/Icon/ItemIcon/10010045.png
+    - Assets/Bundles/Icon/ItemIcon/10010046.png
     - Assets/Bundles/Icon/ItemIcon/10010051.png
     - Assets/Bundles/Icon/ItemIcon/10010052.png
     - Assets/Bundles/Icon/ItemIcon/10010061.png
@@ -9867,6 +9885,16 @@ MonoBehaviour:
   - name: 4430e3618b9d55af874bb86c5b2713b1.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Lang/Lang_1.controller
+  - name: 9611445e9b86b7957c55929b7e900cee.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/tex/109420_axl_npc_Y_512.png
+  - name: 2d20569c34732e7e05106e84b74501a0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/model/109411_axl_npc
+      #4049137.fbx
+  - name: d91c0f2a1a84f68f5c3e6728474c6d14.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/Materials/109410_axl_npc_d_512.mat
   - name: 807cf9294d042e9c741e648761820cc1.unity3d
     assets:
     - Assets/Res/MonsterSet/Toon_RTS/Elves/animation/Infantry/ELF_infantry_01_idle.FBX
@@ -11187,6 +11215,9 @@ MonoBehaviour:
   - name: a2ba99f8d4418c20fcdafcc182550669.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_202.png
+  - name: cd5b32f337b0a05e4f33d8aafebf62e1.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_338.png
   - name: 877b058bb612cab5deb631e2b219ce52.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_320.Png
@@ -11256,9 +11287,6 @@ MonoBehaviour:
   - name: 4f49dc309a535719742a0ef9ebf4e01b.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_145.png
-  - name: cd5b32f337b0a05e4f33d8aafebf62e1.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_338.png
   - name: 0f4ca48b6252340e71fe73953ec4b3e8.unity3d
     assets:
     - Assets/Res/RenderTexture/RoleRenderTexture4.renderTexture

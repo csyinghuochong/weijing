@@ -287,6 +287,7 @@
     <Compile Include="Assets\Model\Module\CoroutineLock\CoroutineLockType.cs" />
     <Compile Include="Assets\Model\Module\AI\AIComponent.cs" />
     <Compile Include="Assets\Model\Core\Entity\Scene.cs" />
+    <Compile Include="Assets\Model\Generate\Config\WorldSayConfig.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
