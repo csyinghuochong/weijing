@@ -101,7 +101,7 @@ namespace ET
 		public string Component { get; set; }
 
 		[ProtoMember(2)]
-		public long CharacterId { get; set; }
+		public long UnitId { get; set; }
 
 	}
 
@@ -119,7 +119,10 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(1)]
-		public List<Entity> Components = new List<Entity>();
+		public List<Entity> EntityList = new List<Entity>();
+
+		[ProtoMember(2)]
+		public List<string> ComponentNameList = new List<string>();
 
 	}
 

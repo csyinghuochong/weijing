@@ -45,7 +45,7 @@ message G2D_GetUnit // IDBCacheActorRequest
     int32 RpcId = 90;
     int64 ActorId = 93;
     string Component = 1;
-    int64 CharacterId = 2;
+    int64 UnitId = 2;
 }
 
 message D2G_GetUnit // IDBCacheActorResponse
@@ -53,7 +53,8 @@ message D2G_GetUnit // IDBCacheActorResponse
     int32 RpcId = 90;
     int32 Error = 91;
     string Message = 92;
-    repeated Entity Components = 1;
+    repeated Entity EntityList = 1;
+    repeated string ComponentNameList = 2;
 }
 
 

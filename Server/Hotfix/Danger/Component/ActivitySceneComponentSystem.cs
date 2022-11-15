@@ -83,7 +83,7 @@ namespace ET
                 }
             }
             
-            self.SaveDB().Coroutine();
+            self.SaveDB();
         }
 
         public static async ETTask OnBattleOpen(this ActivitySceneComponent self)
@@ -132,13 +132,12 @@ namespace ET
           
             self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerTime);
             self.DBDayActivityInfo.Day = TimeHelper.DateTimeNow().Day;
-            self.SaveDB().Coroutine();
+            self.SaveDB();
         }
 
-        public static async ETTask SaveDB(this ActivitySceneComponent self)
+        public static  void SaveDB(this ActivitySceneComponent self)
         {
-            long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = self.DBDayActivityInfo, ComponentType = DBHelper.DBDayActivityInfo });
+            DBHelper.SaveUnitComponentCache(self.DomainZone(), self.DomainZone(), self.DBDayActivityInfo).Coroutine();
         }
 
         public static int OnMysteryBuyRequest(this ActivitySceneComponent self, MysteryItemInfo mysteryInfo)

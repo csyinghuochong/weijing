@@ -7,30 +7,33 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, G2D_GetUnit request, D2G_GetUnit response, Action reply)
         {
+            DBCacheComponent unitCacheComponent = scene.GetComponent<DBCacheComponent>();
+            Dictionary<string, Entity> dictionary = MonoPool.Instance.Fetch(typeof(Dictionary<string, Entity>)) as Dictionary<string, Entity>;
             try
             {
-                DBCacheComponent db = scene.Domain.GetComponent<DBCacheComponent>();
-                List<Entity> Components = new List<Entity>();
+                //dictionary.Add(nameof(Unit), null);
+                foreach (string s in unitCacheComponent.UnitCacheKeyList)
+                {
+                    dictionary.Add(s, null);
+                }
 
-                Components.Add(await db.Get<UserInfoComponent>(request.CharacterId));
-                Components.Add(await db.Get<BagComponent>(request.CharacterId));
-                Components.Add(await db.Get<TaskComponent>(request.CharacterId));
-                Components.Add(await db.Get<ChengJiuComponent>(request.CharacterId));
-                Components.Add(await db.Get<PetComponent>(request.CharacterId));
-                Components.Add(await db.Get<SkillSetComponent>(request.CharacterId));
-                Components.Add(await db.Get<EnergyComponent>(request.CharacterId));
-                Components.Add(await db.Get<ActivityComponent>(request.CharacterId));
-                Components.Add(await db.Get<ShoujiComponent>(request.CharacterId));
-         
-                response.Components = Components;
-                reply();
+                foreach (var key in dictionary.Keys)
+                {
+                    Entity entity = await unitCacheComponent.Get(request.UnitId, key);
+                    dictionary[key] = entity;
+                }
+
+                response.ComponentNameList.AddRange(dictionary.Keys);
+                response.EntityList.AddRange(dictionary.Values);
             }
-            catch (Exception e)
+            finally
             {
-                response.Error = ErrorCore.ERR_Error;
-                response.Message = e.ToString();
-                reply();
+                dictionary.Clear();
+                MonoPool.Instance.Recycle(dictionary);
             }
+
+            reply();
+            await ETTask.CompletedTask;
         }
     }
 }

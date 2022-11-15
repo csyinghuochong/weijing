@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -6,6 +7,21 @@ namespace ET
     {
         public override void Awake(DBCacheComponent self)
         {
+            self.UnitCacheKeyList.Clear();
+            foreach (Type type in Game.EventSystem.GetTypes().Values)
+            {
+                if (type != typeof(IUnitCache) && typeof(IUnitCache).IsAssignableFrom(type))
+                {
+                    self.UnitCacheKeyList.Add(type.Name);
+                }
+            }
+
+            foreach (string key in self.UnitCacheKeyList)
+            {
+                UnitCache unitCache = self.AddChild<UnitCache>();
+                unitCache.key = key;
+                self.UnitCaches.Add(key, unitCache);
+            }
         }
     }
 

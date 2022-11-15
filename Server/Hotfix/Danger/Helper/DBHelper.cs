@@ -61,48 +61,8 @@ namespace ET
             }
             else
             {
-                switch (componentType)
-                {
-                    case DBHelper.UserInfoComponent:
-                        unit.AddComponent<UserInfoComponent>().Id = userID;
-                        break;
-                    case DBHelper.BagComponent:
-                        unit.AddComponent<BagComponent>().Id = userID;
-                        break;
-                    case DBHelper.TaskComponent:
-                        unit.AddComponent<TaskComponent>().Id = userID;
-                        break;
-                    case DBHelper.ChengJiuComponent:
-                        unit.AddComponent<ChengJiuComponent>().Id = userID;
-                        break;
-                    case DBHelper.PetComponent:
-                        unit.AddComponent<PetComponent>().Id = userID;
-                        break;
-                    case DBHelper.SkillSetComponent:
-                        unit.AddComponent<SkillSetComponent>().Id = userID;
-                        break;
-                    case DBHelper.EnergyComponent:
-                        unit.AddComponent<EnergyComponent>().Id = userID;
-                        break;
-                    case DBHelper.ActivityComponent:
-                        unit.AddComponent<ActivityComponent>().Id = userID;
-                        break;
-                    case DBHelper.NumericComponent:
-                        unit.AddComponent<NumericComponent>().Id = userID;
-                        Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false);
-                        break;
-                    case DBHelper.RechargeComponent:
-                        unit.AddComponent<RechargeComponent>().Id = userID;
-                        break;
-                    case DBHelper.ReddotComponent:
-                        unit.AddComponent<ReddotComponent>().Id = userID;
-                        break;
-                    case DBHelper.ShoujiComponent:
-                        unit.AddComponent<ShoujiComponent>().Id = userID;
-                        break;
-                }
-               
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, Component = unit.GetComponent<K>(), ComponentType = componentType });
+                Entity entity =  unit.AddComponent(typeof(K));
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = userID, Component = entity, ComponentType = componentType });
                 return true;
             }
         }
@@ -193,6 +153,33 @@ namespace ET
         }
 
         /// <summary>
+        /// 获取玩家缓存
+        /// </summary>
+        /// <param name="scene"></param>
+        /// <param name="unitId"></param>
+        /// <returns></returns>
+        public static async ETTask<Unit> GetUnitCache(Scene scene, Unit unit)
+        {
+            long instanceId = DBHelper.GetDbCacheId(scene.DomainZone());
+            G2D_GetUnit message = new G2D_GetUnit() { UnitId = unit.Id };
+            D2G_GetUnit queryUnit = (D2G_GetUnit)await MessageHelper.CallActor(instanceId, message);
+           
+            for (int i = 0; i < queryUnit.EntityList.Count; i++)
+            {
+                Entity entity = queryUnit.EntityList[i];
+                if (entity == null)
+                {
+
+                }
+                else
+                {
+                    unit.AddComponent(entity);
+                }
+            }
+            return unit;
+        }
+
+        /// <summary>
         /// 删除玩家缓存
         /// </summary>
         /// <param name="unitId"></param>
@@ -201,6 +188,15 @@ namespace ET
             M2D_DeleteUnit message = new M2D_DeleteUnit() { UnitId = unitId };
             long instanceId = DBHelper.GetDbCacheId(zone);
             await MessageHelper.CallActor(instanceId, message);
+        }
+
+        public static async ETTask SaveUnitComponentCache(int zone, long unitId, Entity entity)
+        {
+            long dbCacheId = DBHelper.GetDbCacheId(zone);
+            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() {
+                UnitId = unitId,
+                Component = entity
+            });
         }
 
         /// <summary>
