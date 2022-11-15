@@ -179,7 +179,8 @@ namespace ET
                 }
                 if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene)
                 {
-                    unit.DomainScene().GetComponent<YeWaiReviveComponent>().Add(unit.Id, resurrection * 1000);
+                    unit.RemoveComponent<ReviveTimeComponent>();
+                    unit.AddComponent<ReviveTimeComponent, long>(TimeHelper.ServerNow() + resurrection * 1000);
                 }
                 return 1;
             }

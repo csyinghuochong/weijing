@@ -35,8 +35,7 @@ namespace ET
                 MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
                 mapComponent.SetMapInfo((int)SceneTypeEnum.Battle, sceneConfigs[i].Id, 0);
                 mapComponent.NavMeshId = sceneConfigs[i].MapID.ToString();
-                fubnescene.AddComponent<YeWaiReviveComponent>();
-                fubnescene.AddComponent<YeWaiRefreshComponent>().OnAwake();
+                fubnescene.AddComponent<YeWaiRefreshComponent>();
                 fubnescene.GetComponent<ServerInfoComponent>().ServerInfo = self.ServerInfo;
                 FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonster, FubenDifficulty.None);
                 FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonsterPosi, FubenDifficulty.None);

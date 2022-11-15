@@ -109,7 +109,6 @@
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_UnionApplyHandler.cs" />
     <Compile Include="Assets\Hotfix\Demo\Session\SessionStreamDispatcherClientOuter.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamDungeonOpenHandler.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Component\YeWaiReviveComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Helper\HintHelp.cs" />
     <Compile Include="Assets\Hotfix\Danger\Buff\BuffManagerComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Helper\GettotalFeeTool.cs" />

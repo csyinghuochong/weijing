@@ -128,7 +128,6 @@
     <Compile Include="Assets\Model\Generate\Config\RankRewardConfig.cs" />
     <Compile Include="Assets\Model\Danger\Component\ChatComponent.cs" />
     <Compile Include="Assets\Model\Module\CoroutineLock\CoroutineLock.cs" />
-    <Compile Include="Assets\Model\Danger\Common\Component\YeWaiReviveComponent.cs" />
     <Compile Include="Assets\Model\Danger\Component\GuideInfo.cs" />
     <Compile Include="Assets\Model\Danger\Common\Enum\NpcEnum.cs" />
     <Compile Include="Assets\Model\Module\Message\MessageSerializeHelper.cs" />
