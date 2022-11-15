@@ -1,0 +1,8 @@
+{"list":[
+{"_t":"WorldSayConfig","_id":1,"Day":1930,"SayDes":"一波红包雨已经来临,赶紧来看看自己是否是那个幸运玩家!"},
+{"_t":"WorldSayConfig","_id":2,"Day":2000,"SayDes":"世界领主已经出现在密境中,赶紧过来看看吧"},
+{"_t":"WorldSayConfig","_id":3,"Day":2030,"SayDes":"战场活动已经开启,可以通过右上角的战场按钮快速加入哦!"},
+{"_t":"WorldSayConfig","_id":4,"Day":2100,"SayDes":"一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦"},
+{"_t":"WorldSayConfig","_id":5,"Day":2110,"SayDes":"一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦"},
+{"_t":"WorldSayConfig","_id":6,"Day":2120,"SayDes":"一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦"},
+]}
