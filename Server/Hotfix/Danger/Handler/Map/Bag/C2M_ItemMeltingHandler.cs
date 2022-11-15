@@ -56,7 +56,7 @@ namespace ET
                 }
 
                 //to do
-                
+                minNum = 0;
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
                 if (itemCof.ItemQuality >= 4) {
 

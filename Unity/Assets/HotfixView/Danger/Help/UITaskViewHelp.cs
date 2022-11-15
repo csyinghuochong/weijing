@@ -91,7 +91,7 @@ namespace ET
             {
                 int monsterId = taskConfig.Target[i];
                 int fubenId = BattleHelper.GetFubenByMonster(monsterId);
-                string fubenName = fubenId > 0 ? DungeonConfigCategory.Instance.Get(fubenId).ChapterName : "";
+                string fubenName = fubenId > 0 ? "      (出现在:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
 
                 string text1 = "";

@@ -134,6 +134,7 @@ namespace ET
                     huishouList.Add(self.HuiShouInfos[i].BagInfoID);
                 }
             }
+
             if (huishouList.Count == 0)
             {
                 return;
