@@ -107,6 +107,11 @@ namespace ET
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, "Gate1").InstanceId;
         }
 
+        public static long GetPaiMaiServerId(int zone)
+        {
+            return StartSceneConfigCategory.Instance.GetBySceneName(zone, "PaiMai").InstanceId;
+        }
+
         public static long GetRankServerId(int zone)
         {
             return StartSceneConfigCategory.Instance.GetBySceneName(zone, Enum.GetName(SceneType.Rank)).InstanceId;

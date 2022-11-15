@@ -30,9 +30,8 @@ namespace ET
             self.OnBattleOpen = false;
             self.OnBattleClose = false;
             self.MapIdList.Clear();
-
-            self.MapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId);
-            self.MapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "PaiMai").InstanceId);
+            self.MapIdList.Add(DBHelper.GetGateServerId(self.DomainZone()));
+            self.MapIdList.Add(DBHelper.GetPaiMaiServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetRankServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetFubenCenterId(self.DomainZone()));
 

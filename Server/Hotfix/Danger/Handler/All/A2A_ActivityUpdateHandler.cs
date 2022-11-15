@@ -64,6 +64,9 @@ namespace ET
                         scene.GetComponent<FangChenMiComponent>().CheckHoliday().Coroutine();
                     }
                     break;
+                case SceneType.FubenCenter:
+
+                    break;
                 default:
                     break;
             }

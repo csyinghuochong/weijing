@@ -112,13 +112,13 @@ namespace ET
 
         public string GetDescLookingFor(TaskPro taskPro, TaskConfig taskConfig)
         {
-            string progress = GameSettingLanguge.LoadLocalization("找 {0} {1} {2} 谈一谈");
+            string progress = GameSettingLanguge.LoadLocalization("找 {0} 谈一谈 {1}");
 
             int fubenId = BattleHelper.GetFubenByNpc(taskConfig.Target[0]);
             string fubenName = fubenId > 0 ? DungeonConfigCategory.Instance.Get(fubenId).ChapterName : "";
 
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(taskConfig.Target[0]);
-            string text1 = string.Format(progress, npcConfig.Name, taskPro.taskTargetNum_1, fubenName);
+            string text1 = string.Format(progress, npcConfig.Name,  fubenName);
             return text1;
         }
 
