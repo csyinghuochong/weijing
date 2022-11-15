@@ -5,8 +5,8 @@ namespace ET
 {
     public class UICountryHuoDongComponent : Entity, IAwake
     {
-        public GameObject Btn_HuoDong_1;
-        public GameObject Btn_HuoDong_2;
+        public GameObject Btn_HuoDong_Lingzhu;
+        public GameObject Btn_HuoDong_Baozang;
     }
 
     [ObjectSystem]
@@ -16,24 +16,25 @@ namespace ET
         public override void Awake(UICountryHuoDongComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-            self.Btn_HuoDong_1 = rc.Get<GameObject>("Btn_HuoDong_1");
-            self.Btn_HuoDong_2 = rc.Get<GameObject>("Btn_HuoDong_2");
-            self.Btn_HuoDong_1.GetComponent<Button>().onClick.AddListener(() => { self.Go_HuoDong_1(); });
-            self.Btn_HuoDong_2.GetComponent<Button>().onClick.AddListener(() => { self.Go_HuoDong_2(); });
+            self.Btn_HuoDong_Lingzhu = rc.Get<GameObject>("Btn_HuoDong_Lingzhu");
+            self.Btn_HuoDong_Lingzhu.GetComponent<Button>().onClick.AddListener(() => { self.Btn_HuoDong_Lingzhu(); });
+
+            self.Btn_HuoDong_Baozang = rc.Get<GameObject>("Btn_HuoDong_Baozang");
+            self.Btn_HuoDong_Baozang.GetComponent<Button>().onClick.AddListener(() => { self.Btn_HuoDong_Baozang(); });
         }
     }
 
     public static class UICountryHuoDongComponentSystem
     {
-        public static void Go_HuoDong_1(this UICountryHuoDongComponent self) 
+        public static void Btn_HuoDong_Lingzhu(this UICountryHuoDongComponent self) 
         {
-            UITaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 1000024);
+            UITaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20000028);
             self.OnBtn_Close();
         }
 
-        public static void Go_HuoDong_2(this UICountryHuoDongComponent self)
+        public static void Btn_HuoDong_Baozang(this UICountryHuoDongComponent self)
         {
-            UITaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 1000023);
+            UITaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20000027);
             self.OnBtn_Close();
         }
 
