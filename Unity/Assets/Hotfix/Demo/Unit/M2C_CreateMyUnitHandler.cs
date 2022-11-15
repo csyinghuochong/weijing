@@ -11,6 +11,10 @@
 			 || mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
 			{
 				await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(5000, 10000));
+				if (zoneScene.IsDisposed)
+				{
+					return;
+				}
 				zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
 			}
 		}
