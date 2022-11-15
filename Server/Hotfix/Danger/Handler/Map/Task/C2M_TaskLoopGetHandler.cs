@@ -21,7 +21,6 @@ namespace ET
             {
                 taskPro = taskComponent.OnGetTask(giveUpId);
                 response.TaskLoop = taskPro;
-                numericComponent.ApplyChange(null,NumericType.TaskLoopNumber,1,0);
                 reply();
                 return;
             }
