@@ -624,6 +624,10 @@ namespace ET
 
         public static void OnZeroClockUpdate(this TaskComponent self,  bool notice = false)
         {
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            int taskLoop = self.GetTaskList(TaskTypeEnum.EveryDay).Count > 0 ? 1 : 0;
+            numericComponent.ApplyValue(NumericType.TaskLoopNumber, taskLoop, notice);
+
             self.ReceiveHuoYueIds.Clear();
             self.TaskCountryList.Clear();
             List<int> taskCountryList = new List<int>();
