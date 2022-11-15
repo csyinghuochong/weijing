@@ -283,10 +283,10 @@
     <Compile Include="Assets\Model\Generate\Config\ChapterSonConfig.cs" />
     <Compile Include="Assets\Model\Danger\Common\Component\UserInfoComponent.cs" />
     <Compile Include="Assets\Model\Danger\Common\Enum\TaskEnum.cs" />
+    <Compile Include="Assets\Model\Generate\Config\ServerDayConfig.cs" />
     <Compile Include="Assets\Model\Module\CoroutineLock\CoroutineLockType.cs" />
     <Compile Include="Assets\Model\Module\AI\AIComponent.cs" />
     <Compile Include="Assets\Model\Core\Entity\Scene.cs" />
-    <Compile Include="Assets\Model\Generate\Config\ServerDayConfig.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
