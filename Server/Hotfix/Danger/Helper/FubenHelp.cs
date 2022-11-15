@@ -31,7 +31,7 @@ namespace ET
 			EnergySkills = new List<int>() { 64000001, 64000002, 64000003, 64000004, 64000005, 64000006, 64000007, 64000008 };
 		}
 
-		public static void CreateMonsterList(Scene scene, int[] monsterPos, int fubenDifficulty)
+		public static void CreateMonsterList(Scene scene, int[] monsterPos,  int fubenDifficulty)
 		{
 			if (monsterPos == null || monsterPos.Length == 0)
 			{
@@ -143,7 +143,7 @@ namespace ET
 					});
 				}
 			}
-			if (mtype == 5)
+			if (mtype == 5 || mtype == 6)
 			{
 				//固定时间刷新  YeWaiRefreshComponent
 				scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterByPos_2(monsterPosition.Id, fubenDifficulty);
@@ -256,7 +256,7 @@ namespace ET
 					}
 				}
 				//固定时间刷新
-				if (mtype[0] == "5")
+				if (mtype[0] == "5" || mtype[0] == "6")
 				{
 					scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList_2(createMonster, fubenDifficulty);
 				}

@@ -186,6 +186,7 @@ namespace ET
                 }
                 //5;-50,0,2;80002001;10,25;1230,2030
                 string[] mondels = monsters[i].Split(';');
+                int mtype = int.Parse(mondels[0]);
                 string[] position = mondels[1].Split(',');  //-50,0,2
                 int monsterid = int.Parse(mondels[2]);              //80002001
                 string[] mcount = mondels[3].Split(',');    //10,25
@@ -207,7 +208,7 @@ namespace ET
                         PositionZ = float.Parse(position[2]),
                         Number = int.Parse(mcount[0]),
                         Range = int.Parse(mcount[1]),
-                        Interval = 24 * 60 * 60 * 1000,
+                        Interval = mtype == 5 ? TimeHelper.OneDay : -1,
                     });
                 }
             }
@@ -248,7 +249,7 @@ namespace ET
                     PositionZ = float.Parse(position[2]),
                     Number = monsterPosition.CreateNum,
                     Range = (float)monsterPosition.CreateRange,
-                    Interval = 24 * 60 * 60 * 1000,
+                    Interval = mtype == 5 ? TimeHelper.OneDay : -1,
                     Rotation = monsterPosition.Create,
                 });
             }
