@@ -173,12 +173,12 @@ namespace ET
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Luck, "幸运值", "", 1));
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Speed, "移动速度", "", 2));
             
+            /*
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_CriLv, "暴击等级", "", 1));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ResLv, "韧性等级", "", 1));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HitLv, "命中等级", "", 1));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DodgeLv, "闪避等级", "", 1));
-
-
+            */
 
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeAddPro, "物理伤害加成", "", 2));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDamgeAddPro, "魔法伤害加成", "", 2));
@@ -191,13 +191,20 @@ namespace ET
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiMagePro, "魔法穿透", "", 2));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiDef, "忽视目标防御", "", 2));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiAdf, "忽视目标魔御", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_XiXuePro, "吸血概率", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_SkillCDTimeCostPro, "技能冷却缩减", "", 2));
 
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_GeDang, "格挡值", "", 1));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Luck, "幸运值", "", 1));
+            //self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_XiXuePro, "吸血概率", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_SkillCDTimeCostPro, "技能冷却", "", 2));
+
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDodgePro, "魔法闪避", "", 2));
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDodgePro, "物理闪避", "", 2));
+
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_GeDang, "格挡值", "", 1));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ZhenShi, "真实伤害", "", 1));
 
-			//抗性属性
+            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActSpeedPro, "攻速加成", "", 2));
+
+            //抗性属性
             /*
 			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ActBossPro, "物攻领主加成", "", 2));
 			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_MageBossPro, "魔攻领主加成", "", 2));
@@ -217,7 +224,7 @@ namespace ET
 			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ResistFirece_Fire_Pro, "火焰抗性", "", 2));
 			self.ShowPropertyList_KangXing.Add(AddShowProperList(NumericType.Now_ResistThunderce_Thunder_Pro, "闪电抗性", "", 2));
             */
-		}
+        }
 
 		public static ShowPropertyList AddShowProperList(int numericType, string name, string iconID, int type)
 		{
