@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -41,6 +42,41 @@ namespace ET
 
     public static class YeWaiRefreshComponentSystem
     {
+        /// <summary>
+        /// 起服或者零点刷新一次
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="openDay"></param>
+        public static void OnZeroClockUpdate(this YeWaiRefreshComponent self, int openDay)
+        {
+            List<ServerDayConfig> serverDays = ServerDayConfigCategory.Instance.GetAll().Values.ToList();
+            ServerDayConfig serverDayConfig = null;
+            for (int i = 0; i < serverDays.Count; i++)
+            {
+                if (i == serverDays.Count - 1)
+                {
+                    serverDayConfig = serverDays[i];
+                    break;
+                }
+                if (openDay >= serverDays[i].Day && openDay < serverDays[i+1].Day)
+                {
+                    serverDayConfig = serverDays[i];
+                    break;
+                }
+            }
+            int sceneId = self.DomainScene().GetComponent<MapComponent>().SceneId;
+            string[] rewardItems = serverDayConfig.RewardItems.Split('@');
+            for (int i = 0; i < rewardItems.Length;i++)
+            {
+                string[] monsterItem = rewardItems[i].Split(',');
+                if (int.Parse(monsterItem[0])!=sceneId)
+                {
+                    continue;
+                }
+                int[] pistionId = new int[1] { int.Parse(monsterItem[1]) };
+                FubenHelp.CreateMonsterList(self.DomainScene(), pistionId, FubenDifficulty.None);
+            }
+        }
 
         public static void OnAddRefreshList(this YeWaiRefreshComponent self, Unit unit, long reTime)
         {
@@ -150,6 +186,7 @@ namespace ET
                 }
                 //5;-50,0,2;80002001;10,25;1230,2030
                 string[] mondels = monsters[i].Split(';');
+                int mtype = int.Parse(mondels[0]);
                 string[] position = mondels[1].Split(',');  //-50,0,2
                 int monsterid = int.Parse(mondels[2]);              //80002001
                 string[] mcount = mondels[3].Split(',');    //10,25
@@ -171,7 +208,7 @@ namespace ET
                         PositionZ = float.Parse(position[2]),
                         Number = int.Parse(mcount[0]),
                         Range = int.Parse(mcount[1]),
-                        Interval = 24 * 60 * 60 * 1000,
+                        Interval = mtype == 5 ? TimeHelper.OneDay : -1,
                     });
                 }
             }
@@ -212,7 +249,7 @@ namespace ET
                     PositionZ = float.Parse(position[2]),
                     Number = monsterPosition.CreateNum,
                     Range = (float)monsterPosition.CreateRange,
-                    Interval = 24 * 60 * 60 * 1000,
+                    Interval = mtype == 5 ? TimeHelper.OneDay : -1,
                     Rotation = monsterPosition.Create,
                 });
             }

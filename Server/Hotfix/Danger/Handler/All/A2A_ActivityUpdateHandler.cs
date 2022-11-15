@@ -9,21 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, A2A_ActivityUpdateRequest request, A2A_ActivityUpdateResponse response, Action reply)
         {
-            ActivityUpdate_Hour(scene, request.ActivityType);
-
-            reply();
-            await ETTask.CompletedTask;
-        }
-
-        private void PrintAllEntity()
-        {
-            Log.Info("PrintAllEntity");
-            Log.Info(EventSystem.Instance.ToString());
-            Log.Info(ObjectPool.Instance.ToString());
-        }
-
-        private void ActivityUpdate_Hour(Scene scene, int activityType)
-        {
+            int activityType = request.ActivityType;
             switch (scene.SceneType)
             {
                 case SceneType.Gate:
@@ -68,12 +54,25 @@ namespace ET
                     if (activityType == 0)
                     {
                         FubenCenterComponent fubenCenter = scene.GetComponent<FubenCenterComponent>();
-
+                        foreach (var item in fubenCenter.Children)
+                        {
+                            item.Value.GetComponent<YeWaiRefreshComponent>().OnZeroClockUpdate(request.OpenDay);
+                        }
                     }
                     break;
                 default:
                     break;
             }
+
+            reply();
+            await ETTask.CompletedTask;
+        }
+
+        private void PrintAllEntity()
+        {
+            Log.Info("PrintAllEntity");
+            Log.Info(EventSystem.Instance.ToString());
+            Log.Info(ObjectPool.Instance.ToString());
         }
     }
 }

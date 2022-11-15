@@ -6,7 +6,7 @@ namespace ET
 { 
     public static class FubenHelp
 	{
-		public static List<int> energySkills = new List<int>() { };
+		public static List<int> EnergySkills = new List<int>() { };
 
 		/// <summary>
 		/// 寻找一个可通行的随机位置
@@ -26,9 +26,13 @@ namespace ET
 			return false;
 		}
 
-		public static void CreateMonsterList(Scene scene, int[] monsterPos, int fubenDifficulty)
+		public static void EnterCellFuben()
 		{
-			energySkills = new List<int>() { 64000001, 64000002, 64000003, 64000004, 64000005, 64000006, 64000007, 64000008 };
+			EnergySkills = new List<int>() { 64000001, 64000002, 64000003, 64000004, 64000005, 64000006, 64000007, 64000008 };
+		}
+
+		public static void CreateMonsterList(Scene scene, int[] monsterPos,  int fubenDifficulty)
+		{
 			if (monsterPos == null || monsterPos.Length == 0)
 			{
 				return;
@@ -70,8 +74,8 @@ namespace ET
 					//56 宝箱类(无限) 无AI
 					if (monsterConfig.MonsterSonType == 52)
 					{
-						int skillId = energySkills[RandomHelper.RandomNumber(0, energySkills.Count)];
-						energySkills.Remove(skillId);
+						int skillId = EnergySkills[RandomHelper.RandomNumber(0, EnergySkills.Count)];
+						EnergySkills.Remove(skillId);
 						UnitFactory.CreateMonster(scene, monsterConfig.Id, vector3, new CreateMonsterInfo()
 						{
 							SkillId = skillId,
@@ -139,7 +143,7 @@ namespace ET
 					});
 				}
 			}
-			if (mtype == 5)
+			if (mtype == 5 || mtype == 6)
 			{
 				//固定时间刷新  YeWaiRefreshComponent
 				scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterByPos_2(monsterPosition.Id, fubenDifficulty);
@@ -154,7 +158,6 @@ namespace ET
             {
 				return;
             }
-			energySkills = new List<int>() { 64000001, 64000002, 64000003, 64000004, 64000005, 64000006, 64000007, 64000008 };
 			long instanceId = scene.InstanceId;
 			string[] monsters = createMonster.Split('@');
 			//1;37.65,0,3.2;70005005;1@138.43,0,0.06;70005010;1
@@ -185,8 +188,8 @@ namespace ET
 						//55 宝箱类 无AI
 						if (monsterConfig.MonsterSonType == 52)
 						{
-							int skillId = energySkills[RandomHelper.RandomNumber(0, energySkills.Count)];
-							energySkills.Remove(skillId);
+							int skillId = EnergySkills[RandomHelper.RandomNumber(0, EnergySkills.Count)];
+							EnergySkills.Remove(skillId);
 							UnitFactory.CreateMonster(scene, monsterConfig.Id, vector3, new CreateMonsterInfo() 
 							{ 
 								SkillId = skillId, FubenDifficulty = fubenDifficulty,
@@ -253,7 +256,7 @@ namespace ET
 					}
 				}
 				//固定时间刷新
-				if (mtype[0] == "5")
+				if (mtype[0] == "5" || mtype[0] == "6")
 				{
 					scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList_2(createMonster, fubenDifficulty);
 				}

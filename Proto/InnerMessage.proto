@@ -493,7 +493,7 @@ message A2A_ActivityUpdateRequest // IActorRequest
     int32 RpcId = 90;
     int64 ActorId = 93;
     int32 ActivityType = 1;
-    int32 Zone = 2;
+    int32 OpenDay  = 2;
 }
 
 message A2A_ActivityUpdateResponse // IActorResponse

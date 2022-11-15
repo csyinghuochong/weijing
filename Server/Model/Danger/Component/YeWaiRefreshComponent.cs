@@ -11,13 +11,14 @@ namespace ET
         public long NextTime;
         public float Range;
         public int Number;
-        public int Interval;    //-1只刷新一次
+        public long Interval;    //-1只刷新一次
         public int Rotation;
     }
 
     public class YeWaiRefreshComponent : Entity, IAwake, IDestroy
     {
         public long Timer;
+        public int OpenServerDay;
         public List<RefreshMonster> RefreshMonsters = new List<RefreshMonster>();  
     }
 }

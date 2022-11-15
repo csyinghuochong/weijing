@@ -60,7 +60,6 @@ namespace ET
                 self.DBDayActivityInfo.LastHour = dateTime.Hour;
                 self.NoticeActivityUpdate_Hour(dateTime.Hour).Coroutine();
             }
-            self.NoticeActivityUpdate_Hour(dateTime.Hour).Coroutine();
             if (!self.OnBattleOpen)
             {
                 int openTime = FunctionHelp.GetOpenTime(1025);
@@ -165,15 +164,15 @@ namespace ET
 
         public static async ETTask NoticeActivityUpdate_Hour(this ActivitySceneComponent self, int hour)
         {
+            int openServerDay = await DBHelper.GetOpenServerDay(self.DomainZone());
             for (int i = 0; i < self.MapIdList.Count; i++)
             {
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                        (self.MapIdList[i], new A2A_ActivityUpdateRequest() { ActivityType = hour });
+                        (self.MapIdList[i], new A2A_ActivityUpdateRequest() { ActivityType = hour, OpenDay = openServerDay });
             }
 
             if (hour == 0)
             {
-                int openServerDay = await DBHelper.GetOpenServerDay(self.DomainZone());
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
 
                 self.OnBattleOpen = false;
