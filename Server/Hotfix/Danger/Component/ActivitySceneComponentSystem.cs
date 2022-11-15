@@ -33,7 +33,8 @@ namespace ET
 
             self.MapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId);
             self.MapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "PaiMai").InstanceId);
-            self.MapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Rank").InstanceId);
+            self.MapIdList.Add(DBHelper.GetRankServerId(self.DomainZone()));
+            self.MapIdList.Add(DBHelper.GetFubenCenterId(self.DomainZone()));
 
             self.InitDayActivity().Coroutine();
         }
