@@ -54,7 +54,7 @@ namespace ET
 
             int curDay = 0;
             long serverNow = TimeHelper.ServerNow();
-            bool isSign = ComHelp.GetDateByTime(serverNow) == ComHelp.GetDateByTime(activityComponent.LastSignTime);
+            bool isSign = ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(activityComponent.LastSignTime);
             curDay = activityComponent.TotalSignNumber;
             if (activityComponent.TotalSignNumber < 30 && !isSign)
             {
@@ -115,7 +115,7 @@ namespace ET
 
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             long serverNow = TimeHelper.ServerNow();
-            bool isSign = ComHelp.GetDateByTime(serverNow) == ComHelp.GetDateByTime(activityComponent.LastSignTime);
+            bool isSign = ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(activityComponent.LastSignTime);
             bool ifShow = int.Parse(ActivityConfig.Par_1) <= activityComponent.TotalSignNumber || isSign;
             self.Img_lingQu.SetActive(ifShow);
             self.Btn_Com.SetActive(!ifShow);
@@ -145,7 +145,7 @@ namespace ET
                 return;
             }
             long serverNow = TimeHelper.ServerNow();
-            if (ComHelp.GetDateByTime(serverNow) == ComHelp.GetDateByTime(activityComponent.LastSignTime))
+            if (ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(activityComponent.LastSignTime))
             {
                 FloatTipManager.Instance.ShowFloatTip("当日奖励已领取！");
                 return;
