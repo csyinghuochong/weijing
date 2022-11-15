@@ -168,10 +168,8 @@ namespace ET
 				{
 					DropIDToDropItem(dropIds[d], dropItemList, monsterID, dropProValue, all);
 				}
-				return dropItemList
+				return dropItemList;
 			}
-
-			
 			return null;
 		}
 
