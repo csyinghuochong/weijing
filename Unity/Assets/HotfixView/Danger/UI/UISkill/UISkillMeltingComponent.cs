@@ -181,9 +181,16 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
+            int number = 0;
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByType(ItemTypeEnum.Equipment);
             for (int i = 0; i < bagInfos.Count; i++)
             {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+                if (itemConfig.ItemQuality < 4)
+                {
+                    continue;
+                }
+
                 UIItemComponent uI_1 = null;
                 if (i < self.ItemUIlist.Count)
                 {
@@ -205,9 +212,10 @@ namespace ET
                 }
                 uI_1.UpdateItem(bagInfos[i], ItemOperateEnum.HuishouBag);
                 uI_1.Label_ItemName.SetActive(true);
+                number++;
             }
 
-            for (int i = bagInfos.Count; i < self.ItemUIlist.Count; i++)
+            for (int i = number; i < self.ItemUIlist.Count; i++)
             {
                 self.ItemUIlist[i].GameObject.SetActive(false);
             }
