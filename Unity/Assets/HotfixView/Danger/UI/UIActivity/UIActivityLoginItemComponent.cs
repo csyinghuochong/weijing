@@ -73,7 +73,7 @@ namespace ET
 
             long time = TimeHelper.ServerNow();
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
-            if (ComHelp.GetDateByTime(activityComponent.LastLoginTime) == ComHelp.GetDateByTime(time))
+            if (ComHelp.GetDayByTime(activityComponent.LastLoginTime) == ComHelp.GetDayByTime(time))
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
                 return;

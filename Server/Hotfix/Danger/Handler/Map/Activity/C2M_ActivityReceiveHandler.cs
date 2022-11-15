@@ -37,7 +37,7 @@ namespace ET
                         return;
                     }
                     long serverNow = TimeHelper.ServerNow();
-                    if (ComHelp.GetDateByTime(serverNow) == ComHelp.GetDateByTime(activityComponent.LastSignTime))
+                    if (ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(activityComponent.LastSignTime))
                     {
                         response.Error = ErrorCore.ERR_AlreadyReceived;
                         reply();
@@ -70,7 +70,7 @@ namespace ET
                     break;
                 case 31:    //登录奖励
                     serverNow = TimeHelper.ServerNow();
-                    if (ComHelp.GetDateByTime(serverNow) == ComHelp.GetDateByTime(activityComponent.LastLoginTime))
+                    if (ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(activityComponent.LastLoginTime))
                     {
                         response.Error = ErrorCore.ERR_AlreadyReceived;
                         reply();
