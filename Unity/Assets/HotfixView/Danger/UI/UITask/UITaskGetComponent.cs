@@ -263,7 +263,7 @@ namespace ET
             {
                 UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                 SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
-                if (sceneConfig.DayEnterNum <= userInfoComponent.GetSceneFubenTimes(sceneId))
+                if (sceneConfig.DayEnterNum > 0 && sceneConfig.DayEnterNum <= userInfoComponent.GetSceneFubenTimes(sceneId))
                 {
                     FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("今日进入次数已用完"));
                     return;

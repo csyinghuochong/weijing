@@ -1047,7 +1047,7 @@ namespace ET
 		public int ActivityType { get; set; }
 
 		[ProtoMember(2)]
-		public int Zone { get; set; }
+		public int OpenDay { get; set; }
 
 	}
 

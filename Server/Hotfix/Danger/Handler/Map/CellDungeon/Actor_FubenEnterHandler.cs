@@ -14,6 +14,7 @@ namespace ET
 			CellDungeonComponent fubenComponent = null;
 			unit.GetComponent<MoveComponent>().Stop();
 			unit.GetComponent<UserInfoComponent>().UpdateRoleData(  UserDataType.PiLao, "-1");
+			FubenHelp.EnterCellFuben();
 
 			//首次进入
 			if (request.RepeatEnter == 0)

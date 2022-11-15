@@ -8,14 +8,17 @@ namespace ET
     {
         public override void Awake(FubenCenterComponent self)
         {
-            self.InitYeWaiScene();
+            self.InitYeWaiScene().Coroutine();
         }
     }
 
     public static class FubenCenterComponentSystem
     {
-        public static void  InitYeWaiScene(this FubenCenterComponent self)
+        public static async ETTask  InitYeWaiScene(this FubenCenterComponent self)
         {
+            await TimerComponent.Instance.WaitAsync(self.DomainZone() * 100);
+            int openDay = await DBHelper.GetOpenServerDay(self.DomainZone());
+
             List<SceneConfig> sceneConfigs =  SceneConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < sceneConfigs.Count; i++)
             {
@@ -34,11 +37,12 @@ namespace ET
                 Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Map" + sceneConfigs[i].Id.ToString(), SceneType.Map);
                 MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
                 mapComponent.SetMapInfo((int)SceneTypeEnum.Battle, sceneConfigs[i].Id, 0);
-                mapComponent.NavMeshId = sceneConfigs[i].MapID.ToString();
-                fubnescene.AddComponent<YeWaiRefreshComponent>();
+                mapComponent.NavMeshId = sceneConfigs[i].MapID.ToString(); 
                 fubnescene.GetComponent<ServerInfoComponent>().ServerInfo = self.ServerInfo;
+                YeWaiRefreshComponent yeWaiRefreshComponen = fubnescene.AddComponent<YeWaiRefreshComponent>();
                 FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonster, FubenDifficulty.None);
                 FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonsterPosi, FubenDifficulty.None);
+                yeWaiRefreshComponen.OnZeroClockUpdate(openDay);
             }
         }
     }
