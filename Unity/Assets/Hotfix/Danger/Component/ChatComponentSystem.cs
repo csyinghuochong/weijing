@@ -48,7 +48,7 @@ namespace ET
                     break;
             }
 
-            c2S_SendChatRequest.ChatInfo.PlayerId = userInfo.UserId;
+            c2S_SendChatRequest.ChatInfo.UserId = userInfo.UserId;
             c2S_SendChatRequest.ChatInfo.ChannelId = (int)channelEnum;
             c2S_SendChatRequest.ChatInfo.ChatMsg = content;
             c2S_SendChatRequest.ChatInfo.PlayerName = userInfo.Name;

@@ -2284,7 +2284,7 @@ namespace ET
 	public partial class ChatInfo: Object
 	{
 		[ProtoMember(1)]
-		public long PlayerId { get; set; }
+		public long UserId { get; set; }
 
 		[ProtoMember(3)]
 		public string ChatMsg { get; set; }

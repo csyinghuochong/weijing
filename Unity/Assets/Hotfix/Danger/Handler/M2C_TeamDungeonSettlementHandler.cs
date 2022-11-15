@@ -6,14 +6,11 @@ namespace ET
     {
 
 #if NOT_UNITY
-        private async ETTask OnRobotExit(Scene zonescene)
+        private void  OnRobotExit(Session session)
         {
-            EnterFubenHelp.RequestQuitFuben(zonescene);
-            await TimerComponent.Instance.WaitAsync(2000);
-            zonescene.GetComponent<BehaviourComponent>().TargetID = 0;
-            zonescene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Stroll);
-            zonescene.GetComponent<TeamComponent>().SendLeaveRequest().Coroutine();
-            //退出队伍
+            RobotManagerComponent robotManager = session.ZoneScene().GetParent<RobotManagerComponent>();
+            robotManager.RemoveRobot(session.ZoneScene());
+            session.ZoneScene().Dispose();
         }
 #endif
 
@@ -26,7 +23,7 @@ namespace ET
 			MapComponent mapComponent = session.ZoneScene().GetComponent<MapComponent>();
 			if ( mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
 			{
-                OnRobotExit(session.ZoneScene()).Coroutine();
+                OnRobotExit(session);
             }
 #endif
             EventSystem.Instance.PublishClass(EventType.TeamDungeonSettlement.Instance);

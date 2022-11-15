@@ -15,6 +15,11 @@ namespace ET
                 reply();
                 return;
             }
+            if (GMHelp.BanChatPlayer.Contains(request.ChatInfo.UserId))
+            {
+                reply();
+                return;
+            }
 
             M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
             m2C_SyncChatInfo.ChatInfo = request.ChatInfo;
@@ -49,14 +54,14 @@ namespace ET
                     g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
                           (gateServerId, new T2G_GateUnitInfoRequest()
                           {
-                              UserID = request.ChatInfo.PlayerId
+                              UserID = request.ChatInfo.UserId
                           });
                     MessageHelper.SendActor(g2M_UpdateUnitResponse.SessionInstanceId, m2C_SyncChatInfo);
                     break;
                 case (int)ChannelEnum.Team:
                     long teamServerId = StartSceneConfigCategory.Instance.GetBySceneName(chatInfoUnit.DomainZone(), Enum.GetName(SceneType.Team)).InstanceId;
                     T2C_GetTeamInfoResponse g_SendChatRequest1 = (T2C_GetTeamInfoResponse)await ActorMessageSenderComponent.Instance.Call
-                        (teamServerId, new C2T_GetTeamInfoRequest() { UserID = request.ChatInfo.PlayerId });
+                        (teamServerId, new C2T_GetTeamInfoRequest() { UserID = request.ChatInfo.UserId });
 
                     gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(chatInfoUnit.DomainZone(), "Gate1").InstanceId;
                     if (g_SendChatRequest1.Error == 0 && g_SendChatRequest1.TeamInfo != null)

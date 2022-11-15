@@ -75,13 +75,13 @@ namespace ET
         {
             long friendId = 0;
             long userId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
-            if (chatInfo.PlayerId == userId)
+            if (chatInfo.UserId == userId)
             {
                 friendId = chatInfo.ParamId;
             }
             else
             {
-                friendId = chatInfo.PlayerId;
+                friendId = chatInfo.UserId;
             }
 
             if (!self.ChatMsgList.ContainsKey(friendId))

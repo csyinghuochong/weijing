@@ -6,11 +6,6 @@ namespace ET
     {
 
 #if SERVER
-        public static List<long> BanChatPlayer = new List<long>()
-        {
-
-        };
-
         public static List<string> GmAccount = new List<string>()
         {
             "tcg01",
@@ -24,6 +19,11 @@ namespace ET
             "wxoyHedv09Csrxw0PQnWeD9dwCubIU",
         };
 #endif
+
+        public static List<long> BanChatPlayer = new List<long>()
+        {
+
+        };
 
         public static List<string> GetChuJi()
         {
