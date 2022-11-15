@@ -99,8 +99,8 @@ namespace ET
                 ETCancellationToken cancellationToken = new ETCancellationToken();
                 self.CancellationToken = cancellationToken;
                 self.Current = aiConfig.Id;
-                NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-                numericComponent.ApplyValue(NumericType.Now_AI, aiConfig.Id);
+                //NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+                //numericComponent.ApplyValue(NumericType.Now_AI, aiConfig.Id);
                 aaiHandler.Execute(self, aiConfig, cancellationToken).Coroutine();
                 return;
             }

@@ -384,6 +384,10 @@ namespace ET
                 string tip = string.Format(ErrorHelp.Instance.GetHint(ErrorCore.ERR_ItemOnlyUseOcc), occupationConfig.OccupationName);
                 FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization(tip));
             }
+            if (itemConfig.ItemSubType == 110)
+            {
+                UIHelper.Remove(self.ZoneScene(), UIType.UIRole);
+            }
             //注销Tips
             self.OnCloseTips();
         }
