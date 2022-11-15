@@ -47,6 +47,7 @@ namespace ET
 
         public static void OnUpdateData(this UICountryTaskItemComponent self, TaskPro taskPro)
         {
+
             self.TaskPro = taskPro;
             TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPro.taskID);
 
