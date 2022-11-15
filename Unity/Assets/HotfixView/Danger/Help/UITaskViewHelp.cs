@@ -115,7 +115,7 @@ namespace ET
             string progress = GameSettingLanguge.LoadLocalization("找 {0} 谈一谈 {1}");
 
             int fubenId = BattleHelper.GetFubenByNpc(taskConfig.Target[0]);
-            string fubenName = fubenId > 0 ? DungeonConfigCategory.Instance.Get(fubenId).ChapterName : "";
+            string fubenName = fubenId > 0 ? "      (出现在:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
 
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(taskConfig.Target[0]);
             string text1 = string.Format(progress, npcConfig.Name,  fubenName);
