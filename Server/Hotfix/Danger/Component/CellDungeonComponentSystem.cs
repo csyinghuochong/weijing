@@ -485,10 +485,9 @@ namespace ET
 
         public static async ETTask InitMysteryItemInfos(this CellDungeonComponent self)
         {
-            long dbServerId = DBHelper.GetRankServerId(self.DomainZone());
-            R2M_DBServerInfoResponse d2GGetUnit2 = (R2M_DBServerInfoResponse)await ActorMessageSenderComponent.Instance.Call(dbServerId, new M2R_DBServerInfoRequest() { });
             self.MysteryItemInfos.Clear();
-            self.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(d2GGetUnit2.ServerInfo.OpenServerTime);
+            int openServerDay = await DBHelper.GetOpenServerDay(self.DomainZone());
+            self.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
         }
 
         public static bool IsAllMonsterDead(this CellDungeonComponent self)

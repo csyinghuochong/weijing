@@ -60,7 +60,7 @@ namespace ET
                 self.DBDayActivityInfo.LastHour = dateTime.Hour;
                 self.NoticeActivityUpdate_Hour(dateTime.Hour).Coroutine();
             }
-
+            self.NoticeActivityUpdate_Hour(dateTime.Hour).Coroutine();
             if (!self.OnBattleOpen)
             {
                 int openTime = FunctionHelp.GetOpenTime(1025);
@@ -115,7 +115,6 @@ namespace ET
             int zone = self.DomainZone();
             long dbCacheId = DBHelper.GetDbCacheId(zone);
             await TimerComponent.Instance.WaitAsync(zone * 100);
-            long openServerTime = await DBHelper.GetOpenServerTime(zone);
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBDayActivityInfo });
             if (d2GGetUnit.Component == null)
             {
@@ -127,8 +126,8 @@ namespace ET
                 self.DBDayActivityInfo = d2GGetUnit.Component as DBDayActivityInfo;
                 self.DBDayActivityInfo.Id = self.DomainZone();
             }
-          
-            self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerTime);
+            int openServerDay = await DBHelper.GetOpenServerDay(zone);
+            self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerDay);
             self.DBDayActivityInfo.Day = TimeHelper.DateTimeNow().Day;
             self.SaveDB();
 
@@ -174,8 +173,8 @@ namespace ET
 
             if (hour == 0)
             {
-                long openServerTime = await DBHelper.GetOpenServerTime(self.DomainZone());
-                self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerTime);
+                int openServerDay = await DBHelper.GetOpenServerDay(self.DomainZone());
+                self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
 
                 self.OnBattleOpen = false;
                 self.OnBattleClose = false;

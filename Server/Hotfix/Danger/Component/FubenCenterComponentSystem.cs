@@ -31,7 +31,7 @@ namespace ET
                 self.FubenInstanceList.Add(fubenInstanceId);
                 self.YeWaiFubenList.Add(sceneConfigs[i].Id, fubenInstanceId);
 
-                Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, self.DomainZone(), "Map" + sceneConfigs[i].Id.ToString(), SceneType.Map);
+                Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Map" + sceneConfigs[i].Id.ToString(), SceneType.Map);
                 MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
                 mapComponent.SetMapInfo((int)SceneTypeEnum.Battle, sceneConfigs[i].Id, 0);
                 mapComponent.NavMeshId = sceneConfigs[i].MapID.ToString();

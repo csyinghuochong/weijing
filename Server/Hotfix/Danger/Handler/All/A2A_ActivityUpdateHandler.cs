@@ -65,7 +65,11 @@ namespace ET
                     }
                     break;
                 case SceneType.FubenCenter:
+                    if (activityType == 0)
+                    {
+                        FubenCenterComponent fubenCenter = scene.GetComponent<FubenCenterComponent>();
 
+                    }
                     break;
                 default:
                     break;

@@ -57,11 +57,10 @@ namespace ET
 			return mysteryItemInfos;
 		}
 
-		public static List<MysteryItemInfo> InitMysteryItemInfos(long openSerTime = 0)
+		public static List<MysteryItemInfo> InitMysteryItemInfos(int openserverDay)
 		{
-			long serverNow = TimeHelper.ServerNow();
-			int openserverDay = ComHelp.DateDiff_Time(serverNow, openSerTime);
 
+			Log.Debug($" openserverDay   {openserverDay}");
 			List<MysteryItemInfo> mysteryItemInfos = new List<MysteryItemInfo>();
 
 			GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(11);

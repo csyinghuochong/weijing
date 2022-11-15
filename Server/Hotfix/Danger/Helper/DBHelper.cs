@@ -157,6 +157,14 @@ namespace ET
             return serverOpenTime;
         }
 
+        public static async ETTask<int> GetOpenServerDay(int zone)
+        {
+            long openSerTime = await GetOpenServerTime(zone);
+            long serverNow = TimeHelper.ServerNow();
+            int openserverDay = ComHelp.DateDiff_Time(serverNow, openSerTime);
+            return openserverDay;
+        }
+
         /// <summary>
         /// 获取玩家缓存
         /// </summary>
