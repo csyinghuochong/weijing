@@ -25,6 +25,10 @@ namespace ET
 
             while (true)
             {
+                if (unit.IsDisposed)
+                {
+                    return;
+                }
                 Unit target = AIHelp.GetNearestEnemy(unit);
                 if (target!=null)
                 {

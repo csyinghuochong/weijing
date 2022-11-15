@@ -66,7 +66,7 @@ namespace ET
                             float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
                             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
                             float targetDistance = skillConfig.SkillZhishiType == 1 ? Vector3.Distance(unit.Position, target.Position) : 0;
-                            target.GetComponent<SkillManagerComponent>().SendUseSkill(skillPro.SkillID, 0, Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
+                            unit.GetComponent<SkillManagerComponent>().SendUseSkill(skillPro.SkillID, 0, Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
                         }
                     }
 
