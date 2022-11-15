@@ -1,7 +1,6 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
-using UnityEngine;
+using System.Linq;
 
 namespace ET
 {
@@ -28,8 +27,8 @@ namespace ET
     {
         public override void Awake(RankSceneComponent self)
         {
-            self.InitDBRankInfo().Coroutine();
             self.InitServerInfo().Coroutine();
+            self.InitDBRankInfo().Coroutine();
 
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000, TimerType.RankeTimer, self);
         }
@@ -77,34 +76,12 @@ namespace ET
             int worldLv = ComHelp.GetWorldLv(openserverDay);
             self.DBServerInfo.ServerInfo.WorldLv = worldLv;
 
-            //延迟一秒刷新，以免有些服务器还没启动
-            await TimerComponent.Instance.WaitAsync(2000);
+            //延迟刷新，以免有些服务器还没启动
+            await TimerComponent.Instance.WaitAsync(10000);
 
             long fubenCenterId = DBHelper.GetFubenCenterId(self.DomainZone());
             R2F_WorldLvUpdateRequest request    = new R2F_WorldLvUpdateRequest() {  ServerInfo = self.DBServerInfo.ServerInfo };
             F2R_WorldLvUpdateResponse response = (F2R_WorldLvUpdateResponse)await ActorMessageSenderComponent.Instance.Call(fubenCenterId, request);
-            //List<long> mapIdList = new List<long>();
-            //mapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Map1").InstanceId);
-            //for (int i = 0; i < mapIdList.Count; i++)
-            //{
-            //    M2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (M2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-            //            (mapIdList[i], new A2M_ActivityUpdateRequest() { ActivityType = 1, Zone = self.DomainZone() });
-            //}
-            //List<StartProcessConfig> listprogress = StartProcessConfigCategory.Instance.GetAll().Values.ToList();
-            //for (int i = 0; i < listprogress.Count; i++)
-            //{
-            //    List<StartSceneConfig> processScenes = StartSceneConfigCategory.Instance.GetByProcess(listprogress[i].Id);
-            //    if (processScenes.Count == 0 || listprogress[i].Id >= 202)
-            //    {
-            //        continue;
-            //    }
-
-            //    StartSceneConfig startSceneConfig = processScenes[0];
-            //    Log.Warning("C2M_Reload_a: processScenes " + startSceneConfig);
-            //    long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(startSceneConfig.Zone, startSceneConfig.Name).InstanceId;
-            //    A2M_Reload createUnit = (A2M_Reload)await ActorMessageSenderComponent.Instance.Call(
-            //        mapInstanceId, new M2A_Reload() { LoadType = 1, LoadValue = "1" });
-            //}
         }
 
         public static void OnHour12Update(this RankSceneComponent self)

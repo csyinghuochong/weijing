@@ -25,7 +25,6 @@ namespace ET
         public override void Awake(PaiMaiSceneComponent self)
         {
             self.InitDBData().Coroutine();
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000,  TimerType.PaiMaiTimer, self);
         }
     }
 
@@ -45,8 +44,10 @@ namespace ET
 
         public static async ETTask InitDBData(this PaiMaiSceneComponent self)
         {
-            long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBPaiMainInfo });
+            int zone = self.DomainZone();
+            long dbCacheId = DBHelper.GetDbCacheId(zone);
+            await TimerComponent.Instance.WaitAsync(zone * 100);
+            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = zone, Component = DBHelper.DBPaiMainInfo });
          
             if (d2GGetUnit.Component == null)
             {
@@ -59,8 +60,7 @@ namespace ET
                 dBPaiMainInfo.PaiMaiShopItemInfos = PaiMaiHelper.Instance.InitPaiMaiShopItemList();
 
                 //存储数据库数据
-                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = dBPaiMainInfo, ComponentType = DBHelper.DBPaiMainInfo });
-
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = zone, Component = dBPaiMainInfo, ComponentType = DBHelper.DBPaiMainInfo });
             }
             else
             {
@@ -70,6 +70,7 @@ namespace ET
                 self.UpdatePaiMaiShopItemList();
             }
 
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000, TimerType.PaiMaiTimer, self);
             //测试更新价格
             //PaiMaiHelper.Instance.UpdatePaiMaiShopItemList(self.dBPaiMainInfo.PaiMaiShopItemInfos);
         }

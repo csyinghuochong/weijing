@@ -36,9 +36,6 @@ namespace ET
             self.MapIdList.Add(StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Rank").InstanceId);
 
             self.InitDayActivity().Coroutine();
-
-            //每日活动
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(30000, TimerType.ActivityTimer, self);
         }
     }
 
@@ -117,6 +114,7 @@ namespace ET
         {
             int zone = self.DomainZone();
             long dbCacheId = DBHelper.GetDbCacheId(zone);
+            await TimerComponent.Instance.WaitAsync(zone * 100);
             long openServerTime = await DBHelper.GetOpenServerTime(zone);
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBDayActivityInfo });
             if (d2GGetUnit.Component == null)
@@ -133,6 +131,9 @@ namespace ET
             self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerTime);
             self.DBDayActivityInfo.Day = TimeHelper.DateTimeNow().Day;
             self.SaveDB();
+
+            //每日活动
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(30000, TimerType.ActivityTimer, self);
         }
 
         public static  void SaveDB(this ActivitySceneComponent self)

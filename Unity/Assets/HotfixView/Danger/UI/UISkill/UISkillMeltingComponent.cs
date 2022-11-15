@@ -192,9 +192,9 @@ namespace ET
                 }
 
                 UIItemComponent uI_1 = null;
-                if (i < self.ItemUIlist.Count)
+                if (number < self.ItemUIlist.Count)
                 {
-                    uI_1 = self.ItemUIlist[i];
+                    uI_1 = self.ItemUIlist[number];
                     uI_1.GameObject.SetActive(true);
                 }
                 else

@@ -8,16 +8,14 @@ namespace ET
     {
         public override void Awake(FubenCenterComponent self)
         {
-            self.InitYeWaiScene().Coroutine();
+            self.InitYeWaiScene();
         }
     }
 
     public static class FubenCenterComponentSystem
     {
-        public static async ETTask InitYeWaiScene(this FubenCenterComponent self)
+        public static void  InitYeWaiScene(this FubenCenterComponent self)
         {
-            await TimerComponent.Instance.WaitAsync(1000 * self.DomainZone());
-
             List<SceneConfig> sceneConfigs =  SceneConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < sceneConfigs.Count; i++)
             {
