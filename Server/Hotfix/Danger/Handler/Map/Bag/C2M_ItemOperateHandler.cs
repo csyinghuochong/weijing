@@ -173,10 +173,10 @@ namespace ET
                                 break;
                             //冷却时间清空卷轴"
                             case 12:
-                                unit.GetComponent<UserInfoComponent>().UserInfo.MonsterRevives.Clear();
+                                unit.GetComponent<UserInfoComponent>().OnCleanBossCD();
                                 if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
                                 {
-                                    unit.DomainScene().GetComponent<LocalDungeonComponent>().OnCleanMonsterCD();
+                                    unit.DomainScene().GetComponent<LocalDungeonComponent>().OnCleanBossCD();
                                 }
                                 break;
                                 //召唤卷轴

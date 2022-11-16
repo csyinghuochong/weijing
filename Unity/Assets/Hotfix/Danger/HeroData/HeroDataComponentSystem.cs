@@ -449,27 +449,15 @@ namespace ET
         public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
         {
             Unit unit = self.GetParent<Unit>();
-            unit.GetComponent<MoveComponent>()?.Stop();
-
-            UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-            int unitType = unit.Type;
-            if (unitType == UnitType.Player)
-            {
-                unit.GetComponent<SkillManagerComponent>().OnDispose();
-                unit.GetComponent<BuffManagerComponent>().OnDispose();
-            }
-            else
-            {
-                unit.GetComponent<SkillManagerComponent>()?.OnDispose();
-                unit.GetComponent<BuffManagerComponent>()?.OnDispose();
-            }
+            unit.GetComponent<SkillManagerComponent>().OnDispose();
+            unit.GetComponent<BuffManagerComponent>().OnDispose();
             int sceneTypeEnum = args.Parent.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
             {
                 args.Parent.ZoneScene().GetComponent<CellDungeonComponent>().CheckChuansongOpen();
             }
             if (sceneTypeEnum == (int)SceneTypeEnum.LocalDungeon 
-                && unitType== UnitType.Monster && unit.GetMonsterType() == (int)MonsterTypeEnum.Boss)
+                && unit.Type == UnitType.Monster && unit.GetMonsterType() == (int)MonsterTypeEnum.Boss)
             {
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                 self.ZoneScene().GetComponent<UserInfoComponent>().OnAddRevive(unit.ConfigId,TimeHelper.ServerNow() + (long)monsterConfig.ReviveTime * 1000);
