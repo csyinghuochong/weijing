@@ -50,6 +50,9 @@ namespace ET
                 case SceneTypeEnum.TeamDungeon:
                     UIHelper.Remove(args.ZoneScene, UIType.UITeamMain);
                     break;
+                case SceneTypeEnum.TrialDungeon:
+                    UIHelper.Remove(args.ZoneScene, UIType.UITrialMain);
+                    break;
             }
             Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.LastSceneType, args.ChapterId).Coroutine();
         }

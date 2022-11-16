@@ -545,6 +545,8 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialDungeonEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialDungeonItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialDungeonComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialMainComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialMainEvent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

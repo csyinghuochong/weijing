@@ -53,6 +53,7 @@ namespace ET
                 case (int)SceneTypeEnum.Tower:
                 case (int)SceneTypeEnum.RandomTower:
                 case (int)SceneTypeEnum.PetDungeon:
+                case (int)SceneTypeEnum.TrialDungeon:
                 case (int)SceneTypeEnum.PetTianTi:
                 case (int)SceneTypeEnum.Battle:
                     loadResName = backpngs[index];
@@ -278,6 +279,10 @@ namespace ET
                     break;
                 case (int)SceneTypeEnum.TeamDungeon:
                     UIHelper.Create(self.ZoneScene(), UIType.UITeamMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
+                case (int)SceneTypeEnum.TrialDungeon:
+                    UIHelper.Create(self.ZoneScene(), UIType.UITrialMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
                 default:
