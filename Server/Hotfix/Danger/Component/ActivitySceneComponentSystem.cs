@@ -66,7 +66,7 @@ namespace ET
                 int curMinte = dateTime.Hour * 60 + dateTime.Minute;
                 if (curMinte == openTime - 1)
                 {
-                    self.OnBattleOpen().Coroutine();
+                    self.OnBattleOpen();
                 }
             }
             if (!self.OnBattleClose)
@@ -75,35 +75,29 @@ namespace ET
                 int curMinte = dateTime.Hour * 60 + dateTime.Minute;
                 if (curMinte == closeTime - 1)
                 {
-                    self.OnBattleClose().Coroutine();
+                    self.OnBattleClose();
                 }
             }
             
             self.SaveDB();
         }
 
-        public static async ETTask OnBattleOpen(this ActivitySceneComponent self)
+        public static void  OnBattleOpen(this ActivitySceneComponent self)
         {
             self.OnBattleOpen = true;
             self.OnBattleClose = false;
 
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
             MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOpen });
-            await TimerComponent.Instance.WaitAsync(60000);
-
-            ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(self.DomainZone()), 
-               NoticeType.BattleOpen, "战场已开启。请前往战场").Coroutine();
         }
 
-        public static  async ETTask OnBattleClose(this ActivitySceneComponent self)
+        public static  void OnBattleClose(this ActivitySceneComponent self)
         {
             self.OnBattleClose = true;
             self.OnBattleOpen = false;
 
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
             MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleClose });
-
-            await TimerComponent.Instance.WaitAsync(60000);
 
             ServerMessageHelper.SendServerMessage(DBHelper.GetBattleServerId(self.DomainZone()),
                NoticeType.BattleClose, "战场即将关闭。请退出战场").Coroutine();
