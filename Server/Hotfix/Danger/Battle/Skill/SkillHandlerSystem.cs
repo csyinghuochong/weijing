@@ -215,7 +215,7 @@ namespace ET
 
         public static void TriggeSkillHurt(this SkillHandler self,  Unit uu)
         {
-            bool canAttack = uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(self.TheUnitFrom);
+            bool canAttack = uu.IsCanBeAttackByUnit(self.TheUnitFrom);
             if (!canAttack)
             {
                 return;
@@ -325,11 +325,7 @@ namespace ET
         //5：全部
         public static void SkillBuff(this SkillHandler self, int buffID, Unit uu)
         {
-            if (uu == null)
-            {
-                return;
-            }
-            if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttack())
+            if (uu == null || !uu.IsCanBeAttack())
             {
                 return;
             }

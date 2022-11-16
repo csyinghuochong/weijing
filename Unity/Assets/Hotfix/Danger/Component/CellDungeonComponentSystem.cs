@@ -130,8 +130,7 @@ namespace ET
             List<Unit> entities = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().GetAll();
             for(int i = 0; i < entities.Count; i++)
             {
-                UnitInfoComponent unitInfoComponent = entities[i].GetComponent<UnitInfoComponent>();
-                if (entities[i].Type == UnitType.Monster && unitInfoComponent.IsCanBeAttack())
+                if (entities[i].Type == UnitType.Monster && entities[i].IsCanBeAttack())
                     return false;
             }
 

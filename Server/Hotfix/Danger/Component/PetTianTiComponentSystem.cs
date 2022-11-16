@@ -133,8 +133,7 @@ namespace ET
             for(int i = 0; i < unitList.Count; i++)
             {
                 Unit unit = unitList[i];    
-                UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-                if (unit.Type != UnitType.Pet || !unitInfoComponent.IsCanBeAttack())
+                if (unit.Type != UnitType.Pet || !unit.IsCanBeAttack())
                 {
                     continue;
                 }

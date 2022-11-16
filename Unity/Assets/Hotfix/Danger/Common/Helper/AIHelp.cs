@@ -56,7 +56,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(unit))
+                if (!uu.IsCanBeAttackByUnit(unit))
                 {
                     continue;
                 }
@@ -104,7 +104,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(unit))
+                if (!uu.IsCanBeAttackByUnit(unit))
                 {
                     continue;
                 }
@@ -165,7 +165,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttack())
+                if (!uu.IsCanBeAttack())
                 {
                     continue;
                 }

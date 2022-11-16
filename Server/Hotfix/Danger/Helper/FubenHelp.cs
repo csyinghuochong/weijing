@@ -268,9 +268,7 @@ namespace ET
 			List<Unit> units = scene.GetComponent<UnitComponent>().GetAll();
 			for(int i = 0; i < units.Count; i++)
 			{
-				if (units[i].Type == UnitType.Monster
-				&& units[i].GetComponent<UnitInfoComponent>().IsCanBeAttack()
-				&& units[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
+				if (units[i].Type == UnitType.Monster && units[i].IsCanBeAttack())
 				{
 					return false;
 				}

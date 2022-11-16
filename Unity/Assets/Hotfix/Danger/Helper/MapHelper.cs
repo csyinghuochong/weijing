@@ -41,7 +41,7 @@ namespace ET
                 Unit uu = units[i] as Unit;
                 if (unit.Id == uu.Id)
                     continue;
-                if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(unit))
+                if (!uu.IsCanBeAttackByUnit(unit))
                     continue;
                 float dd = Vector3.Distance(unit.Position, uu.Position);
                 if (distance < 0f || dd < distance)
