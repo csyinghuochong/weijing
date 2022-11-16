@@ -107,7 +107,7 @@ namespace ET
                 new CreateMonsterInfo() { Camp = CampEnum.CampMonster1, FubenDifficulty = FubenDifficulty.Normal });
         }
 
-        public static void OnCleanMonsterCD(this LocalDungeonComponent self)
+        public static void OnCleanBossCD(this LocalDungeonComponent self)
         {
             List<Unit> entities = self.DomainScene().GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < entities.Count; i++)

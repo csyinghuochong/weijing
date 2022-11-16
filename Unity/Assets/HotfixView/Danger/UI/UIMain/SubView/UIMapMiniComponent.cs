@@ -234,10 +234,7 @@ namespace ET
 
         public static void BeginChangeScene(this UIMapMiniComponent self, int lastScene)
         {
-            if (lastScene == SceneTypeEnum.Battle)
-            {
-                TimerComponent.Instance?.Remove(ref self.Timer);
-            }
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
         public static void OnEnterScene(this UIMapMiniComponent self, int sceneType)
