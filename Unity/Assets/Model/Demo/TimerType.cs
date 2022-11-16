@@ -55,6 +55,7 @@
         public const int MakeCDTimer = 1063;
         public const int MapMiniTimer = 1064;
         public const int BattleMainTimer = 1065;
+        public const int ChatSceneTimer = 1066;
         // 不能超过10000
     }
 }

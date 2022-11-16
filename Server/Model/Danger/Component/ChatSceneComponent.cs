@@ -7,6 +7,7 @@ namespace ET
     {
         public int Time;
         public string Conent;
+        public long ServerTime;
     }
 
     public class ChatInfoUnit : Entity, IAwake, IDestroy
@@ -18,6 +19,10 @@ namespace ET
 
     public class ChatSceneComponent : Entity, IAwake, IDestroy
     {
+        public long Timer;
+
+        public List<WorldSayConfig> WordSayList = new List<WorldSayConfig> ();
+
         //全服玩家GateSessionActorId
         public Dictionary<long, ChatInfoUnit> ChatInfoUnitsDict = new Dictionary<long, ChatInfoUnit>();
     }
