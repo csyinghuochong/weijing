@@ -108,50 +108,53 @@ namespace ET
 		/// <summary>是否可以使用复活</summary>
 		[ProtoMember(11)]
 		public int IfUseRes { get; set; }
-		/// <summary>音乐</summary>
+		/// <summary>是否允许PVP</summary>
 		[ProtoMember(12)]
+		public int IfPVP { get; set; }
+		/// <summary>音乐</summary>
+		[ProtoMember(13)]
 		public string Music { get; set; }
 		/// <summary>创建等级限制</summary>
-		[ProtoMember(13)]
+		[ProtoMember(14)]
 		public int CreateLv { get; set; }
 		/// <summary>进入等级限制</summary>
-		[ProtoMember(14)]
+		[ProtoMember(15)]
 		public int EnterLv { get; set; }
 		/// <summary>推荐等级</summary>
-		[ProtoMember(15)]
+		[ProtoMember(16)]
 		public int[] TuiJianLv { get; set; }
 		/// <summary>进入人数限制</summary>
-		[ProtoMember(16)]
+		[ProtoMember(17)]
 		public int PlayerLimit { get; set; }
 		/// <summary>进入次数限制</summary>
-		[ProtoMember(17)]
+		[ProtoMember(18)]
 		public int DayEnterNum { get; set; }
 		/// <summary>章节BossId</summary>
-		[ProtoMember(18)]
+		[ProtoMember(19)]
 		public int BossId { get; set; }
 		/// <summary>怪物生成坐标点</summary>
-		[ProtoMember(19)]
+		[ProtoMember(20)]
 		public string CreateMonster { get; set; }
 		/// <summary>怪物生成坐标点</summary>
-		[ProtoMember(20)]
+		[ProtoMember(21)]
 		public int[] CreateMonsterPosi { get; set; }
 		/// <summary>章节文本描述</summary>
-		[ProtoMember(21)]
+		[ProtoMember(22)]
 		public string ChapterDes { get; set; }
 		/// <summary>奖励展示</summary>
-		[ProtoMember(22)]
+		[ProtoMember(23)]
 		public string RewardShow { get; set; }
 		/// <summary>通关经验奖励</summary>
-		[ProtoMember(23)]
+		[ProtoMember(24)]
 		public int RewardExp { get; set; }
 		/// <summary>通关金币奖励</summary>
-		[ProtoMember(24)]
+		[ProtoMember(25)]
 		public int RewardGold { get; set; }
 		/// <summary>翻卡掉落ID</summary>
-		[ProtoMember(25)]
+		[ProtoMember(26)]
 		public int BoxDropID { get; set; }
 		/// <summary>摄像机参数</summary>
-		[ProtoMember(26)]
+		[ProtoMember(27)]
 		public double[] CameraPos { get; set; }
 
 	}
