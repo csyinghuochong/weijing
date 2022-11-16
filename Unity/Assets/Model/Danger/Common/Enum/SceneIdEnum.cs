@@ -45,5 +45,6 @@ namespace ET
         public const int PetDungeon = 10;       //宠物闯关副本
         public const int RandomTower = 11;       //通天塔
         public const int Battle = 12;           //阵营战场
+        public const int TrialDungeon = 13;     //试炼副本
     }
 }
