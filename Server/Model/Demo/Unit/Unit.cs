@@ -15,9 +15,6 @@ namespace ET
 
         public int AI;
 
-        [BsonIgnore]
-        public UnitConfig Config => UnitConfigCategory.Instance.Get(this.ConfigId);
-
         private Vector3 position; //坐标
 
         public Vector3 Position

@@ -134,6 +134,10 @@
 		</Compile>
     </ItemGroup>
     <ItemGroup>
+      <Compile Remove="..\..\Server\Model\Generate\Config\UnitConfig.cs" />
+      <Compile Remove="..\..\Server\Model\Generate\Config\WorldSayConfig.cs" />
+    </ItemGroup>
+    <ItemGroup>
       <ProjectReference Include="..\..\ThirdParty\ETTask\ETTask.csproj" />
       <ProjectReference Include="..\..\ThirdParty\ShareLib\ShareLib.csproj" />
       <ProjectReference Include="..\..\ThirdParty\UnityEngine\UnityEngine.csproj" />
