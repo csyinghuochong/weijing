@@ -18,6 +18,7 @@ namespace ET
 		public GameObject Button_FirstWin;
 		public GameObject RewardListNode;
 		public GameObject ImageBossIcon;
+		public GameObject RawImage;
 
 		public GameObject TypeListNode;
 		public UITypeViewComponent UITypeViewComponent;
@@ -27,6 +28,8 @@ namespace ET
 
 		public int FirstWinId;
 		public long LastUpdateTime;
+
+		public UIModelShowComponent UIModelShowComponent;
 	}
 
     [ObjectSystem]
@@ -45,6 +48,17 @@ namespace ET
 			self.Text_SkillJieShao = rc.Get<GameObject>("Text_SkillJieShao");
 			self.Text_UpdateStatus = rc.Get<GameObject>("Text_UpdateStatus");
 			self.Text_BossName = rc.Get<GameObject>("Text_BossName");
+
+			self.RawImage = rc.Get<GameObject>("RawImage");
+			//模型展示界面
+			var path = ABPathHelper.GetUGUIPath("Common/UIModelBossIconShow");
+			GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+			GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
+			UICommonHelper.SetParent(gameObject, self.RawImage);
+			UI ui = self.AddChild<UI, string, GameObject>("UIModelShow", gameObject);
+			self.UIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
+			//配置摄像机位置[0,115,257]
+			gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 115, 257f);
 
 			self.Button_FirstWin = rc.Get<GameObject>("Button_FirstWin");
 			self.Button_FirstWin.GetComponent<Button>().onClick.AddListener( self.OnButton_FirstWin);
@@ -65,9 +79,9 @@ namespace ET
 
 			self.UITypeViewComponent.TypeButtonInfos = self.InitTypeButtonInfos();
 			self.UITypeViewComponent.OnInitUI().Coroutine();
+		
 			self.ReqestFirstWinInfo().Coroutine();
 		}
-
     }
 
     public static class UIFirstWinComponentSystem
@@ -232,6 +246,9 @@ namespace ET
 			self.Text_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
 			//Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon.ToString());
 			//self.ImageBossIcon.GetComponent<Image>().sprite = sp;
+
+			MonsterConfigCategory.Instance.Get(bossId);
+			self.UIModelShowComponent.ShowOtherModel("Monster/" + monsterConfig.MonsterModelID.ToString()).Coroutine();
 
 			string skilldesc = "";
 			int[] skilllist = monsterConfig.SkillID;

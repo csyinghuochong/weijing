@@ -120,11 +120,10 @@ namespace ET
             self.MonsterNode.SetActive(false);
         }
 
-        public static async ETTask InitModelShowView(this UIMainHpBarComponent self, int monsterId)
+        public static void  InitModelShowView(this UIMainHpBarComponent self, int monsterId)
         {
             //模型展示界面
             var path = ABPathHelper.GetUGUIPath("Common/UIModelBossIconShow");
-            await ETTask.CompletedTask;
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(gameObject, self.Img_BossIcon);
@@ -164,7 +163,7 @@ namespace ET
                 self.Lab_BossLv.GetComponent<Text>().text = monsterConfig.Lv.ToString();
                 self.Lab_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
                 //self.Img_BossIcon.GetComponent<Image>().sprite = sp;
-                self.InitModelShowView(configid).Coroutine();
+                self.InitModelShowView(configid);
                 self.OnUpdateHP(unit);
             }
         }
