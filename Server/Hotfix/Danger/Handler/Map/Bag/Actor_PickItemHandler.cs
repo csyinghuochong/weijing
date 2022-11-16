@@ -12,14 +12,25 @@ namespace ET
             List<DropInfo> drops = request.ItemIds;
             List<long> removeIds = new List<long>();
             M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
-            //DropType == 0公共掉落  1私有掉落
+            long serverTime = TimeHelper.ServerNow();
+            //DropType == 0 / 3 公共掉落  1私有掉落
             for (int i = 0; i < drops.Count; i++)
             {
                 Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);
-                if (drops[i].DropType == 0 && unitDrop == null)
+                if (drops[i].DropType != 1)
                 {
-                    continue;
+                    if (unitDrop == null)
+                    {
+                        continue;
+                    }
+
+                    DropComponent  dropComponent = unitDrop.GetComponent<DropComponent>();
+                    if (dropComponent.OwnerId!=0 && dropComponent.OwnerId!=unit.Id && serverTime < dropComponent.ProtectTime)
+                    {
+                        return ErrorCore.ERR_ItemDropProtect;
+                    }
                 }
+
                 int addItemID = drops[i].ItemID;
                 int addItemNum = drops[i].ItemNum;
                 List<RewardItem> rewardItems = new List<RewardItem>();
@@ -29,8 +40,8 @@ namespace ET
                 {
                     return  ErrorCore.ERR_BagIsFull;
                 }
-                //移除掉落
-                if (drops[i].DropType == 0)
+                //移除非私有掉落
+                if (drops[i].DropType != 1)
                 {
                     unit.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);       //移除掉落ID
                     removeIds.Add(drops[i].UnitId);
@@ -38,7 +49,7 @@ namespace ET
                 FubenHelp.SendPickMessage(unit, drops[i], m2C_SyncChatInfo);
             }
             
-            return ErrorCode.ERR_Success;
+            return ErrorCore.ERR_Success;
         }
 
         private int OnTeamFubenPick(Unit unit, Actor_PickItemRequest request)

@@ -122,11 +122,11 @@ namespace ET
 
                 for (int i = 0; i < ids.Count; i++)
                 {
-                    if (ids[i].DropType == 0)
+                    if (ids[i].DropType == 1)
                     {
-                        continue;
+                        //私有掉落，本地移除
+                        zoneScene.CurrentScene().GetComponent<UnitComponent>().Remove(ids[i].UnitId);
                     }
-                    zoneScene.CurrentScene().GetComponent<UnitComponent>().Remove(ids[i].UnitId);
                 }
             }
             catch (Exception ex)

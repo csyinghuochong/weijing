@@ -78,6 +78,7 @@
         public const int ERR_ItemOnlyUseMiJing = 200018;                            //该道具只能在秘境使用
         public const int ERR_ItemOnlyUseOcc = 200019;                               //只有某职业才能使用
         public const int ERR_VitalityNotEnoughError = 200020;                       //活力不足
+        public const int ERR_ItemDropProtect = 200021;                              //掉落保护中
 
         //登录
         public const int ERR_AccountAlreadyRegister = 200101;                       //表示账号已经被注册
