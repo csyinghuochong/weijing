@@ -212,10 +212,11 @@ namespace ET
         {
             DropInfo dropinfo = new DropInfo();
             dropinfo.UnitId = unit.Id;
-
-            DropComponent dropCheckComponent = unit.GetComponent<DropComponent>();
-            dropinfo.ItemID = dropCheckComponent.ItemID;
-            dropinfo.ItemNum = dropCheckComponent.ItemNum;
+            //DropType == 0 公共掉落 2保护掉落   1私有掉落
+            DropComponent dropComponent = unit.GetComponent<DropComponent>();
+            dropinfo.DropType = dropComponent.OwnerId > 0 ? 2 : 0;
+            dropinfo.ItemID = dropComponent.ItemID;
+            dropinfo.ItemNum = dropComponent.ItemNum;
             dropinfo.X = unit.Position.x;
             dropinfo.Y = unit.Position.y;
             dropinfo.Z = unit.Position.z;

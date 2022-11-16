@@ -13,7 +13,7 @@ namespace ET
             List<long> removeIds = new List<long>();
             M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
             long serverTime = TimeHelper.ServerNow();
-            //DropType == 0 / 3 公共掉落  1私有掉落
+            //DropType == 0 / 2 公共掉落  1私有掉落
             for (int i = 0; i < drops.Count; i++)
             {
                 Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);
@@ -56,6 +56,7 @@ namespace ET
         {
             List<DropInfo> drops = request.ItemIds;
             List<long> removeIds = new List<long>();
+            long serverTime = TimeHelper.ServerNow();
 
             TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
             List<Unit> allPlayer = unit.GetUnitList(UnitType.Player);
@@ -63,10 +64,20 @@ namespace ET
             for (int i = 0; i < drops.Count; i++)
             {
                 Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);
-                if (drops[i].DropType == 0 && unitDrop == null)
+                if (drops[i].DropType != 1)
                 {
-                    continue;
+                    if (unitDrop == null)
+                    {
+                        continue;
+                    }
+
+                    DropComponent dropComponent = unitDrop.GetComponent<DropComponent>();
+                    if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
+                    {
+                        return ErrorCore.ERR_ItemDropProtect;
+                    }
                 }
+
                 int addItemID = drops[i].ItemID;
                 int addItemNum = drops[i].ItemNum;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
