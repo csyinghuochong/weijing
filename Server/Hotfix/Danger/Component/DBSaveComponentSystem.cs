@@ -78,8 +78,6 @@ namespace ET
 
                 long dbCacheId = DBHelper.GetDbCacheId(unit.DomainZone());
                 M2D_SaveUnit message = new M2D_SaveUnit() { UnitId = unit.Id };
-                message.EntityTypes.Add(unit.GetType().FullName);
-                message.EntityBytes.Add(MongoHelper.ToBson(unit));
                 foreach (Type type in self.EntityChangeTypeSet)
                 {
                     Entity entity = unit.GetComponent(type);

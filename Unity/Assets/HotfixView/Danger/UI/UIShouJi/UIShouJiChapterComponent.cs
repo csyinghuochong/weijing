@@ -94,7 +94,6 @@ namespace ET
         {
             ShouJiConfig shouJiConfig = ShouJiConfigCategory.Instance.Get(self.ChapterId);
             ShouJiChapterInfo shouJiChapterInfo = self.ZoneScene().GetComponent<ShoujiComponent>().GetShouJiChapterInfo(self.ChapterId);
-
             if (shouJiChapterInfo == null)
             {
                 return;
@@ -105,19 +104,21 @@ namespace ET
             }
             if (index == 1 && shouJiChapterInfo.StarNum < shouJiConfig.ProList1_StartNum)
             {
+                FloatTipManager.Instance.ShowFloatTip("条件不足！");
                 return;
             }
             if (index == 2 && shouJiChapterInfo.StarNum < shouJiConfig.ProList2_StartNum)
             {
+                FloatTipManager.Instance.ShowFloatTip("条件不足！");
                 return;
             }
             if (index == 3 && shouJiChapterInfo.StarNum < shouJiConfig.ProList3_StartNum)
             {
+                FloatTipManager.Instance.ShowFloatTip("条件不足！");
                 return;
             }
             ShoujiComponent shoujiComponent = self.ZoneScene().GetComponent<ShoujiComponent>();
-            int errorCode = await shoujiComponent.ReqestShoujiReward(self.ChapterId, index);
-
+            await shoujiComponent.ReqestShoujiReward(self.ChapterId, index);
         }
 
         public static void UpdateStarInfo(this UIShouJiChapterComponent self, ShouJiConfig shouJiConfig)
