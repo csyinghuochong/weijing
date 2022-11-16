@@ -51,7 +51,7 @@ namespace ET
 
 			self.RawImage = rc.Get<GameObject>("RawImage");
 			//模型展示界面
-			var path = ABPathHelper.GetUGUIPath("Common/UIModelBossIconShow");
+			var path = ABPathHelper.GetUGUIPath("Common/UIModelShow1");
 			GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 			GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
 			UICommonHelper.SetParent(gameObject, self.RawImage);
