@@ -8,9 +8,10 @@ namespace ET
 #if NOT_UNITY
         private void  OnRobotExit(Session session)
         {
-            RobotManagerComponent robotManager = session.ZoneScene().GetParent<RobotManagerComponent>();
-            robotManager.RemoveRobot(session.ZoneScene());
-            session.ZoneScene().Dispose();
+            Scene zoneScene = session.ZoneScene();
+            EnterFubenHelp.RequestQuitFuben(zoneScene);
+            zoneScene.GetComponent<BehaviourComponent>().TargetID = 0;
+            zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_TeamDungeon);
         }
 #endif
 
