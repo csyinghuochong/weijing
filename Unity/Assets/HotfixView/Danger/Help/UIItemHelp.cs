@@ -879,7 +879,7 @@ namespace ET
                 ShowPropertyText(itemconf.ItemDes, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
 
                 int allLength = itemconf.ItemDes.Length;
-                int zifuLenght = GetNumbers(itemconf.ItemDes);
+                int zifuLenght = GetNumbers(itemconf.ItemDes) + GetTeShu(itemconf.ItemDes);
                 int lenght = (allLength - zifuLenght) + (int)(zifuLenght * 0.5f);
                 properShowNum += Mathf.CeilToInt(lenght / 16f);
             }
@@ -908,6 +908,21 @@ namespace ET
             return properShowNum;
         }
 
+        public static int GetTeShu(string p_str)
+        {
+            char[] one = p_str.ToCharArray();
+            char[] two = new char[one.Length];
+            int c = 0;
+            for (int i = 0; i < one.Length; i++)
+            {
+                if (!Char.IsLetterOrDigit(one[i]))
+                {
+                    two[c] = one[i];
+                    c++;
+                }
+            }
+            return c;
+        }
 
         ///<summary>   
         /// 从字符串中提取所有数字   
@@ -921,6 +936,7 @@ namespace ET
             string strSplit1 = Regex.Replace(p_str, "[0-9]", "", RegexOptions.IgnoreCase);
             //取出字符串中所有的数字   
             string strSplit2 = Regex.Replace(p_str, "[a-z]", "", RegexOptions.IgnoreCase);
+
             return p_str.Length - strSplit1.Length + p_str.Length - strSplit2.Length; 
             //string strReturn = string.Empty;
             //if (p_str == null || p_str.Trim() == "")
