@@ -68,6 +68,8 @@ namespace ET
 
 						await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, (int)SceneTypeEnum.YeWaiScene, request.SceneId, 0);
 						break;
+					case (int)SceneTypeEnum.TrialDungeon:
+						break;
 					case (int)SceneTypeEnum.RandomTower:
 						//2200001
 						fubenid = IdGenerater.Instance.GenerateId();

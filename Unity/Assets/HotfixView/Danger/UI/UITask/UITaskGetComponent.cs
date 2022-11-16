@@ -255,11 +255,15 @@ namespace ET
         {
             int sceneType = SceneConfigCategory.Instance.Get(sceneId).MapType;
             int errorCode = ErrorCore.ERR_Success;
-            if (sceneType == (int)SceneTypeEnum.YeWaiScene)
+            if (sceneType == SceneTypeEnum.YeWaiScene)
             {
                 errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.YeWaiScene, sceneId);
             }
-            if(sceneType == (int)SceneTypeEnum.Tower)
+            if (sceneType == SceneTypeEnum.TrialDungeon)
+            {
+                errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.TrialDungeon, sceneId);
+            }
+            if(sceneType == SceneTypeEnum.Tower)
             {
                 UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                 SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
