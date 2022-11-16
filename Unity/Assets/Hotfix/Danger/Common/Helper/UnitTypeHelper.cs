@@ -26,7 +26,8 @@
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon
              || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi)
             {
-                return self.Type != UnitType.Player && attack.Type == UnitType.Player;
+                return self.Type == UnitType.Pet && attack.Type == UnitType.Pet
+                    && self.GetBattleCamp() != attack.GetBattleCamp();
             }
 
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene)
