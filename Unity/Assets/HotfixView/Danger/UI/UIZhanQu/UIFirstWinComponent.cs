@@ -58,7 +58,7 @@ namespace ET
 			UI ui = self.AddChild<UI, string, GameObject>("UIModelShow", gameObject);
 			self.UIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
 			//配置摄像机位置[0,115,257]
-			gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 115, 257f);
+			gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 115, 394f);
 
 			self.Button_FirstWin = rc.Get<GameObject>("Button_FirstWin");
 			self.Button_FirstWin.GetComponent<Button>().onClick.AddListener( self.OnButton_FirstWin);
