@@ -16,6 +16,15 @@ namespace ET
 		}
 	}
 
+	[ObjectSystem]
+	public class FloatTipComponentDestroy : DestroySystem<FloatTipComponent>
+	{
+        public override void Destroy(FloatTipComponent self)
+        {
+            GameObject.Destroy(self.GameObject);
+        }
+    }
+
 	public static class FloatTipComponentSystem
     {
 		public static void Awake(this FloatTipComponent self, string tip)

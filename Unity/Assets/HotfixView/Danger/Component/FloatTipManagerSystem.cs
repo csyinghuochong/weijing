@@ -72,7 +72,6 @@ namespace ET
 					self.FloatTipList.RemoveAt(i);
 				}
 			}
-
 			if (self.FloatTipList.Count == 0 &&  self.WaitFloatTip.Count == 0)
 			{
 				TimerComponent.Instance?.Remove(ref self.Timer);
