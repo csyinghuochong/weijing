@@ -286,7 +286,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIChat\UIChatItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonMyComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Help\UnitViewHelper.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Help\UIMainHelper.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonSettlementEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityTeHuiItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\SkillYujingComponent.cs" />

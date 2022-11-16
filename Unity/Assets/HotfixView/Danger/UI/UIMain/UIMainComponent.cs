@@ -851,8 +851,8 @@ namespace ET
         /// <param name="sceneTypeEnum"></param>
         public static void AfterEnterScene(this UIMainComponent self, int sceneTypeEnum)
         {
-            self.Btn_TopRight_1.SetActive(sceneTypeEnum != SceneTypeEnum.Battle);
-            self.Btn_TopRight_2.SetActive(sceneTypeEnum != SceneTypeEnum.Battle);
+            self.Btn_TopRight_1.SetActive(UIMainHelper.ShowRightTopButton(sceneTypeEnum));
+            self.Btn_TopRight_2.SetActive(UIMainHelper.ShowRightTopButton(sceneTypeEnum));
             self.UITiaoZhan.SetActive(sceneTypeEnum == SceneTypeEnum.Tower);
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);

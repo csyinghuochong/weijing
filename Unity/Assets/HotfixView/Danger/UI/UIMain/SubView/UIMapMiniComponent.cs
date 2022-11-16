@@ -209,11 +209,7 @@ namespace ET
                 mapCamera.transform.eulerAngles = new Vector3(90, 0, (float)dungeonConfig.CameraPos[3]);
                 camera.orthographicSize = (float)dungeonConfig.CameraPos[4];
             }
-            if(mapComponent.SceneTypeEnum == SceneTypeEnum.MainCityScene
-                 || mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon
-                 || mapComponent.SceneTypeEnum == SceneTypeEnum.YeWaiScene
-                 || mapComponent.SceneTypeEnum == SceneTypeEnum.Tower
-                 || mapComponent.SceneTypeEnum == SceneTypeEnum.Battle)
+            if(UIMainHelper.ShowMiniMap(mapComponent.SceneTypeEnum))
             {
                 SceneConfig dungeonConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
                 mapCamera.transform.position = new Vector3((float)dungeonConfig.CameraPos[0], (float)dungeonConfig.CameraPos[1], (float)dungeonConfig.CameraPos[2]);
@@ -241,7 +237,7 @@ namespace ET
         {
             self.LoadMapCamera().Coroutine();
 
-            self.MainCityShow.SetActive(UICommonHelper.ShowBigMap((int)sceneType));
+            self.MainCityShow.SetActive(UIMainHelper.ShowMiniMap((int)sceneType));
 
             int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
             int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
