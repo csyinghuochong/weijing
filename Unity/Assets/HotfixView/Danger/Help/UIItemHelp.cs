@@ -1,6 +1,8 @@
 ﻿
 
+using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -29,12 +31,12 @@ namespace ET
             { NumericType.Now_Mage, new NumericAttribute(){ Name = "魔法", Icon = "PetPro_3" }},
             { NumericType.Now_MaxDef, new NumericAttribute(){ Name = "物防", Icon = "PetPro_4" }},
             { NumericType.Now_MaxAdf, new NumericAttribute(){ Name = "魔防", Icon = "PetPro_5" }},
-             
+
             { NumericType.Now_Cri, new NumericAttribute(){ Name = "暴击概率", Icon = "" }},
             { NumericType.Now_Res, new NumericAttribute(){ Name = "抗暴概率", Icon = "" }},
             { NumericType.Now_Hit, new NumericAttribute(){ Name = "命中概率", Icon = "" }},
             { NumericType.Now_Dodge, new NumericAttribute(){ Name = "闪避概率", Icon = "" }},
-             
+
             { NumericType.Now_MinAct, new NumericAttribute(){ Name = "最小攻击", Icon = "" }},
             { NumericType.Now_MinDef, new NumericAttribute(){ Name = "最小物防", Icon = "" }},
             { NumericType.Now_MinAdf, new NumericAttribute(){ Name = "最小魔防", Icon = "" }},
@@ -45,7 +47,7 @@ namespace ET
             { NumericType.Now_Intellect, new NumericAttribute(){ Name = "智力", Icon = "" }},
             { NumericType.Now_Stamina, new NumericAttribute(){ Name = "耐力", Icon = "" }},
             { NumericType.Now_Constitution, new NumericAttribute(){ Name = "体质", Icon = "" }},
-             
+
             { NumericType.Now_DamgeAddPro, new NumericAttribute(){ Name = "伤害加成", Icon = "" }},
             { NumericType.Now_DamgeSubPro, new NumericAttribute(){ Name = "伤害减免", Icon = "" }},
             { NumericType.Now_Luck, new NumericAttribute(){ Name = "幸运值", Icon = "" }},
@@ -69,22 +71,22 @@ namespace ET
             { NumericType.Now_GeDang, new NumericAttribute(){ Name = "格挡值", Icon = "" }},
             { NumericType.Now_ZhenShi, new NumericAttribute(){ Name = "真实伤害", Icon = "" }},
             { NumericType.Now_HuiXue, new NumericAttribute(){ Name = "回血值", Icon = "" }},
-             
-             
+
+
             { NumericType.Now_ExpAdd, new NumericAttribute(){ Name = "经验收益", Icon = "" }},
             { NumericType.Now_GoldAdd, new NumericAttribute(){ Name = "金币收益", Icon = "" }},
-             
+
             { NumericType.Now_MonsterDis, new NumericAttribute(){ Name = "怪物发现目标距离", Icon = "" }},
             { NumericType.Now_JumpDisAdd, new NumericAttribute(){ Name = "冲锋距离加成", Icon = "" }},
             { NumericType.Now_ActQiangDuAdd, new NumericAttribute(){ Name = "攻击强度", Icon = "" }},
             { NumericType.Now_MageQiangDuAdd, new NumericAttribute(){ Name = "法术强度", Icon = "" }},
-             
-             
+
+
             { NumericType.Now_ActBossPro, new NumericAttribute(){ Name = "领主攻击加成", Icon = "" }},
             { NumericType.Now_MageBossPro, new NumericAttribute(){ Name = "领主技能加成", Icon = "" }},
             { NumericType.Now_ActBossSubPro, new NumericAttribute(){ Name = "领主攻击免伤", Icon = "" }},
             { NumericType.Now_MageBossSubPro, new NumericAttribute(){ Name = "领主技能免伤", Icon = "" }},
-             
+
             { NumericType.Now_MiaoSha_Pro, new NumericAttribute(){ Name = "致命一击", Icon = "" }},
             { NumericType.Now_FuHuoPro, new NumericAttribute(){ Name = "重生几率", Icon = "" }},
             { NumericType.Now_WuShiFangYuPro, new NumericAttribute(){ Name = "无视防御", Icon = "" }},
@@ -236,11 +238,11 @@ namespace ET
             //Log.Info("hideProListConfig.EquipSpace.ArrayToString() = " + hideProListConfig.EquipSpace.ArrayToString());
             //if (hideProListConfig.EquipSpace.ArrayToString() != " [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]")
             //{
-                for (int i = 0; i < spaces.Length; i++)
-                {
-                    tip += ItemSubType3Name[spaces[i]] + "、";
-                }
-                tip = tip.Substring(0, tip.Length - 1);
+            for (int i = 0; i < spaces.Length; i++)
+            {
+                tip += ItemSubType3Name[spaces[i]] + "、";
+            }
+            tip = tip.Substring(0, tip.Length - 1);
             //}
             /*
             else {
@@ -258,7 +260,7 @@ namespace ET
             string name = numericAttribute.Name;
             if (string.IsNullOrEmpty(name) && numberType > NumericType.Max)
             {
-               return  GetAttributeName(numberType / 100);
+                return GetAttributeName(numberType / 100);
             }
             return GameSettingLanguge.LoadLocalization(name);
         }
@@ -285,7 +287,7 @@ namespace ET
             return desc;
         }
 
-        public static string GetItemDesc(BagInfo baginfo,  ref int i1)
+        public static string GetItemDesc(BagInfo baginfo, ref int i1)
         {
             ItemConfig itemconf = ItemConfigCategory.Instance.Get(baginfo.ItemID);
             string Text_ItemDes = itemconf.ItemDes;
@@ -347,16 +349,16 @@ namespace ET
                             langStr = GameSettingLanguge.LoadLocalization("绿色");
                             holeStr = holeStr + langStr + "、";
                             break;
-                        /*
-                        case "105":
-                            langStr = GameSettingLanguge.LoadLocalization("白色");
-                            holeStr = holeStr + langStr + "、";
-                            break;
-                        case "110":
-                            langStr = GameSettingLanguge.LoadLocalization("多彩");
-                            holeStr = holeStr + langStr + "、";
-                            break;
-                        */
+                            /*
+                            case "105":
+                                langStr = GameSettingLanguge.LoadLocalization("白色");
+                                holeStr = holeStr + langStr + "、";
+                                break;
+                            case "110":
+                                langStr = GameSettingLanguge.LoadLocalization("多彩");
+                                holeStr = holeStr + langStr + "、";
+                                break;
+                            */
                     }
                 }
 
@@ -446,7 +448,7 @@ namespace ET
                 string itemPar = "0";
                 if (itemSubType == 1)
                 {
-                    itemPar = ""; 
+                    itemPar = "";
                 }
                 if (itemSubType == 2)
                 {
@@ -475,11 +477,11 @@ namespace ET
                 //极品提示  绿色
                 case "1":
                     //propertyObj.GetComponent<Text>().color = new Color(0.5f, 1f, 0f);
-                    propertyObj.GetComponent<Text>().color = new Color(80f/255f, 160f/255f, 0f);
+                    propertyObj.GetComponent<Text>().color = new Color(80f / 255f, 160f / 255f, 0f);
                     break;
                 //隐藏技能  橙色
                 case "2":
-                    propertyObj.GetComponent<Text>().color = new Color(248/255f, 62f/255, 191f/255f);
+                    propertyObj.GetComponent<Text>().color = new Color(248 / 255f, 62f / 255, 191f / 255f);
                     break;
                 //红色
                 case "3":
@@ -492,7 +494,7 @@ namespace ET
                 //白色
                 case "5":
                     //propertyObj.GetComponent<Text>().color = new Color(1f, 1f, 1f);
-                    propertyObj.GetComponent<Text>().color = new Color(100f / 255f, 80f / 255f, 60f/255f);
+                    propertyObj.GetComponent<Text>().color = new Color(100f / 255f, 80f / 255f, 60f / 255f);
                     break;
                 //灰色
                 case "11":
@@ -872,22 +874,26 @@ namespace ET
             }
 
             //显示描述
-            if (itemconf.ItemDes != "" && itemconf.ItemDes != "0" &&itemconf.ItemDes != null )
+            if (itemconf.ItemDes != "" && itemconf.ItemDes != "0" && itemconf.ItemDes != null)
             {
                 ShowPropertyText(itemconf.ItemDes, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
-                properShowNum += 2;
+
+                int allLength = itemconf.ItemDes.Length;
+                int zifuLenght = GetNumbers(itemconf.ItemDes) + GetTeShu(itemconf.ItemDes);
+                int lenght = (allLength - zifuLenght) + (int)(zifuLenght * 0.5f);
+                properShowNum += Mathf.CeilToInt(lenght / 16f);
             }
 
             //显示附魔属性
             for (int i = 0; i < baginfo.FumoProLists.Count; i++)
             {
-                HideProList hideProList = baginfo.FumoProLists[i]; 
+                HideProList hideProList = baginfo.FumoProLists[i];
                 int showType = NumericHelp.GetNumericValueType(hideProList.HideID);
                 string attribute;
                 if (showType == 2)
                 {
                     float value = (float)hideProList.HideValue / 100f;
-                    attribute = $"附魔属性: {UIItemHelp.GetAttributeName(hideProList.HideID)} + "+ value.ToString("0.##") + "%";
+                    attribute = $"附魔属性: {UIItemHelp.GetAttributeName(hideProList.HideID)} + " + value.ToString("0.##") + "%";
                 }
                 else
                 {
@@ -900,6 +906,51 @@ namespace ET
 
 
             return properShowNum;
+        }
+
+        public static int GetTeShu(string p_str)
+        {
+            char[] one = p_str.ToCharArray();
+            char[] two = new char[one.Length];
+            int c = 0;
+            for (int i = 0; i < one.Length; i++)
+            {
+                if (!Char.IsLetterOrDigit(one[i]))
+                {
+                    two[c] = one[i];
+                    c++;
+                }
+            }
+            return c;
+        }
+
+        ///<summary>   
+        /// 从字符串中提取所有数字   
+        /// Returns：所有数字   
+        /// </summary>     
+        /// <param name = "p_str">需要提取的字符串</param>   
+        /// <returns>所有数字</returns>   
+        public static int GetNumbers(string p_str)
+        {
+            //取出字符串中所有的英文字母   
+            string strSplit1 = Regex.Replace(p_str, "[0-9]", "", RegexOptions.IgnoreCase);
+            //取出字符串中所有的数字   
+            string strSplit2 = Regex.Replace(p_str, "[a-z]", "", RegexOptions.IgnoreCase);
+
+            return p_str.Length - strSplit1.Length + p_str.Length - strSplit2.Length; 
+            //string strReturn = string.Empty;
+            //if (p_str == null || p_str.Trim() == "")
+            //{
+            //    strReturn = "";
+            //}
+            //foreach (char chrTemp in p_str)
+            //{
+            //    if (!Char.IsNumber(chrTemp))
+            //    {
+            //        strReturn += chrTemp.ToString();
+            //    }
+            //}
+            //return strReturn;
         }
     }
 }
