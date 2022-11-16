@@ -70,7 +70,6 @@ namespace ET
                     {
                         continue;
                     }
-
                     DropComponent dropComponent = unitDrop.GetComponent<DropComponent>();
                     if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
                     {
