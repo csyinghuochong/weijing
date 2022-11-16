@@ -504,6 +504,8 @@ namespace ET
                     }
                 }
 
+                
+
                 //即将死亡
                 if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) + damge <= 0)
                 {
@@ -529,13 +531,17 @@ namespace ET
                     int fantanValue = (int)((float)damge * defendUnit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ActReboundDamgePro));
                     attackUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, fantanValue, skillconfig.Id, true, DamgeType);
                 }
-                //设置目标当前
-                defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, damge, skillconfig.Id, true, DamgeType);
-                //攻击方反弹即将死亡
-                if (attackUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) <= 0)
+                if (attackUnit.IsDisposed ==false)
                 {
-                    //死亡
-                    attackUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WillDead_6, attackUnit.Id);
+                    //设置目标当前
+                    defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, damge, skillconfig.Id, true, DamgeType);
+
+                    //攻击方反弹即将死亡
+                    if (attackUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) <= 0)
+                    {
+                        //死亡
+                        attackUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.WillDead_6, attackUnit.Id);
+                    }
                 }
             }
             else

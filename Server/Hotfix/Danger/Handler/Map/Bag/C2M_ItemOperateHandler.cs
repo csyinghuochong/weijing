@@ -236,6 +236,7 @@ namespace ET
                                 break;
                             case 110:
                                 //1;20;70010101,70010102@21;70;70020101,70020102
+                                int createMonsterID = 0;
                                 int lv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                                 string[] monsters = itemCof.ItemUsePar.Split('@');
                                 for (int c = 0; c < monsters.Length; c++)
@@ -257,6 +258,15 @@ namespace ET
                                         FubenDifficulty = FubenDifficulty.None,
                                         Camp = CampEnum.CampMonster1
                                     });
+
+                                    createMonsterID = int.Parse(ids[r_number]);
+                                }
+                                //发送广播信息
+                                if (createMonsterID != 0)
+                                {
+                                    MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(createMonsterID);
+                                    ServerMessageHelper.SendServerMessage(DBHelper.GetChatServerId(unit.DomainZone()),
+                                        NoticeType.Notice, "玩家" + unit.GetComponent<UserInfoComponent>().UserInfo.Name + "在宝藏之地召唤出领主怪物:" + monsterCof.MonsterName).Coroutine();
                                 }
                                 break;
                             //金币袋子
