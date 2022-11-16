@@ -340,7 +340,6 @@ namespace ET
                     Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
                     UnitFactory.CreateMonster(self.DomainScene(), int.Parse(seneItems[1]), vector3,  new CreateMonsterInfo()
                     { 
-                        FubenDifficulty = self.FubenDifficulty,
                         Camp = CampEnum.CampMonster1
                     });
                 }
@@ -362,7 +361,6 @@ namespace ET
                     Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
                     UnitFactory.CreateMonster(self.DomainScene(), int.Parse(monsterInfo[2]), vector3,  new CreateMonsterInfo()
                     { 
-                        FubenDifficulty = self.FubenDifficulty,
                         Camp = CampEnum.CampMonster1
                     });
                 }
@@ -371,7 +369,7 @@ namespace ET
             //开始刷怪
             if (!pass)
             {
-                FubenHelp.CreateMonsterList(self.DomainScene(), chapterSonConfig.CreateMonster, self.FubenDifficulty);
+                FubenHelp.CreateMonsterList(self.DomainScene(), chapterSonConfig.CreateMonster);
             }
 
             //生成npc

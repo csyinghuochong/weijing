@@ -27,7 +27,7 @@ namespace ET
             }
             unit.DomainScene().GetComponent<RandomTowerComponent>().TowerId = randomTowerid;
             RandomTowerConfig randowTowerConfig = RandomTowerConfigCategory.Instance.Get(randomTowerid);
-            FubenHelp.CreateMonsterList(unit.DomainScene(), randowTowerConfig.MonsterSet, FubenDifficulty.None);
+            FubenHelp.CreateMonsterList(unit.DomainScene(), randowTowerConfig.MonsterSet);
 
             reply();
             await ETTask.CompletedTask;

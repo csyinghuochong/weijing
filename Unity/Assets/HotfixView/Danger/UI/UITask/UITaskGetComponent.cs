@@ -261,7 +261,7 @@ namespace ET
             }
             if (sceneType == SceneTypeEnum.TrialDungeon)
             {
-                errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.TrialDungeon, sceneId);
+                UIHelper.Create(self.ZoneScene(), UIType.UITrialDungeon).Coroutine();
             }
             if(sceneType == SceneTypeEnum.Tower)
             {

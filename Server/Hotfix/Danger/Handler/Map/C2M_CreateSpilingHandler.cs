@@ -11,7 +11,6 @@ namespace ET
         {
             Unit unit = UnitFactory.CreateMonster(entity.DomainScene(), 70001960, Vector3.zero, new CreateMonsterInfo() 
             {
-                FubenDifficulty = FubenDifficulty.None,
                 Camp =CampEnum.CampMonster1
             });
 

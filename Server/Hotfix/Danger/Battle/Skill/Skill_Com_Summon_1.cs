@@ -53,7 +53,7 @@ namespace ET
 
                     //创建怪物
                     Unit unit = UnitFactory.CreateMonster(theUnitFrom.DomainScene(), createMonsterID, initPosi,  new CreateMonsterInfo()
-                    { Camp = theUnitFrom.GetBattleCamp(), FubenDifficulty = fubenDifficulty});
+                    { Camp = theUnitFrom.GetBattleCamp()});
                     theUnitFrom.GetComponent<UnitInfoComponent>().ZhaohuanIds.Add(unit.Id);
                 }
             }

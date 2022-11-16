@@ -80,8 +80,6 @@ message Actor_TransferRequest // IActorLocationRequest
 	int64 ActorId = 93;
 	int32 SceneType = 1;
 	int32 SceneId = 2;
-	int32 SceneSonId = 3;
-	int32 TransferId = 4;
 	int32 Difficulty = 5;
 	string paramInfo = 6;
 }

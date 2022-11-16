@@ -150,6 +150,7 @@ namespace ET
 					case (int)SceneTypeEnum.YeWaiScene:
 					case (int)SceneTypeEnum.RandomTower:
 					case (int)SceneTypeEnum.Tower:
+					case (int)SceneTypeEnum.TrialDungeon:
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
@@ -172,14 +173,16 @@ namespace ET
 							numericComponent.ApplyValue(NumericType.TowerId, 0, true);
 							scene.GetComponent<TowerComponent>().MainUnit = unit;
 							scene.GetComponent<TowerComponent>().BeginTower(request.ChapterId);
-							//FubenHelp.CreateMonsterList(scene, FubenDifficulty.Normal, sceneConfig.CreateMonster).Coroutine();
 						}
-						if (request.SceneType == (int)SceneTypeEnum.RandomTower)
+						if (request.SceneType == SceneTypeEnum.RandomTower)
 						{
 							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
 							scene.GetComponent<RandomTowerComponent>().MainUnit = unit;
-							//RandomTowerConfig randowTowerConfig = RandomTowerConfigCategory.Instance.GetAll().Values.ToList()[0];
-							//FubenHelp.CreateMonsterList(scene, randowTowerConfig.MonsterSet, FubenDifficulty.None).Coroutine();
+						}
+						if (request.SceneType == SceneTypeEnum.TrialDungeon)
+						{
+							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
+							scene.GetComponent<TrialDungeonComponent>().GenerateFuben();
 						}
 						fightId = unit.GetComponent<PetComponent>().GetFightPet();
 						if (fightId != null)
@@ -190,7 +193,6 @@ namespace ET
 					case (int)SceneTypeEnum.MainCityScene:
 						sceneConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());
 						unit.Position = new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f);
-						//unit.Position = new Vector3(numericComponent.GetAsFloat(NumericType.MainCity_X), numericComponent.GetAsFloat(NumericType.MainCity_Y), numericComponent.GetAsFloat(NumericType.MainCity_Z));
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 						unit.GetComponent<HeroDataComponent>().OnReturn();
 						// 通知客户端创建My Unit

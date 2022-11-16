@@ -33,7 +33,6 @@ namespace ET
 						Vector3 vector3 = new Vector3(pos.x + RandomHelper.RandFloat01() * 1, pos.y, pos.z + RandomHelper.RandFloat01() * 1);
 						Unit monster = UnitFactory.CreateMonster(unit.DomainScene(), monsterConfigs[i].Id, vector3,  new CreateMonsterInfo()
 						{ 
-							FubenDifficulty = FubenDifficulty.None,
 							Camp  = CampEnum.CampMonster1
 						});
 					}
@@ -141,7 +140,6 @@ namespace ET
 							Vector3 vector3 = new Vector3(posX + RandomHelper.RandFloat01() * 1, posY, posZ + RandomHelper.RandFloat01() * 1);
 							Unit monster = UnitFactory.CreateMonster(unit.DomainScene(), monsterId, vector3, new CreateMonsterInfo()
 							{ 
-								FubenDifficulty = FubenDifficulty.None,
 								Camp = CampEnum.CampMonster1
 							});
 

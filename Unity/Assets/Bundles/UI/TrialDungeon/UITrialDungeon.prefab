@@ -251,6 +251,8 @@ MonoBehaviour:
   data:
   - key: UIListNode
     gameObject: {fileID: 7110690809519918868}
+  - key: Btn_Enter
+    gameObject: {fileID: 1679095062265135210}
 --- !u!114 &4946719543138760932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +363,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5236 \u9020"
+  m_Text: "\u8FDB \u5165"
 --- !u!1 &3100368100090477501
 GameObject:
   m_ObjectHideFlags: 0

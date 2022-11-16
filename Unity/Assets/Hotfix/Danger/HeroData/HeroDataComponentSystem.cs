@@ -372,9 +372,22 @@ namespace ET
             float ackCoefficient = 1f;
             //根据副本难度刷新属性
             //进入 挑战关卡 怪物血量增加 1.5 伤害增加 1.2 低于关卡 血量增加2 伤害增加 1.5
+            int sceneType = nowUnit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+            int fubenDifficulty = FubenDifficulty.None;
+            switch (sceneType)
+            {
+                case SceneTypeEnum.CellDungeon:
+                    fubenDifficulty = nowUnit.DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
+                    break;
+                case SceneTypeEnum.LocalDungeon:
+                    fubenDifficulty = nowUnit.DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
+                    break;
+                default:
+                    break;
+            }
             if (monsterConfig.MonsterType == MonsterTypeEnum.Boss)
             {
-                switch (createMonsterInfo.FubenDifficulty)
+                switch (fubenDifficulty)
                 {
                     case FubenDifficulty.TiaoZhan:
                         hpCoefficient = 1.5f;
@@ -383,10 +396,6 @@ namespace ET
                     case FubenDifficulty.DiYu:
                         hpCoefficient = 2f;
                         ackCoefficient = 1.5f;
-                        break;
-                    case FubenDifficulty.Tower: //爬塔
-                        break;
-                    case FubenDifficulty.Teamdungeon: //组队副本
                         break;
                 }
             }

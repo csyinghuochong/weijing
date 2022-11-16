@@ -31,7 +31,7 @@ namespace ET
 			EnergySkills = new List<int>() { 64000001, 64000002, 64000003, 64000004, 64000005, 64000006, 64000007, 64000008 };
 		}
 
-		public static void CreateMonsterList(Scene scene, int[] monsterPos,  int fubenDifficulty)
+		public static void CreateMonsterList(Scene scene, int[] monsterPos)
 		{
 			if (monsterPos == null || monsterPos.Length == 0)
 			{
@@ -43,12 +43,12 @@ namespace ET
 
 				while (monsterId != 0)
 				{
-					monsterId = CreateMonsterByPos(scene, monsterId, fubenDifficulty);
+					monsterId = CreateMonsterByPos(scene, monsterId);
 				}
 			}
 		}
 
-		public static int CreateMonsterByPos(Scene scene, int monsterPos, int fubenDifficulty)
+		public static int CreateMonsterByPos(Scene scene, int monsterPos)
 		{
 			if (monsterPos == 0)
 			{
@@ -79,7 +79,6 @@ namespace ET
 						UnitFactory.CreateMonster(scene, monsterConfig.Id, vector3, new CreateMonsterInfo()
 						{
 							SkillId = skillId,
-							FubenDifficulty = fubenDifficulty,
 							Camp = monsterConfig.MonsterCamp,
 							Rotation = monsterPosition.Create,
 						});
@@ -88,7 +87,6 @@ namespace ET
 					{
 						UnitFactory.CreateMonster(scene, monsterConfig.Id, vector3, new CreateMonsterInfo()
 						{
-							FubenDifficulty = fubenDifficulty,
 							Camp = monsterConfig.MonsterCamp,
 							Rotation = monsterPosition.Create,
 						});
@@ -106,7 +104,6 @@ namespace ET
 					Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
 					UnitFactory.CreateMonster(scene, monsterPosition.MonsterID, vector3, new CreateMonsterInfo()
 					{
-						FubenDifficulty = fubenDifficulty,
 						Camp = monsterConfig.MonsterCamp,
 						Rotation = monsterPosition.Create,
 					});
@@ -115,13 +112,13 @@ namespace ET
 			if (mtype == 3)
 			{
 				//定时刷新  YeWaiRefreshComponent
-				scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterByPos(monsterPosition.Id, fubenDifficulty);
+				scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterByPos(monsterPosition.Id);
 			}
 			if (mtype == 4)
 			{
 				//4; 0,0,0; 71020001; 2,2; 2, 2
 				int playerLv = 1;
-				if (fubenDifficulty == FubenDifficulty.Tower)
+				if (scene.GetComponent<MapComponent>().SceneTypeEnum == SceneTypeEnum.Tower)
 				{
 					Unit mainUnit = scene.GetComponent<TowerComponent>().MainUnit;
 					playerLv = mainUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
@@ -137,7 +134,6 @@ namespace ET
 					{
 						PlayerLevel = playerLv,
 						AttributeParams = monsterPosition.Par,
-						FubenDifficulty = fubenDifficulty,
 						Camp = monsterConfig.MonsterCamp,
 						Rotation = monsterPosition.Create,
 					});
@@ -146,13 +142,13 @@ namespace ET
 			if (mtype == 5 || mtype == 6)
 			{
 				//固定时间刷新  YeWaiRefreshComponent
-				scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterByPos_2(monsterPosition.Id, fubenDifficulty);
+				scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterByPos_2(monsterPosition.Id);
 			}
 
 			return monsterPosition.NextID;
 		}
 
-		public static  void CreateMonsterList(Scene scene, string createMonster, int fubenDifficulty)
+		public static  void CreateMonsterList(Scene scene, string createMonster)
 		{
 			if (ComHelp.IfNull(createMonster))
             {
@@ -192,7 +188,7 @@ namespace ET
 							EnergySkills.Remove(skillId);
 							UnitFactory.CreateMonster(scene, monsterConfig.Id, vector3, new CreateMonsterInfo() 
 							{ 
-								SkillId = skillId, FubenDifficulty = fubenDifficulty,
+								SkillId = skillId,
 								Camp   = monsterConfig.MonsterCamp
 							});
 						}
@@ -200,7 +196,6 @@ namespace ET
 						{
 							UnitFactory.CreateMonster(scene, monsterConfig.Id, vector3,  new CreateMonsterInfo()
 							{
-								FubenDifficulty = fubenDifficulty,
 								Camp = monsterConfig.MonsterCamp
 							});
 						}
@@ -222,7 +217,7 @@ namespace ET
 						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
 						UnitFactory.CreateMonster(scene, int.Parse(monsterid[0]), vector3, new CreateMonsterInfo()
 						{ 
-							FubenDifficulty = fubenDifficulty,
+
 							Camp = monsterConfig.MonsterCamp
 						});
 					}
@@ -230,13 +225,13 @@ namespace ET
 				if (mtype[0] == "3")
 				{
 					//野外场景定时刷新
-					scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList(createMonster, fubenDifficulty);
+					scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList(createMonster);
 				}
 				if (mtype[0] == "4")
 				{
 					//4; 0,0,0; 71020001; 2,2; 2, 2  //是随机塔附加属性
 					int playerLv = 1;
-					if (fubenDifficulty == FubenDifficulty.Tower)
+					if (scene.GetComponent<MapComponent>().SceneTypeEnum == SceneTypeEnum.Tower)
 					{
 						Unit mainUnit = scene.GetComponent<TowerComponent>().MainUnit;
 						playerLv = mainUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
@@ -250,7 +245,7 @@ namespace ET
 						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
 						MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(int.Parse(monsterid[0]));
 						UnitFactory.CreateMonster(scene, int.Parse(monsterid[0]), vector3,  new CreateMonsterInfo() {
-							PlayerLevel = playerLv, AttributeParams = mondels[4] + ";" + mondels[5] , FubenDifficulty = fubenDifficulty,
+							PlayerLevel = playerLv, AttributeParams = mondels[4] + ";" + mondels[5],
 							Camp = monsterConfig.MonsterCamp
 						});
 					}
@@ -258,7 +253,7 @@ namespace ET
 				//固定时间刷新
 				if (mtype[0] == "5" || mtype[0] == "6")
 				{
-					scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList_2(createMonster, fubenDifficulty);
+					scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList_2(createMonster);
 				}
 			}
 		}

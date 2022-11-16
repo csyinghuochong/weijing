@@ -81,15 +81,21 @@ namespace ET
 		/// <summary>名字</summary>
 		[ProtoMember(2)]
 		public string Name { get; set; }
-		/// <summary>层数</summary>
+		/// <summary></summary>
 		[ProtoMember(3)]
+		public int MapType { get; set; }
+		/// <summary>层数</summary>
+		[ProtoMember(4)]
 		public int CengNum { get; set; }
 		/// <summary>出现怪物</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public string MonsterSet { get; set; }
 		/// <summary>强制刷新下一波时间</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public int NextTime { get; set; }
+		/// <summary>掉落展示</summary>
+		[ProtoMember(7)]
+		public int DropId { get; set; }
 
 	}
 }

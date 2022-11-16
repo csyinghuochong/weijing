@@ -9,8 +9,7 @@ namespace ET
         public override async ETTask<UI> OnCreate(UIComponent uiComponent)
         {
             var path = ABPathHelper.GetUGUIPath(UIType.UITeamMain);
-            await ETTask.CompletedTask;
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject =await  ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UI ui = uiComponent.AddChild<UI, string, GameObject>(UIType.UITeamMain, gameObject);
             ui.AddComponent<UITeamMainComponent>();

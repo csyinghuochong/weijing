@@ -57,8 +57,8 @@
             mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(sceneId).MapID.ToString();
             Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
             fubnescene.AddComponent<YeWaiRefreshComponent>();
-            FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(sceneId).CreateMonster, FubenDifficulty.None);
-            FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(sceneId).CreateMonsterPosi, FubenDifficulty.None);
+            FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(sceneId).CreateMonster);
+            FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(sceneId).CreateMonsterPosi);
             battleInfo = new BattleInfo() { FubenId = fubenid, PlayerNumber = 0, FubenInstanceId = fubenInstanceId,SceneId = sceneId };
             self.BattleInfos.Add(battleInfo);
             return battleInfo;

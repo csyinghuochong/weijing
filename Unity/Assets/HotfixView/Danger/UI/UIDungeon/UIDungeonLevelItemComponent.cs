@@ -80,7 +80,7 @@ namespace ET
                 }
                 self.SendTime = Time.time;
                 UIDungeonLevelComponent uIDungeonLevel = UIHelper.GetUI( self.ZoneScene(), UIType.UIDungeonLevel ).GetComponent<UIDungeonLevelComponent>();
-                int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.LocalDungeon, self.ChapterId, 0, uIDungeonLevel.Difficulty);
+                int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.LocalDungeon, self.ChapterId, uIDungeonLevel.Difficulty);
                 if (errorCode != ErrorCore.ERR_Success)
                 {
                     ErrorHelp.Instance.ErrorHint(errorCode);

@@ -125,7 +125,7 @@ namespace ET
                     Vector3 vector3 = new Vector3(position.x + RandomHelper.RandomNumberFloat(-1 * range, range),
                         position.y, position.z + RandomHelper.RandomNumberFloat(-1 * range, range));
                     Unit monsterunit=  UnitFactory.CreateMonster(self.DomainScene(), monsterId, vector3,  new CreateMonsterInfo()
-                    { FubenDifficulty= FubenDifficulty.None, Camp = CampEnum.CampMonster1});
+                    {  Camp = CampEnum.CampMonster1});
                     monsterunit.GetComponent<AIComponent>().StopAI = true;
                 }
             }

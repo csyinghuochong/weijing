@@ -40,8 +40,8 @@ namespace ET
                 mapComponent.NavMeshId = sceneConfigs[i].MapID.ToString(); 
                 fubnescene.GetComponent<ServerInfoComponent>().ServerInfo = self.ServerInfo;
                 YeWaiRefreshComponent yeWaiRefreshComponen = fubnescene.AddComponent<YeWaiRefreshComponent>();
-                FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonster, FubenDifficulty.None);
-                FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonsterPosi, FubenDifficulty.None);
+                FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonster);
+                FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonsterPosi);
                 yeWaiRefreshComponen.OnZeroClockUpdate(openDay);
             }
         }

@@ -74,7 +74,7 @@ namespace ET
                     continue;
                 }
                 int[] pistionId = new int[1] { int.Parse(monsterItem[1]) };
-                FubenHelp.CreateMonsterList(self.DomainScene(), pistionId, FubenDifficulty.None);
+                FubenHelp.CreateMonsterList(self.DomainScene(), pistionId);
             }
         }
 
@@ -100,7 +100,7 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="createMonster"></param>
         /// <param name="fubenDifficulty"></param>
-        public static void CreateMonsterList(this YeWaiRefreshComponent self, string createMonster, int fubenDifficulty)
+        public static void CreateMonsterList(this YeWaiRefreshComponent self, string createMonster)
         {
             if (ComHelp.IfNull(createMonster))
             {
@@ -139,7 +139,7 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="monsterPos"></param>
         /// <param name="fubenDifficulty"></param>
-        public static void CreateMonsterByPos(this YeWaiRefreshComponent self, int monsterPos, int fubenDifficulty)
+        public static void CreateMonsterByPos(this YeWaiRefreshComponent self, int monsterPos)
         {
             if (monsterPos == 0)
             {
@@ -171,7 +171,7 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="createMonster"></param>
         /// <param name="fubenDifficulty"></param>
-        public static void CreateMonsterList_2(this YeWaiRefreshComponent self, string createMonster, int fubenDifficulty)
+        public static void CreateMonsterList_2(this YeWaiRefreshComponent self, string createMonster)
         {
             if (ComHelp.IfNull(createMonster))
             {
@@ -220,7 +220,7 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="monsterPos"></param>
         /// <param name="fubenDifficulty"></param>
-        public static void CreateMonsterByPos_2(this YeWaiRefreshComponent self, int monsterPos, int fubenDifficulty)
+        public static void CreateMonsterByPos_2(this YeWaiRefreshComponent self, int monsterPos)
         {
             if (monsterPos == 0)
             {
@@ -317,8 +317,8 @@ namespace ET
                 Vector3 to = new Vector3(form.x + RandomHelper.RandomNumberFloat(-1 * range, range), form.y, form.z + RandomHelper.RandomNumberFloat(-1 * range, range));
                 Vector3 vector3 = self.DomainScene().GetComponent<MapComponent>().GetCanReachPath(form, to);
                 UnitFactory.CreateMonster(self.GetParent<Scene>(), refreshMonster.MonsterId, vector3, new CreateMonsterInfo()
-                {   Camp = monsterConfig.MonsterCamp,
-                    FubenDifficulty = FubenDifficulty.Normal,
+                {  
+                    Camp = monsterConfig.MonsterCamp,
                     Rotation = refreshMonster.Rotation, 
                 });
             }
