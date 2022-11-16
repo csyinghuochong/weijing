@@ -141,6 +141,7 @@ namespace ET
             self.Btn_Use = rc.Get<GameObject>("Btn_Use");
             self.Btn_Takeoff = rc.Get<GameObject>("Btn_Takeoff");
             self.Obj_EquipPropertyText = rc.Get<GameObject>("Obj_EquipPropertyText");
+            self.Obj_EquipPropertyText.SetActive(false);
             self.Obj_EquiZhuanJing = rc.Get<GameObject>("ObjEquipZhuanJingSet");
             self.Obj_EquiZhuanJing.SetActive(false);
 
