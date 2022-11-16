@@ -264,12 +264,17 @@ namespace ET
                 self.Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).Name;
             }
 
-            self.HeadList.SetActive(sceneType == SceneTypeEnum.Battle);
-
-            if (sceneType == SceneTypeEnum.Battle)
+            if (sceneType == SceneTypeEnum.Battle
+                || sceneType == SceneTypeEnum.TeamDungeon
+                || sceneType == SceneTypeEnum.YeWaiScene)
             {
+                self.HeadList.SetActive(true);
                 TimerComponent.Instance?.Remove(ref self.Timer);
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.MapMiniTimer, self);
+            }
+            else
+            {
+                self.HeadList.SetActive(false);
             }
         }
     }

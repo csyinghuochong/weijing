@@ -16,7 +16,7 @@ namespace ET
             "wxoyHedvzGgPkynfiq3fNJInZcM76Q",
             "qqUID_E345FB495D13CA8792AA967F39F35045",//神棍
             "qqUID_423B58B6669878EF00C927A48822C230",   //双剑冰
-            "wxoyHedv09Csrxw0PQnWeD9dwCubIU",
+            "13752404158",
         };
 #endif
 
