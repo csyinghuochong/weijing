@@ -46,7 +46,7 @@ namespace ET
                 }
             }
 
-           Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
+            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
             HeroDataComponent heroDataComponent = unit.AddComponent<HeroDataComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
@@ -319,23 +319,25 @@ namespace ET
                 }
             }
 
-            if (monsterCof.DropType == 0) //公共掉落
+            List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro, false);
+            List<RewardItem> droplist_2 = DropHelper.AI_DropByPlayerLv(monsterCof.Id, playerLv, dropAdd_Pro, false);
+            if (droplist_2 != null)
             {
-                List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro, false);
-                List<RewardItem> droplist_2 = DropHelper.AI_DropByPlayerLv(monsterCof.Id, playerLv, dropAdd_Pro, false);
-                if (droplist_2 != null)
-                {
-                    droplist.AddRange(droplist_2);
-                }
-                
+                droplist.AddRange(droplist_2);
+            }
+            if (monsterCof.DropType == 0 || monsterCof.DropType == 3) //0公共掉落 1私有掉落 3 保护掉落
+            {
+                long serverTime = TimeHelper.ServerNow();
                 for (int i = 0; i < droplist.Count; i++)
                 {
                     UnitComponent unitComponent = bekill.DomainScene().GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
                     dropitem.AddComponent<UnitInfoComponent>();
                     dropitem.Type = UnitType.DropItem;
-                    DropComponent dropCheckComponent = dropitem.AddComponent<DropComponent>();
-                    dropCheckComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
+                    DropComponent dropComponent = dropitem.AddComponent<DropComponent>();
+                    dropComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
+                    dropComponent.OwnerId = monsterCof.DropType == 0 ? 0 : main.Id;
+                    dropComponent.ProtectTime = monsterCof.DropType == 0 ? 0 : serverTime + 30000;
                     float dropX = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);
                     float dropY = bekill.Position.y;
                     float dropZ = bekill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f);
@@ -343,7 +345,7 @@ namespace ET
                     dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
                 }
             }
-            else
+            if (monsterCof.DropType == 2)
             {
                 List<long> beattackIds = new List<long>();
                 if (bekill.GetComponent<AIComponent>() != null)
@@ -362,12 +364,6 @@ namespace ET
                         continue;
                     }
                     M2C_CreateDropItems m2C_CreateDropItems = new M2C_CreateDropItems();
-                    List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro, false);
-                    List<RewardItem> droplist_2 = DropHelper.AI_DropByPlayerLv(monsterCof.Id, playerLv, dropAdd_Pro, false);
-                    if (droplist_2 != null)
-                    {
-                        droplist.AddRange(droplist_2);
-                    }
                     for (int k = 0; k < droplist.Count; k++)
                     {
                         m2C_CreateDropItems.Drops.Add(new DropInfo() {

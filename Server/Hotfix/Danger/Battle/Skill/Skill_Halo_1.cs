@@ -26,11 +26,7 @@
             for (int i = HurtIds.Count - 1; i >= 0; i--)
             {
                 Unit unit = TheUnitFrom.Domain.GetComponent<UnitComponent>().Get(HurtIds[i]);
-                if (unit == null || unit.IsDisposed)
-                {
-                    continue;
-                }
-                if (!unit.GetComponent<UnitInfoComponent>().IsCanBeAttack())
+                if (unit == null || unit.IsDisposed || !unit.IsCanBeAttack())
                 {
                     HurtIds.RemoveAt(i);
                     continue;

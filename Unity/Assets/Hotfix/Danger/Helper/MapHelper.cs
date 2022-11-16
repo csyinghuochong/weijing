@@ -41,7 +41,7 @@ namespace ET
                 Unit uu = units[i] as Unit;
                 if (unit.Id == uu.Id)
                     continue;
-                if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(unit))
+                if (!uu.IsCanBeAttackByUnit(unit))
                     continue;
                 float dd = Vector3.Distance(unit.Position, uu.Position);
                 if (distance < 0f || dd < distance)
@@ -122,11 +122,11 @@ namespace ET
 
                 for (int i = 0; i < ids.Count; i++)
                 {
-                    if (ids[i].DropType == 0)
+                    if (ids[i].DropType == 1)
                     {
-                        continue;
+                        //私有掉落，本地移除
+                        zoneScene.CurrentScene().GetComponent<UnitComponent>().Remove(ids[i].UnitId);
                     }
-                    zoneScene.CurrentScene().GetComponent<UnitComponent>().Remove(ids[i].UnitId);
                 }
             }
             catch (Exception ex)

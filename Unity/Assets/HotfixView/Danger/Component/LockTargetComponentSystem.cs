@@ -141,7 +141,7 @@ namespace ET
             for (int i = 0; i < units.Length; i++)
             {
                 Unit uu = units[i] as Unit;
-                if (!uu.GetComponent<UnitInfoComponent>().IsCanBeAttackByUnit(unit))
+                if (!uu.IsCanBeAttackByUnit(unit))
                 {
                     continue;
                 }
