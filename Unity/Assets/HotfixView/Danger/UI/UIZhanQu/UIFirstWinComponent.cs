@@ -19,6 +19,7 @@ namespace ET
 		public GameObject RewardListNode;
 		public GameObject ImageBossIcon;
 		public GameObject RawImage;
+		public GameObject Text_Lv;
 
 		public GameObject TypeListNode;
 		public UITypeViewComponent UITypeViewComponent;
@@ -48,6 +49,7 @@ namespace ET
 			self.Text_SkillJieShao = rc.Get<GameObject>("Text_SkillJieShao");
 			self.Text_UpdateStatus = rc.Get<GameObject>("Text_UpdateStatus");
 			self.Text_BossName = rc.Get<GameObject>("Text_BossName");
+			self.Text_Lv = rc.Get<GameObject>("Text_Lv");
 
 			self.RawImage = rc.Get<GameObject>("RawImage");
 			//模型展示界面
@@ -244,6 +246,7 @@ namespace ET
 			int bossId = FirstWinConfigCategory.Instance.Get(firstwinId).BossID;
 			MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
 			self.Text_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
+			self.Text_Lv.GetComponent<Text>().text = "等级:" + monsterConfig.Lv;
 			//Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon.ToString());
 			//self.ImageBossIcon.GetComponent<Image>().sprite = sp;
 
