@@ -562,66 +562,66 @@ namespace ET
 		[ProtoMember(10)]
 		public int Combat { get; set; }
 
-//已通关的副本列表
-		[ProtoMember(12)]
-		public List<FubenPassInfo> FubenPassList = new List<FubenPassInfo>();
-
-		[ProtoMember(13)]
-		public List<KeyValuePair> GameSettingInfos = new List<KeyValuePair>();
-
-		[ProtoMember(14)]
-		public long UserId { get; set; }
-
-		[ProtoMember(15)]
-		public List<int> MakeList = new List<int>();
-
-		[ProtoMember(16)]
-		public long HuoYue { get; set; }
-
-		[ProtoMember(17)]
-		public int Sp { get; set; }
-
-		[ProtoMember(18)]
-		public int Vitality { get; set; }
-
-		[ProtoMember(21)]
-		public long UnionId { get; set; }
-
-		[ProtoMember(22)]
-		public List<int> CompleteGuideIds = new List<int>();
-
-		[ProtoMember(23)]
-		public List<KeyValuePairInt> DayFubenTimes = new List<KeyValuePairInt>();
-
-		[ProtoMember(24)]
-		public string UnionName { get; set; }
-
-		[ProtoMember(25)]
-		public List<KeyValuePair> MonsterRevives = new List<KeyValuePair>();
-
-		[ProtoMember(26)]
-		public long RongYu { get; set; }
-
-		[ProtoMember(27)]
-		public List<int> TowerRewardIds = new List<int>();
-
-		[ProtoMember(28)]
-		public List<int> ChouKaRewardIds = new List<int>();
-
-		[ProtoMember(29)]
-		public List<int> XiLianRewardIds = new List<int>();
-
-		[ProtoMember(30)]
-		public List<KeyValuePairInt> MysteryItems = new List<KeyValuePairInt>();
-
-		[ProtoMember(31)]
+		[ProtoMember(11)]
 		public int RobotId { get; set; }
 
-		[ProtoMember(32)]
+		[ProtoMember(12)]
+		public long HuoYue { get; set; }
+
+		[ProtoMember(13)]
+		public int Sp { get; set; }
+
+		[ProtoMember(14)]
+		public int Vitality { get; set; }
+
+		[ProtoMember(15)]
+		public long UnionId { get; set; }
+
+		[ProtoMember(16)]
+		public long RongYu { get; set; }
+
+		[ProtoMember(17)]
+		public string UnionName { get; set; }
+
+		[ProtoMember(18)]
+		public long UserId { get; set; }
+
+		[ProtoMember(19)]
+		public List<KeyValuePair> GameSettingInfos = new List<KeyValuePair>();
+
+		[ProtoMember(20)]
+		public List<int> MakeList = new List<int>();
+
+		[ProtoMember(21)]
+		public List<int> CompleteGuideIds = new List<int>();
+
+		[ProtoMember(22)]
+		public List<KeyValuePairInt> DayFubenTimes = new List<KeyValuePairInt>();
+
+		[ProtoMember(23)]
+		public List<KeyValuePair> MonsterRevives = new List<KeyValuePair>();
+
+		[ProtoMember(24)]
+		public List<int> TowerRewardIds = new List<int>();
+
+		[ProtoMember(25)]
+		public List<int> ChouKaRewardIds = new List<int>();
+
+		[ProtoMember(26)]
+		public List<int> XiLianRewardIds = new List<int>();
+
+		[ProtoMember(27)]
+		public List<KeyValuePairInt> MysteryItems = new List<KeyValuePairInt>();
+
+		[ProtoMember(28)]
 		public List<KeyValuePair> OpenChestList = new List<KeyValuePair>();
 
-		[ProtoMember(33)]
+		[ProtoMember(29)]
 		public List<KeyValuePairInt> MakeIdList = new List<KeyValuePairInt>();
+
+//已通关的副本列表
+		[ProtoMember(30)]
+		public List<FubenPassInfo> FubenPassList = new List<FubenPassInfo>();
 
 	}
 
@@ -8478,9 +8478,6 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
-
-		[ProtoMember(1)]
-		public int CombatResult { get; set; }
 
 	}
 

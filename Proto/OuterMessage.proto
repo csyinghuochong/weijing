@@ -251,7 +251,7 @@ message MoveInfo
 
 message UserInfo
 {
-	int64 AccInfoID = 1;
+    int64 AccInfoID = 1;
     string Name = 2;
     int64 Gold  = 3;
     //钻石
@@ -273,44 +273,45 @@ message UserInfo
 
     int32 RobotId = 11;
 
-    //已通关的副本列表
-    repeated FubenPassInfo FubenPassList = 12;
+    int64 HuoYue = 12;
 
-    repeated KeyValuePair GameSettingInfos = 13;
+    int32 Sp = 13;
 
-	int64 UserId = 14;
+    int32 Vitality = 14;	//活力
 
-	repeated int32 MakeList = 15;
+    int64 UnionId = 15;
 
-	int64 HuoYue = 16;
+    int64 RongYu = 16;
 
-	int32 Sp = 17;
+    string UnionName = 17;
 
-	int32 Vitality = 18;	//活力
+    int64 UserId = 18;
 
-	int64 UnionId = 21;
+    repeated KeyValuePair GameSettingInfos = 19;
 
-	repeated int32 CompleteGuideIds = 22;
 
-	repeated KeyValuePairInt DayFubenTimes = 23;
+	repeated int32 MakeList = 20;
 
-	string UnionName = 24;
+	repeated int32 CompleteGuideIds = 21;
 
-	repeated KeyValuePair MonsterRevives = 25;
+	repeated KeyValuePairInt DayFubenTimes = 22;
 
-	int64 RongYu = 26;
+	repeated KeyValuePair MonsterRevives = 23;
 
-	repeated int32 TowerRewardIds = 27;
+	repeated int32 TowerRewardIds = 24;
 
-	repeated int32 ChouKaRewardIds = 28;
+	repeated int32 ChouKaRewardIds = 25;
 
-	repeated int32 XiLianRewardIds = 29;
+	repeated int32 XiLianRewardIds = 26;
 
-	repeated KeyValuePairInt  MysteryItems = 30;
+	repeated KeyValuePairInt  MysteryItems = 27;
 
-	repeated KeyValuePair  OpenChestList = 32;
+	repeated KeyValuePair  OpenChestList = 28;
 
-	repeated KeyValuePairInt  MakeIdList = 33;
+	repeated KeyValuePairInt  MakeIdList = 29;
+	//已通关的副本列表
+        repeated FubenPassInfo FubenPassList = 30;
+
 }
 
 message KeyValuePair

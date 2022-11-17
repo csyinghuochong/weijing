@@ -18,6 +18,12 @@ namespace ET
             return currentScene.GetComponent<UnitComponent>().Get(playerComponent.MyId);
         }
 
+        public static long GetMyUnitId(Scene zoneScene)
+        {
+            AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
+            return playerComponent.MyId;    
+        }
+
         public static Unit GetMyUnitFromZoneScene(Scene zoneScene)
         {
             AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
