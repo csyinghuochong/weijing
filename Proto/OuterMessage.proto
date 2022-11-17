@@ -4038,3 +4038,4 @@ message G2C_LoginRobotResponse // IResponse
 	// 自己的unit id
 	int64 PlayerId = 1;
 }
+
