@@ -26,13 +26,9 @@ namespace ET
         public GameObject JoystickMove;
         public GameObject JoystickFixed;
         public GameObject LeftBottomBtns;
-        public GameObject Btn_PaiHang;
         public GameObject Btn_PaiMaiHang;
-        public GameObject Button_Learn;
         public GameObject Btn_EveryTask;
         public GameObject Button_ChouKa;
-        public GameObject Button_Recharge;
-        public GameObject Button_RealName;
         public GameObject taskButton;
         public GameObject bagButton;
         public GameObject jiayuanButton;
@@ -195,14 +191,6 @@ namespace ET
             self.Btn_MakeItem = rc.Get<GameObject>("Btn_MakeItem");
             //self.Btn_MakeItem.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Btn_MakeItem(); });
            
-            self.Button_RealName = rc.Get<GameObject>("Button_RealName");
-            //self.Button_RealName.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_RealName(); });
-            ButtonHelp.AddListenerEx(self.Button_RealName, () => { self.OnButton_RealName(); });
-
-            self.Button_Recharge = rc.Get<GameObject>("Button_Recharge");
-            //self.Button_Recharge.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Recharge(); });
-            ButtonHelp.AddListenerEx(self.Button_Recharge, () => { self.OnButton_Recharge(); });
-
             self.Button_ChouKa = rc.Get<GameObject>("Button_ChouKa");
             //self.Button_ChouKa.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_ChouKa(); });
             ButtonHelp.AddListenerEx(self.Button_ChouKa, () => { self.OnButton_ChouKa(); });
@@ -210,14 +198,6 @@ namespace ET
             self.Btn_EveryTask = rc.Get<GameObject>("Btn_EveryTask");
             //self.Btn_EveryTask.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_EveryTask(); });
             ButtonHelp.AddListenerEx(self.Btn_EveryTask, () => { self.OnBtn_EveryTask(); });
-
-            self.Button_Learn = rc.Get<GameObject>("Button_Learn");
-            //self.Button_Learn.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Learn(); });
-            ButtonHelp.AddListenerEx(self.Button_Learn, () => { self.OnButton_Learn(); });
-
-            self.Btn_PaiHang = rc.Get<GameObject>("Btn_PaiHang");
-            //self.Btn_PaiHang.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PaiHang(); });
-            ButtonHelp.AddListenerEx(self.Btn_PaiHang, () => { self.OnBtn_PaiHang(); });
 
             self.Btn_PaiMaiHang = rc.Get<GameObject>("Btn_PaiMaiHang");
             //self.Btn_PaiMaiHang.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_PaiMaiHang(); });
@@ -1198,16 +1178,6 @@ namespace ET
             UIHelper.Create(self.DomainScene(), UIType.UIMail).Coroutine();
         }
 
-        public static void OnButton_RealName(this UIMainComponent self)
-        {
-            UIHelper.Create(self.DomainScene(), UIType.UIRealName).Coroutine();
-        }
-
-        public static void OnButton_Recharge(this UIMainComponent self)
-        {
-            UIHelper.Create(self.DomainScene(), UIType.UIRecharge).Coroutine();
-        }
-
         public static void OnButton_ChouKa(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UIChouKa).Coroutine();
@@ -1216,16 +1186,6 @@ namespace ET
         public static void OnBtn_EveryTask(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UICountry).Coroutine();
-        }
-
-        public static void OnButton_Learn(this UIMainComponent self)
-        {
-            UIHelper.Create(self.DomainScene(), UIType.UIMakeLearn).Coroutine();
-        }
-
-        public static void OnBtn_PaiHang(this UIMainComponent self)
-        {
-            UIHelper.Create(self.DomainScene(), UIType.UIRank).Coroutine();
         }
 
         public static void OnBtn_PaiMaiHang(this UIMainComponent self)
