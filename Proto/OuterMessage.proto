@@ -271,6 +271,8 @@ message UserInfo
 
     int32 Combat = 10;
 
+    int32 RobotId = 11;
+
     //已通关的副本列表
     repeated FubenPassInfo FubenPassList = 12;
 
@@ -305,8 +307,6 @@ message UserInfo
 	repeated int32 XiLianRewardIds = 29;
 
 	repeated KeyValuePairInt  MysteryItems = 30;
-
-	int32 RobotId = 31;
 
 	repeated KeyValuePair  OpenChestList = 32;
 

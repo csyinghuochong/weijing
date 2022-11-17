@@ -79,6 +79,7 @@ namespace ET
 
         public static void OnTimer(this UITrialMainComponent self)
         {
+
             self.Countdown--;
             self.TextCoundown.GetComponent<Text>().text = self.Countdown.ToString();
             if (self.Countdown <= 0)
