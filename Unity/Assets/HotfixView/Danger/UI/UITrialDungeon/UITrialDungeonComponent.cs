@@ -12,6 +12,8 @@ namespace ET
         public GameObject Btn_Add;
         public GameObject Btn_Sub;
         public GameObject TextLayer;
+        public GameObject BuildingList;
+        public UICommonItemListComponent UICommonItemList;
         public List<UITrialDungeonItemComponent> UITrialDungeonItems = new List<UITrialDungeonItemComponent>();
 
         public int TowerId;
@@ -38,6 +40,9 @@ namespace ET
             self.Btn_Sub.GetComponent<Button>().onClick.AddListener(self.OnBtn_Sub);
 
             self.TextLayer = rc.Get<GameObject>("TextLayer");
+            self.BuildingList = rc.Get<GameObject>("BuildingList");
+
+            self.UICommonItemList = self.AddChild<UICommonItemListComponent, GameObject>(self.BuildingList);
 
             int cengNum = self.GetCengNum();
             self.OnUpdateUI(cengNum).Coroutine();
@@ -170,6 +175,14 @@ namespace ET
             {
                 self.UITrialDungeonItems[i].OnSelected(towerId);
             }
+
+            self.ShowRewardList();
+        }
+
+        public static void ShowRewardList(this UITrialDungeonComponent self)
+        {
+            TowerConfig towerConfig = TowerConfigCategory.Instance.Get(self.TowerId);
+            self.UICommonItemList.OnUpdateUI(towerConfig.DropShow, 1f, false);
         }
 
         public static async ETTask OnBtn_Enter(this UITrialDungeonComponent self)

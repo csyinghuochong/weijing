@@ -106,6 +106,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendListItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeam\UITeamComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\MiniMap\UIMapBigNpcItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialDungeonEvent.cs" />
     <Compile Include="Assets\HotfixView\Module\UI\UIComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Unit\Unit_OnHpUpdate.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianLevelComponent.cs" />
@@ -146,6 +147,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetSelectItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\Unit\GameObjectComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetEgg\UIPetEggDuiHuanComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialDungeonComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampShopComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Register\UIRegisterComponentSystem.cs" />
@@ -183,6 +185,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIGM\UIGMComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMail\UIMailItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialMainEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\LockTargetComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampShouLieItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampRewardItemComponent.cs" />
@@ -345,6 +348,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIWatch\UIWatchMenuComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChouKa\UIChouKaRewardItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMail\UIMailEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialDungeonItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIRoleHuiShouComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UICommonCostItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\GameObjectPoolComponent.cs" />
@@ -386,6 +390,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIRealName\UIRealNameEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UIPageButtonComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellChapterItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialMainComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\ChangeEquipComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendBlackItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonCreateEvent.cs" />
@@ -542,11 +547,7 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialDungeonEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialDungeonItemComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialDungeonComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialMainComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialMainEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\Common\UICommonItemListComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
