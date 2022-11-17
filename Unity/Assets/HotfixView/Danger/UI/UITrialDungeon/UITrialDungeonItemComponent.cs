@@ -28,6 +28,7 @@ namespace ET
             this.Lab_Name = rc.Get<GameObject>("Lab_Name").GetComponent<Text>();
 
             this.Image_XuanZhong = rc.Get<GameObject>("Btn_XuanZhong").GetComponent<Image>();
+            this.Image_XuanZhong.color = new Color(255, 255, 255, 0);
             this.Btn_XuanZhong = rc.Get<GameObject>("Btn_XuanZhong");
             this.Btn_XuanZhong.GetComponent<Button>().onClick.AddListener(this.OnBtn_XuanZhong);
 

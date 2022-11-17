@@ -23,7 +23,6 @@ namespace ET
         }
     }
 
-
     public class UIPetMainComponent : Entity, IAwake, IDestroy
     {
         public GameObject MonsterHpNode;

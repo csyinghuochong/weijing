@@ -209,7 +209,7 @@ namespace ET
                 mapCamera.transform.eulerAngles = new Vector3(90, 0, (float)dungeonConfig.CameraPos[3]);
                 camera.orthographicSize = (float)dungeonConfig.CameraPos[4];
             }
-            if(UIMainHelper.ShowMiniMap(mapComponent.SceneTypeEnum))
+            if(UIMainHelper.ShowMiniMap(mapComponent.SceneTypeEnum, mapComponent.SceneId))
             {
                 SceneConfig dungeonConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
                 mapCamera.transform.position = new Vector3((float)dungeonConfig.CameraPos[0], (float)dungeonConfig.CameraPos[1], (float)dungeonConfig.CameraPos[2]);
@@ -233,14 +233,13 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
-        public static void OnEnterScene(this UIMapMiniComponent self, int sceneType)
+        public static void OnEnterScene(this UIMapMiniComponent self)
         {
             self.LoadMapCamera().Coroutine();
 
-            self.MainCityShow.SetActive(UIMainHelper.ShowMiniMap((int)sceneType));
-
             int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
             int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
+            self.MainCityShow.SetActive(UIMainHelper.ShowMiniMap(sceneTypeEnum, sceneId));
             //显示地图名称
             if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
             {

@@ -56,6 +56,7 @@
         public const int MapMiniTimer = 1064;
         public const int BattleMainTimer = 1065;
         public const int ChatSceneTimer = 1066;
+        public const int TrialMainTimer = 1067;
         // 不能超过10000
     }
 }

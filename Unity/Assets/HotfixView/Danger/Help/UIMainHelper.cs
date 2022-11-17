@@ -21,15 +21,14 @@ namespace ET
                  || sceneType == SceneTypeEnum.TrialDungeon;
         }
 
-        public static bool ShowMiniMap(int sceneType)
+        public static bool ShowMiniMap(int sceneType, int sceneId)
         {
-            return sceneType == SceneTypeEnum.MainCityScene
-                 || sceneType == SceneTypeEnum.LocalDungeon
-                 || sceneType == SceneTypeEnum.TeamDungeon
-                 || sceneType == SceneTypeEnum.YeWaiScene
-                 || sceneType == SceneTypeEnum.Tower
-                 || sceneType == SceneTypeEnum.Battle
-                 || sceneType == SceneTypeEnum.TrialDungeon;
+            if (sceneType == SceneTypeEnum.LocalDungeon
+                || sceneType == SceneTypeEnum.CellDungeon)
+            {
+                return true;
+            }
+            return SceneConfigCategory.Instance.Get(sceneId).ifShowMinMap == 1;
         }
     }
 }

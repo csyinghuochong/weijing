@@ -857,7 +857,7 @@ namespace ET
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.UIMainSkillComponent.ResetUI(sceneTypeEnum == SceneTypeEnum.MainCityScene);
-            self.UIMapMini.OnEnterScene(sceneTypeEnum);
+            self.UIMapMini.OnEnterScene();
             
             self.UpdateShadow();
             self.UpdateNpcTaskUI();
@@ -1171,10 +1171,9 @@ namespace ET
             self.UILevelGuideMini.GetComponent<UICellDungeonCellMiniComponent>().OnChapterOpen(true);
         }
 
-        public static async void OnTowerOpen(this UIMainComponent self, int towerId)
+        public static  void OnTowerOpen(this UIMainComponent self, int towerId)
         {
-            await ETTask.CompletedTask;
-            var BaseObj = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("Chapter/UITowerOpen"));
+            var BaseObj = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("TowerDungeon/UITowerOpen"));
             UI uiskillButton = self.AddChild<UI, string, GameObject>("UITowerOpen", GameObject.Instantiate(BaseObj));
             uiskillButton.AddComponent<UITowerOpenComponent>().OnUpdateUI(towerId);
             UICommonHelper.SetParent(uiskillButton.GameObject, UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject);
