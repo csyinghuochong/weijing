@@ -20,7 +20,7 @@ namespace ET
             {
                 domainScene.GetComponent<UnitComponent>().Remove(monsterList[i].Id);
             }
-
+            await TimerComponent.Instance.WaitAsync(1000);
             trialDungeonComponent.GenerateFuben();
             reply();
             await ETTask.CompletedTask;

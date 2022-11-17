@@ -28,6 +28,7 @@ namespace ET
 
         public int Countdown;
         public long Timer;
+        public long LastTiaoZhan;
     }
 
     [ObjectSystem]
@@ -44,6 +45,7 @@ namespace ET
     {
         public override void Awake(UITrialMainComponent self)
         {
+            self.LastTiaoZhan = 0;
             GameObject gameObject = self.GetParent<UI>().GameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
@@ -71,6 +73,11 @@ namespace ET
 
         public static async ETTask OnButtonTiaozhan(this UITrialMainComponent self)
         {
+            if (TimeHelper.ServerNow() - self.LastTiaoZhan < 1000)
+            {
+                return;
+            }
+            self.LastTiaoZhan = TimeHelper.ServerNow();
             C2M_TrialDungeonBeginRequest request = new C2M_TrialDungeonBeginRequest();
             M2C_TrialDungeonFinishResponse response = (M2C_TrialDungeonFinishResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.Error != ErrorCore.ERR_Success)
