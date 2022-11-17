@@ -95,7 +95,7 @@ namespace ET
 		public int NextTime { get; set; }
 		/// <summary>掉落展示</summary>
 		[ProtoMember(7)]
-		public int DropId { get; set; }
+		public string DropShow { get; set; }
 
 	}
 }
