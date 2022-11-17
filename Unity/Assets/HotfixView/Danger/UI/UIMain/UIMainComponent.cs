@@ -51,6 +51,7 @@ namespace ET
         public GameObject Btn_Battle;
         public GameObject Btn_TopRight_2;
         public GameObject Btn_TopRight_1;
+        public GameObject Button_JiaYuan;
 
         public UI UIMainTask;
         public UI UILevelGuideMini;
@@ -112,6 +113,9 @@ namespace ET
 
             self.Button_Tower = rc.Get<GameObject>("Button_Tower");
             ButtonHelp.AddListenerEx(self.Button_Tower, () => { self.OnButton_Tower(); });
+
+            self.Button_JiaYuan = rc.Get<GameObject>("Button_JiaYuan");
+            ButtonHelp.AddListenerEx(self.Button_JiaYuan, () => { self.OnButton_JiaYuan(); });
 
             self.Button_ZhenYing = rc.Get<GameObject>("Button_ZhenYing");
             ButtonHelp.AddListenerEx(self.Button_ZhenYing, () => { self.OnButton_ZhenYing(); });
@@ -912,6 +916,11 @@ namespace ET
         public static void OnButton_Tower(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UIRandomTower).Coroutine();
+        }
+
+        public static void OnButton_JiaYuan(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIJiaYuan).Coroutine();
         }
 
         public static void OnButton_ZhenYing(this UIMainComponent self)

@@ -83,7 +83,7 @@ namespace ET
             {
                 await self.InitModelShowView(self.Index);
             }
-            self.UIModelShowComponent.ShowPlayerModel(bagInfo, occ).Coroutine();
+            self.UIModelShowComponent.ShowPlayerModel(bagInfo, occ);
         }
 
         public static async ETTask ChangeWeapon(this UIEquipSetComponent self, BagInfo bagInfo, int occ)

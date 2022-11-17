@@ -508,6 +508,7 @@
     <Compile Include="Assets\HotfixView\Demo\Scene\AfterCreateCurrentScene_AddComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetHeChengComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampStrengthItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\Common\UICommonItemListComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\Scene\SceneChangeStart_AddComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillTianfuComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\FloatTipManagerSystem.cs" />
@@ -547,7 +548,10 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\Common\UICommonItemListComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanZuoQiComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanZuoQiItemComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

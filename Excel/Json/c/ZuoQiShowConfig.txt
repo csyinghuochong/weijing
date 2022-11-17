@@ -1,2 +1,11 @@
 {"list":[
+{"_t":"ZuoQiShowConfig","_id":10001,"Name":"马","Quality":3,"Icon":"10001","ModelID":"10001","TuoWeiEffectID":"0","Des":"无","AddProperty":"100203;50@100603;10","GetDes":"无"},
+{"_t":"ZuoQiShowConfig","_id":10002,"Name":"作战山羊","Quality":4,"Icon":"10002","ModelID":"10002","TuoWeiEffectID":"0","Des":"攻击+100","AddProperty":"100203;50@100603;10","GetDes":"通过游戏内的家园兑换获得"},
+{"_t":"ZuoQiShowConfig","_id":10003,"Name":"爱心鳄鱼","Quality":5,"Icon":"10003","ModelID":"10003","TuoWeiEffectID":"0","Des":"暴击概率+3%","AddProperty":"100203;50@100603;10","GetDes":"通过游戏内的抽卡系统获得"},
+{"_t":"ZuoQiShowConfig","_id":10004,"Name":"决斗公牛","Quality":5,"Icon":"10004","ModelID":"10004","TuoWeiEffectID":"0","Des":"血量上限+3%","AddProperty":"100203;50@100603;10","GetDes":"通过游戏内的成就系统获得"},
+{"_t":"ZuoQiShowConfig","_id":10005,"Name":"战斗猩猩","Quality":4,"Icon":"10005","ModelID":"10005","TuoWeiEffectID":"0","Des":"每次普通攻击附加的伤害值100","AddProperty":"100203;50@100603;10","GetDes":"通过游戏内的签到系统获得"},
+{"_t":"ZuoQiShowConfig","_id":10006,"Name":"嗒嗒嗒","Quality":5,"Icon":"10006","ModelID":"10006","TuoWeiEffectID":"Run_1","Des":"伤害加成+3%","AddProperty":"100203;50@100603;10","GetDes":"通过游戏内的冒险家系统奖励获得"},
+{"_t":"ZuoQiShowConfig","_id":10007,"Name":"圣光战熊","Quality":5,"Icon":"10007","ModelID":"10007","TuoWeiEffectID":"0","Des":"攻击+100","AddProperty":"100203;50@100603;10","GetDes":"通过游戏内的黄金令牌系统奖励获得"},
+{"_t":"ZuoQiShowConfig","_id":10008,"Name":"传承坐骑:龙龙","Quality":5,"Icon":"10008","ModelID":"10008","TuoWeiEffectID":"0","Des":"伤害加成+3%","AddProperty":"100203;50@100603;10","GetDes":"通过游戏内的冒险家系统奖励获得"},
+{"_t":"ZuoQiShowConfig","_id":10009,"Name":"传承坐骑:欢欢","Quality":5,"Icon":"10009","ModelID":"10009","TuoWeiEffectID":"0","Des":"伤害加成+3%","AddProperty":"100203;50@100603;10","GetDes":"通过游戏内的冒险家系统奖励获得"},
 ]}

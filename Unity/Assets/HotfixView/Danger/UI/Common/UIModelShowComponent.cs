@@ -105,11 +105,8 @@ namespace ET
             LayerHelp.ChangeLayer(self.UnitModel.transform, LayerEnum.RenderTexture);
         }
 
-        public static async ETTask ShowPlayerModel(this UIModelShowComponent self, BagInfo bagInfo, int occ)
+        public static  void ShowPlayerModel(this UIModelShowComponent self, BagInfo bagInfo, int occ)
         {
-            long instanceid = self.InstanceId;
-            if (self.InstanceId != instanceid)
-                return;
             if (self.UnitModel != null)
             {
                 GameObject.Destroy(self.UnitModel);
@@ -117,7 +114,6 @@ namespace ET
             }
 
             var path = ABPathHelper.GetUnitPath($"Player/{OccupationConfigCategory.Instance.Get(occ).ModelAsset}");
-            await ETTask.CompletedTask;
             GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             if (OccupationConfigCategory.Instance.Get(occ).ChangeEquip == 1)
