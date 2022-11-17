@@ -76,7 +76,6 @@
     <Compile Include="Assets\Model\Danger\Common\Component\MapComponent.cs" />
     <Compile Include="Assets\Model\Module\Message\MessageHandlerAttribute.cs" />
     <Compile Include="Assets\Model\Generate\Config\ZuoQiConfig.cs" />
-    <Compile Include="Assets\Model\Generate\Config\TowerRewardConfig.cs" />
     <Compile Include="Assets\Model\Danger\Common\Component\NpcMoveComponent.cs" />
     <Compile Include="Assets\Model\Demo\Helper\PositionHelper.cs" />
     <Compile Include="Assets\Model\Module\Message\SessionStreamDispatcherAttribute.cs" />
@@ -131,7 +130,6 @@
     <Compile Include="Assets\Model\Danger\Component\GuideInfo.cs" />
     <Compile Include="Assets\Model\Danger\Common\Enum\NpcEnum.cs" />
     <Compile Include="Assets\Model\Module\Message\MessageSerializeHelper.cs" />
-    <Compile Include="Assets\Model\Generate\Config\RandowTowerRewardConfig.cs" />
     <Compile Include="Assets\Model\Danger\Common\Component\EnergyComponent.cs" />
     <Compile Include="Assets\Model\Module\Message\SessionIdleCheckerComponent.cs" />
     <Compile Include="Assets\Model\Core\Object\IAwakeSystem.cs" />
@@ -208,7 +206,6 @@
     <Compile Include="Assets\Model\Generate\Config\CampLieShouConfig.cs" />
     <Compile Include="Assets\Model\Generate\Config\EquipSuitPropertyConfig.cs" />
     <Compile Include="Assets\Model\Danger\Component\TeamComponent.cs" />
-    <Compile Include="Assets\Model\Generate\Config\RandomTowerConfig.cs" />
     <Compile Include="Assets\Model\Module\UnityWebRequest\UnityWebRequestAsync.cs" />
     <Compile Include="Assets\Model\Generate\Config\EquipSuitConfig.cs" />
     <Compile Include="Assets\Model\Demo\Scene\CurrentScenesComponent.cs" />
@@ -273,7 +270,6 @@
     <Compile Include="Assets\Model\Demo\Unit\Unit.cs" />
     <Compile Include="Assets\Model\Module\Numeric\NumericType.cs" />
     <Compile Include="Assets\Model\Danger\Common\Enum\SkillEnum.cs" />
-    <Compile Include="Assets\Model\Generate\Config\RandomTowerRewardConfig.cs" />
     <Compile Include="Assets\Model\Generate\Config\MonsterConfig.cs" />
     <Compile Include="Assets\Model\Generate\Message\OuterOpcode.cs" />
     <Compile Include="Assets\Model\Module\Message\MessageDispatcherComponent.cs" />

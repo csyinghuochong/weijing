@@ -36,6 +36,14 @@ namespace ET
 
             this.Lab_Name.text = towerConfig.Name;
             this.ClickHandle = action;
+
+            //1;0,0,3;72000001;1
+            string monsterSet = towerConfig.MonsterSet;
+            string[] monsterInfo = monsterSet.Split(';');
+            int monster = int.Parse(monsterInfo[2]);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monster);
+            this.Lab_Lv.GetComponent<Text>().text = $"等级: {monsterConfig.MonsterName}";
+            this.Lab_HP.GetComponent<Text>().text = $"生命: {monsterConfig.Hp}";
         }
 
         public void OnBtn_XuanZhong()

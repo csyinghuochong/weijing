@@ -40,8 +40,7 @@ namespace ET
             }
             else
             {
-                List<RandomTowerConfig> randomTowerConfigs = RandomTowerConfigCategory.Instance.GetAll().Values.ToList();
-                maxNumber = randomTowerConfigs[randomTowerConfigs.Count - 1].Id - randowTowerId;
+                maxNumber = TowerHelper.GetTowerList(SceneTypeEnum.RandomTower).Count;
             }
             if (maxNumber == 0)
             {

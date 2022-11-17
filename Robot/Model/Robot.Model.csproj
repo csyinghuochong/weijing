@@ -134,6 +134,7 @@
 		</Compile>
     </ItemGroup>
     <ItemGroup>
+      <Compile Remove="..\..\Server\Model\Generate\Config\RandomTowerConfig.cs" />
       <Compile Remove="..\..\Server\Model\Generate\Config\UnitConfig.cs" />
       <Compile Remove="..\..\Server\Model\Generate\Config\WorldSayConfig.cs" />
     </ItemGroup>

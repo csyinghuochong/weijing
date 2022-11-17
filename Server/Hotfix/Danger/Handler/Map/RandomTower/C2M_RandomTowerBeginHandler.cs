@@ -13,20 +13,19 @@ namespace ET
             int randomTowerid = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerId);
             if (randomTowerid == 0)
             {
-                List<RandomTowerConfig> randomTowerConfigs = RandomTowerConfigCategory.Instance.GetAll().Values.ToList();
-                randomTowerid = randomTowerConfigs[0].Id;
+                randomTowerid = TowerHelper.GetFirstTowerId(SceneTypeEnum.RandomTower);
             }
             else
             {
                 randomTowerid += request.RandomNumber;
             }
-            if (!RandomTowerConfigCategory.Instance.Contain(randomTowerid))
+            if (randomTowerid > TowerHelper.GetLastTowerId(SceneTypeEnum.RandomTower))
             {
                 reply();
                 return;
             }
             unit.DomainScene().GetComponent<RandomTowerComponent>().TowerId = randomTowerid;
-            RandomTowerConfig randowTowerConfig = RandomTowerConfigCategory.Instance.Get(randomTowerid);
+            TowerConfig randowTowerConfig = TowerConfigCategory.Instance.Get(randomTowerid);
             FubenHelp.CreateMonsterList(unit.DomainScene(), randowTowerConfig.MonsterSet);
 
             reply();

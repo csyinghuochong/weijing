@@ -77,24 +77,17 @@ namespace ET
                 return;
             }
           
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene
-                || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Tower
-                 || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.RandomTower
-                 || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Battle)
+            if (!UIMainHelper.IfCanRevive(mapComponent.SceneTypeEnum, mapComponent.SceneId))
             {
-                SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
-                if (sceneConfig.IfUseRes == 1)
+                long instanceId = unit.InstanceId;
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该地图不支持复活"));
+                await TimerComponent.Instance.WaitAsync(3000);
+                if (instanceId != unit.InstanceId)
                 {
-                    long instanceId = unit.InstanceId;
-                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该地图不支持复活"));
-                    await TimerComponent.Instance.WaitAsync(3000);
-                    if (instanceId != unit.InstanceId)
-                    {
-                        return;
-                    }
-                    EnterFubenHelp.RequestQuitFuben(unit.ZoneScene());
                     return;
                 }
+                EnterFubenHelp.RequestQuitFuben(unit.ZoneScene());
+                return;
             }
 
             unit.ZoneScene().GetComponent<SkillIndicatorComponent>().OnSelfDead();

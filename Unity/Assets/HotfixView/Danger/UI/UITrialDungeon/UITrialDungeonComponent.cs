@@ -9,6 +9,7 @@ namespace ET
     {
         public GameObject UIListNode;
         public GameObject Btn_Enter;
+        public GameObject Btn_Receive;
         public GameObject Btn_Add;
         public GameObject Btn_Sub;
         public GameObject TextLayer;
@@ -33,6 +34,10 @@ namespace ET
             self.Btn_Enter = rc.Get<GameObject>("Btn_Enter");
             ButtonHelp.AddListenerEx(self.Btn_Enter, () => { self.OnBtn_Enter().Coroutine(); });
 
+            self.Btn_Receive = rc.Get<GameObject>("Btn_Receive");
+            ButtonHelp.AddListenerEx(self.Btn_Receive, () => { });
+            self.Btn_Receive.SetActive(false);
+
             self.Btn_Add = rc.Get<GameObject>("Btn_Add");
             self.Btn_Add.GetComponent<Button>().onClick.AddListener(self.OnBtn_Add);
 
@@ -51,11 +56,18 @@ namespace ET
 
     public static class UITrialDungeonComponentSystem
     {
-        public static int GetCengNum(this UITrialDungeonComponent self)
+
+        public static int GetCurrentTowerId(this UITrialDungeonComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            NumericComponent  numericComponent = unit.GetComponent<NumericComponent>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int towerId = numericComponent.GetAsInt(NumericType.TrialDungeonId);
+            return towerId;
+        }
+
+        public static int GetCengNum(this UITrialDungeonComponent self)
+        {
+            int towerId = self.GetCurrentTowerId();
             int nextId = self.GetNextTowerId(towerId);
             //nextId == 0通关了
             return TowerConfigCategory.Instance.Get(nextId == 0 ? towerId : nextId).CengNum;
@@ -189,6 +201,18 @@ namespace ET
         {
             if (self.TowerId == 0)
             {
+                return;
+            }
+            int towerId = self.GetCurrentTowerId();
+            int nextId = self.GetNextTowerId(towerId);
+            if (self.TowerId < nextId)
+            {
+                FloatTipManager.Instance.ShowFloatTip("已通关该关卡！");
+                return;
+            }
+            if (self.TowerId > nextId)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请激活前置关卡！");
                 return;
             }
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.TrialDungeon, BattleHelper.GetSceneIdByType(SceneTypeEnum.TrialDungeon),0, self.TowerId.ToString());

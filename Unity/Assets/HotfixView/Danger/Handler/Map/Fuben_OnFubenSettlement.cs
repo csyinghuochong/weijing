@@ -12,7 +12,6 @@ namespace ET
 
         private async ETTask RunAsync(EventType.FubenSettlement args)
         {
-
             UI uimain = UIHelper.GetUI(args.Scene, UIType.UIMain);
             Button buttonReturn = uimain.GetComponent<UIMainComponent>().buttonReturn.GetComponent<Button>();
             buttonReturn.enabled = false;
@@ -42,6 +41,11 @@ namespace ET
                 case (int)SceneTypeEnum.RandomTower:
                     ui = await UIHelper.Create(args.Scene, UIType.UIRandomTowerResult);
                     ui.GetComponent<UIRandomTowerResultComponent>().OnUpdateUI(args.m2C_FubenSettlement);
+                    break;
+                case SceneTypeEnum.TrialDungeon:
+                    PopupTipHelp.OpenPopupTip_2(args.Scene, args.m2C_FubenSettlement.BattleResult == CombatResultEnum.Win ? "胜利" : "失败", "获取奖励",
+                     () => { EnterFubenHelp.RequestQuitFuben(args.Scene); }
+                     ).Coroutine();
                     break;
                 default:
                     ui = await UIHelper.Create(args.Scene, UIType.UICellDungeonSettlement);

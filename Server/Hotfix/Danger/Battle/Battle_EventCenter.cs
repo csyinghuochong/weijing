@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace ET
 {
@@ -114,6 +113,9 @@ namespace ET
                         break;
                     case SceneTypeEnum.Battle:
                         args.UnitAttack.DomainScene().GetComponent<BattleDungeonComponent>().OnKillEvent(args.UnitDefend);
+                        break;
+                    case SceneTypeEnum.TrialDungeon:
+                        args.UnitAttack.DomainScene().GetComponent<TrialDungeonComponent>().OnKillEvent(args.UnitDefend);
                         break;
                 }
             }

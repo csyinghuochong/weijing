@@ -39,8 +39,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int randowTowerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerId);
-            List<RandomTowerConfig> randomTowerConfigs = RandomTowerConfigCategory.Instance.GetAll().Values.ToList();
-            if (randomTowerConfigs[randomTowerConfigs.Count - 1].Id == randowTowerId)
+            if (TowerHelper.GetLastTowerId(SceneTypeEnum.RandomTower) == randowTowerId)
             {
                 FloatTipManager.Instance.ShowFloatTip("已通关！");
                 return;
@@ -59,9 +58,18 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/RandomTower/UIRandomTowerItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             
-            List<RandomTowerRewardConfig> towerRewardConfigs = RandomTowerRewardConfigCategory.Instance.GetAll().Values.ToList();
+            List<TowerConfig> towerRewardConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < towerRewardConfigs.Count; i++)
             {
+                TowerConfig towerConfig = towerRewardConfigs[i];
+                if (towerConfig.MapType!=SceneTypeEnum.RandomTower)
+                {
+                    continue;
+                }
+                if (ComHelp.IfNull(towerConfig.DropShow))
+                {
+                    continue;
+                }
                 GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
                 UIRandomTowerItemComponent uITowerItemComponent = self.AddChild<UIRandomTowerItemComponent, GameObject>(bagSpace);
                 uITowerItemComponent.OnInitUI(towerRewardConfigs[i]);
@@ -76,7 +84,7 @@ namespace ET
             }
             else
             {
-                self.Text_LayerNum.GetComponent<Text>().text = RandomTowerConfigCategory.Instance.Get(towerId).CengNum.ToString() ;
+                self.Text_LayerNum.GetComponent<Text>().text = TowerConfigCategory.Instance.Get(towerId).CengNum.ToString() ;
             }
         }
     }

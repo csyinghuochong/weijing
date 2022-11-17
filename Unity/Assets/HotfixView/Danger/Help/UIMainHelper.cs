@@ -15,6 +15,15 @@ namespace ET
                  && sceneType != SceneTypeEnum.CellDungeon;
         }
 
+        public static bool IfCanRevive(int sceneType, int sceneId)
+        {
+            if (!UseSceneConfig(sceneType))
+            {
+                return true;
+            }
+            return SceneConfigCategory.Instance.Get(sceneId).IfUseRes == 0;
+        }
+
         public static bool ShowMiniMap(int sceneType, int sceneId)
         {
             if (!UseSceneConfig(sceneType))
