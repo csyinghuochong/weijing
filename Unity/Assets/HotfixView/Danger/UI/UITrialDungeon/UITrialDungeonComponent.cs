@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -8,6 +9,10 @@ namespace ET
     {
         public GameObject UIListNode;
         public GameObject Btn_Enter;
+        public GameObject Btn_Add;
+        public GameObject Btn_Sub;
+        public GameObject TextLayer;
+        public List<UITrialDungeonItemComponent> UITrialDungeonItems = new List<UITrialDungeonItemComponent>();
 
         public int TowerId;
     }
@@ -17,6 +22,7 @@ namespace ET
     {
         public override void Awake(UITrialDungeonComponent self)
         {
+            self.UITrialDungeonItems.Clear();
             GameObject gameObject = self.GetParent<UI>().GameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
@@ -25,19 +31,101 @@ namespace ET
             self.Btn_Enter = rc.Get<GameObject>("Btn_Enter");
             ButtonHelp.AddListenerEx(self.Btn_Enter, () => { self.OnBtn_Enter().Coroutine(); });
 
-            self.OnInitUI().Coroutine();
+            self.Btn_Add = rc.Get<GameObject>("Btn_Add");
+            self.Btn_Add.GetComponent<Button>().onClick.AddListener(self.OnBtn_Add);
+
+            self.Btn_Sub = rc.Get<GameObject>("Btn_Sub");
+            self.Btn_Sub.GetComponent<Button>().onClick.AddListener(self.OnBtn_Sub);
+
+            self.TextLayer = rc.Get<GameObject>("TextLayer");
+
+            int cengNum = self.GetCengNum();
+            self.OnUpdateUI(cengNum).Coroutine();
         }
     }
 
     public static class UITrialDungeonComponentSystem
     {
+        public static int GetCengNum(this UITrialDungeonComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent  numericComponent = unit.GetComponent<NumericComponent>();
+            int towerId = numericComponent.GetAsInt(NumericType.TrialDungeonId);
+            int nextId = self.GetNextTowerId(towerId);
+            //nextId == 0通关了
+            return TowerConfigCategory.Instance.Get(nextId == 0 ? towerId : nextId).CengNum;
+        }
 
-        public static async ETTask OnInitUI(this UITrialDungeonComponent self)
+        public static int GetMaxCengNum(this UITrialDungeonComponent self)
+        {
+            int maxCeng = 0;
+            List<TowerConfig> towerConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < towerConfigs.Count; i++)
+            {
+                TowerConfig towerConfig = towerConfigs[i];
+                if (towerConfig.MapType != SceneTypeEnum.TrialDungeon)
+                {
+                    continue;
+                }
+                if (maxCeng < towerConfig.CengNum)
+                {
+                    maxCeng = towerConfig.CengNum;
+                }
+            }
+            return maxCeng;
+        }
+
+        public static int GetNextTowerId(this UITrialDungeonComponent self, int towerId)
+        {
+            int nextId = 0;
+            List<TowerConfig> towerConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < towerConfigs.Count; i++)
+            {
+                TowerConfig towerConfig = towerConfigs[i];
+                if (towerConfig.MapType != SceneTypeEnum.TrialDungeon)
+                {
+                    continue;
+                }
+                if (towerId == 0)
+                {
+                    nextId = towerConfig.Id;
+                    break;
+                }
+                if (nextId == towerConfig.Id)
+                {
+                    nextId = 0;
+                    continue;
+                }
+            }
+            return nextId;
+        }
+
+        public static void OnBtn_Add(this UITrialDungeonComponent self)
+        {
+            TowerConfig towerConfig = TowerConfigCategory.Instance.Get(self.TowerId);
+            if (towerConfig.CengNum >= self.GetMaxCengNum())
+            {
+                return;
+            }
+            self.OnUpdateUI(towerConfig.CengNum+1).Coroutine();
+        }
+
+        public static void OnBtn_Sub(this UITrialDungeonComponent self)
+        {
+            TowerConfig towerConfig = TowerConfigCategory.Instance.Get(self.TowerId);
+            if (towerConfig.CengNum == 1)
+            {
+                return;
+            }
+            self.OnUpdateUI(towerConfig.CengNum - 1).Coroutine();
+        }
+        public static async ETTask OnUpdateUI(this UITrialDungeonComponent self, int cengNum)
         {
             var path = ABPathHelper.GetUGUIPath("TrialDungeon/UITrialDungeonItem");
-            var bundleGameObject =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-
+            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             List<TowerConfig> towerConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();
+
+            int showNum = 0;
             for (int i = 0; i < towerConfigs.Count; i++)
             { 
                 TowerConfig towerConfig = towerConfigs[i];
@@ -45,21 +133,42 @@ namespace ET
                 {
                     continue;
                 }
-
-                GameObject go = GameObject.Instantiate(bundleGameObject);
-                UICommonHelper.SetParent(go, self.UIListNode);
-                UITrialDungeonItemComponent uiitem = self.AddChild<UITrialDungeonItemComponent>();
-                uiitem.OnInitUI(go, towerConfig, self.OnSelectDungeonItem);
+                if (cengNum != towerConfig.CengNum)
+                {
+                    continue;
+                }
+                
+                UITrialDungeonItemComponent uiitem = null;
+                if (showNum < self.UITrialDungeonItems.Count)
+                {
+                    uiitem = self.UITrialDungeonItems[showNum];
+                    uiitem.GameObject.SetActive(true);
+                }
+                else
+                {
+                    GameObject go = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(go, self.UIListNode);
+                    uiitem = self.AddChild<UITrialDungeonItemComponent>();
+                    uiitem.GameObject = go;
+                    self.UITrialDungeonItems.Add(uiitem);
+                }
+                uiitem.OnInitUI(towerConfig, self.OnSelectDungeonItem);
+                showNum++;
             }
+            for (int i = showNum; i < self.UITrialDungeonItems.Count; i++)
+            {
+                self.UITrialDungeonItems[i].GameObject.SetActive(false);
+            }
+            self.UITrialDungeonItems[0].OnBtn_XuanZhong();
+            self.TextLayer.GetComponent<Text>().text = $"第{cengNum}层";
         }
 
         public static void OnSelectDungeonItem(this UITrialDungeonComponent self, int towerId)
         {
             self.TowerId = towerId;
-            List<Entity> entities = self.Children.Values.ToList();
-            for (int i = 0; i < entities.Count; i++)
+            for (int i = 0; i < self.UITrialDungeonItems.Count; i++)
             {
-                (entities[i] as UITrialDungeonItemComponent).OnSelected(towerId);
+                self.UITrialDungeonItems[i].OnSelected(towerId);
             }
         }
 
@@ -73,7 +182,6 @@ namespace ET
             if (errorCode == ErrorCore.ERR_Success)
             {
                 UIHelper.Remove(self.ZoneScene(), UIType.UITrialDungeon);
-
             }
         }
     }

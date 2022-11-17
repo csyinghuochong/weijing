@@ -17,11 +17,10 @@ namespace ET
         public TowerConfig TowerConfig;
         public Action<int> ClickHandle;
 
-        public void OnInitUI(GameObject gameObject, TowerConfig towerConfig, Action<int> action)
+        public void OnInitUI(TowerConfig towerConfig, Action<int> action)
         {
-            this.GameObject = gameObject;
             this.TowerConfig = towerConfig;
-            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
+            ReferenceCollector rc = this.GameObject.GetComponent<ReferenceCollector>();
 
             this.Lab_Lv = rc.Get<GameObject>("Lab_Lv");
             this.Lab_HP = rc.Get<GameObject>("Lab_HP");

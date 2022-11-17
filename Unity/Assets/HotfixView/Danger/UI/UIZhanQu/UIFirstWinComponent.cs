@@ -201,7 +201,7 @@ namespace ET
 				UIItemComponent uIItemComponent = null;
 				if (number < self.UIItemComponents.Count)
 				{
-					uIItemComponent = self.UIItemComponents[i];
+					uIItemComponent = self.UIItemComponents[number];
 					uIItemComponent.GameObject.SetActive(true);
 				}
 				else
