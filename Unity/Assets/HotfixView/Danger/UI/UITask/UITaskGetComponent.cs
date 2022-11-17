@@ -227,6 +227,7 @@ namespace ET
                 if (sceneConfig.MapType == SceneTypeEnum.TrialDungeon)
                 {
                     UIHelper.Create(self.ZoneScene(), UIType.UITrialDungeon).Coroutine();
+                    UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
                     return;
                 }
 
