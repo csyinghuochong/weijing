@@ -108,8 +108,11 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("TrialDungeon/UITrialDungeonItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             List<TowerConfig> towerConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();
+            int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
+            int nextId = TowerHelper.GetNextTowerId(SceneTypeEnum.TrialDungeon, towerId);
 
             int showNum = 0;
+            int showIndex = 0;
             for (int i = 0; i < towerConfigs.Count; i++)
             { 
                 TowerConfig towerConfig = towerConfigs[i];
@@ -123,6 +126,10 @@ namespace ET
                 }
                 
                 UITrialDungeonItemComponent uiitem = null;
+                if (towerConfig.Id == nextId)
+                {
+                    showIndex = showNum;
+                }
                 if (showNum < self.UITrialDungeonItems.Count)
                 {
                     uiitem = self.UITrialDungeonItems[showNum];
@@ -143,7 +150,8 @@ namespace ET
             {
                 self.UITrialDungeonItems[i].GameObject.SetActive(false);
             }
-            self.UITrialDungeonItems[0].OnBtn_XuanZhong();
+            self.UITrialDungeonItems[showIndex].OnBtn_XuanZhong();
+
             self.TextLayer.GetComponent<Text>().text = $"第{cengNum}层";
         }
 
