@@ -50,7 +50,6 @@ namespace ET
             self.TextCoundown = rc.Get<GameObject>("TextCoundown");
             self.ButtonTiaozhan = rc.Get<GameObject>("ButtonTiaozhan");
             self.ButtonTiaozhan.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonTiaozhan().Coroutine(); });
-            self.ButtonTiaozhan.SetActive(false);
 
             self.BeginTimer();
         }
@@ -78,7 +77,6 @@ namespace ET
             {
                 return;
             }
-            self.ButtonTiaozhan.SetActive(false);
             self.BeginTimer();
         }
 
@@ -88,7 +86,6 @@ namespace ET
             {
                 self.ZoneScene().GetComponent<SessionComponent>().Session.Call(new C2M_TrialDungeonFinishRequest()).Coroutine();
                 TimerComponent.Instance?.Remove(ref self.Timer);
-                self.ButtonTiaozhan.SetActive(true);
                 return;
             }
             self.TextCoundown.GetComponent<Text>().text = $"倒计时 {self.Countdown}";

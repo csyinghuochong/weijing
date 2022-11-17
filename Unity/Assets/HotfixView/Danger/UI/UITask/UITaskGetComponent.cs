@@ -224,6 +224,12 @@ namespace ET
             if (npcType == 2)
             {
                 SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(configId);
+                if (sceneConfig.MapType == SceneTypeEnum.TrialDungeon)
+                {
+                    UIHelper.Create(self.ZoneScene(), UIType.UITrialDungeon).Coroutine();
+                    return;
+                }
+
                 string desStr = "是否进入" + sceneConfig.Name + "?";
                 if (sceneConfig.DayEnterNum >= 1)
                 {
@@ -258,10 +264,6 @@ namespace ET
             if (sceneType == SceneTypeEnum.YeWaiScene)
             {
                 errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.YeWaiScene, sceneId);
-            }
-            if (sceneType == SceneTypeEnum.TrialDungeon)
-            {
-                UIHelper.Create(self.ZoneScene(), UIType.UITrialDungeon).Coroutine();
             }
             if(sceneType == SceneTypeEnum.Tower)
             {
