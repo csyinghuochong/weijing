@@ -150,9 +150,15 @@ namespace ET
             {
                 self.UITrialDungeonItems[i].GameObject.SetActive(false);
             }
-            self.UITrialDungeonItems[showIndex].OnBtn_XuanZhong();
 
+            self.MoveToIndex(showIndex);
+            self.UITrialDungeonItems[showIndex].OnBtn_XuanZhong();
             self.TextLayer.GetComponent<Text>().text = $"第{cengNum}层";
+        }
+
+        public static void MoveToIndex(this UITrialDungeonComponent self, int showIndex)
+        {
+            self.UIListNode.GetComponent<RectTransform>().sizeDelta = new Vector2(0, showIndex * 150);
         }
 
         public static void OnSelectDungeonItem(this UITrialDungeonComponent self, int towerId)
@@ -183,7 +189,7 @@ namespace ET
 
         public static async ETTask OnBtn_Receive(this UITrialDungeonComponent self)
         {
-            int errorCode = await NetHelper.RequestTowerReward(self.ZoneScene(), self.TowerId);
+            await NetHelper.RequestTowerReward(self.ZoneScene(), self.TowerId);
             self.UpdateButtons();
         }
 
