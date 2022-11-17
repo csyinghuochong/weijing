@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -74,6 +73,7 @@ namespace ET
             if (errorCode == ErrorCore.ERR_Success)
             {
                 UIHelper.Remove(self.ZoneScene(), UIType.UITrialDungeon);
+
             }
         }
     }

@@ -49,6 +49,7 @@ namespace ET
 
             self.TextCoundown = rc.Get<GameObject>("TextCoundown");
             self.ButtonTiaozhan = rc.Get<GameObject>("ButtonTiaozhan");
+            self.ButtonTiaozhan.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonTiaozhan().Coroutine(); });
             self.ButtonTiaozhan.SetActive(false);
 
             self.BeginTimer();
@@ -64,12 +65,19 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.TrialMainTimer, self);
         }
 
+        public static async ETTask OnButtonTiaozhan(this UITrialMainComponent self)
+        {
+            C2M_TrialDungeonBeginRequest request = new C2M_TrialDungeonBeginRequest();
+            M2C_TrialDungeonFinishResponse response = (M2C_TrialDungeonFinishResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+        }
+
         public static void OnTimer(this UITrialMainComponent self)
         {
             self.Countdown--;
             self.TextCoundown.GetComponent<Text>().text = self.Countdown.ToString();
             if (self.Countdown <= 0)
             {
+                self.ZoneScene().GetComponent<SessionComponent>().Session.Call(new C2M_TrialDungeonFinishRequest()).Coroutine();
                 TimerComponent.Instance?.Remove(ref self.Timer);
                 self.ButtonTiaozhan.SetActive(true);
             }

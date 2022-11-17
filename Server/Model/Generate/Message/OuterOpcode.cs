@@ -469,5 +469,9 @@ namespace ET
 		 public const ushort C2M_TeamPickRequest = 10466;
 		 public const ushort C2G_LoginRobotRequest = 10467;
 		 public const ushort G2C_LoginRobotResponse = 10468;
+		 public const ushort C2M_TrialDungeonFinishRequest = 10469;
+		 public const ushort M2C_TrialDungeonFinishResponse = 10470;
+		 public const ushort C2M_TrialDungeonBeginRequest = 10471;
+		 public const ushort M2C_TrialDungeonBeginResponse = 10472;
 	}
 }

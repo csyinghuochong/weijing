@@ -4039,3 +4039,31 @@ message G2C_LoginRobotResponse // IResponse
 	int64 PlayerId = 1;
 }
 
+//试炼副本结束
+//ResponseType M2C_TrialDungeonFinishResponse
+message C2M_TrialDungeonFinishRequest    // IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_TrialDungeonFinishResponse    // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int32 CombatResult = 1;
+}
+
+//试炼副本开始
+//ResponseType M2C_TrialDungeonBeginResponse
+message C2M_TrialDungeonBeginRequest    // IActorLocationRequest
+{
+	int32 RpcId = 90;
+}
+
+message M2C_TrialDungeonBeginResponse    // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

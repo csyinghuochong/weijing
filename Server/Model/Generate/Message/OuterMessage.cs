@@ -162,12 +162,6 @@ namespace ET
 		[ProtoMember(2)]
 		public int SceneId { get; set; }
 
-		[ProtoMember(3)]
-		public int SceneSonId { get; set; }
-
-		[ProtoMember(4)]
-		public int TransferId { get; set; }
-
 		[ProtoMember(5)]
 		public int Difficulty { get; set; }
 
@@ -8429,6 +8423,64 @@ namespace ET
 // 自己的unit id
 		[ProtoMember(1)]
 		public long PlayerId { get; set; }
+
+	}
+
+//试炼副本结束
+	[ResponseType(nameof(M2C_TrialDungeonFinishResponse))]
+	[Message(OuterOpcode.C2M_TrialDungeonFinishRequest)]
+	[ProtoContract]
+	public partial class C2M_TrialDungeonFinishRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TrialDungeonFinishResponse)]
+	[ProtoContract]
+	public partial class M2C_TrialDungeonFinishResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int CombatResult { get; set; }
+
+	}
+
+//试炼副本开始
+	[ResponseType(nameof(M2C_TrialDungeonBeginResponse))]
+	[Message(OuterOpcode.C2M_TrialDungeonBeginRequest)]
+	[ProtoContract]
+	public partial class C2M_TrialDungeonBeginRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TrialDungeonBeginResponse)]
+	[ProtoContract]
+	public partial class M2C_TrialDungeonBeginResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int CombatResult { get; set; }
 
 	}
 
