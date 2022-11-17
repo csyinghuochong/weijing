@@ -156,9 +156,9 @@ namespace ET
             self.TextLayer.GetComponent<Text>().text = $"第{cengNum}层";
         }
 
-        public static void MoveToIndex(this UITrialDungeonComponent self, int showIndex)
+        public static void  MoveToIndex(this UITrialDungeonComponent self, int showIndex)
         {
-            self.UIListNode.GetComponent<RectTransform>().sizeDelta = new Vector2(0, showIndex * 150);
+            self.UIListNode.GetComponent<RectTransform>().localPosition = new Vector2(0, showIndex * 150);
         }
 
         public static void OnSelectDungeonItem(this UITrialDungeonComponent self, int towerId)
