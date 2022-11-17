@@ -81,7 +81,7 @@ namespace ET
 		/// <summary>名字</summary>
 		[ProtoMember(2)]
 		public string Name { get; set; }
-		/// <summary></summary>
+		/// <summary>地图类型</summary>
 		[ProtoMember(3)]
 		public int MapType { get; set; }
 		/// <summary>层数</summary>
