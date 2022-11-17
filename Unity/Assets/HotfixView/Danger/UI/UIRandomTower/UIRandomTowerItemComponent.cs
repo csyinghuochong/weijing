@@ -10,7 +10,7 @@ namespace ET
         public GameObject ItemListNode;
         public GameObject ButtonReward;
 
-        public TowerConfig TowerRewardConfig;
+        public TowerConfig TowerConfig;
     }
 
     [ObjectSystem]
@@ -24,7 +24,7 @@ namespace ET
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
 
             self.ButtonReward = rc.Get<GameObject>("ButtonReward");
-            ButtonHelp.AddListenerEx( self.ButtonReward, () => { self.OnButtonReward().Coroutine();  } );
+            ButtonHelp.AddListenerEx( self.ButtonReward, self.OnButtonReward);
         }
     }
 
@@ -32,7 +32,7 @@ namespace ET
     {
         public static void OnInitUI(this UIRandomTowerItemComponent self, TowerConfig towerRewardConfig)
         {
-            self.TowerRewardConfig = towerRewardConfig;
+            self.TowerConfig = towerRewardConfig;
             self.TextLevel.GetComponent<Text>().text =  $"{towerRewardConfig.CengNum} 层";
             UICommonHelper.ShowItemList(towerRewardConfig.DropShow, self.ItemListNode, self);
 
@@ -40,26 +40,22 @@ namespace ET
             self.SetRewarded( userInfo.TowerRewardIds.Contains(towerRewardConfig.Id) );
         }
 
-        public static async ETTask OnButtonReward(this UIRandomTowerItemComponent self)
+        public static void  OnButtonReward(this UIRandomTowerItemComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            if (userInfo.TowerRewardIds.Contains(self.TowerRewardConfig.Id))
+            if (userInfo.TowerRewardIds.Contains(self.TowerConfig.Id))
             {
                 FloatTipManager.Instance.ShowFloatTip("已领取过该奖励！");
                 return;
             }
             int randomTowerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerId);
-            if (randomTowerId < self.TowerRewardConfig.Id )
+            if (randomTowerId < self.TowerConfig.Id )
             {
                 FloatTipManager.Instance.ShowFloatTip("为达到领取条件！");
                 return;
             }
-
-            C2M_RandomTowerRewardRequest c2M_RandomTowerRewardRequest = new C2M_RandomTowerRewardRequest() {  RewardId  =self.TowerRewardConfig.Id };
-            M2C_RandomTowerRewardResponse m2C_RandomTowerRewardResponse = (M2C_RandomTowerRewardResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_RandomTowerRewardRequest);
-
-            userInfo.TowerRewardIds.Add( self.TowerRewardConfig.Id);
+            NetHelper.RequestTowerReward(self.ZoneScene(), self.TowerConfig.Id).Coroutine();
             self.SetRewarded(true);
         }
 

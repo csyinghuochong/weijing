@@ -35,7 +35,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Btn_Enter, () => { self.OnBtn_Enter().Coroutine(); });
 
             self.Btn_Receive = rc.Get<GameObject>("Btn_Receive");
-            ButtonHelp.AddListenerEx(self.Btn_Receive, () => { });
+            ButtonHelp.AddListenerEx(self.Btn_Receive, () => { self.OnBtn_Receive().Coroutine(); });
             self.Btn_Receive.SetActive(false);
 
             self.Btn_Add = rc.Get<GameObject>("Btn_Add");
@@ -57,18 +57,10 @@ namespace ET
     public static class UITrialDungeonComponentSystem
     {
 
-        public static int GetCurrentTowerId(this UITrialDungeonComponent self)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            int towerId = numericComponent.GetAsInt(NumericType.TrialDungeonId);
-            return towerId;
-        }
-
         public static int GetCengNum(this UITrialDungeonComponent self)
         {
-            int towerId = self.GetCurrentTowerId();
-            int nextId = self.GetNextTowerId(towerId);
+            int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
+            int nextId = TowerHelper.GetNextTowerId(SceneTypeEnum.TrialDungeon,towerId);
             //nextId == 0通关了
             return TowerConfigCategory.Instance.Get(nextId == 0 ? towerId : nextId).CengNum;
         }
@@ -90,31 +82,6 @@ namespace ET
                 }
             }
             return maxCeng;
-        }
-
-        public static int GetNextTowerId(this UITrialDungeonComponent self, int towerId)
-        {
-            int nextId = 0;
-            List<TowerConfig> towerConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();
-            for (int i = 0; i < towerConfigs.Count; i++)
-            {
-                TowerConfig towerConfig = towerConfigs[i];
-                if (towerConfig.MapType != SceneTypeEnum.TrialDungeon)
-                {
-                    continue;
-                }
-                if (towerId == 0)
-                {
-                    nextId = towerConfig.Id;
-                    break;
-                }
-                if (nextId == towerConfig.Id)
-                {
-                    nextId = 0;
-                    continue;
-                }
-            }
-            return nextId;
         }
 
         public static void OnBtn_Add(this UITrialDungeonComponent self)
@@ -188,7 +155,16 @@ namespace ET
                 self.UITrialDungeonItems[i].OnSelected(towerId);
             }
 
+            self.UpdateButtons();
             self.ShowRewardList();
+        }
+
+        public static void UpdateButtons(this UITrialDungeonComponent self)
+        {
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
+            self.Btn_Enter.SetActive(towerId < self.TowerId);
+            self.Btn_Receive.SetActive(towerId >= self.TowerId && !userInfo.TowerRewardIds.Contains(towerId));
         }
 
         public static void ShowRewardList(this UITrialDungeonComponent self)
@@ -197,14 +173,20 @@ namespace ET
             self.UICommonItemList.OnUpdateUI(towerConfig.DropShow, 1f, false);
         }
 
+        public static async ETTask OnBtn_Receive(this UITrialDungeonComponent self)
+        {
+            int errorCode = await NetHelper.RequestTowerReward(self.ZoneScene(), self.TowerId);
+            self.UpdateButtons();
+        }
+
         public static async ETTask OnBtn_Enter(this UITrialDungeonComponent self)
         {
             if (self.TowerId == 0)
             {
                 return;
             }
-            int towerId = self.GetCurrentTowerId();
-            int nextId = self.GetNextTowerId(towerId);
+            int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
+            int nextId = TowerHelper.GetNextTowerId(SceneTypeEnum.TrialDungeon, towerId);
             if (self.TowerId < nextId)
             {
                 FloatTipManager.Instance.ShowFloatTip("已通关该关卡！");

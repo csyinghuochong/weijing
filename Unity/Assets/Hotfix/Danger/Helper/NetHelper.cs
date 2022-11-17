@@ -4,6 +4,18 @@
     public static class NetHelper
     {
 
+        public static async ETTask<int> RequestTowerReward(Scene zoneScene, int towerid)
+        {
+            C2M_RandomTowerRewardRequest request = new C2M_RandomTowerRewardRequest() { RewardId = towerid };
+            M2C_RandomTowerRewardResponse respone = (M2C_RandomTowerRewardResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
+            if (respone.Error== ErrorCore.ERR_Success)
+            {
+                UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
+                userInfoComponent.UserInfo.TowerRewardIds.Add(towerid);
+            }
+            return respone.Error;
+        }
+
         public static async ETTask<int> OnRobotEnter(Scene zoneScene)
         {
             int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
