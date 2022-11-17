@@ -84,15 +84,15 @@ namespace ET
 
         public static void OnTimer(this UITrialMainComponent self)
         {
-
-            self.Countdown--;
-            self.TextCoundown.GetComponent<Text>().text = self.Countdown.ToString();
             if (self.Countdown <= 0)
             {
                 self.ZoneScene().GetComponent<SessionComponent>().Session.Call(new C2M_TrialDungeonFinishRequest()).Coroutine();
                 TimerComponent.Instance?.Remove(ref self.Timer);
                 self.ButtonTiaozhan.SetActive(true);
+                return;
             }
+            self.TextCoundown.GetComponent<Text>().text = $"倒计时 {self.Countdown}";
+            self.Countdown--;
         }
     }
 }
