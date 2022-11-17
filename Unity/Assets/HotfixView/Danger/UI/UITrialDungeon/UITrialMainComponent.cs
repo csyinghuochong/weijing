@@ -58,6 +58,11 @@ namespace ET
 
     public static class UITrialMainComponentSystem
     {
+        public static void StopTimer(this UITrialMainComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.Timer);
+        }
+
         public static void BeginTimer(this UITrialMainComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
