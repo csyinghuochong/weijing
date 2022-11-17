@@ -150,7 +150,7 @@ namespace ET
             {
                 self.UITrialDungeonItems[i].GameObject.SetActive(false);
             }
-
+            int moveIndex = Mathf.Max(showIndex, showNum - 5);
             self.MoveToIndex(showIndex);
             self.UITrialDungeonItems[showIndex].OnBtn_XuanZhong();
             self.TextLayer.GetComponent<Text>().text = $"第{cengNum}层";
