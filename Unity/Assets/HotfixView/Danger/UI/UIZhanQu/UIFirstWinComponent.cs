@@ -52,6 +52,7 @@ namespace ET
 			self.Text_Lv = rc.Get<GameObject>("Text_Lv");
 
 			self.RawImage = rc.Get<GameObject>("RawImage");
+
 			//模型展示界面
 			var path = ABPathHelper.GetUGUIPath("Common/UIModelShow1");
 			GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
