@@ -1148,7 +1148,7 @@ namespace ET
                     break;
                 default:
                     SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
-                    if (sceneConfig.ifShowMinMap == 1)
+                    if (sceneConfig.ifShowMinMap == 0)
                     {
                         FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("当前场景不支持查看小地图"));
                     }
