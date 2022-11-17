@@ -28,7 +28,6 @@ namespace ET
         public GameObject LeftBottomBtns;
         public GameObject Btn_PaiMaiHang;
         public GameObject Btn_EveryTask;
-        public GameObject Button_ChouKa;
         public GameObject taskButton;
         public GameObject bagButton;
         public GameObject jiayuanButton;
@@ -190,10 +189,6 @@ namespace ET
 
             self.Btn_MakeItem = rc.Get<GameObject>("Btn_MakeItem");
             //self.Btn_MakeItem.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Btn_MakeItem(); });
-           
-            self.Button_ChouKa = rc.Get<GameObject>("Button_ChouKa");
-            //self.Button_ChouKa.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_ChouKa(); });
-            ButtonHelp.AddListenerEx(self.Button_ChouKa, () => { self.OnButton_ChouKa(); });
 
             self.Btn_EveryTask = rc.Get<GameObject>("Btn_EveryTask");
             //self.Btn_EveryTask.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_EveryTask(); });
@@ -1176,11 +1171,6 @@ namespace ET
         public static void OnBtn_Email(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UIMail).Coroutine();
-        }
-
-        public static void OnButton_ChouKa(this UIMainComponent self)
-        {
-            UIHelper.Create(self.DomainScene(), UIType.UIChouKa).Coroutine();
         }
 
         public static void OnBtn_EveryTask(this UIMainComponent self)
