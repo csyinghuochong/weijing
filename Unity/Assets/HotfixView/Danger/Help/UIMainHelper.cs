@@ -11,20 +11,13 @@ namespace ET
 
         public static bool UseSceneConfig(int sceneType)
         {
-            return sceneType == SceneTypeEnum.MainCityScene
-                 || sceneType == SceneTypeEnum.PetTianTi
-                 || sceneType == SceneTypeEnum.PetDungeon
-                 || sceneType == SceneTypeEnum.TeamDungeon
-                 || sceneType == SceneTypeEnum.YeWaiScene
-                 || sceneType == SceneTypeEnum.Tower
-                 || sceneType == SceneTypeEnum.Battle
-                 || sceneType == SceneTypeEnum.TrialDungeon;
+            return sceneType != SceneTypeEnum.LocalDungeon
+                 && sceneType != SceneTypeEnum.CellDungeon;
         }
 
         public static bool ShowMiniMap(int sceneType, int sceneId)
         {
-            if (sceneType == SceneTypeEnum.LocalDungeon
-                || sceneType == SceneTypeEnum.CellDungeon)
+            if (!UseSceneConfig(sceneType))
             {
                 return true;
             }
