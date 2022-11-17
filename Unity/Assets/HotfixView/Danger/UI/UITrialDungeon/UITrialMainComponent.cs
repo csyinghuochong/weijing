@@ -69,6 +69,12 @@ namespace ET
         {
             C2M_TrialDungeonBeginRequest request = new C2M_TrialDungeonBeginRequest();
             M2C_TrialDungeonFinishResponse response = (M2C_TrialDungeonFinishResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (response.Error != ErrorCore.ERR_Success)
+            {
+                return;
+            }
+            self.ButtonTiaozhan.SetActive(false);
+            self.BeginTimer();
         }
 
         public static void OnTimer(this UITrialMainComponent self)
