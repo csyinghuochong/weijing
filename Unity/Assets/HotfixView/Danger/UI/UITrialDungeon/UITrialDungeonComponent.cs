@@ -161,8 +161,8 @@ namespace ET
 
         public static void UpdateButtons(this UITrialDungeonComponent self)
         {
+            int towerId = self.TowerId;
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
             self.Btn_Enter.SetActive(towerId < self.TowerId);
             self.Btn_Receive.SetActive(towerId >= self.TowerId && !userInfo.TowerRewardIds.Contains(towerId));
         }
