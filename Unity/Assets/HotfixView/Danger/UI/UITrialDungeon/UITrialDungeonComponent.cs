@@ -163,8 +163,8 @@ namespace ET
         {
             int curId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            self.Btn_Enter.SetActive(self.TowerId < curId);
-            self.Btn_Receive.SetActive(curId >= self.TowerId && !userInfo.TowerRewardIds.Contains(self.TowerId));
+            self.Btn_Enter.SetActive(self.TowerId > curId);
+            self.Btn_Receive.SetActive(self.TowerId <= curId && !userInfo.TowerRewardIds.Contains(self.TowerId));
         }
 
         public static void ShowRewardList(this UITrialDungeonComponent self)
