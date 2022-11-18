@@ -154,6 +154,12 @@ namespace ET
 
         public static void CheckSensitiveWords(this UIChatComponent self)
         {
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            bool gm = GMHelp.GmAccount.Contains(accountInfoComponent.Account);
+            if (gm)
+            {
+                return;
+            }
             string text_new = "";
             string text_old = self.InputFieldTMP.GetComponent<TMP_InputField>().text;
             if (text_old.Equals("#etgm"))
@@ -171,7 +177,13 @@ namespace ET
                 return;
             }
 
-            bool mask = MaskWordHelper.Instance.IsContainSensitiveWords(text);
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            bool gm = GMHelp.GmAccount.Contains(accountInfoComponent.Account);
+            bool mask = false;
+            if (!gm)
+            {
+                mask = MaskWordHelper.Instance.IsContainSensitiveWords(text);
+            }
             if (text.Equals("#etgm"))
             {
                 UIHelper.Create(self.DomainScene(), UIType.UIGM).Coroutine();

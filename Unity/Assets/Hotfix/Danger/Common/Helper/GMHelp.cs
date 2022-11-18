@@ -5,7 +5,6 @@ namespace ET
     public static class GMHelp
     {
 
-#if SERVER
         public static List<string> GmAccount = new List<string>()
         {
             "tcg01",
@@ -18,7 +17,6 @@ namespace ET
             "qqUID_423B58B6669878EF00C927A48822C230",   //双剑冰
             "13752404158",
         };
-#endif
 
         public static List<long> BanChatPlayer = new List<long>()
         {
