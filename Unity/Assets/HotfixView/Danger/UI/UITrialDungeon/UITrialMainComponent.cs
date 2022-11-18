@@ -93,9 +93,13 @@ namespace ET
             {
                 self.ZoneScene().GetComponent<SessionComponent>().Session.Call(new C2M_TrialDungeonFinishRequest()).Coroutine();
                 TimerComponent.Instance?.Remove(ref self.Timer);
+
+                self.TextCoundown.GetComponent<Text>().text = $"未能在60秒内击败怪物,请点击重新挑战";
+
                 return;
             }
-            self.TextCoundown.GetComponent<Text>().text = $"倒计时 {self.Countdown}";
+
+            self.TextCoundown.GetComponent<Text>().text = $"倒计时 {self.Countdown - 1}";
             self.Countdown--;
         }
     }

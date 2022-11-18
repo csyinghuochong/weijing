@@ -45,7 +45,7 @@ namespace ET
                 case SceneTypeEnum.TrialDungeon:
                     UI uitrial = UIHelper.GetUI(args.Scene, UIType.UITrialMain);
                     uitrial.GetComponent<UITrialMainComponent>().StopTimer();
-                    PopupTipHelp.OpenPopupTip_2(args.Scene, args.m2C_FubenSettlement.BattleResult == CombatResultEnum.Win ? "胜利" : "失败", "获取奖励",
+                    PopupTipHelp.OpenPopupTip_2(args.Scene, args.m2C_FubenSettlement.BattleResult == CombatResultEnum.Win ? "胜利" : "失败", "恭喜你赢得了本场试炼的胜利！",
                      () => { EnterFubenHelp.RequestQuitFuben(args.Scene); }
                      ).Coroutine();
                     break;

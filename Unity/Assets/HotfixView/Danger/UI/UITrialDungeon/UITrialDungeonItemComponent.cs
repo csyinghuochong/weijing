@@ -14,6 +14,9 @@ namespace ET
         public GameObject Lab_PetName;
         public GameObject ItemHeroIon;
         public GameObject GameObject;
+        public GameObject Hint_1;
+        public GameObject Hint_2;
+        public GameObject Hint_3;
         public TowerConfig TowerConfig;
         public Action<int> ClickHandle;
 
@@ -34,6 +37,10 @@ namespace ET
             this.Lab_PetName = rc.Get<GameObject>("Lab_PetName");
             this.ItemHeroIon = rc.Get<GameObject>("ItemHeroIon");
 
+            this.Hint_1 = rc.Get<GameObject>("Hint_1");
+            this.Hint_2 = rc.Get<GameObject>("Hint_2");
+            this.Hint_3 = rc.Get<GameObject>("Hint_3");
+
             this.Lab_Name.text = towerConfig.Name;
             this.ClickHandle = action;
 
@@ -42,8 +49,31 @@ namespace ET
             string[] monsterInfo = monsterSet.Split(';');
             int monster = int.Parse(monsterInfo[2]);
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monster);
-            this.Lab_Lv.GetComponent<Text>().text = $"等级: {monsterConfig.MonsterName}";
+            this.Lab_Lv.GetComponent<Text>().text = $"等级: {monsterConfig.Lv}";
             this.Lab_HP.GetComponent<Text>().text = $"生命: {monsterConfig.Hp}";
+
+            //int curId = 
+            UserInfo userInfo = this.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            NumericComponent numcom = UnitHelper.GetMyUnitFromZoneScene(this.ZoneScene()).GetComponent<NumericComponent>();
+            int towerid = numcom.GetAsInt(NumericType.TrialDungeonId);   // 
+            //已经打完
+            if (towerid >= towerConfig.Id) {
+                //是否领取
+                if (userInfo.TowerRewardIds.Contains(towerConfig.Id))
+                {
+                    //包含
+                    this.Hint_2.SetActive(true);
+                }
+                else {
+                    //不包含
+                    this.Hint_3.SetActive(true);
+                }
+            }
+            else {
+                if (towerid + 1 == towerConfig.Id) {
+                    this.Hint_1.SetActive(true);
+                }
+            }
         }
 
         public void OnBtn_XuanZhong()
