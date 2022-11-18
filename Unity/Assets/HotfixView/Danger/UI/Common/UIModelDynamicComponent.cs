@@ -83,13 +83,18 @@ namespace ET
             self.StartPosition = eventData.position;
         }
 
-        public static async ETTask ShowModel(this UIModelDynamicComponent self, string assetPath)
+        public static void RemoveModel(this UIModelDynamicComponent self)
         {
             if (self.Model != null)
             {
                 GameObject.Destroy(self.Model);
                 self.Model = null;
             }
+        }
+
+        public static async ETTask ShowModel(this UIModelDynamicComponent self, string assetPath)
+        {
+            self.RemoveModel();
             long instanceId = self.InstanceId;
             var path = ABPathHelper.GetUnitPath(assetPath);
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);

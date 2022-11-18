@@ -43,6 +43,18 @@ namespace ET
 
             self.MonsterNode.SetActive(false);
             self.BossNode.SetActive(false);
+            self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
+            self.RenderTexture.Create();
+            self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
+
+            //模型展示界面
+            var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
+            GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject showMode = UnityEngine.Object.Instantiate(bundleGameObject);
+            self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(showMode);
+            self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
+            //配置摄像机位置[0,115,257]
+            showMode.transform.Find("Camera").localPosition = new Vector3(0f, 200, 378f);
         }
     }
 
@@ -131,29 +143,10 @@ namespace ET
             self.MonsterNode.SetActive(false);
         }
 
-        public static void DestoryModelShow(this UIMainHpBarComponent self)
+        public static void  UpdateModelShowView(this UIMainHpBarComponent self, int monsterId)
         {
-            if (self.UIModelShowComponent != null)
-            {
-                self.UIModelShowComponent.ReleaseRenderTexture();
-                self.UIModelShowComponent.Dispose();
-                self.UIModelShowComponent = null;
-            }
-        }
-
-        public static void  InitModelShowView(this UIMainHpBarComponent self, int monsterId)
-        {
-            //模型展示界面
-            var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
-            GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
-            UICommonHelper.SetParent(gameObject, self.RawImage);
-            self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(gameObject);
-            self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
             self.UIModelShowComponent.ShowModel("Monster/" + monsterConfig.MonsterModelID.ToString()).Coroutine();
-            //配置摄像机位置[0,115,257]
-            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 200, 378f);
         }
 
         public static void ShowBossHPBar(this UIMainHpBarComponent self, Unit unit)
@@ -170,7 +163,7 @@ namespace ET
             {
                 self.LockBossId = 0;
                 self.BossNode.SetActive(false);
-                self.DestoryModelShow();
+                self.UIModelShowComponent.RemoveModel();
             }
             else
             {
@@ -180,7 +173,7 @@ namespace ET
                 self.BossNode.SetActive(true);
                 self.Lab_BossLv.GetComponent<Text>().text = monsterConfig.Lv.ToString();
                 self.Lab_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
-                self.InitModelShowView(configid);
+                self.UpdateModelShowView(configid);
                 self.OnUpdateHP(unit);
             }
         }
