@@ -626,7 +626,7 @@ namespace ET
                     }
 
                     //拾取到橙色装备
-                    if (itemCof.ItemQuality >= 1 && getType == ItemGetWay.PickItem)
+                    if (itemCof.ItemQuality >= 5 && getType == ItemGetWay.PickItem)
                     {
                         string name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
                         string noticeContent = $"恭喜 {name} 获取 {itemCof.ItemName}";
