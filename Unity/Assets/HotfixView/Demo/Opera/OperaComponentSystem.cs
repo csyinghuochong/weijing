@@ -337,7 +337,7 @@ namespace ET
             int functionId = NpcConfigCategory.Instance.Get(self.NpcId).NpcType;
             if (functionId < 100)
             {
-                if (self.NpcId == 20000030)
+                if (self.NpcId == 20000030)  //试炼副本
                 {
                     UIHelper.Create(self.ZoneScene(), UIType.UITrialDungeon).Coroutine();
                 }
