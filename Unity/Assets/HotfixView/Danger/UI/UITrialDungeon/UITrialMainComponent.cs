@@ -73,6 +73,14 @@ namespace ET
 
         public static async ETTask OnButtonTiaozhan(this UITrialMainComponent self)
         {
+            NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (numericComponent.GetAsInt(NumericType.TrialDungeonId) >= mapComponent.SonSceneId)
+            {
+                FloatTipManager.Instance.ShowFloatTip("已经通关了该关卡！");
+                return;
+            }
+
             if (TimeHelper.ServerNow() - self.LastTiaoZhan < 1000)
             {
                 return;
