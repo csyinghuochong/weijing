@@ -78,6 +78,7 @@
     <Compile Include="Assets\Hotfix\Danger\Common\Component\NpcMoveComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Module\AI\AIComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Demo\Unit\UnitHelper.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\XiLianHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_HorseNoticeInfoHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\GuideInfoSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\DataUpdate\DataUpdateComponentSystem.cs" />
