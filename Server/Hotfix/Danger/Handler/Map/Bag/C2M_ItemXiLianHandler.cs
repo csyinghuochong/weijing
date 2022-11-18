@@ -31,7 +31,7 @@ namespace ET
 
                 for (int i = 0; i < request.Times; i++)
                 {
-                    response.ItemXiLianResults.Add( XiLianHelper.XiLianItem(bagInfo, 1, xilianLevel) );     //精炼属性不进行重置
+                    response.ItemXiLianResults.Add( XiLianHelper.XiLianItem(unit, bagInfo, 1, xilianLevel) );     //精炼属性不进行重置
                 }
                 if (request.Times == 1)
                 {

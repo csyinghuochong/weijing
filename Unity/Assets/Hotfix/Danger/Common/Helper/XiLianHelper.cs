@@ -48,12 +48,49 @@ namespace ET
             return gemholeinfo.Length > 1 ? gemholeinfo.Substring(0, gemholeinfo.Length - 1) : gemholeinfo;
         }
 
+        public static List<KeyValuePairInt> GetLevelSkill(int xilianLevel)
+        {
+            List<KeyValuePairInt> skills = new List<KeyValuePairInt>();
+            int hideProId = 2001;
+            while (hideProId != 0)
+            {
+                HideProListConfig proListConfig = HideProListConfigCategory.Instance.Get(hideProId);
+                if (xilianLevel == proListConfig.NeedXiLianLv)
+                {
+                    skills.Add(new KeyValuePairInt() {  KeyId = proListConfig.Id, Value = proListConfig.PropertyType });
+                }
+                hideProId = proListConfig.NtxtID;
+            }
+            return skills;
+        }
+
+        public static int GetXiLianId(int xilianDu)
+        {
+            int xilianid = 0;
+            List<EquipXiLianConfig> equipXiLians =  EquipXiLianConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < equipXiLians.Count; i++)
+            {
+                if (equipXiLians[i].XiLianType != 0)
+                {
+                    continue;
+                }
+                if (xilianDu <= equipXiLians[i].NeedShuLianDu)
+                {
+                    break;
+                }
+                xilianid = equipXiLians[i].Id;
+            }
+            return xilianid;
+        }
+
+
+#if SERVER
         /// <summary>
         /// 洗练装备
         /// </summary>
         /// <param name="bagInfo"></param>
         /// xilianType  洗炼类型   0 普通掉落  1 装备洗炼功能
-        public static ItemXiLianResult XiLianItem(BagInfo bagInfo, int xilianType, int xilianLv)
+        public static ItemXiLianResult XiLianItem(Unit unit, BagInfo bagInfo, int xilianType, int xilianLv)
         {
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             //获取装备等级和装备类型
@@ -317,12 +354,7 @@ namespace ET
                     } while (nextID != 0);
                 }
 
-                //判定是否需要写入特殊技能
-                //if (bagInfo.HideID != 0)
-                //{
-
                 //如果是掉落,概率降低10倍
-
                 //洗炼大师附加
                 string xilianJiaID = "";
                 if (xilianJiaID != "" && xilianJiaID != null)
@@ -443,49 +475,26 @@ namespace ET
             {
                 bagInfo.GemHole = GenerateGemHoleInfo(itemConfig.ItemQuality);
             }
-            //bagInfo.XiLianHideProLists = BaseHideProList;   //基础属性洗炼
-            //bagInfo.HideSkillLists = HideSkillList;         //隐藏技能
-            //bagInfo.XiLianHideTeShuProLists = TeShuHideProList;  //特殊属性洗炼
+
+            if (HideSkillList.Count > 0)
+            {
+                string skillName = string.Empty;
+                for (int i = 0; i < HideSkillList.Count; i++)
+                {
+                    skillName = skillName + $" {SkillConfigCategory.Instance.Get(HideSkillList[i]).SkillName}";
+                }
+                string name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+                string noticeContent = $"恭喜 {name} 洗练出 {skillName}";
+                ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
+            }
+
             ItemXiLianResult itemXiLianResult = new ItemXiLianResult();
             itemXiLianResult.XiLianHideProLists = BaseHideProList;   //基础属性洗炼
             itemXiLianResult.HideSkillLists = HideSkillList;         //隐藏技能
             itemXiLianResult.XiLianHideTeShuProLists = TeShuHideProList;  //特殊属性洗炼
             return itemXiLianResult;
         }
+#endif
 
-        public static List<KeyValuePairInt> GetLevelSkill(int xilianLevel)
-        {
-            List<KeyValuePairInt> skills = new List<KeyValuePairInt>();
-            int hideProId = 2001;
-            while (hideProId != 0)
-            {
-                HideProListConfig proListConfig = HideProListConfigCategory.Instance.Get(hideProId);
-                if (xilianLevel == proListConfig.NeedXiLianLv)
-                {
-                    skills.Add(new KeyValuePairInt() {  KeyId = proListConfig.Id, Value = proListConfig.PropertyType });
-                }
-                hideProId = proListConfig.NtxtID;
-            }
-            return skills;
-        }
-
-        public static int GetXiLianId(int xilianDu)
-        {
-            int xilianid = 0;
-            List<EquipXiLianConfig> equipXiLians =  EquipXiLianConfigCategory.Instance.GetAll().Values.ToList();
-            for (int i = 0; i < equipXiLians.Count; i++)
-            {
-                if (equipXiLians[i].XiLianType != 0)
-                {
-                    continue;
-                }
-                if (xilianDu <= equipXiLians[i].NeedShuLianDu)
-                {
-                    break;
-                }
-                xilianid = equipXiLians[i].Id;
-            }
-            return xilianid;
-        }
     }
 }

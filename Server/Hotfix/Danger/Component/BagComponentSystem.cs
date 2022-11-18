@@ -595,9 +595,9 @@ namespace ET
                     //默认洗练
                     if (!ItemHelper.IsBuyItem(getType) && itemCof.ItemEquipID != 0)
                     {
-                        int xilianLevel = XiLianHelper.GetXiLianId(self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu));
+                        int xilianLevel = XiLianHelper.GetXiLianId(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu));
                         xilianLevel = xilianLevel != 0 ? EquipXiLianConfigCategory.Instance.Get(xilianLevel).XiLianLevel : 0;
-                        ItemXiLianResult itemXiLian =  XiLianHelper.XiLianItem(useBagInfo, 0, xilianLevel);
+                        ItemXiLianResult itemXiLian =  XiLianHelper.XiLianItem(unit, useBagInfo, 0, xilianLevel);
                         useBagInfo.XiLianHideProLists = itemXiLian.XiLianHideProLists;              //基础属性洗炼
                         useBagInfo.HideSkillLists = itemXiLian.HideSkillLists;                      //隐藏技能
                         useBagInfo.XiLianHideTeShuProLists = itemXiLian.XiLianHideTeShuProLists;    //特殊属性洗炼
@@ -623,6 +623,14 @@ namespace ET
                     {
                         int shuliandu = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
                         ComHelp.JianDingFuItem(useBagInfo, shuliandu, getType);
+                    }
+
+                    //拾取到橙色装备
+                    if (itemCof.ItemQuality >= 1 && getType == ItemGetWay.PickItem)
+                    {
+                        string name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+                        string noticeContent = $"恭喜 {name} 获取 {itemCof.ItemName}";
+                        ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, noticeContent);
                     }
 
                     self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);
