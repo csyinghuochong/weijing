@@ -110,7 +110,7 @@ namespace ET
             for (int i = 0; i < allUnit.Count; i++)
             {
                 Unit unit = allUnit[i];
-                if (unit.Type != UnitType.Player)
+                if (unit.Type != UnitType.Player && unit.Type!=UnitType.Monster)
                 {
                     continue;
                 }
