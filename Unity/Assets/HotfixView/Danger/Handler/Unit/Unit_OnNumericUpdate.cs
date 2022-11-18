@@ -68,6 +68,9 @@
                 case NumericType.Now_AI:
                     args.Unit.GetComponent<HeroHeadBarComponent>()?.UpdateAI();
                     break;
+                case NumericType.Now_Horse:
+                    args.Unit.GetComponent<GameObjectComponent>()?.OnUpdateHorse();
+                    break;
                 case NumericType.TowerId:
                     int towerId = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
                     if (towerId != 0)

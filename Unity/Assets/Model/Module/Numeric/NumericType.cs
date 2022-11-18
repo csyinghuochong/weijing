@@ -71,6 +71,7 @@
         public const int TeamDungeonTimes = 3067;
         public const int Now_AI = 3068;
         public const int TrialDungeonId = 3069;
+        public const int Now_Horse = 3070;
         public const int Max = 10000;
 
         public const int Now_MaxHp = 1002;                                       //生命总值

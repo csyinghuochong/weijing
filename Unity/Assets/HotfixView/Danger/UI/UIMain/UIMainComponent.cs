@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIMainComponent : Entity, IAwake, IUpdate, IDestroy
     {
+        public GameObject Button_Horse;
         public GameObject Button_WorldLv;
         public GameObject Button_ZhenYing;
         public GameObject Button_Tower;
@@ -122,6 +123,9 @@ namespace ET
 
             self.Button_WorldLv = rc.Get<GameObject>("Button_WorldLv");
             ButtonHelp.AddListenerEx(self.Button_WorldLv, () => { self.OnButton_WorldLv(); });
+
+            self.Button_Horse = rc.Get<GameObject>("Button_Horse");
+            ButtonHelp.AddListenerEx(self.Button_Horse, () => { self.OnButton_Horse(); });
 
             self.MailHintTip = rc.Get<GameObject>("MailHintTip");
             ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
@@ -930,8 +934,13 @@ namespace ET
 
         public static void OnButton_WorldLv(this UIMainComponent self)
         {
-            Log.Debug("OnButton_WorldLv");
             UIHelper.Create(self.DomainScene(), UIType.UIWorldLv).Coroutine();
+        }
+
+        public static void OnButton_Horse(this UIMainComponent self)
+        {
+            C2M_HorseRideRequest request = new C2M_HorseRideRequest() { HorseId = 10001 };
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
         }
 
         public static void OnOpenBag(this UIMainComponent self)
@@ -942,28 +951,6 @@ namespace ET
         public static void OnOpenChengjiu(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UIChengJiu).Coroutine();
-            //self.DomainScene().GetComponent<SessionComponent>().Session.Dispose();
-            //FloatTipManager.Instance.ShowFloatTip("test111");
-            //FloatTipManager.Instance.ShowFloatTipDi("test222");
-            //PopupTipHelp.OpenPopupTip(self.DomainScene(), "", "",
-            //delegate ()
-            //{
-            //    self.OnConfirHandler_Chengjiu();
-            //},
-            //delegate ()
-            //{
-            //    self.OnCancelHandler_Chengjiu();
-            //}).Coroutine();
-        }
-
-        public static void OnConfirHandler_Chengjiu(this UIMainComponent self)
-        {
-            Log.Debug("OnConfirHandler_Chengjiu");
-        }
-
-        public static void OnCancelHandler_Chengjiu(this UIMainComponent self)
-        {
-            Log.Debug("OnCancelHandler_Chengjiu");
         }
 
         public static void OnOpenTask(this UIMainComponent self)

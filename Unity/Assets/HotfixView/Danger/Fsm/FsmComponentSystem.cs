@@ -230,6 +230,13 @@ namespace ET
             }
         }
 
+        public static void SetHorseState(this FsmComponent self)
+        {
+            self.Animator.SetBool("Run", false);
+            self.Animator.SetBool("Idle", false);
+            self.Animator.Play("ZuoQi");
+        }
+
         public static void SetIdleState(this FsmComponent self)
         {
             self.Animator.SetBool("Run", false);

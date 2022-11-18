@@ -4068,3 +4068,19 @@ message M2C_TrialDungeonBeginResponse    // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//上下马
+//ResponseType M2C_HorseRideResponse
+message C2M_HorseRideRequest    // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 HorseId = 1;
+	int32 OperateType = 2; //1上马  0下马
+}
+
+message M2C_HorseRideResponse    // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

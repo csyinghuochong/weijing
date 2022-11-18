@@ -24,6 +24,7 @@
 	[NumericWatcher((int)NumericType.Now_Weapon)]
 	[NumericWatcher((int)NumericType.Now_MaxHp)]
 	[NumericWatcher((int)NumericType.Now_XiLian)]
+	[NumericWatcher((int)NumericType.Now_Horse)]
 	[NumericWatcher((int)NumericType.PetChouKa)]
 	[NumericWatcher((int)NumericType.PetSkin)]
 	[NumericWatcher((int)NumericType.TowerId)]

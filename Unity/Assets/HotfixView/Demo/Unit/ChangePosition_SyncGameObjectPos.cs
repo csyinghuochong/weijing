@@ -11,13 +11,8 @@ namespace ET
             {
                 EventType.ChangePosition args = changePosition as EventType.ChangePosition;
                 Unit unit = args.Unit;
-                GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
-                if (gameObjectComponent == null || gameObjectComponent.GameObject == null)
-                {
-                    return;
-                }
-                gameObjectComponent.GameObject.transform.position = unit.Position;
-                unit.GetComponent<EffectViewComponent>().UpdatePositon();
+                unit.GetComponent<GameObjectComponent>()?.UpdatePositon(unit.Position);
+                unit.GetComponent<EffectViewComponent>()?.UpdatePositon();
 
                 //主角
                 if (unit.MainHero)

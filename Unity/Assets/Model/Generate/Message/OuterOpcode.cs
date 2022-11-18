@@ -473,5 +473,7 @@ namespace ET
 		 public const ushort M2C_TrialDungeonFinishResponse = 10470;
 		 public const ushort C2M_TrialDungeonBeginRequest = 10471;
 		 public const ushort M2C_TrialDungeonBeginResponse = 10472;
+		 public const ushort C2M_HorseRideRequest = 10473;
+		 public const ushort M2C_HorseRideResponse = 10474;
 	}
 }

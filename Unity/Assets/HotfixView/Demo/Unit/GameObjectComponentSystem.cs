@@ -11,7 +11,7 @@ namespace ET
         {
             self.GameObject = null;
             self.Material = null;
-            self.AssetsPath = "";
+            self.UnitAssetsPath = "";
 
             self.LoadGameObject();
         }
@@ -22,14 +22,14 @@ namespace ET
     {
         public override void Destroy(GameObjectComponent self)
         {
-            if (string.IsNullOrEmpty(self.AssetsPath) && self.GameObject != null)
+            if (string.IsNullOrEmpty(self.UnitAssetsPath) && self.GameObject != null)
             {
                 UnityEngine.Object.Destroy(self.GameObject);
                 self.GameObject = null;
             }
-            if (!string.IsNullOrEmpty(self.AssetsPath))
+            if (!string.IsNullOrEmpty(self.UnitAssetsPath))
             {
-                GameObjectPoolComponent.Instance.RecoverGameObject(self.AssetsPath, self.GameObject);
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.UnitAssetsPath, self.GameObject);
                 self.GameObject = null;
             }
             GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
@@ -41,11 +41,6 @@ namespace ET
     public static class GameObjectComponentSystem
     {
 
-        public static void RecoverGameObject(this GameObjectComponent self)
-        { 
-            
-        }
-
         public static void LoadGameObject(this GameObjectComponent self)
         {
             Unit unit = self.GetParent<Unit>();
@@ -56,7 +51,7 @@ namespace ET
                 case UnitType.Player:
                     MapComponent mapComponent = unit.ZoneScene().GetComponent<MapComponent>();
                     //宠物副本不显示玩家
-                    if (unit.MainHero &&( mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon
+                    if (unit.MainHero && (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon
                         || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi))
                     {
                         return;
@@ -71,7 +66,7 @@ namespace ET
                     int userMaterModel = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UseMasterModel);
                     long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
                     Unit master = unit.GetParent<UnitComponent>().Get(masterId);
-                    if (userMaterModel == 1 && master!=null)
+                    if (userMaterModel == 1 && master != null)
                     {
                         GameObject gameObject = GameObject.Instantiate(master.GetComponent<GameObjectComponent>().GameObject);
                         self.OnLoadGameObject(gameObject, self.InstanceId);
@@ -80,7 +75,7 @@ namespace ET
                     {
                         path = ABPathHelper.GetUnitPath("Monster/" + monsterCof.MonsterModelID);
                         GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
-                        self.AssetsPath = path;
+                        self.UnitAssetsPath = path;
                     }
                     break;
                 case UnitType.Pet:
@@ -106,12 +101,86 @@ namespace ET
                     string assetPath = dropComponent.DropInfo.ItemID == 1 ? "DropICoin" : "DropItem";
                     path = ABPathHelper.GetUnitPath($"Player/{assetPath}");
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
-                    self.AssetsPath = path;
+                    self.UnitAssetsPath = path;
                     break;
                 case UnitType.Chuansong:
                     path = ABPathHelper.GetUnitPath("Monster/DorrWay_1");
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     break;
+            }
+        }
+
+        public static void RecoverHorse(this GameObjectComponent self)
+        {
+            if (self.Horse != null)
+            {
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.HorseAssetsPath, self.Horse);
+                self.Horse = null;
+            }
+        }
+
+        public static void UpdateRotation(this GameObjectComponent self, Quaternion quaternion)
+        {
+            if (self.Horse != null)
+            {
+                self.Horse.transform.rotation = quaternion;
+                return;
+            }
+            if (self.GameObject != null)
+            {
+                self.GameObject.transform.rotation = quaternion;
+            }
+        }
+
+        public static void UpdatePositon(this GameObjectComponent self, Vector3 vector)
+        {
+            if (self.Horse != null)
+            {
+                self.Horse.transform.position = vector;
+                return;
+            }
+            if (self.GameObject!=null)
+            {
+                self.GameObject.transform.position = vector;
+            }
+        }
+
+        public static void OnLoadHorse(this GameObjectComponent self, GameObject go, long formId)
+        {
+            self.Horse = go;
+            Unit unit = self.GetParent<Unit>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int horseId = numericComponent.GetAsInt(NumericType.Now_Horse);
+            if (horseId == 0)
+            {
+                self.RecoverHorse();
+                unit.GetComponent<FsmComponent>().SetIdleState();
+            }
+            else
+            {
+                UICommonHelper.SetParent(go, GlobalComponent.Instance.Unit.gameObject);
+                go.SetActive(true);
+                go.transform.localPosition = unit.Position;
+                go.transform.rotation = unit.Rotation;
+                UICommonHelper.SetParent(self.GameObject, self.GetHorseNode());
+                unit.GetComponent<FsmComponent>().SetHorseState();
+            }
+        }
+
+        public static GameObject GetHorseNode(this GameObjectComponent self)
+        {
+            return self.Horse.transform.Find("RoleBoneSet/Head").gameObject;
+        }
+
+        public static void OnUpdateHorse(this GameObjectComponent self)
+        {
+            self.RecoverHorse();
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            int horseId = numericComponent.GetAsInt(NumericType.Now_Horse);
+            if (horseId != 0)
+            {
+                ZuoQiShowConfig zuoQiShowConfig = ZuoQiShowConfigCategory.Instance.Get(horseId);
+                GameObjectPoolComponent.Instance.AddLoadQueue(ABPathHelper.GetUnitPath($"ZuoQi/{zuoQiShowConfig.ModelID}"), self.InstanceId, self.OnLoadHorse);
             }
         }
 
@@ -130,7 +199,6 @@ namespace ET
             go.transform.rotation = unit.Rotation;
             self.GameObject = go;
 
-            UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             int unitType = unit.Type;
             switch (unitType)
             {
@@ -274,7 +342,6 @@ namespace ET
                     break;
             }
         }
-
 
         public static void OnMainHero(this GameObjectComponent self, Transform topTf, Transform mainTf, int sceneTypeEnum)
         {
