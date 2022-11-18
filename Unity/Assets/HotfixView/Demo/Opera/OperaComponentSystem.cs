@@ -337,7 +337,14 @@ namespace ET
             int functionId = NpcConfigCategory.Instance.Get(self.NpcId).NpcType;
             if (functionId < 100)
             {
-                self.OpenNpcTaskUI(self.NpcId).Coroutine();
+                if (self.NpcId == 20000030)
+                {
+                    UIHelper.Create(self.ZoneScene(), UIType.UITrialDungeon).Coroutine();
+                }
+                else
+                {
+                    self.OpenNpcTaskUI(self.NpcId).Coroutine();
+                }
             }
             else
             {
