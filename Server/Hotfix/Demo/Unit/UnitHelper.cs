@@ -72,13 +72,13 @@ namespace ET
             //携带的buff
             unitInfo.Buffs = unit.GetComponent<BuffManagerComponent>().GetMessageBuff();
 
-             //设置数据
+            //设置数据
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             unitInfo.PlayerName = userInfoComponent.UserInfo.Name;
             unitInfo.PlayerOcc = userInfoComponent.UserInfo.Occ;
             unitInfo.UserId = userInfoComponent.UserInfo.UserId;
             unitInfo.ConfigId = userInfoComponent.UserInfo.Occ;
-            unitInfo.UnionName = string.IsNullOrWhiteSpace(userInfoComponent.UserInfo.UnionName)?"": userInfoComponent.UserInfo.UnionName;
+            unitInfo.UnionName = string.IsNullOrWhiteSpace(userInfoComponent.UserInfo.UnionName) ? "" : userInfoComponent.UserInfo.UnionName;
             unitInfo.StallName = unitInfoComponent.StallName;
             return unitInfo;
         }
@@ -92,7 +92,7 @@ namespace ET
         {
             return self.GetComponent<AOIEntity>().GetBeSeePlayers();
         }
-        
+
         public static void NoticeUnitAdd(Unit unit, Unit sendUnit)
         {
             M2C_CreateUnits createUnits = new M2C_CreateUnits();
@@ -257,7 +257,7 @@ namespace ET
             for (int i = 0; i < allunits.Count; i++)
             {
                 if (allunits[i].Type == unitType)
-                { 
+                {
                     units.Add(allunits[i]);
                 }
             }
@@ -275,7 +275,7 @@ namespace ET
         }
 
         public static void SetBornPosition(this Unit self, Vector3 vector3)
-        { 
+        {
             NumericComponent numericComponent = self.GetComponent<NumericComponent>();
             numericComponent.ApplyValue(NumericType.Born_X, (long)(vector3.x * 10000));
             numericComponent.ApplyValue(NumericType.Born_Y, (long)(vector3.y * 10000));
@@ -288,6 +288,33 @@ namespace ET
             return new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),
                 numericComponent.GetAsFloat(NumericType.Born_Y),
                 numericComponent.GetAsFloat(NumericType.Born_Z));
+        }
+
+        public static void RecordPostion(this Unit self)
+        {
+            bool record = false;
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+            NumericComponent numericComponent = self.GetComponent<NumericComponent>();
+            if (!SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
+            {
+                record = false;
+            }
+            else
+            {
+                record = SceneConfigCategory.Instance.Get(mapComponent.SceneId).IfInitPosi == 1;
+            }
+            if (record)
+            {
+                numericComponent.Set(NumericType.MainCity_X, self.Position.x);
+                numericComponent.Set(NumericType.MainCity_Y, self.Position.y);
+                numericComponent.Set(NumericType.MainCity_Z, self.Position.z);
+            }
+            else
+            {
+                numericComponent.Set(NumericType.MainCity_X, 0f);
+                numericComponent.Set(NumericType.MainCity_Y, 0f);
+                numericComponent.Set(NumericType.MainCity_Z, 0f);
+            }
         }
     }
 }

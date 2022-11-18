@@ -311,6 +311,7 @@ message UserInfo
 	repeated KeyValuePairInt  MakeIdList = 29;
 	//已通关的副本列表
         repeated FubenPassInfo FubenPassList = 30;
+
 }
 
 message KeyValuePair

@@ -77,7 +77,7 @@ namespace ET
                 return;
             }
           
-            if (!UIMainHelper.IfCanRevive(mapComponent.SceneTypeEnum, mapComponent.SceneId))
+            if (!SceneConfigHelper.IfCanRevive(mapComponent.SceneTypeEnum, mapComponent.SceneId))
             {
                 long instanceId = unit.InstanceId;
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("该地图不支持复活"));

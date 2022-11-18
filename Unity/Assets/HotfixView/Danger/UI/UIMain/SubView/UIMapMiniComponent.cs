@@ -209,8 +209,8 @@ namespace ET
                 mapCamera.transform.eulerAngles = new Vector3(90, 0, (float)dungeonConfig.CameraPos[3]);
                 camera.orthographicSize = (float)dungeonConfig.CameraPos[4];
             }
-            if(UIMainHelper.UseSceneConfig(mapComponent.SceneTypeEnum)
-               && UIMainHelper.ShowMiniMap(mapComponent.SceneTypeEnum, mapComponent.SceneId))
+            if(SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum)
+               && SceneConfigHelper.ShowMiniMap(mapComponent.SceneTypeEnum, mapComponent.SceneId))
             {
                 SceneConfig dungeonConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
                 mapCamera.transform.position = new Vector3((float)dungeonConfig.CameraPos[0], (float)dungeonConfig.CameraPos[1], (float)dungeonConfig.CameraPos[2]);

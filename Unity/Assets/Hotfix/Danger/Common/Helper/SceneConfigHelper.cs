@@ -2,7 +2,7 @@
 
 namespace ET
 {
-    public static class UIMainHelper
+    public static class SceneConfigHelper
     {
         public static bool ShowRightTopButton(int sceneType)
         {

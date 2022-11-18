@@ -98,6 +98,7 @@
             //删除unit,让其它进程发送过来的消息找不到actor，重发
             //Game.EventSystem.Remove(unitId);
             // 删除Mailbox,让发给Unit的ActorLocation消息重发
+            unit.RecordPostion();
             unit.RemoveComponent<MailBoxComponent>();
             unit.GetComponent<BuffManagerComponent>().BeforeTransfer();
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
