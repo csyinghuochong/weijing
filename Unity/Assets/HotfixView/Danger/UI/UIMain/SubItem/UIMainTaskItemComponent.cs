@@ -5,25 +5,27 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMainTaskItemComponent : Entity, IAwake
+    public class UIMainTaskItemComponent : Entity, IAwake<GameObject>
     {
 
         public GameObject TaskTargetDes;
         public GameObject TaskName;
         public GameObject TaskTypeName;
         public GameObject ButtonTask;
+        public GameObject GameObject;
 
         public TaskPro TaskPro;
     }
 
 
     [ObjectSystem]
-    public class UITrackTaskComponentAwakeSystem : AwakeSystem<UIMainTaskItemComponent>
+    public class UITrackTaskComponentAwakeSystem : AwakeSystem<UIMainTaskItemComponent, GameObject>
     {
 
-        public override void Awake(UIMainTaskItemComponent self)
+        public override void Awake(UIMainTaskItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.TaskTargetDes = rc.Get<GameObject>("TaskTargetDes");
             self.TaskName = rc.Get<GameObject>("TaskName");

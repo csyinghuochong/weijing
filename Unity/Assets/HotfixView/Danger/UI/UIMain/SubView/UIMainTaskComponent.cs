@@ -3,30 +3,23 @@ using UnityEngine;
 
 namespace ET
 {
-    public class UIMainTaskComponent : Entity, IAwake
+    public class UIMainTaskComponent : Entity, IAwake<GameObject>
     {
         public GameObject TaskShowList;
         public GameObject TaskShowItem;
+        public GameObject GameObject;
 
-        public List<UI> TrackTaskList = new List<UI>();
+        public List<UIMainTaskItemComponent> TrackTaskList = new List<UIMainTaskItemComponent>();
     }
 
     [ObjectSystem]
-    public class TaskShowSetComponentAwakeSystem : AwakeSystem<UIMainTaskComponent>
+    public class TaskShowSetComponentAwakeSystem : AwakeSystem<UIMainTaskComponent, GameObject>
     {
-        public override void Awake(UIMainTaskComponent self)
+        public override void Awake(UIMainTaskComponent self, GameObject gameObject)
         {
-            self.Awake();
-        }
-    }
+            self.GameObject = gameObject;
+            ReferenceCollector rc = self.GameObject.GetComponent<ReferenceCollector>();
 
-    public static class TaskShowSetComponentSystem
-    {
-
-        public static void Awake(this UIMainTaskComponent self)
-        {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-           
             self.TaskShowList = rc.Get<GameObject>("TaskShowList");
             self.TaskShowItem = rc.Get<GameObject>("UIMainTaskItem");
             self.TaskShowItem.SetActive(false);
@@ -34,6 +27,10 @@ namespace ET
             self.TrackTaskList.Clear();
             self.OnUpdateUI();
         }
+    }
+
+    public static class TaskShowSetComponentSystem
+    {
 
         public static void OnUpdateUI(this UIMainTaskComponent self)
         {
@@ -52,12 +49,12 @@ namespace ET
                     continue;
                 }
 
-                UI ui_1 = null;
+                UIMainTaskItemComponent ui_1 = null;
                 if (number < self.TrackTaskList.Count)
                 {
                     ui_1 = self.TrackTaskList[number];
                     ui_1.GameObject.SetActive(true);
-                    ui_1.GetComponent<UIMainTaskItemComponent>().OnUpdateItem(taskPros[i]);
+                    ui_1.OnUpdateItem(taskPros[i]);
                 }
                 else
                 {
@@ -65,9 +62,8 @@ namespace ET
                     item.SetActive(true);
                     UICommonHelper.SetParent(item, self.TaskShowList);
 
-                    ui_1 = self.AddChild<UI, string, GameObject>( "TaskShowItem_" + i.ToString(), item);
-                    UIMainTaskItemComponent uIItemComponent = ui_1.AddComponent<UIMainTaskItemComponent>();
-                    uIItemComponent.OnUpdateItem(taskPros[i]);
+                    ui_1 = self.AddChild<UIMainTaskItemComponent, GameObject>( item);
+                    ui_1.OnUpdateItem(taskPros[i]);
 
                     self.TrackTaskList.Add(ui_1);
                 }

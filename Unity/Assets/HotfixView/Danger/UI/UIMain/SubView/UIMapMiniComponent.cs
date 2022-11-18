@@ -240,7 +240,7 @@ namespace ET
 
             int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
             int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
-            self.MainCityShow.SetActive(UIMainHelper.ShowMiniMap(sceneTypeEnum, sceneId));
+            self.MainCityShow.SetActive(true);
             //显示地图名称
             if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
             {

@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 
 namespace ET
 {
-    public class UIModelDynamicComponent : Entity, IAwake, IAwake<GameObject>
+    public class UIModelDynamicComponent : Entity, IAwake, IAwake<GameObject>, IDestroy
     {
         public GameObject Model;
         public Transform ModelParent;
@@ -27,6 +27,19 @@ namespace ET
             self.GameObject = gameObject;   
             self.ModelParent = gameObject.transform.Find("Model");
             self.Camera = gameObject.transform.Find("Camera").GetComponent<Camera>();
+        }
+    }
+
+    [ObjectSystem]
+    public class xx : DestroySystem<UIModelDynamicComponent>
+    {
+        public override void Destroy(UIModelDynamicComponent self)
+        {
+            if (self.Model != null)
+            {
+                GameObject.Destroy(self.Model);
+                self.Model = null;
+            }
         }
     }
 

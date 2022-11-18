@@ -53,11 +53,11 @@ namespace ET
         public GameObject Btn_TopRight_1;
         public GameObject Button_JiaYuan;
 
-        public UI UIMainTask;
         public UI UILevelGuideMini;
         public UI UIMainChat;
         public UI UIMailHintTip;
 
+        public UIMainTaskComponent UIMainTask;
         public UIMapMiniComponent UIMapMini;
         public UIRoleHeadComponent UIRoleHead;
         public UIMainHpBarComponent UIMainHpBar;
@@ -504,7 +504,7 @@ namespace ET
 
         public static void OnRecvTaskUpdate(this UIMainComponent self)
         {
-            self.UIMainTask.GetComponent<UIMainTaskComponent>().OnUpdateUI();
+            self.UIMainTask.OnUpdateUI();
 
             self.UpdateNpcTaskUI();
         }
@@ -532,12 +532,12 @@ namespace ET
 
         public static void OnTaskGiveUp(this UIMainComponent self)
         {
-            self.UIMainTask.GetComponent<UIMainTaskComponent>().OnUpdateUI();
+            self.UIMainTask.OnUpdateUI();
         }
 
         public static void OnRecvTaskTrace(this UIMainComponent self)
         {
-            self.UIMainTask.GetComponent<UIMainTaskComponent>().OnUpdateUI();
+            self.UIMainTask.OnUpdateUI();
         }
 
         public static void OnSkillSetUpdate(this UIMainComponent self)
@@ -658,8 +658,7 @@ namespace ET
 
             //任务
             GameObject taskShowSet = rc.Get<GameObject>("UIMainTask");
-            self.UIMainTask = self.AddChild<UI, string, GameObject>("SubTaskShow", taskShowSet);
-            self.UIMainTask.AddComponent<UIMainTaskComponent>();
+            self.UIMainTask = self.AddChild<UIMainTaskComponent, GameObject>(taskShowSet);
 
             //组队
             GameObject mainTeamSet = rc.Get<GameObject>("UIMainTeam");
@@ -832,6 +831,7 @@ namespace ET
         {
             self.Btn_TopRight_1.SetActive(UIMainHelper.ShowRightTopButton(sceneTypeEnum));
             self.Btn_TopRight_2.SetActive(UIMainHelper.ShowRightTopButton(sceneTypeEnum));
+            self.UIMainTask.GameObject.SetActive(sceneTypeEnum != SceneTypeEnum.TrialDungeon);
             self.UITiaoZhan.SetActive(sceneTypeEnum == SceneTypeEnum.Tower);
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);

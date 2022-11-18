@@ -3,13 +3,13 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMainHpBarComponent : Entity, IAwake<GameObject>
+    public class UIMainHpBarComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject GameObject;
         public GameObject Lab_MonsterLv;
         public GameObject Lab_MonsterName;
         public GameObject Img_MonsterHp;
-        public GameObject Img_BossIcon;
+        public GameObject RawImage;
         public GameObject Lab_BossLv;
         public GameObject Lab_BossName;
         public GameObject Img_BossHp;
@@ -19,14 +19,13 @@ namespace ET
         public long LockMonsterId;
         public long LockBossId;
         public Vector3 Vector3 =  new Vector3(1, 1, 1);
-        public UIModelShowComponent uIModelShowComponent;
+        public RenderTexture RenderTexture;
+        public UIModelDynamicComponent UIModelShowComponent;
     }
-
 
     [ObjectSystem]
     public class UIMainHpBarComponentAwakeSystem : AwakeSystem<UIMainHpBarComponent, GameObject>
     {
-
         public override void Awake(UIMainHpBarComponent self, GameObject gameObject)
         {
             self.GameObject = gameObject;
@@ -35,7 +34,7 @@ namespace ET
             self.Lab_MonsterLv = rc.Get<GameObject>("Lab_MonsterLv");
             self.Lab_MonsterName = rc.Get<GameObject>("Lab_MonsterName");
             self.Img_MonsterHp = rc.Get<GameObject>("Img_MonsterHp");
-            self.Img_BossIcon = rc.Get<GameObject>("Img_BossIcon");
+            self.RawImage = rc.Get<GameObject>("Img_BossIcon");
             self.Lab_BossLv = rc.Get<GameObject>("Lab_BossLv");
             self.Lab_BossName = rc.Get<GameObject>("Lab_BossName");
             self.Img_BossHp = rc.Get<GameObject>("Img_BossHp");
@@ -44,6 +43,18 @@ namespace ET
 
             self.MonsterNode.SetActive(false);
             self.BossNode.SetActive(false);
+        }
+    }
+
+    [ObjectSystem]
+    public class UIMainHpBarComponentDestroy : DestroySystem<UIMainHpBarComponent>
+    {
+        public override void Destroy(UIMainHpBarComponent self)
+        {
+            self.UIModelShowComponent.ReleaseRenderTexture();
+            self.RenderTexture.Release();
+            GameObject.Destroy(self.RenderTexture);
+            self.RenderTexture = null;
         }
     }
 
@@ -120,20 +131,29 @@ namespace ET
             self.MonsterNode.SetActive(false);
         }
 
+        public static void DestoryModelShow(this UIMainHpBarComponent self)
+        {
+            if (self.UIModelShowComponent != null)
+            {
+                self.UIModelShowComponent.ReleaseRenderTexture();
+                self.UIModelShowComponent.Dispose();
+                self.UIModelShowComponent = null;
+            }
+        }
+
         public static void  InitModelShowView(this UIMainHpBarComponent self, int monsterId)
         {
             //模型展示界面
-            var path = ABPathHelper.GetUGUIPath("Common/UIModelBossIconShow");
+            var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
-            UICommonHelper.SetParent(gameObject, self.Img_BossIcon);
-            UI ui = self.AddChild<UI, string, GameObject>("UIModelShow", gameObject);
-            self.uIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.Img_BossIcon);
-
+            UICommonHelper.SetParent(gameObject, self.RawImage);
+            self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(gameObject);
+            self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
+            self.UIModelShowComponent.ShowModel("Monster/" + monsterConfig.MonsterModelID.ToString()).Coroutine();
             //配置摄像机位置[0,115,257]
             gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 200, 378f);
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
-            self.uIModelShowComponent.ShowOtherModel("Monster/" + monsterConfig.MonsterModelID.ToString()).Coroutine();
         }
 
         public static void ShowBossHPBar(this UIMainHpBarComponent self, Unit unit)
@@ -150,9 +170,7 @@ namespace ET
             {
                 self.LockBossId = 0;
                 self.BossNode.SetActive(false);
-                UICommonHelper.DestoryChild(self.Img_BossIcon);
-                self.uIModelShowComponent?.Dispose();
-                self.uIModelShowComponent = null;
+                self.DestoryModelShow();
             }
             else
             {
@@ -162,7 +180,6 @@ namespace ET
                 self.BossNode.SetActive(true);
                 self.Lab_BossLv.GetComponent<Text>().text = monsterConfig.Lv.ToString();
                 self.Lab_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
-                //self.Img_BossIcon.GetComponent<Image>().sprite = sp;
                 self.InitModelShowView(configid);
                 self.OnUpdateHP(unit);
             }
