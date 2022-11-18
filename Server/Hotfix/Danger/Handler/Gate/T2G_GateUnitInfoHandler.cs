@@ -9,7 +9,7 @@ namespace ET
         {
             Player gateUnitInfo = scene.GetComponent<PlayerComponent>().GetByUserId(request.UserID);
 
-            response.SessionInstanceId = gateUnitInfo!=null ? gateUnitInfo.InstanceId : 0;
+            response.SessionInstanceId = (gateUnitInfo!=null && gateUnitInfo.ClientSession!=null) ? gateUnitInfo.InstanceId : 0;
             response.PlayerState = gateUnitInfo != null ? (int)gateUnitInfo.PlayerState : (int)PlayerState.None;
             response.UnitId = gateUnitInfo != null ? gateUnitInfo.UnitId : 0;
             reply();

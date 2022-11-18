@@ -318,9 +318,14 @@ namespace ET
                     }
                 }
             }
-            int playerLv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
+            
             List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro, false);
-            List<RewardItem> droplist_2 = DropHelper.AI_DropByPlayerLv(monsterCof.Id, playerLv, dropAdd_Pro, false);
+            List<RewardItem> droplist_2 = null;
+            if (!main.IsDisposed)
+            {
+                int playerLv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
+                DropHelper.AI_DropByPlayerLv(monsterCof.Id, playerLv, dropAdd_Pro, false);
+            }
             if (droplist_2 != null)
             {
                 droplist.AddRange(droplist_2);
