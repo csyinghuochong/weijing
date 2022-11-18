@@ -167,15 +167,18 @@ namespace ET
 				string[] mondels = monsters[i].Split(';');
 				string[] mtype = mondels[0].Split(',');
 				string[] position = mondels[1].Split(',');
-				string[] monsterid = mondels[2].Split(',');
+				int monsterid =  int.Parse(mondels[2]);
 				string[] mcount = mondels[3].Split(',');
-
+				if (!MonsterConfigCategory.Instance.Contain(monsterid))
+				{
+					Log.Debug($"monsterid==null {monsterid}");
+					continue;
+				}
 				if (mtype[0] == "1")    //固定位置刷怪
 				{
 					for (int c = 0; c < int.Parse(mcount[0]); c++)
 					{
-
-						MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(int.Parse(monsterid[0]));
+						MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 						Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
 
 						//51 场景怪 有AI 不显示名称
@@ -210,12 +213,12 @@ namespace ET
 						{
 							return;
 						}
-						MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(int.Parse(monsterid[0]));
+						MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 						float range = float.Parse(mcount[1]);
 						Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
 						Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
 						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
-						UnitFactory.CreateMonster(scene, int.Parse(monsterid[0]), vector3, new CreateMonsterInfo()
+						UnitFactory.CreateMonster(scene, monsterid, vector3, new CreateMonsterInfo()
 						{ 
 
 							Camp = monsterConfig.MonsterCamp
@@ -243,8 +246,8 @@ namespace ET
 						Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
 						Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
 						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
-						MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(int.Parse(monsterid[0]));
-						UnitFactory.CreateMonster(scene, int.Parse(monsterid[0]), vector3,  new CreateMonsterInfo() {
+						MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
+						UnitFactory.CreateMonster(scene, monsterid, vector3,  new CreateMonsterInfo() {
 							PlayerLevel = playerLv, AttributeParams = mondels[4] + ";" + mondels[5],
 							Camp = monsterConfig.MonsterCamp
 						});
