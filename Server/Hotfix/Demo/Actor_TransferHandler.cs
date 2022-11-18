@@ -42,6 +42,10 @@ namespace ET
 					reply();
 					return;
 				}
+				if (oldScene == SceneTypeEnum.MainCityScene && request.SceneType > SceneTypeEnum.MainCityScene)
+				{
+					unit.RecordPostion(request.SceneType, request.SceneId);
+				}
 
 				switch (request.SceneType)
 				{

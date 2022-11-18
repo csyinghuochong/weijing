@@ -302,7 +302,7 @@ namespace ET
             {
                 dropAdd_Pro += 0.3f;
             }
-            int playerLv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
+           
             //创建掉落
             MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
             if (main != null && monsterCof.MonsterSonType == 1)
@@ -318,7 +318,7 @@ namespace ET
                     }
                 }
             }
-
+            int playerLv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
             List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro, false);
             List<RewardItem> droplist_2 = DropHelper.AI_DropByPlayerLv(monsterCof.Id, playerLv, dropAdd_Pro, false);
             if (droplist_2 != null)

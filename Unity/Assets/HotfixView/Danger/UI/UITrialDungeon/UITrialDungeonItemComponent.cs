@@ -40,6 +40,9 @@ namespace ET
             this.Hint_1 = rc.Get<GameObject>("Hint_1");
             this.Hint_2 = rc.Get<GameObject>("Hint_2");
             this.Hint_3 = rc.Get<GameObject>("Hint_3");
+            this.Hint_1.SetActive(false);
+            this.Hint_2.SetActive(false);
+            this.Hint_3.SetActive(false);
 
             this.Lab_Name.text = towerConfig.Name;
             this.ClickHandle = action;
@@ -57,7 +60,8 @@ namespace ET
             NumericComponent numcom = UnitHelper.GetMyUnitFromZoneScene(this.ZoneScene()).GetComponent<NumericComponent>();
             int towerid = numcom.GetAsInt(NumericType.TrialDungeonId);   // 
             //已经打完
-            if (towerid >= towerConfig.Id) {
+            if (towerid >= towerConfig.Id) 
+            {
                 //是否领取
                 if (userInfo.TowerRewardIds.Contains(towerConfig.Id))
                 {
@@ -70,7 +74,8 @@ namespace ET
                 }
             }
             else {
-                if (towerid + 1 == towerConfig.Id) {
+                if (towerid + 1 == towerConfig.Id) 
+                {
                     this.Hint_1.SetActive(true);
                 }
             }

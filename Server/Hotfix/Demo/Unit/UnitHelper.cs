@@ -290,18 +290,17 @@ namespace ET
                 numericComponent.GetAsFloat(NumericType.Born_Z));
         }
 
-        public static void RecordPostion(this Unit self)
+        public static void RecordPostion(this Unit self, int sceneType, int sceneId)
         {
             bool record = false;
-            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
             NumericComponent numericComponent = self.GetComponent<NumericComponent>();
-            if (!SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
+            if (!SceneConfigHelper.UseSceneConfig(sceneType) || sceneId == 0)
             {
                 record = false;
             }
             else
             {
-                record = SceneConfigCategory.Instance.Get(mapComponent.SceneId).IfInitPosi == 1;
+                record = SceneConfigCategory.Instance.Get(sceneId).IfInitPosi == 1;
             }
             if (record)
             {
