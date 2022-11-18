@@ -629,7 +629,7 @@ namespace ET
                     if (itemCof.ItemQuality >= 5 && getType == ItemGetWay.PickItem)
                     {
                         string name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
-                        string noticeContent = $"恭喜 {name} 获取 {itemCof.ItemName}";
+                        string noticeContent = $"恭喜玩家 {name} 获得传承装备: {itemCof.ItemName}";
                         ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, noticeContent);
                     }
 

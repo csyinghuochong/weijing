@@ -484,7 +484,7 @@ namespace ET
                     skillName = skillName + $" {SkillConfigCategory.Instance.Get(HideSkillList[i]).SkillName}";
                 }
                 string name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
-                string noticeContent = $"恭喜 {name} 洗练出 {skillName}";
+                string noticeContent = $"恭喜玩家 {name} 洗练出隐藏技能: {skillName}";
                 ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
             }
 
