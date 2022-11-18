@@ -26,7 +26,7 @@ namespace ET
         public override void Awake(FsmComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-            self.Animator = unit.GetComponent<AnimatorComponent>().Animator;
+            self.Animator = unit.GetComponent<AnimatorComponent>();
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             bool idle = moveComponent == null || moveComponent.IsArrived();
             self.ChangeState(idle ? FsmStateEnum.FsmIdleState : FsmStateEnum.FsmRunState, "");
@@ -47,6 +47,12 @@ namespace ET
     /// </summary>
     public static class FsmComponentSystem
     {
+
+        public static void ChangeAnimator(this FsmComponent self, Animator animator)
+        { 
+            
+        }
+
         public static void Check(this FsmComponent self)
         {
             if (self.Animator == null)
@@ -109,18 +115,18 @@ namespace ET
                 case FsmStateEnum.FsmComboState:
                     break;
                 case FsmStateEnum.FsmDeathState:
-                    self.Animator.SetBool("Death", false);
+                    self.Animator.SetBoolValue("Death", false);
                     break;
                 case FsmStateEnum.FsmNpcSpeak:
-                    self.Animator.SetBool("Idle", true);
+                    self.Animator.SetBoolValue("Idle", true);
                     break;
                 case FsmStateEnum.FsmSinging:
-                    self.Animator.SetBool("Run", false);
-                    self.Animator.SetBool("Idle", true);
+                    self.Animator.SetBoolValue("Run", false);
+                    self.Animator.SetBoolValue("Idle", true);
                     break;
                 case FsmStateEnum.FsmSkillState:
-                    self.Animator.SetBool("Run", false);
-                    self.Animator.SetBool("Idle", true);
+                    self.Animator.SetBoolValue("Run", false);
+                    self.Animator.SetBoolValue("Idle", true);
                     break;
                 default:
                     break;
@@ -130,38 +136,38 @@ namespace ET
             {
                 case FsmStateEnum.FsmComboState:
                     //this.ClearnAnimator();
-                    self.Animator.SetBool("Idle", false);
-                    self.Animator.SetBool("Run", false);
+                    self.Animator.SetBoolValue("Idle", false);
+                    self.Animator.SetBoolValue("Run", false);
                     self.OnEnterFsmComboState(parasmss);
                     break;
                 case FsmStateEnum.FsmDeathState:
-                    self.Animator.SetBool("Idle", false);
-                    self.Animator.SetBool("Death", true);
+                    self.Animator.SetBoolValue("Idle", false);
+                    self.Animator.SetBoolValue("Death", true);
                     self.Animator.Play("Death");
                     break;
                 case FsmStateEnum.FsmHui:
-                    self.Animator.SetBool("Idle", false);
+                    self.Animator.SetBoolValue("Idle", false);
                     self.Animator.Play("Hui");
                     break;
                 case FsmStateEnum.FsmIdleState:
                     self.OnEnterIdleState();
                     break;
                 case FsmStateEnum.FsmNpcSpeak:
-                    self.Animator.SetBool("Idle", false);
-                    self.Animator.SetBool("Run", false);
+                    self.Animator.SetBoolValue("Idle", false);
+                    self.Animator.SetBoolValue("Run", false);
                     self.Animator.Play("Speak");
                     break;
                 case FsmStateEnum.FsmRunState:
                     self.OnEnterFsmRunState(parasmss);
                     break;
                 case FsmStateEnum.FsmShiQuItem:
-                    self.Animator.SetBool("Idle", false);
-                    self.Animator.SetBool("Run", false);
+                    self.Animator.SetBoolValue("Idle", false);
+                    self.Animator.SetBoolValue("Run", false);
                     self.Animator.Play("ShiQu");
                     break;
                 case FsmStateEnum.FsmSinging:
-                    self.Animator.SetBool("Idle", false);
-                    self.Animator.SetBool("Run", false);
+                    self.Animator.SetBoolValue("Idle", false);
+                    self.Animator.SetBoolValue("Run", false);
                     if (double.Parse(parasmss) > 0)
                     {
                         self.Animator.Play("YinChang");
@@ -171,8 +177,8 @@ namespace ET
                     self.OnEnterFsmSkillState(parasmss);
                     break;
                 case FsmStateEnum.FsmHorse:
-                    self.Animator.SetBool("Idle", false);
-                    self.Animator.SetBool("Run", false);
+                    self.Animator.SetBoolValue("Idle", false);
+                    self.Animator.SetBoolValue("Run", false);
                     self.Animator.Play("Horse");
                     break;
                 default:
@@ -200,14 +206,14 @@ namespace ET
             if (skillManagerComponent.SkillMoveTime > TimeHelper.ClientNow()
                || skillManagerComponent.SkillSingTime > TimeHelper.ClientNow())
             {
-                self.Animator.SetBool("Idle", false);
-                self.Animator.SetBool("Run", false);
+                self.Animator.SetBoolValue("Idle", false);
+                self.Animator.SetBoolValue("Run", false);
                 self.BeginTimer();
             }
             else
             {
-                self.Animator.SetBool("Run", false);
-                self.Animator.SetBool("Idle", true);
+                self.Animator.SetBoolValue("Run", false);
+                self.Animator.SetBoolValue("Idle", true);
             }
             self.Animator.Play(animationinfos[1]);
         }
@@ -232,22 +238,22 @@ namespace ET
 
         public static void SetHorseState(this FsmComponent self)
         {
-            self.Animator.SetBool("Run", false);
-            self.Animator.SetBool("Idle", false);
-            self.Animator.Play("ZuoQi");
+            self.Animator.SetBoolValue("Run", false);
+            self.Animator.SetBoolValue("Idle", false);
+            self.Animator.Animator.Play("ZuoQi");
         }
 
         public static void SetIdleState(this FsmComponent self)
         {
-            self.Animator.SetBool("Run", false);
-            self.Animator.SetBool("Idle", true);
+            self.Animator.SetBoolValue("Run", false);
+            self.Animator.SetBoolValue("Idle", true);
             self.Animator.Play("Idle");
         }
 
         public static void SetRunState(this FsmComponent self)
         {
-            self.Animator.SetBool("Idle", false);
-            self.Animator.SetBool("Run", true);
+            self.Animator.SetBoolValue("Idle", false);
+            self.Animator.SetBoolValue("Run", true);
             self.Animator.Play("Run");
         }
 
@@ -286,13 +292,13 @@ namespace ET
         public static void ClearnAnimator(this FsmComponent self)
         {
             //重置参数
-            self.Animator.SetBool("Idle", false);
-            self.Animator.SetBool("Run", false);
-            self.Animator.SetBool("Death", false);
-            self.Animator.SetBool("CriAct", false);
-            self.Animator.SetBool("Act_1", false);
-            self.Animator.SetBool("Act_2", false);
-            self.Animator.SetBool("Act_3", false);
+            self.Animator.SetBoolValue("Idle", false);
+            self.Animator.SetBoolValue("Run", false);
+            self.Animator.SetBoolValue("Death", false);
+            self.Animator.SetBoolValue("CriAct", false);
+            self.Animator.SetBoolValue("Act_1", false);
+            self.Animator.SetBoolValue("Act_2", false);
+            self.Animator.SetBoolValue("Act_3", false);
         }
     }
 }

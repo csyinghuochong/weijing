@@ -9,7 +9,7 @@ namespace ET
     {
         public int CurrentFsm;
 
-        public Animator Animator;
+        public AnimatorComponent Animator;
 
         public long Timer;
     }

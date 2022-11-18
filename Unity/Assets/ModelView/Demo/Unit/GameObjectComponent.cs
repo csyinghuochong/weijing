@@ -7,7 +7,8 @@ namespace ET
         public string UnitAssetsPath;
         public GameObject GameObject;
         public string HorseAssetsPath;
-        public GameObject Horse;
+        public GameObject ObjectHorse;
+        public GameObject ObjectMove;
         public GameObject BaiTan;
         public Material Material;
     }

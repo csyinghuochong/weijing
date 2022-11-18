@@ -8,17 +8,9 @@ namespace ET
 	{
 		public override void Awake(AnimatorComponent self)
 		{
-			self.Awake();
+			self.UpdateAnimator(self.Parent.GetComponent<GameObjectComponent>().GameObject);
 		}
 	}
-	//[ObjectSystem]
-	//public class AnimatorComponentUpdateSystem : UpdateSystem<AnimatorComponent>
-	//{
-	//	public override void Update(AnimatorComponent self)
-	//	{
-	//		self.Update();
-	//	}
-	//}
 
 	[ObjectSystem]
 	public class AnimatorComponentDestroySystem : DestroySystem<AnimatorComponent>
@@ -37,9 +29,14 @@ namespace ET
 		public static int Speed = 1;
 		//public static SkillActionBase skill;
 
-		public static void Awake(this AnimatorComponent self)
+		public static void OnUpdateHorse(this AnimatorComponent self, GameObject go)
 		{
-			Animator animator = self.Parent.GetComponent<GameObjectComponent>().GameObject.GetComponentInChildren<Animator>();
+			self.UpdateAnimator(go);
+		}
+
+		public static void UpdateAnimator(this AnimatorComponent self, GameObject gameObject)
+		{
+			Animator animator = gameObject.GetComponentInChildren<Animator>();
 			if (animator == null)
 				return;
 

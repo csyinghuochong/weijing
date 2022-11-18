@@ -112,18 +112,18 @@ namespace ET
 
         public static void RecoverHorse(this GameObjectComponent self)
         {
-            if (self.Horse != null)
+            if (self.ObjectHorse != null)
             {
-                GameObjectPoolComponent.Instance.RecoverGameObject(self.HorseAssetsPath, self.Horse);
-                self.Horse = null;
+                GameObjectPoolComponent.Instance.RecoverGameObject(self.HorseAssetsPath, self.ObjectHorse);
+                self.ObjectHorse = null;
             }
         }
 
         public static void UpdateRotation(this GameObjectComponent self, Quaternion quaternion)
         {
-            if (self.Horse != null)
+            if (self.ObjectHorse != null)
             {
-                self.Horse.transform.rotation = quaternion;
+                self.ObjectHorse.transform.rotation = quaternion;
                 return;
             }
             if (self.GameObject != null)
@@ -134,9 +134,9 @@ namespace ET
 
         public static void UpdatePositon(this GameObjectComponent self, Vector3 vector)
         {
-            if (self.Horse != null)
+            if (self.ObjectHorse != null)
             {
-                self.Horse.transform.position = vector;
+                self.ObjectHorse.transform.position = vector;
                 return;
             }
             if (self.GameObject!=null)
@@ -147,13 +147,14 @@ namespace ET
 
         public static void OnLoadHorse(this GameObjectComponent self, GameObject go, long formId)
         {
-            self.Horse = go;
+            self.ObjectHorse = go;
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int horseId = numericComponent.GetAsInt(NumericType.Now_Horse);
             if (horseId == 0)
             {
                 self.RecoverHorse();
+                unit.GetComponent<AnimatorComponent>().OnUpdateHorse(self.GameObject);
                 unit.GetComponent<FsmComponent>().SetIdleState();
             }
             else
@@ -164,12 +165,13 @@ namespace ET
                 go.transform.rotation = unit.Rotation;
                 UICommonHelper.SetParent(self.GameObject, self.GetHorseNode());
                 unit.GetComponent<FsmComponent>().SetHorseState();
+                unit.GetComponent<AnimatorComponent>().OnUpdateHorse(go);
             }
         }
 
         public static GameObject GetHorseNode(this GameObjectComponent self)
         {
-            return self.Horse.transform.Find("RoleBoneSet/Head").gameObject;
+            return self.ObjectHorse.transform.Find("RoleBoneSet/Head").gameObject;
         }
 
         public static void OnUpdateHorse(this GameObjectComponent self)

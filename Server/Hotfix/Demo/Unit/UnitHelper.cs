@@ -300,7 +300,15 @@ namespace ET
             }
             else
             {
-                record = SceneConfigCategory.Instance.Get(sceneId).IfInitPosi == 1;
+                if (!SceneConfigCategory.Instance.Contain(sceneId))
+                {
+                    record = false;
+                    Log.Debug($"sceneconfig ==null:  sceneType: {sceneType} sceneId: {sceneId}");
+                }
+                else
+                {
+                    record = SceneConfigCategory.Instance.Get(sceneId).IfInitPosi == 1;
+                }
             }
             if (record)
             {
