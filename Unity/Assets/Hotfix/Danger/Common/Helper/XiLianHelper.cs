@@ -39,7 +39,7 @@ namespace ET
             List<int> gemHoleId = new List<int>() { 0, 1, 2, 3, 4 };
             List<int> gemWeight = new List<int>() { 50, 20, 15, 10, 5 };
             int gemNumber = gemHoleId[RandomHelper.RandomByWeight(gemWeight)];
-            gemNumber = itemQuality >= 4 ? 4 : gemNumber;
+            gemNumber = itemQuality >= 5 ? 4 : gemNumber;
             for (int i = 0; i < gemNumber; i++)
             {
                 gemholeinfo += RandomHelper.RandomNumber(101, 105).ToString();
