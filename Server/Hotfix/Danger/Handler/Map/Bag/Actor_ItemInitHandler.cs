@@ -26,6 +26,11 @@ namespace ET
 			//初始化
 			for (int i = 0; i < bagInfos.Count; i++)
 			{
+				if (bagInfos[i].FumoProLists.Count > 0
+					&& bagInfos[i].FumoProLists[0].HideValue > 10000)
+				{
+					bagInfos[i].FumoProLists.Clear();
+				}
 				if (string.IsNullOrEmpty(bagInfos[i].GemIDNew))
 				{
 					bagInfos[i].GemIDNew = "0_0_0_0";
