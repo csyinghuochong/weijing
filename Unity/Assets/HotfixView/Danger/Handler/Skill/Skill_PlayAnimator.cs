@@ -8,7 +8,7 @@ namespace ET
         protected override void Run(object numerice)
         {
             EventType.PlayAnimator args = numerice as EventType.PlayAnimator;
-            args.Unit.GetComponent<AnimatorComponent>()?.PlayAnimation(args.Animator);
+            args.Unit.GetComponent<AnimatorComponent>()?.Play(args.Animator);
         }
     }
 }

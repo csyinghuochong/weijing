@@ -312,7 +312,7 @@ namespace ET
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcid);
             if (npcConfig.MovePosition.Length == 0 && npc != null && npc.GetComponent<AnimatorComponent>() != null)
             {
-                npc.GetComponent<AnimatorComponent>().PlayAnimation(MotionType.SelectNpc);
+                npc.GetComponent<AnimatorComponent>().Play(MotionType.SelectNpc);
             }
 
             self.NpcId = npcid;

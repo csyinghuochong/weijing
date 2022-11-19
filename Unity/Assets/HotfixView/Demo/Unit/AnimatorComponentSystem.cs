@@ -120,16 +120,6 @@ namespace ET
 			self.MontionSpeed = motionSpeed;
 		}
 
-		//播放技能动作
-		public static void PlayAnimation(this AnimatorComponent self, string motionType)
-		{
-			if (null == self.Animator)
-			{
-				return;
-			}
-			self.Animator.Play(motionType);
-		}
-
 		public static void Play(this AnimatorComponent self, string motionType, float motionSpeed = 1f)
 		{
 			//if (!self.HasParameter(motionType.ToString()))
@@ -138,6 +128,11 @@ namespace ET
 			//}
 			self.MotionType = motionType;
 			self.MontionSpeed = motionSpeed;
+			if (null == self.Animator)
+			{
+				return;
+			}
+			self.Animator.Play(motionType);
 		}
 
 		public static float AnimationTime(this AnimatorComponent self, string motionType)
@@ -184,41 +179,37 @@ namespace ET
 
 		public static void SetBoolValue(this AnimatorComponent self, string name, bool state)
 		{
-			if (!self.HasParameter(name))
-			{
-				return;
-			}
-
+			//if (!self.HasParameter(name))
+			//{
+			//	return;
+			//}
 			self.Animator.SetBool(name, state);
 		}
 
 		public static void SetFloatValue(this AnimatorComponent self, string name, float state)
 		{
-			if (!self.HasParameter(name))
-			{
-				return;
-			}
-
+			//if (!self.HasParameter(name))
+			//{
+			//	return;
+			//}
 			self.Animator.SetFloat(name, state);
 		}
 
 		public static void SetIntValue(this AnimatorComponent self, string name, int value)
 		{
-			if (!self.HasParameter(name))
-			{
-				return;
-			}
-
+			//if (!self.HasParameter(name))
+			//{
+			//	return;
+			//}
 			self.Animator.SetInteger(name, value);
 		}
 
 		public static void SetTrigger(this AnimatorComponent self, string name)
 		{
-			if (!self.HasParameter(name))
-			{
-				return;
-			}
-
+			//if (!self.HasParameter(name))
+			//{
+			//	return;
+			//}
 			self.Animator.SetTrigger(name);
 		}
 
