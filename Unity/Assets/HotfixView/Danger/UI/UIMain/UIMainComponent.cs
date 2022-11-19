@@ -939,7 +939,7 @@ namespace ET
 
         public static void OnButton_Horse(this UIMainComponent self)
         {
-            C2M_HorseRideRequest request = new C2M_HorseRideRequest() { HorseId = 10001 };
+            C2M_HorseRideRequest request = new C2M_HorseRideRequest() {  };
             self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
         }
 

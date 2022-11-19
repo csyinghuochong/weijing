@@ -182,7 +182,14 @@ namespace ET
             if (horseId != 0)
             {
                 ZuoQiShowConfig zuoQiShowConfig = ZuoQiShowConfigCategory.Instance.Get(horseId);
-                GameObjectPoolComponent.Instance.AddLoadQueue(ABPathHelper.GetUnitPath($"ZuoQi/{zuoQiShowConfig.ModelID}"), self.InstanceId, self.OnLoadHorse);
+                self.HorseAssetsPath = ABPathHelper.GetUnitPath($"ZuoQi/{zuoQiShowConfig.ModelID}");
+                GameObjectPoolComponent.Instance.AddLoadQueue(self.HorseAssetsPath, self.InstanceId, self.OnLoadHorse); ;
+            }
+            else
+            {
+                UICommonHelper.SetParent(self.GameObject, GlobalComponent.Instance.Unit.gameObject);
+                self.UpdatePositon(self.GetParent<Unit>().Position);
+                self.GetParent<Unit>().GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
             }
         }
 
