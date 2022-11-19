@@ -52,18 +52,28 @@ namespace ET
         public static void OnTimer(this TowerComponent self)
         {
             TimerComponent.Instance.Remove(ref self.Timer);
-            if (!TowerConfigCategory.Instance.Contain(self.TowerId + 1))
+            //TowerConfig towerConfig = TowerConfigCategory.Instance.Get(self.TowerId);
+
+            M2C_FubenSettlement message = new M2C_FubenSettlement();
+            message.BattleResult = 1;
+            message.RewardExp = self.TowerId * 2;
+            message.RewardGold = self.TowerId;
+            MessageHelper.SendToClient(self.MainUnit, message);
+
+            //奖励
+            int nextTowerId = self.TowerId + 1;
+            if (TowerHelper.GetLastTowerId(SceneTypeEnum.Tower) < nextTowerId)
             {
                 return;
             }
-            self.TowerId++;
+            self.TowerId = nextTowerId;
             self.CreateMonster().Coroutine();
         }
 
         public static async ETTask CreateMonster(this TowerComponent self)
         {
             long instanceId = self.InstanceId;
-            await TimerComponent.Instance.WaitAsync(2000);
+            await TimerComponent.Instance.WaitAsync(3000);
             if (instanceId != self.InstanceId)
             {
                 return;

@@ -16,7 +16,7 @@ namespace ET
             Button buttonReturn = uimain.GetComponent<UIMainComponent>().buttonReturn.GetComponent<Button>();
             buttonReturn.enabled = false;
 
-            await TimerComponent.Instance.WaitAsync(5000);
+            await TimerComponent.Instance.WaitAsync(1000);
             MapComponent mapComponent = args.Scene.GetComponent<MapComponent>();
             int sceneTypeEnum = mapComponent.SceneTypeEnum;
             if (sceneTypeEnum == (int)SceneTypeEnum.MainCityScene)
@@ -25,7 +25,7 @@ namespace ET
             }
             switch (sceneTypeEnum)
             {
-                case (int)SceneTypeEnum.PetDungeon:
+                case SceneTypeEnum.PetDungeon:
                     int star = 0;
                     for (int i = 0; i < args.m2C_FubenSettlement.StarInfos.Count; i++)
                     {
@@ -38,7 +38,11 @@ namespace ET
                     UI ui = await UIHelper.Create(args.Scene, UIType.UIPetFubenResult);
                     ui.GetComponent<UIPetFubenResultComponent>().OnUpdateUI(args.m2C_FubenSettlement);
                     break;
-                case (int)SceneTypeEnum.RandomTower:
+                case SceneTypeEnum.Tower:
+                    ui = await UIHelper.Create(args.Scene, UIType.UITowerFightReward);
+                    ui.GetComponent<UITowerFightRewardComponent>().OnUpdateUI(args.m2C_FubenSettlement);
+                    break;
+                case SceneTypeEnum.RandomTower:
                     ui = await UIHelper.Create(args.Scene, UIType.UIRandomTowerResult);
                     ui.GetComponent<UIRandomTowerResultComponent>().OnUpdateUI(args.m2C_FubenSettlement);
                     break;

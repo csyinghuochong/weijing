@@ -83,7 +83,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillLearnComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIWatch\UIWatchMenuEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UITowerOpenComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerOpenComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMake\UIMakeItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UIPopupComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIDungeon\UIDungeonLevelComponent.cs" />
@@ -554,6 +554,8 @@
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UIModelDynamicComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerDungeonComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerDungeonEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerFightRewardEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerFightRewardComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -60,6 +60,7 @@ namespace ET
             if (errorCode == ErrorCore.ERR_Success)
             {
                 userInfoComponent.AddSceneFubenTimes(sceneId);
+                UIHelper.Remove(self.ZoneScene(), UIType.UITowerDungeon);
             }
         }
     }
