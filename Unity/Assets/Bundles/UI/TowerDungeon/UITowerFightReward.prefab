@@ -519,7 +519,7 @@ GameObject:
   - component: {fileID: 6088584790180393403}
   - component: {fileID: 4946719543138760932}
   m_Layer: 5
-  m_Name: UITiaoZhanFightReward
+  m_Name: UITowerFightReward
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

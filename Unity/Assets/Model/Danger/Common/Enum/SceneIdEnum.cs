@@ -37,7 +37,7 @@ namespace ET
         public const int TeamDungeon = 5;        //组队副本
         public const int PetTianTi = 6;         //宠物天梯
         public const int YeWaiScene = 7;        //野外地图
-        public const int Tower = 8;             //爬塔
+        public const int Tower = 8;             //爬塔   别名挑战之地
         public const int LocalDungeon = 9;      //本地副本
         public const int PetDungeon = 10;       //宠物闯关副本
         public const int RandomTower = 11;       //通天塔
