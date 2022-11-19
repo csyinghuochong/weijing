@@ -25,4 +25,6 @@
 {"_t":"FuntionConfig","_id":1024,"Name":"UIShouJi","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1025,"Name":"UIBattle","ConditionType":[1],"ConditionParam":[1],"OpenTime":"20;30@21;00"},
 {"_t":"FuntionConfig","_id":1026,"Name":"UIMakeLearn","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
+{"_t":"FuntionConfig","_id":1027,"Name":"UITowerDungeon","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
+{"_t":"FuntionConfig","_id":1028,"Name":"UITrialDungeon","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 ]}

@@ -86,7 +86,6 @@ namespace ET
     {
         public static  void OnTaskGet(this UITaskGetComponent self)
         {
-            NpcConfig npcConfig = NpcConfigCategory.Instance.Get(self.NpcID);
             bool update = self.UpdataTask();
             if (!update)
             {
@@ -224,13 +223,6 @@ namespace ET
             if (npcType == 2)
             {
                 SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(configId);
-                if (sceneConfig.MapType == SceneTypeEnum.TrialDungeon)
-                {
-                    UIHelper.Create(self.ZoneScene(), UIType.UITrialDungeon).Coroutine();
-                    UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
-                    return;
-                }
-
                 string desStr = "是否进入" + sceneConfig.Name + "?";
                 if (sceneConfig.DayEnterNum >= 1)
                 {
@@ -265,21 +257,6 @@ namespace ET
             if (sceneType == SceneTypeEnum.YeWaiScene)
             {
                 errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.YeWaiScene, sceneId);
-            }
-            if(sceneType == SceneTypeEnum.Tower)
-            {
-                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-                SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
-                if (sceneConfig.DayEnterNum > 0 && sceneConfig.DayEnterNum <= userInfoComponent.GetSceneFubenTimes(sceneId))
-                {
-                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("今日进入次数已用完"));
-                    return;
-                }
-                errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), sceneType, sceneId);
-                if (errorCode == ErrorCore.ERR_Success)
-                {
-                    userInfoComponent.AddSceneFubenTimes(sceneId);
-                }
             }
             if (errorCode == ErrorCore.ERR_Success)
             { 

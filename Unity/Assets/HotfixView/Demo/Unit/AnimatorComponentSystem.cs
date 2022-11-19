@@ -132,10 +132,10 @@ namespace ET
 
 		public static void Play(this AnimatorComponent self, string motionType, float motionSpeed = 1f)
 		{
-			if (!self.HasParameter(motionType.ToString()))
-			{
-				return;
-			}
+			//if (!self.HasParameter(motionType.ToString()))
+			//{
+			//	return;
+			//}
 			self.MotionType = motionType;
 			self.MontionSpeed = motionSpeed;
 		}

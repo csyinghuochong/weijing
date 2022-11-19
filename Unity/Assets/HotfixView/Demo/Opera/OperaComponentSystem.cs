@@ -337,18 +337,7 @@ namespace ET
             int functionId = NpcConfigCategory.Instance.Get(self.NpcId).NpcType;
             if (functionId < 100)
             {
-                if (self.NpcId == 20000029)     //挑战之地
-                {
-                    UIHelper.Create(self.ZoneScene(), UIType.UITrialDungeon).Coroutine();
-                }
-                else if (self.NpcId == 20000030)  //试炼副本
-                {
-                    UIHelper.Create(self.ZoneScene(), UIType.UITrialDungeon).Coroutine();
-                }
-                else
-                {
-                    self.OpenNpcTaskUI(self.NpcId).Coroutine();
-                }
+                self.OpenNpcTaskUI(self.NpcId).Coroutine(); 
             }
             else
             {
