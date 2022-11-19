@@ -6,6 +6,7 @@ namespace ET
 {
     public class UITowerFightRewardComponent : Entity, IAwake
     {
+        public GameObject Text_Ceng;
         public GameObject Btn_Return;
         public GameObject ItemListNode;
     }
@@ -16,6 +17,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_Ceng = rc.Get<GameObject>("Text_Ceng");
             self.Btn_Return = rc.Get<GameObject>("Btn_Return");
             self.Btn_Return.GetComponent<Button>().onClick.AddListener(self.OnBtn_Return);
 
@@ -28,6 +30,11 @@ namespace ET
 
         public static void OnUpdateUI(this UITowerFightRewardComponent self, M2C_FubenSettlement message)
         {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int towerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
+            TowerConfig towerConfig = TowerConfigCategory.Instance.Get(towerId);
+            self.Text_Ceng.GetComponent<Text>().text = $"你当前成功完成挑战{towerConfig.CengNum}波,获得奖励如下:";
+
             string rewardList = $"1;{message.RewardGold}@2;{message.RewardExp}";
             UICommonHelper.ShowItemList(rewardList, self.ItemListNode, self, 1);
         }

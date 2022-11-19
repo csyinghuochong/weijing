@@ -256,6 +256,8 @@ MonoBehaviour:
     gameObject: {fileID: 4523703303809943515}
   - key: Btn_Return
     gameObject: {fileID: 1679095062265135210}
+  - key: Text_Ceng
+    gameObject: {fileID: 8155404232032937584}
 --- !u!114 &4946719543138760932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -545,7 +547,7 @@ GameObject:
   - component: {fileID: 5068051680404206782}
   - component: {fileID: 1749475962576473295}
   m_Layer: 5
-  m_Name: Text_1 (1)
+  m_Name: Text_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -747,7 +749,7 @@ GameObject:
   - component: {fileID: 8042734303733879732}
   - component: {fileID: 6884234642546781826}
   m_Layer: 5
-  m_Name: Text_1 (2)
+  m_Name: Text_Ceng
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
