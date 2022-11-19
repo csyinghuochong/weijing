@@ -99,10 +99,10 @@ namespace ET
                 this.RecoverGameObject(gameObject);
                 return;
             }
-            HeadBar = gameObject;
-            HeadBar.SetActive(true);
+            this.HeadBar = gameObject;
+            this.HeadBar.SetActive(true);
             Unit unit = this.GetParent<Unit>();
-            ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
+            ReferenceCollector rc = this.HeadBar.GetComponent<ReferenceCollector>();
 
             Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(this.ZoneScene());
             bool sameCamp = unit.GetBattleCamp() == mainUnit.GetBattleCamp();
@@ -131,17 +131,16 @@ namespace ET
                 default:
                     break;
             }
-            
-            ObjName = rc.Get<GameObject>("Lal_Name");
-            Lal_ShopName = rc.Get<GameObject>("Lal_ShopName");
-            ShopShowSet = rc.Get<GameObject>("ShopShowSet");
-            PlayerNameSet = rc.Get<GameObject>("PlayerNameSet");
-            JiaZuShowSet = rc.Get<GameObject>("JiaZuShowSet");
-            Lal_JiaZuName = rc.Get<GameObject>("Lal_JiaZuName");
-            UIPosition = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
 
-            HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
-            HeadBar.transform.localScale = Vector3.one;
+            this.ObjName = rc.Get<GameObject>("Lal_Name");
+            this.Lal_ShopName = rc.Get<GameObject>("Lal_ShopName");
+            this.ShopShowSet = rc.Get<GameObject>("ShopShowSet");
+            this.PlayerNameSet = rc.Get<GameObject>("PlayerNameSet");
+            this.JiaZuShowSet = rc.Get<GameObject>("JiaZuShowSet");
+            this.Lal_JiaZuName = rc.Get<GameObject>("Lal_JiaZuName");
+            this.UIPosition = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head);
+            this.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
+            this.HeadBar.transform.localScale = Vector3.one;
             if (unit.Type == UnitType.Monster)
             {
                 rc.Get<GameObject>("Alive").SetActive(true);
@@ -159,11 +158,21 @@ namespace ET
             {
                 HeadBar.AddComponent<HeadBarUI>();
             }
-            HeadBarUI = HeadBar.GetComponent<HeadBarUI>();
-            HeadBarUI.enabled = !unit.MainHero;
-            HeadBarUI.HeadPos = UIPosition;
-            HeadBarUI.HeadBar = HeadBar;
-            HeadBar.transform.localPosition = unit.MainHero ? new Vector3(0f, 120f, 0f) : HeadBar.transform.localPosition;
+            this.HeadBarUI = HeadBar.GetComponent<HeadBarUI>();
+            this.HeadBarUI.enabled = !unit.MainHero;
+            this.HeadBarUI.HeadPos = UIPosition;
+            this.HeadBarUI.HeadBar = HeadBar;
+            this.HeadBar.transform.localPosition = unit.MainHero ? new Vector3(0f, 120f, 0f) : HeadBar.transform.localPosition;
+        }
+
+        public void OnUpdateHorse(int houseId)
+        {
+            Unit unit = this.GetParent<Unit>();
+            if (!unit.MainHero)
+            {
+                return;
+            }
+            this.HeadBar.transform.localPosition = houseId > 0 ? new Vector3(0f, 180f, 0f): new Vector3(0f, 120f, 0f);
         }
 
         //更新显示

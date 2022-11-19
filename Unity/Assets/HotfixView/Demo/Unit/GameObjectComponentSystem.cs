@@ -145,6 +145,11 @@ namespace ET
             }
         }
 
+        public static GameObject GetHorseNode(this GameObjectComponent self)
+        {
+            return self.ObjectHorse.transform.Find("RoleBoneSet/Head").gameObject;
+        }
+
         public static void OnLoadHorse(this GameObjectComponent self, GameObject go, long formId)
         {
             self.ObjectHorse = go;
@@ -169,11 +174,6 @@ namespace ET
             }
         }
 
-        public static GameObject GetHorseNode(this GameObjectComponent self)
-        {
-            return self.ObjectHorse.transform.Find("RoleBoneSet/Head").gameObject;
-        }
-
         public static void OnUpdateHorse(this GameObjectComponent self)
         {
             self.RecoverHorse();
@@ -191,6 +191,7 @@ namespace ET
                 self.UpdatePositon(self.GetParent<Unit>().Position);
                 self.GetParent<Unit>().GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
             }
+            self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseId);
         }
 
         public static void OnLoadGameObject(this GameObjectComponent self, GameObject go, long formId)
