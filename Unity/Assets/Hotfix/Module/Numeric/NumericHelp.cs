@@ -186,7 +186,7 @@ namespace ET
             }
             else
             {
-                if (key >= 10000 && key < 20000)
+                if (key >= 100000 && key < 200000)
                 {
                     string str = key.ToString().Substring(key.ToString().Length - 1, 1);
                     if (str == "2")
@@ -201,7 +201,7 @@ namespace ET
                 //最后排除
                 int value = 1;
                 NumericValueType.TryGetValue(key, out value);
-                if (value == 1)
+                if (value == 0)
                     return 1;
                 return value;
 
