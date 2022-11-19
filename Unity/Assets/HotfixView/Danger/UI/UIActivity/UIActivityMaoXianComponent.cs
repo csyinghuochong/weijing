@@ -61,7 +61,6 @@ namespace ET
         {
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(self.CurActivityId);
-            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int rechargeNum = self.GetMaoXianExp();
             int needNumber = int.Parse(activityConfig.Par_2);
             if (rechargeNum < needNumber)
@@ -122,18 +121,13 @@ namespace ET
 
         public static void OnButtonActivty(this UIActivityMaoXianComponent self, int index)
         {
-            //if (!ActivityConfigCategory.Instance.Contain(self.CurActivityId + index))
-            //{
-            //    return;
-            //}
-            //self.OnUpdateUI(self.CurActivityId + index);
         }
 
         public static int GetMaoXianExp(this UIActivityMaoXianComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
             int rechargeNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
-            //self.ZoneScene().GetComponent<AccountInfoComponent>().GetRechargeNumber(userInfo.UserId);
+            rechargeNum *= 10;
             rechargeNum += unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MaoXianExp);
             return rechargeNum;
         }
