@@ -183,6 +183,10 @@ namespace ET
 			//{
 			//	return;
 			//}
+			if (self.Animator == null)
+			{
+				return;
+			}
 			self.Animator.SetBool(name, state);
 		}
 

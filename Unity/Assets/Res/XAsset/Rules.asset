@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 328
+  version: 329
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -3797,6 +3797,8 @@ MonoBehaviour:
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
     path: Assets/Bundles/Icon/TiTleIcon/Img_UITeamDungeon.png
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
+    path: Assets/Bundles/Icon/TiTleIcon/Img_UITowerDungeon.png
+  - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
     path: Assets/Bundles/Icon/TiTleIcon/Img_UITrialDungeon.png
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
     path: Assets/Bundles/Icon/TiTleIcon/Img_UIWarehouse.png
@@ -4396,6 +4398,10 @@ MonoBehaviour:
     path: Assets/Bundles/UI/TeamDungeon/UITeamDungeonSettlement.prefab
   - bundle: 3fc62d23bd4eaf1b01677c1530daf5f0.unity3d
     path: Assets/Bundles/UI/TeamDungeon/UITeamMain.prefab
+  - bundle: 7674c2386d44cffb7b1af256af96e674.unity3d
+    path: Assets/Bundles/UI/TowerDungeon/UITowerDungeon.prefab
+  - bundle: 974075a462fb55c2b89137d8cf898f7f.unity3d
+    path: Assets/Bundles/UI/TowerDungeon/UITowerFightReward.prefab
   - bundle: 459784501edf8ae8dd4ff3a4eb7d7002.unity3d
     path: Assets/Bundles/UI/TowerDungeon/UITowerOpen.prefab
   - bundle: e0a5d4a6823bc4bea2d4610d5af866cc.unity3d
@@ -7063,6 +7069,12 @@ MonoBehaviour:
   - name: 3fc62d23bd4eaf1b01677c1530daf5f0.unity3d
     assets:
     - Assets/Bundles/UI/TeamDungeon/UITeamMain.prefab
+  - name: 7674c2386d44cffb7b1af256af96e674.unity3d
+    assets:
+    - Assets/Bundles/UI/TowerDungeon/UITowerDungeon.prefab
+  - name: 974075a462fb55c2b89137d8cf898f7f.unity3d
+    assets:
+    - Assets/Bundles/UI/TowerDungeon/UITowerFightReward.prefab
   - name: 459784501edf8ae8dd4ff3a4eb7d7002.unity3d
     assets:
     - Assets/Bundles/UI/TowerDungeon/UITowerOpen.prefab
@@ -9554,6 +9566,7 @@ MonoBehaviour:
     - Assets/Bundles/Icon/TiTleIcon/Img_UITask.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UITeam.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UITeamDungeon.png
+    - Assets/Bundles/Icon/TiTleIcon/Img_UITowerDungeon.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UITrialDungeon.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UIWarehouse.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UIWatch.png
@@ -11092,6 +11105,9 @@ MonoBehaviour:
   - name: a870898c64d32e07172b96c20a5f4543.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_79.png
+  - name: e0700ca658b786b8da75e8df8ecf7041.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_84.png
   - name: 254690b6326e19782f6b47056188bbfa.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_8.png
@@ -11392,6 +11408,9 @@ MonoBehaviour:
   - name: 43a50dc2d9a4a5ff787bea2854104fc2.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_36.png
+  - name: 18e7691838b2d9ee2323b18016d66d41.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/HintDian.png
   - name: 4f49dc309a535719742a0ef9ebf4e01b.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_145.png
@@ -11503,9 +11522,6 @@ MonoBehaviour:
   - name: dc05148f5cedf80af99d39f711322b16.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_356.png
-  - name: e0700ca658b786b8da75e8df8ecf7041.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_84.png
   - name: dd75dd98edaee765f85d40778a638096.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_56.png
@@ -11749,9 +11765,6 @@ MonoBehaviour:
   - name: cca5d0dbb891de0ec9be063294bdec21.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_277.png
-  - name: 18e7691838b2d9ee2323b18016d66d41.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/HintDian.png
   - name: 054de3cfba17c760ec9d1fc67debcb92.unity3d
     assets:
     - Assets/Res/RenderTexture/RoleRenderTexture3.renderTexture
