@@ -6,19 +6,23 @@ namespace ET
     [ActorMessageHandler]
     public class C2M_SkillCmdHandler : AMActorLocationRpcHandler<Unit, C2M_SkillCmd, M2C_SkillCmd>
     {
-        protected override async ETTask Run(Unit entity, C2M_SkillCmd request, M2C_SkillCmd response, Action reply)
+        protected override async ETTask Run(Unit unit, C2M_SkillCmd request, M2C_SkillCmd response, Action reply)
         {
             try
             {
-                int item = request.ItemId;
-                if (item == 0)
+                int horseId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Horse);
+                if (horseId > 0)
                 {
-                    entity.Stop(-1);
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Horse, 0);
                 }
-                M2C_SkillCmd m2C_SkillCmd = entity.GetComponent<SkillManagerComponent>().OnUseSkill(request, true, false);
-                if (item > 0 && m2C_SkillCmd.Error == ErrorCore.ERR_Success)
+                if (request.ItemId == 0)
                 {
-                    entity.GetComponent<BagComponent>().OnCostItemData($"{item};1");
+                    unit.Stop(-1);
+                }
+                M2C_SkillCmd m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true, false);
+                if (request.ItemId > 0 && m2C_SkillCmd.Error == ErrorCore.ERR_Success)
+                {
+                    unit.GetComponent<BagComponent>().OnCostItemData($"{request.ItemId};1");
                 }
                 response.Error = m2C_SkillCmd.Error;
                 response.CDEndTime = m2C_SkillCmd.CDEndTime;
