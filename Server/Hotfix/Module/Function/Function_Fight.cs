@@ -494,14 +494,16 @@ namespace ET
                         damge = Math.Max(0, damge);
                         numericComponentDefend.ApplyChange(attackUnit, NumericType.Now_Shield_HP, -1 * dunDamge, skillconfig.Id, true, DamgeType);
                     }
-                    damge *= -1;
+
                     //Now_HuShiMagePro吸血
                     float hushi = numericComponentAttack.GetAsFloat(NumericType.Now_XiXuePro);
                     if (hushi > 0f)
                     {
-                        int addHp =  (int)(numericComponentDefend.GetAsInt(NumericType.Now_MaxHp) * hushi);
-                        numericComponentAttack.ApplyChange( null, NumericType.Now_Hp, addHp, 0);
+                        int addHp =  (int)((float)damge * hushi);
+                        numericComponentAttack.ApplyChange(attackUnit, NumericType.Now_Hp, addHp, 0);
                     }
+
+                    damge *= -1;
                 }
 
                 
@@ -1154,6 +1156,7 @@ namespace ET
             //更新属性
             foreach (int key in UpdateProDicList.Keys)
             {
+                Log.Info( "key ：" + key + "value ：" + UpdateProDicList[key]);
                 long setValue = numericComponent.GetAsLong(key) + UpdateProDicList[key];
                 numericComponent.Set(key, setValue, notice);
             }
