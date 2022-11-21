@@ -155,6 +155,8 @@ MonoBehaviour:
     gameObject: {fileID: 1107298727743779372}
   - key: PostionSet
     gameObject: {fileID: 7803774880913834790}
+  - key: TextTip
+    gameObject: {fileID: 8722759860989405840}
 --- !u!114 &1919940771308031273
 MonoBehaviour:
   m_ObjectHideFlags: 0

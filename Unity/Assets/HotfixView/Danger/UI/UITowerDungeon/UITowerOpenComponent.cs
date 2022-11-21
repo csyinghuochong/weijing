@@ -54,6 +54,8 @@ namespace ET
             self.TextTip = gameObject.Get<GameObject>("TextTip");
             self.PassTime = 0f;
             self.M2C_FubenSettlement = null;
+
+            self.RequestBegin();
         }
     }
 

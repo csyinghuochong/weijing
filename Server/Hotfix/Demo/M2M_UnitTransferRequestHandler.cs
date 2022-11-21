@@ -169,7 +169,6 @@ namespace ET
 						if (request.SceneType == (int)SceneTypeEnum.Tower)
 						{
 							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
-							numericComponent.ApplyValue(NumericType.TowerId, 0, true);
 							scene.GetComponent<TowerComponent>().MainUnit = unit;
 						}
 						if (request.SceneType == SceneTypeEnum.RandomTower)
