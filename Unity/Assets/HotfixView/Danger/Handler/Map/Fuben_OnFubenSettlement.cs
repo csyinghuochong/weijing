@@ -39,8 +39,8 @@ namespace ET
                     ui.GetComponent<UIPetFubenResultComponent>().OnUpdateUI(args.m2C_FubenSettlement);
                     break;
                 case SceneTypeEnum.Tower:
-                    ui = await UIHelper.Create(args.Scene, UIType.UITowerFightReward);
-                    ui.GetComponent<UITowerFightRewardComponent>().OnUpdateUI(args.m2C_FubenSettlement);
+                    ui = UIHelper.GetUI(args.Scene, UIType.UITowerOpen);
+                    ui.GetComponent<UITowerOpenComponent>().OnFubenResult(args.m2C_FubenSettlement).Coroutine();
                     break;
                 case SceneTypeEnum.RandomTower:
                     ui = await UIHelper.Create(args.Scene, UIType.UIRandomTowerResult);

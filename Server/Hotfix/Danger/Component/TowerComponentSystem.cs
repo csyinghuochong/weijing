@@ -40,30 +40,44 @@ namespace ET
     public  static class TowerComponentSystem
     {
 
-        public static void OnKillEvent(this TowerComponent self)
+        public static void OnKillEvent(this TowerComponent self, Unit defend)
         {
-            if (!FubenHelp.IsAllMonsterDead(self.DomainScene()))
+            if (FubenHelp.IsAllMonsterDead(self.DomainScene()))
             {
+                self.OnTowerOver();
+                return;
+            }
+            if (defend.Type == UnitType.Player)
+            {
+                self.OnTowerOver();
                 return;
             }
             self.OnTimer();
         }
 
-        public static void OnTimer(this TowerComponent self)
+        public static void OnTowerOver(this TowerComponent self)
         {
             TimerComponent.Instance.Remove(ref self.Timer);
-            //TowerConfig towerConfig = TowerConfigCategory.Instance.Get(self.TowerId);
+
+            string[] ids = GlobalValueConfigCategory.Instance.Get(65).Value.Split(';');
+            //int startTowerId = int.Parse(ids[self.FubenDifficulty - 1]); //起始波
+            //self.TowerId; //当前波
 
             M2C_FubenSettlement message = new M2C_FubenSettlement();
             message.BattleResult = 1;
-            message.RewardExp = self.TowerId * 2;
-            message.RewardGold = self.TowerId;
+            message.RewardExp = 2000;
+            message.RewardGold = 2000;
             MessageHelper.SendToClient(self.MainUnit, message);
+        }
 
+        public static void OnTimer(this TowerComponent self)
+        {
+            TimerComponent.Instance.Remove(ref self.Timer);
             //奖励
             int nextTowerId = self.TowerId + 1;
             if (TowerHelper.GetLastTowerId(SceneTypeEnum.Tower) < nextTowerId)
             {
+                self.OnTowerOver();
                 return;
             }
             self.TowerId = nextTowerId;
@@ -92,9 +106,10 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewOnceTimer( TimeHelper.ServerNow() + self.WaveTime, TimerType.TowerTimer, self );
         }
 
-        public static void BeginTower(this TowerComponent self, int sceneId)
+        public static void BeginTower(this TowerComponent self)
         {
-            self.TowerId = TowerConfigCategory.Instance.GetAll().Values.ToList()[0].Id;
+            string[] ids = GlobalValueConfigCategory.Instance.Get(65).Value.Split(';');
+            self.TowerId = int.Parse(ids[self.FubenDifficulty - 1]);
             self.CreateMonster().Coroutine();
         }
     }

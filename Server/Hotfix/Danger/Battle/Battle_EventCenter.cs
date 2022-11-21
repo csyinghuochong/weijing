@@ -103,7 +103,7 @@ namespace ET
                         args.UnitAttack.DomainScene().GetComponent<YeWaiRefreshComponent>().OnKillEvent(args.UnitDefend);
                         break;
                     case SceneTypeEnum.Tower:
-                        args.UnitAttack.DomainScene().GetComponent<TowerComponent>().OnKillEvent();
+                        args.UnitAttack.DomainScene().GetComponent<TowerComponent>().OnKillEvent(args.UnitDefend);
                         break;
                     case SceneTypeEnum.RandomTower:
                         args.UnitAttack.DomainScene().GetComponent<RandomTowerComponent>().OnKillEvent(args.UnitDefend);

@@ -14,7 +14,6 @@ namespace ET
         public GameObject Btn_PetFormation;
         public GameObject Btn_GM;
         public GameObject Btn_Task;
-        public GameObject UITiaoZhan;
         public GameObject UISinging;
         public GameObject TextPing;
         public GameObject MailHintTip;
@@ -70,7 +69,6 @@ namespace ET
         public UIMainSkillComponent UIMainSkillComponent;
         public UIOpenBoxComponent UIOpenBoxComponent;
         public UISingingComponent UISingingComponent;
-        public UITiaoZhanComponent UITiaoZhanComponent;
         public UIDigTreasureComponent UIDigTreasureComponent;
 
         public float CheckButtonTime;
@@ -94,9 +92,6 @@ namespace ET
 
             self.Btn_Task = rc.Get<GameObject>("Btn_Task");
             ButtonHelp.AddListenerEx(self.Btn_Task, () => { self.OnOpenTask(); });
-
-            self.UITiaoZhan = rc.Get<GameObject>("UITiaoZhan");
-            self.UITiaoZhanComponent = self.AddChild<UITiaoZhanComponent, GameObject>(self.UITiaoZhan);
 
             self.UIStall = rc.Get<GameObject>("UIStall");
             GameObject buttonStallOpen = rc.Get<GameObject>("ButtonStallOpen");
@@ -836,7 +831,6 @@ namespace ET
             self.Btn_TopRight_1.SetActive(SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
             self.Btn_TopRight_2.SetActive(SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
             self.UIMainTask.GameObject.SetActive(sceneTypeEnum != SceneTypeEnum.TrialDungeon);
-            self.UITiaoZhan.SetActive(sceneTypeEnum == SceneTypeEnum.Tower);
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.UIMainSkillComponent.ResetUI(sceneTypeEnum == SceneTypeEnum.MainCityScene);
@@ -1140,16 +1134,6 @@ namespace ET
             UICommonHelper.SetParent(uiskillButton.GameObject, UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject);
 
             self.UILevelGuideMini.GetComponent<UICellDungeonCellMiniComponent>().OnChapterOpen(true);
-        }
-
-        public static  void OnTowerOpen(this UIMainComponent self, int towerId)
-        {
-            var BaseObj = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("TowerDungeon/UITowerOpen"));
-            UI uiskillButton = self.AddChild<UI, string, GameObject>("UITowerOpen", GameObject.Instantiate(BaseObj));
-            uiskillButton.AddComponent<UITowerOpenComponent>().OnUpdateUI(towerId);
-            UICommonHelper.SetParent(uiskillButton.GameObject, UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject);
-
-            self.UITiaoZhanComponent.OnUpdateUI(towerId);
         }
 
         public static  void OnCellDungeonEnterShow(this UIMainComponent self, int chapterId)

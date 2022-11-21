@@ -66,7 +66,6 @@
         public const int BattleCamp = 3062;                                     //战斗阵营
         public const int TaskLoopNumber = 3063;                                 //赏金任务完成数量                          
         public const int TaskLoopGiveId = 3064;
-        public const int BattleNumber = 3065;
         public const int YueKaRemainTimes = 3066;                               //月卡剩余次数                    
         public const int TeamDungeonTimes = 3067;
         public const int Now_AI = 3068;

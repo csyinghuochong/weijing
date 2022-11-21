@@ -107,6 +107,7 @@ namespace ET
 		public const string UITrialMain = "TrialDungeon/UITrialMain";
 		public const string UIJiaYuan = "JiaYuan/UIJiaYuan";
 		public const string UITower = "TowerDungeon/UITower";
+		public const string UITowerOpen = "TowerDungeon/UITowerOpen";
 		public const string UITowerFightReward = "TowerDungeon/UITowerFightReward";
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
