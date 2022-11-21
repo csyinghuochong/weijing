@@ -28,7 +28,7 @@ namespace ET
             self.PetInfo1 = rc.Get<GameObject>("PetInfo1");
 
             self.Btn_HeCheng = rc.Get<GameObject>("Btn_HeCheng");
-            self.Btn_HeCheng.GetComponent<Button>().onClick.AddListener(() => { self.OnClickHeCheng().Coroutine(); });
+            self.Btn_HeCheng.GetComponent<Button>().onClick.AddListener(() => { self.OnClickHeCheng(); });
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
@@ -57,14 +57,20 @@ namespace ET
             self.UIPetInfoShowComponent_2.GetComponent<UIPetInfoShowComponent>().OnInitData(null);
         }
 
-        public static async ETTask OnClickHeCheng(this UIPetHeChengComponent self)
+        public static  void OnClickHeCheng(this UIPetHeChengComponent self)
         {
             if (self.HeChengPet_Left == null || self.HeChengPet_Right == null)
             {
                 FloatTipManager.Instance.ShowFloatTip("请选择要合成的宠物！");
                 return;
             }
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "宠物合成",
+                "合成后将随机保留一个宠物，另外一个宠物会销毁,请确认是否执行合成",
+                () => { self.ReqestHeCheng().Coroutine(); }).Coroutine();
+        }
 
+        public static async ETTask ReqestHeCheng(this UIPetHeChengComponent self)
+        {
             C2M_RolePetHeCheng c2M_RolePetHeCheng = new C2M_RolePetHeCheng() { PetInfoId1 = self.HeChengPet_Left.Id, PetInfoId2 = self.HeChengPet_Right.Id };
             M2C_RolePetHeCheng m2C_RolePetHeCheng = (M2C_RolePetHeCheng)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetHeCheng);
             if (m2C_RolePetHeCheng.Error != 0)
