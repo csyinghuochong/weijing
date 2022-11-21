@@ -57,6 +57,7 @@
         public const int BattleMainTimer = 1065;
         public const int ChatSceneTimer = 1066;
         public const int TrialMainTimer = 1067;
+        public const int TowerOpenTimer = 1068;
         // 不能超过10000
     }
 }

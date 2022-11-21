@@ -269,6 +269,10 @@ namespace ET
                     UIHelper.Create(self.ZoneScene(), UIType.UIPetMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.zero;
                     break;
+                case (int)SceneTypeEnum.Tower:
+                    UIHelper.Create(self.ZoneScene(), UIType.UITowerOpen).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
                 case (int)SceneTypeEnum.RandomTower:
                     UIHelper.Create(self.ZoneScene(), UIType.UIRandomOpen).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;

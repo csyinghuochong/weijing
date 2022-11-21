@@ -114,12 +114,12 @@ namespace ET
 						fubenid = IdGenerater.Instance.GenerateId();
 						fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
 						fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "Tower" + fubenid.ToString(), SceneType.Fuben);
-						fubnescene.AddComponent<TowerComponent>();
+						fubnescene.AddComponent<TowerComponent>().FubenDifficulty = request.Difficulty;
 						mapComponent = fubnescene.GetComponent<MapComponent>();
 						mapComponent.SetMapInfo((int)SceneTypeEnum.Tower, request.SceneId, 0);
 						mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
 						TransferHelper.BeforeTransfer(unit);
-						await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.Tower, request.SceneId, 0);
+						await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.Tower, request.SceneId, 0, request.Difficulty);
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 						break;
 					case (int)SceneTypeEnum.PetTianTi:

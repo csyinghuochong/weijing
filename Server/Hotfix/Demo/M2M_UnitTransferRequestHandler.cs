@@ -127,7 +127,6 @@ namespace ET
 						break;
 					case (int)SceneTypeEnum.Battle:
 						numericComponent.Set(NumericType.BattleCamp, request.SonId); //1 2
-						numericComponent.Set(NumericType.BattleNumber, 1); //1 2
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						int startIndex = request.SonId == 1 ? 0 : 3;
@@ -170,9 +169,7 @@ namespace ET
 						if (request.SceneType == (int)SceneTypeEnum.Tower)
 						{
 							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
-							numericComponent.ApplyValue(NumericType.TowerId, 0, true);
 							scene.GetComponent<TowerComponent>().MainUnit = unit;
-							scene.GetComponent<TowerComponent>().BeginTower(request.ChapterId);
 						}
 						if (request.SceneType == SceneTypeEnum.RandomTower)
 						{

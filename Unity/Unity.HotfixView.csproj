@@ -77,6 +77,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendListComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIWarehouseComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Unit\RoleDataBroadcase_OnBroadcast.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\Common\UIModelDynamicComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIGM\UICommandEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianSkillComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIItemTips\ShowTips_CreateItemTips.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIDungeon\UIDungeonLevelEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiBuyItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerDungeonComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonSettlementEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendListItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeam\UITeamComponent.cs" />
@@ -121,6 +123,7 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Login_OnReturnLogin.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIItemTips\UIEquipDuiBiTipsComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIUnion\UIUnionApplyListEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILobby\UILobbyComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Unit\UnitDead_PlayDeadAnimate.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonCellEvent.cs" />
@@ -166,7 +169,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubItem\UIAttackGridComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILobby\LoginFinish_CreateLobbyUI.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetChallengeItemComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UITiaoZhanComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIGuide\UIGuideEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryTaskItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Register\UIRegisterComponent.cs" />
@@ -240,6 +242,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIUnion\UIUnionCreateComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UISettlementRewardComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILogin\UILoginComponentSystem.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerFightRewardEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuShowItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Unit\MoveStop_PlayIdleAnimate.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Server\UISelectServerItemComponent.cs" />
@@ -248,6 +251,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UICommonSkillItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityMaoXianComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetHeXinHeChengComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanZuoQiComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIRoleGemHoleComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\OccTwo\UIOccTwoComponent.cs" />
@@ -321,6 +325,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIShouJi\UIShouJiEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UIOpenBoxComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiBuyComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIEnergy\UIEnergyAnswerComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRoleStory\UIRoleStoryComponent.cs" />
@@ -412,6 +417,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonReviveComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetEgg\UIPetEggListComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryTaskComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerFightRewardComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Unit\MoveStart_PlayMoveAnimate.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Server\UISelectGameServerSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendApplyItemComponent.cs" />
@@ -476,9 +482,10 @@
     <Compile Include="Assets\HotfixView\Demo\Scene\SceneChangeComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIRoleGemComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityYueKaComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerShopComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChouKa\UIChouKaChapterSelectComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMystery\UIMysteryEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityYueKaComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianTenComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIZhanQu\UIZhanQuCombatComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIRoleAddPointComponent.cs" />
@@ -500,6 +507,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UIBuffTipsEvent.cs" />
     <Compile Include="Assets\HotfixView\Demo\Unit\AnimatorComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Item_DigForTreasure.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanZuoQiItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonSettlementComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChat\UIChatEmojiComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiStallItemComponent.cs" />
@@ -525,11 +533,13 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiSellItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILogin\Login_OnQueueEnterGame.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\ReddotViewComponentSystem.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIItemTips\UIEquipDuiBiTipsEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillTianFuItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIShouJi\UIShouJiComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIEnergy\UIEnergyEarlysleepComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\Relink\UIRelinkEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIXiuLian\UIXiuLianEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIHongBao\UIHongBaoEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskGetEvent.cs" />
@@ -547,17 +557,7 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanZuoQiComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanZuoQiItemComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\Common\UIModelDynamicComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerDungeonComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerFightRewardEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerFightRewardComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerShopComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerOpenEvent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

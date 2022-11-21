@@ -73,11 +73,8 @@
                     break;
                 case NumericType.TowerId:
                     int towerId = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
-                    if (towerId != 0)
-                    {
-                        uI_2 = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
-                        uI_2.GetComponent<UIMainComponent>().OnTowerOpen(towerId);
-                    }
+                    uI_2 = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UITowerOpen);
+                    uI_2.GetComponent<UITowerOpenComponent>().OnUpdateUI(towerId);
                     break;
             }
         }
