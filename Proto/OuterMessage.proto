@@ -4099,3 +4099,17 @@ message M2C_TowerFightBeginResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//ResponseType M2C_TowerExitResponse
+message C2M_TowerExitRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+}
+
+message M2C_TowerExitResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

@@ -81,7 +81,16 @@ namespace ET
             }
         }
 
-
+        public static void RequestTowerQuit(this UITowerOpenComponent self)
+        {
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("战斗为结束，是否领取奖励？"),
+                () =>
+                {
+                    C2M_TowerExitRequest request = new C2M_TowerExitRequest();
+                    self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
+                },
+                null).Coroutine();
+        }
 
         public static async ETTask OnFubenResult(this UITowerOpenComponent self, M2C_FubenSettlement message)
         {

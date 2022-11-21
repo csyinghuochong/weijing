@@ -954,6 +954,13 @@ namespace ET
 
         public static void OnClickReturnButton(this UIMainComponent self)
         {
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UITowerOpen);
+            if (uI != null && uI.GetComponent<UITowerOpenComponent>().M2C_FubenSettlement == null)
+            {
+                uI.GetComponent<UITowerOpenComponent>().RequestTowerQuit();
+                return;
+            }
+
             PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("确定返回主城？"),
                 () =>
                 {

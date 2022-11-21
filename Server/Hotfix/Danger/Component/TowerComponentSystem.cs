@@ -62,12 +62,16 @@ namespace ET
             string[] ids = GlobalValueConfigCategory.Instance.Get(65).Value.Split(';');
             //int startTowerId = int.Parse(ids[self.FubenDifficulty - 1]); //起始波
             //self.TowerId; //当前波
-
             M2C_FubenSettlement message = new M2C_FubenSettlement();
             message.BattleResult = 1;
             message.RewardExp = 2000;
             message.RewardGold = 2000;
+
             MessageHelper.SendToClient(self.MainUnit, message);
+
+            UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();
+            userInfoComponent.UpdateRoleData(UserDataType.Exp, message.RewardExp.ToString());
+            userInfoComponent.UpdateRoleData(UserDataType.Gold, message.RewardGold.ToString());
         }
 
         public static void OnTimer(this TowerComponent self)

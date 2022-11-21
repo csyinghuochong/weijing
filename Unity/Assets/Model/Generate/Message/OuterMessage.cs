@@ -8542,4 +8542,32 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_TowerExitResponse))]
+	[Message(OuterOpcode.C2M_TowerExitRequest)]
+	[ProtoContract]
+	public partial class C2M_TowerExitRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TowerExitResponse)]
+	[ProtoContract]
+	public partial class M2C_TowerExitResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

@@ -477,5 +477,7 @@ namespace ET
 		 public const ushort M2C_HorseRideResponse = 10474;
 		 public const ushort C2M_TowerFightBeginRequest = 10475;
 		 public const ushort M2C_TowerFightBeginResponse = 10476;
+		 public const ushort C2M_TowerExitRequest = 10477;
+		 public const ushort M2C_TowerExitResponse = 10478;
 	}
 }
