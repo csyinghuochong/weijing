@@ -89,8 +89,6 @@ namespace ET
                 }
 
                 List<DBAccountInfo> dBAccountInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(newzone, d => d.Id == entity.Id);
-                //有相同账号.. 
-                //充值记录是否要合并？
                 if (dBAccountInfos.Count > 0)
                 {
                     dBAccountInfos[0].UserList.AddRange(entity.UserList);

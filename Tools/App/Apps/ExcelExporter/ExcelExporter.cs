@@ -353,9 +353,17 @@ namespace ET
 
         static void ExportExcelClass(ExcelPackage p, string name, Table table)
         {
-            foreach (ExcelWorksheet worksheet in p.Workbook.Worksheets)
+            try
             {
-                ExportSheetClass(worksheet, table);
+                foreach (ExcelWorksheet worksheet in p.Workbook.Worksheets)
+                {
+                    ExportSheetClass(worksheet, table);
+                }
+                Log.Debug($"{name}  ExportExcelClass");
+            }
+            catch (Exception ex)
+            {
+                Log.Debug($"{name} {ex.ToString()}");
             }
         }
 
