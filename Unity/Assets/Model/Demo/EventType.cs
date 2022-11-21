@@ -121,6 +121,15 @@ namespace ET
             public string Value;
         }
 
+        public class EnterQueue : DisposeObject
+        {
+            public static readonly LoginError Instance = new LoginError();
+            public int ErrorCore;
+            public long AccountId;
+            public Scene ZoneScene;
+            public string Value;
+        }
+
         public class QueueEnterGame : DisposeObject
         {
             public static readonly QueueEnterGame Instance = new QueueEnterGame();

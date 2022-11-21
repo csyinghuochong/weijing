@@ -64,17 +64,14 @@ namespace ET
                 playerComponent.AccountId = a2CLoginAccount.AccountId;
                 accountSession?.Dispose();
                 Queue(zoneScene, a2CLoginAccount.QueueAddres).Coroutine();
-                EventType.LoginError.Instance.ErrorCore = a2CLoginAccount.Error;
-                EventType.LoginError.Instance.AccountId = a2CLoginAccount.AccountId;
-                EventType.LoginError.Instance.ZoneScene = zoneScene;
-                EventType.LoginError.Instance.Value = a2CLoginAccount.QueueNumber.ToString();
-                Game.EventSystem.PublishClass(EventType.LoginError.Instance);
+                EventType.EnterQueue.Instance.ErrorCore = a2CLoginAccount.Error;
+                EventType.EnterQueue.Instance.AccountId = a2CLoginAccount.AccountId;
+                EventType.EnterQueue.Instance.ZoneScene = zoneScene;
+                EventType.EnterQueue.Instance.Value = a2CLoginAccount.QueueNumber.ToString();
+                Game.EventSystem.PublishClass(EventType.EnterQueue.Instance);
                 return a2CLoginAccount.Error;
             }
-            if (a2CLoginAccount.Error == ErrorCore.ERR_NotRealName
-                || a2CLoginAccount.Error == ErrorCore.ERR_FangChengMi_Tip1 
-                || a2CLoginAccount.Error == ErrorCore.ERR_FangChengMi_Tip6
-                || a2CLoginAccount.Error == ErrorCore.ERR_FangChengMi_Tip7)
+            if (a2CLoginAccount.Error != ErrorCore.ERR_Success)
             {
                 accountSession?.Dispose();
                 EventType.LoginError.Instance.ErrorCore = a2CLoginAccount.Error;
@@ -82,12 +79,6 @@ namespace ET
                 EventType.LoginError.Instance.ZoneScene = zoneScene;
                 EventType.LoginError.Instance.Value = "0";
                 Game.EventSystem.PublishClass(EventType.LoginError.Instance);
-                return a2CLoginAccount.Error;
-            }
-
-            if (a2CLoginAccount.Error != ErrorCore.ERR_Success)
-            {
-                accountSession?.Dispose();
                 return a2CLoginAccount.Error;
             }
 

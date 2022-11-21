@@ -116,7 +116,7 @@ namespace ET
 				self.TextButton_2_1.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(true); });
 				self.YongHuXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YongHuXieYi.SetActive(false); });
 				self.YinSiXieYiClose.GetComponent<Button>().onClick.AddListener(() => { self.YinSiXieYi.SetActive(false); });
-
+				self.LoginErrorNumber = 0;
 				self.Loading = rc.Get<GameObject>("Loading");
 				UI uirotate = self.AddChild<UI, string, GameObject>("RightPositionSet", rc.Get<GameObject>("Img_Loading"));
 				uirotate.AddComponent<UIRotateComponent>();
@@ -486,6 +486,17 @@ namespace ET
 			{
 				return;
 			}
+			long loginErrorTime = 0;
+			string errorTime = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LoginErrorTime);
+			if (!ComHelp.IfNull(errorTime))
+			{
+				loginErrorTime = long.Parse(errorTime);
+			}
+			if (TimeHelper.ServerNow() < loginErrorTime)
+			{
+				FloatTipManager.Instance.ShowFloatTip("稍后登录！");
+				return;
+			}
 
 			self.Loading.SetActive(true);
 			account = account.Replace(" ", "");
@@ -504,7 +515,7 @@ namespace ET
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastAccount(self.LoginType), account);
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastPassword(self.LoginType), password);
 
-			int login = await LoginHelper.Login(
+			int loginError = await LoginHelper.Login(
 				self.DomainScene(),
 				self.ServerInfo.ServerIp,
 				account,
@@ -512,13 +523,18 @@ namespace ET
 				false, 
 				"",
 				self.LoginType);
-			if (login != ErrorCore.ERR_Success)
+			if (loginError != ErrorCore.ERR_Success)
 			{
-				self.UIRotateComponent.GameObject.SetActive(false);
+				self.LoginErrorNumber++;
 				self.Loading.SetActive(false);
+				self.UIRotateComponent.GameObject.SetActive(false);
 				self.UIRotateComponent.GetComponent<UIRotateComponent>().StartRotate(false);
 			}
-		}
+			if (self.LoginErrorNumber >= 50)
+			{
+				PlayerPrefsHelp.SetString(PlayerPrefsHelp.LoginErrorTime, (TimeHelper.ServerNow() + 10 * 60 * 1000).ToString());
+			}
+		}	
 
 		public static void OnRegister(this UILoginComponent self)
 		{

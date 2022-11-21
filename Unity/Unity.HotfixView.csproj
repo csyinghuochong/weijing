@@ -341,7 +341,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuTypeComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UIPageViewComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UIMainChatComponent.cs" />
-    <Compile Include="Assets\HotfixView\Demo\UI\UILogin\LoginError_OnLoginError.cs" />
+    <Compile Include="Assets\HotfixView\Demo\UI\UILogin\Login_OnLoginError.cs" />
     <Compile Include="Assets\HotfixView\Danger\Scene\SceneManagerSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIRoleEvent.cs" />
     <Compile Include="Assets\HotfixView\Demo\Global\GlobalComponentSystem.cs" />
@@ -558,6 +558,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerOpenEvent.cs" />
+    <Compile Include="Assets\HotfixView\Demo\UI\UILogin\Login_OnEnterQueue.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

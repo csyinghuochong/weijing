@@ -67,6 +67,7 @@
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_CreateDropItemsHandlers.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericChangeEvent_NotifyWatcher.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TaskCountryUpdateHandler.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\SceneConfigHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Helper\MapHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_Other_XuanFengZhan_1.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_XuanZhuan_Attack.cs" />
@@ -213,7 +214,6 @@
     <Compile Include="Assets\Hotfix\Danger\Common\Component\MapComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericWatcher_Update.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetKcpComponentSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Helper\SceneConfigHelper.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
