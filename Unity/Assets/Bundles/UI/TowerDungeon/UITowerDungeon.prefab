@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 2413797707051989706}
   - component: {fileID: 6258929427536739083}
   m_Layer: 0
-  m_Name: Text (1)
+  m_Name: TextLevelJianyi_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -580,6 +580,12 @@ MonoBehaviour:
     gameObject: {fileID: 9031800213857932906}
   - key: ButtonSelect_3
     gameObject: {fileID: 5926037219271758833}
+  - key: TextLevelJianyi_1
+    gameObject: {fileID: 768384324162897193}
+  - key: TextLevelJianyi_2
+    gameObject: {fileID: 4942051499621130069}
+  - key: TextLevelJianyi_3
+    gameObject: {fileID: 4317964862590686882}
 --- !u!114 &4946719543138760932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1222,7 +1228,7 @@ GameObject:
   - component: {fileID: 8012771531771529828}
   - component: {fileID: 2162014810816219445}
   m_Layer: 0
-  m_Name: Text (1)
+  m_Name: TextLevelJianyi_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1618,7 +1624,7 @@ GameObject:
   - component: {fileID: 5584677553070367862}
   - component: {fileID: 2891091666482620372}
   m_Layer: 0
-  m_Name: Text (1)
+  m_Name: TextLevelJianyi_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
