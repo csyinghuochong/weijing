@@ -321,7 +321,7 @@ namespace ET
             
             List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro, false);
             List<RewardItem> droplist_2 = null;
-            if (!main.IsDisposed)
+            if (main!=null && !main.IsDisposed)
             {
                 int playerLv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
                 DropHelper.AI_DropByPlayerLv(monsterCof.Id, playerLv, dropAdd_Pro, false);
