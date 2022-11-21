@@ -8513,4 +8513,33 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_TowerFightBeginResponse))]
+//挑战之地开始战斗
+	[Message(OuterOpcode.C2M_TowerFightBeginRequest)]
+	[ProtoContract]
+	public partial class C2M_TowerFightBeginRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_TowerFightBeginResponse)]
+	[ProtoContract]
+	public partial class M2C_TowerFightBeginResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

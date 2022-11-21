@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -60,6 +59,12 @@ namespace ET
 
     public static class UITowerOpenComponentSystem
     {
+        public static void RequestBegin(this UITowerOpenComponent self)
+        {
+            C2M_TowerFightBeginRequest request = new C2M_TowerFightBeginRequest();
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
+        }
+
         public static void OnTimer(this UITowerOpenComponent self)
         {
             self.PassTime += Time.deltaTime;
