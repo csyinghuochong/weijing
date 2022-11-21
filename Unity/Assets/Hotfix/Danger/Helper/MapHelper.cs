@@ -78,6 +78,9 @@ namespace ET
 
         public static long GetChestBox(Scene zoneScene)
         {
+            float distance = 10f;
+            Unit unit = null;
+            Unit main = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             List<Unit> units = zoneScene.CurrentScene().GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
@@ -86,12 +89,14 @@ namespace ET
                 {
                     continue;
                 }
-                if (PositionHelper.Distance2D(UnitHelper.GetMyUnitFromZoneScene(zoneScene), uu) < 10f)
+                float dd = PositionHelper.Distance2D(main, uu);
+                if (dd < distance)
                 {
-                    return uu.Id;
+                    unit = uu;
+                    distance = dd;
                 }
             }
-            return 0;
+            return unit!=null ? unit.Id : 0;
         }
 
         public static List<DropInfo> GetCanShiQu(Scene zoneScene)
