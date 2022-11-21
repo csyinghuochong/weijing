@@ -134,7 +134,10 @@ namespace ET
             int configId = self.GetParent<Unit>().ConfigId;
             MonsterConfig MonsterCof = MonsterConfigCategory.Instance.Get(configId);
             int[] aiSkillIDList = MonsterCof.SkillID;
-
+            if (aiSkillIDList == null)
+            {
+                return;
+            }
             for (int i = 0; i < aiSkillIDList.Length; i++)
             {
                 if (aiSkillIDList[i] == 0)

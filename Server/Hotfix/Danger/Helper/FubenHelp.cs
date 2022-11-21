@@ -163,7 +163,7 @@ namespace ET
 				{
 					continue;
 				}
-				//1;37.65,0,3.2;70005005;1
+				//2;37.65,0,3.2;70005005;1,2
 				string[] mondels = monsters[i].Split(';');
 				string[] mtype = mondels[0].Split(',');
 				string[] position = mondels[1].Split(',');

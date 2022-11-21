@@ -44,7 +44,7 @@ namespace ET
         {
             if (FubenHelp.IsAllMonsterDead(self.DomainScene()))
             {
-                self.OnTowerOver();
+                self.OnTimer();
                 return;
             }
             if (defend.Type == UnitType.Player)
@@ -52,7 +52,6 @@ namespace ET
                 self.OnTowerOver();
                 return;
             }
-            self.OnTimer();
         }
 
         public static void OnTowerOver(this TowerComponent self)
