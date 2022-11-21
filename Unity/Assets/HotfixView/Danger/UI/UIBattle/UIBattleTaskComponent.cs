@@ -37,7 +37,7 @@ namespace ET
         public static void UpdateTaskCountrys(this UIBattleTaskComponent self)
         {
             List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().TaskCountryList;
-            string path = ABPathHelper.GetUGUIPath("Main/Battle/UIBattleTaskItem");
+            string path = ABPathHelper.GetUGUIPath("BattleDungeon/UIBattleTaskItem");
             GameObject bundleObj =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             taskPros.Sort(delegate (TaskPro a, TaskPro b)
             {

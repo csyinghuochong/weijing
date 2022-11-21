@@ -32,9 +32,9 @@ namespace ET
             pageViewComponent.UISubViewPath = new string[(int)BattlePageEnum.Number];
             pageViewComponent.UISubViewType = new Type[(int)BattlePageEnum.Number];
 
-            pageViewComponent.UISubViewPath[(int)BattlePageEnum.Enter] = ABPathHelper.GetUGUIPath("Main/Battle/UIBattleEnter");
-            pageViewComponent.UISubViewPath[(int)BattlePageEnum.Task] = ABPathHelper.GetUGUIPath("Main/Battle/UIBattleTask");
-            pageViewComponent.UISubViewPath[(int)BattlePageEnum.Shop] = ABPathHelper.GetUGUIPath("Main/Battle/UIBattleShop");
+            pageViewComponent.UISubViewPath[(int)BattlePageEnum.Enter] = ABPathHelper.GetUGUIPath("BattleDungeon/UIBattleEnter");
+            pageViewComponent.UISubViewPath[(int)BattlePageEnum.Task] = ABPathHelper.GetUGUIPath("BattleDungeon/UIBattleTask");
+            pageViewComponent.UISubViewPath[(int)BattlePageEnum.Shop] = ABPathHelper.GetUGUIPath("BattleDungeon/UIBattleShop");
             
             pageViewComponent.UISubViewType[(int)BattlePageEnum.Enter] = typeof(UIBattleEnterComponent);
             pageViewComponent.UISubViewType[(int)BattlePageEnum.Task] = typeof(UIBattleTaskComponent);

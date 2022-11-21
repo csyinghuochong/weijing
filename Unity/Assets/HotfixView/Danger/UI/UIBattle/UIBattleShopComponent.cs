@@ -61,7 +61,7 @@ namespace ET
 
         public static void OnInitUI(this UIBattleShopComponent self)
         {
-            string path_1 = ABPathHelper.GetUGUIPath("Main/Battle/UIBattleShopItem");
+            string path_1 = ABPathHelper.GetUGUIPath("BattleDungeon/UIBattleShopItem");
             GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path_1);
 
             int shopSellid = GlobalValueConfigCategory.Instance.Get(55).Value2;
