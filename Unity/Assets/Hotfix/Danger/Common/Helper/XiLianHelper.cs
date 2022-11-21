@@ -33,12 +33,34 @@ namespace ET
             return 0;
         }
 
-        public static string GenerateGemHoleInfo(int itemQuality)
+        public static string GenerateGemHoleInfo(int itemQuality,int itemLv)
         {
             string gemholeinfo = "";
             List<int> gemHoleId = new List<int>() { 0, 1, 2, 3, 4 };
-            List<int> gemWeight = new List<int>() { 50, 20, 15, 10, 5 };
+            List<int> gemWeight = new List<int>() { 50, 25, 15, 10, 0 };
             int gemNumber = gemHoleId[RandomHelper.RandomByWeight(gemWeight)];
+
+            //等级限制
+            int maxNum = 1;
+            if (itemLv > 1 && itemLv<=19) {
+
+                maxNum = 1;
+            }
+
+            if (itemLv > 20 && itemLv <= 29)
+            {
+                maxNum = 2;
+            }
+
+            if (itemLv > 30)
+            {
+                maxNum = 3;
+            }
+
+            if (gemNumber >= maxNum) {
+                gemNumber = maxNum;
+            }
+
             gemNumber = itemQuality >= 5 ? 4 : gemNumber;
             for (int i = 0; i < gemNumber; i++)
             {
@@ -485,7 +507,7 @@ namespace ET
 
             if (xilianType == 0) //普通掉落
             {
-                bagInfo.GemHole = GenerateGemHoleInfo(itemConfig.ItemQuality);
+                bagInfo.GemHole = GenerateGemHoleInfo(itemConfig.ItemQuality, itemConfig.UseLv);
             }
 
             if (HideSkillList.Count > 0)

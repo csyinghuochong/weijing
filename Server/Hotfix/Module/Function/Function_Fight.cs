@@ -737,6 +737,20 @@ namespace ET
                     }
                 }
 
+                //存储洗炼数值
+                if (userBagInfo.XiLianHideTeShuProLists != null)
+                {
+                    for (int y = 0; y < userBagInfo.XiLianHideTeShuProLists.Count; y++)
+                    {
+
+                        HideProList hidePro = userBagInfo.XiLianHideTeShuProLists[y];
+                        HideProListConfig hideproCof = HideProListConfigCategory.Instance.Get(hidePro.HideID);
+                        AddUpdateProDicList(hideproCof.PropertyType, hidePro.HideValue, UpdateProDicList);
+                    }
+                }
+
+                
+
                 //存储附魔属性
                 if (userBagInfo.FumoProLists != null)
                 {
