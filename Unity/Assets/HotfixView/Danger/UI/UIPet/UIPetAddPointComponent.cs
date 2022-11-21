@@ -118,14 +118,13 @@ namespace ET
             {
                 return;
             }
-            int newValue = self.PointList[addType];
-            if (newValue <= self.PointInit[addType] && value < 0)
+            int typeValue = self.PointList[addType];
+            if (typeValue <= self.PointInit[addType] && value < 0)
             {
                 return;
             }
-            newValue += value;
-            self.PointList[addType] = newValue;
-            self.PointRemain += value * -1;
+            self.PointRemain += (value * -1);
+            self.PointList[addType] += value;
 
             self.OnUpdateUI();
         }

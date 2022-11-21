@@ -223,7 +223,7 @@ namespace ET
         public static void OnButtonAddPoint(this UIPetListComponent self)
         {
             self.OnChangeNode(3);
-            self.PetAddPointComponent.OnUpdateUI(self.LastSelectItem);
+            self.PetAddPointComponent.OnInitUI(self.LastSelectItem);
         }
 
         public static void OnButtonCloseAddPoint(this UIPetListComponent self)
