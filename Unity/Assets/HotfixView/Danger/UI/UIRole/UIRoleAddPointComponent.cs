@@ -17,6 +17,7 @@ namespace ET
         public GameObject AddProperty_MingJie;
 
         public List<int> PointList = new List<int>();
+        public List<int> PointInit = new List<int>();
         public int PointRemain = 0;
         public GameObject GameObject;
         public bool IsHoldDown;
@@ -28,6 +29,7 @@ namespace ET
         public override void Awake(UIRoleAddPointComponent self, GameObject gameObject)
         {
             self.PointList.Clear();
+            self.PointInit.Clear();
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
@@ -121,7 +123,7 @@ namespace ET
                 return;
             }
             int typeValue = self.PointList[addType];
-            if (typeValue <=0 && value < 0)
+            if (typeValue <= self.PointInit[addType] && value < 0)
             {
                 return;
             }
@@ -161,6 +163,8 @@ namespace ET
                 PointList = self.PointList,
             };
             M2C_RoleAddPointResponse response = (M2C_RoleAddPointResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            self.OnInitUI();
         }
 
         public static void OnUpdateUI(this UIRoleAddPointComponent self)
@@ -185,6 +189,9 @@ namespace ET
             self.PointList.Add(self.GetNumericValue(numericComponent, 2));
             self.PointList.Add(self.GetNumericValue(numericComponent, 3));
             self.PointList.Add(self.GetNumericValue(numericComponent, 4));
+            
+            self.PointInit.Clear();
+            self.PointInit.AddRange(self.PointList);
             self.PointRemain = numericComponent.GetAsInt(NumericType.PointRemain);
 
             self.OnUpdateUI();

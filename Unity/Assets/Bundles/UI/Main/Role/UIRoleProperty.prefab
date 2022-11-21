@@ -3948,42 +3948,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!1 &2840773896957378441
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 9073891294748921004}
-  m_Layer: 5
-  m_Name: AddPointNode
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!224 &9073891294748921004
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2840773896957378441}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 7159405012993932105}
-  m_Father: {fileID: 5877662859323526158}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -1013, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2929347476497504324
 GameObject:
   m_ObjectHideFlags: 0
@@ -6075,7 +6039,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7159405012993932105
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6105,12 +6069,12 @@ RectTransform:
   - {fileID: 6845768685805274014}
   - {fileID: 8761758412012278990}
   - {fileID: 2976122545352290272}
-  m_Father: {fileID: 9073891294748921004}
-  m_RootOrder: 0
+  m_Father: {fileID: 5877662859323526158}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 526, y: 4}
+  m_AnchoredPosition: {x: -487.00006, y: 4}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &908171480290521315
@@ -7418,8 +7382,6 @@ MonoBehaviour:
     gameObject: {fileID: 6939793603601773012}
   - key: AttributeNode
     gameObject: {fileID: 2228880299197245566}
-  - key: AddPointNode
-    gameObject: {fileID: 2840773896957378441}
   - key: RoleAddPoint
     gameObject: {fileID: 6264820583974219343}
   - key: ButtonAddPoint
@@ -9540,7 +9502,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2099462131388709416}
-  - {fileID: 9073891294748921004}
+  - {fileID: 7159405012993932105}
   m_Father: {fileID: 6894860778418744812}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

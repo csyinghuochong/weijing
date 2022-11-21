@@ -12,7 +12,6 @@ namespace ET
         public GameObject ButtonAddPointConfirm;
         public GameObject ButtonAddPoint;
         public GameObject RoleAddPoint;
-        public GameObject AddPointNode;
         public GameObject AttributeNode;
         public GameObject Text_Exp;
         public GameObject ImageExp;
@@ -69,22 +68,21 @@ namespace ET
             self.ButtonCloseAddPoint = rc.Get<GameObject>("ButtonCloseAddPoint");
             self.ButtonCloseAddPoint.GetComponent<Button>().onClick.AddListener(() => 
             {
-                self.AddPointNode.SetActive(false);
+                self.RoleAddPoint.SetActive(false);
                 self.AttributeNode.SetActive(true);
             });
             self.ButtonAddPoint = rc.Get<GameObject>("ButtonAddPoint");
             self.ButtonAddPoint.GetComponent<Button>().onClick.AddListener(() =>
             {
-                self.AddPointNode.SetActive(true);
+                self.RoleAddPoint.SetActive(true);
                 self.AttributeNode.SetActive(false);
                 self.UIRoleAddPointComponent.OnInitUI();
             });
 
             self.RoleAddPoint = rc.Get<GameObject>("RoleAddPoint");
             self.UIRoleAddPointComponent = self.AddChild<UIRoleAddPointComponent, GameObject>(self.RoleAddPoint);
-            self.AddPointNode = rc.Get<GameObject>("AddPointNode");
             self.AttributeNode = rc.Get<GameObject>("AttributeNode");
-            self.AddPointNode.SetActive(false);
+            self.RoleAddPoint.SetActive(false);
             self.AttributeNode.SetActive(true);
 
             self.Text_Exp = rc.Get<GameObject>("Text_Exp");
