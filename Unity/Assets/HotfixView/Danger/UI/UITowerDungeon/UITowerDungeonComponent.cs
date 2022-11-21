@@ -49,17 +49,9 @@ namespace ET
         public static async ETTask OnBtn_Enter(this UITowerDungeonComponent self)
         {
             int sceneId = BattleHelper.GetSceneIdByType(SceneTypeEnum.Tower);
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
-            if (sceneConfig.DayEnterNum > 0 && sceneConfig.DayEnterNum <= userInfoComponent.GetSceneFubenTimes(sceneId))
-            {
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("今日进入次数已用完"));
-                return;
-            }
             int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.Tower, sceneId,  self.FubenDifficulty);
             if (errorCode == ErrorCore.ERR_Success)
             {
-                userInfoComponent.AddSceneFubenTimes(sceneId);
                 UIHelper.Remove(self.ZoneScene(), UIType.UITower);
             }
         }

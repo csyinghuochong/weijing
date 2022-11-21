@@ -42,11 +42,23 @@ namespace ET
 					reply();
 					return;
 				}
+				UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+				if (SceneConfigHelper.UseSceneConfig(request.SceneType))
+				{
+					SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(request.SceneId);
+					if (sceneConfig.DayEnterNum > 0 && sceneConfig.DayEnterNum <= userInfoComponent.GetSceneFubenTimes(request.SceneId))
+					{
+						response.Error = ErrorCore.ERR_TimesIsNot;
+						reply();
+						return;
+					}
+					userInfoComponent.AddSceneFubenTimes(request.SceneId);
+				}
+
 				if (oldScene == SceneTypeEnum.MainCityScene && request.SceneType > SceneTypeEnum.MainCityScene)
 				{
 					unit.RecordPostion(request.SceneType, request.SceneId);
 				}
-
 				switch (request.SceneType)
 				{
 					case (int)SceneTypeEnum.MainCityScene:
@@ -106,7 +118,6 @@ namespace ET
 						mapComponent = fubnescene.GetComponent<MapComponent>();
 						mapComponent.SetMapInfo((int)SceneTypeEnum.Tower, request.SceneId, 0);
 						mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
-						unit.GetComponent<UserInfoComponent>().AddSceneFubenTimes(request.SceneId);
 						TransferHelper.BeforeTransfer(unit);
 						await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.Tower, request.SceneId, 0);
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();

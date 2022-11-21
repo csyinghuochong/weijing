@@ -26,8 +26,20 @@ namespace ET
                 {
                     return ErrorCore.ERR_RequestRepeatedly;
                 }
+                UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
+                if (SceneConfigHelper.UseSceneConfig(newsceneType))
+                {
+                    SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
+                    if (sceneConfig.DayEnterNum > 0 && sceneConfig.DayEnterNum <= userInfoComponent.GetSceneFubenTimes(sceneId))
+                    {
+                        HintHelp.GetInstance().ShowHint("次数不足！");
+                        return ErrorCore.ERR_TimesIsNot;
+                    }
+                }
+              
                 Actor_TransferRequest c2M_ItemHuiShouRequest = new Actor_TransferRequest() { SceneType = newsceneType, SceneId = sceneId,  Difficulty = difficulty, paramInfo = paraminfo };
                 Actor_TransferResponse r2c_roleEquip = (Actor_TransferResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
+                userInfoComponent.AddSceneFubenTimes(sceneId);
                 return r2c_roleEquip.Error;
             }
             catch (Exception e)
