@@ -113,7 +113,7 @@ namespace ET
             //附加额外的极品属性
             float equipJiPinPro = 0.3f;
             //附加特殊技能
-            float equipJiPinSkillPro = 0.2f;
+            float equipJiPinSkillPro = 0.05f;
 
             //-------------------测试-------------------
             //附加额外的极品属性
@@ -281,6 +281,14 @@ namespace ET
                         {
                             break;
                         }
+
+                        //临时
+                        /*
+                        if (hintProListID == 1012) {
+                            triggerPro = 1;
+                        }
+                        */
+
                         //触发隐藏属性
                         if (RandomHelper.RandFloat01() < triggerPro)
                         {
@@ -355,6 +363,7 @@ namespace ET
                 }
 
                 //如果是掉落,概率降低10倍
+                /*
                 //洗炼大师附加
                 string xilianJiaID = "";
                 if (xilianJiaID != "" && xilianJiaID != null)
@@ -366,6 +375,7 @@ namespace ET
                         equipJiPinSkillPro = equipJiPinSkillPro + xilianAddValue;
                     }
                 }
+                */
 
                 bool ishaveSkill = false;
                 if (RandomHelper.RandFloat01() <= equipJiPinSkillPro || ishaveSkill)
@@ -373,17 +383,18 @@ namespace ET
                     int nextID = 0;
                     int hintProListID = 2001;
                     //获取隐藏条最大目数
-                    int hintJiPinMaxNum = 3;
+                    int hintJiPinMaxNum = 1;
                     int hintJiPinMaxNumSum = 0;
 
                     //洗练到一定次数必得隐藏技能ID
+                    /*
                     int teShuHintProListID = 0;
 
                     if (teShuHintProListID != 0)
                     {
                         hintProListID = teShuHintProListID;
                     }
-
+                    */
                     do
                     {
                         //获取单条触发概率
@@ -408,7 +419,7 @@ namespace ET
                         {
 
                             //触发隐藏属性
-                            if (RandomHelper.RandFloat01() < triggerPro || teShuHintProListID != 0)
+                            if (RandomHelper.RandFloat01() < triggerPro)
                             {
 
                                 //读取隐藏属性类型和对应随机值
@@ -430,11 +441,12 @@ namespace ET
 
                         nextID = hideProListConfig.NtxtID;
                         hintProListID = nextID;
-
+                        /*
                         if (teShuHintProListID != 0)
                         {
                             break;
                         }
+                        */
 
                     } while (nextID != 0);
 

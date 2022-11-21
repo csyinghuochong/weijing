@@ -160,6 +160,11 @@ namespace ET
 			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxAct, "攻击", "Pro_5", 1));
 			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxDef, "防御", "Pro_3", 1));
 			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxAdf, "魔御", "Pro_9", 1));
+            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Power, "力量", "Pro_8", 1));
+            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Intellect, "智力", "Pro_2", 1));
+            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Constitution, "体质", "Pro_6", 1));
+            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Stamina, "耐力", "Pro_7", 1));
+            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Agility, "敏捷", "Pro_9", 1));
             //
 
             //特殊属性
@@ -189,8 +194,8 @@ namespace ET
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ZhongJi, "重击附加伤害", "", 1));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiActPro, "攻击穿透", "", 2));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiMagePro, "魔法穿透", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiDef, "忽视目标防御", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiAdf, "忽视目标魔御", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiDef, "忽视防御", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiAdf, "忽视魔御", "", 2));
 
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Luck, "幸运值", "", 1));
             //self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_XiXuePro, "吸血概率", "", 2));
