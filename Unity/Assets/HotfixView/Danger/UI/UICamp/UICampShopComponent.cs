@@ -29,13 +29,17 @@ namespace ET
         {
             string path = ABPathHelper.GetUGUIPath("Main/Camp/UICampShopItem");
             GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            List<CampShopConfig> configs = CampShopConfigCategory.Instance.GetAll().Values.ToList();
-            for (int i = 0; i < configs.Count; i++)
+
+            int shopSellid = 0;
+            while (shopSellid != 0)
             {
+                StoreSellConfig storeSellConfig = StoreSellConfigCategory.Instance.Get(shopSellid);
+                shopSellid = storeSellConfig.NextID;
+
                 GameObject gameObject = GameObject.Instantiate(bundleObj);
                 UICommonHelper.SetParent(gameObject, self.ShopNodeList);
                 UICampShopItemComponent uICampShop = self.AddChild<UICampShopItemComponent, GameObject>(gameObject);
-                uICampShop.OnUpdateUI(configs[i]);
+                uICampShop.OnUpdateUI(storeSellConfig);
             }
         }
     }

@@ -99,7 +99,6 @@
     <Compile Include="Assets\Model\Demo\Unit\UnitType.cs" />
     <Compile Include="Assets\Model\Generate\Config\EquipConfig.cs" />
     <Compile Include="Assets\Model\Danger\DataUpdate\DataUpdateComponent.cs" />
-    <Compile Include="Assets\Model\Generate\Config\CampShopConfig.cs" />
     <Compile Include="Assets\Model\Danger\Common\Enum\FunctionEnum.cs" />
     <Compile Include="Assets\Model\Module\Message\MessageAttribute.cs" />
     <Compile Include="Assets\Model\Module\CoroutineLock\CoroutineLockComponent.cs" />
