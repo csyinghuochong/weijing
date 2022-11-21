@@ -53,6 +53,11 @@ namespace ET
                 numericComponent.Set(NumericType.YueKaEndTime, 0);
                 numericComponent.Set(NumericType.YueKaRemainTimes, leftDay);
             }
+
+            if (numericComponent.GetAsFloat(NumericType.ChouKaTenTime) == 0)
+            {
+                numericComponent.Set(NumericType.ChouKaTenTime, TimeHelper.ServerNow());
+            }
         }
 
         public static void OnLogin(this HeroDataComponent self)
