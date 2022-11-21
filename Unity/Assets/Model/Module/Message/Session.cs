@@ -71,8 +71,11 @@ namespace ET
                 return;
             }
 #if !NOT_UNITY
-            EventType.CommonHintError.Instance.errorValue = response.Error;
-            EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
+            if (response.Error!= 0)
+            {
+                EventType.CommonHintError.Instance.errorValue = response.Error;
+                EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
+            }
 #endif
             action.Tcs.SetResult(response);
         }

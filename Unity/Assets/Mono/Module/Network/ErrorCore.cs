@@ -152,6 +152,7 @@
         public const int ERR_UseSkillInCD2 = 300802;
         public const int ERR_UseSkillInCD3 = 300803;
         public const int ERR_UseSkillError = 300804;
+        public const int ERR_NoUseItemSkill = 300805;
 
         //宠物
         public const int ERR_Pet_Hint_1 = 300901;                                   //宠物星级出错

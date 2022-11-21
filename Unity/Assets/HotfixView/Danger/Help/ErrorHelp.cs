@@ -27,8 +27,9 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_DiamondNotEnoughError, "钻石不足!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD1, "技能在冷却中1!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD2, "技能在冷却中2!");
-            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD3, "技能在冷却中2!");
+            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD3, "技能在冷却中3!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillError, "释放技能出错!");
+            ErrorHintList.Add(ErrorCore.ERR_NoUseItemSkill, "该场景不能使用药剂道具技能!");
             ErrorHintList.Add(ErrorCore.ERR_UnSafeSqlString, "非法字符串!");
             ErrorHintList.Add(ErrorCore.ERR_EquipLvLimit, "装备等级不足!");
             ErrorHintList.Add(ErrorCore.ERR_BagIsFull, "背包已满!");

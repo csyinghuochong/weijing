@@ -166,10 +166,11 @@ namespace ET
                 skillCmd.TargetID = targetId;
                 skillCmd.ItemId = itemId;
                 skillCmd.TargetDistance = distance;
-                int errorCode = self.CanUseSkill(skillid);
+                int errorCode = self.CanUseSkill(itemId, skillid);
                 if (errorCode != ErrorCore.ERR_Success)
                 {
-                    return errorCode;
+                    HintHelp.GetInstance().ShowHintError(errorCode);
+                    return errorCode;       
                 }
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
                 if (skillConfig.SkillFrontSingTime == 0f)
@@ -286,27 +287,37 @@ namespace ET
             }
         }
 
-        public static int CanUseSkill(this SkillManagerComponent self, int skillId)
+        public static int CanUseSkill(this SkillManagerComponent self,int itemId, int skillId)
         {
             Unit unit = self.GetParent<Unit>();
 
             SkillCDItem skillCDList = self.GetSkillCD(skillId);
             if (skillCDList != null )
             {
-                return 1;
+                return ErrorCore.ERR_UseSkillInCD1;
             }
             if (TimeHelper.ServerNow() < self.SkillPublicCDTime)
             {
-                return 2;
+                return ErrorCore.ERR_UseSkillInCD2;
             }
             if (!unit.GetComponent<StateComponent>().CanUseSkill())
             {
-                return 3;
+                return ErrorCore.ERR_UseSkillInCD3;
             }
             if (self.IsSkillMoveTime())
             {
-                return 4;
+                return ErrorCore.ERR_UseSkillInCD3;
             }
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (itemId > 0 && SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
+            {
+                SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
+                if (sceneConfig.IfUseSkillItem == 1)
+                {
+                    return ErrorCore.ERR_NoUseItemSkill;
+                }
+            }
+
             return 0;
         }
     }

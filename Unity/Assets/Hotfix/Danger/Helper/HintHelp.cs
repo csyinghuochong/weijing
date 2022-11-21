@@ -21,6 +21,12 @@
             EventSystem.Instance.PublishClass(EventType.CommonHint.Instance);
         }
 
+        public void ShowHintError(int error)
+        {   
+            EventType.CommonHintError.Instance.errorValue = error;
+            EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
+        }
+
         public void DataUpdate(int dataType, string dataParam = "")
         {
             EventType.DataUpdate.Instance.DataType = dataType;
