@@ -33,7 +33,7 @@
 {"_t":"StartSceneConfig","_id":215,"Process":1,"Zone":3,"SceneType":"Battle","Name":"Battle","OuterPort":0},
 {"_t":"StartSceneConfig","_id":216,"Process":1,"Zone":3,"SceneType":"Map","Name":"Map101","OuterPort":0},
 {"_t":"StartSceneConfig","_id":217,"Process":1,"Zone":3,"SceneType":"Map","Name":"Map102","OuterPort":0},
-{"_t":"StartSceneConfig","_id":301,"Process":1,"Zone":4,"SceneType":"Account","Name":"Account","OuterPort":20335},
+{"_t":"StartSceneConfig","_id":301,"Process":1,"Zone":4,"SceneType":"Account","Name":"Account","OuterPort":20325},
 {"_t":"StartSceneConfig","_id":302,"Process":1,"Zone":4,"SceneType":"Realm","Name":"Realm","OuterPort":20336},
 {"_t":"StartSceneConfig","_id":303,"Process":1,"Zone":4,"SceneType":"Gate","Name":"Gate1","OuterPort":20337},
 {"_t":"StartSceneConfig","_id":304,"Process":1,"Zone":4,"SceneType":"Queue","Name":"Queue","OuterPort":20338},
