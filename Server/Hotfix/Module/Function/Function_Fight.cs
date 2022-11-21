@@ -1045,6 +1045,7 @@ namespace ET
             List<HideProList> skillProList = unit.GetComponent<SkillSetComponent>().GetSkillRoleProLists();
             for (int i = 0; i < skillProList.Count; i++)
             {
+                Log.Info("隐藏:" + skillProList[i].HideID + "skillProList[i].HideValue = " + skillProList[i].HideValue);
                 AddUpdateProDicList(skillProList[i].HideID, skillProList[i].HideValue, UpdateProDicList);
             }
 
