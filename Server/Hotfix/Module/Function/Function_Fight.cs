@@ -1156,7 +1156,6 @@ namespace ET
             //更新属性
             foreach (int key in UpdateProDicList.Keys)
             {
-                Log.Info( "key ：" + key + "value ：" + UpdateProDicList[key]);
                 long setValue = numericComponent.GetAsLong(key) + UpdateProDicList[key];
                 numericComponent.Set(key, setValue, notice);
             }
