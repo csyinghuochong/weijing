@@ -1,4 +1,4 @@
-::先备份数据库     要合併的区_新区
+::先备份数据库     要合併的区_新区     在修改物理区
 cd bin
 dotnet Server.dll --AppType=MergeZone --Console=1 --Parameters=4_3 --Process 1
 pause
