@@ -41,7 +41,7 @@ namespace ET
                     serverItems_1.Add(new ServerItem() { ServerId = 1, ServerIp = "127.0.0.1:20305", ServerName = "封测一区", ServerOpenTime = 0 });
                     serverItems_1.Add(new ServerItem() { ServerId = 2, ServerIp = "127.0.0.1:20325", ServerName = "封测二区", ServerOpenTime = 0 });
                     serverItems_1.Add(new ServerItem() { ServerId = 3, ServerIp = "127.0.0.1:20325", ServerName = "封测三区", ServerOpenTime = 0 });
-                    serverItems_1.Add(new ServerItem() { ServerId = 4, ServerIp = "127.0.0.1:20335", ServerName = "封测四区", ServerOpenTime = 0 });
+                    serverItems_1.Add(new ServerItem() { ServerId = 4, ServerIp = "127.0.0.1:20325", ServerName = "封测四区", ServerOpenTime = 0 });
                 }
             }
             else
@@ -55,7 +55,7 @@ namespace ET
                     serverItems_1.Add(new ServerItem() { ServerId = 1, ServerIp = "39.96.194.143:20305", ServerName = "封测一区", ServerOpenTime = 0 });
                     serverItems_1.Add(new ServerItem() { ServerId = 2, ServerIp = "39.96.194.143:20325", ServerName = "封测二区", ServerOpenTime = 0 });
                     serverItems_1.Add(new ServerItem() { ServerId = 3, ServerIp = "39.96.194.143:20325", ServerName = "封测三区", ServerOpenTime = 0 });
-                    serverItems_1.Add(new ServerItem() { ServerId = 4, ServerIp = "39.96.194.143:20335", ServerName = "封测四区", ServerOpenTime = 0 });
+                    serverItems_1.Add(new ServerItem() { ServerId = 4, ServerIp = "39.96.194.143:20325", ServerName = "封测四区", ServerOpenTime = 0 });
                 }
             }
 
