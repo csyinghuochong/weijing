@@ -106,7 +106,7 @@ namespace ET
 		public const string UITrialDungeon = "TrialDungeon/UITrialDungeon";
 		public const string UITrialMain = "TrialDungeon/UITrialMain";
 		public const string UIJiaYuan = "JiaYuan/UIJiaYuan";
-		public const string UITowerDungeon = "TowerDungeon/UITowerDungeon";
+		public const string UITower = "TowerDungeon/UITower";
 		public const string UITowerFightReward = "TowerDungeon/UITowerFightReward";
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
@@ -131,7 +131,7 @@ namespace ET
 			{ "UIPetEgg", UIPetEgg},
 			{ "UIChouKa", UIChouKa},
 			{ "UIGemMake", UIGemMake},
-			{ "UITowerDungeon", UITowerDungeon},
+			{ "UITowerDungeon", UITower},
 			{ "UITrialDungeon", UITrialDungeon},
 		};
 	}

@@ -553,9 +553,11 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanZuoQiItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UIModelDynamicComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerDungeonComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerDungeonEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerFightRewardEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerFightRewardComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerShopComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
