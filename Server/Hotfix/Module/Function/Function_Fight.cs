@@ -302,6 +302,10 @@ namespace ET
                     nowdef = adfValue;
                 }
 
+                if (skillconfig.SkillActType == 1) {
+                    actValue += attack_MageAct;
+                }
+
                 //计算战斗公式
                 long damge = (actValue - nowdef);
 
@@ -667,15 +671,15 @@ namespace ET
 
             OccupationConfig mOccupationConfig = OccupationConfigCategory.Instance.Get(1);
 
-            long occBaseHp = mOccupationConfig.BaseHp + roleLv * mOccupationConfig.LvUpHp + PointTiZhi * 50;
-            long occBaseMinAct = mOccupationConfig.BaseMinAct + roleLv * mOccupationConfig.LvUpMinAct + PointLiLiang * 3 + PointMinJie * 6;
-            long occBaseMaxAct = mOccupationConfig.BaseMaxAct + roleLv * mOccupationConfig.LvUpMaxAct + PointLiLiang * 3 + PointMinJie * 6;
-            long occBaseMinMage = mOccupationConfig.LvUpMinMagAct + roleLv * mOccupationConfig.LvUpMinMagAct + PointZhiLi * 5;
-            long occBaseMaxMage = mOccupationConfig.LvUpMaxMagAct + roleLv * mOccupationConfig.LvUpMaxMagAct + PointZhiLi * 5;
-            long occBaseMinDef = mOccupationConfig.BaseMinDef + roleLv * mOccupationConfig.LvUpMinDef + PointNaiLi * 5 + (int)((float)PointLiLiang * 2.5f);
-            long occBaseMaxDef = mOccupationConfig.BaseMaxDef + roleLv * mOccupationConfig.LvUpMaxAdf + PointNaiLi * 5 + (int)((float)PointLiLiang * 2.5f);
-            long occBaseMinAdf = mOccupationConfig.BaseMinAdf + roleLv * mOccupationConfig.LvUpMinAdf + PointNaiLi * 5 + (int)((float)PointZhiLi * 2.5f);
-            long occBaseMaxAdf = mOccupationConfig.BaseMaxAdf + roleLv * mOccupationConfig.LvUpMaxAdf + PointNaiLi * 5 + (int)((float)PointZhiLi * 2.5f);
+            long occBaseHp = mOccupationConfig.BaseHp + roleLv * mOccupationConfig.LvUpHp + PointTiZhi * 40 ;
+            long occBaseMinAct = mOccupationConfig.BaseMinAct + roleLv * mOccupationConfig.LvUpMinAct + PointLiLiang * 4 + PointMinJie * 6;
+            long occBaseMaxAct = mOccupationConfig.BaseMaxAct + roleLv * mOccupationConfig.LvUpMaxAct + PointLiLiang * 4 + PointMinJie * 6;
+            long occBaseMinMage = mOccupationConfig.LvUpMinMagAct + roleLv * mOccupationConfig.LvUpMinMagAct + PointZhiLi * 8;
+            long occBaseMaxMage = mOccupationConfig.LvUpMaxMagAct + roleLv * mOccupationConfig.LvUpMaxMagAct + PointZhiLi * 8;
+            long occBaseMinDef = mOccupationConfig.BaseMinDef + roleLv * mOccupationConfig.LvUpMinDef + PointNaiLi * 6 + (int)((float)PointLiLiang * 4f);
+            long occBaseMaxDef = mOccupationConfig.BaseMaxDef + roleLv * mOccupationConfig.LvUpMaxAdf + PointNaiLi * 6 + (int)((float)PointLiLiang * 4f);
+            long occBaseMinAdf = mOccupationConfig.BaseMinAdf + roleLv * mOccupationConfig.LvUpMinAdf + PointNaiLi * 6 + (int)((float)PointZhiLi * 4f);
+            long occBaseMaxAdf = mOccupationConfig.BaseMaxAdf + roleLv * mOccupationConfig.LvUpMaxAdf + PointNaiLi * 6 + (int)((float)PointZhiLi * 4f);
 
             double occBaseMoveSpeed = mOccupationConfig.BaseMoveSpeed;
             double occBaseCri = mOccupationConfig.BaseCri;

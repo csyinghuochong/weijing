@@ -160,6 +160,7 @@ namespace ET
 			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxAct, "攻击", "Pro_5", 1));
 			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxDef, "防御", "Pro_3", 1));
 			self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_MaxAdf, "魔御", "Pro_9", 1));
+            self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Mage, "技能伤害", "Pro_2", 1));
             self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Power, "力量", "Pro_8", 1));
             self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Intellect, "智力", "Pro_2", 1));
             self.ShowPropertyList_Base.Add(AddShowProperList(NumericType.Now_Constitution, "体质", "Pro_6", 1));
