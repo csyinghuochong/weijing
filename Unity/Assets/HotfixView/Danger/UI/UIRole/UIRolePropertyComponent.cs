@@ -196,7 +196,7 @@ namespace ET
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiDef, "忽视防御", "", 2));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HuShiAdf, "忽视魔御", "", 2));
 
-            self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Luck, "幸运值", "", 1));
+            //self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Luck, "幸运值", "", 1));
             //self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_XiXuePro, "吸血概率", "", 2));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_SkillCDTimeCostPro, "技能冷却", "", 2));
 
@@ -290,6 +290,11 @@ namespace ET
                     {
                         rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = numericComponent.GetAsLong(NumericType.Now_MinAdf) + "-" + numericComponent.GetAsLong(NumericType.Now_MaxAdf);
                         //rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = numericComponent.GetAsLong(NumericType.Now_MaxAdf).ToString();
+                    }
+                    else if (showList.numericType == NumericType.Now_Mage) {
+                        rc.Get<GameObject>("Lab_ProTypeValue").SetActive(false);
+                        rc.Get<GameObject>("Lab_ProTypeValueRight").GetComponent<Text>().text = numericComponent.GetAsLong(showList.numericType).ToString();
+                        rc.Get<GameObject>("Lab_ProTypeValueRight").SetActive(true);
                     }
                     else
                     {
