@@ -5,25 +5,26 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIEquipSetComponent : Entity, IAwake, IAwake<int>
+    public class UIEquipSetComponent : Entity, IAwake, IAwake<GameObject, int>
     {
         public GameObject RawImage;
         public UIModelShowComponent UIModelShowComponent;
         public List<UIEquipSetItemComponent> EquipList = new List<UIEquipSetItemComponent>();
         public List<int> EquipIdList = new List<int>();
+        public GameObject GameObject;
         public int Index;
         public int Position;
     }
 
     [ObjectSystem]
-    public class UIEquipSetComponentAwakeSystem : AwakeSystem<UIEquipSetComponent, int>
+    public class UIEquipSetComponentAwakeSystem : AwakeSystem<UIEquipSetComponent, GameObject, int>
     {
-        public override void Awake(UIEquipSetComponent self, int index)
+        public override void Awake(UIEquipSetComponent self,GameObject gameObject, int index)
         {
+            self.GameObject = gameObject;   
             self.EquipList.Clear();
 
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-            GameObject gameObject = self.GetParent<UI>().GameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             for (int i = 1; i <= 13; i++)
             {
                 GameObject go = gameObject.transform.Find("Equip_" + i).gameObject;
@@ -49,7 +50,6 @@ namespace ET
         public static  void InitModelShowView(this UIEquipSetComponent self, int index)
         {
             //模型展示界面
-            long instance = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Common/UIModelShow" + (index+1).ToString());
             GameObject bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
@@ -99,17 +99,17 @@ namespace ET
 
         public static void EquipSetHide(this UIEquipSetComponent self, bool value)
         {
-            self.GetParent<UI>().GameObject.transform.Find("EquipSetHide").gameObject.SetActive(value);
+            self.GameObject.transform.Find("EquipSetHide").gameObject.SetActive(value);
         }
 
         public static void PlayerLv(this UIEquipSetComponent self, int lv)
         {
-            self.GetParent<UI>().GameObject.transform.Find("EquipSetHide/RoseNameLv/Lab_RoseLv").GetComponent<Text>().text = lv.ToString();
+            self.GameObject.transform.Find("EquipSetHide/RoseNameLv/Lab_RoseLv").GetComponent<Text>().text = lv.ToString();
         }
 
         public static void PlayerName(this UIEquipSetComponent self, string playerName)
         {
-            self.GetParent<UI>().GameObject.transform.Find("EquipSetHide/RoseNameLv/Lab_RoseName").GetComponent<Text>().text = playerName;
+            self.GameObject.transform.Find("EquipSetHide/RoseNameLv/Lab_RoseName").GetComponent<Text>().text = playerName;
         }
 
         public static void UpdateBagUI(this UIEquipSetComponent self, List<BagInfo> equiplist, int occ, ItemOperateEnum itemOperateEnum)
