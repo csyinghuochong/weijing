@@ -179,7 +179,7 @@ namespace ET
                 return;
             }
 
-            int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.PetDungeon, BattleHelper.GetBattFubenId(SceneTypeEnum.PetDungeon), 0, self.PetFubenId.ToString());
+            int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), (int)SceneTypeEnum.PetDungeon, BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon), 0, self.PetFubenId.ToString());
             if (errorCode != ErrorCore.ERR_Success)
             {
                 return;
