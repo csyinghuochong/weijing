@@ -27,15 +27,13 @@ namespace ET
             self.EquipSet1 = rc.Get<GameObject>("EquipSet1");
             self.EquipSet2 = rc.Get<GameObject>("EquipSet2");
 
-            UI uiEquipset1 = self.AddChild<UI, string, GameObject>( "EquipSet1", self.EquipSet1);
-            self.UIEquipSetComponent1 = uiEquipset1.AddComponent<UIEquipSetComponent,int>(0);
+         
+            self.UIEquipSetComponent1 = self.AddChild<UIEquipSetComponent,GameObject, int>(self.EquipSet1, 0);
             self.UIEquipSetComponent1.Position = 4;
 
-            UI uiEquipset2 = self.AddChild<UI, string, GameObject>( "EquipSet2", self.EquipSet2);
-            self.UIEquipSetComponent2 = uiEquipset2.AddComponent<UIEquipSetComponent,int>(1);
+            self.UIEquipSetComponent2 = self.AddChild<UIEquipSetComponent, GameObject, int>(self.EquipSet2, 1);
             self.UIEquipSetComponent1.Position = 5;
         }
-
     }
 
     public static class UIWatchComponentSystem
@@ -63,5 +61,4 @@ namespace ET
             self.UIEquipSetComponent2.ShowPlayerModel(bagInfo2, selfOcc);
         }
     }
-
 }

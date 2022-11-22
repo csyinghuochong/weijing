@@ -150,8 +150,7 @@ namespace ET
 			self.ObjLabRoleLv.GetComponent<Text>().text = userInfo.Lv.ToString();
 			self.ObjLabRoleName.GetComponent<Text>().text = userInfo.Name;
 
-			UI uiEquipset = self.AddChild<UI, string, GameObject>("EquipSet", self.EquipSet);
-			self.UIEquipSetComponent = uiEquipset.AddComponent<UIEquipSetComponent,int>(0);
+			self.UIEquipSetComponent = self.AddChild<UIEquipSetComponent, GameObject, int>(self.EquipSet, 0);
 
 			BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 			BagInfo bagInfo = bagComponent.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
