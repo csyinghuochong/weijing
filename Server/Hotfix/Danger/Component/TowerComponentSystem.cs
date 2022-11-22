@@ -90,7 +90,8 @@ namespace ET
         public static async ETTask CreateMonster(this TowerComponent self)
         {
             long instanceId = self.InstanceId;
-            await TimerComponent.Instance.WaitAsync(3000);
+            self.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.TowerId, self.TowerId, true);
+            await TimerComponent.Instance.WaitAsync(2000);
             if (instanceId != self.InstanceId)
             {
                 return;
@@ -99,7 +100,6 @@ namespace ET
             {
                 return;
             }
-            self.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.TowerId, self.TowerId, true);
             Scene scene = self.DomainScene();
             TowerConfig towerConfig = TowerConfigCategory.Instance.Get(self.TowerId);
             self.WaveTime = towerConfig.NextTime * 1000;
