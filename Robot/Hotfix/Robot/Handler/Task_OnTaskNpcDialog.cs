@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace ET
 {
+    [Event]
     public class Task_OnTaskNpcDialog : AEventClass<EventType.TaskNpcDialog>
     {
 

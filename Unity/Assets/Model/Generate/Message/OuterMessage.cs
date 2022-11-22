@@ -827,6 +827,9 @@ namespace ET
 		[ProtoMember(4)]
 		public bool YaoGan { get; set; }
 
+		[ProtoMember(5)]
+		public long UnitId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.C2M_Stop)]

@@ -57,14 +57,14 @@
         private async ETTask RunAsync(EventType.TeamDungeonSettlement args)
         {
             await TimerComponent.Instance.WaitAsync(3000);
-            if (UIHelper.GetUI(args.Scene, UIType.UITeamDungeonSettlement) != null)
+            if (UIHelper.GetUI(args.ZoneScene, UIType.UITeamDungeonSettlement) != null)
                 return;
-            int sceneTypeEnum = args.Scene.GetComponent<MapComponent>().SceneTypeEnum;
+            int sceneTypeEnum = args.ZoneScene.GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == (int)SceneTypeEnum.MainCityScene)
             {
                 return;
             }
-            UI ui = await UIHelper.Create(args.Scene, UIType.UITeamDungeonSettlement);
+            UI ui = await UIHelper.Create(args.ZoneScene, UIType.UITeamDungeonSettlement);
             ui.GetComponent<UITeamDungeonSettlementComponent>().OnUpdateUI(args.m2C_FubenSettlement);
         }
     }

@@ -36,7 +36,7 @@ namespace ET
 
                 Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Map" + sceneConfigs[i].Id.ToString(), SceneType.Map);
                 MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
-                mapComponent.SetMapInfo((int)SceneTypeEnum.Battle, sceneConfigs[i].Id, 0);
+                mapComponent.SetMapInfo((int)SceneTypeEnum.YeWaiScene, sceneConfigs[i].Id, 0);
                 mapComponent.NavMeshId = sceneConfigs[i].MapID.ToString(); 
                 fubnescene.GetComponent<ServerInfoComponent>().ServerInfo = self.ServerInfo;
                 YeWaiRefreshComponent yeWaiRefreshComponen = fubnescene.AddComponent<YeWaiRefreshComponent>();

@@ -17,7 +17,6 @@ namespace ET
                 case NoticeType.TeamDungeon:
                     List<Entity> ts = robotManagerComponent.Children.Values.ToList();
                     Log.Debug($"机器人数量:{ts.Count}");
-
                     for (int i = 0; i < 2; i++)
                     {
                         int robotZone = robotManagerComponent.ZoneIndex++;
@@ -33,22 +32,25 @@ namespace ET
                     break;
                 case NoticeType.YeWaiBoss:
                     //sceneid@x;y;z
-                    string[] messageInfo = message.Message.Split('@');
-                    string[] positionInfo = messageInfo[1].Split(";");
-                    Vector3 targetPosition = new Vector3(float.Parse(positionInfo[0]), float.Parse(positionInfo[1]), float.Parse(positionInfo[2]));
-                    for (int i = 0; i < 5; i++)
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
-                        int robotZone = robotManagerComponent.ZoneIndex++;
-                        int robotId = BattleHelper.GetBattleRobotId(4);
-                        Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
-                        BehaviourComponent behaviourComponent = robotScene?.AddComponent<BehaviourComponent, int>(robotId);
-                        behaviourComponent.TargetPosition = targetPosition;
-                        behaviourComponent.MessageValue = message.Message;
-                        await TimerComponent.Instance.WaitAsync(200);
-                    }
+                        string[] messageInfo = message.Message.Split('@');
+                        string[] positionInfo = messageInfo[1].Split(";");
+                        Vector3 targetPosition = new Vector3(float.Parse(positionInfo[0]), float.Parse(positionInfo[1]), float.Parse(positionInfo[2]));
+                        for (int i = 0; i < 2; i++)
+                        {
+                            int robotZone = robotManagerComponent.ZoneIndex++;
+                            int robotId = BattleHelper.GetBattleRobotId(4);
+                            Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                            BehaviourComponent behaviourComponent = robotScene?.AddComponent<BehaviourComponent, int>(robotId);
+                            behaviourComponent.TargetPosition = targetPosition;
+                            behaviourComponent.MessageValue = message.Message;
+                            await TimerComponent.Instance.WaitAsync(200);
+                        }
+                    } 
                     break;
                 case NoticeType.BattleOpen:
-                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, message.Zone))
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
                         for (int i = 0; i < 10; i++)
                         {

@@ -168,5 +168,12 @@ namespace ET
             self.CancellationToken = null;
             self.Current = 0;
         }
+
+        public static void Exit(this BehaviourComponent self)
+        {
+            Scene zoneScene = self.ZoneScene();
+            zoneScene.Parent.GetComponent<RobotManagerComponent>().RemoveRobot(zoneScene);
+            zoneScene.Dispose();
+        }
     }
 }

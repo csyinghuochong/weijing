@@ -12,11 +12,7 @@
 
         public override bool Check(BehaviourComponent aiComponent, AIConfig aiConfig)
         {
-            if (aiComponent.NewBehaviour == BehaviourType.Behaviour_TeamDungeon)
-            {
-                return true;
-            }
-            return false;
+            return aiComponent.NewBehaviour == BehaviourId();
         }
 
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
@@ -43,8 +39,7 @@
                 bool ret = await TimerComponent.Instance.WaitAsync(6000000, cancellationToken);
                 if (ret)
                 {
-                    zoneScene.Parent.GetComponent<RobotManagerComponent>().RemoveRobot(zoneScene);
-                    zoneScene.Dispose();
+                    aiComponent.Exit();
                     return;
                 }
                 else

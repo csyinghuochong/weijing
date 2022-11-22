@@ -244,6 +244,7 @@ namespace ET
                 {
                     MonsterId = monsterPosition.MonsterID,
                     NextTime = TimeHelper.ServerNow() + 0,
+                    NextTime = 0,//TimeHelper.ServerNow() + leftTime,
                     PositionX = float.Parse(position[0]),
                     PositionY = float.Parse(position[1]),
                     PositionZ = float.Parse(position[2]),
@@ -251,7 +252,7 @@ namespace ET
                     Range = (float)monsterPosition.CreateRange,
                     Interval = mtype == 5 ? TimeHelper.OneDay : -1,
                     Rotation = monsterPosition.Create,
-                });
+                }); ;
             }
         }
 
@@ -276,6 +277,8 @@ namespace ET
         public static void OnTimer(this YeWaiRefreshComponent self)
         {
             long time = TimeHelper.ServerNow();
+
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
             for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
             {
                 RefreshMonster refreshMonster = self.RefreshMonsters[i];
@@ -323,6 +326,7 @@ namespace ET
                 float range = refreshMonster.Range;
                 Vector3 to = new Vector3(form.x + RandomHelper.RandomNumberFloat(-1 * range, range), form.y, form.z + RandomHelper.RandomNumberFloat(-1 * range, range));
                 Vector3 vector3 = self.DomainScene().GetComponent<MapComponent>().GetCanReachPath(form, to);
+               
                 UnitFactory.CreateMonster(self.GetParent<Scene>(), refreshMonster.MonsterId, vector3, new CreateMonsterInfo()
                 {  
                     Camp = monsterConfig.MonsterCamp,

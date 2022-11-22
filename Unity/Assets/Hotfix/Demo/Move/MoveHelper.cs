@@ -28,6 +28,7 @@ namespace ET
             msg.Y = targetPos.y;
             msg.Z = targetPos.z;    
             msg.YaoGan = yangan;
+            msg.UnitId = unit.Id;
             unit.ZoneScene().GetComponent<SessionComponent>().Session.Send(msg);
 
             ObjectWait objectWait = unit.GetComponent<ObjectWait>();

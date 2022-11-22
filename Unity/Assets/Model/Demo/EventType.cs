@@ -18,7 +18,7 @@ namespace ET
             public int ChapterId;
             public int SonId;
         }
-        
+
         public class SceneChangeFinish : DisposeObject
         {
             public static readonly SceneChangeFinish Instance = new SceneChangeFinish();
@@ -62,13 +62,13 @@ namespace ET
             public Scene ZoneScene;
             public long Ping;
         }
-        
+
         public class AfterCreateZoneScene : DisposeObject
         {
             public static readonly AfterCreateZoneScene Instance = new AfterCreateZoneScene();
             public Scene ZoneScene;
         }
-        
+
         public class AfterCreateCurrentScene : DisposeObject
         {
             public static readonly AfterCreateCurrentScene Instance = new AfterCreateCurrentScene();
@@ -259,6 +259,11 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class RecvTeamUpdate : DisposeObject
+        {
+            public static readonly RecvTeamUpdate Instance = new RecvTeamUpdate();
+            public Scene ZoneScene;
+        }
 
         public class ChuanSongOpen : DisposeObject
         {
@@ -274,7 +279,7 @@ namespace ET
             public BagInfo bagInfo;
             public ItemOperateEnum itemOperateEnum;
             public Vector3 inputPoint;
-            public List<int> EquipList = new List<int>();   
+            public List<int> EquipList = new List<int>();
             public int Occ;
         }
 
@@ -291,7 +296,7 @@ namespace ET
         {
             public static readonly TeamDungeonSettlement Instance = new TeamDungeonSettlement();
             public M2C_TeamDungeonSettlement m2C_FubenSettlement;
-            public Scene Scene;
+            public Scene ZoneScene;
         }
 
         //组队副本宝箱奖励
@@ -477,7 +482,7 @@ namespace ET
 
         //npc對話
         public class TaskNpcDialog : DisposeObject
-        { 
+        {
             public static readonly TaskNpcDialog Instance = new TaskNpcDialog();
             public TaskPro TaskPro;
             public Scene zoneScene;

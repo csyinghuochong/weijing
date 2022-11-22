@@ -369,9 +369,12 @@ namespace ET
 
         public static async ETTask UpdateRankInfo(this UserInfoComponent self)
         {
-            long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
-
             Unit unit = self.GetParent<Unit>();
+            if (unit.IsRobot())
+            {
+                return;
+            }
+            long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
             RankingInfo rankPetInfo = new RankingInfo();
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             rankPetInfo.UserId = userInfoComponent.UserInfo.UserId;

@@ -91,6 +91,9 @@ namespace ET
 
             M2C_PetRankSettlement m2C_FubenSettlement = new M2C_PetRankSettlement();
             m2C_FubenSettlement.BattleResult = result;
+            if (result == CombatResultEnum.Win)
+            {
+            }
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
         }
 

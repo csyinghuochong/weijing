@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace ET
 {
@@ -18,11 +17,9 @@ namespace ET
 
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
-
             Log.ILog.Debug("Behaviour_Target: Enter");
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene());
             Vector3 targetPosition = aiComponent.TargetPosition;
-
             while (true)
             {
                 if (unit.IsDisposed)

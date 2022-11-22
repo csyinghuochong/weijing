@@ -5,14 +5,8 @@
     {
         protected override void  Run(Session session, M2C_TeamDungeonApplyResult message)
         {
-            RunAsync(session, message).Coroutine();
-            
+            session.ZoneScene().GetComponent<TeamComponent>().OnRecvTeamApply(message.TeamPlayerInfo);
         }
 
-        private async ETTask RunAsync(Session session, M2C_TeamDungeonApplyResult message)
-        {
-            session.ZoneScene().GetComponent<TeamComponent>().OnRecvTeamApply(message.TeamPlayerInfo);
-            await ETTask.CompletedTask;
-        }
     }
 }

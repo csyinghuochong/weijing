@@ -86,57 +86,6 @@
 				Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
 			}
 #endif
-
-#if !SERVER && NOT_UNITY
-			OnRobotDead(args).Coroutine();
-#endif
 		}
-
-#if !SERVER && NOT_UNITY
-		public async ETTask OnRobotDead(EventType.NumericChangeEvent args)
-		{
-			Unit unit = args.Parent;
-			long InstanceId = unit.InstanceId;
-			if (args.NewValue == 1 && unit.MainHero && unit.IsRobot())
-			{
-				Scene zoneScene = unit.ZoneScene();
-				MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
-				zoneScene.GetComponent<BehaviourComponent>().Stop();
-				switch (mapComponent.SceneTypeEnum)
-				{
-					case SceneTypeEnum.Battle:
-						await TimerComponent.Instance.WaitAsync(10000);
-						if (InstanceId != unit.InstanceId)
-						{
-							Log.Debug("InstanceId != unit.InstanceId");
-							return;
-						}
-						C2M_TeamDungeonRBornRequest request = new C2M_TeamDungeonRBornRequest() { };
-						zoneScene.GetComponent<SessionComponent>().Session.Send(request);
-						zoneScene.GetComponent<BehaviourComponent>().Start();
-						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
-						break;
-					case SceneTypeEnum.TeamDungeon:
-						await TimerComponent.Instance.WaitAsync(20000);
-						if (InstanceId != unit.InstanceId)
-						{
-							Log.Debug("InstanceId != unit.InstanceId");
-							return;
-						}
-						request = new C2M_TeamDungeonRBornRequest() { };
-						zoneScene.GetComponent<SessionComponent>().Session.Send(request);
-						zoneScene.GetComponent<BehaviourComponent>().Start();
-						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
-						break;
-					default:
-						EnterFubenHelp.RequestQuitFuben(unit.ZoneScene());
-						await TimerComponent.Instance.WaitAsync(1000);
-						zoneScene.GetComponent<BehaviourComponent>().Start();
-						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Stroll);
-						break;
-				}
-			}
-		}
-#endif
 	}
 }

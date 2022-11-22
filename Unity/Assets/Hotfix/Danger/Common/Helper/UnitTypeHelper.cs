@@ -40,9 +40,11 @@
                 {
                     return false;
                 }
-                return SceneConfigCategory.Instance.Get(mapComponent.SceneId).IfPVP == 1;
+                if (self.Type == UnitType.Player && attack.Type == UnitType.Player)
+                {
+                    return SceneConfigCategory.Instance.Get(mapComponent.SceneId).IfPVP == 1;
+                }
             }
-
             return self.GetBattleCamp() != attack.GetBattleCamp();
         }
 
