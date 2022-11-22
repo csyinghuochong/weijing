@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 334
+  version: 335
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -4732,6 +4732,8 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Monster/72004012.prefab
   - bundle: f8a983acd29b34820f23eb45da66cd10.unity3d
     path: Assets/Bundles/Unit/Monster/72004013.prefab
+  - bundle: 9ec0b9f41017957395bcbb32a1b419d2.unity3d
+    path: Assets/Bundles/Unit/Monster/80000001.prefab
   - bundle: 2cad1df652f399a81800c2b7bdf79c9c.unity3d
     path: Assets/Bundles/Unit/Monster/80000101.prefab
   - bundle: 6461d9751814a20c21f23df7eee24381.unity3d
@@ -5891,6 +5893,9 @@ MonoBehaviour:
   - name: f8a983acd29b34820f23eb45da66cd10.unity3d
     assets:
     - Assets/Bundles/Unit/Monster/72004013.prefab
+  - name: 9ec0b9f41017957395bcbb32a1b419d2.unity3d
+    assets:
+    - Assets/Bundles/Unit/Monster/80000001.prefab
   - name: 2cad1df652f399a81800c2b7bdf79c9c.unity3d
     assets:
     - Assets/Bundles/Unit/Monster/80000101.prefab
@@ -10387,27 +10392,15 @@ MonoBehaviour:
   - name: f13acd80941c79b442968e92c94c1b71.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/ZhangJie_1/shuguai/Materials/_D.mat
-  - name: f1770889279080b30fc10df6b8d1514e.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/sparkle.png
   - name: 6c30e1502235fa4e68589ee8d204c1b0.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/ZhangJie_1/shuguai/Materials/_D.jpg
-  - name: 8552b6ff659d596d0d9ac3bbc72ceada.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/treasure_ray.png
   - name: aa3bb7167b6333459448563ff41a6511.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/ZhangJie_1/shuguai/Boss_Death.FBX
   - name: de4a1d57e763e9b3a12bdf8543163cb5.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/ZhangJie_1/shuguai/Boss_Run.FBX
-  - name: 8c1741ae4da73d6768fd4c8248672456.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Sparkles/sparkle.mat
-  - name: cd254e319c64ff2dd64b468abbd9cd2c.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/treasure_ray.mat
   - name: 7ba4d01c7085eda0f4ab1df3c1dd9bc1.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/ZhangJie_1/shuguai/Boss_Act.FBX
@@ -10417,6 +10410,18 @@ MonoBehaviour:
   - name: 2ab1358fd4faf8effc456e2dba51dc9e.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/ZhangJie_1/shuguai/Boss_Idle.FBX
+  - name: f1770889279080b30fc10df6b8d1514e.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/sparkle.png
+  - name: 8552b6ff659d596d0d9ac3bbc72ceada.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/treasure_ray.png
+  - name: 8c1741ae4da73d6768fd4c8248672456.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Sparkles/sparkle.mat
+  - name: cd254e319c64ff2dd64b468abbd9cd2c.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/treasure_ray.mat
   - name: c9861a69a108f84daa4aea255ed9edf8.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Materials/props1.tif
@@ -11890,6 +11895,18 @@ MonoBehaviour:
   - name: 165565aba071a4e5616db74c7cb1ba8d.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_122.png
+  - name: 07f3b86365c5072d6635295e92c8c407.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/doorwayglow.png
+  - name: 703fe76b9cc7c07b426c4b2e3fd6e4a1.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/roundsmoothitem.png
+  - name: e1df16908fb69b637c7bdbab967a4cc4.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/doorwayglow.mat
+  - name: 4c170cae02d7f1010776c02118f52fa4.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/roundsmoothitem.mat
   - name: 0e6691c379ca72e5cc0ad07c045d691c.unity3d
     assets:
     - Assets/Res/Effect/Skill/Texture/Materials/Magic 00817.mat
@@ -11990,6 +12007,12 @@ MonoBehaviour:
   - name: 62bf2ad389a035a5799c194219c33b0d.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect_4/EffectPackage/ArtData/Textures-E3D/Normal/_normal_map.jpg
+  - name: fefb120e52e1d46015aac9a68a2502d7.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Epic Toon FX/Textures/healing.png
+  - name: 1e23400da6dd39872a09b2c7feae0872.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Epic Toon FX/Materials/Misc/healing.mat
   - name: c615c6c4ff38ac3e5a5088edb478ebbc.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX2_glow_00229_A.tga
@@ -12029,18 +12052,24 @@ MonoBehaviour:
   - name: 219fecbf3788270a782912f2d1671bd0.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EScene/XWX-Effect-Dev/Noise-Distort/Noise-Distort00005.png
+  - name: 0ed4b5529f4b94e173820258afb3cee2.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/verticalgradient.png
   - name: 4169bed4f58861eb43b0704cd7ed227c.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Sparkles/sparkle_legendary.mat
-  - name: 703fe76b9cc7c07b426c4b2e3fd6e4a1.unity3d
+  - name: 4e425bb477cdd67d0e3f22b2e249f3ed.unity3d
     assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/roundsmoothitem.png
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Models/RPGFXVerticalGlow.FBX
   - name: e59ed6d8ecab85c56bc9ba72443e2d24.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/sparkle_legendary.png
-  - name: 4c170cae02d7f1010776c02118f52fa4.unity3d
+  - name: c8c03c40524d71e92b71c3a3aea7357f.unity3d
     assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/roundsmoothitem.mat
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Models/Materials/Material #28.mat
+  - name: 96e6a9eff59663436d0d7b239b4a00ce.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/verticalgradient.mat
   - name: 63836d8161cd20bf5782872c6eaa6407.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Point140.png
@@ -12146,9 +12175,6 @@ MonoBehaviour:
   - name: 46f38374871f0d9884af140421796a0f.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Direction-Point1.mat
-  - name: 0ed4b5529f4b94e173820258afb3cee2.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/verticalgradient.png
   - name: a6dc754197592d9b994a48e5dd20538f.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/dot3.png
@@ -12167,33 +12193,27 @@ MonoBehaviour:
   - name: 6e18e0e87897011c41aad21109a23d54.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/beamglow.png
-  - name: 4e425bb477cdd67d0e3f22b2e249f3ed.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Models/RPGFXVerticalGlow.FBX
-  - name: c8c03c40524d71e92b71c3a3aea7357f.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Models/Materials/Material #28.mat
-  - name: 96e6a9eff59663436d0d7b239b4a00ce.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/verticalgradient.mat
   - name: b90e2481c54770c6a3526696d53f9774.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/beamglow.mat
   - name: 610255075d0a79a9849bf62d52917631.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/questmarker_yellow.mat
-  - name: 07f3b86365c5072d6635295e92c8c407.unity3d
+  - name: ddfdfd719a45ca9eff95436076fa7a5e.unity3d
     assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/doorwayglow.png
-  - name: e1df16908fb69b637c7bdbab967a4cc4.unity3d
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/sparkle_set.png
+  - name: 4728e6459a82bb598ed3a7500898fc63.unity3d
     assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/doorwayglow.mat
-  - name: fefb120e52e1d46015aac9a68a2502d7.unity3d
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/questmarker_green.png
+  - name: 1328d534980063c35eca2a3d6b059b4b.unity3d
     assets:
-    - Assets/Res/Effect/Skill/Epic Toon FX/Textures/healing.png
-  - name: 1e23400da6dd39872a09b2c7feae0872.unity3d
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Sparkles/sparkle_set.mat
+  - name: 80a5fb2056febad7a285f3294cb37269.unity3d
     assets:
-    - Assets/Res/Effect/Skill/Epic Toon FX/Materials/Misc/healing.mat
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Models/Materials/SelfIllumGreen.mat
+  - name: 7f745c62548b708eff8abc40978484c6.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/questmarker_green.mat
   - name: fe836c0944cfd1163ca55a98877ed5ce.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_shandian_00014_01_C_2.png

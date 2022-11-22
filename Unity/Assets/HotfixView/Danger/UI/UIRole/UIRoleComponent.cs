@@ -129,7 +129,7 @@ namespace ET
 			self.UpdateEquipSet();
 			if (showEquip)
 			{
-				self.UIEquipSetComponent.PlayShowIdelAnimate(null).Coroutine();
+				self.UIEquipSetComponent.PlayShowIdelAnimate(null);
 			}
 			self.UIEquipSetComponent.EquipSetHide(page!= 2);
 		}
@@ -190,7 +190,7 @@ namespace ET
 			BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 			BagInfo bagInfo = bagComponent.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
-			self.UIEquipSetComponent.ChangeWeapon(bagInfo, userInfoComponent.UserInfo.Occ).Coroutine();
+			self.UIEquipSetComponent.ChangeWeapon(bagInfo, userInfoComponent.UserInfo.Occ);
 		}
 
 		public static void InitBagUI(this UIRoleComponent self)

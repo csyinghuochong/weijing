@@ -46,12 +46,12 @@ namespace ET
 
     public static class UIEquipSetComponentSystem
     {
-        public static async ETTask InitModelShowView(this UIEquipSetComponent self, int index)
+        public static  void InitModelShowView(this UIEquipSetComponent self, int index)
         {
             //模型展示界面
             long instance = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Common/UIModelShow" + (index+1).ToString());
-            GameObject bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            GameObject bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(gameObject, self.RawImage);
             gameObject.transform.localPosition = new Vector3(self.Position * 2000, 0, 0);
@@ -59,20 +59,14 @@ namespace ET
 
             UI ui = self.AddChild<UI, string, GameObject>( "UIModelShow", gameObject);
             self.UIModelShowComponent = ui.AddComponent<UIModelShowComponent, GameObject>(self.RawImage);
-
-            await TimerComponent.Instance.WaitAsync(200);
-            if (instance != self.InstanceId)
-            {
-                return;
-            }
             self.RawImage.SetActive(true);
         }
 
-        public static async ETTask PlayShowIdelAnimate(this UIEquipSetComponent self, BagInfo bagInfo)
+        public static  void PlayShowIdelAnimate(this UIEquipSetComponent self, BagInfo bagInfo)
         {
             if (self.UIModelShowComponent == null)
             {
-               await self.InitModelShowView(self.Index);
+               self.InitModelShowView(self.Index);
             }
             self.UIModelShowComponent.PlayShowIdelAnimate();
         }
@@ -81,16 +75,16 @@ namespace ET
         {
             if (self.UIModelShowComponent == null)
             {
-                await self.InitModelShowView(self.Index);
+                self.InitModelShowView(self.Index);
             }
             self.UIModelShowComponent.ShowPlayerModel(bagInfo, occ);
         }
 
-        public static async ETTask ChangeWeapon(this UIEquipSetComponent self, BagInfo bagInfo, int occ)
+        public static  void ChangeWeapon(this UIEquipSetComponent self, BagInfo bagInfo, int occ)
         {
             if (self.UIModelShowComponent == null)
             {
-                await self.InitModelShowView(self.Index);
+                self.InitModelShowView(self.Index);
             }
             self.UIModelShowComponent.ChangeWeapon(bagInfo, occ);
         }
