@@ -27,7 +27,7 @@ namespace ET
                     return ErrorCore.ERR_RequestRepeatedly;
                 }
                 UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
-                if (SceneConfigHelper.UseSceneConfig(newsceneType))
+                if (SceneConfigHelper.UseSceneConfig(newsceneType) && sceneId > 0)
                 {
                     SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
                     if (sceneConfig.DayEnterNum > 0 && sceneConfig.DayEnterNum <= userInfoComponent.GetSceneFubenTimes(sceneId))

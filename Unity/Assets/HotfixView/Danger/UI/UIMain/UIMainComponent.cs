@@ -52,6 +52,7 @@ namespace ET
         public GameObject Btn_TopRight_2;
         public GameObject Btn_TopRight_1;
         public GameObject Button_JiaYuan;
+        public GameObject Button_Recharge;
 
         public UI UILevelGuideMini;
         public UI UIMainChat;
@@ -213,6 +214,9 @@ namespace ET
 
             GameObject Button_ZhanQu = rc.Get<GameObject>("Button_ZhanQu");
             ButtonHelp.AddListenerEx(Button_ZhanQu, () => { self.OnButton_ZhanQu(); });
+
+            self.Button_Recharge = rc.Get<GameObject>("Button_Recharge");
+            ButtonHelp.AddListenerEx(self.Button_Recharge, () => { self.OnButton_Recharge(); });
 
             self.LeftBottomBtns = rc.Get<GameObject>("LeftBottomBtns");
             GameObject ShrinkBtn = rc.Get<GameObject>("ShrinkBtn");
@@ -1188,6 +1192,11 @@ namespace ET
         public static void OnButton_ZhanQu(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UIZhanQu).Coroutine();
+        }
+
+        public static void OnButton_Recharge(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIRecharge).Coroutine();
         }
 
 

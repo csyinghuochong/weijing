@@ -135,7 +135,7 @@ namespace ET
             }
         }
 
-        public static void ShowItemList(List<RewardItem> rewardItems, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true)
+        public static void ShowItemList(List<RewardItem> rewardItems, GameObject itemNodeList, Entity entity, float scale = 1f, bool showNumber = true, bool showName = false)
         {
             rewardItems.Sort(delegate (RewardItem a, RewardItem b)
             {
@@ -165,7 +165,7 @@ namespace ET
                 UI ui_2 = entity.AddChild<UI, string, GameObject>("UICommonItem_" + i, itemSpace);
                 UIItemComponent uIItemComponent = ui_2.AddComponent<UIItemComponent>();
                 uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
-                uIItemComponent.Label_ItemName.SetActive(false);
+                uIItemComponent.Label_ItemName.SetActive(showName);
                 uIItemComponent.Label_ItemNum.SetActive(showNumber);
                 itemSpace.transform.localScale = Vector3.one * scale;
             }

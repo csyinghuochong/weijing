@@ -69,11 +69,12 @@ namespace ET
 
             C2M_PetEggDuiHuanRequest request = new C2M_PetEggDuiHuanRequest() { ChouKaId = index };
             M2C_PetEggDuiHuanResponse response = (M2C_PetEggDuiHuanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
             if (response.Error!= ErrorCore.ERR_Success)
             {
                 return;
             }
+            UI ui = await UIHelper.Create(self.DomainScene(), UIType.UICommonReward);
+            ui.GetComponent<UICommonRewardComponent>().OnUpdateUI(response.ReardList);
             self.OnUpdateUI();
         }
     }

@@ -3693,6 +3693,7 @@ message M2C_PetEggDuiHuanResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
+	repeated RewardItem ReardList = 1;	
 }
 
 //ResponseType M2C_PetEggChouKaResponse

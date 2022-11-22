@@ -7721,6 +7721,9 @@ namespace ET
 		[ProtoMember(92)]
 		public int Error { get; set; }
 
+		[ProtoMember(1)]
+		public List<RewardItem> ReardList = new List<RewardItem>();
+
 	}
 
 	[ResponseType(nameof(M2C_PetEggChouKaResponse))]

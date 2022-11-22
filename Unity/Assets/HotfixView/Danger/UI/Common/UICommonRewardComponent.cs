@@ -33,7 +33,7 @@ namespace ET
 
         public static void  OnUpdateUI(this UICommonRewardComponent self, List<RewardItem> rewardItems)
         {
-            UICommonHelper.ShowItemList(rewardItems, self.ChouKaItemSet, self , 1f);
+            UICommonHelper.ShowItemList(rewardItems, self.ChouKaItemSet, self , 1f, true, true);
         }
     }
 
