@@ -201,7 +201,6 @@ namespace ET
             if (unit.Type == UnitType.Monster)
             {
                 MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId);
-                NumericComponent numericComponent = this.Parent.GetComponent<NumericComponent>();
                 TextMeshProUGUI textMeshProUGUI = this.ObjName.GetComponent<TextMeshProUGUI>();
                 bool isboos = monsterCof.MonsterType == (int)MonsterTypeEnum.Boss;
                 textMeshProUGUI.fontSize = isboos ? 32 : 26;
@@ -214,11 +213,6 @@ namespace ET
                 ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
                 MapComponent mapComponent = this.ZoneScene().GetComponent<MapComponent>();
                 int monsterLv = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Lv);
-                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Tower)
-                {
-                    UserInfoComponent userInfoComponent = this.ZoneScene().GetComponent<UserInfoComponent>();
-                    rc.Get<GameObject>("Lal_Lv").GetComponent<TextMeshProUGUI>().text = userInfoComponent.UserInfo.Lv.ToString();
-                }
                 else if (monsterLv > 0)
                 {
                     rc.Get<GameObject>("Lal_Lv").GetComponent<TextMeshProUGUI>().text = monsterLv.ToString();
