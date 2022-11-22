@@ -73,7 +73,7 @@ namespace ET
 						Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "PetFuben" + fubenid.ToString(), SceneType.Fuben);
 						fubnescene.AddComponent<PetFubenSceneComponent>();
 						TransferHelper.BeforeTransfer(unit);
-						await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetDungeon, BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon), request.SceneId);
+						await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetDungeon,  request.SceneId, int.Parse(request.paramInfo));
 						TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 						break;
 					case (int)SceneTypeEnum.YeWaiScene:
