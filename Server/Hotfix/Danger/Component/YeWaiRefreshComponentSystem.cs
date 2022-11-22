@@ -243,8 +243,7 @@ namespace ET
                 self.RefreshMonsters.Add(new RefreshMonster()
                 {
                     MonsterId = monsterPosition.MonsterID,
-                    NextTime = TimeHelper.ServerNow() + 0,
-                    NextTime = 0,//TimeHelper.ServerNow() + leftTime,
+                    NextTime = TimeHelper.ServerNow() + leftTime,
                     PositionX = float.Parse(position[0]),
                     PositionY = float.Parse(position[1]),
                     PositionZ = float.Parse(position[2]),
@@ -277,8 +276,6 @@ namespace ET
         public static void OnTimer(this YeWaiRefreshComponent self)
         {
             long time = TimeHelper.ServerNow();
-
-            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
             for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
             {
                 RefreshMonster refreshMonster = self.RefreshMonsters[i];
