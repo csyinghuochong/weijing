@@ -61,16 +61,42 @@ namespace ET
             string[] ids = GlobalValueConfigCategory.Instance.Get(65).Value.Split(';');
             int startTowerId = int.Parse(ids[self.FubenDifficulty - 1]); //起始波
             int endId =  self.TowerId; //当前波
+            int cengNum = TowerConfigCategory.Instance.Get(endId).CengNum;
             M2C_FubenSettlement message = new M2C_FubenSettlement();
             message.BattleResult = 1;
             message.RewardExp = 2000;
             message.RewardGold = 2000;
+            
+
+            if (self.TowerId >= 100101 && self.TowerId <= 100199) 
+            {
+                message.RewardExp = 10000 + cengNum * 3000;
+                message.RewardGold = 1000 + cengNum * 500;
+            }
+
+            if (self.TowerId >= 100201 && self.TowerId <= 100299)
+            {
+                message.RewardExp = 50000 + cengNum * 5000;
+                message.RewardGold = 2000 + cengNum * 750;
+            }
+
+            if (self.TowerId >= 100301 && self.TowerId <= 100399)
+            {
+                message.RewardExp = 75000 + cengNum * 7500;
+                message.RewardGold = 3000 + cengNum * 1000;
+            }
+
+            //
+            int itemNum = (int)(cengNum/5f);
+
 
             MessageHelper.SendToClient(self.MainUnit, message);
 
             UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();
             userInfoComponent.UpdateRoleData(UserDataType.Exp, message.RewardExp.ToString());
             userInfoComponent.UpdateRoleData(UserDataType.Gold, message.RewardGold.ToString());
+
+            self.MainUnit.GetComponent<BagComponent>().OnAddItemData("10000148;" + itemNum, $"{ItemGetWay.TiaoZhan}_{TimeHelper.ServerNow()}");
         }
 
         public static void OnTimer(this TowerComponent self)

@@ -35,6 +35,7 @@ namespace ET
         public const int BattleWin = 25;
         public const int ReceieMail = 26;
         public const int Melting = 27;              //熔炼
+        public const int TiaoZhan = 28;             //挑战之地
 
         public const int Activity = 100;
     }
