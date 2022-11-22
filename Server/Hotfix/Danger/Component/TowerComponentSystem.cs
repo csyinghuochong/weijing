@@ -59,8 +59,8 @@ namespace ET
             TimerComponent.Instance.Remove(ref self.Timer);
 
             string[] ids = GlobalValueConfigCategory.Instance.Get(65).Value.Split(';');
-            //int startTowerId = int.Parse(ids[self.FubenDifficulty - 1]); //起始波
-            //self.TowerId; //当前波
+            int startTowerId = int.Parse(ids[self.FubenDifficulty - 1]); //起始波
+            int endId =  self.TowerId; //当前波
             M2C_FubenSettlement message = new M2C_FubenSettlement();
             message.BattleResult = 1;
             message.RewardExp = 2000;
@@ -83,14 +83,14 @@ namespace ET
                 self.OnTowerOver();
                 return;
             }
-            self.TowerId = nextTowerId;
-            self.CreateMonster().Coroutine();
+            self.TowerId = self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
+            self.CreateMonster(nextTowerId).Coroutine();
         }
 
-        public static async ETTask CreateMonster(this TowerComponent self)
+        public static async ETTask CreateMonster(this TowerComponent self, int towerId)
         {
             long instanceId = self.InstanceId;
-            self.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.TowerId, self.TowerId, true);
+            self.MainUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.TowerId, towerId, true);
             await TimerComponent.Instance.WaitAsync(2000);
             if (instanceId != self.InstanceId)
             {
@@ -101,7 +101,7 @@ namespace ET
                 return;
             }
             Scene scene = self.DomainScene();
-            TowerConfig towerConfig = TowerConfigCategory.Instance.Get(self.TowerId);
+            TowerConfig towerConfig = TowerConfigCategory.Instance.Get(towerId);
             self.WaveTime = towerConfig.NextTime * 1000;
             FubenHelp.CreateMonsterList(scene, towerConfig.MonsterSet);
 
@@ -112,8 +112,7 @@ namespace ET
         public static void BeginTower(this TowerComponent self)
         {
             string[] ids = GlobalValueConfigCategory.Instance.Get(65).Value.Split(';');
-            self.TowerId = int.Parse(ids[self.FubenDifficulty - 1]);
-            self.CreateMonster().Coroutine();
+            self.CreateMonster(int.Parse(ids[self.FubenDifficulty - 1])).Coroutine();
         }
     }
 }
