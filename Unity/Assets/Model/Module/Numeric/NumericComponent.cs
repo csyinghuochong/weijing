@@ -42,7 +42,7 @@ namespace ET
 			foreach (int key in this.NumericDic.Keys)
 			{
 				//这个范围内的属性为特殊属性不进行重置
-				if (key < max)
+				if (key >= NumericType.Now_Hp && key < max)
 				{
 					continue;
 				}
@@ -107,6 +107,7 @@ namespace ET
 			}
 			set
 			{
+
 				long v = this.GetByKey(numericType);
 				if (v == value)
 				{
@@ -134,6 +135,7 @@ namespace ET
 			}
 
 			int nowValue = (int)numericType / 100;
+
 			int add = nowValue * 100 + 1;
 			int mul = nowValue * 100 + 2;
 			int finalAdd = nowValue * 100 + 3;

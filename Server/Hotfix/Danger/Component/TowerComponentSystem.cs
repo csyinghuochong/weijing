@@ -64,9 +64,8 @@ namespace ET
             int cengNum = TowerConfigCategory.Instance.Get(endId).CengNum;
             M2C_FubenSettlement message = new M2C_FubenSettlement();
             message.BattleResult = 1;
-            message.RewardExp = 2000;
-            message.RewardGold = 2000;
-            
+            message.RewardExp = 0;
+            message.RewardGold = 0;
 
             if (self.TowerId >= 100101 && self.TowerId <= 100199) 
             {

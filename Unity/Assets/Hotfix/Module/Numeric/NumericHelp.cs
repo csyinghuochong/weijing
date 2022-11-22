@@ -110,6 +110,15 @@ namespace ET
             { (int)NumericType.Now_Damge_Hum_Pro, 0.3f },
             { (int)NumericType.Now_Damge_Demon_Pro, 0.3f },
 
+
+            { (int)NumericType.Now_SkillCDTimeCostPro, 0.5f },
+            { (int)NumericType.Now_MiaoSha_Pro, 0.3f },
+            { (int)NumericType.Now_SkillNoCDPro, 0.5f },
+            { (int)NumericType.Now_SkillMoreDamgePro, 0.3f },
+
+            { (int)NumericType.Now_ZhuanZhuPro, 0.3f },
+            { (int)NumericType.Now_ActSpeedPro, 1f },
+            
         };
 
         //防御部分
@@ -118,6 +127,9 @@ namespace ET
             { (int)NumericType.Now_MaxDef, 1 },
             { (int)NumericType.Now_MaxAdf, 1 },
             { (int)NumericType.Now_GeDang, 1 },
+
+
+            
         };
 
         //防御部分
@@ -141,6 +153,21 @@ namespace ET
             { (int)NumericType.Now_Resistance_Beast_Pro, 0.3f },
             { (int)NumericType.Now_Resistance_Hum_Pro, 0.3f },
             { (int)NumericType.Now_Resistance_Demon_Pro, 0.3f },
+
+            { (int)NumericType.Now_MageReboundDamgePro, 0.3f },
+            { (int)NumericType.Now_ActReboundDamgePro, 0.3f },
+
+
+            { (int)NumericType.Now_WuShiFangYuPro, 0.5f },
+            { (int)NumericType.Now_SkillDodgePro, 0.5f },
+            { (int)NumericType.Now_MageDodgePro, 0.5f },
+            { (int)NumericType.Now_FuHuoPro, 0.5f },
+            { (int)NumericType.Now_ActDodgePro, 0.5f },
+            
+
+
+
+
 
         };
 

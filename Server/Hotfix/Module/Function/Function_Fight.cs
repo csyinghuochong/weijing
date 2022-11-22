@@ -995,7 +995,7 @@ namespace ET
                 if (string.IsNullOrEmpty(equipList[i].GemIDNew))
                 {
                     equipList[i].GemIDNew = "0_0_0_0";
-                    Log.Debug($"GemIDNew==null  unit.Id: {unit.Id} BagInfoID:{equipList[i].BagInfoID}");
+                    //Log.Debug($"GemIDNew==null  unit.Id: {unit.Id} BagInfoID:{equipList[i].BagInfoID}");
                 }
                 string[] gemList = equipList[i].GemIDNew.Split('_');
                 for (int z = 0; z < gemList.Length; z++) {
@@ -1063,7 +1063,7 @@ namespace ET
             List<HideProList> skillProList = unit.GetComponent<SkillSetComponent>().GetSkillRoleProLists();
             for (int i = 0; i < skillProList.Count; i++)
             {
-                Log.Info("隐藏:" + skillProList[i].HideID + "skillProList[i].HideValue = " + skillProList[i].HideValue);
+                //Log.Info("隐藏:" + skillProList[i].HideID + "skillProList[i].HideValue = " + skillProList[i].HideValue);
                 AddUpdateProDicList(skillProList[i].HideID, skillProList[i].HideValue, UpdateProDicList);
             }
 
@@ -1176,6 +1176,7 @@ namespace ET
             foreach (int key in UpdateProDicList.Keys)
             {
                 long setValue = numericComponent.GetAsLong(key) + UpdateProDicList[key];
+                //Log.Info("key = " + key + ":" + setValue);
                 numericComponent.Set(key, setValue, notice);
             }
 
@@ -1195,46 +1196,46 @@ namespace ET
             foreach (var Item in NumericHelp.ZhanLi_ActPro)
             {
                 ShiLi_ActPro += (int)((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
+            }
 
-                //幸运副本附加
-                int luck = numericComponent.GetAsInt(NumericType.Now_Luck);
-                switch (luck)
-                {
-                    case 0:
-                        ShiLi_ActPro += 0.01f;
-                        break;
-                    case 1:
-                        ShiLi_ActPro += 0.02f;
-                        break;
-                    case 2:
-                        ShiLi_ActPro += 0.04f;
-                        break;
-                    case 3:
-                        ShiLi_ActPro += 0.08f;
-                        break;
-                    case 4:
-                        ShiLi_ActPro += 0.12f;
-                        break;
-                    case 5:
-                        ShiLi_ActPro += 0.2f;
-                        break;
-                    case 6:
-                        ShiLi_ActPro += 0.3f;
-                        break;
-                    case 7:
-                        ShiLi_ActPro += 0.4f;
-                        break;
-                    case 8:
-                        ShiLi_ActPro += 0.5f;
-                        break;
-                    case 9:
-                        ShiLi_ActPro += 1f;
-                        break;
+            //幸运副本附加
+            int luck = numericComponent.GetAsInt(NumericType.Now_Luck);
+            switch (luck)
+            {
+                case 0:
+                    ShiLi_ActPro += 0.01f;
+                    break;
+                case 1:
+                    ShiLi_ActPro += 0.02f;
+                    break;
+                case 2:
+                    ShiLi_ActPro += 0.04f;
+                    break;
+                case 3:
+                    ShiLi_ActPro += 0.08f;
+                    break;
+                case 4:
+                    ShiLi_ActPro += 0.12f;
+                    break;
+                case 5:
+                    ShiLi_ActPro += 0.2f;
+                    break;
+                case 6:
+                    ShiLi_ActPro += 0.3f;
+                    break;
+                case 7:
+                    ShiLi_ActPro += 0.4f;
+                    break;
+                case 8:
+                    ShiLi_ActPro += 0.5f;
+                    break;
+                case 9:
+                    ShiLi_ActPro += 1f;
+                    break;
 
-                    default:
-                        ShiLi_ActPro = 1f;
-                        break;
-                }
+                default:
+                    ShiLi_ActPro = 1f;
+                    break;
             }
 
             //防御部分
