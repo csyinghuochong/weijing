@@ -75,10 +75,10 @@ namespace ET
                 float colorValue = 0.3f - 0.3f * self.PassTime / 2f;
                 self.ObjImageDi.GetComponent<Image>().color = new Color(0, 0, 0, colorValue);
                 self.Lab_ChapterName.GetComponent<Text>().color = new Color(1, 1, 1, 1 - self.PassTime / 2f);
-                self.PostionSet.SetActive(false);
             }
             else
             {
+                self.PostionSet.SetActive(false);
                 TimerComponent.Instance.Remove(ref self.Timer);
             }
         }
