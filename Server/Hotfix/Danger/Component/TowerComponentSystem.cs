@@ -77,13 +77,13 @@ namespace ET
         {
             TimerComponent.Instance.Remove(ref self.Timer);
             //奖励
+            self.TowerId = self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
             int nextTowerId = self.TowerId + 1;
             if (TowerHelper.GetLastTowerId(SceneTypeEnum.Tower) < nextTowerId)
             {
                 self.OnTowerOver();
                 return;
             }
-            self.TowerId = self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
             self.CreateMonster(nextTowerId).Coroutine();
         }
 
