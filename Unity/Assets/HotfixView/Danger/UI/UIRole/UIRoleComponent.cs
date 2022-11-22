@@ -156,7 +156,7 @@ namespace ET
 			BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
 			BagInfo bagInfo = bagComponent.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
 
-			self.UIEquipSetComponent.ShowPlayerModel(bagInfo, userInfo.Occ).Coroutine();
+			self.UIEquipSetComponent.ShowPlayerModel(bagInfo, userInfo.Occ);
 			int occTwo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.OccTwo;
 			if (occTwo != 0) 
 			{

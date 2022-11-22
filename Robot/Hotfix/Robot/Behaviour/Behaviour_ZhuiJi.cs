@@ -12,7 +12,7 @@ namespace ET
 
         public override bool Check(BehaviourComponent aiComponent, AIConfig aiConfig)
         {
-            return aiComponent.NewBehaviour == BehaviourType.Behaviour_ZhuiJi;
+            return aiComponent.NewBehaviour == BehaviourId();
         }
 
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)

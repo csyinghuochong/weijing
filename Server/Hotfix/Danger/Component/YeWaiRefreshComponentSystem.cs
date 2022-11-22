@@ -243,7 +243,7 @@ namespace ET
                 self.RefreshMonsters.Add(new RefreshMonster()
                 {
                     MonsterId = monsterPosition.MonsterID,
-                    NextTime = TimeHelper.ServerNow() + leftTime,
+                    NextTime = TimeHelper.ServerNow() + 0,
                     PositionX = float.Parse(position[0]),
                     PositionY = float.Parse(position[1]),
                     PositionZ = float.Parse(position[2]),
@@ -297,7 +297,6 @@ namespace ET
                 //DateTime dateTime =  TimeHelper.DateTimeNow();
                 //根据refreshMonster.Time可以纠正时间
                 self.CreateMonsters(refreshMonster);
-
             }
         }
 
@@ -310,10 +309,18 @@ namespace ET
                 return;
             }
 
+            Vector3 form = new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ);
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.YeWaiScene && monsterConfig.MonsterType == MonsterTypeEnum.Boss)
+            {
+                long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.YeWaiBoss,
+                    Message = $"{mapComponent.SceneId}@{form.x};{form.y};{form.z}"});
+            }
+
             for (int i = 0; i < refreshMonster.Number; i++)
             {
                 float range = refreshMonster.Range;
-                Vector3 form = new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ);
                 Vector3 to = new Vector3(form.x + RandomHelper.RandomNumberFloat(-1 * range, range), form.y, form.z + RandomHelper.RandomNumberFloat(-1 * range, range));
                 Vector3 vector3 = self.DomainScene().GetComponent<MapComponent>().GetCanReachPath(form, to);
                 UnitFactory.CreateMonster(self.GetParent<Scene>(), refreshMonster.MonsterId, vector3, new CreateMonsterInfo()

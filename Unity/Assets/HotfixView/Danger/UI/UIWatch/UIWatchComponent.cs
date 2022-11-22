@@ -52,7 +52,7 @@ namespace ET
             self.UIEquipSetComponent1.UpdateBagUI(m2C_WatchPlayerResponse.EquipList, m2C_WatchPlayerResponse.Occ, ItemOperateEnum.Watch);
 
             BagInfo bagInfo = ItemHelper.GetEquipByWeizhi(m2C_WatchPlayerResponse.EquipList, (int)ItemSubTypeEnum.Wuqi);
-            self.UIEquipSetComponent1.ShowPlayerModel(bagInfo, m2C_WatchPlayerResponse.Occ).Coroutine();
+            self.UIEquipSetComponent1.ShowPlayerModel(bagInfo, m2C_WatchPlayerResponse.Occ);
 
             int selfOcc = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
             self.UIEquipSetComponent2.PlayerLv(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv);
@@ -60,7 +60,7 @@ namespace ET
             self.UIEquipSetComponent2.UpdateBagUI(self.ZoneScene().GetComponent<BagComponent>().GetEquipList(), selfOcc, ItemOperateEnum.Watch);
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             BagInfo bagInfo2 = bagComponent.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
-            self.UIEquipSetComponent2.ShowPlayerModel(bagInfo2, selfOcc).Coroutine();
+            self.UIEquipSetComponent2.ShowPlayerModel(bagInfo2, selfOcc);
         }
     }
 

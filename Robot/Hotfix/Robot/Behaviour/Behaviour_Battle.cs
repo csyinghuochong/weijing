@@ -10,11 +10,7 @@
 
         public override bool Check(BehaviourComponent aiComponent, AIConfig aiConfig)
         {
-            if (aiComponent.NewBehaviour == BehaviourType.Behaviour_Battle)
-            {
-                return true;
-            }
-            return false;
+            return aiComponent.NewBehaviour == BehaviourId();
         }
 
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)

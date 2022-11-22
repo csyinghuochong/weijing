@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEngine;
 
 namespace ET
 {
@@ -26,6 +27,22 @@ namespace ET
                         int robotId = BattleHelper.GetTeamRobotId(fubenId);
                         Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                         BehaviourComponent behaviourComponent =  robotScene?.AddComponent<BehaviourComponent, int>(robotId);
+                        behaviourComponent.MessageValue = message.Message;
+                        await TimerComponent.Instance.WaitAsync(200);
+                    }
+                    break;
+                case NoticeType.YeWaiBoss:
+                    //sceneid@x;y;z
+                    string[] messageInfo = message.Message.Split('@');
+                    string[] positionInfo = messageInfo[1].Split(";");
+                    Vector3 targetPosition = new Vector3(float.Parse(positionInfo[0]), float.Parse(positionInfo[1]), float.Parse(positionInfo[2]));
+                    for (int i = 0; i < 5; i++)
+                    {
+                        int robotZone = robotManagerComponent.ZoneIndex++;
+                        int robotId = BattleHelper.GetBattleRobotId(4);
+                        Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                        BehaviourComponent behaviourComponent = robotScene?.AddComponent<BehaviourComponent, int>(robotId);
+                        behaviourComponent.TargetPosition = targetPosition;
                         behaviourComponent.MessageValue = message.Message;
                         await TimerComponent.Instance.WaitAsync(200);
                     }

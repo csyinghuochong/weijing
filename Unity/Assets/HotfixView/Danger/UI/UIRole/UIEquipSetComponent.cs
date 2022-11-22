@@ -71,7 +71,7 @@ namespace ET
             self.UIModelShowComponent.PlayShowIdelAnimate();
         }
 
-        public static async ETTask ShowPlayerModel(this UIEquipSetComponent self, BagInfo bagInfo, int occ)
+        public static void  ShowPlayerModel(this UIEquipSetComponent self, BagInfo bagInfo, int occ)
         {
             if (self.UIModelShowComponent == null)
             {

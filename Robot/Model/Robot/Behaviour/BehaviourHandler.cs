@@ -10,6 +10,7 @@
         public const int Behaviour_Battle = 5;              //战场
         public const int Behaviour_TeamDungeon = 6;         //组队
         public const int Behaviour_Target = 7;
+        public const int Behaviour_YeWaiBoss = 8;
     }
 
     public class BehaviourHandlerAttribute : BaseAttribute
