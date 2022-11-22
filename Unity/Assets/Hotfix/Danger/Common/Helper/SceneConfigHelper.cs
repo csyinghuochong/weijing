@@ -6,7 +6,9 @@ namespace ET
     {
         public static bool ShowRightTopButton(int sceneType)
         {
-            return sceneType != SceneTypeEnum.Battle && sceneType != SceneTypeEnum.TrialDungeon;
+            return sceneType != SceneTypeEnum.Battle 
+                && sceneType != SceneTypeEnum.TrialDungeon
+                && sceneType != SceneTypeEnum.Tower;
         }
 
         public static bool UseSceneConfig(int sceneType)

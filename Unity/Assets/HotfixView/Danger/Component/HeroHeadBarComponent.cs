@@ -211,9 +211,8 @@ namespace ET
 
                 //怪物等级显示
                 ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
-                MapComponent mapComponent = this.ZoneScene().GetComponent<MapComponent>();
                 int monsterLv = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Lv);
-                else if (monsterLv > 0)
+                if (monsterLv > 0)
                 {
                     rc.Get<GameObject>("Lal_Lv").GetComponent<TextMeshProUGUI>().text = monsterLv.ToString();
                 }
