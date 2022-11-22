@@ -3,21 +3,21 @@ using System.Linq;
 
 namespace ET
 {
-    [Timer(TimerType.TowerTimer)]
-    public class TowerTimer : ATimer<TowerComponent>
-    {
-        public override void Run(TowerComponent self)
-        {
-            try
-            {
-                self.OnTimer();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"playerOffline timer error: {self.Id}\n{e}");
-            }
-        }
-    }
+    //[Timer(TimerType.TowerTimer)]
+    //public class TowerTimer : ATimer<TowerComponent>
+    //{
+    //    public override void Run(TowerComponent self)
+    //    {
+    //        try
+    //        {
+    //            self.OnTimer();
+    //        }
+    //        catch (Exception e)
+    //        {
+    //            Log.Error($"playerOffline timer error: {self.Id}\n{e}");
+    //        }
+    //    }
+    //}
 
     [ObjectSystem]
     public class TowerComponentAwakeSystem : AwakeSystem<TowerComponent>
@@ -105,8 +105,8 @@ namespace ET
             self.WaveTime = towerConfig.NextTime * 1000;
             FubenHelp.CreateMonsterList(scene, towerConfig.MonsterSet);
 
-            TimerComponent.Instance.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewOnceTimer( TimeHelper.ServerNow() + self.WaveTime, TimerType.TowerTimer, self );
+            //TimerComponent.Instance.Remove(ref self.Timer);
+            //self.Timer = TimerComponent.Instance.NewOnceTimer( TimeHelper.ServerNow() + self.WaveTime, TimerType.TowerTimer, self );
         }
 
         public static void BeginTower(this TowerComponent self)
