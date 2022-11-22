@@ -67,7 +67,6 @@ namespace ET
             if (numericComponent.GetAsLong((int)NumericType.Now_Hp) >= numericComponent.GetAsLong((int)NumericType.Now_MaxHp))
                 return;
 
-            UnitInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UnitInfoComponent>();
             if (self.GetParent<Unit>().Type == UnitType.Pet)
             {
                 numericComponent.ApplyChange(null, NumericType.Now_Hp, (long)(numericComponent.GetAsLong((int)NumericType.Now_MaxHp) * 0.1f), 0, true);
