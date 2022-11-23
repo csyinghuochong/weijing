@@ -453,7 +453,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6BCF\u592920:00-20:30\u5F00\u542F"
+  m_Text: "\u6BCF\u592920:30-21:00\u5F00\u542F"
 --- !u!1 &2381854091301187081
 GameObject:
   m_ObjectHideFlags: 0
