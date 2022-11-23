@@ -41,11 +41,13 @@ namespace ET
 			long max = (int)NumericType.Max;
 			foreach (int key in this.NumericDic.Keys)
 			{
+
 				//这个范围内的属性为特殊属性不进行重置
 				if (key >= NumericType.Now_Hp && key < max)
 				{
 					continue;
 				}
+
 				//buff属性不进行重置
 				int yushu = key % 100;
 				if (yushu == 11 || yushu == 12)
