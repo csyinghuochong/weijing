@@ -212,6 +212,12 @@ namespace ET
             });
         }
 
+        public static long GetUnitCacheConfig(long unitId)
+        {
+            int zone = UnitIdStruct.GetUnitZone(unitId);
+            return GetDbCacheId(zone);
+        }
+
         /// <summary>
         /// 获取玩家组件缓存
         /// </summary>
