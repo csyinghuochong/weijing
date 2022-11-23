@@ -97,7 +97,7 @@ namespace ET
             DateTime dateTime = TimeInfo.Instance.ToDateTime(currentTime);
             int dayCha = TimeHelper.DateTimeNow().Day - dateTime.Day;
             self.UpdateExchangeGold(dayCha);
-            self.SendReward().Coroutine();
+            self.SendCombatReward().Coroutine();
         }
 
         //更新兑换金币
@@ -424,10 +424,16 @@ namespace ET
             }
         }
 
-        public static async ETTask SendReward(this RankSceneComponent self)
+        public static async ETTask SendCombatReward(this RankSceneComponent self)
         {
             int zone = self.DomainZone();
-            await TimerComponent.Instance.WaitAsync(zone * 1000);
+            await TimerComponent.Instance.WaitAsync(zone * 500);
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            if (!RankHelper.HaveReward(1, dateTime.Day))
+            {
+                return;
+            }
+
             long serverTime = TimeHelper.ServerNow();
             List<RankingInfo> rankingInfos = self.DBRankInfo.rankingInfos;
             long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
@@ -458,6 +464,62 @@ namespace ET
                       { 
                           Id = rankingInfos[i].UserId,
                           MailInfo = mailInfo });
+            }
+        }
+
+        public static async ETTask SendPetReward(this RankSceneComponent self)
+        {
+            int zone = self.DomainZone();
+            await TimerComponent.Instance.WaitAsync(zone * 1000);
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            if (!RankHelper.HaveReward(2, dateTime.Day))
+            {
+                return;
+            }
+            long serverTime = TimeHelper.ServerNow();
+            List<RankPetInfo> rankingInfos = self.DBRankInfo.rankingPets;
+            long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
+            for (int i = 0; i < rankingInfos.Count; i++)
+            {
+                bool havePetUId = false;
+                for (int k = 0; i < rankingInfos[i].PetUId.Count; k++)
+                {
+                    if (rankingInfos[i].PetUId[k] > 0)
+                    {
+                        havePetUId = true;
+                    }
+                }
+                if (!havePetUId)
+                {
+                    continue;
+                }
+
+                MailInfo mailInfo = new MailInfo();
+
+                mailInfo.Status = 0;
+                mailInfo.Context = $"恭喜您获得排行榜第{i + 1}名奖励";
+                mailInfo.Title = "排行榜奖励";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+
+                RankRewardConfig rankRewardConfig = RankHelper.GetRankReward(i + 1, 2);
+                string[] needList = rankRewardConfig.RewardItems.Split('@');
+                for (int k = 0; k < needList.Length; k++)
+                {
+                    string[] itemInfo = needList[k].Split(';');
+                    if (itemInfo.Length < 2)
+                    {
+                        continue;
+                    }
+                    int itemId = int.Parse(itemInfo[0]);
+                    int itemNum = int.Parse(itemInfo[1]);
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.RankReward}_{serverTime}" });
+                }
+                E2M_EMailSendResponse g_EMailSendResponse = (E2M_EMailSendResponse)await ActorMessageSenderComponent.Instance.Call
+                      (mailServerId, new M2E_EMailSendRequest()
+                      {
+                          Id = rankingInfos[i].UserId,
+                          MailInfo = mailInfo
+                      });
             }
         }
     }

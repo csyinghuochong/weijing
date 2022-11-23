@@ -89,7 +89,7 @@ namespace ET
                 self.NoticeRankServer().Coroutine();
             }
 
-            M2C_PetRankSettlement m2C_FubenSettlement = new M2C_PetRankSettlement();
+            M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
             m2C_FubenSettlement.BattleResult = result;
             if (result == CombatResultEnum.Win)
             {
@@ -97,7 +97,7 @@ namespace ET
                 int dropId = int.Parse(globalValueConfig.Value);
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 DropHelper.DropIDToDropItem_2(dropId, rewardItems);
-                m2C_FubenSettlement.re
+                m2C_FubenSettlement.ReardList.AddRange(rewardItems);
             }
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
         }

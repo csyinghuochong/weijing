@@ -307,14 +307,6 @@ namespace ET
             public Scene Scene;
         }
 
-        //宠物天梯结算
-        public class PetRankSettlement : DisposeObject
-        {
-            public static readonly PetRankSettlement Instance = new PetRankSettlement();
-            public M2C_PetRankSettlement m2C_PetRankSettlement;
-            public Scene Scene;
-        }
-
         public class AfterUnitCreate : DisposeObject
         {
             public static readonly AfterUnitCreate Instance = new AfterUnitCreate();

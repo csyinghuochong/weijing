@@ -4911,24 +4911,6 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_PetRankSettlement)]
-	[ProtoContract]
-	public partial class M2C_PetRankSettlement: Object, IActorMessage
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(92)]
-		public int Error { get; set; }
-
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public int BattleResult { get; set; }
-
-	}
-
 	[ResponseType(nameof(M2C_PaiMaiShopResponse))]
 	[Message(OuterOpcode.C2M_PaiMaiShopRequest)]
 	[ProtoContract]

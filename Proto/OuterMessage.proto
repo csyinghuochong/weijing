@@ -2323,13 +2323,6 @@ message M2C_QuitPetRankResponse // IActorLocationResponse
 	string Message = 92;
 }
 
-message M2C_PetRankSettlement // IActorMessage
-{
-	int32 RpcId = 90;
-	int32 Error = 92;
-	int64 ActorId = 93;
-	int32 BattleResult = 1;	// 0失败 1胜利
-}
 
 //ResponseType M2C_PaiMaiShopResponse
 message C2M_PaiMaiShopRequest // IActorLocationRequest

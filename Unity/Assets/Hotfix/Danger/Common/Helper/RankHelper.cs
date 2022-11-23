@@ -6,6 +6,20 @@ namespace ET
     public static  class RankHelper
     {
 
+        public static bool HaveReward(int rankType, int day)
+        {
+            GlobalValueConfig globalValueConfig = null;
+            if (rankType == 1)
+            {
+                globalValueConfig = GlobalValueConfigCategory.Instance.Get(66);
+            }
+            if (rankType == 2)
+            {
+                globalValueConfig = GlobalValueConfigCategory.Instance.Get(67);
+            }
+            return globalValueConfig.Value.Contains(day);
+        }
+
         public static List<RankRewardConfig> GetTypeRankRewards( int rankType)
         {
             List<RankRewardConfig> rankRewardItems =new List<RankRewardConfig>();

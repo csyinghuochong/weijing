@@ -93,7 +93,6 @@
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamDungeonBoxRewardHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamInviteHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\TaskComponentSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Handler\M2C_PetRankSettlementHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Component\SkillDispatcherComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Core\Scene\ZoneSceneFlagComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Demo\Account\A2C_DisconnectHandler.cs" />

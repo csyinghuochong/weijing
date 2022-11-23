@@ -377,7 +377,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankRewardItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Fuben_OnFubenSettlement.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\UIMainEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Handler\Map\PetRank_OnSettlement.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Skill_SkillEffectMove.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIZhanQu\UIZhanQuLevelItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetChallengeEvent.cs" />
