@@ -17,7 +17,7 @@ namespace ET
             {
                 globalValueConfig = GlobalValueConfigCategory.Instance.Get(67);
             }
-            return globalValueConfig.Value.Contains(day);
+            return globalValueConfig.Value.Contains(day.ToString());
         }
 
         public static List<RankRewardConfig> GetTypeRankRewards( int rankType)
