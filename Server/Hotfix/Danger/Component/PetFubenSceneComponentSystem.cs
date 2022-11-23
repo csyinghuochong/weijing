@@ -71,12 +71,12 @@ namespace ET
             {
                 return;
             }
-            self.OnGameOver();
             if (allMonsterDead)
             {
                 int petfubeId = self.DomainScene().GetComponent<MapComponent>().SonSceneId;
                 self.MainUnit.GetComponent<PetComponent>().OnPassPetFuben(petfubeId, 3);
             }
+            self.OnGameOver();
         }
 
         public static void  GeneratePetFuben(this PetFubenSceneComponent self, Unit unit, int sceneId)

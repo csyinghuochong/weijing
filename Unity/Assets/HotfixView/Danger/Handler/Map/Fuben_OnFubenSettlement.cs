@@ -43,9 +43,8 @@ namespace ET
                     ui.GetComponent<UITowerOpenComponent>().OnFubenResult(args.m2C_FubenSettlement).Coroutine();
                     break;
                 case SceneTypeEnum.PetTianTi:
-                    PopupTipHelp.OpenPopupTip_2(args.Scene, args.m2C_FubenSettlement.BattleResult == CombatResultEnum.Win ? "胜利" : "失败", "获取奖励",
-                     () => { EnterFubenHelp.RequestQuitFuben(args.Scene); }
-                     ).Coroutine();
+                    ui = await UIHelper.Create(args.Scene, UIType.UIPetFubenResult);
+                    ui.GetComponent<UIPetFubenResultComponent>().OnUpdateUI(args.m2C_FubenSettlement);
                     break;
                 case SceneTypeEnum.RandomTower:
                     ui = await UIHelper.Create(args.Scene, UIType.UIRandomTowerResult);

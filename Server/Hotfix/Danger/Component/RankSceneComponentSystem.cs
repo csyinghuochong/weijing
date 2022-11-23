@@ -165,9 +165,6 @@ namespace ET
                 self.DBRankInfo = d2GGetUnit.Component as DBRankInfo;
             }
             self.InitRankPetList();
-
-
-            self.SendPetReward().Coroutine();
         }
 
         public static async ETTask SaveDB(this RankSceneComponent self)

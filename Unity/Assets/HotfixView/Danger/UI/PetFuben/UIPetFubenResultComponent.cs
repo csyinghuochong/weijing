@@ -11,6 +11,7 @@ namespace ET
         public GameObject Img_Star_3;
         public GameObject TextResult;
         public GameObject Button_exit;
+        public GameObject ItemListNode;
     }
 
     [ObjectSystem]
@@ -25,10 +26,10 @@ namespace ET
             self.Img_Star_3 = rc.Get<GameObject>("Img_Star_3");
 
             self.TextResult = rc.Get<GameObject>("TextResult");
-          
+            self.ItemListNode = rc.Get<GameObject>("ItemListNode");
+
             self.Button_exit = rc.Get<GameObject>("Button_exit");
             self.Button_exit.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_exit(); });
-
         }
     }
 
@@ -43,6 +44,8 @@ namespace ET
             self.Img_Star_1.gameObject.SetActive(message.StarInfos[0] == 1);
             self.Img_Star_2.gameObject.SetActive(message.StarInfos[1] == 1);
             self.Img_Star_3.gameObject.SetActive(message.StarInfos[2] == 1);
+
+            UICommonHelper.ShowItemList(message.ReardList, self.ItemListNode, self);
         }
 
         public static void OnButton_exit(this UIPetFubenResultComponent self)
