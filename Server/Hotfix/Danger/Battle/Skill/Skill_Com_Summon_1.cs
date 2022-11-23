@@ -14,11 +14,15 @@ namespace ET
 
             OnExecute();
 
-            int fubenDifficulty = UnitHelper.GetFubenDifficulty(theUnitFrom);
             //获取参数
+            UnitInfoComponent unitInfoComponent = theUnitFrom.GetComponent<UnitInfoComponent>();
+            if (unitInfoComponent.GetZhaoHuanNumber() >= 10)
+            {
+                return;
+            }
             string[] summonParList = SkillConfigCategory.Instance.Get(skillId.WeaponSkillID).GameObjectParameter.Split('@');
-            for (int y = 0; y < summonParList.Length; y++) {
-
+            for (int y = 0; y < summonParList.Length; y++) 
+            {
                 string[] skillParList = summonParList[y].Split(';');
                 int createMonsterID = int.Parse(skillParList[0]);
                 if (!MonsterConfigCategory.Instance.Contain(createMonsterID))
@@ -29,7 +33,6 @@ namespace ET
 
                 //触发召唤
                 string[] vec3Str = skillParList[1].Split(',');
-
                 for (int i = 0; i < int.Parse(skillParList[2]); i++)
                 {
                     //随机坐标
@@ -38,8 +41,7 @@ namespace ET
                     float ran_z = Function_Role.GetInstance().ReturnRamdomValue_Float(0, rangValue) - rangValue / 2;
 
                     //获取追踪目标点
-                    Vector3 initPosi = new Vector3();
-
+                    Vector3 initPosi = Vector3.zero;
                     if (vec3Str.Length >= 3)
                     {
                         //设置坐标点
@@ -54,7 +56,7 @@ namespace ET
                     //创建怪物
                     Unit unit = UnitFactory.CreateMonster(theUnitFrom.DomainScene(), createMonsterID, initPosi,  new CreateMonsterInfo()
                     { Camp = theUnitFrom.GetBattleCamp()});
-                    theUnitFrom.GetComponent<UnitInfoComponent>().ZhaohuanIds.Add(unit.Id);
+                    unitInfoComponent.ZhaohuanIds.Add(unit.Id);
                 }
             }
         }

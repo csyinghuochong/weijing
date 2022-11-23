@@ -24,5 +24,21 @@ namespace ET
 
     public static class UnitInfoComponentSystem
     {
+
+        public static int GetZhaoHuanNumber(this UnitInfoComponent self)
+        {
+            int number = 0;
+            for (int i = self.ZhaohuanIds.Count - 1; i >= 0; i--)
+            {
+                Unit zhaohuan = self.DomainScene().GetComponent<UnitComponent>().Get(self.ZhaohuanIds[i]);
+                if (zhaohuan == null)
+                {
+                    continue;
+                }
+                number++;
+            }
+            return number;
+        }
+
     }
 }
