@@ -1,14 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine.UI;
+using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
+
 
 namespace ET
 {
     public class UIPetChallengeComponent : Entity, IAwake
     {
+        public GameObject TextTimes;
         public GameObject CloseButton;
         public GameObject TextStar;
         public GameObject ButtonReward;
@@ -40,6 +41,7 @@ namespace ET
             self.ButtonReward = rc.Get<GameObject>("ButtonReward");
             self.TextStar = rc.Get<GameObject>("TextStar");
             self.CloseButton = rc.Get<GameObject>("CloseButton");
+            self.TextTimes = rc.Get<GameObject>("TextTimes");
 
             ButtonHelp.AddListenerEx( self.ButtonSet, () => { self.OnButtonSet().Coroutine(); } );
             ButtonHelp.AddListenerEx(self.ButtonChallenge, () => { self.OnButtonChallenge().Coroutine(); });
@@ -196,6 +198,11 @@ namespace ET
             self.UIPetFormationSet = self.AddChild<UIPetFormationSetComponent, GameObject>(go);
             self.UIPetFormationSet.OnUpdateFormation(SceneTypeEnum.PetDungeon,
                 self.ZoneScene().GetComponent<PetComponent>().PetFormations ,false).Coroutine();
+
+            int sceneId = BattleHelper.GetSceneIdByType(SceneTypeEnum.PetDungeon);
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            self.TextTimes.GetComponent<Text>().text = $"{userInfoComponent.GetSceneFubenTimes(sceneId)}/{sceneConfig.DayEnterNum}";
         }
 
         public static void OnUpdateStar(this UIPetChallengeComponent self)
