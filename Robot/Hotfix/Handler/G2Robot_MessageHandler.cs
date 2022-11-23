@@ -71,17 +71,20 @@ namespace ET
                     }
                     break;
                 case NoticeType.BattleClose:
-                    ts = robotManagerComponent.Children.Values.ToList();
-                    for (int i = 0; i < ts.Count; i++)
+                    if (message.Zone == 1)
                     {
-                        Scene robotScene = ts[i] as Scene;
-                        if (robotScene.GetComponent<BehaviourComponent>().GetBehaviour() != 3)
+                        ts = robotManagerComponent.Children.Values.ToList();
+                        for (int i = 0; i < ts.Count; i++)
                         {
-                            continue;
+                            Scene robotScene = ts[i] as Scene;
+                            if (robotScene.GetComponent<BehaviourComponent>().GetBehaviour() != 3)
+                            {
+                                continue;
+                            }
+                            robotManagerComponent.RemoveRobot(robotScene);
+                            robotScene.Dispose();
+                            await TimerComponent.Instance.WaitAsync(100);
                         }
-                        robotManagerComponent.RemoveRobot(robotScene);
-                        robotScene.Dispose();
-                        await TimerComponent.Instance.WaitFrameAsync();
                     }
                     break;
 

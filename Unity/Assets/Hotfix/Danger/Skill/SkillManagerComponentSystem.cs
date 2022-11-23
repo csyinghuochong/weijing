@@ -37,8 +37,8 @@ namespace ET
     {
         public override void Destroy(SkillManagerComponent self)
         {
-            self.OnDispose();
             self.SkillCDs.Clear();
+            self.OnDispose();
         }
     }
 
@@ -104,7 +104,7 @@ namespace ET
                 self.Skills[i].OnUpdate();
             }
 
-            if (self.Skills.Count == 0 && self.SkillCDs.Count == 0 && self.Timer!=0)
+            if (self.Skills.Count == 0 && self.SkillCDs.Count == 0)
             {
                 TimerComponent.Instance?.Remove(ref self.Timer);
             }
@@ -119,7 +119,10 @@ namespace ET
                 self.Skills.RemoveAt(i);
                 ObjectPool.Instance.Recycle(skillHandler);
             }
-            TimerComponent.Instance?.Remove(ref self.Timer);
+            if (self.Skills.Count == 0 && self.SkillCDs.Count == 0)
+            {
+                TimerComponent.Instance?.Remove(ref self.Timer);
+            }
         }
 
         /// <summary>
