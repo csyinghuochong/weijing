@@ -14,7 +14,11 @@ namespace ET
         private  async void RunAsync2(EventType.ReturnLogin args)
         {
             long instanceId = args.ZoneScene.InstanceId;
-            await TimerComponent.Instance.WaitAsync(100);
+            if (TimerComponent.Instance == null)
+            {
+                return;
+            }
+            await TimerComponent.Instance?.WaitAsync(100);
             if (instanceId != args.ZoneScene.InstanceId)
             {
                 return;

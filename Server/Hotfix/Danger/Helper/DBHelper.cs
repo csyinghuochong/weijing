@@ -224,7 +224,7 @@ namespace ET
         /// <param name="unitId"></param>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public static async ETTask<T> GetUnitComponentCache<T>(int zone, long unitId) where T : Entity, IUnitCache
+        public static async ETTask<T> GetComponentCache<T>(int zone, long unitId) where T : Entity
         {
             G2D_GetComponent message = new G2D_GetComponent() { UnitId = unitId };
             message.Component = typeof(T).Name;
