@@ -27,10 +27,13 @@ namespace ET
 
             try
             {  // 等待CreateMyUnit的消息
-
+                long instanId = zoneScene.InstanceId;
                 WaitType.Wait_CreateMyUnit waitCreateMyUnit = await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_CreateMyUnit>();
                 M2C_CreateMyUnit m2CCreateMyUnit = waitCreateMyUnit.Message;
-
+                if (instanId != zoneScene.InstanceId)
+                {
+                    return;
+                }
                 Unit unit  = UnitFactory.CreateUnit(currentScene, m2CCreateMyUnit.Unit, true);
                 unitComponent.Add(unit);
                 zoneScene.GetComponent<SessionComponent>().Session.Send(new C2M_Stop());

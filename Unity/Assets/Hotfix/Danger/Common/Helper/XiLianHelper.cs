@@ -355,7 +355,6 @@ namespace ET
                             else
                             {
                                 //表示浮点数
-                                Log.Info("hintProVlaue = " + hintProVlaue + " propertyValueMin = " + propertyValueMin + " propertyValueMax = " + propertyValueMax);
                                 hintProVlaue = ComHelp.ReturnEquipRamdomValue_float(propertyValueMin, propertyValueMax);
                                 if (hintProVlaue <= 0)
                                 {
@@ -369,7 +368,6 @@ namespace ET
                             //hintProVlaue = (float)(System.Math.Round(hintProVlaue, 2));
 
                             TeShuHideProList.Add(new HideProList() { HideID = hintProListID, HideValue = NumericHelp.NumericValueSaveType(hideProListConfig.PropertyType, hintProVlaue) });
-                            //Log.Info("随机属性值:" + hideProListConfig.HideProValueType + "值：" + hintProVlaue);
                             hintJiPinMaxNumSum = hintJiPinMaxNumSum + 1;
                             if (hintJiPinMaxNumSum >= hintJiPinMaxNum)
                             {
