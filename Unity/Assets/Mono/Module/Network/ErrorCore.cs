@@ -114,6 +114,7 @@
         public const int ERR_WordChat = 300303;                                     //世界频道发消息 1分钟1次
         public const int ERR_InMakeCD = 300304;
         public const int ERR_MakeTypeError = 300305;
+        public const int ERR_RoleNameRepeat = 300306;
 
         //队伍
         public const int ERR_TeamIsFull = 300401;                                   //队伍已满
