@@ -93,6 +93,11 @@ namespace ET
             m2C_FubenSettlement.BattleResult = result;
             if (result == CombatResultEnum.Win)
             {
+                GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(68);
+                int dropId = int.Parse(globalValueConfig.Value);
+                List<RewardItem> rewardItems = new List<RewardItem>();
+                DropHelper.DropIDToDropItem_2(dropId, rewardItems);
+                m2C_FubenSettlement.re
             }
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
         }

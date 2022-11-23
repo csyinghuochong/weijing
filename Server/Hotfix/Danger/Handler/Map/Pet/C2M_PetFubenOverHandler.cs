@@ -13,7 +13,7 @@ namespace ET
             MapComponent mapComponent = domainScene.GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetDungeon)
             {
-                domainScene.GetComponent<PetFubenSceneComponent>().OnGameOver(CombatResultEnum.Fail);
+                domainScene.GetComponent<PetFubenSceneComponent>().OnGameOver();
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi)
             {

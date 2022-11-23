@@ -15,7 +15,7 @@ namespace ET
     public static class PetFubenSceneComponentSystem
     {
 
-        public static void OnGameOver(this PetFubenSceneComponent self, int combatResult)
+        public static void OnGameOver(this PetFubenSceneComponent self)
         {
             List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
             for (int i = 0;i < units.Count; i++)
@@ -23,31 +23,16 @@ namespace ET
                 AIComponent aIComponent = units[i].GetComponent<AIComponent>();
                 aIComponent?.Stop();
             }
-
+            
             M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
-            m2C_FubenSettlement.StarInfos = new List<int>() { 0, 0, 0 };
-            m2C_FubenSettlement.BattleResult = combatResult;
-            MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
-        }
-
-        public static void OnKillEvent(this PetFubenSceneComponent self)
-        {
-            PetComponent petComponent = self.MainUnit.GetComponent<PetComponent>();
+            bool allMonsterDead = FubenHelp.IsAllMonsterDead(self.DomainScene());
+            int alivedPetNumber = FubenHelp.GetAlivePetNumber(self.DomainScene());
             int number = 0;
+            PetComponent petComponent = self.MainUnit.GetComponent<PetComponent>();
             for (int i = 0; i < petComponent.PetFormations.Count; i++)
             {
                 number += (petComponent.PetFormations[i] != 0 ? 1 : 0);
             }
-
-            bool allMonsterDead = FubenHelp.IsAllMonsterDead(self.DomainScene());
-            int alivedPetNumber = FubenHelp.GetAlivePetNumber(self.DomainScene());
-            if (!allMonsterDead && alivedPetNumber > 0)
-            {
-                return;
-            }
-            int petfubeId = self.DomainScene().GetComponent<MapComponent>().SonSceneId;
-            M2C_FubenSettlement m2C_FubenSettlement = new M2C_FubenSettlement();
-            m2C_FubenSettlement.BattleResult = allMonsterDead ? CombatResultEnum.Win : CombatResultEnum.Fail;
             if (!allMonsterDead)
             {
                 m2C_FubenSettlement.StarInfos = new List<int>() { 0, 0, 0 };
@@ -64,10 +49,32 @@ namespace ET
             {
                 m2C_FubenSettlement.StarInfos = new List<int>() { 1, 0, 0 };
             }
-            
+
+            m2C_FubenSettlement.StarInfos = new List<int>() { 0, 0, 0 };
+            m2C_FubenSettlement.BattleResult = allMonsterDead ? CombatResultEnum.Win : CombatResultEnum.Fail;
+            if (m2C_FubenSettlement.BattleResult == CombatResultEnum.Win)
+            {
+                GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(69);
+                int dropId = int.Parse(globalValueConfig.Value);
+                List<RewardItem> rewardItems = new List<RewardItem>();
+                DropHelper.DropIDToDropItem_2(dropId, rewardItems);
+                m2C_FubenSettlement.ReardList.AddRange(rewardItems);
+            }
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
+        }
+
+        public static void OnKillEvent(this PetFubenSceneComponent self)
+        {
+            bool allMonsterDead = FubenHelp.IsAllMonsterDead(self.DomainScene());
+            int alivedPetNumber = FubenHelp.GetAlivePetNumber(self.DomainScene());
+            if (!allMonsterDead && alivedPetNumber > 0)
+            {
+                return;
+            }
+            self.OnGameOver();
             if (allMonsterDead)
             {
+                int petfubeId = self.DomainScene().GetComponent<MapComponent>().SonSceneId;
                 self.MainUnit.GetComponent<PetComponent>().OnPassPetFuben(petfubeId, 3);
             }
         }
