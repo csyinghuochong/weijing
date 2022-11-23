@@ -83,7 +83,9 @@ namespace ET
 
         public static bool IsNoAutoExit(this UICellDungeonReviveComponent self, int sceneType)
         {
-            return sceneType == SceneTypeEnum.TeamDungeon || sceneType == SceneTypeEnum.Battle;
+            return sceneType == SceneTypeEnum.TeamDungeon 
+                || sceneType == SceneTypeEnum.Battle
+                || sceneType == SceneTypeEnum.YeWaiScene;
         }
 
         public static void OnInitUI(this UICellDungeonReviveComponent self, int seneTypeEnum)

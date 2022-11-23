@@ -127,7 +127,7 @@ namespace ET
 						rewardItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNumber });
 						unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}", true, true);
 						break;
-					case 2:             //新增怪物2#3#0.34#-2.1#80000101#1
+					case 2:             //新增怪物2#2.3#0#12.7#73029002#1
 						float posX = float.Parse(commands[1]);
 						float posY = float.Parse(commands[2]);
 						float posZ = float.Parse(commands[3]);
