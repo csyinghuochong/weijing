@@ -41,6 +41,7 @@ namespace ET
 
         public static void OnBtn_Return(this UITowerFightRewardComponent self)
         {
+            EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
             UIHelper.Remove(self.ZoneScene(), UIType.UITowerFightReward);
         }
     }
