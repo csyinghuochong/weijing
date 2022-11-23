@@ -57,7 +57,7 @@ namespace ET
                 GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(69);
                 int dropId = int.Parse(globalValueConfig.Value);
                 List<RewardItem> rewardItems = new List<RewardItem>();
-                DropHelper.DropIDToDropItem_2(dropId, rewardItems);
+                DropHelper.DropIDToDropItem(dropId, rewardItems);
                 m2C_FubenSettlement.ReardList.AddRange(rewardItems);
             }
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
