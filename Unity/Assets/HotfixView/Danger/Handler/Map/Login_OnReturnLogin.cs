@@ -8,11 +8,17 @@ namespace ET
 
         protected override  void Run(object cls)
         {
-            RunAsync(cls as EventType.ReturnLogin).Coroutine();
+            OnReturnLogin(cls as EventType.ReturnLogin);
         }
 
-        private  void RunAsync2(EventType.ReturnLogin args)
+        private  async void RunAsync2(EventType.ReturnLogin args)
         {
+            long instanceId = args.ZoneScene.InstanceId;
+            await TimerComponent.Instance.WaitAsync(100);
+            if (instanceId != args.ZoneScene.InstanceId)
+            {
+                return;
+            }
             Camera camera = UIComponent.Instance.MainCamera.gameObject.GetComponent<Camera>();
             camera.GetComponent<MyCamera_1>().enabled = false;
 
@@ -39,7 +45,7 @@ namespace ET
             Game.EventSystem.PublishClass(EventType.AppStartInitFinish.Instance);
         }
 
-        private async ETTask RunAsync(EventType.ReturnLogin args)
+        private void  OnReturnLogin(EventType.ReturnLogin args)
         {
             UIHelper.Clear();
             UnitHelper.LoadingScene = false;
@@ -48,16 +54,7 @@ namespace ET
 
             if (args.ErrorCode == ErrorCore.ERR_OtherAccountLogin)
             {
-                PopupTipHelp.OpenPopupTip_2(args.ZoneScene, "异地登录", "账号异地登录！",
-                  () =>
-                  {
-                  }).Coroutine();
-                long instanceId = args.ZoneScene.InstanceId;
-                await TimerComponent.Instance.WaitAsync(2000);
-                if (instanceId != args.ZoneScene.InstanceId)
-                {
-                    return;
-                }
+                FloatTipManager.Instance.ShowFloatTip("账号异地登录");
                 RunAsync2(args);
             }
             else

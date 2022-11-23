@@ -33,7 +33,7 @@ namespace ET
 						List<UserInfoComponent> result = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(session.DomainZone(), _account => _account.UserName == request.CreateName);
 						if (result.Count > 0)
 						{
-							response.Error = ErrorCore.ERR_CreateRoleName;
+							response.Error = ErrorCore.ERR_RoleNameRepeat;
 							reply();
 							return;
 						}

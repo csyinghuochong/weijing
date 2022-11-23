@@ -110,7 +110,7 @@ namespace ET
             }
 
             A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(self.DomainScene(), self.Occ, createName);
-            if (g2cCreateRole.Error != 0)
+            if (g2cCreateRole == null || g2cCreateRole.Error != 0)
             {
                 return;
             }
