@@ -475,7 +475,7 @@ namespace ET
             int zone = self.DomainZone();
             await TimerComponent.Instance.WaitAsync(zone * 1000);
             DateTime dateTime = TimeHelper.DateTimeNow();
-            if (!RankHelper.HaveReward(2, dateTime.DayOfWeek))
+            if (!RankHelper.HaveReward(2, (int)dateTime.DayOfWeek))
             {
                 return;
             }
