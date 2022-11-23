@@ -78,11 +78,14 @@ namespace ET
 		/// <summary>Id</summary>
 		[ProtoMember(1)]
 		public int Id { get; set; }
-		/// <summary>排行名次</summary>
+		/// <summary>排名类型</summary>
 		[ProtoMember(2)]
+		public int Type { get; set; }
+		/// <summary>排行名次</summary>
+		[ProtoMember(3)]
 		public int[] NeedPoint { get; set; }
 		/// <summary>奖励</summary>
-		[ProtoMember(3)]
+		[ProtoMember(4)]
 		public string RewardItems { get; set; }
 
 	}

@@ -63,4 +63,8 @@
 {"_t":"GlobalValueConfig","_id":63,"Value":"15;35;55","Value2":0},
 {"_t":"GlobalValueConfig","_id":64,"Value":"30000001","Value2":30000001},
 {"_t":"GlobalValueConfig","_id":65,"Value":"100101;100201;100301","Value2":0},
+{"_t":"GlobalValueConfig","_id":66,"Value":"3,7","Value2":0},
+{"_t":"GlobalValueConfig","_id":67,"Value":"2,6","Value2":0},
+{"_t":"GlobalValueConfig","_id":68,"Value":"60500101","Value2":0},
+{"_t":"GlobalValueConfig","_id":69,"Value":"60500201","Value2":0},
 ]}
