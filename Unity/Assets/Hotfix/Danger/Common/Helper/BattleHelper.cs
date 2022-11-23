@@ -115,13 +115,13 @@ namespace ET
             }
             return 0;
         }
-        public static int GetBattleRobotId(int behaviour)
+        public static int GetBattleRobotId(int behaviour, int behaviourId)
         {
             List<int> ids = new List<int>();
             List<RobotConfig> robots = RobotConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < robots.Count; i++)
             {
-                if (robots[i].Behaviour == behaviour)
+                if (robots[i].Behaviour == behaviour && robots[i].BehaviourID == behaviourId)
                 {
                     ids.Add(robots[i].Id);
                 }

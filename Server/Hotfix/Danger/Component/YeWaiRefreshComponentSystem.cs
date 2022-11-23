@@ -315,7 +315,7 @@ namespace ET
             {
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.YeWaiBoss,
-                    Message = $"{mapComponent.SceneId}@{form.x};{form.y};{form.z}"});
+                    Message = $"{mapComponent.SceneId}@{form.x};{form.y};{form.z}@{refreshMonster.MonsterId}"});
             }
 
             for (int i = 0; i < refreshMonster.Number; i++)

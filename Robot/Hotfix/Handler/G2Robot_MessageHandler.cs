@@ -40,7 +40,7 @@ namespace ET
                         for (int i = 0; i < 2; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
-                            int robotId = BattleHelper.GetBattleRobotId(4);
+                            int robotId = BattleHelper.GetBattleRobotId(4, int.Parse(messageInfo[2]));
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                             BehaviourComponent behaviourComponent = robotScene?.AddComponent<BehaviourComponent, int>(robotId);
                             behaviourComponent.TargetPosition = targetPosition;
@@ -55,7 +55,7 @@ namespace ET
                         for (int i = 0; i < 10; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
-                            int robotId = BattleHelper.GetBattleRobotId(3);
+                            int robotId = BattleHelper.GetBattleRobotId(3, 0);
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                             robotScene?.AddComponent<BehaviourComponent, int>(robotId);
                             await TimerComponent.Instance.WaitAsync(200);
