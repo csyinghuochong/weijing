@@ -126,6 +126,10 @@ namespace ET
                     ids.Add(robots[i].Id);
                 }
             }
+            if (ids.Count == 0)
+            {
+                return 0;
+            }
             return ids[RandomHelper.RandomNumber(0, ids.Count)];
         }
 

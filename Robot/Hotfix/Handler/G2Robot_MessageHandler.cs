@@ -41,6 +41,10 @@ namespace ET
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
                             int robotId = BattleHelper.GetBattleRobotId(4, int.Parse(messageInfo[2]));
+                            if (robotId == 0)
+                            {
+                                continue;
+                            }
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                             BehaviourComponent behaviourComponent = robotScene?.AddComponent<BehaviourComponent, int>(robotId);
                             behaviourComponent.TargetPosition = targetPosition;
@@ -56,6 +60,10 @@ namespace ET
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
                             int robotId = BattleHelper.GetBattleRobotId(3, 0);
+                            if (robotId == 0)
+                            {
+                                continue;
+                            }
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                             robotScene?.AddComponent<BehaviourComponent, int>(robotId);
                             await TimerComponent.Instance.WaitAsync(200);
