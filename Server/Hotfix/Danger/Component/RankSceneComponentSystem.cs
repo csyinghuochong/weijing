@@ -165,6 +165,9 @@ namespace ET
                 self.DBRankInfo = d2GGetUnit.Component as DBRankInfo;
             }
             self.InitRankPetList();
+
+
+            self.SendPetReward().Coroutine();
         }
 
         public static async ETTask SaveDB(this RankSceneComponent self)
@@ -472,7 +475,7 @@ namespace ET
             int zone = self.DomainZone();
             await TimerComponent.Instance.WaitAsync(zone * 1000);
             DateTime dateTime = TimeHelper.DateTimeNow();
-            if (!RankHelper.HaveReward(2, dateTime.Day))
+            if (!RankHelper.HaveReward(2, dateTime.DayOfWeek))
             {
                 return;
             }
