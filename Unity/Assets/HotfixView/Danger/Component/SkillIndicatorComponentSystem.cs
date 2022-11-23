@@ -267,7 +267,7 @@ namespace ET
         {
             SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (self.SkillIndicator == null || skillIndicatorItem.GameObject == null || unit == null)
+            if (skillIndicatorItem == null || skillIndicatorItem.GameObject == null || unit == null)
             {
                 TimerComponent.Instance?.Remove(ref self.Timer);
                 return;

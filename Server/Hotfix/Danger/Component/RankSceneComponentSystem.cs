@@ -412,20 +412,6 @@ namespace ET
             return rankPetInfos;
         }
 
-        public static RankRewardConfig GetRankReward(int rank)
-        {
-            List<RankRewardConfig> rankRewardConfigs = RankRewardConfigCategory.Instance.GetAll().Values.ToList() ;
-            for (int i = 0; i < rankRewardConfigs.Count; i++)
-            {
-                int[] randarea = rankRewardConfigs[i].NeedPoint;
-                if (rank >= randarea[0] && rank <= randarea[1])
-                {
-                    return rankRewardConfigs[i];
-                }
-            }
-            return rankRewardConfigs[rankRewardConfigs.Count - 1];
-        }
-
         public static void  OnDeleteRole(this RankSceneComponent self, List<RankingInfo> rankingInfos, long userId)
         {
             for (int i = rankingInfos.Count - 1; i >= 0; i-- )
@@ -454,7 +440,7 @@ namespace ET
                 mailInfo.Title = "排行榜奖励";
                 mailInfo.MailId = IdGenerater.Instance.GenerateId();
 
-                RankRewardConfig rankRewardConfig = GetRankReward(i+1);
+                RankRewardConfig rankRewardConfig = RankHelper.GetRankReward(i+1, 1);
                 string[] needList = rankRewardConfig.RewardItems.Split('@');
                 for (int k = 0; k < needList.Length; k++)
                 {

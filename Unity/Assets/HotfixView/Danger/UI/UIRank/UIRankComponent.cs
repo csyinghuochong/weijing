@@ -9,6 +9,7 @@ namespace ET
         RankShow = 0,
         RankReward = 1,
         RankPet = 2,
+        PetReward = 3,
         RankNum,
     }
 
@@ -36,10 +37,13 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)RankPageEnum.RankShow] = ABPathHelper.GetUGUIPath("Main/Rank/UIRankShow");
             pageViewComponent.UISubViewPath[(int)RankPageEnum.RankReward] = ABPathHelper.GetUGUIPath("Main/Rank/UIRankReward");
             pageViewComponent.UISubViewPath[(int)RankPageEnum.RankPet] = ABPathHelper.GetUGUIPath("Main/Rank/UIRankPet");
+            pageViewComponent.UISubViewPath[(int)RankPageEnum.PetReward] = ABPathHelper.GetUGUIPath("Main/Rank/UIRankReward");
+
 
             pageViewComponent.UISubViewType[(int)RankPageEnum.RankShow] = typeof(UIRankShowComponent);
             pageViewComponent.UISubViewType[(int)RankPageEnum.RankReward] = typeof(UIRankRewardComponent);
             pageViewComponent.UISubViewType[(int)RankPageEnum.RankPet] = typeof(UIRankPetComponent);
+            pageViewComponent.UISubViewType[(int)RankPageEnum.PetReward] = typeof(UIRankPetRewardComponent);
             self.UIPageView = pageViewComponent;
 
             GameObject FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");

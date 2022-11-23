@@ -49,7 +49,7 @@ namespace ET
             int number = 0;
             for (int i = 0; i < rankPetInfo.PetConfigId.Count; i++ )
             {
-                if (rankPetInfo.PetConfigId[i] == 0)
+                if (rankPetInfo.PetConfigId[i] == 0 || number>=3)
                 {
                     continue;
                 }

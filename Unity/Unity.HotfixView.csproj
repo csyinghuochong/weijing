@@ -169,8 +169,8 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubItem\UIAttackGridComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILobby\LoginFinish_CreateLobbyUI.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetChallengeItemComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIGuide\UIGuideEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryTaskItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIGuide\UIGuideEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Register\UIRegisterComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\HeroTransformComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITuZhiMake\UITuZhiMakeNeedComponent.cs" />
@@ -235,8 +235,9 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleMainComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityLvLiBaoComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleTaskComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerOpenEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonCellComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleTaskComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampSelectComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillMakeComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIUnion\UIUnionCreateComponent.cs" />
@@ -299,6 +300,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIRandomTower\UIRandomTowerResultEvent.cs" />
     <Compile Include="Assets\HotfixView\Module\UI\UIEventComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetXiLianComponent.cs" />
+    <Compile Include="Assets\HotfixView\Demo\UI\UILogin\Login_OnEnterQueue.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIXiuLian\UIXiuLianComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Help\ErrorHelp.cs" />
@@ -557,8 +559,7 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerOpenEvent.cs" />
-    <Compile Include="Assets\HotfixView\Demo\UI\UILogin\Login_OnEnterQueue.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankPetRewardComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

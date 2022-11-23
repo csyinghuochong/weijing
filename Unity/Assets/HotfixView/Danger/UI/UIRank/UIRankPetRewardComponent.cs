@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-
-    public class UIRankRewardComponent : Entity, IAwake
+    public class UIRankPetRewardComponent: Entity, IAwake
     {
         public GameObject CloseButton;
         public GameObject RewardListNode;
@@ -14,9 +13,9 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UIRankRewardComponentAwakeSystem : AwakeSystem<UIRankRewardComponent>
+    public class UIRankPetRewardComponentAwake : AwakeSystem<UIRankPetRewardComponent>
     {
-        public override void Awake(UIRankRewardComponent self)
+        public override void Awake(UIRankPetRewardComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
@@ -29,15 +28,15 @@ namespace ET
         }
     }
 
-    public static class UIRankRewardComponentSytstem
+    public static class UIRankPetRewardComponentSytstem
     {
-        public static void OnCloseButton(this UIRankRewardComponent self)
+        public static void OnCloseButton(this UIRankPetRewardComponent self)
         {
             self.ClickOnClose?.Invoke();
-            UIHelper.Remove( self.ZoneScene(), UIType.UIRankReward);
+            UIHelper.Remove(self.ZoneScene(), UIType.UIRankReward);
         }
 
-        public static async ETTask OnInitUI(this UIRankRewardComponent self)
+        public static async ETTask OnInitUI(this UIRankPetRewardComponent self)
         {
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Rank/UIRankRewardItem");
@@ -48,8 +47,8 @@ namespace ET
                 return;
             }
 
-            List<RankRewardConfig> rankRewardConfigs = RankHelper.GetTypeRankRewards(1);
-            for (int i = 0; i < rankRewardConfigs.Count; i++ )
+            List<RankRewardConfig> rankRewardConfigs = RankHelper.GetTypeRankRewards(2);
+            for (int i = 0; i < rankRewardConfigs.Count; i++)
             {
                 GameObject go = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(go, self.RewardListNode);
