@@ -53,10 +53,13 @@ namespace ET
                 numericComponent.Set(NumericType.YueKaEndTime, 0);
                 numericComponent.Set(NumericType.YueKaRemainTimes, leftDay);
             }
-
             if (numericComponent.GetAsFloat(NumericType.ChouKaTenTime) == 0)
             {
                 numericComponent.Set(NumericType.ChouKaTenTime, TimeHelper.ServerNow());
+            }
+            if (numericComponent.GetAsFloat(NumericType.ChouKaOneTime) == 0)
+            {
+                numericComponent.Set(NumericType.ChouKaOneTime, TimeHelper.ServerNow());
             }
         }
 

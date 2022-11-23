@@ -35,6 +35,26 @@ namespace ET
         public const string DBAccountInfo = "DBAccountInfo";
         public const string DBCenterAccountInfo = "DBCenterAccountInfo";
 
+        public static List<string> UnitCacheKeyList = new List<string>();
+
+        public static List<string> GetAllUnitComponent()
+        {
+            if (UnitCacheKeyList.Count == 0)
+            {
+                foreach (Type type in Game.EventSystem.GetTypes().Values)
+                {
+                    if (type != typeof(IUnitCache) && typeof(IUnitCache).IsAssignableFrom(type))
+                    {
+                        UnitCacheKeyList.Add(type.Name);
+                    }
+                }
+
+                UnitCacheKeyList.Add(DBMailInfo);
+                UnitCacheKeyList.Add(DBFriendInfo);
+            }
+            return UnitCacheKeyList;
+        }
+
         public static async ETTask<Entity> AddDataComponent<K>(int zone, long userID, string componentType) where K : Entity, new()
         {
             Type type = typeof(K);
