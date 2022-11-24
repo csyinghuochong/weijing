@@ -359,7 +359,6 @@ namespace ET
                 {
                     ExportSheetClass(worksheet, table);
                 }
-                Log.Debug($"{name}  ExportExcelClass");
             }
             catch (Exception ex)
             {
