@@ -267,7 +267,7 @@ namespace ET
             unit.Position = unit.GetBornPostion();
         }
 
-        public static void InitTempPet(this HeroDataComponent self, Unit matster, int monster)
+        public static void InitTempFollower(this HeroDataComponent self, Unit matster, int monster)
         {
             Unit nowUnit = self.GetParent<Unit>();
             NumericComponent numericComponent = nowUnit.GetComponent<NumericComponent>();

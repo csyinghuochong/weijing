@@ -92,7 +92,7 @@ namespace ET
                 {
                     continue;
                 }
-                Unit petunit =  UnitFactory.CreateFubenPet(unit.DomainScene(), 0,
+                Unit petunit =  UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
                     CampEnum.CampPlayer_1,  rolePetInfo, AIHelp.Formation_1[i]);
                 petunit.GetComponent<AIComponent>().StopAI = true;
             }

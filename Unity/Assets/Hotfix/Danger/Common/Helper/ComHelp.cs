@@ -19,6 +19,8 @@ namespace ET
 
         public const string RobotPassWord = "et@#robot";
 
+        public static List<int> PetMagicSkill = new List<int>(2) { 80001003, 80002003 };
+
         //赠送钻石数量
         public static Dictionary<int, int> RechargeGive = new Dictionary<int, int>(8){
             { 6,        0},
@@ -30,15 +32,6 @@ namespace ET
             { 488,      8888},
             { 648,      12888},
         };
-
-        public static int GetPhysicZone(int zone)
-        {
-            if (zone == 2)
-            {
-                return 3;
-            }
-            return zone;
-        }
 
         public static int GetDiamondNumber(int key)
         {
@@ -54,8 +47,8 @@ namespace ET
         //熔炼获得道具
         public const int MeltingItemId = 1;
 
-        public static int ReturnMeltingItem(int type) {
-
+        public static int ReturnMeltingItem(int type) 
+        {
             //根据不同的专业技能熔炼不同的道具
             int getItemId = 1;
             switch (type)
@@ -86,7 +79,6 @@ namespace ET
             return getItemId;
 
         }
-
 
         public static int BagMaxCapacity()
         {

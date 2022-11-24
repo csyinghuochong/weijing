@@ -161,7 +161,7 @@ namespace ET
             }
         }
 
-        public static void InitTeampPet(this AIComponent self, int monsteConfigId)
+        public static void InitTempFollower(this AIComponent self, int monsteConfigId)
         {
             MonsterConfig MonsterCof = MonsterConfigCategory.Instance.Get(monsteConfigId);
             //初始化AI组件的一些东西
@@ -172,7 +172,7 @@ namespace ET
         }
 
         //宠物天梯，需要新的AI
-        public static void InitPetFubenPet(this AIComponent self, int petConfigId)
+        public static void InitTianTiPet(this AIComponent self, int petConfigId)
         {
             PetConfig petConfig = PetConfigCategory.Instance.Get(petConfigId);
             self.ChaseRange = 100;
@@ -188,13 +188,31 @@ namespace ET
         /// <param name="self"></param>
         /// <param name="petConfigId"></param>
         /// 
-        public static void InitPet(this AIComponent self, int petConfigId)
+        public static void InitPet(this AIComponent self, RolePetInfo rolePetInfo)
         {
-            PetConfig petConfig = PetConfigCategory.Instance.Get(petConfigId);
+            PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             self.ChaseRange = 100;
             self.ActRange = petConfig.ChaseRange;
-            self.ActDistance = 2;
-            self.AISkillIDList.Add(petConfig.ActSkillID);
+
+            int haveMagic = 0;
+            for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)
+            {
+                if (ComHelp.PetMagicSkill.Contains(rolePetInfo.PetSkill[i]))
+                {
+                    haveMagic = rolePetInfo.PetSkill[i];
+                    break;
+                }
+            }
+            if (haveMagic > 0)
+            {
+                self.AISkillIDList.Add(haveMagic);
+                self.ActDistance = 6;
+            }
+            else
+            {
+                self.AISkillIDList.Add(petConfig.ActSkillID);
+                self.ActDistance = 2;
+            }
         }
 
         public static int GetActSkillId(this AIComponent self)        {

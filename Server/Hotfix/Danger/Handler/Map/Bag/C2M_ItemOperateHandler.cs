@@ -183,7 +183,7 @@ namespace ET
                             case 14:
                                 if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
                                 {
-                                    UnitFactory.CreateTempPet(unit, int.Parse(itemCof.ItemUsePar));
+                                    UnitFactory.CreateTempFollower(unit, int.Parse(itemCof.ItemUsePar));
                                 }
                                 break;
                             case 15:    //附魔道具

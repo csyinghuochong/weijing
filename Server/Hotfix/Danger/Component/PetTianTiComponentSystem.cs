@@ -28,7 +28,7 @@ namespace ET
                 {
                     continue;
                 }
-                Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), unit.Id,
+                Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), unit.Id,
                    unit.GetBattleCamp(), rolePetInfo, AIHelp.Formation_1[i]);
                 petunit.GetComponent<AIComponent>().StopAI = true;
             }
@@ -46,7 +46,7 @@ namespace ET
                     {
                         continue;
                     }
-                    Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), 0,
+                    Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
                        CampEnum.CampPlayer_2, rolePetInfo, AIHelp.Formation_2[i]);
                     petunit.GetComponent<AIComponent>().StopAI = true;
                 }
@@ -59,7 +59,7 @@ namespace ET
                     RolePetInfo petInfo = petComponent.GenerateNewPet(petlist[0], 0);
                     petComponent.PetXiLian(petInfo, 1);
                     petComponent.UpdatePetAttribute(petInfo);
-                    Unit petunit = UnitFactory.CreateFubenPet(unit.DomainScene(), 0,
+                    Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
                        CampEnum.CampPlayer_2,  petInfo, AIHelp.Formation_2[k]);
                     petunit.GetComponent<AIComponent>().StopAI = true;
                 }

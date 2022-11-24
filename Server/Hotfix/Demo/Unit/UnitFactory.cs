@@ -152,7 +152,7 @@ namespace ET
             return unit;
         }
 
-        public static Unit CreateTempPet(Unit master, int monster)
+        public static Unit CreateTempFollower(Unit master, int monster)
         {
             Scene scene = master.DomainScene();
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), monster);
@@ -166,17 +166,16 @@ namespace ET
 
             unit.GetComponent<NumericComponent>().Set(NumericType.MasterId, master.Id);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.ConfigId = monster;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Type = UnitType.Monster;
             unit.Position = new Vector3(master.Position.x + RandomHelper.RandFloat01() * 1f, master.Position.y, master.Position.z + RandomHelper.RandFloat01() * 1f);
             //添加其他组件
-            unit.AddComponent<HeroDataComponent>().InitTempPet(master, monster);
+            unit.AddComponent<HeroDataComponent>().InitTempFollower(master, monster);
 
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(2);     //AI行为树序号
-            aIComponent.InitTeampPet(monster);
+            aIComponent.InitTempFollower(monster);
 
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
 
@@ -185,7 +184,7 @@ namespace ET
             return unit;
         }
 
-        public static Unit CreateFubenPet(Scene scene,  long masterId, int roleCamp, RolePetInfo petinfo, Vector3 postion)
+        public static Unit CreateTianTiPet(Scene scene,  long masterId, int roleCamp, RolePetInfo petinfo, Vector3 postion)
         {
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(petinfo.Id, 1);
             scene.GetComponent<UnitComponent>().Add(unit);
@@ -197,7 +196,6 @@ namespace ET
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.ConfigId = petinfo.ConfigId;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
@@ -210,10 +208,10 @@ namespace ET
             {
                 case (int)SceneTypeEnum.PetDungeon:
                 case (int)SceneTypeEnum.PetTianTi:
-                    aIComponent.InitPetFubenPet(petinfo.ConfigId);
+                    aIComponent.InitTianTiPet(petinfo.ConfigId);
                     break;
                 default:
-                    aIComponent.InitPet(petinfo.ConfigId);
+                    aIComponent.InitPet(petinfo);
                     break;
             }
             unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill();
@@ -239,14 +237,13 @@ namespace ET
 
             numericComponent.Set(NumericType.MasterId, master.Id);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.ConfigId = petinfo.ConfigId;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Position = new Vector3(master.Position.x + RandomHelper.RandFloat01() * 1f, master.Position.y, master.Position.z + RandomHelper.RandFloat01() * 1f);
             unit.Type = UnitType.Pet;
             AIComponent aIComponent = unit.AddComponent<AIComponent, int>(2);     //AI行为树序号
-            aIComponent.InitPet(petinfo.ConfigId);
+            aIComponent.InitPet(petinfo);
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitPet(petinfo, false);
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
