@@ -98,6 +98,7 @@ namespace ET
             int dayCha = TimeHelper.DateTimeNow().Day - dateTime.Day;
             self.UpdateExchangeGold(dayCha);
             self.SendCombatReward().Coroutine();
+            self.SendPetReward().Coroutine();
         }
 
         //更新兑换金币
@@ -429,7 +430,7 @@ namespace ET
             int zone = self.DomainZone();
             await TimerComponent.Instance.WaitAsync(zone * 500);
             DateTime dateTime = TimeHelper.DateTimeNow();
-            if (!RankHelper.HaveReward(1, dateTime.Day))
+            if (!RankHelper.HaveReward(1, (int)dateTime.DayOfWeek))
             {
                 return;
             }

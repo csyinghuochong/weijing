@@ -98,6 +98,11 @@ namespace ET
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 DropHelper.DropIDToDropItem_2(dropId, rewardItems);
                 m2C_FubenSettlement.ReardList.AddRange(rewardItems);
+                m2C_FubenSettlement.StarInfos = new List<int> { 1, 1, 1 };
+            }
+            else
+            {
+                m2C_FubenSettlement.StarInfos = new List<int> { 0,0,0 };
             }
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
         }
