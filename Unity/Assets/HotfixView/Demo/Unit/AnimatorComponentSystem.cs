@@ -25,7 +25,6 @@ namespace ET
 
 	public static class AnimatorComponentSystem
 	{
-
 		public static int Speed = 1;
 		//public static SkillActionBase skill;
 

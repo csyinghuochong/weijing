@@ -1,9 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace ET
 {
-    public class UIJoystickMoveComponent : Entity, IAwake
+    [Timer(TimerType.JoystickTimer)]
+    public class JoystickTimer : ATimer<UIJoystickMoveComponent>
+    {
+        public override void Run(UIJoystickMoveComponent self)
+        {
+            try
+            {
+                self.OnUpdate();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+    public class UIJoystickMoveComponent : Entity, IAwake, IDestroy
     {
         public GameObject CenterShow;
         public GameObject YaoGanDi;
@@ -12,7 +29,6 @@ namespace ET
         public Vector2 OldPoint;
         public Vector2 NewPoint;
         public float Distance = 110;
-        public bool draging;
         public float lastSendTime;
 
         public int direction;
@@ -21,16 +37,25 @@ namespace ET
         public Camera UICamera;
         public Camera MainCamera;
         public float LastShowTip;
+
+        public long Timer;
     }
 
+    [ObjectSystem]
+    public class UIJoystickMoveComponentDestroy : DestroySystem<UIJoystickMoveComponent>
+    {
+        public override void Destroy(UIJoystickMoveComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.Timer);
+        }
+    }
 
     [ObjectSystem]
-    public class UIJoystickNewComponentAwakeSystem : AwakeSystem<UIJoystickMoveComponent>
+    public class UIJoystickMoveComponentAwake : AwakeSystem<UIJoystickMoveComponent>
     {
         public override void Awake(UIJoystickMoveComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-            self.draging = false;
             self.direction = 0;
             self.lastDirection = 0;
             self.CenterShow = rc.Get<GameObject>("CenterShow");
@@ -74,8 +99,8 @@ namespace ET
             {
                 return;
             }
-            self.draging = true;
             self.SendMove(self.GetDirection(pdata));
+            self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.JoystickTimer, self);
         }
 
         public static int GetDirection(this UIJoystickMoveComponent self, PointerEventData pdata)
@@ -104,21 +129,11 @@ namespace ET
 
         public static void Draging(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
-            Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (myUnit == null || myUnit.IsDisposed)
-                return;
-
-            self.draging = true;
             self.direction = self.GetDirection(pdata);
         }
 
         public static void OnUpdate(this UIJoystickMoveComponent self)
         {
-            if (!self.draging)
-            {
-                return;
-            }
-
             self.SendMove(self.direction);
         }
 
@@ -136,11 +151,6 @@ namespace ET
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Quaternion rotation = Quaternion.Euler(0, direction, 0);
             Vector3 newv3 = myUnit.Position + rotation * Vector3.forward * 3f;
-            //newv3 = self.GetCanReachPath(myUnit.Position, newv3);
-            //if (Vector3.Distance(myUnit.Position, newv3) < 0.2f)
-            //{
-            //    return;
-            //}
             int obstruct = self.CheckObstruct(newv3);
             if (obstruct!= 0)
             {
@@ -210,16 +220,15 @@ namespace ET
 
         public static void ShowUI(this UIJoystickMoveComponent self, bool show)
         {
-            self.draging = false;
             self.CenterShow.SetActive(show);
             self.Thumb.SetActive(show);
         }
 
         public static void HideUI(this UIJoystickMoveComponent self)
         {
-            self.draging = false;
             self.CenterShow.SetActive(false);
             self.Thumb.SetActive(false);
+            TimerComponent.Instance?.Remove(ref self.Timer);
         } 
 
         public static void EndDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
@@ -240,8 +249,5 @@ namespace ET
             }
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
         }
-
     }
-
-
 }

@@ -60,7 +60,7 @@ namespace ET
                 }
                 if (component is LockTargetComponent lockComponent)
                 {
-                    lockComponent.OnMainHeroPosition();
+                    lockComponent.OnMainHeroMove();
                     continue;
                 }
                 if (component is UIMapMiniComponent miniComponent)

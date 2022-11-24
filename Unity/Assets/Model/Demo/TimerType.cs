@@ -34,8 +34,8 @@
         public const int DeathTimer = 1032;
         public const int SkillIndicator = 1033;
         public const int FloatTipTimer = 1034;
-        public const int UIMainBuffTimer = 1035;
-        public const int UIMainSkill = 1036;
+        public const int MainBuffTimer = 1035;
+        public const int MainSkillTimer = 1036;
         public const int ReviveTimer = 1037;
         public const int LocalDungeonTimer = 1038;
         public const int UIXiuLianTimer = 1039;
@@ -58,6 +58,8 @@
         public const int ChatSceneTimer = 1066;
         public const int TrialMainTimer = 1067;
         public const int TowerOpenTimer = 1068;
+        public const int JoystickTimer = 1069;
+        public const int UIMainTimer = 1070;
         // 不能超过10000
     }
 }

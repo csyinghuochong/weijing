@@ -1,13 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ET
 {
+    [Timer(TimerType.MainBuffTimer)]
+    public class MainBuffTimer : ATimer<UIMainBuffComponent>
+    {
+        public override void Run(UIMainBuffComponent self)
+        {
+            try
+            {
+                self.OnUpdate();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
 
     public class UIMainBuffComponent : Entity, IAwake, IDestroy
     {
+        public long Timer;
         public GameObject UIMainBuffItem;
         public List<UIMainBuffItemComponent> MainBuffUIList = new List<UIMainBuffItemComponent>();
         public List<UIMainBuffItemComponent> CacheUIList = new List<UIMainBuffItemComponent>();
@@ -16,7 +31,6 @@ namespace ET
     [ObjectSystem]
     public class UIMainBuffComponentAwakeSystem : AwakeSystem<UIMainBuffComponent>
     {
-
         public override void Awake(UIMainBuffComponent self)
         {
             self.MainBuffUIList.Clear();
@@ -34,10 +48,10 @@ namespace ET
     [ObjectSystem]
     public class UIMainBuffComponentDestroySystem : DestroySystem<UIMainBuffComponent>
     {
-
         public override void Destroy(UIMainBuffComponent self)
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.BuffUpdate, self);
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
@@ -57,6 +71,10 @@ namespace ET
                     self.CacheUIList.Add(self.MainBuffUIList[i]);
                     self.MainBuffUIList.RemoveAt(i);
                 }
+            }
+            if (self.MainBuffUIList.Count == 0)
+            { 
+                TimerComponent.Instance.Remove(ref self.Timer);
             }
         }
 
@@ -87,6 +105,10 @@ namespace ET
                 self.CacheUIList.Add(self.MainBuffUIList[i]);
             }
             self.MainBuffUIList.Clear();
+            if (self.MainBuffUIList.Count == 0)
+            {
+                TimerComponent.Instance.Remove(ref self.Timer);
+            }
         }
 
         public static void OnInitBuff(this UIMainBuffComponent self)
@@ -119,6 +141,10 @@ namespace ET
             ui_buff.GameObject.SetActive(true);
             ui_buff.OnAddBuff(buffID, endTime);
             UICommonHelper.SetParent(ui_buff.GameObject, self.GetParent<UI>().GameObject);
+            if (self.Timer == 0)
+            {
+                self.Timer = TimerComponent.Instance.NewRepeatedTimer(500, TimerType.MainBuffTimer, self);
+            }
         }
 
         public static void OnResetBuff(this UIMainBuffComponent self, int buffID)

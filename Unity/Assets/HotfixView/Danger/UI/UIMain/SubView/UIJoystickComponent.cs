@@ -41,8 +41,9 @@ namespace ET
                 return;
             }
             if (Time.time - self.lastSendTime < 0.1f)
+            {
                 return;
-
+            }
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Quaternion rotation = Quaternion.Euler(0, self.direction, 0); //按照Z轴旋转30度的Quaterion
             Vector3 newv3 = myUnit.Position + rotation * Vector3.forward * 2f;
@@ -55,6 +56,7 @@ namespace ET
         {
             self.draging = true;
         }
+
         public static void OnEndDrag(this UIJoystickComponent self)
         {
             self.draging = false;

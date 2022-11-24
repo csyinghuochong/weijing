@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    [Timer(TimerType.UIMainSkill)]
+    [Timer(TimerType.MainSkillTimer)]
     public class UIMainSkillTimer : ATimer<UIMainSkillComponent>
     {
         public override void Run(UIMainSkillComponent self)
@@ -92,7 +92,7 @@ namespace ET
         {
             if (self.Timer == 0)
             {
-                self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.UIMainSkill, self);
+                self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.MainSkillTimer, self);
             }
         }
 

@@ -1,10 +1,27 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 namespace ET
 {
-    public class UIMainComponent : Entity, IAwake, IUpdate, IDestroy
+    [Timer(TimerType.UIMainTimer)]
+    public class UIMainTimer : ATimer<UIMainComponent>
+    {
+        public override void Run(UIMainComponent self)
+        {
+            try
+            {
+                self.OnUpdate();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
+    public class UIMainComponent : Entity, IAwake, IDestroy
     {
         public GameObject Button_Horse;
         public GameObject Button_WorldLv;
@@ -74,6 +91,7 @@ namespace ET
 
         public float CheckButtonTime;
         public Unit MainUnit;
+        public long Timer;
     }
 
     [ObjectSystem]
@@ -257,6 +275,8 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.TaskGiveUp, self);
             DataUpdateComponent.Instance.AddListener(DataType.TeamUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.OnActiveTianFu, self);
+
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(10000, TimerType.UIMainTimer, self);
         }
     }
 
@@ -305,25 +325,19 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.TaskGiveUp, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.TeamUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.OnActiveTianFu, self);
+            TimerComponent.Instance?.Remove(ref self.Timer);
 
             self.UnRegisterRedot();
         }
     }
 
-    [ObjectSystem]
-    public class UIMainComponentUpdateSystem : UpdateSystem<UIMainComponent>
-    {
-        public override void Update(UIMainComponent self)
-        {
-            self.UIJoystickMoveComponent.OnUpdate();
-            self.UIMainBuffComponent.OnUpdate();
-
-            self.CheckButton();
-        }
-    }
-
     public static class UIMainComponentSystem
     {
+        public static void OnUpdate(this UIMainComponent self)
+        {
+            self.CheckButton();
+        }
+
         public static bool IsHaveHongBao(this UIMainComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
@@ -816,7 +830,7 @@ namespace ET
         /// <param name="self"></param>
         public static void BeginEnterScene(this UIMainComponent self, int lastScene)
         {
-            self.UIJoystickMoveComponent.draging = false;
+            self.UIJoystickMoveComponent.HideUI();
             self.UIMainSkillComponent.CancelSkill();
             self.UIMainSkillComponent.OnExitBattle();
             self.UIMainBuffComponent.ResetUI();

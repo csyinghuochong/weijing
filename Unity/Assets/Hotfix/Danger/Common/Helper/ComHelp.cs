@@ -14,7 +14,6 @@ namespace ET
 
     public static class ComHelp
     {
-
         public const int MaxZone = 202;
 
         public const string RobotPassWord = "et@#robot";
