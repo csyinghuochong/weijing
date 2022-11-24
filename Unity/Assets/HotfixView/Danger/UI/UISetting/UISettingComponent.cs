@@ -297,11 +297,17 @@ namespace ET
         public static async ETTask OnButtonRname(this UISettingComponent self)
         {
             string text = self.InputFieldCName.GetComponent<InputField>().text;
-
             if (text.Contains("*") || !StringHelper.IsSpecialChar(text))
             {
                 FloatTipManager.Instance.ShowFloatTip("名字不合法，请重新输入！");
                 return;
+            }
+            GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(70);
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (!bagComponent.CheckNeedItem(globalValueConfig.Value))
+            {
+                string needItem = UICommonHelper.GetNeedItemDesc(globalValueConfig.Value);
+                FloatTipManager.Instance.ShowFloatTip($"需要 {needItem}");
             }
 
             C2M_ModifyNameRequest c2M_GameSettingRequest = new C2M_ModifyNameRequest() { NewName = text };
