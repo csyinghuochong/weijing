@@ -13,7 +13,7 @@ namespace ET
             List<long> removeIds = new List<long>();
             M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
             long serverTime = TimeHelper.ServerNow();
-            //DropType == 0 / 3 公共掉落  1私有掉落
+            //DropType ==  0 公共掉落 2保护掉落   1私有掉落
             for (int i = 0; i < drops.Count; i++)
             {
                 Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);

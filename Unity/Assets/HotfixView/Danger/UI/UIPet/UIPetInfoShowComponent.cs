@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIPetInfoShowComponent : Entity, IAwake
+    public class UIPetInfoShowComponent : Entity, IAwake<GameObject>
     {
 
         public int Weizhi; //-1左 1 右边
@@ -23,15 +23,17 @@ namespace ET
 
         public GameObject ImageStarList;
         public GameObject Btn_QieHuan;
+        public GameObject GameObject;
     }
 
     [ObjectSystem]
-    public class UIPetInfoShowComponentAwakeSystem : AwakeSystem<UIPetInfoShowComponent>
+    public class UIPetInfoShowComponentAwakeSystem : AwakeSystem<UIPetInfoShowComponent, GameObject>
     {
-        public override void Awake(UIPetInfoShowComponent self)
+        public override void Awake(UIPetInfoShowComponent self, GameObject gameObject)
         {
+            self.GameObject = gameObject;
             self.PetSkillUIList = new List<UICommonSkillItemComponent>();
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Text_PetLevel = rc.Get<GameObject>("Text_PetLevel");
             self.Img_PetHeroIon = rc.Get<GameObject>("Img_PetHeroIon");

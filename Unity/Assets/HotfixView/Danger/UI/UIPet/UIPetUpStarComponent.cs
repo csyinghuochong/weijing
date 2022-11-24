@@ -16,9 +16,9 @@ namespace ET
         public GameObject Btn_UpStar;
         public GameObject Obj_Text_UpRate;
 
-        public UI UIPetInfoShowComponent;
         public UI[] UIPetUpStarItemList;
         public GameObject[] Button_AddList;
+        public UIPetInfoShowComponent UIPetInfoShowComponent;
 
         public RolePetInfo MainPetInfo;
         public PetComponent PetComponent;
@@ -100,13 +100,11 @@ namespace ET
             await ETTask.CompletedTask;
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
-            UI ui_1 = self.AddChild<UI, string, GameObject>("HeChengShow_1", UnityEngine.Object.Instantiate(bundleGameObject));
-            self.UIPetInfoShowComponent = ui_1;
-            UIPetInfoShowComponent UIPetInfoShow_1 = ui_1.AddComponent<UIPetInfoShowComponent>();
-            UIPetInfoShow_1.Weizhi = 0;
-            UIPetInfoShow_1.BagOperationType = PetOperationType.UpStar_Main;
-            UICommonHelper.SetParent(ui_1.GameObject, self.UIPetInfo1);
-            UIPetInfoShow_1.OnInitData(self.MainPetInfo);
+            self.UIPetInfoShowComponent = self.AddChild<UIPetInfoShowComponent, GameObject>(UnityEngine.Object.Instantiate(bundleGameObject));
+            self.UIPetInfoShowComponent.Weizhi = 0;
+            self.UIPetInfoShowComponent.BagOperationType = PetOperationType.UpStar_Main;
+            UICommonHelper.SetParent(self.UIPetInfoShowComponent.GameObject, self.UIPetInfo1);
+            self.UIPetInfoShowComponent.OnInitData(self.MainPetInfo);
         }
 
         public static void OnPetUpStarUpdate(this UIPetUpStarComponent self, string dataparams)
@@ -116,7 +114,7 @@ namespace ET
 
             self.ResetUpStarList();
             self.UpdateCostItem();
-            self.UIPetInfoShowComponent.GetComponent<UIPetInfoShowComponent>().OnInitData(rolePetInfo);
+            self.UIPetInfoShowComponent.OnInitData(rolePetInfo);
         }
 
         public static void UpdateCostItem(this UIPetUpStarComponent self)
@@ -130,10 +128,7 @@ namespace ET
             self.MainPetInfo = null;
             self.ResetUpStarList();
             self.UpdateCostItem();
-            if (self.UIPetInfoShowComponent != null)
-            {
-                self.UIPetInfoShowComponent.GetComponent<UIPetInfoShowComponent>().OnInitData(self.MainPetInfo);
-            }
+            self.UIPetInfoShowComponent?.OnInitData(self.MainPetInfo);
         }
 
         public static void ResetUpStarList(this UIPetUpStarComponent self)
@@ -175,7 +170,7 @@ namespace ET
         {
             self.MainPetInfo = rolePetInfo;
             self.ResetUpStarList();
-            self.UIPetInfoShowComponent.GetComponent<UIPetInfoShowComponent>().OnInitData(rolePetInfo);
+            self.UIPetInfoShowComponent.OnInitData(rolePetInfo);
         }
 
         public static void PetItemSelect(this UIPetUpStarComponent self, RolePetInfo rolePetInfo)

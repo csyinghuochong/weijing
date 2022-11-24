@@ -330,7 +330,7 @@ namespace ET
             {
                 droplist.AddRange(droplist_2);
             }
-            if (monsterCof.DropType == 0 || monsterCof.DropType == 3) //0公共掉落 1私有掉落 3 保护掉落
+            if (monsterCof.DropType == 0 || monsterCof.DropType == 2) // 0 公共掉落 2保护掉落   1私有掉落
             {
                 long serverTime = TimeHelper.ServerNow();
                 for (int i = 0; i < droplist.Count; i++)

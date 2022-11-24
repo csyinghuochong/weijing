@@ -42,7 +42,7 @@ namespace ET
         public static void OnSetType(this UIPetSelectComponent self, PetOperationType bagOperationType)
         {
             self.OperationType = bagOperationType;
-            self.OnInitData().Coroutine();
+            self.OnInitData();
         }
 
         public static List<long> GetSelectedPet(this UIPetSelectComponent self)
@@ -73,13 +73,12 @@ namespace ET
             return selected;
         }
 
-        public static async ETTask OnInitData(this UIPetSelectComponent self)
+        public static  void OnInitData(this UIPetSelectComponent self)
         {
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             List<RolePetInfo> list = petComponent.RolePetInfos;
 
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSelectItem");
-            await ETTask.CompletedTask;
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             List<long> selected = self.GetSelectedPet();

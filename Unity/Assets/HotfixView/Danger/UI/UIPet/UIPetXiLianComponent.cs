@@ -14,7 +14,7 @@ namespace ET
         public GameObject PetSkillNode;
 
         public List<UI> CostUIList;
-        public UI UIPetInfoShowComponent;
+        public UIPetInfoShowComponent UIPetInfoShowComponent;
         public BagInfo CostItemInfo;
         public RolePetInfo RolePetInfo;
     }
@@ -50,13 +50,11 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetInfoShow");
             await ETTask.CompletedTask;
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            UI ui_1 = self.AddChild<UI, string, GameObject>("HeChengShow_1", UnityEngine.Object.Instantiate(bundleGameObject));
-            self.UIPetInfoShowComponent = ui_1;
-            UIPetInfoShowComponent UIPetInfoShow_1 = ui_1.AddComponent<UIPetInfoShowComponent>();
-            UIPetInfoShow_1.Weizhi = 0;
-            UIPetInfoShow_1.BagOperationType = PetOperationType.XiLian;
-            UICommonHelper.SetParent(ui_1.GameObject, self.UIPetInfo1);
-            UIPetInfoShow_1.OnInitData(self.RolePetInfo);
+            self.UIPetInfoShowComponent = self.AddChild<UIPetInfoShowComponent, GameObject>(UnityEngine.Object.Instantiate(bundleGameObject));
+            self.UIPetInfoShowComponent.Weizhi = 0;
+            self.UIPetInfoShowComponent.BagOperationType = PetOperationType.XiLian;
+            UICommonHelper.SetParent(self.UIPetInfoShowComponent.GameObject, self.UIPetInfo1);
+            self.UIPetInfoShowComponent.OnInitData(self.RolePetInfo);
         }
 
         public static void OnClickXiLian(this UIPetXiLianComponent self)
@@ -77,14 +75,14 @@ namespace ET
         public static void OnXiLianUpdate(this UIPetXiLianComponent self)
         { 
             self.RolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.RolePetInfo.Id);
-            self.UIPetInfoShowComponent.GetComponent<UIPetInfoShowComponent>().OnInitData(self.RolePetInfo);
+            self.UIPetInfoShowComponent.OnInitData(self.RolePetInfo);
             self.UpdateConsume().Coroutine();
         }
 
         public static void OnXiLianSelect(this UIPetXiLianComponent self, RolePetInfo rolePetInfo)
         {
             self.RolePetInfo = rolePetInfo;
-            self.UIPetInfoShowComponent.GetComponent<UIPetInfoShowComponent>().OnInitData(rolePetInfo);
+            self.UIPetInfoShowComponent.OnInitData(rolePetInfo);
 
             self.UpdateConsume().Coroutine();
         }
@@ -113,7 +111,7 @@ namespace ET
             self.Img_ItemIcon.SetActive(false);
             self.Text_ItemName.GetComponent<Text>().text = "";
             self.UpdateConsume().Coroutine();
-            self.UIPetInfoShowComponent?.GetComponent<UIPetInfoShowComponent>().OnInitData(self.RolePetInfo);
+            self.UIPetInfoShowComponent?.OnInitData(self.RolePetInfo);
         }
 
         public static async ETTask UpdateConsume(this UIPetXiLianComponent self)

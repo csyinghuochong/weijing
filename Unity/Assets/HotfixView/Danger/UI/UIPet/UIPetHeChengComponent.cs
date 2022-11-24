@@ -13,8 +13,8 @@ namespace ET
         public RolePetInfo HeChengPet_Left;
         public RolePetInfo HeChengPet_Right;
 
-        public UI UIPetInfoShowComponent_1;
-        public UI UIPetInfoShowComponent_2;
+        public UIPetInfoShowComponent UIPetInfoShowComponent_1;
+        public UIPetInfoShowComponent UIPetInfoShowComponent_2;
     }
 
     [ObjectSystem]
@@ -32,7 +32,7 @@ namespace ET
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
-            self.OnInitSubView().Coroutine();
+            self.OnInitSubView();
         }
     }
 
@@ -53,8 +53,8 @@ namespace ET
         {
             self.HeChengPet_Left = null;
             self.HeChengPet_Right = null;
-            self.UIPetInfoShowComponent_1.GetComponent<UIPetInfoShowComponent>().OnInitData(null);
-            self.UIPetInfoShowComponent_2.GetComponent<UIPetInfoShowComponent>().OnInitData(null);
+            self.UIPetInfoShowComponent_1.OnInitData(null);
+            self.UIPetInfoShowComponent_2.OnInitData(null);
         }
 
         public static  void OnClickHeCheng(this UIPetHeChengComponent self)
@@ -90,50 +90,43 @@ namespace ET
 
         public static void OnHeChengReturn(this UIPetHeChengComponent self)
         {
-            self.UIPetInfoShowComponent_1.GetComponent<UIPetInfoShowComponent>().OnInitData(null);
-            self.UIPetInfoShowComponent_2.GetComponent<UIPetInfoShowComponent>().OnInitData(null);
+            self.UIPetInfoShowComponent_1.OnInitData(null);
+            self.UIPetInfoShowComponent_2.OnInitData(null);
         }
 
         public static void OnHeChengSelect(this UIPetHeChengComponent self, RolePetInfo rolePetInfo)
         {
             UI uIpet = UIHelper.GetUI( self.ZoneScene(), UIType.UIPet );
-            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-          
             if (uIpet.GetComponent<UIPetComponent>().PetItemWeizhi == -1)
             {
                 self.HeChengPet_Left = rolePetInfo;
-                self.UIPetInfoShowComponent_1.GetComponent<UIPetInfoShowComponent>().OnInitData(self.HeChengPet_Left);
+                self.UIPetInfoShowComponent_1.OnInitData(self.HeChengPet_Left);
             }
             else
             {
                 self.HeChengPet_Right = rolePetInfo;
-                self.UIPetInfoShowComponent_2.GetComponent<UIPetInfoShowComponent>().OnInitData(self.HeChengPet_Right);
+                self.UIPetInfoShowComponent_2.OnInitData(self.HeChengPet_Right);
             }
         }
 
-        public static async ETTask OnInitSubView(this UIPetHeChengComponent self)
+        public static  void OnInitSubView(this UIPetHeChengComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetInfoShow");
-            await ETTask.CompletedTask;
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
-            UI ui_1 = self.AddChild<UI, string, GameObject>( "HeChengShow_1", UnityEngine.Object.Instantiate(bundleGameObject));
-            self.UIPetInfoShowComponent_1 = ui_1;
-            UIPetInfoShowComponent UIPetInfoShow_1 = ui_1.AddComponent<UIPetInfoShowComponent>();
-            UIPetInfoShow_1.Weizhi = -1;
-            UIPetInfoShow_1.BagOperationType = PetOperationType.HeCheng;
+            self.UIPetInfoShowComponent_1 = self.AddChild<UIPetInfoShowComponent, GameObject>(UnityEngine.Object.Instantiate(bundleGameObject));
+            self.UIPetInfoShowComponent_1.Weizhi = -1;
+            self.UIPetInfoShowComponent_1.BagOperationType = PetOperationType.HeCheng;
 
-            UI ui_2 = self.AddChild<UI, string, GameObject>( "HeChengShow_2", UnityEngine.Object.Instantiate(bundleGameObject));
-            self.UIPetInfoShowComponent_2 = ui_2;
-            UIPetInfoShowComponent UIPetInfoShow_2 = ui_2.AddComponent<UIPetInfoShowComponent>();
-            UIPetInfoShow_2.Weizhi = 1;
-            UIPetInfoShow_2.BagOperationType = PetOperationType.HeCheng;
+            self.UIPetInfoShowComponent_2 = self.AddChild<UIPetInfoShowComponent, GameObject>(UnityEngine.Object.Instantiate(bundleGameObject));
+            self.UIPetInfoShowComponent_2.Weizhi = 1;
+            self.UIPetInfoShowComponent_2.BagOperationType = PetOperationType.HeCheng;
 
-            UICommonHelper.SetParent(ui_1.GameObject, self.PetInfo1);
-            UICommonHelper.SetParent(ui_2.GameObject, self.PetInfo2);
+            UICommonHelper.SetParent(self.UIPetInfoShowComponent_1.GameObject, self.PetInfo1);
+            UICommonHelper.SetParent(self.UIPetInfoShowComponent_2.GameObject, self.PetInfo2);
 
-            UIPetInfoShow_1.OnInitData(null);
-            UIPetInfoShow_2.OnInitData(null);
+            self.UIPetInfoShowComponent_1.OnInitData(null);
+            self.UIPetInfoShowComponent_2.OnInitData(null);
         }
 
     }

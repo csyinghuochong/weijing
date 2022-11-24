@@ -434,7 +434,7 @@ namespace ET
             List<KeyValuePairInt> makeList = self.UserInfo.MakeIdList;
 
             bool have = false;
-            long endTime = TimeHelper.ServerNow() + equipMakeConfig.MakeTime * 1000 + 12*1000; 
+            long endTime = TimeHelper.ServerNow() + equipMakeConfig.MakeTime * 1000; 
             for (int i = 0; i < makeList.Count; i++)
             {
                 if (makeList[i].KeyId == makeId)
