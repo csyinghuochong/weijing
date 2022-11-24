@@ -49,19 +49,29 @@ namespace ET
 
             self.UICommonItemList = self.AddChild<UICommonItemListComponent, GameObject>(self.BuildingList);
 
-            int cengNum = self.GetCengNum();
-            self.OnUpdateUI(cengNum).Coroutine();
+            self.OnUpdateUI(self.GetShowCengNum());
         }
     }
 
     public static class UITrialDungeonComponentSystem
     {
 
-        public static int GetCengNum(this UITrialDungeonComponent self)
+        public static int GetShowCengNum(this UITrialDungeonComponent self)
         {
             int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
             int nextId = TowerHelper.GetNextTowerId(SceneTypeEnum.TrialDungeon,towerId);
             //nextId == 0通关了
+
+            //第一个可以领取奖励的
+            List<TowerConfig> idlist = TowerHelper.GetTowerList(SceneTypeEnum.TrialDungeon);
+            for (int i = 0; i < idlist.Count; i++)
+            {
+                if (self.IsHaveReward(idlist[i].Id))
+                {
+                    nextId = idlist[i].Id;
+                    break;
+                }
+            }
             return TowerConfigCategory.Instance.Get(nextId == 0 ? towerId : nextId).CengNum;
         }
 
@@ -91,7 +101,7 @@ namespace ET
             {
                 return;
             }
-            self.OnUpdateUI(towerConfig.CengNum+1).Coroutine();
+            self.OnUpdateUI(towerConfig.CengNum+1);
         }
 
         public static void OnBtn_Sub(this UITrialDungeonComponent self)
@@ -101,18 +111,19 @@ namespace ET
             {
                 return;
             }
-            self.OnUpdateUI(towerConfig.CengNum - 1).Coroutine();
+            self.OnUpdateUI(towerConfig.CengNum - 1);
         }
-        public static async ETTask OnUpdateUI(this UITrialDungeonComponent self, int cengNum)
+
+        public static  void OnUpdateUI(this UITrialDungeonComponent self, int cengNum)
         {
             var path = ABPathHelper.GetUGUIPath("TrialDungeon/UITrialDungeonItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             List<TowerConfig> towerConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();
             int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
             int nextId = TowerHelper.GetNextTowerId(SceneTypeEnum.TrialDungeon, towerId);
 
             int showNum = 0;
-            int showIndex = 0;
+            int showIndex = -1;
             for (int i = 0; i < towerConfigs.Count; i++)
             { 
                 TowerConfig towerConfig = towerConfigs[i];
@@ -126,7 +137,7 @@ namespace ET
                 }
                 
                 UITrialDungeonItemComponent uiitem = null;
-                if (towerConfig.Id == nextId)
+                if (showIndex!= -1 && ( towerConfig.Id == nextId || self.IsHaveReward(towerConfig.Id)))
                 {
                     showIndex = showNum;
                 }
@@ -150,10 +161,11 @@ namespace ET
             {
                 self.UITrialDungeonItems[i].GameObject.SetActive(false);
             }
-            int moveIndex = Mathf.Max(showIndex, showNum - 5);
-            self.MoveToIndex(showIndex);
-            self.UITrialDungeonItems[showIndex].OnBtn_XuanZhong();
+            showIndex = showIndex == -1 ? 0 : showIndex;
             self.TextLayer.GetComponent<Text>().text = $"第{cengNum}层";
+            int moveIndex = Mathf.Max(showIndex, showNum - 5);
+            self.UITrialDungeonItems[showIndex].OnBtn_XuanZhong();
+            self.MoveToIndex(showIndex);
         }
 
         public static void  MoveToIndex(this UITrialDungeonComponent self, int showIndex)
@@ -171,6 +183,13 @@ namespace ET
 
             self.UpdateButtons();
             self.ShowRewardList();
+        }
+
+        public static bool IsHaveReward(this UITrialDungeonComponent self, int towerId)
+        {
+            int curId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            return towerId <= curId && !userInfo.TowerRewardIds.Contains(towerId);
         }
 
         public static void UpdateButtons(this UITrialDungeonComponent self)

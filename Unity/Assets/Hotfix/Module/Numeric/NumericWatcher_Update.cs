@@ -35,6 +35,7 @@
 	[NumericWatcher((int)NumericType.BossInCombat)]
 	[NumericWatcher((int)NumericType.XiuLian_ExpNumber)]
 	[NumericWatcher((int)NumericType.XiuLian_CoinNumber)]
+	[NumericWatcher((int)NumericType.TrialDungeonId)]
 	public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)
