@@ -154,15 +154,28 @@ namespace ET
                     skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area").transform.localScale = Vector3.one * scaleList[occ-1];
                     break;
                 case SkillZhishiType.Position:
-                    float outerRadius = (float)self.mSkillConfig.SkillRangeSize * 2f;   //半径 * 2                                                              
-                    skillIndicatorItem.GameObject.Get<GameObject>("Skill_InnerArea").transform.localScale = Vector3.one * (float)self.mSkillConfig.DamgeRange[0] * 2f;
-                    skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area").transform.localScale = new Vector3(outerRadius, 1f, outerRadius);
+                    float innerRadius = (float)self.mSkillConfig.DamgeRange[0] * 2f;
+                    float outerRadius = (float)self.mSkillConfig.SkillRangeSize * 2f;   //半径 * 2
+                    skillIndicatorItem.GameObject.Get<GameObject>("Skill_InnerArea").transform.localScale = Vector3.one * innerRadius;
+                    skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area").transform.localScale = Vector3.one * outerRadius;
                     break;
                 case SkillZhishiType.Line:
+                    innerRadius = (float)self.mSkillConfig.SkillRangeSize * 2f;
+                    outerRadius = (float)self.mSkillConfig.SkillRangeSize * 6f;       
+                    skillIndicatorItem.GameObject.Get<GameObject>("Skill_Dir").transform.localScale = Vector3.one * innerRadius;
+                    skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area").transform.localScale = Vector3.one * outerRadius;
                     break;
                 case SkillZhishiType.Angle60:
+                    innerRadius = (float)self.mSkillConfig.SkillRangeSize * 1f;
+                    outerRadius = (float)self.mSkillConfig.SkillRangeSize * 6f;
+                    skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area_60").transform.localScale = Vector3.one * innerRadius;
+                    skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area").transform.localScale = Vector3.one * outerRadius;
                     break;
                 case SkillZhishiType.Angle120:
+                    innerRadius = (float)self.mSkillConfig.SkillRangeSize * 1f;
+                    outerRadius = (float)self.mSkillConfig.SkillRangeSize * 6f;
+                    skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area_120").transform.localScale = Vector3.one * innerRadius;
+                    skillIndicatorItem.GameObject.Get<GameObject>("Skill_Area").transform.localScale = Vector3.one * outerRadius;
                     break;
             }
         }
