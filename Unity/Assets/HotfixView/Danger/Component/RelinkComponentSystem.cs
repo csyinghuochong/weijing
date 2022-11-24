@@ -83,14 +83,14 @@ namespace ET
             }
             self.Relink = true;
             UIHelper.Create(self.DomainScene(), UIType.UIRelink).Coroutine();
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 5; i++)
             {
                 long instanceid = self.InstanceId;
                 if (TimerComponent.Instance == null)
                 {
                     break;
                 }
-                await TimerComponent.Instance.WaitAsync(3000);
+                await TimerComponent.Instance.WaitAsync(4000);
                 if (instanceid != self.InstanceId)
                 {
                     break;
@@ -104,7 +104,7 @@ namespace ET
                     UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
                     break;
                 }
-                if(i == 9)
+                if(i == 4)
                 {
                     UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
                     EventType.ReturnLogin.Instance.ZoneScene = self.DomainScene();

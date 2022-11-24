@@ -30,7 +30,7 @@ namespace ET
 				Log.Debug($"SessionPlayerComponent|self.isLoginAgain = {self.isLoginAgain}: player.Id:{player.Id} player.UnitId:{player.UnitId}");
 				ActorLocationSenderComponent.Instance.Send(self.PlayerId, new G2M_SessionDisconnect());
 				player.RemoveComponent<PlayerOfflineOutTimeComponent>();
-				player.AddComponent<PlayerOfflineOutTimeComponent>();	//30秒后会kickplayer
+				player.AddComponent<PlayerOfflineOutTimeComponent>();	//n秒后会kickplayer
 				player.ClientSession = null;
 
 				self.AccountId = 0;

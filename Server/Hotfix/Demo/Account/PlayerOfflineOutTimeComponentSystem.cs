@@ -35,7 +35,7 @@ namespace ET
     {
         public override void Awake(PlayerOfflineOutTimeComponent self)
         {
-            self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 30000, TimerType.PlayerOfflineOutTime, self);
+            self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + 100000, TimerType.PlayerOfflineOutTime, self);
         }
     }
 
