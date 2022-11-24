@@ -18,13 +18,28 @@ namespace ET
 
                 //回收所得
                 Dictionary<int, RewardItem> huishouGet = new Dictionary<int, RewardItem>();
+
+                List<long> bagsList = new List<long>();
+                List<long> petHexin = new List<long>();    
                 for (int i = 0; i < huishouList.Count; i++)
                 {
                     BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[i]);
+                    if (bagInfo != null)
+                    {
+                        bagsList.Add(huishouList[i]);
+                    }
+                    else
+                    {
+                        bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemPetHeXinBag, huishouList[i]);
+                        if (bagInfo != null)
+                        {
+                            petHexin.Add(huishouList[i]);
+                        }
+                    }
+
                     if (bagInfo == null)
                     {
-                        Log.Info("C2M_ItemHuiShou无效的物品ID: " + huishouList[i]);
-                        continue;
+                        continue;  
                     }
                     ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
                     string huishouItem = itemConfig.HuiShouGetItem;
@@ -50,7 +65,8 @@ namespace ET
                 }
 
                 //扣除装备
-                bagComponent.OnCostItemData(huishouList);
+                bagComponent.OnCostItemData(petHexin, ItemLocType.ItemPetHeXinBag);
+                bagComponent.OnCostItemData(bagsList, ItemLocType.ItemLocBag);
                 bagComponent.OnAddItemData(huishouGet.Values.ToList());
                 unit.GetComponent<TaskComponent>().OnItemHuiShow();
 

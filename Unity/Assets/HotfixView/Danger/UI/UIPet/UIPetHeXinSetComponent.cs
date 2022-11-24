@@ -167,7 +167,6 @@ namespace ET
 
         public static async ETTask<int> OnButtonEquipHeXin(this UIPetHeXinSetComponent self)
         {
-            long bagInfoId = self.BagInfo.BagInfoID;
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
             if (itemConfig.ItemType != (int)ItemTypeEnum.PetHeXin)
             {

@@ -225,8 +225,12 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
-            List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByType(ItemTypeEnum.Equipment);
-            for (int i = 0; i < bagInfos.Count; i++)
+            List<BagInfo> allInfos = new List<BagInfo>();
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Equipment));
+            allInfos.AddRange(bagComponent.GetItemsByLoc(ItemLocType.ItemPetHeXinBag));
+
+            for (int i = 0; i < allInfos.Count; i++)
             {
                 UIItemComponent uI_1 = null;
                 if (i < self.ItemUIlist.Count)
@@ -247,11 +251,11 @@ namespace ET
 
                     self.ItemUIlist.Add(uI_1);
                 }
-                uI_1.UpdateItem(bagInfos[i], ItemOperateEnum.HuishouBag);
+                uI_1.UpdateItem(allInfos[i], ItemOperateEnum.HuishouBag);
                 uI_1.Label_ItemName.SetActive(true);
             }
 
-            for (int i = bagInfos.Count; i< self.ItemUIlist.Count; i++ )
+            for (int i = allInfos.Count; i< self.ItemUIlist.Count; i++ )
             {
                 self.ItemUIlist[i].GameObject.SetActive(false);
             }
