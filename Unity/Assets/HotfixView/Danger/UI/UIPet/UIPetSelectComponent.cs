@@ -51,9 +51,8 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             RolePetInfo fightPetInfo = petComponent.GetFightPet();
             List<long> petTeamList = new List<long>();
-            petTeamList.AddRange(petComponent.TeamPetList);
-            petTeamList.AddRange(petComponent.PetFormations);
-
+            //petTeamList.AddRange(petComponent.TeamPetList);
+            //petTeamList.AddRange(petComponent.PetFormations);
             if (self.OperationType == PetOperationType.HeCheng)
             {
                 UI uipet = UIHelper.GetUI(self.DomainScene(), UIType.UIPet);
@@ -82,7 +81,6 @@ namespace ET
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             List<long> selected = self.GetSelectedPet();
-
             for (int i = 0; i < list.Count; i++)
             {
                 if (selected.Contains(list[i].Id))

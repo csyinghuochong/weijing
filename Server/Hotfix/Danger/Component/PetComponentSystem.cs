@@ -561,6 +561,17 @@ namespace ET
             }
         }
 
+        public static void ResetFormation(this PetComponent self, List<long> formation, long petId)
+        {
+            for (int i = 0; i < formation.Count; i++)
+            {
+                if (formation[i] == petId)
+                {
+                    formation[i] = 0;
+                }
+            }
+        }
+
         public static void OnPassPetFuben(this PetComponent self, int petfubenId, int star)
         {
             for (int i = 0; i < self.PetFubenInfos.Count; i++)

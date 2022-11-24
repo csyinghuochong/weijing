@@ -15,7 +15,6 @@ namespace ET
 
 			RolePetInfo petinfo_1 = petComponent.GetPetInfo(request.PetInfoId1);
 			RolePetInfo petinfo_2 = petComponent.GetPetInfo(request.PetInfoId2);
-
 			//错误码
 			//判定是否出战
 			//if (PetStatus_1 == 1 || PetStatus_2 == 2)
@@ -268,6 +267,9 @@ namespace ET
 				petinfo_update = petinfo_2;
 				petinfo_delete = petinfo_1;
 			}
+			petComponent.ResetFormation(petComponent.PetFormations, petinfo_delete.Id);
+			petComponent.ResetFormation(petComponent.TeamPetList, petinfo_delete.Id);
+			
 			petinfo_update.ConfigId = petID;
 			petinfo_update.PetLv = pet_Lv;
 			petinfo_update.PetExp = pet_exp;
