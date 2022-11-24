@@ -350,7 +350,7 @@ namespace ET
                     dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
                 }
             }
-            if (monsterCof.DropType == 2)
+            if (monsterCof.DropType == 1)
             {
                 List<long> beattackIds = new List<long>();
                 if (bekill.GetComponent<AIComponent>() != null)
