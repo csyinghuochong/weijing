@@ -37,7 +37,7 @@ namespace ET
 
             self.PetSkillNode = rc.Get<GameObject>("PetSkillNode");
             self.UIPetInfoShowComponent = null;
-            self.OnInitUI().Coroutine();
+            self.OnInitUI();
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
         }
     }
@@ -45,10 +45,9 @@ namespace ET
     public static class UIPetXiLianComponentSystem
     {
 
-        public static async ETTask OnInitUI(this UIPetXiLianComponent self)
+        public static  void OnInitUI(this UIPetXiLianComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetInfoShow");
-            await ETTask.CompletedTask;
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             self.UIPetInfoShowComponent = self.AddChild<UIPetInfoShowComponent, GameObject>(UnityEngine.Object.Instantiate(bundleGameObject));
             self.UIPetInfoShowComponent.Weizhi = 0;

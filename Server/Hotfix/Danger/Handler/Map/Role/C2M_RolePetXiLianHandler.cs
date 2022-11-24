@@ -67,7 +67,7 @@ namespace ET
 					bool ifok = Pet_AddSkill(petInfo, int.Parse(itemConfig.ItemUsePar));
 					response.rolePetInfo = petInfo;
 					ifCost = ifok;
-					response.Error = ErrorCore.ERR_Pet_AddSkillSame;
+					response.Error = ifok ? ErrorCode.ERR_Success : ErrorCore.ERR_Pet_AddSkillSame;
 					break;
 				default:
 					break;
