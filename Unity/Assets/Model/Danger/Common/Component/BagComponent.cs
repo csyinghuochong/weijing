@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using MongoDB.Bson.Serialization.Attributes;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -18,6 +19,9 @@ namespace ET
         public List<BagInfo> Warehouse2 = new List<BagInfo>();
         public List<BagInfo> Warehouse3 = new List<BagInfo>();
         public List<BagInfo> Warehouse4 = new List<BagInfo>();
+
+        [BsonIgnore]
+        public M2C_RoleBagUpdate message = new M2C_RoleBagUpdate() {  };
 #else
 
         public List<BagInfo>[] AllItemList;

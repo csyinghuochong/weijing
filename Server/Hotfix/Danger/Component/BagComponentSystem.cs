@@ -468,8 +468,10 @@ namespace ET
             }
 
             //通知客户端背包刷新
-            M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
-            m2c_bagUpdate.BagInfoAdd = new List<BagInfo>();
+            M2C_RoleBagUpdate m2c_bagUpdate = self.message;
+            m2c_bagUpdate.BagInfoAdd.Clear();
+            m2c_bagUpdate.BagInfoUpdate.Clear();
+            m2c_bagUpdate.BagInfoDelete.Clear();    
 
             Unit unit = self.GetParent<Unit>();
             for (int i = rewardItems.Count - 1; i >= 0; i--)
@@ -637,13 +639,13 @@ namespace ET
                     m2c_bagUpdate.BagInfoAdd.Add(useBagInfo);
                 }
                 //检测任务需求道具
-                ItemAddHelper.OnGetItem(self.GetParent<Unit>(), itemID);
+                ItemAddHelper.OnGetItem(unit, itemID);
             }
 
             //通知客户端背包道具发生改变
             if (notice)
             {
-                MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);
+                MessageHelper.SendToClient(unit, m2c_bagUpdate);
             }
 
             return true;

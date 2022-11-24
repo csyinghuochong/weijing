@@ -1201,7 +1201,7 @@ message M2C_RoleBagUpdate // IActorMessage
 	repeated BagInfo BagInfoAdd = 1;
 	repeated BagInfo BagInfoUpdate = 2;
 	repeated BagInfo BagInfoDelete = 3;
-	int32 UpdateParam = 4;
+
 }
 
 //ResponseType Actor_FubenEnergySkillResponse

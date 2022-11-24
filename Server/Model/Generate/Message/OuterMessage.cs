@@ -2566,9 +2566,6 @@ namespace ET
 		[ProtoMember(3)]
 		public List<BagInfo> BagInfoDelete = new List<BagInfo>();
 
-		[ProtoMember(4)]
-		public int UpdateParam { get; set; }
-
 	}
 
 	[ResponseType(nameof(Actor_FubenEnergySkillResponse))]
