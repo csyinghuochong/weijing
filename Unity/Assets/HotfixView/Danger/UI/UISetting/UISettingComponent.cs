@@ -308,6 +308,7 @@ namespace ET
             {
                 string needItem = UICommonHelper.GetNeedItemDesc(globalValueConfig.Value);
                 FloatTipManager.Instance.ShowFloatTip($"需要 {needItem}");
+                return;
             }
 
             C2M_ModifyNameRequest c2M_GameSettingRequest = new C2M_ModifyNameRequest() { NewName = text };
