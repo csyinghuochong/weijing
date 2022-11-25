@@ -211,11 +211,12 @@ namespace ET
             else
             {
                 self.AISkillIDList.Add(petConfig.ActSkillID);
-                self.ActDistance = 2;
+                self.ActDistance = (float)petConfig.ActDistance;
             }
         }
 
-        public static int GetActSkillId(this AIComponent self)        {
+        public static int GetActSkillId(this AIComponent self)
+        {
             return self.AISkillIDList[RandomHelper.RandomNumber(0, self.AISkillIDList.Count)];
         }
 
