@@ -14,14 +14,14 @@ using ILRuntime.CLR.Utils;
 
 namespace ILRuntime.Runtime.Generated
 {
-    unsafe class ET_ETAsyncTaskMethodBuilder_1_Sprite_Binding
+    unsafe class ET_ETAsyncTaskMethodBuilder_1_AudioClip_Binding
     {
         public static void Register(ILRuntime.Runtime.Enviorment.AppDomain app)
         {
             BindingFlags flag = BindingFlags.Public | BindingFlags.Instance | BindingFlags.Static | BindingFlags.DeclaredOnly;
             MethodBase method;
             Type[] args;
-            Type type = typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>);
+            Type type = typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>);
             args = new Type[]{};
             method = type.GetMethod("Create", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, Create_0);
@@ -56,12 +56,12 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{};
             method = type.GetMethod("get_Task", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, get_Task_2);
-            args = new Type[]{typeof(ET.ETTask<UnityEngine.GameObject>), typeof(ET.IAsyncStateMachineClassInheritanceAdaptor.IAsyncStateMachineAdaptor)};
+            args = new Type[]{typeof(ET.ETTask<UnityEngine.AudioClip>), typeof(ET.IAsyncStateMachineClassInheritanceAdaptor.IAsyncStateMachineAdaptor)};
             if (genericMethods.TryGetValue("AwaitUnsafeOnCompleted", out lst))
             {
                 foreach(var m in lst)
                 {
-                    if(m.MatchGenericParameters(args, typeof(void), typeof(ET.ETTask<UnityEngine.GameObject>).MakeByRefType(), typeof(ET.IAsyncStateMachineClassInheritanceAdaptor.IAsyncStateMachineAdaptor).MakeByRefType()))
+                    if(m.MatchGenericParameters(args, typeof(void), typeof(ET.ETTask<UnityEngine.AudioClip>).MakeByRefType(), typeof(ET.IAsyncStateMachineClassInheritanceAdaptor.IAsyncStateMachineAdaptor).MakeByRefType()))
                     {
                         method = m.MakeGenericMethod(args);
                         app.RegisterCLRMethodRedirection(method, AwaitUnsafeOnCompleted_3);
@@ -73,19 +73,19 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(System.Exception)};
             method = type.GetMethod("SetException", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, SetException_4);
-            args = new Type[]{typeof(UnityEngine.Sprite)};
+            args = new Type[]{typeof(UnityEngine.AudioClip)};
             method = type.GetMethod("SetResult", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, SetResult_5);
             args = new Type[]{typeof(System.Runtime.CompilerServices.IAsyncStateMachine)};
             method = type.GetMethod("SetStateMachine", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, SetStateMachine_6);
 
-            app.RegisterCLRCreateDefaultInstance(type, () => new ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>());
+            app.RegisterCLRCreateDefaultInstance(type, () => new ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>());
 
 
         }
 
-        static void WriteBackInstance(ILRuntime.Runtime.Enviorment.AppDomain __domain, StackObject* ptr_of_this_method, IList<object> __mStack, ref ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite> instance_of_this_method)
+        static void WriteBackInstance(ILRuntime.Runtime.Enviorment.AppDomain __domain, StackObject* ptr_of_this_method, IList<object> __mStack, ref ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip> instance_of_this_method)
         {
             ptr_of_this_method = ILIntepreter.GetObjectAndResolveReference(ptr_of_this_method);
             switch(ptr_of_this_method->ObjectType)
@@ -124,7 +124,7 @@ namespace ILRuntime.Runtime.Generated
                     break;
                  case ObjectTypes.ArrayReference:
                     {
-                        var instance_of_arrayReference = __mStack[ptr_of_this_method->Value] as ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>[];
+                        var instance_of_arrayReference = __mStack[ptr_of_this_method->Value] as ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>[];
                         instance_of_arrayReference[ptr_of_this_method->ValueLow] = instance_of_this_method;
                     }
                     break;
@@ -137,7 +137,7 @@ namespace ILRuntime.Runtime.Generated
             StackObject* __ret = ILIntepreter.Minus(__esp, 0);
 
 
-            var result_of_this_method = ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>.Create();
+            var result_of_this_method = ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>.Create();
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
@@ -153,9 +153,9 @@ namespace ILRuntime.Runtime.Generated
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
             ptr_of_this_method = ILIntepreter.GetObjectAndResolveReference(ptr_of_this_method);
-            object instance_of_this_method = (ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>)typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
+            object instance_of_this_method = (ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>)typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
 
-            ((ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>)instance_of_this_method).Start<ET.IAsyncStateMachineClassInheritanceAdaptor.IAsyncStateMachineAdaptor>(ref @stateMachine);
+            ((ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>)instance_of_this_method).Start<ET.IAsyncStateMachineClassInheritanceAdaptor.IAsyncStateMachineAdaptor>(ref @stateMachine);
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
             switch(ptr_of_this_method->ObjectType)
@@ -225,7 +225,7 @@ namespace ILRuntime.Runtime.Generated
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
             ptr_of_this_method = ILIntepreter.GetObjectAndResolveReference(ptr_of_this_method);
-            ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite> instance_of_this_method = (ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>)typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
+            ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip> instance_of_this_method = (ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>)typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
 
             var result_of_this_method = instance_of_this_method.Task;
 
@@ -246,13 +246,13 @@ namespace ILRuntime.Runtime.Generated
             ET.IAsyncStateMachineClassInheritanceAdaptor.IAsyncStateMachineAdaptor @stateMachine = (ET.IAsyncStateMachineClassInheritanceAdaptor.IAsyncStateMachineAdaptor)typeof(ET.IAsyncStateMachineClassInheritanceAdaptor.IAsyncStateMachineAdaptor).CheckCLRTypes(__intp.RetriveObject(ptr_of_this_method, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
-            ET.ETTask<UnityEngine.GameObject> @awaiter = (ET.ETTask<UnityEngine.GameObject>)typeof(ET.ETTask<UnityEngine.GameObject>).CheckCLRTypes(__intp.RetriveObject(ptr_of_this_method, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            ET.ETTask<UnityEngine.AudioClip> @awaiter = (ET.ETTask<UnityEngine.AudioClip>)typeof(ET.ETTask<UnityEngine.AudioClip>).CheckCLRTypes(__intp.RetriveObject(ptr_of_this_method, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 3);
             ptr_of_this_method = ILIntepreter.GetObjectAndResolveReference(ptr_of_this_method);
-            ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite> instance_of_this_method = (ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>)typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
+            ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip> instance_of_this_method = (ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>)typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
 
-            instance_of_this_method.AwaitUnsafeOnCompleted<ET.ETTask<UnityEngine.GameObject>, ET.IAsyncStateMachineClassInheritanceAdaptor.IAsyncStateMachineAdaptor>(ref @awaiter, ref @stateMachine);
+            instance_of_this_method.AwaitUnsafeOnCompleted<ET.ETTask<UnityEngine.AudioClip>, ET.IAsyncStateMachineClassInheritanceAdaptor.IAsyncStateMachineAdaptor>(ref @awaiter, ref @stateMachine);
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
             switch(ptr_of_this_method->ObjectType)
@@ -357,7 +357,7 @@ namespace ILRuntime.Runtime.Generated
                     break;
                  case ObjectTypes.ArrayReference:
                     {
-                        var instance_of_arrayReference = __mStack[ptr_of_this_method->Value] as ET.ETTask<UnityEngine.GameObject>[];
+                        var instance_of_arrayReference = __mStack[ptr_of_this_method->Value] as ET.ETTask<UnityEngine.AudioClip>[];
                         instance_of_arrayReference[ptr_of_this_method->ValueLow] = @awaiter;
                     }
                     break;
@@ -383,7 +383,7 @@ namespace ILRuntime.Runtime.Generated
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
             ptr_of_this_method = ILIntepreter.GetObjectAndResolveReference(ptr_of_this_method);
-            ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite> instance_of_this_method = (ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>)typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
+            ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip> instance_of_this_method = (ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>)typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
 
             instance_of_this_method.SetException(@exception);
 
@@ -401,12 +401,12 @@ namespace ILRuntime.Runtime.Generated
             StackObject* __ret = ILIntepreter.Minus(__esp, 2);
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            UnityEngine.Sprite @ret = (UnityEngine.Sprite)typeof(UnityEngine.Sprite).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            UnityEngine.AudioClip @ret = (UnityEngine.AudioClip)typeof(UnityEngine.AudioClip).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
             __intp.Free(ptr_of_this_method);
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
             ptr_of_this_method = ILIntepreter.GetObjectAndResolveReference(ptr_of_this_method);
-            ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite> instance_of_this_method = (ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>)typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
+            ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip> instance_of_this_method = (ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>)typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
 
             instance_of_this_method.SetResult(@ret);
 
@@ -429,7 +429,7 @@ namespace ILRuntime.Runtime.Generated
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
             ptr_of_this_method = ILIntepreter.GetObjectAndResolveReference(ptr_of_this_method);
-            ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite> instance_of_this_method = (ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>)typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.Sprite>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
+            ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip> instance_of_this_method = (ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>)typeof(ET.ETAsyncTaskMethodBuilder<UnityEngine.AudioClip>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)16);
 
             instance_of_this_method.SetStateMachine(@stateMachine);
 
