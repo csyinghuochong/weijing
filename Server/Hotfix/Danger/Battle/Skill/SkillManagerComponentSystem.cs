@@ -461,6 +461,12 @@ namespace ET
                 skillcd.SkillID = self.FangunSkillId;
                 skillcd.CDEndTime = newTime + 10000;
                 self.SkillCDs.Add(self.FangunSkillId, skillcd);
+
+                Unit unit = self.GetParent<Unit>();
+                BuffData buffData_2 = new BuffData();
+                buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(90106003);
+                buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
+                unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
             }
 
             self.FangunLastTime = newTime;
