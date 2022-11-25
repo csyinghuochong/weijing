@@ -498,7 +498,6 @@ namespace ET
                         damge = Math.Max(0, damge);
                         numericComponentDefend.ApplyChange(attackUnit, NumericType.Now_Shield_HP, -1 * dunDamge, skillconfig.Id, true, DamgeType);
                     }
-
                     //Now_HuShiMagePro吸血
                     float hushi = numericComponentAttack.GetAsFloat(NumericType.Now_XiXuePro);
                     if (hushi > 0f)
@@ -509,7 +508,10 @@ namespace ET
 
                     damge *= -1;
                 }
-
+                if (defendUnit.IsDisposed)
+                {
+                    return;
+                }
                 //即将死亡
                 if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) + damge <= 0)
                 {
