@@ -200,6 +200,12 @@ namespace ET
                 unit.Stop(-1);
             }
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
+
+            if (unitInfoComponent == null)
+            {
+                Log.Debug($"unitInfoComponent == null  {unit.Type } {unit.IsDisposed}");
+                return;
+            }
             for (int i = unitInfoComponent.ZhaohuanIds.Count - 1; i >= 0; i--)
             {
                 Unit zhaohuan = unit.DomainScene().GetComponent<UnitComponent>().Get(unitInfoComponent.ZhaohuanIds[i]);

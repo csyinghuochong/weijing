@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 343
+  version: 344
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -11455,9 +11455,6 @@ MonoBehaviour:
   - name: 4f49dc309a535719742a0ef9ebf4e01b.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_145.png
-  - name: 2adeae4b27dd6e9f8f50dc8a256d3ce4.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_303_1.png
   - name: 3d9f7335a8c41f94a55e61fbd6567b57.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_272.Png
@@ -11695,6 +11692,9 @@ MonoBehaviour:
   - name: d86d5235f17e35a72aab759d9ae7aab2.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_374.png
+  - name: f84a4b70a5ef20340fe490da479313d6.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_264.png
   - name: 9d2aba5cb4468e9c2f9c9282975b732d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Icon/UI_Icon_18.png
@@ -11866,9 +11866,6 @@ MonoBehaviour:
   - name: 60eed399bb8f5bd84e7d2944cdb55b45.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_275.png
-  - name: dab4dd9ec4c2e7c7db5b39de75a7948f.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_276.png
   - name: cee6a9762cc8193575c7666734b5c7bf.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_335.png
