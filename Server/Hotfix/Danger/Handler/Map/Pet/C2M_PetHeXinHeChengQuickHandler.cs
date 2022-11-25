@@ -25,17 +25,31 @@ namespace ET
                 keyValuePairs[bagInfo.ItemID].Add(bagInfo);
             }
 
+
+            //去掉多余的
             foreach (var item in keyValuePairs)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(item.Key);
                 if (itemConfig.PetHeXinHeChengID == 0)
                 {
+                    item.Value.Clear();
                     continue;
                 }
+                if (keyValuePairs.Count < 2)
+                {
+                    item.Value.Clear();
+                }
+                if (item.Value.Count % 2 > 0)
+                {
+                    item.Value.RemoveAt(item.Value.Count - 1);
+                }
+            }
 
+            foreach (var item in keyValuePairs)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(item.Key);
+    
                 int number1 = item.Value.Count / 2;
-                int number2 = item.Value.Count % 2;
-
                 //新增item
                 for (int n = 0; n < number1; n++)
                 {
@@ -43,7 +57,7 @@ namespace ET
                 }
 
                 //移除item
-                for (int n = 0; n < number1 * 2; n++)
+                for (int n = 0; n < item.Value.Count; n++)
                 {
                     costList.Add(item.Value[n].BagInfoID);
                 }
