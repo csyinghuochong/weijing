@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"TakeCardRewardConfig","_id":1001,"RoseLvLimit":30,"RewardItems":"10010085;50","RewardDiamond":[100,1000]},
+{"list":[{"_t":"TakeCardRewardConfig","_id":1001,"RoseLvLimit":30,"RewardItems":"10010085;50","RewardDiamond":[100,1000]},
 {"_t":"TakeCardRewardConfig","_id":1002,"RoseLvLimit":60,"RewardItems":"10010085;50","RewardDiamond":[200,1000]},
 {"_t":"TakeCardRewardConfig","_id":1003,"RoseLvLimit":100,"RewardItems":"10010085;100","RewardDiamond":[300,1500]},
 {"_t":"TakeCardRewardConfig","_id":1004,"RoseLvLimit":150,"RewardItems":"10010085;150","RewardDiamond":[400,2000]},

@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"EquipSuitConfig","_id":1001,"Name":"新兵套装","NeedEquipID":"10030110;10030105;10030102","SuitPropertyID":"3,1001"},
+{"list":[{"_t":"EquipSuitConfig","_id":1001,"Name":"新兵套装","NeedEquipID":"10030110;10030105;10030102","SuitPropertyID":"3,1001"},
 {"_t":"EquipSuitConfig","_id":1101,"Name":"红宝石套装","NeedEquipID":"10030214;10030203","SuitPropertyID":"2,1011"},
 {"_t":"EquipSuitConfig","_id":1102,"Name":"布纹套装","NeedEquipID":"10030208;10030211;10030210","SuitPropertyID":"2,1021;2,1022;3,1023"},
 {"_t":"EquipSuitConfig","_id":1103,"Name":"凌风套装","NeedEquipID":"10030220;10030222","SuitPropertyID":"2,1024"},

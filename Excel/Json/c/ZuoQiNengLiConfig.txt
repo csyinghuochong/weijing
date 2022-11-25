@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"ZuoQiNengLiConfig","_id":10001,"Name":"伤害能力","Icon":"10001","NextID":10002,"Lv":1,"Exp":470,"UpCostItemID":11001001,"UpCostZiJin":1500,"UpCostGold":15750,"UpAddExp":210,"AddProperty":"100203;50@100603;10"},
+{"list":[{"_t":"ZuoQiNengLiConfig","_id":10001,"Name":"伤害能力","Icon":"10001","NextID":10002,"Lv":1,"Exp":470,"UpCostItemID":11001001,"UpCostZiJin":1500,"UpCostGold":15750,"UpAddExp":210,"AddProperty":"100203;50@100603;10"},
 {"_t":"ZuoQiNengLiConfig","_id":10002,"Name":"伤害能力","Icon":"10001","NextID":10003,"Lv":2,"Exp":470,"UpCostItemID":11001001,"UpCostZiJin":2000,"UpCostGold":16500,"UpAddExp":220,"AddProperty":"100203;50@100603;10"},
 {"_t":"ZuoQiNengLiConfig","_id":10003,"Name":"伤害能力","Icon":"10001","NextID":10004,"Lv":3,"Exp":470,"UpCostItemID":11001001,"UpCostZiJin":2500,"UpCostGold":17250,"UpAddExp":230,"AddProperty":"100203;50@100603;10"},
 {"_t":"ZuoQiNengLiConfig","_id":10004,"Name":"伤害能力","Icon":"10001","NextID":10005,"Lv":4,"Exp":470,"UpCostItemID":11001001,"UpCostZiJin":3000,"UpCostGold":18000,"UpAddExp":240,"AddProperty":"100203;50@100603;10"},

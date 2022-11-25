@@ -13,17 +13,31 @@ namespace ET
         {
             List<DBCenterAccountInfo> centerAccountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(scene.DomainZone(), d => d.Id == request.AccountId);
             PlayerInfo playerInfo = centerAccountInfoList[0].PlayerInfo;
-            for (int i = 0; i < playerInfo.RechargeInfos.Count; i++)
-            {
-                if (playerInfo.RechargeInfos[i].UserId == request.BuChangId)
-                {
-                    playerInfo.RechargeInfos[i].UserId = request.UserId;
-                }
-            }
-            playerInfo.DeleteUserList.Clear();
-            Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(scene.DomainZone(), centerAccountInfoList[0]).Coroutine();
 
-            response.RechargeInfos = playerInfo.RechargeInfos;
+            //指定某个角色
+            if (request.BuChangId > 0)
+            {
+                for (int i = 0; i < playerInfo.RechargeInfos.Count; i++)
+                {
+                    RechargeInfo rechargeInfo = playerInfo.RechargeInfos[i];
+                    if (rechargeInfo.UserId == request.BuChangId)
+                    {
+                        response.BuChangRecharge += rechargeInfo.Amount;
+                        response.BuChangDiamond += ComHelp.GetDiamondNumber(rechargeInfo.Amount);
+                    }
+                }
+                playerInfo.DeleteUserList.Clear();
+            }
+            else
+            {
+                KeyValuePairInt keyValuePairInt = BuChangHelper.GetBuChangRecharge(playerInfo);
+                response.BuChangRecharge = keyValuePairInt.KeyId;
+                response.BuChangDiamond = (int)keyValuePairInt.Value;
+                playerInfo.BuChangZone.Add(UnitIdStruct.GetUnitZone(request.UserId));
+            }
+
+            Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(scene.DomainZone(), centerAccountInfoList[0]).Coroutine();
+            response.PlayerInfo = playerInfo;
             reply();
             await ETTask.CompletedTask;
         }

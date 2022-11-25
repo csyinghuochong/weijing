@@ -1,3 +1,2 @@
-{"list":[
-{"_t":"MulLanguageConfig","_id":100001,"Chinese":"背包","English":"packages"},
+{"list":[{"_t":"MulLanguageConfig","_id":100001,"Chinese":"背包","English":"packages"},
 ]}

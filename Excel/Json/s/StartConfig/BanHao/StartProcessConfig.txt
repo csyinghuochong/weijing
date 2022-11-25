@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"StartProcessConfig","_id":1,"MachineId":1,"InnerPort":20102,"AppName":"Server"},
+{"list":[{"_t":"StartProcessConfig","_id":1,"MachineId":1,"InnerPort":20102,"AppName":"Server"},
 {"_t":"StartProcessConfig","_id":2,"MachineId":1,"InnerPort":20103,"AppName":"Server"},
 {"_t":"StartProcessConfig","_id":3,"MachineId":1,"InnerPort":20104,"AppName":"Server"},
 {"_t":"StartProcessConfig","_id":4,"MachineId":1,"InnerPort":20105,"AppName":"Server"},

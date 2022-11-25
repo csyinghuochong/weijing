@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"SpiritConfig","_id":10001,"ChapterID":1,"Icon":"10001010","Type":"2","Name":"小树妖","Name_EN":"Little Dryad","ModelID":"10001010","Proprety":"132,30","TriggerSkill":"","MainSkill":"","MonsterID":"70001010","Des":"忽视目标魔防值+30","Des_EN":"Ignore target magic defense value +30"},
+{"list":[{"_t":"SpiritConfig","_id":10001,"ChapterID":1,"Icon":"10001010","Type":"2","Name":"小树妖","Name_EN":"Little Dryad","ModelID":"10001010","Proprety":"132,30","TriggerSkill":"","MainSkill":"","MonsterID":"70001010","Des":"忽视目标魔防值+30","Des_EN":"Ignore target magic defense value +30"},
 {"_t":"SpiritConfig","_id":10002,"ChapterID":1,"Icon":"10001020","Type":"2","Name":"软泥怪","Name_EN":"Little Ooze","ModelID":"10001020","Proprety":"10,100","TriggerSkill":"","MainSkill":"","MonsterID":"70001020","Des":"血量+100","Des_EN":"HP +100"},
 {"_t":"SpiritConfig","_id":10003,"ChapterID":1,"Icon":"10001030","Type":"2","Name":"森林白狼","Name_EN":"Timber Wolf","ModelID":"10001030","Proprety":"172,10","TriggerSkill":"","MainSkill":"","MonsterID":"70001030","Des":"回血值+10","Des_EN":"Healing +10"},
 {"_t":"SpiritConfig","_id":10004,"ChapterID":1,"Icon":"10001040","Type":"2","Name":"野狼先锋","Name_EN":"Vanguard Wolf","ModelID":"10001040","Proprety":"11,30","TriggerSkill":"","MainSkill":"","MonsterID":"70001040","Des":"攻击+30","Des_EN":"Attack +30"},

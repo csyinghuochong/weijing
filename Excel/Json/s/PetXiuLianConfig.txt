@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"PetXiuLianConfig","_id":10001,"Name":"攻击修炼","Icon":"10001","NextID":10002,"Lv":0,"SuccessPro":"1","AddPro":"0","CostMoney":300000,"CostItem":"10000026,30","Des":"全体宠物攻击提升0%;全体宠物魔法提升0%","Des_EN":"Pet Attack Up 0%;Pet Spell Damage Up 0%"},
+{"list":[{"_t":"PetXiuLianConfig","_id":10001,"Name":"攻击修炼","Icon":"10001","NextID":10002,"Lv":0,"SuccessPro":"1","AddPro":"0","CostMoney":300000,"CostItem":"10000026,30","Des":"全体宠物攻击提升0%;全体宠物魔法提升0%","Des_EN":"Pet Attack Up 0%;Pet Spell Damage Up 0%"},
 {"_t":"PetXiuLianConfig","_id":10002,"Name":"攻击修炼","Icon":"10001","NextID":10003,"Lv":1,"SuccessPro":"0.95","AddPro":"12,0.01;16,0.01","CostMoney":300000,"CostItem":"10000026,30","Des":"全体宠物攻击提升1%;全体宠物魔法提升1%","Des_EN":"Pet Attack Up 1%;Pet Spell Damage Up 1%"},
 {"_t":"PetXiuLianConfig","_id":10003,"Name":"攻击修炼","Icon":"10001","NextID":10004,"Lv":2,"SuccessPro":"0.9","AddPro":"12,0.02;16,0.02","CostMoney":300000,"CostItem":"10000026,30","Des":"全体宠物攻击提升2%;全体宠物魔法提升2%","Des_EN":"Pet Attack Up 2%;Pet Spell Damage Up 2%"},
 {"_t":"PetXiuLianConfig","_id":10004,"Name":"攻击修炼","Icon":"10001","NextID":10005,"Lv":3,"SuccessPro":"0.85","AddPro":"12,0.03;16,0.03","CostMoney":400000,"CostItem":"10000026,30","Des":"全体宠物攻击提升3%;全体宠物魔法提升3%","Des_EN":"Pet Attack Up 3%;Pet Spell Damage Up 3%"},

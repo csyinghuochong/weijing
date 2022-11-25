@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"FuntionConfig","_id":1001,"Name":"UIRoleEquip","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
+{"list":[{"_t":"FuntionConfig","_id":1001,"Name":"UIRoleEquip","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1002,"Name":"UIOccTwo","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1003,"Name":"UIStore","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1004,"Name":"UIWarehouse","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},

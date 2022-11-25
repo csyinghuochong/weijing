@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"PetFubenConfig","_id":10001,"Name":"狼人宝宝","Combat":500,"Lv":3,"Cell_1":"73001001;1","Cell_2":"73001001;1","Cell_3":"","Cell_4":"","Cell_5":"","Cell_6":"","Cell_7":"","Cell_8":"","Cell_9":""},
+{"list":[{"_t":"PetFubenConfig","_id":10001,"Name":"狼人宝宝","Combat":500,"Lv":3,"Cell_1":"73001001;1","Cell_2":"73001001;1","Cell_3":"","Cell_4":"","Cell_5":"","Cell_6":"","Cell_7":"","Cell_8":"","Cell_9":""},
 {"_t":"PetFubenConfig","_id":10002,"Name":"森林护卫","Combat":1000,"Lv":5,"Cell_1":"73002001;1","Cell_2":"73002002;1","Cell_3":"","Cell_4":"","Cell_5":"","Cell_6":"","Cell_7":"","Cell_8":"","Cell_9":""},
 {"_t":"PetFubenConfig","_id":10003,"Name":"狼王","Combat":1500,"Lv":6,"Cell_1":"73003001;1","Cell_2":"73003002;1","Cell_3":"73003001;1","Cell_4":"","Cell_5":"","Cell_6":"","Cell_7":"","Cell_8":"","Cell_9":""},
 {"_t":"PetFubenConfig","_id":10004,"Name":"蝙蝠王","Combat":2000,"Lv":8,"Cell_1":"73004001;1","Cell_2":"73004003;1","Cell_3":"73004002;1","Cell_4":"","Cell_5":"","Cell_6":"","Cell_7":"","Cell_8":"","Cell_9":""},

@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"EffectConfig","_id":10000001,"EffectType":2,"IfFollowCollider":0,"EffectName":"Eff_Hit_Fire_1","SkillEffectDelayTime":0,"SkillParent":0,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1000},
+{"list":[{"_t":"EffectConfig","_id":10000001,"EffectType":2,"IfFollowCollider":0,"EffectName":"Eff_Hit_Fire_1","SkillEffectDelayTime":0,"SkillParent":0,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1000},
 {"_t":"EffectConfig","_id":10000002,"EffectType":2,"IfFollowCollider":0,"EffectName":"Eff_Hit_Fire_2","SkillEffectDelayTime":0,"SkillParent":0,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1000},
 {"_t":"EffectConfig","_id":10000003,"EffectType":2,"IfFollowCollider":0,"EffectName":"Eff_Hit_Fire_3","SkillEffectDelayTime":0,"SkillParent":0,"SkillParentPosition":"Center","HideTime":0,"SkillEffectLiveTime":1000},
 {"_t":"EffectConfig","_id":10000004,"EffectType":2,"IfFollowCollider":0,"EffectName":"Eff_Hit_Fire_4","SkillEffectDelayTime":0,"SkillParent":0,"SkillParentPosition":"Di","HideTime":0,"SkillEffectLiveTime":1000},

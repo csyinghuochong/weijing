@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"ChapterSectionConfig","_id":1,"ChapterName":"初章","Name":"洛兰森林","RandomArea":[10001,10002,10003,10004,10005,10006,10007]},
+{"list":[{"_t":"ChapterSectionConfig","_id":1,"ChapterName":"初章","Name":"洛兰森林","RandomArea":[10001,10002,10003,10004,10005,10006,10007]},
 {"_t":"ChapterSectionConfig","_id":2,"ChapterName":"序章","Name":"古城遗迹","RandomArea":[20001,20002,20003,20004,20005]},
 {"_t":"ChapterSectionConfig","_id":3,"ChapterName":"序章","Name":"地下魔窟","RandomArea":[30001,30002,30003,30004,30005]},
 {"_t":"ChapterSectionConfig","_id":4,"ChapterName":"终章","Name":"精灵国度","RandomArea":[40001,40002,40003,40004,40005]},

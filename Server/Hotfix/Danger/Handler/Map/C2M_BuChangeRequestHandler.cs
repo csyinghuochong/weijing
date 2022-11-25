@@ -18,15 +18,10 @@ namespace ET
                 AccountId = userInfoComponent.UserInfo.AccInfoID
             });
             int rechargeNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
-            for (int i = 0; i < centerAccount.RechargeInfos.Count; i++)
-            {
-                if (centerAccount.RechargeInfos[i].UserId == userInfoComponent.Id)
-                {
-                    rechargeNum += centerAccount.RechargeInfos[i].Amount;
-                }
-            }
+            rechargeNum += centerAccount.BuChangRecharge;
             unit.GetComponent<NumericComponent>().ApplyValue( NumericType.RechargeNumber, rechargeNum);
-            response.RechargeInfos = centerAccount.RechargeInfos;
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Diamond, centerAccount.BuChangDiamond.ToString());
+            response.PlayerInfo = centerAccount.PlayerInfo;
             reply();
             await ETTask.CompletedTask;
         }

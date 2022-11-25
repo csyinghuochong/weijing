@@ -53,6 +53,9 @@
     <UnityVersion>2020.3.33f1c2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Assets\HotfixView\Danger\UI\OccTwo\UIOccTwoShowComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILobby\UICreateRoleListComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\Help\GlobalHelp.cs" />
@@ -383,6 +386,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetHeXinHeChengEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UICommonRewardEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskTypeItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankPetRewardComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Effect\EffectDispatcherComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Demo\UI\UILogin\UIServerListEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankRewardComponent.cs" />
@@ -555,7 +559,6 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankPetRewardComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

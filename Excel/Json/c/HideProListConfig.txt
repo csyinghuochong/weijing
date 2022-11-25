@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"HideProListConfig","_id":1001,"Name":"生命","NtxtID":1002,"EquipSpace":[1,2,3,4,5,6,7,8,9,10,11],"NeedXiLianLv":0,"TriggerPro":0.02,"PropertyType":100202,"IfEquipLvUp":0,"HideProValueType":0,"PropertyValueMin":"0.001","PropertyValueMax":"0.02"},
+{"list":[{"_t":"HideProListConfig","_id":1001,"Name":"生命","NtxtID":1002,"EquipSpace":[1,2,3,4,5,6,7,8,9,10,11],"NeedXiLianLv":0,"TriggerPro":0.02,"PropertyType":100202,"IfEquipLvUp":0,"HideProValueType":0,"PropertyValueMin":"0.001","PropertyValueMax":"0.02"},
 {"_t":"HideProListConfig","_id":1002,"Name":"攻击","NtxtID":1003,"EquipSpace":[1,2,3,4,5,6,7,8,9,10,11],"NeedXiLianLv":0,"TriggerPro":0.02,"PropertyType":100402,"IfEquipLvUp":0,"HideProValueType":0,"PropertyValueMin":"0.001","PropertyValueMax":"0.02"},
 {"_t":"HideProListConfig","_id":1003,"Name":"物防","NtxtID":1004,"EquipSpace":[1,2,3,4,5,6,7,8,9,10,11],"NeedXiLianLv":0,"TriggerPro":0.02,"PropertyType":100602,"IfEquipLvUp":0,"HideProValueType":0,"PropertyValueMin":"0.001","PropertyValueMax":"0.02"},
 {"_t":"HideProListConfig","_id":1004,"Name":"魔防","NtxtID":1005,"EquipSpace":[1,2,3,4,5,6,7,8,9,10,11],"NeedXiLianLv":0,"TriggerPro":0.02,"PropertyType":100802,"IfEquipLvUp":0,"HideProValueType":0,"PropertyValueMin":"0.001","PropertyValueMax":"0.02"},

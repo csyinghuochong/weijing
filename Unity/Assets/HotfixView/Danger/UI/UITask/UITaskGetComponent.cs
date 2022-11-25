@@ -170,14 +170,25 @@ namespace ET
                 self.TaskFubenList.SetActive(true);
                 UICommonHelper.DestoryChild(self.TaskFubenList);
                 AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                Log.ILog.Debug($"xxx  {accountInfo.PlayerInfo.DeleteUserList.Count}");
-                for (int i = 0; i < accountInfo.PlayerInfo.DeleteUserList.Count; i++)
+                int buchangNumber = BuChangHelper.ShowNewBuChang(accountInfo.PlayerInfo, accountInfo.MyId);
+                if (buchangNumber > 0)
                 {
                     GameObject goitem = GameObject.Instantiate(self.UITaskFubenItem);
                     goitem.SetActive(true);
                     UICommonHelper.SetParent(goitem, self.TaskFubenList);
                     UIBuChangItemComponent uIBuChangItem = self.AddChild<UIBuChangItemComponent, GameObject>(goitem);
-                    uIBuChangItem.OnInitUI((long userid) => { self.OnClickBuChangItem(userid); }, accountInfo.PlayerInfo.DeleteUserList[i]);
+                    uIBuChangItem.OnInitUI_2((long userid) => { self.OnClickBuChangItem(userid); }, buchangNumber);
+                }
+                else
+                {
+                    for (int i = 0; i < accountInfo.PlayerInfo.DeleteUserList.Count; i++)
+                    {
+                        GameObject goitem = GameObject.Instantiate(self.UITaskFubenItem);
+                        goitem.SetActive(true);
+                        UICommonHelper.SetParent(goitem, self.TaskFubenList);
+                        UIBuChangItemComponent uIBuChangItem = self.AddChild<UIBuChangItemComponent, GameObject>(goitem);
+                        uIBuChangItem.OnInitUI((long userid) => { self.OnClickBuChangItem(userid); }, accountInfo.PlayerInfo.DeleteUserList[i]);
+                    }
                 }
             }
             else
@@ -201,7 +212,7 @@ namespace ET
             C2M_BuChangeRequest request = new C2M_BuChangeRequest() { BuChangId = userid };
             M2C_BuChangeResponse response = (M2C_BuChangeResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            accountInfoComponent.PlayerInfo.RechargeInfos = response.RechargeInfos;
+            accountInfoComponent.PlayerInfo = response.PlayerInfo;
 
             UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
         }

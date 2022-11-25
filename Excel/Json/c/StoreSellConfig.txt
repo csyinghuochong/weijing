@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"StoreSellConfig","_id":10001101,"NextID":10001102,"ShowRoleLvMin":1,"ShowRoleLvMax":100,"SellItemID":10010001,"SellItemNum":1,"SellType":1,"SellValue":320},
+{"list":[{"_t":"StoreSellConfig","_id":10001101,"NextID":10001102,"ShowRoleLvMin":1,"ShowRoleLvMax":100,"SellItemID":10010001,"SellItemNum":1,"SellType":1,"SellValue":320},
 {"_t":"StoreSellConfig","_id":10001102,"NextID":10001103,"ShowRoleLvMin":1,"ShowRoleLvMax":100,"SellItemID":10010011,"SellItemNum":1,"SellType":1,"SellValue":480},
 {"_t":"StoreSellConfig","_id":10001201,"NextID":10001202,"ShowRoleLvMin":1,"ShowRoleLvMax":100,"SellItemID":14010001,"SellItemNum":1,"SellType":1,"SellValue":8750},
 {"_t":"StoreSellConfig","_id":10001202,"NextID":10001203,"ShowRoleLvMin":1,"ShowRoleLvMax":100,"SellItemID":14010010,"SellItemNum":1,"SellType":1,"SellValue":11200},

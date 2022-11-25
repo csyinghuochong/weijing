@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"ShouJiItemConfig","_id":110001,"NextID":110002,"ItemID":14010004,"StartNum":3},
+{"list":[{"_t":"ShouJiItemConfig","_id":110001,"NextID":110002,"ItemID":14010004,"StartNum":3},
 {"_t":"ShouJiItemConfig","_id":110002,"NextID":110003,"ItemID":14010008,"StartNum":3},
 {"_t":"ShouJiItemConfig","_id":110003,"NextID":110004,"ItemID":14010012,"StartNum":3},
 {"_t":"ShouJiItemConfig","_id":110004,"NextID":110005,"ItemID":14020004,"StartNum":3},

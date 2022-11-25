@@ -518,6 +518,7 @@ message PlayerInfo
 	int32 RealNameReward = 4; //0 未领取 1已领取
 	repeated RechargeInfo RechargeInfos = 5;
 	repeated KeyValuePair DeleteUserList = 6;
+	repeated int32 BuChangZone = 7;
 }
 
 //ResponseType M2C_TestActorResponse
@@ -3844,7 +3845,9 @@ message M2C_BuChangeResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
-	repeated RechargeInfo RechargeInfos = 1;
+	PlayerInfo PlayerInfo = 1;
+	int32 BuChangRecharge = 2;
+	int32 BuChangDiamond = 3;
 }
 
 message ItemXiLianResult

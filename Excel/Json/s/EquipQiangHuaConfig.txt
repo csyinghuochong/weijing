@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"EquipQiangHuaConfig","_id":10100,"NextID":10101,"QiangHuaLv":0,"UpLvLimit":0,"SuccessPro":1,"CostGold":30000,"CostItem":"10010085;150","EquipPropreAdd":"0","AddPropreListStr":"0","ItemSubType":1,"AdditionPro":0.05},
+{"list":[{"_t":"EquipQiangHuaConfig","_id":10100,"NextID":10101,"QiangHuaLv":0,"UpLvLimit":0,"SuccessPro":1,"CostGold":30000,"CostItem":"10010085;150","EquipPropreAdd":"0","AddPropreListStr":"0","ItemSubType":1,"AdditionPro":0.05},
 {"_t":"EquipQiangHuaConfig","_id":10101,"NextID":10102,"QiangHuaLv":1,"UpLvLimit":0,"SuccessPro":0.8,"CostGold":45000,"CostItem":"10010085;225","EquipPropreAdd":"0.02","AddPropreListStr":"0","ItemSubType":1,"AdditionPro":0.05},
 {"_t":"EquipQiangHuaConfig","_id":10102,"NextID":10103,"QiangHuaLv":2,"UpLvLimit":0,"SuccessPro":0.7,"CostGold":60000,"CostItem":"10010085;300","EquipPropreAdd":"0.04","AddPropreListStr":"0","ItemSubType":1,"AdditionPro":0.04},
 {"_t":"EquipQiangHuaConfig","_id":10103,"NextID":10104,"QiangHuaLv":3,"UpLvLimit":5,"SuccessPro":0.6,"CostGold":75000,"CostItem":"10010085;375","EquipPropreAdd":"0.06","AddPropreListStr":"0","ItemSubType":1,"AdditionPro":0.04},
