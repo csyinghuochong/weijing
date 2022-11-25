@@ -211,7 +211,7 @@ namespace ET
             }
             unitInfoComponent.ZhaohuanIds.Clear();
             int waitRevive =  self.OnWaitRevive();
-            unit.RemoveComponent<AIComponent>();
+            unit.GetComponent<AIComponent>()?.Stop();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
             unit.GetComponent<SkillManagerComponent>()?.OnDead();
             unit.GetComponent<BuffManagerComponent>()?.OnDead();

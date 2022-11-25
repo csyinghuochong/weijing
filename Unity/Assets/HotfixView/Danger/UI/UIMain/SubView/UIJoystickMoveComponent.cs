@@ -47,6 +47,8 @@ namespace ET
         public override void Destroy(UIJoystickMoveComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
+
+            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
         }
     }
 
@@ -73,6 +75,8 @@ namespace ET
 
             self.CenterShow.SetActive(false);
             self.Thumb.SetActive(false);
+
+            DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
         }
     }
 
@@ -135,6 +139,22 @@ namespace ET
         public static void OnUpdate(this UIJoystickMoveComponent self)
         {
             self.SendMove(self.direction);
+        }
+
+        public static void OnMainHeroMove(this UIJoystickMoveComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Vector3 newv3 = unit.Position + unit.Rotation * Vector3.forward * 3f;
+            int obstruct = self.CheckObstruct(newv3);
+            if (obstruct == 0)
+            {
+                return;
+            }
+            if (unit.GetComponent<MoveComponent>().IsArrived())
+            {
+                return;
+            }
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
         }
 
         public static void SendMove(this UIJoystickMoveComponent self, int direction)

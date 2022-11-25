@@ -321,7 +321,7 @@ namespace ET
             if (main!=null && !main.IsDisposed)
             {
                 int playerLv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
-                DropHelper.AI_DropByPlayerLv(monsterCof.Id, playerLv, dropAdd_Pro, false);
+                droplist_2 = DropHelper.AI_DropByPlayerLv(monsterCof.Id, playerLv, dropAdd_Pro, false);
             }
             if (droplist_2 != null)
             {

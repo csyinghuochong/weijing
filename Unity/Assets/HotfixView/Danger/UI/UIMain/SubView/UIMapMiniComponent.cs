@@ -85,7 +85,7 @@ namespace ET
 
     public static class UIMapMiniComponentSystem
     {
-        public static void OnMainHeroPosition(this UIMapMiniComponent self)
+        public static void OnMainHeroMove(this UIMapMiniComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit == null || self.MapCamera == null)
@@ -226,7 +226,7 @@ namespace ET
             await TimerComponent.Instance.WaitAsync(200);
             camera.enabled = false;
 
-            self.OnMainHeroPosition();
+            self.OnMainHeroMove();
         }
 
         public static void BeginChangeScene(this UIMapMiniComponent self, int lastScene)

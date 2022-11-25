@@ -65,7 +65,12 @@ namespace ET
                 }
                 if (component is UIMapMiniComponent miniComponent)
                 {
-                    miniComponent.OnMainHeroPosition();
+                    miniComponent.OnMainHeroMove();
+                    continue;
+                }
+                if (component is UIJoystickMoveComponent uIJoystickMoveComponent)
+                {
+                    //uIJoystickMoveComponent.OnMainHeroMove();
                     continue;
                 }
             }
