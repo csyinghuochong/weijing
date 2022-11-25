@@ -1132,6 +1132,7 @@ namespace ET
                     }
 
                     //显示套装名称
+                    self.Obj_EquipSuitItemNamePropertyText.GetComponent<Text>().horizontalOverflow = HorizontalWrapMode.Overflow;
                     UIItemHelp.ShowPropertyText(itemCof.ItemName, showType, self.Obj_EquipSuitItemNamePropertyText, self.Obj_EquipSuitShowNameListSet);
                     properShowNum += 0;
                     self.Obj_Lab_EquipSuitShowListSetSuitName.GetComponent<Text>().text = equipSuitName + "(" + equipSuitNum + "/" + needEquipIDSet.Length + ")";
