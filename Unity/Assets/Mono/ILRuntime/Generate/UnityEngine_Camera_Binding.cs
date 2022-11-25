@@ -31,18 +31,21 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(UnityEngine.Vector3)};
             method = type.GetMethod("ScreenToWorldPoint", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, ScreenToWorldPoint_2);
+            args = new Type[]{typeof(UnityEngine.RenderTexture)};
+            method = type.GetMethod("set_targetTexture", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, set_targetTexture_3);
             args = new Type[]{typeof(System.Single)};
             method = type.GetMethod("set_orthographicSize", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, set_orthographicSize_3);
+            app.RegisterCLRMethodRedirection(method, set_orthographicSize_4);
             args = new Type[]{};
             method = type.GetMethod("get_orthographicSize", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_orthographicSize_4);
+            app.RegisterCLRMethodRedirection(method, get_orthographicSize_5);
             args = new Type[]{typeof(System.Single)};
             method = type.GetMethod("set_fieldOfView", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, set_fieldOfView_5);
+            app.RegisterCLRMethodRedirection(method, set_fieldOfView_6);
             args = new Type[]{typeof(UnityEngine.Vector3)};
             method = type.GetMethod("ScreenPointToRay", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, ScreenPointToRay_6);
+            app.RegisterCLRMethodRedirection(method, ScreenPointToRay_7);
 
 
         }
@@ -117,7 +120,26 @@ namespace ILRuntime.Runtime.Generated
             }
         }
 
-        static StackObject* set_orthographicSize_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* set_targetTexture_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            UnityEngine.RenderTexture @value = (UnityEngine.RenderTexture)typeof(UnityEngine.RenderTexture).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            __intp.Free(ptr_of_this_method);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            UnityEngine.Camera instance_of_this_method = (UnityEngine.Camera)typeof(UnityEngine.Camera).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            __intp.Free(ptr_of_this_method);
+
+            instance_of_this_method.targetTexture = value;
+
+            return __ret;
+        }
+
+        static StackObject* set_orthographicSize_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -135,7 +157,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* get_orthographicSize_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_orthographicSize_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -152,7 +174,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* set_fieldOfView_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* set_fieldOfView_6(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -170,7 +192,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret;
         }
 
-        static StackObject* ScreenPointToRay_6(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* ScreenPointToRay_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;

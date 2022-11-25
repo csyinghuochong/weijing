@@ -23,17 +23,17 @@ namespace ILRuntime.Runtime.Generated
             Type[] args;
             Type type = typeof(UnityEngine.Color);
             args = new Type[]{};
+            method = type.GetMethod("get_white", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, get_white_0);
+            args = new Type[]{};
             method = type.GetMethod("get_red", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_red_0);
+            app.RegisterCLRMethodRedirection(method, get_red_1);
             args = new Type[]{};
             method = type.GetMethod("get_green", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_green_1);
+            app.RegisterCLRMethodRedirection(method, get_green_2);
             args = new Type[]{};
             method = type.GetMethod("get_yellow", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_yellow_2);
-            args = new Type[]{};
-            method = type.GetMethod("get_white", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, get_white_3);
+            app.RegisterCLRMethodRedirection(method, get_yellow_3);
 
             app.RegisterCLRCreateDefaultInstance(type, () => new UnityEngine.Color());
 
@@ -92,7 +92,18 @@ namespace ILRuntime.Runtime.Generated
             }
         }
 
-        static StackObject* get_red_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_white_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 0);
+
+
+            var result_of_this_method = UnityEngine.Color.white;
+
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
+        }
+
+        static StackObject* get_red_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* __ret = ILIntepreter.Minus(__esp, 0);
@@ -103,7 +114,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* get_green_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_green_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* __ret = ILIntepreter.Minus(__esp, 0);
@@ -114,24 +125,13 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* get_yellow_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* get_yellow_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* __ret = ILIntepreter.Minus(__esp, 0);
 
 
             var result_of_this_method = UnityEngine.Color.yellow;
-
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
-        }
-
-        static StackObject* get_white_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 0);
-
-
-            var result_of_this_method = UnityEngine.Color.white;
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }

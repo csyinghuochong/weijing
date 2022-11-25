@@ -28,6 +28,9 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(System.Char)};
             method = type.GetMethod("IsNumber", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, IsNumber_1);
+            args = new Type[]{typeof(System.Char)};
+            method = type.GetMethod("IsLetterOrDigit", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, IsLetterOrDigit_2);
 
             app.RegisterCLRCreateArrayInstance(type, s => new System.Char[s]);
 
@@ -108,6 +111,23 @@ namespace ILRuntime.Runtime.Generated
 
 
             var result_of_this_method = System.Char.IsNumber(@c);
+
+            __ret->ObjectType = ObjectTypes.Integer;
+            __ret->Value = result_of_this_method ? 1 : 0;
+            return __ret + 1;
+        }
+
+        static StackObject* IsLetterOrDigit_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Char @c = (char)ptr_of_this_method->Value;
+
+
+            var result_of_this_method = System.Char.IsLetterOrDigit(@c);
 
             __ret->ObjectType = ObjectTypes.Integer;
             __ret->Value = result_of_this_method ? 1 : 0;

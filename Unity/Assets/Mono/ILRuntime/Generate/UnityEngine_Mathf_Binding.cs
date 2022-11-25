@@ -22,36 +22,36 @@ namespace ILRuntime.Runtime.Generated
             MethodBase method;
             Type[] args;
             Type type = typeof(UnityEngine.Mathf);
-            args = new Type[]{typeof(System.Single), typeof(System.Single)};
-            method = type.GetMethod("Min", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Min_0);
-            args = new Type[]{typeof(System.Single)};
-            method = type.GetMethod("Cos", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Cos_1);
-            args = new Type[]{typeof(System.Single)};
-            method = type.GetMethod("Sin", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Sin_2);
-            args = new Type[]{typeof(System.Single)};
-            method = type.GetMethod("Abs", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Abs_3);
-            args = new Type[]{typeof(System.Single), typeof(System.Single)};
-            method = type.GetMethod("Max", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Max_4);
             args = new Type[]{typeof(System.Single)};
             method = type.GetMethod("FloorToInt", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, FloorToInt_5);
+            app.RegisterCLRMethodRedirection(method, FloorToInt_0);
+            args = new Type[]{typeof(System.Single)};
+            method = type.GetMethod("CeilToInt", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, CeilToInt_1);
             args = new Type[]{typeof(System.Single), typeof(System.Single)};
             method = type.GetMethod("Atan2", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Atan2_6);
+            app.RegisterCLRMethodRedirection(method, Atan2_2);
+            args = new Type[]{typeof(System.Single), typeof(System.Single)};
+            method = type.GetMethod("Min", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, Min_3);
+            args = new Type[]{typeof(System.Single)};
+            method = type.GetMethod("Cos", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, Cos_4);
+            args = new Type[]{typeof(System.Single)};
+            method = type.GetMethod("Sin", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, Sin_5);
+            args = new Type[]{typeof(System.Single)};
+            method = type.GetMethod("Abs", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, Abs_6);
+            args = new Type[]{typeof(System.Single), typeof(System.Single)};
+            method = type.GetMethod("Max", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, Max_7);
             args = new Type[]{typeof(System.Single), typeof(System.Single), typeof(System.Single)};
             method = type.GetMethod("Lerp", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Lerp_7);
+            app.RegisterCLRMethodRedirection(method, Lerp_8);
             args = new Type[]{typeof(System.Single)};
             method = type.GetMethod("Clamp01", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Clamp01_8);
-            args = new Type[]{typeof(System.Int32), typeof(System.Int32)};
-            method = type.GetMethod("Max", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, Max_9);
+            app.RegisterCLRMethodRedirection(method, Clamp01_9);
             args = new Type[]{typeof(System.Int32)};
             method = type.GetMethod("Abs", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, Abs_10);
@@ -61,9 +61,9 @@ namespace ILRuntime.Runtime.Generated
             args = new Type[]{typeof(System.Int32), typeof(System.Int32)};
             method = type.GetMethod("Min", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, Min_12);
-            args = new Type[]{typeof(System.Single)};
-            method = type.GetMethod("CeilToInt", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, CeilToInt_13);
+            args = new Type[]{typeof(System.Int32), typeof(System.Int32)};
+            method = type.GetMethod("Max", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, Max_13);
             args = new Type[]{typeof(System.Single)};
             method = type.GetMethod("Acos", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, Acos_14);
@@ -122,98 +122,7 @@ namespace ILRuntime.Runtime.Generated
             }
         }
 
-        static StackObject* Min_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.Single @b = *(float*)&ptr_of_this_method->Value;
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
-            System.Single @a = *(float*)&ptr_of_this_method->Value;
-
-
-            var result_of_this_method = UnityEngine.Mathf.Min(@a, @b);
-
-            __ret->ObjectType = ObjectTypes.Float;
-            *(float*)&__ret->Value = result_of_this_method;
-            return __ret + 1;
-        }
-
-        static StackObject* Cos_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.Single @f = *(float*)&ptr_of_this_method->Value;
-
-
-            var result_of_this_method = UnityEngine.Mathf.Cos(@f);
-
-            __ret->ObjectType = ObjectTypes.Float;
-            *(float*)&__ret->Value = result_of_this_method;
-            return __ret + 1;
-        }
-
-        static StackObject* Sin_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.Single @f = *(float*)&ptr_of_this_method->Value;
-
-
-            var result_of_this_method = UnityEngine.Mathf.Sin(@f);
-
-            __ret->ObjectType = ObjectTypes.Float;
-            *(float*)&__ret->Value = result_of_this_method;
-            return __ret + 1;
-        }
-
-        static StackObject* Abs_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.Single @f = *(float*)&ptr_of_this_method->Value;
-
-
-            var result_of_this_method = UnityEngine.Mathf.Abs(@f);
-
-            __ret->ObjectType = ObjectTypes.Float;
-            *(float*)&__ret->Value = result_of_this_method;
-            return __ret + 1;
-        }
-
-        static StackObject* Max_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.Single @b = *(float*)&ptr_of_this_method->Value;
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
-            System.Single @a = *(float*)&ptr_of_this_method->Value;
-
-
-            var result_of_this_method = UnityEngine.Mathf.Max(@a, @b);
-
-            __ret->ObjectType = ObjectTypes.Float;
-            *(float*)&__ret->Value = result_of_this_method;
-            return __ret + 1;
-        }
-
-        static StackObject* FloorToInt_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* FloorToInt_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -230,7 +139,24 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* Atan2_6(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* CeilToInt_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Single @f = *(float*)&ptr_of_this_method->Value;
+
+
+            var result_of_this_method = UnityEngine.Mathf.CeilToInt(@f);
+
+            __ret->ObjectType = ObjectTypes.Integer;
+            __ret->Value = result_of_this_method;
+            return __ret + 1;
+        }
+
+        static StackObject* Atan2_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -250,7 +176,98 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* Lerp_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* Min_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Single @b = *(float*)&ptr_of_this_method->Value;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            System.Single @a = *(float*)&ptr_of_this_method->Value;
+
+
+            var result_of_this_method = UnityEngine.Mathf.Min(@a, @b);
+
+            __ret->ObjectType = ObjectTypes.Float;
+            *(float*)&__ret->Value = result_of_this_method;
+            return __ret + 1;
+        }
+
+        static StackObject* Cos_4(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Single @f = *(float*)&ptr_of_this_method->Value;
+
+
+            var result_of_this_method = UnityEngine.Mathf.Cos(@f);
+
+            __ret->ObjectType = ObjectTypes.Float;
+            *(float*)&__ret->Value = result_of_this_method;
+            return __ret + 1;
+        }
+
+        static StackObject* Sin_5(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Single @f = *(float*)&ptr_of_this_method->Value;
+
+
+            var result_of_this_method = UnityEngine.Mathf.Sin(@f);
+
+            __ret->ObjectType = ObjectTypes.Float;
+            *(float*)&__ret->Value = result_of_this_method;
+            return __ret + 1;
+        }
+
+        static StackObject* Abs_6(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Single @f = *(float*)&ptr_of_this_method->Value;
+
+
+            var result_of_this_method = UnityEngine.Mathf.Abs(@f);
+
+            __ret->ObjectType = ObjectTypes.Float;
+            *(float*)&__ret->Value = result_of_this_method;
+            return __ret + 1;
+        }
+
+        static StackObject* Max_7(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.Single @b = *(float*)&ptr_of_this_method->Value;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            System.Single @a = *(float*)&ptr_of_this_method->Value;
+
+
+            var result_of_this_method = UnityEngine.Mathf.Max(@a, @b);
+
+            __ret->ObjectType = ObjectTypes.Float;
+            *(float*)&__ret->Value = result_of_this_method;
+            return __ret + 1;
+        }
+
+        static StackObject* Lerp_8(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -273,7 +290,7 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* Clamp01_8(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* Clamp01_9(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -287,26 +304,6 @@ namespace ILRuntime.Runtime.Generated
 
             __ret->ObjectType = ObjectTypes.Float;
             *(float*)&__ret->Value = result_of_this_method;
-            return __ret + 1;
-        }
-
-        static StackObject* Max_9(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.Int32 @b = ptr_of_this_method->Value;
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
-            System.Int32 @a = ptr_of_this_method->Value;
-
-
-            var result_of_this_method = UnityEngine.Mathf.Max(@a, @b);
-
-            __ret->ObjectType = ObjectTypes.Integer;
-            __ret->Value = result_of_this_method;
             return __ret + 1;
         }
 
@@ -370,17 +367,20 @@ namespace ILRuntime.Runtime.Generated
             return __ret + 1;
         }
 
-        static StackObject* CeilToInt_13(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* Max_13(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
+            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.Single @f = *(float*)&ptr_of_this_method->Value;
+            System.Int32 @b = ptr_of_this_method->Value;
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            System.Int32 @a = ptr_of_this_method->Value;
 
 
-            var result_of_this_method = UnityEngine.Mathf.CeilToInt(@f);
+            var result_of_this_method = UnityEngine.Mathf.Max(@a, @b);
 
             __ret->ObjectType = ObjectTypes.Integer;
             __ret->Value = result_of_this_method;

@@ -23,17 +23,17 @@ namespace ILRuntime.Runtime.Generated
             Type[] args;
             Type type = typeof(ET.ABPathHelper);
             args = new Type[]{typeof(System.String)};
-            method = type.GetMethod("GetUnitPath", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetUnitPath_0);
-            args = new Type[]{typeof(System.String)};
             method = type.GetMethod("GetUGUIPath", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetUGUIPath_1);
+            app.RegisterCLRMethodRedirection(method, GetUGUIPath_0);
             args = new Type[]{typeof(System.String)};
             method = type.GetMethod("GetEffetPath", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetEffetPath_2);
+            app.RegisterCLRMethodRedirection(method, GetEffetPath_1);
+            args = new Type[]{typeof(System.String), typeof(System.String)};
+            method = type.GetMethod("GetAtlasPath_2", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, GetAtlasPath_2_2);
             args = new Type[]{typeof(System.String)};
-            method = type.GetMethod("GetAtlasPath", flag, null, args, null);
-            app.RegisterCLRMethodRedirection(method, GetAtlasPath_3);
+            method = type.GetMethod("GetUnitPath", flag, null, args, null);
+            app.RegisterCLRMethodRedirection(method, GetUnitPath_3);
             args = new Type[]{};
             method = type.GetMethod("GetTextPath", flag, null, args, null);
             app.RegisterCLRMethodRedirection(method, GetTextPath_4);
@@ -60,23 +60,7 @@ namespace ILRuntime.Runtime.Generated
         }
 
 
-        static StackObject* GetUnitPath_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
-        {
-            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
-            StackObject* ptr_of_this_method;
-            StackObject* __ret = ILIntepreter.Minus(__esp, 1);
-
-            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.String @fileName = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
-            __intp.Free(ptr_of_this_method);
-
-
-            var result_of_this_method = ET.ABPathHelper.GetUnitPath(@fileName);
-
-            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
-        }
-
-        static StackObject* GetUGUIPath_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* GetUGUIPath_0(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -92,7 +76,7 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* GetEffetPath_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* GetEffetPath_1(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
@@ -108,18 +92,38 @@ namespace ILRuntime.Runtime.Generated
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
 
-        static StackObject* GetAtlasPath_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        static StackObject* GetAtlasPath_2_2(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
+        {
+            ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
+            StackObject* ptr_of_this_method;
+            StackObject* __ret = ILIntepreter.Minus(__esp, 2);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
+            System.String @name = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            __intp.Free(ptr_of_this_method);
+
+            ptr_of_this_method = ILIntepreter.Minus(__esp, 2);
+            System.String @path = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            __intp.Free(ptr_of_this_method);
+
+
+            var result_of_this_method = ET.ABPathHelper.GetAtlasPath_2(@path, @name);
+
+            return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
+        }
+
+        static StackObject* GetUnitPath_3(ILIntepreter __intp, StackObject* __esp, IList<object> __mStack, CLRMethod __method, bool isNewObj)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             StackObject* ptr_of_this_method;
             StackObject* __ret = ILIntepreter.Minus(__esp, 1);
 
             ptr_of_this_method = ILIntepreter.Minus(__esp, 1);
-            System.String @path = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
+            System.String @fileName = (System.String)typeof(System.String).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
             __intp.Free(ptr_of_this_method);
 
 
-            var result_of_this_method = ET.ABPathHelper.GetAtlasPath(@path);
+            var result_of_this_method = ET.ABPathHelper.GetUnitPath(@fileName);
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }
