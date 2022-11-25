@@ -10,7 +10,6 @@ namespace ET
 
         public static KeyValuePairInt GetBuChangRecharge(PlayerInfo playerInfo)
         {
-            int number = 0;
             KeyValuePairInt keyValuePairInt = new KeyValuePairInt();
             for (int i = 0; i < playerInfo.RechargeInfos.Count; i++)
             {
