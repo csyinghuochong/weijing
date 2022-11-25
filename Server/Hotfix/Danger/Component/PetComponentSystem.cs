@@ -439,6 +439,9 @@ namespace ET
                     break;
                 }
             }
+
+            self.ResetFormation(self.PetFormations, petId);
+            self.ResetFormation(self.TeamPetList, petId);
         }
 
         /// <summary>

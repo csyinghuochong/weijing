@@ -267,9 +267,6 @@ namespace ET
 				petinfo_update = petinfo_2;
 				petinfo_delete = petinfo_1;
 			}
-			petComponent.ResetFormation(petComponent.PetFormations, petinfo_delete.Id);
-			petComponent.ResetFormation(petComponent.TeamPetList, petinfo_delete.Id);
-			
 			petinfo_update.ConfigId = petID;
 			petinfo_update.PetLv = pet_Lv;
 			petinfo_update.PetExp = pet_exp;

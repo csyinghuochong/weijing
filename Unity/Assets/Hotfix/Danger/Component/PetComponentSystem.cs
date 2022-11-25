@@ -131,6 +131,20 @@ namespace ET
                     break;
                 }
             }
+
+            self.ResetFormation(self.PetFormations, petId);
+            self.ResetFormation(self.TeamPetList, petId);
+        }
+
+        public static void ResetFormation(this PetComponent self, List<long> formation, long petId)
+        {
+            for (int i = 0; i < formation.Count; i++)
+            {
+                if (formation[i] == petId)
+                {
+                    formation[i] = 0;
+                }
+            }
         }
 
         public static async ETTask RequestFenJie(this PetComponent self, long petId)
@@ -352,13 +366,9 @@ namespace ET
         /// <returns></returns>
         public static void  OnRecvHeCheng(this PetComponent self, M2C_RolePetHeCheng m2C_RolePetHeCheng)
         {
+            self.RemovePet(m2C_RolePetHeCheng.DeletePetInfoId);
             for (int i = self.RolePetInfos.Count - 1; i >=0 ; i--)
             {
-                if (self.RolePetInfos[i].Id == m2C_RolePetHeCheng.DeletePetInfoId)
-                {
-                    self.RolePetInfos.RemoveAt(i);
-                    continue;
-                }
                 if (self.RolePetInfos[i].Id == m2C_RolePetHeCheng.rolePetInfo.Id)
                 {
                     self.RolePetInfos[i] = m2C_RolePetHeCheng.rolePetInfo;
