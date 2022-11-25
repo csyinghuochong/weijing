@@ -242,10 +242,13 @@ namespace ET
                     string qualityiconStr = FunctionUI.GetInstance().ItemQualiytoPath(self.ItemQuality);
                     self.Image_ItemQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, qualityiconStr);
                     int itemType = itemconfig.ItemType;
+                    //装备数字显示为空
                     if (itemType == 3)
                     {
                         self.Label_ItemNum.GetComponent<Text>().text = "";
                     }
+
+
 
                     if (self.Obj_Image_ItemDi != null)
                     {
@@ -256,13 +259,19 @@ namespace ET
                 //显示道具数量
                 if (ComHelp.IfNull(self.ItemNum) == false)
                 {
-                    if (long.Parse(self.ItemNum) >= 1 && itemconfig.ItemType != 3)
+                    if (long.Parse(self.ItemNum) >= 1 && itemconfig.ItemType != 3 && itemconfig.ItemType != 5)
                     {
                         self.Label_ItemNum.GetComponent<Text>().text = ComHelp.ReturnNumStr(long.Parse(self.ItemNum));
                     }
                     else
                     {
-                        self.Label_ItemNum.SetActive(false);
+                        if (itemconfig.ItemType == 5)
+                        {
+                            self.Label_ItemNum.GetComponent<Text>().text = "等级:" + itemconfig.UseLv;
+                        }
+                        else {
+                            self.Label_ItemNum.SetActive(false);
+                        }
                     }
                 }
             }
