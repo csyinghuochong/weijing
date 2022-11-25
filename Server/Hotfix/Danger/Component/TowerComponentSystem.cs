@@ -114,9 +114,6 @@ namespace ET
             TowerConfig towerConfig = TowerConfigCategory.Instance.Get(towerId);
             self.WaveTime = towerConfig.NextTime * 1000;
             FubenHelp.CreateMonsterList(scene, towerConfig.MonsterSet);
-
-            //TimerComponent.Instance.Remove(ref self.Timer);
-            //self.Timer = TimerComponent.Instance.NewOnceTimer( TimeHelper.ServerNow() + self.WaveTime, TimerType.TowerTimer, self );
         }
 
         public static void BeginTower(this TowerComponent self)
