@@ -107,8 +107,7 @@ namespace ET
                 UISkillGridComponent uISkillGridComponent = self.UISkillGirdList[i];
                 uISkillGridComponent.OnUpdate(skillManagerComponent.GetCdTime(uISkillGridComponent.GetSkillId(), serverTime), skillManagerComponent.SkillPublicCDTime);
             }
-            //UIFangunSkillComponent uIFangunSkillComponent = self.UIFangunComponet.GetComponent<UIFangunSkillComponent>();
-            //uIFangunSkillComponent.OnUpdate(skillManagerComponent.GetCdTime(uIFangunSkillComponent.SkillId));
+            self.UIFangunComponet.OnUpdate(skillManagerComponent.GetCdTime(self.UIFangunComponet.SkillId, serverTime));
 
             if (skillManagerComponent.SkillCDs.Count == 0 && TimeHelper.ClientNow() > skillManagerComponent.SkillPublicCDTime)
             {
