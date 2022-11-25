@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"StartSceneConfig","_id":1,"Process":1,"Zone":1,"SceneType":"Account","Name":"Account","OuterPort":20305},
+{"list":[{"_t":"StartSceneConfig","_id":1,"Process":1,"Zone":1,"SceneType":"Account","Name":"Account","OuterPort":20305},
 {"_t":"StartSceneConfig","_id":2,"Process":1,"Zone":1,"SceneType":"Realm","Name":"Realm","OuterPort":20306},
 {"_t":"StartSceneConfig","_id":3,"Process":1,"Zone":1,"SceneType":"Gate","Name":"Gate1","OuterPort":20307},
 {"_t":"StartSceneConfig","_id":4,"Process":1,"Zone":1,"SceneType":"Queue","Name":"Queue","OuterPort":20308},

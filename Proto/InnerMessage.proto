@@ -936,7 +936,7 @@ message M2Center_BuChangeRequest // IActorRequest
 
 	int64 BuChangId = 1;
 	int64 UserId = 2;
-	 int64 AccountId = 3;
+	int64 AccountId = 3;
 }
 
 message Center2M_BuChangeResponse // IActorResponse
@@ -944,7 +944,9 @@ message Center2M_BuChangeResponse // IActorResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
-	repeated RechargeInfo RechargeInfos = 1;
+	PlayerInfo PlayerInfo = 1;
+	int32 BuChangRecharge = 2;
+	int32 BuChangDiamond = 3;
 }
 
 //ResponseType E2M_GMEMailSendResponse

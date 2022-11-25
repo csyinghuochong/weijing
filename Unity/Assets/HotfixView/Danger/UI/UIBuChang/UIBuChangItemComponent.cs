@@ -37,5 +37,12 @@ namespace ET
             self.UserId = long.Parse(keyValuePair.Value);
             self.TextFubenName.GetComponent<Text>().text = keyValuePair.Value2;
         }
+
+        public static void OnInitUI_2(this UIBuChangItemComponent self, Action<long> action, int number)
+        {
+            self.ClickHandler = action;
+            self.UserId = 0;
+            self.TextFubenName.GetComponent<Text>().text =  $"补偿金额:{number}";
+        }
     }
 }

@@ -1971,7 +1971,13 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(1)]
-		public List<RechargeInfo> RechargeInfos = new List<RechargeInfo>();
+		public PlayerInfo PlayerInfo { get; set; }
+
+		[ProtoMember(2)]
+		public int BuChangRecharge { get; set; }
+
+		[ProtoMember(3)]
+		public int BuChangDiamond { get; set; }
 
 	}
 

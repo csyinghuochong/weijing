@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"PetSkinConfig","_id":10101,"Name":"呆呆","IconID":1000101,"SkinID":1000101,"PripertySet":"0"},
+{"list":[{"_t":"PetSkinConfig","_id":10101,"Name":"呆呆","IconID":1000101,"SkinID":1000101,"PripertySet":"0"},
 {"_t":"PetSkinConfig","_id":10102,"Name":"笨笨","IconID":1000102,"SkinID":1000102,"PripertySet":"0"},
 {"_t":"PetSkinConfig","_id":20101,"Name":"松松","IconID":1000201,"SkinID":1000201,"PripertySet":"0"},
 {"_t":"PetSkinConfig","_id":20102,"Name":"咪咪","IconID":1000202,"SkinID":1000202,"PripertySet":"0"},

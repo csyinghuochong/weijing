@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"TalentConfig","_id":10001,"Name":"生命恢复","Icon":10001,"LearnRoseLv":15,"talentDes":"新增技能生命恢复,可以立即回复自身20%生命","AddPropreListStr":"SkillIdAdd;62000001"},
+{"list":[{"_t":"TalentConfig","_id":10001,"Name":"生命恢复","Icon":10001,"LearnRoseLv":15,"talentDes":"新增技能生命恢复,可以立即回复自身20%生命","AddPropreListStr":"SkillIdAdd;62000001"},
 {"_t":"TalentConfig","_id":10002,"Name":"强击","Icon":10002,"LearnRoseLv":15,"talentDes":"新增强击技能,立即对目标造成300%伤害","AddPropreListStr":"SkillIdAdd;62000002"},
 {"_t":"TalentConfig","_id":10003,"Name":"伤害上升","Icon":10003,"LearnRoseLv":15,"talentDes":"裂地击和裂波击伤害提升50%","AddPropreListStr":"SkillPropertyAdd;61011102,61011103,61011104,61011105,61011106;2;0.5@SkillPropertyAdd;61012102,61012103,61012104,61012105,61012106;2;0.5"},
 {"_t":"TalentConfig","_id":10011,"Name":"技能刷新","Icon":10011,"LearnRoseLv":22,"talentDes":"每次攻击有5%的概率自动触发裂地击技能,且不影响主技能的冷却时间","AddPropreListStr":"SkillIdAdd;62000003"},

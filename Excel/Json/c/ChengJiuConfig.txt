@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"ChengJiuConfig","_id":10000001,"ChengjiuType":1,"ChapterId":1,"Name":"通关普通难度:洛兰岛","Icon":10000001,"RewardNum":3,"TargetType":11,"TargetID":10001,"TargetValue":1,"Des":"通关普通难度:洛兰岛1次"},
+{"list":[{"_t":"ChengJiuConfig","_id":10000001,"ChengjiuType":1,"ChapterId":1,"Name":"通关普通难度:洛兰岛","Icon":10000001,"RewardNum":3,"TargetType":11,"TargetID":10001,"TargetValue":1,"Des":"通关普通难度:洛兰岛1次"},
 {"_t":"ChengJiuConfig","_id":10000002,"ChengjiuType":1,"ChapterId":1,"Name":"通关普通难度:洛兰岛深处","Icon":10000001,"RewardNum":3,"TargetType":11,"TargetID":10002,"TargetValue":1,"Des":"通关普通难度:洛兰岛深处1次"},
 {"_t":"ChengJiuConfig","_id":10000003,"ChengjiuType":1,"ChapterId":1,"Name":"通关普通难度:雷鸣森林","Icon":10000001,"RewardNum":3,"TargetType":11,"TargetID":10003,"TargetValue":1,"Des":"通关普通难度:雷鸣森林1次"},
 {"_t":"ChengJiuConfig","_id":10000004,"ChengjiuType":1,"ChapterId":1,"Name":"通关普通难度:雷鸣中心","Icon":10000001,"RewardNum":3,"TargetType":11,"TargetID":10004,"TargetValue":1,"Des":"通关普通难度:雷鸣中心1次"},

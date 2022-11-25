@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"QuestionBankConfig","_id":1001,"Right":"中国","Error":"美国","Question":"历史上最早的纸币源于哪个国家?"},
+{"list":[{"_t":"QuestionBankConfig","_id":1001,"Right":"中国","Error":"美国","Question":"历史上最早的纸币源于哪个国家?"},
 {"_t":"QuestionBankConfig","_id":1002,"Right":"1921年","Error":"1925年","Question":"中国共产党成立于哪一年"},
 {"_t":"QuestionBankConfig","_id":1003,"Right":"北京","Error":"上海","Question":"中国的首都是那个城市?"},
 {"_t":"QuestionBankConfig","_id":1004,"Right":"1964年","Error":"1968年","Question":"中国第一颗原子弹爆炸成功的时间是哪一年"},

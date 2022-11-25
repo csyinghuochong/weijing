@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"EquipXiLianConfig","_id":100100,"XiLianType":0,"XiLianLevel":0,"NeedShuLianDu":0,"Title":"初级洗练师","ProList_Type":[0],"ProList_Value":[0],"RewardList":"0"},
+{"list":[{"_t":"EquipXiLianConfig","_id":100100,"XiLianType":0,"XiLianLevel":0,"NeedShuLianDu":0,"Title":"初级洗练师","ProList_Type":[0],"ProList_Value":[0],"RewardList":"0"},
 {"_t":"EquipXiLianConfig","_id":100101,"XiLianType":0,"XiLianLevel":1,"NeedShuLianDu":100,"Title":"1级洗炼大师","ProList_Type":[0],"ProList_Value":[0],"RewardList":"10010083;20"},
 {"_t":"EquipXiLianConfig","_id":100102,"XiLianType":0,"XiLianLevel":2,"NeedShuLianDu":250,"Title":"2级洗炼大师","ProList_Type":[0],"ProList_Value":[0],"RewardList":"10010083;30"},
 {"_t":"EquipXiLianConfig","_id":100103,"XiLianType":0,"XiLianLevel":3,"NeedShuLianDu":500,"Title":"3级洗炼大师","ProList_Type":[0],"ProList_Value":[0],"RewardList":"10010083;50"},

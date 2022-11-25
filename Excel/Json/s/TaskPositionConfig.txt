@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"TaskPositionConfig","_id":100001,"MapName":"绿林小镇","MapID":10001,"PositionName":"TaskMove_1","OtherMapMove":"0"},
+{"list":[{"_t":"TaskPositionConfig","_id":100001,"MapName":"绿林小镇","MapID":10001,"PositionName":"TaskMove_1","OtherMapMove":"0"},
 {"_t":"TaskPositionConfig","_id":100002,"MapName":"绿林小镇","MapID":10001,"PositionName":"TaskMove_2","OtherMapMove":"0"},
 {"_t":"TaskPositionConfig","_id":100003,"MapName":"绿林小镇","MapID":10001,"PositionName":"TaskMove_3","OtherMapMove":"0"},
 {"_t":"TaskPositionConfig","_id":100004,"MapName":"绿林小镇","MapID":10001,"PositionName":"TaskMove_4","OtherMapMove":"0"},

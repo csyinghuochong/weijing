@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"LingDiConfig","_id":1,"Name":"领地1级","UpExp":17300,"GoldUp":3700,"AddExp":865,"HoureExp":3600,"HoureHonor":1440},
+{"list":[{"_t":"LingDiConfig","_id":1,"Name":"领地1级","UpExp":17300,"GoldUp":3700,"AddExp":865,"HoureExp":3600,"HoureHonor":1440},
 {"_t":"LingDiConfig","_id":2,"Name":"领地2级","UpExp":21000,"GoldUp":4900,"AddExp":1050,"HoureExp":4320,"HoureHonor":2160},
 {"_t":"LingDiConfig","_id":3,"Name":"领地3级","UpExp":36000,"GoldUp":5500,"AddExp":1800,"HoureExp":5040,"HoureHonor":2880},
 {"_t":"LingDiConfig","_id":4,"Name":"领地4级","UpExp":48000,"GoldUp":6400,"AddExp":2400,"HoureExp":5760,"HoureHonor":3600},

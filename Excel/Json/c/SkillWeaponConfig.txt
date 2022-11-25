@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"SkillWeaponConfig","_id":50000101,"Name":"普通攻击","InitSkillID":60000201,"InitSkillID_1":60000201,"InitSkillID_2":60000101,"InitSkillID_3":0,"InitSkillID_4":0},
+{"list":[{"_t":"SkillWeaponConfig","_id":50000101,"Name":"普通攻击","InitSkillID":60000201,"InitSkillID_1":60000201,"InitSkillID_2":60000101,"InitSkillID_3":0,"InitSkillID_4":0},
 {"_t":"SkillWeaponConfig","_id":50000102,"Name":"普通攻击","InitSkillID":60000202,"InitSkillID_1":60000202,"InitSkillID_2":60000102,"InitSkillID_3":0,"InitSkillID_4":0},
 {"_t":"SkillWeaponConfig","_id":50000103,"Name":"普通攻击","InitSkillID":60000203,"InitSkillID_1":60000203,"InitSkillID_2":60000103,"InitSkillID_3":0,"InitSkillID_4":0},
 {"_t":"SkillWeaponConfig","_id":50000201,"Name":"普通攻击","InitSkillID":60000301,"InitSkillID_1":0,"InitSkillID_2":0,"InitSkillID_3":60000301,"InitSkillID_4":60000401},

@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"CampRewardConfig","_id":10001,"RankRange":[1,10],"Win_RewardList":"3;5000@10060101;1@10060102;1","Fail_RewardList":"3;500@10060101;1@10060102;1"},
+{"list":[{"_t":"CampRewardConfig","_id":10001,"RankRange":[1,10],"Win_RewardList":"3;5000@10060101;1@10060102;1","Fail_RewardList":"3;500@10060101;1@10060102;1"},
 {"_t":"CampRewardConfig","_id":10002,"RankRange":[11,20],"Win_RewardList":"3;5000@10060101;1@10060102;1","Fail_RewardList":"3;500@10060101;1@10060102;1"},
 {"_t":"CampRewardConfig","_id":10003,"RankRange":[21,30],"Win_RewardList":"3;5000@10060101;1@10060102;1","Fail_RewardList":"3;500@10060101;1@10060102;1"},
 {"_t":"CampRewardConfig","_id":10004,"RankRange":[31,40],"Win_RewardList":"3;5000@10060101;1@10060102;1","Fail_RewardList":"3;500@10060101;1@10060102;1"},

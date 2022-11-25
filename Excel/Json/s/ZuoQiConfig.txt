@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"ZuoQiConfig","_id":10001,"Name":"坐骑","Icon":10001,"NextID":10002,"JieName":"一阶","Lv":1,"UpNeedLv":10,"UpZiZhiCostGold":50000,"UpCostZiJin":5000,"ZiZhiMax":1100,"AddProperty":"100203;50@100603;10","Des":""},
+{"list":[{"_t":"ZuoQiConfig","_id":10001,"Name":"坐骑","Icon":10001,"NextID":10002,"JieName":"一阶","Lv":1,"UpNeedLv":10,"UpZiZhiCostGold":50000,"UpCostZiJin":5000,"ZiZhiMax":1100,"AddProperty":"100203;50@100603;10","Des":""},
 {"_t":"ZuoQiConfig","_id":10002,"Name":"坐骑","Icon":10001,"NextID":10003,"JieName":"二阶","Lv":2,"UpNeedLv":20,"UpZiZhiCostGold":55000,"UpCostZiJin":10000,"ZiZhiMax":1200,"AddProperty":"100203;50@100603;10","Des":"血量+300"},
 {"_t":"ZuoQiConfig","_id":10003,"Name":"坐骑","Icon":10001,"NextID":10004,"JieName":"三阶","Lv":3,"UpNeedLv":30,"UpZiZhiCostGold":60000,"UpCostZiJin":16000,"ZiZhiMax":1300,"AddProperty":"100203;50@100603;10","Des":""},
 {"_t":"ZuoQiConfig","_id":10004,"Name":"坐骑","Icon":10001,"NextID":10005,"JieName":"四阶","Lv":4,"UpNeedLv":40,"UpZiZhiCostGold":67500,"UpCostZiJin":20000,"ZiZhiMax":1400,"AddProperty":"100203;50@100603;10","Des":"攻击穿透+2%"},

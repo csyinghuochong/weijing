@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"CampFuLiConfig","_id":10001,"Postion":"门主","Win_Reward":10,"Fail_Reward":1},
+{"list":[{"_t":"CampFuLiConfig","_id":10001,"Postion":"门主","Win_Reward":10,"Fail_Reward":1},
 {"_t":"CampFuLiConfig","_id":10002,"Postion":"副门主","Win_Reward":20,"Fail_Reward":2},
 {"_t":"CampFuLiConfig","_id":10003,"Postion":"战神长老","Win_Reward":30,"Fail_Reward":3},
 {"_t":"CampFuLiConfig","_id":10004,"Postion":"永生长老","Win_Reward":40,"Fail_Reward":4},

@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"RankRewardConfig","_id":1,"Type":1,"NeedPoint":[1,1],"RewardItems":"1;500000@10010085;300@10010083;100@10000142;1@10000143;5@10010046;1"},
+{"list":[{"_t":"RankRewardConfig","_id":1,"Type":1,"NeedPoint":[1,1],"RewardItems":"1;500000@10010085;300@10010083;100@10000142;1@10000143;5@10010046;1"},
 {"_t":"RankRewardConfig","_id":2,"Type":1,"NeedPoint":[2,2],"RewardItems":"1;350000@10010085;240@10010083;80@10000142;1@10000143;3"},
 {"_t":"RankRewardConfig","_id":3,"Type":1,"NeedPoint":[3,3],"RewardItems":"1;250000@10010085;180@10010083;60@10000142;1@10000143;2"},
 {"_t":"RankRewardConfig","_id":4,"Type":1,"NeedPoint":[4,5],"RewardItems":"1;200000@10010085;150@10010083;40@10000142;1"},

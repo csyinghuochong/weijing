@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"LingDiRewardConfig","_id":10101,"NextID":10102,"ItemID":10010001,"BuyItemID":6,"BuyPrice":1000,"RoseLvlimit":0,"CountryLvlimit":1},
+{"list":[{"_t":"LingDiRewardConfig","_id":10101,"NextID":10102,"ItemID":10010001,"BuyItemID":6,"BuyPrice":1000,"RoseLvlimit":0,"CountryLvlimit":1},
 {"_t":"LingDiRewardConfig","_id":10102,"NextID":10103,"ItemID":10010061,"BuyItemID":6,"BuyPrice":5200,"RoseLvlimit":0,"CountryLvlimit":1},
 {"_t":"LingDiRewardConfig","_id":10103,"NextID":10104,"ItemID":10010103,"BuyItemID":6,"BuyPrice":6900,"RoseLvlimit":0,"CountryLvlimit":1},
 {"_t":"LingDiRewardConfig","_id":10104,"NextID":10105,"ItemID":10020010,"BuyItemID":6,"BuyPrice":10400,"RoseLvlimit":0,"CountryLvlimit":1},

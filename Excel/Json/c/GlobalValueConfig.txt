@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"GlobalValueConfig","_id":1,"Value":"30010000","Value2":0},
+{"list":[{"_t":"GlobalValueConfig","_id":1,"Value":"30010000","Value2":0},
 {"_t":"GlobalValueConfig","_id":2,"Value":"60000011","Value2":0},
 {"_t":"GlobalValueConfig","_id":3,"Value":"120","Value2":120},
 {"_t":"GlobalValueConfig","_id":4,"Value":"25","Value2":25},

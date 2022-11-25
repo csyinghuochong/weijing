@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"PaiMaiSellConfig","_id":10000001,"PaiMaiType":1,"ChapterId":21,"BuyLv":1,"ItemID":10020001,"Price":[1,450]},
+{"list":[{"_t":"PaiMaiSellConfig","_id":10000001,"PaiMaiType":1,"ChapterId":21,"BuyLv":1,"ItemID":10020001,"Price":[1,450]},
 {"_t":"PaiMaiSellConfig","_id":10000002,"PaiMaiType":1,"ChapterId":21,"BuyLv":1,"ItemID":10010083,"Price":[1,50000]},
 {"_t":"PaiMaiSellConfig","_id":10000101,"PaiMaiType":1,"ChapterId":1,"BuyLv":1,"ItemID":10021001,"Price":[1,250]},
 {"_t":"PaiMaiSellConfig","_id":10000102,"PaiMaiType":1,"ChapterId":1,"BuyLv":1,"ItemID":10021002,"Price":[1,260]},

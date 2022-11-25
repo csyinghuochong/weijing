@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"GuideConfig","_id":10001,"NextID":0,"Save":0,"Triger":[1,5,0],"Button":"Global/UI/Low/UIMain(Clone)/Bottom/LeftBottomBtns/Btn_RoseSkill","Force":0,"Text":"学习技能指引","TextPosition":0},
+{"list":[{"_t":"GuideConfig","_id":10001,"NextID":0,"Save":0,"Triger":[1,5,0],"Button":"Global/UI/Low/UIMain(Clone)/Bottom/LeftBottomBtns/Btn_RoseSkill","Force":0,"Text":"学习技能指引","TextPosition":0},
 {"_t":"GuideConfig","_id":11001,"NextID":11002,"Save":0,"Triger":[1,8,0],"Button":"Global/UI/Low/UIMain(Clone)/Bottom/LeftBottomBtns/Btn_RoseEquip","Force":0,"Text":"回收装备指引","TextPosition":0},
 {"_t":"GuideConfig","_id":11002,"NextID":0,"Save":0,"Triger":[0],"Button":"Global/UI/Low/UIRole(Clone)/FunctionSetBtn/Btn_HuiShow/Button","Force":0,"Text":"","TextPosition":0},
 {"_t":"GuideConfig","_id":12001,"NextID":12002,"Save":0,"Triger":[1,10,0],"Button":"Global/UI/Low/UIMain(Clone)/Bottom/LeftBottomBtns/Btn_RoseEquip","Force":0,"Text":"重铸系统指引","TextPosition":0},

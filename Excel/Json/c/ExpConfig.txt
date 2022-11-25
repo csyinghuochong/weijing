@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"ExpConfig","_id":1,"UpExp":225,"PetUpExp":300,"PetItemUpExp":32500,"RoseExpPro":200,"RoseGoldPro":150,"BaseHp":1000,"BaseAct":100,"BaseDef":30,"BaseAdf":30},
+{"list":[{"_t":"ExpConfig","_id":1,"UpExp":225,"PetUpExp":300,"PetItemUpExp":32500,"RoseExpPro":200,"RoseGoldPro":150,"BaseHp":1000,"BaseAct":100,"BaseDef":30,"BaseAdf":30},
 {"_t":"ExpConfig","_id":2,"UpExp":500,"PetUpExp":500,"PetItemUpExp":35000,"RoseExpPro":230,"RoseGoldPro":155,"BaseHp":1100,"BaseAct":120,"BaseDef":35,"BaseAdf":35},
 {"_t":"ExpConfig","_id":3,"UpExp":1125,"PetUpExp":800,"PetItemUpExp":37500,"RoseExpPro":260,"RoseGoldPro":160,"BaseHp":1200,"BaseAct":140,"BaseDef":40,"BaseAdf":40},
 {"_t":"ExpConfig","_id":4,"UpExp":1350,"PetUpExp":1100,"PetItemUpExp":40000,"RoseExpPro":290,"RoseGoldPro":165,"BaseHp":1300,"BaseAct":160,"BaseDef":45,"BaseAdf":45},

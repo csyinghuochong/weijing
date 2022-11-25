@@ -3,7 +3,7 @@
 "Realm*Realm0Ò
 "Gate*Gate10Ó
 "Queue*Queue0Ô
-"DBCache*DBCache
+"DBCache*DBCache
 "Chat*Chat
 "EMail*EMail
 "Activity*Activity
@@ -21,7 +21,7 @@
 Ê"Realm*Realm0æ
 Ë"Gate*Gate10ç
 Ì"Queue*Queue0è
-Í"DBCache*DBCache
+Í"DBCache*DBCache
 Î"Chat*Chat
 Ï"EMail*EMail
 Ğ"Activity*Activity
@@ -34,9 +34,26 @@
 ×"Battle*Battle
 Ø"Map*Map101
 Ù"Map*Map102
+‘"Account*Account0ï
+’"Realm*Realm0ğ
+“"Gate*Gate10ñ
+”"Queue*Queue0ò
+•"DBCache*DBCache
+–"Chat*Chat
+—"EMail*EMail
+˜"Activity*Activity
+™"Rank*Rank
+š"PaiMai*PaiMai
+›"Team*Team
+œ"Friend*Friend
+"Union*Union
+!"FubenCenter*FubenCenter
+Ÿ"Battle*Battle
+ "Map*Map101
+¡"Map*Map102
 éÊ"Center*Center
 #êÊ"LoginCenter*LoginCenter
 ëÊ"Location*Location
 +ìÊ"AccountCenter*AccountCenter0Ğ
-íÊ"ReCharge*ReCharge
+íÊ"ReCharge*ReCharge
 ÍËË"Robot*Robot01

@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"StartZoneConfig","_id":1,"DBConnection":"mongodb://localhost:27017/","PhysicZone":1,"DBName":"WJBeta1"},
+{"list":[{"_t":"StartZoneConfig","_id":1,"DBConnection":"mongodb://localhost:27017/","PhysicZone":1,"DBName":"WJBeta1"},
 {"_t":"StartZoneConfig","_id":2,"DBConnection":"mongodb://localhost:27017/","PhysicZone":3,"DBName":"WJBeta2"},
 {"_t":"StartZoneConfig","_id":3,"DBConnection":"mongodb://localhost:27017/","PhysicZone":3,"DBName":"WJBeta3"},
 {"_t":"StartZoneConfig","_id":4,"DBConnection":"mongodb://localhost:27017/","PhysicZone":4,"DBName":"WJBeta4"},

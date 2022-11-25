@@ -1,5 +1,4 @@
-{"list":[
-{"_t":"MysteryConfig","_id":100001,"NextId":100002,"NumberLimit":[20,20],"SellItemID":10000143,"SellType":3,"SellValue":450,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":5},
+{"list":[{"_t":"MysteryConfig","_id":100001,"NextId":100002,"NumberLimit":[20,20],"SellItemID":10000143,"SellType":3,"SellValue":450,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":5},
 {"_t":"MysteryConfig","_id":100002,"NextId":100003,"NumberLimit":[10,10],"SellItemID":10000141,"SellType":3,"SellValue":150,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":1},
 {"_t":"MysteryConfig","_id":100003,"NextId":100004,"NumberLimit":[10,10],"SellItemID":10000142,"SellType":3,"SellValue":150,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":1},
 {"_t":"MysteryConfig","_id":100004,"NextId":100005,"NumberLimit":[10,10],"SellItemID":10010087,"SellType":3,"SellValue":120,"ShowPro":100,"ShowServerDay":1,"BuyNumMax":1},
