@@ -14,14 +14,14 @@ namespace ET
             KeyValuePairInt keyValuePairInt = new KeyValuePairInt();
             for (int i = 0; i < playerInfo.RechargeInfos.Count; i++)
             {
-                int zone = UnitIdStruct.GetUnitZone(playerInfo.RechargeInfos[i].UserId);
+                RechargeInfo rechargeInfo = playerInfo.RechargeInfos[i];    
+                int zone = UnitIdStruct.GetUnitZone(rechargeInfo.UserId);
                 if (zone >= BuChangZone)
                 {
                     continue;
                 }
-                number += playerInfo.RechargeInfos[i].Amount;
-                keyValuePairInt.KeyId += number;
-                keyValuePairInt.Value += ComHelp.GetDiamondNumber(number);
+                keyValuePairInt.KeyId += rechargeInfo.Amount;
+                keyValuePairInt.Value += ComHelp.GetDiamondNumber(rechargeInfo.Amount);
             }
             return keyValuePairInt;  
         }
