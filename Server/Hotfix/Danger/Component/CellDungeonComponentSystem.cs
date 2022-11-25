@@ -490,7 +490,7 @@ namespace ET
 
         public static bool IsAllMonsterDead(this CellDungeonComponent self)
         {
-            return FubenHelp.IsAllMonsterDead(self.DomainScene());
+            return FubenHelp.IsAllMonsterDead(self.DomainScene(), self.MainUnit);
         }
     }
 }

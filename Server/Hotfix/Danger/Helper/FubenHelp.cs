@@ -261,12 +261,12 @@ namespace ET
 			}
 		}
 
-		public static bool IsAllMonsterDead(Scene scene)
+		public static bool IsAllMonsterDead(Scene scene, Unit attack)
 		{
 			List<Unit> units = scene.GetComponent<UnitComponent>().GetAll();
 			for(int i = 0; i < units.Count; i++)
 			{
-				if (units[i].Type == UnitType.Monster && units[i].IsCanBeAttack())
+				if (units[i].Type == UnitType.Monster && units[i].IsCanBeAttackByUnit(attack))
 				{
 					return false;
 				}

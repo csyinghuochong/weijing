@@ -3,21 +3,6 @@ using System.Linq;
 
 namespace ET
 {
-    //[Timer(TimerType.TowerTimer)]
-    //public class TowerTimer : ATimer<TowerComponent>
-    //{
-    //    public override void Run(TowerComponent self)
-    //    {
-    //        try
-    //        {
-    //            self.OnTimer();
-    //        }
-    //        catch (Exception e)
-    //        {
-    //            Log.Error($"playerOffline timer error: {self.Id}\n{e}");
-    //        }
-    //    }
-    //}
 
     [ObjectSystem]
     public class TowerComponentAwakeSystem : AwakeSystem<TowerComponent>
@@ -42,7 +27,7 @@ namespace ET
 
         public static void OnKillEvent(this TowerComponent self, Unit defend)
         {
-            if (FubenHelp.IsAllMonsterDead(self.DomainScene()))
+            if (FubenHelp.IsAllMonsterDead(self.DomainScene(), self.MainUnit))
             {
                 self.OnTimer();
                 return;

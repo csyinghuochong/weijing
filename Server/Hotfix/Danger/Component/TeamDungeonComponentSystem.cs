@@ -142,11 +142,6 @@ namespace ET
             return haveplayer;
         }
 
-        public static bool IsAllMonsterDead(this TeamDungeonComponent self)
-        {
-            return FubenHelp.IsAllMonsterDead(self.DomainScene());
-        }
-
         public static void OnKillEvent(this TeamDungeonComponent self, Unit unit)
         {
             if (unit.Type != UnitType.Monster)
