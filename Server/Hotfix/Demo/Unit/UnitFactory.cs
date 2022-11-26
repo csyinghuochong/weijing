@@ -362,7 +362,7 @@ namespace ET
                 for (int i = 0; i < beattackIds.Count; i++)
                 {
                     Unit beAttack = bekill.DomainScene().GetComponent<UnitComponent>().Get(beattackIds[i]);
-                    if (beAttack == null)
+                    if (beAttack == null || beAttack.Type!= UnitType.Player)
                     {
                         continue;
                     }

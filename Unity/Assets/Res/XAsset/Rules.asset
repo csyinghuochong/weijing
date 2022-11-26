@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 346
+  version: 347
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -11323,6 +11323,9 @@ MonoBehaviour:
   - name: caf55d071646e82a4ce3831d4de5e326.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_92.png
+  - name: e92a2154877cc6a895631516bd18387a.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_33.png
   - name: 3fee61081d4e30121bdc822a28dbf69f.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/EmojiOne.png
@@ -11455,9 +11458,6 @@ MonoBehaviour:
   - name: 3d9f7335a8c41f94a55e61fbd6567b57.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_272.Png
-  - name: e92a2154877cc6a895631516bd18387a.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_33.png
   - name: f57ab1c5fc2b1936d7903f0678deebb1.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_215.png
