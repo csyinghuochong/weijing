@@ -11,13 +11,13 @@ namespace ET
             int randomTowerid = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerId);
             if (randomTowerid == 0)
             {
-                randomTowerid = TowerHelper.GetFirstTowerId(SceneTypeEnum.RandomTower);
+                randomTowerid = TowerHelper.GetFirstTowerIdByScene(SceneTypeEnum.RandomTower);
             }
             else
             {
                 randomTowerid += request.RandomNumber;
             }
-            if (randomTowerid > TowerHelper.GetLastTowerId(SceneTypeEnum.RandomTower))
+            if (randomTowerid > TowerHelper.GetLastTowerIdByScene(SceneTypeEnum.RandomTower))
             {
                 reply();
                 return;

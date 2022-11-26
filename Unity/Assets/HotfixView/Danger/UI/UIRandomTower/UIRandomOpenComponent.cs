@@ -40,7 +40,7 @@ namespace ET
             }
             else
             {
-                maxNumber = TowerHelper.GetTowerList(SceneTypeEnum.RandomTower).Count;
+                maxNumber = TowerHelper.GetTowerListByScene(SceneTypeEnum.RandomTower).Count;
             }
             if (maxNumber == 0)
             {

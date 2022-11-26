@@ -24,15 +24,15 @@ namespace ET
             return 0;
         }
 
-        public static int GetNextTowerId(int sceneType, int toweId)
+        public static int GetNextTowerIdByScene(int sceneType, int toweId)
         {
             if (toweId == 0)
             {
-                return GetFirstTowerId(sceneType);
+                return GetFirstTowerIdByScene(sceneType);
             }
             else
             {
-                if (toweId < GetLastTowerId(sceneType))
+                if (toweId < GetLastTowerIdByScene(sceneType))
                 {
                     return toweId + 1;
                 }
@@ -43,7 +43,7 @@ namespace ET
             }
         }
 
-        public static int GetFirstTowerId(int sceneType)
+        public static int GetFirstTowerIdByScene(int sceneType)
         {
             int towerId = 0;    
             List<TowerConfig> towerConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();
@@ -59,7 +59,7 @@ namespace ET
             return towerId;
         }
 
-        public static List<TowerConfig> GetTowerList(int sceneType)
+        public static List<TowerConfig> GetTowerListByScene(int sceneType)
         {
             List<TowerConfig> towerList = new List<TowerConfig>();
             List<TowerConfig> towerConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();
@@ -74,7 +74,13 @@ namespace ET
             return towerList;
         }
 
-        public static int GetLastTowerId(int sceneType)
+        public static int GetLastTower(int fubenDifficulty)
+        {
+            string[] ids = GlobalValueConfigCategory.Instance.Get(71).Value.Split(';');
+            return (int.Parse(ids[fubenDifficulty - 1]));
+        }
+
+        public static int GetLastTowerIdByScene(int sceneType)
         {
             int towerId = 0;
             List<TowerConfig> towerConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();

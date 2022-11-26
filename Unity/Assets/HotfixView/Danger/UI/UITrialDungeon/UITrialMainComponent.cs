@@ -51,7 +51,7 @@ namespace ET
 
             self.TextCoundown = rc.Get<GameObject>("TextCoundown");
             self.ButtonTiaozhan = rc.Get<GameObject>("ButtonTiaozhan");
-            self.ButtonTiaozhan.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonTiaozhan().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.ButtonTiaozhan, () => { self.OnButtonTiaozhan().Coroutine(); });
 
             self.BeginTimer();
         }

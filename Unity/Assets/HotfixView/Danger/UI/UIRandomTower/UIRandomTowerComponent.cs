@@ -39,7 +39,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int randowTowerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RandomTowerId);
-            if (TowerHelper.GetLastTowerId(SceneTypeEnum.RandomTower) == randowTowerId)
+            if (TowerHelper.GetLastTowerIdByScene(SceneTypeEnum.RandomTower) == randowTowerId)
             {
                 FloatTipManager.Instance.ShowFloatTip("已通关！");
                 return;

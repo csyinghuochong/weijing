@@ -59,11 +59,11 @@ namespace ET
         public static int GetShowCengNum(this UITrialDungeonComponent self)
         {
             int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
-            int nextId = TowerHelper.GetNextTowerId(SceneTypeEnum.TrialDungeon,towerId);
+            int nextId = TowerHelper.GetNextTowerIdByScene(SceneTypeEnum.TrialDungeon,towerId);
             //nextId == 0通关了
 
             //第一个可以领取奖励的
-            List<TowerConfig> idlist = TowerHelper.GetTowerList(SceneTypeEnum.TrialDungeon);
+            List<TowerConfig> idlist = TowerHelper.GetTowerListByScene(SceneTypeEnum.TrialDungeon);
             for (int i = 0; i < idlist.Count; i++)
             {
                 if (self.IsHaveReward(idlist[i].Id))
@@ -120,7 +120,7 @@ namespace ET
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             List<TowerConfig> towerConfigs = TowerConfigCategory.Instance.GetAll().Values.ToList();
             int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
-            int nextId = TowerHelper.GetNextTowerId(SceneTypeEnum.TrialDungeon, towerId);
+            int nextId = TowerHelper.GetNextTowerIdByScene(SceneTypeEnum.TrialDungeon, towerId);
 
             int showNum = 0;
             int showIndex = -1;
@@ -219,7 +219,7 @@ namespace ET
                 return;
             }
             int towerId = TowerHelper.GetCurrentTowerId(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), SceneTypeEnum.TrialDungeon);
-            int nextId = TowerHelper.GetNextTowerId(SceneTypeEnum.TrialDungeon, towerId);
+            int nextId = TowerHelper.GetNextTowerIdByScene(SceneTypeEnum.TrialDungeon, towerId);
             if (self.TowerId < nextId)
             {
                 FloatTipManager.Instance.ShowFloatTip("已通关该关卡！");

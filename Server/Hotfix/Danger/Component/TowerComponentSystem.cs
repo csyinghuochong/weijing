@@ -88,13 +88,12 @@ namespace ET
             TimerComponent.Instance.Remove(ref self.Timer);
             //奖励
             self.TowerId = self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
-            int nextTowerId = self.TowerId + 1;
-            if (TowerHelper.GetLastTowerId(SceneTypeEnum.Tower) < nextTowerId)
+            if (TowerHelper.GetLastTower(self.FubenDifficulty) == self.TowerId)
             {
                 self.OnTowerOver();
                 return;
             }
-            self.CreateMonster(nextTowerId).Coroutine();
+            self.CreateMonster(self.TowerId + 1).Coroutine();
         }
 
         public static async ETTask CreateMonster(this TowerComponent self, int towerId)
