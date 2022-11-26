@@ -365,7 +365,8 @@ namespace ET
             //更新玩家数据
             foreach (var component in dataUpdateComponentDic.Values)
             {
-                if (component is UIRolePropertyComponent uiRolePropertyCompont) {
+                if (component is UIRolePropertyComponent uiRolePropertyCompont)
+                {
                     uiRolePropertyCompont.InitPropertyShow(uiRolePropertyCompont.NowShowType);
                     continue;
                 }

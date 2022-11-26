@@ -99,10 +99,11 @@ namespace ET
 
             //初始化属性列表
             self.InitShowPropertyList_Base();
-            self.InitPropertyShow(0);
-            self.UpdateShowRoleExp();
-
-            self.GetParent<UI>().OnUpdateUI = () => { self.InitPropertyShow(self.NowShowType); };
+            self.GetParent<UI>().OnUpdateUI = () => 
+            { 
+                self.InitPropertyShow(self.NowShowType);
+                self.UIRoleAddPointComponent.OnInitUI();
+            };
 
             //添加监听事件
             DataUpdateComponent.Instance.AddListener(DataType.UpdateRoleFightData, self);
@@ -240,14 +241,12 @@ namespace ET
 			return showList;
 		}
 
-		//属性界面展示
-		public static void InitPropertyShow(this UIRolePropertyComponent self, int type)
+        //属性界面展示
+        public static void InitPropertyShow(this UIRolePropertyComponent self, int type)
 		{
             self.UpdateShowRoleExp();
-            self.UIRoleAddPointComponent.OnInitUI();
 
             self.Text_Vitality.GetComponent<Text>().text = $"{self.UserInfoComponent.UserInfo.Vitality}/{GlobalValueConfigCategory.Instance.Get(10).Value}";
-
             NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
 
             //清理目标下的所有控件
