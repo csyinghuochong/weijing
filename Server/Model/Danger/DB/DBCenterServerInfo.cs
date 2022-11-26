@@ -11,8 +11,6 @@ namespace ET
 
         public List<long> GmWhiteList = new List<long>();
 
-        public List<ServerItem> ServerItems = new List<ServerItem>();
-
         public List<int> RechageDic = new List<int>();
     }
 }
