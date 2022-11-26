@@ -148,39 +148,41 @@ namespace ET
 
         public static TaskPro CreateTask(this TaskComponent self, int taskid)
         {
+            Unit unit = self.GetParent<Unit>();
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
             TaskPro taskPro = new TaskPro();
             taskPro.taskID = taskid;
 
-            if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
+            switch (taskConfig.TargetType)
             {
-                for (int i = 0; i < taskConfig.Target.Length; i++)
-                {
-                    if (i == 0)
+                case (int)TaskTargetType.KillMonsterID_1:
+                    taskPro.taskTargetNum_1 = unit.GetComponent<UserInfoComponent>().GetReviveTime(taskConfig.Target[0]) > 0?1 : 0;
+                    break;
+                case (int)TaskTargetType.ItemID_Number_2:
+                    for (int i = 0; i < taskConfig.Target.Length; i++)
                     {
-                        taskPro.taskTargetNum_1 = (int)self.GetParent<Unit>().GetComponent<BagComponent>().GetItemNumber(taskConfig.Target[i]);
+                        if (i == 0)
+                        {
+                            taskPro.taskTargetNum_1 = (int)self.GetParent<Unit>().GetComponent<BagComponent>().GetItemNumber(taskConfig.Target[i]);
+                        }
+                        if (i == 1)
+                        {
+                            taskPro.taskTargetNum_2 = (int)self.GetParent<Unit>().GetComponent<BagComponent>().GetItemNumber(taskConfig.Target[i]);
+                        }
                     }
-                    if (i == 1)
-                    {
-                        taskPro.taskTargetNum_2 = (int)self.GetParent<Unit>().GetComponent<BagComponent>().GetItemNumber(taskConfig.Target[i]);
-                    }
-                }
-            }
-            else if (taskConfig.TargetType == (int)TaskTargetType.LookingFor_3)
-            {
-                taskPro.taskTargetNum_1 = 1;
-            }
-            else if (taskConfig.TargetType == (int)TaskTargetType.PlayerLv_4)
-            {
-                taskPro.taskTargetNum_1 = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
-            }
-            else if (taskConfig.TargetType == (int)TaskTargetType.ChangeOcc_8)
-            {
-                taskPro.taskTargetNum_1 = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0 ? 1 : 0;
-            }
-            else
-            {
-                taskPro.taskTargetNum_1 = 0;
+                    break;
+                case(int)TaskTargetType.LookingFor_3:
+                    taskPro.taskTargetNum_1 = 1;
+                    break;
+                case (int)(int)TaskTargetType.PlayerLv_4:
+                    taskPro.taskTargetNum_1 = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
+                    break;
+                case (int)TaskTargetType.ChangeOcc_8:
+                    taskPro.taskTargetNum_1 = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0 ? 1 : 0;
+                    break;
+                default:
+                    taskPro.taskTargetNum_1 = 0;
+                    break;
             }
 
             bool completed = self.IsCompleted(taskPro, taskConfig);
@@ -189,7 +191,6 @@ namespace ET
             {
                 taskPro.TrackStatus = 1;
             }
-
             return taskPro;
         }
 
