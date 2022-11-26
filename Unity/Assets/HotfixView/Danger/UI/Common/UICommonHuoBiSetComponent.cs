@@ -12,6 +12,7 @@ namespace ET
         public GameObject Lab_ZuanShi;
         public GameObject Lab_Gold;
         public GameObject ButtonClose;
+        public GameObject ButtonClose2;
         public GameObject Btn_AddZuanShi;
     }
 
@@ -31,6 +32,9 @@ namespace ET
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonClose(); });
+
+            self.ButtonClose2 = rc.Get<GameObject>("ButtonClose_2");
+            self.ButtonClose2.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonClose(); });
 
             self.InitShow();
             DataUpdateComponent.Instance.AddListener(DataType.UpdateRoleData, self);
