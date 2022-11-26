@@ -37,7 +37,7 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)RankPageEnum.RankShow] = ABPathHelper.GetUGUIPath("Main/Rank/UIRankShow");
             pageViewComponent.UISubViewPath[(int)RankPageEnum.RankReward] = ABPathHelper.GetUGUIPath("Main/Rank/UIRankReward");
             pageViewComponent.UISubViewPath[(int)RankPageEnum.RankPet] = ABPathHelper.GetUGUIPath("Main/Rank/UIRankPet");
-            pageViewComponent.UISubViewPath[(int)RankPageEnum.PetReward] = ABPathHelper.GetUGUIPath("Main/Rank/UIRankReward");
+            pageViewComponent.UISubViewPath[(int)RankPageEnum.PetReward] = ABPathHelper.GetUGUIPath("Main/Rank/UIRankPetReward");
 
 
             pageViewComponent.UISubViewType[(int)RankPageEnum.RankShow] = typeof(UIRankShowComponent);
