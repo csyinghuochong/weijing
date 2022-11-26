@@ -79,22 +79,6 @@ namespace ET
                 self.GeneratePositions();
             }
             self.ShowDropInfo(self.DropInfo);
-
-            //创建特效(排除基础货币)
-            /*
-            if (self.DropInfo.ItemID >= 100)
-            {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.DropInfo.ItemID);
-                if (itemConfig.ItemQuality == 4)
-                {
-                    FunctionEffect.GetInstance().PlayDropEffect(self.MyUnit, 91000104);
-                }
-                if (itemConfig.ItemQuality == 5)
-                {
-                    FunctionEffect.GetInstance().PlayDropEffect(self.MyUnit, 91000105);
-                }
-            }
-            */
             self.LateUpdate();
         }
 
