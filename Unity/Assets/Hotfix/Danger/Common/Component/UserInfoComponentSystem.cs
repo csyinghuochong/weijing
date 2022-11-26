@@ -404,7 +404,8 @@ namespace ET
             self.UserInfo.Exp = self.UserInfo.Exp + (int)(addValue * (1.0f + expAdd));
 
             //判定是否升级
-            if (self.UserInfo.Lv >= GlobalValueConfigCategory.Instance.Get(41).Value2)
+            if (self.UserInfo.Lv >= GlobalValueConfigCategory.Instance.Get(41).Value2
+                || self.UserInfo.Lv >= serverInfo.WorldLv)
             {
                 return;
             }
@@ -414,7 +415,7 @@ namespace ET
             if (self.UserInfo.Exp >= upNeedExp)
             {
                 self.UserInfo.Exp -= upNeedExp;
-                self.UpdateRoleData(UserDataType.Lv,"1", notice);
+                self.UpdateRoleData(UserDataType.Lv, "1", notice);
             }
         }
 #endif
