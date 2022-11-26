@@ -57,7 +57,7 @@ namespace ET
                     serverItems_1.Add(new ServerItem() { ServerId = 2, ServerIp = "39.96.194.143:20325", ServerName = "封测二区", ServerOpenTime = 0 });
                     serverItems_1.Add(new ServerItem() { ServerId = 3, ServerIp = "39.96.194.143:20325", ServerName = "封测三区", ServerOpenTime = 0 });
                     serverItems_1.Add(new ServerItem() { ServerId = 4, ServerIp = "39.96.194.143:20325", ServerName = "封测四区", ServerOpenTime = 0 });
-                    //serverItems_1.Add(new ServerItem() { ServerId = 5, ServerIp = "39.96.194.143:20335", ServerName = "先锋一区", ServerOpenTime = 0 });
+                    serverItems_1.Add(new ServerItem() { ServerId = 5, ServerIp = "39.96.194.143:20335", ServerName = "先锋一区", ServerOpenTime = 0 });
                 }
             }
 
