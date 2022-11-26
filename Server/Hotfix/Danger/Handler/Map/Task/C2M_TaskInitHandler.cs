@@ -15,11 +15,6 @@ namespace ET
             response.CampTaskList = taskComponent.CampTaskList;
             response.RoleComoleteTaskList = taskComponent.RoleComoleteTaskList;
             response.ReceiveHuoYueIds = taskComponent.ReceiveHuoYueIds;
-            if (taskComponent.TaskCountryList.Count == 0)
-            {
-                Log.Debug($"taskComponent.TaskCountryList.Count == 0: unitid{unit.Id}");
-                taskComponent.OnZeroClockUpdate(false);
-            }
             response.TaskCountryList = taskComponent.TaskCountryList;
 
             reply();
