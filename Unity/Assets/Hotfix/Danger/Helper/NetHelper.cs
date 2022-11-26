@@ -26,6 +26,10 @@
         public static async ETTask<int> OnButtonEnter(Scene zoneScene)
         {
             int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
+            if (sceneId == 0)
+            {
+                return ErrorCore.ERR_LevelNoEnough;
+            }
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1025);
             bool intime = FunctionHelp.IsInTime(funtionConfig.OpenTime);
             if (!intime)
