@@ -25,9 +25,9 @@ namespace ET
             //ErrorHintList.Add(ErrorCore.ERR_AccountOrPasswordError, "账号未注册!");
             ErrorHintList.Add(ErrorCore.ERR_GoldNotEnoughError, "金币不足!");
             ErrorHintList.Add(ErrorCore.ERR_DiamondNotEnoughError, "钻石不足!");
-            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD1, "技能在冷却中1!");
-            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD2, "技能在冷却中2!");
-            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD3, "技能在冷却中3!");
+            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD1, "技能列表为空!");
+            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD2, "技能冷却中!");
+            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD3, "当前状态不是释放技能!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillError, "释放技能出错!");
             ErrorHintList.Add(ErrorCore.ERR_NoUseItemSkill, "该场景不能使用药剂道具技能!");
             ErrorHintList.Add(ErrorCore.ERR_UnSafeSqlString, "非法字符串!");

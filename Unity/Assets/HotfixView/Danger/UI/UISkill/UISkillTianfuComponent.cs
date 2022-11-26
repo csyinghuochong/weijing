@@ -55,7 +55,13 @@ namespace ET
             int occTwo = userInfo.OccTwo;
             if (occTwo == 0)
             {
+                //战士天赋
                 occTwo = 101;
+
+                //法师天赋
+                if (userInfo.Occ == 1) {
+                    occTwo = 201;
+                }
             }
 
             Dictionary<int, List<int>> TianFuToLevel = new Dictionary<int, List<int>>();
