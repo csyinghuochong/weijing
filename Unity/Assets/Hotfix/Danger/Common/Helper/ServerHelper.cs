@@ -9,6 +9,8 @@ namespace ET
     public static class ServerHelper
     {
 
+        public const int ServerVersion = 0;
+
         //Alpha = 0,              //仅内部人员使用。一般不向外部发布
         //Beta = 1,               //公开测试版
         //BanHao = 2,
