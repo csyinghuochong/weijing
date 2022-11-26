@@ -27,7 +27,7 @@
         {
             int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1025);
-            bool intime = TimeHelper.IsInTime(funtionConfig.OpenTime);
+            bool intime = FunctionHelp.IsInTime(funtionConfig.OpenTime);
             if (!intime)
             {
                 return ErrorCore.ERR_AlreadyFinish;
