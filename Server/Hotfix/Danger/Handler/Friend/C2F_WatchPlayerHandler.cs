@@ -11,12 +11,16 @@ namespace ET
             long dbCacheId = StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), Enum.GetName(SceneType.DBCache)).InstanceId;
             D2G_GetComponent d2GGetUnit_1 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.UserInfoComponent });
             D2G_GetComponent d2GGetUnit_2 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.BagComponent });
-
             UserInfoComponent userinfo = d2GGetUnit_1.Component as UserInfoComponent;
-
+            if (userinfo == null)
+            {
+                response.Error = ErrorCore.ERR_Error;
+                reply();
+                return;
+            }
             //根据类型返回不同的值
-            switch (request.WatchType) {
-
+            switch (request.WatchType) 
+            {
                 //全部
                 case 0:
                     response.Lv = userinfo.UserInfo.Lv;
@@ -25,12 +29,10 @@ namespace ET
                     response.EquipList = bagComponents.EquipList;
                     response.Occ = userinfo.UserInfo.Occ;
                     break;
-
                 //只返回名字
                 case 1:
                     response.Name = userinfo.UserInfo.Name;
                     break;
-
                 case 2:
                     long teamServerId = StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), Enum.GetName(SceneType.Team)).InstanceId;
                     T2C_GetTeamInfoResponse g_SendChatRequest1 = (T2C_GetTeamInfoResponse)await ActorMessageSenderComponent.Instance.Call

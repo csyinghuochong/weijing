@@ -24,7 +24,7 @@ namespace ET
     {
         public override void Awake(DBSaveComponent self)
         {
-            self.DBInterval = 0;
+            self.DBInterval = -1;
             self.EntityChangeTypeSet.Clear();
         }
     }
@@ -185,12 +185,12 @@ namespace ET
         public static bool Check(this DBSaveComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-            self.DBInterval++;
-            if (self.DBInterval >= 5)
+            if (self.DBInterval == -1 || self.DBInterval >= 5)
             {
                 self.DBInterval = 0;
                 self.UpdateCacheDB();
             }
+            self.DBInterval++;
             unit.GetComponent<TaskComponent>().Check();
             unit.GetComponent<UserInfoComponent>().Check();
             return false;

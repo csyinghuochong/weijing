@@ -13,6 +13,11 @@ namespace ET
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserID, Component = DBHelper.DBFriendInfo });
             DBFriendInfo dBFriendInfo = d2GGetUnit.Component as DBFriendInfo;
 
+            if (dBFriendInfo == null)
+            {
+                reply();
+                return;
+            }
             if (dBFriendInfo.FriendList.Contains(request.RoleInfo.UserId))
             {
                 reply();
