@@ -137,6 +137,7 @@ namespace ET
                 self.Right.SetActive(false);
                 self.Left.SetActive(false);
                 self.Select.SetActive(true);
+                self.Melt.SetActive(false);
             }, null).Coroutine();
         }
 
