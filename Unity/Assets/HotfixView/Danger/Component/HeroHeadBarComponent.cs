@@ -111,21 +111,21 @@ namespace ET
             {
                 case UnitType.Monster:
                     string imageHp = sameCamp ? "UI_pro_3_2" : "UI_pro_4_2";
-                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, imageHp);
+                    Sprite sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     rc.Get<GameObject>("Img_HpValue").SetActive(true);
                     ObjHp.GetComponent<Image>().sprite = sp;
                     break;
                 case UnitType.Player:
                     imageHp = sameCamp ? "UI_pro_3_2" : "UI_pro_4_2";
                     GameObject ImageHpFill = rc.Get<GameObject>("ImageHpFill");
-                    sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, imageHp);
+                    sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     ImageHpFill.GetComponent<Image>().sprite = sp;
                     this.BuffShieldValue = rc.Get<GameObject>("BuffShieldValue");
                     break;
                 case UnitType.Pet:
                     imageHp = sameCamp ? "UI_pro_3_4" : "UI_pro_4_2";
                     ImageHpFill = rc.Get<GameObject>("ImageHpFill");
-                    sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, imageHp);
+                    sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     ImageHpFill.GetComponent<Image>().sprite = sp;
                     break;
                 default:

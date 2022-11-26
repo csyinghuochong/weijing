@@ -200,7 +200,6 @@ namespace ET
                 unit.Stop(-1);
             }
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-
             if (unitInfoComponent == null)
             {
                 Log.Debug($"unitInfoComponent == null  {unit.Type } {unit.IsDisposed}");

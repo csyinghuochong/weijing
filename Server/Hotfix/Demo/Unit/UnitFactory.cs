@@ -132,7 +132,7 @@ namespace ET
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcId);
 
             Unit unit = domainScene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+            unit.AddComponent<UnitInfoComponent>();
             unit.ConfigId = npcId;
             unit.Position = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f);
             unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
@@ -159,7 +159,7 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-
+            unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
@@ -193,6 +193,7 @@ namespace ET
             numericComponent.Set(NumericType.BattleCamp, roleCamp);
             numericComponent.Set(NumericType.MasterId, masterId);
             unit.AddComponent<MoveComponent>();
+            unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
@@ -230,7 +231,7 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-
+            unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
@@ -396,7 +397,7 @@ namespace ET
                 {
                     UnitComponent unitComponent = main.DomainScene().GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
-                    UnitInfoComponent unitInfoComponent = dropitem.AddComponent<UnitInfoComponent>();
+                    dropitem.AddComponent<UnitInfoComponent>();
                     dropitem.Type = UnitType.DropItem;
                     DropComponent dropCheckComponent = dropitem.AddComponent<DropComponent>();
                     dropCheckComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
