@@ -14,6 +14,9 @@ namespace ET
             {
                 switch (scene.SceneType)
                 {
+                    case SceneType.Account:
+                        scene.GetComponent<FangChenMiComponent>().StopServer = true;
+                        break;
                     case SceneType.Battle:
                         if (request.MessageType == NoticeType.BattleClose)
                         {

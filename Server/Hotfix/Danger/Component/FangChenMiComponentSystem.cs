@@ -12,6 +12,7 @@ namespace ET
     {
         public override void Awake(FangChenMiComponent self)
         {
+            self.StopServer = false;
             self.CheckHoliday().Coroutine();
         }
     }

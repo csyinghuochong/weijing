@@ -23,7 +23,14 @@ namespace ET
                 session.Disconnect().Coroutine();
                 return;
             }
-            
+            if (session.DomainScene().GetComponent<FangChenMiComponent>().StopServer)
+            {
+                response.Error = ErrorCore.ERR_StopServer;
+                reply();
+                session.Disconnect().Coroutine();
+                return;
+            }
+
             if (string.IsNullOrEmpty(request.AccountName) || string.IsNullOrEmpty(request.Password))
             {
                 response.Error = ErrorCore.ERR_LoginInfoIsNull;
