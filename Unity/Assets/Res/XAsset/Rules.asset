@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 347
+  version: 348
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -9617,12 +9617,12 @@ MonoBehaviour:
     - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonLitOutline.shader
     - Assets/Res/Models/Warrior/Suriyun/UnityChanShader/Shader/Unitychan_chara_hada.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-Top.shader
-    - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-DetachAlpha-Top.shader
     - Assets/Mono/GameDemo/Editor Default Resources/Simple Character Pack/Shader/ToonTransparent.shader
     - Assets/TextMesh Pro/Shaders/TMP_SDF.shader
     - Assets/Res/Effect/BackBlur/BackBlur.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-Add.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-Add-Disslove.shader
+    - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-DetachAlpha-Top.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Add-DetachAlpha-Top.shader
     - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Add-Top.shader
     - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-Glow.shader
@@ -10857,9 +10857,6 @@ MonoBehaviour:
   - name: ca0a0d54e0cf339f7915c0344ffacd4b.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/TeruTeru/Animation/Teruteru@Die.fbx
-  - name: 9e31d3149bfd768a98f24867fb5e6a38.unity3d
-    assets:
-    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/TeruTeru/Animation/Teruteru@Atk.fbx
   - name: ca6b839d92198c99290be38a2d31bef5.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/TeruTeru/FBX/TeruteruC.fbx
@@ -10869,6 +10866,9 @@ MonoBehaviour:
   - name: 53cd9370d30c34a13c381891c13bf360.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/TeruTeru/Animation/Teruteru.controller
+  - name: 9e31d3149bfd768a98f24867fb5e6a38.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/TeruTeru/Animation/Teruteru@Atk.fbx
   - name: fa3dcf8d1d5d0c40c498aac2d1986577.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/Monster Pack Forest/FBX/Rabby_Queen.fbx
@@ -10981,18 +10981,9 @@ MonoBehaviour:
   - name: 59377b882607119f2a0817f4ad83209d.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_1A.png
-  - name: 1b42767bb082215015e47710b3510a0d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TJTX_Textures_0109b_C.tga
   - name: a618bf06da99580653f69d8a870f89b6.unity3d
     assets:
     - Assets/Res/Materials/DropItem.mat
-  - name: e541077309dbc05e3197a571d7ce8433.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TJTX_Textures_0109b.mat
-  - name: 9b8098b2c9c2df3ec60cb14b23241816.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TJTX_Textures_0109b_A.tga
   - name: 99091a959b931e3f84cd572476ec5a9d.unity3d
     assets:
     - Assets/Res/Effect/Other/34be2599.png

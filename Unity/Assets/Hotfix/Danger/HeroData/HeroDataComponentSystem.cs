@@ -166,7 +166,7 @@ namespace ET
                 {
                     unit.DomainScene().GetComponent<LocalDungeonComponent>().OnAddRefreshList(unit, resurrection * 1000);
                 }
-                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene)
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene && mapComponent.SceneId != 2000001)
                 {
                     unit.DomainScene().GetComponent<YeWaiRefreshComponent>().OnAddRefreshList(unit, resurrection * 1000);
                 }
