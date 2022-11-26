@@ -10,7 +10,7 @@ namespace ET
             try
             {
                 MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
-                if (TimeHelper.ServerNow() - mapComponent.LastQuitTime < 1000)
+                if (TimeHelper.ServerNow() - mapComponent.LastQuitTime < 2000)
                 {
                     return ErrorCore.ERR_OperationOften;
                 }
