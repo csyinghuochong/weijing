@@ -136,6 +136,7 @@ namespace ET
 					case (int)SceneTypeEnum.LocalDungeon:
 						LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
 						request.Difficulty = localDungeon != null ? localDungeon.FubenDifficulty : request.Difficulty;
+						unit.GetComponent<SkillManagerComponent>()?.OnFinish();
 						TransferHelper.LocalDungeonTransfer( unit, request.SceneId, int.Parse(request.paramInfo), request.Difficulty );
 						break;
 					case (int)SceneTypeEnum.Battle:

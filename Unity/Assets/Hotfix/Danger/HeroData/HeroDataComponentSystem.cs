@@ -218,7 +218,7 @@ namespace ET
             int waitRevive =  self.OnWaitRevive();
             unit.GetComponent<AIComponent>()?.Stop();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
-            unit.GetComponent<SkillManagerComponent>()?.OnDead();
+            unit.GetComponent<SkillManagerComponent>()?.OnFinish();
             unit.GetComponent<BuffManagerComponent>()?.OnDead();
             if (unit.Type == UnitType.Player)
             {

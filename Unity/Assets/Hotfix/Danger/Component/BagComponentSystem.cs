@@ -73,14 +73,13 @@ namespace ET
         //穿戴装备
         public static async ETTask SendWearEquip(this BagComponent self, BagInfo bagInfo)
         {
-            if (self.GetEquipByItemId(bagInfo.ItemID)!=null)
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+            int weizhi = itemCof.ItemSubType;
+            if (self.GetEquipByItemId(bagInfo.ItemID)!=null && weizhi == 5)
             {
                 HintHelp.GetInstance().ShowHint("已佩戴该装备！");
                 return;
             }
-
-            ItemConfig itemCof = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            int weizhi = itemCof.ItemSubType;
 
             //获取之前的位置是否有装备
             //BagInfo beforeequip = self.GetEquipByWeizhi(weizhi);
