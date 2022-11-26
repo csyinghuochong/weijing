@@ -410,6 +410,7 @@ namespace ET
             }
             ExpConfig xiulianconf1 =  ExpConfigCategory.Instance.Get(self.UserInfo.Lv);
             long upNeedExp = xiulianconf1.UpExp;
+
             if (self.UserInfo.Exp >= upNeedExp)
             {
                 self.UserInfo.Exp -= upNeedExp;

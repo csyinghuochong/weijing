@@ -238,7 +238,7 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
-        public static void OnDead(this SkillManagerComponent self)
+        public static void OnFinish(this SkillManagerComponent self)
         {
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
@@ -462,13 +462,12 @@ namespace ET
                 skillcd.CDEndTime = newTime + 10000;
                 self.SkillCDs.Add(self.FangunSkillId, skillcd);
 
-                Unit unit = self.GetParent<Unit>();
-                BuffData buffData_2 = new BuffData();
-                buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(90106003);
-                buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
-                unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
+                //Unit unit = self.GetParent<Unit>();
+                //BuffData buffData_2 = new BuffData();
+                //buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(90106003);
+                //buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
+                //unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
             }
-
             self.FangunLastTime = newTime;
             return skillcd;
         }
