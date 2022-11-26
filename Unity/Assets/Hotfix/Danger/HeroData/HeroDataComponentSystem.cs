@@ -182,13 +182,15 @@ namespace ET
                     unit.RemoveComponent<ReviveTimeComponent>();
                     unit.AddComponent<ReviveTimeComponent, long>(TimeHelper.ServerNow() + resurrection * 1000);
                     FirstWinHelper.SendFirstWinInfo(localDungeon.MainUnit, unit, localDungeon.FubenDifficulty);
+                    return 1;
                 }
                 if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene && mapComponent.SceneId != 2000001)
                 {
                     unit.RemoveComponent<ReviveTimeComponent>();
                     unit.AddComponent<ReviveTimeComponent, long>(TimeHelper.ServerNow() + resurrection * 1000);
+                    return 1;
                 }
-                return 1;
+                return 0;
             }
         }
 
