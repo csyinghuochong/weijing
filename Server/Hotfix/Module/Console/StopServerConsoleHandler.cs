@@ -50,6 +50,12 @@ namespace ET
                                 MessageType = NoticeType.StopSever,
                                 MessageValue = "停服维护"
                             }) ;
+                        long accountServerId = StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Account").InstanceId;
+                        g_SendChatRequest = (A2A_ServerMessageRResponse)await ActorMessageSenderComponent.Instance.Call
+                            (accountServerId, new A2A_ServerMessageRequest()
+                            {
+                                MessageType = NoticeType.StopSever,
+                            });
                     }
                     break;
             }

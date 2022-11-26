@@ -7,6 +7,6 @@ namespace ET
         public long Timer;
         public bool IsHoliday;
 
-        public bool StopServerl;
+        public bool StopServer;
     }
 }
