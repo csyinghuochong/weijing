@@ -11,8 +11,9 @@
 
         private async ETTask RunAsync(EventType.RecvTeamDungeonOpen args)
         {
+            Scene zoneScene = args.ZoneScene;
             await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(2000, 4000));
-            EnterFubenHelp.RequestTransfer(args.ZoneScene, (int)SceneTypeEnum.TeamDungeon, 0).Coroutine();
+            EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.TeamDungeon, 0).Coroutine();
         }
     }
 }
