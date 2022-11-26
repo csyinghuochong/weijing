@@ -13,6 +13,7 @@
         FangRong = 7,           //繁荣度
         MaoXianExp = 8,         //冒险家经验
         DungeonTimes = 9,       //每日副本次数
+        Recharge = 10,          //充值
         Lv,                     //等级            
         Occ,                    //职业
         HuoYue,                 //活跃

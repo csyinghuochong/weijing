@@ -34,6 +34,10 @@ namespace ET
 
         public static int GetDiamondNumber(int key)
         {
+            if (!RechargeGive.ContainsKey(key))
+            {
+                return 0;
+            }
             int number = RechargeGive[key];
             return key * 100 + number;
         }
@@ -547,6 +551,7 @@ namespace ET
             { 7, UserDataType.FangRong},
             { 8, UserDataType.MaoXianExp},
             { 9, UserDataType.DungeonTimes},
+            { 10,UserDataType.Recharge}
         };
 
         public static UserDataType GetItemToUserDataType(int itemid)

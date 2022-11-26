@@ -317,6 +317,9 @@ namespace ET
                 case UserDataType.MaoXianExp:
                     unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.MaoXianExp, long.Parse(value), 0);
                     break;
+                case UserDataType.Recharge:
+                    RechargeHelp.SendDiamondToUnit(unit, int.Parse(value));
+                    break;
                 case UserDataType.PiLao:
                     int maxValue = unit.IsYueKaStates() ? int.Parse(GlobalValueConfigCategory.Instance.Get(26).Value) : int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
                     long newValue = long.Parse(value) + self.UserInfo.PiLao;
