@@ -70,6 +70,7 @@ namespace ET
         public GameObject Btn_TopRight_1;
         public GameObject Button_JiaYuan;
         public GameObject Button_Recharge;
+        public GameObject Btn_Rank;
 
         public UI UILevelGuideMini;
         public UI UIMainChat;
@@ -235,6 +236,10 @@ namespace ET
 
             self.Button_Recharge = rc.Get<GameObject>("Button_Recharge");
             ButtonHelp.AddListenerEx(self.Button_Recharge, () => { self.OnButton_Recharge(); });
+
+            self.Btn_Rank = rc.Get<GameObject>("Btn_Rank");
+            ButtonHelp.AddListenerEx(self.Btn_Rank, () => { self.OnBtn_Rank(); });
+
 
             self.LeftBottomBtns = rc.Get<GameObject>("LeftBottomBtns");
             GameObject ShrinkBtn = rc.Get<GameObject>("ShrinkBtn");
@@ -1213,7 +1218,10 @@ namespace ET
             UIHelper.Create(self.DomainScene(), UIType.UIRecharge).Coroutine();
         }
 
-
+        public static void OnBtn_Rank(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UIRank).Coroutine();
+        }
         public static void OnShrinkBtn(this UIMainComponent self)
         {
             self.LeftBottomBtns.SetActive(!self.LeftBottomBtns.activeSelf);
