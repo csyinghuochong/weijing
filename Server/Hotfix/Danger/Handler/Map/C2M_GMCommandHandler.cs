@@ -152,7 +152,7 @@ namespace ET
 					case 4: //直接接取某个任务      4#30030009
 						unit.GetComponent<TaskComponent>().OnGMGetTask(int.Parse(commands[1]));
 						break;
-					case 5: //直接获得某个宠物      5#1000101
+					case 5: //直接获得某个宠物      5#1001101
 						unit.GetComponent<PetComponent>().OnAddPet(int.Parse(commands[1]));
 						break;
 					case 6:

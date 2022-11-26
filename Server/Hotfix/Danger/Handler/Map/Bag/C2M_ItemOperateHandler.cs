@@ -336,7 +336,7 @@ namespace ET
                     //默认出售全部
                     //给与对应金币或货币奖励
                     string[] gemids = useBagInfo.GemIDNew.Split('_');
-                    List<long> gemIdList =  new List<long>();
+                    List<int> gemIdList =  new List<int>();
                     ItemConfig itemConf = null;
                     for (int i = 0; i < gemids.Length; i++)
                     {
@@ -344,16 +344,15 @@ namespace ET
                         {
                             continue;
                         }
-                        gemIdList.Add(long.Parse(gemids[i]));
-                        BagInfo bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocGem, long.Parse(gemids[i]));
-                        itemConf = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-                        unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConf.SellMoneyType, (bagInfo.ItemNum * itemConf.SellMoneyValue).ToString());
+                        gemIdList.Add(int.Parse(gemids[i]));
+                        itemConf = ItemConfigCategory.Instance.Get(int.Parse(gemids[i]));
+                        unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConf.SellMoneyType, (itemConf.SellMoneyValue).ToString());
                     }
-                    unit.GetComponent<BagComponent>().OnCostItemData(gemIdList, ItemLocType.ItemLocGem);
 
                     //珍宝属性价格提升
                     int sellValue = itemCof.SellMoneyValue;
-                    if (useBagInfo.HideSkillLists.Contains(68000102)) {
+                    if (useBagInfo.HideSkillLists.Contains(68000102))
+                    {
                         sellValue = itemCof.SellMoneyValue * 20;
                     }
 

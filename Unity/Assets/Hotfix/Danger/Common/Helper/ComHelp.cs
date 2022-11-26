@@ -18,6 +18,7 @@ namespace ET
 
         public const string RobotPassWord = "et@#robot";
 
+        //宠物魔法技能
         public static List<int> PetMagicSkill = new List<int>(2) { 80001003, 80002003 };
 
         //赠送钻石数量
