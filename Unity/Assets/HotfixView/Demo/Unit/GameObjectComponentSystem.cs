@@ -29,6 +29,7 @@ namespace ET
             }
             if (!string.IsNullOrEmpty(self.UnitAssetsPath))
             {
+                self.OnRevive();
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.UnitAssetsPath, self.GameObject);
                 self.GameObject = null;
             }
