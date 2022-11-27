@@ -536,7 +536,18 @@ namespace ET
 								//如果需要此处应该是这样的
 								dropMinNum = (int)(dropMinNum * (dropChance / 1000000 * dropProValue));
 								dropMaxNum = (int)(dropMaxNum * (dropChance / 1000000 * dropProValue));
-							}
+
+								if (dropMinNum < 1) {
+
+									dropMinNum = 1;
+                                }
+
+                                if (dropMaxNum < 1)
+                                {
+                                    dropMaxNum = 1;
+                                }
+
+                            }
 							//随机掉落数量
 							int itemDropNum = RandomHelper.RandomNumber(dropMinNum, dropMaxNum);
 							randomSet = itemDropNum;
