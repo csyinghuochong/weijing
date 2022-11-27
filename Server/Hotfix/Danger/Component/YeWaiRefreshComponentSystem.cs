@@ -311,10 +311,6 @@ namespace ET
 
             Vector3 form = new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ);
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneId == 2000001)
-            {
-                return;
-            }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.YeWaiScene && monsterConfig.MonsterType == MonsterTypeEnum.Boss)
             {
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
