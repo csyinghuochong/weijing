@@ -60,7 +60,6 @@ namespace ET
 
             TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
             List<Unit> allPlayer = unit.GetUnitList(UnitType.Player);
-            M2C_SyncChatInfo m2C_SyncChatInfo = teamDungeonComponent.m2C_SyncChatInfo;
             for (int i = 0; i < drops.Count; i++)
             {
                 Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);
@@ -86,6 +85,7 @@ namespace ET
                     teamDungeonComponent.AddTeamDropItem(unit, drops[i]);
                     continue;
                 }
+                M2C_SyncChatInfo m2C_SyncChatInfo = teamDungeonComponent.m2C_SyncChatInfo;
                 m2C_SyncChatInfo.ChatInfo = new ChatInfo();
                 m2C_SyncChatInfo.ChatInfo.PlayerLevel = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                 m2C_SyncChatInfo.ChatInfo.Occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
