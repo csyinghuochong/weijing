@@ -35,6 +35,11 @@ namespace ET
                     return;
                 }
 
+                if (request.TaskId == 100011)
+                {
+                    Log.Debug($"C2M_TaskCountryCommit100011:  {unit.Id}  {TimeHelper.ServerNow().ToString()}");
+                }
+
                 TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(request.TaskId);
                 unit.GetComponent<BagComponent>().OnAddItemData(taskCountryConfig.RewardItem, $"{ItemGetWay.TaskCountry}_{TimeHelper.ServerNow()}");
 

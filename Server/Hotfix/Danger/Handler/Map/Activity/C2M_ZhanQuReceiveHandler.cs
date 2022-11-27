@@ -17,8 +17,7 @@ namespace ET
                 return;
             }
 
-            //判断领取条件
-            /////////////
+            Log.Debug($"C2M_ZhanQuReceive:  {unit.Id} {request.ActivityId} {TimeHelper.ServerNow().ToString()}");
             switch (request.ActivityType)
             {
                 case 21:    //战区等级

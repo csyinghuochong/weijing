@@ -197,7 +197,7 @@ namespace ET
             self.SkillPassiveInfos.Add(skillPassiveInfo);
         }
 
-        public static void OnTrigegerPassiveSkill(this SkillPassiveComponent self, SkillPassiveTypeEnum skillPassiveTypeEnum, long targetId = 0)
+        public static void OnTrigegerPassiveSkill(this SkillPassiveComponent self, SkillPassiveTypeEnum skillPassiveTypeEnum, long targetId = 0, int skillid = 0)
         {
             List<SkillPassiveInfo> skillPassiveInfos = new List<SkillPassiveInfo>();
             for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
@@ -270,6 +270,11 @@ namespace ET
                 return;
             }
             long rigidityEndTime = 0;
+            if (skillid == skillIfo.SkillId)
+            {
+                Log.Debug($"SkillPassiveComponent: {skillIfo.SkillId}");
+                return;
+            }
             if (unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillIfo.SkillId, true) == ErrorCore.ERR_Success)
             {
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIfo.SkillId);
@@ -315,7 +320,7 @@ namespace ET
                     cmd.TargetAngle = targetAngle;
                     cmd.SkillID = skillIfo.SkillId;
                     cmd.TargetID = targetId;
-                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd,false, false);
+                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd,false, true);
                 }
 
                 skillIfo.LastTriggerTime = TimeHelper.ServerNow();

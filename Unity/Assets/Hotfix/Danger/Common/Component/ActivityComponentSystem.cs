@@ -5,7 +5,6 @@ namespace ET
     public static class ActivityComponentSystem
     {
 
-
 #if SERVER
         public static void OnZeroClockUpdate(this ActivityComponent self, int level)
         {
@@ -20,7 +19,6 @@ namespace ET
                     self.ActivityReceiveIds.RemoveAt(i);
                 }
             }
-            //self.QuTokenRecvive.Clear();
         }
 #endif
 

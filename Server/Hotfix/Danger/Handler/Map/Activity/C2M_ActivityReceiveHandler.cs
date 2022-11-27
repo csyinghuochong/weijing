@@ -16,6 +16,7 @@ namespace ET
                 reply();
                 return;
             }
+            Log.Debug($"C2M_ActivityReceive:  {unit.Id} {request.ActivityId} {TimeHelper.ServerNow().ToString()}");
             ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
             switch (request.ActivityType)
             {

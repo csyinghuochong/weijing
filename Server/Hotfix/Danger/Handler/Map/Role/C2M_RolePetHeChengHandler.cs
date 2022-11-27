@@ -15,6 +15,19 @@ namespace ET
 
 			RolePetInfo petinfo_1 = petComponent.GetPetInfo(request.PetInfoId1);
 			RolePetInfo petinfo_2 = petComponent.GetPetInfo(request.PetInfoId2);
+			if (petinfo_1 == null)
+			{
+				Log.Debug($" petinfo_1 == null {unit.Id} {request.PetInfoId1}");
+				reply();
+				await ETTask.CompletedTask;
+			}
+			if (petinfo_2 == null)
+			{
+				Log.Debug($" petinfo_1 == null {unit.Id}  {request.PetInfoId2}");
+				reply();
+				await ETTask.CompletedTask;
+			}
+
 			//错误码
 			//判定是否出战
 			//if (PetStatus_1 == 1 || PetStatus_2 == 2)
@@ -286,7 +299,7 @@ namespace ET
 			PetConfig petconf = PetConfigCategory.Instance.Get(petID);
 			petinfo_update.PetName = petconf.PetName;
 			petComponent.OnResetPoint(petinfo_update);
-			petComponent.RemovePet(petinfo_2.Id);
+			petComponent.RemovePet(petinfo_delete.Id);
 			unit.GetComponent<ChengJiuComponent>().OnPetHeCheng(petinfo_update);
 			response.DeletePetInfoId = petinfo_2.Id;
 			response.rolePetInfo = petinfo_update;

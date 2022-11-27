@@ -336,7 +336,7 @@ namespace ET
 
             //添加技能CD列表
             SkillCDItem skillCd = self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig, passive);
-            unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(weaponSkillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7, skillcmd.TargetID);
+            unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(weaponSkillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7, skillcmd.TargetID, skillcmd.SkillID);
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
 
             m2C_Skill.Error = ErrorCore.ERR_Success;

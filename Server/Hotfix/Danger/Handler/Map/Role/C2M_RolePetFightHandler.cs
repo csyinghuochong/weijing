@@ -11,6 +11,12 @@ namespace ET
 		protected override async ETTask Run(Unit unit, C2M_RolePetFight request, M2C_RolePetFight response, Action reply)
 		{
 			RolePetInfo petinfo = unit.GetComponent<PetComponent>().GetPetInfo(request.PetInfoId);
+			if (petinfo == null)
+			{
+				Log.Debug($"petinfo == null  {unit.Id} {request.PetInfoId}");
+				reply();
+				return;
+			}
 			petinfo.PetStatus = request.PetStatus;
 			unit.GetParent<UnitComponent>().Remove(petinfo.Id);
 			if (request.PetStatus == 1)
