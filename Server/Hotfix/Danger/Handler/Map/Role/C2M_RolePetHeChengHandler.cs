@@ -19,13 +19,13 @@ namespace ET
 			{
 				Log.Debug($" petinfo_1 == null {unit.Id} {request.PetInfoId1}");
 				reply();
-				await ETTask.CompletedTask;
+				return;
 			}
 			if (petinfo_2 == null)
 			{
 				Log.Debug($" petinfo_1 == null {unit.Id}  {request.PetInfoId2}");
 				reply();
-				await ETTask.CompletedTask;
+				return;
 			}
 
 			//错误码

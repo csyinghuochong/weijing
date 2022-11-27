@@ -37,7 +37,7 @@ namespace ET
                 int skillId = aiComponent.GetActSkillId();
                 long rigidityEndTime = 0;
 
-                if (unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillId, false) == ErrorCore.ERR_Success)
+                if (unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillId) == ErrorCore.ERR_Success)
                 {
                     Vector3 direction = target.Position - unit.Position;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
@@ -47,7 +47,7 @@ namespace ET
                     cmd.SkillID = skillId;
                     cmd.TargetAngle = Mathf.FloorToInt(ange);
                     cmd.TargetDistance = Vector3.Distance(unit.Position, target.Position);
-                    M2C_SkillCmd m2C_Skill =  unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true, false);
+                    M2C_SkillCmd m2C_Skill =  unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
                     rigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + TimeHelper.ServerNow();
                 }
                 if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)

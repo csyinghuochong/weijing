@@ -257,7 +257,7 @@ namespace ET
             {
                 return;
             }
-            self.OnUseSkill(skillcmd, false, false);
+            self.OnUseSkill(skillcmd, false);
         }
 
         public static void InterruptSkill(this SkillManagerComponent self, int skillId)
@@ -285,19 +285,19 @@ namespace ET
             }
         }
 
-        public static M2C_SkillCmd OnUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd, bool check, bool passive)
+        public static M2C_SkillCmd OnUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd, bool checkCd)
         {
             Unit unit = self.GetParent<Unit>();
             M2C_SkillCmd m2C_Skill = self.M2C_SkillCmd;
 
             //判断技能是否可以释放
-            int errorCode = self.IsCanUseSkill(skillcmd.SkillID, passive);
-            if (check && errorCode != ErrorCore.ERR_Success)
+            int errorCode = self.IsCanUseSkill(skillcmd.SkillID);
+            if (checkCd && errorCode != ErrorCore.ERR_Success)
             {
                 m2C_Skill.Error = errorCode;
                 return m2C_Skill;
             }
-            if (passive && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))
+            if (RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))
             {
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
@@ -335,17 +335,20 @@ namespace ET
             }
 
             //添加技能CD列表
-            SkillCDItem skillCd = self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig, passive);
-            unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(weaponSkillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7, skillcmd.TargetID, skillcmd.SkillID);
-            self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
-
+            SkillCDItem skillCd = null;
+            if (checkCd)
+            {
+                self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig);
+                unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(weaponSkillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7, skillcmd.TargetID, skillcmd.SkillID);
+                self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
+            }
             m2C_Skill.Error = ErrorCore.ERR_Success;
             m2C_Skill.CDEndTime = skillCd != null ? skillCd.CDEndTime : 0;
             m2C_Skill.PublicCDTime = self.SkillPublicCDTime;
             return m2C_Skill;
         }
 
-        public static SkillCDItem AddSkillCD(this SkillManagerComponent self, int skillid, SkillConfig weaponConfig, bool passive)
+        public static SkillCDItem AddSkillCD(this SkillManagerComponent self, int skillid, SkillConfig weaponConfig)
         {
             SkillCDItem skillCd = null;
             if (weaponConfig.SkillActType == 0)
@@ -358,7 +361,7 @@ namespace ET
             }
             else
             {
-                skillCd = self.UpdateSkillCD(skillid, weaponConfig.Id, passive);
+                skillCd = self.UpdateSkillCD(skillid, weaponConfig.Id);
             }
             return skillCd;
         }
@@ -370,7 +373,7 @@ namespace ET
             if (addSkillId!=0)
             {
                 c2M_SkillCmd.SkillID = addSkillId;
-                self.OnUseSkill(c2M_SkillCmd, false, false);
+                self.OnUseSkill(c2M_SkillCmd, false);
             }
             int[] selfSkillList = skillConfig.TriggerSelfSkillID;
             if (selfSkillList == null || selfSkillList.Length == 0 || selfSkillList[0] == 0)
@@ -390,11 +393,11 @@ namespace ET
                     continue;
                 }
                 c2M_SkillCmd.SkillID = selfSkillId;
-                self.OnUseSkill(c2M_SkillCmd, false, false);
+                self.OnUseSkill(c2M_SkillCmd, false);
             }
         }
 
-        public static SkillCDItem UpdateSkillCD(this SkillManagerComponent self, int skillId, int weaponSkill, bool passive)
+        public static SkillCDItem UpdateSkillCD(this SkillManagerComponent self, int skillId, int weaponSkill)
         {
             Unit unit = self.GetParent<Unit>();
             SkillCDItem skillcd = null;
@@ -419,14 +422,7 @@ namespace ET
                 self.SkillCDs.Add(skillId, skillcd);
             }
             skillcd.SkillID = skillId;
-            if (passive)
-            {
-                skillcd.CDPassive = TimeHelper.ServerNow() + (skillConfig.SkillCD - (int)reduceCD) * 1000;
-            }
-            else
-            {
-                skillcd.CDEndTime = TimeHelper.ServerNow() + (skillConfig.SkillCD - (int)reduceCD) * 1000;
-            }
+            skillcd.CDEndTime = TimeHelper.ServerNow() + (skillConfig.SkillCD - (int)reduceCD) * 1000;
 
             if (skillConfig.IfPublicSkillCD == 0 )
             {
@@ -473,7 +469,7 @@ namespace ET
         }
 
         //技能是否可以使用
-        public static int IsCanUseSkill(this SkillManagerComponent self, int nowSkillID, bool passive)
+        public static int IsCanUseSkill(this SkillManagerComponent self, int nowSkillID)
         {
             Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(nowSkillID);
@@ -487,11 +483,11 @@ namespace ET
             long serverNow = TimeHelper.ServerNow();
             SkillCDItem skillCDItem = null;
             self.SkillCDs.TryGetValue(nowSkillID, out skillCDItem);
-            if (skillCDItem!= null && passive && serverNow < skillCDItem.CDPassive )
+            if (skillCDItem!= null && serverNow < skillCDItem.CDPassive )
             {
                 return ErrorCore.ERR_UseSkillInCD1;
             }
-            if (skillCDItem != null && !passive && serverNow < skillCDItem.CDEndTime)
+            if (skillCDItem != null && serverNow < skillCDItem.CDEndTime)
             {
                 return ErrorCore.ERR_UseSkillInCD1;
             }

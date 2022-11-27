@@ -275,7 +275,7 @@ namespace ET
                 Log.Debug($"SkillPassiveComponent: {skillIfo.SkillId}");
                 return;
             }
-            if (unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillIfo.SkillId, true) == ErrorCore.ERR_Success)
+            if (unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillIfo.SkillId) == ErrorCore.ERR_Success)
             {
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIfo.SkillId);
                 if (!ComHelp.IfNull(skillConfig.SkillAnimation))
@@ -320,7 +320,7 @@ namespace ET
                     cmd.TargetAngle = targetAngle;
                     cmd.SkillID = skillIfo.SkillId;
                     cmd.TargetID = targetId;
-                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd,false, true);
+                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd,false);
                 }
 
                 skillIfo.LastTriggerTime = TimeHelper.ServerNow();

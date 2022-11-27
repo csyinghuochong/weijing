@@ -36,7 +36,7 @@ namespace ET
                     cmd.TargetAngle = Mathf.FloorToInt(ange);
                     cmd.TargetDistance = Vector3.Distance(unit.Position, target.Position);
                     //触发技能
-                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true, false);
+                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
                 }
 
                 await TimerComponent.Instance.WaitAsync(300, cancellationToken);

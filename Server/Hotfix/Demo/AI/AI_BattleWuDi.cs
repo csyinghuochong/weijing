@@ -26,7 +26,7 @@ namespace ET
             cmd.TargetDistance = 0;
             cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(unit.Rotation).y; ;
             //触发技能
-            unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true, false);
+            unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
             return;
         }
     }

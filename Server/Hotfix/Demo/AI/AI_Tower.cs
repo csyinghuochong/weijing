@@ -29,7 +29,7 @@ namespace ET
                 cmd.TargetAngle = int.Parse(monsterCof.AIParameter);
 
                 //触发技能
-                unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true, false);
+                unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
                 bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)
                 {

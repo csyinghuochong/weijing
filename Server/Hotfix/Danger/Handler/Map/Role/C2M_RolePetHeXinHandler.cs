@@ -19,7 +19,13 @@ namespace ET
                 PetComponent petComponent = unit.GetComponent<PetComponent>();
                 BagComponent bagComponent = unit.GetComponent<BagComponent>();
                 RolePetInfo rolePetInfo = petComponent.GetPetInfo(request.PetInfoId);
-                
+                if (rolePetInfo == null)
+                {
+                    Log.Debug($"petinfo == null  {unit.Id} {request.PetInfoId}");
+                    reply();
+                    return;
+                }
+
                 //旧的返回到背包
                 long oldItemId = rolePetInfo.PetHeXinList[request.Position];
                 if (oldItemId != 0)

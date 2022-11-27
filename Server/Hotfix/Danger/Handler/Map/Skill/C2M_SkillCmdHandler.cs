@@ -19,7 +19,7 @@ namespace ET
                 {
                     unit.Stop(-1);
                 }
-                M2C_SkillCmd m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true, false);
+                M2C_SkillCmd m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
                 if (request.ItemId > 0 && m2C_SkillCmd.Error == ErrorCore.ERR_Success)
                 {
                     unit.GetComponent<BagComponent>().OnCostItemData($"{request.ItemId};1");

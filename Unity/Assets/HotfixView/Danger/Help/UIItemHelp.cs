@@ -876,12 +876,17 @@ namespace ET
             //显示描述
             if (itemconf.ItemDes != "" && itemconf.ItemDes != "0" && itemconf.ItemDes != null)
             {
-                ShowPropertyText(itemconf.ItemDes, "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
-
                 int allLength = itemconf.ItemDes.Length;
-                int zifuLenght = GetNumbers(itemconf.ItemDes) + GetTeShu(itemconf.ItemDes);
-                int lenght = (allLength - zifuLenght) + (int)(zifuLenght * 0.5f);
-                properShowNum += Mathf.CeilToInt(lenght / 16f);
+                int addNum = Mathf.CeilToInt(allLength / 18f);
+                for (int a = 0; a < addNum; a++)
+                {
+                    int leftNum = allLength - a * 18;
+                    leftNum = Math.Min(leftNum, 18);
+                    ShowPropertyText(itemconf.ItemDes.Substring(a * 18, leftNum), "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                }
+                //int zifuLenght = GetNumbers(itemconf.ItemDes) + GetTeShu(itemconf.ItemDes);
+                //int lenght = (allLength - zifuLenght) + (int)(zifuLenght * 0.5f);
+                properShowNum += addNum;
             }
 
             //显示附魔属性

@@ -9,6 +9,10 @@ namespace ET
     {
         public static  void Broadcast(EventType.NumericChangeEvent args)
         {
+            if (args.Parent.IsDisposed)
+            {
+                return;
+            }
             MessageHelper.Broadcast(args.Parent, new M2C_UnitNumericUpdate()
             {
                 UnitId = args.Parent.Id,

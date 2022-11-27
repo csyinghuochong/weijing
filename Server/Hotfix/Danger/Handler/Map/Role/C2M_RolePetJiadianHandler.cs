@@ -11,6 +11,12 @@ namespace ET
 		{
 			//读取数据库
 			RolePetInfo petinfo = unit.GetComponent<PetComponent>().GetPetInfo(request.PetInfoId);
+			if (petinfo == null)
+			{
+				Log.Debug($"petinfo == null  {unit.Id} {request.PetInfoId}");
+				reply();
+				return;
+			}
 
 			int allValue = 0;
 			petinfo.AddPropretyValue = request.AddPropretyValue[0].ToString();

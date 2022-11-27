@@ -146,7 +146,7 @@ namespace ET
                         cmd.TargetAngle = Mathf.FloorToInt(ange);
                     }
                     cmd.TargetDistance = Vector3.Distance(this.TheUnitBelongto.Position, this.TheUnitFrom.Position);
-                    this.TheUnitFrom.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true, false);
+                    this.TheUnitFrom.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
                     break;
             }
         }
