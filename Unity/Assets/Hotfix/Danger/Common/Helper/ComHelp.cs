@@ -274,15 +274,6 @@ namespace ET
             }
         }
 
-        //开服时间
-        public static int DateDiff_Day(long time1, long time2)
-        {
-            long diff = time1 - time2;
-            DateTime start = TimeInfo.Instance.ToDateTime(time1);
-            DateTime end = TimeInfo.Instance.ToDateTime(time2);
-            return Mathf.FloorToInt(1f * diff / TimeHelper.OneDay);
-        }
-
         public static int GetWorldLv(int openserverDay)
         {
             int worldLv = 0;
@@ -310,15 +301,13 @@ namespace ET
             return 0.5f; 
         }
 
-        //月卡 神秘商店
-        public static int DateDiff_Time_2(long time1, long time2)
+        //开服时间[有问题呢]
+        public static int DateDiff_Day(long time1, long time2)
         {
             long diff = time1 - time2;
-            if (diff <= 0)
-            {
-                return 0;
-            }
-            return Mathf.CeilToInt(1f * diff / TimeHelper.OneDay);
+            DateTime start = TimeInfo.Instance.ToDateTime(time1);
+            DateTime end = TimeInfo.Instance.ToDateTime(time2);
+            return Mathf.FloorToInt(1f * diff / TimeHelper.OneDay);
         }
 
         public static int DateDiff_Time(long time1, long time2)
@@ -337,8 +326,6 @@ namespace ET
             DateTime dateTime = TimeInfo.Instance.ToDateTime(time);
             return dateTime.Year * 10000 + dateTime.Month * 100 + dateTime.Day;
         }
-
-
 
         //字符串转换整形List
         public static List<int> StringArrToIntList(string[] stringArr) {

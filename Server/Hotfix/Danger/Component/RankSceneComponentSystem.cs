@@ -65,20 +65,26 @@ namespace ET
             dBServerInfo.ServerInfo.ExChangeGold = dBServerInfo.ServerInfo.ExChangeGold != 0? dBServerInfo.ServerInfo.ExChangeGold  :  1000;  //兑换金币
             dBServerInfo.ServerInfo.OpenServerTime = dBServerInfo.ServerInfo.OpenServerTime != 0 ? dBServerInfo.ServerInfo.OpenServerTime : TimeHelper.ServerNow();
             self.DBServerInfo = dBServerInfo;
+            self.UpdateWorldLv();
             self.BroadcastWorldLv().Coroutine();
+        }
+
+        public static void UpdateWorldLv(this RankSceneComponent self)
+        {
+            //第二天并且超过12点才刷新
+            long serverNow = TimeHelper.ServerNow();
+
+            int openserverDay = ComHelp.DateDiff_Time(serverNow, self.DBServerInfo.ServerInfo.OpenServerTime);
+            int worldLv = ComHelp.GetWorldLv(openserverDay);
+            self.DBServerInfo.ServerInfo.WorldLv = worldLv;
         }
 
         public static async ETTask BroadcastWorldLv(this RankSceneComponent self)
         {           
-            //第二天并且超过12点才刷新
-            long serverNow = TimeHelper.ServerNow();
-            int openserverDay = ComHelp.DateDiff_Day(serverNow, self.DBServerInfo.ServerInfo.OpenServerTime);
-            int worldLv = ComHelp.GetWorldLv(openserverDay);
-            self.DBServerInfo.ServerInfo.WorldLv = worldLv;
-
             //延迟刷新，以免有些服务器还没启动
-            await TimerComponent.Instance.WaitAsync(10000);
+            await TimerComponent.Instance.WaitAsync(self.DomainZone() * 300);
 
+            
             long fubenCenterId = DBHelper.GetFubenCenterId(self.DomainZone());
             R2F_WorldLvUpdateRequest request    = new R2F_WorldLvUpdateRequest() {  ServerInfo = self.DBServerInfo.ServerInfo };
             F2R_WorldLvUpdateResponse response = (F2R_WorldLvUpdateResponse)await ActorMessageSenderComponent.Instance.Call(fubenCenterId, request);
@@ -86,6 +92,7 @@ namespace ET
 
         public static void OnHour12Update(this RankSceneComponent self)
         {
+            self.UpdateWorldLv();
             self.BroadcastWorldLv().Coroutine();
         }
 

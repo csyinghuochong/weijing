@@ -78,7 +78,7 @@ namespace ET
                     self.OnBattleClose();
                 }
             }
-            
+
             self.SaveDB();
         }
 
