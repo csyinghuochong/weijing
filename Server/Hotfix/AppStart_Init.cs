@@ -48,6 +48,9 @@ namespace ET
             Game.Scene.AddComponent<BuffDispatcherComponent>();
             Game.Scene.AddComponent<ShouJiChapterInfoComponent>();
 
+            UnitIdStruct unitIdStruct = new UnitIdStruct(1574444146385551505);
+            Log.Debug("xx :  " + unitIdStruct.Zone.ToString());
+
             switch (Game.Options.AppType)
             {
                 case AppType.Server:

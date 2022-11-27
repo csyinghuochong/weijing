@@ -157,6 +157,11 @@ namespace ET
 							//[创建副本Scene]
 							T2M_TeamDungeonEnterResponse createUnit = (T2M_TeamDungeonEnterResponse)await ActorMessageSenderComponent.Instance.Call(
 							mapInstanceId, new M2T_TeamDungeonEnterRequest() { UserID = unit.GetComponent<UserInfoComponent>().UserInfo.UserId });
+							if (createUnit.Error != ErrorCore.ERR_Success)
+							{
+								reply();
+								return;
+							}
 							TransferHelper.BeforeTransfer(unit);
 							await TransferHelper.Transfer(unit, createUnit.FubenInstanceId, (int)SceneTypeEnum.TeamDungeon, createUnit.FubenId, 0);
 							break;

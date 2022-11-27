@@ -22,6 +22,7 @@ namespace ET
 			
 			try
 			{		
+
 				Game.EventSystem.Add(typeof(Game).Assembly);
 				Game.EventSystem.Add(DllHelper.GetHotfixAssembly());
 				

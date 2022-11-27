@@ -5,15 +5,6 @@ namespace ET
 {
     public static class TeamSceneComponentSystem
     {
-        
-        public static void OnDungeonOff(this TeamSceneComponent self, long userId)
-        {
-            TeamInfo teamInfo = self.GetTeamInfo(userId);
-            if (teamInfo != null)
-            {
-                teamInfo.FubenInstanceId = 0;
-            }
-        }
 
         public static void  CreateTeamDungeon(this TeamSceneComponent self, TeamInfo teamInfo)
         {
