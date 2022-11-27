@@ -17,15 +17,17 @@ namespace ET
             }
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, teamInfo.TeamId))
             {
+                int first = 0;
                 if (teamInfo.FubenInstanceId == 0)
                 {
+                    first = 1;
                     scene.GetComponent<TeamSceneComponent>().CreateTeamDungeon(teamInfo);
                 }
                 response.FubenId = teamInfo.SceneId;
                 response.FubenInstanceId = teamInfo.FubenInstanceId;
                 reply();
                 await ETTask.CompletedTask;
-                Log.Debug($"TeamDungeonEnter.UserID:  {request.UserID} {teamInfo.TeamId} {teamInfo.FubenInstanceId}");
+                Log.Debug($"TeamDungeonEnter: {teamInfo.TeamId} {first} {request.UserID}  {teamInfo.FubenInstanceId}");
             }
         }
     }

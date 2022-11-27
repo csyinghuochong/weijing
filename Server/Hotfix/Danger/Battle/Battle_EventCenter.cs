@@ -9,7 +9,7 @@ namespace ET
     {
         public static  void Broadcast(EventType.NumericChangeEvent args)
         {
-            if (args.Parent.IsDisposed)
+            if (args.Parent == null || args.Parent.IsDisposed)
             {
                 return;
             }

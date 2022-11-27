@@ -50,9 +50,9 @@
 
         public override void Dispose()
         {
-            base.Dispose();
-            
             Log.Info($"scene dispose: {this.SceneType} {this.Name} {this.Id} {this.InstanceId} {this.Zone}");
+
+            base.Dispose();
         }
 
         public Scene Get(long id)

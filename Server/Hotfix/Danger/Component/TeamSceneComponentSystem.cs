@@ -115,17 +115,21 @@ namespace ET
         /// <returns></returns>
         public static void  OnUnitReturn(this TeamSceneComponent self, Scene fubnescene, long unitId)
         {
-            if (!fubnescene.GetComponent<TeamDungeonComponent>().IsHavePlayer())
+            if (fubnescene.GetComponent<TeamDungeonComponent>().IsHavePlayer())
             {
-                TeamInfo teamInfo = self.GetTeamInfo(unitId);
-                if (teamInfo != null)
-                {
-                    teamInfo.FubenUUId = 0;
-                    teamInfo.FubenInstanceId = 0;
-                }
-                TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
-                fubnescene.Dispose();
+                return;
             }
+            TeamInfo teamInfo = self.GetTeamInfo(unitId);
+            if (teamInfo == null)
+            {
+                Log.Debug($"teamInfo == null {unitId}");
+                return;
+            }
+            teamInfo.FubenUUId = 0;
+            teamInfo.FubenInstanceId = 0;
+            Log.Debug($"TeamDungeonDispose {teamInfo.TeamId}{teamInfo.FubenInstanceId}");
+            TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
+            fubnescene.Dispose();
         }
 
         /// <summary>
@@ -136,15 +140,17 @@ namespace ET
         /// <returns></returns>
         public static void  OnUnitDisconnect(this TeamSceneComponent self, Scene fubnescene, long unitId)
         {
+            TeamInfo teamInfo = self.GetTeamInfo(unitId);
             self.OnRecvUnitLeave(unitId, true).Coroutine();
-            if (!fubnescene.GetComponent<TeamDungeonComponent>().IsHavePlayer())
+            if (fubnescene.GetComponent<TeamDungeonComponent>().IsHavePlayer())
             {
-                TeamInfo teamInfo = self.GetTeamInfo(unitId);
-                if (teamInfo != null)
-                {
-                    teamInfo.FubenUUId = 0;
-                    teamInfo.FubenInstanceId = 0;
-                }
+                return;
+            }
+            if (teamInfo != null)
+            {
+                teamInfo.FubenUUId = 0;
+                teamInfo.FubenInstanceId = 0;
+                Log.Debug($"TeamDungeonDispose {teamInfo.TeamId}{teamInfo.FubenInstanceId}");
                 TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
                 fubnescene.Dispose();
             }
