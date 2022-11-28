@@ -29,8 +29,8 @@ namespace ET
         public GameObject StartSet;
         public GameObject Lab_PetQuality;
 
-        public RolePetInfo rolePetInfo;
-        public Action<RolePetInfo> ClickPetHandler;
+        public long  PetId;
+        public Action<long> ClickPetHandler;
     }
 
     [ObjectSystem]
@@ -74,53 +74,41 @@ namespace ET
 
         public static void OnClickPetItem(this UIPetListItemComponent self)
         {
-            if (self.rolePetInfo==null)
-            {
-                return;
-            }
-            self.ClickPetHandler(self.rolePetInfo);
+            self.ClickPetHandler(self.PetId);
         }
 
         public static void OnSelectUI(this UIPetListItemComponent self, RolePetInfo rolePetInfo)
         {
-            if (self.rolePetInfo == null)
-            {
-                return;
-            }
-            self.ImageXuanzhong.SetActive(self.rolePetInfo == rolePetInfo);
+            self.ImageXuanzhong.SetActive(self.PetId == rolePetInfo.Id);
         }
 
         public static void OnUpdatePetPoint(this UIPetListItemComponent self, RolePetInfo rolePetInfo)
         {
-            if (rolePetInfo == null || self.rolePetInfo == null)
+            if (rolePetInfo == null)
             {
                 return;
             }
-            if (rolePetInfo.Id != self.rolePetInfo.Id)
+            if (rolePetInfo.Id != self.PetId)
             {
                 return;
             }
-            self.rolePetInfo = rolePetInfo;
+            self.PetId = rolePetInfo.Id;
             self.Reddot.SetActive(rolePetInfo.AddPropretyNum > 0);
         }
 
-        public static void OnPetFightingSet(this UIPetListItemComponent self)
+        public static void OnPetFightingSet(this UIPetListItemComponent self,RolePetInfo rolePetInfo)
         {
-            if (self.rolePetInfo == null)
-            { 
-                return ;
-            }
-            self.Img_CanZhan.SetActive(self.rolePetInfo.PetStatus == 1);
+            self.Img_CanZhan.SetActive(self.PetId == rolePetInfo.Id);
         }
 
-        public static void SetClickHandler(this UIPetListItemComponent self, Action<RolePetInfo> action)
+        public static void SetClickHandler(this UIPetListItemComponent self, Action<long> action)
         {
             self.ClickPetHandler = action;
         }
 
         public static void OnInitData(this UIPetListItemComponent self, RolePetInfo rolePetInfo, int nextLv)
         {
-            self.rolePetInfo = rolePetInfo;
+            self.PetId = rolePetInfo.Id;
 
             self.Node_1.SetActive(rolePetInfo != null);
             self.Node_2.SetActive(rolePetInfo == null);

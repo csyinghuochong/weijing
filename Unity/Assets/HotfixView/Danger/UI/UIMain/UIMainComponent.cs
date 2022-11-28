@@ -73,9 +73,9 @@ namespace ET
         public GameObject Btn_Rank;
 
         public UI UILevelGuideMini;
-        public UI UIMainChat;
         public UI UIMailHintTip;
 
+        public UIMainChatComponent UIMainChat;
         public UIMainTaskComponent UIMainTask;
         public UIMapMiniComponent UIMapMini;
         public UIRoleHeadComponent UIRoleHead;
@@ -504,7 +504,7 @@ namespace ET
             self.GetParent<UI>().GameObject.SetActive(show);
             if (show)
             {
-                self.UIMainChat.GetComponent<UIMainChatComponent>().UpdatePosition().Coroutine();
+                self.UIMainChat.UpdatePosition().Coroutine();
             }
             else
             {
@@ -602,7 +602,7 @@ namespace ET
 
         public static void OnRecvChat(this UIMainComponent self)
         {
-            self.UIMainChat.GetComponent<UIMainChatComponent>().OnRecvChat(self.ZoneScene().GetComponent<ChatComponent>().LastChatInfo);
+            self.UIMainChat.OnRecvChat(self.ZoneScene().GetComponent<ChatComponent>().LastChatInfo).Coroutine();
         }
 
         public static void OnPetFightSet(this UIMainComponent self)
@@ -696,8 +696,7 @@ namespace ET
 
             //聊天
             GameObject MainChat = rc.Get<GameObject>("UIMainChat");
-            self.UIMainChat = self.AddChild<UI, string, GameObject>("MainChat", MainChat);
-            self.UIMainChat.AddComponent<UIMainChatComponent>();
+            self.UIMainChat = self.AddChild<UIMainChatComponent, GameObject>(MainChat);
 
             GameObject DigTreasure = rc.Get<GameObject>("UIDigTreasure");
             self.UIDigTreasureComponent = self.AddChild<UIDigTreasureComponent, GameObject>(DigTreasure);
@@ -1098,6 +1097,11 @@ namespace ET
         public static async ETTask RequestShiQu(this UIMainComponent self, List<DropInfo> ids)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (!unit.GetComponent<MoveComponent>().IsArrived())
+            {
+                self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
+            }
+            
             unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmShiQuItem);
             MapHelper.SendShiquItem(self.ZoneScene(), ids).Coroutine();
 

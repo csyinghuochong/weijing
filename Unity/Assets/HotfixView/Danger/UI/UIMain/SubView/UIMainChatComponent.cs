@@ -4,24 +4,24 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMainChatComponent : Entity, IAwake
+    public class UIMainChatComponent : Entity, IAwake<GameObject>
     {
         public GameObject ImageButton;
         public GameObject UIMainChatItem;
         public GameObject ChatUIListNode;
         public ScrollRect ScrollRect;
 
-        public List<UI> ChatUIList = new List<UI>();
         public List<ChatInfo> ChatInfoList = new List<ChatInfo>();
+        public List<UIMainChatItemComponent> ChatUIList = new List<UIMainChatItemComponent>();
     }
 
 
     [ObjectSystem]
-    public class UIMainChatComponentAwakeSystem : AwakeSystem<UIMainChatComponent>
+    public class UIMainChatComponentAwakeSystem : AwakeSystem<UIMainChatComponent, GameObject>
     {
-        public override void Awake(UIMainChatComponent self)
+        public override void Awake(UIMainChatComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.ChatUIListNode = rc.Get<GameObject>("ChatUIListNode");
             self.UIMainChatItem = rc.Get<GameObject>("UIMainChatItem");
             self.UIMainChatItem.SetActive(false);
@@ -31,9 +31,7 @@ namespace ET
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenChat(); });
             self.ScrollRect = rc.Get<GameObject>("ScrollView").GetComponent<ScrollRect>();
-
         }
-
     }
 
     public static class UIMainChatComponentSystem
@@ -43,7 +41,7 @@ namespace ET
             UIHelper.Create(self.DomainScene(), UIType.UIChat).Coroutine();
         }
 
-        public static void OnRecvChat(this UIMainChatComponent self, ChatInfo chatInfo)
+        public static async ETTask OnRecvChat(this UIMainChatComponent self, ChatInfo chatInfo)
         {
             if (self.ChatInfoList.Count >= 10)
             {
@@ -53,7 +51,7 @@ namespace ET
 
             for (int i = 0; i < self.ChatInfoList.Count; i++)
             {
-                UI ui_2 = null;
+                UIMainChatItemComponent ui_2 = null;
                 if (i < self.ChatUIList.Count)
                 {
                     ui_2 = self.ChatUIList[i];
@@ -62,14 +60,14 @@ namespace ET
                 else
                 {
                     GameObject itemSpace = GameObject.Instantiate(self.UIMainChatItem);
-                    itemSpace.SetActive(true);
                     UICommonHelper.SetParent(itemSpace, self.ChatUIListNode);
-                    ui_2 = self.AddChild<UI, string, GameObject>("chatItem_" + i.ToString(), itemSpace);
-                    ui_2.AddComponent<UIMainChatItemComponent>().SetClickHandler(() => { self.OnOpenChat();  } );
+                    itemSpace.SetActive(true);
+                    ui_2 = self.AddChild<UIMainChatItemComponent,GameObject>(itemSpace);
+                    ui_2.SetClickHandler(() => { self.OnOpenChat();  } );
                     self.ChatUIList.Add(ui_2);
                 }
 
-                ui_2.GetComponent<UIMainChatItemComponent>().OnUpdateUI(self.ChatInfoList[i]);
+                await ui_2.OnUpdateUI(self.ChatInfoList[i]);
             }
             for (int i = self.ChatInfoList.Count; i < self.ChatUIList.Count; i++)
             {
