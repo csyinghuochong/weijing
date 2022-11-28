@@ -87,7 +87,7 @@ namespace ET
             //更新价格
             self.UpdatePaiMaiShopItemPrice().Coroutine();
 
-            self.UpdateShangJiaItems();
+            //self.UpdateShangJiaItems();
         }
 
         //每天更新道具物品价格
