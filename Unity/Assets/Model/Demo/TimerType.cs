@@ -60,6 +60,7 @@
         public const int TowerOpenTimer = 1068;
         public const int JoystickTimer = 1069;
         public const int UIMainTimer = 1070;
+        public const int ShenQiMakeTimer = 1063;
         // 不能超过10000
     }
 }

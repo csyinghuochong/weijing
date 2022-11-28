@@ -26,4 +26,5 @@
 {"_t":"FuntionConfig","_id":1026,"Name":"UIMakeLearn","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1027,"Name":"UITowerDungeon","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 {"_t":"FuntionConfig","_id":1028,"Name":"UITrialDungeon","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
+{"_t":"FuntionConfig","_id":1029,"Name":"UIShenQiMake","ConditionType":[1],"ConditionParam":[1],"OpenTime":""},
 ]}
