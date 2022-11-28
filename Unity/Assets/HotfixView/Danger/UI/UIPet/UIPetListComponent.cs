@@ -498,7 +498,7 @@ namespace ET
                 return;
             }
             self.PetSkinId = 0;
-            self.LastSelectItem = rolePetItem;
+            self.LastSelectItem = self.PetComponent.GetPetInfoByID(self.LastSelectItem.Id);
             self.uIPageButton.OnSelectIndex(0);
             self.OnChangeNode(1);
             self.OnUpdatePetInfo(rolePetItem);
@@ -788,8 +788,7 @@ namespace ET
 
         public static void OnEquipPetHeXin(this UIPetListComponent self)
         {
-            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            self.LastSelectItem = petComponent.GetPetInfoByID(self.LastSelectItem.Id);
+            self.LastSelectItem = self.PetComponent.GetPetInfoByID(self.LastSelectItem.Id);
             self.UpdatePetHeXin(self.LastSelectItem);
             self.UpdateAttribute(self.LastSelectItem);
             self.PetHeXinSetComponent.SelectItemHandlder(null);
