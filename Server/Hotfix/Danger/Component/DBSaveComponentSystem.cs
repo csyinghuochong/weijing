@@ -2,7 +2,6 @@
 
 namespace ET
 {
-
     [Timer(TimerType.DBSaveTimer)]
     public class DBSaveTimer : ATimer<DBSaveComponent>
     {
