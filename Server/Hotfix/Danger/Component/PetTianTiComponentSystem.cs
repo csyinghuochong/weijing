@@ -99,6 +99,8 @@ namespace ET
                 DropHelper.DropIDToDropItem(dropId, rewardItems);
                 m2C_FubenSettlement.ReardList.AddRange(rewardItems);
                 m2C_FubenSettlement.StarInfos = new List<int> { 1, 1, 1 };
+
+                self.MainUnit.GetComponent<BagComponent>().OnAddItemData(rewardItems, $"{ItemGetWay.PetFubenReward}_{TimeHelper.ServerNow()}");
             }
             else
             {
