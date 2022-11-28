@@ -1099,7 +1099,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (!unit.GetComponent<MoveComponent>().IsArrived())
             {
-                unit.GetComponent<MoveComponent>().Stop();
+                self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
             }
             
             unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmShiQuItem);
