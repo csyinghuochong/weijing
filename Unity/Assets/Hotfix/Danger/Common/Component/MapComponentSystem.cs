@@ -49,23 +49,29 @@ namespace ET
 			Vector3 dir = (target - start).normalized;
 			Vector3 tmm = start;
 
-			while (true)
+			Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, target, list);
+
+			for (int i = 0; i < list.Count; i++)
 			{
-				tmm = tmm + (0.5f * dir);
-				Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, tmm, list);
-				if (list.Count == 0)
-				{
-					break;
-				}
-				if (list.Count > 1 && list[list.Count - 1].x != tmm.x && list[list.Count - 1].z != tmm.z)
-				{
-					break;
-				}
-				if (Vector3.Distance(tmm, target) <= 0.5f)
-				{
-					break;
-				}
+				Log.Debug("1111111:  " + list[i]);
 			}
+			//while (true)
+			//{
+			//	tmm = tmm + (0.5f * dir);
+			//	Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, tmm, list);
+			//	if (list.Count == 0)
+			//	{
+			//		break;
+			//	}
+			//	if (list.Count > 1 && list[list.Count - 1].x != tmm.x && list[list.Count - 1].z != tmm.z)
+			//	{
+			//		break;
+			//	}
+			//	if (Vector3.Distance(tmm, target) <= 0.5f)
+			//	{
+			//		break;
+			//	}
+			//}
 
 			return tmm;
 		}
@@ -75,20 +81,20 @@ namespace ET
 			using var list = ListComponent<Vector3>.Create();
 			Vector3 dir = (start - target).normalized;
 
-			while (true)
-			{
-				Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, target, list);
-				if (list.Count >= 2)
-				{
-					target = list[list.Count - 1];
-					break;
-				}
-				if (Vector3.Distance(start, target) < 0.5f)
-				{
-					break;
-				}
-				target = target + (0.5f * dir);
-			}
+			//while (true)
+			//{
+			//	Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, target, list);
+			//	if (list.Count >= 2)
+			//	{
+			//		target = list[list.Count - 1];
+			//		break;
+			//	}
+			//	if (Vector3.Distance(start, target) < 0.5f)
+			//	{
+			//		break;
+			//	}
+			//	target = target + (0.5f * dir);
+			//}
 			return target;
 		}
 

@@ -8,7 +8,6 @@ namespace ET
         //拍卖行购买道具
         protected override async ETTask Run(Unit unit, C2M_PaiMaiBuyRequest request, M2C_PaiMaiBuyResponse response, Action reply)
         {
-         
             //背包是否有位置
             if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
             {
@@ -38,9 +37,13 @@ namespace ET
                 {
                     PaiMaiItemInfo = request.PaiMaiItemInfo
                 });
+            if (r_GameStatusResponse.PaiMaiItemInfo == null)
+            {
+                reply();
+                return;
+            }
 
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (needGold * -1).ToString());
-
             //背包添加道具
             unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo, $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
 

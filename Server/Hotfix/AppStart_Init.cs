@@ -55,8 +55,9 @@ namespace ET
             {
                 case AppType.Server:
                 {
+                    //await MergeZoneHelper.QueryRecharge();
                     //await MergeZoneHelper.QueryAccount(4, 1551686987356897280);
-                    //await TimerComponent.Instance.WaitAsync(600000);
+                    await TimerComponent.Instance.WaitAsync(600000);
                     Game.Scene.AddComponent<NetInnerComponent, IPEndPoint, int>(processConfig.InnerIPPort, SessionStreamDispatcherType.SessionStreamDispatcherServerInner);
 
                     var processScenes = StartSceneConfigCategory.Instance.GetByProcess(Game.Options.Process);

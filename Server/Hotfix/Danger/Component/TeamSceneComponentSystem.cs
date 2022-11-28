@@ -125,9 +125,9 @@ namespace ET
                 Log.Debug($"teamInfo == null {unitId}");
                 return;
             }
+            Log.Debug($"TeamDungeonDispose {teamInfo.TeamId}{teamInfo.FubenInstanceId}");
             teamInfo.FubenUUId = 0;
             teamInfo.FubenInstanceId = 0;
-            Log.Debug($"TeamDungeonDispose {teamInfo.TeamId}{teamInfo.FubenInstanceId}");
             TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
             fubnescene.Dispose();
         }
@@ -148,9 +148,9 @@ namespace ET
             }
             if (teamInfo != null)
             {
+                Log.Debug($"TeamDungeonDispose {teamInfo.TeamId}{teamInfo.FubenInstanceId}");
                 teamInfo.FubenUUId = 0;
                 teamInfo.FubenInstanceId = 0;
-                Log.Debug($"TeamDungeonDispose {teamInfo.TeamId}{teamInfo.FubenInstanceId}");
                 TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
                 fubnescene.Dispose();
             }
