@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 354
+  version: 355
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -3785,6 +3785,8 @@ MonoBehaviour:
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
     path: Assets/Bundles/Icon/TiTleIcon/Img_UISetting.png
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
+    path: Assets/Bundles/Icon/TiTleIcon/Img_UIShenQiMake.png
+  - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
     path: Assets/Bundles/Icon/TiTleIcon/Img_UIShouJi.png
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
     path: Assets/Bundles/Icon/TiTleIcon/Img_UISkill.png
@@ -4144,6 +4146,8 @@ MonoBehaviour:
     path: Assets/Bundles/UI/Main/Make/UIMakeItem.prefab
   - bundle: f1f5f91068e7348da0f5b80477f0fc1f.unity3d
     path: Assets/Bundles/UI/Main/Make/UIMakeNeed.prefab
+  - bundle: 910fec8970dfeba43afef0dd53a8c3fc.unity3d
+    path: Assets/Bundles/UI/Main/Make/UIShenQiMake.prefab
   - bundle: 56461143aa075c29d7a6429b68b8d07a.unity3d
     path: Assets/Bundles/UI/Main/MakeLearn/UIMakeLearn.prefab
   - bundle: 2e8cac452c05a20b24e3500b9c46880d.unity3d
@@ -6703,6 +6707,9 @@ MonoBehaviour:
   - name: f1f5f91068e7348da0f5b80477f0fc1f.unity3d
     assets:
     - Assets/Bundles/UI/Main/Make/UIMakeNeed.prefab
+  - name: 910fec8970dfeba43afef0dd53a8c3fc.unity3d
+    assets:
+    - Assets/Bundles/UI/Main/Make/UIShenQiMake.prefab
   - name: 56461143aa075c29d7a6429b68b8d07a.unity3d
     assets:
     - Assets/Bundles/UI/Main/MakeLearn/UIMakeLearn.prefab
@@ -9592,6 +9599,7 @@ MonoBehaviour:
     - Assets/Bundles/Icon/TiTleIcon/Img_UIRole.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UIRoleXiLian.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UISetting.png
+    - Assets/Bundles/Icon/TiTleIcon/Img_UIShenQiMake.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UIShouJi.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UISkill.png
     - Assets/Bundles/Icon/TiTleIcon/Img_UIStore.png
