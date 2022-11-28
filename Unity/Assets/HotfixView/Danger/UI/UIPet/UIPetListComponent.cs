@@ -283,9 +283,10 @@ namespace ET
 
         public static void OnPetFightingSet(this UIPetListComponent self)
         {
+            RolePetInfo rolePetInfo = self.PetComponent.GetFightPet();
             for (int i = 0; i < self.PetUIList.Count; i++)
             {
-                self.PetUIList[i].GetComponent<UIPetListItemComponent>().OnPetFightingSet();
+                self.PetUIList[i].GetComponent<UIPetListItemComponent>().OnPetFightingSet(rolePetInfo);
             }
             self.OnUpdatePetInfo(self.LastSelectItem);
         }
@@ -463,7 +464,7 @@ namespace ET
                     UICommonHelper.SetParent(go, self.PetListNode);
                     ui_pet = self.AddChild<UI, string, GameObject>("PetItem_" + i, go);
                     UIPetListItemComponent uIRolePetItemComponent = ui_pet.AddComponent<UIPetListItemComponent>();
-                    uIRolePetItemComponent.SetClickHandler((RolePetInfo rolePetInfo) => { self.OnClickPetHandler(rolePetInfo); });
+                    uIRolePetItemComponent.SetClickHandler((long petId) => { self.OnClickPetHandler(petId); });
                     self.PetUIList.Add(ui_pet);
                 }
                 ui_pet.GetComponent<UIPetListItemComponent>().OnInitData(showList[i], nextLv);
@@ -491,20 +492,16 @@ namespace ET
             self.Text_PetNumber.GetComponent<Text>().text = string.Format("{0}/{1}", rolePetInfos.Count, maxNum);
         }
 
-        public static void OnClickPetHandler(this UIPetListComponent self, RolePetInfo rolePetItem)
+        public static void OnClickPetHandler(this UIPetListComponent self, long petId)
         {
-            if (rolePetItem == self.LastSelectItem)
-            {
-                return;
-            }
             self.PetSkinId = 0;
-            self.LastSelectItem = self.PetComponent.GetPetInfoByID(self.LastSelectItem.Id);
+            self.LastSelectItem = self.PetComponent.GetPetInfoByID(petId);
             self.uIPageButton.OnSelectIndex(0);
             self.OnChangeNode(1);
-            self.OnUpdatePetInfo(rolePetItem);
-            self.UpdatePetModel(rolePetItem);
-            self.UpdatePetSelected(rolePetItem);
-            self.UpdatePetHeXin(rolePetItem);
+            self.OnUpdatePetInfo(self.LastSelectItem);
+            self.UpdatePetModel(self.LastSelectItem);
+            self.UpdatePetSelected(self.LastSelectItem);
+            self.UpdatePetHeXin(self.LastSelectItem);
             //self.OnButtonPetHeXinItem(0);
         }
 
