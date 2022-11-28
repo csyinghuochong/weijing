@@ -602,7 +602,7 @@ namespace ET
 
         public static void OnRecvChat(this UIMainComponent self)
         {
-            self.UIMainChat.OnRecvChat(self.ZoneScene().GetComponent<ChatComponent>().LastChatInfo).Coroutine();
+            self.UIMainChat.OnRecvChat(self.ZoneScene().GetComponent<ChatComponent>().LastChatInfo);
         }
 
         public static void OnPetFightSet(this UIMainComponent self)

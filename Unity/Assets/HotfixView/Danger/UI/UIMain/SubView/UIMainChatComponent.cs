@@ -41,7 +41,7 @@ namespace ET
             UIHelper.Create(self.DomainScene(), UIType.UIChat).Coroutine();
         }
 
-        public static async ETTask OnRecvChat(this UIMainChatComponent self, ChatInfo chatInfo)
+        public static void  OnRecvChat(this UIMainChatComponent self, ChatInfo chatInfo)
         {
             if (self.ChatInfoList.Count >= 10)
             {
@@ -67,23 +67,25 @@ namespace ET
                     self.ChatUIList.Add(ui_2);
                 }
 
-                await ui_2.OnUpdateUI(self.ChatInfoList[i]);
+                ui_2.OnUpdateUI(self.ChatInfoList[i]);
             }
             for (int i = self.ChatInfoList.Count; i < self.ChatUIList.Count; i++)
             {
                 self.ChatUIList[i].GameObject.SetActive(false);
             }
-            self.ImageButton.SetActive(self.ChatInfoList.Count < 4);
 
             self.UpdatePosition().Coroutine();
+            self.ImageButton.SetActive(self.ChatInfoList.Count < 4);
         }
 
         public static async ETTask UpdatePosition(this UIMainChatComponent self)
         {
-            long instanceid = self.InstanceId;
-            await TimerComponent.Instance.WaitAsync(10);
-            if (self.InstanceId != instanceid)
-                return;
+            await TimerComponent.Instance.WaitAsync(100);
+            for (int i = 0; i < self.ChatUIList.Count; i++)
+            {
+                self.ChatUIList[i].UpdateHeight();
+            }
+            await TimerComponent.Instance.WaitAsync(100);
             self.ScrollRect.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
         }
     }

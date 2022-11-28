@@ -45,9 +45,22 @@ namespace ET
             self.ClickHanlder = action;
         }
 
+        public static  void UpdateHeight(this UIMainChatItemComponent self)
+        {
+            if (!self.GameObject.activeSelf)
+            {
+                return;
+            }
+            TextMeshProUGUI textMeshProUGUI = self.Lab_ChatText.GetComponent<TextMeshProUGUI>();
+            if (textMeshProUGUI.GetComponent<TextMeshProUGUI>().preferredHeight > 40)
+            {
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.GetComponent<TextMeshProUGUI>().preferredHeight);
+            }
+        }
+
         //<link="ID">my link</link>
         //<sprite=0>
-        public static async ETTask OnUpdateUI(this UIMainChatItemComponent self, ChatInfo chatInfo)
+        public static  void OnUpdateUI(this UIMainChatItemComponent self, ChatInfo chatInfo)
         {
             self.m2C_SyncChatInfo = chatInfo;
             TextMeshProUGUI textMeshProUGUI = self.Lab_ChatText.GetComponent<TextMeshProUGUI>();
@@ -62,12 +75,6 @@ namespace ET
                 //textMeshProUGUI.text = $"<color=#FFFF00>{chatInfo.PlayerName}</color>: {chatInfo.ChatMsg}";
                 textMeshProUGUI.text = $"{chatInfo.PlayerName} : {chatInfo.ChatMsg}";
             }
-            await TimerComponent.Instance.WaitFrameAsync();
-            if (textMeshProUGUI.GetComponent<TextMeshProUGUI>().preferredHeight > 40)
-            {
-                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.GetComponent<TextMeshProUGUI>().preferredHeight);
-            }
-
             self.TitleList[chatInfo.ChannelId].SetActive(true);
         }
     }
