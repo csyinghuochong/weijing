@@ -12,6 +12,12 @@ namespace ET
             long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.PaiMaiItemInfo.UserId, Component = DBHelper.DBMailInfo });
             DBMailInfo dBMainInfo = d2GGetUnit.Component as DBMailInfo;
+            if (dBMainInfo == null)
+            {
+                Log.Debug($"DBMailInfo==null {request.PaiMaiItemInfo.UserId}");
+                reply();
+                return;
+            }
 
             long mailid = IdGenerater.Instance.GenerateId();
             dBMainInfo.MailInfoList.Add(new MailInfo() { MailId = mailid, Context = "拍卖下架_" + mailid.ToString(), Title = "拍卖下架", ItemList = new List<BagInfo>() { request.PaiMaiItemInfo.BagInfo } });
