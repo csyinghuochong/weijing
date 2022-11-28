@@ -21,8 +21,13 @@ namespace ET
             }
             int number = ComHelp.GetDiamondNumber(rechargeNumber);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, number.ToString(), notice);
-            unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0, notice);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RechargeSign, 1, notice);
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            numericComponent.ApplyChange(null, NumericType.RechargeNumber, rechargeNumber, 0, notice);
+            //已经领取的不充值
+            if (numericComponent.GetAsInt(NumericType.RechargeSign) != 2)
+            {
+                numericComponent.ApplyValue(NumericType.RechargeSign, 1, notice);
+            }
         }
 
         public static async ETTask SendToAccountCenter(long accountId, long userId, int rechargeNumber )

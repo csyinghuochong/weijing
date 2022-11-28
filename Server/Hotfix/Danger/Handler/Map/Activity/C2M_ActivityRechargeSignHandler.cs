@@ -14,8 +14,12 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsInt(NumericType.RechargeSign) == 1)
             {
-                numericComponent.Set(NumericType.RechargeSign, 2);
+                numericComponent.ApplyValue(NumericType.RechargeSign, 2);
                 unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_2, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+            }
+            else
+            {
+                response.Error = ErrorCore.ERR_CanNotGet;
             }
 
             reply();

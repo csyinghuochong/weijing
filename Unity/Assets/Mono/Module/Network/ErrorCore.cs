@@ -143,7 +143,7 @@
         public const int ERR_LevelNormalNoPass = 300606;                        //普通关卡未通关
         public const int ERR_LevelChallengeNoPass = 300607;                     //挑战关卡未通关
         public const int ERR_NotFindNpc = 300608;                               //"当前场景未找到NPC"
-        public const int ERR_TaskCanNotGet = 300609;                             //任务未达到领取条件
+        public const int ERR_CanNotGet = 300609;                             //任务未达到领取条件
 
         //活动
         public const int ERR_RoleYueKaRepeat = 300701;                          //月卡重复状态

@@ -10,7 +10,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_TaskGetRequest request, M2C_TaskGetResponse response, Action reply)
         {
             TaskPro taskPro =  unit.GetComponent<TaskComponent>().OnGetTask(request.TaskId);
-            response.Error = taskPro!=null ? ErrorCore.ERR_Success : ErrorCore.ERR_TaskCanNotGet;
+            response.Error = taskPro!=null ? ErrorCore.ERR_Success : ErrorCore.ERR_CanNotGet;
             response.TaskPro  = taskPro;
             reply();
             await ETTask.CompletedTask;
