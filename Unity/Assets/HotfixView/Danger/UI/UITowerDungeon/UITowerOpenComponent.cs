@@ -85,7 +85,7 @@ namespace ET
 
         public static void RequestTowerQuit(this UITowerOpenComponent self)
         {
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("战斗为结束，是否领取奖励？"),
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("战斗未结束，是否领取奖励？"),
                 () =>
                 {
                     C2M_TowerExitRequest request = new C2M_TowerExitRequest();
@@ -114,7 +114,18 @@ namespace ET
             int numMax = 30;
 
             //难度传进来  if(towerId)
-
+            if(self.ZoneScene().GetComponent<MapComponent>().FubenDifficulty == 1)
+            {
+                numMax = 30;
+            }
+            if (self.ZoneScene().GetComponent<MapComponent>().FubenDifficulty == 2)
+            {
+                numMax = 40;
+            }
+            if (self.ZoneScene().GetComponent<MapComponent>().FubenDifficulty == 3)
+            {
+                numMax = 50;
+            }
             self.TextTip.GetComponent<Text>().text = "挑战之地：" + TowerConfigCategory.Instance.Get(towerId).CengNum + "/" + numMax;
         }
     }

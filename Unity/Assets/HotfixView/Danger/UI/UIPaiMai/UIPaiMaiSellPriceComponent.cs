@@ -145,9 +145,10 @@ namespace ET
             }
             
             self.nowPrice = self.oldPrice;
-            self.Lab_Tuijian.GetComponent<Text>().text = self.oldPrice.ToString();
-            self.Text_Price.GetComponent<Text>().text = self.oldPrice.ToString();
             self.SellNum = bagInfo.ItemNum;
+
+            self.Lab_Tuijian.GetComponent<Text>().text = self.oldPrice.ToString();
+            //self.Text_Price.GetComponent<Text>().text = (self.oldPrice * self.SellNum).ToString();
             self.Lab_SellNumber.GetComponent<Text>().text = self.SellNum.ToString();
 
 
@@ -167,7 +168,7 @@ namespace ET
                 self.priceProNum = 10;
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("如需再提高价格,请手动修改价格!"));
             }
-            self.nowPrice = (int)(self.oldPrice * (1f + 0.1f * self.priceProNum));
+            self.nowPrice = (int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum);
             self.PriceInputField.GetComponent<InputField>().text = self.nowPrice.ToString();
 
         }
@@ -180,7 +181,7 @@ namespace ET
                 self.priceProNum = -10;
             }
 
-            self.nowPrice = (int)(self.oldPrice * (1f + 0.1f * self.priceProNum));
+            self.nowPrice = (int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum);
             self.PriceInputField.GetComponent<InputField>().text = self.nowPrice.ToString();
         }
 
@@ -192,6 +193,8 @@ namespace ET
                 self.SellNum = self.BagInfo.ItemNum;
             }
             self.Lab_SellNumber.GetComponent<Text>().text = self.SellNum.ToString();
+            //调整价格
+            self.PriceInputField.GetComponent<InputField>().text = ((int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum)).ToString();
         }
 
         public static void OnCostNum(this UIPaiMaiSellPriceComponent self)
@@ -202,6 +205,8 @@ namespace ET
                 self.SellNum = 1;
             }
             self.Lab_SellNumber.GetComponent<Text>().text = self.SellNum.ToString();
+            //调整价格
+            self.PriceInputField.GetComponent<InputField>().text = ((int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum)).ToString();
         }
 
         public static void OnChange(this UIPaiMaiSellPriceComponent self, string str) {
