@@ -873,21 +873,6 @@ namespace ET
                 }
             }
 
-            //显示描述
-            if (itemconf.ItemDes != "" && itemconf.ItemDes != "0" && itemconf.ItemDes != null)
-            {
-                int allLength = itemconf.ItemDes.Length;
-                int addNum = Mathf.CeilToInt(allLength / 18f);
-                for (int a = 0; a < addNum; a++)
-                {
-                    int leftNum = allLength - a * 18;
-                    leftNum = Math.Min(leftNum, 18);
-                    ShowPropertyText(itemconf.ItemDes.Substring(a * 18, leftNum), "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
-                }
-                //int zifuLenght = GetNumbers(itemconf.ItemDes) + GetTeShu(itemconf.ItemDes);
-                //int lenght = (allLength - zifuLenght) + (int)(zifuLenght * 0.5f);
-                properShowNum += addNum;
-            }
 
             //显示附魔属性
             for (int i = 0; i < baginfo.FumoProLists.Count; i++)
@@ -909,6 +894,21 @@ namespace ET
             }
 
 
+            //显示描述
+            if (itemconf.ItemDes != "" && itemconf.ItemDes != "0" && itemconf.ItemDes != null)
+            {
+                int allLength = itemconf.ItemDes.Length;
+                int addNum = Mathf.CeilToInt(allLength / 18f);
+                for (int a = 0; a < addNum; a++)
+                {
+                    int leftNum = allLength - a * 18;
+                    leftNum = Math.Min(leftNum, 18);
+                    ShowPropertyText(itemconf.ItemDes.Substring(a * 18, leftNum), "1", Obj_EquipPropertyText, Obj_EquipBaseSetList);
+                }
+                //int zifuLenght = GetNumbers(itemconf.ItemDes) + GetTeShu(itemconf.ItemDes);
+                //int lenght = (allLength - zifuLenght) + (int)(zifuLenght * 0.5f);
+                properShowNum += addNum;
+            }
 
             return properShowNum;
         }
