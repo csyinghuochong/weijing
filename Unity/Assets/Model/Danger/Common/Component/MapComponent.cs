@@ -8,5 +8,6 @@
         public string NavMeshId;
         public long LastQuitTime = 0;
         public bool OldNavMesh = true;
+        public int FubenDifficulty = 0;
     }
 }

@@ -15,6 +15,7 @@ namespace ET
                     return ErrorCore.ERR_OperationOften;
                 }
                 mapComponent.LastQuitTime = TimeHelper.ServerNow();
+                mapComponent.FubenDifficulty = difficulty;  
                 int oldSceneType = mapComponent.SceneTypeEnum;
                 if (oldSceneType == newsceneType && newsceneType!= SceneTypeEnum.LocalDungeon)
                 {
