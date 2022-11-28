@@ -145,8 +145,10 @@ namespace ET
                     {
                         buyPro = 0.025f;
                     }
+
                     //概率购买
-                    if (RandomHelper.RandFloat01() <= buyPro) {
+                    if (RandomHelper.RandFloat01() < buyPro) {
+                        Log.Info("拍卖行系统购买 概率:" + buyPro + "出售价格:" + paiMaiItem.Price + "玩家名称:" + paiMaiItem.PlayerName);
                         MailHelp.SendPaiMaiEmail(self.DomainZone(), paiMaiItem, paiMaiItem.BagInfo.ItemNum).Coroutine();
                     }
                 }
