@@ -238,8 +238,8 @@ namespace ET
         public static void BeAttacking(this AIComponent self, Unit attack)
         {
             //0.1的概率概率转移仇恨
-            bool gaiLv = RandomHelper.RandFloat01() < 0.1f;
-            if (gaiLv)
+            //bool gaiLv = RandomHelper.RandFloat01() < 0.1f;
+            if (self.TargetID == 0)
             {
                 self.ChangeTarget(attack.Id);
             }
