@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMainChatItemComponent : Entity, IAwake
+    public class UIMainChatItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject Lab_ChatText;
         public GameObject ImageButton;
@@ -13,15 +13,16 @@ namespace ET
 
         public ChatInfo m2C_SyncChatInfo;
         public Action ClickHanlder;
+        public GameObject GameObject;
     }
 
     [ObjectSystem]
-    public class UIMainChatItemComponentAwakeSystem : AwakeSystem<UIMainChatItemComponent>
+    public class UIMainChatItemComponentAwakeSystem : AwakeSystem<UIMainChatItemComponent, GameObject>
     {
-        public override void Awake(UIMainChatItemComponent self)
+        public override void Awake(UIMainChatItemComponent self, GameObject gameObject)
         {
-
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;   
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.Lab_ChatText = rc.Get<GameObject>("Lab_ChatText");
 
             self.TitleList[0] = rc.Get<GameObject>("0");
@@ -46,7 +47,7 @@ namespace ET
 
         //<link="ID">my link</link>
         //<sprite=0>
-        public static void OnUpdateUI(this UIMainChatItemComponent self, ChatInfo chatInfo)
+        public static async ETTask OnUpdateUI(this UIMainChatItemComponent self, ChatInfo chatInfo)
         {
             self.m2C_SyncChatInfo = chatInfo;
             TextMeshProUGUI textMeshProUGUI = self.Lab_ChatText.GetComponent<TextMeshProUGUI>();
@@ -61,10 +62,10 @@ namespace ET
                 //textMeshProUGUI.text = $"<color=#FFFF00>{chatInfo.PlayerName}</color>: {chatInfo.ChatMsg}";
                 textMeshProUGUI.text = $"{chatInfo.PlayerName} : {chatInfo.ChatMsg}";
             }
-
+            await TimerComponent.Instance.WaitFrameAsync();
             if (textMeshProUGUI.GetComponent<TextMeshProUGUI>().preferredHeight > 40)
             {
-                self.GetParent<UI>().GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.GetComponent<TextMeshProUGUI>().preferredHeight);
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.GetComponent<TextMeshProUGUI>().preferredHeight);
             }
 
             self.TitleList[chatInfo.ChannelId].SetActive(true);
