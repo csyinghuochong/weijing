@@ -111,31 +111,21 @@ namespace ET
 			PetConfig itemConf2 = PetConfigCategory.Instance.Get(petID_2);
 			int fightLv_1 = itemConf1.FightLv;
 			int fightLv_2 = itemConf2.FightLv;
-			if (fightLv_1 >= fightLv_2)
-			{
-				petID = petID_1;
-			}
-			else
-			{
-				petID = petID_2;
-			}
-			Random example = new Random();
-			float number = example.Next(1, 10) * 0.1f;
-			//合成形象,30%概率合成出战等级小的形象
-			if (number <= 0.25f)
-			{
-				if (fightLv_1 >= fightLv_2)
-				{
-					petID = petID_2;
-				}
-				else
-				{
-					petID = petID_1;
-				}
-			}
 
-			//填补必带技能
-			PetConfig bidaiPet = PetConfigCategory.Instance.Get(petID);
+			float number = RandomHelper.RandFloat();
+            //合成形象,50%概率
+            petID = petID_1;
+            if (number <= 0.5f)
+			{
+                petID = petID_2;
+            }
+            else
+            {
+                petID = petID_1;
+            }
+
+            //填补必带技能
+            PetConfig bidaiPet = PetConfigCategory.Instance.Get(petID);
 			string[] baseSkillID = bidaiPet.BaseSkillID.Split(';');
 			for (int i = 0; i < baseSkillID.Length;i++) {
 				if (savePetSkillID.Contains(int.Parse(baseSkillID[i]))==false) {
@@ -360,7 +350,8 @@ namespace ET
 			{
 				zhizhiValue = maxZiZhi;
 			}
-			return zhizhiValue;
+
+            return (float)Math.Round(zhizhiValue, 2) ;
 		}
 	}
 }

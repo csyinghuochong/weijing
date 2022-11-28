@@ -789,9 +789,11 @@ namespace ET
             double BaseCri_EquipSuit = 0;
             double BaseHit_EquipSuit = 0;
             double BaseDodge_EquipSuit = 0;
-            double BaseDefSub_EquipSuit = 0;
-            double BaseAdfSub_EquipSuit = 0;
-            double BaseDamgeSubAdd_EquipSuit = 0;
+
+            //double BaseDefSub_EquipSuit = 0;
+            //double BaseAdfSub_EquipSuit = 0;
+            double BaseDamgeAdd_EquipSuit = 0;
+            double BaseDamgeSub_EquipSuit = 0;
 
             //装备套装属性
             for (int i = 0; i < equipSuitIDList.Count; i++)
@@ -833,9 +835,9 @@ namespace ET
                         BaseCri_EquipSuit += equipSuitProCof.Equip_Cri;
                         BaseHit_EquipSuit += equipSuitProCof.Equip_Hit;
                         BaseDodge_EquipSuit += equipSuitProCof.Equip_Dodge;
-                        BaseDefSub_EquipSuit += equipSuitProCof.Equip_DamgeSub;
-                        BaseAdfSub_EquipSuit += equipSuitProCof.Equip_DamgeAdd;
-                        BaseDamgeSubAdd_EquipSuit += equipSuitProCof.Equip_Hp;
+                        BaseDamgeAdd_EquipSuit += equipSuitProCof.Equip_DamgeAdd;
+                        BaseDamgeSub_EquipSuit += equipSuitProCof.Equip_DamgeSub;
+                        //BaseDamgeSubAdd_EquipSuit += equipSuitProCof.Equip_Hp;
 
                         if (equipSuitProCof.AddPropreListStr != "0")
                         {
@@ -1085,12 +1087,13 @@ namespace ET
             long BaseMinAdf = occBaseMinAdf + equipMinAdfSum + BaseMinAdf_EquipSuit;
             long BaseMaxAdf = occBaseMaxAdf + equipMaxAdfSum + BaseMaxAdf_EquipSuit;
             double BaseMoveSpeed = occBaseMoveSpeed;
-            double BaseCri = occBaseCri;
-            double BaseHit = occBaseHit;
-            double BaseDodge = occBaseDodge;
+            double BaseCri = occBaseCri + BaseCri_EquipSuit;
+            double BaseHit = occBaseHit + BaseHit_EquipSuit;
+            double BaseDodge = occBaseDodge + BaseDodge_EquipSuit;
             double BaseDefSub = occBaseDefSub;
             double BaseAdfSub = occBaseAdfSub;
-            double BaseDamgeSubAdd = occBaseDamgeSubAdd;
+            double BaseDamgeAdd = BaseDamgeAdd_EquipSuit;
+            double BaseDamgeSub = occBaseDamgeSubAdd + BaseDamgeSub_EquipSuit;
 
             //更新基础属性
             /*
@@ -1125,7 +1128,8 @@ namespace ET
             AddUpdateProDicList((int)NumericType.Base_Dodge_Base, (int)(BaseDodge * 10000), UpdateProDicList);
             AddUpdateProDicList((int)NumericType.Base_ActDamgeSubPro_Base, (int)(BaseDefSub * 10000), UpdateProDicList);
             AddUpdateProDicList((int)NumericType.Base_MageDamgeSubPro_Base, (int)(BaseAdfSub * 10000), UpdateProDicList);
-            AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Base, (int)(BaseDamgeSubAdd * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_DamgeAddPro_Base, (int)(BaseDamgeAdd * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_DamgeSubPro_Base, (int)(BaseDamgeSub * 10000), UpdateProDicList);
 
 
             //缓存一级属性

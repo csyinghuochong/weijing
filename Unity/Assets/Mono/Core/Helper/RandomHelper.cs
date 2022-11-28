@@ -204,6 +204,21 @@ namespace ET
             return a / 1000000f;
         }
 
+        //取随机值 保留两位
+        public static float RandFloatKeep2()
+        {
+            return (float)Math.Round(random.NextDouble(),2);
+        }
+
+        //取随机值 保留两位
+        public static float RandomNumberFloatKeep2(float lower, float upper)
+        {
+
+            float value = lower + ((upper - lower) * RandFloat());
+            return (float)Math.Round(value,2);
+        }
+
+
         private static int Rand(int n)
         {
             // 注意，返回值是左闭右开，所以maxValue要加1

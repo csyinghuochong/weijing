@@ -27,6 +27,16 @@ namespace ET
                 return;
             }
 
+            //判断品质
+            ItemConfig itemConfig_0 = ItemConfigCategory.Instance.Get(bagInfo_1.ItemID);
+            ItemConfig itemConfig_1 = ItemConfigCategory.Instance.Get(bagInfo_2.ItemID);
+            //紫色品质以上才可以转移
+            if (itemConfig_0.ItemQuality < 4 || itemConfig_1.ItemQuality < 4)
+            {
+                reply();
+                return;
+            }
+
             bagInfo_2.XiLianHideTeShuProLists.Clear();
             bagInfo_2.XiLianHideProLists.Clear();
             bagInfo_2.HideSkillLists.Clear();

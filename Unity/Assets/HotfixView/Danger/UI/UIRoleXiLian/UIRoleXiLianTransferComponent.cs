@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using static UnityEngine.UI.CanvasScaler;
+using System.Xml.Linq;
 
 namespace ET
 {
@@ -74,6 +76,13 @@ namespace ET
                 return;
             }
 
+
+            //紫色品质以上才可以转移
+            if (itemConfig_0.ItemQuality < 4 || itemConfig_1.ItemQuality < 4) {
+                FloatTipManager.Instance.ShowFloatTip("只有紫色及以上品质的装备才能转移！");
+                return;
+            }
+
             C2M_ItemXiLianTransferRequest request = new C2M_ItemXiLianTransferRequest()
             {
                 OperateBagID_1 = self.BagInfo_Transfer[0].BagInfoID,
@@ -84,7 +93,7 @@ namespace ET
             {
                 return;
             }
-            FloatTipManager.Instance.ShowFloatTip("洗练成功！");
+            FloatTipManager.Instance.ShowFloatTip("装备属性转移成功！");
             self.OnUpdateUI();
         }
 
@@ -148,6 +157,10 @@ namespace ET
                 ItemConfig itemconf = ItemConfigCategory.Instance.Get(itemID);
                 if (itemconf.ItemType != (int)ItemTypeEnum.Equipment || bagInfos[i].IfJianDing)
                 {
+                    continue;
+                }
+
+                if (itemconf.ItemQuality < 4) {
                     continue;
                 }
 

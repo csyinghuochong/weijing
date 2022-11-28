@@ -109,7 +109,7 @@ namespace ET
             rolePetInfo.ZiZhi_Def = RandomHelper.RandomNumber(petConfig.ZiZhi_Def_Min, petConfig.ZiZhi_Def_Max);
             rolePetInfo.ZiZhi_Adf = RandomHelper.RandomNumber(petConfig.ZiZhi_Adf_Min, petConfig.ZiZhi_Adf_Max);
             rolePetInfo.ZiZhi_ActSpeed = RandomHelper.RandomNumber(petConfig.ZiZhi_ActSpeed_Min, petConfig.ZiZhi_ActSpeed_Max);
-            rolePetInfo.ZiZhi_ChengZhang = (float)petConfig.ZiZhi_ChengZhang_Min;
+            rolePetInfo.ZiZhi_ChengZhang = RandomHelper.RandomNumberFloatKeep2((float)petConfig.ZiZhi_ChengZhang_Min, (float)petConfig.ZiZhi_ChengZhang_Max);
 
             //表示出生创建
             if (XiLianType == 1) 
