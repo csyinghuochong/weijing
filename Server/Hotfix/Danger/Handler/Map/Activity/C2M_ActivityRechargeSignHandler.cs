@@ -19,7 +19,7 @@ namespace ET
             }
             else
             {
-                response.Error = ErrorCore.ERR_CanNotGet;
+                response.Error = ErrorCore.ERR_TaskCanNotGet;
             }
 
             reply();

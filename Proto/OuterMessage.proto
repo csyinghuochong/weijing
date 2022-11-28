@@ -4111,3 +4111,11 @@ message M2C_TowerExitResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//同步技能设置
+message M2C_UpdateSkillSet // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	repeated SkillPro SkillList = 1;
+}

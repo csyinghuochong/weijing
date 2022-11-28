@@ -301,15 +301,15 @@ namespace ET
             }
             if (TimeHelper.ServerNow() < self.SkillPublicCDTime)
             {
-                return ErrorCore.ERR_UseSkillInCD2;
+                return ErrorCore.ERR_UseSkillInCD1;
             }
             if (!unit.GetComponent<StateComponent>().CanUseSkill())
             {
-                return ErrorCore.ERR_UseSkillInCD3;
+                return ErrorCore.ERR_CanNotUseSkill;
             }
             if (self.IsSkillMoveTime())
             {
-                return ErrorCore.ERR_UseSkillInCD3;
+                return ErrorCore.ERR_CanNotUseSkill;
             }
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             if (itemId > 0 && SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))

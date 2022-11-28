@@ -284,20 +284,27 @@ namespace ET
                 }
             }
         }
-
-        public static M2C_SkillCmd OnUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd, bool checkCd)
+        
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="skillcmd"></param>
+        /// <param name="zhudong">被动触发</param>
+        /// <returns></returns>
+        public static M2C_SkillCmd OnUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillcmd, bool zhudong = true)
         {
             Unit unit = self.GetParent<Unit>();
             M2C_SkillCmd m2C_Skill = self.M2C_SkillCmd;
 
             //判断技能是否可以释放
             int errorCode = self.IsCanUseSkill(skillcmd.SkillID);
-            if (checkCd && errorCode != ErrorCore.ERR_Success)
+            if (zhudong && errorCode != ErrorCore.ERR_Success)
             {
                 m2C_Skill.Error = errorCode;
                 return m2C_Skill;
             }
-            if (RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))
+            if (!zhudong && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))
             {
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
@@ -336,9 +343,9 @@ namespace ET
 
             //添加技能CD列表
             SkillCDItem skillCd = null;
-            if (checkCd)
+            if (zhudong)
             {
-                self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig);
+                skillCd = self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig);
                 unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(weaponSkillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7, skillcmd.TargetID, skillcmd.SkillID);
                 self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
             }
@@ -474,36 +481,34 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(nowSkillID);
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
-            if (unit.Type == UnitType.Monster && stateComponent.IsRigidity() && skillConfig.SkillActType == 0)
-            {
-                return ErrorCore.ERR_UseSkillInCD1;
-            }
 
             //判断技能是否再冷却中
             long serverNow = TimeHelper.ServerNow();
             SkillCDItem skillCDItem = null;
             self.SkillCDs.TryGetValue(nowSkillID, out skillCDItem);
-            if (skillCDItem!= null && serverNow < skillCDItem.CDPassive )
+            if (skillCDItem != null && serverNow < skillCDItem.CDPassive)
             {
-                return ErrorCore.ERR_UseSkillInCD1;
+                return ErrorCore.ERR_UseSkillInCD2;
             }
             if (skillCDItem != null && serverNow < skillCDItem.CDEndTime)
-            {
-                return ErrorCore.ERR_UseSkillInCD1;
-            }
-
-            //判断当前眩晕状态
-            if (!stateComponent.CanUseSkill())
-            {
-                return ErrorCore.ERR_UseSkillInCD3;
-            }
-
-            //判定是否再公共冷却时间
-            if (serverNow < self.SkillPublicCDTime  && skillConfig.SkillActType != 0)
             {
                 return ErrorCore.ERR_UseSkillInCD2;
             }
 
+            if (unit.Type == UnitType.Monster && stateComponent.IsRigidity() && skillConfig.SkillActType == 0)
+            {
+                return ErrorCore.ERR_CanNotUseSkill;
+            }
+            ////判断当前眩晕状态
+            //if (!stateComponent.CanUseSkill())
+            //{
+            //    return ErrorCore.ERR_CanNotUseSkill;
+            //}
+            ////判定是否再公共冷却时间
+            //if (serverNow < self.SkillPublicCDTime  && skillConfig.SkillActType != 0)
+            //{
+            //    return ErrorCore.ERR_UseSkillInCD2;
+            //}
             return ErrorCore.ERR_Success;
         }
         

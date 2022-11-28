@@ -42,7 +42,7 @@ namespace ET
           
             this.SkillDi = gameObject.transform.Find("SkillDi").gameObject;
             this.Btn_SkillStart = gameObject.transform.Find("Btn_SkillStart").gameObject;
-            this.Img_SkillIcon = gameObject.transform.Find("Img_SkillIcon").gameObject;
+            this.Img_SkillIcon = gameObject.transform.Find("Img_Mask/Img_SkillIcon").gameObject;
             this.Text_SkillItemNum = gameObject.transform.Find("Text_SkillItemNum").gameObject;
             this.Img_SkillCD = gameObject.transform.Find("Img_SkillCD").gameObject;
             this.Text_SkillCD = gameObject.transform.Find("Text_SkillCD").gameObject;
@@ -316,7 +316,6 @@ namespace ET
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
             }
-            UICommonHelper.SetParent(self.Img_SkillIcon, self.Img_Mask);
             self.Img_SkillIcon.SetActive(true);
             self.BackIcon.SetActive(true);
             self.Img_Mask.SetActive(true);

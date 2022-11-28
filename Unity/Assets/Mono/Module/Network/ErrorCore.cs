@@ -143,16 +143,24 @@
         public const int ERR_LevelNormalNoPass = 300606;                        //普通关卡未通关
         public const int ERR_LevelChallengeNoPass = 300607;                     //挑战关卡未通关
         public const int ERR_NotFindNpc = 300608;                               //"当前场景未找到NPC"
-        public const int ERR_CanNotGet = 300609;                             //任务未达到领取条件
+        public const int ERR_TaskCanNotGet = 300609;                             //任务未达到领取条件
 
         //活动
         public const int ERR_RoleYueKaRepeat = 300701;                          //月卡重复状态
         public const int ERR_AlreadyFinish = 300702;
 
-
-        public const int ERR_UseSkillInCD1 = 300801;    //技能在CD中
+        /// <summary>
+        /// 技能CD中
+        /// </summary>
+        public const int ERR_UseSkillInCD1 = 300801;    
+        /// <summary>
+        /// 技能公用CD
+        /// </summary>
         public const int ERR_UseSkillInCD2 = 300802;
-        public const int ERR_UseSkillInCD3 = 300803;
+        /// <summary>
+        /// 当前状态无法释放技能
+        /// </summary>
+        public const int ERR_CanNotUseSkill = 300803;
         public const int ERR_UseSkillError = 300804;
         public const int ERR_NoUseItemSkill = 300805;
 

@@ -25,9 +25,9 @@ namespace ET
             //ErrorHintList.Add(ErrorCore.ERR_AccountOrPasswordError, "账号未注册!");
             ErrorHintList.Add(ErrorCore.ERR_GoldNotEnoughError, "金币不足!");
             ErrorHintList.Add(ErrorCore.ERR_DiamondNotEnoughError, "钻石不足!");
-            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD1, "技能列表为空!");
-            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD2, "技能冷却中!");
-            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD3, "当前状态不是释放技能!");
+            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD1, "技能冷却中!");
+            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD2, "技能公共冷却中!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill, "当前状态无法释放技能!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillError, "释放技能出错!");
             ErrorHintList.Add(ErrorCore.ERR_NoUseItemSkill, "该场景不能使用药剂道具技能!");
             ErrorHintList.Add(ErrorCore.ERR_UnSafeSqlString, "非法字符串!");
@@ -70,7 +70,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_LevelNormalNoPass, "普通关卡未通关");
             ErrorHintList.Add(ErrorCore.ERR_LevelChallengeNoPass, "挑战关卡未通关");
             ErrorHintList.Add(ErrorCore.ERR_NotFindNpc, "任务点不在此地图，请根据指示前往其他地图。");
-            ErrorHintList.Add(ErrorCore.ERR_CanNotGet, "未达到领取条件");
+            ErrorHintList.Add(ErrorCore.ERR_TaskCanNotGet, "未达到领取条件");
             
             ErrorHintList.Add(ErrorCore.ERR_Pet_Hint_1, "宠物星级出错");
             ErrorHintList.Add(ErrorCore.ERR_Pet_UpStar, "宠物星级失败");

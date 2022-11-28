@@ -49,31 +49,25 @@ namespace ET
 			Vector3 dir = (target - start).normalized;
 			Vector3 tmm = start;
 
-			Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, target, list);
+            while (true)
+            {
+                tmm = tmm + (0.5f * dir);
+                Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, tmm, list);
+                if (list.Count == 0)
+                {
+                    break;
+                }
+                if (list.Count > 1 && list[list.Count - 1].x != tmm.x && list[list.Count - 1].z != tmm.z)
+                {
+                    break;
+                }
+                if (Vector3.Distance(tmm, target) <= 0.5f)
+                {
+                    break;
+                }
+            }
 
-			for (int i = 0; i < list.Count; i++)
-			{
-				Log.Debug("1111111:  " + list[i]);
-			}
-			//while (true)
-			//{
-			//	tmm = tmm + (0.5f * dir);
-			//	Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, tmm, list);
-			//	if (list.Count == 0)
-			//	{
-			//		break;
-			//	}
-			//	if (list.Count > 1 && list[list.Count - 1].x != tmm.x && list[list.Count - 1].z != tmm.z)
-			//	{
-			//		break;
-			//	}
-			//	if (Vector3.Distance(tmm, target) <= 0.5f)
-			//	{
-			//		break;
-			//	}
-			//}
-
-			return tmm;
+            return tmm;
 		}
 
 		public static Vector3 GetCanReachPath(this MapComponent self, Vector3 start, Vector3 target)
