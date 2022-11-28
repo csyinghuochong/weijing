@@ -495,20 +495,26 @@ namespace ET
                 return ErrorCore.ERR_UseSkillInCD2;
             }
 
-            if (unit.Type == UnitType.Monster && stateComponent.IsRigidity() && skillConfig.SkillActType == 0)
+            if (unit.Type == UnitType.Monster)
             {
-                return ErrorCore.ERR_CanNotUseSkill;
+                if (stateComponent.IsRigidity() && skillConfig.SkillActType == 0)
+                {
+                    return ErrorCore.ERR_CanNotUseSkill;
+                }
             }
-            ////判断当前眩晕状态
-            //if (!stateComponent.CanUseSkill())
-            //{
-            //    return ErrorCore.ERR_CanNotUseSkill;
-            //}
-            ////判定是否再公共冷却时间
-            //if (serverNow < self.SkillPublicCDTime  && skillConfig.SkillActType != 0)
-            //{
-            //    return ErrorCore.ERR_UseSkillInCD2;
-            //}
+            if (unit.Type != UnitType.Player)
+            {
+                //判断当前眩晕状态
+                if (!stateComponent.CanUseSkill())
+                {
+                    return ErrorCore.ERR_CanNotUseSkill;
+                }
+                //判定是否再公共冷却时间
+                if (serverNow < self.SkillPublicCDTime && skillConfig.SkillActType != 0)
+                {
+                    return ErrorCore.ERR_UseSkillInCD2;
+                }
+            }
             return ErrorCore.ERR_Success;
         }
         
