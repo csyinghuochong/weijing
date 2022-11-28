@@ -1097,6 +1097,11 @@ namespace ET
         public static async ETTask RequestShiQu(this UIMainComponent self, List<DropInfo> ids)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (!unit.GetComponent<MoveComponent>().IsArrived())
+            {
+                unit.GetComponent<MoveComponent>().Stop();
+            }
+            
             unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmShiQuItem);
             MapHelper.SendShiquItem(self.ZoneScene(), ids).Coroutine();
 

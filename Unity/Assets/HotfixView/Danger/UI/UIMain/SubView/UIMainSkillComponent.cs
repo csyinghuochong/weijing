@@ -81,8 +81,6 @@ namespace ET
                 skillgrid.SetSkillCancelHandler((bool val) => { self.ShowCancelButton(val); });
                 self.UISkillGirdList.Add(skillgrid);
             }
-
-
         }
     }
 
