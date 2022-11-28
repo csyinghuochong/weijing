@@ -111,7 +111,11 @@ namespace ET
             TimerComponent.Instance.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.TowerOpenTimer, self);
 
-            self.TextTip.GetComponent<Text>().text = "挑战之地：" + TowerConfigCategory.Instance.Get(towerId).CengNum + "/" + "30";
+            int numMax = 30;
+
+            //难度传进来  if(towerId)
+
+            self.TextTip.GetComponent<Text>().text = "挑战之地：" + TowerConfigCategory.Instance.Get(towerId).CengNum + "/" + numMax;
         }
     }
 }
