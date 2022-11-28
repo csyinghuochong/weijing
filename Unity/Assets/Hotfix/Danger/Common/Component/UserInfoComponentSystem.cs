@@ -187,6 +187,7 @@ namespace ET
             self.UserInfo.DayFubenTimes.Clear();
             self.UserInfo.ChouKaRewardIds.Clear();
             self.UserInfo.MysteryItems.Clear();
+            self.LastLoginTime = TimeHelper.ServerNow();
         }
 
         public static UserInfo GetUserInfo(this UserInfoComponent self)

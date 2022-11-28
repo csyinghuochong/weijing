@@ -118,10 +118,6 @@ namespace ET
                 $"{  TimeHelper.DateTimeNow().ToString()}   离线";
             ComHelp.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
-
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
-            unit.GetComponent<UserInfoComponent>().LastLoginTime = TimeHelper.ServerNow();
             self.UpdateCacheDB();
         }
 
