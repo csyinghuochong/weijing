@@ -76,7 +76,7 @@ namespace ET
                         string[] itemPar = itemCof.ItemUsePar.Split(';');
                         if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.RechargeNumber) < long.Parse(itemPar[0]))
                         {
-                            response.Error = ErrorCore.ERR_DiamondNotEnoughError;
+                            response.Error = ErrorCore.ERR_NoPayValueError;
                             reply();
                             return;
                         }

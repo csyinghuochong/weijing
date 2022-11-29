@@ -112,9 +112,11 @@ namespace ET
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.RolePetEgg.ItemId);
             string[] itemUseinfo = itemConfig.ItemUsePar.Split('@');
 
+            int costValue = ComHelp.ReturnPetOpenTimeDiamond(self.RolePetEgg.ItemId, self.RolePetEgg.EndTime);
+
             //int needCost = int.Parse(GlobalValueConfigCategory.Instance.Get(31).Value);
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "开启宠物蛋",
-                $"开启需要花费 {itemUseinfo[1]}钻石",
+                $"开启需要花费 {costValue}钻石",
                 () => 
                 {
                     self.OnButtonGet().Coroutine();

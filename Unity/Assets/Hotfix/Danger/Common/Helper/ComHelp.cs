@@ -1036,6 +1036,27 @@ namespace ET
                 || sceneTypeEnum == SceneTypeEnum.TrialDungeon;
         }
 
+
+        //根据时间蛋计算剩余消耗钻石
+        public static int ReturnPetOpenTimeDiamond(int itemID,long nowTime) {
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemID);
+            string[] itemUseinfo = itemConfig.ItemUsePar.Split('@');
+            float costValue = float.Parse(itemUseinfo[1]);
+
+            long timeNow = nowTime - TimeHelper.ServerNow();
+
+            float proValue = (float)timeNow / 86400000f;
+
+            int renturnInt = (int)(proValue * costValue);
+
+            if (renturnInt < 10) {
+                renturnInt = 10;
+            }
+
+            return renturnInt;
+        }
+
         /// <summary>
         /// 根据出生日期，计算精确的年龄
         /// </summary>

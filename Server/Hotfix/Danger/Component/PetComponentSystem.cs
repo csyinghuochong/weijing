@@ -415,6 +415,26 @@ namespace ET
                     }
                 }
             }
+
+            //宠物技能
+            for (int i = 0; i < rolePetInfo.PetSkill.Count; i++) {
+                
+                SkillConfig skillCof = SkillConfigCategory.Instance.Get(rolePetInfo.PetSkill[0]);
+                string[] skillStrList = skillCof.GameObjectParameter.Split(';');
+                for (int y = 0; y < skillStrList.Length; y++) {
+                    try
+                    {
+                        string[] attriItem = skillStrList[y].Split(',');
+                        int typeId = int.Parse(attriItem[0]);
+                        Function_Fight.AddUpdateProDicList(typeId, NumericHelp.GetNumericValueType(typeId) == 2 ? (long)(10000 * float.Parse(attriItem[1])) : long.Parse(attriItem[1]), attriDic);
+                    }
+                    catch (Exception ex)
+                    {
+                        Log.Info($"attri Eption： {skillStrList[i]} {ex.ToString()}");
+                    }
+                }
+            }
+
             foreach (var item in attriDic)
             {
                 int numericType = item.Key;

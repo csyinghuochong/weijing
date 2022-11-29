@@ -648,7 +648,7 @@ namespace ET
             NumericAttribute numericAttribute = UIItemHelp.AttributeToName[numericType];
             if (NumericHelp.GetNumericValueType(numericType) == 2)
             {
-                float fvalue = (self.PetComponent.GetAttributeValue(rolePetInfo, numericType)) * 0.001f;
+                float fvalue = (self.PetComponent.GetAttributeValue(rolePetInfo, numericType)) * 0.01f;
                 //string svalue = string.Format("{0:F}", fvalue);
                 string svalue = fvalue.ToString("0.#####");
                 return $"{UIItemHelp.GetAttributeName(numericType)} {svalue}%";
