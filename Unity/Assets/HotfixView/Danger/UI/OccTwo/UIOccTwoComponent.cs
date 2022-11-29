@@ -212,7 +212,7 @@ namespace ET
             self.OccTwoId = occTwoId;
             OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(occTwoId);
             self.Text_ZhiYe_4.GetComponent<Text>().text = occupationTwoConfig.OccupationName;
-            UICommonHelper.DestoryChild( self.SkillContainer );
+            UICommonHelper.DestoryChild(self.SkillContainer);
 
             self.Image_WuQi_Zhuan.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite( ABAtlasTypes.OtherIcon, $"HuJia_{occupationTwoConfig.ArmorMastery}" );
             self.Image_WuQi_Type.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, $"WuQi_{occupationTwoConfig.WeaponType}");

@@ -135,7 +135,7 @@ namespace ET
 
 			int zizhiNow_Hp = (int)Pet_HeCheng_ZiZhi(zizhiNow_Hp_1, zizhiNow_Hp_2, 3000);
 			int zizhiNow_Act = (int)Pet_HeCheng_ZiZhi(zizhiNow_Act_1, zizhiNow_Act_2, 1600);
-			int zizhiNow_MageAct = (int)Pet_HeCheng_ZiZhi(zizhiNow_MageAct_1, zizhiNow_MageAct_2, 1800);
+			int zizhiNow_MageAct = (int)Pet_HeCheng_ZiZhi(zizhiNow_MageAct_1, zizhiNow_MageAct_2, 1600);
 			int zizhiNow_Def = (int)Pet_HeCheng_ZiZhi(zizhiNow_Def_1, zizhiNow_Def_2, 1600);
 			int zizhiNow_Adf = (int)Pet_HeCheng_ZiZhi(zizhiNow_Adf_1, zizhiNow_Adf_2, 1600);
 			int zizhiNow_ActSpeed = (int)Pet_HeCheng_ZiZhi(zizhiNow_ActSpeed_1, zizhiNow_ActSpeed_2, 3000);
@@ -277,10 +277,10 @@ namespace ET
 			petinfo_update.AddPropretyNum = addPropertyNum;
 			petinfo_update.AddPropretyValue = addPropertyValue;
 			petinfo_update.PetPingFen = 0;
-			petinfo_update.ZiZhi_Hp = zizhiNow_Hp + 500;
-			petinfo_update.ZiZhi_Act = zizhiNow_Act + 500;
-			petinfo_update.ZiZhi_MageAct = zizhiNow_MageAct + 500;
-			petinfo_update.ZiZhi_Def = zizhiNow_Def + 500;
+			petinfo_update.ZiZhi_Hp = zizhiNow_Hp;
+			petinfo_update.ZiZhi_Act = zizhiNow_Act;
+			petinfo_update.ZiZhi_MageAct = zizhiNow_MageAct;
+			petinfo_update.ZiZhi_Def = zizhiNow_Def;
 			petinfo_update.ZiZhi_Adf = zizhiNow_Adf;
 			petinfo_update.ZiZhi_ActSpeed = zizhiNow_ActSpeed;
 			//petinfo_update.ZiZhi_ChengZhang = Mathf.FloorToInt(zizhiNow_ChengZhang * GetMultiple());

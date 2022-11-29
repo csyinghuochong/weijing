@@ -210,11 +210,13 @@ namespace ET
                     break;
             }
 
-            float addHitPro = numericComponentAttack.GetAsFloat(NumericType.Now_Hit) + LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_Hit), defendUnitLv);
-            float addDodgePro = numericComponentDefend.GetAsFloat(NumericType.Now_Dodge) + LvProChange(numericComponentDefend.GetAsLong(NumericType.Now_Dodge), attackUnitLv);
+            //float addHitPro = numericComponentAttack.GetAsFloat(NumericType.Now_Hit) + LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_Hit), defendUnitLv);
+            //float addDodgePro = numericComponentDefend.GetAsFloat(NumericType.Now_Dodge) + LvProChange(numericComponentDefend.GetAsLong(NumericType.Now_Dodge), attackUnitLv);
+            float addHitPro = numericComponentAttack.GetAsFloat(NumericType.Now_Hit);
+            float addDodgePro = numericComponentDefend.GetAsFloat(NumericType.Now_Dodge);
 
             //等级差命中
-            float addHitLvPro = (attackUnitLv - defendUnitLv) * 0.02f;
+            float addHitLvPro = (attackUnitLv - defendUnitLv) * 0.03f;
             if (addHitLvPro <= 0) {
                 addHitLvPro = 0;
             }
@@ -223,7 +225,7 @@ namespace ET
             }
 
             //等级差闪避
-            float addDodgeLvPro = (attackUnitLv - defendUnitLv) * 0.02f;
+            float addDodgeLvPro = (attackUnitLv - defendUnitLv) * 0.03f;
             if (addDodgeLvPro <= 0)
             {
                 addDodgeLvPro = 0;
@@ -468,8 +470,11 @@ namespace ET
                 if (damge > 0)
                 {
                     //等级换算最终属性
-                    float addCriPro = numericComponentAttack.GetAsFloat(NumericType.Now_Cri) + LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_CriLv), defendUnitLv);
-                    float addResPro = numericComponentDefend.GetAsFloat(NumericType.Now_Res) + LvProChange(numericComponentDefend.GetAsLong(NumericType.Now_Res), attackUnitLv);
+                    //float addCriPro = numericComponentAttack.GetAsFloat(NumericType.Now_Cri) + LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_CriLv), defendUnitLv);
+                    //float addResPro = numericComponentDefend.GetAsFloat(NumericType.Now_Res) + LvProChange(numericComponentDefend.GetAsLong(NumericType.Now_Res), attackUnitLv);
+                    float addCriPro = numericComponentAttack.GetAsFloat(NumericType.Now_Cri);
+                    float addResPro = numericComponentDefend.GetAsFloat(NumericType.Now_Res);
+
 
                     float CriPro = addCriPro - addResPro;
 
@@ -663,6 +668,8 @@ namespace ET
             int PointTiZhi = numericComponent.GetAsInt(NumericType.PointTiZhi);
             int PointNaiLi = numericComponent.GetAsInt(NumericType.PointNaiLi);
             int PointMinJie = numericComponent.GetAsInt(NumericType.PointMinJie);
+
+            //每升一级属性+1所以这里有加成
             PointLiLiang += roleLv;
             PointZhiLi += roleLv;
             PointTiZhi += roleLv;
@@ -671,7 +678,7 @@ namespace ET
 
             OccupationConfig mOccupationConfig = OccupationConfigCategory.Instance.Get(1);
 
-            long occBaseHp = mOccupationConfig.BaseHp + roleLv * mOccupationConfig.LvUpHp + PointTiZhi * 40 ;
+            long occBaseHp = mOccupationConfig.BaseHp + roleLv * mOccupationConfig.LvUpHp + PointTiZhi * 90 ;
             long occBaseMinAct = mOccupationConfig.BaseMinAct + roleLv * mOccupationConfig.LvUpMinAct + PointLiLiang * 4 + PointMinJie * 6;
             long occBaseMaxAct = mOccupationConfig.BaseMaxAct + roleLv * mOccupationConfig.LvUpMaxAct + PointLiLiang * 4 + PointMinJie * 6;
             long occBaseMinMage = mOccupationConfig.LvUpMinMagAct + roleLv * mOccupationConfig.LvUpMinMagAct + PointZhiLi * 8;
@@ -1184,6 +1191,22 @@ namespace ET
                 numericComponent.Set(key, setValue, notice);
             }
 
+
+            //二次计算暴击等属性
+            long criLv = numericComponent.GetAsLong(NumericType.Now_CriLv);
+            long hitLv = numericComponent.GetAsLong(NumericType.Now_HitLv);
+            long dodgeLv = numericComponent.GetAsLong(NumericType.Now_DodgeLv);
+            long resLv = numericComponent.GetAsLong(NumericType.Now_ResLv);
+            long skillAddLv = 0;
+
+            //属性点加成
+            criLv = criLv + PointLiLiang * 5;
+            resLv = resLv + PointTiZhi * 5;
+            dodgeLv = dodgeLv + PointNaiLi * 5;
+            hitLv = hitLv + PointMinJie * 5;
+
+            skillAddLv = skillAddLv + PointZhiLi * 5;
+
             //战力计算
             long ShiLi_Act  = 0;
             float ShiLi_ActPro = 0f;
@@ -1191,6 +1214,7 @@ namespace ET
             float ShiLi_DefPro = 0f;
             long ShiLi_Hp = 0;
             float ShiLi_HpPro = 0f;
+            long proLvAdd = criLv + hitLv + dodgeLv + resLv + skillAddLv;
 
             //攻击部分
             foreach (var Item in NumericHelp.ZhanLi_Act) {
@@ -1264,10 +1288,30 @@ namespace ET
                 ShiLi_HpPro += (int)((float)numericComponent.ReturnGetFightNumfloat(Item.Key) * Item.Value);
             }
 
-            int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.25f) * (1 + ShiLi_HpPro));
+            int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 25 + (int)proLvAdd;
 
             //更新战力
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(  UserDataType.Combat, zhanliValue.ToString(), notice);
+
+
+            //暴击等级等属性二次换算,因为不能写在前面,要不升级会降战力
+
+            float criProAdd = LvProChange(criLv, roleLv);
+            float hitProAdd = LvProChange(hitLv, roleLv);
+            float dogeProAdd = LvProChange(dodgeLv, roleLv);
+            float resProAdd = LvProChange(resLv, roleLv);
+
+            float skillDamgeProAdd = LvProChange(skillAddLv, roleLv);
+            
+            AddUpdateProDicList((int)NumericType.Now_Cri, (int)(criProAdd * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Now_Hit, (int)(hitProAdd * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Now_Dodge, (int)(dogeProAdd * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Now_Res, (int)(resProAdd * 10000), UpdateProDicList);
+
+            AddUpdateProDicList((int)NumericType.Now_MageDamgeAddPro, (int)(skillDamgeProAdd * 10000), UpdateProDicList);
+
+            
+
         }
     }
 

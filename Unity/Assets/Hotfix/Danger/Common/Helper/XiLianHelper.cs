@@ -514,10 +514,16 @@ namespace ET
                 for (int i = 0; i < HideSkillList.Count; i++)
                 {
                     skillName = skillName + $" {SkillConfigCategory.Instance.Get(HideSkillList[i]).SkillName}";
+
+                    string name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
+                    string noticeContent = $"恭喜玩家<color=#B6FF00>{name}</color>洗练出隐藏技能:<color=#FFA313>{skillName}</color>";
+
+                    if (xilianType == 0)
+                    {
+                        noticeContent = $"恭喜玩家<color=#B6FF00>{name}</color>在拾取装备时,意外在装备上发现了隐藏技能:<color=#FFA313>{skillName}</color>";
+                    }
+                    ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
                 }
-                string name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
-                string noticeContent = $"恭喜玩家<color=#B6FF00>{name}</color>洗练出隐藏技能:<color=#FFA313>{skillName}</color>";
-                ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
             }
 
             ItemXiLianResult itemXiLianResult = new ItemXiLianResult();
