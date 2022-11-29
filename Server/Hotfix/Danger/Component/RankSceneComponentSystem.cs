@@ -489,7 +489,7 @@ namespace ET
             for (int i = 0; i < rankingInfos.Count; i++)
             {
                 bool havePetUId = false;
-                for (int k = 0; i < rankingInfos[i].PetUId.Count; k++)
+                for (int k = 0; k < rankingInfos[i].PetUId.Count; k++)
                 {
                     if (rankingInfos[i].PetUId[k] > 0)
                     {
