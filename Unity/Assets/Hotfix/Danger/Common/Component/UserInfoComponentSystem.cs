@@ -127,6 +127,7 @@ namespace ET
                         self.RecoverPiLao(tiliTimes * 30, false);
                     }
 
+                    Log.Debug($"OnZeroClockUpdate false : {unit.Id}");
                     self.OnZeroClockUpdate(false);
                     unit.GetComponent<TaskComponent>().OnZeroClockUpdate(false);
                     unit.GetComponent<EnergyComponent>().OnResetEnergyInfo();

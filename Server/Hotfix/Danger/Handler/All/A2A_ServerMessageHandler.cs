@@ -14,6 +14,12 @@ namespace ET
             {
                 switch (scene.SceneType)
                 {
+                    case SceneType.Team:
+                        if (request.MessageType == NoticeType.TeamDungeon)
+                        {
+                            scene.GetComponent<TeamSceneComponent>().OnRecvUnitLeave(long.Parse(request.MessageValue), true).Coroutine();
+                        }
+                        break;
                     case SceneType.Account:
                         scene.GetComponent<FangChenMiComponent>().StopServer = true;
                         break;

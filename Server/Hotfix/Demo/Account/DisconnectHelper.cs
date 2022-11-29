@@ -51,6 +51,9 @@ namespace ET
                         case PlayerState.Gate:
                             break;
                         case PlayerState.Game:
+                            //通知组队服
+                            await ServerMessageHelper.SendServerMessage(player.TeamServerID, NoticeType.TeamDungeon, player.UnitId.ToString());
+
                             //通知聊天服下线聊天Unit
                             var chat2GRequestExitChat = (Chat2G_RequestExitChat)await MessageHelper.CallActor(player.ChatInfoInstanceId, new G2Chat_RequestExitChat());
 

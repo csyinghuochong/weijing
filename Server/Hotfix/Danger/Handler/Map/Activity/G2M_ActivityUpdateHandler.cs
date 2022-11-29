@@ -11,6 +11,7 @@ namespace ET
             switch (message.ActivityType)
             {
                 case 0:
+                    Log.Debug($"OnZeroClockUpdate true: {unit.Id}");
                     UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
                     unit.GetComponent<EnergyComponent>().OnZeroClockUpdate();
                     unit.GetComponent<UserInfoComponent>().OnHourUpdate(0, true);

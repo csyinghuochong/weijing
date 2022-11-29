@@ -51,6 +51,7 @@ namespace ET
             {
                 return;
             }
+
             TextMeshProUGUI textMeshProUGUI = self.Lab_ChatText.GetComponent<TextMeshProUGUI>();
             if (textMeshProUGUI.GetComponent<TextMeshProUGUI>().preferredHeight > 40)
             {
