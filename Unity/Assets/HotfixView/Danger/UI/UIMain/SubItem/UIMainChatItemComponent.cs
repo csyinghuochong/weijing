@@ -57,6 +57,8 @@ namespace ET
             {
                 self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(400, textMeshProUGUI.GetComponent<TextMeshProUGUI>().preferredHeight);
             }
+            self.GameObject.SetActive(false);
+            self.GameObject.SetActive(true);
         }
 
         //<link="ID">my link</link>
