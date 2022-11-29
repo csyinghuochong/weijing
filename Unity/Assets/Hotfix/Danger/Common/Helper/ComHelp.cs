@@ -997,10 +997,6 @@ namespace ET
 
         public static bool IsShowPaiMai(int itemType, int subType)
         {
-            if (itemType == 3) {
-                return true;
-            }
-
             if (itemType == 1)
             {
                 if (subType == 101 || subType == 114 || subType == 121 || subType == 15 || subType == 102)
@@ -1017,6 +1013,10 @@ namespace ET
                 }
             }
 
+            if (itemType == 3 || itemType == 4)
+            {
+                return true;
+            }
             return  false;
         }
 

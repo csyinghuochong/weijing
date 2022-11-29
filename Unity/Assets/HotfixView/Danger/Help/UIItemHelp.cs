@@ -154,6 +154,8 @@ namespace ET
            {  11,  GameSettingLanguge.LoadLocalization("项链") }
         };
 
+
+
         public struct EquipWeiZhiInfo
         {
             public string Name;
@@ -220,6 +222,12 @@ namespace ET
              {  106,  GameSettingLanguge.LoadLocalization("道具盒子") },
              */
              
+        };
+
+        //材料
+        public static Dictionary<int, string> ItemSubType4Name = new Dictionary<int, string>()
+        {
+             {  0,  GameSettingLanguge.LoadLocalization("全部") },
         };
 
         public static string XiLianWeiZhiTip(int hideId)

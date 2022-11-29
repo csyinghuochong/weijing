@@ -92,76 +92,20 @@ namespace ET
             typeButtonInfo.TypeName = UIItemHelp.ItemTypeName[ItemTypeEnum.Equipment];
 
             typeButtonInfos.Add(typeButtonInfo);
-            
-            /*
-            List<ItemConfig> itemConfigs = ItemConfigCategory.Instance.GetAll().Values.ToList();
 
-            for (int i = 0; i < itemConfigs.Count; i++)
+
+            typeButtonInfo = new TypeButtonInfo();
+            foreach (int key in UIItemHelp.ItemSubType4Name.Keys)
             {
-                int itemType = itemConfigs[i].ItemType;
-                int itemSubType = itemConfigs[i].ItemSubType;
-                if (0 == itemType || itemSubType == 0)
-                {
-                    continue;
-                }
-
-                TypeButtonInfo typeButtonInfo = null;
-                for (int k  = 0; k < typeButtonInfos.Count; k++)
-                {
-                    if (typeButtonInfos[k].TypeId == itemType)
-                    {
-                        typeButtonInfo = typeButtonInfos[k];
-                        break;                    
-                    }
-                }
-
-                if (typeButtonInfo == null)
-                {
-                    typeButtonInfo = new TypeButtonInfo();
-                    typeButtonInfo.TypeId = itemType;
-                    typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
-                    typeButtonInfo.TypeName = ItemViewHelp.ItemTypeName[(ItemTypeEnum)itemType];
-
-                    typeButtonInfos.Add(typeButtonInfo);
-                }
-
-                TypeButtonItem typeButtonItem;
-                typeButtonItem.SubTypeId = -1;
-                for (int  m = 0; m < typeButtonInfo.typeButtonItems.Count; m++)
-                {
-                    if (typeButtonInfo.typeButtonItems[m].SubTypeId == itemSubType)
-                    {
-                        typeButtonItem = typeButtonInfo.typeButtonItems[m];
-                        break;
-                    }
-                }
-
-                if (typeButtonItem.SubTypeId != -1)
-                {
-                    continue;
-                }
-
-                switch (itemType)
-                {
-                    //消耗品
-                    case 1:
-                        typeButtonInfo.typeButtonItems.Add( new TypeButtonItem() { SubTypeId = itemSubType, ItemName = ItemViewHelp.ItemSubType1Name[itemSubType] } );
-                        break;
-                    //材料
-                    case 2:
-                        typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = itemSubType, ItemName = ItemViewHelp.ItemSubType2Name[itemSubType] });
-                        break;
-                    //装备
-                    case 3:
-                        typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = itemSubType, ItemName = ItemViewHelp.ItemSubType3Name[itemSubType] });
-                        break;
-                    case 4:
-                        break;
-                    default:
-                        break;
-                }
+                typeButtonInfo.typeButtonItems.Add(new TypeButtonItem() { SubTypeId = key, ItemName = UIItemHelp.ItemSubType4Name[key] });
             }
-            */
+
+            typeButtonInfo.TypeId = 4;
+            //typeButtonInfo.typeButtonItems = new List<TypeButtonItem>();
+            typeButtonInfo.TypeName = UIItemHelp.ItemTypeName[ItemTypeEnum.Gemstone];
+
+            typeButtonInfos.Add(typeButtonInfo);
+
             return typeButtonInfos;
         }
 
