@@ -568,7 +568,13 @@ namespace ET
       
         //暴击等级等属性转换成实际暴击率的方法
         private float LvProChange(long value, int lv) {
-            float proValue = value / (5000 + lv * 250);
+            float proValue = (float)value / (float)(7500 + lv * 250);
+            if (proValue < 0) {
+                proValue = 0;
+            }
+            if (proValue > 0.75f) {
+                proValue = 0.75f;
+            }
             return proValue;
         }
 
@@ -1295,6 +1301,8 @@ namespace ET
 
 
             //暴击等级等属性二次换算,因为不能写在前面,要不升级会降战力
+            //缓存列表
+            Dictionary<int, long> ProLvDicList = new Dictionary<int, long>();
 
             float criProAdd = LvProChange(criLv, roleLv);
             float hitProAdd = LvProChange(hitLv, roleLv);
@@ -1303,14 +1311,20 @@ namespace ET
 
             float skillDamgeProAdd = LvProChange(skillAddLv, roleLv);
             
-            AddUpdateProDicList((int)NumericType.Now_Cri, (int)(criProAdd * 10000), UpdateProDicList);
-            AddUpdateProDicList((int)NumericType.Now_Hit, (int)(hitProAdd * 10000), UpdateProDicList);
-            AddUpdateProDicList((int)NumericType.Now_Dodge, (int)(dogeProAdd * 10000), UpdateProDicList);
-            AddUpdateProDicList((int)NumericType.Now_Res, (int)(resProAdd * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Now_Cri, (int)(criProAdd * 10000), ProLvDicList);
+            AddUpdateProDicList((int)NumericType.Now_Hit, (int)(hitProAdd * 10000), ProLvDicList);
+            AddUpdateProDicList((int)NumericType.Now_Dodge, (int)(dogeProAdd * 10000), ProLvDicList);
+            AddUpdateProDicList((int)NumericType.Now_Res, (int)(resProAdd * 10000), ProLvDicList);
 
-            AddUpdateProDicList((int)NumericType.Now_MageDamgeAddPro, (int)(skillDamgeProAdd * 10000), UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Now_MageDamgeAddPro, (int)(skillDamgeProAdd * 10000), ProLvDicList);
 
-            
+            //更新属性
+            foreach (int key in ProLvDicList.Keys)
+            {
+                long setValue = numericComponent.GetAsLong(key) + ProLvDicList[key];
+                //Log.Info("key = " + key + ":" + setValue);
+                numericComponent.Set(key, setValue, notice);
+            }
 
         }
     }
