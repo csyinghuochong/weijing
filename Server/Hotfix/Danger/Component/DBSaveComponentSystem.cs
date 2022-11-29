@@ -146,12 +146,15 @@ namespace ET
               $"{  TimeHelper.DateTimeNow().ToString()}  移除";
             ComHelp.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
-            unit.GetComponent<EnergyComponent>().OnDisconnect();
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+            if (sceneTypeEnum == SceneTypeEnum.MainCityScene)
+            {
+                unit.RecordPostion(sceneTypeEnum, ComHelp.MainCityID());
+            }
+            unit.GetComponent<EnergyComponent>().OnDisconnect();
             self.UpdateCacheDB();
 
             long unitId = unit.Id;
-            //通知其他服务器
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             long userId = userInfo.UserId;
             Scene scene = unit.DomainScene();
@@ -162,7 +165,6 @@ namespace ET
             {
                 scene.GetComponent<UnitComponent>().Remove(fightId.Id);
             }
-           
             if (ComHelp.IsSingleFuben(sceneTypeEnum))
             {
                 //动态删除副本
