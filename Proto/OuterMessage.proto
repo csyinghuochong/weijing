@@ -4119,3 +4119,20 @@ message M2C_UpdateSkillSet // IActorMessage
 	int64 ActorId = 93;
 	repeated SkillPro SkillList = 1;
 }
+
+//ResponseType C2C_SendBroadcastResponse
+message C2C_SendBroadcastRequest // IChatActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	
+	ChatInfo ChatInfo = 1;
+	int32 ZoneType = 2;    //0 全部区服 1当前服
+}
+
+message C2C_SendBroadcastResponse // IChatActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

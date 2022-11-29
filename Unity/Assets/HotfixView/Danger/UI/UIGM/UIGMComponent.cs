@@ -15,7 +15,8 @@ namespace ET
         public GameObject InputField_EmailTitle;
         public GameObject InputField_EmailContent;
         public GameObject InputField_EmailItem;
-        public GameObject Button_Broadcast;
+        public GameObject Button_Broadcast_1;
+        public GameObject Button_Broadcast_2;
         public GameObject Button_Email;
 
         public GameObject Button_Close;
@@ -40,7 +41,11 @@ namespace ET
             self.InputField_ReLoadValue = rc.Get<GameObject>("InputField_ReLoadValue");
             self.InputField_ReLoadType = rc.Get<GameObject>("InputField_ReLoadType");
 
-            self.Button_Broadcast = rc.Get<GameObject>("Button_Broadcast");
+            self.Button_Broadcast_1 = rc.Get<GameObject>("Button_Broadcast_1");
+            self.Button_Broadcast_1.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Broadcast_1(0).Coroutine(); });
+            self.Button_Broadcast_2 = rc.Get<GameObject>("Button_Broadcast_2");
+            self.Button_Broadcast_2.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Broadcast_1(1).Coroutine(); });
+
             self.Button_Email = rc.Get<GameObject>("Button_Email");
             self.Button_Email.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Email().Coroutine(); });
 
@@ -56,6 +61,19 @@ namespace ET
 
     public static class UIGMComponentSystem
     {
+
+        public static async ETTask OnButton_Broadcast_1(this UIGMComponent self,int boradType)
+        {
+            if (self.InputField_Broadcast.GetComponent<InputField>().text.Length == 0)
+            {
+                return;
+            }
+
+            C2C_SendBroadcastRequest c2S_SendChatRequest = new C2C_SendBroadcastRequest() { };
+            c2S_SendChatRequest.ChatInfo = new ChatInfo();
+            c2S_SendChatRequest.ChatInfo.ChatMsg = self.InputField_Broadcast.GetComponent<InputField>().text;
+            C2C_SendBroadcastResponse sendChatResponse = (C2C_SendBroadcastResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2S_SendChatRequest);
+        }
 
         public static async ETTask OnButton_Email(this UIGMComponent self)
         {
@@ -92,7 +110,6 @@ namespace ET
             NetKcpComponent netKcpComponent = zoneScene.GetComponent<NetKcpComponent>();
             Init init = GameObject.Find("Global").GetComponent<Init>();
             string ip = init.OueNetMode ? "39.96.194.143:20105" : "127.0.0.1:20105";
-
             if (self.InputField_ReLoadType.GetComponent<InputField>().text.Length == 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("请输入热重载类型！");

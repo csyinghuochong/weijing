@@ -15,7 +15,7 @@ namespace ET
                 switch (scene.SceneType)
                 {
                     case SceneType.Team:
-                        if (request.MessageType == NoticeType.TeamDungeon)
+                        if (request.MessageType == NoticeType.TeamExit)
                         {
                             scene.GetComponent<TeamSceneComponent>().OnRecvUnitLeave(long.Parse(request.MessageValue), true).Coroutine();
                         }

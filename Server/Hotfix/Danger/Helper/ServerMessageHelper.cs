@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Linq;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -21,5 +22,24 @@ namespace ET
                });
         }
 
+
+        public static List<int> GetAllZone()
+        {
+            List<int> zoneList = new List<int> { };
+            List<StartZoneConfig> listprogress = StartZoneConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < listprogress.Count; i++)
+            {
+                if (listprogress[i].Id >= ComHelp.MaxZone)
+                {
+                    continue;
+                }
+                if (!StartSceneConfigCategory.Instance.Gates.ContainsKey(listprogress[i].Id))
+                {
+                    continue;
+                }
+                zoneList.Add(listprogress[i].Id);
+            }
+            return zoneList;
+        }
     }
 }

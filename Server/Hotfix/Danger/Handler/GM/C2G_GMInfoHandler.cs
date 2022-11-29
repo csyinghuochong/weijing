@@ -17,14 +17,10 @@ namespace ET
             {
                 int totalNumber = 0;
 
-                List<StartZoneConfig> listprogress = StartZoneConfigCategory.Instance.GetAll().Values.ToList();
-                for (int i = 0; i < listprogress.Count; i++)
+                List<int> zones = ServerMessageHelper.GetAllZone();
+                for (int i = 0; i < zones.Count; i++)
                 {
-                    if (listprogress[i].Id > ComHelp.MaxZone)
-                    {
-                        continue;
-                    }
-                    long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(listprogress[i].Id, "Gate1").InstanceId;
+                    long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(zones[i], "Gate1").InstanceId;
                     G2G_UnitListResponse g2M_UpdateUnitResponse = (G2G_UnitListResponse)await ActorMessageSenderComponent.Instance.Call
                         (gateServerId, new G2G_UnitListRequest() { });
                     totalNumber+= g2M_UpdateUnitResponse.OnLineNumber;

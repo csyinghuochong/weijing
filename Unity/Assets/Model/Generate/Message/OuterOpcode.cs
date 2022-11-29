@@ -478,5 +478,8 @@ namespace ET
 		 public const ushort M2C_TowerFightBeginResponse = 10475;
 		 public const ushort C2M_TowerExitRequest = 10476;
 		 public const ushort M2C_TowerExitResponse = 10477;
+		 public const ushort M2C_UpdateSkillSet = 10478;
+		 public const ushort C2C_SendBroadcastRequest = 10479;
+		 public const ushort C2C_SendBroadcastResponse = 10480;
 	}
 }

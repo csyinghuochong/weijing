@@ -24,6 +24,7 @@ namespace ET
         public const int BattleClose = 5;
         public const int TeamDungeon = 6;
         public const int YeWaiBoss = 7;
+        public const int TeamExit = 8;
     }
 
 }

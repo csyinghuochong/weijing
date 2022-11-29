@@ -40,7 +40,7 @@ namespace ET
                     {
                         zoneList.Add(int.Parse(zoneid));
                     }
-
+                    
                     for (int i = 0; i < zoneList.Count; i++)
                     {
                         long chatServerId = StartSceneConfigCategory.Instance.GetBySceneName(zoneList[i], "Chat").InstanceId;

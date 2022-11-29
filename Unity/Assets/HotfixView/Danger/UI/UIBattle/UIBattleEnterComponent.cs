@@ -2,6 +2,7 @@
 
 namespace ET
 {
+
     public class UIBattleEnterComponent : Entity, IAwake
     {
         public GameObject ButtonEnter;
