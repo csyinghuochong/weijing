@@ -18,25 +18,29 @@ namespace ET
 			}
 
 			PaiMaiSellConfig paiMaiSellConfig = PaiMaiSellConfigCategory.Instance.Get(request.PaiMaiId);
+
 			//测试增加
 			M2P_PaiMaiShopRequest m2P_PaiMaiShopRequest = new M2P_PaiMaiShopRequest()
 			{
 				ItemID = paiMaiSellConfig.ItemID,
 				BuyNum = request.BuyNum,
+				//Price = r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price,
 			};
 
 			long paimaiServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.PaiMai)).InstanceId;
 			P2M_PaiMaiShopResponse r_PaiMaiShopResponse = (P2M_PaiMaiShopResponse)await ActorMessageSenderComponent.Instance.Call(paimaiServerId, m2P_PaiMaiShopRequest);
 
+
 			long costGold = r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price * request.BuyNum;
 			//消耗金币
 			if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold >= costGold)
 			{
+				//发送金币
 				unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (costGold * -1).ToString());
 
 				//添加道具
 				List<RewardItem> rewardItems = new List<RewardItem>();
-				rewardItems.Add(new RewardItem() { ItemID = paiMaiSellConfig.ItemID, ItemNum = request.BuyNum });
+				rewardItems.Add(new RewardItem(){ItemID = paiMaiSellConfig.ItemID, ItemNum = request.BuyNum});
 				unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
 			}
 			else

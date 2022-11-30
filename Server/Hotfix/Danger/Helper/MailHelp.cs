@@ -6,8 +6,9 @@
         public static async ETTask SendPaiMaiEmail(int zone, PaiMaiItemInfo paiMaiItemInfo,int costNum)
         {
             MailInfo mailInfo = new MailInfo();
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
             mailInfo.Status = 0;
-            mailInfo.Context = "你拍卖行出售的道具已经被其他玩家购买。";
+            mailInfo.Context = "你拍卖行出售的道具:" + itemCof.ItemName + ",已经被其他玩家购买" + costNum + "个。";
             mailInfo.Title = "拍卖行邮件";
             mailInfo.MailId = IdGenerater.Instance.GenerateId();
             BagInfo reward = new BagInfo();

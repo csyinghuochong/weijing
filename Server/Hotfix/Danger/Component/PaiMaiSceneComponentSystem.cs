@@ -188,9 +188,9 @@ namespace ET
             }
         }
 
-        public static PaiMaiItemInfo GetPaiMaiItemInfo(this PaiMaiSceneComponent self, int itemID)
+        public static List<PaiMaiItemInfo> GetPaiMaiItemInfo(this PaiMaiSceneComponent self, int itemID,int singPrice)
         {
-            PaiMaiItemInfo paiMaiItemInfo = null;
+            List<PaiMaiItemInfo> paiMaiItemInfo = new List<PaiMaiItemInfo>();
             List<PaiMaiItemInfo> paiMaiItemInfos = self.dBPaiMainInfo.PaiMaiItemInfos;
             for (int i = 0; i < paiMaiItemInfos.Count; i++)
             {
@@ -198,9 +198,11 @@ namespace ET
                 {
                     continue;
                 }
-                if (paiMaiItemInfo == null || paiMaiItemInfos[i].Price < paiMaiItemInfo.Price)
+
+                int sellSingPri = (int)((float)paiMaiItemInfos[i].Price / paiMaiItemInfos[i].BagInfo.ItemNum);
+                if (sellSingPri < (int)((float)singPrice * 0.8f))
                 {
-                    paiMaiItemInfo = paiMaiItemInfos[i];
+                    paiMaiItemInfo.Add(paiMaiItemInfos[i]);
                 }
             }
             return paiMaiItemInfo;
