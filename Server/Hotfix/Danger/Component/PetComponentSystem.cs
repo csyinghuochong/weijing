@@ -417,9 +417,13 @@ namespace ET
             }
 
             //宠物技能
-            for (int i = 0; i < rolePetInfo.PetSkill.Count; i++) 
+            for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)
             {
                 SkillConfig skillCof = SkillConfigCategory.Instance.Get(rolePetInfo.PetSkill[0]);
+                if (ComHelp.IfNull(skillCof.GameObjectParameter))
+                {
+                    continue;
+                }
                 string[] skillStrList = skillCof.GameObjectParameter.Split(';');
                 if (skillStrList.Length == 0)
                 {
