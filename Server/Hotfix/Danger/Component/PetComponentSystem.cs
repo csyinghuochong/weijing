@@ -424,11 +424,18 @@ namespace ET
                 {
                     continue;
                 }
+
+                //判定是否为附加属性
+                if (skillCof.SkillType != 5) {
+                    continue;
+                }
+
                 string[] skillStrList = skillCof.GameObjectParameter.Split(';');
                 if (skillStrList.Length == 0)
                 {
                     continue;
                 }
+
                 for (int y = 0; y < skillStrList.Length; y++)
                 {
                     try
