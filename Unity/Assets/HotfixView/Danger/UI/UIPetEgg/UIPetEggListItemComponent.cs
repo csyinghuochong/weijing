@@ -113,8 +113,6 @@ namespace ET
             string[] itemUseinfo = itemConfig.ItemUsePar.Split('@');
 
             int costValue = ComHelp.ReturnPetOpenTimeDiamond(self.RolePetEgg.ItemId, self.RolePetEgg.EndTime);
-
-            //int needCost = int.Parse(GlobalValueConfigCategory.Instance.Get(31).Value);
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "开启宠物蛋",
                 $"开启需要花费 {costValue}钻石",
                 () => 
@@ -157,12 +155,11 @@ namespace ET
             {
                 return;
             }
+
             int needCost = 0;
-            ItemConfig itemConf = ItemConfigCategory.Instance.Get(rolePetEgg.ItemId);
-            string[] petinfos = itemConf.ItemUsePar.Split('@');
             if (TimeHelper.ServerNow() < rolePetEgg.EndTime)
             {
-                needCost = int.Parse(petinfos[1]);
+                needCost = ComHelp.ReturnPetOpenTimeDiamond(self.RolePetEgg.ItemId, self.RolePetEgg.EndTime);
             }
             if (userInfo.Diamond < needCost)
             {

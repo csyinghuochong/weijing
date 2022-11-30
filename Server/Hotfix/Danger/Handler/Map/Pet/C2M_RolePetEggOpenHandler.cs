@@ -16,17 +16,10 @@ namespace ET
                 return;
             }
 
-            int needCost = 0;
             ItemConfig itemConf = ItemConfigCategory.Instance.Get(rolePetEgg.ItemId);
             string[] petinfos = itemConf.ItemUsePar.Split('@');
-            /*
-            if (TimeHelper.ServerNow() < rolePetEgg.EndTime)
-            {
-                needCost = int.Parse(petinfos[1]);
-            }
-            */
 
-            needCost = ComHelp.ReturnPetOpenTimeDiamond(rolePetEgg.ItemId,rolePetEgg.EndTime);
+            int needCost = ComHelp.ReturnPetOpenTimeDiamond(rolePetEgg.ItemId,rolePetEgg.EndTime);
 
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             if (userInfo.Diamond < needCost)

@@ -183,7 +183,12 @@ namespace ET
 
         public override void OnFinished()
         {
+            this.EffectState = BuffState.Waiting;
+            this.EffectEndTime = 0;
+            this.PassTime = 0;
             this.EffectData = null;
+            this.TheUnitBelongto = null;
+            this.EffectPath = String.Empty; 
             GameObjectPoolComponent.Instance.RecoverGameObject(this.EffectPath, this.EffectObj);
         }
 

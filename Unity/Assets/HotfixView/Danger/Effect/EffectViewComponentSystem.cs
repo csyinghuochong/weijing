@@ -46,7 +46,6 @@ namespace ET
             for (int i = self.Effects.Count - 1; i >= 0; i--)
             {
                 AEffectHandler aEffectHandler = self.Effects[i];
-                aEffectHandler.Clear();
                 aEffectHandler.OnFinished();
                 aEffectHandler.Dispose();
                 self.Effects.RemoveAt(i);
@@ -110,7 +109,6 @@ namespace ET
                 AEffectHandler aEffectHandler = self.Effects[i];
                 if (aEffectHandler.EffectState == BuffState.Finished)
                 {
-                    aEffectHandler.Clear();
                     aEffectHandler.OnFinished();
                     aEffectHandler.Dispose();
                     self.Effects.RemoveAt(i);

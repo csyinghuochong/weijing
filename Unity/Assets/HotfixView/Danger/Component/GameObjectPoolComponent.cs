@@ -135,7 +135,7 @@ namespace ET
 
         public static void RecoverGameObject(this GameObjectPoolComponent self, string path, GameObject gameObject)
         {
-            if (gameObject == null)
+            if (string.IsNullOrEmpty(path) || gameObject == null)
             {
                 return;
             }

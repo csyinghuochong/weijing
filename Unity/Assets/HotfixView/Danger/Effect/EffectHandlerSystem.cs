@@ -26,15 +26,6 @@ namespace ET
             }
         }
 
-        public static void Clear(this AEffectHandler self)
-        {
-            self.EffectState = BuffState.Waiting;
-            self.EffectEndTime = 0;
-            self.PassTime = 0;
-            self.EffectData = null;
-            self.TheUnitBelongto = null;
-        }
-
         /// <summary>
         /// 实时更新当前特效位置
         /// </summary>
