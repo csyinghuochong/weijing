@@ -49,10 +49,12 @@ namespace ET
             if (!ComHelp.IfNull(rankPetInfo.TeamName))
             {
                 self.Lab_TeamName.GetComponent<Text>().text = rankPetInfo.TeamName;
+                self.Lab_Owner.GetComponent<Text>().text = "";
             }
             else
             {
                 self.Lab_TeamName.GetComponent<Text>().text = rankPetInfo.PlayerName + "的队伍";
+                self.Lab_Owner.GetComponent<Text>().text = rankPetInfo.PlayerName;
             }
 
             int number = 0;

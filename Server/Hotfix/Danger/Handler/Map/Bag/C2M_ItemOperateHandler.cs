@@ -98,7 +98,7 @@ namespace ET
                             bagIsFull = true;
                         }
                     }
-                    if (itemCof.ItemSubType == 110 && unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum != (int)SceneTypeEnum.YeWaiScene)
+                    if (itemCof.ItemSubType == 110 && unit.DomainScene().GetComponent<MapComponent>().SceneId != 2000001)
                     {
                         response.Error = ErrorCore.ERR_ItemOnlyUseMiJing;
                         reply();
