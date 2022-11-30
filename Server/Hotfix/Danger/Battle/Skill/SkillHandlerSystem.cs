@@ -145,6 +145,8 @@ namespace ET
         //触发战斗伤害(0:范围内,不对自己造成伤害 1:只对自己造成影响)
         public static void ExcuteSkillAction(this SkillHandler self)
         {
+
+
             List<Unit> entities = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().GetAll();
             for (int i = entities.Count - 1; i >= 0; i--)
             {

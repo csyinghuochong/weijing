@@ -32,7 +32,7 @@ namespace ET
 
             self.closeButton.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseButton(); });
             self.cancelButton.GetComponent<Button>().onClick.AddListener(() => { self.OnCancelButton(); });
-            self.confirButton.GetComponent<Button>().onClick.AddListener(() => { self.OnConfirButton(); });
+            ButtonHelp.AddListenerEx(self.confirButton, self.OnConfirButton);
 
             self.UIType = UIType.UIPopupview;
         }

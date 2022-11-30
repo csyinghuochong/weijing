@@ -139,7 +139,8 @@ namespace ET
 
         public static void OnPetFightSet(this UIPetComponent self)
         {
-            self.UIPageView.UISubViewList[(int)PetPageEnum.PetList].GetComponent<UIPetListComponent>().OnPetFightingSet();
+            UI ui = self.UIPageView.UISubViewList[(int)PetPageEnum.PetList];
+            ui?.GetComponent<UIPetListComponent>().OnPetFightingSet();
         }
 
         public static async ETTask<int> RequestPetHeXinSelect(this UIPetComponent self)

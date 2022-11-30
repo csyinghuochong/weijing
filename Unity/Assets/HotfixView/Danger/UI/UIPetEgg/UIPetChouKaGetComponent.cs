@@ -85,14 +85,14 @@ namespace ET
             self.Text_Tip.GetComponent<Text>().text = $"{petConfig.PetName}";
             self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, true);
             //self.UIPetSkinIcon.SetActive(showSkin);
-            self.UpdateSkillList(rolePetInfo).Coroutine();
+            self.UpdateSkillList(rolePetInfo);
             self.UpdateAttribute(rolePetInfo);
         }
 
-        public static async ETTask UpdateSkillList(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo)
+        public static  void UpdateSkillList(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)
             {

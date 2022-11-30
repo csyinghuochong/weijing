@@ -99,7 +99,8 @@
             //Game.EventSystem.Remove(unitId);
             // 删除Mailbox,让发给Unit的ActorLocation消息重发
             unit.RemoveComponent<MailBoxComponent>();
-            unit.GetComponent<HeroDataComponent>().BeforeTransfer();
+            unit.GetComponent<SkillPassiveComponent>()?.Stop();
+            unit.GetComponent<HeroDataComponent>()?.BeforeTransfer();
             unit.GetComponent<BuffManagerComponent>().BeforeTransfer();
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
             if (fightId != null)

@@ -286,7 +286,7 @@ namespace ET
             RolePetInfo rolePetInfo = self.PetComponent.GetFightPet();
             for (int i = 0; i < self.PetUIList.Count; i++)
             {
-                self.PetUIList[i].GetComponent<UIPetListItemComponent>().OnPetFightingSet(rolePetInfo);
+                self.PetUIList[i].GetComponent<UIPetListItemComponent>()?.OnPetFightingSet(rolePetInfo);
             }
             self.OnUpdatePetInfo(self.LastSelectItem);
         }
