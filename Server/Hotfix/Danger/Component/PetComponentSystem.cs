@@ -449,6 +449,10 @@ namespace ET
                 int numericType = item.Key;
                 int nowValue = (int)numericType / 100;
                 int attriIndex = rolePetInfo.Ks.IndexOf(nowValue);
+                if (attriIndex >= rolePetInfo.Vs.Count)
+                {
+                    continue;
+                }
                 rolePetInfo.Vs[attriIndex] += item.Value;
             }
 
