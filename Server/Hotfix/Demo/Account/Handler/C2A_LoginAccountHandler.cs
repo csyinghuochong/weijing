@@ -23,7 +23,7 @@ namespace ET
                 session.Disconnect().Coroutine();
                 return;
             }
-            if (session.DomainScene().GetComponent<FangChenMiComponent>().StopServer)
+            if (session.DomainScene().GetComponent<FangChenMiComponent>().StopServer && !GMHelp.GmAccount.Contains(request.AccountName))
             {
                 response.Error = ErrorCore.ERR_StopServer;
                 reply();

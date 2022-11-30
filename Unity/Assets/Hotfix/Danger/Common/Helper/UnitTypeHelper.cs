@@ -31,14 +31,10 @@
 
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene)
             {
-                //允许pk地图
                 if (SceneConfigCategory.Instance.Get(mapComponent.SceneId).IfPVP == 1)
-                {
+                { 
+                    //允许pk地图
                     return !self.IsSameTeam(attack) && !self.IsMasterOrPet(attack, petComponent);
-                }
-                else
-                {
-                    return false;
                 }
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Battle)

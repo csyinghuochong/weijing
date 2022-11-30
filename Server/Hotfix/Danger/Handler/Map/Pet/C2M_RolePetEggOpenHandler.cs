@@ -45,6 +45,10 @@ namespace ET
                 weights.Add(int.Parse(petitem[1]));
             }
             int index = RandomHelper.RandomByWeight(weights);
+            if (petlists.Count <= index)
+            {
+                index = 0;
+            }
             response.PetInfo =  unit.GetComponent<PetComponent>().OnAddPet(petlists[index]);
             rolePetEgg.ItemId = 0;
             rolePetEgg.EndTime = 0;

@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 355
+  version: 358
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -10333,9 +10333,6 @@ MonoBehaviour:
   - name: cf540911c2b1cea3f1683234663d596e.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/Magictree/Animation/Magictree@Die.fbx
-  - name: ff2603ddc656cdfaad5750ddcf44f141.unity3d
-    assets:
-    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/Magictree/Animation/Magictree.controller
   - name: bb01f99efe7f8a29f38e1212179bc4cf.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/Magictree/FBX/Magictree.fbx
@@ -11688,9 +11685,6 @@ MonoBehaviour:
   - name: d86d5235f17e35a72aab759d9ae7aab2.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_374.png
-  - name: f84a4b70a5ef20340fe490da479313d6.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_264.png
   - name: 9d2aba5cb4468e9c2f9c9282975b732d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Icon/UI_Icon_18.png
@@ -14591,9 +14585,9 @@ MonoBehaviour:
   - name: a7def754df4b766e3d5a4a2ea8e9b9bd.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A9.FBX
-  - name: aa8396eeea0652f432c67256c0215116.unity3d
+  - name: d4c38cc847e05a87e68b6eccf96433e2.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_A10.prefab
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_C1.prefab
   - name: 999f57779fd2632641fba4ec355b7a28.unity3d
     assets:
     - Assets/Res/Models/fake shadow.prefab
@@ -14633,19 +14627,19 @@ MonoBehaviour:
   - name: 31f696e5865b7f79c09bfc5d134fde59.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_E2.prefab
-  - name: 6329596746b7d76b2c5df64b1ce74b20.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_Hua/Plant_A_1.jpg
   - name: 6c2c357f0c19162ee8126d5396cd50b6.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_grass
       2.mat
-  - name: cc063d9078c4282b224a16d385128534.unity3d
+  - name: 6329596746b7d76b2c5df64b1ce74b20.unity3d
     assets:
-    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Back.bmp
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_Hua/Plant_A_1.jpg
   - name: 391e064692678b9772821eb893752a20.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_B2.FBX
+  - name: cc063d9078c4282b224a16d385128534.unity3d
+    assets:
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Back.bmp
   - name: abf911df58879992bd5de95530609ae8.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_E2.FBX
@@ -14670,12 +14664,12 @@ MonoBehaviour:
   - name: ab8d6d36fe9dcb611d83b609989e4aab.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C2_1.prefab
-  - name: 9e8cd829b5c928e3911f5366832bc8a6.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Meshes/EnterGame_Terrian.obj
   - name: a712ca93c4234a629677dfef31f416fd.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Staircase2.jpg
+  - name: 9e8cd829b5c928e3911f5366832bc8a6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Meshes/EnterGame_Terrian.obj
   - name: 6673fd72d274466cdca8c569a32940c7.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_C1.FBX
@@ -14703,15 +14697,15 @@ MonoBehaviour:
   - name: 9f5f6b736f08541e9d2769115ea670a4.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_F1.prefab
-  - name: 9978e913fb70d5a0a69e3f1151934e05.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A10.FBX
   - name: c0b1c5cd6153455b63837d88b120552c.unity3d
     assets:
     - Assets/Scenes/1_2.terrainlayer
   - name: 92047d1fc88f2ce4ccd3d61a548c9927.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A20.FBX
+  - name: 9978e913fb70d5a0a69e3f1151934e05.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A10.FBX
   - name: d96e2fbb438b123903e5522b2a25c5f2.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B5_1.FBX
@@ -14733,15 +14727,15 @@ MonoBehaviour:
   - name: 6c04ef7f869476ca4e1d1ddb1b3445a6.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A23.FBX
-  - name: 9dee094486a6b97201bb719761d20bae.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_A5.FBX
-  - name: 0da9b2da5aa676bb9834452ec4fbc3fc.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_B5_1.prefab
   - name: 06a8257292571d8a1b36e136d469262e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C4_2.FBX
+  - name: 0da9b2da5aa676bb9834452ec4fbc3fc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_B5_1.prefab
+  - name: 9dee094486a6b97201bb719761d20bae.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_A5.FBX
   - name: 9c4be66121029329e6d7e6e2c0d707d1.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_J3_2.FBX
@@ -14781,15 +14775,15 @@ MonoBehaviour:
   - name: d49e86bacd1dccde85934d39c79beb8e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_A2.FBX
-  - name: 8badf3c6dafa6358da3c14c84d4b3041.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Bonfire.jpg
   - name: 3d8f1939bea0c21754a08ec1a99febfd.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_K1.prefab
   - name: 0b1a605a73ecef90c580cbdfcfd6b146.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.FBX
+  - name: 8badf3c6dafa6358da3c14c84d4b3041.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Bonfire.jpg
   - name: 02839a35bf610ce0a03bff9f0fe1466c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Staircase2.mat
@@ -14835,12 +14829,12 @@ MonoBehaviour:
   - name: f6885705bb9835a5d4444c3c5ee34efb.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone01_riverbed_f.001.mat
-  - name: a9b9f37fe5fa9cee1a27eb0728526733.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Interiors_Props_Q2.FBX
   - name: 4daf4696e1bef65028c8582a899d5191.unity3d
     assets:
     - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Right.bmp
+  - name: a9b9f37fe5fa9cee1a27eb0728526733.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Interiors_Props_Q2.FBX
   - name: 1ab8260b95af15b005ecff0a34260428.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.prefab
@@ -14980,12 +14974,12 @@ MonoBehaviour:
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_grass_patch
       - Copy.fbx
-  - name: b0cb235e048d2279ea27e3c671433e0e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone01_grass_tund.003.mat
   - name: a6820e5c0bd1a93a5bbb0d014846da7f.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Materials/Plant_A.mat
+  - name: b0cb235e048d2279ea27e3c671433e0e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone01_grass_tund.003.mat
   - name: c881b3d774ee77db6e5fce6555eac569.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow.png
@@ -15052,9 +15046,6 @@ MonoBehaviour:
   - name: 36eab2a3356ae102aa38f784942a6b84.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B2_1.FBX
-  - name: 9ddfa4c8355867e3b36b77a890b331b8.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Coconut.jpg
   - name: e3c1b19ccf84a82109da11c257db026d.unity3d
     assets:
     - Assets/Res/TerrainTieTuSet/Textures/Ground/Ground16.tga
@@ -15073,15 +15064,15 @@ MonoBehaviour:
   - name: ae34bc76908d2099dfa71eadc2ef2547.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A20.prefab
+  - name: 9ddfa4c8355867e3b36b77a890b331b8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Coconut.jpg
   - name: 1685df754d06300e934a773f2a0885c9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_F2.prefab
   - name: 36ed7175f00d2ef2e9f9f179ede40739.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Buildings_L2.prefab
-  - name: 4dfb5b7a423bae2121b5804e9313292a.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_F3.FBX
   - name: 19b7261e404e7cefa8d6179f3c4bc2de.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/_Grass_ridge01_sh.mat
@@ -15100,9 +15091,12 @@ MonoBehaviour:
   - name: fa213d98ea3f31fff593e596838f16d5.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Tree_F1.prefab
-  - name: d4c38cc847e05a87e68b6eccf96433e2.unity3d
+  - name: 4dfb5b7a423bae2121b5804e9313292a.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_C1.prefab
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_F3.FBX
+  - name: aa8396eeea0652f432c67256c0215116.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_A10.prefab
   - name: c91f4a11f8740951c5f0b0259d2e79e7.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBucket1.fbx
@@ -15859,53 +15853,143 @@ MonoBehaviour:
   - name: 73b38f22c238b56d59f4d22e8313166b.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_smallparts_BaseMap.png
-  - name: 7aa4aa795f5a5eadbb7b516e907e3e4f.unity3d
+  - name: 2ac074d86a2973c5cfe5c66c642a0184.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rocks_kit_Normal.png
-  - name: bf133dced7dba8e35dc3828c1e823fbc.unity3d
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_tree_02.fbx
+  - name: 2d284e9f6a0a26f60c0568aecb089c3d.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_rock_01.fbx
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_earth.mat
+  - name: 859a1d74b702b837d29efeb34ec5988f.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/tree_leaves_03.png
+  - name: 6652084b25f361bb1661ea6be62b3c5c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_foods
+      1.mat
   - name: fd7474d79222f472724e90b810914b05.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_tree_01.fbx
   - name: 9648681f88c32a15d5632d18d8262a71.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_woodenkit_02_Normal.png
+  - name: a66ff8adc3966eb4b3a80abab2328da1.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_flowerpots.mat
   - name: 51e3ceae75498802e527dff897408f9e.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/SM_woodenbeam_wooden_planklow_default_BaseMap.png
   - name: 597d16871a3c16b6fc7c0cf8d1566d44.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_woodenbeam.mat
+  - name: c6bc4c2aec790f13c7c388b06159c8e2.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_flower
+      3.mat
+  - name: 1fc04e1bd36be401087be7fac1a39ceb.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_smallparts_MaskMap.png
+  - name: 3d656f4db1e3ac80e9dfc2f43e1da5d9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Props/SM_crate_apples.prefab
+  - name: b6c782791d2e4cf6c85ae1aadb2e3411.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_metalbars_MaskMap.png
   - name: 35bb714e773c6a32e39e71821909b90e.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_bush_01.fbx
-  - name: 4e0a7b6dff8b784b0e228eb1dc332b45.unity3d
+  - name: 78139b1f418738c147d0dfca604bab1e.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_flowers_01
-      (5).prefab
-  - name: 5ea3743713872baed0ee752317ac0adf.unity3d
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_stonekit_01_Normal.png
+  - name: 65982a1ca74075a1557144dae9727c8f.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_grass_small.fbx
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/SM_woodenbeam_wooden_planklow_default_Normal.png
+  - name: 91d8d1ae070c5540bb653f569d049b53.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Props/SM_crate_apples.fbx
+  - name: 2253053014dd1c6cf1b5eb152a2d4339.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_grass
+      1.mat
   - name: 38cb3aa56f7d9912ac05f8300def6508.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Buildings/SM_tower_attachment.fbx
+  - name: 896d209b790ecd8b4d41aff1f95e4395.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_metalbars_Normal.png
   - name: 48cc14e3a7c6458db8583ae60c0ef981.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_flower
       1.mat
+  - name: 3cf62572e9f719a244e808af08402630.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/flower_texture_03.png
   - name: ed61e2d7b1c2d5ecfa13dbc460e3bede.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Props/SM_fence_01.fbx
+  - name: 38518dfda52b94dc9e68edebaeb79b44.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_foods_BaseMap.png
+  - name: b5f6c86b76b265be1d69bb643d341c98.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_windowglass
+      1.mat
+  - name: 3c036ee881ac220194557aef7eaae30b.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_foods_Normal.png
+  - name: 5d425652971c2356fd3424c0ae05cb78.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rooftiles_Normal.png
+  - name: 420dc74b7f5838e0c78c944fe9baaeab.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_smallparts_Normal.png
+  - name: 41d1031377221bf0f500a33c199fcb89.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/NewLayer.terrainlayer
   - name: 796fd08bb7dcc4233b1e498b04f10c7e.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_treebase.mat
   - name: 9fa2f7d7763c925c7bc66d8db2f14981.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_smallparts.mat
+  - name: 6050b7307d2f80c20efae2672ae02ea7.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_flowerpots_Normal.png
   - name: 34e51294051f6e3b6a12b2560f4c3064.unity3d
     assets:
     - Assets/Scenes/Map/100001.asset
+  - name: fce9582443a7bde6098730e604e4fee7.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_leaves
+      1.mat
+  - name: e564363d6f904e26a53fcf5ae0762835.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Props/SM_fence_01
+      (1).prefab
+  - name: a5a43af2fda07482a503d263844500c3.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_rope.mat
+  - name: afaf26f0bffbc82f3d7554b737bda409.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_bush_01.prefab
+  - name: 9303972f980557f320734383cd0d8077.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/NewLayer
+      4.terrainlayer
+  - name: 252dea9e1fe2f20137a7ac45274255e1.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/flower_texture_01.png
+  - name: c0486856195c7887cf4fe5249e87b8c2.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_metalbars_BaseMap.png
+  - name: 0c6be3e4ef3c755a8510a6a5f4d48675.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_flowerpots_BaseMap.png
+  - name: b040487557c4c42bf0360b9eb5738eda.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rope_nrm.png
+  - name: 75bf2352b70a41861b3a954d084c7037.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_woodenkit_02.mat
   - name: e8d31638d060d79866f4a528e42e691d.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_dirttexture_stylized.png
@@ -15928,102 +16012,30 @@ MonoBehaviour:
   - name: 1d889cf1681094542c50c3c538fd40e3.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_trees_base_Normal.png
+  - name: 277157a2725d111e0e154557d1fd858a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_woodenkit_02_BaseMap.png
+  - name: 2671e49a7be4a57f37d458015dc34fff.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_metalbars.mat
+  - name: 493e6c5378ac8c7d6bb34688ef7dd785.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_wall_01.mat
   - name: 3aaca01b5c4593995bad76d9227012e5.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rope_diff.png
+  - name: f08f3938f78f701cce024aeb9ed2a893.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_basetexture_stylized.png
+  - name: 3c247bdc64a68e7ef04abe3a793e31aa.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_tree_02.prefab
   - name: 4af6ed0c3cfc429492805ec934104de6.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_rooftiles.mat
   - name: c5afc46700c1489035508ae1bd0b5a36.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_tree_01.prefab
-  - name: 2ac074d86a2973c5cfe5c66c642a0184.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_tree_02.fbx
-  - name: 859a1d74b702b837d29efeb34ec5988f.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/tree_leaves_03.png
-  - name: f4fe143f7482786d1027867e771b6069.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_rocks.mat
-  - name: 1fc04e1bd36be401087be7fac1a39ceb.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_smallparts_MaskMap.png
-  - name: 537dbe7656e073270aa408de5408ca19.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rocks_kit_BaseMap.png
-  - name: 65982a1ca74075a1557144dae9727c8f.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/SM_woodenbeam_wooden_planklow_default_Normal.png
-  - name: 2253053014dd1c6cf1b5eb152a2d4339.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_grass
-      1.mat
-  - name: a0a950c6dca21ebd21e08d8eeb4addc0.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_rock_01.prefab
-  - name: 3cf62572e9f719a244e808af08402630.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/flower_texture_03.png
-  - name: b5f6c86b76b265be1d69bb643d341c98.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_windowglass
-      1.mat
-  - name: 5d425652971c2356fd3424c0ae05cb78.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rooftiles_Normal.png
-  - name: 420dc74b7f5838e0c78c944fe9baaeab.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_smallparts_Normal.png
-  - name: 41d1031377221bf0f500a33c199fcb89.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/NewLayer.terrainlayer
-  - name: fce9582443a7bde6098730e604e4fee7.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_leaves
-      1.mat
-  - name: e564363d6f904e26a53fcf5ae0762835.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Props/SM_fence_01
-      (1).prefab
-  - name: a5a43af2fda07482a503d263844500c3.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_rope.mat
-  - name: 9303972f980557f320734383cd0d8077.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/NewLayer
-      4.terrainlayer
-  - name: afaf26f0bffbc82f3d7554b737bda409.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_bush_01.prefab
-  - name: 252dea9e1fe2f20137a7ac45274255e1.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/flower_texture_01.png
-  - name: 934795ad155296edbf159372e6bbacb2.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_flowers_01.fbx
-  - name: b040487557c4c42bf0360b9eb5738eda.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rope_nrm.png
-  - name: 75bf2352b70a41861b3a954d084c7037.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_woodenkit_02.mat
-  - name: 277157a2725d111e0e154557d1fd858a.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_woodenkit_02_BaseMap.png
-  - name: c2f6e158180977ee113319aaad855f17.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_grass_small
-      1.prefab
-  - name: f08f3938f78f701cce024aeb9ed2a893.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_basetexture_stylized.png
-  - name: 493e6c5378ac8c7d6bb34688ef7dd785.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_wall_01.mat
-  - name: 3c247bdc64a68e7ef04abe3a793e31aa.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_tree_02.prefab
   - name: 1af459da1bb86f914699f1867d3659d8.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_tengman_01.FBX
@@ -16171,6 +16183,9 @@ MonoBehaviour:
   - name: 769e52454fbb67d710388fc533cf209a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/BattleDragon/Colosseum/Dust/ParticleSystems/Textures/ParticleCloudWhite.png
+  - name: 32a6a8c092a38f6767a133ac34caaf6d.unity3d
+    assets:
+    - Assets/Res/TerrainTieTuSet/Textures/Ground/Ground27.tga
   - name: 7bd6487ed27a5cd0400024ffc625d497.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_K3.FBX
