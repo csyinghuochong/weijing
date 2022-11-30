@@ -291,7 +291,7 @@ namespace ET
 			petComponent.OnResetPoint(petinfo_update);
 			petComponent.RemovePet(petinfo_delete.Id);
 			unit.GetComponent<ChengJiuComponent>().OnPetHeCheng(petinfo_update);
-			response.DeletePetInfoId = petinfo_2.Id;
+			response.DeletePetInfoId = petinfo_delete.Id;
 			response.rolePetInfo = petinfo_update;
 			reply();
 			await ETTask.CompletedTask;
