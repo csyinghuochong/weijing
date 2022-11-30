@@ -16,6 +16,12 @@ namespace ET
 				reply();
 				return;
 			}
+			if (request.BuyNum < 0)
+			{
+				response.Error = ErrorCore.ERR_NetWorkError;
+				reply();
+				return;
+			}
 
 			PaiMaiSellConfig paiMaiSellConfig = PaiMaiSellConfigCategory.Instance.Get(request.PaiMaiId);
 

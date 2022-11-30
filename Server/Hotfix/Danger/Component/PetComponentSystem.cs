@@ -439,7 +439,7 @@ namespace ET
                     }
                     catch (Exception ex)
                     {
-                        Log.Info($"attri Eption： {ex.ToString()}");
+                        Log.Info($"attri Eption：{rolePetInfo.PetSkill[0]} {ex.ToString()}");
                     }
                 }
             }
@@ -449,7 +449,7 @@ namespace ET
                 int numericType = item.Key;
                 int nowValue = (int)numericType / 100;
                 int attriIndex = rolePetInfo.Ks.IndexOf(nowValue);
-                if (attriIndex >= rolePetInfo.Vs.Count)
+                if (attriIndex == -1 || attriIndex >= rolePetInfo.Vs.Count)
                 {
                     continue;
                 }

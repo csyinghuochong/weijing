@@ -15,13 +15,18 @@ namespace ET
                 reply();
                 return;
             }
+            PaiMaiItemInfo paiMaiItemInfo = request.PaiMaiItemInfo;
             if (request.PaiMaiItemInfo == null || request.PaiMaiItemInfo.BagInfo == null)
             {
                 reply();
                 return;
             }
+            if (paiMaiItemInfo.BagInfo.ItemNum < 0)
+            {
+                reply();
+                return;
+            }
 
-            PaiMaiItemInfo paiMaiItemInfo = request.PaiMaiItemInfo;
             long needGold = paiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;
             //钱是否足够
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < needGold)
