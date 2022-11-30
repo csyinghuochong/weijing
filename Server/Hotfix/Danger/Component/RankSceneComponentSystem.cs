@@ -299,10 +299,6 @@ namespace ET
 
         public static void InitRankPetList(this RankSceneComponent self)
         {
-            if (self.DBRankInfo.rankingPets.Count >= ComHelp.PetRankNumber)
-            {
-                return;
-            }
 
             //读机器人配置表
             self.DBRankInfo.rankingPets.Clear();
@@ -323,8 +319,8 @@ namespace ET
         {
             long enemyId = m2R_PetRankUpdateRequest.EnemyId;
 
-            int selfRankNum = 0;
-            int enemyRankNum = 0;
+            int selfRankNum = -1;
+            int enemyRankNum = -1;
             RankPetInfo enemyRankPetInfo = null;
             for (int i = 0; i < self.DBRankInfo.rankingPets.Count; i++)
             {
@@ -340,26 +336,34 @@ namespace ET
                 }
             }
             //没找到对方或者高于对方排名，不更新排名
-            if (enemyRankNum == 0 || (selfRankNum!= 0 && selfRankNum < enemyRankNum))
+            if (enemyRankNum == -1)
+            {
+                return;
+            }
+            if (selfRankNum != -1 && selfRankNum < enemyRankNum)
             {
                 return;
             }
 
-            if (selfRankNum == 0)
+            if (selfRankNum == -1)
             {
                 self.DBRankInfo.rankingPets.Remove(enemyRankPetInfo);
+                self.DBRankInfo.rankingPets.Add(m2R_PetRankUpdateRequest.RankPetInfo);
             }
             else 
             {
                 enemyRankPetInfo.RankId = selfRankNum;
             }
-
             m2R_PetRankUpdateRequest.RankPetInfo.RankId = enemyRankNum;
-            self.DBRankInfo.rankingPets.Add(m2R_PetRankUpdateRequest.RankPetInfo);
+            
             self.DBRankInfo.rankingPets.Sort(delegate (RankPetInfo a, RankPetInfo b)
             {
                 return a.RankId - b.RankId;
             });
+            for (int i = 0; i < self.DBRankInfo.rankingPets.Count; i++)
+            {
+                self.DBRankInfo.rankingPets[i].RankId = i + 1;
+            }
         }
 
         public static int GetRankByUserId(this RankSceneComponent self, long userId)

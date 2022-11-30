@@ -2195,6 +2195,10 @@ MonoBehaviour:
     gameObject: {fileID: 7780375406121855291}
   - key: Lab_Owner
     gameObject: {fileID: 7780291668505486123}
+  - key: ImageIcon4
+    gameObject: {fileID: 2335017126463931430}
+  - key: ImageIcon5
+    gameObject: {fileID: 4347595785916058667}
 --- !u!1 &7781351074148476945
 GameObject:
   m_ObjectHideFlags: 0

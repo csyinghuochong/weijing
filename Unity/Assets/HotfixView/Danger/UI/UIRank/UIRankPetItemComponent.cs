@@ -28,7 +28,9 @@ namespace ET
             self.Lab_TeamName = rc.Get<GameObject>("Lab_TeamName");
             self.Lab_PaiMing = rc.Get<GameObject>("Lab_PaiMing");
 
-            self.ImageIconList = new GameObject[3];
+            self.ImageIconList = new GameObject[5];
+            self.ImageIconList[4] = rc.Get<GameObject>("ImageIcon5");
+            self.ImageIconList[3] = rc.Get<GameObject>("ImageIcon4");
             self.ImageIconList[2] = rc.Get<GameObject>("ImageIcon3");
             self.ImageIconList[1] = rc.Get<GameObject>("ImageIcon2");
             self.ImageIconList[0] = rc.Get<GameObject>("ImageIcon1");
@@ -44,7 +46,14 @@ namespace ET
         public static void OnInitUI(this UIRankPetItemComponent self, RankPetInfo rankPetInfo)
         {
             self.RankPetInfo = rankPetInfo;
-            self.Lab_TeamName.GetComponent<Text>().text = rankPetInfo.TeamName;
+            if (!ComHelp.IfNull(rankPetInfo.TeamName))
+            {
+                self.Lab_TeamName.GetComponent<Text>().text = rankPetInfo.TeamName;
+            }
+            else
+            {
+                self.Lab_TeamName.GetComponent<Text>().text = rankPetInfo.PlayerName + "的队伍";
+            }
 
             int number = 0;
             for (int i = 0; i < rankPetInfo.PetConfigId.Count; i++ )
@@ -56,10 +65,15 @@ namespace ET
 
                 PetConfig petConfig = PetConfigCategory.Instance.Get(rankPetInfo.PetConfigId[i]);
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                self.ImageIconList[number].SetActive(true);
                 self.ImageIconList[number].GetComponent<Image>().sprite = sp;
 
                 self.Lab_PaiMing.GetComponent<Text>().text = rankPetInfo.RankId.ToString();
                 number++;
+            }
+            for (int i = number; i < 5; i++)
+            {
+                self.ImageIconList[i].SetActive(false);
             }
         }
 
