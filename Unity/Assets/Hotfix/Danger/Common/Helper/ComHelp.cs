@@ -1038,16 +1038,19 @@ namespace ET
 
 
         //根据时间蛋计算剩余消耗钻石
-        public static int ReturnPetOpenTimeDiamond(int itemID,long nowTime) {
+        public static int ReturnPetOpenTimeDiamond(int itemID,long endTime) {
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemID);
             string[] itemUseinfo = itemConfig.ItemUsePar.Split('@');
             float costValue = float.Parse(itemUseinfo[1]);
 
-            long timeNow = nowTime - TimeHelper.ServerNow();
+            long timeNow = endTime - TimeHelper.ServerNow();
+            if (timeNow <= 0)
+            {
+                return 0;
+            }
 
             float proValue = (float)timeNow / 86400000f;
-
             int renturnInt = (int)(proValue * costValue);
 
             if (renturnInt < 10) {

@@ -22,6 +22,7 @@
 
 			if (args.NewValue <= 0 && numericComponentDefend.GetAsInt(NumericType.Now_Dead) == 0)
 			{
+				unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(args);
 				unit.GetComponent<HeroDataComponent>().OnDead(args);
 			}
 

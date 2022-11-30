@@ -200,13 +200,9 @@ namespace ET
             }
         }
 
-        public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
+        public static void OnKillZhaoHuan(this HeroDataComponent self, EventType.NumericChangeEvent args)
         {
             Unit unit = self.GetParent<Unit>();
-            if (unit.GetComponent<MoveComponent>() != null)
-            {
-                unit.Stop(-1);
-            }
             UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             if (unitInfoComponent == null)
             {
@@ -220,10 +216,20 @@ namespace ET
                 {
                     continue;
                 }
+                zhaohuan.GetComponent<SkillPassiveComponent>()?.Stop();
                 zhaohuan.GetComponent<NumericComponent>().ApplyChange(args.Attack, NumericType.Now_Hp, -1000000, args.SkillId);
             }
             unitInfoComponent.ZhaohuanIds.Clear();
-            int waitRevive =  self.OnWaitRevive();
+        }
+
+        public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
+        {
+            Unit unit = self.GetParent<Unit>();
+            if (unit.GetComponent<MoveComponent>() != null)
+            {
+                unit.Stop(-1);
+            }
+           
             unit.GetComponent<AIComponent>()?.Stop();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
             unit.GetComponent<SkillManagerComponent>()?.OnFinish();
@@ -252,7 +258,7 @@ namespace ET
           
             Game.EventSystem.Publish(new EventType.KillEvent()
             {
-                WaitRevive = waitRevive,
+                WaitRevive = self.OnWaitRevive(),
                 UnitAttack = args.Attack,
                 UnitDefend = unit,
             });

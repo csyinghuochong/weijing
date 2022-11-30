@@ -15,6 +15,7 @@ namespace ET
                     return;
                 }
                 EventType.NumericChangeEvent args = new EventType.NumericChangeEvent();
+                self.Parent.GetComponent<HeroDataComponent>().OnKillZhaoHuan(args);
                 self.Parent.GetComponent<HeroDataComponent>().OnDead(args);
                 //self.Parent.GetParent<UnitComponent>().Remove(self.Parent.Id);
             }

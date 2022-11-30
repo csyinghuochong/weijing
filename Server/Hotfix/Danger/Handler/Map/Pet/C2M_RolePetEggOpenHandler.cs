@@ -18,7 +18,6 @@ namespace ET
 
             ItemConfig itemConf = ItemConfigCategory.Instance.Get(rolePetEgg.ItemId);
             string[] petinfos = itemConf.ItemUsePar.Split('@');
-
             int needCost = ComHelp.ReturnPetOpenTimeDiamond(rolePetEgg.ItemId,rolePetEgg.EndTime);
 
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
