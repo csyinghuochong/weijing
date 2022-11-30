@@ -271,7 +271,11 @@ namespace ET
 
         public static bool IsSameTeam(this Unit self, Unit other)
         {
-            return self.GetTeamId() == other.GetTeamId() && self.GetTeamId() != 0;
+            if (self.Id == other.Id)
+            {
+                return true;
+            }
+            return  self.GetTeamId() == other.GetTeamId() && self.GetTeamId() != 0;
         }
 
         public static bool IsMasterOrPet(this Unit self, Unit other, PetComponent petComponent)

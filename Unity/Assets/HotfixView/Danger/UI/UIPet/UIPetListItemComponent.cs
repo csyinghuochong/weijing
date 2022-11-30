@@ -98,7 +98,7 @@ namespace ET
 
         public static void OnPetFightingSet(this UIPetListItemComponent self,RolePetInfo rolePetInfo)
         {
-            self.Img_CanZhan.SetActive(self.PetId == rolePetInfo.Id);
+            self.Img_CanZhan.SetActive(rolePetInfo!=null && self.PetId == rolePetInfo.Id);
         }
 
         public static void SetClickHandler(this UIPetListItemComponent self, Action<long> action)
