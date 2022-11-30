@@ -202,7 +202,7 @@ namespace ET
                     }
                     else
                     {
-                        Log.Error($"unit.GetComponent<AOIEntity>() == null  {unit.Type}");
+                        Log.Error($"unit.GetComponent<AOIEntity>() == null  {unit.Type} {unit.ConfigId}");
                     }
                     return;
                 }
