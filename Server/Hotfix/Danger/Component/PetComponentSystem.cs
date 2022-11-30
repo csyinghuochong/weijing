@@ -439,7 +439,7 @@ namespace ET
                     }
                     catch (Exception ex)
                     {
-                        Log.Info($"attri Eption： {skillStrList[i]} {ex.ToString()}");
+                        Log.Info($"attri Eption： {ex.ToString()}");
                     }
                 }
             }
