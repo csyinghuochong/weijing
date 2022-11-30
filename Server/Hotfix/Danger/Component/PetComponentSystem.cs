@@ -419,7 +419,7 @@ namespace ET
             //宠物技能
             for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)
             {
-                SkillConfig skillCof = SkillConfigCategory.Instance.Get(rolePetInfo.PetSkill[0]);
+                SkillConfig skillCof = SkillConfigCategory.Instance.Get(rolePetInfo.PetSkill[i]);
                 if (ComHelp.IfNull(skillCof.GameObjectParameter))
                 {
                     continue;
@@ -450,7 +450,7 @@ namespace ET
                     }
                     catch (Exception ex)
                     {
-                        Log.Info($"attri Eption：{rolePetInfo.PetSkill[0]} {ex.ToString()}");
+                        Log.Info($"attri Eption：{rolePetInfo.PetSkill[i]} {ex.ToString()}");
                     }
                 }
             }
