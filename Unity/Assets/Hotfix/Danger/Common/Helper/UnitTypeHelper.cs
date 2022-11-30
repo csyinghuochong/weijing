@@ -38,7 +38,7 @@
                 }
                 else
                 {
-                    return false;
+                    return !self.IsMasterOrPet(attack, petComponent);
                 }
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Battle)

@@ -245,13 +245,17 @@ namespace ET
                     return;
                 }
                 string[] getIdNew = uIRoleGemComponent.XiangQianItem.GemIDNew.Split('_');
-                if (getIdNew[uIRoleGemComponent.XiangQianIndex]!="0")
-                { 
-                    usrPar = $"{uIRoleGemComponent.XiangQianItem.BagInfoID}_{uIRoleGemComponent.XiangQianIndex}";
+                usrPar = $"{uIRoleGemComponent.XiangQianItem.BagInfoID}_{uIRoleGemComponent.XiangQianIndex}";
+                if (getIdNew[uIRoleGemComponent.XiangQianIndex] != "0")
+                {
                     PopupTipHelp.OpenPopupTip(self.ZoneScene(), "镶嵌宝石", "是否需要覆盖宝石?", () =>
                     {
                         self.RequestXiangQianGem(usrPar);
                     }).Coroutine();
+                }
+                else
+                {
+                    self.RequestXiangQianGem(usrPar);
                 }
                 return;
             }
