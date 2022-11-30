@@ -264,6 +264,29 @@ namespace ET
             return units;
         }
 
+        public static int GetTeamId(this Unit self)
+        {
+            return self.GetComponent<NumericComponent>().GetAsInt(NumericType.TeamId);
+        }
+
+        public static bool IsSameTeam(this Unit self, Unit other)
+        {
+            return self.GetTeamId() == other.GetTeamId() && self.GetTeamId() != 0;
+        }
+
+        public static bool IsMasterOrPet(this Unit self, Unit other, PetComponent petComponent)
+        {
+            if (self.Type == UnitType.Pet && self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == other.Id)
+            {
+                return true;
+            }
+            if (self.Type == UnitType.Player && petComponent.GetFightPetId() == other.Id)
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static int GetBattleCamp(this Unit self)
         {
             return self.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleCamp);

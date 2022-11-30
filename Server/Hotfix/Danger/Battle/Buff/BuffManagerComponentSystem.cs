@@ -196,7 +196,14 @@ namespace ET
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.z);
                 if (unit.GetComponent<AOIEntity>() == null)
                 {
-                    Log.Error($"unit.GetComponent<AOIEntity>() == null  {unit.Type}");
+                    if (unit.GetComponent<NumericComponent>() != null)
+                    {
+                        Log.Error($"unit.GetComponent<AOIEntity>() == null  {unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead)}");
+                    }
+                    else
+                    {
+                        Log.Error($"unit.GetComponent<AOIEntity>() == null  {unit.Type}");
+                    }
                     return;
                 }
                 MessageHelper.Broadcast(unit, m2C_UnitBuffUpdate);

@@ -25,6 +25,7 @@ namespace ET
             NumericType.Born_Y,
             NumericType.Born_Z,
             NumericType.Now_AI,
+            NumericType.TeamId,
         };
 
         //1 整数  2 浮点数

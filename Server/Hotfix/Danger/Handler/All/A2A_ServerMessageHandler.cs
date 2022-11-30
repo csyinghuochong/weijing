@@ -17,7 +17,7 @@ namespace ET
                     case SceneType.Team:
                         if (request.MessageType == NoticeType.TeamExit)
                         {
-                            scene.GetComponent<TeamSceneComponent>().OnRecvUnitLeave(long.Parse(request.MessageValue), true).Coroutine();
+                            scene.GetComponent<TeamSceneComponent>().OnRecvUnitLeave(long.Parse(request.MessageValue), true);
                         }
                         break;
                     case SceneType.Account:

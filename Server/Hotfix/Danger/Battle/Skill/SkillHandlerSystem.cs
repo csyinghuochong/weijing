@@ -320,7 +320,7 @@ namespace ET
 
         //1：自身
         //2：队友
-        //3：己方
+        //3：己方【同阵营】
         //4: 敌方
         //5：全部
         public static void SkillBuff(this SkillHandler self, int buffID, Unit uu)
@@ -343,7 +343,9 @@ namespace ET
                     canBuff = uu.Id == self.TheUnitFrom.Id;
                     break;
                 case 2:
-                //队友
+                    PetComponent petComponent = self.TheUnitFrom.GetComponent<PetComponent>();  
+                    canBuff = self.TheUnitFrom.IsSameTeam(uu) || self.TheUnitFrom.IsMasterOrPet(uu, petComponent);
+                    break;
                 case 3:
                     canBuff = self.TheUnitFrom.GetBattleCamp() == uu.GetBattleCamp();
                     break;

@@ -357,9 +357,9 @@ message UnitInfo
 	MoveInfo MoveInfo = 16;
 
 	string StallName = 17;
-
-	repeated KeyValuePair Buffs = 18;
-	string UnionName = 19;
+	string UnionName = 18;
+	repeated KeyValuePair Buffs = 19;
+	repeated KeyValuePair Skills = 20;
 }
 
 message M2C_CreateUnits // IActorMessage

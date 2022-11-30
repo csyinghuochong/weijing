@@ -105,25 +105,25 @@ namespace ET
             ReferenceCollector rc = this.HeadBar.GetComponent<ReferenceCollector>();
 
             Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(this.ZoneScene());
-            bool sameCamp = unit.GetBattleCamp() == mainUnit.GetBattleCamp();
+            bool canAttack = unit.IsCanBeAttackByUnit(mainUnit);
             ObjHp = rc.Get<GameObject>("Img_HpValue");
             switch (unit.Type)
             {
                 case UnitType.Monster:
-                    string imageHp = sameCamp ? "UI_pro_3_2" : "UI_pro_4_2";
+                    string imageHp = canAttack ? "UI_pro_4_2" : "UI_pro_3_2";
                     Sprite sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     rc.Get<GameObject>("Img_HpValue").SetActive(true);
                     ObjHp.GetComponent<Image>().sprite = sp;
                     break;
                 case UnitType.Player:
-                    imageHp = sameCamp ? "UI_pro_3_2" : "UI_pro_4_2";
+                    imageHp = canAttack ? "UI_pro_4_2": "UI_pro_3_2";
                     GameObject ImageHpFill = rc.Get<GameObject>("ImageHpFill");
                     sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     ImageHpFill.GetComponent<Image>().sprite = sp;
                     this.BuffShieldValue = rc.Get<GameObject>("BuffShieldValue");
                     break;
                 case UnitType.Pet:
-                    imageHp = sameCamp ? "UI_pro_3_4" : "UI_pro_4_2";
+                    imageHp = canAttack ? "UI_pro_4_2": "UI_pro_3_4";
                     ImageHpFill = rc.Get<GameObject>("ImageHpFill");
                     sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     ImageHpFill.GetComponent<Image>().sprite = sp;

@@ -19,13 +19,6 @@ namespace ET
                 reply();
                 return;
             }
-            string costItem = GlobalValueConfigCategory.Instance.Get(51).Value;
-            if (!unit.GetComponent<BagComponent>().OnCostItemData(costItem))
-            {
-                response.Error = ErrorCore.ERR_ItemNotEnoughError;
-                reply();
-                return;
-            }
 
             //判断品质
             ItemConfig itemConfig_0 = ItemConfigCategory.Instance.Get(bagInfo_1.ItemID);
@@ -33,6 +26,13 @@ namespace ET
             //紫色品质以上才可以转移
             if (itemConfig_0.ItemQuality < 4 || itemConfig_1.ItemQuality < 4)
             {
+                reply();
+                return;
+            }
+            string costItem = GlobalValueConfigCategory.Instance.Get(51).Value;
+            if (!unit.GetComponent<BagComponent>().OnCostItemData(costItem))
+            {
+                response.Error = ErrorCore.ERR_ItemNotEnoughError;
                 reply();
                 return;
             }

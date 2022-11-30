@@ -1,5 +1,4 @@
-﻿
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace ET
 {
@@ -8,5 +7,7 @@ namespace ET
         public List<int> TianFuList = new List<int>();
 
         public List<SkillPro> SkillList = new List<SkillPro>();
+
+        public M2C_UpdateSkillSet M2C_UpdateSkillSet = new M2C_UpdateSkillSet();    
     }
 }

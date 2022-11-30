@@ -289,10 +289,10 @@ namespace ET
                     saveValue = self.UserInfo.Lv.ToString();
                     long maxHp = unit.GetComponent<NumericComponent>().GetAsLong((int)NumericType.Now_MaxHp);
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Hp, maxHp, false);
-                    unit.GetComponent<NumericComponent>().ApplyChange(null,NumericType.PointRemain, int.Parse(value) * 5, 0);
+                    unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PointRemain, int.Parse(value) * 5, 0);
                     unit.GetComponent<TaskComponent>().OnUpdateLevel(self.UserInfo.Lv);
                     unit.GetComponent<ChengJiuComponent>().OnUpdateLevel(self.UserInfo.Lv);
-                    self.UpdateRoleData(UserDataType.Sp, value,notice);
+                    self.UpdateRoleData(UserDataType.Sp, value, notice);
                     self.UpdateRankInfo().Coroutine();
                     break;
                 case UserDataType.Sp:

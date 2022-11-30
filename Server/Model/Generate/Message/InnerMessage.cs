@@ -1321,6 +1321,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int BuyNum { get; set; }
 
+		[ProtoMember(3)]
+		public int Price { get; set; }
+
 	}
 
 	[Message(InnerOpcode.P2M_PaiMaiShopResponse)]
@@ -2234,6 +2237,24 @@ namespace ET
 
 		[ProtoMember(2)]
 		public long FubenInstanceId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.T2M_TeamUpdateRequest)]
+	[ProtoContract]
+	public partial class T2M_TeamUpdateRequest: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public long TeamId { get; set; }
 
 	}
 

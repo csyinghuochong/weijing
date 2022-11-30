@@ -31,21 +31,21 @@
 
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene)
             {
-                //除了宠物都可以攻击
-                if (self.Type == UnitType.Pet && self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == attack.Id)
+                //允许pk地图
+                if (SceneConfigCategory.Instance.Get(mapComponent.SceneId).IfPVP == 1)
+                {
+                    return !self.IsSameTeam(attack) && !self.IsMasterOrPet(attack, petComponent);
+                }
+                else
                 {
                     return false;
-                }
-                if (self.Type == UnitType.Player && petComponent.GetFightPetId() == attack.Id)
-                {
-                    return false;
-                }
-                if (self.Type == UnitType.Player && attack.Type == UnitType.Player)
-                {
-                    return SceneConfigCategory.Instance.Get(mapComponent.SceneId).IfPVP == 1;
                 }
             }
-            return self.GetBattleCamp() != attack.GetBattleCamp();
+            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Battle)
+            {
+                return self.GetBattleCamp() != attack.GetBattleCamp();
+            }
+            return self.GetBattleCamp() != attack.GetBattleCamp() && !self.IsSameTeam(attack);
         }
 
         public static bool IsCanBeAttack(this Unit self)

@@ -134,5 +134,6 @@ namespace ET
 		 public const ushort D2M_DeleteUnit = 20131;
 		 public const ushort M2F_YeWaiSceneIdRequest = 20132;
 		 public const ushort F2M_YeWaiSceneIdResponse = 20133;
+		 public const ushort T2M_TeamUpdateRequest = 20134;
 	}
 }

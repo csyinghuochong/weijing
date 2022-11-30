@@ -12,6 +12,10 @@ namespace ET
             for (int i = 0; i < dungeonConfigs.Count; i++)
             {
                 DungeonConfig dungeonConfig = dungeonConfigs[i];
+                if (dungeonConfig.NpcList == null)
+                {
+                    continue;
+                }
                 if (dungeonConfig.NpcList.Contains(npcId))
                 {
                     return dungeonConfig.Id;

@@ -425,11 +425,16 @@ namespace ET
             int bagCellNumber = 0;
             int petHeXinNumber = 0;
             int getType = int.Parse(getWay.Split('_')[0]);
+            Unit unit = self.GetParent<Unit>();
             for (int i = rewardItems.Count - 1; i >= 0; i--)
             {
                 if (rewardItems[i].ItemID == 0) { continue; }
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(rewardItems[i].ItemID);
                 UserDataType userDataType = ComHelp.GetItemToUserDataType(rewardItems[i].ItemID);
+                if (userDataType == UserDataType.Gold && rewardItems[i].ItemNum > 1000000)
+                {
+                    Log.Warning($"UserDataType.Gold  {unit.Id} {rewardItems[i].ItemNum}");
+                }
                 if (userDataType != UserDataType.None)
                 {
                     continue;
@@ -473,8 +478,6 @@ namespace ET
             m2c_bagUpdate.BagInfoAdd.Clear();
             m2c_bagUpdate.BagInfoUpdate.Clear();
             m2c_bagUpdate.BagInfoDelete.Clear();    
-
-            Unit unit = self.GetParent<Unit>();
             for (int i = rewardItems.Count - 1; i >= 0; i--)
             {
                 int itemID = rewardItems[i].ItemID;

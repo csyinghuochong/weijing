@@ -729,10 +729,13 @@ namespace ET
 		public string StallName { get; set; }
 
 		[ProtoMember(18)]
-		public List<KeyValuePair> Buffs = new List<KeyValuePair>();
+		public string UnionName { get; set; }
 
 		[ProtoMember(19)]
-		public string UnionName { get; set; }
+		public List<KeyValuePair> Buffs = new List<KeyValuePair>();
+
+		[ProtoMember(20)]
+		public List<KeyValuePair> Skills = new List<KeyValuePair>();
 
 	}
 

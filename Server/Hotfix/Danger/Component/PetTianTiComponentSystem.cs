@@ -126,6 +126,7 @@ namespace ET
             rankPetInfo.UserId = userInfoComponent.UserInfo.UserId;
             rankPetInfo.PlayerName = userInfoComponent.UserInfo.Name;
             rankPetInfo.PetUId = unit.GetComponent<PetComponent>().TeamPetList;
+            rankPetInfo.TeamName = rankPetInfo.PlayerName;
             for (int i = 0; i < rankPetInfo.PetUId.Count; i++ )
             {
                 RolePetInfo rolePetInfo = unit.GetComponent<PetComponent>().GetPetInfo(rankPetInfo.PetUId[i]);

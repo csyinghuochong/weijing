@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ET
 {
-
-
     [ActorMessageHandler]
     public class C2T_TeamDungeonAgreeHandler : AMActorRpcHandler<Scene, C2T_TeamDungeonAgreeRequest, T2C_TeamDungeonAgreeResponse>
     {
@@ -37,22 +34,9 @@ namespace ET
                 reply();
                 return;
             }
-           
-            teamInfo.PlayerList.Add(request.TeamPlayerInfo);
-            M2C_TeamUpdateResult m2C_HorseNoticeInfo = new M2C_TeamUpdateResult() { TeamInfo = teamInfo };
-            for (int i = 0; i < teamInfo.PlayerList.Count; i++)
-            {
-                g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
-                   (gateServerId, new T2G_GateUnitInfoRequest()
-                   {
-                       UserID = teamInfo.PlayerList[i].UserID
-                   });
-                if (g2M_UpdateUnitResponse.PlayerState== (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
-                {
-                    MessageHelper.SendActor(g2M_UpdateUnitResponse.SessionInstanceId, m2C_HorseNoticeInfo);
-                }
-            }
 
+            teamInfo.PlayerList.Add(request.TeamPlayerInfo);
+            teamSceneComponent.SyncTeamInfo(teamInfo,teamInfo.PlayerList).Coroutine();
             reply();
         }
     }

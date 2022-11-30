@@ -28,7 +28,6 @@ namespace ET
         public static TeamInfo GetTeamInfo(this TeamSceneComponent self, long userId)
         {
             TeamInfo teamInfo = null;
-
             for (int i = 0; i < self.TeamList.Count; i++)
             {
                 TeamInfo tempTeampInfo = self.TeamList[i];
@@ -50,13 +49,58 @@ namespace ET
             return teamInfo;
         }
 
+        public static long GetTeamInfoId(this TeamSceneComponent self, long userId)
+        {
+            TeamInfo teamInfo = self.GetTeamInfo(userId);
+            return teamInfo != null ? teamInfo.TeamId : 0;
+        }
+
+        public static TeamInfo CreateTeamInfo(this TeamSceneComponent self, TeamPlayerInfo teamPlayerInfo, int fubenId)
+        {
+            TeamInfo teamInfo = self.GetTeamInfo(teamPlayerInfo.UserID);
+            if (teamInfo != null)
+            {
+                Log.Error($"teamInfo != null {teamPlayerInfo.UserID}");
+                return teamInfo;
+            }
+            teamInfo = new TeamInfo() { TeamId = teamPlayerInfo.UserID, SceneId = fubenId };
+            teamInfo.PlayerList.Add(teamPlayerInfo);
+            self.TeamList.Add(teamInfo);
+            return teamInfo;
+        }
+
+        public static async ETTask SyncTeamInfo(this TeamSceneComponent self, TeamInfo teamInfo, List<TeamPlayerInfo> userIds)
+        {
+            M2C_TeamUpdateResult m2C_HorseNoticeInfo = self.m2C_TeamUpdateResult;
+            m2C_HorseNoticeInfo.TeamInfo = teamInfo;
+            T2M_TeamUpdateRequest t2M_TeamUpdateRequest = self.t2M_TeamUpdateRequest;
+
+            long gateServerId = DBHelper.GetGateServerId(self.DomainZone());
+            for (int i = 0; i < userIds.Count; i++)
+            {
+                long userId = userIds[i].UserID;
+                G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+                    (gateServerId, new T2G_GateUnitInfoRequest()
+                    {
+                        UserID = userId
+                    });
+
+                if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+                {
+                    t2M_TeamUpdateRequest.TeamId = self.GetTeamInfoId(userId);
+                    MessageHelper.SendActor(g2M_UpdateUnitResponse.SessionInstanceId, m2C_HorseNoticeInfo);
+                    MessageHelper.SendToLocationActor(userId, t2M_TeamUpdateRequest);
+                }
+            }
+        }
+
         /// <summary>
         /// 离开队伍
         /// </summary>
         /// <param name="self"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public static async ETTask OnRecvUnitLeave(this TeamSceneComponent self, long userId, bool exitgame = false)
+        public static  void OnRecvUnitLeave(this TeamSceneComponent self, long userId, bool exitgame = false)
         {
             Log.Debug($"TeamSceneComponent Leave {userId} {exitgame}");
             TeamInfo teamInfo = self.GetTeamInfo(userId);
@@ -65,14 +109,14 @@ namespace ET
                 return;
             }
             //玩家Id
-            List<long> userIDList = new List<long>();
-            for (int i = 0; i < teamInfo.PlayerList.Count; i++)
+            List<TeamPlayerInfo> userIDList = new List<TeamPlayerInfo>();
+            userIDList.AddRange(teamInfo.PlayerList);
+            for (int i = userIDList.Count - 1; i >= 0; i--)
             {
-                userIDList.Add(teamInfo.PlayerList[i].UserID);
-            }
-            if (exitgame && userIDList.Contains(userId))
-            {
-                userIDList.Remove(userId);
+                if (exitgame && userIDList[i].UserID == userId)
+                {
+                    userIDList.RemoveAt(i);
+                }
             }
 
             for (int k = teamInfo.PlayerList.Count - 1; k >= 0; k--)
@@ -86,25 +130,10 @@ namespace ET
 
             if (teamInfo.PlayerList.Count == 0 || teamInfo.TeamId == userId)
             {
-                teamInfo.PlayerList.Clear();
                 self.TeamList.Remove(teamInfo);
             }
-            
-            long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), "Gate1").InstanceId;
-            for (int i = 0; i < userIDList.Count; i++)
-            {
-                G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
-                    (gateServerId, new T2G_GateUnitInfoRequest()
-                    {
-                        UserID = userIDList[i]
-                    });
 
-                if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
-                {
-                    M2C_TeamUpdateResult m2C_HorseNoticeInfo = new M2C_TeamUpdateResult() { TeamInfo = teamInfo };
-                    MessageHelper.SendActor(g2M_UpdateUnitResponse.SessionInstanceId, m2C_HorseNoticeInfo);
-                }
-            }
+            self.SyncTeamInfo(teamInfo, userIDList).Coroutine();
         }
 
         /// <summary>

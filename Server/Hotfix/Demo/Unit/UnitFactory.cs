@@ -166,6 +166,7 @@ namespace ET
 
             unit.GetComponent<NumericComponent>().Set(NumericType.MasterId, master.Id);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
+            numericComponent.Set(NumericType.TeamId, master.GetTeamId());
             unit.ConfigId = monster;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
@@ -238,6 +239,7 @@ namespace ET
 
             numericComponent.Set(NumericType.MasterId, master.Id);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
+            numericComponent.Set(NumericType.TeamId, master.GetTeamId());
             unit.ConfigId = petinfo.ConfigId;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加

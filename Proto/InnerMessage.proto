@@ -623,6 +623,7 @@ message M2P_PaiMaiShopRequest // IActorRequest
     int64 ActorId = 93;
     int32 ItemID = 1;
     int32 BuyNum = 2;
+    int32 Price = 3;
 }
 
 message P2M_PaiMaiShopResponse // IActorResponse
@@ -1075,4 +1076,12 @@ message F2M_YeWaiSceneIdResponse // IActorResponse
 	int32 Error = 91;
 	string Message = 92;
 	int64 FubenInstanceId = 2;
+}
+
+message T2M_TeamUpdateRequest // IActorLocationMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitId = 2;
+	int64 TeamId = 3;
 }

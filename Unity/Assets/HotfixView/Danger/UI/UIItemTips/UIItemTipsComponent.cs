@@ -185,6 +185,13 @@ namespace ET
             }
         }
 
+        public static void RequestXiangQianGem(this UIItemTipsComponent self, string usrPar)
+        {
+            self.ZoneScene().GetComponent<BagComponent>().SendXiangQianGem(self.BagInfo, usrPar).Coroutine();
+            //注销Tips
+            self.OnCloseTips();
+        }
+
         //使用道具
         public static async ETTask OnClickUse(this UIItemTipsComponent self)
         {
@@ -237,10 +244,15 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip("宝石与孔位不符！");
                     return;
                 }
-                usrPar = $"{uIRoleGemComponent.XiangQianItem.BagInfoID}_{uIRoleGemComponent.XiangQianIndex}";
-                errorCode = await self.ZoneScene().GetComponent<BagComponent>().SendXiangQianGem(self.BagInfo, usrPar);
-                //注销Tips
-                self.OnCloseTips();
+                string[] getIdNew = uIRoleGemComponent.XiangQianItem.GemIDNew.Split('_');
+                if (getIdNew[uIRoleGemComponent.XiangQianIndex]!="0")
+                { 
+                    usrPar = $"{uIRoleGemComponent.XiangQianItem.BagInfoID}_{uIRoleGemComponent.XiangQianIndex}";
+                    PopupTipHelp.OpenPopupTip(self.ZoneScene(), "镶嵌宝石", "是否需要覆盖宝石?", () =>
+                    {
+                        self.RequestXiangQianGem(usrPar);
+                    }).Coroutine();
+                }
                 return;
             }
             if (itemConfig.ItemType == (int)ItemTypeEnum.PetHeXin)
