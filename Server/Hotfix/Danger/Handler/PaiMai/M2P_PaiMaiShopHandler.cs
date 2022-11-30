@@ -18,9 +18,11 @@ namespace ET
                 paimaiCompontent.PaiMaiShopInfoAddBuyNum(request.ItemID, request.BuyNum);
   
                 //扣除对应的上架道具
+                /*
                 PaiMaiItemInfo paiMaiItemInfo = paimaiCompontent.GetPaiMaiItemInfo(request.ItemID);
                 if (paiMaiItemInfo != null)
                 {
+                    //if(paiMaiItemInfo.Price<= request.PA)
                     int costNum = request.BuyNum;
                     if (paiMaiItemInfo.BagInfo.ItemNum > request.BuyNum)
                     {
@@ -35,6 +37,7 @@ namespace ET
                     }
                     MailHelp.SendPaiMaiEmail(scene.DomainZone(), paiMaiItemInfo, costNum).Coroutine();
                 }
+                */
               
                 //返回消息
                 reply();
