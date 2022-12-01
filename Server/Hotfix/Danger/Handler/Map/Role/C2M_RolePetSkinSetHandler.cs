@@ -13,8 +13,8 @@ namespace ET
             RolePetInfo rolePetInfo = petComponent.GetPetInfo(request.PetInfoId);
             rolePetInfo.SkinId = request.SkinId;
 
+            petComponent.UpdatePetAttribute(rolePetInfo, true);
             Unit unitPet = unit.GetParent<UnitComponent>().Get(request.PetInfoId);
-            petComponent.UpdatePetAttribute(rolePetInfo, unitPet);
             if (unitPet != null)
             {
                 unitPet.GetComponent<NumericComponent>().ApplyValue(NumericType.PetSkin, rolePetInfo.SkinId, true);
