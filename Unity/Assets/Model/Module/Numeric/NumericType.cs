@@ -76,9 +76,7 @@
         public const int Now_Horse = 3070;
         public const int BattleTodayCamp = 3071;                                   //今日战场
         public const int TeamId = 3072;
-        public const int BattleKillNumber = 3073;                                   //战场击杀人数
-
-
+        public const int BattleTodayKill = 3073;                                   //战场击杀人数
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值
