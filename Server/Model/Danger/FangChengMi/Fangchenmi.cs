@@ -17,6 +17,9 @@ namespace ET
 
     public static class InitValueDefs
 	{
+		//"{ ai = 1669902416, name = 唐春光, idNum = 429001198512282996 }"
+		//"f6df1ff5f23285679037fef83c398fb18051c13549db60bba9887361e55316c6"
+
 		//test
 		//public const string FangChenMi_appid = "46d6895c5d544f1685f4cf343954c018";
 		//public const string FangChenMi_secretkey = "f8dbf17bb15192931d4cc096e52f5104";
