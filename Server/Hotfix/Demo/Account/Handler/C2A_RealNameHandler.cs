@@ -26,6 +26,7 @@ namespace ET
             }
             else
             {
+                Log.Debug($"OnDoFangchenmi  {request.IdCardNO}");
                 result_check = Fangchenmi.OnDoFangchenmi(new
                 {
                     ai = request.AiType,
@@ -38,26 +39,26 @@ namespace ET
                 reply();
                 return;
             }
-
+            Log.Debug($"OnDoFangchenmi  {result_check.errcode}");
+          
             PlayerInfo playerInfo = new PlayerInfo();
             if (result_check.errcode == 0)  //认证成功
             {
                 playerInfo.Name = request.Name;
                 playerInfo.IdCardNo = request.IdCardNO;
                 playerInfo.RealName = 1;
+
+                D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = accountInfo.Id, Component = accountInfo, ComponentType = DBHelper.DBAccountInfo });
+                long accountZone = DBHelper.GetAccountCenter();
+                Center2A_SaveAccount saveAccount = (Center2A_SaveAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_SaveAccount()
+                {
+                    AccountId = accountInfo.Id,
+                    AccountName = accountInfo.Account,
+                    Password = accountInfo.Password,
+                    PlayerInfo = playerInfo,
+                });
             }
             response.ErrorCode = result_check.errcode;
-            D2M_SaveComponent d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = accountInfo.Id, Component = accountInfo, ComponentType = DBHelper.DBAccountInfo });
-
-            long accountZone = DBHelper.GetAccountCenter();
-            Center2A_SaveAccount saveAccount = (Center2A_SaveAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_SaveAccount()
-            {
-                AccountId = accountInfo.Id,
-                AccountName = accountInfo.Account,
-                Password = accountInfo.Password,
-                PlayerInfo = playerInfo,
-            });
-
             reply();
         }
     } 
