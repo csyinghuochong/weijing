@@ -124,6 +124,25 @@ namespace ET
             }
         }
 
+        public static void LockTargetUnitId(this LockTargetComponent self, long unitId)
+        {
+            self.LastLockId = unitId;
+            if (self.LastLockId != 0)
+            {
+                self.CheckLockEffect();
+                Unit unitTarget = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.LastLockId);
+                UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
+                self.LockUnitEffect.SetActive(true);
+                if (unitTarget.Type == UnitType.Monster)
+                {
+                    UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                    uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnLockUnit(unitTarget);
+                    MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitTarget.ConfigId);
+                    self.SetEffectSize((float)monsterConfig.SelectSize);
+                }
+            }
+        }
+
         public static long LockTargetUnit(this LockTargetComponent self, bool first = false)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -188,21 +207,7 @@ namespace ET
                     self.LastLockId = UnitLockRanges[self.LastLockIndex].Id;
                 }
             }
-
-            if (self.LastLockId != 0)
-            {
-                self.CheckLockEffect();
-                Unit unitTarget = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.LastLockId);
-                UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
-                self.LockUnitEffect.SetActive(true);
-                if (unitTarget.Type == UnitType.Monster)
-                {
-                    UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                    uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnLockUnit(unitTarget);
-                    MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitTarget.ConfigId);
-                    self.SetEffectSize((float)monsterConfig.SelectSize);
-                }
-            }
+            self.LockTargetUnitId(self.LastLockId);
             return self.LastLockId;
         }
 

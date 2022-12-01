@@ -12,6 +12,7 @@ namespace ET
         public int npcMask;
         public int boxMask;
         public int playerMask;
+        public int monsterMask;
 
         public int NpcId;
         public Vector3 UnitStartPosition;
