@@ -171,7 +171,7 @@ namespace ET
         {
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
             newpet = self.PetXiLian(newpet, 1);
-            self.UpdatePetAttribute(newpet);
+            self.UpdatePetAttribute(newpet, false);
             self.RolePetInfos.Add(newpet);
             M2C_RolePetUpdate m2C_RolePetUpdate = new M2C_RolePetUpdate();
             m2C_RolePetUpdate.PetInfoAdd = new List<RolePetInfo>();
@@ -202,8 +202,7 @@ namespace ET
             {
                 return;
             }
-            Unit petUnit = self.GetParent<Unit>().DomainScene().GetComponent<UnitComponent>().Get(rolePetInfo.Id);
-            self.PetAddExp(rolePetInfo, mCof.Exp, petUnit);
+            self.PetAddExp(rolePetInfo, mCof.Exp);
         }
 
         public static void UpdatePetZiZhi(this PetComponent self, RolePetInfo rolePetInfo, int itemId)
@@ -246,11 +245,11 @@ namespace ET
         {
             rolePetInfo.AddPropretyNum =( rolePetInfo.PetLv - 1 ) * 5;
             rolePetInfo.AddPropretyValue = "0_0_0_0";
-            self.UpdatePetAttribute(rolePetInfo, null);
+            self.UpdatePetAttribute(rolePetInfo, false);
         }
 
         //增加经验
-        public static void PetAddLv(this PetComponent self, RolePetInfo rolePetInfo, int lv, Unit unitPet = null)
+        public static void PetAddLv(this PetComponent self, RolePetInfo rolePetInfo, int lv)
         {
             if (rolePetInfo == null)
             {
@@ -263,7 +262,7 @@ namespace ET
             rolePetInfo.PetLv = newLevel;
 
             //刷新属性
-            self.UpdatePetAttribute(rolePetInfo, unitPet);
+            self.UpdatePetAttribute(rolePetInfo, true);
 
             //通知客户端
             MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataUpdate() { UpdateType = (int)UserDataType.Lv, PetId = rolePetInfo.Id, UpdateTypeValue = rolePetInfo.PetLv.ToString() });
@@ -278,7 +277,7 @@ namespace ET
         }
 
         //增加等级
-        public static void PetAddExp(this PetComponent self, RolePetInfo rolePetInfo, int exp, Unit unitpet = null)
+        public static void PetAddExp(this PetComponent self, RolePetInfo rolePetInfo, int exp)
         {
             if (rolePetInfo == null)
             {
@@ -289,7 +288,7 @@ namespace ET
             ExpConfig xiulianconf1 = ExpConfigCategory.Instance.Get(rolePetInfo.PetLv);
             if (newExp >= xiulianconf1.PetUpExp)
             {
-                self.PetAddLv(rolePetInfo, 1, unitpet);
+                self.PetAddLv(rolePetInfo, 1);
                 newExp -= xiulianconf1.PetUpExp;
             }
             rolePetInfo.PetExp = newExp;
@@ -315,7 +314,7 @@ namespace ET
             return (float)self.GetByKey(rolePetInfo, numericType) / 10000;
         }
 
-        public static void UpdatePetAttribute(this PetComponent self, RolePetInfo rolePetInfo, Unit petUnit = null)
+        public static void UpdatePetAttribute(this PetComponent self, RolePetInfo rolePetInfo, bool updateUnit = false)
         {
             //获取宠物资质
             float actPro = 1f - ((1500 - rolePetInfo.ZiZhi_Act) / 750.0f);
@@ -468,6 +467,11 @@ namespace ET
             }
 
             //如果是出战的宠物。再广播一下属性
+            if (updateUnit == false)
+            {
+                return;
+            }
+            Unit petUnit = self.GetParent<Unit>().GetParent<UnitComponent>().Get(rolePetInfo.Id);
             if (petUnit == null)
             {
                 return;

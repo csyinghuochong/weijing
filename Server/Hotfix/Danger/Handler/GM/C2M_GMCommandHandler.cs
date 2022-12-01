@@ -111,7 +111,7 @@ namespace ET
 					unit.GetComponent<TaskComponent>().CompletCurrentTask();
 					return;
 				}
-				if (message.GMMsg.Contains("#addack"))
+				if (message.GMMsg.Contains("#addack"))  //#addack#10000
 				{
 					int addAck = int.Parse(commands[2]);
 					unit.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_MaxAct_Add, addAck);
@@ -127,7 +127,7 @@ namespace ET
 						rewardItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNumber });
 						unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}", true, true);
 						break;
-					case 2:             //新增怪物2#7.2#1.27#-2.57#72002013#1
+					case 2:             //新增怪物2#7.2#1.27#-2.57#72002011#1
 						float posX = float.Parse(commands[1]);
 						float posY = float.Parse(commands[2]);
 						float posZ = float.Parse(commands[3]);

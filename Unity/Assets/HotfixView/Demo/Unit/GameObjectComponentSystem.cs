@@ -195,6 +195,16 @@ namespace ET
             self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseId);
         }
 
+        public static void OnAddCollider(this GameObjectComponent self, GameObject go)
+        {
+            if (go.GetComponent<Collider>() == null)
+            {
+                BoxCollider box = go.AddComponent<BoxCollider>();
+                box.size = new Vector3(1f, 2f, 1f);
+                box.center = new Vector3(0f, 1f, 0f);
+            }
+        }
+
         public static void OnLoadGameObject(this GameObjectComponent self, GameObject go, long formId)
         {
             if (self.IsDisposed)
@@ -216,12 +226,7 @@ namespace ET
                 case UnitType.Player:
                     MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.Player);
-                    if (go.GetComponent<Collider>() == null)
-                    {
-                        BoxCollider box = go.AddComponent<BoxCollider>();
-                        box.size = new Vector3(1f, 2f, 1f);
-                        box.center = new Vector3(0f, 1f, 0f);
-                    }
+                    self.OnAddCollider(go);
                     go.transform.name = unit.Id.ToString();
                     unit.UpdateUIType = HeadBarType.HeroHeadBar;
                     unit.AddComponent<HeroTransformComponent>();              //获取角色绑点组件
@@ -249,6 +254,8 @@ namespace ET
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                     if (monsterCof.AI != 0)
                     {
+                        LayerHelp.ChangeLayer(go.transform, LayerEnum.Player);
+                        self.OnAddCollider(go);
                         unit.AddComponent<EffectViewComponent>(true);            //添加特效组建
                         unit.AddComponent<AnimatorComponent>(true);
                         unit.AddComponent<FsmComponent>(true);                 //当前状态组建
@@ -308,12 +315,7 @@ namespace ET
                     break;
                 case UnitType.Npc:
                     LayerHelp.ChangeLayer(go.transform, LayerEnum.NPC);
-                    if (go.GetComponent<Collider>() == null)
-                    {
-                        BoxCollider box = go.AddComponent<BoxCollider>();
-                        box.size = new Vector3(1f, 2f, 1f);
-                        box.center = new Vector3(0f, 1f, 0f);
-                    }
+                    self.OnAddCollider(go);
                     unit.UpdateUIType = HeadBarType.NpcHeadBarUI;
                     go.name = unit.ConfigId.ToString();
                     unit.AddComponent<AnimatorComponent>();

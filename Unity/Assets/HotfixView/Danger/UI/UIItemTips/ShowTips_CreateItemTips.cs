@@ -16,10 +16,16 @@ namespace ET
         {
             int itemWidth = 462;
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(args.bagInfo.ItemID);
-            if (args.itemOperateEnum == ItemOperateEnum.XiangQianBag
-                && itemConfig.ItemType == (int)ItemTypeEnum.PetHeXin)
+            if (args.itemOperateEnum == ItemOperateEnum.XiangQianBag)
             {
-                return;
+                if (itemConfig.ItemType == (int)ItemTypeEnum.PetHeXin)
+                {
+                    return;
+                }
+                if (args.bagInfo.IfJianDing)
+                {
+                    return;
+                }
             }
 
             if (args.itemOperateEnum == ItemOperateEnum.Juese)

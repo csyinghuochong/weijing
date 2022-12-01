@@ -22,6 +22,25 @@ namespace ET
             }
         }
 
+        public static async ETTask QueryGold(int zone)
+        {
+            ListComponent<int> mergezones = new ListComponent<int>() { zone };
+            for (int i = 0; i < mergezones.Count; i++)
+            {
+                var startZoneConfig = StartZoneConfigCategory.Instance.Get(mergezones[i]);
+                Game.Scene.GetComponent<DBComponent>().InitDatabase(startZoneConfig);
+            }
+
+            List<UserInfoComponent> userInfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(zone, d => d.Id > 0);
+            foreach (var entity in userInfoComponents)
+            {
+                if (entity.UserInfo.Gold > 10000000 && !entity.Account.Contains("_"))
+                {
+                    Log.Debug($"Account:{entity.Account} Name: {entity.UserInfo.Name}  Lv:{entity.UserInfo.Lv} Gold:{entity.UserInfo.Gold} ID:{entity.Id} ");
+                }
+            }
+        }
+
         public static async ETTask QueryAccount(int newzone, long userid)
         {
             ListComponent<int> mergezones = new ListComponent<int>() { newzone };

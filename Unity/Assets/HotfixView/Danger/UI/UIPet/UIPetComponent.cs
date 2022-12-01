@@ -134,7 +134,8 @@ namespace ET
 
         public static void OnXiLianUpdate(this UIPetComponent self)
         {
-            self.UIPageView.UISubViewList[(int)PetPageEnum.PetXiLian].GetComponent<UIPetXiLianComponent>().OnXiLianUpdate();
+            UI uI = self.UIPageView.UISubViewList[(int)PetPageEnum.PetXiLian];
+            uI?.GetComponent<UIPetXiLianComponent>().OnXiLianUpdate();
         }
 
         public static void OnPetFightSet(this UIPetComponent self)

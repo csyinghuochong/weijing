@@ -1,13 +1,12 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
-using UnityEngine.UI;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
     public class UIRoleGemComponent : Entity, IAwake
     {
         public Transform BuildingList;
-        public List<UI> ItemUIlist = new List<UI>();
+        public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
         public List<UIRoleGemHoleComponent> GemHoleList= new List<UIRoleGemHoleComponent>();
 
         public UI UIPageComponent;
@@ -84,7 +83,7 @@ namespace ET
         {
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
-                self.ItemUIlist[i].GetComponent<UIItemComponent>().SetSelected(bagInfo);
+                self.ItemUIlist[i].SetSelected(bagInfo);
             }
         }
 
@@ -151,13 +150,12 @@ namespace ET
                 go.transform.localPosition = Vector3.zero;
                 go.transform.localScale = Vector3.one;
 
-                UI uiitem = self.AddChild<UI, string, GameObject>("UIItem_" + i, go);
-                UIItemComponent uIItemComponent = uiitem.AddComponent<UIItemComponent>();
-                uIItemComponent.SetClickHandler((BagInfo bagInfo) => { self.OnClickHandler(bagInfo); });
+                UIItemComponent uiitem = self.AddChild<UIItemComponent, GameObject>( go);
+                uiitem.SetClickHandler((BagInfo bagInfo) => { self.OnClickHandler(bagInfo); });
                 self.ItemUIlist.Add(uiitem);
                 if (i < bagInfos.Count)
                 {
-                    uIItemComponent.UpdateItem(bagInfos[i], ItemOperateEnum.XiangQianBag);
+                    uiitem.UpdateItem(bagInfos[i], ItemOperateEnum.XiangQianBag);
                 }
             }
         }
@@ -171,7 +169,7 @@ namespace ET
             }
             for (int i = 0; i < self.ItemUIlist.Count; i++)
             {
-                self.ItemUIlist[i].GetComponent<UIItemComponent>().UpdateItem(null, ItemOperateEnum.XiangQianBag);
+                self.ItemUIlist[i].UpdateItem(null, ItemOperateEnum.XiangQianBag);
             }
 
             if (itemType == -1)
@@ -200,7 +198,7 @@ namespace ET
             {
                 if (i >= self.ItemUIlist.Count)
                     break;
-                self.ItemUIlist[i].GetComponent<UIItemComponent>().UpdateItem(bagInfos[i], ItemOperateEnum.XiangQianBag);
+                self.ItemUIlist[i].UpdateItem(bagInfos[i], ItemOperateEnum.XiangQianBag);
             }
 
             if (self.XiangQianItem != null)

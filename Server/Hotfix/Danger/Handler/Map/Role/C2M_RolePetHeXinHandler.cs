@@ -46,8 +46,7 @@ namespace ET
                     m2c_bagUpdate.BagInfoUpdate.Add(bagInfo);
                     rolePetInfo.PetHeXinList[request.Position] = request.BagInfoId;
                 }
-                Unit unitPet = unit.GetParent<UnitComponent>().Get(request.PetInfoId);
-                petComponent.UpdatePetAttribute(rolePetInfo, unitPet);
+                petComponent.UpdatePetAttribute(rolePetInfo, true);
                 MessageHelper.SendToClient(unit, m2c_bagUpdate);
 
                 response.RolePetInfo = rolePetInfo;

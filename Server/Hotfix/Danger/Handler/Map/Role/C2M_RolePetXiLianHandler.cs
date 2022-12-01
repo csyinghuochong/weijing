@@ -65,6 +65,7 @@ namespace ET
 				//学习技能书
 				case 122:
 					bool ifok = Pet_AddSkill(petInfo, int.Parse(itemConfig.ItemUsePar));
+					unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
 					response.rolePetInfo = petInfo;
 					ifCost = ifok;
 					response.Error = ifok ? ErrorCode.ERR_Success : ErrorCore.ERR_Pet_AddSkillSame;
@@ -116,6 +117,7 @@ namespace ET
 			}
 
 			petinfo.PetSkill.Add(addSkillID);
+
 
 			return true;
 		}

@@ -250,7 +250,7 @@ namespace ET
             try
             {
                 long unitid = long.Parse(obname);
-                self.OpenWatchUI(unitid).Coroutine();
+                self.OnClickUnitItem(unitid).Coroutine();
                 return true;
             }
             catch (Exception ex)
@@ -260,22 +260,29 @@ namespace ET
             return false;
         }
 
-        public static async ETTask OpenWatchUI(this OperaComponent self, long unitid)
+        public static async ETTask OnClickUnitItem(this OperaComponent self, long unitid)
         {
             if (unitid == self.ZoneScene().GetComponent<AccountInfoComponent>().MyId)
             {
                 return;
             }
             Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
-            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Stall) == 1)
+            if (unit.Type == UnitType.Player)
             {
-                UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiStall);
-                uI.GetComponent<UIPaiMaiStallComponent>().OnUpdateUI(unit);
+                if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Stall) == 1)
+                {
+                    UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIPaiMaiStall);
+                    uI.GetComponent<UIPaiMaiStallComponent>().OnUpdateUI(unit);
+                }
+                else
+                {
+                    UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIWatchMenu);
+                    uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI(MenuEnumType.Main, unit.Id).Coroutine();
+                }
             }
-            else
+            if (unit.Type == UnitType.Monster)
             {
-                UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIWatchMenu);
-                uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI(MenuEnumType.Main, unit.Id).Coroutine();
+                self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(unitid);
             }
         }
 
