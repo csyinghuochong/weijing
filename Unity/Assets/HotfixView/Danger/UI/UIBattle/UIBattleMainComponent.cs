@@ -23,6 +23,7 @@ namespace ET
 
     public class UIBattleMainComponent : Entity, IAwake, IDestroy
     {
+        public GameObject TextVS_Kill;
         public GameObject TextVS_1;
         public GameObject TextVS_2;
         public Text CountDownTime;
@@ -40,6 +41,7 @@ namespace ET
 
             self.TextVS_1 = rc.Get<GameObject>("TextVS_1");
             self.TextVS_2 = rc.Get<GameObject>("TextVS_2");
+            self.TextVS_Kill = rc.Get<GameObject>("TextVS_Kill");
             self.CountDownTime = rc.Get<GameObject>("CountDownTime").GetComponent<Text>();
 
             DateTime dateTime = TimeHelper.DateTimeNow();
@@ -50,6 +52,9 @@ namespace ET
             int closeTime = FunctionHelp.GetCloseTime(1025) * 60 * 1000;
             self.CDTime = closeTime - curTime;
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.BattleMainTimer, self);
+
+
+            self.OnUpdateSelfKill();
         }
     }
 
@@ -79,6 +84,12 @@ namespace ET
         {
             self.TextVS_1.GetComponent<Text>().text = message.CampKill_1.ToString();
             self.TextVS_2.GetComponent<Text>().text = message.CampKill_2.ToString();
+        }
+
+        public static void OnUpdateSelfKill(this UIBattleMainComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            self.TextVS_Kill.GetComponent<Text>().text = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleTodayKill).ToString();
         }
     }
 }

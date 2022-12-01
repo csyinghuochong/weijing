@@ -126,10 +126,12 @@ namespace ET
 						scene.GetComponent<LocalDungeonComponent>().GenerateFubenScene(request.ChapterId);
 						break;
 					case (int)SceneTypeEnum.Battle:
-						numericComponent.Set(NumericType.BattleCamp, request.SonId); //1 2
+						int todayCamp = numericComponent.GetAsInt(NumericType.BattleTodayCamp);
+						todayCamp = todayCamp > 0 ? todayCamp : request.SonId;
+						numericComponent.Set(NumericType.BattleCamp, todayCamp); //1 2
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
-						int startIndex = request.SonId == 1 ? 0 : 3;
+						int startIndex = todayCamp == 1 ? 0 : 3;
 						unit.Position = new Vector3(sceneConfig.InitPos[startIndex+0] * 0.01f, sceneConfig.InitPos[startIndex + 1] * 0.01f, sceneConfig.InitPos[startIndex + 2] * 0.01f);
 						unit.Rotation = Quaternion.identity;
 						// 通知客户端创建My Unit

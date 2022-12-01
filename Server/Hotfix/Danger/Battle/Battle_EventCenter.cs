@@ -116,7 +116,7 @@ namespace ET
                         args.UnitAttack.DomainScene().GetComponent<LocalDungeonComponent>().OnKillEvent(args.UnitDefend);
                         break;
                     case SceneTypeEnum.Battle:
-                        args.UnitAttack.DomainScene().GetComponent<BattleDungeonComponent>().OnKillEvent(args.UnitDefend);
+                        args.UnitAttack.DomainScene().GetComponent<BattleDungeonComponent>().OnKillEvent(args.UnitDefend, args.UnitAttack);
                         break;
                     case SceneTypeEnum.TrialDungeon:
                         args.UnitAttack.DomainScene().GetComponent<TrialDungeonComponent>().OnKillEvent(args.UnitDefend);

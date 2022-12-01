@@ -31,9 +31,8 @@ namespace ET
         public GameObject RawImage;
         public GameObject MainCityShow;
         public GameObject HeadList;
-        public GameObject HeadSelf;
-        public GameObject Teammer;
-        public GameObject Enemyer;
+        public GameObject HeadItem;
+
 
         public GameObject MapCamera;
         public float ScaleRateX;
@@ -41,9 +40,7 @@ namespace ET
         public int SceneId;
         public long Timer;
 
-        public List<GameObject> TeamPointList = new List<GameObject>();
-        public List<GameObject> EnemyPointList = new List<GameObject>();
-
+        public List<GameObject> AllPointList = new List<GameObject>();
         public Vector3 NoVector3 = new Vector3(-2000, -2000, 0);
     }
 
@@ -63,8 +60,7 @@ namespace ET
         public override void Awake(UIMapMiniComponent self, GameObject a)
         {
             self.GameObject = a;
-            self.TeamPointList.Clear();
-            self.EnemyPointList.Clear();
+            self.AllPointList.Clear();
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
 
             self.Lab_MapName = rc.Get<GameObject>("Lab_MapName");
@@ -72,11 +68,8 @@ namespace ET
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.MainCityShow = rc.Get<GameObject>("MainCityShow");
             self.HeadList = rc.Get<GameObject>("HeadList");
-            self.HeadSelf = rc.Get<GameObject>("HeadSelf");
-            self.Teammer = rc.Get<GameObject>("Teammer");
-            self.Enemyer = rc.Get<GameObject>("Enemyer");
-            self.Teammer.SetActive(false);
-            self.Enemyer.SetActive(false);
+            self.HeadItem = rc.Get<GameObject>("HeadItem");
+            self.HeadItem.SetActive(false);
             self.HeadList.SetActive(false);
 
             DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
@@ -105,7 +98,6 @@ namespace ET
             List<Unit> allUnit = main.GetParent<UnitComponent>().GetAll();
 
             int teamNumber = 0;
-            int enemNumber = 0;
             int selfCamp_1 = main.GetBattleCamp();
             for (int i = 0; i < allUnit.Count; i++)
             {
@@ -117,60 +109,48 @@ namespace ET
 
                 Vector3 vector31 = new Vector3(unit.Position.x, unit.Position.z, 0f);
                 Vector3 vector32 = self.GetWordToUIPositon(vector31);
-                GameObject headItem = null;
+                GameObject headItem = self.GetTeamPointObj(teamNumber);
+
+                //1自己 2敌对 3队友  4主城
+                string showType ="4";
                 if (unit.MainHero)
                 {
-                    headItem = self.HeadSelf;
+                    showType = "1";
                 }
-                else if (selfCamp_1 == unit.GetBattleCamp())
+                if (unit.IsCanBeAttackByUnit(main))
                 {
-                    headItem = self.GetTeamPointObj(teamNumber);
-                    teamNumber++;
+                    showType = "2";
                 }
-                else
+                if (unit.IsSameTeam(main))
                 {
-                    headItem = self.GetEnemyPointObj(enemNumber);
-                    enemNumber++;
+                    showType = "3";
                 }
-                
+
+                teamNumber++;
+                headItem.transform.Find("1").gameObject.SetActive(showType == "1");
+                headItem.transform.Find("2").gameObject.SetActive(showType == "2");
+                headItem.transform.Find("3").gameObject.SetActive(showType == "3");
+                headItem.transform.Find("4").gameObject.SetActive(showType == "4");
                 headItem.transform.localPosition = new Vector2(vector32.x, vector32.y);
             }
 
-            for (int i = teamNumber; i < self.TeamPointList.Count; i++)
+            for (int i = teamNumber; i < self.AllPointList.Count; i++)
             {
-                self.TeamPointList[i].transform.localPosition = self.NoVector3;
-            }
-            for (int i = enemNumber; i < self.EnemyPointList.Count; i++)
-            {
-                self.EnemyPointList[i].transform.localPosition = self.NoVector3;
+                self.AllPointList[i].transform.localPosition = self.NoVector3;
             }
         }
 
         public static GameObject GetTeamPointObj(this UIMapMiniComponent self, int index)
         {
-            if (self.TeamPointList.Count > index)
+            if (self.AllPointList.Count > index)
             {
-                return self.TeamPointList[index];
+                return self.AllPointList[index];
             }
-            GameObject go = GameObject.Instantiate(self.Teammer);
-            go.transform.SetParent(self.Teammer.transform.parent);
+            GameObject go = GameObject.Instantiate(self.HeadItem);
+            go.transform.SetParent(self.HeadItem.transform.parent);
             go.transform.localScale = Vector3.one;
             go.SetActive(true);
-            self.TeamPointList.Add(go);
-            return go;
-        }
-
-        public static GameObject GetEnemyPointObj(this UIMapMiniComponent self, int index)
-        {
-            if (self.EnemyPointList.Count > index)
-            {
-                return self.EnemyPointList[index];
-            }
-            GameObject go = GameObject.Instantiate(self.Enemyer);
-            go.transform.SetParent(self.Enemyer.transform.parent);
-            go.transform.localScale = Vector3.one;
-            go.SetActive(true);
-            self.EnemyPointList.Add(go);
+            self.AllPointList.Add(go);
             return go;
         }
 

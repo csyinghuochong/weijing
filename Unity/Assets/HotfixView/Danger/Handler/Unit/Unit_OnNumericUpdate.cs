@@ -7,6 +7,7 @@
         protected override void Run(object numerice)
         {
             EventType.UnitNumericUpdate args = numerice as EventType.UnitNumericUpdate;
+            Scene zoneScene = args.Unit.ZoneScene();
             switch (args.NumericType)
             {
                 case NumericType.Now_Stall:
@@ -48,7 +49,6 @@
                     args.Unit.AddComponent<GameObjectComponent>();
                     break;
                 case NumericType.ZeroClock:
-                    Scene zoneScene = args.Unit.ZoneScene();
                     UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
                     userInfoComponent.UserInfo.DayFubenTimes.Clear();
                     userInfoComponent.UserInfo.ChouKaRewardIds.Clear();
@@ -70,6 +70,10 @@
                     break;
                 case NumericType.Now_Horse:
                     args.Unit.GetComponent<GameObjectComponent>()?.OnUpdateHorse();
+                    break;
+                case NumericType.BattleTodayKill:
+                    uI_2 = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIBattleMain);
+                    uI_2?.GetComponent<UIBattleMainComponent>().OnUpdateSelfKill();
                     break;
                 case NumericType.TowerId:
                     int towerId = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
