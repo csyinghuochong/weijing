@@ -8,6 +8,7 @@ namespace ET
     public class UIRolePropertyComponent : Entity, IAwake,IDestroy
     {
 
+        public GameObject ButtonTiLi;
         public GameObject ButtonCloseAddPoint;
         public GameObject ButtonAddPointConfirm;
         public GameObject ButtonAddPoint;
@@ -64,6 +65,8 @@ namespace ET
             self.Text_PiLao = rc.Get<GameObject>("Text_PiLao");
             self.ImagePiLao = rc.Get<GameObject>("ImagePiLao");
             self.Text_Vitality = rc.Get<GameObject>("Text_Vitality");
+            self.ButtonTiLi = rc.Get<GameObject>("ButtonTiLi");
+            self.ButtonTiLi.GetComponent<Button>().onClick.AddListener(self.OnButtonTiLi);
 
             self.ButtonCloseAddPoint = rc.Get<GameObject>("ButtonCloseAddPoint");
             self.ButtonCloseAddPoint.GetComponent<Button>().onClick.AddListener(() => 
@@ -128,6 +131,13 @@ namespace ET
 
     public static class UIRolePropertyComponentSystem
 	{
+
+        public static void OnButtonTiLi(this UIRolePropertyComponent self)
+        {
+            PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "体力",
+                "0点恢复30体力\r\n6点恢复30体力\r\n12点恢复30体力\r\n20点恢复30体力/n",
+                null).Coroutine();
+        }
 
         public static void Reddot_RolePoint(this UIRolePropertyComponent self, int num)
         {
