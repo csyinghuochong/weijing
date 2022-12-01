@@ -340,14 +340,11 @@ namespace ET
             int def_Now = (int)((petCof.Base_Def + rolePetInfo.PetLv * petCof.Lv_Def + pro_NaiLi * 5) * defPro * rolePetInfo.ZiZhi_ChengZhang);
             int adf_Now = (int)((petCof.Base_Adf + rolePetInfo.PetLv * petCof.Lv_Adf + pro_NaiLi * 5) * adfPro * rolePetInfo.ZiZhi_ChengZhang);
 
-            float speed = 5f;
+            float speed = 3f;
             
             //存储数据
             rolePetInfo.Ks.Clear();
             rolePetInfo.Vs.Clear();
-
-            rolePetInfo.Ks.Add((int)NumericType.Base_Speed_Base);
-            rolePetInfo.Vs.Add((long)speed * 10000);
 
             rolePetInfo.Ks.Add((int)NumericType.Now_Speed);
             rolePetInfo.Vs.Add((long)speed * 10000);
