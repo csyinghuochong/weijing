@@ -176,10 +176,7 @@ namespace ET
             self.Left.SetActive(makeId != 0);
             self.Select.SetActive(makeId == 0);
             self.Melt.SetActive(false);
-            if (makeId > 0)
-            {
-                self.UpdateMakeList(makeId).Coroutine();
-            }
+            self.UpdateMakeList(makeId).Coroutine();
         }
 
         public static void OnBtn_Melt(this UISkillMakeComponent self)
@@ -374,6 +371,11 @@ namespace ET
 
         public static async ETTask UpdateMakeList(this UISkillMakeComponent self, int makeType)
         {
+            if (makeType == 0)
+            {
+                return;
+            }
+
             int number = 0;
             //List<int> makeList = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList;
             var path = ABPathHelper.GetUGUIPath("Main/Make/UIMakeItem");
@@ -416,7 +418,14 @@ namespace ET
                 ui_2.OnUpdateUI(equipMakeConfig.Id);
             }
 
-            self.OnSelectMakeItem(number == 0 ? 0 : self.MakeListUI[0].MakeID);
+            if (self.MakeId != 0)
+            {
+                self.OnSelectMakeItem(self.MakeId);
+            }
+            else
+            {
+                self.OnSelectMakeItem(number == 0 ? 0 : self.MakeListUI[0].MakeID);
+            }
         }
     }
 }
