@@ -3743,7 +3743,6 @@ message ServerInfo
 {
 	int32 WorldLv = 1;
 	int64 ExChangeGold = 2;
-	int64 OpenServerTime = 3;
 	RankingInfo RankingInfo = 4;
 }
 

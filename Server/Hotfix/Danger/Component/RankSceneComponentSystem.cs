@@ -63,7 +63,6 @@ namespace ET
             }
             //初始化参数
             dBServerInfo.ServerInfo.ExChangeGold = dBServerInfo.ServerInfo.ExChangeGold != 0? dBServerInfo.ServerInfo.ExChangeGold  :  1000;  //兑换金币
-            dBServerInfo.ServerInfo.OpenServerTime = dBServerInfo.ServerInfo.OpenServerTime != 0 ? dBServerInfo.ServerInfo.OpenServerTime : TimeHelper.ServerNow();
             self.DBServerInfo = dBServerInfo;
             self.UpdateWorldLv();
             self.BroadcastWorldLv().Coroutine();
@@ -73,8 +72,7 @@ namespace ET
         {
             //第二天并且超过12点才刷新
             long serverNow = TimeHelper.ServerNow();
-
-            int openserverDay = ComHelp.DateDiff_Time(serverNow, self.DBServerInfo.ServerInfo.OpenServerTime);
+            int openserverDay = ComHelp.DateDiff_Time(serverNow, DBHelper.GetOpenServerTime(self.DomainZone()));
             int worldLv = ComHelp.GetWorldLv(openserverDay);
             self.DBServerInfo.ServerInfo.WorldLv = worldLv;
         }

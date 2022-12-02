@@ -119,7 +119,7 @@ namespace ET
                 self.DBDayActivityInfo = d2GGetUnit.Component as DBDayActivityInfo;
                 self.DBDayActivityInfo.Id = self.DomainZone();
             }
-            int openServerDay = await DBHelper.GetOpenServerDay(zone);
+            int openServerDay = DBHelper.GetOpenServerDay(zone);
             self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerDay);
             self.DBDayActivityInfo.Day = TimeHelper.DateTimeNow().Day;
             self.SaveDB();
@@ -158,7 +158,7 @@ namespace ET
 
         public static async ETTask NoticeActivityUpdate_Hour(this ActivitySceneComponent self, int hour)
         {
-            int openServerDay = await DBHelper.GetOpenServerDay(self.DomainZone());
+            int openServerDay =  DBHelper.GetOpenServerDay(self.DomainZone());
             for (int i = 0; i < self.MapIdList.Count; i++)
             {
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call

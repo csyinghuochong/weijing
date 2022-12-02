@@ -17,7 +17,7 @@ namespace ET
         public static async ETTask  InitYeWaiScene(this FubenCenterComponent self)
         {
             await TimerComponent.Instance.WaitAsync(self.DomainZone() * 100);
-            int openDay = await DBHelper.GetOpenServerDay(self.DomainZone());
+            int openDay =  DBHelper.GetOpenServerDay(self.DomainZone());
 
             List<SceneConfig> sceneConfigs =  SceneConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < sceneConfigs.Count; i++)

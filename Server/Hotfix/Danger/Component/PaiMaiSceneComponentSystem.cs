@@ -85,15 +85,15 @@ namespace ET
         public static void OnZeroClockUpdate(this PaiMaiSceneComponent self)
         {
             //更新价格
-            self.UpdatePaiMaiShopItemPrice().Coroutine();
+            self.UpdatePaiMaiShopItemPrice();
 
             self.UpdateShangJiaItems();
         }
 
         //每天更新道具物品价格
-        public static async ETTask UpdatePaiMaiShopItemPrice(this PaiMaiSceneComponent self)
+        public static  void UpdatePaiMaiShopItemPrice(this PaiMaiSceneComponent self)
         {
-            int openserverDay = await DBHelper.GetOpenServerDay(self.DomainZone());
+            int openserverDay =  DBHelper.GetOpenServerDay(self.DomainZone());
             Log.Info($"PaiMaiScene开服天数 {self.DomainZone()} {openserverDay}");
             if (openserverDay > 15) {
                 return;

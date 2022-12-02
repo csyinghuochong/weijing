@@ -7816,9 +7816,6 @@ namespace ET
 		[ProtoMember(2)]
 		public long ExChangeGold { get; set; }
 
-		[ProtoMember(3)]
-		public long OpenServerTime { get; set; }
-
 		[ProtoMember(4)]
 		public RankingInfo RankingInfo { get; set; }
 

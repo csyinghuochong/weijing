@@ -382,7 +382,7 @@ namespace ET
                 }
                 if (npcList[i] == 1000016)
                 {
-                    self.InitMysteryItemInfos().Coroutine();
+                    self.InitMysteryItemInfos();
                 }
                 UnitFactory.CreateNpc(self.DomainScene(), npcList[i]);
             }
@@ -481,10 +481,10 @@ namespace ET
             }
         }
 
-        public static async ETTask InitMysteryItemInfos(this CellDungeonComponent self)
+        public static  void InitMysteryItemInfos(this CellDungeonComponent self)
         {
             self.MysteryItemInfos.Clear();
-            int openServerDay = await DBHelper.GetOpenServerDay(self.DomainZone());
+            int openServerDay =  DBHelper.GetOpenServerDay(self.DomainZone());
             self.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
         }
 

@@ -168,18 +168,14 @@ namespace ET
             return StartSceneConfigCategory.Instance.RechargeConfig.InstanceId;
         }
 
-        public static async ETTask<long> GetOpenServerTime( int zone)
+        public static long GetOpenServerTime( int zone)
         {
-            long dbCacheId = DBHelper.GetDbCacheId(zone);
-            D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = zone, Component = DBHelper.DBServerInfo });
-            long serverOpenTime = d2GGetUnit.Component != null ? (d2GGetUnit.Component as DBServerInfo).ServerInfo.OpenServerTime : 0;
-            serverOpenTime = serverOpenTime != 0 ? serverOpenTime : TimeHelper.ServerNow();
-            return serverOpenTime;
+            return ServerHelper.GetGetServerOpenTime(!ComHelp.IsInnerNet(), zone);
         }
 
-        public static async ETTask<int> GetOpenServerDay(int zone)
+        public static int GetOpenServerDay(int zone)
         {
-            long openSerTime = await GetOpenServerTime(zone);
+            long openSerTime = GetOpenServerTime(zone);
             long serverNow = TimeHelper.ServerNow();
             int openserverDay = ComHelp.DateDiff_Time(serverNow, openSerTime);
             return openserverDay;
