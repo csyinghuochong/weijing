@@ -70,7 +70,19 @@ namespace ET
                     continue;
                 }
                 teamDropItem.EndTime = -1;
-                long unitid = needIds.Count == 0 ? 0 : teamDropItem.NeedPlayers[RandomHelper.RandomNumber(0, teamDropItem.NeedPlayers.Count)];
+
+                int maxNumber = 0;
+                List<int> randomNumbers = new List<int>();
+                for (int p = 0; p < needIds.Count; p++)
+                {
+                    randomNumbers.Add(RandomHelper.RandomNumber(1, 100));
+                    if (randomNumbers[p] > maxNumber)
+                    {
+                        maxNumber = randomNumbers[p];
+                    }
+                }
+                int onwerIndex = randomNumbers.IndexOf(maxNumber);
+                long unitid = needIds.Count == 0 ? 0 : teamDropItem.NeedPlayers[onwerIndex];
                 Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
                 if (unit != null)
                 {
@@ -78,7 +90,7 @@ namespace ET
                     rewardItems.Add(new RewardItem() { ItemID = teamDropItem.DropInfo.ItemID, ItemNum = teamDropItem.DropInfo.ItemNum });
                     bool ret =  unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                     Log.Debug($"TeamDungeonComponent.DropInfo  {teamDropItem.DropInfo.ItemID} {teamDropItem.DropInfo.ItemNum} {ret}");
-                    FubenHelp.SendPickMessage(unit, teamDropItem.DropInfo, self.m2C_SyncChatInfo);
+                    FubenHelp.SendPickMessage(unit, teamDropItem.DropInfo, self.m2C_SyncChatInfo, needIds, randomNumbers);
                 }
                 self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
             }

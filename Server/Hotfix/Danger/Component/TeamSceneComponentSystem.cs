@@ -150,9 +150,9 @@ namespace ET
             {
                 if (allunits[i].GetComponent<UserInfoComponent>().UserInfo.RobotId == 0)
                 {
-                    MessageHelper.SendToClient(allunits[i], self.M2C_TeamDungeonQuitMessage);
                     continue;
                 }
+                MessageHelper.SendToClient(allunits[i], self.M2C_TeamDungeonQuitMessage);
             }
             if (allunits.Count > 0)
             {

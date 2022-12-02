@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.33f1c2</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamDungeonQuitHandler.cs" />
     <Compile Include="Assets\Hotfix\Demo\Scene\SceneChangeHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\MailComponentSystem.cs" />

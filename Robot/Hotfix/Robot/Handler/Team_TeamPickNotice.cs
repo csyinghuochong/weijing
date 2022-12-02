@@ -4,6 +4,7 @@
     {
         protected override void Run(object cls)
         {
+            Log.Debug("Team_TeamPickNotice [机器人需求紫装！]");
             EventType.TeamPickNotice args = (EventType.TeamPickNotice)cls;
             DropInfo dropInfo = args.m2C_TeamPickMessage.DropItems[0];
             C2M_TeamPickRequest request = new C2M_TeamPickRequest() { DropItem = dropInfo, Need = 1 };

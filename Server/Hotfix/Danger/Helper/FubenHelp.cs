@@ -318,6 +318,33 @@ namespace ET
 			return units;
 		}
 
+		public static void SendPickMessage(Unit unit, DropInfo dropInfo, M2C_SyncChatInfo m2C_SyncChatInfo,List<long> ids,  List<int> points)
+		{
+			m2C_SyncChatInfo.ChatInfo = new ChatInfo();
+			m2C_SyncChatInfo.ChatInfo.PlayerLevel = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+			m2C_SyncChatInfo.ChatInfo.Occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
+			m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.System;
+
+			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
+			string numShow = "";
+			if (itemConfig.Id == 1)
+			{
+				numShow = dropInfo.ItemNum.ToString();
+			}
+			string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
+			m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
+
+			for (int p = 0; p < points.Count; p++)
+			{
+				Unit player = unit.GetParent<UnitComponent>().Get(ids[p]);
+				
+				m2C_SyncChatInfo.ChatInfo.ChatMsg += $"{player.GetComponent<UserInfoComponent>().UserInfo.Name}:{points[p]}点";
+				m2C_SyncChatInfo.ChatInfo.ChatMsg += (p == points.Count - 1 ? "" : "  ");
+			}
+
+			MessageHelper.Broadcast(unit, m2C_SyncChatInfo);
+		}
+
 		public static void SendPickMessage(Unit unit, DropInfo dropInfo, M2C_SyncChatInfo m2C_SyncChatInfo)
 		{
 			UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
