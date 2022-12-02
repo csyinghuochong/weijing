@@ -127,7 +127,7 @@ namespace ET
                         self.RecoverPiLao(tiliTimes * 30, false);
                     }
 
-                    Log.Debug($"OnZeroClockUpdate false : {unit.Id}");
+                    Log.Debug($"OnZeroClockUpdate [登录刷新]: {unit.Id}");
                     self.OnZeroClockUpdate(false);
                     unit.GetComponent<TaskComponent>().OnZeroClockUpdate(false);
                     unit.GetComponent<EnergyComponent>().OnResetEnergyInfo();
@@ -174,6 +174,8 @@ namespace ET
 
         public static void RecoverPiLao(this UserInfoComponent self, int addValue, bool notice)
         {
+            Unit unit = self.GetParent<Unit>();
+            Log.Debug($"RecoverPiLao [恢复体力] {unit.Id} {addValue}");
             long recoverPiLao = self.GetParent<Unit>().GetMaxPiLao() - self.UserInfo.PiLao;
             recoverPiLao = Math.Min(recoverPiLao, addValue);
             self.UpdateRoleData(UserDataType.PiLao, recoverPiLao.ToString(), notice);

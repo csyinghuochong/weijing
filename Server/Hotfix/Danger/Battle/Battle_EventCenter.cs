@@ -26,7 +26,7 @@ namespace ET
 
         public static void  SendToClient(EventType.NumericChangeEvent args)
         {
-            if (args.Parent.IsDisposed)
+            if (args.Parent == null || args.Parent.IsDisposed)
             {
                 return;
             }

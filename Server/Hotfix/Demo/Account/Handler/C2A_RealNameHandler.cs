@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ET
 {
@@ -29,7 +28,7 @@ namespace ET
                 Log.Debug($"OnDoFangchenmi1  {request.IdCardNO}");
                 result_check = WorldSayHelper.OnDoFangchenmi(new
                 {
-                    ai = TimeHelper.ServerNow() / 1000,
+                    ai = accountInfo.Id,
                     name = request.Name,
                     idNum = request.IdCardNO,
                 }, EType.Check);
