@@ -26,13 +26,13 @@ namespace ET
             }
             else
             {
-                Log.Debug($"OnDoFangchenmi  {request.IdCardNO}");
-                result_check = Fangchenmi.OnDoFangchenmi(new
+                Log.Debug($"OnDoFangchenmi1  {request.IdCardNO}");
+                result_check = WorldSayHelper.OnDoFangchenmi(new
                 {
-                    ai = request.AiType,
+                    ai = TimeHelper.ServerNow() / 1000,
                     name = request.Name,
                     idNum = request.IdCardNO,
-                }, Fangchenmi.EType.Check);
+                }, EType.Check);
             }
             if (result_check == null)
             {
