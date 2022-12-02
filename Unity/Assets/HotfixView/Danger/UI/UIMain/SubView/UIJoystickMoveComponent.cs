@@ -80,7 +80,7 @@ namespace ET
         }
     }
 
-    public static class UIJoystickNewComponentSystem
+    public static class UIJoystickMoveComponentSystem
     {
         public static void PointerDown(this UIJoystickMoveComponent self, PointerEventData pdata)
         {

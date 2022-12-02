@@ -405,6 +405,10 @@ namespace ET
             //{
             //    self.Material.shader = Shader.Find("Toon/BasicOutline");
             //}
+            if (self.GameObject == null)
+            {
+                return;
+            }
             Transform transform = self.GameObject.transform;
             for (int i = 0; i < transform.childCount; i++)
             {
