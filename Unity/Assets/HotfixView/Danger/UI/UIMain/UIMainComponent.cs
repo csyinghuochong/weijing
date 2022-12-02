@@ -31,7 +31,6 @@ namespace ET
         public GameObject Btn_PetFormation;
         public GameObject Btn_GM;
         public GameObject Btn_Task;
-        public GameObject UISinging;
         public GameObject TextPing;
         public GameObject MailHintTip;
         public GameObject Btn_Union;

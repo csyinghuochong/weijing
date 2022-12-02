@@ -121,6 +121,24 @@ namespace ET
 
         public static void OnButtonActivty(this UIActivityMaoXianComponent self, int index)
         {
+            int selId = self.GetCurActivityId();
+
+            int maxId = ActivityHelper.GetMaxActivityId(101);
+            int minId = ActivityHelper.GetMinActivityId(101);
+            int curId = self.CurActivityId;
+
+            curId += index;
+            if (curId < minId)
+            {
+                self.ButtonLeft.SetActive(false);
+                return;
+            }
+            if (curId > maxId || curId > selId + 3)
+            {
+                self.ButtonRight.SetActive(true);
+                return;
+            }
+            self.OnUpdateUI(curId);
         }
 
         public static int GetMaoXianExp(this UIActivityMaoXianComponent self)
@@ -156,6 +174,12 @@ namespace ET
 
             UICommonHelper.DestoryChild(self.ItemListNode);
             UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemListNode, self, 1f);
+
+            int selId = self.GetCurActivityId();
+            int maxId = ActivityHelper.GetMaxActivityId(101);
+            int minId = ActivityHelper.GetMinActivityId(101);
+            self.ButtonLeft.SetActive(self.CurActivityId > minId);
+            self.ButtonRight.SetActive(self.CurActivityId < selId + 3 && self.CurActivityId < maxId + 3);
         }
 
     }
