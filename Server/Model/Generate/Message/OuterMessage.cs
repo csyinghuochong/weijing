@@ -6199,23 +6199,10 @@ namespace ET
 
 	}
 
-//退出组队副本
-	[ResponseType(nameof(M2C_TeamDungeonQuitResponse))]
-	[Message(OuterOpcode.C2M_TeamDungeonQuitRequest)]
+//退出组队广播
+	[Message(OuterOpcode.M2C_TeamDungeonQuitMessage)]
 	[ProtoContract]
-	public partial class C2M_TeamDungeonQuitRequest: Object, IActorLocationRequest
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-	}
-
-	[Message(OuterOpcode.M2C_TeamDungeonQuitResponse)]
-	[ProtoContract]
-	public partial class M2C_TeamDungeonQuitResponse: Object, IActorLocationResponse
+	public partial class M2C_TeamDungeonQuitMessage: Object, IActorMessage
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

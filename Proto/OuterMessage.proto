@@ -2948,15 +2948,8 @@ message M2C_TeamDungeonEnterResponse // IActorLocationResponse
 	string Message = 92;
 }
 
-//退出组队副本
-//ResponseType M2C_TeamDungeonQuitResponse
-message C2M_TeamDungeonQuitRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-}
-
-message M2C_TeamDungeonQuitResponse // IActorLocationResponse
+//退出组队广播
+message M2C_TeamDungeonQuitMessage // IActorMessage
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

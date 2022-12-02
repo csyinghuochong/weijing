@@ -204,6 +204,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class TeamDungeonQuit : DisposeObject
+        {
+            public static readonly TeamDungeonQuit Instance = new TeamDungeonQuit();
+            public M2C_TeamDungeonQuitMessage m2C_Battle;
+            public Scene ZoneScene;
+        }
+
         /// <summary>
         /// 通用提示
         /// </summary>

@@ -138,15 +138,23 @@ namespace ET
         }
 
         /// <summary>
-        /// 返回主城
+        /// 组队副本返回主城
         /// </summary>
         /// <param name="self"></param>
         /// <param name="unitId"></param>
         /// <returns></returns>
         public static void  OnUnitReturn(this TeamSceneComponent self, Scene fubnescene, long unitId)
         {
-            TeamDungeonComponent teamDungeonComponent = fubnescene.GetComponent<TeamDungeonComponent>();
-            if (teamDungeonComponent.IsHavePlayer())
+            List<Unit> allunits = FubenHelp.GetUnitList(fubnescene, UnitType.Player);
+            for (int i = 0; i < allunits.Count; i++)
+            {
+                if (allunits[i].GetComponent<UserInfoComponent>().UserInfo.RobotId == 0)
+                {
+                    MessageHelper.SendToClient(allunits[i], self.M2C_TeamDungeonQuitMessage);
+                    continue;
+                }
+            }
+            if (allunits.Count > 0)
             {
                 return;
             }
@@ -156,6 +164,7 @@ namespace ET
                 teamInfo.FubenUUId = 0;
                 teamInfo.FubenInstanceId = 0;
             }
+            TeamDungeonComponent teamDungeonComponent = fubnescene.GetComponent<TeamDungeonComponent>();
             Log.Debug($"TeamDungeonDispose {teamDungeonComponent.TeamInfo.TeamId}{fubnescene.InstanceId}");
             TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
             fubnescene.Dispose();
