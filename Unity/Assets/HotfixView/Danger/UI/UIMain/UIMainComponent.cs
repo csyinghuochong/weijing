@@ -617,35 +617,35 @@ namespace ET
 
         public static void OnClickPageButton(this UIMainComponent self, int page)
         {
-            //self.UIMainTask.GameObject.SetActive(page == 0);
-            //self.UIMainTeam.GameObject.SetActive(page == 1);
-            if (self.Obj_Btn_ShouSuo.transform.localScale.x > 0.9f)
-            {
-                self.UIMainTask.GameObject.SetActive(page == 0);
-                self.UIMainTeam.GameObject.SetActive(page == 1);
-            }
-            else
-            {
-                self.UIMainTask.GameObject.SetActive(false);
-                self.UIMainTeam.GameObject.SetActive(false);
-            }
+            self.UIMainTask.GameObject.SetActive(page == 0);
+            self.UIMainTeam.GameObject.SetActive(page == 1);
+            //if (self.Obj_Btn_ShouSuo.transform.localScale.x > 0.9f)
+            //{
+            //    self.UIMainTask.GameObject.SetActive(page == 0);
+            //    self.UIMainTeam.GameObject.SetActive(page == 1);
+            //}
+            //else
+            //{
+            //    self.UIMainTask.GameObject.SetActive(false);
+            //    self.UIMainTeam.GameObject.SetActive(false);
+            //}
         }
 
         public static void OnOpenShouSuo(this UIMainComponent self)
         {
-            if (self.Obj_Btn_ShouSuo.transform.localScale.x > 0.9f)
-            {
-                self.Obj_Btn_ShouSuo.transform.localScale = new Vector3(-1, 1, 1);
-                self.UIMainTask.GameObject.SetActive(false);
-                self.UIMainTeam.GameObject.SetActive(false);
-            }
-            else
-            {
-                self.Obj_Btn_ShouSuo.transform.localScale = new Vector3(1, 1, 1);
-                int page = self.UIPageButtonComponent.CurrentIndex;
-                self.UIMainTask.GameObject.SetActive(page == 0);
-                self.UIMainTeam.GameObject.SetActive(page == 1);
-            }
+            //if (self.Obj_Btn_ShouSuo.transform.localScale.x > 0.9f)
+            //{
+            //    self.Obj_Btn_ShouSuo.transform.localScale = new Vector3(-1, 1, 1);
+            //    self.UIMainTask.GameObject.SetActive(false);
+            //    self.UIMainTeam.GameObject.SetActive(false);
+            //}
+            //else
+            //{
+            //    self.Obj_Btn_ShouSuo.transform.localScale = new Vector3(1, 1, 1);
+            //    int page = self.UIPageButtonComponent.CurrentIndex;
+            //    self.UIMainTask.GameObject.SetActive(page == 0);
+            //    self.UIMainTeam.GameObject.SetActive(page == 1);
+            //}
         }
 
         public static void initSubUI(this UIMainComponent self)
@@ -852,10 +852,18 @@ namespace ET
         {
             self.Btn_TopRight_1.SetActive(SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
             self.Btn_TopRight_2.SetActive(SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
-            self.UIMainTask.GameObject.SetActive(sceneTypeEnum != SceneTypeEnum.TrialDungeon);
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.UIMainSkillComponent.ResetUI(sceneTypeEnum == SceneTypeEnum.MainCityScene);
+            if(sceneTypeEnum == SceneTypeEnum.TrialDungeon)
+            {
+                self.OnClickPageButton(-1);
+            }
+            else
+            {
+                int page = self.UIPageButtonComponent.CurrentIndex;
+                self.OnClickPageButton(page);
+            }
             self.UIMapMini.OnEnterScene();
             
             self.UpdateShadow();
