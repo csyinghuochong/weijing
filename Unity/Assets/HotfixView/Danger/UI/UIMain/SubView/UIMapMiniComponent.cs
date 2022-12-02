@@ -113,10 +113,6 @@ namespace ET
 
                 //1自己 2敌对 3队友  4主城
                 string showType ="4";
-                if (unit.MainHero)
-                {
-                    showType = "1";
-                }
                 if (unit.IsCanBeAttackByUnit(main))
                 {
                     showType = "2";
@@ -124,6 +120,10 @@ namespace ET
                 if (unit.IsSameTeam(main))
                 {
                     showType = "3";
+                }
+                if (unit.MainHero)
+                {
+                    showType = "1";
                 }
 
                 teamNumber++;
