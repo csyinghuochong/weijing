@@ -89,7 +89,7 @@ namespace ET
         public static void OnUpdateSelfKill(this UIBattleMainComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            self.TextVS_Kill.GetComponent<Text>().text = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleTodayKill).ToString();
+            self.TextVS_Kill.GetComponent<Text>().text = "自身已战胜"+unit.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleTodayKill).ToString()+ "个玩家";
         }
     }
 }

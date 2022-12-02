@@ -298,11 +298,24 @@ namespace ET
                         break;
                 }
             }
+
+            //1个人掉率降低
+            if (sceneType == SceneTypeEnum.TeamDungeon && playerNumer == 1) {
+                dropAdd_Pro -= 0.25f;
+            }
+
+            //正常掉率
+            if (sceneType == SceneTypeEnum.TeamDungeon && playerNumer == 2)
+            {
+                //dropAdd_Pro -= 0.3f;
+            }
+
+            //附加掉率
             if (sceneType == SceneTypeEnum.TeamDungeon && playerNumer >= 3)
             {
-                dropAdd_Pro += 0.3f;
+                dropAdd_Pro += 0.25f;
             }
-           
+
             //创建掉落
             MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
             if (main != null && monsterCof.MonsterSonType == 1)
