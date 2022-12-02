@@ -862,7 +862,7 @@ namespace ET
             else
             {
                 int page = self.UIPageButtonComponent.CurrentIndex;
-                self.OnClickPageButton(page);
+                self.UIPageButtonComponent.OnSelectIndex(sceneTypeEnum == SceneTypeEnum.TeamDungeon ? 1 : 0);
             }
             self.UIMapMini.OnEnterScene();
             
