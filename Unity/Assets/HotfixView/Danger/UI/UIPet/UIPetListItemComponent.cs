@@ -108,8 +108,13 @@ namespace ET
 
         public static void OnInitData(this UIPetListItemComponent self, RolePetInfo rolePetInfo, int nextLv)
         {
-            self.PetId = rolePetInfo.Id;
-
+            if (rolePetInfo != null)
+            {
+                self.PetId = rolePetInfo.Id;
+            }
+            else {
+                self.PetId = 0;
+            }
             self.Node_1.SetActive(rolePetInfo != null);
             self.Node_2.SetActive(rolePetInfo == null);
             if (rolePetInfo != null)

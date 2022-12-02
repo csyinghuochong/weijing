@@ -10,9 +10,14 @@ namespace ET
 
 		protected override async ETTask Run(Unit unit, C2M_SkillUp request, M2C_SkillUp response, Action reply)
 		{
-			UserInfoComponent unitInfoComponent = unit.GetComponent<UserInfoComponent>();
-			List<SkillPro> SkillList = unit.GetComponent<SkillSetComponent>().SkillList;
+			SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
+			if (skillSetComponent.GetBySkillID(request.SkillID) == null)
+			{
+				reply();
+				return;
+			}
 
+			List<SkillPro> SkillList = skillSetComponent.SkillList;
 			SkillConfig skillconf = SkillConfigCategory.Instance.Get(request.SkillID);
 			int nextSkillID = skillconf.NextSkillID;
 			if (nextSkillID == 0)
@@ -21,6 +26,8 @@ namespace ET
 				reply();
 				return;
 			}
+
+			UserInfoComponent unitInfoComponent = unit.GetComponent<UserInfoComponent>();
 			int costGoldValue = skillconf.CostGoldValue;
 			int costSPValue = skillconf.CostSPValue;
 			int RoseSP = unitInfoComponent.UserInfo.Sp;

@@ -468,7 +468,9 @@ namespace ET
                     uIRolePetItemComponent.SetClickHandler((long petId) => { self.OnClickPetHandler(petId); });
                     self.PetUIList.Add(ui_pet);
                 }
+
                 ui_pet.GetComponent<UIPetListItemComponent>().OnInitData(showList[i], nextLv);
+
             }
 
             for (int i = showList.Count; i < self.PetUIList.Count; i++)

@@ -4129,3 +4129,10 @@ message C2C_SendBroadcastResponse // IChatActorResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+message M2C_UpdateVersion // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 Version = 1;
+}

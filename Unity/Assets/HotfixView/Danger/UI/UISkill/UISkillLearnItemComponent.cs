@@ -50,7 +50,7 @@ namespace ET
             });
 
             self.ButtonUp = rc.Get<GameObject>("ButtonUp");
-            self.ButtonUp.GetComponent<Button>().onClick.AddListener(() =>
+            ButtonHelp.AddListenerEx(self.ButtonUp , () =>
             {
                 self.OnButtonUp();
             });

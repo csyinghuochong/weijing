@@ -109,7 +109,7 @@ namespace ET
                 petNumber = int.Parse(numberInfos[1]);
                 if (level <= int.Parse(numberInfos[0]))
                 {
-                    return petNumber;
+                    return petNumber + unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExtendNumber);
                 }
             }
             return petNumber + unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExtendNumber);
