@@ -326,6 +326,11 @@ namespace ET
                 skillIfo.LastTriggerTime = TimeHelper.ServerNow();
                 rigidityEndTime = (long)(skillConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
             }
+            if (unit.IsDisposed)
+            {
+                Log.Debug("SkillPassiveComponent :unit.IsDisposed ");
+                return;
+            }
             if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
             {
                 unit.GetComponent<StateComponent>().RigidityEndTime = rigidityEndTime;

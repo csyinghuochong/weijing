@@ -26,9 +26,11 @@ namespace ET
             else
             {
                 Log.Debug($"OnDoFangchenmi1  {request.IdCardNO}");
+                //1573651621924110336
+                string ai = accountInfo.Id + "_eeeeeeeeeeee";
                 result_check = WorldSayHelper.OnDoFangchenmi(new
                 {
-                    ai = accountInfo.Id,
+                    ai = ai, // 1669902416,// TimeHelper.ServerNow() / 1000, //accountInfo.Id,
                     name = request.Name,
                     idNum = request.IdCardNO,
                 }, EType.Check);

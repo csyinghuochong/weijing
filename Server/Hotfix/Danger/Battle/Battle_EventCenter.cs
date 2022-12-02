@@ -24,11 +24,16 @@ namespace ET
             });
         }
 
-        public static void  SendToClient(EventType.NumericChangeEvent args)
+        public static void SendToClient(EventType.NumericChangeEvent args)
         {
-            if (args.Parent == null || args.Parent.IsDisposed)
+            if (args.Parent == null)
             {
+                Log.Debug("NumericChangeEvent args.Parent == null");
                 return;
+            }
+            if (args.Parent.IsDisposed)
+            {
+                Log.Debug($"NumericChangeEvent args.Parent.IsDisposed {args.Parent.Id}");
             }
             if (args.Parent.GetComponent<UnitGateComponent>() == null)
             {
