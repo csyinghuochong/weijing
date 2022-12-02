@@ -1392,6 +1392,9 @@ namespace ET
 		[ProtoMember(4)]
 		public long ServerOpenTime { get; set; }
 
+		[ProtoMember(5)]
+		public int Show { get; set; }
+
 	}
 
 	[ResponseType(nameof(G2C_CreateRole))]

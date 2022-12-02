@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 364
+  version: 365
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -10983,9 +10983,9 @@ MonoBehaviour:
   - name: bda86f113f23dc0c896bcbd3e9346b0d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/MonsterModel2/tex/101120_xfl_npc_d_512.png
-  - name: 59377b882607119f2a0817f4ad83209d.unity3d
+  - name: 1ae07bb0e24778d3de185d17a33cf89b.unity3d
     assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_1A.png
+    - Assets/Res/UI/UIRes/Imgage/Img_45.png
   - name: a618bf06da99580653f69d8a870f89b6.unity3d
     assets:
     - Assets/Res/Materials/DropItem.mat
@@ -11046,6 +11046,9 @@ MonoBehaviour:
   - name: 49ed80e4bb550602ea1e1c6f27ad5c2e.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_58.png
+  - name: 59377b882607119f2a0817f4ad83209d.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_1A.png
   - name: 6a0d7ca8b85a44f67b9e145654bdb29f.unity3d
     assets:
     - Assets/Res/Effect/BackBlur/BackBlur.mat
@@ -11568,6 +11571,9 @@ MonoBehaviour:
   - name: c99f6e18d2ad87ae1cf62a6add9bad61.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_59.png
+  - name: bafe0aa0cceaa9bda64986680cac9b20.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_371.png
   - name: 378003f0aae41977900722226b5511da.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_85.png
@@ -11595,9 +11601,6 @@ MonoBehaviour:
   - name: d880b248d95a2bb3ad5ee898f162f6bf.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_Dian_2.png
-  - name: bafe0aa0cceaa9bda64986680cac9b20.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_371.png
   - name: cc1dbe87e2a9a0ca92a3bd56372da62e.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_2.png
@@ -11691,9 +11694,6 @@ MonoBehaviour:
   - name: 0a1b20e11c652e4c94acf01f0e44b788.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Icon/UI_Icon_20.png
-  - name: 1ae07bb0e24778d3de185d17a33cf89b.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_45.png
   - name: 2ad253b0bbf784c8e174edb3ed05b45a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/GameUI/Old/Icon/UI_Icon_42.png
@@ -11829,15 +11829,9 @@ MonoBehaviour:
   - name: 8892c6f8ec05d7779fa3ec271c5d1359.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_18.png
-  - name: dfca749dd0d7f24620ca8ad3c1d0f8f2.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_80_1.png
   - name: fcda6cd1c1be96fe608fdc8beb463368.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_32.png
-  - name: 403413e7897f8391ed4dbac270e374c3.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_80_2.png
   - name: 93457eda8c5563d01487c04f4f1d6a9d.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_253.png

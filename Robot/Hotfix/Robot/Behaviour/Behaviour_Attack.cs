@@ -45,7 +45,6 @@ namespace ET
                 {
                     return;
                 }
-                //Log.ILog.Debug("Behaviour_Attack: Execute");
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
                 if (target != null && target.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Dead) == 0
                     && Vector3.Distance(unit.Position,target.Position) < aiComponent.ActDistance)
