@@ -418,9 +418,10 @@ namespace ET
 
         public static int NextPetNumber(this UIPetListComponent self)
         {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int level = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             int curNumber = self.ZoneScene().GetComponent<PetComponent>().RolePetInfos.Count;
-            if (curNumber < ComHelp.GetPetMaxNumber(level))
+            if (curNumber < ComHelp.GetPetMaxNumber(unit, level))
             {
                 return 0;
             }
@@ -487,8 +488,9 @@ namespace ET
                 self.GameObject2.SetActive(true);
             }
 
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            int maxNum = ComHelp.GetPetMaxNumber(userInfo.Lv);
+            int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
             self.Text_PetNumber.GetComponent<Text>().text = string.Format("{0}/{1}", rolePetInfos.Count, maxNum);
         }
 

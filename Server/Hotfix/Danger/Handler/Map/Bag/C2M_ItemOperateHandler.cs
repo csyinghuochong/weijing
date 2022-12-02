@@ -313,6 +313,9 @@ namespace ET
                                 break;
                             case 122:   //宠物技能书
                                 break;
+                            case 123:   //宠物扩展工具
+                                unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExtendNumber, 1, 0);
+                                break;
                         }
 
                         //扣除道具

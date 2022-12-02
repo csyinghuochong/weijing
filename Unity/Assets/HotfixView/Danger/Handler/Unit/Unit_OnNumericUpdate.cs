@@ -75,6 +75,9 @@
                     uI_2 = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIBattleMain);
                     uI_2?.GetComponent<UIBattleMainComponent>().OnUpdateSelfKill();
                     break;
+                case NumericType.PetExtendNumber:
+                    Log.Debug("NumericType.PetExtendNumber");
+                    break;
                 case NumericType.TowerId:
                     int towerId = args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
                     uI_2 = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UITowerOpen);

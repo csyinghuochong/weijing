@@ -130,6 +130,7 @@ namespace ET
 
             if (teamInfo.PlayerList.Count == 0 || teamInfo.TeamId == userId)
             {
+                teamInfo.PlayerList.Clear();   //队伍解算
                 self.TeamList.Remove(teamInfo);
             }
 

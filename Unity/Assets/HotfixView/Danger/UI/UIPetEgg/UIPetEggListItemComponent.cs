@@ -100,9 +100,10 @@ namespace ET
 
         public static void  OnButtonOpen(this UIPetEggListItemComponent self)
         {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            int maxNum = ComHelp.GetPetMaxNumber(userInfo.Lv);
+            int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
             if (maxNum <= petComponent.RolePetInfos.Count)
             {
                 FloatTipManager.Instance.ShowFloatTip("已达到最大宠物数量");
@@ -142,8 +143,9 @@ namespace ET
 
         public static async ETTask OnButtonGet(this UIPetEggListItemComponent self)
         {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
-            int maxNum = ComHelp.GetPetMaxNumber(userInfo.Lv);
+            int maxNum = ComHelp.GetPetMaxNumber(unit, userInfo.Lv);
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             if (maxNum <= petComponent.RolePetInfos.Count)
             {

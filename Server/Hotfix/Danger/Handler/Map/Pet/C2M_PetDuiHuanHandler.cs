@@ -10,7 +10,7 @@ namespace ET
         {
             PetComponent petComponent = unit.GetComponent<PetComponent>();
             int userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-            if (petComponent.RolePetInfos.Count >= ComHelp.GetPetMaxNumber(userLv))
+            if (petComponent.RolePetInfos.Count >= ComHelp.GetPetMaxNumber(unit, userLv))
             {
                 reply();
                 return;

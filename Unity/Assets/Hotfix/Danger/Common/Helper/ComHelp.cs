@@ -99,7 +99,7 @@ namespace ET
             return GlobalValueConfigCategory.Instance.Get(45).Value2;
         }
 
-        public static int GetPetMaxNumber(int level)
+        public static int GetPetMaxNumber(Unit unit, int level)
         {
             int petNumber = 1;
             string[] petInfos = GlobalValueConfigCategory.Instance.Get(34).Value.Split('@');
@@ -112,7 +112,7 @@ namespace ET
                     return petNumber;
                 }
             }
-            return petNumber;
+            return petNumber + unit.GetComponent<NumericComponent>().GetAsInt(NumericType.PetExtendNumber);
         }
 
         public static int MainCityID()

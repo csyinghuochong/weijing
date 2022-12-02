@@ -180,7 +180,6 @@ namespace ET
         public static RolePetInfo CreatePetInfo(Unit unit)
         {
             RolePetInfo rolePetInfo = new RolePetInfo();
-            UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
             rolePetInfo.Id = unit.Id;
             rolePetInfo.ConfigId = unit.ConfigId;
             rolePetInfo.X = unit.Position.x;
