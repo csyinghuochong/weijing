@@ -70,7 +70,7 @@ namespace ET
             EquipConfig equipCof = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
             int appItem = equipCof.AppraisalItem;
 
-            self.Text_Coin.GetComponent<Text>().text = ComHelp.GetJianDingCoin(userInfo.Lv).ToString();
+            self.Text_Coin.GetComponent<Text>().text = ComHelp.GetJianDingCoin(itemCof.UseLv).ToString();
 
             UIItemComponent item_equip = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem_1);
             item_equip.UpdateItem(bagInfo, ItemOperateEnum.None);

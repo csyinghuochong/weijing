@@ -237,6 +237,133 @@ namespace ET
             bagInfo.ItemPar = $"{dungeonid}@{"TaskMove_6"}@{dropId}";
         }
 
+
+        //获取装备的专精属性
+        public static List<HideProList> GetEquipZhuanJingHidePro(int equipID, int itemID, int jianDingPinZhi, Unit unit)
+        {
+            //获取最大值
+            EquipConfig equipCof = EquipConfigCategory.Instance.Get(equipID);
+            List<HideProList> hideList = new List<HideProList>();
+
+            //获取当前鉴定系数
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
+
+            //鉴定符品质大于装备等级
+            /*
+            float JianDingPro = 1f;
+            if (jianDingPinZhi >= itemCof.UseLv)
+            {
+   
+            }
+            else
+            {
+                JianDingPro = jianDingPinZhi / itemCof.UseLv * 0.5f;
+            }
+            */
+
+            //最低系数是20
+            int pro = itemCof.UseLv;
+            if (pro <= 20)
+            {
+                pro = 20;
+            }
+            //鉴定符和当前装备的等级差
+            float JianDingPro = (float)jianDingPinZhi / (float)pro;
+
+
+            if (JianDingPro >= 1.5f)
+            {
+                JianDingPro = 1.5f;
+            }
+
+            if (JianDingPro <= 0.1f)
+            {
+                JianDingPro = 0.1f;
+            }
+
+            int randomNum = 0;
+            float randomFloat = RandomHelper.RandFloat();
+
+            Log.Info("randomFloat == " + randomFloat + "  JianDingPro = " + JianDingPro);
+
+            randomFloat = randomFloat * JianDingPro;
+
+            if (randomFloat <= 0.25f)
+            {
+                randomNum = 0;
+            }
+            else if (randomFloat <= 0.6f)
+            {
+                randomNum = 1;
+            }
+            else if (randomFloat <= 1f)
+            {
+                randomNum = 2;
+            }
+            else
+            {
+                randomNum = 3;
+            }
+            /*
+            else if (randomFloat <= 0.9f)
+            {
+                randomNum = 3;
+            }
+            */
+
+            if (jianDingPinZhi > 10)
+            {
+                if (randomNum >= 2)
+                {
+                    string noticeContent = $"恭喜玩家<color=#B6FF00>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>使用鉴定符鉴定装备时,一道金光装备出现<color=#FFA313>{randomNum}条极品属性</color>";
+                    ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
+                }
+            }
+
+
+            if (randomNum == 0)
+            {
+                return null;
+            }
+
+            for (int i = 0; i < randomNum; i++)
+            {
+                //随机值
+                int randomValueInt = RandomHelper.RandomNumber(1, equipCof.OneProRandomValue);
+                //随机属性类型
+                int randomIDInt = RandomHelper.RandomNumber(1, 5);
+                //
+                int proID = 105101;
+                switch (randomIDInt)
+                {
+                    case 1:
+                        proID = 105101;
+                        break;
+                    case 2:
+                        proID = 105201;
+                        break;
+                    case 3:
+                        proID = 105301;
+                        break;
+                    case 4:
+                        proID = 105401;
+                        break;
+                    case 5:
+                        proID = 105501;
+                        break;
+                }
+
+                HideProList hideProList = new HideProList();
+                hideProList.HideID = proID;
+                hideProList.HideValue = randomValueInt;
+                hideList.Add(hideProList);
+
+            }
+
+            return hideList;
+
+        }
+
 #endif
 
         //版号专区
@@ -604,105 +731,6 @@ namespace ET
             return retunrnValue;
         }
 
-        //获取装备的专精属性
-        public static List<HideProList> GetEquipZhuanJingHidePro(int equipID,int itemID ,int jianDingPinZhi)
-        {
-            //获取最大值
-            EquipConfig equipCof = EquipConfigCategory.Instance.Get(equipID);
-            List<HideProList> hideList = new List<HideProList>();
-
-            //获取当前鉴定系数
-            ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
-
-            //鉴定符品质大于装备等级
-            float JianDingPro = 1f;
-            if (jianDingPinZhi >= itemCof.UseLv)
-            {
-                JianDingPro = jianDingPinZhi / itemCof.UseLv;
-            }
-            else {
-                JianDingPro = jianDingPinZhi / itemCof.UseLv * 0.5f;
-            }
-
-            if (JianDingPro >= 1.5f) {
-                JianDingPro = 1.5f;
-            }
-
-            if (JianDingPro <= 0.25f) {
-                JianDingPro = 0.25f;
-            }
-
-            int randomNum = 0;
-            float randomFloat = RandomHelper.RandFloat();
-            randomFloat = randomFloat * JianDingPro;
-
-            if (randomFloat <= 0.25f)
-            {
-                randomNum = 0;
-            }
-            else if (randomFloat <= 0.7f)
-            {
-                randomNum = 1;
-            }
-            else if (randomFloat <= 0.9f)
-            {
-                randomNum = 2;
-            }
-            else
-            {
-                randomNum = 3;
-            }
-            /*
-            else if (randomFloat <= 0.9f)
-            {
-                randomNum = 3;
-            }
-            */
-
-
-            if (randomNum == 0)
-            {
-                return null;
-            }
-
-            for (int i = 0; i < randomNum; i++)
-            {
-                //随机值
-                int randomValueInt = RandomHelper.RandomNumber(1, equipCof.OneProRandomValue);
-                //随机属性类型
-                int randomIDInt = RandomHelper.RandomNumber(1, 5);
-                //
-                int proID = 105101;
-                switch (randomIDInt)
-                {
-                    case 1:
-                        proID = 105101;
-                        break;
-                    case 2:
-                        proID = 105201;
-                        break;
-                    case 3:
-                        proID = 105301;
-                        break;
-                    case 4:
-                        proID = 105401;
-                        break;
-                    case 5:
-                        proID = 105501;
-                        break;
-                }
-
-                HideProList hideProList = new HideProList();
-                hideProList.HideID = proID;
-                hideProList.HideValue = randomValueInt;
-                hideList.Add(hideProList);
-
-            }
-
-            return hideList;
-
-        }
-
         //获得装备洗炼隐藏属性
         public static List<HideProList> GetEquipXiLianHidePro(int equipID)
         {
@@ -947,32 +975,32 @@ namespace ET
         //金币鉴定消费
         public static int GetJianDingCoin(int level)
         {
-            int gold = 10000;
+            int gold = 25000;
             bool ifStatus = false;
 
             if (level <= 18) {
-                gold = 10000;
+                gold = 25000;
                 ifStatus = true;
             }
 
             if (level <= 29 && ifStatus == false)
             {
-                gold = 15000;
+                gold = 30000;
             }
 
             if (level <= 39 && ifStatus == false)
             {
-                gold = 20000;
+                gold = 35000;
             }
 
             if (level <= 49 && ifStatus == false)
             {
-                gold = 25000;
+                gold = 40000;
             }
 
             if (level <= 100 && ifStatus == false)
             {
-                gold = 30000;
+                gold = 50000;
             }
 
             return gold;
