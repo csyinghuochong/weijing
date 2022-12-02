@@ -239,7 +239,7 @@ namespace ET
 
 
         //获取装备的专精属性
-        public static List<HideProList> GetEquipZhuanJingHidePro(int equipID, int itemID, int jianDingPinZhi, Unit unit)
+        public static List<HideProList> GetEquipZhuanJingHidePro(int equipID, int itemID, int jianDingPinZhi, Unit unit,bool ifItem)
         {
             //获取最大值
             EquipConfig equipCof = EquipConfigCategory.Instance.Get(equipID);
@@ -267,18 +267,22 @@ namespace ET
             {
                 pro = 20;
             }
+
+            if (ifItem == true && itemCof.UseLv < 30) {
+                jianDingPinZhi = jianDingPinZhi + 5;
+            }
+
             //鉴定符和当前装备的等级差
             float JianDingPro = (float)jianDingPinZhi / (float)pro;
-
 
             if (JianDingPro >= 1.5f)
             {
                 JianDingPro = 1.5f;
             }
 
-            if (JianDingPro <= 0.1f)
+            if (JianDingPro <= 0.5f)
             {
-                JianDingPro = 0.1f;
+                JianDingPro = 0.5f;
             }
 
             int randomNum = 0;
@@ -311,7 +315,7 @@ namespace ET
             }
             */
 
-            if (jianDingPinZhi > 10)
+            if (ifItem)
             {
                 if (randomNum >= 2)
                 {

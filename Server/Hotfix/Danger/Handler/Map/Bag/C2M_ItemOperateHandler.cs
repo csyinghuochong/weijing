@@ -481,6 +481,7 @@ namespace ET
                     long baginfoId = long.Parse(request.OperatePar);
                     int rolelv = useInfo.Lv;
                     string qulitylv = "";
+                    bool ifItem = false;
 
                     if (baginfoId == 0)        
                     {
@@ -494,12 +495,13 @@ namespace ET
                         qulitylv = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, baginfoId).ItemPar;
                         qulitylv = string.IsNullOrEmpty(qulitylv) ? "0" : qulitylv;
                         ifSell = unit.GetComponent<BagComponent>().OnCostItemData(baginfoId,1);
+                        ifItem = true;
                     }
                     if (ifSell)
                     {
                         //未鉴定才可以
                         useBagInfo.IfJianDing = false;
-                        useBagInfo.HideProLists = ComHelp.GetEquipZhuanJingHidePro(itemCof.ItemEquipID, itemCof.Id, int.Parse(qulitylv), unit);
+                        useBagInfo.HideProLists = ComHelp.GetEquipZhuanJingHidePro(itemCof.ItemEquipID, itemCof.Id, int.Parse(qulitylv), unit, ifItem);
                         m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
                     }
                     else 
