@@ -265,7 +265,7 @@ namespace ET
         /// </summary>
         /// <param name="self"></param>
         /// <param name="skillId"></param>
-        public static void InterruptSing(this SkillManagerComponent self)
+        public static void InterruptSing(this SkillManagerComponent self,int skillId)
         {
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
@@ -315,6 +315,7 @@ namespace ET
             {
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
+            self.InterruptSing(skillcmd.SkillID);
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             int EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;
