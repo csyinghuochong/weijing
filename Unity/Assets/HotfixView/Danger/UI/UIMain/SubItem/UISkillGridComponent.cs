@@ -25,7 +25,7 @@ namespace ET
         public GameObject Text_SkillCD;
         public GameObject Img_PublicSkillCD;
         public GameObject Img_Mask;
-        public GameObject BackIcon;
+        //public GameObject BackIcon;
 
         public SkillConfig SkillWuqiConfig;
         public SkillConfig SkillBaseConfig;
@@ -48,7 +48,7 @@ namespace ET
             this.Text_SkillCD = gameObject.transform.Find("Text_SkillCD").gameObject;
             this.Img_PublicSkillCD = gameObject.transform.Find("Img_PublicSkillCD").gameObject;
             this.Img_Mask = gameObject.transform.Find("Img_Mask").gameObject;
-            this.BackIcon = gameObject.transform.Find("BackIcon").gameObject;
+            //this.BackIcon = gameObject.transform.Find("BackIcon").gameObject;
 
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.Draging(pdata); }, EventTriggerType.Drag);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.EndDrag(pdata); }, EventTriggerType.EndDrag);
@@ -291,7 +291,7 @@ namespace ET
                 self.skillPro = null;
                 self.Img_PublicSkillCD.SetActive(false);
                 self.Img_SkillIcon.SetActive(false);
-                self.BackIcon.SetActive(false);
+                //self.BackIcon.SetActive(false);
                 self.Img_Mask.SetActive(false);
                 return;
             }
@@ -317,7 +317,7 @@ namespace ET
                 self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
             }
             self.Img_SkillIcon.SetActive(true);
-            self.BackIcon.SetActive(true);
+            //self.BackIcon.SetActive(true);
             self.Img_Mask.SetActive(true);
         }
     }

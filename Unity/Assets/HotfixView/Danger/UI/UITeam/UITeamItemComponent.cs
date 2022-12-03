@@ -12,6 +12,7 @@ namespace ET
         public GameObject Text_Wait_2;
         public GameObject TextCombat;
         public GameObject TextOcc;
+        public GameObject RootShowSet;
 
         public TeamPlayerInfo TeamPlayerInfo;
         public UIModelShowComponent UIModelShowComponent;
@@ -30,6 +31,7 @@ namespace ET
             self.Text_Wait_2 = goParent.transform.Find("Text_Wait_2").gameObject;
             self.TextCombat = goParent.transform.Find("TextCombat").gameObject;
             self.TextOcc = goParent.transform.Find("TextOcc").gameObject;
+            self.RootShowSet = goParent.transform.Find("RootShowSet").gameObject;
 
             self.UIModelShowComponent = null;
             self.OnInitUI(index).Coroutine();
@@ -66,6 +68,7 @@ namespace ET
 
         public static void OnUpdateItem(this UITeamItemComponent self, TeamPlayerInfo teamPlayerInfo)
         {
+            self.RootShowSet.SetActive(false);
             self.TeamPlayerInfo = teamPlayerInfo;
 
             if (teamPlayerInfo == null)
@@ -95,6 +98,11 @@ namespace ET
                 if (teamPlayerInfo.OccTwo != 0)
                 {
                     self.TextOcc.GetComponent<Text>().text = OccupationTwoConfigCategory.Instance.Get(teamPlayerInfo.OccTwo).OccupationName;
+                }
+
+                //机器人显示
+                if (teamPlayerInfo.RobotId > 0) {
+                    self.RootShowSet.SetActive(true);
                 }
             }
 

@@ -7,7 +7,7 @@
             Log.Debug("Team_TeamPickNotice [机器人需求紫装！]");
             EventType.TeamPickNotice args = (EventType.TeamPickNotice)cls;
             DropInfo dropInfo = args.m2C_TeamPickMessage.DropItems[0];
-            C2M_TeamPickRequest request = new C2M_TeamPickRequest() { DropItem = dropInfo, Need = 1 };
+            C2M_TeamPickRequest request = new C2M_TeamPickRequest() { DropItem = dropInfo, Need = 2 };      //  need == 1 需求  2 放弃   机器人
             args.ZoneScene.GetComponent<SessionComponent>().Session.Send(request);
         }
     }
