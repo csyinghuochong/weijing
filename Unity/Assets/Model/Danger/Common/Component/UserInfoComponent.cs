@@ -30,7 +30,7 @@
     public class UserInfoComponent : Entity, IAwake, ITransfer, IUnitCache
     {
         /// <summary>
-        /// 上次登录时间
+        /// 登录或者零点刷新的时候会改变
         /// </summary>
         public long LastLoginTime;
         public long TotalOnLineTime;

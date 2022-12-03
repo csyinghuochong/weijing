@@ -74,6 +74,7 @@ namespace ET
 
         public static int GetTiLiIndex(this UserInfoComponent self, int hour_1)
         {
+            //川哥体力me恢复111
             if (hour_1 <6)
             {
                 return 1;
@@ -86,7 +87,11 @@ namespace ET
             {
                 return 3;
             }
-            return 4;
+            if (hour_1 < 24)
+            {
+                return 4;
+            }
+            return 5;
         }
 
         public static int GetTiLiTimes(this UserInfoComponent self, int hour_1, int hour_2)
