@@ -17,7 +17,13 @@ namespace ET
             }
 
             float distance = Vector3.Distance(target.Position, aiComponent.GetParent<Unit>().Position);
-            return distance <= aiComponent.ActDistance;
+            if (distance > aiComponent.ActDistance)
+            {
+                aiComponent.TargetID = 0;
+                return false;
+            }
+
+            return true;
         }
 
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)

@@ -125,39 +125,6 @@ namespace ET
             }
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="zoneScene"></param>
-        /// <param name="operatype">1新增  2移除</param>
-        /// <param name="stateType"></param>
-        /// <param name="stateValue"></param>
-        public static void SendUpdateState(this SkillManagerComponent self, int operatype, long stateType, string stateValue)
-        {
-            C2M_UnitStateUpdate c2M_UnitStateUpdate = new C2M_UnitStateUpdate() { StateOperateType = operatype, StateType = stateType, StateValue = stateValue };
-            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(c2M_UnitStateUpdate);
-            if (operatype == 2 && stateType == (long)StateTypeEnum.Singing)
-            {
-                return;
-            }
-            if (operatype == 1 && stateType == (long)StateTypeEnum.Singing)
-            {
-                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(int.Parse(stateValue));
-                self.WaitUseSkill((long)(skillConfig.SkillFrontSingTime * 1000)).Coroutine();
-            }
-        }
-        public static async ETTask WaitUseSkill(this SkillManagerComponent self, long waitTime)
-        {
-            await TimerComponent.Instance.WaitAsync(waitTime);
-            Unit unit = self.GetParent<Unit>();
-            if (!unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))
-            {
-                return;
-            }
-            C2M_SkillCmd skillCmd = self.SkillCmd;
-            self.SendUseSkill(skillCmd.SkillID, skillCmd.ItemId, skillCmd.TargetAngle, skillCmd.TargetID, skillCmd.TargetDistance, false).Coroutine();
-        }
-
         public static async ETTask<int> SendUseSkill(this SkillManagerComponent self, int skillid, int itemId, int angle, long targetId, float distance, bool checksing = true)
         {
             try
@@ -175,33 +142,22 @@ namespace ET
                     HintHelp.GetInstance().ShowHintError(errorCode);
                     return errorCode;       
                 }
+                unit.GetComponent<StateComponent>().BeginMoveOrSkill();
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
-                if (skillConfig.SkillFrontSingTime == 0f)
-                {
-                    checksing = false;
-                }
                 if (checksing && skillConfig.SkillFrontSingTime > 0)
                 {
-                    if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))
-                    {
-                        return errorCode;
-                    }
-                    self.SendUpdateState(1, (int)StateTypeEnum.Singing, skillCmd.SkillID.ToString());
-                    return ErrorCore.ERR_Success;
+                    unit.GetComponent<SingingComponent>().BeforeSkillSing(skillCmd);
+                    errorCode =  ErrorCore.ERR_Success;
                 }
-                unit.GetComponent<StateComponent>().BeginMoveOrSkill();
-                unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NetWait);
-                M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;
-                unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);
-                if (m2C_SkillCmd.Error == 0)
+                else
                 {
-                    self.AddSkillCD(skillid, m2C_SkillCmd);
-                    BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-                    int weaponSkill = SkillHelp.GetWeaponSkillID(skillid, bagComponent.GetEquipType());
-                    SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
-                    unit.GetComponent<StateComponent>().RigidityEndTime = (long)(skillWeaponConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
+                    errorCode = await self.ImmediateUseSkill(skillCmd);
                 }
-                return m2C_SkillCmd.Error;
+                if (errorCode == ErrorCode.ERR_Success)
+                {
+                    unit.GetComponent<SingingComponent>().AfterSkillSing(skillConfig);
+                }
+                return errorCode;
             }
             catch (Exception e)
             {
@@ -210,6 +166,22 @@ namespace ET
             }
         }
 
+        public static async ETTask<int> ImmediateUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillCmd)
+        {
+            Unit unit = self.GetParent<Unit>();
+            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NetWait);
+            M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;
+            unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);
+            if (m2C_SkillCmd.Error == 0)
+            {
+                self.AddSkillCD(skillCmd.SkillID, m2C_SkillCmd);
+                BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+                int weaponSkill = SkillHelp.GetWeaponSkillID(skillCmd.SkillID, bagComponent.GetEquipType());
+                SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+                unit.GetComponent<StateComponent>().RigidityEndTime = (long)(skillWeaponConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
+            }
+            return m2C_SkillCmd.Error;
+        }
 
         public static void AddSkillCD(this SkillManagerComponent self, int skillId, M2C_SkillCmd skillCmd)
         {
@@ -277,12 +249,12 @@ namespace ET
             }
         }
 
-        public static void InterruptSkill(this SkillManagerComponent self, int skillId)
+        public static void InterruptSing(this SkillManagerComponent self)
         {
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
                 ASkillHandler skillHandler = self.Skills[i];
-                if (skillHandler.SkillConf.Id != skillId)
+                if (skillHandler.SkillConf.SkillSingTime == 0f)
                 {
                     continue;
                 }

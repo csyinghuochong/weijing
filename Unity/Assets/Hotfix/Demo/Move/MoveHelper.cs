@@ -16,13 +16,13 @@ namespace ET
         /// <returns></returns>
         public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos,bool yangan=false, ETCancellationToken cancellationToken = null)
         {
-            unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.Obstruct);
-            unit.GetComponent<StateComponent>().BeginMoveOrSkill();
-            if (!unit.GetComponent<StateComponent>().CanMove())
+            StateComponent stateComponent = unit.GetComponent<StateComponent>();
+            stateComponent.StateTypeRemove(StateTypeEnum.Obstruct);
+            if (!stateComponent.CanMove())
             {
                 return -1;
             }
-
+            stateComponent.BeginMoveOrSkill();
             C2M_PathfindingResult msg = c2M_PathfindingResult;
             msg.X = targetPos.x;
             msg.Y = targetPos.y;

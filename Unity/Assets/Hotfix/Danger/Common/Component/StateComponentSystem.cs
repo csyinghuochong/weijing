@@ -147,25 +147,31 @@ namespace ET
             return self.CurrentStateType;
         }
 
-#if SERVER
-        public static void BeAttacking(this StateComponent self, Unit attack)
-        {
-            if (self.StateTypeGet(StateTypeEnum.Singing))
-            {
-                self.StateTypeRemove(StateTypeEnum.Singing);
-            }
-        }
-#endif
-
 #if !SERVER
-        //移动或者释放技能
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="zoneScene"></param>
+        /// <param name="operatype">1新增  2移除</param>
+        /// <param name="stateType"></param>
+        /// <param name="stateValue"></param>
+        public static void SendUpdateState(this StateComponent self, int operatype, long stateType, string stateValue)
+        {
+            C2M_UnitStateUpdate c2M_UnitStateUpdate = self.c2M_UnitStateUpdate;
+            c2M_UnitStateUpdate.StateOperateType = operatype;
+            c2M_UnitStateUpdate.StateType = stateType;
+            c2M_UnitStateUpdate.StateValue = stateValue;
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(c2M_UnitStateUpdate);
+        }
+
+
         public static void BeginMoveOrSkill(this StateComponent self)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))
             {
                 //打打断吟唱
-                unit.GetComponent<SkillManagerComponent>().SendUpdateState(2, StateTypeEnum.Singing, "0");
+                self.SendUpdateState(2, StateTypeEnum.Singing, "0");
             }
         }
 #endif

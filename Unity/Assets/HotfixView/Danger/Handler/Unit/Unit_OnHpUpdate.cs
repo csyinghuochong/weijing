@@ -26,8 +26,11 @@
             {
                 FunctionEffect.GetInstance().PlayHitEffect(args.Unit, args.SkillID);
             }
+            if (args.Unit.MainHero)
+            {
+                args.Unit.GetComponent<SingingComponent>().BeAttacking();
+            }
             MapComponent mapComponent = args.Unit.ZoneScene().GetComponent<MapComponent>();
-
             //主界面血條
             UI mainui = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
             mainui?.GetComponent<UIMainComponent>().OnUpdateHP(args.Unit, mapComponent.SceneTypeEnum);

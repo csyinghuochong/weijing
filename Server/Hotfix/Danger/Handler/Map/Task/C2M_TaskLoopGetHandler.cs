@@ -14,6 +14,7 @@ namespace ET
                 reply();
                 return;
             }
+
             TaskPro taskPro = null;
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int giveUpId = numericComponent.GetAsInt(NumericType.TaskLoopGiveId);

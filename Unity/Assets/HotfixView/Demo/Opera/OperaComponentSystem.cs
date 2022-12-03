@@ -75,12 +75,14 @@ namespace ET
             }
             if (keyCode == 257 && self.EditorMode)
             {
-                //62023202治愈之境（己方加血） 63102001减速光环   62023402（92034012驱散buff） 61021201 子弹1   61023301能量球2  62021401大魔导之影
+                //60030060 黑暗炸裂 吟唱前  62021301 吟唱中  62023202治愈之境（己方加血） 63102001减速光环   62023402（92034012驱散buff） 61021201 子弹1   61023301能量球2  62021401大魔导之影
                 //60030060 吟唱   61022102光能击  67000277旋转攻击
                 //UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                 //uI.GetComponent<UIMainComponent>().UIMainSkillComponent.UIAttackGrid.PointerUp(null);
+                List<int> skillids = new List<int>() { 60030060, 62021301 };
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                unit.GetComponent<SkillManagerComponent>().SendUseSkill(61023101, 0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
+                unit.GetComponent<SkillManagerComponent>().SendUseSkill(skillids[RandomHelper.RandomNumber(0, skillids.Count)],
+                    0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
                 self.LastSendTime = Time.time;
 
                 Log.Info("PrintAllEntity");

@@ -260,7 +260,12 @@ namespace ET
             self.OnUseSkill(skillcmd, false);
         }
 
-        public static void InterruptSkill(this SkillManagerComponent self, int skillId)
+        /// <summary>
+        /// 打断吟唱中， 吟唱前客户端处理
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="skillId"></param>
+        public static void InterruptSing(this SkillManagerComponent self)
         {
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
@@ -268,9 +273,11 @@ namespace ET
                 if (skillHandler.SkillConf.SkillSingTime == 0)
                 {
                     continue;
-                }
+                }            
+                //打断
+                StateComponent stateComponent = self.GetParent<Unit>().GetComponent<StateComponent>();
                 skillHandler.SetSkillState(SkillState.Finished);
-                self.GetParent<Unit>().GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.Interrupt, skillHandler.SkillConf.Id.ToString());
+                stateComponent.StateTypeAdd(StateTypeEnum.Interrupt);
             }
 
             //移除互斥技能
@@ -308,7 +315,6 @@ namespace ET
             {
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
-            self.InterruptSkill(skillcmd.SkillID);
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             int EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;

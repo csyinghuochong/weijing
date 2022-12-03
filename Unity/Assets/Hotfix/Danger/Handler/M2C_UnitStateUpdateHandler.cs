@@ -14,8 +14,7 @@ namespace ET
             {
                 return;
             }
-            //HeroDataComponent hero = session.DomainScene().GetComponent<UnitComponent>().Get(message.UnitId).GetComponent<HeroDataComponent>();
-            //nowNunt.GetComponent<NumericComponent>().Set((NumericType)message.NumericType, message.ChangeValue);
+            
             // 添加状态
             if (message.StateOperateType == 1)
             {
@@ -28,10 +27,9 @@ namespace ET
                 nowNunt.GetComponent<StateComponent>().StateTypeRemove(message.StateType);
             }
 
-            if (message.StateOperateType == 1 && message.StateType == (long)StateTypeEnum.Interrupt)
+            if (message.StateOperateType == 1 && message.StateType == StateTypeEnum.Interrupt)
             {
-                //打断技能
-                nowNunt.GetComponent<SkillManagerComponent>().InterruptSkill(int.Parse(message.StateValue));
+                nowNunt.GetComponent<SkillManagerComponent>().InterruptSing();
             }
 
             EventType.StateChange.Instance.m2C_UnitStateUpdate = message;

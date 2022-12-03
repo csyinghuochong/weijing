@@ -526,12 +526,14 @@ namespace ET
         }
 
         //吟唱
-        public class SingingStart : DisposeObject
+        public class SingingUpdate : DisposeObject
         {
-            public static readonly SingingStart Instance = new SingingStart();
+            public static readonly SingingUpdate Instance = new SingingUpdate();
 
-            public int SkillId = 0;
-            public Unit Unit;
+            public Scene ZoneScene;
+            public long PassTime;
+            public long TotalTime;
+            public int Type;
         }
 
         //挖宝

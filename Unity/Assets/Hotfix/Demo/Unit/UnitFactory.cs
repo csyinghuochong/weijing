@@ -26,6 +26,7 @@ namespace ET
 			unit.AddComponent<StateComponent>();
 			unit.AddComponent<BuffManagerComponent>();              //buff管理器组建
 			unit.AddComponent<SkillManagerComponent>();
+			unit.AddComponent<SingingComponent>();
 
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
 			unitInfoComponent.PlayerName = unitInfo.PlayerName;

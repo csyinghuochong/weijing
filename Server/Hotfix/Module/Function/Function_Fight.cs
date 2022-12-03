@@ -162,7 +162,7 @@ namespace ET
 
             //计算是否闪避
             int defendUnitLv = 0;
-            defendUnit.GetComponent<StateComponent>().BeAttacking(attackUnit);
+            defendUnit.GetComponent<SkillManagerComponent>().InterruptSing();
             switch (defendUnit.Type) 
             {
                 //怪物

@@ -477,6 +477,14 @@ namespace ET
                 }
             }
 
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            int giveUpId = numericComponent.GetAsInt(NumericType.TaskLoopGiveId);
+            if (giveUpId > 0 && self.GetTaskList(TaskTypeEnum.EveryDay).Count == 0
+                && self.RoleComoleteTaskList.Contains(giveUpId))
+            {
+                numericComponent.Set(NumericType.TaskLoopGiveId,0, false);
+            }
+
             self.TriggerTaskCountryEvent(  TaskCountryTargetType.Login_1, 0, 1, false );
         }
 

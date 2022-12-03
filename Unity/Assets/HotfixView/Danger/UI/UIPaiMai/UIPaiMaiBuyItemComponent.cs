@@ -29,7 +29,7 @@ namespace ET
             self.PaiMaiItemInfo = null;
 
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
-            self.ButtonBuy.GetComponent<Button>().onClick.AddListener(() => { self.OnClickButtonBuy().Coroutine(); });
+            self.ButtonBuy.GetComponent<Button>().onClick.AddListener(() => { self.OnClickButtonBuy(); });
 
             self.Text_Owner = rc.Get<GameObject>("Text_Owner");
             self.Text_LeftTime = rc.Get<GameObject>("Text_LeftTime");
@@ -62,13 +62,13 @@ namespace ET
             }
         }
 
-        public static async ETTask OnClickButtonBuy(this UIPaiMaiBuyItemComponent self)
+        public static async ETTask RequestBuy(this UIPaiMaiBuyItemComponent self)
         {
             C2M_PaiMaiBuyRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiBuyRequest() { PaiMaiItemInfo = self.PaiMaiItemInfo };
             M2C_PaiMaiBuyResponse m2C_PaiMaiBuyResponse = (M2C_PaiMaiBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
 
             //隐藏显示
-            
+
             if (m2C_PaiMaiBuyResponse.Error == 0)
             {
                 if (self.GetParent<UI>() != null)
@@ -76,12 +76,27 @@ namespace ET
                     self.GetParent<UI>().GameObject.SetActive(false);
                 }
             }
-            
+
             //刷新列表
             /*
             UI uipaimai = UIHelper.GetUI( self.DomainScene(), UIType.UIPaiMai );
             uipaimai.GetComponent<UIPaiMaiComponent>().UIPageView.UISubViewList[(int)PaiMaiPageEnum.PaiMaiBuy].GetComponent<UIPaiMaiBuyComponent>().OnUpdateUI();
             */
+        }
+
+        public static  void OnClickButtonBuy(this UIPaiMaiBuyItemComponent self)
+        {
+            if (self.PaiMaiItemInfo.BagInfo.ItemNum >= 10)
+            {
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "购买道具", "你购买的道具数量较多，是否购买？", ()=>
+                {
+                    self.RequestBuy().Coroutine();
+                }, null).Coroutine();
+            }
+            else
+            {
+                self.RequestBuy().Coroutine();
+            }
         }
 
         public static void OnUpdateItem(this UIPaiMaiBuyItemComponent self, PaiMaiItemInfo paiMaiItemInfo)

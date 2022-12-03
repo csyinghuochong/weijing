@@ -105,15 +105,13 @@ namespace ET
             
             if (unitId > 0)
             {
-                //unit.GetComponent<FsmComponent>().ChangeState(FsmHandlerType.FsmOpenBox);
                 Vector3 direction = box.Position - unit.Position;
                 int ange = Mathf.FloorToInt(Mathf.Rad2Deg * Mathf.Atan2(direction.x, direction.z));
-                unit.GetComponent<SkillManagerComponent>().SendUpdateState(1, StateTypeEnum.OpenBox, ange.ToString());
+                unit.GetComponent<StateComponent>().SendUpdateState(1, StateTypeEnum.OpenBox, ange.ToString());
             }
             else
             {
-                //unit.GetComponent<FsmComponent>().ChangeState(FsmHandlerType.FsmIdleState);
-                unit.GetComponent<SkillManagerComponent>().SendUpdateState( 2, StateTypeEnum.OpenBox, "0");
+                unit.GetComponent<StateComponent>().SendUpdateState( 2, StateTypeEnum.OpenBox, "0");
             }
         }
 
