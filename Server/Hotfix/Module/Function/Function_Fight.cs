@@ -308,6 +308,11 @@ namespace ET
                     actValue += attack_MageAct;
                 }
 
+                //宠物远程攻击用魔法
+                if (attackUnit.Type == UnitType.Pet && skillconfig.SkillActType == 1) {
+                    actValue = attack_MageAct;
+                }
+
                 //计算战斗公式
                 long damge = (actValue - nowdef);
 

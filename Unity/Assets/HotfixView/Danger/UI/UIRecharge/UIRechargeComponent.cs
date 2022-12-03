@@ -52,7 +52,7 @@ namespace ET
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Close(); });
-            self.PayType = PayTypeEnum.WeiXinPay;
+            self.PayType = PayTypeEnum.AliPay;
 
             self.InitRechargeList().Coroutine();
         }
