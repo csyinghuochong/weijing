@@ -97,7 +97,8 @@ namespace ET
             FunctionUI.GetInstance().ItemObjShowName(self.Text_Name, self.PaiMaiItemInfo.BagInfo.ItemID);
 
             //显示价格
-            self.Text_Price.GetComponent<Text>().text = paiMaiItemInfo.Price.ToString();
+            int sumPrice = paiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;
+            self.Text_Price.GetComponent<Text>().text = sumPrice.ToString();
 
             //显示时间
             self.Text_LeftTime.GetComponent<Text>().text = TimeHelper.TimeToShowCostTimeStr(paiMaiItemInfo.SellTime,48);
