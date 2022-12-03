@@ -211,7 +211,8 @@ namespace ET
                 }
                 MessageHelper.SendToClient(unit1, m2C_FubenSettlement);
             }
-        }
 
+            (self.Parent.Parent as TeamSceneComponent).OnDungeonOver(self.TeamInfo.TeamId);
+        }
     }
 }

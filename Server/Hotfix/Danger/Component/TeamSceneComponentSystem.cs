@@ -25,6 +25,16 @@ namespace ET
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
         }
 
+        public static void OnDungeonOver(this TeamSceneComponent self, long teamId)
+        {
+            TeamInfo teamInfo = self.GetTeamInfo(teamId);
+            if (teamInfo != null)
+            {
+                teamInfo.FubenUUId = 0;
+                teamInfo.FubenInstanceId = 0;
+            }
+        }
+
         public static TeamInfo GetTeamInfo(this TeamSceneComponent self, long userId)
         {
             TeamInfo teamInfo = null;
