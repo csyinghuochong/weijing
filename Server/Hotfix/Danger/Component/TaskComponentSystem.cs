@@ -635,7 +635,8 @@ namespace ET
 
         public static void OnZeroClockUpdate(this TaskComponent self,  bool notice = false)
         {
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            Unit unit = self.GetParent<Unit>(); 
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int taskLoop = self.GetTaskList(TaskTypeEnum.EveryDay).Count > 0 ? 1 : 0;
             numericComponent.ApplyValue(NumericType.TaskLoopNumber, taskLoop, notice);
 
@@ -653,8 +654,11 @@ namespace ET
                 M2C_TaskCountryUpdate m2C_TaskUpdate = new M2C_TaskCountryUpdate();
                 m2C_TaskUpdate.UpdateMode = 2;
                 m2C_TaskUpdate.TaskCountryList = self.TaskCountryList;
-                MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
+                MessageHelper.SendToClient(unit, m2C_TaskUpdate);
             }
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+            userInfoComponent.UpdateRoleData(UserDataType.HuoYue, (0 - userInfoComponent.UserInfo.HuoYue).ToString(), notice);
+            Log.Debug($"更新活跃任务:  {unit.Id} {userInfoComponent.UserInfo.HuoYue}");
         }
     }
 }
