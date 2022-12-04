@@ -20,6 +20,7 @@ namespace ET
             stateComponent.StateTypeRemove(StateTypeEnum.Obstruct);
             if (!stateComponent.CanMove())
             {
+                stateComponent.CheckSilence();
                 return -1;
             }
             stateComponent.BeginMoveOrSkill();

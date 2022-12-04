@@ -16,6 +16,7 @@ namespace ET
         public override void Deserialize(StateComponent self)
         {
             self.CurrentStateType = StateTypeEnum.None;
+            self.SilenceCheckTime = 0;
             self.RigidityEndTime = 0;
         }
     }
@@ -95,7 +96,10 @@ namespace ET
                 self.GetParent<Unit>().Stop(0);        //停止当前移动
             }
 #else
-
+            if (!self.CanMove())
+            {
+                self.SilenceCheckTime = TimeHelper.ServerNow();
+            }
 #endif
         }
 
@@ -114,7 +118,10 @@ namespace ET
                 return;
             MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateOperateType = 2, StateTime = 0 });
 #else
-
+            if (self.CanMove())
+            {
+                self.SilenceCheckTime = 0;
+            }
 #endif
         }
 
@@ -147,6 +154,25 @@ namespace ET
         }
 
 #if !SERVER
+        /// <summary>
+        /// 
+        /// </summary>
+        public static void CheckSilence(this StateComponent self)
+        {
+            if (self.SilenceCheckTime == 0)
+            {
+                return;
+            }
+            if (self.SilenceCheckTime < TimeHelper.ServerNow() - 5000)
+            {
+                self.SilenceCheckTime = 0;
+            }
+            self.StateTypeRemove(StateTypeEnum.Dizziness);
+            self.StateTypeRemove(StateTypeEnum.Silence);
+            self.StateTypeRemove(StateTypeEnum.Shackle);
+        }
+
+
         /// <summary>
         /// 
         /// </summary>

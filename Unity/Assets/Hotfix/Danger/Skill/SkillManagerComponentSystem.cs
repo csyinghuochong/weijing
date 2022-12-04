@@ -275,8 +275,11 @@ namespace ET
             {
                 return ErrorCore.ERR_UseSkillInCD1;
             }
-            if (!unit.GetComponent<StateComponent>().CanUseSkill())
+
+            StateComponent stateComponent = unit.GetComponent<StateComponent>();
+            if (!stateComponent.CanUseSkill())
             {
+                stateComponent.CheckSilence();
                 return ErrorCore.ERR_CanNotUseSkill;
             }
             if (self.IsSkillMoveTime())
