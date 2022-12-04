@@ -13,11 +13,7 @@ namespace ET
             "testcn01",
             "18319670288",
             "13752404158",
-            "wxoyHedvzGgPkynfiq3fNJInZcM76Q",
-            "qqUID_E345FB495D13CA8792AA967F39F35045",//神棍
-            "qqUID_423B58B6669878EF00C927A48822C230",   //双剑冰
-            "qqUID_C650A5945C70607035C21BB839AC10CB",
-            "qqUID_1FF478CF48CEC668A7C37EB09049834F",
+            "18652422521",
         };
 
         public static List<long> BanChatPlayer = new List<long>()

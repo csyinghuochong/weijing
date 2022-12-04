@@ -48,6 +48,8 @@ namespace ET
         public GameObject Lab_MakeName;
         public GameObject Lab_MakeNum;
         public GameObject Lab_MakeCDTime;
+        public GameObject Lab_ShuLianShow;
+        public GameObject Btn_Learn;
 
         public List<UIMakeItemComponent> MakeListUI = new List<UIMakeItemComponent>();
         public List<UIMakeNeedComponent> NeedListUI = new List<UIMakeNeedComponent>();
@@ -89,6 +91,7 @@ namespace ET
             self.Select = rc.Get<GameObject>("Select");
             self.Btn_Melt = rc.Get<GameObject>("Btn_Melt");
 
+
             self.TextVitality = rc.Get<GameObject>("Lab_HuoLi");
             self.Btn_Make = rc.Get<GameObject>("Btn_Make");
             ButtonHelp.AddListenerEx(self.Btn_Make, () => { self.OnBtn_Make().Coroutine(); });
@@ -105,6 +108,7 @@ namespace ET
             self.Lab_MakeNum = rc.Get<GameObject>("Lab_MakeNum");
 
             self.Lab_MakeCDTime = rc.Get<GameObject>("Lab_MakeCDTime");
+            self.Lab_ShuLianShow = rc.Get<GameObject>("Lab_ShuLianShow");
 
             GameObject Button_Select_1 = rc.Get<GameObject>("Button_Select_1");
             GameObject Button_Select_2 = rc.Get<GameObject>("Button_Select_2");
@@ -117,6 +121,9 @@ namespace ET
 
             self.Btn_Reset = rc.Get<GameObject>("Btn_Reset");
             ButtonHelp.AddListenerEx(self.Btn_Reset, () => { self.OnBtn_Reset(); });
+
+            self.Btn_Learn = rc.Get<GameObject>("Btn_Learn");
+            ButtonHelp.AddListenerEx(self.Btn_Learn, () => { self.OnBtn_Learn(); });
 
             self.Melt = rc.Get<GameObject>("Melt");
             self.MeltingComponent = self.AddChild<UISkillMeltingComponent, GameObject>(self.Melt);
@@ -138,6 +145,14 @@ namespace ET
                 self.Left.SetActive(false);
                 self.Select.SetActive(true);
                 self.Melt.SetActive(false);
+            }, null).Coroutine();
+        }
+
+        public static void OnBtn_Learn(this UISkillMakeComponent self)
+        {
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "学习技能", "可以在主城对应的各职业学习大师处学习当前等级最新的生活技能喔!", () =>
+            {
+
             }, null).Coroutine();
         }
 
@@ -270,6 +285,16 @@ namespace ET
             self.Lab_MakeName.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID).ItemName;
             self.Lab_MakeName.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(ItemConfigCategory.Instance.Get(equipMakeConfig.MakeItemID).ItemQuality);
             self.Lab_MakeNum.GetComponent<Text>().text = equipMakeConfig.MakeEquipNum.ToString();
+
+
+            if (equipMakeConfig.ProficiencyValue[0] != 0)
+            {
+                self.Lab_ShuLianShow.GetComponent<Text>().text = $"熟练度:{equipMakeConfig.ProficiencyValue[0]}-{equipMakeConfig.ProficiencyValue[1]}点 上限:{equipMakeConfig.ProficiencyMax}点";
+            }
+            else {
+                self.Lab_ShuLianShow.GetComponent<Text>().text = "";
+            }
+            
 
             //self.TextVitality.GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality.ToString();
             //显示消耗活力
