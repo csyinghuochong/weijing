@@ -117,6 +117,7 @@
         public const int ERR_InMakeCD = 300304;
         public const int ERR_MakeTypeError = 300305;
         public const int ERR_RoleNameRepeat = 300306;
+        public const int ERR_ShuLianDuNotEnough = 300307;                            //熟练度不足
 
         //队伍
         public const int ERR_TeamIsFull = 300401;                                   //队伍已满

@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using static UnityEngine.UI.CanvasScaler;
 
 namespace ET
 {
@@ -26,6 +27,7 @@ namespace ET
         public GameObject LearnListNode;
         public GameObject Obj_Lab_LearnItemName;
         public GameObject Obj_Lab_LearnItemCost;
+        public GameObject LabNeedShuLian;
 
         public int MakeId;
         public List<UIMakeLearnItemComponent> LearnUIList = new List<UIMakeLearnItemComponent>();
@@ -70,6 +72,7 @@ namespace ET
             self.LearnListNode = rc.Get<GameObject>("LearnListNode");
             self.Obj_Lab_LearnItemName = rc.Get<GameObject>("Lab_LearnItemName");
             self.Obj_Lab_LearnItemCost = rc.Get<GameObject>("Lab_LearnItemCost");
+            self.LabNeedShuLian = rc.Get<GameObject>("LabNeedShuLian");
 
             self.userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 
@@ -119,7 +122,7 @@ namespace ET
 
         public static void CheckMakeType(this UIMakeLearnComponent self)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()) ;
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int makeType = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType);
             int showValue = NpcConfigCategory.Instance.Get(UIHelper.CurrentNpcId).ShopValue;
             self.MakeType = makeType;
@@ -232,6 +235,22 @@ namespace ET
 
             string ItemQuality = FunctionUI.GetInstance().ItemQualiytoPath(itemConfig.ItemQuality);
             self.Image_ItemQuality.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, ItemQuality);
+
+            //显示需要熟练度
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int nowShuLianDu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
+            self.LabNeedShuLian.GetComponent<Text>().text = $"{nowShuLianDu}/{equipMakeConfig.NeedProficiencyValue}";
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu) < equipMakeConfig.NeedProficiencyValue)
+            {
+                //不满足显示红色,满足显示绿色
+                self.LabNeedShuLian.GetComponent<Text>().text += "(熟练度不足)";
+                self.LabNeedShuLian.GetComponent<Text>().color = new Color(207f / 255f, 12f / 255f, 0);
+            }
+            else {
+                //满足显示绿色,满足显示绿色
+                self.LabNeedShuLian.GetComponent<Text>().text += "(可学习)";
+                self.LabNeedShuLian.GetComponent<Text>().color = new Color(86f / 255f, 147f / 255f, 0);
+            }
 
             string[] costItems = equipMakeConfig.NeedItems.Split('@');
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");

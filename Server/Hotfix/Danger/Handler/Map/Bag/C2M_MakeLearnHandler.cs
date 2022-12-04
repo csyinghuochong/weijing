@@ -12,6 +12,7 @@ namespace ET
             {
                 EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(request.MakeId);
 
+                //判断学习金币是否不足
                 if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold <equipMakeConfig.LearnGoldValue)
                 {
                     response.Error = ErrorCore.ERR_GoldNotEnoughError;
@@ -19,8 +20,24 @@ namespace ET
                     return;
                 }
 
+                //判断是否已经学习
                 if (unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Contains(request.MakeId))
                 {
+                    reply();
+                    return;
+                }
+
+                //判断学习是否已经满足熟练度要求
+                if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu) < equipMakeConfig.NeedProficiencyValue) {
+                    response.Error = ErrorCore.ERR_ShuLianDuNotEnough;
+                    reply();
+                    return;
+                }
+
+                //判断学习等级是否满足
+                if (unit.GetComponent<UserInfoComponent>().UserInfo.Lv < equipMakeConfig.LearnLv)
+                {
+                    response.Error = ErrorCore.ERR_LevelNoEnough;
                     reply();
                     return;
                 }
