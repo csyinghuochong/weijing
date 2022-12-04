@@ -17,8 +17,10 @@ namespace ET
 		public GameObject RewardListNode;
 		public GameObject TypeListNode;
 		public GameObject ImageButton;
+		public GameObject Text_comTaskNpc;
 
-		public int TaskId;
+
+        public int TaskId;
 		public TaskPro TaskPro;
 		public TaskConfig TaskConfig;
 
@@ -60,7 +62,10 @@ namespace ET
 			self.ImageButton = rc.Get<GameObject>("ImageButton");
 			self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseTask(); });
 
-			self.TaskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+			self.Text_comTaskNpc = rc.Get<GameObject>("Text_comTaskNpc");
+
+
+            self.TaskComponent = self.ZoneScene().GetComponent<TaskComponent>();
 
 			DataUpdateComponent.Instance.AddListener(DataType.TaskUpdate, self);
 			DataUpdateComponent.Instance.AddListener(DataType.TaskGiveUp, self);
@@ -124,6 +129,7 @@ namespace ET
 				TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
 				self.OnClickTaskType(taskConfig.TaskType, taskPro.taskID);
 			}
+
 		}
 
 		public static void OnClickTaskType(this UITaskComponent self, int type, int taskId = 0)
@@ -167,7 +173,13 @@ namespace ET
 			self.Button_Zhuizong.SetActive(taskPro.TrackStatus == 0);
 			self.Button_CancelZhuizong.SetActive(taskPro.TrackStatus == 1);
 
-			string path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+
+			//显示提交任务
+			string npcName = NpcConfigCategory.Instance.Get(self.TaskConfig.CompleteNpcID).Name;
+
+			self.Text_comTaskNpc.GetComponent<Text>().text = $"完成任务请找:<color=#FFA313>{npcName}</color>";
+
+            string path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
 			GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
 			string rewardStr = self.TaskConfig.ItemID;
