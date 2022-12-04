@@ -16,7 +16,6 @@ namespace ET
         public override void Deserialize(StateComponent self)
         {
             self.CurrentStateType = StateTypeEnum.None;
-            self.SilenceCheckTime = 0;
             self.RigidityEndTime = 0;
         }
     }

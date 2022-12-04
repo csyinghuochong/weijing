@@ -178,6 +178,52 @@ namespace ET
             self.lodingImg.transform.localScale = new Vector3(progress, 1f, 1f);
             self.text.text = $"{(int)(progress * 100)}%";
         }
+
+        public static async ETTask UpdateMainUI(this UILoadingComponent self, int sceneTypeEnum)
+        {
+            UI uimain = UIHelper.GetUI(self.DomainScene(), UIType.UIMain);
+            if (uimain == null)
+            {
+                uimain = await UIHelper.Create(self.DomainScene(), UIType.UIMain);
+                Log.ILog.Debug("Create UIMain");
+            }
+            uimain.GetComponent<UIMainComponent>().AfterEnterScene(sceneTypeEnum);
+            switch (sceneTypeEnum)
+            {
+                case (int)SceneTypeEnum.CellDungeon:
+                    uimain.GetComponent<UIMainComponent>().OnCellDungeonEnterShow(self.ChapterId);
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
+                case (int)SceneTypeEnum.PetDungeon:
+                case (int)SceneTypeEnum.PetTianTi:
+                    UIHelper.Create(self.ZoneScene(), UIType.UIPetMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.zero;
+                    break;
+                case (int)SceneTypeEnum.Tower:
+                    UIHelper.Create(self.ZoneScene(), UIType.UITowerOpen).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
+                case (int)SceneTypeEnum.RandomTower:
+                    UIHelper.Create(self.ZoneScene(), UIType.UIRandomOpen).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
+                case (int)SceneTypeEnum.Battle:
+                    UIHelper.Create(self.ZoneScene(), UIType.UIBattleMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
+                case (int)SceneTypeEnum.TeamDungeon:
+                    UIHelper.Create(self.ZoneScene(), UIType.UITeamMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
+                case (int)SceneTypeEnum.TrialDungeon:
+                    UIHelper.Create(self.ZoneScene(), UIType.UITrialMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
+                default:
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
+            }
+        }
     }
 
     /// <summary>
@@ -203,7 +249,7 @@ namespace ET
     [ObjectSystem]
     public class UiLoadingComponentUpdateSystem : UpdateSystem<UILoadingComponent>
     {
-        public override async void Update(UILoadingComponent self)
+        public override  void Update(UILoadingComponent self)
         {
             SceneManagerComponent sceneManagerComponent = Game.Scene.GetComponent<SceneManagerComponent>();
             SceneAssetRequest sceneAssetRequest = sceneManagerComponent.SceneAssetRequest;
@@ -243,56 +289,12 @@ namespace ET
             {
                 return;
             }
-            UI uimain = UIHelper.GetUI(self.DomainScene(), UIType.UIMain);
-            if (uimain == null)
-            {
-                uimain = await UIHelper.Create(self.DomainScene(), UIType.UIMain);
-            }
-            //Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(self.DomainScene());
-            //if (mainUnit == null)
-            //{
-            //    return;
-            //}
+            
             int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
             Camera camera = UIComponent.Instance.MainCamera;
             camera.GetComponent<Camera>().fieldOfView = 50;
             sceneManagerComponent.SceneAssetRequest = null;
-            uimain.GetComponent<UIMainComponent>().AfterEnterScene(sceneTypeEnum);
-            switch (sceneTypeEnum)
-            {
-                case (int)SceneTypeEnum.CellDungeon:
-                    uimain.GetComponent<UIMainComponent>().OnCellDungeonEnterShow(self.ChapterId);
-                    uimain.GameObject.transform.localScale = Vector3.one;
-                    break;
-                case (int)SceneTypeEnum.PetDungeon:
-                case (int)SceneTypeEnum.PetTianTi:
-                    UIHelper.Create(self.ZoneScene(), UIType.UIPetMain).Coroutine();
-                    uimain.GameObject.transform.localScale = Vector3.zero;
-                    break;
-                case (int)SceneTypeEnum.Tower:
-                    UIHelper.Create(self.ZoneScene(), UIType.UITowerOpen).Coroutine();
-                    uimain.GameObject.transform.localScale = Vector3.one;
-                    break;
-                case (int)SceneTypeEnum.RandomTower:
-                    UIHelper.Create(self.ZoneScene(), UIType.UIRandomOpen).Coroutine();
-                    uimain.GameObject.transform.localScale = Vector3.one;
-                    break;
-                case (int)SceneTypeEnum.Battle:
-                    UIHelper.Create(self.ZoneScene(), UIType.UIBattleMain).Coroutine();
-                    uimain.GameObject.transform.localScale = Vector3.one;
-                    break;
-                case (int)SceneTypeEnum.TeamDungeon:
-                    UIHelper.Create(self.ZoneScene(), UIType.UITeamMain).Coroutine();
-                    uimain.GameObject.transform.localScale = Vector3.one;
-                    break;
-                case (int)SceneTypeEnum.TrialDungeon:
-                    UIHelper.Create(self.ZoneScene(), UIType.UITrialMain).Coroutine();
-                    uimain.GameObject.transform.localScale = Vector3.one;
-                    break;
-                default:
-                    uimain.GameObject.transform.localScale = Vector3.one;
-                    break;
-            }
+            self.UpdateMainUI(sceneTypeEnum).Coroutine() ;
             Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
             UIHelper.Remove(self.DomainScene(), UIType.UILoading);
         }
