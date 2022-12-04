@@ -177,7 +177,7 @@ namespace ET
 			//显示提交任务
 			string npcName = NpcConfigCategory.Instance.Get(self.TaskConfig.CompleteNpcID).Name;
 
-			self.Text_comTaskNpc.GetComponent<Text>().text = $"完成任务请找:<color=#FFA313>{npcName}</color>";
+			self.Text_comTaskNpc.GetComponent<Text>().text = $"完成任务请找:<color=#5C7B32>{npcName}</color>";
 
             string path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
 			GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
