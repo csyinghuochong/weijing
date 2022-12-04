@@ -59,7 +59,8 @@ namespace ET
                 bool showMainUnit = sceneTypeEnum != (int)SceneTypeEnum.PetTianTi
                 && sceneTypeEnum != (int)SceneTypeEnum.PetDungeon;
                 Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(scene);
-                mainUnit.GetComponent<StateComponent>().StateTypeAdd(showMainUnit ? StateTypeEnum.None : StateTypeEnum.Dizziness );
+                //宠物副本 禁止玩家移动
+                mainUnit.GetComponent<StateComponent>().StateTypeAdd(showMainUnit ? StateTypeEnum.None : StateTypeEnum.NetWait);
             }
         }
 

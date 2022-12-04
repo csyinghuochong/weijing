@@ -9,7 +9,6 @@ namespace ET
         public long RigidityEndTime;
 
 #if !SERVER
-
         public C2M_UnitStateUpdate c2M_UnitStateUpdate = new C2M_UnitStateUpdate();
 #endif
     }
