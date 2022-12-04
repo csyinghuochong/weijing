@@ -26,7 +26,8 @@ namespace ET
             Game.EventSystem.PublishClass(EventType.SceneChangeStart.Instance);
 
             try
-            {  // 等待CreateMyUnit的消息
+            {  
+                // 等待CreateMyUnit的消息
                 long instanId = zoneScene.InstanceId;
                 WaitType.Wait_CreateMyUnit waitCreateMyUnit = await zoneScene.GetComponent<ObjectWait>().Wait<WaitType.Wait_CreateMyUnit>();
                 M2C_CreateMyUnit m2CCreateMyUnit = waitCreateMyUnit.Message;

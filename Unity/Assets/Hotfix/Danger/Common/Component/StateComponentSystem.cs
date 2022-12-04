@@ -46,7 +46,7 @@ namespace ET
                 || self.StateTypeGet(StateTypeEnum.NetWait)
                 || self.StateTypeGet(StateTypeEnum.Silence))
             {
-                return false;
+                return false;                                                                                                          
             }
             if (self.Parent.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {

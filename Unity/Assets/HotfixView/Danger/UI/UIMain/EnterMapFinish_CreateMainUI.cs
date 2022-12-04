@@ -14,7 +14,7 @@ namespace ET
 			EventType.EnterMapFinish args = cls as EventType.EnterMapFinish;
 			Game.Scene.GetComponent<SoundComponent>().InitData(args.ZoneScene.GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos);
 			UIHelper.Remove(args.ZoneScene, UIType.UILobby);
-			UIHelper.Create(args.ZoneScene, UIType.UIMain).Coroutine();
+			//UIHelper.Create(args.ZoneScene, UIType.UIMain).Coroutine();
 
 			args.ZoneScene.GetComponent<FangChenMiComponent>().OnLogin().Coroutine();
 			GameObject.Find("Global").GetComponent<Init>().OpenBuglyAgent(args.ZoneScene.GetComponent<AccountInfoComponent>().CurrentRoleId);

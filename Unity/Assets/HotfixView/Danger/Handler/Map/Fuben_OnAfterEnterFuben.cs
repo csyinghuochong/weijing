@@ -42,7 +42,6 @@ namespace ET
                 UnitHelper.LoadingScene = false;
                 UnitHelper.ShowAllUnit(args.ZoneScene);
                 await TimerComponent.Instance.WaitAsync(200);
-                unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);
                 fubenComponent.CheckChuansongOpen();
             }
         }

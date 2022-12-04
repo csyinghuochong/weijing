@@ -203,7 +203,7 @@ namespace ET
     [ObjectSystem]
     public class UiLoadingComponentUpdateSystem : UpdateSystem<UILoadingComponent>
     {
-        public override void Update(UILoadingComponent self)
+        public override async void Update(UILoadingComponent self)
         {
             SceneManagerComponent sceneManagerComponent = Game.Scene.GetComponent<SceneManagerComponent>();
             SceneAssetRequest sceneAssetRequest = sceneManagerComponent.SceneAssetRequest;
@@ -246,13 +246,13 @@ namespace ET
             UI uimain = UIHelper.GetUI(self.DomainScene(), UIType.UIMain);
             if (uimain == null)
             {
-                return;
+                uimain = await UIHelper.Create(self.DomainScene(), UIType.UIMain);
             }
-            Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(self.DomainScene());
-            if (mainUnit == null)
-            {
-                return;
-            }
+            //Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(self.DomainScene());
+            //if (mainUnit == null)
+            //{
+            //    return;
+            //}
             int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
             Camera camera = UIComponent.Instance.MainCamera;
             camera.GetComponent<Camera>().fieldOfView = 50;
