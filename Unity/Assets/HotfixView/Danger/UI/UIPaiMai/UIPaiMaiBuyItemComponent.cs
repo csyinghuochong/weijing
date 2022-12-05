@@ -60,6 +60,7 @@ namespace ET
             { 
                 self.OnUpdateItem(self.PaiMaiItemInfo);
             }
+
         }
 
         public static async ETTask RequestBuy(this UIPaiMaiBuyItemComponent self)
@@ -117,6 +118,13 @@ namespace ET
 
             //显示时间
             self.Text_LeftTime.GetComponent<Text>().text = TimeHelper.TimeToShowCostTimeStr(paiMaiItemInfo.SellTime,48);
+
+            //装备显示等级
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(self.PaiMaiItemInfo.BagInfo.ItemID);
+            if (itemCof.ItemType == 3) {
+                self.ItemUI.GetComponent<UIItemComponent>().Label_ItemNum.SetActive(true);
+                self.ItemUI.GetComponent<UIItemComponent>().Label_ItemNum.GetComponent<Text>().text = itemCof.UseLv + "级";
+            }
         }
     }
 }

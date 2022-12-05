@@ -208,7 +208,7 @@ namespace ET
 		{
 			DropConfig dropconf = DropConfigCategory.Instance.Get(dropID);
 			int dropLimit = dropconf.DropLimit;
-			//Debug.Log("DropIDToDropItemDropIDToDropItemDropIDToDropItem");
+			//Log.Info("DropID = " + dropID + " monsterID = " + monsterID);
 			//是否有子掉落
 			bool DropSonStatus = false;
 
@@ -269,6 +269,7 @@ namespace ET
 			{
 				dropItemList.Add(new RewardItem() { ItemID = dropconf.DropItemID1, ItemNum = 1 });
 			}
+
 			return true;
 		}
 
@@ -522,6 +523,11 @@ namespace ET
 
 						//Debug.Log("Str3333 = " + i);
 						//当随机值小于掉落概率值判定为掉落成功
+						/*
+						if (dropID == 602001001) {
+							Log.Info("randomdrop = " + randomdrop +" dropChanceData = " + dropChanceData);
+						}
+						*/
 						if (randomdrop <= dropChanceData)
 						{
 							//Debug.Log("掉落成功！掉落成功！掉落成功！掉落成功！掉落成功！掉落成功！ dropID = " + dropID);

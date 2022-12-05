@@ -150,6 +150,9 @@ namespace ET
 		/// <summary>获取是否绑定</summary>
 		[ProtoMember(25)]
 		public int IfLock { get; set; }
+		/// <summary>每天使用次数</summary>
+		[ProtoMember(26)]
+		public int DayUseNum { get; set; }
 
 	}
 }
