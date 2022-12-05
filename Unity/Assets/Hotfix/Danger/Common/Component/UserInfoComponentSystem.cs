@@ -342,7 +342,7 @@ namespace ET
                     break;
                 case UserDataType.DungeonTimes:
                     unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() - 1);
-                    self.UserInfo.DayFubenTimes.Clear();
+                    //self.UserInfo.DayFubenTimes.Clear();
                     break;
                 case UserDataType.Union:
                     self.UserInfo.UnionId = long.Parse(value);

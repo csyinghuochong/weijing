@@ -50,7 +50,7 @@ namespace ET
                     userInfo.PiLao = long.Parse(message.UpdateTypeValue);
                     break;
                 case (int)UserDataType.DungeonTimes:
-                    userInfo.DayFubenTimes.Clear();
+                    //userInfo.DayFubenTimes.Clear();
                     break;
                 case (int)UserDataType.HuoYue:
                     updateValue = (long.Parse(message.UpdateTypeValue) - userInfo.HuoYue).ToString();

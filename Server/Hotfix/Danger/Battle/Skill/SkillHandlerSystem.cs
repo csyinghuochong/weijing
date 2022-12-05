@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -83,6 +82,11 @@ namespace ET
             if (self.SkillConf == null)
             {
                 Log.Error($"self.SkillConf == null {self.SkillCmd.WeaponSkillID}");
+            }
+            if (self.TheUnitFrom.IsDisposed)
+            {
+                Log.Debug($"self.TheUnitFrom.IsDisposed {self.TheUnitFrom.Id}");
+                return;
             }
 
             if (self.SkillConf.InitBuffID!= null &&self.SkillConf.InitBuffID[0] != 0)
