@@ -272,5 +272,9 @@ namespace ET
             return int.Parse(GlobalValueConfigCategory.Instance.Get(self.IsYueKaStates() ? 26 : 10).Value);
         }
 
+        public static int GetMaxHuoLi(this Unit self)
+        {
+            return int.Parse(GlobalValueConfigCategory.Instance.Get(72).Value);
+        }
     }
 }

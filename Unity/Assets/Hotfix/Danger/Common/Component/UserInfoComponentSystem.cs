@@ -188,9 +188,10 @@ namespace ET
 
         public static void OnZeroClockUpdate(this UserInfoComponent self, bool notice)
         {
-            int updatevalue = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value) - self.UserInfo.Vitality;
+            Unit unit = self.GetParent<Unit>();
+            int updatevalue = NumericHelp.GetMaxHuoLi(unit) - self.UserInfo.Vitality;
             self.UpdateRoleData(UserDataType.Vitality, updatevalue.ToString(), notice);
-            self.GetParent<Unit>().GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1,  notice);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1,  notice);
             self.UserInfo.DayFubenTimes.Clear();
             self.UserInfo.ChouKaRewardIds.Clear();
             self.UserInfo.MysteryItems.Clear();

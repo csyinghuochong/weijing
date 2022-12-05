@@ -5,7 +5,7 @@ namespace ET
 {
     public class UIRoleHeadComponent : Entity, IAwake<GameObject>
     {
-
+        public GameObject Lab_RoleHuoLi;
         public GameObject GameObject;
         public GameObject Lab_Combat;
         public GameObject Lab_PetName;
@@ -34,6 +34,7 @@ namespace ET
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             //获取相关组件
+            self.Lab_RoleHuoLi = rc.Get<GameObject>("Lab_RoleHuoLi");
             self.Lab_Combat= rc.Get<GameObject>("Lab_Combat");
             self.PetIconSet = rc.Get<GameObject>("PetIconSet");
             self.Lab_PetName = rc.Get<GameObject>("Lab_PetName");
@@ -42,7 +43,6 @@ namespace ET
             self.Obj_Lab_PetName = rc.Get<GameObject>("Lab_PetName");
             self.Obj_Img_PetHp = rc.Get<GameObject>("Img_PetHp");
             self.Obj_Lab_RolePiLao = rc.Get<GameObject>("Lab_RolePiLao");
-            self.Obj_Img_RolePiLao = rc.Get<GameObject>("Img_RolePiLao");
             self.Obj_ImagePetHeadIcon = rc.Get<GameObject>("ImagePetHeadIcon");
 
             self.ButtonSet = rc.Get<GameObject>("ButtonSet");
@@ -79,6 +79,7 @@ namespace ET
             self.UpdateShowRolePetName();
             self.OnPetFightSet();
             self.OnUpdateCombat();
+            self.UpdateShowRoleHuoLi();
         }
 
         public static void OnPetFightSet(this UIRoleHeadComponent self)
@@ -116,8 +117,15 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int maxPiLao = unit.GetMaxPiLao();
-            self.Obj_Img_RolePiLao.GetComponent<Image>().fillAmount = (float)self.UserInfoComponent.UserInfo.PiLao / maxPiLao;
             self.Obj_Lab_RolePiLao.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("体力:") + self.UserInfoComponent.UserInfo.PiLao + "/" + maxPiLao;
+        }
+
+        //更新活力
+        public static void UpdateShowRoleHuoLi(this UIRoleHeadComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int maxPiLao = unit.GetMaxPiLao();
+            self.Lab_RoleHuoLi.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("体力:") + self.UserInfoComponent.UserInfo.Vitality + "/" + maxPiLao;
         }
 
         //初始化界面基础信息

@@ -437,6 +437,10 @@ namespace ET
             {
                 self.UIRoleHead.UpdateShowRolePiLao();
             }
+            if (userDataType == UserDataType.Vitality)
+            {
+                self.UIRoleHead.UpdateShowRoleHuoLi();
+            }
             if (userDataType == UserDataType.Gold)
             {
                 if (int.Parse(updateValue) > 0)
