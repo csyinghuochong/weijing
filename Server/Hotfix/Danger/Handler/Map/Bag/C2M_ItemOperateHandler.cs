@@ -316,6 +316,10 @@ namespace ET
                             case 123:   //宠物扩展工具
                                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExtendNumber, 1, 0);
                                 break;
+                            case 124:
+                                int cangkuNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CangKuNumber);
+                                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.CangKuNumber, cangkuNumber + 1);
+                                break;
                         }
 
                         //扣除道具
