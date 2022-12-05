@@ -125,7 +125,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int maxPiLao = unit.GetMaxPiLao();
-            self.Lab_RoleHuoLi.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("体力:") + self.UserInfoComponent.UserInfo.Vitality + "/" + maxPiLao;
+            self.Lab_RoleHuoLi.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("活力:") + self.UserInfoComponent.UserInfo.Vitality + "/" + maxPiLao;
         }
 
         //初始化界面基础信息
