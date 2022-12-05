@@ -326,10 +326,12 @@ namespace ET
 
 		public float Pet_HeCheng_ZiZhi(float zizhiValue_1, float zizhiValue_2, float maxZiZhi = 99999, string ziZhiType = "0")
 		{
+			/*
 			float zizhi_1 = 0.04f;
 			float zizhi_2 = 0.75f;
 			float zizhi_3 = 0.25f;
 			float zizhi_4 = 1.1f;
+
 			if (ziZhiType == "1")
 			{
 				Random example = new Random();
@@ -340,11 +342,24 @@ namespace ET
 					return Mathf.Max(zizhiValue_1, zizhiValue_2);
 				}
 			}
-
+			*/
 			//获取随机资质
+			/*
 			Random example2 = new Random();
 			float number2 = example2.Next(1, 10) * 0.1f;
 			float zhizhiValue = Mathf.Min(zizhiValue_1, zizhiValue_2) * zizhi_2 + ((Mathf.Min(zizhiValue_1, zizhiValue_2) * zizhi_3 + Mathf.Max(zizhiValue_1, zizhiValue_2) - Mathf.Min(zizhiValue_1, zizhiValue_2))) * number2 * zizhi_4;
+			*/
+
+			float ZiZhimin = Mathf.Min(zizhiValue_1, zizhiValue_2);
+			float ZiZhimax = Mathf.Max(zizhiValue_1, zizhiValue_2);
+
+			ZiZhimin = ZiZhimin * 0.9f;
+			ZiZhimax = ZiZhimax * 1.05f;
+
+			float chaValuie = ZiZhimax - ZiZhimin;
+
+			float zhizhiValue = ZiZhimin + chaValuie * RandomHelper.RandFloat01();
+
 			//限制最高资质
 			if (zhizhiValue > maxZiZhi)
 			{
