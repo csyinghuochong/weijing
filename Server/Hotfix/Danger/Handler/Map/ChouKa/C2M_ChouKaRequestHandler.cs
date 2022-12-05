@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -19,6 +20,8 @@ namespace ET
                 return;
             }
 
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+
             bool mianfei = false;
             long cdTime = long.Parse(GlobalValueConfigCategory.Instance.Get(request.ChouKaType == 1 ? 35:36).Value) * 1000;
             
@@ -27,6 +30,12 @@ namespace ET
 
             TakeCardConfig takeCardConfig = TakeCardConfigCategory.Instance.Get(request.ChapterId);
             int needZuanshi = request.ChouKaType == 1 ? takeCardConfig.ZuanShiNum : takeCardConfig.ZuanShiNum_Ten;
+            int totalTimes = numericComponent.GetAsInt(NumericType.ChouKa);
+            if (totalTimes >= 250)
+            {
+                needZuanshi = Mathf.CeilToInt(needZuanshi * 0.8f);
+            }
+
             if (!mianfei && userInfo.Diamond < needZuanshi)
             {
                 response.Error = ErrorCore.ERR_DiamondNotEnoughError;

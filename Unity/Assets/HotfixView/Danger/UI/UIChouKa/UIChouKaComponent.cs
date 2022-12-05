@@ -170,6 +170,7 @@ namespace ET
             }
 
             self.OnUpdateUI();
+            self.OnUpdateCost();
             self.ShowRewardView(r2c_roleEquip.RewardList).Coroutine();
         }
 
@@ -192,8 +193,21 @@ namespace ET
         public static void OnUpdateCost(this UIChouKaComponent self)
         {
             TakeCardConfig takeCardConfig = TakeCardConfigCategory.Instance.Get(self.TakeCardId);
-            self.TextOneCost.GetComponent<Text>().text = takeCardConfig.ZuanShiNum.ToString();
-            self.TextTenCost.GetComponent<Text>().text = takeCardConfig.ZuanShiNum_Ten.ToString();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int totalTimes = numericComponent.GetAsInt(NumericType.ChouKa);
+            if (totalTimes >= 250)
+            {
+                int oneCost = Mathf.CeilToInt(takeCardConfig.ZuanShiNum * 0.8f);
+                int tenCost = Mathf.CeilToInt(takeCardConfig.ZuanShiNum_Ten * 0.8f);
+                self.TextOneCost.GetComponent<Text>().text = oneCost.ToString();
+                self.TextTenCost.GetComponent<Text>().text = tenCost.ToString();
+            }
+            else
+            {
+                self.TextOneCost.GetComponent<Text>().text = takeCardConfig.ZuanShiNum.ToString();
+                self.TextTenCost.GetComponent<Text>().text = takeCardConfig.ZuanShiNum_Ten.ToString();
+            }
         }
 
         public static void OnUpdateTotalTime(this UIChouKaComponent self)
