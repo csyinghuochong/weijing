@@ -143,8 +143,8 @@ namespace ET
         /// <returns></returns>
         public static int GetCombatResult(this PetTianTiComponent self)
         {
-            int number_1 = 0;
-            int number_2 = 0;
+            int number_self = 0;
+            int number_enemy = 0;
             List<Unit> unitList = self.DomainScene().GetComponent<UnitComponent>().GetAll();
             for(int i = 0; i < unitList.Count; i++)
             {
@@ -155,18 +155,18 @@ namespace ET
                 }
                 if (unit.GetBattleCamp() == CampEnum.CampPlayer_1)
                 {
-                    number_1++;
+                    number_self++;
                 }
                 else
                 {
-                    number_2++;
+                    number_enemy++;
                 }
             }
-            if (number_1 > 0 && number_2 > 0)
-                return 0;
-            if (number_1 > 0 && number_2 == 0)
-                return 1;
-            return 2;
+            if (number_self > 0 && number_enemy > 0)
+                return CombatResultEnum.None;
+            if (number_self > 0 && number_enemy == 0)
+                return CombatResultEnum.Win;
+            return CombatResultEnum.Fail;
         }
 
     }

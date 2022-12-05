@@ -17,7 +17,9 @@ namespace ET
             }
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi)
             {
-                domainScene.GetComponent<PetTianTiComponent>().OnGameOver(CombatResultEnum.Fail);
+                int result = domainScene.GetComponent<PetTianTiComponent>().GetCombatResult();
+                result = result == CombatResultEnum.None ? CombatResultEnum.Fail : result;
+                domainScene.GetComponent<PetTianTiComponent>().OnGameOver(result);
             }
         }
     }
