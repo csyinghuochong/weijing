@@ -127,10 +127,15 @@ namespace ET
         public static List<string> GetRoleSkillEffect(this UILoadingComponent self)
         {
             List<string> effects = new List<string>();
+            int fangunSkill = int.Parse(GlobalValueConfigCategory.Instance.Get(2).Value);
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
-            for(int i = 0; i < skillSetComponent.SkillList.Count; i++)
+            List<SkillPro> allskills = new List<SkillPro>();
+            allskills.AddRange(skillSetComponent.SkillList);
+            allskills.Add(new SkillPro() { SkillID = fangunSkill, SkillPosition = 100, SkillSetType = (int)SkillSetEnum.Skill });
+
+            for (int i = 0; i < allskills.Count; i++)
             {
-                SkillPro skillPro = skillSetComponent.SkillList[i];
+                SkillPro skillPro = allskills[i];
                 if (skillPro.SkillPosition == 0)
                 {
                     continue;
@@ -151,6 +156,8 @@ namespace ET
                     effects.Add(ABPathHelper.GetEffetPath("SkillHitEffect/" + effectConfig.EffectName));
                 }
             }
+            
+           
             return effects;
         }
 
