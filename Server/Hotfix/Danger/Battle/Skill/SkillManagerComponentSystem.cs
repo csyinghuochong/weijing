@@ -284,7 +284,7 @@ namespace ET
             if (skillId != 0)
             {
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-                if (skillConfig.GameObjectName == "Skill_Other_ChongJi")
+                if (skillConfig.GameObjectName == "Skill_Other_ChongJi_1")
                 {
                     for (int i = self.Skills.Count - 1; i >= 0; i--)
                     {

@@ -480,5 +480,6 @@ namespace ET
 		 public const ushort M2C_UpdateSkillSet = 10477;
 		 public const ushort C2C_SendBroadcastRequest = 10478;
 		 public const ushort C2C_SendBroadcastResponse = 10479;
+		 public const ushort M2C_UpdateVersion = 10480;
 	}
 }

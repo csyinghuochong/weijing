@@ -252,6 +252,11 @@ namespace ET
                     self.ZoneScene().GetComponent<PetComponent>().OnUnlockSkin(itemConfig.ItemUsePar);
                 }
 
+                if (itemConfig.DayUseNum > 0)
+                {
+                    infoComponent.OnDayItemUse(itemConfig.Id);
+                }
+
                 return r2c_roleEquip.Error;
             }
             catch (Exception e)

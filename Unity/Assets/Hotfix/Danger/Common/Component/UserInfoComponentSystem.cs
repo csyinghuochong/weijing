@@ -195,6 +195,7 @@ namespace ET
             self.UserInfo.DayFubenTimes.Clear();
             self.UserInfo.ChouKaRewardIds.Clear();
             self.UserInfo.MysteryItems.Clear();
+            self.UserInfo.DayItemUse.Clear();
             self.LastLoginTime = TimeHelper.ServerNow();
         }
 
@@ -547,6 +548,31 @@ namespace ET
                 }
             }
             self.UserInfo.DayFubenTimes.Add(new KeyValuePairInt() { KeyId = sceneId, Value =1 });
+        }
+
+        public static void OnDayItemUse(this UserInfoComponent self, int itemId)
+        {
+            for (int i = 0; i < self.UserInfo.DayItemUse.Count; i++)
+            {
+                if (self.UserInfo.DayItemUse[i].KeyId == itemId)
+                {
+                    self.UserInfo.DayItemUse[i].Value += 1;
+                    return;
+                }
+            }
+            self.UserInfo.DayItemUse.Add(new KeyValuePairInt() { KeyId = itemId, Value = 1 });
+        }
+
+        public static int GetDayItemUse(this UserInfoComponent self, int mysteryId)
+        {
+            for (int i = 0; i < self.UserInfo.DayItemUse.Count; i++)
+            {
+                if (self.UserInfo.DayItemUse[i].KeyId == mysteryId)
+                {
+                    return (int)self.UserInfo.DayItemUse[i].Value;
+                }
+            }
+            return 0;
         }
 
         public static string GetGameSettingValue(this UserInfoComponent self, GameSettingEnum gameSettingEnum)

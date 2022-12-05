@@ -13,10 +13,12 @@ namespace ET
             try
             {
                 //获取UserID及User数据
-                UserInfo useInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
+                UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                UserInfo useInfo = userInfoComponent.UserInfo;
                 long bagInfoID = request.OperateBagID;
 
                 ItemLocType locType = ItemLocType.ItemLocBag;
+
                 if (request.OperateType == 2)
                 {
                     ItemConfig config = ItemConfigCategory.Instance.Get( int.Parse(request.OperatePar) );
@@ -55,11 +57,17 @@ namespace ET
                 //使用道具
                 if (request.OperateType == 1 && itemCof != null) 
                 {
+                    if (itemCof.DayUseNum > 0 && userInfoComponent.GetDayItemUse(itemCof.Id) >= itemCof.DayUseNum)
+                    {
+                        response.Error = ErrorCore.ERR_ItemNoUseTime;
+                        reply();
+                        return;
+                    }
+
                     //获取背包数据
                     int costNumber = 1;
                     bool bagIsFull = false;
                     List<RewardItem> droplist = new List<RewardItem>();
-
                     if (itemCof.ItemSubType == 8)
                     {
                         string[] duihuanparams = itemCof.ItemUsePar.Split(';');
@@ -333,6 +341,10 @@ namespace ET
                             {
                                 m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
                             }
+                        }
+                        if (itemCof.DayUseNum > 0)
+                        {
+                            userInfoComponent.OnDayItemUse(itemCof.Id);
                         }
                     }
                 }

@@ -36,6 +36,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_ItemNotEnoughError, "道具不足!");
             ErrorHintList.Add(ErrorCore.ERR_ItemDropProtect, "掉落保护中!");
             ErrorHintList.Add(ErrorCore.ERR_NoPayValueError, "赞助额度不足!");
+            ErrorHintList.Add(ErrorCore.ERR_ItemNoUseTime, "道具今天不能再使用!");
             ErrorHintList.Add(ErrorCore.ERR_EquipAppraisal_Item,"鉴定失败!所需鉴定道具不足...");
             ErrorHintList.Add(ErrorCore.ERR_Occ_Hint_1, "转职失败!请先将角色等级提升至18级");
             ErrorHintList.Add(ErrorCore.ERR_Occ_Hint_2, "请不要重复进行转职噢");

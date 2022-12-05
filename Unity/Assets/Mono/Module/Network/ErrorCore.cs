@@ -80,6 +80,7 @@
         public const int ERR_VitalityNotEnoughError = 200020;                       //活力不足
         public const int ERR_ItemDropProtect = 200021;                              //掉落保护中
         public const int ERR_NoPayValueError = 200022;                              //赞助额度不足
+        public const int ERR_ItemNoUseTime = 200022;                                //道具使用次数不足
 
         //登录
         public const int ERR_AccountAlreadyRegister = 200101;                       //表示账号已经被注册
@@ -123,7 +124,7 @@
         public const int ERR_TeamIsFull = 300401;                                   //队伍已满
         public const int ERR_LevelIsNot = 300402;                                   //等级不足
         public const int ERR_IsHaveTeam = 300403;                                   //已经有组队了
-        public const int ERR_TimesIsNot = 300404;                                   //次数不足
+        public const int ERR_TimesIsNot = 300404;                                   //组队次数不足
         public const int ERR_IsNotLeader = 300405;                                  //队长才能创建副本
         public const int ERR_PlayerIsNot = 300406;                                  //人数不足
         public const int ERR_TeamerLevelIsNot = 300407;                            //队员等级不足

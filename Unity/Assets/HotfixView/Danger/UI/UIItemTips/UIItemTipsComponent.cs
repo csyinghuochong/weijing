@@ -197,9 +197,16 @@ namespace ET
         {
             //发送消息
             //判断当前技能是否再CD状态
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.BagInfo.ItemID);
             int errorCode = ErrorCore.ERR_Success;
             string usrPar = "";
+
+            if (itemConfig.DayUseNum > 0 && userInfoComponent.GetDayItemUse(itemConfig.Id) >= itemConfig.DayUseNum)
+            {
+                FloatTipManager.Instance.ShowFloatTip(ErrorHelp.Instance.ErrorHintList[ErrorCore.ERR_ItemNoUseTime]);
+                return;
+            }
 
             //材料
             if (itemConfig.ItemType == (int)ItemTypeEnum.Material)

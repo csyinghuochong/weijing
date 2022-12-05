@@ -27,7 +27,6 @@ message C2Center_Register // IRequest
     int64 ActorId = 93;
     string Account = 1;
     string Password = 2;
-
 }
 
 message Center2C_Register // IResponse
@@ -312,6 +311,8 @@ message UserInfo
 	//已通关的副本列表
         repeated FubenPassInfo FubenPassList = 30;
 
+	//每日道具使用限制
+	repeated KeyValuePairInt DayItemUse = 31;
 }
 
 message KeyValuePair
