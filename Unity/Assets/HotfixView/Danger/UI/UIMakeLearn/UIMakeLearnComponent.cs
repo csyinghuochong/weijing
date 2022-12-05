@@ -7,6 +7,8 @@ namespace ET
 {
     public class UIMakeLearnComponent : Entity, IAwake
     {
+        public GameObject Img_ShuLianPro;
+        public GameObject Lab_ShuLianDu;
         public GameObject Button_Select_3;
         public GameObject Button_Select_2;
         public GameObject Button_Select_1;
@@ -60,6 +62,8 @@ namespace ET
             self.Select_2 = rc.Get<GameObject>("Select_2");
             self.Select_1 = rc.Get<GameObject>("Select_1");
             self.Select = rc.Get<GameObject>("Select");
+            self.Lab_ShuLianDu = rc.Get<GameObject>("Lab_ShuLianDu");
+            self.Img_ShuLianPro = rc.Get<GameObject>("Img_ShuLianPro");
 
             self.TextTMP_Name = rc.Get<GameObject>("TextTMP_Name");
             self.TextTMP_CostCoin = rc.Get<GameObject>("TextTMP_CostCoin");
@@ -88,11 +92,22 @@ namespace ET
             });
 
             self.CheckMakeType();
+            self.UpdateShuLianDu();
         }
     }
 
     public static class UIMakeLearnComponentSystem
     {
+
+        public static void UpdateShuLianDu(this UIMakeLearnComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int maxValue = ComHelp.MaxShuLianDu();
+            int curValue = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
+
+            self.Lab_ShuLianDu.GetComponent<Text>().text = $"{curValue}/{maxValue}";
+            self.Img_ShuLianPro.GetComponent<Image>().fillAmount = curValue * 1f / maxValue;
+        }
 
         public static void On_Button_Select(this UIMakeLearnComponent self, int makeId)
         {
