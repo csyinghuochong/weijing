@@ -113,15 +113,21 @@ namespace ET
             SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(self.SkillPro.SkillID);
             string[] skillDesc = Regex.Split(skillConfig_base.SkillDescribe, "\n\n", RegexOptions.IgnoreCase);
 
-            if (itemEquipType == 0 ||  skillDesc.Length == 1 || itemEquipType > ItemEquipType.Knife)
+            if (skillDesc.Length == 1)
             {
                 self.Text_Desc.GetComponent<Text>().text = skillDesc[0];
             }
             else
             {
-                self.Text_Desc.GetComponent<Text>().text = skillDesc[itemEquipType - 1];
+                if (itemEquipType == ItemEquipType.Sword || itemEquipType == ItemEquipType.Wand)
+                {
+                    self.Text_Desc.GetComponent<Text>().text = skillDesc[0];
+                }
+                else
+                {
+                    self.Text_Desc.GetComponent<Text>().text = skillDesc[1];
+                }
             }
-
             self.ButtonLearn.SetActive(false);
             self.ButtonUp.SetActive(false);
             self.ButtonMax.SetActive(false);
