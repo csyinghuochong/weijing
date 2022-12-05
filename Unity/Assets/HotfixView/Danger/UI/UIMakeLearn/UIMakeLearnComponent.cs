@@ -306,10 +306,6 @@ namespace ET
                 self.InitData(self.MakeType).Coroutine();
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("学习配方成功!"));
             }
-            else
-            {
-                ErrorHelp.Instance.ErrorHint(r2c_roleEquip.Error);
-            }
         }
     }
 
