@@ -281,13 +281,17 @@ namespace ET
             }
 
             //移除互斥技能
-            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+            if (skillConfig.GameObjectName == "Skill_Other_ChongJi")
             {
-                if (skillId == self.FangunSkillId && skillId == self.Skills[i].SkillConf.Id)
+                for (int i = self.Skills.Count - 1; i >= 0; i--)
                 {
-                    ObjectPool.Instance.Recycle(self.Skills[i]);
-                    self.Skills[i].OnFinished();
-                    self.Skills.RemoveAt(i);
+                    if (self.Skills[i].SkillConf.GameObjectName == skillConfig.GameObjectName)
+                    {
+                        ObjectPool.Instance.Recycle(self.Skills[i]);
+                        self.Skills[i].OnFinished();
+                        self.Skills.RemoveAt(i);
+                    }
                 }
             }
         }

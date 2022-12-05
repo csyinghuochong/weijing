@@ -56,13 +56,12 @@ namespace ET
             });
 
             self.ButtonLearn = rc.Get<GameObject>("ButtonLearn");
-            self.ButtonLearn.GetComponent<Button>().onClick.AddListener(() =>
+            ButtonHelp.AddListenerEx(self.ButtonLearn , () =>
             {
                 self.OnButtonLearn();
             });
         }
     }
-
 
     public static class UISkillLearnItemComponentSystem
     {
