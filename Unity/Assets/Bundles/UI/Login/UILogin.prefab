@@ -296,6 +296,8 @@ MonoBehaviour:
     gameObject: {fileID: 7654378088207657601}
   - key: AccountText
     gameObject: {fileID: 3853869491321811349}
+  - key: TextYanzheng
+    gameObject: {fileID: 5287288159610889892}
 --- !u!114 &4343214064597879920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5085,7 +5087,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2494250341773238609
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7421,7 +7423,7 @@ GameObject:
   - component: {fileID: 1142520749863836240}
   - component: {fileID: 2817033355373830092}
   m_Layer: 5
-  m_Name: TextTitle (3)
+  m_Name: TextYanzheng
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30952,7 +30954,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &8319525880450112331
 RectTransform:
   m_ObjectHideFlags: 0

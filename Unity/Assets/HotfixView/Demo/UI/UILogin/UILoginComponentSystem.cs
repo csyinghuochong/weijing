@@ -92,6 +92,7 @@ namespace ET
 				self.ObjNoticeBtn = rc.Get<GameObject>("NoticeBtn");
 				self.ObjSelectBtn = rc.Get<GameObject>("SelectBtn");
 				self.SelectServerName = rc.Get<GameObject>("SelectServerName");
+				self.TextYanzheng = rc.Get<GameObject>("TextYanzheng");
 
 				self.ObjNoticeBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnNotice(); });
 				self.ObjSelectBtn.GetComponent<Button>().onClick.AddListener(() => { self.OnSelectServerList(); });
@@ -214,6 +215,7 @@ namespace ET
 						self.IPhone.SetActive(true);
 						self.HideNode.SetActive(false);
 						self.SendYanzheng.SetActive(true);
+						self.YanZheng.SetActive(false);
 					}
 					else
 					{
@@ -433,7 +435,9 @@ namespace ET
 		}
 		public static void OnButtonGetCode(this UILoginComponent self)
 		{
-			GlobalHelp.OnButtonGetCode(self.PhoneNumber.GetComponent<InputField>().text);
+			string phoneNum = self.PhoneNumber.GetComponent<InputField>().text;
+			GlobalHelp.OnButtonGetCode(phoneNum);
+			self.TextYanzheng.GetComponent<Text>().text = $"已向手机号{phoneNum}发送短信验证";
 			self.SendYanzheng.SetActive(false);
 			self.YanZheng.SetActive(true);
 		}

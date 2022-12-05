@@ -4,6 +4,7 @@ namespace ET
 {
     public class UILoginComponent: Entity, IAwake
 	{
+		public GameObject TextYanzheng;
 		public GameObject AccountText;
 
 		public GameObject TextButton_2_2;

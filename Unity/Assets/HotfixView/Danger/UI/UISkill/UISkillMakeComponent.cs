@@ -109,6 +109,7 @@ namespace ET
 
             self.Lab_MakeCDTime = rc.Get<GameObject>("Lab_MakeCDTime");
             self.Lab_ShuLianShow = rc.Get<GameObject>("Lab_ShuLianShow");
+           
 
             GameObject Button_Select_1 = rc.Get<GameObject>("Button_Select_1");
             GameObject Button_Select_2 = rc.Get<GameObject>("Button_Select_2");
