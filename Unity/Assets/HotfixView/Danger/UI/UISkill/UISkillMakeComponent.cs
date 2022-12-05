@@ -152,7 +152,34 @@ namespace ET
         {
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "学习技能", "可以在主城对应的各职业学习大师处学习当前等级最新的生活技能喔!", () =>
             {
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                int makeId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType);
+                int npcId = 0;
+                switch (makeId)
+                {
+                    case 1: //锻造
+                        npcId = 20000013;
+                        break;
+                    case 2: //裁缝
+                        npcId = 20000012;
+                        break;
+                    case 3: //炼金
+                        npcId = 20000014;
+                        break;
+                    case 6: //附魔
+                        npcId = 20000026;
+                        break;
+                    default:
+                        npcId = 0;
+                        break;
+                }
 
+                if (npcId == 0)
+                {
+                    return;
+                }
+                self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npcId);
+                UIHelper.Remove(self.ZoneScene(), UIType.UISkill);
             }, null).Coroutine();
         }
 
