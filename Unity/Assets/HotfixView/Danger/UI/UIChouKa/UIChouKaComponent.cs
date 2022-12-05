@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace ET
 {
@@ -89,7 +90,7 @@ namespace ET
             self.Lab_Gold = rc.Get<GameObject>("Lab_Gold");
             self.Lab_ZuanShi = rc.Get<GameObject>("Lab_ZuanShi");
 
-            self.OnSelectChapterID(1001);
+            self.OnSelectChapterID(self.GetChouKaId());
             self.OnUpdateUI();
 
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000,TimerType.UIChouKaTimer, self);
@@ -110,6 +111,21 @@ namespace ET
 
     public static class UIChouKaComponentSystem
     {
+
+        public static int GetChouKaId(this UIChouKaComponent self)
+        {
+            int takeCardId = 0;
+            int userLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
+            List<TakeCardConfig> takeCardConfigs = TakeCardConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < takeCardConfigs.Count; i++)
+            {
+                if (userLv >= takeCardConfigs[i].RoseLvLimit)
+                {
+                    takeCardId = takeCardConfigs[i].Id;
+                }
+            }
+            return takeCardId;
+        }
 
         public static void OnButtonClose(this UIChouKaComponent self)
         {
