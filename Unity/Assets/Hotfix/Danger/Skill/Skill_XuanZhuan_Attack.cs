@@ -35,7 +35,7 @@ namespace ET
         public override void OnUpdate()
         {
             long serverNow = TimeHelper.ServerNow();
-            float passTime = (serverNow - this.SkillInfo.SkillBeginTime);
+            long passTime = (serverNow - this.SkillInfo.SkillBeginTime);
             string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';');
             int angle = this.SkillInfo.TargetAngle;
             int range = paraminfos.Length > 1 ? int.Parse(paraminfos[0]) : 0;

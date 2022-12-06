@@ -340,8 +340,9 @@ namespace ET
             for (int i = 0; i < skillList.Count; i++)
             {
                 SkillHandler skillAction = self.SkillFactory(skillList[i], unit);
-                self.Skills.Add(skillAction);
+                skillList[i].SkillBeginTime = skillAction.SkillBeginTime;
                 skillList[i].SkillEndTime = skillAction.SkillEndTime;
+                self.Skills.Add(skillAction);
             }
             M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill()
             {

@@ -62,8 +62,8 @@ namespace ET
                 dBServerInfo.Id = self.DomainZone();
             }
             //初始化参数
-            self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
             self.DBServerInfo = dBServerInfo;
+            self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
             self.UpdateWorldLv();
             self.BroadcastWorldLv().Coroutine();
         }
@@ -71,9 +71,7 @@ namespace ET
         public static void UpdateWorldLv(this RankSceneComponent self)
         {
             //第二天并且超过12点才刷新
-            long serverNow = TimeHelper.ServerNow();
-            int openserverDay = ComHelp.DateDiff_Time(serverNow, DBHelper.GetOpenServerTime(self.DomainZone()));
-            int worldLv = ComHelp.GetWorldLv(openserverDay);
+            int worldLv = ComHelp.GetWorldLv(DBHelper.GetOpenServerDay(self.DomainZone()));
             self.DBServerInfo.ServerInfo.WorldLv = worldLv;
         }
 
