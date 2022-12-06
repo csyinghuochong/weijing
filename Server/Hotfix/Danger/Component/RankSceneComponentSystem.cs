@@ -62,8 +62,8 @@ namespace ET
                 dBServerInfo.Id = self.DomainZone();
             }
             //初始化参数
-            self.DBServerInfo = dBServerInfo;
             self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
+            self.DBServerInfo = dBServerInfo;
             self.UpdateWorldLv();
             self.BroadcastWorldLv().Coroutine();
         }
@@ -71,7 +71,9 @@ namespace ET
         public static void UpdateWorldLv(this RankSceneComponent self)
         {
             //第二天并且超过12点才刷新
-            int worldLv = ComHelp.GetWorldLv(DBHelper.GetOpenServerDay(self.DomainZone()));
+            long serverNow = TimeHelper.ServerNow();
+            int openserverDay = ComHelp.DateDiff_Time(serverNow, DBHelper.GetOpenServerTime(self.DomainZone()));
+            int worldLv = ComHelp.GetWorldLv(openserverDay);
             self.DBServerInfo.ServerInfo.WorldLv = worldLv;
         }
 
@@ -103,7 +105,7 @@ namespace ET
         //更新兑换金币
         public static void UpdateExchangeGold(this RankSceneComponent self, int dayTime)
         {
-            int duihuan_baseGold = 125;       //基础兑换值
+            int duihuan_baseGold = 90;       //基础兑换值
             float duihuanPro = 0.05f;
             //最多计算20天后的物价
             if (dayTime > 30)
@@ -112,15 +114,21 @@ namespace ET
             }
 
             //计算物价
+            int duihuanDay = dayTime;
+            if (duihuanDay >= 30) {
+                duihuanDay = 30;
+            }
+            duihuanPro = duihuanPro * duihuanDay;
+            /*
             if (dayTime > 0 && dayTime <= 7)
             {
-                duihuanPro = duihuanPro * 0.15f;
+                duihuanPro = duihuanPro * dayTime;
             }
 
             //计算物价
             if (dayTime > 7 && dayTime <= 18)
             {
-                duihuanPro = 7 * 0.15f + (dayTime - 7) * 0.1f;
+                duihuanPro = 7 * 0.05f + (dayTime - 7) * 0.1f;
             }
 
             //计算物价
@@ -128,13 +136,18 @@ namespace ET
             {
                 duihuanPro = 7 * 0.15f + 11 * 0.1f + (dayTime - 18) * 0.05f;
             }
+            */
 
             int nowDuiHuanGold = (int)(duihuan_baseGold + duihuan_baseGold * duihuanPro);
+
             //随机值5%浮动
             Random random = new Random();
             float duihuan_randomValue = random.Next(10);
-            duihuan_randomValue = duihuan_randomValue / 100;
-            int duihuan_nowGold = (int)(nowDuiHuanGold * (0.95f + duihuan_randomValue));
+            duihuan_randomValue = duihuan_randomValue / 100f;
+            if (duihuan_randomValue >= 0.1f) {
+                duihuan_randomValue = 0.1f;
+            }
+            int duihuan_nowGold = (int)((float)nowDuiHuanGold * (0.95f + duihuan_randomValue));
 
             Log.Info("今日货币兑换值:" + duihuan_nowGold + " dayTime = " + dayTime);
             //最低不能低于昨天的兑换值

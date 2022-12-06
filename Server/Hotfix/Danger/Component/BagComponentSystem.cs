@@ -603,7 +603,13 @@ namespace ET
                     {
                         int xilianLevel = XiLianHelper.GetXiLianId(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu));
                         xilianLevel = xilianLevel != 0 ? EquipXiLianConfigCategory.Instance.Get(xilianLevel).XiLianLevel : 0;
-                        ItemXiLianResult itemXiLian =  XiLianHelper.XiLianItem(unit, useBagInfo, 0, xilianLevel);
+
+                        int xilianType = 0;
+                        if (getType == ItemGetWay.SkillMake) {
+                            xilianType = 2;
+                        }
+
+                        ItemXiLianResult itemXiLian =  XiLianHelper.XiLianItem(unit, useBagInfo, xilianType, xilianLevel);
                         useBagInfo.XiLianHideProLists = itemXiLian.XiLianHideProLists;              //基础属性洗炼
                         useBagInfo.HideSkillLists = itemXiLian.HideSkillLists;                      //隐藏技能
                         useBagInfo.XiLianHideTeShuProLists = itemXiLian.XiLianHideTeShuProLists;    //特殊属性洗炼

@@ -30,6 +30,7 @@ namespace ET
         public GameObject Obj_Img_EquipBangDing;
         public GameObject Lab_ItemSubType;
         public GameObject Imagebg;
+        public GameObject Lab_ItemMake;
 
         public ItemOperateEnum EquipTipsType;               //操作类型
         public BagInfo BagInfo;
@@ -77,6 +78,7 @@ namespace ET
             self.Obj_Lab_EquipBangDing = rc.Get<GameObject>("Lab_BangDing");
             self.Obj_Img_EquipBangDing = rc.Get<GameObject>("Img_BangDing");
             self.Lab_ItemSubType = rc.Get<GameObject>("Lab_ItemSubType");
+            self.Lab_ItemMake = rc.Get<GameObject>("Lab_ItemMake");
 
             self.Imagebg.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseTips(); });
             ButtonHelp.AddListenerEx(self.Btn_Sell, self.OnClickSell);
@@ -190,8 +192,20 @@ namespace ET
                 if (appraisalItem != 0)
                 {
                     string jiandingName = ItemConfigCategory.Instance.Get(appraisalItem).ItemName;
-                    self.Obj_Lab_ItemCostDes.GetComponent<Text>().text = "消耗" + jiandingName + "进行鉴定";
+                    string yanseStr = ColorUtility.ToHtmlStringRGB(UICommonHelper.QualityReturnColor(4));
+                    self.Obj_Lab_ItemCostDes.GetComponent<Text>().text = $"消耗<color=#{yanseStr}>{jiandingName}</color>进行鉴定";
                 }
+
+            }
+
+            if (baginfo.MakePlayer != "" && baginfo.MakePlayer != null)
+            {
+                self.Lab_ItemMake.SetActive(true);
+                self.Lab_ItemMake.GetComponent<Text>().text = $"此装备由<color=#805100>{self.BagInfo.MakePlayer}</color>打造";
+            }
+            else {
+                self.Lab_ItemMake.GetComponent<Text>().text = "";
+                self.Lab_ItemMake.SetActive(false);
             }
 
             string equipType = "";

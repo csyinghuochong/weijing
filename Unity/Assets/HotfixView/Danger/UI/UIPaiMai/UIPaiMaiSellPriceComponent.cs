@@ -121,6 +121,23 @@ namespace ET
             paiMaiItemInfo.BagInfo = ComHelp.DeepCopy<BagInfo>(self.BagInfo);
             paiMaiItemInfo.BagInfo.ItemNum = self.SellNum;
             paiMaiItemInfo.Price = self.nowPrice;
+
+
+            UI ui =  UIHelper.GetUI(self.ZoneScene(), UIType.UIPaiMai);
+            if (ui.GetComponent<UIPaiMaiComponent>().PaiMaiShopItemInfos.ContainsKey(paiMaiItemInfo.BagInfo.ItemID))
+            {
+                int oldPrice = ui.GetComponent<UIPaiMaiComponent>().PaiMaiShopItemInfos[paiMaiItemInfo.BagInfo.ItemID].Price;
+
+                int nowPrice = (int)((float)paiMaiItemInfo.Price / (float)paiMaiItemInfo.BagInfo.ItemNum);
+                if (nowPrice < (int)(oldPrice * 0.5f))
+                {
+                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("出售价格过低,当前最低价格为:" + (int)(oldPrice * 0.5f)));
+                    return;
+                }
+            }
+
+
+            //发送上架协议
             C2M_PaiMaiSellRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiSellRequest() {  PaiMaiItemInfo = paiMaiItemInfo };
             M2C_PaiMaiSellResponse m2C_PaiMaiBuyResponse = (M2C_PaiMaiSellResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
 
@@ -130,7 +147,7 @@ namespace ET
             UIHelper.Remove( self.DomainScene(), UIType.UIPaiMaiSellPrice );
         }
 
-        public static async void InitPriceUI(this UIPaiMaiSellPriceComponent self, BagInfo bagInfo)
+        public static void InitPriceUI(this UIPaiMaiSellPriceComponent self, BagInfo bagInfo)
         {
             self.BagInfo = bagInfo;
             FunctionUI.GetInstance().ItemShowIcon(self.ItemShowSet, self.GetParent<UI>(), bagInfo, ItemOperateEnum.None, false,1).Coroutine();
@@ -139,7 +156,7 @@ namespace ET
             //设置价格
             self.oldPrice = 10000;          //临时
             //获取是否是快捷购买的道具列表
-            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIPaiMai);
+            UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIPaiMai);
             if (ui.GetComponent<UIPaiMaiComponent>().PaiMaiShopItemInfos.ContainsKey(bagInfo.ItemID)) {
                 self.oldPrice = ui.GetComponent<UIPaiMaiComponent>().PaiMaiShopItemInfos[bagInfo.ItemID].Price;
             }

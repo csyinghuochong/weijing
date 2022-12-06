@@ -837,6 +837,15 @@ namespace ET
                 self.Obj_EquipDes.GetComponent<RectTransform>().sizeDelta = new Vector2(240.0f, 40.0f + 16.0f * ItemBlackNum);
                 self.Obj_EquipDes.GetComponent<Text>().text = ItemBlackDes;
             }
+
+            //显示制造方
+            if (self.BagInfo.MakePlayer != "" && self.BagInfo.MakePlayer != null)
+            {
+                self.Obj_Lab_EquipMake.GetComponent<Text>().text = $"由<color=#805100>{self.BagInfo.MakePlayer}</color>打造";
+            }
+            else {
+                self.Obj_Lab_EquipMake.GetComponent<Text>().text = "";
+            }
         }
 
         public static void ShowButton(this UIEquipTipsComponent self)

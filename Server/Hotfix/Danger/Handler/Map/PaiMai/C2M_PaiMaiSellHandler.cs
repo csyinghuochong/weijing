@@ -20,6 +20,7 @@ namespace ET
 			request.PaiMaiItemInfo.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
 			request.PaiMaiItemInfo.UserId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
 
+
 			//获取时间戳
 			long currentTime = TimeHelper.ServerNow();
 			request.PaiMaiItemInfo.SellTime = currentTime;

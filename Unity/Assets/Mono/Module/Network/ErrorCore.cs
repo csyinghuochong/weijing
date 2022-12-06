@@ -181,6 +181,8 @@
         //战场
         public const int ERR_BattleJoined = 301201;                                //已经参与过战场活动
 
+        //拍卖行
+        public const int Err_PaiMaiPriceLow = 301301;                               //拍卖出售价格过低
 
         public static bool IsRpcNeedThrowException(int error)
         {

@@ -33,7 +33,7 @@ namespace ET
             return 0;
         }
 
-        public static string GenerateGemHoleInfo(int itemQuality,int itemLv)
+        public static string GenerateGemHoleInfo(int itemQuality,int itemLv,int xilianType)
         {
             string gemholeinfo = "";
             List<int> gemHoleId = new List<int>() { 0, 1, 2, 3, 4 };
@@ -42,7 +42,7 @@ namespace ET
 
             //等级限制
             int maxNum = 1;
-            if (itemLv > 1 && itemLv<=19) {
+            if (itemLv > 1 && itemLv <= 19) {
 
                 maxNum = 1;
             }
@@ -59,6 +59,14 @@ namespace ET
 
             if (gemNumber >= maxNum) {
                 gemNumber = maxNum;
+            }
+
+            //打造保底出1个孔位
+            if (xilianType == 2) {
+                if (gemNumber < 1)
+                {
+                    gemNumber = 1;
+                }
             }
 
             gemNumber = itemQuality >= 5 ? 4 : gemNumber;
@@ -111,7 +119,7 @@ namespace ET
         /// 洗练装备
         /// </summary>
         /// <param name="bagInfo"></param>
-        /// xilianType  洗炼类型   0 普通掉落  1 装备洗炼功能
+        /// xilianType  洗炼类型   0 普通掉落  1 装备洗炼功能   2 装备第一次打造
         public static ItemXiLianResult XiLianItem(Unit unit, BagInfo bagInfo, int xilianType, int xilianLv)
         {
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
@@ -127,7 +135,7 @@ namespace ET
             int HideType = equipConfig.HideType;
 
             double hideShowPro = equipConfig.HideShowPro;
-            if (xilianType == 1)
+            if (xilianType == 1 && xilianType == 2)
             {
                 hideShowPro = 1;        //洗炼100%出随机属性
             }
@@ -136,6 +144,12 @@ namespace ET
             float equipJiPinPro = 0.3f;
             //附加特殊技能
             float equipJiPinSkillPro = 0.05f;
+
+            //如果是打造装备 特殊技能属性调高
+            if (xilianType == 2) {
+                equipJiPinPro = 0.5f;
+                equipJiPinSkillPro = 0.1f;
+            }
 
             //-------------------测试-------------------
             //附加额外的极品属性
@@ -503,9 +517,9 @@ namespace ET
                 //}
             }
 
-            if (xilianType == 0) //普通掉落
+            if (xilianType == 0|| xilianType == 2) //普通掉落和打造
             {
-                bagInfo.GemHole = GenerateGemHoleInfo(itemConfig.ItemQuality, itemConfig.UseLv);
+                bagInfo.GemHole = GenerateGemHoleInfo(itemConfig.ItemQuality, itemConfig.UseLv, xilianType);
             }
 
             if (HideSkillList.Count > 0)
@@ -522,7 +536,12 @@ namespace ET
                     {
                         noticeContent = $"恭喜玩家<color=#B6FF00>{name}</color>在拾取装备时,意外在装备上发现了隐藏技能:<color=#FFA313>{skillName}</color>";
                     }
-                    ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
+
+                    //打造类型不弹出任何广播
+                    if (xilianType != 2)
+                    {
+                        ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
+                    }
                 }
             }
 

@@ -91,6 +91,9 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_ShangJinNumFull, "今日领取赏金次数已满");
 
             ErrorHintList.Add(ErrorCore.ERR_BattleJoined, "已经参与过战场活动");
+
+            ErrorHintList.Add(ErrorCore.Err_PaiMaiPriceLow, "拍卖行出售价格过低");
+            
         }
 
         public string GetHint(int code)
