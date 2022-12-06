@@ -13,7 +13,7 @@ namespace ET
         {
             EventType.BeforeEnterSonFuben args = cls as EventType.BeforeEnterSonFuben;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene( args.ZoneScene );
-            unit.GetComponent<SkillManagerComponent>().OnDispose();
+            unit.GetComponent<SkillManagerComponent>().OnFinish();
             unit.GetComponent<EffectViewComponent>().RemoveEffect(EffectTypeEnum.SkillEffect);
 
             //播放传送特效

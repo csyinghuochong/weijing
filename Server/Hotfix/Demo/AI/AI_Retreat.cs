@@ -34,6 +34,15 @@ namespace ET
                 if (!timeRet || Vector3.Distance(bornVector3, unit.Position) < 0.5f)
                 {
                     aiComponent.IsRetreat = false;
+                }
+                //返回出生点
+                if (!aiComponent.IsRetreat && unit.IsBoss())
+                {
+                    SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
+                    skillManagerComponent.OnFinish(true);
+                }
+                if (!aiComponent.IsRetreat)
+                {
                     return;
                 }
             }

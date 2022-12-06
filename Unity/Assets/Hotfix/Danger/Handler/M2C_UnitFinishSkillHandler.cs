@@ -1,10 +1,9 @@
 ﻿namespace ET
 {
-
     [MessageHandler]
-    public class M2C_UnitUseSkillHandler : AMHandler<M2C_UnitUseSkill>
+    public class M2C_UnitFinishSkillHandler : AMHandler<M2C_UnitFinishSkill>
     {
-        protected override  void Run(Session session, M2C_UnitUseSkill message)
+        protected override void Run(Session session, M2C_UnitFinishSkill message)
         {
             Scene curScene = session.ZoneScene().CurrentScene();
             if (curScene == null)
@@ -14,13 +13,8 @@
             Unit unit = curScene.GetComponent<UnitComponent>().Get(message.UnitId);
             if (unit != null)
             {
-                unit.GetComponent<SkillManagerComponent>().OnUseSkill(message);
-            }
-            else
-            {
-                Log.Debug("unit == null  " + message.UnitId);
+                unit.GetComponent<SkillManagerComponent>().OnFinish();
             }
         }
-
     }
 }

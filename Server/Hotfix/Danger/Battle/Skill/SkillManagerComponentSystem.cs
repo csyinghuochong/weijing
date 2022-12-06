@@ -236,7 +236,7 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
-        public static void OnFinish(this SkillManagerComponent self)
+        public static void OnFinish(this SkillManagerComponent self, bool sync)
         {
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
@@ -244,6 +244,12 @@ namespace ET
                 self.Skills.RemoveAt(i);
                 skillHandler.OnFinished();
                 ObjectPool.Instance.Recycle(skillHandler);
+            }
+
+            if (sync)
+            {
+                self.M2C_UnitFinishSkill.UnitId = self.GetParent<Unit>().Id;
+                MessageHelper.Broadcast(self.GetParent<Unit>(), self.M2C_UnitFinishSkill);
             }
         }
 

@@ -56,6 +56,7 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Hotfix\Danger\Handler\M2C_UnitFinishSkillHandler.cs" />
     <Compile Include="Assets\Hotfix\Demo\Scene\SceneChangeHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\MailComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\CellDungeonComponentSystem.cs" />
@@ -108,7 +109,6 @@
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_ComTargetMove_RangDamge_2.cs" />
     <Compile Include="Assets\Hotfix\Demo\ConstValue.cs" />
     <Compile Include="Assets\Hotfix\Demo\Session\SessionComponentSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamDungeonQuitHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_UnionApplyHandler.cs" />
     <Compile Include="Assets\Hotfix\Demo\Session\SessionStreamDispatcherClientOuter.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamDungeonOpenHandler.cs" />
@@ -132,7 +132,6 @@
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_Com_Summon_1.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\SessionAcceptTimeoutComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuffBullet_1.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ActivityHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\EnergyComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Demo\Unit\UnitSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_ChainLightningHandler.cs" />
@@ -217,6 +216,8 @@
     <Compile Include="Assets\Hotfix\Danger\Common\Component\MapComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericWatcher_Update.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetKcpComponentSystem.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamDungeonQuitHandler.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\ActivityHelper.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

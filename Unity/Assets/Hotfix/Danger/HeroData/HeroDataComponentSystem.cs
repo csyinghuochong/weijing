@@ -234,7 +234,7 @@ namespace ET
            
             unit.GetComponent<AIComponent>()?.Stop();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
-            unit.GetComponent<SkillManagerComponent>()?.OnFinish();
+            unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
             unit.GetComponent<BuffManagerComponent>()?.OnDead();
             if (unit.Type == UnitType.Player)
             {

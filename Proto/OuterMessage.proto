@@ -4130,6 +4130,56 @@ message C2C_SendBroadcastResponse // IChatActorResponse
 	string Message = 92;
 }
 
+//终止技能
+message M2C_UnitFinishSkill // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitId = 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 message M2C_UpdateVersion // IActorMessage
 {
 	int32 RpcId = 90;

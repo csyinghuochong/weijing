@@ -55,10 +55,33 @@ namespace ET
     [Event]
     public class KillEvent_NotifyUnit : AEvent<EventType.KillEvent>
     {
+
+        private void OnPlayerDead(Unit unit)
+        {
+            if (unit.Type != UnitType.Player)
+            {
+                return;
+            }
+            int playerNumber = FubenHelp.GetAliveUnitNumber(unit.DomainScene(), UnitType.Player);
+            if (playerNumber > 0)
+            {
+                return;
+            }
+            List<Unit> units = FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Monster);
+            for(int i = 0; i < units.Count; i++)
+            {
+                if (units[i].IsBoss())
+                {
+                    units[i].GetComponent<SkillManagerComponent>().OnFinish(true);
+                }
+            }
+        }
+
         protected override void Run(EventType.KillEvent args)
         {
             Unit defendUnit = args.UnitDefend;
             defendUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
+            OnPlayerDead(defendUnit);
             if (args.UnitAttack != null && !args.UnitAttack.IsDisposed)
             {
                 Unit player = null;
@@ -129,25 +152,11 @@ namespace ET
                 }
             }
 
-            if (defendUnit.Type == UnitType.Monster)
+            if (defendUnit.Type != UnitType.Player && args.WaitRevive == 0)
             {
-                if (args.WaitRevive > 0)
-                {
-                    //NumericComponent numericComponent = defendUnit.GetComponent<NumericComponent>();
-                    //defendUnit.Position = new Vector3(numericComponent.GetAsFloat(NumericType.Born_X),
-                    //    numericComponent.GetAsFloat(NumericType.Born_Y),
-                    //    numericComponent.GetAsFloat(NumericType.Born_Z));
-                    return;
-                }
-                //下一帧移除defend
-                defendUnit.RemoveComponent<DeathTimeComponent>();
+                //RunAsync(args).Coroutine();
                 defendUnit.GetParent<UnitComponent>().Remove(defendUnit.Id);
             }
-            else if (defendUnit.Type != UnitType.Player)
-            {
-                defendUnit.GetParent<UnitComponent>().Remove(defendUnit.Id);
-            }
-            //RunAsync(args).Coroutine();
         }
     }
 }
