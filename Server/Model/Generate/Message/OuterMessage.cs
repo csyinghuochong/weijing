@@ -1780,10 +1780,10 @@ namespace ET
 		public float PosZ { get; set; }
 
 		[ProtoMember(11)]
-		public long BeginTime { get; set; }
+		public long SkillBeginTime { get; set; }
 
 		[ProtoMember(12)]
-		public long EndTime { get; set; }
+		public long SkillEndTime { get; set; }
 
 	}
 

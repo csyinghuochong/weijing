@@ -833,8 +833,8 @@ message SkillInfo
 	float PosX = 6;
 	float PosY = 7;
 	float PosZ = 8;
-	int64 BeginTime = 11;
-	int64 EndTime = 12;
+	int64 SkillBeginTime = 11;
+	int64 SkillEndTime = 12;
 }
 
 message C2M_CreateSpiling // IActorLocationMessage

@@ -12,20 +12,13 @@ namespace ET
     [SkillHandler]
     public abstract class ASkillHandler : Entity
     {
-
-        public float PassTime = 0f;
-        public float LiveTime = 0f;
-        public long BeingTime = 0;
-
+        public Vector3 NowPosition;
         public SkillState SkillState;
 
         public SkillConfig SkillConf;
         public EffectConfig EffectConf;
-        public bool PlayMusic;
 
-        public float OldSpeed = 0;
-
-        public Vector3 NowPosition;
+        public bool SkillExcuteHurtTime;
 
         public List<long> EffectInstanceId = new List<long>();
 
@@ -34,7 +27,7 @@ namespace ET
         /// </summary>
         public Unit TheUnitFrom;
 
-        public SkillInfo SkillCmd;
+        public SkillInfo SkillInfo;
         public Vector3 TargetPosition;
 
         public abstract void OnInit(SkillInfo skillcmd, Unit theUnitFrom);

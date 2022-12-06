@@ -62,7 +62,7 @@ namespace ET
                 dBServerInfo.Id = self.DomainZone();
             }
             //初始化参数
-            dBServerInfo.ServerInfo.ExChangeGold = dBServerInfo.ServerInfo.ExChangeGold != 0? dBServerInfo.ServerInfo.ExChangeGold  :  1000;  //兑换金币
+            self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
             self.DBServerInfo = dBServerInfo;
             self.UpdateWorldLv();
             self.BroadcastWorldLv().Coroutine();
@@ -97,10 +97,7 @@ namespace ET
         {
             //更新服务器拍卖行数据
             //TimeHelper. self.OpenServiceTime
-            long currentTime = TimeHelper.ServerNow();
-            DateTime dateTime = TimeInfo.Instance.ToDateTime(currentTime);
-            int dayCha = TimeHelper.DateTimeNow().Day - dateTime.Day;
-            self.UpdateExchangeGold(dayCha);
+            self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
             self.SendCombatReward().Coroutine();
             self.SendPetReward().Coroutine();
         }

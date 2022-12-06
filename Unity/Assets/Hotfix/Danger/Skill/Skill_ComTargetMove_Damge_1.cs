@@ -20,20 +20,20 @@ namespace ET
         public override void OnExecute()
         {
             this.PlaySkillEffects(this.NowPosition);
-            this.OnShowSkillIndicator(this.SkillCmd);
+            this.OnShowSkillIndicator(this.SkillInfo);
         }
 
         public override void OnUpdate()
         {
-            float passTime = this.PassTime;
             this.BaseOnUpdate();
-            if (this.PassTime < this.SkillConf.SkillDelayTime)
+            long serverNow = TimeHelper.ServerNow();
+            float passTime = (serverNow - this.SkillInfo.SkillBeginTime) * 0.001f;
+            if (passTime < this.SkillConf.SkillDelayTime)
             {
                 return;
             }
 
-            float deltaTime = this.PassTime - passTime;
-            Unit TheUnitBelongto = TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(SkillCmd.TargetID);
+            Unit TheUnitBelongto = TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(SkillInfo.TargetID);
             if (TheUnitBelongto != null)
             {
                 this.TargetPosition = TheUnitBelongto.Position;
@@ -41,7 +41,7 @@ namespace ET
 
             Vector3 dir = (this.TargetPosition - this.NowPosition).normalized;
             float dis = PositionHelper.Distance2D(this.TargetPosition, this.NowPosition);
-            float move = (float)this.SkillConf.SkillMoveSpeed * deltaTime; 
+            float move = (float)this.SkillConf.SkillMoveSpeed * 0.033f; 
             move = Mathf.Min(dis, move);
 
             this.NowPosition = this.NowPosition + (move * dir);

@@ -26,13 +26,13 @@ namespace ET
                 this.PlaySkillEffects(this.TheUnitFrom.Position);
             }
 
-            this.OnShowSkillIndicator(this.SkillCmd);
+            this.OnShowSkillIndicator(this.SkillInfo);
         }
 
         public override void OnUpdate()
         {
-            this.PassTime = (TimeHelper.ClientNow() - this.BeingTime) * 0.001f;
-            if (this.SkillConf.GameObjectParameter == "1" && this.PlayMusic && this.PassTime >= this.EffectConf.SkillEffectDelayTime)
+            float passTime = (TimeHelper.ServerNow() - this.SkillInfo.SkillBeginTime) * 0.001f;
+            if (this.SkillConf.GameObjectParameter == "1" && this.SkillExcuteHurtTime && passTime >= this.EffectConf.SkillEffectDelayTime)
             {
                 //先跳过去再触发伤害
                 TheUnitFrom.Position = TargetPosition;

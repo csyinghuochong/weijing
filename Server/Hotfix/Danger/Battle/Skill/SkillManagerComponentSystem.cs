@@ -162,7 +162,7 @@ namespace ET
                         skillInfo.PosZ = target.Position.z;
                         skillInfo.TargetID = skillcmd.TargetID;
                         skillInfo.TargetAngle = skillcmd.TargetAngle;
-                        skillInfo.BeginTime = TimeHelper.ServerNow() + (long)(i * intervalTime * 1000);
+                        skillInfo.SkillBeginTime = TimeHelper.ServerNow() + (long)(i * intervalTime * 1000);
 
                         if (i == 0)
                         {
@@ -341,7 +341,7 @@ namespace ET
             {
                 SkillHandler skillAction = self.SkillFactory(skillList[i], unit);
                 self.Skills.Add(skillAction);
-                skillList[i].EndTime = skillAction.SkillEndTime;
+                skillList[i].SkillEndTime = skillAction.SkillEndTime;
             }
             M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill()
             {
@@ -563,7 +563,7 @@ namespace ET
                     skillInfo.PosY = target.Position.y;
                     skillInfo.PosZ = target.Position.z;
                 }
-                if (TimeHelper.ServerNow() < skillInfo.BeginTime)
+                if (TimeHelper.ServerNow() < skillInfo.SkillBeginTime)
                 {
                     continue;
                 }
