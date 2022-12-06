@@ -290,6 +290,21 @@ namespace ET
 			return petNumber;
 		}
 
+		public static int GetAliveUnitNumber(Scene scene, int unitType)
+		{
+			int petNumber = 0;
+			List<Unit> units = GetUnitList(scene, unitType);
+			for (int i = 0; i < units.Count; i++)
+			{
+				if (units[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
+				{
+					petNumber++;
+				}
+			}
+
+			return petNumber;
+		}
+
 		public static List<Unit> GetUnitListByCamp(Scene scene, int unitType, int camp)
 		{
 			List<Unit> units = new List<Unit>();

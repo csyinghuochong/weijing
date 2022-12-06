@@ -38,7 +38,7 @@ namespace ET
         public override void Destroy(SkillManagerComponent self)
         {
             self.SkillCDs.Clear();
-            self.OnDispose();
+            self.OnFinish();
         }
     }
 
@@ -110,7 +110,7 @@ namespace ET
             }
         }
 
-        public static void OnDispose(this SkillManagerComponent self)
+        public static void OnFinish(this SkillManagerComponent self)
         {
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {

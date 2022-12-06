@@ -34,13 +34,13 @@ namespace ET
     {
         public override void Destroy(BuffManagerComponent self)
         {
-            self.OnDispose();
+            self.OnFinish();
         }
     }
 
     public static class BuffManagerComponetSystem
     {
-        public static void OnDispose(this BuffManagerComponent self)
+        public static void OnFinish(this BuffManagerComponent self)
         {
             for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
             {

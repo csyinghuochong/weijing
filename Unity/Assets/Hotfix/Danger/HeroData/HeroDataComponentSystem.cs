@@ -234,7 +234,7 @@ namespace ET
            
             unit.GetComponent<AIComponent>()?.Stop();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
-            unit.GetComponent<SkillManagerComponent>()?.OnFinish();
+            unit.GetComponent<SkillManagerComponent>()?.OnFinish(false);
             unit.GetComponent<BuffManagerComponent>()?.OnDead();
             if (unit.Type == UnitType.Player)
             {
@@ -486,8 +486,8 @@ namespace ET
         public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
         {
             Unit unit = self.GetParent<Unit>();
-            unit.GetComponent<SkillManagerComponent>()?.OnDispose();
-            unit.GetComponent<BuffManagerComponent>()?.OnDispose();
+            unit.GetComponent<SkillManagerComponent>()?.OnFinish();
+            unit.GetComponent<BuffManagerComponent>()?.OnFinish();
             int sceneTypeEnum = args.Parent.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
             {
