@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 373
+  version: 374
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -1891,17 +1891,17 @@ MonoBehaviour:
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/10041312.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
-    path: Assets/Bundles/Icon/ItemIcon/10041401.png
+    path: Assets/Bundles/Icon/ItemIcon/10041401.Png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
-    path: Assets/Bundles/Icon/ItemIcon/10041402.png
+    path: Assets/Bundles/Icon/ItemIcon/10041402.Png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
-    path: Assets/Bundles/Icon/ItemIcon/10041403.png
+    path: Assets/Bundles/Icon/ItemIcon/10041403.Png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/10041404.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/10041405.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
-    path: Assets/Bundles/Icon/ItemIcon/10041406.png
+    path: Assets/Bundles/Icon/ItemIcon/10041406.Png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/10041407.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
@@ -2100,6 +2100,10 @@ MonoBehaviour:
     path: Assets/Bundles/Icon/ItemIcon/13005005.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/13005006.png
+  - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
+    path: Assets/Bundles/Icon/ItemIcon/13009001.png
+  - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
+    path: Assets/Bundles/Icon/ItemIcon/13009002.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
     path: Assets/Bundles/Icon/ItemIcon/14010001.png
   - bundle: dca237d1e15738cb8df597a76e80c134.unity3d
@@ -8625,12 +8629,12 @@ MonoBehaviour:
     - Assets/Bundles/Icon/ItemIcon/10041310.png
     - Assets/Bundles/Icon/ItemIcon/10041311.png
     - Assets/Bundles/Icon/ItemIcon/10041312.png
-    - Assets/Bundles/Icon/ItemIcon/10041401.png
-    - Assets/Bundles/Icon/ItemIcon/10041402.png
-    - Assets/Bundles/Icon/ItemIcon/10041403.png
+    - Assets/Bundles/Icon/ItemIcon/10041401.Png
+    - Assets/Bundles/Icon/ItemIcon/10041402.Png
+    - Assets/Bundles/Icon/ItemIcon/10041403.Png
     - Assets/Bundles/Icon/ItemIcon/10041404.png
     - Assets/Bundles/Icon/ItemIcon/10041405.png
-    - Assets/Bundles/Icon/ItemIcon/10041406.png
+    - Assets/Bundles/Icon/ItemIcon/10041406.Png
     - Assets/Bundles/Icon/ItemIcon/10041407.png
     - Assets/Bundles/Icon/ItemIcon/10041408.png
     - Assets/Bundles/Icon/ItemIcon/10041409.png
@@ -8730,6 +8734,8 @@ MonoBehaviour:
     - Assets/Bundles/Icon/ItemIcon/13005004.png
     - Assets/Bundles/Icon/ItemIcon/13005005.png
     - Assets/Bundles/Icon/ItemIcon/13005006.png
+    - Assets/Bundles/Icon/ItemIcon/13009001.png
+    - Assets/Bundles/Icon/ItemIcon/13009002.png
     - Assets/Bundles/Icon/ItemIcon/14010001.png
     - Assets/Bundles/Icon/ItemIcon/14010002.png
     - Assets/Bundles/Icon/ItemIcon/14010003.png
