@@ -87,6 +87,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UITowerDungeon\UITowerOpenComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMake\UIMakeItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UIPopupComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Skill_SingingUpdate.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIDungeon\UIDungeonLevelComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\HorseNotice\UIHorseNoticeComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIZhanQu\UIZhanQuComponent.cs" />
@@ -561,7 +562,6 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Skill_SingingUpdate.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
