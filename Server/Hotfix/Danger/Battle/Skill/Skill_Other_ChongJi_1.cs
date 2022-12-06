@@ -11,7 +11,7 @@ namespace ET
 
             this.OldSpeed = theUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
 
-            Quaternion rotation = Quaternion.Euler(0, this.SkillCmd.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
+            Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
             this.TargetPosition = theUnitFrom.Position + rotation * Vector3.forward * ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
             this.TargetPosition = theUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitFrom.Position, TargetPosition);
 

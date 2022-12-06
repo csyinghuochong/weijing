@@ -53,7 +53,7 @@ namespace ET
 
         public List<Shape> ICheckShape;
 
-        public SkillInfo SkillCmd;
+        public SkillInfo SkillInfo;
 
         public abstract void OnInit(SkillInfo skillId, Unit theUnitFrom);
 

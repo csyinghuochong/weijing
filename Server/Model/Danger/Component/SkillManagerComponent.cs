@@ -16,6 +16,7 @@ namespace ET
         public long FangunLastTime;
         public long Timer;
 
+        public M2C_SkillCmd M2C_SkillCmd = new M2C_SkillCmd();
         public M2C_UnitFinishSkill M2C_UnitFinishSkill = new M2C_UnitFinishSkill();
     }
 }

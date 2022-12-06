@@ -71,7 +71,8 @@ namespace ET
 
             //携带的buff
             unitInfo.Buffs = unit.GetComponent<BuffManagerComponent>().GetMessageBuff();
-
+            unitInfo.Skills = unit.GetComponent<SkillManagerComponent>().GetMessageSkill();
+            
             //设置数据
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             unitInfo.PlayerName = userInfoComponent.UserInfo.Name;

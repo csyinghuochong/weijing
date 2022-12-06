@@ -18,7 +18,8 @@ namespace ET
         public SkillConfig SkillConf;
         public EffectConfig EffectConf;
 
-        public bool SkillExcuteHurtTime;
+        public bool IsExcuteHurt;
+        public long SkillExcuteHurtTime;
 
         public List<long> EffectInstanceId = new List<long>();
 

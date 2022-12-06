@@ -31,8 +31,8 @@ namespace ET
 
         public override void OnUpdate()
         {
-            float passTime = (TimeHelper.ServerNow() - this.SkillInfo.SkillBeginTime) * 0.001f;
-            if (this.SkillConf.GameObjectParameter == "1" && this.SkillExcuteHurtTime && passTime >= this.EffectConf.SkillEffectDelayTime)
+            long serverNow = TimeHelper.ServerNow();
+            if (this.SkillConf.GameObjectParameter == "1" && this.IsExcuteHurt && serverNow >= this.SkillExcuteHurtTime)
             {
                 //先跳过去再触发伤害
                 TheUnitFrom.Position = TargetPosition;

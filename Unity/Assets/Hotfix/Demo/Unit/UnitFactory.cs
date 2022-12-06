@@ -48,6 +48,7 @@ namespace ET
 					}
 			}
 			unit.GetComponent<BuffManagerComponent>().InitBuff(unitInfo.Buffs);
+			unit.GetComponent<SkillManagerComponent>().InitSkill(unitInfo.Skills);
 			UnitHelper.OnAfterCreateUnit(unit);
             return unit;
         }

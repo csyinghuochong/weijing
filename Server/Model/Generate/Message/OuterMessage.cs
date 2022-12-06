@@ -739,7 +739,7 @@ namespace ET
 		public List<KeyValuePair> Buffs = new List<KeyValuePair>();
 
 		[ProtoMember(20)]
-		public List<KeyValuePair> Skills = new List<KeyValuePair>();
+		public List<SkillInfo> Skills = new List<SkillInfo>();
 
 	}
 
@@ -8621,6 +8621,7 @@ namespace ET
 
 	}
 
+///////Max OpcodeID   放在最后
 	[Message(OuterOpcode.M2C_UpdateVersion)]
 	[ProtoContract]
 	public partial class M2C_UpdateVersion: Object, IActorMessage

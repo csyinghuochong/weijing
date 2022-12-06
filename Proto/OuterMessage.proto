@@ -360,7 +360,7 @@ message UnitInfo
 	string StallName = 17;
 	string UnionName = 18;
 	repeated KeyValuePair Buffs = 19;
-	repeated KeyValuePair Skills = 20;
+	repeated SkillInfo Skills = 20;
 }
 
 message M2C_CreateUnits // IActorMessage
@@ -4140,46 +4140,7 @@ message M2C_UnitFinishSkill // IActorMessage
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+///////Max OpcodeID   放在最后
 message M2C_UpdateVersion // IActorMessage
 {
 	int32 RpcId = 90;

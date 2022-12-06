@@ -9,7 +9,7 @@ namespace ET
 
         public static void BaseOnInit(this SkillHandler self, SkillInfo skillcmd, Unit theUnitFrom)
         {
-            self.SkillCmd = skillcmd;
+            self.SkillInfo = skillcmd;
             self.HurtIds.Clear();
             self.LastHurtTimes.Clear();
             self.SkillConf = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
@@ -26,7 +26,7 @@ namespace ET
             self.SkillEndTime = self.SkillBeginTime + self.SkillConf.SkillLiveTime + (long)(self.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime));
             self.TargetPosition = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ); //获取起始坐标
             self.ICheckShape = new List<Shape>();
-            self.ICheckShape.Add( self.CreateCheckShape(self.SkillCmd.TargetAngle) );
+            self.ICheckShape.Add( self.CreateCheckShape(self.SkillInfo.TargetAngle) );
             self.NowPosition = self.TargetPosition;              //获取技能起始的坐标点
 
             //获取通用脚本参数
@@ -80,7 +80,7 @@ namespace ET
             //触发初始化BUFF
             if (self.SkillConf == null)
             {
-                Log.Error($"self.SkillConf == null {self.SkillCmd.WeaponSkillID}");
+                Log.Error($"self.SkillConf == null {self.SkillInfo.WeaponSkillID}");
             }
             if (self.TheUnitFrom.IsDisposed)
             {
@@ -122,7 +122,7 @@ namespace ET
                 self.IsExcuteHurt = true;
                 if (self.SkillConf.SkillTargetType == (int)SkillTargetType.TargetOnly)
                 {
-                    Unit targetUnit = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(self.SkillCmd.TargetID);
+                    Unit targetUnit = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(self.SkillInfo.TargetID);
                     if (targetUnit != null)
                     {
                         self.OnCollisionUnit(targetUnit);

@@ -128,16 +128,16 @@ namespace ET
             int curId = self.CurActivityId;
 
             curId += index;
-            if (curId < minId)
-            {
-                self.ButtonLeft.SetActive(false);
-                return;
-            }
-            if (curId > maxId || curId > selId + 3)
-            {
-                self.ButtonRight.SetActive(true);
-                return;
-            }
+            //if (curId < minId)
+            //{
+            //    self.ButtonLeft.SetActive(false);
+            //    return;
+            //}
+            //if (curId > maxId || curId > selId + 2)
+            //{
+            //    self.ButtonRight.SetActive(true);
+            //    return;
+            //}
             self.OnUpdateUI(curId);
         }
 
@@ -179,7 +179,7 @@ namespace ET
             int maxId = ActivityHelper.GetMaxActivityId(101);
             int minId = ActivityHelper.GetMinActivityId(101);
             self.ButtonLeft.SetActive(self.CurActivityId > minId);
-            self.ButtonRight.SetActive(self.CurActivityId < selId + 3 && self.CurActivityId < maxId + 3);
+            self.ButtonRight.SetActive(self.CurActivityId < selId + 2 && self.CurActivityId < maxId);
         }
 
     }

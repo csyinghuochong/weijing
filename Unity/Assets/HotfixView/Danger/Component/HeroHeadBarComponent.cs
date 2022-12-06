@@ -206,8 +206,8 @@ namespace ET
                 textMeshProUGUI.fontSize = isboos ? 32 : 26;
                 textMeshProUGUI.color = isboos ? new Color(255,95,255): Color.white;
                 string colorstr = isboos ? "<color=#FF5FFF>" : "<color=#FFFFFF>";
-                //this.ObjName.GetComponent<TextMeshProUGUI>().text = $"{colorstr}{monsterCof.MonsterName}_{numericComponent.GetAsInt(NumericType.Now_AI)}</color>";
-                this.ObjName.GetComponent<TextMeshProUGUI>().text = $"{colorstr}{monsterCof.MonsterName}</color>";
+                this.ObjName.GetComponent<TextMeshProUGUI>().text = $"{colorstr}{monsterCof.MonsterName}_{numericComponent.GetAsInt(NumericType.Now_AI)}</color>";
+                //this.ObjName.GetComponent<TextMeshProUGUI>().text = $"{colorstr}{monsterCof.MonsterName}</color>";
 
                 //怪物等级显示
                 ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();

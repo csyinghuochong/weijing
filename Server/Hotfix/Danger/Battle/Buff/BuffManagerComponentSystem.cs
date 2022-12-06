@@ -225,7 +225,6 @@ namespace ET
             }
             if (self.m_Buffs.Count == 0)
             {
-                self.Buffs.Clear();
                 TimerComponent.Instance?.Remove(ref self.Timer);
             }
         }
@@ -246,7 +245,7 @@ namespace ET
 
         public static List<KeyValuePair> GetMessageBuff(this BuffManagerComponent self)
         {
-            self.Buffs.Clear();
+            List<KeyValuePair> Buffs = new List<KeyValuePair>();
             for (int i = 0; i < self.m_Buffs.Count; i++)
             {
                 BuffHandler buffHandler = self.m_Buffs[i];
@@ -255,9 +254,9 @@ namespace ET
                 {
                     continue;
                 }
-                self.Buffs.Add(new KeyValuePair() { KeyId = skillBuffConfig.Id, Value2 = buffHandler.BuffEndTime.ToString() });
+                Buffs.Add(new KeyValuePair() { KeyId = skillBuffConfig.Id, Value2 = buffHandler.BuffEndTime.ToString() });
             }
-            return self.Buffs;
+            return Buffs;
         }
 
         public static void BeforeTransfer(this BuffManagerComponent self)

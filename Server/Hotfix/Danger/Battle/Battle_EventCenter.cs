@@ -56,24 +56,35 @@ namespace ET
     public class KillEvent_NotifyUnit : AEvent<EventType.KillEvent>
     {
 
-        private void OnPlayerDead(Unit unit)
+        private async ETTask OnUnitDead(EventType.KillEvent args)
         {
-            if (unit.Type != UnitType.Player)
+            Unit unitDefend = args.UnitDefend;
+            await TimerComponent.Instance.WaitFrameAsync();
+            if (unitDefend.IsDisposed)
             {
                 return;
             }
-            int playerNumber = FubenHelp.GetAliveUnitNumber(unit.DomainScene(), UnitType.Player);
-            if (playerNumber > 0)
+
+            if (unitDefend.Type == UnitType.Player)
             {
-                return;
-            }
-            List<Unit> units = FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Monster);
-            for(int i = 0; i < units.Count; i++)
-            {
-                if (units[i].IsBoss())
+                int playerNumber = FubenHelp.GetAliveUnitNumber(unitDefend.DomainScene(), UnitType.Player);
+                if (playerNumber > 0)
                 {
-                    units[i].GetComponent<SkillManagerComponent>().OnFinish(true);
+                    return;
                 }
+                List<Unit> units = FubenHelp.GetUnitList(unitDefend.DomainScene(), UnitType.Monster);
+                for (int i = 0; i < units.Count; i++)
+                {
+                    if (units[i].IsBoss())
+                    {
+                        units[i].GetComponent<SkillManagerComponent>().OnFinish(true);
+                    }
+                }
+            }
+          
+            if (unitDefend.Type != UnitType.Player && args.WaitRevive == 0)
+            {
+                unitDefend.GetParent<UnitComponent>().Remove(unitDefend.Id);
             }
         }
 
@@ -81,7 +92,6 @@ namespace ET
         {
             Unit defendUnit = args.UnitDefend;
             defendUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
-            OnPlayerDead(defendUnit);
             if (args.UnitAttack != null && !args.UnitAttack.IsDisposed)
             {
                 Unit player = null;
@@ -152,11 +162,7 @@ namespace ET
                 }
             }
 
-            if (defendUnit.Type != UnitType.Player && args.WaitRevive == 0)
-            {
-                //RunAsync(args).Coroutine();
-                defendUnit.GetParent<UnitComponent>().Remove(defendUnit.Id);
-            }
+            OnUnitDead(args).Coroutine();
         }
     }
 }

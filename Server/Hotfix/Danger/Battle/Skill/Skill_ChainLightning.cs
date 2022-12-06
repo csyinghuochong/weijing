@@ -23,7 +23,7 @@
             {
                 UnitId = unitid,
                 TargetID = targetId, 
-                SkillID = this.SkillCmd.WeaponSkillID,
+                SkillID = this.SkillInfo.WeaponSkillID,
                 PosX = x, PosY = y, PosZ = z
             });
         }

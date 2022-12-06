@@ -27,7 +27,7 @@ namespace ET
             {
                 return;
             }
-            Unit TheUnitBelongto = this.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(this.SkillCmd.TargetID);
+            Unit TheUnitBelongto = this.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(this.SkillInfo.TargetID);
             if (TheUnitBelongto != null)
             {
                 this.TargetPosition = TheUnitBelongto.Position;

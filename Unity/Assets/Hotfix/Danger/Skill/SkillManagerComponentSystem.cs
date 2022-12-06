@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -208,6 +209,16 @@ namespace ET
             }
         }
 
+        public static void InitSkill(this SkillManagerComponent self, List<SkillInfo> skillInfos)
+        {
+            for (int i = 0; i < skillInfos.Count; i++)
+            {
+                M2C_UnitUseSkill m2C_UnitUseSkill = new M2C_UnitUseSkill();
+                m2C_UnitUseSkill.SkillInfos.Add(skillInfos[i]);
+                self.OnUseSkill(m2C_UnitUseSkill);
+            }
+        }
+
         public static void OnUseSkill(this SkillManagerComponent self, M2C_UnitUseSkill skillcmd )
         {
             Unit unit = self.GetParent<Unit>();
@@ -227,10 +238,6 @@ namespace ET
                 self.Skills.Add(skillHandler);
             }
             self.AddSkillTimer();
-            if (skillcmd.SkillID == 0)
-            {
-                return;
-            }
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
             if (skillcmd.ItemId > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
             {

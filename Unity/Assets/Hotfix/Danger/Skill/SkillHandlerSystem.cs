@@ -10,9 +10,10 @@ namespace ET
             self.SkillConf = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
             int effctId = self.SkillConf.SkillEffectID[0];
             self.EffectConf = effctId != 0 ? EffectConfigCategory.Instance.Get(effctId) :null;
-            self.SkillExcuteHurtTime = self.EffectConf != null;
             self.TheUnitFrom = theUnitFrom;
             self.SkillState = SkillState.Running;
+            self.IsExcuteHurt = self.EffectConf != null;
+            self.SkillExcuteHurtTime = (long)(1000 * (self.EffectConf!=null?self.EffectConf.SkillEffectDelayTime:0)) + skillcmd.SkillBeginTime;
 
             self.TargetPosition = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ);
             self.EffectInstanceId.Clear();
@@ -21,11 +22,10 @@ namespace ET
         public static void BaseOnUpdate(this ASkillHandler self)
         {
             long serverNow = TimeHelper.ServerNow();
-            float passTime = (serverNow - self.SkillInfo.SkillBeginTime) * 0.001f;
-
-            if (self.SkillExcuteHurtTime && passTime >= self.EffectConf.SkillEffectDelayTime)
+           
+            if (self.IsExcuteHurt && serverNow >= self.SkillExcuteHurtTime)
             {
-                self.SkillExcuteHurtTime = false;
+                self.IsExcuteHurt = false;
                 string music = self.SkillConf.SkillMusic;
                 if (!string.IsNullOrEmpty(music) && music != "0")
                 {

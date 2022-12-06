@@ -545,6 +545,16 @@ namespace ET
             return skillHandler;
         }
 
+        public static List<SkillInfo> GetMessageSkill(this SkillManagerComponent self)
+        {
+            List<SkillInfo> skillinfos = new List<SkillInfo>();
+            for (int i = 0; i < self.Skills.Count; i++)
+            {
+                skillinfos.Add(self.Skills[i].SkillInfo);
+            }
+            return skillinfos;
+        }
+
         public static void Check(this SkillManagerComponent self)
         {
             for ( int i = self.Skills.Count - 1; i >= 0; i-- )
@@ -577,6 +587,8 @@ namespace ET
 
                 Unit from = self.GetParent<Unit>();
                 SkillHandler skillAction = self.SkillFactory( skillInfo, from);
+                skillInfo.SkillBeginTime = skillAction.SkillBeginTime;
+                skillInfo.SkillEndTime = skillAction.SkillEndTime;
                 self.Skills.Add(skillAction);
 
                 M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill()

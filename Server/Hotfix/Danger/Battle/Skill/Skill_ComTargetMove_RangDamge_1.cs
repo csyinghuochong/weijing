@@ -27,7 +27,7 @@ namespace ET
             this.InitSelfBuff();
 
             string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';') ;
-            int angle = this.SkillCmd.TargetAngle;
+            int angle = this.SkillInfo.TargetAngle;
             int range = paraminfos.Length > 1 ? int.Parse(paraminfos[0]) : 0;
             int number = paraminfos.Length > 1 ? int.Parse(paraminfos[1]) : 1;
             int delta = number > 1 ? range / (number - 1) : 0;

@@ -12,7 +12,7 @@ namespace ET
 
             this.ICheckShape.Clear();
             string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';');
-            int angle = this.SkillCmd.TargetAngle;
+            int angle = this.SkillInfo.TargetAngle;
             int range = paraminfos.Length > 1 ? int.Parse(paraminfos[0]) : 0;
             int number = paraminfos.Length > 1 ? int.Parse(paraminfos[1]) : 1;
             int delta = number > 1 ? range / (number - 1) : 0;
@@ -45,7 +45,7 @@ namespace ET
                 return;
             }
             string[] paraminfos = this.SkillConf.GameObjectParameter.Split(';');
-            int angle = this.SkillCmd.TargetAngle;
+            int angle = this.SkillInfo.TargetAngle;
             int range = paraminfos.Length > 1 ? int.Parse(paraminfos[0]) : 0;
             int number = paraminfos.Length > 1 ? int.Parse(paraminfos[1]) : 1;
             int delta = number > 1 ? range / (number - 1) : 0;
@@ -57,7 +57,7 @@ namespace ET
             {
                 (this.ICheckShape[i] as Rectangle).s_forward = (Quaternion.Euler(0, starAngle + i * delta + addrangle, 0) * Vector3.forward).normalized; ;
             }
-            this.TheUnitFrom.Rotation = Quaternion.Euler(0, this.SkillCmd.TargetAngle + addrangle, 0);
+            this.TheUnitFrom.Rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle + addrangle, 0);
 
             this.ExcuteSkillAction();
         }
