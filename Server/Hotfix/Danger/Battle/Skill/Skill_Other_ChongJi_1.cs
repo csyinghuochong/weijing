@@ -9,15 +9,15 @@ namespace ET
         {
             this.BaseOnInit(skillId, theUnitFrom);
 
-            OldSpeed = theUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
+            this.OldSpeed = theUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
 
             Quaternion rotation = Quaternion.Euler(0, this.SkillCmd.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
-            TargetPosition = theUnitFrom.Position + rotation * Vector3.forward * ((float)SkillConf.SkillMoveSpeed * SkillLiveTime * 0.001f);
-            TargetPosition = theUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitFrom.Position, TargetPosition);
+            this.TargetPosition = theUnitFrom.Position + rotation * Vector3.forward * ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
+            this.TargetPosition = theUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitFrom.Position, TargetPosition);
 
             //1-10 表示 10%-100%
             double addPro = (double)theUnitFrom.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_JumpDisAdd) / 10;
-            double speed = (SkillConf.SkillMoveSpeed * (1 + addPro));
+            double speed = (this.SkillConf.SkillMoveSpeed * (1 + addPro));
             theUnitFrom.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Speed, (long)(10000 * speed));
 
             Unit targetUnit = theUnitFrom.GetParent<UnitComponent>().Get(skillId.TargetID);
@@ -30,10 +30,11 @@ namespace ET
                 else
                 {
                     Vector3 dir = theUnitFrom.Position - targetUnit.Position;
-                    TargetPosition = targetUnit.Position + dir.normalized;
+                    this.TargetPosition = targetUnit.Position + dir.normalized;
                 }
             }
-            SkillLiveTime = (long)(Vector3.Distance(theUnitFrom.Position, TargetPosition) *1000f/ speed) + 100;
+            float disc = Vector3.Distance(this.TargetPosition, theUnitFrom.Position);
+            float need = disc / (float)speed;
             OnExecute();
         }
 
@@ -41,17 +42,13 @@ namespace ET
         {
             this.InitSelfBuff();
             this.BaseOnUpdate();
+            this.TheUnitFrom.FindPathMoveToAsync(TargetPosition, null, false).Coroutine();
         }
 
         public override void OnUpdate()
         {
-            PassTime = TimeHelper.ServerNow() - this.BeginTime;
-            if (!this.IsTriggerHurt && this.PassTime >= this.DelayHurtTime)
-            {
-                this.IsTriggerHurt = true;
-                TheUnitFrom.FindPathMoveToAsync(TargetPosition, null, false).Coroutine();
-            }
-            if (PassTime > SkillLiveTime)
+            long serverNow = TimeHelper.ServerNow();
+            if (serverNow > this.SkillEndTime + 100)
             {
                 this.SetSkillState(SkillState.Finished);
                 return;
@@ -62,7 +59,7 @@ namespace ET
 
         public override void OnFinished()
         {
-            TheUnitFrom.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Speed, (long)(10000 * OldSpeed));
+            TheUnitFrom.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Speed, (long)(10000 * this.OldSpeed));
         }
     }
 }

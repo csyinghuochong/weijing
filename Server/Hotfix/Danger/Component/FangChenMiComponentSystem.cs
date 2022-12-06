@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace ET
 {
 
-
     public class FangChenMiComponentAwakeSystem : AwakeSystem<FangChenMiComponent>
     {
         public override void Awake(FangChenMiComponent self)

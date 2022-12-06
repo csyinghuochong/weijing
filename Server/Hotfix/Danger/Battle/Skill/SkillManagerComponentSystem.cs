@@ -50,7 +50,6 @@ namespace ET
     {
         public static List<SkillInfo> GetRandomSkills(this SkillManagerComponent self, C2M_SkillCmd skillcmd, int weaponSkill)
         {
-
             Unit unit = self.GetParent<Unit>();
             List<SkillInfo> skillInfos = new List<SkillInfo>();
 
@@ -163,8 +162,7 @@ namespace ET
                         skillInfo.PosZ = target.Position.z;
                         skillInfo.TargetID = skillcmd.TargetID;
                         skillInfo.TargetAngle = skillcmd.TargetAngle;
-                        skillInfo.BeginTime = TimeHelper.ServerNow();
-                        skillInfo.DelayTime = (long)(i * intervalTime * 1000);
+                        skillInfo.BeginTime = TimeHelper.ServerNow() + (long)(i * intervalTime * 1000);
 
                         if (i == 0)
                         {
@@ -284,16 +282,14 @@ namespace ET
             if (skillId != 0)
             {
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-                if (skillConfig.GameObjectName == "Skill_Other_ChongJi_1")
+                bool chongji = skillConfig.GameObjectName == "Skill_Other_ChongJi_1";
+                for (int i = self.Skills.Count - 1; i >= 0; i--)
                 {
-                    for (int i = self.Skills.Count - 1; i >= 0; i--)
+                    if (chongji && self.Skills[i].SkillConf.GameObjectName == skillConfig.GameObjectName)
                     {
-                        if (self.Skills[i].SkillConf.GameObjectName == skillConfig.GameObjectName)
-                        {
-                            ObjectPool.Instance.Recycle(self.Skills[i]);
-                            self.Skills[i].OnFinished();
-                            self.Skills.RemoveAt(i);
-                        }
+                        ObjectPool.Instance.Recycle(self.Skills[i]);
+                        self.Skills[i].OnFinished();
+                        self.Skills.RemoveAt(i);
                     }
                 }
             }
@@ -341,7 +337,14 @@ namespace ET
                 return m2C_Skill;
             }
 
-            M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill() {
+            for (int i = 0; i < skillList.Count; i++)
+            {
+                SkillHandler skillAction = self.SkillFactory(skillList[i], unit);
+                self.Skills.Add(skillAction);
+                skillList[i].EndTime = skillAction.SkillEndTime;
+            }
+            M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill()
+            {
                 UnitId = unit.Id,
                 ItemId = skillcmd.ItemId,
                 SkillID = skillcmd.SkillID,
@@ -349,11 +352,6 @@ namespace ET
                 SkillInfos = skillList
             };
             MessageHelper.Broadcast(unit, useSkill);
-            for (int i = 0; i < skillList.Count; i++)
-            {
-                SkillHandler skillAction = self.SkillFactory(skillList[i], unit);
-                self.Skills.Add(skillAction);
-            }
 
             //添加技能CD列表
             SkillCDItem skillCd = null;
@@ -558,8 +556,6 @@ namespace ET
             for (int i = self.DelaySkillList.Count - 1; i >= 0; i--)
             {
                 SkillInfo skillInfo = self.DelaySkillList[i];
-                skillInfo.PassTime = TimeHelper.ServerNow() - skillInfo.BeginTime;
-
                 Unit target = self.DomainScene().GetComponent<UnitComponent>().Get(skillInfo.TargetID);
                 if (target != null && !target.IsDisposed)
                 {
@@ -567,7 +563,7 @@ namespace ET
                     skillInfo.PosY = target.Position.y;
                     skillInfo.PosZ = target.Position.z;
                 }
-                if (skillInfo.PassTime < skillInfo.DelayTime)
+                if (TimeHelper.ServerNow() < skillInfo.BeginTime)
                 {
                     continue;
                 }

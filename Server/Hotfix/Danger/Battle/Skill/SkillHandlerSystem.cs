@@ -17,14 +17,13 @@ namespace ET
             SkillSetComponent skillSetComponent = theUnitFrom.GetComponent<SkillSetComponent>();
             self.TianfuProAdd = skillSetComponent!=null ? skillSetComponent.GetSkillPropertyAdd(skillcmd.WeaponSkillID):null;
 
-            self.PassTime = 0;
             self.OldSpeed = 0f;
             self.SkillTriggerInvelTime = 0;
-            self.IsTriggerHurt = false;
+            self.IsExcuteHurt = false;
             self.SkillState = SkillState.Running;
-            self.BeginTime = TimeHelper.ServerNow();
-            self.DelayHurtTime = (long)(1000 * self.SkillConf.SkillDelayTime);
-            self.SkillLiveTime = self.SkillConf.SkillLiveTime + (long)(self.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime));
+            self.SkillBeginTime = TimeHelper.ServerNow();
+            self.SkillExcuteHurtTime = self.SkillBeginTime + (long)(1000 * self.SkillConf.SkillDelayTime);
+            self.SkillEndTime = self.SkillBeginTime + self.SkillConf.SkillLiveTime + (long)(self.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime));
             self.TargetPosition = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ); //获取起始坐标
             self.ICheckShape = new List<Shape>();
             self.ICheckShape.Add( self.CreateCheckShape(self.SkillCmd.TargetAngle) );
@@ -110,17 +109,17 @@ namespace ET
         //每帧检测
         public static void BaseOnUpdate(this SkillHandler self)
         {
-            self.PassTime = TimeHelper.ServerNow() - self.BeginTime;
+            long serverNow = TimeHelper.ServerNow();
 
             //根据技能效果延迟触发伤害
-            if (self.PassTime < self.DelayHurtTime)
+            if (serverNow < self.SkillExcuteHurtTime)
             {
                 return;
             }
             //只触发一次，需要多次触发的重写
-            if (!self.IsTriggerHurt)
+            if (!self.IsExcuteHurt)
             {
-                self.IsTriggerHurt = true;
+                self.IsExcuteHurt = true;
                 if (self.SkillConf.SkillTargetType == (int)SkillTargetType.TargetOnly)
                 {
                     Unit targetUnit = self.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(self.SkillCmd.TargetID);
@@ -140,7 +139,7 @@ namespace ET
             }
 
             //根据技能存在时间设置其结束状态
-            if (self.PassTime > self.SkillLiveTime)
+            if (serverNow > self.SkillEndTime)
             {
                 self.SetSkillState(SkillState.Finished);
             }

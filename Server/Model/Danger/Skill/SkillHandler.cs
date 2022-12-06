@@ -22,8 +22,13 @@ namespace ET
 
         public SkillConfig SkillConf;
 
-        public long BeginTime;
-        public long PassTime;                   //技能存在时间         
+        public long SkillBeginTime;    
+        public long SkillEndTime;
+        /// <summary>
+        /// 记录是否触发过技能伤害
+        /// </summary>
+        public bool IsExcuteHurt;
+        public long SkillExcuteHurtTime;
         public long SkillTriggerInvelTime;      //技能伤害触发间隔时间
         public long SkillTriggerLastTime;
 
@@ -34,8 +39,6 @@ namespace ET
         public Vector3 NowPosition;             //当前技能的坐标点
         public Vector3 TargetPosition;
 
-        //public Dictionary<int, List<string>> SkillParameterList = new Dictionary<int, List<string>>();  //技能脚本效果列表
-        
         public List<SkillParValue_HpUpAct> SkillParValueHpUpAct = new List<SkillParValue_HpUpAct>();        //目标血量处理高或者低 提升自身伤害
 
         //攻击目标临时增加/降低伤害
@@ -49,13 +52,6 @@ namespace ET
         public Unit TheUnitFrom;
 
         public List<Shape> ICheckShape;
-
-        /// <summary>
-        /// 记录是否触发过技能伤害
-        /// </summary>
-        public bool IsTriggerHurt;
-        public long DelayHurtTime;
-        public long SkillLiveTime;
 
         public SkillInfo SkillCmd;
 

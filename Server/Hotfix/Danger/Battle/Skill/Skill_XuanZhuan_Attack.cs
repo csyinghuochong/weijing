@@ -32,14 +32,14 @@ namespace ET
 
         public override void OnUpdate()
         {
-            this.PassTime = TimeHelper.ServerNow() - this.BeginTime;
+            long serverNow = TimeHelper.ServerNow();
             //根据技能效果延迟触发伤害
-            if (this.PassTime < this.DelayHurtTime)
+            if (serverNow < this.SkillExcuteHurtTime)
             {
                 return;
             }
             //根据技能存在时间设置其结束状态
-            if (this.PassTime > this.SkillLiveTime)
+            if (serverNow > this.SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
                 return;
@@ -50,8 +50,9 @@ namespace ET
             int number = paraminfos.Length > 1 ? int.Parse(paraminfos[1]) : 1;
             int delta = number > 1 ? range / (number - 1) : 0;
             int starAngle = angle - (int)(range * 0.5f);
-           
-            int addrangle = (int)(this.PassTime * range * 1f / this.SkillConf.SkillLiveTime);
+
+            long passTime = serverNow - this.SkillBeginTime;
+            int addrangle = (int)(passTime * range * 1f / this.SkillConf.SkillLiveTime);
             for (int i = 0; i < this.ICheckShape.Count; i++)
             {
                 (this.ICheckShape[i] as Rectangle).s_forward = (Quaternion.Euler(0, starAngle + i * delta + addrangle, 0) * Vector3.forward).normalized; ;
@@ -63,7 +64,6 @@ namespace ET
 
         public override void OnFinished()
         {
-            this.PassTime = 0;
         }
     }
 }

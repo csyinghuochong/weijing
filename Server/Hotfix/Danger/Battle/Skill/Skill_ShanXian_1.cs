@@ -34,16 +34,15 @@ namespace ET
 
         public override void OnUpdate()
         {
-            this.PassTime = TimeHelper.ServerNow() - this.BeginTime;
-
+            long serverNow = TimeHelper.ServerNow();
             //根据技能效果延迟触发伤害
-            if (this.PassTime < this.DelayHurtTime)
+            if (serverNow < this.SkillExcuteHurtTime)
             {
                 return;
             }
 
             this.BaseOnUpdate();
-            if (this.SkillConf.GameObjectParameter == "1"  && this.PassTime > this.DelayHurtTime)
+            if (this.SkillConf.GameObjectParameter == "1"  && serverNow > this.SkillExcuteHurtTime)
             {
                 TheUnitFrom.Position = this.TargetPosition;
                 this.SetSkillState( SkillState.Finished);

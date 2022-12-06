@@ -30,13 +30,12 @@
 
         public override void OnUpdate()
         {
-            this.PassTime = TimeHelper.ServerNow() - this.BeginTime;
-
-            if (TimeHelper.ServerNow() - this.SkillTriggerLastTime < 500)
+            long serverNow = TimeHelper.ServerNow();
+            if (serverNow - this.SkillTriggerLastTime < 500)
             {
                 return;
             }
-            this.SkillTriggerLastTime = TimeHelper.ServerNow();
+            this.SkillTriggerLastTime = serverNow;
 
             //从目标点最近的位置开始释放闪电链。最多连5米以内的5个单位
             Unit lastTarget = this.TheUnitFrom;
@@ -74,7 +73,7 @@
                 this.BroadcastSkill(lastTarget.Id, target.Id, 0f,0f,0f);
             }
 
-            if (this.PassTime > this.SkillLiveTime || this.HurtIds.Count >= 5)
+            if (serverNow > this.SkillEndTime || this.HurtIds.Count >= 5)
             {
                 this.SetSkillState(SkillState.Finished);
             }
@@ -82,7 +81,6 @@
 
         public override void OnFinished()
         {
-            this.PassTime = 0;
         }
     }
 }

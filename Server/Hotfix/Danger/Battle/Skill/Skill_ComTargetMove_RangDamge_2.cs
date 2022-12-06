@@ -34,8 +34,7 @@ namespace ET
 
         public override void OnUpdate()
         {
-            PassTime = TimeHelper.ServerNow() - this.BeginTime;
-            if (PassTime > SkillLiveTime)
+            if (TimeHelper.ServerNow() > SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
                 return;

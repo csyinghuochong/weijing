@@ -1779,14 +1779,11 @@ namespace ET
 		[ProtoMember(8)]
 		public float PosZ { get; set; }
 
-		[ProtoMember(9)]
-		public long DelayTime { get; set; }
-
-		[ProtoMember(10)]
-		public long PassTime { get; set; }
-
 		[ProtoMember(11)]
 		public long BeginTime { get; set; }
+
+		[ProtoMember(12)]
+		public long EndTime { get; set; }
 
 	}
 

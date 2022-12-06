@@ -18,7 +18,7 @@ namespace ET
         {
             Vector3 sourcePoint = TheUnitFrom.Position;
             Quaternion rotation = Quaternion.Euler(0, angle, 0);
-            Vector3 TargetPoint = sourcePoint + rotation * Vector3.forward * ((float)SkillConf.SkillMoveSpeed* SkillLiveTime * 0.001f);
+            Vector3 TargetPoint = sourcePoint + rotation * Vector3.forward * SkillConf.SkillLiveTime * 0.001f;
             return TargetPoint;
         }
 
@@ -46,8 +46,7 @@ namespace ET
 
         public override void OnUpdate()
         {
-            PassTime = TimeHelper.ServerNow() - this.BeginTime;
-            if (PassTime > SkillLiveTime)
+            if (TimeHelper.ServerNow() > SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
                 return;

@@ -25,7 +25,7 @@ namespace ET
         {
             this.BaseOnUpdate();
 
-            this.IsTriggerHurt = false;
+            this.IsExcuteHurt = false;
             long curTime = TimeHelper.ServerNow();
             for (int i = HurtIds.Count - 1; i >= 0; i--)
             {

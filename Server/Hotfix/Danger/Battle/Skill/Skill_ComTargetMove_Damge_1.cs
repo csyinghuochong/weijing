@@ -21,15 +21,12 @@ namespace ET
 
         public override void OnUpdate()
         {
-            float passTime = this.PassTime;
-            this.PassTime = TimeHelper.ServerNow() - this.BeginTime;
+            long serverNow = TimeHelper.ServerNow();
             //根据技能效果延迟触发伤害
-            if (this.PassTime < this.DelayHurtTime)
+            if (serverNow < this.SkillExcuteHurtTime)
             {
                 return;
             }
-            float deltaTime = this.PassTime - passTime;
-
             Unit TheUnitBelongto = this.TheUnitFrom.DomainScene().GetComponent<UnitComponent>().Get(this.SkillCmd.TargetID);
             if (TheUnitBelongto != null)
             {
@@ -38,7 +35,7 @@ namespace ET
 
             Vector3 dir = (this.TargetPosition - NowPosition).normalized;
             float dis = PositionHelper.Distance2D(NowPosition, this.TargetPosition);
-            float move = (float)this.SkillConf.SkillMoveSpeed * deltaTime * 0.001f; 
+            float move = (float)this.SkillConf.SkillMoveSpeed * 0.1f;            //服务器0.1秒一帧
             move = Mathf.Min(dis, move);
             this.NowPosition = this.NowPosition + move * dir;
             this.NowPosition.y = this.TargetPosition.y + 0.5f;
