@@ -7,10 +7,12 @@ namespace ET
 
         public static void  SendDiamondToUnit(Unit unit, int rechargeNumber)
         {
+            Log.Debug($"RechargeHelp.SendDiamond {unit.Id} {rechargeNumber}");
             OnRechage(unit, rechargeNumber, true);
             long accountId = unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID;
             long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
             SendToAccountCenter(accountId, userId, rechargeNumber).Coroutine();
+            unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
         }
 
         public static void OnRechage(Unit unit, int rechargeNumber, bool notice)
@@ -49,15 +51,16 @@ namespace ET
         public static async ETTask OnPaySucessToUnit(Scene scene,  long userId, int rechargeNumber)
         {
             Player gateUnitInfo = scene.GetComponent<PlayerComponent>().GetByUserId(userId);
-            if (gateUnitInfo != null && gateUnitInfo.PlayerState == PlayerState.Game && gateUnitInfo.InstanceId > 0)
+            //&& gateUnitInfo.ClientSession!=null
+            if (gateUnitInfo != null  && gateUnitInfo.PlayerState == PlayerState.Game && gateUnitInfo.InstanceId > 0)
             {
-                Log.Debug($"Recharge PlayerState.Game userId: {userId}  rechargeNumber:{rechargeNumber}");
+                Log.Debug($"Recharge.OnPaySucess PlayerState.Game: {userId}  rechargeNumber:{rechargeNumber}");
                 G2M_RechargeResultRequest r2M_RechargeRequest = new G2M_RechargeResultRequest() { RechargeNumber = rechargeNumber };
                 M2G_RechargeResultResponse m2G_RechargeResponse = (M2G_RechargeResultResponse)await ActorLocationSenderComponent.Instance.Call(gateUnitInfo.UnitId, r2M_RechargeRequest);
             }
             else
             {
-                Log.Debug($"Recharge PlayerState.None userId: {userId}  rechargeNumber:{rechargeNumber}");
+                Log.Debug($"Recharge OnPaySucess PlayerState.None: {userId}  rechargeNumber:{rechargeNumber}");
                 //直接存数据库
                 //int number = ComHelp.GetDiamondNumber(rechargeNumber);
                 long dbCacheId = DBHelper.GetDbCacheId(scene.DomainZone());

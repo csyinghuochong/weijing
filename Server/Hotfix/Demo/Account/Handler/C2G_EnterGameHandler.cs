@@ -138,6 +138,7 @@ namespace ET
 						unit.AddComponent<DBSaveComponent>();
 						unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 						unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString());
+						unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
 						if (session.DomainZone() == 0)
 						{
 							Log.Debug($"LoginTest C2G_EnterGame session.DomainZone() == 0 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");

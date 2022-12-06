@@ -34,14 +34,6 @@ namespace ET
             self.UserInfo.PiLao = Math.Min( maxPilao, self.UserInfo.PiLao );
         }
 
-        public static void OnCheckLingDi(this UserInfoComponent self, long intervalTime)
-        { 
-            int minute = (int)intervalTime / 60000;
-            self.LingDiOnLine += minute;
-            self.OnRongyuChanChu(self.LingDiOnLine / 60, false);
-            self.LingDiOnLine %= 60;
-        }
-
         public static void OnRongyuChanChu(this UserInfoComponent self, int coefficient, bool notice)
         {
             if (coefficient == 0)
@@ -119,6 +111,7 @@ namespace ET
                 int hour_1, hour_2 = 0;
                 if (dateTime.Day != lastdateTime.Day)
                 {
+                    Log.Debug($"OnZeroClockUpdate [登录刷新]: {unit.Id}");
                     hour_1 = lastdateTime.Hour;
                     hour_2 = (dateTime.Day - lastdateTime.Day) * 24 + dateTime.Hour;
                     if (hour_2 - hour_1 >= 24)
@@ -131,8 +124,6 @@ namespace ET
                         tiliTimes = Math.Min(tiliTimes, 4);
                         self.RecoverPiLao(tiliTimes * 30, false);
                     }
-
-                    Log.Debug($"OnZeroClockUpdate [登录刷新]: {unit.Id}");
                     self.OnZeroClockUpdate(false);
                     unit.GetComponent<TaskComponent>().OnZeroClockUpdate(false);
                     unit.GetComponent<EnergyComponent>().OnResetEnergyInfo();
@@ -154,11 +145,6 @@ namespace ET
             unit.GetComponent<HeroDataComponent>().OnLogin();
             unit.GetComponent<DBSaveComponent>().OnLogin();
             unit.GetComponent<RechargeComponent>().OnLogin();
-            if (lastLoginTime != 0)
-            {
-                self.CheckTiLi();
-                self.OnCheckLingDi(currentTime - lastLoginTime);
-            }
 
             self.LastLoginTime = currentTime;
             self.UserName = self.UserInfo.Name;

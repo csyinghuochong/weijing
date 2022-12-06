@@ -14,14 +14,14 @@
         MaoXianExp = 8,         //冒险家经验
         DungeonTimes = 9,       //每日副本次数
         Recharge = 10,          //充值
-        Lv,                     //等级            
+        HuoYue = 11,                 //活跃
+        Sp = 12,                     //sp[技能点]
+        Lv,                     //等级       
+        Combat,                 //zhanli战力  
+        Union,                  //公会
         Occ,                    //职业
-        HuoYue,                 //活跃
-        Sp,                     //sp[技能点]
         Name,                   //名称
         StallName,              //摊位名字
-        Union,                  //公会
-        Combat,                 //zhanli战力
         PetStatus,              //宠物出站状态
         UnionName,
         Max,

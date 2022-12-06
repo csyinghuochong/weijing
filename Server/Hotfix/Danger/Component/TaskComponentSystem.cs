@@ -222,7 +222,7 @@ namespace ET
             TaskPro taskPro = self.CreateTask(taskid);
             self.RoleTaskList.Add(taskPro);
 
-            M2C_TaskUpdate m2C_TaskUpdate = new M2C_TaskUpdate();
+            M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
             m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
         }
@@ -555,7 +555,7 @@ namespace ET
             if (!updateTask)
                 return;
 
-            M2C_TaskUpdate m2C_TaskUpdate = new M2C_TaskUpdate();
+            M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
             m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
         }
@@ -586,7 +586,7 @@ namespace ET
                 taskPro.taskStatus = (int)TaskStatuEnum.Completed;
             }
 
-            M2C_TaskUpdate m2C_TaskUpdate = new M2C_TaskUpdate();
+            M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
             m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
         }
@@ -622,7 +622,7 @@ namespace ET
 
             if (!updateTask || !notice)
                 return;
-            M2C_TaskCountryUpdate m2C_TaskUpdate = new M2C_TaskCountryUpdate();
+            M2C_TaskCountryUpdate m2C_TaskUpdate = self.m2C_TaskCountryUpdate;
             m2C_TaskUpdate.UpdateMode = 1;
             m2C_TaskUpdate.TaskCountryList = countryList;
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
@@ -651,14 +651,15 @@ namespace ET
             }
             if (notice)
             {
-                M2C_TaskCountryUpdate m2C_TaskUpdate = new M2C_TaskCountryUpdate();
+                M2C_TaskCountryUpdate m2C_TaskUpdate = self.m2C_TaskCountryUpdate;
                 m2C_TaskUpdate.UpdateMode = 2;
                 m2C_TaskUpdate.TaskCountryList = self.TaskCountryList;
                 MessageHelper.SendToClient(unit, m2C_TaskUpdate);
             }
+
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             userInfoComponent.UpdateRoleData(UserDataType.HuoYue, (0 - userInfoComponent.UserInfo.HuoYue).ToString(), notice);
-            Log.Debug($"更新活跃任务:  {unit.Id} {userInfoComponent.UserInfo.HuoYue}");
+            Log.Debug($"更新活跃任务:  {unit.Id} {notice} {userInfoComponent.UserInfo.HuoYue} {self.TaskCountryList.Count}");
         }
     }
 }
