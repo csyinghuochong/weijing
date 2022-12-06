@@ -12,14 +12,16 @@ namespace ET
 
             //判定出售价格最低不能低于快捷拍卖列表的50%
             PaiMaiShopItemInfo shopinfo = scene.GetComponent<PaiMaiSceneComponent>().GetPaiMaiShopInfo(request.PaiMaiItemInfo.BagInfo.ItemID);
-            int nowPrice = (int)((float)request.PaiMaiItemInfo.Price / (float)request.PaiMaiItemInfo.BagInfo.ItemNum);
-            if (nowPrice < shopinfo.Price * 0.5f)
+            if (shopinfo != null)
             {
-                response.Error = ErrorCore.Err_PaiMaiPriceLow;
-                reply();
-                return;
+                int nowPrice = (int)((float)request.PaiMaiItemInfo.Price / (float)request.PaiMaiItemInfo.BagInfo.ItemNum);
+                if (nowPrice < shopinfo.Price * 0.5f)
+                {
+                    response.Error = ErrorCore.Err_PaiMaiPriceLow;
+                    reply();
+                    return;
+                }
             }
-
             scene.GetComponent<PaiMaiSceneComponent>().dBPaiMainInfo.PaiMaiItemInfos.Add(request.PaiMaiItemInfo);
 
             reply();

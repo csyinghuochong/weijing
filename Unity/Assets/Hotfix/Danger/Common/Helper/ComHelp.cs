@@ -1039,10 +1039,12 @@ namespace ET
 
             if (itemType == 2)
             {
-                if (subType == 101 || subType == 121)
+                
+                if (subType == 1 || subType == 101 || subType == 121)
                 {
                     return true;
                 }
+                
             }
 
             if (itemType == 3 || itemType == 4)

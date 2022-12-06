@@ -193,6 +193,8 @@ namespace ET
         public static Dictionary<int, string> ItemSubType1Name = new Dictionary<int, string>()
         {
              {  0,  GameSettingLanguge.LoadLocalization("全部") },
+             {  101,  GameSettingLanguge.LoadLocalization("药剂") },
+             {  15,  GameSettingLanguge.LoadLocalization("附魔") },
              /*
              {  1,  GameSettingLanguge.LoadLocalization("金币") },
              {  2,  GameSettingLanguge.LoadLocalization("经验") },
@@ -211,6 +213,9 @@ namespace ET
         public static Dictionary<int, string> ItemSubType2Name = new Dictionary<int, string>()
         {
              {  0,  GameSettingLanguge.LoadLocalization("全部") },
+             {  1,  GameSettingLanguge.LoadLocalization("材料") },
+             {  121,  GameSettingLanguge.LoadLocalization("鉴定符") },
+             {  122,  GameSettingLanguge.LoadLocalization("宠物技能") },
              /*
              {  1,  GameSettingLanguge.LoadLocalization("金币") },
              {  2,  GameSettingLanguge.LoadLocalization("经验") },
@@ -227,7 +232,12 @@ namespace ET
         //材料
         public static Dictionary<int, string> ItemSubType4Name = new Dictionary<int, string>()
         {
-             {  0,  GameSettingLanguge.LoadLocalization("全部") },
+            {  0,  GameSettingLanguge.LoadLocalization("全部") },
+            {  101,  GameSettingLanguge.LoadLocalization("黄色插槽") },
+            {  102,  GameSettingLanguge.LoadLocalization("紫色插槽") },
+            {  103,  GameSettingLanguge.LoadLocalization("蓝色插槽") },
+            {  104,  GameSettingLanguge.LoadLocalization("绿色插槽") },
+            {  105,  GameSettingLanguge.LoadLocalization("橙色插槽") },
         };
 
         public static string XiLianWeiZhiTip(int hideId)
