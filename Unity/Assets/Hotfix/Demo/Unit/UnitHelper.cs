@@ -93,6 +93,11 @@ namespace ET
             Game.EventSystem.PublishClass(EventType.AfterUnitCreate.Instance);
         }
 
+        public static bool IsTestSkillID(this Unit self)
+        {
+            return self.Id == 1573692389753683968;
+        }
+
         public static int GetTeamId(this Unit self)
         {
             return self.GetComponent<NumericComponent>().GetAsInt(NumericType.TeamId);

@@ -40,6 +40,7 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float attackSpped = 1f + numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
             float cdTime = EquipType == (int)ItemEquipType.Knife ? 1000 : 800;
+            cdTime = unit.IsTestSkillID() ? cdTime * 0.6f : cdTime;
             self.CDTime = (int)(cdTime / attackSpped);
         }
 
