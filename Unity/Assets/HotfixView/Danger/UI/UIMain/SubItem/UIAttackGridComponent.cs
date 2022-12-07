@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -143,7 +142,8 @@ namespace ET
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
 
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.AttackGridTimer, self);
+            long cdTime = self.ZoneScene().GetComponent<AttackComponent>().CDTime;
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(cdTime, TimerType.AttackGridTimer, self);
             self.OnUpdate();
         }
 

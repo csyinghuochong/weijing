@@ -19,6 +19,7 @@ namespace ET
             self.PreLoadAssets.Clear();
             self.StartLoadAssets = false;
             self.PassTime = 0f;
+            self.ShowMain = false;
         }
     }
 
@@ -296,17 +297,20 @@ namespace ET
                     UnitHelper.LoadingScene = false;
                     UnitHelper.ShowAllUnit(self.DomainScene());
                 }
-                if (self.PassTime < 1f)
+                if (self.PassTime > 1f && !self.ShowMain)
+                {
+                    self.ShowMain = true;
+                    int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
+                    self.UpdateMainUI(sceneTypeEnum).Coroutine();
+                    Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
+                }
+                if (self.PassTime < 1.5f)
                 {
                     return;
                 }
-
-                int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
                 Camera camera = UIComponent.Instance.MainCamera;
                 camera.GetComponent<Camera>().fieldOfView = 50;
                 sceneManagerComponent.SceneAssetRequest = null;
-                self.UpdateMainUI(sceneTypeEnum).Coroutine();
-                Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
                 UIHelper.Remove(self.DomainScene(), UIType.UILoading);
             }
             catch (Exception ex)

@@ -44,8 +44,17 @@ namespace ET
             self.CDTime = (int)(cdTime / attackSpped);
         }
 
-        public static void SetComboSkill(this AttackComponent self)
+        public static void SetComboSkill(this AttackComponent self, long timeNow)
         {
+            if (timeNow - self.LastSkillTime > self.CombatEndTime)
+            {
+                self.ComboSkillId = self.SkillId;
+            }
+            else
+            {
+                self.ComboSkillId = SkillConfigCategory.Instance.Get(self.ComboSkillId).ComboSkillID;
+            }
+
             int EquipType = (int)self.ZoneScene().GetComponent<BagComponent>().GetEquipType();
             if ((EquipType == (int)ItemEquipType.Sword
                 || EquipType == (int)ItemEquipType.Common))
@@ -116,18 +125,16 @@ namespace ET
             {
                 return;
             }
-            if (timeNow - self.LastSkillTime > self.CombatEndTime)
-            {
-                self.ComboSkillId = self.SkillId;
-            }
-            else
-            {
-                self.ComboSkillId = SkillConfigCategory.Instance.Get(self.ComboSkillId).ComboSkillID;
-            }
             self.SetAttackSpeed();
-            self.SetComboSkill();
+            self.SetComboSkill(timeNow);
             int targetAngle = self.GetTargetAnagle(unit, taretUnit);
-            unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId, 0, targetAngle, taretUnit != null ? taretUnit.Id : 0, 0).Coroutine();
+            C2M_SkillCmd skillCmd = unit.GetComponent<SkillManagerComponent>().SkillCmd;
+            skillCmd.SkillID = self.ComboSkillId;
+            skillCmd.ItemId = 0;
+            skillCmd.TargetAngle = targetAngle;
+            skillCmd.TargetID = taretUnit != null ? taretUnit.Id : 0;
+            skillCmd.TargetDistance = 0;
+            unit.GetComponent<SkillManagerComponent>().ImmediateUseSkill(skillCmd).Coroutine();
             self.LastSkillTime = TimeHelper.ClientNow();
             self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
             if (self.ComboSkillId == 60000103 || self.ComboSkillId == 60000203)

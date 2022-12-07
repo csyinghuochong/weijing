@@ -86,7 +86,7 @@ namespace ET
                     return;
                 }
 
-                bool timeRet = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(zoneScene.GetComponent<AttackComponent>().CDTime + 10, cancellationToken);
                 if (!timeRet)
                 {
                     Log.ILog.Debug("Behaviour_Attack: Eixt2");
