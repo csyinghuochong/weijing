@@ -39,7 +39,7 @@ namespace ET
                 if (!aiComponent.IsRetreat && unit.IsBoss())
                 {
                     SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
-                    skillManagerComponent.OnFinish(true);
+                    skillManagerComponent?.OnFinish(true);
                 }
                 if (!aiComponent.IsRetreat)
                 {

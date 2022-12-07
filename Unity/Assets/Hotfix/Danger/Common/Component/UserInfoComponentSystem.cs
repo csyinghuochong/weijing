@@ -133,9 +133,9 @@ namespace ET
                 else
                 {
                     hour_1 = lastdateTime.Hour;
-                    hour_2 = dateTime.Minute;
+                    hour_2 = dateTime.Hour;
 
-                    int tiliTimes = self.GetTiLiTimes(lastdateTime.Hour, dateTime.Hour);
+                    int tiliTimes = self.GetTiLiTimes(hour_1, hour_2);
                     tiliTimes = Math.Min(tiliTimes, 4);
                     self.RecoverPiLao(tiliTimes * 30, false);
                 }

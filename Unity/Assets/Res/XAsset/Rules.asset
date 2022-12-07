@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 378
+  version: 379
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -11107,21 +11107,18 @@ MonoBehaviour:
   - name: d58aea790d387b0c3c11e61fd28fc6ce.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_128.png
-  - name: 6616b626c03439ec238ee8180b055303.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Button/Btn_60.png
   - name: af89ce4bafb474c74f2f3b8662d7d8d7.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_118.png
   - name: 7cc8ceaf97a46e325db66a62b56900be.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_62.png
+  - name: 6616b626c03439ec238ee8180b055303.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Button/Btn_60.png
   - name: 93af8d8260129fee9473a577e455a553.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_247.png
-  - name: 0e3b27ceaa3224218667f981d56e5552.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_66.png
   - name: 0932869719796c9bd3aaf40bbbf7f53d.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_268.png
@@ -11491,6 +11488,9 @@ MonoBehaviour:
   - name: 2e45f63350462b2ae9170698facdc071.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_4.png
+  - name: 0e3b27ceaa3224218667f981d56e5552.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_66.png
   - name: 06a3e45781323b1909d3bdc417c780d2.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_305.png

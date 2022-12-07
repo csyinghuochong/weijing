@@ -53,14 +53,13 @@
             M2C_StallOperationResponse m2C_PaiMaiBuyResponse = (M2C_StallOperationResponse)await scene.GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
         }
 
-        public static async ETTask RequestUserInfo(Scene zoneScene)
+        public static async ETTask RequestUserInfo(Scene zoneScene, bool relink = false)
         {
             C2M_UserInfoRequest c2M_PaiMaiBuyRequest = new C2M_UserInfoRequest() {  };
             M2C_UserInfoInitResponse m2C_PaiMaiBuyResponse = (M2C_UserInfoInitResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
             zoneScene.GetComponent<UserInfoComponent>().UserInfo = m2C_PaiMaiBuyResponse.UserInfo;
             zoneScene.GetComponent<ReddotComponent>().ReddontList = m2C_PaiMaiBuyResponse.ReddontList;
             zoneScene.GetComponent<ShoujiComponent>().ShouJiChapterInfos = m2C_PaiMaiBuyResponse.ShouJiChapterInfos;
-
             zoneScene.GetComponent<AttackComponent>().OnInit();
             await ETTask.CompletedTask;
         }

@@ -344,7 +344,7 @@ namespace ET
 
         public static bool IsHaveHongBao(this UIMainComponent self)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene( self.ZoneScene() );
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             return unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0;
         }
 
@@ -485,11 +485,11 @@ namespace ET
             {
                 long unionId = userInfo.UnionId;
                 UI uifriend = UIHelper.GetUI(self.ZoneScene(), UIType.UIFriend);
-                if (uifriend!=null && unionId > 0)
+                if (uifriend != null && unionId > 0)
                 {
                     uifriend.GetComponent<UIFriendComponent>().OnCreateUnion();
                 }
-                if (uifriend != null && unionId== 0)
+                if (uifriend != null && unionId == 0)
                 {
                     uifriend.GetComponent<UIFriendComponent>().OnLeaveUnion();
                 }
@@ -649,6 +649,11 @@ namespace ET
             //    self.UIMainTask.GameObject.SetActive(page == 0);
             //    self.UIMainTeam.GameObject.SetActive(page == 1);
             //}
+        }
+
+        public static void OnRelinkUpdate(this UIMainComponent self)
+        {
+            self.UIRoleHead.UpdateShowRolePiLao();
         }
 
         public static void initSubUI(this UIMainComponent self)
