@@ -271,20 +271,23 @@ namespace ET
             }
         }
 
-        public static int CanUseSkill(this SkillManagerComponent self,int itemId, int skillId)
+        public static int CanUseSkill(this SkillManagerComponent self,int itemId, int skillId, bool checkCD = true)
         {
             Unit unit = self.GetParent<Unit>();
 
-            SkillCDItem skillCDList = self.GetSkillCD(skillId);
-            if (skillCDList != null )
+            if (checkCD)
             {
-                return ErrorCore.ERR_UseSkillInCD1;
+                SkillCDItem skillCDList = self.GetSkillCD(skillId);
+                if (skillCDList != null)
+                {
+                    return ErrorCore.ERR_UseSkillInCD1;
+                }
+                if (TimeHelper.ServerNow() < self.SkillPublicCDTime)
+                {
+                    return ErrorCore.ERR_UseSkillInCD1;
+                }
             }
-            if (TimeHelper.ServerNow() < self.SkillPublicCDTime)
-            {
-                return ErrorCore.ERR_UseSkillInCD1;
-            }
-
+            
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
             if (!stateComponent.CanUseSkill())
             {

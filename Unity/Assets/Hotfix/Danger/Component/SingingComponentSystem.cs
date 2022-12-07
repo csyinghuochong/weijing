@@ -70,6 +70,12 @@ namespace ET
                 stateComponent.SendUpdateState(2, StateTypeEnum.Singing, "0");
                 self.WaitUseSkill();
             }
+            if (self.Type == 2 && self.PassTime > self.TotalTime)
+            {
+                //吟唱后结束，释放技能
+                self.PassTime = -1;
+                self.TotalTime = -1;
+            }
             if (self.PassTime < 0)
             {
                 TimerComponent.Instance.Remove(ref self.Timer);

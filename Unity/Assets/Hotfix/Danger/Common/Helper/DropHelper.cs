@@ -151,24 +151,22 @@ namespace ET
 			for (int i = 0; i < lvdropList.Length; i++)
 			{
 				string[] lvDropInfos = lvdropList[i].Split(';');
-				if (playerLv < int.Parse(lvDropInfos[0]) || playerLv > int.Parse(lvDropInfos[1]))
+				if (playerLv >= int.Parse(lvDropInfos[0]) && playerLv <= int.Parse(lvDropInfos[1]))
 				{
-					continue;
-				}
+					List<int> dropIds = new List<int>();
+					string[] dropList = lvDropInfos[2].Split(',');
+					for (int d = 0; d < dropList.Length; d++)
+					{
+						dropIds.Add(int.Parse(dropList[d]));
+					}
 
-				List<int> dropIds = new List<int>();
-				string[] dropList = lvDropInfos[2].Split(',');
-				for (int d = 0; d < dropList.Length; d++)
-				{
-					dropIds.Add(int.Parse(dropList[d]));
+					List<RewardItem> dropItemList = new List<RewardItem>();
+					for (int d = 0; d < dropIds.Count; d++)
+					{
+						DropIDToDropItem(dropIds[d], dropItemList, monsterID, dropProValue, all);
+					}
+					return dropItemList;
 				}
-
-				List<RewardItem> dropItemList = new List<RewardItem>();
-				for (int d = 0; d < dropIds.Count; d++)
-				{
-					DropIDToDropItem(dropIds[d], dropItemList, monsterID, dropProValue, all);
-				}
-				return dropItemList;
 			}
 			return null;
 		}

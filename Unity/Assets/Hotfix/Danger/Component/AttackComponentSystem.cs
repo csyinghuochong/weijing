@@ -139,13 +139,7 @@ namespace ET
             self.SetAttackSpeed();
             self.SetComboSkill(timeNow);
             int targetAngle = self.GetTargetAnagle(unit, taretUnit);
-            C2M_SkillCmd skillCmd = unit.GetComponent<SkillManagerComponent>().SkillCmd;
-            skillCmd.SkillID = self.ComboSkillId;
-            skillCmd.ItemId = 0;
-            skillCmd.TargetAngle = targetAngle;
-            skillCmd.TargetID = taretUnit != null ? taretUnit.Id : 0;
-            skillCmd.TargetDistance = 0;
-            unit.GetComponent<SkillManagerComponent>().ImmediateUseSkill(skillCmd).Coroutine();
+            unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId,0,targetAngle, taretUnit != null ? taretUnit.Id : 0, 0,false ).Coroutine();
             self.LastSkillTime = TimeHelper.ClientNow();
             self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
         }
