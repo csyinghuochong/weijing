@@ -83,20 +83,20 @@ namespace ET
         {
             self.OnMoveStart();
             self.FightEffect.SetActive(false);
-            Scene curscene = self.ZoneScene();
-            curscene.GetComponent<SkillIndicatorComponent>().RecoveryEffect();
+            Scene zoneScene = self.ZoneScene();
+            zoneScene.GetComponent<SkillIndicatorComponent>().RecoveryEffect();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit == null)
             {
                 return;
             }
-            LockTargetComponent lockTargetComponent = curscene.GetComponent<LockTargetComponent>();
+            LockTargetComponent lockTargetComponent = zoneScene.GetComponent<LockTargetComponent>();
             long targetId = lockTargetComponent.LockTargetUnit(true);
             Unit targetUnit = unit.GetParent<UnitComponent>().Get(targetId);
             if (targetUnit == null)
             {
                 self.MoveAttackId = 0;
-                curscene.GetComponent<AttackComponent>().AutoAttack_1(unit, null);
+                zoneScene.GetComponent<AttackComponent>().AutoAttack_1(unit, null);
             }
             else
             {

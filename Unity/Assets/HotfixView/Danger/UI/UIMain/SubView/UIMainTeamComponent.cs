@@ -27,7 +27,7 @@ namespace ET
             self.UIMainTeamItem.SetActive(false);
 
             self.Btn_RoseTeam = rc.Get<GameObject>("Btn_RoseTeam");
-            self.Btn_RoseTeam.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_RoseTeam(); });
+            ButtonHelp.AddListenerEx(self.Btn_RoseTeam, self.OnBtn_RoseTeam);
 
             self.TeamUIList.Clear();
         }

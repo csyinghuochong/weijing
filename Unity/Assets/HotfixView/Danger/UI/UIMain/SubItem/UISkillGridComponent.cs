@@ -240,9 +240,9 @@ namespace ET
             
             self.UseSkill = true;
             self.SkillCancelHandler(true);
-            Scene curscene = self.ZoneScene();
-            curscene.GetComponent<SkillIndicatorComponent>().ShowSkillIndicator(self.SkillWuqiConfig);
-            curscene.GetComponent<SkillIndicatorComponent>().OnMouseDown(curscene.GetComponent<LockTargetComponent>().LastLockId);
+            Scene zoneScene = self.ZoneScene();
+            zoneScene.GetComponent<SkillIndicatorComponent>().ShowSkillIndicator(self.SkillWuqiConfig);
+            zoneScene.GetComponent<SkillIndicatorComponent>().OnMouseDown(zoneScene.GetComponent<LockTargetComponent>().LastLockId);
         }
 
         public static int GetTargetAngle(this UISkillGridComponent self)

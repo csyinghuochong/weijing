@@ -600,7 +600,7 @@ namespace ET
             {
                 uI = await UIHelper.Create(self.DomainScene(), UIType.UIHorseNotice);
             }
-            uI.GetComponent<UIHorseNoticeComponent>()?.OnRecvHorseNotice(self.ZoneScene().GetComponent<ChatComponent>().HorseNoticeInfo);
+            uI.GetComponent<UIHorseNoticeComponent>()?.OnRecvHorseNotice(m2C_HorseNoticeInfo);
         }
 
         public static void OnRecvChat(this UIMainComponent self)

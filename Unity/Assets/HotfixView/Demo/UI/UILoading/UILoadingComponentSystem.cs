@@ -1,4 +1,5 @@
 ﻿using libx;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,7 +7,7 @@ using UnityEngine.UI;
 namespace ET
 {
     [ObjectSystem]
-    public class UiLoadingComponentAwakeSystem : AwakeSystem<UILoadingComponent>
+    public class UILoadingComponentAwakeSystem : AwakeSystem<UILoadingComponent>
     {
         public override void Awake(UILoadingComponent self)
         {
@@ -188,10 +189,11 @@ namespace ET
 
         public static async ETTask UpdateMainUI(this UILoadingComponent self, int sceneTypeEnum)
         {
-            UI uimain = UIHelper.GetUI(self.DomainScene(), UIType.UIMain);
+            Scene zoneScene = self.ZoneScene();
+            UI uimain = UIHelper.GetUI(zoneScene, UIType.UIMain);
             if (uimain == null)
             {
-                uimain = await UIHelper.Create(self.DomainScene(), UIType.UIMain);
+                uimain = await UIHelper.Create(zoneScene, UIType.UIMain);
                 Log.ILog.Debug("Create UIMain");
             }
             uimain.GetComponent<UIMainComponent>().AfterEnterScene(sceneTypeEnum);
@@ -203,11 +205,11 @@ namespace ET
                     break;
                 case (int)SceneTypeEnum.PetDungeon:
                 case (int)SceneTypeEnum.PetTianTi:
-                    UIHelper.Create(self.ZoneScene(), UIType.UIPetMain).Coroutine();
+                    UIHelper.Create(zoneScene, UIType.UIPetMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.zero;
                     break;
                 case (int)SceneTypeEnum.Tower:
-                    UIHelper.Create(self.ZoneScene(), UIType.UITowerOpen).Coroutine();
+                    UIHelper.Create(zoneScene, UIType.UITowerOpen).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
                 case (int)SceneTypeEnum.RandomTower:
@@ -215,15 +217,15 @@ namespace ET
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
                 case (int)SceneTypeEnum.Battle:
-                    UIHelper.Create(self.ZoneScene(), UIType.UIBattleMain).Coroutine();
+                    UIHelper.Create(zoneScene, UIType.UIBattleMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
                 case (int)SceneTypeEnum.TeamDungeon:
-                    UIHelper.Create(self.ZoneScene(), UIType.UITeamMain).Coroutine();
+                    UIHelper.Create(zoneScene, UIType.UITeamMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
                 case (int)SceneTypeEnum.TrialDungeon:
-                    UIHelper.Create(self.ZoneScene(), UIType.UITrialMain).Coroutine();
+                    UIHelper.Create(zoneScene, UIType.UITrialMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
                 default:
@@ -254,56 +256,63 @@ namespace ET
     ///     C UIHelper.Create(args.ZoneScene, UIType.UIMain).Coroutine();
     /// </summary>
     [ObjectSystem]
-    public class UiLoadingComponentUpdateSystem : UpdateSystem<UILoadingComponent>
+    public class UILoadingComponentUpdateSystem : UpdateSystem<UILoadingComponent>
     {
         public override  void Update(UILoadingComponent self)
         {
-            SceneManagerComponent sceneManagerComponent = Game.Scene.GetComponent<SceneManagerComponent>();
-            SceneAssetRequest sceneAssetRequest = sceneManagerComponent.SceneAssetRequest;
-            if (sceneAssetRequest == null)
+            try
             {
-                return;
-            }
+                SceneManagerComponent sceneManagerComponent = Game.Scene.GetComponent<SceneManagerComponent>();
+                SceneAssetRequest sceneAssetRequest = sceneManagerComponent.SceneAssetRequest;
+                if (sceneAssetRequest == null)
+                {
+                    return;
+                }
 
-            if (sceneAssetRequest.progress < 1)
-            {
-                self.ShowProgress(sceneAssetRequest.progress - 0.3f);
-                return;
+                if (sceneAssetRequest.progress < 1)
+                {
+                    self.ShowProgress(sceneAssetRequest.progress - 0.3f);
+                    return;
+                }
+                if (!self.StartLoadAssets)
+                {
+                    self.StartLoadAssets = true;
+                    self.StartPreLoadAssets().Coroutine();
+                }
+                if (self.PreLoadAssets.Count > 0)
+                {
+                    self.ShowProgress(0.8f);
+                    return;
+                }
+                else
+                {
+                    self.lodingImg.transform.localScale = new Vector3(1, 1f, 1f);
+                    self.text.text = "100%";
+                }
+                self.PassTime += Time.deltaTime;
+                self.ShowProgress(0.9f + self.PassTime * 0.1f);
+                if (self.PassTime > 0.5f && UnitHelper.LoadingScene)
+                {
+                    UnitHelper.LoadingScene = false;
+                    UnitHelper.ShowAllUnit(self.DomainScene());
+                }
+                if (self.PassTime < 1f)
+                {
+                    return;
+                }
+
+                int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
+                Camera camera = UIComponent.Instance.MainCamera;
+                camera.GetComponent<Camera>().fieldOfView = 50;
+                sceneManagerComponent.SceneAssetRequest = null;
+                self.UpdateMainUI(sceneTypeEnum).Coroutine();
+                Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
+                UIHelper.Remove(self.DomainScene(), UIType.UILoading);
             }
-            if (!self.StartLoadAssets)
+            catch (Exception ex)
             {
-                self.StartLoadAssets = true;
-                self.StartPreLoadAssets().Coroutine();
+                Log.Error("UILoading1: " + ex.ToString());
             }
-            if (self.PreLoadAssets.Count > 0)
-            {
-                self.ShowProgress(0.8f);
-                return;
-            }
-            else
-            {
-                self.lodingImg.transform.localScale = new Vector3(1, 1f, 1f);
-                self.text.text = "100%";
-            }
-            self.PassTime += Time.deltaTime;
-            self.ShowProgress(0.9f + self.PassTime * 0.1f);
-            if (self.PassTime > 0.5f && UnitHelper.LoadingScene)
-            {
-                UnitHelper.LoadingScene = false;
-                UnitHelper.ShowAllUnit(self.DomainScene());
-            }
-            if (self.PassTime < 1f)
-            {
-                return;
-            }
-            
-            int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
-            Camera camera = UIComponent.Instance.MainCamera;
-            camera.GetComponent<Camera>().fieldOfView = 50;
-            sceneManagerComponent.SceneAssetRequest = null;
-            self.UpdateMainUI(sceneTypeEnum).Coroutine() ;
-            Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
-            UIHelper.Remove(self.DomainScene(), UIType.UILoading);
         }
     }
 

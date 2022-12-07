@@ -95,7 +95,7 @@ namespace ET
                 GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
                 if (prefab == null)
                 {
-                    Log.Error($"prefab == null {path}");
+                    Log.Error($"GameObjectPool1 : prefab == null {path}");
                 }
                 gobjet = GameObject.Instantiate(prefab);
             }
