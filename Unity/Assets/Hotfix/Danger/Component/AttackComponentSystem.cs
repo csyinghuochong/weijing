@@ -39,9 +39,11 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float attackSpped = 1f + numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
-            float cdTime = EquipType == (int)ItemEquipType.Knife ? 1000 : 800;
-            cdTime = unit.IsTestSkillID() ? cdTime * 0.6f : cdTime;
-            self.CDTime = (int)(cdTime / attackSpped);
+            self.SkillCDs = EquipType == (int)ItemEquipType.Knife ? new List<int>() { 500, 1000, 1000 } : new List<int>() { 800, 800, 800 };
+            for (int i = 0; i < self.SkillCDs.Count; i++)
+            {
+                self.SkillCDs[i] = (int)(self.SkillCDs[i] / attackSpped);
+            }
         }
 
         public static void SetComboSkill(this AttackComponent self, long timeNow)
@@ -61,6 +63,15 @@ namespace ET
             {
                 self.ComboSkillId = self.RandomGetSkill();
             }
+
+            if (self.ComboSkillId == 60000103 || self.ComboSkillId == 60000203)
+            {
+                self.ComboStartTime = 1250;
+                self.CombatEndTime = 2000;
+            }
+
+            int index = self.SkillList.IndexOf(self.ComboSkillId);
+            self.CDTime = self.SkillCDs[index];
         }
 
         //连击
@@ -137,11 +148,6 @@ namespace ET
             unit.GetComponent<SkillManagerComponent>().ImmediateUseSkill(skillCmd).Coroutine();
             self.LastSkillTime = TimeHelper.ClientNow();
             self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
-            if (self.ComboSkillId == 60000103 || self.ComboSkillId == 60000203)
-            {
-                self.ComboStartTime = 1250;
-                self.CombatEndTime = 2000;
-            }
         }
 
         public static void UpdateAttackDis(this AttackComponent self, int skillid)
@@ -154,8 +160,7 @@ namespace ET
         public static void UpdateSkillInfo(this AttackComponent self, int skillid)
         {
             self.SkillId = skillid;
-            self.SkillConfig = SkillConfigCategory.Instance.Get(skillid);
-            self.ComboSkillId = self.SkillConfig.ComboSkillID;
+            self.ComboSkillId = SkillConfigCategory.Instance.Get(skillid).ComboSkillID;
             self.UpdateAttackDis(skillid);
 
             self.SkillList.Clear();

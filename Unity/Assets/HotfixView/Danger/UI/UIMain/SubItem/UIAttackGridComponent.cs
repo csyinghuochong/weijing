@@ -142,8 +142,7 @@ namespace ET
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
 
-            long cdTime = self.ZoneScene().GetComponent<AttackComponent>().CDTime;
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(cdTime, TimerType.AttackGridTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.AttackGridTimer, self);
             self.OnUpdate();
         }
 
