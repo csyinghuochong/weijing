@@ -4,7 +4,7 @@ namespace ET
     public static class SkillHelp
     {
 
-        public static int GetWeaponSkillID(int skillId, int weapType)
+        public static int GetWeaponSkill(int skillId, int weapType)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             if (skillConfig.WeaponType == 0)

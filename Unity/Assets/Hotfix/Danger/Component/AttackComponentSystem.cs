@@ -139,7 +139,7 @@ namespace ET
         public static void UpdateAttackDis(this AttackComponent self, int skillid)
         {
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkillID(skillid, bagComponent.GetEquipType()));
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(skillid, bagComponent.GetEquipType()));
             self.AttackDistance = (float)skillConfig.SkillRangeSize;
         }
 

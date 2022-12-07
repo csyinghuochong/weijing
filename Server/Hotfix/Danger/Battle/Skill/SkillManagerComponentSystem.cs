@@ -326,9 +326,7 @@ namespace ET
             }
             self.InterruptSing(skillcmd.SkillID);
             unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
-            BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            int EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;
-            int weaponSkill = SkillHelp.GetWeaponSkillID(skillcmd.SkillID, EquipType);
+            int weaponSkill = unit.GetWeaponSkill(skillcmd.SkillID);
             SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
             int tianfuSkill = skillSetComponent != null ? skillSetComponent.GetReplaceSkillId(skillcmd.SkillID) : 0;
             if (tianfuSkill != 0)

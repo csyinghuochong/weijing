@@ -277,10 +277,11 @@ namespace ET
             }
             if (unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillIfo.SkillId) == ErrorCore.ERR_Success)
             {
-                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillIfo.SkillId);
+                int weaponSkill = unit.GetWeaponSkill(skillIfo.SkillId);
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
                 if (!ComHelp.IfNull(skillConfig.SkillAnimation))
                 {
-                    unit.Stop(0);
+                    unit.Stop(-1);
                 }
 
                 List<long> targetIdList = new List<long>();

@@ -177,7 +177,7 @@ namespace ET
             {
                 self.AddSkillCD(skillCmd.SkillID, m2C_SkillCmd);
                 BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-                int weaponSkill = SkillHelp.GetWeaponSkillID(skillCmd.SkillID, bagComponent.GetEquipType());
+                int weaponSkill = SkillHelp.GetWeaponSkill(skillCmd.SkillID, bagComponent.GetEquipType());
                 SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
                 unit.GetComponent<StateComponent>().RigidityEndTime = (long)(skillWeaponConfig.SkillRigidity * 1000) + TimeHelper.ServerNow();
             }
@@ -246,7 +246,7 @@ namespace ET
                 Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
                 return;
             }
-            if (!string.IsNullOrEmpty(skillConfig.SkillAnimation) && skillConfig.SkillAnimation != "0")
+            if (!ComHelp.IfNull(skillConfig.SkillAnimation))
             {
                 unit.Rotation = Quaternion.Euler(0, skillcmd.SkillInfos[0].TargetAngle, 0);
                 EventType.FsmChange.Instance.FsmHandlerType = skillConfig.ComboSkillID > 0 ? 5 : 4;

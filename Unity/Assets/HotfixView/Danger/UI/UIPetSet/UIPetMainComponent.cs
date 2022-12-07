@@ -47,6 +47,8 @@ namespace ET
         public float BeginTime;
 
         public Dictionary<long, GameObject> HpList= new Dictionary<long, GameObject>();
+
+        public M2C_FubenSettlement M2C_FubenSettlement;
     }
 
     [ObjectSystem]
@@ -93,6 +95,7 @@ namespace ET
             self.Image_2.SetActive(false);
             self.Image_1.SetActive(false);
 
+            self.M2C_FubenSettlement = null;
             self.CountdownTime = rc.Get<GameObject>("CountdownTime");
 
             //DataUpdateComponent.Instance.RemoveListener(DataType.UnitHpUpdate, self);
@@ -103,6 +106,12 @@ namespace ET
 
     public static class UIPetMainComponentSystem
     {
+
+        public static void OnFubenResult(this UIPetMainComponent self, M2C_FubenSettlement m2C_FubenSettlement)
+        {
+            self.M2C_FubenSettlement = m2C_FubenSettlement;
+
+        }
 
         public static void OnUnitHpUpdate(this UIPetMainComponent self, Unit unit)
         {
@@ -211,6 +220,10 @@ namespace ET
             for (int i = cdTime; i >= 0; i--)
             {
                 if (instanceId != self.InstanceId)
+                {
+                    return;
+                }
+                if (self.M2C_FubenSettlement != null)
                 {
                     return;
                 }

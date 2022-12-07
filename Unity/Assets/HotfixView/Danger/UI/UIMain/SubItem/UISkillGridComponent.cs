@@ -298,7 +298,7 @@ namespace ET
             if (skillpro.SkillSetType == (int)SkillSetEnum.Skill)
             {
                 BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkillID(skillpro.SkillID, bagComponent.GetEquipType()));
+                SkillConfig skillConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(skillpro.SkillID, bagComponent.GetEquipType()));
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillConfig.SkillIcon);
                 self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
 

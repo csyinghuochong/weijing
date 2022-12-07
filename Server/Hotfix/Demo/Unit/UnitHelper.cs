@@ -301,6 +301,13 @@ namespace ET
             return self.GetComponent<UserInfoComponent>().UserInfo.RobotId > 0;
         }
 
+        public static int GetWeaponSkill(this Unit self, int skillId)
+        {
+            BagComponent bagComponent = self.GetComponent<BagComponent>();
+            int EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;
+            return SkillHelp.GetWeaponSkill(skillId, EquipType);
+        }
+
         public static void SetBornPosition(this Unit self, Vector3 vector3)
         {
             NumericComponent numericComponent = self.GetComponent<NumericComponent>();

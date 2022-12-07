@@ -106,7 +106,7 @@ namespace ET
             //表现
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             int itemEquipType = bagComponent.GetEquipType();
-            SkillConfig skillWuqiConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkillID(self.SkillPro.SkillID, itemEquipType));
+            SkillConfig skillWuqiConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(self.SkillPro.SkillID, itemEquipType));
 
             //逻辑
             SkillConfig skillConfig_base = SkillConfigCategory.Instance.Get(self.SkillPro.SkillID);
@@ -175,7 +175,7 @@ namespace ET
             self.Lab_SkillLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级 ") + skillBaseConfig.SkillLv.ToString();
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkillID(self.SkillPro.SkillID, bagComponent.GetEquipType()));
+            SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(self.SkillPro.SkillID, bagComponent.GetEquipType()));
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, skillWeaponConfig.SkillIcon);
             self.Lab_SkillName.GetComponent<Text>().text = skillWeaponConfig.SkillName;
             self.Img_SkillIcon.GetComponent<Image>().sprite = sp;

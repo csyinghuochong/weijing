@@ -35,6 +35,7 @@ namespace ET
                     {
                         args.Scene.GetComponent<PetComponent>().OnPassPetFuben(mapComponent.SonSceneId, star);
                     }
+                    UIHelper.GetUI(args.Scene, UIType.UIPetMain).GetComponent<UIPetMainComponent>().OnFubenResult(args.m2C_FubenSettlement);
                     UI ui = await UIHelper.Create(args.Scene, UIType.UIPetFubenResult);
                     ui.GetComponent<UIPetFubenResultComponent>().OnUpdateUI(args.m2C_FubenSettlement);
                     break;
@@ -43,6 +44,7 @@ namespace ET
                     ui.GetComponent<UITowerOpenComponent>().OnFubenResult(args.m2C_FubenSettlement).Coroutine();
                     break;
                 case SceneTypeEnum.PetTianTi:
+                    UIHelper.GetUI(args.Scene, UIType.UIPetMain).GetComponent<UIPetMainComponent>().OnFubenResult ( args.m2C_FubenSettlement);
                     ui = await UIHelper.Create(args.Scene, UIType.UIPetFubenResult);
                     ui.GetComponent<UIPetFubenResultComponent>().OnUpdateUI(args.m2C_FubenSettlement);
                     break;
