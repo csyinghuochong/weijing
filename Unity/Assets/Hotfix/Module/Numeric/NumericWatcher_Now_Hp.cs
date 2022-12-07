@@ -47,8 +47,7 @@
 				if (player != null)
 				{
 					NumericComponent numericComponent = player.GetComponent<NumericComponent>();
-					numericComponent.ApplyValue((int)NumericType.Now_Damage,
-						numericComponent.GetAsInt(NumericType.Now_Damage) + (args.OldValue - args.NewValue));
+					numericComponent.ApplyChange(null, NumericType.Now_Damage,  (args.OldValue - args.NewValue), 0) ;
 				}
 			}
 #else
