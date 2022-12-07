@@ -192,8 +192,7 @@ namespace ET
                 if (appraisalItem != 0)
                 {
                     string jiandingName = ItemConfigCategory.Instance.Get(appraisalItem).ItemName;
-                    string yanseStr = UICommonHelper.QualityReturnColor(4).ToString();/// ColorUtility.ToHtmlStringRGB(UICommonHelper.QualityReturnColor(4));
-                    self.Obj_Lab_ItemCostDes.GetComponent<Text>().text = $"消耗<color=#{yanseStr}>{jiandingName}</color>进行鉴定";
+                    self.Obj_Lab_ItemCostDes.GetComponent<Text>().text = $"消耗<color=#EA8EF9>{jiandingName}</color>进行鉴定";
                 }
 
             }

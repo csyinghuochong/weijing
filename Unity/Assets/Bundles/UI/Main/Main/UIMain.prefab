@@ -3865,7 +3865,7 @@ MonoBehaviour:
   moveTypeEnum: 1
   moveDistance: -1000
   isLoop: 0
-  MoveToTime: 0.3
+  MoveToTime: 0.15
 --- !u!1 &1246621892897331300
 GameObject:
   m_ObjectHideFlags: 0
@@ -7498,7 +7498,7 @@ MonoBehaviour:
   moveTypeEnum: 1
   moveDistance: 1000
   isLoop: 0
-  MoveToTime: 0.3
+  MoveToTime: 0.15
 --- !u!1 &2483128259453339450
 GameObject:
   m_ObjectHideFlags: 0
@@ -13699,7 +13699,7 @@ MonoBehaviour:
   moveTypeEnum: 2
   moveDistance: -500
   isLoop: 0
-  MoveToTime: 0.3
+  MoveToTime: 0.15
 --- !u!1 &3055922815969012199
 GameObject:
   m_ObjectHideFlags: 0
@@ -19317,7 +19317,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -46, y: 72}
-  m_SizeDelta: {x: 80, y: 80}
+  m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3055922817029534676
 CanvasRenderer:
@@ -40287,7 +40287,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a2742f41e77bb7a41a449afbafdc3f6f, type: 3}
-    m_FontSize: 25
+    m_FontSize: 30
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 2
