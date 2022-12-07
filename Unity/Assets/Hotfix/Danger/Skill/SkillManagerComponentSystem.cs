@@ -287,7 +287,7 @@ namespace ET
                     return ErrorCore.ERR_UseSkillInCD1;
                 }
             }
-            
+
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
             if (!stateComponent.CanUseSkill())
             {

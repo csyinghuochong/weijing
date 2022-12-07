@@ -142,7 +142,7 @@ namespace ET
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
 
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.AttackGridTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.AttackGridTimer, self);
             self.OnUpdate();
         }
 
