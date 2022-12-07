@@ -43,8 +43,8 @@ namespace ET
         public static void OnUpdateDamage(this UIMainTeamItemComponent self, long value)
         {
             string str = value.ToString();
-            if (value >= 1000) {
-                str = ((float)value / 1000.0f).ToString("F2") + "千";
+            if (value >= 10000) {
+                str = ((float)value / 10000.0f).ToString("F2") + "万";
             }
             self.DamageValue.GetComponent<Text>().text = "输出:" + str;
         }

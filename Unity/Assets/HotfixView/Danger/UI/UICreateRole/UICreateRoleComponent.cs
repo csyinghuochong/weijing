@@ -16,6 +16,8 @@ namespace ET
         public GameObject FunctionSetBtn;
         public GameObject BtnCreateRole;
         public GameObject InputCreateRoleName;
+        public GameObject OccShow_ZhanShi;
+        public GameObject OccShow_FaShi;
 
         public UI uIPageView;
         public List<int> OccList;
@@ -42,6 +44,9 @@ namespace ET
             self.ButtonLeft = rc.Get<GameObject>("ButtonLeft");
             self.ButtonRight.GetComponent<Button>().onClick.AddListener(() => { self.OnClickSelectButton(1); });
             self.ButtonLeft.GetComponent<Button>().onClick.AddListener(() => { self.OnClickSelectButton(-1); });
+
+            self.OccShow_ZhanShi = rc.Get<GameObject>("OccShow_ZhanShi");
+            self.OccShow_FaShi = rc.Get<GameObject>("OccShow_FaShi");
 
             self.Text_Desc = rc.Get<GameObject>("Text_Desc");
             self.BtnRandomName = rc.Get<GameObject>("BtnRandomName");
@@ -182,6 +187,20 @@ namespace ET
             for (int i = occupationConfig.InitSkillID.Length; i < self.SkillUIList.Count; i++)
             {
                 self.SkillUIList[i].GameObject.SetActive(false);
+            }
+
+            //显示职业介绍
+            self.OccShow_ZhanShi.SetActive(false);
+            self.OccShow_FaShi.SetActive(false);
+            Log.Info("self.Occ = " + self.Occ);
+            if (self.Occ == 1) 
+            {
+                self.OccShow_ZhanShi.SetActive(true);
+            }
+
+            if (self.Occ == 2)
+            {
+                self.OccShow_FaShi.SetActive(true);
             }
         }
 

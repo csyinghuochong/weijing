@@ -51,6 +51,8 @@ namespace ET
             self.ImageIcon.GetComponent<Image>().sprite = sp;
             self.SkillAtlas = SkillAtlas;
             self.addTip = addtip;
+
+            self.TextSkillName.GetComponent<Text>().text = skillConfig.SkillName;
         }
 
         public static async ETTask BeginDrag(this UICommonSkillItemComponent self, PointerEventData pdata)
