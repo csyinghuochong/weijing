@@ -50,7 +50,7 @@ namespace ET
         public override void Awake(UIItemAppraisalTipsComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-
+      
             self.ImageQualityLine = rc.Get<GameObject>("ImageQualityLine");
             self.ImageQualityBg = rc.Get<GameObject>("ImageQualityBg");
             self.Obj_Btn_XieXiaGemSet = rc.Get<GameObject>("Btn_XieXiaGem");
@@ -192,7 +192,7 @@ namespace ET
                 if (appraisalItem != 0)
                 {
                     string jiandingName = ItemConfigCategory.Instance.Get(appraisalItem).ItemName;
-                    string yanseStr = ColorUtility.ToHtmlStringRGB(UICommonHelper.QualityReturnColor(4));
+                    string yanseStr = UICommonHelper.QualityReturnColor(4).ToString();/// ColorUtility.ToHtmlStringRGB(UICommonHelper.QualityReturnColor(4));
                     self.Obj_Lab_ItemCostDes.GetComponent<Text>().text = $"消耗<color=#{yanseStr}>{jiandingName}</color>进行鉴定";
                 }
 
