@@ -131,7 +131,7 @@ namespace ET
 
         public static void AutoAttack_1(this AttackComponent self, Unit unit, Unit taretUnit)
         {
-            long timeNow = TimeHelper.ClientNow();
+            long timeNow = TimeHelper.ServerNow();
             if (timeNow <= self.CDEndTime)
             {
                 return;
