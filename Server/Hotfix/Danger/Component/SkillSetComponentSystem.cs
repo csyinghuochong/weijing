@@ -1,4 +1,5 @@
 ﻿
+using System;
 using System.Collections.Generic;
 
 namespace ET
@@ -393,15 +394,22 @@ namespace ET
 					{
 						continue;
 					}
-					int key = int.Parse(properInfo[2]);
-					float value = float.Parse(properInfo[3]);
-					if (HideProList.ContainsKey(key))
+					try
 					{
-						HideProList[key] += value;
+						int key = int.Parse(properInfo[2]);
+						float value = float.Parse(properInfo[3]);
+						if (HideProList.ContainsKey(key))
+						{
+							HideProList[key] += value;
+						}
+						else
+						{
+							HideProList.Add(key, value);
+						}
 					}
-					else
+					catch (Exception ex)
 					{
-						HideProList.Add(key, value);
+						Log.Error($"GetBuffPropertyAdd: {tianfuids[i]}: " + ex.ToString());
 					}
 				}
 			}
