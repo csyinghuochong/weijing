@@ -327,7 +327,7 @@ namespace ET
                 self.Animator.Play(animation);
             }
 
-            self.WaitIdleTime = TimeHelper.ClientNow() + 1000;
+            self.WaitIdleTime = TimeHelper.ClientNow() + 1200;
             TimerComponent.Instance.Remove(ref self.Timer);
             self.BeginTimer();
         }
