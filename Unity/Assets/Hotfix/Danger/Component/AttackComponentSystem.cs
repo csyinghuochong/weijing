@@ -39,7 +39,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float attackSpped = 1f + numericComponent.GetAsFloat(NumericType.Now_ActSpeedPro);
-            self.SkillCDs = EquipType == (int)ItemEquipType.Knife ? new List<int>() { 500, 1000, 1000 } : new List<int>() { 800, 800, 800 };
+            self.SkillCDs = EquipType == (int)ItemEquipType.Knife ? new List<int>() { 500, 600, 600 } : new List<int>() { 800, 800, 800 };
             for (int i = 0; i < self.SkillCDs.Count; i++)
             {
                 self.SkillCDs[i] = (int)(self.SkillCDs[i] / attackSpped);
@@ -140,8 +140,8 @@ namespace ET
             self.SetComboSkill(timeNow);
             int targetAngle = self.GetTargetAnagle(unit, taretUnit);
             unit.GetComponent<SkillManagerComponent>().SendUseSkill(self.ComboSkillId,0,targetAngle, taretUnit != null ? taretUnit.Id : 0, 0,false ).Coroutine();
-            self.LastSkillTime = TimeHelper.ClientNow();
-            self.CDEndTime = TimeHelper.ClientNow() + self.CDTime;
+            self.LastSkillTime = TimeHelper.ServerNow();
+            self.CDEndTime = TimeHelper.ServerNow() + self.CDTime;
         }
 
         public static void UpdateAttackDis(this AttackComponent self, int skillid)

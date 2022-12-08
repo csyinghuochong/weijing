@@ -119,6 +119,19 @@ namespace ET
 			self.MontionSpeed = motionSpeed;
 		}
 
+		public static string CurrentAnimation(this AnimatorComponent self)
+		{
+			AnimatorClipInfo animatorClipInfo = self.Animator.GetCurrentAnimatorClipInfo(0)[0];
+			Log.Debug($"animatorClipInfo.clip.name： {animatorClipInfo.clip.name}");
+			return animatorClipInfo.clip.name;
+		}
+
+		public static float CurrentSateTime(this AnimatorComponent self)
+		{
+			AnimatorStateInfo animatorStateInfo = self.Animator.GetCurrentAnimatorStateInfo(0);
+			return animatorStateInfo.normalizedTime;
+		}
+
 		public static void Play(this AnimatorComponent self, string motionType, float motionSpeed = 1f)
 		{
 			//if (!self.HasParameter(motionType.ToString()))

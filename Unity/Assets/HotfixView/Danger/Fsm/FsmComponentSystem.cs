@@ -271,6 +271,8 @@ namespace ET
 
             string[] animations = paramss.Split('@');
             string animation = animations[0];
+            //1:剑
+            //2:刀
             if (EquipType != 2)
             {
                 if (animation == "Act_1")
@@ -286,7 +288,33 @@ namespace ET
                     animation = "Act_13";
                 }
             }
-            self.Animator.Play(animation);
+
+            Log.ILog.Debug($"FsmComponent  {animations[0]}  {TimeHelper.ServerNow()}");
+            //Log.ILog.Debug($"FsmComponent  {self.Animator.CurrentSateTime()}");
+
+            AnimatorStateInfo animatorStateInfo = self.Animator.Animator.GetCurrentAnimatorStateInfo(0);
+            AnimatorClipInfo animatorClipInfo = self.Animator.Animator.GetCurrentAnimatorClipInfo(0)[0];
+            if (( animatorStateInfo.IsName("Act_1")
+                || animatorStateInfo.IsName("Act_2")
+                || animatorStateInfo.IsName("Act_3")
+                || animatorStateInfo.IsName("Act_11")
+                || animatorStateInfo.IsName("Act_12")
+                || animatorStateInfo.IsName("Act_13") && self.Animator.CurrentSateTime() < 0.67f)) //&& !self.Animator.Animator.IsInTransition(0))// )
+            {
+                self.Animator.SetBoolValue("Act_1", false);
+                self.Animator.SetBoolValue("Act_2", false);
+                self.Animator.SetBoolValue("Act_3", false);
+                Log.ILog.Debug($"FsmComponent  SetBoolValue {animations[0]}");
+                self.Animator.SetBoolValue(animations[0], true);
+            }
+            else
+            {
+                self.Animator.SetBoolValue("Act_1", false);
+                self.Animator.SetBoolValue("Act_2", false);
+                self.Animator.SetBoolValue("Act_3", false);
+                Log.ILog.Debug($"FsmComponent  Play          {animation}");
+                self.Animator.Play(animation);
+            }
         }
 
         public static void ClearnAnimator(this FsmComponent self)
