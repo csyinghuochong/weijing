@@ -41,7 +41,7 @@ namespace ET
         public long Timer;
 
         public List<GameObject> AllPointList = new List<GameObject>();
-        public Vector3 NoVector3 = new Vector3(-2000, -2000, 0);
+        public Vector3 NoVector3 = new Vector3(-10000, -10000, 0);
     }
 
     [ObjectSystem]

@@ -35,6 +35,7 @@ namespace ET
         public UIFangunSkillComponent UIFangunComponet;
         public List<UISkillGridComponent> UISkillGirdList = new List<UISkillGridComponent>();
         public long Timer;
+        public float LockTime;
     }
 
     [ObjectSystem]
@@ -141,8 +142,16 @@ namespace ET
         public static void OnLockTargetUnit(this UIMainSkillComponent self)
         {
             LockTargetComponent lockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
-            lockTargetComponent.LockTargetUnit();
-
+            if (Time.time - self.LockTime > 5)
+            {
+                lockTargetComponent.LastLockId = 0;
+                lockTargetComponent.LockTargetUnit(true);
+                self.LockTime = Time.time;
+            }
+            else
+            {
+                lockTargetComponent.LockTargetUnit();
+            }
         }
 
         public static void ShowCancelButton(this UIMainSkillComponent self, bool show)
