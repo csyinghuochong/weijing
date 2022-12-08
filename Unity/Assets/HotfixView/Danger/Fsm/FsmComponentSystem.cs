@@ -30,6 +30,7 @@ namespace ET
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             bool idle = moveComponent == null || moveComponent.IsArrived();
             self.ChangeState(idle ? FsmStateEnum.FsmIdleState : FsmStateEnum.FsmRunState, "");
+            self.WaitIdleTime = 0;
         }
     }
 
@@ -83,6 +84,12 @@ namespace ET
                 self.SetIdleState();
                 self.EndTimer();
             }
+            if (self.WaitIdleTime > 0 && TimeHelper.ClientNow() >= self.WaitIdleTime)
+            {
+                self.WaitIdleTime = 0;
+                self.SetIdleState();
+                self.EndTimer();
+            }
         }
 
         public static void EndTimer(this FsmComponent self)
@@ -113,6 +120,8 @@ namespace ET
                     }
                     break;
                 case FsmStateEnum.FsmComboState:
+                    self.WaitIdleTime =0;
+                    TimerComponent.Instance.Remove(ref self.Timer);
                     break;
                 case FsmStateEnum.FsmDeathState:
                     self.Animator.SetBoolValue("Death", false);
@@ -299,9 +308,9 @@ namespace ET
                 || animatorStateInfo.IsName("Act_3")
                 || animatorStateInfo.IsName("Act_11")
                 || animatorStateInfo.IsName("Act_12")
-                || animatorStateInfo.IsName("Act_13") )
-                && !self.Animator.Animator.IsInTransition(0)
-                && self.Animator.CurrentSateTime() < 0.9f) //&& !self.Animator.Animator.IsInTransition(0))// )
+                || animatorStateInfo.IsName("Act_13") ) )
+                //&& !self.Animator.Animator.IsInTransition(0)
+               // && self.Animator.CurrentSateTime() < 0.9f) //&& !self.Animator.Animator.IsInTransition(0))// )
             {
                 self.Animator.SetBoolValue("Act_1", false);
                 self.Animator.SetBoolValue("Act_2", false);
@@ -317,6 +326,10 @@ namespace ET
                 Log.ILog.Debug($"FsmComponent  Play          {animation}");
                 self.Animator.Play(animation);
             }
+
+            self.WaitIdleTime = TimeHelper.ClientNow() + 1000;
+            TimerComponent.Instance.Remove(ref self.Timer);
+            self.BeginTimer();
         }
 
         public static void ClearnAnimator(this FsmComponent self)

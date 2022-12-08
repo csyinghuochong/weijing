@@ -12,5 +12,7 @@ namespace ET
         public AnimatorComponent Animator;
 
         public long Timer;
+
+        public long WaitIdleTime;
     }
 }
