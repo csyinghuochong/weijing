@@ -188,12 +188,11 @@ namespace ET
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Luck, "幸运值", "", 1));
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_Speed, "移动速度", "", 2));
             
-            /*
             self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_CriLv, "暴击等级", "", 1));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ResLv, "韧性等级", "", 1));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_HitLv, "命中等级", "", 1));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DodgeLv, "闪避等级", "", 1));
-            */
+
 
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeAddPro, "物理伤害加成", "", 2));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDamgeAddPro, "魔法伤害加成", "", 2));
@@ -342,6 +341,27 @@ namespace ET
                 if (showList.Type == 2)
                 {
                     float value = numericComponent.GetAsFloat(showList.numericType) * 100.0f;
+
+                    if (showList.numericType == NumericType.Now_Cri)
+                    {
+                        value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_CriLv),self.UserInfoComponent.UserInfo.Lv) * 100f;
+                    }
+
+                    if (showList.numericType == NumericType.Now_Res)
+                    {
+                        value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_ResLv), self.UserInfoComponent.UserInfo.Lv) * 100f;
+                    }
+
+                    if (showList.numericType == NumericType.Now_Hit)
+                    {
+                        value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_HitLv), self.UserInfoComponent.UserInfo.Lv) * 100f;
+                    }
+
+                    if (showList.numericType == NumericType.Now_Dodge)
+                    {
+                        value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_DodgeLv), self.UserInfoComponent.UserInfo.Lv) * 100f;
+                    }
+
                     if (value.ToString().Contains("."))
                     {
                         rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = value.ToString("F2") + "%";
@@ -371,6 +391,7 @@ namespace ET
                     if (showList.Type == 2)
                     {
                         float value = numericComponent.GetAsFloat(showList.numericType) * 100.0f;
+
                         if (value.ToString().Contains("."))
                         {
                             rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = value.ToString("F2") + "%";

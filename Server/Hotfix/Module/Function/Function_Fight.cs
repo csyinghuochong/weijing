@@ -215,28 +215,34 @@ namespace ET
             float addHitPro = numericComponentAttack.GetAsFloat(NumericType.Now_Hit);
             float addDodgePro = numericComponentDefend.GetAsFloat(NumericType.Now_Dodge);
 
+            float addHitLvPro = LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_HitLv), defendUnitLv);
+            float addDodgeLvPro = LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_DodgeLv), attackUnitLv);
+
+            addHitPro += addHitLvPro;
+            addDodgePro += addDodgeLvPro;
+
             //等级差命中
-            float addHitLvPro = (attackUnitLv - defendUnitLv) * 0.03f;
-            if (addHitLvPro <= 0) {
-                addHitLvPro = 0;
+            float HitLvPro = (attackUnitLv - defendUnitLv) * 0.03f;
+            if (HitLvPro <= 0) {
+                HitLvPro = 0;
             }
-            if (addHitLvPro >= 0.1f) {
-                addHitLvPro = 0.1f;
+            if (HitLvPro >= 0.1f) {
+                HitLvPro = 0.1f;
             }
 
             //等级差闪避
-            float addDodgeLvPro = (attackUnitLv - defendUnitLv) * 0.03f;
-            if (addDodgeLvPro <= 0)
+            float DodgeLvPro = (attackUnitLv - defendUnitLv) * 0.03f;
+            if (DodgeLvPro <= 0)
             {
-                addDodgeLvPro = 0;
+                DodgeLvPro = 0;
             }
-            if (addDodgeLvPro >= 0.1f)
+            if (DodgeLvPro >= 0.1f)
             {
-                addDodgeLvPro = 0.1f;
+                DodgeLvPro = 0.1f;
             }
 
             float initHitPro = 0.9f;
-            float HitPro = initHitPro + addHitLvPro + addHitPro - (addDodgePro + addDodgeLvPro);
+            float HitPro = initHitPro + HitLvPro + addHitPro - (addDodgePro + DodgeLvPro);
             //最低命中
             if (HitPro <= 0.75f) {
                 HitPro = 0.75f;
@@ -480,6 +486,11 @@ namespace ET
                     float addCriPro = numericComponentAttack.GetAsFloat(NumericType.Now_Cri);
                     float addResPro = numericComponentDefend.GetAsFloat(NumericType.Now_Res);
 
+                    float addCriLvPro = LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_CriLv), defendUnitLv);
+                    float addResLvPro = LvProChange(numericComponentAttack.GetAsLong(NumericType.Now_ResLv), attackUnitLv);
+
+                    addCriPro += addCriLvPro;
+                    addResPro += addResLvPro;
 
                     float CriPro = addCriPro - addResPro;
 
@@ -572,7 +583,7 @@ namespace ET
 
       
         //暴击等级等属性转换成实际暴击率的方法
-        private float LvProChange(long value, int lv) {
+        public static float LvProChange(long value, int lv) {
             float proValue = (float)value / (float)(7500 + lv * 250);
             if (proValue < 0) {
                 proValue = 0;
@@ -766,8 +777,6 @@ namespace ET
                         AddUpdateProDicList(hideproCof.PropertyType, hidePro.HideValue, UpdateProDicList);
                     }
                 }
-
-                
 
                 //存储附魔属性
                 if (userBagInfo.FumoProLists != null)
@@ -1194,6 +1203,10 @@ namespace ET
                 AddUpdateProDicList((int)NumericType.Base_ResLv_Base, Constitution_value * 5, UpdateProDicList);
             }
 
+            //缓存等级BUFF属性
+            AddUpdateProDicList((int)NumericType.Now_CriLv, numericComponent.GetAsLong(NumericType.Extra_Buff_CriLv_Add), UpdateProDicList);
+            //AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, Constitution_value * 80, UpdateProDicList);
+
             //更新属性
             foreach (int key in UpdateProDicList.Keys)
             {
@@ -1302,11 +1315,12 @@ namespace ET
             int zhanliValue =(int)(ShiLi_Act * (1 + ShiLi_ActPro) + ShiLi_Def * (1 + ShiLi_DefPro) + (ShiLi_Hp * 0.1f) * (1 + ShiLi_HpPro)) + roleLv * 25 + (int)proLvAdd;
 
             //更新战力
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(  UserDataType.Combat, zhanliValue.ToString(), notice);
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Combat, zhanliValue.ToString(), notice);
 
 
             //暴击等级等属性二次换算,因为不能写在前面,要不升级会降战力
             //缓存列表
+            /*
             Dictionary<int, long> ProLvDicList = new Dictionary<int, long>();
 
             float criProAdd = LvProChange(criLv, roleLv);
@@ -1315,7 +1329,9 @@ namespace ET
             float resProAdd = LvProChange(resLv, roleLv);
 
             float skillDamgeProAdd = LvProChange(skillAddLv, roleLv);
-            
+
+            long cripro = numericComponent.GetAsLong(NumericType.Now_Cri);
+
             AddUpdateProDicList((int)NumericType.Now_Cri, (int)(criProAdd * 10000), ProLvDicList);
             AddUpdateProDicList((int)NumericType.Now_Hit, (int)(hitProAdd * 10000), ProLvDicList);
             AddUpdateProDicList((int)NumericType.Now_Dodge, (int)(dogeProAdd * 10000), ProLvDicList);
@@ -1326,11 +1342,11 @@ namespace ET
             //更新属性
             foreach (int key in ProLvDicList.Keys)
             {
-                long setValue = numericComponent.GetAsLong(key) + ProLvDicList[key];
-                //Log.Info("key = " + key + ":" + setValue);
-                numericComponent.Set(key, setValue, notice);
+                //long setValue = numericComponent.GetAsLong(key) + ProLvDicList[key];
+                //Log.Info("numericComponent.GetAsLong(key) = " + numericComponent.GetAsLong(key) + ":ProLvDicList[key] = " + ProLvDicList[key] + ";setValue = " + setValue);
+                //numericComponent.Update(key, ProLvDicList[key], notice);
             }
-
+            */
         }
     }
 

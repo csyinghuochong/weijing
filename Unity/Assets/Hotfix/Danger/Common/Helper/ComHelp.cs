@@ -1094,6 +1094,23 @@ namespace ET
             return renturnInt;
         }
 
+
+        //暴击等级等属性转换成实际暴击率的方法
+        public static float LvProChange(long value, int lv)
+        {
+            float proValue = (float)value / (float)(7500 + lv * 250);
+            if (proValue < 0)
+            {
+                proValue = 0;
+            }
+            if (proValue > 0.75f)
+            {
+                proValue = 0.75f;
+            }
+            return proValue;
+        }
+
+
         /// <summary>
         /// 根据出生日期，计算精确的年龄
         /// </summary>

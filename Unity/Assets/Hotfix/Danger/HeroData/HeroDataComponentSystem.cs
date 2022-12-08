@@ -481,6 +481,44 @@ namespace ET
             numericComponent.Set((int)NumericType.Now_Hp,  numericComponent.GetAsInt(NumericType.Now_MaxHp));
             //Log.Debug("初始化当前怪物血量:" + numericComponent.GetAsLong(NumericType.Now_Hp));
         }
+
+        /// <summary>
+        /// 更新当前角色身上的buff信息, 更新基础属性
+        /// </summary>
+        public static void BuffPropertyUpdate_Long(this HeroDataComponent self, int numericType, long NumericTypeValue)
+        {
+
+            Unit nowUnit = self.GetParent<Unit>();
+            NumericComponent numericComponent = nowUnit.GetComponent<NumericComponent>();
+            long newvalue = numericComponent.GetAsLong(numericType) + NumericTypeValue;
+            numericComponent.Set(numericType, newvalue);
+
+            /*
+            //获取是暴击等级等二次属性 需要二次计算
+            if ((int)(numericType / 100) == NumericType.Now_CriLv)
+            {
+
+                long criLv = numericComponent.GetAsLong(NumericType.Now_CriLv);
+                long hitLv = numericComponent.GetAsLong(NumericType.Now_HitLv);
+                long dodgeLv = numericComponent.GetAsLong(NumericType.Now_DodgeLv);
+                long resLv = numericComponent.GetAsLong(NumericType.Now_ResLv);
+
+                Function_Fight.GetInstance().UnitUpdateProperty_Base(nowUnit);
+
+                //float criProAdd = Function_Fight.LvProChange(criLv, nowUnit.GetComponent<UserInfoComponent>().UserInfo.Lv);
+                //numericComponent.Set(NumericType.Now_Cri, (long)(criLv * 10000) + numericComponent.GetAsLong(NumericType.Now_Cri), true);
+            }
+            */
+        }
+
+        public static void BuffPropertyUpdate_Float(this HeroDataComponent self, int numericType, float NumericTypeValue)
+        {
+            Unit nowUnit = self.GetParent<Unit>();
+            NumericComponent numericComponent = nowUnit.GetComponent<NumericComponent>();
+            float newvalue = numericComponent.GetAsFloat(numericType) + NumericTypeValue;
+            numericComponent.Set(numericType, newvalue);
+        }
+
 #else
 
         public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
@@ -501,23 +539,8 @@ namespace ET
             }
         }
 #endif
-        /// <summary>
-        /// 更新当前角色身上的buff信息, 更新基础属性
-        /// </summary>
-        public static void BuffPropertyUpdate_Long(this HeroDataComponent self, int numericType ,long NumericTypeValue) {
 
-            Unit nowUnit = self.GetParent<Unit>();
-            NumericComponent numericComponent = nowUnit.GetComponent<NumericComponent>();
-            long newvalue = numericComponent.GetAsLong(numericType) + NumericTypeValue;
-            numericComponent.Set(numericType, newvalue);
-        }
 
-        public static void BuffPropertyUpdate_Float(this HeroDataComponent self, int numericType, float NumericTypeValue)
-        {
-            Unit nowUnit = self.GetParent<Unit>();
-            NumericComponent numericComponent = nowUnit.GetComponent<NumericComponent>();
-            float newvalue = numericComponent.GetAsFloat(numericType) + NumericTypeValue;
-            numericComponent.Set(numericType, newvalue);
-        }
+
     }
 }
