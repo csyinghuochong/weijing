@@ -95,9 +95,14 @@ namespace ET
                 self.GetParent<Unit>().Stop(0);        //停止当前移动
             }
 #else
-            if (!self.CanMove())
+            Unit unit = self.GetParent<Unit>();
+            if (unit.MainHero && !self.CanMove())
             {
                 self.SilenceCheckTime = TimeHelper.ServerNow();
+            }
+            if (unit.MainHero && (nowStateType == StateTypeEnum.Dizziness || nowStateType == StateTypeEnum.Shackle))
+            {
+                self.ZoneScene().GetComponent<AttackComponent>().RemoveTimer();
             }
 #endif
         }
@@ -117,7 +122,7 @@ namespace ET
                 return;
             MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateOperateType = 2, StateTime = 0 });
 #else
-            if (self.CanMove())
+            if (self.CanMove() && self.GetParent<Unit>().MainHero)
             {
                 self.SilenceCheckTime = 0;
             }

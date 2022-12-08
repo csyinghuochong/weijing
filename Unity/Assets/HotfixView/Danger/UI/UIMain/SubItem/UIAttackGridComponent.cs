@@ -1,26 +1,8 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 
 namespace ET
 {
-
-    [Timer(TimerType.AttackGridTimer)]
-    public class AttackGridTimer : ATimer<UIAttackGridComponent>
-    {
-        public override void Run(UIAttackGridComponent self)
-        {
-            try
-            {
-                self.OnUpdate();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
-
     public class UIAttackGridComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject Btn_SkillStart;
@@ -29,8 +11,6 @@ namespace ET
 
         public bool InitEffect;
         public long MoveAttackId;
-
-        public long Timer;
 
         public AttackComponent AttackComponent;
     }
@@ -49,7 +29,7 @@ namespace ET
     {
         public override void Destroy(UIAttackGridComponent self)
         {
-            TimerComponent.Instance?.Remove(ref self.Timer);
+
         }
     }
 
@@ -59,7 +39,6 @@ namespace ET
         public static void Awake(this UIAttackGridComponent self, GameObject gameObject)
         {
             self.InitEffect = false;
-            self.MoveAttackId = 0;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.Btn_SkillStart = rc.Get<GameObject>("Btn_SkillStart");
             self.FightEffect = rc.Get<GameObject>("FightEffect");
@@ -94,13 +73,12 @@ namespace ET
             Unit targetUnit = unit.GetParent<UnitComponent>().Get(targetId);
             if (targetUnit == null)
             {
-                self.MoveAttackId = 0;
+                zoneScene.GetComponent<AttackComponent>().MoveAttackId = 0;
                 zoneScene.GetComponent<AttackComponent>().AutoAttack_1(unit, null);
             }
             else
             {
-                self.MoveAttackId = targetUnit.Id;
-                self.BeginAutoAttack();
+                zoneScene.GetComponent<AttackComponent>().BeginAutoAttack(targetUnit.Id);
             }
         }
 
@@ -134,43 +112,7 @@ namespace ET
         
         public static void OnMoveStart(this UIAttackGridComponent self)
         {
-            self.MoveAttackId = 0;
-            TimerComponent.Instance?.Remove(ref self.Timer);
-        }
-
-        public static void BeginAutoAttack(this UIAttackGridComponent self)
-        {
-            TimerComponent.Instance?.Remove(ref self.Timer);
-
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.AttackGridTimer, self);
-            self.OnUpdate();
-        }
-
-        public static void OnUpdate(this UIAttackGridComponent self)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (self.MoveAttackId == 0 || unit == null || unit.IsDisposed)
-            {
-                TimerComponent.Instance?.Remove( ref self.Timer);
-                return;
-            }
-            Unit taretUnit = unit.GetParent<UnitComponent>().Get(self.MoveAttackId);
-            if (taretUnit == null || taretUnit.IsDisposed || taretUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
-            {
-                self.MoveAttackId = 0;
-                self.DomainScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
-                TimerComponent.Instance?.Remove(ref self.Timer);
-                return;
-            }
-            if (PositionHelper.Distance2D(unit, taretUnit) <= self.AttackComponent.AttackDistance)
-            {
-                self.ZoneScene().GetComponent<AttackComponent>().AutoAttack_1(unit, taretUnit);
-            }
-            else
-            {
-                unit.MoveToAsync2(taretUnit.Position, false).Coroutine();
-            }
+            self.ZoneScene().GetComponent<AttackComponent>().RemoveTimer();
         }
     }
-
 }

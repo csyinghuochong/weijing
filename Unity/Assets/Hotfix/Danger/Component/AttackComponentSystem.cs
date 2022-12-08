@@ -1,8 +1,25 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
 {
+    [Timer(TimerType.AttackGridTimer)]
+    public class AttackGridTimer : ATimer<AttackComponent>
+    {
+        public override void Run(AttackComponent self)
+        {
+            try
+            {
+                self.OnUpdate();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
 
     [ObjectSystem]
     public class AttackComponentAwakeSystem : AwakeSystem<AttackComponent>
@@ -18,12 +35,52 @@ namespace ET
     {
         public override void Destroy(AttackComponent self)
         {
-            
+            self.RemoveTimer();
         }
     }
 
     public static class AttackComponentSystem
     {
+
+        public static void BeginAutoAttack(this AttackComponent self, long moveTargetId)
+        {
+            self.RemoveTimer();
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.AttackGridTimer, self);
+            self.MoveAttackId = moveTargetId;
+            self.OnUpdate();
+        }
+
+        public static void RemoveTimer(this AttackComponent self)
+        {
+            self.MoveAttackId = 0;
+            TimerComponent.Instance?.Remove(ref self.Timer);
+        }
+        public static void OnUpdate(this AttackComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (self.MoveAttackId == 0 || unit == null || unit.IsDisposed)
+            {
+                TimerComponent.Instance?.Remove(ref self.Timer);
+                return;
+            }
+            Unit taretUnit = unit.GetParent<UnitComponent>().Get(self.MoveAttackId);
+            if (taretUnit == null || taretUnit.IsDisposed || taretUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
+            {
+                self.MoveAttackId = 0;
+                self.DomainScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
+                TimerComponent.Instance?.Remove(ref self.Timer);
+                return;
+            }
+            if (PositionHelper.Distance2D(unit, taretUnit) <= self.AttackDistance)
+            {
+                self.AutoAttack_1(unit, taretUnit);
+            }
+            else
+            {
+                unit.MoveToAsync2(taretUnit.Position, false).Coroutine();
+            }
+        }
+
         public static void OnInit(this AttackComponent self)
         {
             //普通攻击

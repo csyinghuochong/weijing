@@ -18,6 +18,9 @@ namespace ET
         public readonly C2M_SkillCmd c2mSkillCmd = new C2M_SkillCmd();
         public long CDTime = 800;
         public long CDEndTime;
+
+        public long MoveAttackId = 0;
+        public long Timer;
     }
 
 }
