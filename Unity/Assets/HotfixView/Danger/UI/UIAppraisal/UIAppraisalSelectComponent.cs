@@ -82,6 +82,8 @@ namespace ET
             //item_app.UpdateItem(new BagInfo() {ItemID =  appItem,ItemNum = 1 }, ItemOperateEnum.None);
             self.Text_Tip_1.GetComponent<Text>().text = $"需要消耗：{itemConfig_app.ItemName}";
 
+            self.Text_EquipLevel.GetComponent<Text>().text = itemCof.UseLv + "级";
+
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetBagList();
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");

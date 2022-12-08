@@ -125,7 +125,7 @@ namespace ET
 
             if (self.Type == 1 && self.Timer > 0)
             {
-                self.PassTime -= 300;
+                //self.PassTime -= 300;   暂时先不倒退了,先屏蔽
                 self.UpdateUISinging();
             }
         }

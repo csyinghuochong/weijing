@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace ET
 {
-    public  static class XiLianHelper
+    public static class XiLianHelper
     {
 
         public static int returnProValue(int xuhao)
@@ -33,7 +33,7 @@ namespace ET
             return 0;
         }
 
-        public static string GenerateGemHoleInfo(int itemQuality,int itemLv,int xilianType)
+        public static string GenerateGemHoleInfo(int itemQuality, int itemLv, int xilianType)
         {
             string gemholeinfo = "";
             List<int> gemHoleId = new List<int>() { 0, 1, 2, 3, 4 };
@@ -87,7 +87,7 @@ namespace ET
                 HideProListConfig proListConfig = HideProListConfigCategory.Instance.Get(hideProId);
                 if (xilianLevel == proListConfig.NeedXiLianLv)
                 {
-                    skills.Add(new KeyValuePairInt() {  KeyId = proListConfig.Id, Value = proListConfig.PropertyType });
+                    skills.Add(new KeyValuePairInt() { KeyId = proListConfig.Id, Value = proListConfig.PropertyType });
                 }
                 hideProId = proListConfig.NtxtID;
             }
@@ -97,7 +97,7 @@ namespace ET
         public static int GetXiLianId(int xilianDu)
         {
             int xilianid = 0;
-            List<EquipXiLianConfig> equipXiLians =  EquipXiLianConfigCategory.Instance.GetAll().Values.ToList();
+            List<EquipXiLianConfig> equipXiLians = EquipXiLianConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < equipXiLians.Count; i++)
             {
                 if (equipXiLians[i].XiLianType != 0)
@@ -135,7 +135,7 @@ namespace ET
             int HideType = equipConfig.HideType;
 
             double hideShowPro = equipConfig.HideShowPro;
-            if (xilianType == 1 && xilianType == 2)
+            if (xilianType == 1 || xilianType == 2)
             {
                 hideShowPro = 1;        //洗炼100%出随机属性
             }
