@@ -271,17 +271,19 @@ namespace ET
             }
         }
 
-        public static int CanUseSkill(this SkillManagerComponent self,int itemId, int skillId, bool checkCD = true)
+        public static int CanUseSkill(this SkillManagerComponent self,int itemId, int skillId)
         {
             Unit unit = self.GetParent<Unit>();
-
-            if (checkCD)
+            //普攻不检测CD
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+            if (skillConfig.SkillActType != 0)
             {
                 SkillCDItem skillCDList = self.GetSkillCD(skillId);
                 if (skillCDList != null)
                 {
                     return ErrorCore.ERR_UseSkillInCD1;
                 }
+              
                 if (TimeHelper.ServerNow() < self.SkillPublicCDTime)
                 {
                     return ErrorCore.ERR_UseSkillInCD1;
