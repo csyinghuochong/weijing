@@ -301,7 +301,7 @@ namespace ET
                 || animatorStateInfo.IsName("Act_12")
                 || animatorStateInfo.IsName("Act_13") )
                 && !self.Animator.Animator.IsInTransition(0)
-                && self.Animator.CurrentSateTime() < 0.67f) //&& !self.Animator.Animator.IsInTransition(0))// )
+                && self.Animator.CurrentSateTime() < 0.9f) //&& !self.Animator.Animator.IsInTransition(0))// )
             {
                 self.Animator.SetBoolValue("Act_1", false);
                 self.Animator.SetBoolValue("Act_2", false);
