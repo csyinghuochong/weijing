@@ -248,7 +248,10 @@ namespace ET
 					{
 						continue;
 					}
-					tianfuIds.Add(self.TianFuList[i]);
+					if (!tianfuIds.Contains(self.TianFuList[i]))
+					{
+						tianfuIds.Add(self.TianFuList[i]);
+					}
 				}
 			}
 			return tianfuIds;
@@ -382,7 +385,7 @@ namespace ET
 				for (int k = 0; k < addPropreListStr.Length; k++)
 				{
 					string[] properInfo = addPropreListStr[k].Split(";");
-					if (properInfo[0] != TianFuProEnum.SkillPropertyAdd)
+					if (properInfo[0] != TianFuProEnum.BuffPropertyAdd)
 					{
 						continue;
 					}

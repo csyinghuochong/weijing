@@ -135,6 +135,12 @@ namespace ET
             int addBufStatus = 1;   //1新增buff  2 移除 3 重置 4同状态返回
             BuffHandler buffHandler = null;
             List<BuffHandler> nowAllBuffList = self.m_Buffs;
+
+            string[] weiyiBuffId = new string[0];
+            if (!ComHelp.IfNull(buffData.BuffConfig.WeiYiBuffID))
+            {
+                weiyiBuffId = buffData.BuffConfig.WeiYiBuffID.Split(";");
+            } 
             for (int i = nowAllBuffList.Count - 1; i >=0 ; i--)
             {
                 bool remove = false;
@@ -143,6 +149,17 @@ namespace ET
                 if (tempBuffConfig.Id == buffData.BuffConfig.Id && buffData.BuffConfig.BuffAddClass == 0)
                 {
                     remove = true;
+                }
+                if (tempBuffConfig.Id == buffData.BuffConfig.Id && buffData.BuffConfig.BuffAddClass == 0)
+                {
+                    remove = true;
+                }
+                for (int w = 0; w < weiyiBuffId.Length; w++)
+                {
+                    if (tempBuffConfig.Id == int.Parse(weiyiBuffId[w]))
+                    {
+                        remove = true;
+                    }
                 }
 
                 //操作同状态的Buff
