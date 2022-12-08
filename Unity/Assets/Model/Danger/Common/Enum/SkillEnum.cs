@@ -127,6 +127,7 @@ namespace ET
         AddSkillBuffID = 6,
     }
 
+    //BuffPropertyAdd
     public enum BuffAttributeEnum
     {
         AddParameterValue = 1,

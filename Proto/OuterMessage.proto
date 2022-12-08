@@ -1005,6 +1005,7 @@ message M2C_UnitBuffUpdate // IActorMessage
 	int64 UnitIdBelongTo = 2;
 	int32 BuffOperateType = 4;
 	repeated float TargetPostion = 5;
+	int64 BuffEndTime = 6;
 }
 
 //ResponseType G2C_OffLine

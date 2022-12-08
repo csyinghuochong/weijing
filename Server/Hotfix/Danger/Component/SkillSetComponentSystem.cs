@@ -371,7 +371,7 @@ namespace ET
 
 		public static Dictionary<int, float> GetBuffPropertyAdd(this SkillSetComponent self, int buffId)
 		{
-			List<int> tianfuids = self.GetTianFuIdsByType(TianFuProEnum.SkillPropertyAdd);
+			List<int> tianfuids = self.GetTianFuIdsByType(TianFuProEnum.BuffPropertyAdd);
 			if (tianfuids.Count == 0)
 				return null;
 

@@ -2170,6 +2170,9 @@ namespace ET
 		[ProtoMember(5)]
 		public List<float> TargetPostion = new List<float>();
 
+		[ProtoMember(6)]
+		public long BuffEndTime { get; set; }
+
 	}
 
 	[ResponseType(nameof(G2C_OffLine))]

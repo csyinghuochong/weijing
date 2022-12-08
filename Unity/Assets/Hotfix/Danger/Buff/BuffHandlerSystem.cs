@@ -25,8 +25,8 @@ namespace ET
             self.StartPosition = self.TheUnitBelongto.Position;
             self.mDelayTime = (float)(buffData.SkillConfig.SkillDelayTime);
             self.IsDelayPlay = self.mDelayTime > 0f;
-            self.BuffEndTime = TimeHelper.ClientNow() + buffData.SkillConfig.SkillLiveTime;
             self.BuffBeginTime = TimeHelper.ClientNow();
+            self.BuffEndTime = buffData.BuffEndTime;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace ET
             self.mSkillBuffConf = buffData.BuffConfig;
             self.mEffectConf = self.mSkillBuffConf.BuffEffectID == 0 ? null : EffectConfigCategory.Instance.Get(self.mSkillBuffConf.BuffEffectID);
             self.BuffEndTime = TimeHelper.ClientNow() + self.mSkillBuffConf.BuffTime;
-            self.BuffEndTime = buffData.BuffEndTime > 0 ? buffData.BuffEndTime : self.BuffEndTime;
+            self.BuffEndTime = buffData.BuffEndTime;
             self.BuffBeginTime = TimeHelper.ClientNow();
             self.StartPosition = theUnitBelongto.Position;
         }

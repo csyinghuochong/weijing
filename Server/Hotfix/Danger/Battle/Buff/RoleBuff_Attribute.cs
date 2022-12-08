@@ -39,7 +39,8 @@ namespace ET
             if (InterValTime > 0 )
             {
                 InterValTimeSum = TimeHelper.ServerNow() - this.InterValTimeSumBegin;
-                if (InterValTimeSum >= InterValTime) {
+                if (InterValTimeSum >= InterValTime) 
+                {
                     this.InterValTimeSumBegin  = TimeHelper.ServerNow();
                     IsTrigger = false;
                 }
