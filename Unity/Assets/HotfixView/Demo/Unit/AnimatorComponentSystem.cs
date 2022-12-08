@@ -128,7 +128,7 @@ namespace ET
 
 		public static float CurrentSateTime(this AnimatorComponent self)
 		{
-			AnimatorStateInfo animatorStateInfo = self.Animator.GetCurrentAnimatorStateInfo(0);
+			AnimatorStateInfo animatorStateInfo = self.Animator.GetCurrentAnimatorStateInfo(0); 
 			return animatorStateInfo.normalizedTime;
 		}
 
