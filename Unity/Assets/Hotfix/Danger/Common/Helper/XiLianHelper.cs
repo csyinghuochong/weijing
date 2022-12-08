@@ -141,13 +141,15 @@ namespace ET
             }
 
             //附加额外的极品属性
-            float equipJiPinPro = 0.3f;
+            float equipJiPinPro = 1f;
+            float equipJiPinAddPro = 1f;
             //附加特殊技能
             float equipJiPinSkillPro = 0.05f;
 
             //如果是打造装备 特殊技能属性调高
             if (xilianType == 2) {
-                equipJiPinPro = 0.5f;
+                equipJiPinPro = 1f;
+                equipJiPinAddPro = 2f;
                 equipJiPinSkillPro = 0.1f;
             }
 
@@ -273,7 +275,9 @@ namespace ET
                 }
                 */
 
-                if (RandomHelper.RandFloat01() <= equipJiPinPro)
+                float randValue = RandomHelper.RandFloat01();
+                //Log.Info("randValue = " + randValue + " equipJiPinPro = " + equipJiPinPro);
+                if (randValue <= equipJiPinPro)
                 {
 
                     int nextID = 0;
@@ -326,7 +330,9 @@ namespace ET
                         */
 
                         //触发隐藏属性
-                        if (RandomHelper.RandFloat01() < triggerPro)
+                        float ranValue = RandomHelper.RandFloat01();
+                        //Log.Info("ranValue = " + ranValue + " triggerPro = " + triggerPro);
+                        if (ranValue < triggerPro * equipJiPinAddPro)
                         {
                             //读取隐藏属性类型和对应随机值
 

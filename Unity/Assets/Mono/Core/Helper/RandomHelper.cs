@@ -201,7 +201,7 @@ namespace ET
         public static float RandFloat01()
         {
             int a = RandomNumber(0, 1000000);
-            return a / 1000000f;
+            return (float)a / 1000000f;
         }
 
         //取随机值 保留两位
