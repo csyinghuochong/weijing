@@ -246,10 +246,11 @@ namespace ET
                 ObjectPool.Instance.Recycle(skillHandler);
             }
 
-            if (sync)
+            Unit unit = self.GetParent<Unit>();
+            if (sync && unit!=null && !unit.IsDisposed)
             {
-                self.M2C_UnitFinishSkill.UnitId = self.GetParent<Unit>().Id;
-                MessageHelper.Broadcast(self.GetParent<Unit>(), self.M2C_UnitFinishSkill);
+                self.M2C_UnitFinishSkill.UnitId = unit.Id;
+                MessageHelper.Broadcast(unit, self.M2C_UnitFinishSkill);
             }
         }
 
