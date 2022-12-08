@@ -26,7 +26,7 @@ namespace ET
             self.mDelayTime = (float)(buffData.SkillConfig.SkillDelayTime);
             self.IsDelayPlay = self.mDelayTime > 0f;
             self.BuffBeginTime = TimeHelper.ClientNow();
-            self.BuffEndTime = buffData.BuffEndTime;
+            self.BuffEndTime = TimeHelper.ClientNow() + buffData.SkillConfig.SkillLiveTime;
         }
 
         /// <summary>
