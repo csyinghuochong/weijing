@@ -283,7 +283,6 @@ namespace ET
                 {
                     return ErrorCore.ERR_UseSkillInCD1;
                 }
-              
                 if (TimeHelper.ServerNow() < self.SkillPublicCDTime)
                 {
                     return ErrorCore.ERR_UseSkillInCD1;
