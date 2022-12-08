@@ -297,39 +297,42 @@ namespace ET
                 {
                     animation = "Act_13";
                 }
-            }
 
-            Log.ILog.Debug($"FsmComponent  {animations[0]}  {TimeHelper.ServerNow()}  {self.Animator.CurrentSateTime()}");
-
-            AnimatorStateInfo animatorStateInfo = self.Animator.Animator.GetCurrentAnimatorStateInfo(0);
-            AnimatorClipInfo animatorClipInfo = self.Animator.Animator.GetCurrentAnimatorClipInfo(0)[0];
-            if (( animatorStateInfo.IsName("Act_1")
-                || animatorStateInfo.IsName("Act_2")
-                || animatorStateInfo.IsName("Act_3")
-                || animatorStateInfo.IsName("Act_11")
-                || animatorStateInfo.IsName("Act_12")
-                || animatorStateInfo.IsName("Act_13") ) )
-                //&& !self.Animator.Animator.IsInTransition(0)
-               // && self.Animator.CurrentSateTime() < 0.9f) //&& !self.Animator.Animator.IsInTransition(0))// )
-            {
-                self.Animator.SetBoolValue("Act_1", false);
-                self.Animator.SetBoolValue("Act_2", false);
-                self.Animator.SetBoolValue("Act_3", false);
-                Log.ILog.Debug($"FsmComponent  SetBoolValue {animations[0]}");
-                self.Animator.SetBoolValue(animations[0], true);
+                self.Animator.Play(animation);
             }
             else
             {
-                self.Animator.SetBoolValue("Act_1", false);
-                self.Animator.SetBoolValue("Act_2", false);
-                self.Animator.SetBoolValue("Act_3", false);
-                Log.ILog.Debug($"FsmComponent  Play          {animation}");
-                self.Animator.Play(animation);
-            }
+                Log.ILog.Debug($"FsmComponent  {animations[0]}  {TimeHelper.ServerNow()}  {self.Animator.CurrentSateTime()}");
 
-            self.WaitIdleTime = TimeHelper.ClientNow() + 1200;
-            TimerComponent.Instance.Remove(ref self.Timer);
-            self.BeginTimer();
+                AnimatorStateInfo animatorStateInfo = self.Animator.Animator.GetCurrentAnimatorStateInfo(0);
+                AnimatorClipInfo animatorClipInfo = self.Animator.Animator.GetCurrentAnimatorClipInfo(0)[0];
+                if ((animatorStateInfo.IsName("Act_1")
+                    || animatorStateInfo.IsName("Act_2")
+                    || animatorStateInfo.IsName("Act_3")
+                    || animatorStateInfo.IsName("Act_11")
+                    || animatorStateInfo.IsName("Act_12")
+                    || animatorStateInfo.IsName("Act_13")))
+                //&& !self.Animator.Animator.IsInTransition(0)
+                // && self.Animator.CurrentSateTime() < 0.9f) //&& !self.Animator.Animator.IsInTransition(0))// )
+                {
+                    self.Animator.SetBoolValue("Act_1", false);
+                    self.Animator.SetBoolValue("Act_2", false);
+                    self.Animator.SetBoolValue("Act_3", false);
+                    Log.ILog.Debug($"FsmComponent  SetBoolValue {animations[0]}");
+                    self.Animator.SetBoolValue(animations[0], true);
+                }
+                else
+                {
+                    self.Animator.SetBoolValue("Act_1", false);
+                    self.Animator.SetBoolValue("Act_2", false);
+                    self.Animator.SetBoolValue("Act_3", false);
+                    Log.ILog.Debug($"FsmComponent  Play          {animation}");
+                    self.Animator.Play(animation);
+                }
+                self.WaitIdleTime = TimeHelper.ClientNow() + 1000;
+                TimerComponent.Instance.Remove(ref self.Timer);
+                self.BeginTimer();
+            }
         }
 
         public static void ClearnAnimator(this FsmComponent self)
