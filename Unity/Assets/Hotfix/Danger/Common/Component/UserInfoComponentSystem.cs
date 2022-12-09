@@ -145,6 +145,7 @@ namespace ET
             unit.GetComponent<HeroDataComponent>().OnLogin();
             unit.GetComponent<DBSaveComponent>().OnLogin();
             unit.GetComponent<RechargeComponent>().OnLogin();
+            unit.GetComponent<ActivityComponent>().OnLogin(self.UserInfo.Lv);
 
             self.LastLoginTime = currentTime;
             self.UserName = self.UserInfo.Name;

@@ -6,6 +6,14 @@ namespace ET
     {
 
 #if SERVER
+        public static void OnLogin(this ActivityComponent self, int level)
+        {
+            if (self.DayTeHui.Count == 0)
+            {
+                self.DayTeHui = DayTeHuiHelper.GetDayTeHuiList(level);
+            }
+        }
+
         public static void OnZeroClockUpdate(this ActivityComponent self, int level)
         {
             long unitId = self.GetParent<Unit>().Id;
