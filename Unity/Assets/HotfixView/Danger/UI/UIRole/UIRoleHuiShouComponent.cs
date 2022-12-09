@@ -228,6 +228,7 @@ namespace ET
             List<BagInfo> allInfos = new List<BagInfo>();
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Equipment));
+            allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Gemstone));
             allInfos.AddRange(bagComponent.GetItemsByLoc(ItemLocType.ItemPetHeXinBag));
 
             for (int i = 0; i < allInfos.Count; i++)
