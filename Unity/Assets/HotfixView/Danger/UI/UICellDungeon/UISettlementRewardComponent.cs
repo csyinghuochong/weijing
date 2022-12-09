@@ -39,7 +39,7 @@ namespace ET
 
             self.ItemNode = rc.transform.Find("UIItem").gameObject;
             self.ItemNode.SetActive(false);
-            self.OnInitUI().Coroutine();
+            self.OnInitUI();
         }
     }
 

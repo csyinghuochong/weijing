@@ -32,7 +32,7 @@ namespace ET
         public long Timer;
 
         public float ItemWidth = 1400f;
-        public float MoveSpeed = 30f;
+        public float MoveSpeed = 100f;
     }
 
     [ObjectSystem]
