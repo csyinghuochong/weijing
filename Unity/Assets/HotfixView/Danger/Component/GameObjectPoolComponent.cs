@@ -96,6 +96,7 @@ namespace ET
                 if (prefab == null)
                 {
                     Log.Error($"GameObjectPool1 : prefab == null {path}");
+                    FloatTipManager.Instance.ShowFloatTip($"prefab == null {path}");
                 }
                 gobjet = GameObject.Instantiate(prefab);
             }

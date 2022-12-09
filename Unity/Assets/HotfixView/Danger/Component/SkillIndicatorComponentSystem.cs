@@ -81,6 +81,10 @@ namespace ET
         {
             try
             {
+                if (self.InstanceId!= instanceId)
+                {
+                    return;
+                }
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
                 if (self.IsDisposed || skillIndicatorItem == null || unit == null || unit.IsDisposed)
