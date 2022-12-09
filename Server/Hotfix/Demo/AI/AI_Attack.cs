@@ -33,17 +33,12 @@ namespace ET
 
             for (int i = 0; i < 100000; ++i)
             {
-                Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
-                if (target == null || target.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
-                {
-                    aiComponent.TargetID = 0;
-                    return;
-                }
-                bool timeRet = true;
                 int skillId = aiComponent.GetActSkillId();
                 long rigidityEndTime = 0;
 
-                if (unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillId) == ErrorCore.ERR_Success)
+                Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
+                if (target !=  null && target.IsCanBeAttack()
+                    && unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillId) == ErrorCore.ERR_Success)
                 {
                     Vector3 direction = target.Position - unit.Position;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
@@ -62,7 +57,7 @@ namespace ET
                 }
 
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
-                timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)
                 {
                     aiComponent.TargetID = 0;
