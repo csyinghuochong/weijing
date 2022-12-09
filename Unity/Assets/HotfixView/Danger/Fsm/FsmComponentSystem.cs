@@ -72,6 +72,10 @@ namespace ET
                 {
                     self.SetIdleState();
                 }
+                if (self.CurrentFsm == FsmStateEnum.FsmSkillState)
+                {
+                    self.SetIdleState();
+                }
                 if (self.CurrentFsm == FsmStateEnum.FsmRunState)
                 {
                     self.SetRunState();
@@ -211,6 +215,11 @@ namespace ET
 
             float rigibTime = float.Parse(animationinfos[3]);
             long skillRigibTime = TimeHelper.ClientNow() + (int)(1000f * rigibTime);
+
+            if (skillConfig.Id >= 61022301 || skillConfig.Id >= 61022306)
+            {
+                skillManagerComponent.SkillMoveTime = skillRigibTime;
+            }
 
             if (skillManagerComponent.SkillMoveTime > TimeHelper.ClientNow()
                || skillManagerComponent.SkillSingTime > TimeHelper.ClientNow())

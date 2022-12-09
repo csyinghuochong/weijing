@@ -42,7 +42,7 @@ namespace ET
         public static void OnTimer(this SingingComponent self)
         {
             Log.Debug($"Singing OnTimer {self.PassTime} {self.TotalTime}");
-            self.PassTime += 50;
+            self.PassTime = TimeHelper.ServerNow() - self.BeginTime ;
             self.UpdateUISinging();
         }
 
@@ -90,7 +90,8 @@ namespace ET
                 self.PassTime = 0;
                 self.TotalTime = (long)(1000 * skillConfig.SkillSingTime);
                 TimerComponent.Instance?.Remove(ref self.Timer);
-                self.Timer = TimerComponent.Instance.NewRepeatedTimer(50, TimerType.UISingingTimer, self);
+                self.BeginTime = TimeHelper.ServerNow();
+                self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.UISingingTimer, self);
             }
         }
 
@@ -104,7 +105,8 @@ namespace ET
             self.PassTime = 0;
             self.TotalTime = (long)(skillConfig.SkillFrontSingTime * 1000);
             TimerComponent.Instance?.Remove(ref self.Timer);
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(50, TimerType.UISingingTimer, self);
+            self.BeginTime = TimeHelper.ServerNow();
+            self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.UISingingTimer, self);
 
             Unit unit = self.GetParent<Unit>();
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
