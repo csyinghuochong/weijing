@@ -357,7 +357,7 @@ namespace ET
                 //怪物打宠物降低60% （如果有需要 后期需要加入判定是不是当前怪物的普通攻击来判断躲避技能）
                 if (attackUnit.Type == UnitType.Monster && defendUnit.Type == UnitType.Pet && petfuben == false)
                 {
-                    damge = (int)((float)damge * 0.4f);
+                    damge = (int)((float)damge * 0.3f);
                 }
 
                 //技能倍伤

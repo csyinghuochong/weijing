@@ -59,7 +59,7 @@ namespace ET
                 occTwo = 101;
 
                 //法师天赋
-                if (userInfo.Occ == 1) {
+                if (userInfo.Occ == 2) {
                     occTwo = 201;
                 }
             }
