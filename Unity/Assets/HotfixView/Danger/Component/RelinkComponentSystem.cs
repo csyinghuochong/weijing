@@ -122,7 +122,7 @@ namespace ET
         /// </summary>
         /// <param name="self"></param>
         public static async ETTask<int> SendLogin(this RelinkComponent self)
-        {
+        {   
             AccountInfoComponent PlayerComponent = self.DomainScene().GetComponent<AccountInfoComponent>();
 
             int code = await LoginHelper.Login(

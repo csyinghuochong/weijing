@@ -33,8 +33,9 @@ namespace ET
             if (errorCode == ErrorCore.ERR_Success)
             {
                 UIHelper.Remove(self.ZoneScene(), UIType.UIBattle);
+                return;
             }
-            else
+            if (ErrorHelp.Instance.ErrorHintList.ContainsKey(errorCode))
             {
                 HintHelp.GetInstance().ShowHint(ErrorHelp.Instance.ErrorHintList[errorCode]);
             }

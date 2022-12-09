@@ -285,36 +285,26 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
                 EquipType = itemConfig.EquipType;
             }
-            paramss = $"{skillConfig.SkillAnimation}@{EquipType}";
-
-            string[] animations = paramss.Split('@');
-            string animation = animations[0];
-
+          
             //1:剑  11 默认11
             //2:刀
-            if (EquipType != 2)
+            if (EquipType == 2)
             {
-                if (animation == "Act_1")
+                string boolAnimation = skillConfig.SkillAnimation;
+                if (boolAnimation == "Act_11")
                 {
-                    animation = "Act_11";
+                    boolAnimation = "Act_1";
                 }
-                if (animation == "Act_2")
+                if (boolAnimation == "Act_12")
                 {
-                    animation = "Act_12";
+                    boolAnimation = "Act_2";
                 }
-                if (animation == "Act_3")
+                if (boolAnimation == "Act_13")
                 {
-                    animation = "Act_13";
+                    boolAnimation = "Act_3";
                 }
-
-                self.Animator.Play(animation);
-            }
-            else
-            {
-                Log.ILog.Debug($"FsmComponent  {animations[0]}  {TimeHelper.ServerNow()}  {self.Animator.CurrentSateTime()}");
-
                 AnimatorStateInfo animatorStateInfo = self.Animator.Animator.GetCurrentAnimatorStateInfo(0);
-                AnimatorClipInfo animatorClipInfo = self.Animator.Animator.GetCurrentAnimatorClipInfo(0)[0];
+                //AnimatorClipInfo animatorClipInfo = self.Animator.Animator.GetCurrentAnimatorClipInfo(0)[0];
                 if ((animatorStateInfo.IsName("Act_1")
                     || animatorStateInfo.IsName("Act_2")
                     || animatorStateInfo.IsName("Act_3")
@@ -327,20 +317,22 @@ namespace ET
                     self.Animator.SetBoolValue("Act_1", false);
                     self.Animator.SetBoolValue("Act_2", false);
                     self.Animator.SetBoolValue("Act_3", false);
-                    Log.ILog.Debug($"FsmComponent  SetBoolValue {animations[0]}");
-                    self.Animator.SetBoolValue(animations[0], true);
+                    self.Animator.SetBoolValue(boolAnimation, true);
                 }
                 else
                 {
                     self.Animator.SetBoolValue("Act_1", false);
                     self.Animator.SetBoolValue("Act_2", false);
                     self.Animator.SetBoolValue("Act_3", false);
-                    Log.ILog.Debug($"FsmComponent  Play          {animation}");
-                    self.Animator.Play(animation);
+                    self.Animator.Play(skillConfig.SkillAnimation);
                 }
                 self.WaitIdleTime = TimeHelper.ClientNow() + 1000;
                 TimerComponent.Instance.Remove(ref self.Timer);
                 self.BeginTimer();
+            }
+            else
+            {
+                self.Animator.Play(skillConfig.SkillAnimation);
             }
         }
 
