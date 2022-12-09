@@ -30,9 +30,11 @@ namespace ET
             Unit unit = aiComponent.GetParent<Unit>();
             while (true)
             {
+                float distance = 0;
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
                 if (target != null && unit.GetComponent<StateComponent>().CanMove())
                 {
+                    distance = Vector3.Distance(unit.Position, target.Position);
                     Vector3 dir = unit.Position - target.Position;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));
                     float addg = unit.Id % 10 * (unit.Id % 2 == 0 ? 2 : -2);
@@ -40,8 +42,7 @@ namespace ET
                     Vector3 ttt = target.Position + rotation * Vector3.forward * ((float)aiComponent.ActDistance - 0.2f);
                     unit.FindPathMoveToAsync(ttt, cancellationToken, false).Coroutine();
                 }
-
-                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(distance > 6 ? 1000 : 500, cancellationToken);
                 if (!timeRet)
                 {
                     return;
