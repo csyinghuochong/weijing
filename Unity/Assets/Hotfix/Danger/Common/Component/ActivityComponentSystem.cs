@@ -8,6 +8,8 @@ namespace ET
 #if SERVER
         public static void OnZeroClockUpdate(this ActivityComponent self, int level)
         {
+            long unitId = self.GetParent<Unit>().Id;
+
             self.DayTeHui = DayTeHuiHelper.GetDayTeHuiList(level);
             
             //重置每日特惠
@@ -16,8 +18,18 @@ namespace ET
                 ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(self.ActivityReceiveIds[i]);
                 if (activityConfig.ActivityType ==2)
                 {
+                    if (unitId == 1574246440534867968)
+                    {
+                        Log.Debug($"self.DayTeHui_1: RemoveAt {self.ActivityReceiveIds[i]} ");
+                    }
                     self.ActivityReceiveIds.RemoveAt(i);
                 }
+            }
+
+            //卡拉哒卡拉哒
+            if (unitId == 1574246440534867968)
+            {
+                Log.Debug($"self.DayTeHui_2:  {self.DayTeHui[0]}  {self.DayTeHui.Count} ");
             }
         }
 #endif
