@@ -301,7 +301,7 @@ namespace ET
             return self.GetComponent<UserInfoComponent>().UserInfo.RobotId > 0;
         }
 
-        public static int GetWeaponType(this Unit self, int skillId)
+        public static int GetWeaponType(this Unit self)
         {
             BagComponent bagComponent = self.GetComponent<BagComponent>();
             int EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;

@@ -603,6 +603,34 @@
         public const int Extra_Buff_ActSpeedPro_Add = Now_ActSpeedPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_ActSpeedPro_Mul = Now_ActSpeedPro * 100 + 12;            //属性Buff附加乘法
 
+        public const int Now_DaoActAddPro = 2051;          //刀附加伤害
+        public const int Base_DaoActAddPro_Base = Now_DaoActAddPro * 100 + 1;                  //属性累加
+        public const int Base_DaoActAddPro_Mul = Now_DaoActAddPro * 100 + 2;                   //属性乘法
+        public const int Base_DaoActAddPro_Add = Now_DaoActAddPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_DaoActAddPro_Add = Now_DaoActAddPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_DaoActAddPro_Mul = Now_DaoActAddPro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_JianActAddPro = 2052;          //剑附加伤害
+        public const int Base_JianActAddPro_Base = Now_JianActAddPro * 100 + 1;                  //属性累加
+        public const int Base_JianActAddPro_Mul = Now_JianActAddPro * 100 + 2;                   //属性乘法
+        public const int Base_JianActAddPro_Add = Now_JianActAddPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_JianActAddPro_Add = Now_JianActAddPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_JianActAddPro_Mul = Now_JianActAddPro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_FaZhangActAddPro = 2053;          //法杖附加伤害
+        public const int Base_FaZhangActAddPro_Base = Now_FaZhangActAddPro * 100 + 1;                  //属性累加
+        public const int Base_FaZhangActAddPro_Mul = Now_FaZhangActAddPro * 100 + 2;                   //属性乘法
+        public const int Base_FaZhangActAddPro_Add = Now_FaZhangActAddPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_FaZhangActAddPro_Add = Now_FaZhangActAddPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_FaZhangActAddPro_Mul = Now_FaZhangActAddPro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_ShuActAddPro = 2054;          //魔法书附加伤害
+        public const int Base_ShuActAddPro_Base = Now_ShuActAddPro * 100 + 1;                  //属性累加
+        public const int Base_ShuActAddPro_Mul = Now_ShuActAddPro * 100 + 2;                   //属性乘法
+        public const int Base_ShuActAddPro_Add = Now_ShuActAddPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_ShuActAddPro_Add = Now_ShuActAddPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_ShuActAddPro_Mul = Now_ShuActAddPro * 100 + 12;            //属性Buff附加乘法
+
         //----------------抗性-------------
 
         public const int Now_Resistance_Shine_Pro = 2101;          //当前神圣抗性

@@ -119,7 +119,12 @@ namespace ET
 
             { (int)NumericType.Now_ZhuanZhuPro, 0.3f },
             { (int)NumericType.Now_ActSpeedPro, 1f },
-            
+
+            { (int)NumericType.Now_DaoActAddPro, 0.25f },
+            { (int)NumericType.Now_JianActAddPro, 0.25f },
+            { (int)NumericType.Now_FaZhangActAddPro, 0.25f },
+            { (int)NumericType.Now_ShuActAddPro, 0.25f },
+
         };
 
         //防御部分

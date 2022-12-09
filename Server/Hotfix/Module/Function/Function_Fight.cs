@@ -322,6 +322,38 @@ namespace ET
                 //计算战斗公式
                 long damge = (actValue - nowdef);
 
+                //查看对应武器
+                float weaponAddAct = 0;
+                switch (UnitHelper.GetWeaponType(attackUnit))
+                {
+                    //刀
+                    case 1:
+                        weaponAddAct = numericComponentAttack.GetAsFloat(NumericType.Now_DaoActAddPro);
+                        break;
+                    //剑
+                    case 2:
+                        weaponAddAct = numericComponentAttack.GetAsFloat(NumericType.Now_JianActAddPro);
+                        break;
+                    //法杖
+                    case 3:
+                        weaponAddAct = numericComponentAttack.GetAsFloat(NumericType.Now_FaZhangActAddPro);
+                        break;
+                    //魔法书
+                    case 4:
+                        weaponAddAct = numericComponentAttack.GetAsFloat(NumericType.Now_ShuActAddPro);
+                        break;
+                }
+
+                if (weaponAddAct >= 1f) {
+                    weaponAddAct = 1f;
+                }
+
+                //武器伤害加成
+                if (weaponAddAct > 0)
+                {
+                    damge = (long)((float)damge * (1f + weaponAddAct));
+                }
+
                 //怪物打宠物降低60% （如果有需要 后期需要加入判定是不是当前怪物的普通攻击来判断躲避技能）
                 if (attackUnit.Type == UnitType.Monster && defendUnit.Type == UnitType.Pet && petfuben == false)
                 {
