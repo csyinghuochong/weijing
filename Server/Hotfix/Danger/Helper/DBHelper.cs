@@ -176,6 +176,11 @@ namespace ET
         public static int GetOpenServerDay(int zone)
         {
             long openSerTime = GetOpenServerTime(zone);
+            if (openSerTime == 0)
+            {
+                return 0;
+            }
+
             long serverNow = TimeHelper.ServerNow();
             int openserverDay = ComHelp.DateDiff_Time(serverNow, openSerTime);
             return openserverDay;

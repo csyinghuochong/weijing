@@ -71,8 +71,7 @@ namespace ET
         public static void UpdateWorldLv(this RankSceneComponent self)
         {
             //第二天并且超过12点才刷新
-            long serverNow = TimeHelper.ServerNow();
-            int openserverDay = ComHelp.DateDiff_Time(serverNow, DBHelper.GetOpenServerTime(self.DomainZone()));
+            int openserverDay = DBHelper.GetOpenServerDay(self.DomainZone());
             int worldLv = ComHelp.GetWorldLv(openserverDay);
             self.DBServerInfo.ServerInfo.WorldLv = worldLv;
         }
