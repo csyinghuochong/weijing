@@ -13,7 +13,7 @@ namespace ET
             "testcn01",
             "18319670288",
             "15091509079",
-            "qqUID_789815C08E1466834C508C1F34B282A5"
+            "qqUID_789815C08E1466834C508C1F34B282A5",
         };
 
         public static List<long> BanChatPlayer = new List<long>()

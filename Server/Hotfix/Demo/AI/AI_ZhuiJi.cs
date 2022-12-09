@@ -31,18 +31,9 @@ namespace ET
             while (true)
             {
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
-                if (target == null )
-                {
-                    aiComponent.TargetID = 0;
-                    return;
-                }
-
-                if (unit.GetComponent<StateComponent>().CanMove())
+                if (target != null && unit.GetComponent<StateComponent>().CanMove())
                 {
                     Vector3 dir = unit.Position - target.Position;
-                    //Vector3 ttt = target.Position + dir.normalized * ((float)aiComponent.ActDistance - 0.2f);
-                    //ttt.x += unit.Id % 10 * 0.05f * (unit.Id % 2 == 0 ? 1 : -1);
-                    //ttt.z += unit.Id % 10 * 0.05f * (unit.Id % 2 == 0 ? 1 : -1);
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));
                     float addg = unit.Id % 10 * (unit.Id % 2 == 0 ? 2 : -2);
                     Quaternion rotation = Quaternion.Euler(0, ange + addg, 0);

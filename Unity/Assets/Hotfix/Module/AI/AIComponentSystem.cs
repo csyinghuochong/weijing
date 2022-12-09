@@ -75,11 +75,15 @@ namespace ET
                 return;
             }
 
+            Unit unit = self.GetParent<Unit>();
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
             foreach (AIConfig aiConfig in oneAI.Values)
             {
+                //if (unit.ConfigId == 70002003)  //螃蟹将军
+                //{
+                //    ;
+                //}
                 AIDispatcherComponent.Instance.AIHandlers.TryGetValue(aiConfig.Name, out AAIHandler aaiHandler);
-
                 if (aaiHandler == null)
                 {
                     Log.Error($"not found aihandler: {aiConfig.Name}");
@@ -99,7 +103,7 @@ namespace ET
                 ETCancellationToken cancellationToken = new ETCancellationToken();
                 self.CancellationToken = cancellationToken;
                 self.Current = aiConfig.Id;
-                NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 numericComponent.ApplyValue(NumericType.Now_AI, aiConfig.Id);
                 aaiHandler.Execute(self, aiConfig, cancellationToken).Coroutine();
                 return;
