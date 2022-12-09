@@ -274,10 +274,10 @@ namespace ET
         public static void UpdateWorldLevel(this RankSceneComponent self, RankingInfo rankingInfo)
         {
             ServerInfo serverInfo = self.DBServerInfo.ServerInfo;
-            if (rankingInfo.PlayerLv < serverInfo.WorldLv)
-            {
-                return;
-            }
+            //if (rankingInfo.PlayerLv < serverInfo.WorldLv)
+            //{
+            //    return;
+            //}
             if (serverInfo.RankingInfo == null)
             {
                 serverInfo.RankingInfo = rankingInfo;
@@ -289,10 +289,6 @@ namespace ET
                 serverInfo.RankingInfo = rankingInfo;
                 self.BroadcastWorldLv().Coroutine();
             }
-            //if (serverInfo.WorldLv <= serverInfo.RankingInfo.PlayerLv)
-            //{
-            //    return;
-            //}
         }
 
         public static void OnRecvRankUpdate(this RankSceneComponent self, int campId, RankingInfo rankingInfo)

@@ -21,7 +21,7 @@ namespace ET
             self.StartPosition = theUnitBelongto.Position;
 
             self.DamageRange = self.mSkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddDamageRange) + (float)buffData.SkillConfig.DamgeRange[0];
-            self.BuffEndTime = (int)self.mSkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime) +  buffData.SkillConfig.SkillLiveTime + TimeHelper.ServerNow();
+            self.BuffEndTime = 1000 * (int)self.mSkillHandler.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime) +  buffData.SkillConfig.SkillLiveTime + TimeHelper.ServerNow();
         }
 
         public static void OnBaseBuffInit(this BuffHandler self, BuffData buffData, Unit theUnitFrom, Unit theUnitBelongto)
@@ -34,7 +34,7 @@ namespace ET
             self.BuffState = BuffState.Running;
             self.BeginTime = TimeHelper.ServerNow(); 
             self.DelayTime = buffData.BuffConfig.BuffDelayTime;
-            self.BuffEndTime = buffData.BuffConfig.BuffTime + (int)self.GetTianfuProAdd((int)BuffAttributeEnum.AddBuffTime) + TimeHelper.ServerNow();
+            self.BuffEndTime = buffData.BuffConfig.BuffTime + 1000 * (int)self.GetTianfuProAdd((int)BuffAttributeEnum.AddBuffTime) + TimeHelper.ServerNow();
             self.BuffEndTime = buffData.BuffEndTime > 0 ? buffData.BuffEndTime : self.BuffEndTime;
             //初始化Buff类型
             self.BaseBuffType = buffData.BuffConfig.BuffType;

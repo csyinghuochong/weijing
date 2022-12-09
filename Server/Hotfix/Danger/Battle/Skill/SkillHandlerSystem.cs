@@ -23,7 +23,7 @@ namespace ET
             self.SkillState = SkillState.Running;
             self.SkillBeginTime = TimeHelper.ServerNow();
             self.SkillExcuteHurtTime = self.SkillBeginTime + (long)(1000 * self.SkillConf.SkillDelayTime);
-            self.SkillEndTime = self.SkillBeginTime + self.SkillConf.SkillLiveTime + (long)(self.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime));
+            self.SkillEndTime = self.SkillBeginTime + self.SkillConf.SkillLiveTime + (long)(1000* self.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime));
             self.TargetPosition = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ); //获取起始坐标
             self.ICheckShape = new List<Shape>();
             self.ICheckShape.Add( self.CreateCheckShape(self.SkillInfo.TargetAngle) );
