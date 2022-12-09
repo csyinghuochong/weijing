@@ -60,7 +60,6 @@
             zoneScene.GetComponent<UserInfoComponent>().UserInfo = m2C_PaiMaiBuyResponse.UserInfo;
             zoneScene.GetComponent<ReddotComponent>().ReddontList = m2C_PaiMaiBuyResponse.ReddontList;
             zoneScene.GetComponent<ShoujiComponent>().ShouJiChapterInfos = m2C_PaiMaiBuyResponse.ShouJiChapterInfos;
-            zoneScene.GetComponent<AttackComponent>().OnInit();
             await ETTask.CompletedTask;
         }
 

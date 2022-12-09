@@ -223,6 +223,7 @@ namespace ET
                 await NetHelper.RequestFriendInfo(zoneScene);
                 //请求活动数据
                 await NetHelper.RequestActivityInfo(zoneScene);
+                zoneScene.GetComponent<AttackComponent>().OnInit();
 
                 EventType.EnterMapFinish.Instance.ZoneScene = zoneScene;
                 Game.EventSystem.PublishClass(EventType.EnterMapFinish.Instance);

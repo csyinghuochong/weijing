@@ -68,6 +68,10 @@ namespace ET
             }
             var path = ABPathHelper.GetUnitPath(assetPath);
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            if (prefab == null)
+            { 
+                Log.Error($"prefab == null: {path}");
+            }
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             LayerHelp.ChangeLayer(go.transform, LayerEnum.RenderTexture);
             go.transform.SetParent(self.ModelParent);

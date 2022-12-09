@@ -83,9 +83,13 @@ namespace ET
     {
         public static async ETTask RequestTeamDungeonInfo(this UITeamDungeonComponent self)
         {
-            int errorCode = await self.ZoneScene().GetComponent<TeamComponent>().RequestTeamDungeonList();
-            self.UIPageButtonComponent_1.ClickEnabled = true;
+            await self.ZoneScene().GetComponent<TeamComponent>().RequestTeamDungeonList();
+            if (self.IsDisposed)
+            {
+                return;
+            }
 
+            self.UIPageButtonComponent_1.ClickEnabled = true;
             //判定当前是否有副本队伍
             TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
             if (teamInfo == null || teamInfo.SceneId == 0)
