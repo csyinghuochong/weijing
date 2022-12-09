@@ -329,6 +329,13 @@ namespace ET
 
 			if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
 			{
+				if (!TaskHelper.HaveNpc(self.ZoneScene(), self.TaskConfig.CompleteNpcID))
+				{
+					int fubenId = BattleHelper.GetFubenByNpc(self.TaskConfig.CompleteNpcID);
+					string fubenName = fubenId > 0 ? DungeonConfigCategory.Instance.Get(fubenId).ChapterName:"副本";
+					FloatTipManager.Instance.ShowFloatTip($"请前往{fubenName}");
+					return;
+				}
 				TaskHelper.MoveToNpc(self.ZoneScene(), self.TaskPro).Coroutine();
 				self.OnCloseTask();
 				return;
