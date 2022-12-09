@@ -231,9 +231,12 @@ namespace ET
                 GameObject gameObject = GameObject.Instantiate(attributeItem);
                 gameObject.SetActive(true);
                 SetParent(gameObject, itemNodeList);
-                Sprite sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, UIItemHelp.GetAttributeIcon(numberType));
-                gameObject.transform.Find("Img_Icon").GetComponent<Image>().sprite = sprite;
-
+                string icon = UIItemHelp.GetAttributeIcon(numberType);
+                if (!string.IsNullOrEmpty(icon))
+                {
+                    Sprite sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PropertyIcon, icon);
+                    gameObject.transform.Find("Img_Icon").GetComponent<Image>().sprite = sprite;
+                }
                 int showType = NumericHelp.GetNumericValueType(numberType);
                 string attribute;
                 if (showType == 2)

@@ -172,6 +172,10 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NetWait);
             M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;
+            if (unit.IsDisposed)
+            {
+                return ErrorCore.ERR_NetWorkError;
+            }
             unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);
             if (m2C_SkillCmd.Error == 0)
             {

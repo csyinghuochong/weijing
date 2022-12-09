@@ -11,8 +11,8 @@ namespace ET
     public struct NumericAttribute
     {
         public string Name;
-        public string Icon;
         public bool Float;
+        public string Icon;
     }
 
     public static class UIItemHelp
@@ -32,78 +32,75 @@ namespace ET
             { NumericType.Now_MaxDef, new NumericAttribute(){ Name = "物防", Icon = "PetPro_4" }},
             { NumericType.Now_MaxAdf, new NumericAttribute(){ Name = "魔防", Icon = "PetPro_5" }},
 
-            { NumericType.Now_Cri, new NumericAttribute(){ Name = "暴击概率", Icon = "" }},
-            { NumericType.Now_Res, new NumericAttribute(){ Name = "抗暴概率", Icon = "" }},
-            { NumericType.Now_Hit, new NumericAttribute(){ Name = "命中概率", Icon = "" }},
-            { NumericType.Now_Dodge, new NumericAttribute(){ Name = "闪避概率", Icon = "" }},
+            { NumericType.Now_Cri, new NumericAttribute(){ Name = "暴击概率", Icon = string.Empty }},
+            { NumericType.Now_Res, new NumericAttribute(){ Name = "抗暴概率", Icon = string.Empty }},
+            { NumericType.Now_Hit, new NumericAttribute(){ Name = "命中概率", Icon = string.Empty }},
+            { NumericType.Now_Dodge, new NumericAttribute(){ Name = "闪避概率", Icon = string.Empty }},
 
-            { NumericType.Now_MinAct, new NumericAttribute(){ Name = "最小攻击", Icon = "" }},
-            { NumericType.Now_MinDef, new NumericAttribute(){ Name = "最小物防", Icon = "" }},
-            { NumericType.Now_MinAdf, new NumericAttribute(){ Name = "最小魔防", Icon = "" }},
+            { NumericType.Now_MinAct, new NumericAttribute(){ Name = "最小攻击", Icon = string.Empty }},
+            { NumericType.Now_MinDef, new NumericAttribute(){ Name = "最小物防", Icon = string.Empty }},
+            { NumericType.Now_MinAdf, new NumericAttribute(){ Name = "最小魔防", Icon = string.Empty }},
             //{ NumericType.Now_Mage, new NumericAttribute(){ Name = "技能伤害", Icon = "" }},
              
-            { NumericType.Now_Power, new NumericAttribute(){ Name = "力量", Icon = "" }},
-            { NumericType.Now_Agility, new NumericAttribute(){ Name = "敏捷", Icon = "" }},
-            { NumericType.Now_Intellect, new NumericAttribute(){ Name = "智力", Icon = "" }},
-            { NumericType.Now_Stamina, new NumericAttribute(){ Name = "耐力", Icon = "" }},
-            { NumericType.Now_Constitution, new NumericAttribute(){ Name = "体质", Icon = "" }},
+            { NumericType.Now_Power, new NumericAttribute(){ Name = "力量", Icon = string.Empty }},
+            { NumericType.Now_Agility, new NumericAttribute(){ Name = "敏捷", Icon = string.Empty }},
+            { NumericType.Now_Intellect, new NumericAttribute(){ Name = "智力", Icon = string.Empty }},
+            { NumericType.Now_Stamina, new NumericAttribute(){ Name = "耐力", Icon = string.Empty }},
+            { NumericType.Now_Constitution, new NumericAttribute(){ Name = "体质", Icon = string.Empty }},
 
-            { NumericType.Now_DamgeAddPro, new NumericAttribute(){ Name = "伤害加成", Icon = "" }},
-            { NumericType.Now_DamgeSubPro, new NumericAttribute(){ Name = "伤害减免", Icon = "" }},
-            { NumericType.Now_Luck, new NumericAttribute(){ Name = "幸运值", Icon = "" }},
-            { NumericType.Now_Speed, new NumericAttribute(){ Name = "移动速度", Icon = "" }},
-            { NumericType.Now_CriLv, new NumericAttribute(){ Name = "暴击等级", Icon = "" }},
-            { NumericType.Now_ResLv, new NumericAttribute(){ Name = "韧性等级", Icon = "" }},
-            { NumericType.Now_HitLv, new NumericAttribute(){ Name = "命中等级", Icon = "" }},
-            { NumericType.Now_DodgeLv, new NumericAttribute(){ Name = "闪避等级", Icon = "" }},
-            { NumericType.Now_ActDamgeAddPro, new NumericAttribute(){ Name = "物理伤害加成", Icon = "" }},
-            { NumericType.Now_MageDamgeAddPro, new NumericAttribute(){ Name = "魔法伤害加成", Icon = "" }},
-            { NumericType.Now_ActDamgeSubPro, new NumericAttribute(){ Name = "物理伤害减免", Icon = "" }},
-            { NumericType.Now_MageDamgeSubPro, new NumericAttribute(){ Name = "魔法伤害减免", Icon = "" }},
-            { NumericType.Now_ZhongJiPro, new NumericAttribute(){ Name = "重击概率", Icon = "" }},
-            { NumericType.Now_ZhongJi, new NumericAttribute(){ Name = "重击附加伤害", Icon = "" }},
-            { NumericType.Now_HuShiActPro, new NumericAttribute(){ Name = "攻击穿透", Icon = "" }},
-            { NumericType.Now_HuShiMagePro, new NumericAttribute(){ Name = "魔法穿透", Icon = "" }},
-            { NumericType.Now_HuShiDef, new NumericAttribute(){ Name = "忽视目标防御", Icon = "" }},
-            { NumericType.Now_HuShiAdf, new NumericAttribute(){ Name = "忽视目标魔御", Icon = "" }},
-            { NumericType.Now_XiXuePro, new NumericAttribute(){ Name = "吸血概率", Icon = "" }},
-            { NumericType.Now_SkillCDTimeCostPro, new NumericAttribute(){ Name = "技能冷却缩减", Icon = "" }},
-            { NumericType.Now_GeDang, new NumericAttribute(){ Name = "格挡值", Icon = "" }},
-            { NumericType.Now_ZhenShi, new NumericAttribute(){ Name = "真实伤害", Icon = "" }},
-            { NumericType.Now_HuiXue, new NumericAttribute(){ Name = "回血值", Icon = "" }},
-
-
-            { NumericType.Now_ExpAdd, new NumericAttribute(){ Name = "经验收益", Icon = "" }},
-            { NumericType.Now_GoldAdd, new NumericAttribute(){ Name = "金币收益", Icon = "" }},
-
-            { NumericType.Now_MonsterDis, new NumericAttribute(){ Name = "怪物发现目标距离", Icon = "" }},
-            { NumericType.Now_JumpDisAdd, new NumericAttribute(){ Name = "冲锋距离加成", Icon = "" }},
-            { NumericType.Now_ActQiangDuAdd, new NumericAttribute(){ Name = "攻击强度", Icon = "" }},
-            { NumericType.Now_MageQiangDuAdd, new NumericAttribute(){ Name = "法术强度", Icon = "" }},
+            { NumericType.Now_DamgeAddPro, new NumericAttribute(){ Name = "伤害加成", Icon = string.Empty }},
+            { NumericType.Now_DamgeSubPro, new NumericAttribute(){ Name = "伤害减免", Icon = string.Empty }},
+            { NumericType.Now_Luck, new NumericAttribute(){ Name = "幸运值", Icon = string.Empty }},
+            { NumericType.Now_Speed, new NumericAttribute(){ Name = "移动速度", Icon = string.Empty }},
+            { NumericType.Now_CriLv, new NumericAttribute(){ Name = "暴击等级", Icon = string.Empty }},
+            { NumericType.Now_ResLv, new NumericAttribute(){ Name = "韧性等级", Icon = string.Empty }},
+            { NumericType.Now_HitLv, new NumericAttribute(){ Name = "命中等级", Icon = string.Empty }},
+            { NumericType.Now_DodgeLv, new NumericAttribute(){ Name = "闪避等级", Icon = string.Empty }},
+            { NumericType.Now_ActDamgeAddPro, new NumericAttribute(){ Name = "物理伤害加成", Icon = string.Empty }},
+            { NumericType.Now_MageDamgeAddPro, new NumericAttribute(){ Name = "魔法伤害加成", Icon = string.Empty }},
+            { NumericType.Now_ActDamgeSubPro, new NumericAttribute(){ Name = "物理伤害减免", Icon = string.Empty }},
+            { NumericType.Now_MageDamgeSubPro, new NumericAttribute(){ Name = "魔法伤害减免", Icon = string.Empty }},
+            { NumericType.Now_ZhongJiPro, new NumericAttribute(){ Name = "重击概率", Icon = string.Empty }},
+            { NumericType.Now_ZhongJi, new NumericAttribute(){ Name = "重击附加伤害", Icon = string.Empty }},
+            { NumericType.Now_HuShiActPro, new NumericAttribute(){ Name = "攻击穿透", Icon = string.Empty }},
+            { NumericType.Now_HuShiMagePro, new NumericAttribute(){ Name = "魔法穿透", Icon = string.Empty }},
+            { NumericType.Now_HuShiDef, new NumericAttribute(){ Name = "忽视目标防御", Icon = string.Empty }},
+            { NumericType.Now_HuShiAdf, new NumericAttribute(){ Name = "忽视目标魔御", Icon = string.Empty }},
+            { NumericType.Now_XiXuePro, new NumericAttribute(){ Name = "吸血概率", Icon = string.Empty }},
+            { NumericType.Now_SkillCDTimeCostPro, new NumericAttribute(){ Name = "技能冷却缩减", Icon = string.Empty }},
+            { NumericType.Now_GeDang, new NumericAttribute(){ Name = "格挡值", Icon = string.Empty }},
+            { NumericType.Now_ZhenShi, new NumericAttribute(){ Name = "真实伤害", Icon = string.Empty }},
+            { NumericType.Now_HuiXue, new NumericAttribute(){ Name = "回血值", Icon = string.Empty }},
 
 
-            { NumericType.Now_ActBossPro, new NumericAttribute(){ Name = "领主攻击加成", Icon = "" }},
-            { NumericType.Now_MageBossPro, new NumericAttribute(){ Name = "领主技能加成", Icon = "" }},
-            { NumericType.Now_ActBossSubPro, new NumericAttribute(){ Name = "领主攻击免伤", Icon = "" }},
-            { NumericType.Now_MageBossSubPro, new NumericAttribute(){ Name = "领主技能免伤", Icon = "" }},
+            { NumericType.Now_ExpAdd, new NumericAttribute(){ Name = "经验收益", Icon = string.Empty }},
+            { NumericType.Now_GoldAdd, new NumericAttribute(){ Name = "金币收益", Icon = string.Empty }},
 
-            { NumericType.Now_MiaoSha_Pro, new NumericAttribute(){ Name = "致命一击", Icon = "" }},
-            { NumericType.Now_FuHuoPro, new NumericAttribute(){ Name = "重生几率", Icon = "" }},
-            { NumericType.Now_WuShiFangYuPro, new NumericAttribute(){ Name = "无视防御", Icon = "" }},
-            { NumericType.Now_SkillNoCDPro, new NumericAttribute(){ Name = "技能零冷却", Icon = "" }},
-            { NumericType.Now_SkillMoreDamgePro, new NumericAttribute(){ Name = "技能额外伤害", Icon = "" }},
-            { NumericType.Now_SkillDodgePro, new NumericAttribute(){ Name = "技能闪避", Icon = "" }},
-            { NumericType.Now_ShenNongPro, new NumericAttribute(){ Name = "神农", Icon = "" }},
-            { NumericType.Now_SecHpAddPro, new NumericAttribute(){ Name = "每秒恢复", Icon = "" }},
-            { NumericType.Now_DiKangPro, new NumericAttribute(){ Name = "抵抗减益状态", Icon = "" }},
-            { NumericType.Now_MageDodgePro, new NumericAttribute(){ Name = "魔法闪避", Icon = "" }},
-            { NumericType.Now_ZhuanZhuPro, new NumericAttribute(){ Name = "专注概率", Icon = "" }},
+            { NumericType.Now_MonsterDis, new NumericAttribute(){ Name = "怪物发现目标距离", Icon = string.Empty }},
+            { NumericType.Now_JumpDisAdd, new NumericAttribute(){ Name = "冲锋距离加成", Icon = string.Empty }},
+            { NumericType.Now_ActQiangDuAdd, new NumericAttribute(){ Name = "攻击强度", Icon = string.Empty }},
+            { NumericType.Now_MageQiangDuAdd, new NumericAttribute(){ Name = "法术强度", Icon = string.Empty }},
 
-            { NumericType.Now_ActDodgePro, new NumericAttribute(){ Name = "物理闪避", Icon = "" }},
-            { NumericType.Now_ActSpeedPro, new NumericAttribute(){ Name = "攻击速度", Icon = "" }},
 
+            { NumericType.Now_ActBossPro, new NumericAttribute(){ Name = "领主攻击加成", Icon = string.Empty }},
+            { NumericType.Now_MageBossPro, new NumericAttribute(){ Name = "领主技能加成", Icon = string.Empty }},
+            { NumericType.Now_ActBossSubPro, new NumericAttribute(){ Name = "领主攻击免伤", Icon = string.Empty }},
+            { NumericType.Now_MageBossSubPro, new NumericAttribute(){ Name = "领主技能免伤", Icon = string.Empty }},
+
+            { NumericType.Now_MiaoSha_Pro, new NumericAttribute(){ Name = "致命一击", Icon = string.Empty }},
+            { NumericType.Now_FuHuoPro, new NumericAttribute(){ Name = "重生几率", Icon = string.Empty }},
+            { NumericType.Now_WuShiFangYuPro, new NumericAttribute(){ Name = "无视防御", Icon = string.Empty }},
+            { NumericType.Now_SkillNoCDPro, new NumericAttribute(){ Name = "技能零冷却", Icon = string.Empty }},
+            { NumericType.Now_SkillMoreDamgePro, new NumericAttribute(){ Name = "技能额外伤害", Icon = string.Empty }},
+            { NumericType.Now_SkillDodgePro, new NumericAttribute(){ Name = "技能闪避", Icon = string.Empty }},
+            { NumericType.Now_ShenNongPro, new NumericAttribute(){ Name = "神农", Icon = string.Empty }},
+            { NumericType.Now_SecHpAddPro, new NumericAttribute(){ Name = "每秒恢复", Icon =  string.Empty }},
+            { NumericType.Now_DiKangPro, new NumericAttribute(){ Name = "抵抗减益状态", Icon =  string.Empty }},
+            { NumericType.Now_MageDodgePro, new NumericAttribute(){ Name = "魔法闪避", Icon =  string.Empty }},
+            { NumericType.Now_ZhuanZhuPro, new NumericAttribute(){ Name = "专注概率", Icon =  string.Empty }},
+            { NumericType.Now_ActDodgePro, new NumericAttribute(){ Name = "物理闪避", Icon =  string.Empty }},
+            { NumericType.Now_ActSpeedPro, new NumericAttribute(){ Name = "攻击速度", Icon =  string.Empty }},
         };
-
 
         public static Dictionary<int, string> ItemTypeName = new Dictionary<int, string>()
         {
