@@ -21,6 +21,10 @@ namespace ET
 		public static List<MysteryItemInfo> InitMysteryTypeItems(int openserverDay , int shopValue, int totalNumber)
 		{
 			List<MysteryItemInfo> mysteryItemInfos = new List<MysteryItemInfo>();
+			if (openserverDay == 0)
+			{
+				return mysteryItemInfos;
+			}
 
 			List<int> mysteryids = GetMysteryList(shopValue);
 			List<int> weightList = new List<int>();
