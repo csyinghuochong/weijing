@@ -48,7 +48,7 @@ namespace ET
             Vector3 dir = (unit.Position - targetPos).normalized;
             targetPos += dir * NpcSpeakDistance;
             int ret = await unit.MoveToAsync2(targetPos, false);
-            if (instanceid != unit.InstanceId)
+            if (instanceid != unit.InstanceId || Vector3.Distance(unit.Position, targetPos) > NpcSpeakDistance)
             {
                 return -1;
             }
