@@ -49,6 +49,11 @@ namespace ET
         {
             C2R_WorldLvRequest  request = new C2R_WorldLvRequest();
             R2C_WorldLvResponse response = (R2C_WorldLvResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
             RankingInfo rankingInfo = response.ServerInfo.RankingInfo;
             self.Text_WorldLv.GetComponent<Text>().text = response.ServerInfo.WorldLv.ToString();
             self.ServerInfo = response.ServerInfo;
