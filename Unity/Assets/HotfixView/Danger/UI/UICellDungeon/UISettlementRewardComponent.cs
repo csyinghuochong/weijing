@@ -45,14 +45,13 @@ namespace ET
 
     public static class UISettlementRewardComponentSystem
     {
-        public static async ETTask OnInitUI(this UISettlementRewardComponent self)
+        public static  void OnInitUI(this UISettlementRewardComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            await ETTask.CompletedTask;
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject UIItem = GameObject.Instantiate(bundleGameObject);
             UI ui_1 = self.AddChild<UI, string, GameObject>("item_reward", UIItem);
-            UIItemComponent uIItemComponent = ui_1.AddComponent<UIItemComponent>();
+            ui_1.AddComponent<UIItemComponent>();
             UICommonHelper.SetParent(UIItem, self.ItemNode);
             self.UiItem = ui_1;
             if (self.RewardItem != null)

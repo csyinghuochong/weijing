@@ -159,9 +159,14 @@ namespace ET
                 return;
             }
 
+            if (message.BoxIndex < 0 || message.BoxIndex >= self.RewardUIList.Count)
+            {
+                Log.Error($"message.BoxIndex : {message.BoxIndex}");
+                return;
+            }
+
             UISettlementRewardComponent select = self.RewardUIList[message.BoxIndex];
             select.ShowRewardItem();
-
             long userId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             if (userId == message.UserId)
             {
