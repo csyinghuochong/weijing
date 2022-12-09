@@ -34,7 +34,7 @@ namespace ET
             {
                 self.Img_Progress.transform.localScale = new Vector3((1f - 1f * args.PassTime / args.TotalTime), 1f, 1f);
             }
-            if (args.PassTime <= 200)
+            if (args.PassTime <= 100)
             {
                 self.GameObject.SetActive(true);
             }
