@@ -322,10 +322,10 @@ namespace ET
                 //计算战斗公式
                 long damge = (actValue - nowdef);
 
-                //怪物打宠物降低80% （如果有需要 后期需要加入判定是不是当前怪物的普通攻击来判断躲避技能）
+                //怪物打宠物降低60% （如果有需要 后期需要加入判定是不是当前怪物的普通攻击来判断躲避技能）
                 if (attackUnit.Type == UnitType.Monster && defendUnit.Type == UnitType.Pet && petfuben == false)
                 {
-                    damge = (int)((float)damge * 0.2f);
+                    damge = (int)((float)damge * 0.4f);
                 }
 
                 //技能倍伤

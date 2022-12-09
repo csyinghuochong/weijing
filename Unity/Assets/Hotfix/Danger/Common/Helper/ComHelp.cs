@@ -1031,7 +1031,7 @@ namespace ET
         {
             if (itemType == 1)
             {
-                if (subType == 101 || subType == 114 || subType == 121 || subType == 15 || subType == 102)
+                if (subType == 101 || subType == 106 || subType == 114 || subType == 121 || subType == 15 || subType == 102)
                 {
                     return true;
                 }

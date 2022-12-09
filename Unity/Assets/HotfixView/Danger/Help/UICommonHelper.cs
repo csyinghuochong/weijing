@@ -72,7 +72,7 @@ namespace ET
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             go.SetActive(true);
             go.transform.parent = weaponParent;
-            go.transform.localRotation = Quaternion.Euler(-180, 90, 90);
+            go.transform.localRotation = Quaternion.Euler(0, 90, 90);
             go.transform.localPosition = Vector3.zero;
             go.transform.localScale = Vector3.one;
         }
