@@ -354,10 +354,20 @@ namespace ET
                     damge = (long)((float)damge * (1f + weaponAddAct));
                 }
 
-                //怪物打宠物降低60% （如果有需要 后期需要加入判定是不是当前怪物的普通攻击来判断躲避技能）
+                //怪物打宠物降低 （如果有需要 后期需要加入判定是不是当前怪物的普通攻击来判断躲避技能）
                 if (attackUnit.Type == UnitType.Monster && defendUnit.Type == UnitType.Pet && petfuben == false)
                 {
-                    damge = (int)((float)damge * 0.3f);
+                    //普攻受到40%伤害
+                    if (skillconfig.SkillActType == 0)
+                    {
+                        damge = (int)((float)damge * 0.4f);
+                    }
+
+                    //技能受到10%伤害
+                    if (skillconfig.SkillActType == 1)
+                    {
+                        damge = (int)((float)damge * 0.1f);
+                    }
                 }
 
                 //技能倍伤
@@ -1236,17 +1246,8 @@ namespace ET
             }
 
             //缓存等级BUFF属性
-            AddUpdateProDicList((int)NumericType.Now_CriLv, numericComponent.GetAsLong(NumericType.Extra_Buff_CriLv_Add), UpdateProDicList);
+            //AddUpdateProDicList((int)NumericType.Now_CriLv, numericComponent.GetAsLong(NumericType.Extra_Buff_CriLv_Add), UpdateProDicList);
             //AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, Constitution_value * 80, UpdateProDicList);
-
-            //更新属性
-            foreach (int key in UpdateProDicList.Keys)
-            {
-                long setValue = numericComponent.GetAsLong(key) + UpdateProDicList[key];
-                //Log.Info("key = " + key + ":" + setValue);
-                numericComponent.Set(key, setValue, notice);
-            }
-
 
             //二次计算暴击等属性
             long criLv = numericComponent.GetAsLong(NumericType.Now_CriLv);
@@ -1260,8 +1261,24 @@ namespace ET
             resLv = resLv + PointTiZhi * 5;
             dodgeLv = dodgeLv + PointNaiLi * 5;
             hitLv = hitLv + PointMinJie * 5;
-
             skillAddLv = skillAddLv + PointZhiLi * 5;
+
+            AddUpdateProDicList((int)NumericType.Base_CriLv_Add, criLv, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_HitLv_Add, hitLv, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_DodgeLv_Add, dodgeLv, UpdateProDicList);
+            AddUpdateProDicList((int)NumericType.Base_ResLv_Add, resLv, UpdateProDicList);
+
+
+            //更新属性
+            foreach (int key in UpdateProDicList.Keys)
+            {
+                long setValue = numericComponent.GetAsLong(key) + UpdateProDicList[key];
+                //Log.Info("key = " + key + ":" + setValue);
+                numericComponent.Set(key, setValue, notice);
+            }
+
+
+
 
             //战力计算
             long ShiLi_Act  = 0;
@@ -1355,28 +1372,29 @@ namespace ET
             /*
             Dictionary<int, long> ProLvDicList = new Dictionary<int, long>();
 
-            float criProAdd = LvProChange(criLv, roleLv);
-            float hitProAdd = LvProChange(hitLv, roleLv);
-            float dogeProAdd = LvProChange(dodgeLv, roleLv);
-            float resProAdd = LvProChange(resLv, roleLv);
+            //float criProAdd = LvProChange(criLv, roleLv);
+            //float hitProAdd = LvProChange(hitLv, roleLv);
+            //float dogeProAdd = LvProChange(dodgeLv, roleLv);
+            //float resProAdd = LvProChange(resLv, roleLv);
 
             float skillDamgeProAdd = LvProChange(skillAddLv, roleLv);
 
+            
             long cripro = numericComponent.GetAsLong(NumericType.Now_Cri);
 
             AddUpdateProDicList((int)NumericType.Now_Cri, (int)(criProAdd * 10000), ProLvDicList);
             AddUpdateProDicList((int)NumericType.Now_Hit, (int)(hitProAdd * 10000), ProLvDicList);
             AddUpdateProDicList((int)NumericType.Now_Dodge, (int)(dogeProAdd * 10000), ProLvDicList);
             AddUpdateProDicList((int)NumericType.Now_Res, (int)(resProAdd * 10000), ProLvDicList);
-
+            
             AddUpdateProDicList((int)NumericType.Now_MageDamgeAddPro, (int)(skillDamgeProAdd * 10000), ProLvDicList);
 
             //更新属性
             foreach (int key in ProLvDicList.Keys)
             {
-                //long setValue = numericComponent.GetAsLong(key) + ProLvDicList[key];
+                long setValue = numericComponent.GetAsLong(key) + ProLvDicList[key];
                 //Log.Info("numericComponent.GetAsLong(key) = " + numericComponent.GetAsLong(key) + ":ProLvDicList[key] = " + ProLvDicList[key] + ";setValue = " + setValue);
-                //numericComponent.Update(key, ProLvDicList[key], notice);
+                numericComponent.Set(key, ProLvDicList[key], notice);
             }
             */
         }

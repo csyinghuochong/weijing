@@ -382,6 +382,11 @@ namespace ET
                         value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.Now_DodgeLv), self.UserInfoComponent.UserInfo.Lv) * 100f;
                     }
 
+                    if (showList.numericType == NumericType.Now_MageDamgeAddPro)
+                    {
+                        value += ComHelp.LvProChange(numericComponent.GetAsLong(NumericType.PointZhiLi) * 5, self.UserInfoComponent.UserInfo.Lv) * 100f;
+                    }
+
                     if (value.ToString().Contains("."))
                     {
                         rc.Get<GameObject>("Lab_ProTypeValue").GetComponent<Text>().text = value.ToString("F2") + "%";
