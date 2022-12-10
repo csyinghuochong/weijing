@@ -178,8 +178,7 @@ namespace ET
                 return;
             }
 
-            UISettlementRewardComponent select = self.RewardUIList[message.BoxIndex];
-            select.ShowRewardItem();
+            self.RewardUIList[message.BoxIndex].ShowRewardItem();
             long userId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             if (userId == message.UserId)
             {
