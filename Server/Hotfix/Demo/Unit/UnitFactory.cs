@@ -262,12 +262,12 @@ namespace ET
 
         public static void CreateDropItems(Unit bekill, Unit main, int sceneType, int playerNumer)
         {
-            MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
             if (bekill.Type != UnitType.Monster)
             {
                 return;
             }
             bool drop = true;
+            MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
             if (ComHelp.IsSingleFuben(sceneType))
             {
                 drop = main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || bekill.IsBoss();
