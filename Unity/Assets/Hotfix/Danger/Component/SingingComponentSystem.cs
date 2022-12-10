@@ -109,6 +109,7 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.UISingingTimer, self);
 
             Unit unit = self.GetParent<Unit>();
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
             stateComponent.SendUpdateState(1, StateTypeEnum.Singing, c2M_SkillCmd.SkillID.ToString());
 
@@ -132,7 +133,16 @@ namespace ET
             }
         }
 
-         public static  void WaitUseSkill(this SingingComponent self)
+        public static void BeginMoveOrSkill(this SingingComponent self)
+        {
+            if (self.PassTime > 0)
+            {
+                self.PassTime = -1;
+                self.UpdateUISinging();
+            }
+        }
+
+        public static  void WaitUseSkill(this SingingComponent self)
         {
             if (self.Type!=1)
             {

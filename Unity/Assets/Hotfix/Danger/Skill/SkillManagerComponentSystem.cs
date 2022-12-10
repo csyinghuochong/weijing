@@ -143,7 +143,7 @@ namespace ET
                     HintHelp.GetInstance().ShowHintError(errorCode);
                     return errorCode;       
                 }
-                unit.GetComponent<StateComponent>().BeginMoveOrSkill();
+                unit.GetComponent<SingingComponent>().BeginMoveOrSkill();
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
                 if (checksing && skillConfig.SkillFrontSingTime > 0)
                 {

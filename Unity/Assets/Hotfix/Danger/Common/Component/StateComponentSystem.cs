@@ -122,7 +122,8 @@ namespace ET
                 return;
             MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateOperateType = 2, StateTime = 0 });
 #else
-            if (self.CanMove() && self.GetParent<Unit>().MainHero)
+            Unit unit = self.GetParent<Unit>();
+            if (unit.MainHero && self.CanMove())
             {
                 self.SilenceCheckTime = 0;
             }
@@ -190,17 +191,6 @@ namespace ET
             c2M_UnitStateUpdate.StateType = stateType;
             c2M_UnitStateUpdate.StateValue = stateValue;
             self.ZoneScene().GetComponent<SessionComponent>().Session.Send(c2M_UnitStateUpdate);
-        }
-
-
-        public static void BeginMoveOrSkill(this StateComponent self)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))
-            {
-                //打打断吟唱
-                self.SendUpdateState(2, StateTypeEnum.Singing, "0");
-            }
         }
 #endif
 
