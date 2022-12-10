@@ -75,6 +75,11 @@ namespace ET
                 List<Unit> units = FubenHelp.GetUnitList(unitDefend.DomainScene(), UnitType.Monster);
                 for (int i = 0; i < units.Count; i++)
                 {
+                    AIComponent aIComponent = units[i].GetComponent<AIComponent>();
+                    if (aIComponent!= null && aIComponent.TargetID == unitDefend.Id)
+                    {
+                        aIComponent.ChangeTarget(0);
+                    }
                     if (units[i].IsBoss())
                     {
                         units[i].GetComponent<SkillManagerComponent>().OnFinish(true);

@@ -32,14 +32,14 @@ namespace ET
 					int oldScene = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
 					if (oldScene == request.SceneType && request.SceneType != SceneTypeEnum.LocalDungeon)
 					{
-						Log.Error($"LoginTest1  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
+						Log.Debug($"LoginTest1  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
 						response.Error = ErrorCore.ERR_RequestRepeatedly;
 						reply();
 						return;
 					};
 					if (oldScene != request.SceneType && oldScene > SceneTypeEnum.MainCityScene && request.SceneType > SceneTypeEnum.MainCityScene)
 					{
-						Log.Error($"LoginTest2  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
+						Log.Debug($"LoginTest2  Actor_Transfer unitId{unit.Id} oldScene:{oldScene}  requestscene{request.SceneType}");
 						response.Error = ErrorCore.ERR_RequestRepeatedly;
 						reply();
 						return;

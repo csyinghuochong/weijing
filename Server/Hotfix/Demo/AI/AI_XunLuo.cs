@@ -5,14 +5,12 @@ namespace ET
     [AIHandler]
     public class AI_XunLuo: AAIHandler
     {
-     
         public override bool Check(AIComponent aiComponent, AIConfig aiConfig)
         {
             if (aiComponent.TargetID != 0 || aiComponent.IsRetreat)
             {
                 return false;
             }
-
             Unit unit = aiComponent.GetParent<Unit>();
             Unit nearest = AIHelp.GetNearestEnemy(unit, aiComponent.ActRange);
             if (nearest == null)
@@ -29,7 +27,6 @@ namespace ET
 
         public static Vector3 GetInitRandomVec3(Vector3 initVec3, double ai_PatrolRange)
         {
-
             System.Random rand = new System.Random();
             double randValue = rand.NextDouble();
             double random_x = (randValue - 0.5f) * ai_PatrolRange * 2;
