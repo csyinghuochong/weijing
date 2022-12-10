@@ -262,6 +262,7 @@ namespace ET
 
         public static void CreateDropItems(Unit bekill, Unit main, int sceneType, int playerNumer)
         {
+            MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
             if (bekill.Type != UnitType.Monster)
             {
                 return;
@@ -269,7 +270,12 @@ namespace ET
             bool drop = true;
             if (ComHelp.IsSingleFuben(sceneType))
             {
-                drop =  main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || bekill.IsBoss();
+                drop = main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || bekill.IsBoss();
+
+                //场景宝箱掉落和体力无关
+                if (monsterCof.MonsterType == 5 && monsterCof.MonsterSonType == 55) {
+                    drop = true;
+                }
             }
             if (!drop)
             {
@@ -317,7 +323,7 @@ namespace ET
             }
 
             //创建掉落
-            MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
+
             if (main != null && monsterCof.MonsterSonType == 1)
             {
                 int nowUserLv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;
