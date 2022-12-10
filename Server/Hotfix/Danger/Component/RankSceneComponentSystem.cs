@@ -104,7 +104,7 @@ namespace ET
         //更新兑换金币
         public static void UpdateExchangeGold(this RankSceneComponent self, int dayTime)
         {
-            int duihuan_baseGold = 90;       //基础兑换值
+            int duihuan_baseGold = 700;       //基础兑换值
             float duihuanPro = 0.05f;
             //最多计算20天后的物价
             if (dayTime > 30)
@@ -152,9 +152,9 @@ namespace ET
             //最低不能低于昨天的兑换值
             if (duihuan_nowGold >= self.DBServerInfo.ServerInfo.ExChangeGold)
             {
-                if (duihuan_nowGold < 100)
+                if (duihuan_nowGold < 500)
                 {
-                    duihuan_nowGold = 100;
+                    duihuan_nowGold = 500;
                 }
                 self.DBServerInfo.ServerInfo.ExChangeGold = duihuan_nowGold;
                 Log.Info("更新货币兑换值:" + self.DBServerInfo.ServerInfo.ExChangeGold);
