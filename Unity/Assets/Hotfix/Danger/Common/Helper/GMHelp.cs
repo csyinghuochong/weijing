@@ -11,10 +11,10 @@ namespace ET
             "tcg02",
             "test01",
             "testcn01",
-            "18319670288",
             "15091509079",
             "18652422521",
-            "qqUID_789815C08E1466834C508C1F34B282A5",
+            "18319670288",
+            "18407228910",
         };
 
         public static List<long> BanChatPlayer = new List<long>()
