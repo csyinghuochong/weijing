@@ -54,7 +54,6 @@ namespace ET
                 bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)
                 {
-                    aiComponent.TargetID = 0;
                     return;
                 }
             }
