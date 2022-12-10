@@ -5,21 +5,21 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    [Timer(TimerType.DungeonSettlement)]
-    public class DungeonSettlementTimer : ATimer<UITeamDungeonSettlementComponent>
-    {
-        public override void Run(UITeamDungeonSettlementComponent self)
-        {
-            try
-            {
-                self.OnUpdate();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
+    //[Timer(TimerType.DungeonSettlement)]
+    //public class DungeonSettlementTimer : ATimer<UITeamDungeonSettlementComponent>
+    //{
+    //    public override void Run(UITeamDungeonSettlementComponent self)
+    //    {
+    //        try
+    //        {
+    //            self.OnUpdate();
+    //        }
+    //        catch (Exception e)
+    //        {
+    //            Log.Error($"move timer error: {self.Id}\n{e}");
+    //        }
+    //    }
+    //}
 
     public class UITeamDungeonSettlementComponent : Entity, IAwake, IDestroy
     {
@@ -39,9 +39,6 @@ namespace ET
 
         public bool IfLingQuStatus;
         public long SendGetTime;
-
-        public int LeftTime;
-        public long Timer;
     }
 
     [ObjectSystem]
@@ -49,7 +46,6 @@ namespace ET
     {
         public override void Destroy(UITeamDungeonSettlementComponent self)
         {
-            TimerComponent.Instance.Remove(ref self.Timer);
         }
     }
 
@@ -111,25 +107,37 @@ namespace ET
             self.Img_back2 = rc.Get<GameObject>("Img_back2");
             ButtonHelp.AddListenerEx(self.Img_back2, () => { self.OnButton_exit(); });
 
-            self.LeftTime = 10;
             self.IfLingQuStatus = false;
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.DungeonSettlement, self) ;
+            self.BeingTimer().Coroutine();
+            //self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.DungeonSettlement, self) ;
         }
     }
 
     public static class UITeamDungeonSettlementComponentSystem
     {
-        public static void OnUpdate(this UITeamDungeonSettlementComponent self)
+        public static async ETTask BeingTimer(this UITeamDungeonSettlementComponent self)
         {
-            self.LeftTime--;
-            if (self.LeftTime <= 0)
+            long instanceIds = self.InstanceId;
+            for (int i = 10;  i >= 0; i-- )
+            {
+                await TimerComponent.Instance.WaitAsync(1000);
+                if (instanceIds != self.InstanceId)
+                {
+                    break;
+                }
+                self.OnUpdate(i);
+            }
+        }
+
+        public static void OnUpdate(this UITeamDungeonSettlementComponent self, int leftTime)
+        {
+            if (leftTime <= 0)
             {
                 self.CheckSelfSelected();
-                TimerComponent.Instance.Remove(ref self.Timer);
                 self.Text_LeftTime.SetActive(false);
                 return;
             }
-            self.Text_LeftTime.GetComponent<Text>().text = $"选择剩余时间:{self.LeftTime}秒";
+            self.Text_LeftTime.GetComponent<Text>().text = $"选择剩余时间:{leftTime}秒";
         }
 
         public static void CheckSelfSelected(this UITeamDungeonSettlementComponent self)
@@ -177,7 +185,6 @@ namespace ET
                         self.RewardUIList[i].DisableClick();
                     }
                     self.IfLingQuStatus = true;
-                    TimerComponent.Instance.Remove(ref self.Timer);
                     self.Text_LeftTime.SetActive(false);
                 }
                 else

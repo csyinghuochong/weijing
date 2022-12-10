@@ -15,6 +15,7 @@ namespace ET
             "18652422521",
             "18319670288",
             "18407228910",
+            "qqUID_789815C08E1466834C508C1F34B282A5"
         };
 
         public static List<long> BanChatPlayer = new List<long>()

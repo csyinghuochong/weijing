@@ -11,8 +11,9 @@ namespace ET
 
             this.OldSpeed = theUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
 
+            float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
             Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
-            this.TargetPosition = theUnitFrom.Position + rotation * Vector3.forward * ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
+            this.TargetPosition = theUnitFrom.Position + rotation * Vector3.forward * moveDistance;
             this.TargetPosition = theUnitFrom.DomainScene().GetComponent<MapComponent>().GetCanChongJiPath(theUnitFrom.Position, TargetPosition);
 
             //1-10 表示 10%-100%
@@ -23,11 +24,12 @@ namespace ET
             Unit targetUnit = theUnitFrom.GetParent<UnitComponent>().Get(skillId.TargetID);
             if (targetUnit!=null)
             {
-                if (PositionHelper.Distance2D(theUnitFrom, targetUnit) < 1f)
+                float distance = PositionHelper.Distance2D(theUnitFrom, targetUnit);
+                if (distance < 1f)
                 {
                     TargetPosition = theUnitFrom.Position;
                 }
-                else
+                else if (distance < moveDistance)
                 {
                     Vector3 dir = theUnitFrom.Position - targetUnit.Position;
                     this.TargetPosition = targetUnit.Position + dir.normalized;
