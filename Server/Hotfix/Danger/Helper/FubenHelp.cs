@@ -102,8 +102,6 @@ namespace ET
 					Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
 					Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
 					Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
-
-					//70002010
 					UnitFactory.CreateMonster(scene, monsterPosition.MonsterID, vector3, new CreateMonsterInfo()
 					{
 						Camp = monsterConfig.MonsterCamp,
@@ -222,7 +220,6 @@ namespace ET
 						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
 						UnitFactory.CreateMonster(scene, monsterid, vector3, new CreateMonsterInfo()
 						{ 
-
 							Camp = monsterConfig.MonsterCamp
 						});
 					}

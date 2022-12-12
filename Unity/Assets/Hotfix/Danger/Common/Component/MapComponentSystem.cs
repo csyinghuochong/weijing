@@ -74,22 +74,21 @@ namespace ET
 		{
 			using var list = ListComponent<Vector3>.Create();
 			Vector3 dir = (start - target).normalized;
-
-			//while (true)
-			//{
-			//	Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, target, list);
-			//	if (list.Count >= 2)
-			//	{
-			//		target = list[list.Count - 1];
-			//		break;
-			//	}
-			//	if (Vector3.Distance(start, target) < 0.5f)
-			//	{
-			//		break;
-			//	}
-			//	target = target + (0.5f * dir);
-			//}
-			return target;
+            while (true)
+            {
+                Game.Scene.GetComponent<RecastPathComponent>().SearchPath(int.Parse(self.NavMeshId), start, target, list);
+                if (list.Count >= 2)
+                {
+                    target = list[list.Count - 1];
+                    break;
+                }
+                if (Vector3.Distance(start, target) < 0.5f)
+                {
+                    break;
+                }
+                target = target + (0.5f * dir);
+            }
+            return target;
 		}
 
 		public static void SearchPath(this MapComponent self, Unit unit, Vector3 target, List<Vector3> result)
