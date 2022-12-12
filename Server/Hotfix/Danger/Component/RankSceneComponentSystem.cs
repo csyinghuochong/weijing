@@ -62,8 +62,8 @@ namespace ET
                 dBServerInfo.Id = self.DomainZone();
             }
             //初始化参数
-            self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
             self.DBServerInfo = dBServerInfo;
+            self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
             self.UpdateWorldLv();
             self.BroadcastWorldLv().Coroutine();
         }
