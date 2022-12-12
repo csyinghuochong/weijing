@@ -72,7 +72,7 @@ namespace ET
                 {
                     self.SetIdleState();
                 }
-                if (self.CurrentFsm == FsmStateEnum.FsmSkillState)
+                if (self.CurrentFsm == FsmStateEnum.FsmSkillState)  //光之能量 保持在动作的最后一帧
                 {
                     self.SetIdleState();
                 }
@@ -88,7 +88,7 @@ namespace ET
                 self.SetIdleState();
                 self.EndTimer();
             }
-            if (self.WaitIdleTime > 0 && TimeHelper.ClientNow() >= self.WaitIdleTime)
+            if (self.WaitIdleTime > 0 && TimeHelper.ClientNow() >= self.WaitIdleTime)   //连击回Idle
             {
                 self.WaitIdleTime = 0;
                 self.SetIdleState();
@@ -215,7 +215,7 @@ namespace ET
 
             float rigibTime = float.Parse(animationinfos[3]);
             long skillRigibTime = TimeHelper.ClientNow() + (int)(1000f * rigibTime);
-
+            //光之能量 保持在动作的最后一帧
             if (skillConfig.Id >= 61022301 || skillConfig.Id >= 61022306)
             {
                 skillManagerComponent.SkillMoveTime = skillRigibTime;
