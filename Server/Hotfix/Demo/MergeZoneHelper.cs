@@ -340,6 +340,15 @@ namespace ET
 
             //UserInfoComponent  玩家信息
             dbcount = 0;
+
+            List<string> nameList = new List<string>();
+            //先初始化新的玩家列表
+            List<UserInfoComponent> newuserInfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(newzone, d => d.Id > 0);
+            foreach (var entity in newuserInfoComponents)
+            {
+                nameList.Add(entity.UserInfo.Name);
+            }
+
             List<UserInfoComponent> userInfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(oldzone, d => d.Id > 0);
             foreach (var entity in userInfoComponents)
             {
@@ -347,6 +356,10 @@ namespace ET
                 if (dbcount % onecount == 0)
                 {
                     await TimerComponent.Instance.WaitFrameAsync();
+                }
+                if (nameList.Contains(entity.UserInfo.Name))
+                {
+                    entity.UserInfo.Name += oldzone.ToString();
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<UserInfoComponent>(newzone, entity);
             }
