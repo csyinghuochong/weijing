@@ -506,7 +506,7 @@ namespace ET
 			account = account.Replace(" ", "");
 			password = password.Replace(" ", "");
 			self.LastLoginTime = TimeHelper.ClientNow();
-			self.PlayerComponent.CurrentServerId = self.ServerInfo.ServerId;
+			self.PlayerComponent.ServerId = self.ServerInfo.ServerId;
 			self.PlayerComponent.ServerIp = self.ServerInfo.ServerIp;
 			self.PlayerComponent.Account = account;
 			self.PlayerComponent.Password = password;

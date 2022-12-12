@@ -87,7 +87,7 @@ namespace ET
             //获取之前的位置是否有装备
             BagInfo beforeequip = null;
             AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            if (weizhi == (int)ItemSubTypeEnum.Shiping && !ComHelp.IsBanHaoZone(accountInfo.CurrentServerId))
+            if (weizhi == (int)ItemSubTypeEnum.Shiping && !ComHelp.IsBanHaoZone(accountInfo.ServerId))
             {
                 List<BagInfo> equipList = self.GetEquipListByWeizhi(weizhi);
                 beforeequip = equipList.Count < 3 ? null : equipList[0];

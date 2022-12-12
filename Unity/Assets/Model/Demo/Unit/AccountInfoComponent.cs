@@ -23,7 +23,7 @@ namespace ET
 		public string RealmAddress;
 
 		//当前登录角色
-		public int CurrentServerId;
+		public int ServerId;
 		public string ServerIp;
 		public string Account;
 		public string Password;

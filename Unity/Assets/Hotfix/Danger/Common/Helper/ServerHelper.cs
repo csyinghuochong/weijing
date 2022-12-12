@@ -30,10 +30,23 @@ namespace ET
             return serverItem;
         }
 
-        public static long GetGetServerOpenTime(bool innerNet, int zone)
+        public static long GetOpenServerTime(bool innerNet, int zone)
         { 
             ServerItem serverItem = GetGetServerItem(innerNet, zone);   
             return serverItem.ServerOpenTime;   
+        }
+
+        public static int GetOpenServerDay(bool innerNet, int zone)
+        {
+            long openSerTime = GetOpenServerTime(innerNet, zone);
+            if (openSerTime == 0)
+            {
+                return 0;
+            }
+
+            long serverNow = TimeHelper.ServerNow();
+            int openserverDay = ComHelp.DateDiff_Time(serverNow, openSerTime);
+            return openserverDay;
         }
 
         public static List<ServerItem> GetServerList(bool innerNet, int zone)

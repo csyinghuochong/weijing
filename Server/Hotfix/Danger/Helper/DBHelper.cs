@@ -168,22 +168,18 @@ namespace ET
             return StartSceneConfigCategory.Instance.RechargeConfig.InstanceId;
         }
 
-        public static long GetOpenServerTime( int zone)
-        {
-            return ServerHelper.GetGetServerOpenTime(!ComHelp.IsInnerNet(), zone);
-        }
-
         public static int GetOpenServerDay(int zone)
         {
-            long openSerTime = GetOpenServerTime(zone);
-            if (openSerTime == 0)
-            {
-                return 0;
-            }
+            return ServerHelper.GetOpenServerDay(true, zone);
+            //long openSerTime = GetOpenServerTime(zone);
+            //if (openSerTime == 0)
+            //{
+            //    return 0;
+            //}
 
-            long serverNow = TimeHelper.ServerNow();
-            int openserverDay = ComHelp.DateDiff_Time(serverNow, openSerTime);
-            return openserverDay;
+            //long serverNow = TimeHelper.ServerNow();
+            //int openserverDay = ComHelp.DateDiff_Time(serverNow, openSerTime);
+            //return openserverDay;
         }
 
         /// <summary>

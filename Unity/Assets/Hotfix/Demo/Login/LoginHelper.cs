@@ -107,7 +107,7 @@ namespace ET
                 {
                     Token = zoneScene.GetComponent<AccountInfoComponent>().Token,
                     AccountId = zoneScene.GetComponent<AccountInfoComponent>().AccountId,
-                    ServerId = zoneScene.GetComponent<AccountInfoComponent>().CurrentServerId
+                    ServerId = zoneScene.GetComponent<AccountInfoComponent>().ServerId
                 });
             }
             catch (Exception e)

@@ -1014,6 +1014,11 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.UIStall.SetActive(unit.GetComponent<NumericComponent>().GetAsInt((int)NumericType.Now_Stall) == 1);
+
+            int zone = self.ZoneScene().GetComponent<AccountInfoComponent>().ServerId;
+            int openDay = ServerHelper.GetOpenServerDay(!GlobalHelp.IsOutNetMode, zone);
+            int lastDay = ComHelp.GetWorldLvLastDay();
+            self.Button_WorldLv.SetActive(openDay <= lastDay + 1);
         }
 
         //角色经验更新
