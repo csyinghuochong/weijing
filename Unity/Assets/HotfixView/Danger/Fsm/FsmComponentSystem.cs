@@ -309,8 +309,8 @@ namespace ET
                 AnimatorStateInfo animatorStateInfo = self.Animator.Animator.GetCurrentAnimatorStateInfo(0);
                 Dictionary<string, long> ackExitTime = new Dictionary<string, long>();
                 ackExitTime.Add("Act_1", 700);
-                ackExitTime.Add("Act_2", 1000);
-                ackExitTime.Add("Act_3", 1000);
+                ackExitTime.Add("Act_2", 1100);
+                ackExitTime.Add("Act_3", 1100);
                 ackExitTime.Add("Act_11", 300);
                 ackExitTime.Add("Act_12", 500);
                 ackExitTime.Add("Act_13", 500);
