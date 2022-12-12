@@ -34,8 +34,10 @@ namespace ET
 
             self.Label_ItemName.GetComponent<Text>().text = itemConfig.ItemName;
 
-            self.Label_ItemNum.GetComponent<Text>().text = $"{bagComponent.GetItemNumber(itemId)}/{itemNum}";
-
+            //显示字
+            //self.Label_ItemNum.GetComponent<Text>().text = $"{bagComponent.GetItemNumber(itemId)}/{itemNum}";
+            self.Label_ItemNum.GetComponent<Text>().text = $"{UICommonHelper.NumToWString(bagComponent.GetItemNumber(itemId))}/{UICommonHelper.NumToWString(itemNum)}";
+            //显示颜色
             self.Label_ItemNum.GetComponent<Text>().color = (itemNum< bagComponent.GetItemNumber(itemId)) ? Color.green : Color.red;
 
             Sprite sp =  ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);

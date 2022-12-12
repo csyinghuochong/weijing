@@ -700,5 +700,6 @@ namespace ET
             ItemUI.GetComponent<UIItemComponent>().UpdateItem(bagInfo, itemOperateEnum);
         }
 
+
     }
 }

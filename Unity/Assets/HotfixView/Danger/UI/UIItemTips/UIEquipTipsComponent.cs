@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ProtoBuf.Meta;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -726,12 +727,13 @@ namespace ET
             textEquipType = GameSettingLanguge.LoadLocalization(textEquipType);
 
             string langStr = GameSettingLanguge.LoadLocalization("强化");
-            if (self.EquipQiangHuaID != 0)
+            int qianghuaLevel = self.BagComponent.QiangHuaLevel[itemconf.ItemSubType];
+            if (qianghuaLevel != 0)
             {
-                EquipQiangHuaConfig equipQiangHua = EquipQiangHuaConfigCategory.Instance.Get(self.EquipQiangHuaID);
-                float equipPropreAdd = float.Parse(equipQiangHua.EquipPropreAdd);
-                string qiangHuaLv = equipQiangHua.QiangHuaLv.ToString();
-                self.Obj_Lab_EquipQiangHua.GetComponent<Text>().text = "+" + qiangHuaLv + langStr;
+                //EquipQiangHuaConfig equipQiangHua = EquipQiangHuaConfigCategory.Instance.Get(self.EquipQiangHuaID);
+                //float equipPropreAdd = float.Parse(equipQiangHua.EquipPropreAdd);
+                //string qiangHuaLv = equipQiangHua.QiangHuaLv.ToString();
+                self.Obj_Lab_EquipQiangHua.GetComponent<Text>().text = "+" + qianghuaLevel + langStr;
             }
             else
             {
