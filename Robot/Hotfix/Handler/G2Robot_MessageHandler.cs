@@ -81,9 +81,8 @@ namespace ET
                             {
                                 continue;
                             }
-                            robotManagerComponent.RemoveRobot(robotScene);
-                            robotScene.Dispose();
-                            await TimerComponent.Instance.WaitAsync(100);
+                            robotManagerComponent.RemoveRobot(robotScene).Coroutine();
+                            await TimerComponent.Instance.WaitAsync(200);
                         }
                     }
                     break;

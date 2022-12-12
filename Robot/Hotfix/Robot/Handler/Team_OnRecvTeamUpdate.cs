@@ -13,8 +13,7 @@ namespace ET
             {
                 Log.Debug("队伍解算");
                 RobotManagerComponent robotManager = args.ZoneScene.GetParent<RobotManagerComponent>();
-                robotManager.RemoveRobot(args.ZoneScene);
-                args.ZoneScene.Dispose();
+                robotManager.RemoveRobot(args.ZoneScene).Coroutine();
             }
 
         }

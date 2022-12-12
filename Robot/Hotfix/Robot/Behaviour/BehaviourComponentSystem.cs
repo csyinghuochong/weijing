@@ -172,8 +172,7 @@ namespace ET
         public static void Exit(this BehaviourComponent self)
         {
             Scene zoneScene = self.ZoneScene();
-            zoneScene.Parent.GetComponent<RobotManagerComponent>().RemoveRobot(zoneScene);
-            zoneScene.Dispose();
+            zoneScene.Parent.GetComponent<RobotManagerComponent>().RemoveRobot(zoneScene).Coroutine();
         }
     }
 }

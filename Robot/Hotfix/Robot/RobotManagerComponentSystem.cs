@@ -16,9 +16,12 @@ namespace ET
     public static class RobotManagerComponentSystem
     {
 
-        public static void RemoveRobot(this RobotManagerComponent self, Scene robotScene)
+        public static async ETTask RemoveRobot(this RobotManagerComponent self, Scene robotScene)
         {
             //self.ZoneIndex--;
+            robotScene.GetComponent<SessionComponent>().Session.Dispose();
+            await TimerComponent.Instance.WaitAsync(200);
+            robotScene.Dispose();
         }
 
         public static async ETTask<Scene> NewRobot(this RobotManagerComponent self, int zone, int robotZone, int robotId)
