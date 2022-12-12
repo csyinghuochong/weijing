@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -277,18 +278,18 @@ namespace ET
 
         public static void OnEnterFsmComboState(this FsmComponent self, string paramss = "")
         {
+            Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(int.Parse(paramss));
-            int EquipType = (int)ItemEquipType.Common;
-            int itemId = (int)self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
-            if (itemId != 0)
-            {
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-                EquipType = itemConfig.EquipType;
-            }
-          
-            //1:剑  11 默认11
-            //2:刀
-            if (EquipType == 2)
+            //int EquipType = (int)ItemEquipType.Common;
+            //int itemId = (int)unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Weapon);
+            //if (itemId != 0)
+            //{
+            //    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
+            //    EquipType = itemConfig.EquipType;
+            //}
+
+            //1:剑 2:刀 11 默认11  //(EquipType == 2)
+            if (unit.ConfigId == 1) 
             {
                 string boolAnimation = skillConfig.SkillAnimation;
                 if (boolAnimation == "Act_11")
@@ -303,16 +304,26 @@ namespace ET
                 {
                     boolAnimation = "Act_3";
                 }
+
+                string curAckAnimation = String.Empty;
                 AnimatorStateInfo animatorStateInfo = self.Animator.Animator.GetCurrentAnimatorStateInfo(0);
-                //AnimatorClipInfo animatorClipInfo = self.Animator.Animator.GetCurrentAnimatorClipInfo(0)[0];
-                if ((animatorStateInfo.IsName("Act_1")
-                    || animatorStateInfo.IsName("Act_2")
-                    || animatorStateInfo.IsName("Act_3")
-                    || animatorStateInfo.IsName("Act_11")
-                    || animatorStateInfo.IsName("Act_12")
-                    || animatorStateInfo.IsName("Act_13")))
-                //&& !self.Animator.Animator.IsInTransition(0)
-                // && self.Animator.CurrentSateTime() < 0.9f) //&& !self.Animator.Animator.IsInTransition(0))// )
+                Dictionary<string, long> ackExitTime = new Dictionary<string, long>();
+                ackExitTime.Add("Act_1", 700);
+                ackExitTime.Add("Act_2", 1000);
+                ackExitTime.Add("Act_3", 1000);
+                ackExitTime.Add("Act_11", 300);
+                ackExitTime.Add("Act_12", 300);
+                ackExitTime.Add("Act_13", 900);
+                foreach (var item in ackExitTime.Keys)
+                {
+                    if (animatorStateInfo.IsName(item))
+                    {
+                        curAckAnimation = item;
+                        break;
+                    }
+                }
+
+                if (curAckAnimation!= String.Empty)
                 {
                     self.Animator.SetBoolValue("Act_1", false);
                     self.Animator.SetBoolValue("Act_2", false);
@@ -326,7 +337,7 @@ namespace ET
                     self.Animator.SetBoolValue("Act_3", false);
                     self.Animator.Play(skillConfig.SkillAnimation);
                 }
-                self.WaitIdleTime = TimeHelper.ClientNow() + 1000;
+                self.WaitIdleTime = TimeHelper.ClientNow() + ackExitTime[skillConfig.SkillAnimation];
                 TimerComponent.Instance.Remove(ref self.Timer);
                 self.BeginTimer();
             }
