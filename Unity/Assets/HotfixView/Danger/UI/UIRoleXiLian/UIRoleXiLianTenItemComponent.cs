@@ -26,6 +26,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonSelect, () => { self.OnButtonSelect().Coroutine(); });
 
             self.Obj_EquipPropertyText = rc.Get<GameObject>("Obj_EquipPropertyText");
+            self.Obj_EquipPropertyText.SetActive(false);
             self.EquipBaseSetList = rc.Get<GameObject>("EquipBaseSetList");
         }
     }
