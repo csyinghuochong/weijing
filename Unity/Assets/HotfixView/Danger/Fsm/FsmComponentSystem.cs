@@ -312,8 +312,8 @@ namespace ET
                 ackExitTime.Add("Act_2", 1000);
                 ackExitTime.Add("Act_3", 1000);
                 ackExitTime.Add("Act_11", 300);
-                ackExitTime.Add("Act_12", 300);
-                ackExitTime.Add("Act_13", 900);
+                ackExitTime.Add("Act_12", 500);
+                ackExitTime.Add("Act_13", 500);
                 foreach (var item in ackExitTime.Keys)
                 {
                     if (animatorStateInfo.IsName(item))
