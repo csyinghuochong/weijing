@@ -71,7 +71,7 @@ namespace ET
             }
 
             int num = self.PlayerComponent.CreateRoleList.Count +1;
-            num = Mathf.Min(3, num);
+            num = Mathf.Min(4, num);
             //显示列表
             for (int i = 0; i < num; i++)
             {
@@ -138,7 +138,7 @@ namespace ET
         //选择角色进入游戏
         public static async ETTask EnterGame(this UILobbyComponent self)
         {
-            if (Time.time - self.LastLoginTime < 3)
+            if (Time.time - self.LastLoginTime < 4)
             {
                 return;
             }

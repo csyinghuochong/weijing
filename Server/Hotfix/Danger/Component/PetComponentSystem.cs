@@ -317,11 +317,11 @@ namespace ET
         public static void UpdatePetAttribute(this PetComponent self, RolePetInfo rolePetInfo, bool updateUnit = false)
         {
             //获取宠物资质
-            float actPro = 1f - ((1500 - rolePetInfo.ZiZhi_Act) / 750.0f);
-            float magePro = 1f - ((1500 - rolePetInfo.ZiZhi_MageAct) / 750.0f);
-            float defPro = 1f - ((1500 - rolePetInfo.ZiZhi_Def) / 750.0f);
-            float adfPro = 1f - ((1500 - rolePetInfo.ZiZhi_Def) / 750.0f);
-            float hpPro = 1f - ((3000 - rolePetInfo.ZiZhi_Hp) / 1500.0f);
+            float actPro = self.GetZiZhiAddPro(1,rolePetInfo.ZiZhi_Act);
+            float magePro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_MageAct);
+            float defPro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_Def);
+            float adfPro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_Def);
+            float hpPro = self.GetZiZhiAddPro(2, rolePetInfo.ZiZhi_Hp);
 
             //属性加点对应属性 力量-攻击 智力-魔法 体质-血量 耐力就是物防和魔防
             PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
@@ -483,6 +483,40 @@ namespace ET
             numericComponent.ApplyValue(NumericType.Now_Mage, self.GetByKey(rolePetInfo, NumericType.Now_Mage), true);
             numericComponent.ApplyValue(NumericType.Now_MaxDef, self.GetByKey(rolePetInfo, NumericType.Now_MaxDef), true);
             numericComponent.ApplyValue(NumericType.Now_MaxAdf, self.GetByKey(rolePetInfo, NumericType.Now_MaxAdf), true);
+        }
+
+        //根据资质换算出当前系数
+        private static float GetZiZhiAddPro(this PetComponent self, int type ,int value) {
+
+            float pro = 0.8f;
+
+            if (type == 1) {
+                if (value >= 1200)
+                {
+                    //超出算法
+                    pro = 0.8f + ((value-1200) / 600.0f);
+                }
+                else {
+                    //低出算法
+                    pro = (float)value/1500.0f;
+                }
+            }
+
+            if (type == 2)
+            {
+                if (value >= 2400)
+                {
+                    //超出算法
+                    pro = 0.8f + ((value - 2400) / 1200.0f);
+                }
+                else
+                {
+                    //低出算法
+                    pro = (float)value / 3000.0f;
+                }
+            }
+
+            return pro;
         }
 
         public static void RemovePet(this PetComponent self, long petId)
