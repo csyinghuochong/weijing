@@ -17,6 +17,13 @@ namespace ET
                 return;
             }
 
+            if (!unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}"))
+            {
+                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                reply();
+                return;
+            }
+
             long chargeServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Activity)).InstanceId;
             A2M_MysteryBuyResponse r_GameStatusResponse = (A2M_MysteryBuyResponse)await ActorMessageSenderComponent.Instance.Call
                 (chargeServerId, new M2A_MysteryBuyRequest()
@@ -31,30 +38,9 @@ namespace ET
                 return;
             }
 
-            //List<MysteryItemInfo> MysteryItemInfos = unit.DomainScene().GetComponent<CellDungeonComponent>().MysteryItemInfos;
-            //for (int i = 0; i < MysteryItemInfos.Count; i++)
-            //{
-            //    MysteryItemInfo mysteryItemInfo1 = MysteryItemInfos[i];
-
-            //    if (mysteryItemInfo1.ItemID != request.MysteryItemInfo.ItemID)
-            //    {
-            //        continue;
-            //    }
-            //    if (mysteryItemInfo1.ItemNumber < request.MysteryItemInfo.ItemNumber)
-            //    {
-            //        response.Error = ErrorCore.ERR_ItemNotEnoughError;
-            //        reply();
-            //        return;
-            //    }
-            //    mysteryItemInfo1.ItemNumber -= request.MysteryItemInfo.ItemNumber;
-            //    break;
-
-            if (unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}"))
-            {
-                unit.GetComponent<UserInfoComponent>().OnMysteryBuy(request.MysteryItemInfo);
-                unit.GetComponent<BagComponent>().OnAddItemData($"{request.MysteryItemInfo.ItemID};{request.MysteryItemInfo.ItemNumber}",
-                    $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
-            }
+            unit.GetComponent<UserInfoComponent>().OnMysteryBuy(request.MysteryItemInfo);
+            unit.GetComponent<BagComponent>().OnAddItemData($"{request.MysteryItemInfo.ItemID};{request.MysteryItemInfo.ItemNumber}",
+                $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
 
             reply();
         }
