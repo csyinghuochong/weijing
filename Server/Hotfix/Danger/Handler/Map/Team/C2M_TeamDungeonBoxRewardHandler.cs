@@ -27,7 +27,8 @@ namespace ET
                 }
                 teamDungeonComponent.BoxReward.Add(request.BoxIndex);
             }
-  
+
+            Log.Debug($"TeamDungeonBoxReward: {unit.Id} {request.BoxIndex}");
             List<RewardItem> rewardItems = new List<RewardItem>();
             rewardItems.Add(request.RewardItem);
             unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
