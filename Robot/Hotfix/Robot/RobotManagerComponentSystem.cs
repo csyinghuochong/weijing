@@ -60,11 +60,20 @@ namespace ET
                 if (registerCode == ErrorCore.ERR_AccountAlreadyRegister)
                 {
                     AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
-                    playerComponent.ServerId = zone;
-                    playerComponent.CurrentRoleId = playerComponent.CreateRoleList[0].UserID;
+                    if (playerComponent.CreateRoleList.Count > 0)
+                    {
+                        playerComponent.ServerId = zone;
+                        playerComponent.CurrentRoleId = playerComponent.CreateRoleList[0].UserID;
 
-                    errorCode = await LoginHelper.GetRealmKey(zoneScene);
-                    errorCode = await LoginHelper.EnterGame(zoneScene);
+                        errorCode = await LoginHelper.GetRealmKey(zoneScene);
+                        errorCode = await LoginHelper.EnterGame(zoneScene);
+                    }
+                    else
+                    {
+                        Log.Error($"{account}  {zone} 角色为空");
+                        zoneScene?.Dispose();
+                        return null;
+                    }
                 }
                 Log.Debug($"create robot ok: {robotZone}");
                 return errorCode == ErrorCore.ERR_Success ?  zoneScene : null;
