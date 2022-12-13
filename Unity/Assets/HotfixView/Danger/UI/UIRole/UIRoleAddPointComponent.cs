@@ -158,12 +158,16 @@ namespace ET
 
         public static async ETTask OnBtn_Confirm(this UIRoleAddPointComponent self)
         {
+            long instanceId = self.InstanceId;
             C2M_RoleAddPointRequest request = new C2M_RoleAddPointRequest()
             {
                 PointList = self.PointList,
             };
             M2C_RoleAddPointResponse response = (M2C_RoleAddPointResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
             self.OnInitUI();
         }
 

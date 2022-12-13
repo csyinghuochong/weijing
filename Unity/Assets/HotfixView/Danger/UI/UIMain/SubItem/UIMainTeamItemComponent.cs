@@ -16,7 +16,7 @@ namespace ET
 
         public TeamPlayerInfo TeamPlayerInfo;
 
-        public long PlayerID { get { return TeamPlayerInfo.UserID;  } }
+        public long UnitId;
     }
 
     [ObjectSystem]
@@ -56,8 +56,10 @@ namespace ET
 
         public static void OnUpdateHP(this UIMainTeamItemComponent self, Unit unit)
         {
-            if (unit.Id != self.TeamPlayerInfo.UserID)
+            if (unit.Id != self.UnitId)
+            {
                 return;
+            }
 
             float curhp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp); 
             float blood = curhp / unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_MaxHp);
@@ -68,6 +70,7 @@ namespace ET
         public static void OnUpdateItem(this UIMainTeamItemComponent self, TeamPlayerInfo teamPlayerInfo)
         {
             self.TeamPlayerInfo = teamPlayerInfo;
+            self.UnitId = teamPlayerInfo.UserID;
             self.PlayerName.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
             self.PlayerLv.GetComponent<Text>().text = $"{teamPlayerInfo.PlayerLv}级";
             self.OnUpdateDamage(teamPlayerInfo.Damage);

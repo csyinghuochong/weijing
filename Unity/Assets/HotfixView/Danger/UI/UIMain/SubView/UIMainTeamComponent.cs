@@ -56,7 +56,7 @@ namespace ET
             for (int i = 0; i < self.TeamUIList.Count; i++)
             {
                 UIMainTeamItemComponent uIMainTeamItemComponent = self.TeamUIList[i];
-                if (uIMainTeamItemComponent.PlayerID == unit.Id)
+                if (uIMainTeamItemComponent.UnitId == unit.Id)
                 {
                     uIMainTeamItemComponent.OnUpdateDamage(unit.GetComponent<NumericComponent>().GetAsInt( (int)NumericType.Now_Damage ));
                 }

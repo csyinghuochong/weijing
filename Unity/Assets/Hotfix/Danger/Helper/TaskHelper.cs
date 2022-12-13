@@ -23,7 +23,10 @@ namespace ET
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
             {
                 DungeonConfig dungeonConfig = DungeonConfigCategory.Instance.Get(mapComponent.SceneId);
-                npcList = new List<int>(dungeonConfig.NpcList);
+                if (dungeonConfig.NpcList != null)
+                {
+                    npcList = new List<int>(dungeonConfig.NpcList);
+                }
             }
             return npcList.Contains(npcId);
         }

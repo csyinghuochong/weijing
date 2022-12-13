@@ -41,7 +41,7 @@ namespace ET
                     break;
                 case SceneTypeEnum.Tower:
                     ui = UIHelper.GetUI(args.Scene, UIType.UITowerOpen);
-                    ui.GetComponent<UITowerOpenComponent>().OnFubenResult(args.m2C_FubenSettlement).Coroutine();
+                    ui.GetComponent<UITowerOpenComponent>()?.OnFubenResult(args.m2C_FubenSettlement).Coroutine();
                     break;
                 case SceneTypeEnum.PetTianTi:
                     UIHelper.GetUI(args.Scene, UIType.UIPetMain).GetComponent<UIPetMainComponent>().OnFubenResult ( args.m2C_FubenSettlement);
