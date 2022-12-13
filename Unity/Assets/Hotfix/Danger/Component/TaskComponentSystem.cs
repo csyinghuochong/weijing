@@ -245,6 +245,39 @@ namespace ET
             return taskPros;
         }
 
+        public static int GetNextMainTask(this TaskComponent self)
+        {
+            int maxTask = 0;
+            int nextTask = 0;
+            List<int> completeTask = self.RoleComoleteTaskList;
+            for (int i = 0; i < completeTask.Count; i++)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(completeTask[i]);
+                if (taskConfig.TaskType != TaskTypeEnum.Main)
+                {
+                    continue;
+                }
+                if (taskConfig.Id > maxTask)
+                {
+                    maxTask = taskConfig.Id;
+                }
+            }
+            List<TaskConfig> taskConfigs = TaskConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < taskConfigs.Count; i++)
+            {
+                if (taskConfigs[i].TaskType != TaskTypeEnum.Main)
+                {
+                    continue;
+                }
+                if (taskConfigs[i].Id > maxTask)
+                {
+                    nextTask = taskConfigs[i].Id;
+                    break;
+                }
+            }
+            return nextTask;
+        }
+
         public static List<TaskPro> GetTaskTypeList(this TaskComponent self, int taskTypeEnum)
         {
             List<TaskPro> taskPros = new List<TaskPro>();

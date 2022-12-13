@@ -6,48 +6,6 @@ namespace ET
     public static class BattleHelper
     {
 
-        public static int GetFubenByNpc(int npcId)
-        {
-            List<DungeonConfig> dungeonConfigs = DungeonConfigCategory.Instance.GetAll().Values.ToList();
-            for (int i = 0; i < dungeonConfigs.Count; i++)
-            {
-                DungeonConfig dungeonConfig = dungeonConfigs[i];
-                if (dungeonConfig.NpcList == null)
-                {
-                    continue;
-                }
-                if (dungeonConfig.NpcList.Contains(npcId))
-                {
-                    return dungeonConfig.Id;
-                }
-            }
-            return 0;
-        }
-
-        public static int GetFubenByMonster(int monsterId)
-        { 
-            List<DungeonConfig> dungeonConfigs = DungeonConfigCategory.Instance.GetAll().Values.ToList();
-            for (int i = 0; i < dungeonConfigs.Count; i++)
-            {
-                DungeonConfig dungeonConfig = dungeonConfigs[i];    
-                if (dungeonConfig.CreateMonster.Contains(monsterId.ToString()))
-                {
-                    return dungeonConfig.Id;
-                }
-                int monsterGroup = dungeonConfig.MonsterGroup;
-                if (monsterGroup == 0)
-                {
-                    continue;
-                }
-                MonsterGroupConfig monsterGroupConfig = MonsterGroupConfigCategory.Instance.Get(monsterGroup);
-                if (monsterGroupConfig.CreateMonster.Contains(monsterId.ToString()))
-                {
-                    return dungeonConfig.Id;
-                }
-            }
-            return 0;
-        }
-
         public static int GetYaoShuiItemID(int level)
         {
             if (level < 20)

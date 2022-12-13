@@ -989,7 +989,28 @@ namespace ET
 
         public static void OnOpenTask(this UIMainComponent self)
         {
-            UIHelper.Create(self.DomainScene(), UIType.UITask).Coroutine();
+            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+            if (taskComponent.GetTaskTypeList(TaskTypeEnum.Main).Count > 0)
+            {
+                UIHelper.Create(self.DomainScene(), UIType.UITask).Coroutine();
+                return;
+            }
+
+            int nextTask = taskComponent.GetNextMainTask();
+            if (nextTask == 0)
+            {
+                UIHelper.Create(self.DomainScene(), UIType.UITask).Coroutine();
+                return;
+            }
+
+            int getNpc = TaskConfigCategory.Instance.Get(nextTask).GetNpcID;
+            int fubenId = UITaskViewHelp.Instance.GetFubenByNpc(getNpc);
+            if (fubenId == 0)
+            {
+                return;
+            }
+            string fubenName = $"请前往{DungeonConfigCategory.Instance.Get(fubenId).ChapterName} {NpcConfigCategory.Instance.Get(getNpc).Name} 出接取任务";
+            FloatTipManager.Instance.ShowFloatTip(fubenName);
         }
 
         public static void OnClickReturnButton(this UIMainComponent self)

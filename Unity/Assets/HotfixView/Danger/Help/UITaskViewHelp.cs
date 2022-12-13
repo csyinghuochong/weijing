@@ -82,6 +82,52 @@ namespace ET
             return TaskTypeLogic[TargetType].taskProgess(taskPro, taskConfig);
         }
 
+        public  int GetFubenByNpc(int npcId)
+        {
+            if (npcId == 0)
+            {
+                return 0;
+            }
+            List<DungeonConfig> dungeonConfigs = DungeonConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < dungeonConfigs.Count; i++)
+            {
+                DungeonConfig dungeonConfig = dungeonConfigs[i];
+                if (dungeonConfig.NpcList == null)
+                {
+                    continue;
+                }
+                if (dungeonConfig.NpcList.Contains(npcId))
+                {
+                    return dungeonConfig.Id;
+                }
+            }
+            return 0;
+        }
+
+        public  int GetFubenByMonster(int monsterId)
+        {
+            List<DungeonConfig> dungeonConfigs = DungeonConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < dungeonConfigs.Count; i++)
+            {
+                DungeonConfig dungeonConfig = dungeonConfigs[i];
+                if (dungeonConfig.CreateMonster.Contains(monsterId.ToString()))
+                {
+                    return dungeonConfig.Id;
+                }
+                int monsterGroup = dungeonConfig.MonsterGroup;
+                if (monsterGroup == 0)
+                {
+                    continue;
+                }
+                MonsterGroupConfig monsterGroupConfig = MonsterGroupConfigCategory.Instance.Get(monsterGroup);
+                if (monsterGroupConfig.CreateMonster.Contains(monsterId.ToString()))
+                {
+                    return dungeonConfig.Id;
+                }
+            }
+            return 0;
+        }
+
         public string GetDescKillMonsterID(TaskPro taskPro, TaskConfig taskConfig)
         {
             string desc = "";
@@ -90,7 +136,7 @@ namespace ET
             for (int i = 0; i < taskConfig.Target.Length; i++)
             {
                 int monsterId = taskConfig.Target[i];
-                int fubenId = BattleHelper.GetFubenByMonster(monsterId);
+                int fubenId = GetFubenByMonster(monsterId);
                 string fubenName = fubenId > 0 ? "      (出现在:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterId);
 
@@ -114,7 +160,7 @@ namespace ET
         {
             string progress = GameSettingLanguge.LoadLocalization("找 {0} 谈一谈 {1}");
 
-            int fubenId = BattleHelper.GetFubenByNpc(taskConfig.Target[0]);
+            int fubenId = GetFubenByNpc(taskConfig.Target[0]);
             string fubenName = fubenId > 0 ? "      (出现在:" + DungeonConfigCategory.Instance.Get(fubenId).ChapterName + ")" : "";
 
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(taskConfig.Target[0]);
