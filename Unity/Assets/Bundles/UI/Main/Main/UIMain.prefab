@@ -18747,6 +18747,8 @@ MonoBehaviour:
     gameObject: {fileID: 7092464174105799432}
   - key: Lab_RoleHuoLi
     gameObject: {fileID: 7701463828807943461}
+  - key: Lab_ServerName
+    gameObject: {fileID: 3047626799721734034}
 --- !u!1 &3055922816814104287
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ namespace ET
 {
     public class UIRoleHeadComponent : Entity, IAwake<GameObject>
     {
+        public GameObject Lab_ServerName;
         public GameObject Lab_RoleHuoLi;
         public GameObject GameObject;
         public GameObject Lab_Combat;
@@ -44,6 +45,7 @@ namespace ET
             self.Obj_Img_PetHp = rc.Get<GameObject>("Img_PetHp");
             self.Obj_Lab_RolePiLao = rc.Get<GameObject>("Lab_RolePiLao");
             self.Obj_ImagePetHeadIcon = rc.Get<GameObject>("ImagePetHeadIcon");
+            self.Lab_ServerName = rc.Get<GameObject>("Lab_ServerName");
 
             self.ButtonSet = rc.Get<GameObject>("ButtonSet");
             self.ButtonSet.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenSettingUI(); });
@@ -51,6 +53,9 @@ namespace ET
             self.UserInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             UICommonHelper.ShowOccIcon(self.ButtonSet, self.UserInfoComponent.UserInfo.Occ);
             NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
+
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            self.Lab_ServerName.GetComponent<Text>().text = ServerHelper.GetGetServerItem(!GlobalHelp.IsOutNetMode, accountInfoComponent.ServerId).ServerName;
 
             self.InitShow();
         }
