@@ -9,6 +9,12 @@ namespace ET
         protected override async ETTask Run(Scene scene, C2T_TeamDungeonOpenRequest request, T2C_TeamDungeonOpenResponse response, Action reply)
         {
             TeamInfo teamInfo = scene.GetComponent<TeamSceneComponent>().GetTeamInfo(request.UserID);
+            if (teamInfo == null)
+            {
+                response.Error = ErrorCore.ERR_TeamIsFull;
+                reply();
+                return;
+            }
 
             M2C_TeamDungeonOpenResult m2C_HorseNoticeInfo = new M2C_TeamDungeonOpenResult() { };
             long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), "Gate1").InstanceId;

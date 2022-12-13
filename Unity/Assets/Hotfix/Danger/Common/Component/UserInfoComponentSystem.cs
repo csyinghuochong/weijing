@@ -348,9 +348,9 @@ namespace ET
                 case UserDataType.Vitality:
                     maxValue = unit.GetMaxHuoLi();
                     long addValue = long.Parse(value);
-                    newValue = self.UserInfo.Vitality += (int)addValue;
+                    newValue = self.UserInfo.Vitality + (int)addValue;
                     newValue = Math.Min(Math.Max(0, newValue), maxValue);
-                    self.UserInfo.Vitality += (int)addValue;
+                    self.UserInfo.Vitality = (int)newValue;
                     saveValue = self.UserInfo.Vitality.ToString();
                     break;
             }
