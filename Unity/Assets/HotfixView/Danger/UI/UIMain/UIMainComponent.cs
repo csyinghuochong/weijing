@@ -398,11 +398,6 @@ namespace ET
             }
         }
 
-        public static void OnUpdateDamage(this UIMainComponent self, Unit unit)
-        {
-            self.UIMainTeam.OnUpdateDamage(unit);
-        }
-
         public static void OnTeamUpdate(this UIMainComponent self)
         {
             self.UIMainTeam.OnUpdateUI();

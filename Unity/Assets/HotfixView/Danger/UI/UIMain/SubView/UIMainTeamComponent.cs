@@ -51,15 +51,12 @@ namespace ET
             UIHelper.Create(self.DomainScene(), UIType.UITeam).Coroutine();
         }
 
-        public static void OnUpdateDamage(this UIMainTeamComponent self, Unit unit)
+        public static void OnUpdateDamage(this UIMainTeamComponent self, M2C_SyncMiJingDamage message)
         {
-            for (int i = 0; i < self.TeamUIList.Count; i++)
+            for (int i = 0; i < message.DamageList.Count; i++)
             {
                 UIMainTeamItemComponent uIMainTeamItemComponent = self.TeamUIList[i];
-                if (uIMainTeamItemComponent.UnitId == unit.Id)
-                {
-                    uIMainTeamItemComponent.OnUpdateDamage(unit.GetComponent<NumericComponent>().GetAsInt( (int)NumericType.Now_Damage ));
-                }
+                uIMainTeamItemComponent.OnUpdateDamage(message.DamageList[i]);
             }
         }
 

@@ -7,12 +7,25 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.SyncMiJingDamage args = cls as EventType.SyncMiJingDamage;
-            UI uiBattleMain = UIHelper.GetUI(args.ZoneScene, UIType.UIMiJingMain);
-            if (uiBattleMain == null)
+            MapComponent mapComponent = args.ZoneScene.GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.MiJing)
             {
-                return;
+                UI uiBattleMain = UIHelper.GetUI(args.ZoneScene, UIType.UIMiJingMain);
+                if (uiBattleMain == null)
+                {
+                    return;
+                }
+                uiBattleMain.GetComponent<UIMiJingMainComponent>().OnUpdateDamage(args.M2C_SyncMiJingDamage);
             }
-            uiBattleMain.GetComponent<UIMiJingMainComponent>().OnUpdateDamage(args.M2C_SyncMiJingDamage);
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
+            {
+                UI uiMain = UIHelper.GetUI(args.ZoneScene, UIType.UIMain);
+                if (uiMain == null)
+                {
+                    return;
+                }
+                uiMain.GetComponent<UIMainComponent>().UIMainTeam.OnUpdateDamage(args.M2C_SyncMiJingDamage);
+            }
         }
     }
 }

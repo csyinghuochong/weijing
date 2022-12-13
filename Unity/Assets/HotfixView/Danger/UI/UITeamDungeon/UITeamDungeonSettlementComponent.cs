@@ -258,8 +258,6 @@ namespace ET
                 TeamPlayerInfo teamPlayerInfo = m2C_FubenSettlement.PlayerList[i];
                 self.PlayerUIList[i].OnUpdateUI(teamPlayerInfo, idExtra == teamPlayerInfo.UserID ? m2C_FubenSettlement.RewardExtraItem : null);
             }
-
-            int passTime = Mathf.CeilToInt(m2C_FubenSettlement.PassTime * 0.001f);
         }
 
         public static void OnButton_exit(this UITeamDungeonSettlementComponent self)

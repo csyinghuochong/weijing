@@ -137,6 +137,36 @@ namespace ET
             return haveplayer;
         }
 
+        public static void OnUpdateDamage(this TeamDungeonComponent self, Unit attack, Unit defend, long damage)
+        {
+            if (defend.Type != UnitType.Monster)
+            {
+                return;
+            }
+
+            List<TeamPlayerInfo> vs = self.TeamInfo.PlayerList;
+            for (int i = 0; i < vs.Count; i++)
+            {
+                if (vs[i].UserID == attack.Id)
+                {
+                    vs[i].Damage += (int)damage;
+                }
+            }
+           
+            if (TimeHelper.ServerNow() - self.EnterTime < 5000)
+            {
+                return;
+            }
+            self.EnterTime = TimeHelper.ServerNow();
+            List<Unit> allPlayer = FubenHelp.GetUnitList(self.DomainScene(), UnitType.Player);
+            for (int i = 0; i < allPlayer.Count; i++)
+            {
+                M2C_SyncMiJingDamage m2C_SyncMiJingDamage = new M2C_SyncMiJingDamage();
+                m2C_SyncMiJingDamage.DamageList.AddRange(self.TeamInfo.PlayerList);
+                MessageHelper.SendToClient(allPlayer[i], m2C_SyncMiJingDamage);
+            }
+        }
+
         public static void OnKillEvent(this TeamDungeonComponent self, Unit unit)
         {
             if (unit.Type != UnitType.Monster)
@@ -151,8 +181,7 @@ namespace ET
             }
 
             M2C_TeamDungeonSettlement m2C_FubenSettlement = new M2C_TeamDungeonSettlement();
-
-            m2C_FubenSettlement.PassTime = TimeHelper.ServerNow() - self.EnterTime;
+            m2C_FubenSettlement.PassTime = 5*60 * 1000;
             m2C_FubenSettlement.PlayerList = self.TeamInfo.PlayerList;
 
             DropHelper.DropIDToDropItem_2(sceneConfig.BoxDropID, m2C_FubenSettlement.RewardExtraItem);

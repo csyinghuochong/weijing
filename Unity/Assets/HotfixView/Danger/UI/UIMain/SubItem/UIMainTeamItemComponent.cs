@@ -40,8 +40,9 @@ namespace ET
     public static class UIMainTeamItemComponentSystem
     {
 
-        public static void OnUpdateDamage(this UIMainTeamItemComponent self, long value)
+        public static void OnUpdateDamage(this UIMainTeamItemComponent self, TeamPlayerInfo teamPlayerInfo)
         {
+            long value = teamPlayerInfo.Damage;
             string str = value.ToString();
             if (value >= 10000) {
                 str = ((float)value / 10000.0f).ToString("F2") + "万";
@@ -73,7 +74,7 @@ namespace ET
             self.UnitId = teamPlayerInfo.UserID;
             self.PlayerName.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
             self.PlayerLv.GetComponent<Text>().text = $"{teamPlayerInfo.PlayerLv}级";
-            self.OnUpdateDamage(teamPlayerInfo.Damage);
+            self.OnUpdateDamage(teamPlayerInfo);
             UICommonHelper.ShowOccIcon(self.ImageHead, teamPlayerInfo.Occ);
         }
 

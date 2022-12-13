@@ -21,10 +21,6 @@
                         uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType == 1);
                     }
                     break;
-                case NumericType.Now_Damage:
-                    UI uI_2 = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
-                    uI_2.GetComponent<UIMainComponent>().OnUpdateDamage(args.Unit);
-                    break;
                 case NumericType.PetChouKa:
                     UI uipet = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIPetEgg);
                     uipet?.GetComponent<UIPetEggComponent>().UpdateChouKaTime();
@@ -72,7 +68,7 @@
                     args.Unit.GetComponent<GameObjectComponent>()?.OnUpdateHorse();
                     break;
                 case NumericType.BattleTodayKill:
-                    uI_2 = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIBattleMain);
+                    UI uI_2 = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIBattleMain);
                     uI_2?.GetComponent<UIBattleMainComponent>().OnUpdateSelfKill();
                     break;
                 case NumericType.PetExtendNumber:

@@ -47,8 +47,9 @@
 				}
 				if (sceneTypeEnum == (int)SceneTypeEnum.TeamDungeon && player != null)  //组队副本输出伤害
 				{
-					NumericComponent numericComponent = player.GetComponent<NumericComponent>();
-					numericComponent.ApplyChange(null, NumericType.Now_Damage, (args.OldValue - args.NewValue), 0);
+					//NumericComponent numericComponent = player.GetComponent<NumericComponent>();
+					//numericComponent.ApplyChange(null, NumericType.Now_Damage, (args.OldValue - args.NewValue), 0);
+					DomainScene.GetComponent<TeamDungeonComponent>()?.OnUpdateDamage(player, unit, args.OldValue - args.NewValue);
 				}
 				if (sceneTypeEnum == (int)SceneTypeEnum.MiJing && player != null)  //秘境伤害
 				{

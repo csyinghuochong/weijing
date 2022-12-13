@@ -30,6 +30,10 @@ namespace ET
             TeamInfo teamInfo = self.GetTeamInfo(teamId);
             if (teamInfo != null)
             {
+                for (int i = 0;i < teamInfo.PlayerList.Count; i++)
+                {
+                    teamInfo.PlayerList[i].Damage = 0;
+                }
                 teamInfo.FubenUUId = 0;
                 teamInfo.FubenInstanceId = 0;
             }
@@ -168,12 +172,7 @@ namespace ET
             {
                 return;
             }
-            TeamInfo teamInfo = self.GetTeamInfo(unitId);
-            if (teamInfo != null)
-            {
-                teamInfo.FubenUUId = 0;
-                teamInfo.FubenInstanceId = 0;
-            }
+            self.OnDungeonOver(unitId);
             TeamDungeonComponent teamDungeonComponent = fubnescene.GetComponent<TeamDungeonComponent>();
             Log.Debug($"TeamDungeonDispose {teamDungeonComponent.TeamInfo.TeamId}{fubnescene.InstanceId}");
             TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
@@ -189,16 +188,13 @@ namespace ET
         public static void  OnUnitDisconnect(this TeamSceneComponent self, Scene fubnescene, long unitId)
         {
             TeamDungeonComponent teamDungeonComponent = fubnescene.GetComponent<TeamDungeonComponent>();
-            TeamInfo teamInfo = self.GetTeamInfo(teamDungeonComponent.TeamInfo.TeamId);
+            TeamInfo teamInfo = teamDungeonComponent.TeamInfo;
             if (teamDungeonComponent.IsHavePlayer())
             {
                 return;
             }
-            if (teamInfo != null)
-            {
-                teamInfo.FubenUUId = 0;
-                teamInfo.FubenInstanceId = 0;
-            }
+            self.OnDungeonOver(teamInfo.TeamId);
+            
             Log.Debug($"TeamDungeonDispose {teamDungeonComponent.TeamInfo.TeamId}{fubnescene.InstanceId}");
             TransferHelper.NoticeFubenCenter(fubnescene, 2).Coroutine();
             fubnescene.Dispose();
