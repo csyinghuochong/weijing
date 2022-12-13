@@ -158,7 +158,7 @@ namespace ET
 		public int IfSkillCD { get; set; }
 		/// <summary>冷却CD</summary>
 		[ProtoMember(28)]
-		public int SkillCD { get; set; }
+		public double SkillCD { get; set; }
 		/// <summary>伤害范围类型</summary>
 		[ProtoMember(29)]
 		public int DamgeRangeType { get; set; }

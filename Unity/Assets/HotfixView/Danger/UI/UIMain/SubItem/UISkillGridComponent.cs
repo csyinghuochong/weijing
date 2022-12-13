@@ -91,7 +91,7 @@ namespace ET
                 //显示冷却CD
                 int showCostTime = (int)(leftCDTime / 1000) + 1;
                 self.Text_SkillCD.GetComponent<Text>().text = showCostTime.ToString();
-                float proValue = (float)leftCDTime / (self.SkillBaseConfig.SkillCD * 1000f);
+                float proValue = (float)leftCDTime / ((float)self.SkillBaseConfig.SkillCD * 1000f);
                 //Log.Info("proValue = " + proValue + "costTime = " + costTime + "cd：" + SkillConfig.SkillCD);
                 self.Img_SkillCD.GetComponent<Image>().fillAmount = proValue;
                 self.Text_SkillCD.SetActive(true);

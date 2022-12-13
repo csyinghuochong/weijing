@@ -449,12 +449,12 @@ namespace ET
             if (zhudong)
             {
                 skillcd.SkillID = skillId;
-                skillcd.CDEndTime = TimeHelper.ServerNow() + (skillConfig.SkillCD - (int)reduceCD) * 1000;
+                skillcd.CDEndTime = TimeHelper.ServerNow() +  (int)(1000 * ( (float)skillConfig.SkillCD - reduceCD) );
             }
             else
             {
                 skillcd.SkillID = skillId;
-                skillcd.CDPassive = TimeHelper.ServerNow() + (skillConfig.SkillCD - (int)reduceCD) * 1000;
+                skillcd.CDPassive = TimeHelper.ServerNow() + (int)(1000 * ((float)skillConfig.SkillCD - reduceCD));
             }
 
             if (skillConfig.IfPublicSkillCD == 0 )
