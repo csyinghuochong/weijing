@@ -353,6 +353,17 @@ namespace ET
             {
                 droplist.AddRange(droplist_2);
             }
+
+            List<long> beattackIds = new List<long>();
+            if (bekill.GetComponent<AIComponent>() != null)
+            {
+                beattackIds = bekill.GetComponent<AIComponent>().BeAttackList;
+            }
+            else
+            {
+                beattackIds.Add(main.Id);
+            }
+
             if (monsterCof.DropType == 0 || monsterCof.DropType == 2) // 0 公共掉落 2保护掉落   1私有掉落
             {
                 long serverTime = TimeHelper.ServerNow();
@@ -364,7 +375,13 @@ namespace ET
                     dropitem.Type = UnitType.DropItem;
                     DropComponent dropComponent = dropitem.AddComponent<DropComponent>();
                     dropComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
-                    dropComponent.OwnerId = monsterCof.DropType == 0 ? 0 : main.Id;
+                    //掉落归属问题 掉落类型为2 原来为： 最后一刀 修改为 第一拾取权限为优先攻击他的人,如果这个人死了，那么拾取权限清空，下一次伤害是谁归属权就是谁。
+                    long ownderId = main.Id;
+                    if (monsterCof.DropType == 2 && beattackIds.Count > 0 && unitComponent.Get(beattackIds[0])!=null)
+                    {
+                        ownderId = beattackIds[0];
+                    }
+                    dropComponent.OwnerId = monsterCof.DropType == 0 ? 0 : ownderId;
                     dropComponent.ProtectTime = monsterCof.DropType == 0 ? 0 : serverTime + 30000;
                     float dropX = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);
                     float dropY = bekill.Position.y;
@@ -375,15 +392,6 @@ namespace ET
             }
             if (monsterCof.DropType == 1)
             {
-                List<long> beattackIds = new List<long>();
-                if (bekill.GetComponent<AIComponent>() != null)
-                {
-                    beattackIds = bekill.GetComponent<AIComponent>().BeAttackList;
-                }
-                else
-                {
-                    beattackIds.Add(main.Id);
-                }
                 for (int i = 0; i < beattackIds.Count; i++)
                 {
                     Unit beAttack = bekill.DomainScene().GetComponent<UnitComponent>().Get(beattackIds[i]);
