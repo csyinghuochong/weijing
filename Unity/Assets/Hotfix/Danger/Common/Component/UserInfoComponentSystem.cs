@@ -176,7 +176,7 @@ namespace ET
         public static void OnZeroClockUpdate(this UserInfoComponent self, bool notice)
         {
             Unit unit = self.GetParent<Unit>();
-            int updatevalue = NumericHelp.GetMaxHuoLi(unit) - self.UserInfo.Vitality;
+            int updatevalue = unit.GetMaxHuoLi() - self.UserInfo.Vitality;
             self.UpdateRoleData(UserDataType.Vitality, updatevalue.ToString(), notice);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1,  notice);
             self.UserInfo.DayFubenTimes.Clear();
@@ -346,12 +346,10 @@ namespace ET
                     self.UpdateRankInfo().Coroutine();
                     break;
                 case UserDataType.Vitality:
-                    maxValue = int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
+                    maxValue = unit.GetMaxHuoLi();
                     long addValue = long.Parse(value);
-                    if (self.UserInfo.Vitality + addValue > maxValue)
-                    {
-                        addValue = maxValue - self.UserInfo.Vitality;
-                    }
+                    newValue = self.UserInfo.Vitality += (int)addValue;
+                    newValue = Math.Min(Math.Max(0, newValue), maxValue);
                     self.UserInfo.Vitality += (int)addValue;
                     saveValue = self.UserInfo.Vitality.ToString();
                     break;

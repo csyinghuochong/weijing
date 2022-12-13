@@ -53,6 +53,11 @@ namespace ET
             }
         }
 
+        private int GetValueType()
+        {
+            return 1;
+        }
+
         private void buffSetProperty()
         {
 

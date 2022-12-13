@@ -279,7 +279,7 @@ namespace ET
 
         public static int GetMaxHuoLi(this Unit self)
         {
-            return int.Parse(GlobalValueConfigCategory.Instance.Get(72).Value);
+            return GlobalValueConfigCategory.Instance.Get(72).Value2;
         }
     }
 }

@@ -721,7 +721,7 @@ GameObject:
   - component: {fileID: 2144931765274656416}
   - component: {fileID: 7163837503385050726}
   m_Layer: 5
-  m_Name: Img_RolePiLao
+  m_Name: Img_RoleHuoLi
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18749,6 +18749,10 @@ MonoBehaviour:
     gameObject: {fileID: 7701463828807943461}
   - key: Lab_ServerName
     gameObject: {fileID: 3047626799721734034}
+  - key: Img_RolePiLao
+    gameObject: {fileID: 4023663462740217566}
+  - key: Img_RoleHuoLi
+    gameObject: {fileID: 241252411402151198}
 --- !u!1 &3055922816814104287
 GameObject:
   m_ObjectHideFlags: 0
@@ -25733,7 +25737,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 21300000, guid: 9138de3a323af8f48abec90076e84e7f, type: 3}
-  m_Type: 1
+  m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 0
