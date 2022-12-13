@@ -76,6 +76,7 @@ namespace ET
 					session.AddComponent<MailBoxComponent, MailboxType>(MailboxType.GateSession);
 					player.AddComponent<MailBoxComponent, MailboxType>(MailboxType.GateSession);                    //ET-UWA
 					player.PlayerState = PlayerState.Gate;
+					player.RemoteAddress = session.RemoteAddress.ToString();
 					Log.Debug($"LoginTest C2G_LoginGameGate  player.Id: {player.Id} player.InstanceId:{player.InstanceId} unitId: {request.RoleId}");
 				}
 				else

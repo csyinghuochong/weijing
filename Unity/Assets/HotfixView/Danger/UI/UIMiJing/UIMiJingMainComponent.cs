@@ -32,8 +32,16 @@ namespace ET
     public static class UIMiJingMainComponentSystem
     {
         public static void OnUpdateDamage(this UIMiJingMainComponent self, M2C_SyncMiJingDamage message)
-        { 
-            
+        {
+            for (int i = 0; i < message.DamageList.Count; i++)
+            {
+                self.TeamUIList[i].GameObject.SetActive(true);
+                self.TeamUIList[i].OnUpdateItem(message.DamageList[i]);
+            }
+            for (int i = message.DamageList.Count; i < self.TeamUIList.Count; i++)
+            {
+                self.TeamUIList[i].GameObject.SetActive(false);
+            }
         }
     }
 }

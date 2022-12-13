@@ -7,12 +7,7 @@
 		public void Run(EventType.NumericChangeEvent args)
 		{
 #if SERVER
-			MapComponent mapComponent = args.Parent.DomainScene().GetComponent<MapComponent>();
-			if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
-			{
-				TeamDungeonComponent teamDungeonComponent = args.Parent.DomainScene().GetComponent<TeamDungeonComponent>();
-				teamDungeonComponent?.OnUpdateDamage(args.Parent, (int)args.NewValue);
-			}
+			;
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
 			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;

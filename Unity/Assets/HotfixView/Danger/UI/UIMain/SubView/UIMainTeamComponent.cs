@@ -9,7 +9,6 @@ namespace ET
     {
         public GameObject GameObject;
         public GameObject TeamNodeList;
-        public GameObject UIMainTeamItem;
         public GameObject Btn_RoseTeam;
         public List<UIMainTeamItemComponent> TeamUIList = new List<UIMainTeamItemComponent>();
     }
@@ -23,13 +22,17 @@ namespace ET
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.TeamNodeList = rc.Get<GameObject>("TeamNodeList");
-            self.UIMainTeamItem = rc.Get<GameObject>("UIMainTeamItem");
-            self.UIMainTeamItem.SetActive(false);
-
+            
             self.Btn_RoseTeam = rc.Get<GameObject>("Btn_RoseTeam");
             ButtonHelp.AddListenerEx(self.Btn_RoseTeam, self.OnBtn_RoseTeam);
 
             self.TeamUIList.Clear();
+            for (int i = 0; i < self.TeamNodeList.transform.childCount; i++)
+            {
+                GameObject item = self.TeamNodeList.transform.GetChild(i).gameObject;
+                self.TeamUIList.Add(self.AddChild<UIMainTeamItemComponent, GameObject>(item));
+                item.SetActive(false);
+            }
         }
     }
 
@@ -50,11 +53,10 @@ namespace ET
 
         public static void OnUpdateDamage(this UIMainTeamComponent self, Unit unit)
         {
-            long userId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             for (int i = 0; i < self.TeamUIList.Count; i++)
             {
                 UIMainTeamItemComponent uIMainTeamItemComponent = self.TeamUIList[i];
-                if (uIMainTeamItemComponent.PlayerID == userId)
+                if (uIMainTeamItemComponent.PlayerID == unit.Id)
                 {
                     uIMainTeamItemComponent.OnUpdateDamage(unit.GetComponent<NumericComponent>().GetAsInt( (int)NumericType.Now_Damage ));
                 }
@@ -91,22 +93,8 @@ namespace ET
 
             for (int i = 0; i < teamInfo.PlayerList.Count; i++)
             {
-                UIMainTeamItemComponent ui_1 = null;
-                if (i < self.TeamUIList.Count)
-                {
-                    ui_1 = self.TeamUIList[i];
-                    ui_1.GameObject.SetActive(true);
-                }
-                else
-                {
-                    GameObject item = GameObject.Instantiate(self.UIMainTeamItem);
-                    item.SetActive(true);
-                    UICommonHelper.SetParent(item, self.TeamNodeList);
-
-                    ui_1 = self.AddChild<UIMainTeamItemComponent, GameObject>(item);
-                    self.TeamUIList.Add(ui_1);
-                }
-                ui_1.OnUpdateItem(teamInfo.PlayerList[i]);
+                self.TeamUIList[i].GameObject.SetActive(true);
+                self.TeamUIList[i].OnUpdateItem(teamInfo.PlayerList[i]);
             }
         }
 

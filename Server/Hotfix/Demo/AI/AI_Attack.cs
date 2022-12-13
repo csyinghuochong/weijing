@@ -31,8 +31,12 @@ namespace ET
                 long rigidityEndTime = 0;
 
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
-                if (target !=  null && target.IsCanBeAttack()
-                    && unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillId) == ErrorCore.ERR_Success)
+                if (target == null || !target.IsCanBeAttack())
+                {
+                    aiComponent.TargetID = 0;
+                    return;
+                }
+                if (unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillId) == ErrorCore.ERR_Success)
                 {
                     Vector3 direction = target.Position - unit.Position;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));

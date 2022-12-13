@@ -70,6 +70,7 @@ namespace ET
             self.TeamPlayerInfo = teamPlayerInfo;
             self.PlayerName.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
             self.PlayerLv.GetComponent<Text>().text = $"{teamPlayerInfo.PlayerLv}级";
+            self.OnUpdateDamage(teamPlayerInfo.Damage);
             UICommonHelper.ShowOccIcon(self.ImageHead, teamPlayerInfo.Occ);
         }
 
