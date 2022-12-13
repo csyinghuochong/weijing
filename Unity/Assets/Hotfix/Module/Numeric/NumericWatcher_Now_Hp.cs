@@ -13,7 +13,7 @@
 			NumericComponent numericComponentDefend = unit.GetComponent<NumericComponent>();
 #if SERVER
 			Scene DomainScene = args.Parent.DomainScene();
-			MapComponent mapComponent = unit.GetComponent<MapComponent>();	
+			MapComponent mapComponent = DomainScene.GetComponent<MapComponent>();	
 			int sceneTypeEnum = mapComponent.SceneTypeEnum;
 			int sceneId = mapComponent.SceneId;	
 
