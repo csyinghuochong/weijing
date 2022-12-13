@@ -20,6 +20,7 @@ namespace ET
                     string zoneid = ss[1];
 
                     int number = 0;
+                    int robot = 0;
                     if (zoneid == "0")
                     {
                         List<StartZoneConfig> listprogress = StartZoneConfigCategory.Instance.GetAll().Values.ToList();
@@ -38,6 +39,7 @@ namespace ET
                             G2G_UnitListResponse g2M_UpdateUnitResponse = (G2G_UnitListResponse)await ActorMessageSenderComponent.Instance.Call
                                 (gateServerId, new G2G_UnitListRequest() { });
                             number += g2M_UpdateUnitResponse.OnLinePlayer;
+                            robot += g2M_UpdateUnitResponse.OnLineRobot;
                         }
                     }
                     else
@@ -46,9 +48,10 @@ namespace ET
                         G2G_UnitListResponse g2M_UpdateUnitResponse = (G2G_UnitListResponse)await ActorMessageSenderComponent.Instance.Call
                             (gateServerId, new G2G_UnitListRequest() { });
                         number = g2M_UpdateUnitResponse.OnLinePlayer;
+                        robot = g2M_UpdateUnitResponse.OnLineRobot;
                     }
                     string zonestr = zoneid == "0" ? "全部" : zoneid;
-                    Log.Console($"{zonestr}区 在线人数: {number}");
+                    Log.Console($"{zonestr}区 在线人数: {number}  {robot}");
                     break;
             }
 
