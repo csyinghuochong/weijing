@@ -12,6 +12,7 @@ namespace ET
         public GameObject ButtonBuy;
         public GameObject ItemListNode;
         public GameObject ImageTitle;
+        public GameObject ImageBox;
 
         public ActivityConfig ActivityConfig;
     }
@@ -32,6 +33,7 @@ namespace ET
 
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.ImageTitle = rc.Get<GameObject>("ImageTitle");
+            self.ImageBox = rc.Get<GameObject>("ImageBox");
         }
     }
 
@@ -64,6 +66,13 @@ namespace ET
 
             UICommonHelper.DestoryChild(self.ItemListNode);
             UICommonHelper.ShowItemList(activityConfig.Par_3, self.ItemListNode, self, 1f, true);
+
+            //显示图标
+            string ItemIcon = activityConfig.Icon;
+            if (ItemIcon != "" && ItemIcon != null)
+            {
+                self.ImageBox.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, ItemIcon);
+            }
         }
     }
 }

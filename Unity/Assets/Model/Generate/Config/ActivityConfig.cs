@@ -81,17 +81,20 @@ namespace ET
 		/// <summary>活动类型</summary>
 		[ProtoMember(2)]
 		public int ActivityType { get; set; }
-		/// <summary>参数_1</summary>
+		/// <summary>Icon显示</summary>
 		[ProtoMember(3)]
+		public string Icon { get; set; }
+		/// <summary>参数_1</summary>
+		[ProtoMember(4)]
 		public string Par_1 { get; set; }
 		/// <summary>参数_2</summary>
-		[ProtoMember(4)]
+		[ProtoMember(5)]
 		public string Par_2 { get; set; }
 		/// <summary>参数_3</summary>
-		[ProtoMember(5)]
+		[ProtoMember(6)]
 		public string Par_3 { get; set; }
 		/// <summary>参数_4</summary>
-		[ProtoMember(6)]
+		[ProtoMember(7)]
 		public string Par_4 { get; set; }
 
 	}

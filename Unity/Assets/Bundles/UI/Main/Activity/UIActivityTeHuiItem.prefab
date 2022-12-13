@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u793C\u5305\u5185\u5BB9"
+  m_Text: "\u793C\u5305\u7269\u54C1"
 --- !u!114 &1826346979951665582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +313,8 @@ MonoBehaviour:
     gameObject: {fileID: 8976466881518691762}
   - key: ImageReceived
     gameObject: {fileID: 7638717688726128639}
+  - key: ImageBox
+    gameObject: {fileID: 1020785442184523792}
 --- !u!1 &1772547175605019300
 GameObject:
   m_ObjectHideFlags: 0
