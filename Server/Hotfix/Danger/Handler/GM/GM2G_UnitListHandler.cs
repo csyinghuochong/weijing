@@ -10,8 +10,8 @@ namespace ET
             Player[] players = scene.GetComponent<PlayerComponent>().GetAll();
             for(int i = 0; i < players.Length; i++)
             {
-                if (players[i].RemoteAddress.Contains(" 127.0.0.1")
-                 || players[i].RemoteAddress.Contains(" 39.96.194.143"))
+                if (players[i].RemoteAddress.Contains("127.0.0.1")
+                 || players[i].RemoteAddress.Contains("39.96.194.143"))
                 {
                     response.OnLineRobot++;
                 }
