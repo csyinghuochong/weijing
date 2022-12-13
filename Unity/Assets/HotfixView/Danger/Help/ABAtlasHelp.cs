@@ -6,7 +6,6 @@ namespace ET
 
     public enum ABAtlasTypes
     {
-        BuffIcon,
         ItemIcon,
         ItemQualityIcon,
         PetHeadIcon,
