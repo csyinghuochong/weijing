@@ -132,10 +132,12 @@ namespace ET
             int[] stallArea = SceneConfigCategory.Instance.Get(self.SceneId).StallArea;
             if (stallArea != null && stallArea.Length == 4 && self.NpcPostion != null)
             {
+                /*
                 Vector3 stallPosition = new Vector3(stallArea[0] * 0.01f * self.ScaleRateX, stallArea[2] * 0.01f * self.ScaleRateY, 0);
                 self.TextStall.SetActive(true);
                 self.TextStall.transform.SetParent(self.NpcPostion.transform.parent);
                 self.TextStall.transform.localPosition = stallPosition;
+                */
             }
         }
 
