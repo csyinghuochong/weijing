@@ -6,7 +6,7 @@ namespace ET
 {
 	public class UIRoleXiLianShowComponent : Entity, IAwake
 	{
-
+		public GameObject NeedDiamond;
 		public GameObject XiLianEffect;
 		public GameObject XiLianTen;
 		public GameObject Obj_EquipPropertyText;
@@ -43,7 +43,7 @@ namespace ET
 			ButtonHelp.AddListenerEx(self.XiLianButton, () => { self.OnXiLianButton(1).Coroutine(); });
 
 			self.XiLianTen = rc.Get<GameObject>("XiLianTen");
-			ButtonHelp.AddListenerEx(self.XiLianTen, () => { self.OnXiLianButton(10).Coroutine(); });
+			ButtonHelp.AddListenerEx(self.XiLianTen, () => { self.OnXiLianButton(5).Coroutine(); });
 
 			self.Text_CostValue = rc.Get<GameObject>("Text_CostValue");
 			self.XiLianEffect = rc.Get<GameObject>("XiLianEffect");
@@ -54,6 +54,8 @@ namespace ET
 			self.Lab_Num = rc.Get<GameObject>("Lab_Num");
 			self.Obj_EquipPropertyText = rc.Get<GameObject>("Obj_EquipPropertyText");
 			self.EquipBaseSetList = rc.Get<GameObject>("EquipBaseSetList");
+			self.NeedDiamond = rc.Get<GameObject>("NeedDiamond");
+			self.NeedDiamond.GetComponent<Text>().text = GlobalValueConfigCategory.Instance.Get(73).Value;
 
 			self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
@@ -236,18 +238,30 @@ namespace ET
 			}
 
 			BagInfo bagInfo = self.XilianBagInfo;
-			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-			List<RewardItem> costItems = new List<RewardItem>();
-			int[] itemCost = itemConfig.XiLianStone;
-			if (itemCost != null && itemCost.Length > 0)
+			if (times == 1)
 			{
-				costItems.Add(new RewardItem() { ItemID = itemCost[0], ItemNum = itemCost[1] * times });
-			}
+				ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+				List<RewardItem> costItems = new List<RewardItem>();
+				int[] itemCost = itemConfig.XiLianStone;
+				if (itemCost != null && itemCost.Length > 0)
+				{
+					costItems.Add(new RewardItem() { ItemID = itemCost[0], ItemNum = itemCost[1] * times });
+				}
 
-			if (!self.BagComponent.CheckNeedItem(costItems))
+				if (!self.BagComponent.CheckNeedItem(costItems))
+				{
+					FloatTipManager.Instance.ShowFloatTip("材料不足！");
+					return;
+				}
+			}
+			if (times > 1)
 			{
-				FloatTipManager.Instance.ShowFloatTip("材料不足！");
-				return;
+				int needDiamond = GlobalValueConfigCategory.Instance.Get(73).Value2;
+				if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond < needDiamond)
+				{
+					FloatTipManager.Instance.ShowFloatTip("钻石不足！");
+					return;
+				}
 			}
 
 			C2M_ItemXiLianRequest c2M_ItemHuiShouRequest = new C2M_ItemXiLianRequest() { OperateBagID = bagInfo.BagInfoID, Times = times };
@@ -262,7 +276,7 @@ namespace ET
 				self.OnXiLianReturn();
 				self.ShowXiLianEffect().Coroutine();
 			}
-			if (times == 10)
+			if (times > 1)
 			{
 				UI uitex = await UIHelper.Create( self.ZoneScene(), UIType.UIRoleXiLianTen );
 				uitex.GetComponent<UIRoleXiLianTenComponent>().OnInitUI(bagInfo, r2c_roleEquip.ItemXiLianResults);

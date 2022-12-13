@@ -15,20 +15,28 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
                 int[] costItems = itemConfig.XiLianStone;
                 List<RewardItem> rewardItems = new List<RewardItem>();
-                if (costItems != null && costItems.Length > 0)
+
+                if (request.Times == 1)
                 {
-                    rewardItems.Add(new RewardItem() { ItemID = costItems[0], ItemNum = costItems[1] * request.Times });
+                    if (costItems != null && costItems.Length > 0)
+                    {
+                        rewardItems.Add(new RewardItem() { ItemID = costItems[0], ItemNum = costItems[1] * request.Times });
+                    }
+                }
+                else
+                {
+                    rewardItems.Add(new RewardItem() { ItemID = (int)UserDataType.Diamond, ItemNum = GlobalValueConfigCategory.Instance.Get(73).Value2 });
                 }
 
                 bool sucess = unit.GetComponent<BagComponent>().OnCostItemData(rewardItems);
-                int xilianLevel = XiLianHelper.GetXiLianId(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu));
-                xilianLevel = xilianLevel != 0 ? EquipXiLianConfigCategory.Instance.Get(xilianLevel).XiLianLevel : 0;
                 if (!sucess)
                 {
                     reply();
                     return;
                 }
 
+                int xilianLevel = XiLianHelper.GetXiLianId(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu));
+                xilianLevel = xilianLevel != 0 ? EquipXiLianConfigCategory.Instance.Get(xilianLevel).XiLianLevel : 0;
                 for (int i = 0; i < request.Times; i++)
                 {
                     response.ItemXiLianResults.Add( XiLianHelper.XiLianItem(unit, bagInfo, 1, xilianLevel) );     //精炼属性不进行重置

@@ -82,6 +82,8 @@ MonoBehaviour:
     gameObject: {fileID: 8600803997874171601}
   - key: XiLianEffect
     gameObject: {fileID: 2142853950012573310}
+  - key: NeedDiamond
+    gameObject: {fileID: 256215632705420183}
 --- !u!1 &1976308243590972
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,7 +218,7 @@ GameObject:
   - component: {fileID: 6411696789149667721}
   - component: {fileID: 7434471311935070673}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: NeedDiamond
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -473,7 +475,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u6D17\u7EC3\u5341\u6B21"
+  m_Text: "\u6D17\u7EC3\u4E94\u6B21"
 --- !u!114 &6281184943845908925
 MonoBehaviour:
   m_ObjectHideFlags: 0
