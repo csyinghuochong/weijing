@@ -15,7 +15,7 @@ namespace ET
             "18652422521",
             "18319670288",
             "18407228910",
-            "wxoyHedv5cjeEBihgejFvtaZhQUn3k"
+            "wxoyHedv467edbiuHjWvwOwUJrpMDk"
         };
 
         public static List<long> BanChatPlayer = new List<long>()

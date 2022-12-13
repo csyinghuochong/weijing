@@ -12,10 +12,10 @@
             {
                 return;
             }
-            if (buffData.BuffConfig.IfShowIconTips == 0)
-            {
-                return;
-            }
+            //if (buffData.BuffConfig.IfShowIconTips == 0)
+            //{
+            //    return;
+            //}
             EventType.DataUpdate.Instance.DataType = DataType.BuffUpdate;
             EventType.DataUpdate.Instance.DataParams = $"{buffData.BuffConfig.Id}@1@{this.BuffEndTime}";
             EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
@@ -41,10 +41,10 @@
             {
                 return;
             }
-            if (this.BuffData.BuffConfig.IfShowIconTips == 0)
-            {
-                return;
-            }
+            //if (this.BuffData.BuffConfig.IfShowIconTips == 0)
+            //{
+            //    return;
+            //}
             EventType.DataUpdate.Instance.DataType = DataType.BuffUpdate;
             EventType.DataUpdate.Instance.DataParams = $"{this.BuffData.BuffConfig.Id}@3";
             EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);

@@ -32,8 +32,8 @@ RectTransform:
   - {fileID: 224054249862311850}
   - {fileID: 3370688714523401514}
   - {fileID: 423198156408305814}
-  - {fileID: 6843571007481665385}
   - {fileID: 4833647412772768873}
+  - {fileID: 6843571007481665385}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -693,7 +693,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 1
+  m_Text: 
 --- !u!114 &3349840007963760823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1255,7 +1255,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 3.9}
-  m_SizeDelta: {x: 300, y: 120}
+  m_SizeDelta: {x: 300.61, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5186347637042018611
 CanvasRenderer:
@@ -1287,7 +1287,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: a2742f41e77bb7a41a449afbafdc3f6f, type: 3}
-    m_FontSize: 60
+    m_FontSize: 40
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -1348,7 +1348,7 @@ RectTransform:
   - {fileID: 4799908140120791405}
   - {fileID: 333481049051830300}
   m_Father: {fileID: 22441214}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1387,7 +1387,7 @@ RectTransform:
   m_Children:
   - {fileID: 8204727082322054596}
   m_Father: {fileID: 22441214}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
