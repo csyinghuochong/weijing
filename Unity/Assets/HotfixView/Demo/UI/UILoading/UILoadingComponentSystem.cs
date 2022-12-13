@@ -51,7 +51,8 @@ namespace ET
                     self.PreLoadAssets.AddRange(self.GetCommonAssets());
                     break;
                 case (int)SceneTypeEnum.TeamDungeon:
-                case (int)SceneTypeEnum.YeWaiScene:
+                case (int)SceneTypeEnum.BaoZang:
+                case (int)SceneTypeEnum.MiJing:
                 case (int)SceneTypeEnum.Tower:
                 case (int)SceneTypeEnum.RandomTower:
                 case (int)SceneTypeEnum.PetDungeon:
@@ -227,6 +228,10 @@ namespace ET
                     break;
                 case (int)SceneTypeEnum.TrialDungeon:
                     UIHelper.Create(zoneScene, UIType.UITrialMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
+                case (int)SceneTypeEnum.MiJing:
+                    UIHelper.Create(zoneScene, UIType.UIMiJingMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
                 default:

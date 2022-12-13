@@ -42,6 +42,7 @@ namespace ET
 
     public static class YeWaiRefreshComponentSystem
     {
+
         /// <summary>
         /// 起服或者零点刷新一次
         /// </summary>
@@ -311,8 +312,9 @@ namespace ET
 
             Vector3 form = new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ);
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
-            if (mapComponent.SceneTypeEnum == SceneTypeEnum.YeWaiScene && monsterConfig.MonsterType == MonsterTypeEnum.Boss)
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.MiJing && monsterConfig.MonsterType == MonsterTypeEnum.Boss)
             {
+                self.DomainScene().GetComponent<MiJingComponent>().BossId = refreshMonster.MonsterId;
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.YeWaiBoss,
                     Message = $"{mapComponent.SceneId}@{form.x};{form.y};{form.z}@{refreshMonster.MonsterId}"});
@@ -330,29 +332,6 @@ namespace ET
                     Rotation = refreshMonster.Rotation, 
                 });
             }
-        }
-
-        public static void OnKillEvent(this YeWaiRefreshComponent self, Unit defend)
-        {
-            if (defend.Type != UnitType.Monster)
-            {
-                return;
-            }
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(defend.ConfigId);
-            if (monsterConfig.ReviveTime == 0)
-            {
-                return;
-            }
-            //AIComponent aiComponent = defend.GetComponent<AIComponent>();
-            //self.RefreshMonsters.Add(new RefreshMonster()
-            //{
-            //    MonsterId = unitInfoComponent.UnitCondigID,
-            //    RefresType = 2,
-            //    RefreshTime = TimeHelper.ServerNow() + monsterConfig.Resurrection * 1000,
-            //    PositionX = aiComponent.InitVec3.x,
-            //    PositionY = aiComponent.InitVec3.y,
-            //    PositionZ = aiComponent.InitVec3.z, 
-            //});
         }
     }
 }

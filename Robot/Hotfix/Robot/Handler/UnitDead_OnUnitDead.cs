@@ -36,7 +36,8 @@ namespace ET
 						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
 						break;
 					case SceneTypeEnum.TeamDungeon:
-					case SceneTypeEnum.YeWaiScene:
+					case SceneTypeEnum.BaoZang:
+					case SceneTypeEnum.MiJing:
 						await TimerComponent.Instance.WaitAsync(20000);
 						if (InstanceId != unit.InstanceId)
 						{

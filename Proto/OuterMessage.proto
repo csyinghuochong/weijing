@@ -4139,7 +4139,12 @@ message M2C_UnitFinishSkill // IActorMessage
 	int64 UnitId = 1;
 }
 
-
+message M2C_SyncMiJingDamage // IActorMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	repeated TeamPlayerInfo DamageList = 1;          
+}
 
 ///////Max OpcodeID   放在最后
 message M2C_UpdateVersion // IActorMessage

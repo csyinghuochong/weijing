@@ -148,7 +148,8 @@ namespace ET
 						}
 						break;
 					case (int)SceneTypeEnum.TeamDungeon:
-					case (int)SceneTypeEnum.YeWaiScene:
+					case (int)SceneTypeEnum.BaoZang:
+					case (int)SceneTypeEnum.MiJing:
 					case (int)SceneTypeEnum.RandomTower:
 					case (int)SceneTypeEnum.Tower:
 					case (int)SceneTypeEnum.TrialDungeon:

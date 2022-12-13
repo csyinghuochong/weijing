@@ -174,7 +174,7 @@ namespace ET
                 {
                     unit.DomainScene().GetComponent<LocalDungeonComponent>().OnAddRefreshList(unit, resurrection * 1000);
                 }
-                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene && mapComponent.SceneId != 2000001)
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
                 {
                     unit.DomainScene().GetComponent<YeWaiRefreshComponent>().OnAddRefreshList(unit, resurrection * 1000);
                 }
@@ -192,7 +192,7 @@ namespace ET
                     FirstWinHelper.SendFirstWinInfo(localDungeon.MainUnit, unit, localDungeon.FubenDifficulty);
                     return 1;
                 }
-                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene && mapComponent.SceneId != 2000001)
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
                 {
                     unit.RemoveComponent<ReviveTimeComponent>();
                     unit.AddComponent<ReviveTimeComponent, long>(TimeHelper.ServerNow() + resurrection * 1000);

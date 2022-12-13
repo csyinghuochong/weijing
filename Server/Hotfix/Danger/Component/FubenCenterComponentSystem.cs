@@ -22,7 +22,8 @@ namespace ET
             List<SceneConfig> sceneConfigs =  SceneConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < sceneConfigs.Count; i++)
             {
-                if (sceneConfigs[i].MapType != SceneTypeEnum.YeWaiScene)
+                if (sceneConfigs[i].MapType != SceneTypeEnum.BaoZang 
+                 && sceneConfigs[i].MapType != SceneTypeEnum.MiJing)
                 {
                     continue;
                 }
@@ -36,10 +37,16 @@ namespace ET
 
                 Scene fubnescene = SceneFactory.Create(self, fubenid, fubenInstanceId, self.DomainZone(), "Map" + sceneConfigs[i].Id.ToString(), SceneType.Map);
                 MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
-                mapComponent.SetMapInfo((int)SceneTypeEnum.YeWaiScene, sceneConfigs[i].Id, 0);
+                mapComponent.SetMapInfo(sceneConfigs[i].MapType, sceneConfigs[i].Id, 0);
                 mapComponent.NavMeshId = sceneConfigs[i].MapID.ToString(); 
                 fubnescene.GetComponent<ServerInfoComponent>().ServerInfo = self.ServerInfo;
                 YeWaiRefreshComponent yeWaiRefreshComponen = fubnescene.AddComponent<YeWaiRefreshComponent>();
+                yeWaiRefreshComponen.SceneId = sceneConfigs[i].Id;
+                if (sceneConfigs[i].MapType == SceneTypeEnum.MiJing)
+                {
+                    fubnescene.AddComponent<MiJingComponent>();
+                }
+
                 FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonster);
                 FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonsterPosi);
                 yeWaiRefreshComponen.OnZeroClockUpdate(openDay);

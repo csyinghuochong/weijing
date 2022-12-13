@@ -25,7 +25,8 @@ namespace ET
             foreach (var sceneConfig in sceneConfigs)
             {
                 if (sceneConfig.Value.MapType != (int)SceneTypeEnum.MainCityScene
-                    && sceneConfig.Value.MapType != (int)SceneTypeEnum.YeWaiScene)
+                    && sceneConfig.Value.MapType != (int)SceneTypeEnum.BaoZang
+                    && sceneConfig.Value.MapType != (int)SceneTypeEnum.MiJing)
                 {
                     continue;
                 }

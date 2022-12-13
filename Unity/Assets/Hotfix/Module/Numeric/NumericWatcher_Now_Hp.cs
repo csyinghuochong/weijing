@@ -13,7 +13,9 @@
 			NumericComponent numericComponentDefend = unit.GetComponent<NumericComponent>();
 #if SERVER
 			Scene DomainScene = args.Parent.DomainScene();
-			int sceneTypeEnum = DomainScene.GetComponent<MapComponent>().SceneTypeEnum;
+			MapComponent mapComponent = unit.GetComponent<MapComponent>();	
+			int sceneTypeEnum = mapComponent.SceneTypeEnum;
+			int sceneId = mapComponent.SceneId;	
 
 			if (args.NewValue <= 0 && numericComponentDefend.GetAsInt(NumericType.Now_Dead) == 1)
 			{
@@ -26,12 +28,7 @@
 				unit.GetComponent<HeroDataComponent>().OnDead(args);
 			}
 
-			//副本
-			if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon && unit.Type == UnitType.Player)
-			{
-				DomainScene.GetComponent<CellDungeonComponent>().OnRecivedHurt(args.OldValue - args.NewValue);
-			}
-			if (sceneTypeEnum == (int)SceneTypeEnum.TeamDungeon && args.Attack != null && (args.OldValue > args.NewValue))
+			if (args.Attack != null && (args.OldValue > args.NewValue))
 			{
 				Unit player = null;
 				if (args.Attack.Type == UnitType.Player)
@@ -44,10 +41,18 @@
 					player = args.Attack.GetParent<UnitComponent>().Get(master);
 				}
 
-				if (player != null)
+				if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)   //个人副本接受到的伤害
+				{
+					DomainScene.GetComponent<CellDungeonComponent>().OnRecivedHurt(args.OldValue - args.NewValue);
+				}
+				if (sceneTypeEnum == (int)SceneTypeEnum.TeamDungeon && player != null)  //组队副本输出伤害
 				{
 					NumericComponent numericComponent = player.GetComponent<NumericComponent>();
-					numericComponent.ApplyChange(null, NumericType.Now_Damage,  (args.OldValue - args.NewValue), 0) ;
+					numericComponent.ApplyChange(null, NumericType.Now_Damage, (args.OldValue - args.NewValue), 0);
+				}
+				if (sceneTypeEnum == (int)SceneTypeEnum.MiJing && player != null)  //秘境伤害
+				{
+					DomainScene.GetComponent<MiJingComponent>()?.OnUpdateDamage(player,unit, args.OldValue - args.NewValue);
 				}
 			}
 #else

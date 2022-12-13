@@ -109,6 +109,7 @@
     <Compile Include="Assets\Hotfix\Demo\ConstValue.cs" />
     <Compile Include="Assets\Hotfix\Demo\Session\SessionComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamDungeonQuitHandler.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Handler\M2C_UnitFinishSkillHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_UnionApplyHandler.cs" />
     <Compile Include="Assets\Hotfix\Demo\Session\SessionStreamDispatcherClientOuter.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\M2C_TeamDungeonOpenHandler.cs" />
@@ -217,7 +218,7 @@
     <Compile Include="Assets\Hotfix\Danger\Common\Component\MapComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericWatcher_Update.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetKcpComponentSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Handler\M2C_UnitFinishSkillHandler.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Handler\M2C_SyncMiJingDamageHandler.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

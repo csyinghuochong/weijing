@@ -78,13 +78,15 @@ namespace ET
 							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetDungeon, request.SceneId, int.Parse(request.paramInfo));
 							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 							break;
-						case (int)SceneTypeEnum.YeWaiScene:
+						case (int)SceneTypeEnum.BaoZang:
+						case (int)SceneTypeEnum.MiJing:
+							int mapType = SceneConfigCategory.Instance.Get(request.SceneId).MapType;
 							TransferHelper.BeforeTransfer(unit);
 
 							F2M_YeWaiSceneIdResponse f2M_YeWaiSceneIdResponse = (F2M_YeWaiSceneIdResponse)await ActorMessageSenderComponent.Instance.Call(
 							DBHelper.GetFubenCenterId(unit.DomainZone()), new M2F_YeWaiSceneIdRequest() { SceneId = request.SceneId });
 
-							await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, (int)SceneTypeEnum.YeWaiScene, request.SceneId, 0);
+							await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, mapType, request.SceneId, 0);
 							break;
 						case (int)SceneTypeEnum.TrialDungeon:
 							fubenid = IdGenerater.Instance.GenerateId();

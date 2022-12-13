@@ -85,7 +85,8 @@ namespace ET
         {
             return sceneType == SceneTypeEnum.TeamDungeon 
                 || sceneType == SceneTypeEnum.Battle
-                || sceneType == SceneTypeEnum.YeWaiScene;
+                || sceneType == SceneTypeEnum.BaoZang
+                || sceneType == SceneTypeEnum.MiJing;
         }
 
         public static void OnInitUI(this UICellDungeonReviveComponent self, int seneTypeEnum)

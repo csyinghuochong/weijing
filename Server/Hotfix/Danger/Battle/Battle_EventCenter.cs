@@ -146,8 +146,11 @@ namespace ET
                     case SceneTypeEnum.TeamDungeon:
                         args.UnitAttack.DomainScene().GetComponent<TeamDungeonComponent>().OnKillEvent(args.UnitDefend);
                         break;
-                    case SceneTypeEnum.YeWaiScene:
-                        args.UnitAttack.DomainScene().GetComponent<YeWaiRefreshComponent>().OnKillEvent(args.UnitDefend);
+                    case SceneTypeEnum.BaoZang:
+                        ;
+                        break;
+                    case SceneTypeEnum.MiJing:
+                        args.UnitAttack.DomainScene().GetComponent<MiJingComponent>().OnKillEvent(args.UnitDefend);
                         break;
                     case SceneTypeEnum.Tower:
                         args.UnitAttack.DomainScene().GetComponent<TowerComponent>().OnKillEvent(args.UnitDefend);

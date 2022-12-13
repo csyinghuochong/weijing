@@ -7,7 +7,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, G2G_UnitListRequest request, G2G_UnitListResponse response, Action reply)
         {
-            response.OnLineNumber = scene.GetComponent<PlayerComponent>().GetAll().Length;
+            response.OnLinePlayer = scene.GetComponent<PlayerComponent>().GetAll().Length;
 
             reply();
             await ETTask.CompletedTask;

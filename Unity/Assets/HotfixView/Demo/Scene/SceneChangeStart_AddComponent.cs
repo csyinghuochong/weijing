@@ -56,6 +56,11 @@ namespace ET
                 case SceneTypeEnum.TrialDungeon:
                     UIHelper.Remove(args.ZoneScene, UIType.UITrialMain);
                     break;
+                case SceneTypeEnum.MiJing:
+                    UIHelper.Remove(args.ZoneScene, UIType.UIMiJingMain);
+                    break;
+                default:
+                    break;
             }
             Game.Scene.GetComponent<SceneManagerComponent>().ChangeScene(args.ZoneScene, args.SceneType, args.LastSceneType, args.ChapterId).Coroutine();
         }

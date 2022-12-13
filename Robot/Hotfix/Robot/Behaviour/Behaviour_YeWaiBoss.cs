@@ -28,7 +28,8 @@ namespace ET
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             int sceneId = int.Parse(aiComponent.MessageValue.Split('@')[0]);
-            int errorCode = await EnterFubenHelp.RequestTransfer(aiComponent.ZoneScene(), SceneTypeEnum.YeWaiScene, sceneId);
+            int mapType = SceneConfigCategory.Instance.Get(sceneId).MapType;
+            int errorCode = await EnterFubenHelp.RequestTransfer(aiComponent.ZoneScene(), mapType, sceneId);
             if (errorCode == ErrorCode.ERR_Success)
             {
                 await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(10000, 30000));

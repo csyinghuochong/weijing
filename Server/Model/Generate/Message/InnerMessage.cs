@@ -1433,7 +1433,10 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(1)]
-		public int OnLineNumber { get; set; }
+		public int OnLinePlayer { get; set; }
+
+		[ProtoMember(2)]
+		public int OnLineRobot { get; set; }
 
 	}
 

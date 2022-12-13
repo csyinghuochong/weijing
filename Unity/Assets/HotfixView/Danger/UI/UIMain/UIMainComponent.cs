@@ -23,6 +23,7 @@ namespace ET
 
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
+        public GameObject FunctionSetBtn;
         public GameObject Button_Horse;
         public GameObject Button_WorldLv;
         public GameObject Button_ZhenYing;
@@ -717,8 +718,8 @@ namespace ET
             GameObject UIMainHpBar = rc.Get<GameObject>("UIMainHpBar");
             self.UIMainHpBar = self.AddChild<UIMainHpBarComponent, GameObject>(UIMainHpBar);
 
-            GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
-            UI buttonSet = self.AddChild<UI, string, GameObject>("FunctionBtnSet", BtnItemTypeSet);
+            self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
+            UI buttonSet = self.AddChild<UI, string, GameObject>("FunctionBtnSet", self.FunctionSetBtn);
             UIPageButtonComponent uIPageViewComponent = buttonSet.AddComponent<UIPageButtonComponent>();
             uIPageViewComponent.SetClickHandler((int page) =>
             {
@@ -863,13 +864,14 @@ namespace ET
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
             self.UIMainSkillComponent.ResetUI(sceneTypeEnum == SceneTypeEnum.MainCityScene);
-            if(sceneTypeEnum == SceneTypeEnum.TrialDungeon)
+            if(!SceneConfigHelper.ShowLeftButton(sceneTypeEnum))
             {
+                self.FunctionSetBtn.SetActive(false);
                 self.OnClickPageButton(-1);
             }
             else
             {
-                int page = self.UIPageButtonComponent.CurrentIndex;
+                self.FunctionSetBtn.SetActive(true);
                 self.UIPageButtonComponent.OnSelectIndex(sceneTypeEnum == SceneTypeEnum.TeamDungeon ? 1 : 0);
             }
             self.UIMapMini.OnEnterScene();

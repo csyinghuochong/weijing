@@ -679,7 +679,8 @@ message G2G_UnitListResponse // IActorResponse
      int32 Error = 91;
      string Message = 92;
 
-     int32 OnLineNumber = 1;
+     int32 OnLinePlayer = 1;
+     int32 OnLineRobot = 2;
 }
 
 

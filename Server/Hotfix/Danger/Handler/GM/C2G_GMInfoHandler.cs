@@ -23,7 +23,7 @@ namespace ET
                     long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(zones[i], "Gate1").InstanceId;
                     G2G_UnitListResponse g2M_UpdateUnitResponse = (G2G_UnitListResponse)await ActorMessageSenderComponent.Instance.Call
                         (gateServerId, new G2G_UnitListRequest() { });
-                    totalNumber+= g2M_UpdateUnitResponse.OnLineNumber;
+                    totalNumber+= g2M_UpdateUnitResponse.OnLinePlayer;
                 }
                 response.OnLineNumber = totalNumber;
             }

@@ -37,7 +37,7 @@ namespace ET
                             long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(listprogress[i].Id, "Gate1").InstanceId;
                             G2G_UnitListResponse g2M_UpdateUnitResponse = (G2G_UnitListResponse)await ActorMessageSenderComponent.Instance.Call
                                 (gateServerId, new G2G_UnitListRequest() { });
-                            number += g2M_UpdateUnitResponse.OnLineNumber;
+                            number += g2M_UpdateUnitResponse.OnLinePlayer;
                         }
                     }
                     else
@@ -45,7 +45,7 @@ namespace ET
                         long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(int.Parse(zoneid), "Gate1").InstanceId;
                         G2G_UnitListResponse g2M_UpdateUnitResponse = (G2G_UnitListResponse)await ActorMessageSenderComponent.Instance.Call
                             (gateServerId, new G2G_UnitListRequest() { });
-                        number = g2M_UpdateUnitResponse.OnLineNumber;
+                        number = g2M_UpdateUnitResponse.OnLinePlayer;
                     }
                     string zonestr = zoneid == "0" ? "全部" : zoneid;
                     Log.Console($"{zonestr}区 在线人数: {number}");

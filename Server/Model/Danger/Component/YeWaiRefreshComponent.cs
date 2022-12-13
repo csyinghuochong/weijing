@@ -16,9 +16,9 @@ namespace ET
     }
 
     public class YeWaiRefreshComponent : Entity, IAwake, IDestroy
-    {
+    {         
         public long Timer;
-        public int OpenServerDay;
+        public int SceneId;
         public List<RefreshMonster> RefreshMonsters = new List<RefreshMonster>();  
     }
 }

@@ -29,7 +29,8 @@
                 return self.Type != UnitType.Player && self.GetBattleCamp() != attack.GetBattleCamp();
             }
 
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.YeWaiScene)
+            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.BaoZang 
+             || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MiJing)
             {
                 if (SceneConfigCategory.Instance.Get(mapComponent.SceneId).IfPVP == 1)
                 { 

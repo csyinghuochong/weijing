@@ -11,6 +11,12 @@ namespace ET
                 && sceneType != SceneTypeEnum.Tower;
         }
 
+        public static bool ShowLeftButton(int sceneType)
+        {
+            return sceneType != SceneTypeEnum.TrialDungeon
+                && sceneType != SceneTypeEnum.MiJing;
+        }
+
         public static bool UseSceneConfig(int sceneType)
         {
             return sceneType != SceneTypeEnum.LocalDungeon

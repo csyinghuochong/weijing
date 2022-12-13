@@ -36,12 +36,13 @@ namespace ET
         public const int CellDungeon = 4;       //格子副本
         public const int TeamDungeon = 5;        //组队副本
         public const int PetTianTi = 6;         //宠物天梯
-        public const int YeWaiScene = 7;        //野外地图
+        public const int BaoZang = 7;        //野外地图 [宝藏之地]
         public const int Tower = 8;             //爬塔   别名挑战之地
         public const int LocalDungeon = 9;      //本地副本
         public const int PetDungeon = 10;       //宠物闯关副本
         public const int RandomTower = 11;       //通天塔
         public const int Battle = 12;           //阵营战场
         public const int TrialDungeon = 13;     //试炼副本
+        public const int MiJing = 14;        //野外地图 [秘境]
     }
 }

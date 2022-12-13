@@ -467,6 +467,15 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class SyncMiJingDamage : DisposeObject
+        {
+            public static readonly SyncMiJingDamage Instance = new SyncMiJingDamage();
+
+            public M2C_SyncMiJingDamage M2C_SyncMiJingDamage;
+
+            public Scene ZoneScene;
+        }
+
         public class SkillEffectReset : DisposeObject
         {
             public static readonly SkillEffectReset Instance = new SkillEffectReset();

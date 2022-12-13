@@ -38,7 +38,7 @@ namespace ET
 			else
 			{
 				SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
-				self.SetMapInfo((int)SceneTypeEnum.YeWaiScene, sceneConfig.MapID, 0);
+				self.SetMapInfo(sceneConfig.MapType, sceneConfig.MapID, 0);
 				self.NavMeshId = sceneConfig.MapID.ToString();
 			}
 		}
