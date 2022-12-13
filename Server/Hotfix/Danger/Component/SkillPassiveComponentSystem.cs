@@ -289,6 +289,12 @@ namespace ET
                 if (aIComponent != null)
                 {
                     targetId = aIComponent.TargetID;
+                    Unit aiTarget = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
+                    if (aiTarget != null && PositionHelper.Distance2D(unit.Position, aiTarget.Position) > aIComponent.ActDistance)
+                    {
+                        return;
+                    }
+
                     if (skillConfig.SkillTargetType > 0)
                     {
                         targetIdList.AddRange(AIHelp.GetNearestEnemy(unit, (float)aIComponent.ActRange, skillConfig.SkillTargetType));
