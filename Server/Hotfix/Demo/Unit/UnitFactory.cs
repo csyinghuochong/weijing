@@ -379,7 +379,7 @@ namespace ET
                     long ownderId = main!=null ? main.Id : 0;
                     if (monsterCof.DropType == 2 && beattackIds.Count > 0 && unitComponent.Get(beattackIds[0])!=null)
                     {
-                        ownderId = beattackIds[0];
+                        ownderId = UnitHelper.GetMasterId(unitComponent.Get(beattackIds[0]));
                     }
                     dropComponent.OwnerId = monsterCof.DropType == 0 ? 0 : ownderId;
                     dropComponent.ProtectTime = monsterCof.DropType == 0 ? 0 : serverTime + 30000;

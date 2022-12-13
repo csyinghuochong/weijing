@@ -315,6 +315,19 @@ namespace ET
             return SkillHelp.GetWeaponSkill(skillId, EquipType);
         }
 
+        public static long GetMasterId(this Unit self)
+        {
+            if (self.Type == UnitType.Player)
+            {
+                return self.Id;
+            }
+            if (self.Type == UnitType.Pet || self.Type == UnitType.Monster)
+            {
+                return self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);  
+            }
+            return 0;
+        }
+
         public static void SetBornPosition(this Unit self, Vector3 vector3)
         {
             NumericComponent numericComponent = self.GetComponent<NumericComponent>();

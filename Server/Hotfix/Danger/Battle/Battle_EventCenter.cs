@@ -99,19 +99,11 @@ namespace ET
             defendUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
             if (args.UnitAttack != null && !args.UnitAttack.IsDisposed)
             {
-                Unit player = null;
-                MapComponent mapComponent = args.UnitAttack.DomainScene().GetComponent<MapComponent>();
+                Scene domainScene = args.UnitAttack.DomainScene();
+                MapComponent mapComponent = domainScene.GetComponent<MapComponent>();
                 int sceneTypeEnum = mapComponent.SceneTypeEnum;
                 int sceneId = mapComponent.SceneId;
-                if (args.UnitAttack.Type == UnitType.Player)
-                {
-                    player = args.UnitAttack;
-                }
-                if (args.UnitAttack.Type == UnitType.Pet || args.UnitAttack.Type == UnitType.Monster)
-                {
-                    long master = args.UnitAttack.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-                    player = args.UnitAttack.GetParent<UnitComponent>().Get(master);
-                }
+                Unit player = domainScene.GetComponent<UnitComponent>().Get(UnitHelper.GetMasterId(args.UnitAttack));
                 if (player != null)
                 {
                     player.GetComponent<TaskComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
