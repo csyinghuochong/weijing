@@ -11,13 +11,13 @@ namespace ET
         public long TriggerInterval;           //触发间隔
         public long LastTriggerTime;            //上次触发时间
 
-        public SkillPassiveInfo(int skillPassiveTypeEnum, int skillId, float skillPro, int triggerOnce, int triggerTime)
+        public SkillPassiveInfo(int skillPassiveTypeEnum, int skillId, float skillPro, int triggerOnce, double triggerTime)
         {
             this.SkillPassiveTypeEnum = skillPassiveTypeEnum;
             this.SkillId = skillId;
             this.SkillPro = skillPro;
             this.TriggerOnce = triggerOnce;
-            this.TriggerInterval = 1000 * triggerTime;
+            this.TriggerInterval = (long)(1000 * triggerTime);
             this.LastTriggerTime = 0;
         }
 
