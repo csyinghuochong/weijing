@@ -67,7 +67,12 @@ namespace ET
                 self.UnitModel = null;
             }
             var path = ABPathHelper.GetUnitPath(assetPath);
+            long instanceId = self.InstanceId;
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            if (instanceId == self.InstanceId)
+            {
+                return;
+            }
             if (prefab == null)
             { 
                 Log.Error($"prefab == null: {path}");
