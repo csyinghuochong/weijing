@@ -81,6 +81,10 @@ namespace ET
             self.BuffID = buffId;
 
             string bufficon = skillBuffConfig.BuffIcon;
+            if (ComHelp.IfNull(bufficon))
+            {
+                bufficon = "96001001";
+            }
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, bufficon);
             self.ImgBufflIcon.GetComponent<Image>().sprite = sp;
         }
