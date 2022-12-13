@@ -194,10 +194,10 @@ namespace ET
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_DodgeLv, "闪避等级", "", 1));
 
 
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeAddPro, "物理伤害加成", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDamgeAddPro, "魔法伤害加成", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeSubPro, "物理伤害减免", "", 2));
-			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDamgeSubPro, "魔法伤害减免", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeAddPro, "物伤加成", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDamgeAddPro, "魔伤加成", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ActDamgeSubPro, "物伤减免", "", 2));
+			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_MageDamgeSubPro, "魔伤减免", "", 2));
 
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ZhongJiPro, "重击概率", "", 2));
 			self.ShowPropertyList_TeShu.Add(AddShowProperList(NumericType.Now_ZhongJi, "重击附加伤害", "", 1));

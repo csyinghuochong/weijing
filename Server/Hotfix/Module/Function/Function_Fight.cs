@@ -1213,14 +1213,14 @@ namespace ET
             {
                 AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, Power_value * 3, UpdateProDicList);
                 AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, Power_value * 3, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_HitLv_Base, Power_value * 3, UpdateProDicList);
+                //AddUpdateProDicList((int)NumericType.Base_HitLv_Base, Power_value * 3, UpdateProDicList);
             }
 
             //敏捷换算
             if (Agility_value > 0)
             {
                 AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, Agility_value * 6, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_CriLv_Base, Agility_value * 5, UpdateProDicList);
+                //AddUpdateProDicList((int)NumericType.Base_CriLv_Base, Agility_value * 5, UpdateProDicList);
             }
 
             //智力换算
@@ -1235,14 +1235,14 @@ namespace ET
             {
                 AddUpdateProDicList((int)NumericType.Base_MaxDef_Base, Stamina_value * 3, UpdateProDicList);
                 AddUpdateProDicList((int)NumericType.Base_MaxAdf_Base, Stamina_value * 3, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_DodgeLv_Base, Stamina_value * 5, UpdateProDicList);
+                //AddUpdateProDicList((int)NumericType.Base_DodgeLv_Base, Stamina_value * 5, UpdateProDicList);
             }
 
             //体质换算
             if (Constitution_value > 0)
             {
                 AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, Constitution_value * 80, UpdateProDicList);
-                AddUpdateProDicList((int)NumericType.Base_ResLv_Base, Constitution_value * 5, UpdateProDicList);
+                //AddUpdateProDicList((int)NumericType.Base_ResLv_Base, Constitution_value * 5, UpdateProDicList);
             }
 
             //缓存等级BUFF属性
@@ -1257,11 +1257,12 @@ namespace ET
             long skillAddLv = 0;
 
             //属性点加成
-            criLv = criLv + PointLiLiang * 5;
-            resLv = resLv + PointTiZhi * 5;
-            dodgeLv = dodgeLv + PointNaiLi * 5;
-            hitLv = hitLv + PointMinJie * 5;
-            skillAddLv = skillAddLv + PointZhiLi * 5;
+            int aaa = numericComponent.GetAsInt(NumericType.Now_Power);
+            criLv = criLv + (PointLiLiang + Power_value) * 5;
+            resLv = resLv + (PointTiZhi + Constitution_value) * 5;
+            dodgeLv = dodgeLv + (PointNaiLi + Stamina_value) * 5;
+            hitLv = hitLv + (PointMinJie + Agility_value) * 5;
+            skillAddLv = skillAddLv + (PointZhiLi + Intellect_value) * 5;
 
             AddUpdateProDicList((int)NumericType.Base_CriLv_Add, criLv, UpdateProDicList);
             AddUpdateProDicList((int)NumericType.Base_HitLv_Add, hitLv, UpdateProDicList);
@@ -1277,7 +1278,18 @@ namespace ET
                 numericComponent.Set(key, setValue, notice);
             }
 
+            /*
+            UpdateProDicList.Clear();
 
+
+            //更新属性
+            foreach (int key in UpdateProDicList.Keys)
+            {
+                long setValue = numericComponent.GetAsLong(key) + UpdateProDicList[key];
+                //Log.Info("key = " + key + ":" + setValue);
+                numericComponent.Set(key, setValue, notice);
+            }
+            */
 
 
             //战力计算
