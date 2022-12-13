@@ -206,10 +206,11 @@ namespace ET
 		{
 			DropConfig dropconf = DropConfigCategory.Instance.Get(dropID);
 			int dropLimit = dropconf.DropLimit;
-			Log.Info("DropID = " + dropID + " monsterID = " + monsterID);
-			if (dropconf.Id == 602001001) {
-				Log.Info("DropID = " + dropID + " monsterID = " + monsterID);
-			}
+			//Log.Info("DropID = " + dropID + " monsterID = " + monsterID);
+			//if (dropconf.Id == 602001001) {
+			//	Log.Info("DropID = " + dropID + " monsterID = " + monsterID);
+			//}
+
 			//是否有子掉落
 			bool DropSonStatus = false;
 

@@ -103,7 +103,6 @@ namespace ET
                     }
                     else
                     {
-
                         //加法算法
                         NowBuffValue = NowBuffParameterValue;
                     }
