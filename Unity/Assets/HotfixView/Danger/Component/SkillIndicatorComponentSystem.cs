@@ -219,6 +219,7 @@ namespace ET
             }
 
             skillIndicatorItem.TargetAngle += (int)self.MainCamera.transform.eulerAngles.y;
+            self.OnMainHeroMove();
         }
 
         public static float GetIndicatorDistance(this SkillIndicatorComponent self)
