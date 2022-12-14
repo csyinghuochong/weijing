@@ -310,6 +310,7 @@ namespace ET
                     nowdef = adfValue;
                 }
 
+                //技能加成
                 if (skillconfig.SkillActType == 1) {
                     actValue += attack_MageAct;
                 }
@@ -432,6 +433,12 @@ namespace ET
                 float defHpPro = (float)numericComponentDefend.GetAsInt(NumericType.Now_Hp)/ (float)numericComponentDefend.GetAsInt(NumericType.Now_MaxHp);
                 if (defHpPro<=0.3f) {
                     damgePro += numericComponentAttack.GetAsInt(NumericType.Now_ZhanShaPro);
+                }
+
+                //普攻加成
+                if (skillconfig.SkillActType == 0)
+                {
+                    damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_PuGongAddPro);
                 }
 
                 //抗性
@@ -567,12 +574,15 @@ namespace ET
                         damge = Math.Max(0, damge);
                         numericComponentDefend.ApplyChange(attackUnit, NumericType.Now_Shield_HP, -1 * dunDamge, skillconfig.Id, true, DamgeType);
                     }
-                    //Now_HuShiMagePro吸血
-                    float hushi = numericComponentAttack.GetAsFloat(NumericType.Now_XiXuePro);
-                    if (hushi > 0f)
+                    //吸血处理(普通攻击触发吸血)
+                    if (skillconfig.SkillActType == 0)
                     {
-                        int addHp =  (int)((float)damge * hushi);
-                        numericComponentAttack.ApplyChange(attackUnit, NumericType.Now_Hp, addHp, 0);
+                        float hushi = numericComponentAttack.GetAsFloat(NumericType.Now_XiXuePro);
+                        if (hushi > 0f)
+                        {
+                            int addHp = (int)((float)damge * hushi);
+                            numericComponentAttack.ApplyChange(attackUnit, NumericType.Now_Hp, addHp, 0);
+                        }
                     }
 
                     damge *= -1;

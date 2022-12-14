@@ -645,6 +645,13 @@
         public const int Extra_Buff_ChaoFengPro_Add = Now_ChaoFengPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_ChaoFengPro_Mul = Now_ChaoFengPro * 100 + 12;            //属性Buff附加乘法
 
+        public const int Now_PuGongAddPro = 2027;          //当前普攻加成比例  
+        public const int Base_PuGongAddPro_Base = Now_PuGongAddPro * 100 + 1;              //属性累加
+        public const int Base_PuGongAddPro_Mul = Now_PuGongAddPro * 100 + 2;               //属性乘法
+        public const int Base_PuGongAddPro_Add = Now_PuGongAddPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_PuGongAddPro_Add = Now_PuGongAddPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_PuGongAddPro_Mul = Now_PuGongAddPro * 100 + 12;            //属性Buff附加乘法
+
         //----------------抗性-------------
 
         public const int Now_Resistance_Shine_Pro = 2101;          //当前神圣抗性
