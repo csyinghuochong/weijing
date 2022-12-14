@@ -95,23 +95,23 @@ namespace ET
             return TaskTypeLogic[TargetType].taskProgess(taskPro, taskConfig);
         }
 
-        public void MoveToTask(Scene zoneScene, int positionId)
+        public bool MoveToTask(Scene zoneScene, int positionId)
         {
             TaskPositionConfig taskPositionConfig = TaskPositionConfigCategory.Instance.Get(positionId);
             MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum != (int)SceneTypeEnum.LocalDungeon)
             {
-                return;
+                return false;
             }
             if (mapComponent.SceneId == taskPositionConfig.MapID)
             {
                 MoveToTaskPosition(zoneScene, positionId);
-                return;
+                return true;
             }
             string[] otherMapMoves = taskPositionConfig.OtherMapMove.Split(';');
             if (otherMapMoves == null)
             {
-                return;
+                return false;
             }
             for (int i = 0; i < otherMapMoves.Length; i++)
             {
@@ -123,9 +123,10 @@ namespace ET
                 if (int.Parse(positionIds[0]) == mapComponent.SceneId)
                 {
                     MoveToTaskPosition(zoneScene,int.Parse(positionIds[1]));
-                    break;
+                    return true ;
                 }
             }
+            return false;
         }
 
         public void MoveToTaskPosition(Scene zoneScene, int taskPositionId)

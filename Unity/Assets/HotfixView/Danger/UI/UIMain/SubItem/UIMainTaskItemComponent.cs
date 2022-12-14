@@ -52,12 +52,17 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip($"请前往{fubenName}");
                     return;
                 }
+                FloatTipManager.Instance.ShowFloatTip("正在前往任务目标点");
                 TaskHelper.MoveToNpc(self.ZoneScene(), self.TaskPro).Coroutine();
                 return;
             }
             if (self.TaskConfig.TargetPosition != 0)
             {
-                UITaskViewHelp.Instance.MoveToTask(self.ZoneScene(), self.TaskConfig.TargetPosition);
+                bool excuteVAlue = UITaskViewHelp.Instance.MoveToTask(self.ZoneScene(), self.TaskConfig.TargetPosition);
+                if (excuteVAlue)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("正在前往任务目标点");
+                }
                 return;
             }
             UITaskViewHelp.Instance.TaskTypeLogic[(TaskTargetType)target].taskExcute(self.DomainScene(), self.TaskPro, self.TaskConfig);

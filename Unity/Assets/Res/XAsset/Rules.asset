@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 399
+  version: 400
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -3171,6 +3171,22 @@ MonoBehaviour:
   - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
     path: Assets/Bundles/Icon/PetSkillIcon/80001020.png
   - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80001021.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80001022.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80001023.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80001024.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80001025.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80001026.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80001027.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80001028.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
     path: Assets/Bundles/Icon/PetSkillIcon/80002001.png
   - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
     path: Assets/Bundles/Icon/PetSkillIcon/80002002.png
@@ -3211,6 +3227,22 @@ MonoBehaviour:
   - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
     path: Assets/Bundles/Icon/PetSkillIcon/80002020.png
   - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80002021.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80002022.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80002023.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80002024.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80002025.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80002026.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80002027.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80002028.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
     path: Assets/Bundles/Icon/PetSkillIcon/80003001.png
   - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
     path: Assets/Bundles/Icon/PetSkillIcon/80003002.png
@@ -3230,6 +3262,12 @@ MonoBehaviour:
     path: Assets/Bundles/Icon/PetSkillIcon/80003104.png
   - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
     path: Assets/Bundles/Icon/PetSkillIcon/80003105.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80004001.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80004002.png
+  - bundle: a8b509e015f91cdefae806627391e7c7.unity3d
+    path: Assets/Bundles/Icon/PetSkillIcon/80004003.png
   - bundle: 499293d30e2182a0b218542d2f0c560e.unity3d
     path: Assets/Bundles/Icon/PlayerIcon/1.png
   - bundle: 499293d30e2182a0b218542d2f0c560e.unity3d
@@ -9296,6 +9334,14 @@ MonoBehaviour:
     - Assets/Bundles/Icon/PetSkillIcon/80001018.png
     - Assets/Bundles/Icon/PetSkillIcon/80001019.png
     - Assets/Bundles/Icon/PetSkillIcon/80001020.png
+    - Assets/Bundles/Icon/PetSkillIcon/80001021.png
+    - Assets/Bundles/Icon/PetSkillIcon/80001022.png
+    - Assets/Bundles/Icon/PetSkillIcon/80001023.png
+    - Assets/Bundles/Icon/PetSkillIcon/80001024.png
+    - Assets/Bundles/Icon/PetSkillIcon/80001025.png
+    - Assets/Bundles/Icon/PetSkillIcon/80001026.png
+    - Assets/Bundles/Icon/PetSkillIcon/80001027.png
+    - Assets/Bundles/Icon/PetSkillIcon/80001028.png
     - Assets/Bundles/Icon/PetSkillIcon/80002001.png
     - Assets/Bundles/Icon/PetSkillIcon/80002002.png
     - Assets/Bundles/Icon/PetSkillIcon/80002003.png
@@ -9316,6 +9362,14 @@ MonoBehaviour:
     - Assets/Bundles/Icon/PetSkillIcon/80002018.png
     - Assets/Bundles/Icon/PetSkillIcon/80002019.png
     - Assets/Bundles/Icon/PetSkillIcon/80002020.png
+    - Assets/Bundles/Icon/PetSkillIcon/80002021.png
+    - Assets/Bundles/Icon/PetSkillIcon/80002022.png
+    - Assets/Bundles/Icon/PetSkillIcon/80002023.png
+    - Assets/Bundles/Icon/PetSkillIcon/80002024.png
+    - Assets/Bundles/Icon/PetSkillIcon/80002025.png
+    - Assets/Bundles/Icon/PetSkillIcon/80002026.png
+    - Assets/Bundles/Icon/PetSkillIcon/80002027.png
+    - Assets/Bundles/Icon/PetSkillIcon/80002028.png
     - Assets/Bundles/Icon/PetSkillIcon/80003001.png
     - Assets/Bundles/Icon/PetSkillIcon/80003002.png
     - Assets/Bundles/Icon/PetSkillIcon/80003003.png
@@ -9326,6 +9380,9 @@ MonoBehaviour:
     - Assets/Bundles/Icon/PetSkillIcon/80003103.png
     - Assets/Bundles/Icon/PetSkillIcon/80003104.png
     - Assets/Bundles/Icon/PetSkillIcon/80003105.png
+    - Assets/Bundles/Icon/PetSkillIcon/80004001.png
+    - Assets/Bundles/Icon/PetSkillIcon/80004002.png
+    - Assets/Bundles/Icon/PetSkillIcon/80004003.png
   - name: 499293d30e2182a0b218542d2f0c560e.unity3d
     assets:
     - Assets/Bundles/Icon/PlayerIcon/1.png
