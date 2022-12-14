@@ -11,7 +11,6 @@ namespace ET
         {
             self.SkillIndicator = null;
             self.MainCamera = self.ZoneScene().GetComponent<UIComponent>().MainCamera;
-            DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
         }
     }
 
@@ -21,7 +20,6 @@ namespace ET
         public override void Destroy(SkillIndicatorComponent self)
         {
             self.RecoveryEffect();
-            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
         }
     }
 

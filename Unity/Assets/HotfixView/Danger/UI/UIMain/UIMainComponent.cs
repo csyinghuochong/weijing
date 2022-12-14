@@ -90,6 +90,9 @@ namespace ET
         public UISingingComponent UISingingComponent;
         public UIDigTreasureComponent UIDigTreasureComponent;
 
+        public LockTargetComponent LockTargetComponent;
+        public SkillIndicatorComponent SkillIndicatorComponent;
+
         public float CheckButtonTime;
         public Unit MainUnit;
         public long Timer;
@@ -251,6 +254,9 @@ namespace ET
             self.Btn_TopRight_1 = rc.Get<GameObject>("Btn_TopRight_1");
             self.Btn_TopRight_2 = rc.Get<GameObject>("Btn_TopRight_2");
 
+            self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
+            self.SkillIndicatorComponent = self.ZoneScene().GetComponent<SkillIndicatorComponent>();
+
             //初始化子UI
             self.initSubUI();
 
@@ -280,6 +286,7 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.TaskGiveUp, self);
             DataUpdateComponent.Instance.AddListener(DataType.TeamUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.OnActiveTianFu, self);
+            DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
 
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(10000, TimerType.UIMainTimer, self);
         }
@@ -330,6 +337,7 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.TaskGiveUp, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.TeamUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.OnActiveTianFu, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
             TimerComponent.Instance?.Remove(ref self.Timer);
 
             self.UnRegisterRedot();
@@ -341,6 +349,13 @@ namespace ET
         public static void OnUpdate(this UIMainComponent self)
         {
             self.CheckButton();
+        }
+
+        public static void OnMainHeroMove(this UIMainComponent self)
+        {
+            self.UIMapMini.OnMainHeroMove();
+            self.LockTargetComponent.OnMainHeroMove();
+            self.SkillIndicatorComponent.OnMainHeroMove();
         }
 
         public static bool IsHaveHongBao(this UIMainComponent self)

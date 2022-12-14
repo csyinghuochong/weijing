@@ -49,7 +49,6 @@ namespace ET
     {
         public override void Destroy(UIMapMiniComponent self)
         {
-            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
@@ -71,8 +70,6 @@ namespace ET
             self.HeadItem = rc.Get<GameObject>("HeadItem");
             self.HeadItem.SetActive(false);
             self.HeadList.SetActive(false);
-
-            DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
         }
     }
 

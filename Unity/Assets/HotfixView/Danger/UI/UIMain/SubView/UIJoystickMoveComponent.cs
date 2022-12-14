@@ -47,8 +47,6 @@ namespace ET
         public override void Destroy(UIJoystickMoveComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
-
-            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
         }
     }
 
@@ -75,8 +73,6 @@ namespace ET
 
             self.CenterShow.SetActive(false);
             self.Thumb.SetActive(false);
-
-            DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
         }
     }
 

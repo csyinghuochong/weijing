@@ -58,19 +58,9 @@ namespace ET
                     uiComponent.OnMainHeroMove();
                     continue;
                 }
-                if (component is UIMapMiniComponent miniComponent)
+                if (component is UIMainComponent mainComponent)
                 {
-                    miniComponent.OnMainHeroMove();
-                    continue;
-                }
-                if (component is LockTargetComponent lockComponent)
-                {
-                    lockComponent.OnMainHeroMove();
-                    continue;
-                }
-                if (component is SkillIndicatorComponent IndicatorComponent)
-                {
-                    IndicatorComponent.OnMainHeroMove();
+                    mainComponent.OnMainHeroMove();
                     continue;
                 }
             }

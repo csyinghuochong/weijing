@@ -11,8 +11,6 @@ namespace ET
     {
         public override void Awake(LockTargetComponent self)
         {
-            DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
-
             Camera camera = UIComponent.Instance.MainCamera;
             self.MyCamera_1 =  camera.GetComponent<MyCamera_1>();
         }
@@ -28,8 +26,6 @@ namespace ET
                 GameObject.Destroy(self.LockUnitEffect);
                 self.LockUnitEffect = null;
             }
-
-            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
         }
     }
 
