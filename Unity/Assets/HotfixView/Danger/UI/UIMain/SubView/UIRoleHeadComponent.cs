@@ -127,7 +127,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int maxPiLao = unit.GetMaxPiLao();
             self.Obj_Lab_RolePiLao.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("体力:") + self.UserInfoComponent.UserInfo.PiLao + "/" + maxPiLao;
-            self.Img_RolePiLao.GetComponent<Image>().fillAmount = self.UserInfoComponent.UserInfo.PiLao / maxPiLao;
+            self.Img_RolePiLao.GetComponent<Image>().fillAmount = 1f * self.UserInfoComponent.UserInfo.PiLao / maxPiLao;
         }
 
         //更新活力
@@ -136,7 +136,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int maxPiLao = unit.GetMaxPiLao();
             self.Lab_RoleHuoLi.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("活力:") + self.UserInfoComponent.UserInfo.Vitality + "/" + maxPiLao;
-            self.Img_RoleHuoLi.GetComponent<Image>().fillAmount = self.UserInfoComponent.UserInfo.Vitality / maxPiLao;
+            self.Img_RoleHuoLi.GetComponent<Image>().fillAmount = 1f* self.UserInfoComponent.UserInfo.Vitality / maxPiLao;
         }
 
         //初始化界面基础信息
