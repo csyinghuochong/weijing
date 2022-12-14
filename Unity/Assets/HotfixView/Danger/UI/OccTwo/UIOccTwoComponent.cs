@@ -169,7 +169,6 @@ namespace ET
         {
             //UICommonHelper.SetParent(self.Button_ZhiYe_Select, self.Button_ZhiYe_List[index]);
 
-            Material mat = ResourcesComponent.Instance.LoadAsset<Material>(ABPathHelper.GetMaterialPath("UI_Hui"));
             UICommonHelper.SetImageGray(self.Button_ZhiYe_List[0], true);
             UICommonHelper.SetImageGray(self.Button_ZhiYe_List[1], true);
             UICommonHelper.SetImageGray(self.Button_ZhiYe_List[2], true);
