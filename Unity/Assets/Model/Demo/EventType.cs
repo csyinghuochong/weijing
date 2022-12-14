@@ -333,6 +333,16 @@ namespace ET
             public int GroupId;
         }
 
+        public class BeforeMove : DisposeObject
+        {
+            public static readonly BeforeMove Instance = new BeforeMove();
+            public Unit Unit;
+            public override void Dispose()
+            {
+                this.Unit = null;
+            }
+        }
+
         public class MoveStart : DisposeObject
         {
             public static readonly MoveStart Instance = new MoveStart();

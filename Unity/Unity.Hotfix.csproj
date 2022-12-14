@@ -99,6 +99,7 @@
     <Compile Include="Assets\Hotfix\Danger\Buff\RoleBuff_Shield.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Helper\DropHelper.cs" />
     <Compile Include="Assets\Hotfix\Danger\Component\PetComponentSystem.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Handler\M2C_SyncMiJingDamageHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Handler\Q2C_EnterGameHandler.cs" />
     <Compile Include="Assets\Hotfix\Danger\Skill\Skill_Action_Common.cs" />
     <Compile Include="Assets\Hotfix\Danger\Common\Helper\QiangHuaHelper.cs" />
@@ -218,7 +219,6 @@
     <Compile Include="Assets\Hotfix\Danger\Common\Component\MapComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericWatcher_Update.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetKcpComponentSystem.cs" />
-    <Compile Include="Assets\Hotfix\Danger\Handler\M2C_SyncMiJingDamageHandler.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

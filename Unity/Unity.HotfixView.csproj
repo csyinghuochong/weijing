@@ -366,6 +366,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\HorseNotice\UIHorseNoticeEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRecharge\UIRechargeEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Reddot_OnReddotChange.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIMiJing\UIMiJingMainComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillTipsEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillLearnItemComponent.cs" />
@@ -395,6 +396,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIRandomTower\UIRandomTowerItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRandomTower\UIRandomTowerComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UIMainSkillComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIMiJing\UIMiJingEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRealName\UIRealNameEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UIPageButtonComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellChapterItemComponent.cs" />
@@ -500,6 +502,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendApplyComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankShowComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivityLvLiBaoItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Handler\Map\MiJing_SyncMiJingDamage.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiDuiHuanComponet.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampFuLiComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamMainEvent.cs" />
@@ -562,9 +565,7 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Handler\Map\MiJing_SyncMiJingDamage.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIMiJing\UIMiJingEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIMiJing\UIMiJingMainComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Handler\Unit\BeforeMove_OnBeforeMove.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
