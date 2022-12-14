@@ -191,6 +191,7 @@ namespace ET
             self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList.Clear();
             self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList = response.MakeList;
             self.OnUpdateMakeType();
+            self.UpdateShuLianDu();
         }
 
         public static  void OnInitUI(this UISkillMakeComponent self)
