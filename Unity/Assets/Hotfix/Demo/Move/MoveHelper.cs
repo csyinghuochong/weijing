@@ -23,8 +23,6 @@ namespace ET
                 stateComponent.CheckSilence();
                 return -1;
             }
-            EventType.BeforeMove.Instance.ZoneScene = unit.ZoneScene();
-            Game.EventSystem.PublishClass(EventType.BeforeMove.Instance);
             unit.GetComponent<SingingComponent>().BeginMoveOrSkill();
             C2M_PathfindingResult msg = c2M_PathfindingResult;
             msg.X = targetPos.x;

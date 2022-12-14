@@ -452,7 +452,8 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip($"请先消灭{monsterName}");
                 return -1;
             }
-
+            EventType.BeforeMove.Instance.ZoneScene = unit.ZoneScene();
+            Game.EventSystem.PublishClass(EventType.BeforeMove.Instance);
             int ret = await unit.MoveToAsync2(position, yanGan);
             return ret;
         }

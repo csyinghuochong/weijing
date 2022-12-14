@@ -162,17 +162,19 @@ namespace ET
                 return;
             }
 
-            Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Quaternion rotation = Quaternion.Euler(0, direction, 0);
-            Vector3 newv3 = myUnit.Position + rotation * Vector3.forward * 3f;
+            Vector3 newv3 = unit.Position + rotation * Vector3.forward * 3f;
             int obstruct = self.CheckObstruct(newv3);
             if (obstruct!= 0)
             {
-                myUnit.GetComponent<StateComponent>().StateTypeAdd( StateTypeEnum.Obstruct);
+                unit.GetComponent<StateComponent>().StateTypeAdd( StateTypeEnum.Obstruct);
                 self.ShowObstructTip(obstruct);
                 return;
             }
-            myUnit.MoveToAsync2(newv3, true).Coroutine();
+            EventType.BeforeMove.Instance.ZoneScene = unit.ZoneScene();
+            Game.EventSystem.PublishClass(EventType.BeforeMove.Instance);
+            unit.MoveToAsync2(newv3, true).Coroutine();
             self.lastSendTime = Time.time;
             self.lastDirection = direction;
         }
