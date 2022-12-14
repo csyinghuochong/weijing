@@ -365,8 +365,8 @@ namespace ET
             if (zhudong)
             {
                 unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(weaponSkillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7, skillcmd.TargetID, skillcmd.SkillID);
-                self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
             }
+            self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
             m2C_Skill.Error = ErrorCore.ERR_Success;
             m2C_Skill.CDEndTime = skillCd != null ? skillCd.CDEndTime : 0;
             m2C_Skill.PublicCDTime = self.SkillPublicCDTime;
