@@ -394,6 +394,7 @@
     <Compile Include="Assets\HotfixView\Demo\UI\UILogin\UIServerListEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRank\UIRankRewardComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRandomTower\UIRandomTowerItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Handler\Unit\BeforeMove_OnBeforeMove.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRandomTower\UIRandomTowerComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UIMainSkillComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMiJing\UIMiJingEvent.cs" />
@@ -565,7 +566,7 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Handler\Unit\BeforeMove_OnBeforeMove.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Handler\Unit\BeforeSkill_OnBeforeSkill.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

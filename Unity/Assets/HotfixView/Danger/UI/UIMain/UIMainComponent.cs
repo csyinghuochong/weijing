@@ -1273,6 +1273,11 @@ namespace ET
             self.UIMainSkillComponent.UIAttackGrid.OnMoveStart();
         }
 
+        public static void OnBeforeSkill(this UIMainComponent self)
+        {
+            self.UIJoystickMoveComponent.lastSendTime = 0f;
+        }
+
         public static void UpdateShadow(this UIMainComponent self, string usevalue = "")
         {
             GameObject gameObject = GameObject.Find("Directional Light");

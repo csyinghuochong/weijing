@@ -143,6 +143,9 @@ namespace ET
                     HintHelp.GetInstance().ShowHintError(errorCode);
                     return errorCode;       
                 }
+
+                EventType.BeforeSkill.Instance.ZoneScene = unit.ZoneScene();
+                Game.EventSystem.PublishClass(EventType.BeforeSkill.Instance);
                 unit.GetComponent<SingingComponent>().BeginMoveOrSkill();
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
                 if (checksing && skillConfig.SkillFrontSingTime > 0)

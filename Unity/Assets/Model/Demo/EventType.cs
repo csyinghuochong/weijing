@@ -339,6 +339,12 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class BeforeSkill : DisposeObject
+        {
+            public static readonly BeforeSkill Instance = new BeforeSkill();
+            public Scene ZoneScene;
+        }
+
         public class MoveStart : DisposeObject
         {
             public static readonly MoveStart Instance = new MoveStart();
