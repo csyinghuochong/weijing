@@ -282,10 +282,12 @@ namespace ET
         {
             UnitInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UnitInfoComponent>();
             unitInfoComponent.Buffs.Clear();
-            for (int i = 0; i < self.m_Buffs.Count; i++)
+            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
             {
                 BuffHandler buffHandler = self.m_Buffs[i];
                 buffHandler.OnFinished();
+                ObjectPool.Instance.Recycle(buffHandler);
+                self.m_Buffs.RemoveAt(i);
                 if (buffHandler.BuffData.BuffConfig.Transfer != 1)
                 {
                     continue;

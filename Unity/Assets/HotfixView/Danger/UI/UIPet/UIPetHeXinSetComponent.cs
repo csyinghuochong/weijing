@@ -95,8 +95,6 @@ namespace ET
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
             self.ImageIcon.GetComponent<Image>().sprite = sp;
 
-            Log.ILog.Debug($"itemConfig.ItemUsePar:  {itemConfig.ItemUsePar}");
-
             UICommonHelper.ShowAttributeItemList(itemConfig.ItemUsePar, self.AttributeListNode, self.TextAttributeItem);
         }
 

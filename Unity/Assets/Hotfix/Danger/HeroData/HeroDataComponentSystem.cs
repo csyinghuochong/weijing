@@ -74,15 +74,12 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
            
-            self.CheckNumeric();
-
-            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false);
-            //numericComponent.Set((int)NumericType.Now_MaxHp, numericComponent.GetAsLong((int)NumericType.Now_MaxHp), false);
-            numericComponent.Set((int)NumericType.Now_Hp, numericComponent.GetAsLong((int)NumericType.Now_MaxHp), false);
-
+            //self.CheckNumeric();
+            //Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false);
             numericComponent.Set((int)NumericType.Now_Dead , 0, false);
             numericComponent.Set((int)NumericType.Now_Damage, 0, false);
             numericComponent.Set((int)NumericType.Now_Stall, 0, false);
+            numericComponent.Set((int)NumericType.Now_Hp, numericComponent.GetAsLong((int)NumericType.Now_MaxHp), false);
             numericComponent.Set((int)NumericType.Now_Weapon, unit.GetComponent<BagComponent>().GetWuqiItemId(), false);
         }
 

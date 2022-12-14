@@ -220,6 +220,8 @@ namespace ET
 						break;
 				}
 
+				unit.GetComponent<HeroDataComponent>().CheckNumeric();
+				Function_Fight.GetInstance().UnitUpdateProperty_Base(unit,false);
 				unit.GetComponent<BuffManagerComponent>().InitBuff();
 				unit.GetComponent<DBSaveComponent>().Activeted();
 				unit.GetComponent<SkillPassiveComponent>().Activeted();

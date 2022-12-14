@@ -111,12 +111,10 @@ namespace ET
             }
             if (self.PayType == PayTypeEnum.AliPay)
             {
-                Log.ILog.Debug("PayTypeEnum.AliPay:  "  + sendChatResponse.Message);
                 GlobalHelp.AliPay(sendChatResponse.Message);
             }
             if (self.PayType == PayTypeEnum.WeiXinPay)
             {
-                Log.ILog.Debug("PayTypeEnum.WeiXinPay:  " + sendChatResponse.Message);
                 GlobalHelp.WeChatPay(sendChatResponse.Message);
             }
         }

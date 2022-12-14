@@ -9,8 +9,6 @@ namespace ET
 
         protected override async ETTask Run(Session session, C2Center_Register request, Center2C_Register response, Action reply)
         {
-            Log.ILog.Debug($"C2Center_Register {session.DomainZone()}");
-
             if (session.DomainScene().SceneType != SceneType.AccountCenter)
             {
                 Log.Error($"请求的Scene错误，当前Scene为：{session.DomainScene().SceneType}");

@@ -201,7 +201,6 @@ namespace ET
             if (unit.MainHero && UnitHelper.IsRobot(unit) && taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
             {
                 C2M_GMCommandRequest c2M_GMCommandRequest = new C2M_GMCommandRequest() { GMMsg = $"1#{taskConfig.Target[0]}#{taskConfig.TargetValue[0]}" };
-                Log.ILog.Debug($"Behaviour_Task: C2M_GMCommandRequest {c2M_GMCommandRequest.GMMsg}");
                 self.ZoneScene().GetComponent<SessionComponent>().Session.Send(c2M_GMCommandRequest);
             }
         }
@@ -462,7 +461,6 @@ namespace ET
             string createMonster = dungeonConfig.CreateMonster;
             if (createMonster.Contains(taskConfig.Target[0].ToString()))
             {
-                Log.ILog.Debug($"Robot MoveToAsync2   {taskPro.taskID}");
                 Vector3 targetPostion = self.GetMonsterPosition(createMonster, taskConfig.Target[0]);
                 int ret = await MoveHelper.MoveToAsync(unit, targetPostion);
                 return ret;
@@ -470,8 +468,6 @@ namespace ET
             else
             {
                 createMonster = MonsterGroupConfigCategory.Instance.Get(dungeonConfig.MonsterGroup).CreateMonster;
-                Log.ILog.Debug($"Robot MoveToAsync2  {taskPro.taskID}"); 
-               
                 Vector3 targetPostion = self.GetMonsterPosition(createMonster, taskConfig.Target[0]);
                 int ret = await MoveHelper.MoveToAsync(unit, targetPostion);
                 return ret;

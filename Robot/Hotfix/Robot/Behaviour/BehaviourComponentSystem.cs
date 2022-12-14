@@ -106,7 +106,7 @@ namespace ET
             {
                 if (self.Behaviours[i].KeyId == behaviour)
                 {
-                    Log.ILog.Debug($"ChangeBehaviour: {self.Behaviours[i].Value}");
+                    Log.Debug($"ChangeBehaviour: {self.Behaviours[i].Value}");
                 }
             }
             self.NewBehaviour = behaviour;

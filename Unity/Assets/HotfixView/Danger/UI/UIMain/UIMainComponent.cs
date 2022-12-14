@@ -807,9 +807,7 @@ namespace ET
         {
             GameObject water = GameObject.Find("zhucheng_dimianshuimian/zhucheng_shui");
             Material material = water.GetComponent<MeshRenderer>().materials[0];
-            Vector2 vector2 = material.GetTextureOffset("_MainTex");
             material.SetTextureOffset("_MainTex", new Vector2(1, 1));
-            Log.ILog.Debug(water.name);
         }
 
         public static void UnRegisterRedot(this UIMainComponent self)

@@ -196,7 +196,6 @@ namespace ET
             if (uimain == null)
             {
                 uimain = await UIHelper.Create(zoneScene, UIType.UIMain);
-                Log.ILog.Debug("Create UIMain");
             }
             uimain.GetComponent<UIMainComponent>().AfterEnterScene(sceneTypeEnum);
             switch (sceneTypeEnum)

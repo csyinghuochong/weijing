@@ -383,7 +383,6 @@ namespace ET
                     BagInfo oldInfo = self.GetBagInfo(bagUpdate[i].BagInfoID);
                     if (oldInfo == null)
                     {
-                        Log.ILog.Debug($"oldInfo == null {newInfo.ItemID}");
                         continue;
                     }
                  
@@ -579,13 +578,11 @@ namespace ET
                 BagInfo equipInfo = self.GetEquipBySubType(itemConfig.ItemSubType);
                 if (equipInfo == null)
                 {
-                    Log.ILog.Debug($"SendWearEquip1:  {bagList[i].ItemID}");
                     await self.SendWearEquip(bagList[i]);
                     continue;
                 }
                 if (itemConfig.UseLv > ItemConfigCategory.Instance.Get(equipInfo.ItemID).UseLv)
                 {
-                    Log.ILog.Debug($"Behaviour_Attack: SendWearEquip2:  {bagList[i].ItemID}   {equipInfo.ItemID}");
                     await self.SendWearEquip(bagList[i]);
                     continue;
                 }

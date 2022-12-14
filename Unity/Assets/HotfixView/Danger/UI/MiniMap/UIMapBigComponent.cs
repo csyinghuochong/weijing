@@ -245,7 +245,6 @@ namespace ET
             {
                 if (!NpcConfigCategory.Instance.Contain(npcList[i]))
                 {
-                    Log.ILog.Debug($"找不到npcid {npcList[i]}");
                     continue;
                 }
                 NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcList[i]);

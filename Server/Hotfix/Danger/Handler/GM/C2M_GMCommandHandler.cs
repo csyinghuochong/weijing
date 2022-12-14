@@ -41,7 +41,7 @@ namespace ET
 				if (message.GMMsg == "#mianshang")
 				{
 					BuffData buffData_1 = new BuffData();
-					buffData_1.BuffConfig = SkillBuffConfigCategory.Instance.Get(90001032);
+					buffData_1.BuffConfig = SkillBuffConfigCategory.Instance.Get(90513001);
 					buffData_1.BuffClassScript = buffData_1.BuffConfig.BuffScript;
 					unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, unit, null);
 					return;

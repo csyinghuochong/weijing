@@ -6,7 +6,6 @@ namespace ET
 
         protected override void Run(object cls)
         {
-            Log.ILog.Debug("Login_OnQueueEnterGame");
             EventType.QueueEnterGame args = cls as EventType.QueueEnterGame;
             AccountInfoComponent PlayerComponent = args.ZoneScene.GetComponent<AccountInfoComponent>();
             LoginHelper.Login(

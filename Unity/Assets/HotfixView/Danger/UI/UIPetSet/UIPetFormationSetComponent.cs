@@ -109,7 +109,6 @@ namespace ET
                 if (name.Contains("UIPetFormationAA"))
                 {
                     self.RequestFormationSet(binfo.Id, -1, 3);
-                    Log.ILog.Debug(name);
                     break;
                 }
                 if (name.Contains("FormationSet"))

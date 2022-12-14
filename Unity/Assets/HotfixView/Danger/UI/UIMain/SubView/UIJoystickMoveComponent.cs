@@ -99,6 +99,7 @@ namespace ET
             }
             self.lastSendTime = 0f;
             self.SendMove(self.GetDirection(pdata));
+            TimerComponent.Instance?.Remove(ref self.Timer);
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.JoystickTimer, self);
         }
 
