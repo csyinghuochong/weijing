@@ -167,6 +167,12 @@ namespace ET
                 {
                     UnitComponent unitComponent = self.DomainScene().CurrentScene().GetComponent<UnitComponent>();
                     targetUnit = unitComponent.Get(targetId);
+
+                    if (targetUnit == null)
+                    {
+                        FloatTipManager.Instance.ShowFloatTip("请选中施法目标");
+                        return;
+                    }
                     if (PositionHelper.Distance2D(targetUnit, myUnit) >= self.SkillWuqiConfig.SkillRangeSize)
                     {
                         FloatTipManager.Instance.ShowFloatTip("距离过远!");
