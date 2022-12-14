@@ -306,7 +306,6 @@ namespace ET
             if (hit.collider != null)
             {
                 UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                uI.GetComponent<UIMainComponent>().OnMoveStart();
                 unit.MoveToAsync2(hit.point, false).Coroutine();
             }
         }

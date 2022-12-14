@@ -92,8 +92,6 @@ namespace ET
 
         public static void BeginDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
-            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uI.GetComponent<UIMainComponent>().OnMoveStart();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit == null || unit.IsDisposed)
             {
@@ -177,9 +175,6 @@ namespace ET
             myUnit.MoveToAsync2(newv3, true).Coroutine();
             self.lastSendTime = Time.time;
             self.lastDirection = direction;
-
-            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uI.GetComponent<UIMainComponent>().OnMoveStart();
         }
 
         public static void ShowObstructTip(this UIJoystickMoveComponent self, int monsterId)

@@ -136,13 +136,9 @@ namespace ET
             {
                 return;
             }
-
-            UI uI = UIHelper.GetUI(zoneScene, UIType.UIMain);
-            uI.GetComponent<UIMainComponent>().OnMoveStart();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             unit.MoveToAsync2(gameObject.transform.position).Coroutine();
         }
-
 
         public int GetFubenByNpc(int npcId)
         {

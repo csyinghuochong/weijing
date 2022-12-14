@@ -453,9 +453,6 @@ namespace ET
                 return -1;
             }
 
-            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uI.GetComponent<UIMainComponent>().OnMoveStart();
-
             int ret = await unit.MoveToAsync2(position, yanGan);
             return ret;
         }
