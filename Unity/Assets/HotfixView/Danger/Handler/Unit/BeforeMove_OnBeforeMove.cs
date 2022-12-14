@@ -7,7 +7,7 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.BeforeMove args = (EventType.BeforeMove)cls;
-            UI uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
+            UI uI = UIHelper.GetUI(args.ZoneScene, UIType.UIMain);
             uI.GetComponent<UIMainComponent>()?.OnMoveStart();
         }
     }

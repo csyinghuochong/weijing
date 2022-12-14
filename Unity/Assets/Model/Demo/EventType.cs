@@ -336,11 +336,7 @@ namespace ET
         public class BeforeMove : DisposeObject
         {
             public static readonly BeforeMove Instance = new BeforeMove();
-            public Unit Unit;
-            public override void Dispose()
-            {
-                this.Unit = null;
-            }
+            public Scene ZoneScene;
         }
 
         public class MoveStart : DisposeObject
