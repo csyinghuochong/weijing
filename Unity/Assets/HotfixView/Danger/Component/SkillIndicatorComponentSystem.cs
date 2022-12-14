@@ -107,7 +107,7 @@ namespace ET
             skillIndicatorItem.SkillZhishiType = (SkillZhishiType)skillconfig.SkillZhishiType;
             skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
             self.SkillIndicator = skillIndicatorItem;
-            //GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, self.InstanceId, self.OnLoadGameObject);
+            GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, self.InstanceId, self.OnLoadGameObject);
         }
 
         /// <summary>
