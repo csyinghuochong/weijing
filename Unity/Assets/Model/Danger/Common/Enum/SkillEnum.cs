@@ -40,6 +40,8 @@ namespace ET
         WillDead_6 = 6,
         SkillGaiLv_7 = 7,
         WandBuff_8 = 8,
+        AckDistance_9 = 9,
+        AckDistance_10 = 10,
     }
 
     //1：主动技能
