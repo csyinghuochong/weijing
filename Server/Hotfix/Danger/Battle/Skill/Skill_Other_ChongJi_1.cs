@@ -9,8 +9,7 @@ namespace ET
         {
             this.BaseOnInit(skillId, theUnitFrom);
 
-            this.OldSpeed = theUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
-
+            float oldSpeed = theUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed);
             float moveDistance = ((float)this.SkillConf.SkillMoveSpeed * this.SkillConf.SkillLiveTime * 0.001f);
             Quaternion rotation = Quaternion.Euler(0, this.SkillInfo.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
             this.TargetPosition = theUnitFrom.Position + rotation * Vector3.forward * moveDistance;
@@ -18,9 +17,9 @@ namespace ET
 
             //1-10 表示 10%-100%
             double addPro = (double)theUnitFrom.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_JumpDisAdd) / 10;
-            double speed = (this.SkillConf.SkillMoveSpeed * (1 + addPro));
-            theUnitFrom.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Speed, (long)(10000 * speed));
-
+            float newSpeed = (float)(this.SkillConf.SkillMoveSpeed * (1 + addPro));
+            this.OldSpeed = (newSpeed - oldSpeed) / oldSpeed;
+            theUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, this.OldSpeed);
             Unit targetUnit = theUnitFrom.GetParent<UnitComponent>().Get(skillId.TargetID);
             if (targetUnit!=null)
             {
@@ -35,8 +34,7 @@ namespace ET
                     this.TargetPosition = targetUnit.Position + dir.normalized;
                 }
             }
-            float disc = Vector3.Distance(this.TargetPosition, theUnitFrom.Position);
-            float need = disc / (float)speed;
+
             OnExecute();
         }
 
@@ -61,7 +59,8 @@ namespace ET
 
         public override void OnFinished()
         {
-            TheUnitFrom.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Speed, (long)(10000 * this.OldSpeed));
+            TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, 0);
+            //TheUnitFrom.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Speed, (long)(10000 * this.OldSpeed));
         }
     }
 }
