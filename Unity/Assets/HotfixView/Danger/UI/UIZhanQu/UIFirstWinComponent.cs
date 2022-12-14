@@ -233,10 +233,6 @@ namespace ET
 			MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(bossId);
 			self.Text_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
 			self.Text_Lv.GetComponent<Text>().text = "等级:" + monsterConfig.Lv;
-			//Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, monsterConfig.MonsterHeadIcon.ToString());
-			//self.ImageBossIcon.GetComponent<Image>().sprite = sp;
-
-			MonsterConfigCategory.Instance.Get(bossId);
 			self.UIModelShowComponent.ShowOtherModel("Monster/" + monsterConfig.MonsterModelID.ToString()).Coroutine();
 
 			string skilldesc = "";

@@ -69,13 +69,13 @@ namespace ET
             var path = ABPathHelper.GetUnitPath(assetPath);
             long instanceId = self.InstanceId;
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            if (instanceId == self.InstanceId)
-            {
-                return;
-            }
             if (prefab == null)
             { 
                 Log.Error($"prefab == null: {path}");
+            }
+            if (instanceId != self.InstanceId)
+            {
+                return;
             }
             GameObject go = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
             LayerHelp.ChangeLayer(go.transform, LayerEnum.RenderTexture);
