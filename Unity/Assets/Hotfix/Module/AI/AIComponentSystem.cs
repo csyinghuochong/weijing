@@ -242,14 +242,20 @@ namespace ET
         public static void BeAttacking(this AIComponent self, Unit attack)
         {
             //0.1的概率概率转移仇恨
-            bool gaiLv = RandomHelper.RandFloat01() < 0.1f;
-            if (self.TargetID == 0 && gaiLv)
+            float moveActPro = 0.1f;
+            moveActPro = moveActPro * (1+ attack.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ChaoFengPro));
+
+            if (moveActPro > 0)
             {
-                self.ChangeTarget(attack.Id);
-            }
-            if (!self.BeAttackList.Contains(attack.Id))
-            {
-                self.BeAttackList.Add(attack.Id);
+                bool gaiLv = RandomHelper.RandFloat01() < 0.1f;
+                if (self.TargetID == 0 && gaiLv)
+                {
+                    self.ChangeTarget(attack.Id);
+                }
+                if (!self.BeAttackList.Contains(attack.Id))
+                {
+                    self.BeAttackList.Add(attack.Id);
+                }
             }
         }
 

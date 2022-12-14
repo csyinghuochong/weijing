@@ -428,6 +428,12 @@ namespace ET
 
                 }
 
+                //是否触发斩杀
+                float defHpPro = (float)numericComponentDefend.GetAsInt(NumericType.Now_Hp)/ (float)numericComponentDefend.GetAsInt(NumericType.Now_MaxHp);
+                if (defHpPro<=0.3f) {
+                    damgePro += numericComponentAttack.GetAsInt(NumericType.Now_ZhanShaPro);
+                }
+
                 //抗性
                 switch (skillconfig.DamgeElementType) {
                     //光     神圣抗性
