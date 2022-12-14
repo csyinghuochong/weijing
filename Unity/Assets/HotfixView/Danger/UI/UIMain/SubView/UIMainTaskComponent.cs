@@ -5,6 +5,7 @@ namespace ET
 {
     public class UIMainTaskComponent : Entity, IAwake<GameObject>
     {
+        public GameObject Btn_RoseTask;
         public GameObject TaskShowList;
         public GameObject TaskShowItem;
         public GameObject GameObject;
@@ -20,8 +21,10 @@ namespace ET
             self.GameObject = gameObject;
             ReferenceCollector rc = self.GameObject.GetComponent<ReferenceCollector>();
 
+            self.Btn_RoseTask = rc.Get<GameObject>("Btn_RoseTask");
             self.TaskShowList = rc.Get<GameObject>("TaskShowList");
             self.TaskShowItem = rc.Get<GameObject>("UIMainTaskItem");
+            ButtonHelp.AddListenerEx(self.Btn_RoseTask, self.OnOpenTask);
             self.TaskShowItem.SetActive(false);
 
             self.TrackTaskList.Clear();
@@ -69,7 +72,35 @@ namespace ET
                 }
                 number++;
             }
+
+            self.Btn_RoseTask.SetActive(number == 0);
         }
+
+        public static void OnOpenTask(this UIMainTaskComponent self)
+        {
+            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+            //if (taskComponent.GetTaskTypeList(TaskTypeEnum.Main).Count > 0)
+            //{
+            //    UIHelper.Create(self.DomainScene(), UIType.UITask).Coroutine();
+            //    return;
+            //}
+            int nextTask = taskComponent.GetNextMainTask();
+            if (nextTask == 0)
+            {
+                UIHelper.Create(self.DomainScene(), UIType.UITask).Coroutine();
+                return;
+            }
+
+            int getNpc = TaskConfigCategory.Instance.Get(nextTask).GetNpcID;
+            int fubenId = UITaskViewHelp.Instance.GetFubenByNpc(getNpc);
+            if (fubenId == 0)
+            {
+                return;
+            }
+            string fubenName = $"请前往{DungeonConfigCategory.Instance.Get(fubenId).ChapterName} {NpcConfigCategory.Instance.Get(getNpc).Name} 出接取任务";
+            FloatTipManager.Instance.ShowFloatTip(fubenName);
+        }
+
 
     }
 

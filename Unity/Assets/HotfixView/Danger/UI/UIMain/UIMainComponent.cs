@@ -45,7 +45,6 @@ namespace ET
         public GameObject LeftBottomBtns;
         public GameObject Btn_PaiMaiHang;
         public GameObject Btn_EveryTask;
-        public GameObject taskButton;
         public GameObject bagButton;
         public GameObject jiayuanButton;
         public GameObject HomeButton;
@@ -173,10 +172,6 @@ namespace ET
             self.zhaohuanButton = rc.Get<GameObject>("Btn_ZhaoHuan");
             //self.zhaohuanButton.GetComponent<Button>().onClick.AddListener(() => { self.OnZhaoHuan(); });
             ButtonHelp.AddListenerEx(self.zhaohuanButton, () => { self.OnZhaoHuan(); });
-
-            self.taskButton = rc.Get<GameObject>("Btn_RoseTask");
-            //self.taskButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenTask(); });
-            ButtonHelp.AddListenerEx(self.taskButton, () => { self.OnOpenTask(); });
 
             self.chengjiuButton = rc.Get<GameObject>("Btn_ChengJiu");
             //self.chengjiuButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenChengjiu(); });
@@ -916,6 +911,11 @@ namespace ET
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
         }
 
+        public static void OnOpenTask(this UIMainComponent self)
+        {
+            UIHelper.Create(self.DomainScene(), UIType.UITask).Coroutine();
+        }
+
         public static async ETTask OnButtonStallOpen(this UIMainComponent self)
         {
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPaiMaiStall);
@@ -995,32 +995,6 @@ namespace ET
         public static void OnOpenChengjiu(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UIChengJiu).Coroutine();
-        }
-
-        public static void OnOpenTask(this UIMainComponent self)
-        {
-            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
-            if (taskComponent.GetTaskTypeList(TaskTypeEnum.Main).Count > 0)
-            {
-                UIHelper.Create(self.DomainScene(), UIType.UITask).Coroutine();
-                return;
-            }
-
-            int nextTask = taskComponent.GetNextMainTask();
-            if (nextTask == 0)
-            {
-                UIHelper.Create(self.DomainScene(), UIType.UITask).Coroutine();
-                return;
-            }
-
-            int getNpc = TaskConfigCategory.Instance.Get(nextTask).GetNpcID;
-            int fubenId = UITaskViewHelp.Instance.GetFubenByNpc(getNpc);
-            if (fubenId == 0)
-            {
-                return;
-            }
-            string fubenName = $"请前往{DungeonConfigCategory.Instance.Get(fubenId).ChapterName} {NpcConfigCategory.Instance.Get(getNpc).Name} 出接取任务";
-            FloatTipManager.Instance.ShowFloatTip(fubenName);
         }
 
         public static void OnClickReturnButton(this UIMainComponent self)

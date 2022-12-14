@@ -276,53 +276,6 @@ namespace ET
 			self.ZoneScene().GetComponent<TaskComponent>().SendGiveUpTask(self.TaskPro.taskID).Coroutine();
 		}
 
-		public static void MoveToTask(this UITaskComponent self, int positionId)
-		{
-			TaskPositionConfig taskPositionConfig = TaskPositionConfigCategory.Instance.Get(positionId);
-			MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-			if (mapComponent.SceneTypeEnum != (int)SceneTypeEnum.LocalDungeon)
-			{
-				return;
-			}
-			if (mapComponent.SceneId == taskPositionConfig.MapID)
-			{
-				self.MoveToTaskPosition	(positionId);
-				return;
-			}
-			string[] otherMapMoves = taskPositionConfig.OtherMapMove.Split(';');
-			if (otherMapMoves == null)
-			{
-				return;
-			}
-			for (int i = 0; i < otherMapMoves.Length; i++)
-			{
-				if (otherMapMoves[i] == "0")
-				{
-					continue;	
-				}
-				string[] positionIds = otherMapMoves[i].Split(',');
-				if (int.Parse(positionIds[0]) == mapComponent.SceneId)
-				{
-					self.MoveToTaskPosition(int.Parse(positionIds[1]));
-					break;
-				}
-			}
-		}
-
-		public static void MoveToTaskPosition(this UITaskComponent self, int taskPositionId)
-		{
-			TaskPositionConfig taskPositionConfig = TaskPositionConfigCategory.Instance.Get(taskPositionId);
-			GameObject gameObject = GameObject.Find($"ScenceRosePositionSet/{taskPositionConfig.PositionName}");
-			if (gameObject == null)
-			{
-				return;
-			}
-			UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-			uI.GetComponent<UIMainComponent>().OnMoveStart();
-			Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-			unit.MoveToAsync2( gameObject.transform.position ).Coroutine();
-		}
-
 		public static void  OnExcuteTask(this UITaskComponent self)
 		{
 			int target = self.TaskConfig.TargetType;
@@ -342,7 +295,7 @@ namespace ET
 			}
 			if (self.TaskConfig.TargetPosition != 0)
 			{
-				self.MoveToTask(self.TaskConfig.TargetPosition);
+				UITaskViewHelp.Instance.MoveToTask(self.ZoneScene() ,self.TaskConfig.TargetPosition);
 				self.OnCloseTask();
 				return;
 			}

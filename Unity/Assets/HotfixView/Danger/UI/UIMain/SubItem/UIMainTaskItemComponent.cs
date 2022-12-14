@@ -15,6 +15,7 @@ namespace ET
         public GameObject GameObject;
 
         public TaskPro TaskPro;
+        public TaskConfig TaskConfig;
     }
 
 
@@ -32,15 +33,34 @@ namespace ET
             self.TaskTypeName = rc.Get<GameObject>("TaskTypeName");
             self.ButtonTask = rc.Get<GameObject>("ButtonTask");
 
-            self.ButtonTask.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenTaskView().Coroutine(); });
+            self.ButtonTask.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenTaskView(); });
         }
     }
 
     public static class UITrackTaskComponentSystem
     {
-        public static async ETTask OnOpenTaskView(this UIMainTaskItemComponent self)
+        public static  void OnOpenTaskView(this UIMainTaskItemComponent self)
         {
-            await UIHelper.Create( self.DomainScene(), UIType.UITask );
+            int target = self.TaskConfig.TargetType;
+
+            if (self.TaskPro.taskStatus == (int)TaskStatuEnum.Completed)
+            {
+                if (!TaskHelper.HaveNpc(self.ZoneScene(), self.TaskConfig.CompleteNpcID))
+                {
+                    int fubenId = UITaskViewHelp.Instance.GetFubenByNpc(self.TaskConfig.CompleteNpcID);
+                    string fubenName = fubenId > 0 ? DungeonConfigCategory.Instance.Get(fubenId).ChapterName : "副本";
+                    FloatTipManager.Instance.ShowFloatTip($"请前往{fubenName}");
+                    return;
+                }
+                TaskHelper.MoveToNpc(self.ZoneScene(), self.TaskPro).Coroutine();
+                return;
+            }
+            if (self.TaskConfig.TargetPosition != 0)
+            {
+                UITaskViewHelp.Instance.MoveToTask(self.ZoneScene(), self.TaskConfig.TargetPosition);
+                return;
+            }
+            UITaskViewHelp.Instance.TaskTypeLogic[(TaskTargetType)target].taskExcute(self.DomainScene(), self.TaskPro, self.TaskConfig);
         }
 
         public static void OnUpdateItem(this UIMainTaskItemComponent self, TaskPro taskPro)
@@ -48,6 +68,7 @@ namespace ET
             self.TaskPro = taskPro;
 
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskPro.taskID);
+            self.TaskConfig = taskConfig;
             self.TaskName.GetComponent<Text>().text = taskConfig.TaskName;
             self.TaskTargetDes.GetComponent<Text>().text = UITaskViewHelp.Instance.GetTaskProgessDesc(taskPro);
 

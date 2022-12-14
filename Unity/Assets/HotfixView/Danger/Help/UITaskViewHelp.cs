@@ -55,6 +55,13 @@ namespace ET
 
         public bool ExcuteKillMonsterID(Scene domainscene, TaskPro taskPro, TaskConfig taskConfig)
         {
+            int monsterId = taskConfig.Target[0];
+            int fubenId = GetFubenByMonster(monsterId);
+            if (fubenId == 0)
+            {
+                return false;
+            }
+            FloatTipManager.Instance.ShowFloatTip($"请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}");
             return true;
         }
         public bool ExcuteItemId(Scene domainscene, TaskPro taskPro, TaskConfig taskConfig)
@@ -64,6 +71,12 @@ namespace ET
 
         public bool ExcuteLookingFor(Scene zoneScene, TaskPro taskPro, TaskConfig taskConfig)
         {
+            int fubenId = GetFubenByNpc(taskConfig.Target[0]);
+            if (fubenId == 0)
+            {
+                return false;
+            }
+            FloatTipManager.Instance.ShowFloatTip($"请前往 {DungeonConfigCategory.Instance.Get(fubenId).ChapterName}");
             return true;
         }
 
@@ -82,7 +95,56 @@ namespace ET
             return TaskTypeLogic[TargetType].taskProgess(taskPro, taskConfig);
         }
 
-        public  int GetFubenByNpc(int npcId)
+        public void MoveToTask(Scene zoneScene, int positionId)
+        {
+            TaskPositionConfig taskPositionConfig = TaskPositionConfigCategory.Instance.Get(positionId);
+            MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum != (int)SceneTypeEnum.LocalDungeon)
+            {
+                return;
+            }
+            if (mapComponent.SceneId == taskPositionConfig.MapID)
+            {
+                MoveToTaskPosition(zoneScene, positionId);
+                return;
+            }
+            string[] otherMapMoves = taskPositionConfig.OtherMapMove.Split(';');
+            if (otherMapMoves == null)
+            {
+                return;
+            }
+            for (int i = 0; i < otherMapMoves.Length; i++)
+            {
+                if (otherMapMoves[i] == "0")
+                {
+                    continue;
+                }
+                string[] positionIds = otherMapMoves[i].Split(',');
+                if (int.Parse(positionIds[0]) == mapComponent.SceneId)
+                {
+                    MoveToTaskPosition(zoneScene,int.Parse(positionIds[1]));
+                    break;
+                }
+            }
+        }
+
+        public void MoveToTaskPosition(Scene zoneScene, int taskPositionId)
+        {
+            TaskPositionConfig taskPositionConfig = TaskPositionConfigCategory.Instance.Get(taskPositionId);
+            GameObject gameObject = GameObject.Find($"ScenceRosePositionSet/{taskPositionConfig.PositionName}");
+            if (gameObject == null)
+            {
+                return;
+            }
+
+            UI uI = UIHelper.GetUI(zoneScene, UIType.UIMain);
+            uI.GetComponent<UIMainComponent>().OnMoveStart();
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            unit.MoveToAsync2(gameObject.transform.position).Coroutine();
+        }
+
+
+        public int GetFubenByNpc(int npcId)
         {
             if (npcId == 0)
             {
