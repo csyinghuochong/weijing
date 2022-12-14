@@ -6,6 +6,11 @@ namespace ET
         protected override void Run(object numerice)
         {
             EventType.SkillChainLight args = numerice as EventType.SkillChainLight;
+            Unit Unit = args.ZoneScene.CurrentScene().GetComponent<UnitComponent>().Get(args.M2C_ChainLightning.UnitId);
+            if (Unit == null)
+            {
+                return;
+            }
 
             EffectData playEffectBuffData = new EffectData();
             playEffectBuffData.TargetID = args.M2C_ChainLightning.TargetID;
@@ -14,10 +19,7 @@ namespace ET
             playEffectBuffData.EffectPosition = new UnityEngine.Vector3(args.M2C_ChainLightning.PosX, args.M2C_ChainLightning.PosY, args.M2C_ChainLightning.PosZ);           //技能目标点
             playEffectBuffData.TargetAngle = 0;         //技能角度
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;              //特效类型
-           
-            EventType.SkillEffect.Instance.EffectData = playEffectBuffData;
-            EventType.SkillEffect.Instance.Unit = args.ZoneScene.CurrentScene().GetComponent<UnitComponent>().Get(args.M2C_ChainLightning.UnitId);
-            EventSystem.Instance.PublishClass(EventType.SkillEffect.Instance);
+            Unit.GetComponent<EffectViewComponent>()?.EffectFactory(playEffectBuffData);
         }
     }
 }
