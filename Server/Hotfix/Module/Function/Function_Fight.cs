@@ -554,7 +554,7 @@ namespace ET
 
                     int shield_Hp = numericComponentDefend.GetAsInt(NumericType.Now_Shield_HP);
                     float shield_pro = numericComponentDefend.GetAsFloat(NumericType.Now_Shield_DamgeCostPro);
-                    if (shield_Hp >= 0)
+                    if (shield_Hp > 0)
                     {
                         int dunDamge = (int)((float)damge * shield_pro);
                         damge -= dunDamge;

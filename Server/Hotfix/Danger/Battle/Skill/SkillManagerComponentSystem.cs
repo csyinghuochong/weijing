@@ -360,6 +360,7 @@ namespace ET
             MessageHelper.Broadcast(unit, useSkill);
 
             //添加技能CD列表
+
             SkillCDItem skillCd = null;
             skillCd = self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig, zhudong);
             if (zhudong)
@@ -379,7 +380,11 @@ namespace ET
             SkillCDItem skillCd = null;
             if (weaponConfig.SkillActType == 0)
             {
-                skillCd = null;
+                Unit unit = self.GetParent<Unit>();
+                if (unit.Type!=UnitType.Player)
+                {
+                    skillCd = self.UpdateSkillCD(skillid, weaponConfig.Id, zhudong);
+                }
             }
             else if (skillid == self.FangunSkillId)
             {

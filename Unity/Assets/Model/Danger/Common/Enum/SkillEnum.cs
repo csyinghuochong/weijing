@@ -28,7 +28,8 @@ namespace ET
     //6：即将死亡时触发
     //7：释放技能时触发
     //8: 换武器触发
-
+    //9: 近距离普攻
+    //10:远距离普攻 
     public enum SkillPassiveTypeEnum
     {
         None = 0,

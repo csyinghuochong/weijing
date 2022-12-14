@@ -79,7 +79,7 @@ namespace ET
                 //60030060 吟唱   61022102光能击  67000277旋转攻击
                 //UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                 //uI.GetComponent<UIMainComponent>().UIMainSkillComponent.UIAttackGrid.PointerUp(null);
-                List<int> skillids = new List<int>() { 62023201 };
+                List<int> skillids = new List<int>() { 68000010 };
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 unit.GetComponent<SkillManagerComponent>().SendUseSkill(skillids[RandomHelper.RandomNumber(0, skillids.Count)],
                     0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
