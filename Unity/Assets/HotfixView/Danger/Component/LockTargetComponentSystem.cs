@@ -6,22 +6,6 @@ using System.Collections.Generic;
 namespace ET
 {
 
-    [Timer(TimerType.LockTarget)]
-    public class LockTargetComponentTimer : ATimer<LockTargetComponent>
-    {
-        public override void Run(LockTargetComponent self)
-        {
-            try
-            {
-                self.OnMainHeroMove();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
-
     [ObjectSystem]
     public class LockTargetComponentAwakeSystem : AwakeSystem<LockTargetComponent>
     {

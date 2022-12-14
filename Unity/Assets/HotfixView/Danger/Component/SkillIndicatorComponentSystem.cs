@@ -3,21 +3,6 @@ using UnityEngine;
 
 namespace ET
 {
-    [Timer(TimerType.SkillIndicator)]
-    public class SkillIndicatorTimer : ATimer<SkillIndicatorComponent>
-    {
-        public override void Run(SkillIndicatorComponent self)
-        {
-            try
-            {
-                self.OnUpdate();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
 
     [ObjectSystem]
     public class SkillIndicatorComponentAwakeSystem : AwakeSystem<SkillIndicatorComponent>
@@ -26,6 +11,7 @@ namespace ET
         {
             self.SkillIndicator = null;
             self.MainCamera = self.ZoneScene().GetComponent<UIComponent>().MainCamera;
+            DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
         }
     }
 
@@ -35,7 +21,7 @@ namespace ET
         public override void Destroy(SkillIndicatorComponent self)
         {
             self.RecoveryEffect();
-            
+            DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
         }
     }
 
@@ -90,7 +76,6 @@ namespace ET
                 if (self.IsDisposed || skillIndicatorItem == null || unit == null || unit.IsDisposed)
                 {
                     GameObject.DestroyImmediate(gameObject);
-                    TimerComponent.Instance?.Remove(ref self.Timer);
                     return;
                 }
                 if (skillIndicatorItem.GameObject != null)
@@ -102,19 +87,10 @@ namespace ET
                 skillIndicatorItem.GameObject = gameObject;
                 skillIndicatorItem.GameObject.SetActive(true);
                 self.InitZhishiEffect(skillIndicatorItem);
-                self.AddTimer();
             }
             catch (Exception ex)
             {
                 Log.Error("SkillIndicator1: " + ex.ToString());
-            }
-        }
-
-        public static void AddTimer(this SkillIndicatorComponent self)
-        {
-            if (self.Timer == 0)
-            {
-                self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.SkillIndicator, self);
             }
         }
 
@@ -133,7 +109,7 @@ namespace ET
             skillIndicatorItem.SkillZhishiType = (SkillZhishiType)skillconfig.SkillZhishiType;
             skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
             self.SkillIndicator = skillIndicatorItem;
-            GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, self.InstanceId, self.OnLoadGameObject);
+            //GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, self.InstanceId, self.OnLoadGameObject);
         }
 
         /// <summary>
@@ -274,8 +250,6 @@ namespace ET
 
         public static void RecoveryEffect(this SkillIndicatorComponent self)
         {
-            TimerComponent.Instance?.Remove(ref self.Timer);
-
             SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
             self.SkillIndicator = null;
             self.StartIndicator = Vector2.zero;
@@ -287,13 +261,12 @@ namespace ET
             GameObjectPoolComponent.Instance.RecoverGameObject(skillIndicatorItem.EffectPath, skillIndicatorItem.GameObject);
         }
 
-        public static void OnUpdate(this SkillIndicatorComponent self)
+        public static void OnMainHeroMove(this SkillIndicatorComponent self)
         {
             SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (skillIndicatorItem == null || skillIndicatorItem.GameObject == null || unit == null)
             {
-                TimerComponent.Instance?.Remove(ref self.Timer);
                 return;
             }
 

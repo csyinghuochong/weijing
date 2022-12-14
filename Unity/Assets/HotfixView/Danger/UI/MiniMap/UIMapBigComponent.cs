@@ -120,7 +120,7 @@ namespace ET
             self.ScaleRateX = self.RawImage.GetComponent<RectTransform>().rect.height / (camera.orthographicSize * 2);
             self.ScaleRateY = self.RawImage.GetComponent<RectTransform>().rect.height / (camera.orthographicSize * 2);
 
-            self.OnMainHeroPosition();
+            self.OnMainHeroMove();
             self.MainPostion.transform.Find("Text").GetComponent<Text>().text = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Name;
 
             await TimerComponent.Instance.WaitAsync(200);
@@ -330,7 +330,7 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), UIType.UIMapBig);
         }
 
-        public static void OnMainHeroPosition(this UIMapBigComponent self)
+        public static void OnMainHeroMove(this UIMapBigComponent self)
         {
             Vector3 vector3 = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).Position;
             Vector3 vector31 = new Vector3(vector3.x, vector3.z, 0f);

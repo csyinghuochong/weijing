@@ -55,12 +55,7 @@ namespace ET
             {
                 if (component is UIMapBigComponent uiComponent)
                 {
-                    uiComponent.OnMainHeroPosition();
-                    continue;
-                }
-                if (component is LockTargetComponent lockComponent)
-                {
-                    lockComponent.OnMainHeroMove();
+                    uiComponent.OnMainHeroMove();
                     continue;
                 }
                 if (component is UIMapMiniComponent miniComponent)
@@ -68,9 +63,14 @@ namespace ET
                     miniComponent.OnMainHeroMove();
                     continue;
                 }
-                if (component is UIJoystickMoveComponent uIJoystickMoveComponent)
+                if (component is LockTargetComponent lockComponent)
                 {
-                    //uIJoystickMoveComponent.OnMainHeroMove();
+                    lockComponent.OnMainHeroMove();
+                    continue;
+                }
+                if (component is SkillIndicatorComponent IndicatorComponent)
+                {
+                    IndicatorComponent.OnMainHeroMove();
                     continue;
                 }
             }

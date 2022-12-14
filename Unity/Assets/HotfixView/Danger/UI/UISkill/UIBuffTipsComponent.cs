@@ -47,6 +47,10 @@ namespace ET
             SkillBuffConfig skillBufConfig = SkillBuffConfigCategory.Instance.Get(skillId);
 
             string bufficon = skillBufConfig.BuffIcon;
+            if (ComHelp.IfNull(bufficon))
+            {
+                bufficon = "68000105";
+            }
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, bufficon);
             self.Image_SkillIcon.GetComponent<Image>().sprite = sp;
         
