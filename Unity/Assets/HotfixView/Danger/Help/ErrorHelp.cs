@@ -79,6 +79,8 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_Pet_Hint_1, "宠物星级出错");
             ErrorHintList.Add(ErrorCore.ERR_Pet_UpStar, "宠物星级失败");
             ErrorHintList.Add(ErrorCore.ERR_Pet_AddSkillSame, "具有相同技能,无法使用此道具");
+            ErrorHintList.Add(ErrorCore.ERR_Pet_NoUseItem, "此道具无法应用于宠物身上");
+            
             ErrorHintList.Add(ErrorCore.ERR_ItemOnlyUseMiJing, "该道具只能在宝藏之地使用");
             ErrorHintList.Add(ErrorCore.ERR_ItemOnlyUseOcc, "该道具只有{0}可以使用");
 

@@ -31,6 +31,18 @@ namespace ET
 			int itemSubType = itemConfig.ItemSubType;
 			bool ifCost = true;
 
+			PetConfig petCof = PetConfigCategory.Instance.Get(petInfo.ConfigId);
+			//神兽无法学习技能书
+			if (petCof.PetType == 2)
+			{
+				if(itemSubType == 105 || itemSubType == 118 || itemSubType == 119 || itemSubType == 122)
+                {
+					response.Error = ErrorCore.ERR_Pet_NoUseItem;
+					reply();
+					return;
+				}
+			}
+
 			switch (itemSubType)
 			{
 				//宠物洗练
