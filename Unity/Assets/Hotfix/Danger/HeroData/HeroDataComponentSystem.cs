@@ -224,10 +224,10 @@ namespace ET
         public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
         {
             Unit unit = self.GetParent<Unit>();
-            if (unit.GetComponent<MoveComponent>() != null)
-            {
-                unit.Stop(-1);
-            }
+            unit.GetComponent<MoveComponent>()?.Stop();
+            //{
+            //    unit.Stop(-1);
+            //}
            
             unit.GetComponent<AIComponent>()?.Stop();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
@@ -517,10 +517,10 @@ namespace ET
         }
 
 #else
-
         public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
         {
             Unit unit = self.GetParent<Unit>();
+            unit.GetComponent<MoveComponent>()?.Stop();
             unit.GetComponent<SkillManagerComponent>()?.OnFinish();
             unit.GetComponent<BuffManagerComponent>()?.OnFinish();
             int sceneTypeEnum = args.Parent.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;

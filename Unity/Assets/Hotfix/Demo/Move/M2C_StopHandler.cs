@@ -12,12 +12,10 @@ namespace ET
 			{
 				return;
 			}
-
-			if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
-			{
-				return;
-			}
-
+			//if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
+			//{
+			//	return;
+			//}
 			Vector3 pos = new Vector3(message.X, message.Y, message.Z);
 			//立即停止
 			if (message.Error == -1)

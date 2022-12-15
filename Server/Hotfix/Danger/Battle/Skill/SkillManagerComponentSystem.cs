@@ -321,12 +321,7 @@ namespace ET
                 m2C_Skill.Error = errorCode;
                 return m2C_Skill;
             }
-            if (!zhudong && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))
-            {
-                self.OnContinueSkill(skillcmd).Coroutine();
-            }
-            self.InterruptSing(skillcmd.SkillID);
-            unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
+
             int weaponSkill = unit.GetWeaponSkill(skillcmd.SkillID);
             SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
             int tianfuSkill = skillSetComponent != null ? skillSetComponent.GetReplaceSkillId(skillcmd.SkillID) : 0;
@@ -342,6 +337,18 @@ namespace ET
                 return m2C_Skill;
             }
 
+
+            if (skillcmd.ItemId == 0 && !ComHelp.IfNull(weaponSkillConfig.SkillAnimation))
+            {
+                unit.GetComponent<MoveComponent>()?.Stop();
+                unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
+            }
+            if (!zhudong && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))
+            {
+                self.OnContinueSkill(skillcmd).Coroutine();
+            }
+            self.InterruptSing(skillcmd.SkillID);
+          
             for (int i = 0; i < skillList.Count; i++)
             {
                 SkillHandler skillAction = self.SkillFactory(skillList[i], unit);

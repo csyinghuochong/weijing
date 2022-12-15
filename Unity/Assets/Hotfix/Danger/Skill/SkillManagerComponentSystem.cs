@@ -251,8 +251,9 @@ namespace ET
                 Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
                 return;
             }
-            if (!ComHelp.IfNull(skillConfig.SkillAnimation))
+            if (skillcmd.ItemId == 0 && !ComHelp.IfNull(skillConfig.SkillAnimation))
             {
+                unit.GetComponent<MoveComponent>()?.Stop();
                 unit.Rotation = Quaternion.Euler(0, skillcmd.SkillInfos[0].TargetAngle, 0);
                 EventType.FsmChange.Instance.FsmHandlerType = skillConfig.ComboSkillID > 0 ? 5 : 4;
                 EventType.FsmChange.Instance.FsmValue = skillcmd.SkillInfos[0].WeaponSkillID;

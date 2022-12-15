@@ -151,13 +151,12 @@ namespace ET
                         cmd.TargetAngle = Mathf.FloorToInt(ange);
                     }
                     cmd.TargetDistance = Vector3.Distance(this.TheUnitBelongto.Position, this.TheUnitFrom.Position);
-
-                    int weaponSkill = this.TheUnitBelongto.GetWeaponSkill(cmd.SkillID);
-                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
-                    if (!ComHelp.IfNull(skillConfig.SkillAnimation))
-                    {
-                        this.TheUnitBelongto.Stop(-1);
-                    }
+                    //int weaponSkill = this.TheUnitBelongto.GetWeaponSkill(cmd.SkillID);
+                    //SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+                    //if (!ComHelp.IfNull(skillConfig.SkillAnimation))
+                    //{
+                    //    this.TheUnitBelongto.Stop(-1);
+                    //}
                     this.TheUnitFrom.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
                     break;
             }
