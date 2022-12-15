@@ -241,20 +241,47 @@ namespace ET
 
         public static void BeAttacking(this AIComponent self, Unit attack)
         {
+            if (!self.BeAttackList.Contains(attack.Id))
+            {
+                self.BeAttackList.Add(attack.Id);
+            }
+
             //0.1的概率概率转移仇恨
             float moveActPro = 0.1f;
             moveActPro = moveActPro * (1+ attack.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ChaoFengPro));
+            if (moveActPro <= 0)
+            {
+                return;
+            }
+            long serverTime = TimeHelper.ServerNow();
+            if (serverTime - self.LastChangeTime < 6000)
+            {
+                return;
+            }
+            self.LastChangeTime = serverTime;
 
-            if (moveActPro > 0)
+            if (self.GetParent<Unit>().Type == UnitType.Pet)
             {
                 bool gaiLv = RandomHelper.RandFloat01() < 0.1f;
                 if (self.TargetID == 0 && gaiLv)
                 {
                     self.ChangeTarget(attack.Id);
                 }
-                if (!self.BeAttackList.Contains(attack.Id))
+            }
+            else
+            {
+                //怪物
+                //1.首先攻击默认攻击他的目标。
+                //2.攻击时有概率转换自己为攻击目标（近战攻击10 %，远程攻击5 %）。
+                //3.如果转换攻击目标，6秒内不在转换攻击目标
+                float gaiLv = RandomHelper.RandFloat01();
+                if (self.ActDistance <= 4 && gaiLv <= 0.1f)
                 {
-                    self.BeAttackList.Add(attack.Id);
+                    self.ChangeTarget(attack.Id);
+                }
+                if (self.ActDistance > 4 && gaiLv <= 0.05f)
+                {
+                    self.ChangeTarget(attack.Id);
                 }
             }
         }
