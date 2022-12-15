@@ -260,6 +260,13 @@ namespace ET
             return unit;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="bekill"></param>
+        /// <param name="main"></param>
+        /// <param name="sceneType"></param>
+        /// <param name="playerNumer"></param>
         public static void CreateDropItems(Unit bekill, Unit main, int sceneType, int playerNumer)
         {
             if (bekill.Type != UnitType.Monster)
@@ -268,7 +275,7 @@ namespace ET
             }
             bool drop = true;
             MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
-            if (ComHelp.IsSingleFuben(sceneType))
+            if (ComHelp.IsSingleFuben(sceneType) && main!=null)
             {
                 drop = main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || bekill.IsBoss();
 
@@ -282,7 +289,7 @@ namespace ET
                 return;
             }
             float dropAdd_Pro = 1;
-            if (bekill.IsBoss())
+            if (bekill.IsBoss() && main != null)
             {
                 int fubenDifficulty = FubenDifficulty.None;
                 dropAdd_Pro += main.GetComponent<NumericComponent>().GetAsFloat(NumericType.Base_DropAdd_Pro_Add);

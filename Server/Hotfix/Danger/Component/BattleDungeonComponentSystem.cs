@@ -17,7 +17,7 @@ namespace ET
 
     public static class BattleDungeonComponentSystem
     {
-        public static void OnKillEvent(this BattleDungeonComponent self, Unit defend, Unit attack)
+        public static void OnKillEvent(this BattleDungeonComponent self, Unit defend)
         {
             if (defend.Type != UnitType.Player)
             {
