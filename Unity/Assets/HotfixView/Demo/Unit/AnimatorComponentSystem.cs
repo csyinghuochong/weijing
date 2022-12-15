@@ -20,6 +20,7 @@ namespace ET
 			self.animationClips = null;
 			self.Parameter = null;
 			self.Animator = null;
+			self.MissParameter = null;
 		}
 	}
 
@@ -58,6 +59,7 @@ namespace ET
 
 			self.animationClips = new System.Collections.Generic.Dictionary<string, AnimationClip>();
 			self.Parameter = new System.Collections.Generic.HashSet<string>();
+			self.MissParameter = new System.Collections.Generic.HashSet<string>();
 			foreach (AnimationClip animationClip in animator.runtimeAnimatorController.animationClips)
 			{
 				self.animationClips[animationClip.name] = animationClip;
@@ -66,7 +68,6 @@ namespace ET
 			{
 				self.Parameter.Add(animatorControllerParameter.name);
 			}
-
 		}
 
 		public static void Update(this AnimatorComponent self)
@@ -134,17 +135,33 @@ namespace ET
 
 		public static void Play(this AnimatorComponent self, string motionType, float motionSpeed = 1f)
 		{
-			//if (!self.HasParameter(motionType.ToString()))
-			//{
-			//	return;
-			//}
 			self.MotionType = motionType;
 			self.MontionSpeed = motionSpeed;
 			if (null == self.Animator)
 			{
 				return;
 			}
-			self.Animator.Play(motionType);
+
+			if (self.MissParameter.Contains(motionType))
+			{
+				return;
+			}
+            if (self.HasParameter(motionType.ToString()))
+            {
+				self.Animator.Play(motionType);
+				return;
+            }
+
+            bool hasAction = self.Animator.HasState(0,Animator.StringToHash(motionType));
+			if (hasAction)
+			{
+				self.Parameter.Add(motionType);
+				self.Animator.Play(motionType);
+			}
+			else
+			{
+				self.MissParameter.Add(motionType);
+			}
 		}
 
 		public static float AnimationTime(this AnimatorComponent self, string motionType)

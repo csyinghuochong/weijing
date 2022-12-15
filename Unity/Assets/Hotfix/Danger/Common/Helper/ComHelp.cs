@@ -686,7 +686,9 @@ namespace ET
             { 7, UserDataType.FangRong},
             { 8, UserDataType.MaoXianExp},
             { 9, UserDataType.DungeonTimes},
-            { 10,UserDataType.Recharge}
+            { 10,UserDataType.Recharge},
+            { 11,UserDataType.HuoYue},
+            { 12,UserDataType.Sp},
         };
 
         public static UserDataType GetItemToUserDataType(int itemid)

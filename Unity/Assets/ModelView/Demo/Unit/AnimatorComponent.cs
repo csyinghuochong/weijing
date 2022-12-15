@@ -22,6 +22,7 @@ namespace ET
 	{
 		public Dictionary<string, AnimationClip> animationClips = new Dictionary<string, AnimationClip>();
 		public HashSet<string> Parameter = new HashSet<string>();
+		public HashSet<string> MissParameter = new HashSet<string>();
 
 		public string MotionType;
 		public float MontionSpeed;
