@@ -59,8 +59,7 @@ namespace ET
 
         public override void OnFinished()
         {
-            TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, this.OldSpeed * -1);
-            //TheUnitFrom.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Speed, (long)(10000 * this.OldSpeed));
+            TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, 0);
         }
     }
 }
