@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIMainChatItemComponent : Entity, IAwake<GameObject>
     {
+        public bool UpdateHeight;
         public GameObject Lab_ChatText;
         public GameObject ImageButton;
         public GameObject[] TitleList = new GameObject[3];
@@ -47,11 +48,11 @@ namespace ET
 
         public static  void UpdateHeight(this UIMainChatItemComponent self)
         {
-            if (!self.GameObject.activeSelf)
+            if (!self.GameObject.activeSelf || !self.UpdateHeight)
             {
                 return;
             }
-
+            self.UpdateHeight = false;
             TextMeshProUGUI textMeshProUGUI = self.Lab_ChatText.GetComponent<TextMeshProUGUI>();
             if (textMeshProUGUI.GetComponent<TextMeshProUGUI>().preferredHeight > 40)
             {
@@ -65,6 +66,7 @@ namespace ET
         //<sprite=0>
         public static  void OnUpdateUI(this UIMainChatItemComponent self, ChatInfo chatInfo)
         {
+            self.UpdateHeight = true;
             self.m2C_SyncChatInfo = chatInfo;
             TextMeshProUGUI textMeshProUGUI = self.Lab_ChatText.GetComponent<TextMeshProUGUI>();
 

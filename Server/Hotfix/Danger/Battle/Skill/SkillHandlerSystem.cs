@@ -17,7 +17,7 @@ namespace ET
             SkillSetComponent skillSetComponent = theUnitFrom.GetComponent<SkillSetComponent>();
             self.TianfuProAdd = skillSetComponent!=null ? skillSetComponent.GetSkillPropertyAdd(skillcmd.WeaponSkillID):null;
 
-            self.OldSpeed = 0f;
+            self.AddSpeed_Mul = 0f;
             self.SkillTriggerInvelTime = 0;
             self.IsExcuteHurt = false;
             self.SkillState = SkillState.Running;

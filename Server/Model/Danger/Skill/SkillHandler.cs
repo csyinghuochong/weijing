@@ -34,7 +34,7 @@ namespace ET
 
         public int SkillExcuteNum;
 
-        public float OldSpeed;
+        public float AddSpeed_Mul;
 
         public Vector3 NowPosition;             //当前技能的坐标点
         public Vector3 TargetPosition;
