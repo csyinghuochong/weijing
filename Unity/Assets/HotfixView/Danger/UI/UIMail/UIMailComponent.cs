@@ -41,7 +41,7 @@ namespace ET
             self.Obj_NoMail = rc.Get<GameObject>("NoMail");
 
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseMail(); });
-            self.ButtonGet.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonGet(); });
+            ButtonHelp.AddListenerEx(self.ButtonGet, self.OnButtonGet);
 
             self.MailComponent = self.ZoneScene().GetComponent<MailComponent>();
 

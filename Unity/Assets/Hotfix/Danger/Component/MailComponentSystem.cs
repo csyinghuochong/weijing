@@ -20,11 +20,13 @@ namespace ET
             if (self.SelectMail == null)
                 return;
 
-            //C2E_ReceiveMailRequest c2E_ReceiveMailRequest = new C2E_ReceiveMailRequest() { ActorId = PlayerComponent.Instance.UserInfo.UserId, MailId = self.SelectMail.MailId };
-            //E2C_ReceiveMailResponse sendChatResponse = (E2C_ReceiveMailResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_ReceiveMailRequest);
+            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() < self.SelectMail.ItemList.Count)
+            {
+                HintHelp.GetInstance().ShowHintError(ErrorCore.ERR_BagIsFull);
+                return;
+            }
             C2M_ReceiveMailRequest c2E_ReceiveMailRequest = new C2M_ReceiveMailRequest() { MailId = self.SelectMail.MailId };
             M2C_ReceiveMailResponse sendChatResponse = (M2C_ReceiveMailResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_ReceiveMailRequest);
-
             if (sendChatResponse.Error != 0)
             {
                 return;
