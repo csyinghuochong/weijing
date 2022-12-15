@@ -137,7 +137,12 @@ namespace ET
                 {
                     continue;
                 }
-                if (aBuffHandler.EffectData != null)
+                if (aBuffHandler.mSkillConf ==null || aBuffHandler.EffectData == null)
+                {
+                    continue;
+                }
+                int skillParentID = aBuffHandler.EffectData.EffectConfig.SkillParent;
+                if (skillParentID == 0 || skillParentID == 2 || skillParentID == 3)
                 {
                     self.EffectFactory(aBuffHandler.EffectData);
                 }
