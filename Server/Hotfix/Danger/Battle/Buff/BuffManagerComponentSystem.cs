@@ -64,18 +64,6 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
-        public static bool HaveBuff(this BuffManagerComponent self, int buffId)
-        {
-            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
-            {
-                if (self.m_Buffs[i].BuffData.BuffConfig.Id == buffId)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
         public static void BuffRemove(this BuffManagerComponent self, int buffId)
         {
             //判断玩家身上是否有相同的buff,如果有就注销此Buff

@@ -36,17 +36,15 @@ namespace ET
 
             self.PaiMaiId = 0;
             self.UIItemComponent = null;
-            self.OnInitUI().Coroutine();
+            self.OnInitUI();
         }
     }
 
     public static class UIPaiMaiShopItemComponentSystem
     {
-
-        public static async ETTask OnInitUI(this UIPaiMaiShopItemComponent self)
+        public static  void OnInitUI(this UIPaiMaiShopItemComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            await ETTask.CompletedTask;
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(bagSpace, self.ItemTipsSet);
@@ -97,8 +95,6 @@ namespace ET
 
             PaiMaiSellConfig paiMaiSellConfig = PaiMaiSellConfigCategory.Instance.Get(paimaiId);
 
-            Log.Info(self.Parent.ToString());
-            Log.Info(self.Parent.Parent.ToString());
             //获取拍卖数据
             //PaiMaiShopItemInfo paiMaiShopItemInfo = self.Parent.Parent.GetComponent<UIPaiMaiShopComponent>().PaiMaiShopItemInfos[paiMaiSellConfig.ItemID];
 

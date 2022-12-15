@@ -153,8 +153,7 @@ namespace ET
             long instanceid = self.InstanceId;
             List<int> ids = PaiMaiHelper.Instance.GetItemsByChapter(typeid, chapterId);
             string path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiShopItem");
-            await ETTask.CompletedTask;
-            GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject bundleObj = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
@@ -177,7 +176,7 @@ namespace ET
                     uIPaiMaiBuyItemComponent.SetClickHandler((int paimaiId) => { self.OnClickPaiMaiBuyItem(paimaiId); });
                     self.ItemUIList.Add(ui_1);
                 }
-                Log.Info("self.PaiMaiShopItemInfos = " + self.PaiMaiShopItemInfos.Count + "ids[i] = " + ids[i]);
+                //Log.Info("self.PaiMaiShopItemInfos = " + self.PaiMaiShopItemInfos.Count + "ids[i] = " + ids[i]);
                 ui_1.GetComponent<UIPaiMaiShopItemComponent>().OnUpdateData(ids[i],self.PaiMaiShopItemInfos[PaiMaiSellConfigCategory.Instance.Get(ids[i]).ItemID]);
             }
 

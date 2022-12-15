@@ -5,21 +5,21 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    [Timer(TimerType.DungeonReviveTimer)]
-    public class DungeonReviveTimer : ATimer<UICellDungeonReviveComponent>
-    {
-        public override void Run(UICellDungeonReviveComponent self)
-        {
-            try
-            {
-                self.Check();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
+    //[Timer(TimerType.DungeonReviveTimer)]
+    //public class DungeonReviveTimer : ATimer<UICellDungeonReviveComponent>
+    //{
+    //    public override void Run(UICellDungeonReviveComponent self)
+    //    {
+    //        try
+    //        {
+    //            self.Check();
+    //        }
+    //        catch (Exception e)
+    //        {
+    //            Log.Error($"move timer error: {self.Id}\n{e}");
+    //        }
+    //    }
+    //}
 
     public class UICellDungeonReviveComponent : Entity, IAwake, IDestroy
     {
@@ -61,25 +61,11 @@ namespace ET
     {
         public override void Destroy(UICellDungeonReviveComponent self)
         {
-            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
-    public static class UILevelReviveComponentSystem
+    public static class UICellDungeonReviveComponentSystem
     {
-        public static void Check(this UICellDungeonReviveComponent self)
-        {
-            if (self.LeftTime < 0)
-            {
-                self.OnAuto_Exit();
-                TimerComponent.Instance?.Remove(ref self.Timer);
-            }
-            else
-            {
-                self.Text_ExitTip.GetComponent<Text>().text = string.Format("{0}秒后退出副本", self.LeftTime);
-            }
-            self.LeftTime--;
-        }
 
         public static bool IsNoAutoExit(this UICellDungeonReviveComponent self, int sceneType)
         {
@@ -89,13 +75,41 @@ namespace ET
                 || sceneType == SceneTypeEnum.MiJing;
         }
 
+        public static void Check(this UICellDungeonReviveComponent self, int leftTime)
+        {
+            if (leftTime <= 0)
+            {
+                self.OnAuto_Exit();
+            }
+            else
+            {
+                self.Text_ExitTip.GetComponent<Text>().text = string.Format("{0}秒后退出副本", self.LeftTime);
+            }
+        }
+
+
+        public static async ETTask BegingTimer(this UICellDungeonReviveComponent self)
+        {
+            self.Check(self.LeftTime);
+            long instanceId = self.InstanceId;
+            for (int i = self.LeftTime -1; i >= 0; i--)
+            {
+                await TimerComponent.Instance.WaitAsync(1000);
+                if (instanceId != self.InstanceId)
+                {
+                    return;
+                }
+                self.Check(i);
+            }
+        }
+
         public static void OnInitUI(this UICellDungeonReviveComponent self, int seneTypeEnum)
         {
             self.SceneType = seneTypeEnum;
             self.LeftTime = seneTypeEnum == SceneTypeEnum.TeamDungeon ? 20 : 10;
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.DungeonReviveTimer, self);
 
-            self.Check();
+            self.BegingTimer().Coroutine();
+
             string reviveCost = GlobalValueConfigCategory.Instance.Get(5).Value;
             string[] needList = reviveCost.Split(';');
 
