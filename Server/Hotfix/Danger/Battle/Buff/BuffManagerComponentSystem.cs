@@ -25,7 +25,7 @@ namespace ET
     {
         public override void Awake(BuffManagerComponent self)
         {
-            self.Type = self.GetParent<Unit>().Type;
+
         }
     }
 
@@ -226,12 +226,6 @@ namespace ET
         {
             for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
             {
-                if (self.m_Buffs.Count == 0)
-                {
-                    Log.Debug($"BuffManager: self.Type: {self.Type} intanceid :{self.InstanceId} timerId: {self.Timer}");
-                    break;
-                }
-
                 if (self.m_Buffs[i].BuffState == BuffState.Finished)
                 {
                     BuffHandler buffHandler = self.m_Buffs[i];
