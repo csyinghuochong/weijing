@@ -137,7 +137,7 @@ namespace ET
             self.AddTimer();
         }
 
-        public static void RecoverGameObject(this GameObjectPoolComponent self, string path, GameObject gameObject)
+        public static void RecoverGameObject(this GameObjectPoolComponent self, string path, GameObject gameObject, bool active = false)
         {
             if (string.IsNullOrEmpty(path) || gameObject == null)
             {
@@ -148,7 +148,7 @@ namespace ET
                 self.ExternalReferences[path] = new List<GameObject>();
             }
             self.ExternalReferences[path].Add(gameObject);
-            gameObject.SetActive(false);
+            gameObject.SetActive(active);
             UICommonHelper.SetParent(gameObject, GlobalComponent.Instance.Pool.gameObject);
         }
 

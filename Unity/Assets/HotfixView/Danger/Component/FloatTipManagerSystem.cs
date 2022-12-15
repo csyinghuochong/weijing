@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
 {
 
-	[Timer(TimerType.FloatTipTimer)]
+    [Timer(TimerType.FloatTipTimer)]
 	public class FloatTipTimer : ATimer<FloatTipManager>
 	{
 		public override void Run(FloatTipManager self)
@@ -57,7 +56,7 @@ namespace ET
 				if (self.PassTime >= self.IntervalTime)
 				{
 					FloatTipType floatTipType = self.WaitFloatTip[0];
-					self.CreateFloatTip(floatTipType).Coroutine();
+					self.CreateFloatTip(floatTipType);
 					self.WaitFloatTip.RemoveAt(0);
 					self.PassTime = 0;
 				}
@@ -78,19 +77,10 @@ namespace ET
 			}
 		}
 
-		public static async ETTask CreateFloatTip(this FloatTipManager self, FloatTipType tip)
+		public static  void CreateFloatTip(this FloatTipManager self, FloatTipType tip)
 		{
-			string tipPath = tip.type == 0 ? "Common/UITips" : "Common/UITipsDi";
-			await ETTask.CompletedTask;
-			GameObject bundleObject = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath(tipPath));
-			GameObject gotip =  GameObject.Instantiate(bundleObject);
-
-			gotip.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.High]);
-			gotip.transform.localPosition = Vector3.zero;
-			gotip.transform.localScale = Vector3.one;
-
-			FloatTipComponent uiitem = self.AddChild<FloatTipComponent, GameObject, string>(gotip, tip.tip);
-			uiitem.CrossFadeAlpha(tip.type);
+			FloatTipComponent uiitem = self.AddChild<FloatTipComponent>(true);
+			uiitem.OnInitData(tip);
 			self.FloatTipList.Add(uiitem);
 		}
 		

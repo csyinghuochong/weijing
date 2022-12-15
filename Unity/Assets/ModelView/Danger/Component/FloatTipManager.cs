@@ -2,7 +2,7 @@
 
 namespace ET
 {
-    public class FloatTipType
+    public struct FloatTipType
     {
         public int type; //0 没底  1有底
         public string tip;

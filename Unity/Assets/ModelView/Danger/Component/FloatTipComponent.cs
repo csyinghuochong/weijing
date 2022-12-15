@@ -2,12 +2,13 @@
 
 namespace ET
 {
-    public class FloatTipComponent : Entity, IAwake<GameObject, string>,IDestroy
+    public class FloatTipComponent : Entity, IAwake,IDestroy
     {
-        public const int moveSpeed = 120;
+        public FloatTipType FloatTipType;
         public GameObject GameObject;
         public GameObject tipText;
         public GameObject tipNode;
+        public string AssetEffect;
         public float passTime;
     }
 }

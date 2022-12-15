@@ -44,14 +44,13 @@ namespace ET
                 return;
             }
  
-            FlyFontObj.SetActive(false);
             ReferenceCollector rc = FlyFontObj.GetComponent<ReferenceCollector>();
             rc.Get<GameObject>("FlyText_Self").SetActive(false);
             rc.Get<GameObject>("FlyText_Add").SetActive(false);
             rc.Get<GameObject>("FlyText_Target").SetActive(false);
             string uIBattleFly = ABPathHelper.GetUGUIPath("Battle/UIBattleFly");
-            GameObjectPoolComponent.Instance.RecoverGameObject(uIBattleFly, FlyFontObj);
-
+            GameObjectPoolComponent.Instance.RecoverGameObject(uIBattleFly, FlyFontObj, true);
+            FlyFontObj.transform.localPosition = new Vector2(0f,2000f);               
         }
 
         public static void OnLoadGameObject(this FallingFontShowComponent self, GameObject FlyFontObj, long formId)
@@ -66,7 +65,6 @@ namespace ET
             float targetValue = self.TargetValue;
             self.GameObject = FlyFontObj;
             self.Transform = FlyFontObj.transform;
-            FlyFontObj.SetActive(true);
             ReferenceCollector rc = FlyFontObj.GetComponent<ReferenceCollector>();
             GameObject ObjFlyText = rc.Get<GameObject>("FlyText_Target");
             //根据目标Unit设定飘字字体
