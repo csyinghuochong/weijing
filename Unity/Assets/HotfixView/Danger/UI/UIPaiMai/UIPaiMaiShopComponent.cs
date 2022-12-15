@@ -176,7 +176,7 @@ namespace ET
                     uIPaiMaiBuyItemComponent.SetClickHandler((int paimaiId) => { self.OnClickPaiMaiBuyItem(paimaiId); });
                     self.ItemUIList.Add(ui_1);
                 }
-                //Log.Info("self.PaiMaiShopItemInfos = " + self.PaiMaiShopItemInfos.Count + "ids[i] = " + ids[i]);
+                Log.Info("self.PaiMaiShopItemInfos = " + self.PaiMaiShopItemInfos.Count + "ids[i] = " + ids[i]);
                 ui_1.GetComponent<UIPaiMaiShopItemComponent>().OnUpdateData(ids[i],self.PaiMaiShopItemInfos[PaiMaiSellConfigCategory.Instance.Get(ids[i]).ItemID]);
             }
 

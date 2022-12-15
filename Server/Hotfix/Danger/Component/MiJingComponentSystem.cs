@@ -17,9 +17,12 @@ namespace ET
             List<TeamPlayerInfo> players = new List<TeamPlayerInfo>();
             players.AddRange(self.PlayerDamageList.Take(5));
 
-            self.SendReward(players, 0, 0,  "10010098;10@10010099;1@10000132;100");
-            self.SendReward(players, 1, 1,  "10010098;10@10010099;1@10000132;100");
-            self.SendReward(players, 2, 4,  "10010098;10@10010099;1@10000132;100");
+            self.SendReward(players, 0, 0, "1;150000@10010085;100");
+            self.SendReward(players, 1, 1, "1;100000@10010085;75");
+            self.SendReward(players, 2, 2, "1;75000@10010085;50");
+            self.SendReward(players, 3, 4, "1;50000@10010085;40");
+            self.SendReward(players, 5, 9, "1;30000@10010085;30");
+            self.SendReward(players, 10, 19, "1;20000@10010085;20");
 
             self.PlayerDamageList.Clear();
         }
@@ -43,8 +46,8 @@ namespace ET
                 }
                 MailInfo mailInfo = new MailInfo();
                 mailInfo.Status = 0;
-                mailInfo.Context = "秘境奖励";
-                mailInfo.Title = "秘境奖励";
+                mailInfo.Context = "恭喜你在秘境中获得第"+ i+"名,获得如下奖励";
+                mailInfo.Title = "秘境领主排名奖励";
                 mailInfo.MailId = IdGenerater.Instance.GenerateId();
                 string[] needList = rewardList.Split('@');
                 for (int k = 0; k < needList.Length; k++)

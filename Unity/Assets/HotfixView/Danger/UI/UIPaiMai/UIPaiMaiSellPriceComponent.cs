@@ -18,6 +18,7 @@ namespace ET
         public GameObject Lab_SellNumber;
         public GameObject Lab_Tuijian;
         public GameObject PriceInputField;
+        public GameObject Lab_SellSumPro;
         public BagInfo BagInfo;
         public int oldPrice;
         public int nowPrice;
@@ -44,6 +45,7 @@ namespace ET
             self.Text_Price = rc.Get<GameObject>("Text_Price");
             self.Lab_Tuijian = rc.Get<GameObject>("Lab_Tuijian");
             self.Lab_SellNumber = rc.Get<GameObject>("Lab_SellNumber");
+            self.Lab_SellSumPro = rc.Get<GameObject>("Lab_SellSumPro");
 
             self.Btn_Cost = rc.Get<GameObject>("Btn_Cost");
             self.Btn_Cost.GetComponent<Button>().onClick.AddListener(() => { self.OnCostPrice(); });
@@ -128,7 +130,7 @@ namespace ET
             {
                 int oldPrice = ui.GetComponent<UIPaiMaiComponent>().PaiMaiShopItemInfos[paiMaiItemInfo.BagInfo.ItemID].Price;
 
-                int nowPrice = (int)((float)paiMaiItemInfo.Price / (float)paiMaiItemInfo.BagInfo.ItemNum);
+                int nowPrice = (int)((float)paiMaiItemInfo.Price);
                 if (nowPrice < (int)(oldPrice * 0.5f))
                 {
                     FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("出售价格过低,当前最低价格为:" + (int)(oldPrice * 0.5f) * paiMaiItemInfo.BagInfo.ItemNum));
@@ -185,7 +187,8 @@ namespace ET
                 self.priceProNum = 10;
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("如需再提高价格,请手动修改价格!"));
             }
-            self.nowPrice = (int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum);
+            self.nowPrice = (int)(self.oldPrice * (1f + 0.1f * self.priceProNum));
+            self.Lab_SellSumPro.GetComponent<Text>().text = ((int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum)).ToString();
             self.PriceInputField.GetComponent<InputField>().text = self.nowPrice.ToString();
 
         }
@@ -198,7 +201,8 @@ namespace ET
                 self.priceProNum = -10;
             }
 
-            self.nowPrice = (int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum);
+            self.nowPrice = (int)(self.oldPrice * (1f + 0.1f * self.priceProNum));
+            self.Lab_SellSumPro.GetComponent<Text>().text = ((int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum)).ToString();
             self.PriceInputField.GetComponent<InputField>().text = self.nowPrice.ToString();
         }
 

@@ -14,7 +14,7 @@ namespace ET
             PaiMaiShopItemInfo shopinfo = scene.GetComponent<PaiMaiSceneComponent>().GetPaiMaiShopInfo(request.PaiMaiItemInfo.BagInfo.ItemID);
             if (shopinfo != null)
             {
-                int nowPrice = (int)((float)request.PaiMaiItemInfo.Price / (float)request.PaiMaiItemInfo.BagInfo.ItemNum);
+                int nowPrice = (int)((float)request.PaiMaiItemInfo.Price);
                 if (nowPrice < shopinfo.Price * 0.5f)
                 {
                     response.Error = ErrorCore.Err_PaiMaiPriceLow;
