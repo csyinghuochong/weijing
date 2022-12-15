@@ -208,14 +208,14 @@ namespace ET
 
 		public static void SetBoolValue(this AnimatorComponent self, string name, bool state)
 		{
-			//if (!self.HasParameter(name))
-			//{
-			//	return;
-			//}
 			if (self.Animator == null)
 			{
 				return;
 			}
+			if (!self.HasParameter(name))
+            {
+                return;
+            }
 			self.Animator.SetBool(name, state);
 		}
 
