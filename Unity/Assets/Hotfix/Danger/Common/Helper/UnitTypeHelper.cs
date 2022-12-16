@@ -26,7 +26,14 @@
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon
              || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi)
             {
-                return self.Type != UnitType.Player && self.GetBattleCamp() != defend.GetBattleCamp();
+                if (self.Type == UnitType.Player || defend.Type == UnitType.Player)
+                {
+                    return false;
+                }
+                else
+                {
+                    return self.GetBattleCamp() != defend.GetBattleCamp();
+                }
             }
 
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.BaoZang 

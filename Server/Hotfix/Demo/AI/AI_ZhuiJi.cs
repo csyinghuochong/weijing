@@ -30,22 +30,21 @@ namespace ET
             Unit unit = aiComponent.GetParent<Unit>();
             for(int i = 0; i < 10000; i++)
             {
-                float distance = -1;
                 Unit target = unit.DomainScene().GetComponent<UnitComponent>().Get(aiComponent.TargetID);
                 if (target != null)
                 {
-                    distance = Vector3.Distance(unit.Position, target.Position);
+                    float distance = Vector3.Distance(unit.Position, target.Position);
                     if (distance < aiComponent.ActDistance)
                     {
                         unit.Stop(-1);
                     }
                     if (distance >= aiComponent.ActDistance && i % 5 == 0 && unit.GetComponent<StateComponent>().CanMove())
                     {
-                        Vector3 dir = unit.Position - target.Position;
-                        float ange = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));
-                        float addg = unit.Id % 10 * (unit.Id % 2 == 0 ? 2 : -2);
-                        Quaternion rotation = Quaternion.Euler(0, ange + addg, 0);
-                        Vector3 ttt = target.Position + rotation * Vector3.forward * ((float)aiComponent.ActDistance - 0.2f);
+                        //Vector3 dir = unit.Position - target.Position;
+                        //float ange = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));
+                        //float addg = unit.Id % 10 * (unit.Id % 2 == 0 ? 2 : -2);
+                        //Quaternion rotation = Quaternion.Euler(0, ange + addg, 0);
+                        //Vector3 ttt = target.Position + rotation * Vector3.forward * ((float)aiComponent.ActDistance - 0.2f);
                         //unit.FindPathMoveToAsync(ttt, cancellationToken, false).Coroutine();
                         unit.FindPathMoveToAsync(target.Position, cancellationToken, false).Coroutine();
                     }
