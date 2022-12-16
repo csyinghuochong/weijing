@@ -66,7 +66,6 @@ namespace ET
 
         public static int GetTiLiIndex(this UserInfoComponent self, int hour_1)
         {
-            //川哥体力me恢复111
             if (hour_1 <6)
             {
                 return 1;

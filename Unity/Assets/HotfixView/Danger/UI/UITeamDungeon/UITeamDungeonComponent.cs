@@ -38,6 +38,8 @@ namespace ET
             self.TeamUIList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Text_XieZhuNum = rc.Get<GameObject>("Text_XieZhuNum");
+
             self.CloseButton = rc.Get<GameObject>("CloseButton");
             self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeon); });
 

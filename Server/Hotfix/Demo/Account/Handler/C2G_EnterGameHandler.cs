@@ -129,7 +129,7 @@ namespace ET
 						await DBHelper.AddDataComponent<ActivityComponent>(unit, request.UserID, DBHelper.ActivityComponent);
 						await DBHelper.AddDataComponent<RechargeComponent>(unit, request.UserID, DBHelper.RechargeComponent);
 						await DBHelper.AddDataComponent<ReddotComponent>(unit, request.UserID, DBHelper.ReddotComponent);
-						//Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false);
+						Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false);
 
 						unit.AddComponent<UnitGateComponent, long>(player.InstanceId);
 						unit.AddComponent<MailComponent>();

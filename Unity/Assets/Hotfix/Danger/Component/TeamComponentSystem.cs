@@ -294,11 +294,7 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             if (teamInfo != null)
             {
-                if (teamInfo.SceneId == fubenId)
-                {
-                    return ErrorCore.ERR_IsHaveTeam;
-                }
-                if (teamInfo.PlayerList[0].UserID != userInfo.UserId)
+                if (teamInfo != null && teamInfo.PlayerList[0].UserID != userInfo.UserId)
                 {
                     return ErrorCore.ERR_IsNotLeader;
                 }
@@ -311,7 +307,7 @@ namespace ET
                 }
                 for (int i = 0; i < teamInfo.PlayerList.Count; i++)
                 {
-                    if (fubenType == TeamFubenType.XieZhu && teamInfo.PlayerList[i].PlayerLv > userInfo.Lv - 10)
+                    if (fubenType == TeamFubenType.XieZhu && teamInfo.PlayerList[i].PlayerLv < userInfo.Lv - 10)
                     {
                         return ErrorCore.ERR_TeamerLevelIsNot;
                     }
@@ -325,6 +321,13 @@ namespace ET
         {
             try
             {
+                TeamInfo teamInfo = self.GetSelfTeam();
+                UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+                if (teamInfo != null && teamInfo.SceneId != 0)
+                {
+                    return ErrorCore.ERR_IsNotLeader;
+                }
+
                 int errorCode = self.CheckTimesAndLevel(fubenId,  fubenType);
                 if (errorCode != ErrorCore.ERR_Success)
                 {
@@ -335,7 +338,7 @@ namespace ET
                 {
                     return errorCode;
                 }
-
+               
                 C2T_TeamDungeonCreateRequest c2M_ItemHuiShouRequest = new C2T_TeamDungeonCreateRequest()
                 {
                     FubenId = fubenId,
