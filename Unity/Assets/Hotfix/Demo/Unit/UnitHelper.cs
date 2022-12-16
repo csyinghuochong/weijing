@@ -114,6 +114,10 @@ namespace ET
             {
                 return true;
             }
+            if (self.Type == UnitType.Monster && self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == other.Id)
+            {
+                return true;
+            }
             if (self.Type == UnitType.Player && petComponent.GetFightPetId() == other.Id)
             {
                 return true;
