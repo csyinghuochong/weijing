@@ -170,6 +170,7 @@ namespace ET
             long recoverPiLao = self.GetParent<Unit>().GetMaxPiLao() - self.UserInfo.PiLao;
             recoverPiLao = Math.Min(recoverPiLao, addValue);
             self.UpdateRoleData(UserDataType.PiLao, recoverPiLao.ToString(), notice);
+            self.LastLoginTime = TimeHelper.ServerNow();
         }
 
         public static void OnZeroClockUpdate(this UserInfoComponent self, bool notice)
