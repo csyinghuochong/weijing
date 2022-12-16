@@ -111,6 +111,8 @@ MonoBehaviour:
     gameObject: {fileID: 6491148628312307933}
   - key: ItemNodeList
     gameObject: {fileID: 3228079323873161068}
+  - key: Button_XieZhu
+    gameObject: {fileID: 8184857726195142041}
 --- !u!1 &1177177562814036
 GameObject:
   m_ObjectHideFlags: 0
@@ -1723,7 +1725,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5339\u914D\u6311\u6218"
+  m_Text: "\u534F\u52A9\u526F\u672C"
 --- !u!114 &5783400130396298053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2948,7 +2950,7 @@ GameObject:
   - component: {fileID: 7812001203781637821}
   - component: {fileID: 2578987355287307709}
   m_Layer: 5
-  m_Name: Button_Create (1)
+  m_Name: Button_XieZhu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
