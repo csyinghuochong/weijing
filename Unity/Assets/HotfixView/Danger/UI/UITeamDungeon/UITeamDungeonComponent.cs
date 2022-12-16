@@ -7,8 +7,9 @@ namespace ET
     //按钮枚举
     public enum TeamDungeonPageEnum : int
     {
-        AllDungeon = 0,
-        MyDungeon = 1,
+        TeamDungeonAll = 0,
+        TeamDungeonMy = 1,
+        TeamDungeonShop = 2,
     }
 
     public class UITeamDungeonComponent : Entity, IAwake, IDestroy
@@ -24,6 +25,8 @@ namespace ET
         public List<UI> TeamUIList = new List<UI>();
 
         public UIPageButtonComponent UIPageButtonComponent_1;
+
+
         public UITeamDungeonMyComponent UITeamDungeonMyComponent;
 
         public GameObject CloseButton;
@@ -121,7 +124,7 @@ namespace ET
 
         public static bool CheckPageButton_1(this UITeamDungeonComponent self, int page)
         {
-            if ((TeamDungeonPageEnum)page == TeamDungeonPageEnum.MyDungeon)
+            if ((TeamDungeonPageEnum)page == TeamDungeonPageEnum.TeamDungeonMy)
             {
                 //判断当前是否有队伍
                 TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
@@ -138,12 +141,12 @@ namespace ET
         public static void OnClickPageButton_1(this UITeamDungeonComponent self, int page)
         {
             //全部
-            if ((TeamDungeonPageEnum)page == TeamDungeonPageEnum.AllDungeon) {
+            if ((TeamDungeonPageEnum)page == TeamDungeonPageEnum.TeamDungeonAll) {
                 self.UITeamDungeonList.SetActive(true);
                 self.UITeamDungeonMy.SetActive(false);
             }
 
-            if ((TeamDungeonPageEnum)page == TeamDungeonPageEnum.MyDungeon)
+            if ((TeamDungeonPageEnum)page == TeamDungeonPageEnum.TeamDungeonMy)
             {
                 self.OnBtn_Type_My();
             }
@@ -208,22 +211,15 @@ namespace ET
                 self.TeamUIList[i].GameObject.SetActive(false);
             }
 
-            //if (fubenId == 0)
-            //{
-            //    self.Text_LeftTime.SetActive(false);
-            //}
-            //else
-            {
-                int totalTimes = int.Parse( GlobalValueConfigCategory.Instance.Get(19).Value );
-                int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
-                int leftTimes = totalTimes - times;
-                self.Text_LeftTime.SetActive(true);
-                self.Text_LeftTime.GetComponent<Text>().text = $"副本次数：{leftTimes}/{totalTimes}";
+            int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
+            int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
+            int leftTimes = totalTimes - times;
+            self.Text_LeftTime.SetActive(true);
+            self.Text_LeftTime.GetComponent<Text>().text = $"副本次数：{leftTimes}/{totalTimes}";
 
-                totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
-                times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonXieZhu();
-                self.Text_XieZhuNum.GetComponent<Text>().text = $"副本次数：{leftTimes}/{totalTimes}";
-            }
+            totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
+            times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonXieZhu();
+            self.Text_XieZhuNum.GetComponent<Text>().text = $"副本次数：{leftTimes}/{totalTimes}";
         }      
 
     }

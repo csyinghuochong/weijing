@@ -115,13 +115,15 @@ namespace ET
 
             C2M_TaskLoopGetRequest request = new C2M_TaskLoopGetRequest() {  };
             M2C_TaskLoopGetResponse response = (M2C_TaskLoopGetResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error != 0 || response.TaskLoop==null)
+            if (response.TaskLoop != null)
             {
-                return;
+                taskComponent.RoleTaskList.Add(response.TaskLoop);
+                HintHelp.GetInstance().DataUpdate(DataType.TaskGet, response.TaskLoop.taskID.ToString());
             }
-            taskComponent.RoleTaskList.Add(response.TaskLoop);
-            self.OnCloseNpcTask();
-            HintHelp.GetInstance().DataUpdate(DataType.TaskGet, response.TaskLoop.taskID.ToString());
+            else
+            {
+                self.OnCloseNpcTask();
+            }
         }
 
         public static void InitData(this UITaskGetComponent self, int npcID)

@@ -8,14 +8,16 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_TaskLoopGetRequest request, M2C_TaskLoopGetResponse response, Action reply)
         {
+            TaskPro taskPro = null;
             TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
             if (taskComponent.GetTaskList(TaskTypeEnum.EveryDay).Count > 0)
             {
+                taskPro = taskComponent.GetTaskList(TaskTypeEnum.EveryDay)[0];
+                response.TaskLoop = taskPro;
                 reply();
                 return;
             }
 
-            TaskPro taskPro = null;
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int giveUpId = numericComponent.GetAsInt(NumericType.TaskLoopGiveId);
             if (giveUpId > 0)
