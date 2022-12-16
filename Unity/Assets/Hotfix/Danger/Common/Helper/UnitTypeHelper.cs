@@ -76,7 +76,7 @@
             {
                 return true;
             }
-            return false;
+            return self.Id == defend.Id;
         }
 
         public static int GetBattleCamp(this Unit self)
