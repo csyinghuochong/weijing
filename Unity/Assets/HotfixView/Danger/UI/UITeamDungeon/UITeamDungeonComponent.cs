@@ -16,6 +16,7 @@ namespace ET
         public GameObject UITeamDungeonList;
         public GameObject UITeamDungeonMy;
 
+        public GameObject Text_XieZhuNum;
         public GameObject Text_LeftTime;
         public GameObject Button_Create;
         public GameObject ItemNodeList;
@@ -216,6 +217,10 @@ namespace ET
                 int leftTimes = totalTimes - times;
                 self.Text_LeftTime.SetActive(true);
                 self.Text_LeftTime.GetComponent<Text>().text = $"副本次数：{leftTimes}/{totalTimes}";
+
+                totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
+                times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonXieZhu();
+                self.Text_XieZhuNum.GetComponent<Text>().text = $"副本次数：{leftTimes}/{totalTimes}";
             }
         }      
 

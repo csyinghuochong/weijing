@@ -93,6 +93,8 @@ MonoBehaviour:
     gameObject: {fileID: 8445552799385046365}
   - key: CloseButton
     gameObject: {fileID: 9203210552201227102}
+  - key: Text_XieZhuNum
+    gameObject: {fileID: 3716495561711055760}
 --- !u!1 &171660
 GameObject:
   m_ObjectHideFlags: 0
@@ -3103,7 +3105,7 @@ GameObject:
   - component: {fileID: 7244927039887559928}
   - component: {fileID: 944888399919702547}
   m_Layer: 5
-  m_Name: Text_XieZhuNum (1)
+  m_Name: Text_XieZhuNumTip
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -30,7 +30,7 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Button_XieZhu = rc.Get<GameObject>("Button_XieZhu");
-            self.Button_Create.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Create(TeamFubenType.XieZhu).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Button_XieZhu, () => { self.OnButton_Create(TeamFubenType.XieZhu).Coroutine(); });
             self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");
             self.TextLevelLimit = rc.Get<GameObject>("TextLevelLimit");
             self.TextPlayerLimit = rc.Get<GameObject>("TextPlayerLimit");
@@ -76,6 +76,9 @@ namespace ET
 
             self.OnClickButton(self.ButtonList[0]);
 
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            self.Button_XieZhu.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
             self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonCreate); });
         }
     }
