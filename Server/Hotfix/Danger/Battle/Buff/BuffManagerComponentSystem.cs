@@ -214,6 +214,12 @@ namespace ET
         {
             for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
             {
+                if (self.m_Buffs.Count == 0)
+                {
+                    Unit unit = self.GetParent<Unit>();
+                    Log.Debug($"BuffManagerComponent220:  {unit.Type} {unit.InstanceId}");
+                    break;
+                }
                 if (self.m_Buffs[i].BuffState == BuffState.Finished)
                 {
                     BuffHandler buffHandler = self.m_Buffs[i];
