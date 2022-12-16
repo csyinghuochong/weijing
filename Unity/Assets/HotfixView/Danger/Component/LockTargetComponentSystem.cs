@@ -125,29 +125,29 @@ namespace ET
 
         public static long LockTargetUnit(this LockTargetComponent self, bool first = false)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (first && self.LastLockId != 0)
             {
-                Unit unitTarget = unit.GetParent<UnitComponent>().Get(self.LastLockId);
-                if (unitTarget != null && PositionHelper.Distance2D(unit, unitTarget) < 10f)
+                Unit unitTarget = main.GetParent<UnitComponent>().Get(self.LastLockId);
+                if (unitTarget != null && PositionHelper.Distance2D(main, unitTarget) < 10f)
                 {
                     return self.LastLockId;
                 }
             }
-            Entity[] units = unit.GetParent<UnitComponent>().Children.Values.ToArray();
+            Entity[] units = main.GetParent<UnitComponent>().Children.Values.ToArray();
             float distance = 10f;
             ListComponent<UnitLockRange> UnitLockRanges = new ListComponent<UnitLockRange>();
             for (int i = 0; i < units.Length; i++)
             {
-                Unit uu = units[i] as Unit;
-                if (!uu.IsCanBeAttackByUnit(unit))
+                Unit unit = units[i] as Unit;
+                if (!main.IsCanAttackUnit(unit))
                 {
                     continue;
                 }
-                float dd = PositionHelper.Distance2D(unit, uu);
+                float dd = PositionHelper.Distance2D(main, unit);
                 if (dd < distance)
                 {
-                    UnitLockRanges.Add(new UnitLockRange() { Id = uu.Id, Range = (int)(dd * 100) });
+                    UnitLockRanges.Add(new UnitLockRange() { Id = unit.Id, Range = (int)(dd * 100) });
                 }
             }
 

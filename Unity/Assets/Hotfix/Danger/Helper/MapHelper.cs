@@ -31,22 +31,22 @@ namespace ET
             }
         }
 
-        public static Unit GetNearestUnit(Unit unit)
+        public static Unit GetNearestUnit(Unit main)
         {
-            List<Entity> units = unit.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Children.Values.ToList();
+            List<Entity> units = main.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Children.Values.ToList();
             Unit nearest = null;
             float distance = -1f;
             for (int i = 0; i < units.Count; i++)
             {
-                Unit uu = units[i] as Unit;
-                if (unit.Id == uu.Id)
+                Unit unit = units[i] as Unit;
+                if (main.Id == unit.Id)
                     continue;
-                if (!uu.IsCanBeAttackByUnit(unit))
+                if (!main.IsCanAttackUnit(unit))
                     continue;
-                float dd = Vector3.Distance(unit.Position, uu.Position);
+                float dd = Vector3.Distance(main.Position, unit.Position);
                 if (distance < 0f || dd < distance)
                 {
-                    nearest = uu;
+                    nearest = unit;
                     distance = dd;
                 }
             }

@@ -110,11 +110,11 @@ namespace ET
 
                 //1自己 2敌对 3队友  4主城
                 string showType ="4";
-                if (unit.IsCanBeAttackByUnit(main))
+                if (main.IsCanAttackUnit(unit))
                 {
                     showType = "2";
                 }
-                if (unit.IsSameTeam(main))
+                if (main.IsSameTeam(unit))
                 {
                     showType = "3";
                 }

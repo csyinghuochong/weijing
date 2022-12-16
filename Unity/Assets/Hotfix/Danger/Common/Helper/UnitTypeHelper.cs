@@ -2,13 +2,13 @@
 {
     public static class UnitTypeHelper
     {
-        public static bool IsCanBeAttackByUnit(this Unit self, Unit attack)
+        public static bool IsCanAttackUnit(this Unit self, Unit defend)
         {
-            if (self.Id == attack.Id)
+            if (self.Id == defend.Id)
             {
                 return false;
             }
-            if (!self.IsCanBeAttack())
+            if (!defend.IsCanBeAttack())
             {
                 return false;
             }
@@ -19,14 +19,14 @@
             mapComponent = self.DomainScene().GetComponent<MapComponent>();
             petComponent = self.GetComponent<PetComponent>();
 #else
-            mapComponent = attack.ZoneScene().GetComponent<MapComponent>();
+            mapComponent = defend.ZoneScene().GetComponent<MapComponent>();
             petComponent = self.ZoneScene().GetComponent<PetComponent>();
 #endif
 
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetDungeon
              || mapComponent.SceneTypeEnum == (int)SceneTypeEnum.PetTianTi)
             {
-                return self.Type != UnitType.Player && self.GetBattleCamp() != attack.GetBattleCamp();
+                return self.Type != UnitType.Player && self.GetBattleCamp() != defend.GetBattleCamp();
             }
 
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.BaoZang 
@@ -35,14 +35,14 @@
                 if (SceneConfigCategory.Instance.Get(mapComponent.SceneId).IfPVP == 1)
                 { 
                     //允许pk地图
-                    return !self.IsSameTeam(attack) && !self.IsMasterOrPet(attack, petComponent);
+                    return !self.IsSameTeam(defend) && !self.IsMasterOrPet(defend, petComponent);
                 }
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Battle)
             {
-                return self.GetBattleCamp() != attack.GetBattleCamp();
+                return self.GetBattleCamp() != defend.GetBattleCamp();
             }
-            return self.GetBattleCamp() != attack.GetBattleCamp() && !self.IsSameTeam(attack);
+            return self.GetBattleCamp() != defend.GetBattleCamp() && !self.IsSameTeam(defend);
         }
 
         public static bool IsCanBeAttack(this Unit self)

@@ -44,30 +44,30 @@ namespace ET
         public static readonly float FuBenCameraPositionMin_Z = -50f;
         public static readonly float FuBenCameraPositionMax_Z = 50f;
 
-        public static Unit GetNearestEnemy(Unit unit, float maxdis = 0f)
+        public static Unit GetNearestEnemy(Unit main, float maxdis = 0f)
         {
             Unit nearest = null;
             float distance = -1f;
-            List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
-                Unit uu = units[i];
-                if (uu.IsDisposed || unit.Id == uu.Id)
+                Unit unit = units[i];
+                if (unit.IsDisposed || main.Id == unit.Id)
                 {
                     continue;
                 }
-                if (!uu.IsCanBeAttackByUnit(unit))
+                if (!main.IsCanAttackUnit(unit))
                 {
                     continue;
                 }
-                float dd = PositionHelper.Distance2D(unit, uu);
+                float dd = PositionHelper.Distance2D(main, unit);
                 if (maxdis > 0f && maxdis < dd)
                 {
                     continue;
                 }
                 if (distance < 0f || dd < distance)
                 {
-                    nearest = uu;
+                    nearest = unit;
                     distance = dd;
                 }
             }
@@ -88,30 +88,30 @@ namespace ET
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="unit"></param>
+        /// <param name="main"></param>
         /// <param name="maxdis"></param>
         /// <param name="numberType"></param>
         /// <returns></returns>
-        public static List<long> GetNearestEnemy(Unit unit, float maxdis, int numberType)
+        public static List<long> GetNearestEnemy(Unit main, float maxdis, int numberType)
         {
             List<long> unitIdList = new List<long>();
             List<EnemyUnitInfo> enemyUnitInfos = new List<EnemyUnitInfo>();
-            List<Unit> units = unit.GetParent<UnitComponent>().GetAll();
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
             {
-                Unit uu = units[i];
-                if (uu.IsDisposed || unit.Id == uu.Id)
+                Unit unit = units[i];
+                if (unit.IsDisposed || main.Id == unit.Id)
                 {
                     continue;
                 }
-                if (!uu.IsCanBeAttackByUnit(unit))
+                if (!main.IsCanAttackUnit(unit))
                 {
                     continue;
                 }
-                float dd = PositionHelper.Distance2D(unit, uu);
+                float dd = PositionHelper.Distance2D(main, unit);
                 if (dd < maxdis)
                 {
-                    enemyUnitInfos.Add(new EnemyUnitInfo() { Distacne = dd, UnitID = uu.Id });
+                    enemyUnitInfos.Add(new EnemyUnitInfo() { Distacne = dd, UnitID = unit.Id });
                 }
             }
             if (enemyUnitInfos.Count == 0)

@@ -105,7 +105,7 @@ namespace ET
             ReferenceCollector rc = this.HeadBar.GetComponent<ReferenceCollector>();
 
             Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(this.ZoneScene());
-            bool canAttack = unit.IsCanBeAttackByUnit(mainUnit);
+            bool canAttack = mainUnit.IsCanAttackUnit(unit);
             ObjHp = rc.Get<GameObject>("Img_HpValue");
             switch (unit.Type)
             {

@@ -223,7 +223,7 @@ namespace ET
 
         public static void TriggeSkillHurt(this SkillHandler self,  Unit uu)
         {
-            bool canAttack = uu.IsCanBeAttackByUnit(self.TheUnitFrom);
+            bool canAttack = self.TheUnitFrom.IsCanAttackUnit(uu);
             if (!canAttack)
             {
                 return;
