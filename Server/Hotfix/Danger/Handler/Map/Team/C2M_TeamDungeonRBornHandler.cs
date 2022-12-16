@@ -13,7 +13,7 @@ namespace ET
             MapComponent mapComponent = unit.DomainScene().GetComponent<MapComponent>();
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
 
-            if (UnitHelper.GetBattleCamp(unit) == CampEnum.CampPlayer_1)
+            if (unit.GetBattleCamp() == CampEnum.CampPlayer_1)
             {
                 unit.SetBornPosition(new Vector3(sceneConfig.InitPos[0] * 0.01f, sceneConfig.InitPos[1] * 0.01f, sceneConfig.InitPos[2] * 0.01f));
             }

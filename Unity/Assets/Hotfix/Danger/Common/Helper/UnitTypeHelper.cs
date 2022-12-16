@@ -45,6 +45,38 @@
             return self.GetBattleCamp() != defend.GetBattleCamp() && !self.IsSameTeam(defend);
         }
 
+        public static int GetTeamId(this Unit self)
+        {
+            return self.GetComponent<NumericComponent>().GetAsInt(NumericType.TeamId);
+        }
+
+        public static bool IsSameTeam(this Unit self, Unit other)
+        {
+            return self.GetTeamId() == other.GetTeamId() && self.GetTeamId() != 0;
+        }
+
+        public static bool IsMasterOrPet(this Unit self, Unit defend, PetComponent petComponent)
+        {
+            if (self.Type != UnitType.Player && self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == defend.Id)
+            {
+                return true;
+            }
+            if (self.Type == UnitType.Player && defend.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == self.Id)
+            {
+                return true;
+            }
+            if (self.Type == UnitType.Player && petComponent.GetFightPetId() == defend.Id)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static int GetBattleCamp(this Unit self)
+        {
+            return self.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleCamp);
+        }
+
         public static bool IsCanBeAttack(this Unit self)
         {
             if (self.GetComponent<MoveComponent>() == null)

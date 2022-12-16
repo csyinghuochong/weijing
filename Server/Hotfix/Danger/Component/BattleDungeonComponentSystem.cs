@@ -23,7 +23,7 @@ namespace ET
             {
                 return;
             }
-            if (UnitHelper.GetBattleCamp(defend) == CampEnum.CampPlayer_1)
+            if (defend.GetBattleCamp() == CampEnum.CampPlayer_1)
             {
                 self.CampKillNumber_2++;
             }
@@ -77,7 +77,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (UnitHelper.GetBattleCamp(units[i])!=winCamp)
+                if (units[i].GetBattleCamp()!=winCamp)
                 {
                     continue;
                 }
