@@ -215,7 +215,7 @@ namespace ET
                 int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
                 int leftTimes = totalTimes - times;
                 self.Text_LeftTime.SetActive(true);
-                self.Text_LeftTime.GetComponent<Text>().text = $"进入副本剩余次数：{leftTimes}/{totalTimes}";
+                self.Text_LeftTime.GetComponent<Text>().text = $"副本次数：{leftTimes}/{totalTimes}";
             }
         }      
 
