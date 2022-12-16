@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 402
+  version: 403
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -3890,8 +3890,6 @@ MonoBehaviour:
     path: Assets/Bundles/Jpg/Back_7.jpg
   - bundle: a575910516f77dd9fceeac75747da220.unity3d
     path: Assets/Bundles/Material/UI_Hui.mat
-  - bundle: e16a1e2472be084e257bec59ed3b03c0.unity3d
-    path: Assets/Bundles/Material/UI_Hui_2.mat
   - bundle: b4f5ec8d5f7e0c00c46d54f021492b13.unity3d
     path: Assets/Bundles/Sound/Boss.prefab
   - bundle: 3c7e3389b467e22a40a30b77654c2cbc.unity3d
@@ -3976,8 +3974,6 @@ MonoBehaviour:
     path: Assets/Bundles/UI/Common/UITips.prefab
   - bundle: 9552cefc441033887e2eaf8b22be6615.unity3d
     path: Assets/Bundles/UI/Common/UITipsDi.prefab
-  - bundle: bc28f02a56647abb569568f6f99e3f96.unity3d
-    path: Assets/Bundles/UI/Common/UITipsDi3.prefab
   - bundle: 0482ad9203ac77b57e1358851ed17edf.unity3d
     path: Assets/Bundles/UI/Common/UI_CommonHint.prefab
   - bundle: 4594e51ba683428f45db5374b67de9d8.unity3d
@@ -5225,9 +5221,6 @@ MonoBehaviour:
   - name: a575910516f77dd9fceeac75747da220.unity3d
     assets:
     - Assets/Bundles/Material/UI_Hui.mat
-  - name: e16a1e2472be084e257bec59ed3b03c0.unity3d
-    assets:
-    - Assets/Bundles/Material/UI_Hui_2.mat
   - name: cdcb2966812544ad98d4cff0f17bdee8.unity3d
     assets:
     - Assets/Bundles/Text/Text.prefab
@@ -6425,9 +6418,6 @@ MonoBehaviour:
   - name: 9552cefc441033887e2eaf8b22be6615.unity3d
     assets:
     - Assets/Bundles/UI/Common/UITipsDi.prefab
-  - name: bc28f02a56647abb569568f6f99e3f96.unity3d
-    assets:
-    - Assets/Bundles/UI/Common/UITipsDi3.prefab
   - name: 0482ad9203ac77b57e1358851ed17edf.unity3d
     assets:
     - Assets/Bundles/UI/Common/UI_CommonHint.prefab
@@ -9697,66 +9687,6 @@ MonoBehaviour:
     - Assets/Bundles/Icon/TiTleIcon/UILingDi.png
     - Assets/Bundles/Icon/TiTleIcon/UILingDiReward.png
     - Assets/Bundles/Icon/TiTleIcon/UIXiuLian.png
-  - name: 1aa355706e1767666124331a716c7890.unity3d
-    assets:
-    - Assets/Res/Shader/UI_Hui.shader
-    - Assets/Mono/GameDemo/OldResources/Shaders/Toony-BasicOutline.shader
-    - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonBasicOutline.shader
-    - Assets/Res/MonsterModel/Monster/M09001/texture/ToonBasicOutline.shader
-    - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonLitOutline.shader
-    - Assets/Res/Models/Warrior/Suriyun/UnityChanShader/Shader/Unitychan_chara_hada.shader
-    - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-Top.shader
-    - Assets/Mono/GameDemo/Editor Default Resources/Simple Character Pack/Shader/ToonTransparent.shader
-    - Assets/TextMesh Pro/Shaders/TMP_SDF.shader
-    - Assets/Res/Effect/BackBlur/BackBlur.shader
-    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-Add.shader
-    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-Add-Disslove.shader
-    - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-DetachAlpha-Top.shader
-    - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Add-DetachAlpha-Top.shader
-    - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Add-Top.shader
-    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-Glow.shader
-    - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/Shader/ShaderB/E3D-distortion.shader
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/JR1/Effects/Shaders/E/E3D/E3D_EF_31_ADD_Top2.shader
-    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/E3D-Effect-Shader/AirDistort/E3D-AirDistort-Noise-Mask.shader
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/JR1/Effects/Shaders/Builtin/Particle
-      Add.shader
-    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/E3D-Effect-Shader/AirDistort/E3D-AirDistort-AutoNoise-Mask.shader
-    - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Alpha-DetachAlpha-Top.shader
-    - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Shaders/Add_CenterGlow.shader
-    - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Shaders/Blend_CenterGlow.shader
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/IceEffect/Effects/Magic
-      Ice Vol.1/Shaders/ParticleCook-Transparent-AlphaBlend-Diffuse.shader
-    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Shaders/Blend_TwoSides.shader
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/IceEffect/Effects/Magic
-      Ice Vol.1/Shaders/ParticleCook-Transparent-Additive-Diffuse.shader
-    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 3/Shaders/Lit_CenterGlow.shader
-    - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Shaders/Distortion.shader
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/JR1/Effects/Shaders/E/E3D/E3D_EF_31_ADD_Top.shader
-    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/E3D-Effect-Shader/UV/E3DVFX-3T-UV-VC-Add.shader
-    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Shaders/Add_Fresnel.shader
-    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-AirWave.shader
-    - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Alpha-Blend-DetachAlpha-Top.shader
-    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Blend-Glow.shader
-    - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-AddSmooth-DetachAlpha-Top.shader
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Shaders/AlphaBlendedMobile_Scroll01.shader
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Shaders/AdditiveMobile_Scroll01.shader
-    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-Tex-WithAlpha.shader
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/ShurikenMagic/Shaders/SM_TransparentRim.shader
-    - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/E3D-Effect-Shader/AirDistort/E3D-AirDistort-AutoNoise-Mask-Fre.shader
-    - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-Mask3.shader
-    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-HardEdge-Opaque.shader
-    - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Shaders/Slash.shader
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Shaders/Additive_EdgeSoft.shader
-    - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-HardEdge.shader
-    - Assets/Res/Effect/SkillZhiShi/Effect/Shader/Particle Alpha Blend1.shader
-    - Assets/Mono/GameDemo/ArtResource/Shaders/Toony-Basic.shader
-    - Assets/T4M/Shaders/ShaderModel2/Diffuse/T4M 4 Textures.shader
-    - Assets/Mono/GameDemo/OldResources/Water (Basic)/Sources/Shaders/FX-Water Simple.shader
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/IceEffect/Effects/Magic
-      Ice Vol.1/Shaders/ParticleCook-Transparent-AlphaBlend-Diffuse-Z.shader
-    - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonBasic.shader
-    - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/ToonColor_ShadingGradeMap.shader
-    - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/Toon_ShadingGradeMap_Mobile.shader
   - name: f25cddffc2bb2503ef64e3bf9f053512.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/Act_Dao_2.fbx
@@ -9847,6 +9777,66 @@ MonoBehaviour:
   - name: 1ae33eacf7db74c1456ee4e2751f1d75.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Animation Setting/_Humanoid And Add-Bone.mask
+  - name: 1aa355706e1767666124331a716c7890.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/Shaders/Toony-BasicOutline.shader
+    - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonBasicOutline.shader
+    - Assets/Res/MonsterModel/Monster/M09001/texture/ToonBasicOutline.shader
+    - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonLitOutline.shader
+    - Assets/Res/Models/Warrior/Suriyun/UnityChanShader/Shader/Unitychan_chara_hada.shader
+    - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-Top.shader
+    - Assets/Mono/GameDemo/Editor Default Resources/Simple Character Pack/Shader/ToonTransparent.shader
+    - Assets/TextMesh Pro/Shaders/TMP_SDF.shader
+    - Assets/Res/Effect/BackBlur/BackBlur.shader
+    - Assets/Res/Shader/UI_Hui.shader
+    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-Add.shader
+    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-Add-Disslove.shader
+    - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Add-DetachAlpha-Top.shader
+    - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Add-DetachAlpha-Top.shader
+    - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Add-Top.shader
+    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-Glow.shader
+    - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/Shader/ShaderB/E3D-distortion.shader
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/JR1/Effects/Shaders/E/E3D/E3D_EF_31_ADD_Top2.shader
+    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/E3D-Effect-Shader/AirDistort/E3D-AirDistort-Noise-Mask.shader
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/JR1/Effects/Shaders/Builtin/Particle
+      Add.shader
+    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/E3D-Effect-Shader/AirDistort/E3D-AirDistort-AutoNoise-Mask.shader
+    - Assets/Mono/GameDemo/ArtResource/Shaders/Mobile-Particle-Alpha-DetachAlpha-Top.shader
+    - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Shaders/Add_CenterGlow.shader
+    - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Shaders/Blend_CenterGlow.shader
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/IceEffect/Effects/Magic
+      Ice Vol.1/Shaders/ParticleCook-Transparent-AlphaBlend-Diffuse.shader
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Shaders/Blend_TwoSides.shader
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/IceEffect/Effects/Magic
+      Ice Vol.1/Shaders/ParticleCook-Transparent-Additive-Diffuse.shader
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 3/Shaders/Lit_CenterGlow.shader
+    - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Shaders/Distortion.shader
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/JR1/Effects/Shaders/E/E3D/E3D_EF_31_ADD_Top.shader
+    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/E3D-Effect-Shader/UV/E3DVFX-3T-UV-VC-Add.shader
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Shaders/Add_Fresnel.shader
+    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C1-AirWave.shader
+    - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-Alpha-Blend-DetachAlpha-Top.shader
+    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Blend-Glow.shader
+    - Assets/Mono/GameDemo/ArtResource/Shaders/Particle-AddSmooth-DetachAlpha-Top.shader
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Shaders/AlphaBlendedMobile_Scroll01.shader
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Shaders/AdditiveMobile_Scroll01.shader
+    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-Tex-WithAlpha.shader
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/ShurikenMagic/Shaders/SM_TransparentRim.shader
+    - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/E3D-Effect-Shader/AirDistort/E3D-AirDistort-AutoNoise-Mask-Fre.shader
+    - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-Mask3.shader
+    - Assets/Res/Effect/EffectResSet/Effect/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-HardEdge-Opaque.shader
+    - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Shaders/Slash.shader
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Shaders/Additive_EdgeSoft.shader
+    - Assets/Res/Effect/EffectResSet/Effect2/E3D-RenderCore/Shader/ShaderB/E3DEffect-C2-Add-HardEdge.shader
+    - Assets/Res/Effect/SkillZhiShi/Effect/Shader/Particle Alpha Blend1.shader
+    - Assets/Mono/GameDemo/ArtResource/Shaders/Toony-Basic.shader
+    - Assets/T4M/Shaders/ShaderModel2/Diffuse/T4M 4 Textures.shader
+    - Assets/Mono/GameDemo/OldResources/Water (Basic)/Sources/Shaders/FX-Water Simple.shader
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/IceEffect/Effects/Magic
+      Ice Vol.1/Shaders/ParticleCook-Transparent-AlphaBlend-Diffuse-Z.shader
+    - Assets/Res/Effect/EffectsSharde/ToonShading/Shaders/ToonBasic.shader
+    - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/ToonColor_ShadingGradeMap.shader
+    - Assets/Res/SD Unity-Chan Haon Custom/Shader/Unity-chan Toon Shader Ver 2.0.6/Toon_ShadingGradeMap_Mobile.shader
   - name: 06c899daf4e635c1d693fdac401e430b.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/SkillTaiShou.fbx
@@ -11595,9 +11585,6 @@ MonoBehaviour:
   - name: fd7a295fb7aa555f5898529e8f43025d.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_89.png
-  - name: e95070835ba4a0e5aa8c6d875fef9212.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_211.png
   - name: 48367e4dbef9a89c1ded1e76d4f6004c.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_198.png
@@ -11613,9 +11600,15 @@ MonoBehaviour:
   - name: 8cc7d1a1c8acafbb4b52d92a67e790a9.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_55.png
+  - name: e95070835ba4a0e5aa8c6d875fef9212.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_211.png
   - name: bf5c33791e33242c5603a6c590c7fa5f.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_108.png
+  - name: 8824231fd3fe1b2cd83429471ed5d2b6.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_427.png
   - name: b4e94c18f169b7f51a7c2530a1757902.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_81.Png
@@ -11904,9 +11897,6 @@ MonoBehaviour:
   - name: a5d14d2f78c33045b55ffff886e63571.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_180.png
-  - name: 8892c6f8ec05d7779fa3ec271c5d1359.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_18.png
   - name: fcda6cd1c1be96fe608fdc8beb463368.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_32.png
@@ -15127,6 +15117,9 @@ MonoBehaviour:
   - name: 36eab2a3356ae102aa38f784942a6b84.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B2_1.FBX
+  - name: 9ddfa4c8355867e3b36b77a890b331b8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Coconut.jpg
   - name: e3c1b19ccf84a82109da11c257db026d.unity3d
     assets:
     - Assets/Res/TerrainTieTuSet/Textures/Ground/Ground16.tga
@@ -15145,9 +15138,6 @@ MonoBehaviour:
   - name: ae34bc76908d2099dfa71eadc2ef2547.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A20.prefab
-  - name: 9ddfa4c8355867e3b36b77a890b331b8.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Coconut.jpg
   - name: 1685df754d06300e934a773f2a0885c9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_F2.prefab
@@ -16023,9 +16013,6 @@ MonoBehaviour:
   - name: 420dc74b7f5838e0c78c944fe9baaeab.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_smallparts_Normal.png
-  - name: 41d1031377221bf0f500a33c199fcb89.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/NewLayer.terrainlayer
   - name: 796fd08bb7dcc4233b1e498b04f10c7e.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_treebase.mat
@@ -16035,9 +16022,6 @@ MonoBehaviour:
   - name: 6050b7307d2f80c20efae2672ae02ea7.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_flowerpots_Normal.png
-  - name: 34e51294051f6e3b6a12b2560f4c3064.unity3d
-    assets:
-    - Assets/Scenes/Map/100001.asset
   - name: fce9582443a7bde6098730e604e4fee7.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_leaves
@@ -16052,10 +16036,6 @@ MonoBehaviour:
   - name: afaf26f0bffbc82f3d7554b737bda409.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_bush_01.prefab
-  - name: 9303972f980557f320734383cd0d8077.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/NewLayer
-      4.terrainlayer
   - name: 252dea9e1fe2f20137a7ac45274255e1.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/flower_texture_01.png
@@ -16071,9 +16051,6 @@ MonoBehaviour:
   - name: 75bf2352b70a41861b3a954d084c7037.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_woodenkit_02.mat
-  - name: e8d31638d060d79866f4a528e42e691d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_dirttexture_stylized.png
   - name: b5bcd9548ad81b86e82b96d58c3f9bd8.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Modular
@@ -16087,9 +16064,6 @@ MonoBehaviour:
   - name: 7cbce0beb20bf8b41b500c8eb4763fe9.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_windowglass.png
-  - name: ed03f206b1958a623cebcd075f67f0e5.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_grasstexture_stylized.png
   - name: 1d889cf1681094542c50c3c538fd40e3.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_trees_base_Normal.png
@@ -16351,9 +16325,6 @@ MonoBehaviour:
   - name: 2acf6eeb2febea09c6ccdfb4e0144095.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/ShaMo/EYu.fbx
-  - name: 854c5e13a55b5cced6409cab1fa7f555.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/caOut_groundSand_16_diff.png
   - name: 234d009765f39954af6ef701d299d72f.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelRock08.fbx
@@ -17309,6 +17280,9 @@ MonoBehaviour:
   - name: 8ea20192135965e7ac872ed842d9531b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Texture/SHRUBS_01.png
+  - name: 854c5e13a55b5cced6409cab1fa7f555.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/caOut_groundSand_16_diff.png
   - name: cc501d5de1a17eb7d69eb1f1fdc035a1.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/Texture/CLIFFROCK01.png

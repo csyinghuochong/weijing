@@ -38,6 +38,10 @@ namespace ET
             for (int i = 0; i < needList.Length; i++)
             {
                 string[] itemInfo = needList[i].Split(';');
+                if (itemInfo.Length != 2)
+                {
+                    continue;
+                }
                 int itemId = int.Parse(itemInfo[0]);
                 int itemNum = int.Parse(itemInfo[1]);
                 costItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });

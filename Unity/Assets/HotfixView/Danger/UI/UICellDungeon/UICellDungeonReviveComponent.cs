@@ -77,13 +77,11 @@ namespace ET
 
         public static void Check(this UICellDungeonReviveComponent self, int leftTime)
         {
+            self.LeftTime = leftTime;
+            self.Text_ExitTip.GetComponent<Text>().text = string.Format("{0}秒后退出副本", leftTime);
             if (leftTime <= 0)
             {
                 self.OnAuto_Exit();
-            }
-            else
-            {
-                self.Text_ExitTip.GetComponent<Text>().text = string.Format("{0}秒后退出副本", self.LeftTime);
             }
         }
 

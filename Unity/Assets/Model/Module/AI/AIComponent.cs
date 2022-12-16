@@ -45,6 +45,7 @@ namespace ET
 
         public List<Vector3> TargetPoint = new List<Vector3>();
 
+        public long LastZhuiJiTime;
         public Vector3 TargetZhuiJi;
     }
 }

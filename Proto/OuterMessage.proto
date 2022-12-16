@@ -4146,6 +4146,23 @@ message M2C_SyncMiJingDamage // IActorMessage
 	repeated TeamPlayerInfo DamageList = 1;          
 }
 
+//ResponseType M2C_FubenMessageResponse
+message C2M_FubenMessageRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 SceneType = 1;
+	int32 MessageType = 2;
+}
+
+message M2C_FubenMessageResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	string MessageValue = 1;
+}
+
 ///////Max OpcodeID   放在最后
 message M2C_UpdateVersion // IActorMessage
 {
