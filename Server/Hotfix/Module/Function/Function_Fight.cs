@@ -379,7 +379,7 @@ namespace ET
 
                         if (skillconfig.SkillActType == 0)
                         {
-                            damge = (int)((float)damge * 0.8f);
+                            damge = (int)((float)damge * 0.7f);
                         }
 
                         //技能受到10%伤害

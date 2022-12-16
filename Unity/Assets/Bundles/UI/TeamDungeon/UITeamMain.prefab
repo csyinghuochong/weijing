@@ -229,7 +229,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3965ae1cd39e8e0419a651702900e377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleSize: 1.5
+  scaleSize: 1.1
   scaleTime: 0.5
   passTime: 0
   scaleMode: 0
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3965ae1cd39e8e0419a651702900e377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scaleSize: 1.5
+  scaleSize: 1.1
   scaleTime: 0.5
   passTime: 0
   scaleMode: 0

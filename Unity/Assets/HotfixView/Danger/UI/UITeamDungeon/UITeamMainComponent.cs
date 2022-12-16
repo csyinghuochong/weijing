@@ -140,7 +140,11 @@ namespace ET
                 }
             }
             self.LeftTime--;
-            self.Label_LeftTime.GetComponent<Text>().text = $"{self.LeftTime}秒";
+            int timeStr = self.LeftTime;
+            if (self.LeftTime < 0) {
+                timeStr = 0;
+            }
+            self.Label_LeftTime.GetComponent<Text>().text = $"拾取剩余:{timeStr}秒";
         }
     }
 }
