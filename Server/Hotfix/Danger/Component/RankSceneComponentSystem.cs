@@ -346,6 +346,7 @@ namespace ET
                 return;
             }
 
+            m2R_PetRankUpdateRequest.RankPetInfo.RankId = enemyRankNum;
             if (selfRankNum == -1)
             {
                 self.DBRankInfo.rankingPets.Remove(enemyRankPetInfo);
@@ -355,8 +356,6 @@ namespace ET
             {
                 enemyRankPetInfo.RankId = selfRankNum;
             }
-            m2R_PetRankUpdateRequest.RankPetInfo.RankId = enemyRankNum;
-            
             self.DBRankInfo.rankingPets.Sort(delegate (RankPetInfo a, RankPetInfo b)
             {
                 return a.RankId - b.RankId;
