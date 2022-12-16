@@ -144,8 +144,6 @@ namespace ET
                     return errorCode;       
                 }
 
-                EventType.BeforeSkill.Instance.ZoneScene = unit.ZoneScene();
-                Game.EventSystem.PublishClass(EventType.BeforeSkill.Instance);
                 unit.GetComponent<SingingComponent>().BeginMoveOrSkill();
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
                 if (checksing && skillConfig.SkillFrontSingTime > 0)
@@ -173,6 +171,8 @@ namespace ET
         public static async ETTask<int> ImmediateUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillCmd)
         {
             Unit unit = self.GetParent<Unit>();
+            EventType.BeforeSkill.Instance.ZoneScene = unit.ZoneScene();
+            Game.EventSystem.PublishClass(EventType.BeforeSkill.Instance);
             unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NetWait);
             M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;
             unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);
@@ -227,22 +227,7 @@ namespace ET
         public static void OnUseSkill(this SkillManagerComponent self, M2C_UnitUseSkill skillcmd )
         {
             Unit unit = self.GetParent<Unit>();
-            //野怪技能指示器
-            for (int i = 0; i < skillcmd.SkillInfos.Count; i++)
-            {
-                SkillConfig skillConfig1 = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[i].WeaponSkillID);
-                int effctId = skillConfig1.SkillEffectID[0];
-                if (effctId != 0 && !EffectConfigCategory.Instance.Contain(effctId))
-                {
-                    Log.Debug($"无效的effectid {effctId}");
-                    continue;
-                }
-
-                ASkillHandler skillHandler = (ASkillHandler)ObjectPool.Instance.Fetch(SkillDispatcherComponent.Instance.SkillTypes[skillConfig1.GameObjectName]);
-                skillHandler.OnInit(skillcmd.SkillInfos[i], unit);
-                self.Skills.Add(skillHandler);
-            }
-            self.AddSkillTimer();
+            
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
             if (skillcmd.ItemId > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
             {
@@ -260,6 +245,23 @@ namespace ET
                 EventType.FsmChange.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.FsmChange.Instance);
             }
+
+            //野怪技能指示器
+            for (int i = 0; i < skillcmd.SkillInfos.Count; i++)
+            {
+                SkillConfig skillConfig1 = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[i].WeaponSkillID);
+                int effctId = skillConfig1.SkillEffectID[0];
+                if (effctId != 0 && !EffectConfigCategory.Instance.Contain(effctId))
+                {
+                    Log.Debug($"无效的effectid {effctId}");
+                    continue;
+                }
+
+                ASkillHandler skillHandler = (ASkillHandler)ObjectPool.Instance.Fetch(SkillDispatcherComponent.Instance.SkillTypes[skillConfig1.GameObjectName]);
+                skillHandler.OnInit(skillcmd.SkillInfos[i], unit);
+                self.Skills.Add(skillHandler);
+            }
+            self.AddSkillTimer();
         }
 
         public static void InterruptSing(this SkillManagerComponent self)
