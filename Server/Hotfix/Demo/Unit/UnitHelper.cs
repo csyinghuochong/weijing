@@ -278,13 +278,17 @@ namespace ET
             return  self.GetTeamId() == other.GetTeamId() && self.GetTeamId() != 0;
         }
 
-        public static bool IsMasterOrPet(this Unit self, Unit other, PetComponent petComponent)
+        public static bool IsMasterOrPet(this Unit self, Unit defend, PetComponent petComponent)
         {
-            if (self.Type == UnitType.Pet && self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == other.Id)
+            if (self.Type != UnitType.Player && self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == defend.Id)
             {
                 return true;
             }
-            if (self.Type == UnitType.Player && petComponent.GetFightPetId() == other.Id)
+            if (self.Type == UnitType.Player && defend.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == self.Id)
+            {
+                return true;
+            }
+            if (self.Type == UnitType.Player && petComponent.GetFightPetId() == defend.Id)
             {
                 return true;
             }
