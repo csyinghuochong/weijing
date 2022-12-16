@@ -65,8 +65,7 @@ namespace ET
             }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int selfRechage = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
-            //int selfRechage = self.ZoneScene().GetComponent<AccountInfoComponent>().GetRechargeNumber(userInfoComponent.UserInfo.UserId);
-            if (index == 3 && selfRechage < 198)
+            if (index == 3 && selfRechage < 298)
             {
                 FloatTipManager.Instance.ShowFloatTip("未达到领取条件！");
                 return;
