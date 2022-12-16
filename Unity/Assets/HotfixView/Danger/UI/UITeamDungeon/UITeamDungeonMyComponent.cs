@@ -113,7 +113,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("没有副本队伍");
                 return;
             }
-            string text = $" 副本:{SceneConfigCategory.Instance.Get(teamInfo.SceneId).Name}开启冒险,现邀请你的加入！ <link=team_{teamInfo.TeamId}_{teamInfo.SceneId}><color=#B5FF28><u>点击申请加入</u></color></link>";
+            string text = $" 副本:{SceneConfigCategory.Instance.Get(teamInfo.SceneId).Name}开启冒险,现邀请你的加入！ <link=team_{teamInfo.TeamId}_{teamInfo.SceneId}_{teamInfo.FubenType}_{teamInfo.PlayerList[0].PlayerLv}><color=#B5FF28><u>点击申请加入</u></color></link>";
             self.ZoneScene().GetComponent<ChatComponent>().SendChat(ChannelEnum.Word, text).Coroutine();
         }
 

@@ -53,7 +53,7 @@ namespace ET
 
         public static void OnButton_Apply(this UITeamDungeonItemComponent self)
         {
-            self.ZoneScene().GetComponent<TeamComponent>().SendTeamApply(self.TeamInfo.TeamId, self.TeamInfo.SceneId).Coroutine();
+            self.ZoneScene().GetComponent<TeamComponent>().SendTeamApply(self.TeamInfo.TeamId, self.TeamInfo.SceneId, self.TeamInfo.FubenType, self.TeamInfo.PlayerList[0].PlayerLv).Coroutine();
         }
 
         public static void OnUpdateUI(this UITeamDungeonItemComponent self, TeamInfo teamInfo)

@@ -12,8 +12,8 @@ namespace ET
 
     public class TeamDungeonComponent : Entity, IAwake, IDestroy
     {
-
         public long Timer;
+        public int FubenType;
         public long EnterTime;
         public TeamInfo TeamInfo;
         public List<int> BoxReward = new List<int>();

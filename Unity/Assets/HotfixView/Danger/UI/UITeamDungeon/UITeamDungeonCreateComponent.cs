@@ -7,6 +7,7 @@ namespace ET
 {
     public class UITeamDungeonCreateComponent : Entity, IAwake
     {
+        public GameObject Button_XieZhu;
         public GameObject CloseButton;
         public GameObject ItemNodeList;
         public GameObject TextLevelLimit;
@@ -28,6 +29,8 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.Button_XieZhu = rc.Get<GameObject>("Button_XieZhu");
+            self.Button_Create.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Create(TeamFubenType.XieZhu).Coroutine(); });
             self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");
             self.TextLevelLimit = rc.Get<GameObject>("TextLevelLimit");
             self.TextPlayerLimit = rc.Get<GameObject>("TextPlayerLimit");
@@ -35,7 +38,7 @@ namespace ET
             self.TextFubenName2 = rc.Get<GameObject>("TextFubenName2");
             self.Button_Create = rc.Get<GameObject>("Button_Create");
             self.CloseButton = rc.Get<GameObject>("CloseButton");
-            self.Button_Create.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Create().Coroutine(); });
+            self.Button_Create.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Create(TeamFubenType.Normal).Coroutine(); });
             self.FubenIdList.Clear();
             self.ButtonList.Clear();
 
@@ -144,9 +147,9 @@ namespace ET
             UIHelper.Remove( self.DomainScene(), UIType.UITeamDungeonCreate );
         }
 
-        public static async ETTask OnButton_Create(this UITeamDungeonCreateComponent self)
+        public static async ETTask OnButton_Create(this UITeamDungeonCreateComponent self, int dungeonType)
         {
-            int errorCode =  await self.ZoneScene().GetComponent<TeamComponent>().RequestTeamDungeonCreate(self.FubenId);
+            int errorCode = await self.ZoneScene().GetComponent<TeamComponent>().RequestTeamDungeonCreate(self.FubenId, dungeonType);
             if (errorCode != ErrorCore.ERR_Success)
             {
                 ErrorHelp.Instance.ErrorHint(errorCode);

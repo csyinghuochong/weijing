@@ -198,7 +198,7 @@ namespace ET
 
         public static  void OnButton_ApplyTeam(this UIWatchMenuComponent self)
         {
-            self.ZoneScene().GetComponent<TeamComponent>().SendTeamApply(self.TeamId).Coroutine();
+            self.ZoneScene().GetComponent<TeamComponent>().SendTeamApply(self.TeamId, 0, 0, 0).Coroutine();
             self.OnClickImageBg();
         }
 

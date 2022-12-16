@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace ET
 {
@@ -26,14 +25,20 @@ namespace ET
             {
                 teamInfo.SceneId = request.FubenId;
             }
-
+            teamInfo.FubenType = request.FubenType; 
             teamSceneComponent.SyncTeamInfo(teamInfo, teamInfo.PlayerList).Coroutine();
 
             //启动机器人
-            long robotSceneId = DBHelper.GetRobotServerId();
-            MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = scene.DomainZone(),
-                MessageType = NoticeType.TeamDungeon,
-                Message = $"{teamInfo.SceneId}_{teamInfo.TeamId}"});
+            if (request.FubenType == TeamFubenType.Normal)
+            {
+                long robotSceneId = DBHelper.GetRobotServerId();
+                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest()
+                {
+                    Zone = scene.DomainZone(),
+                    MessageType = NoticeType.TeamDungeon,
+                    Message = $"{teamInfo.SceneId}_{teamInfo.TeamId}"
+                });
+            }
 
             reply();
             await ETTask.CompletedTask;

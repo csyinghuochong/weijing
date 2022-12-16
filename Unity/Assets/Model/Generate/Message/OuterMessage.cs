@@ -5824,6 +5824,9 @@ namespace ET
 		[ProtoMember(5)]
 		public long FubenUUId { get; set; }
 
+		[ProtoMember(6)]
+		public int FubenType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.TeamPlayerInfo)]
@@ -6121,6 +6124,9 @@ namespace ET
 
 		[ProtoMember(2)]
 		public TeamPlayerInfo TeamPlayerInfo { get; set; }
+
+		[ProtoMember(3)]
+		public int FubenType { get; set; }
 
 	}
 

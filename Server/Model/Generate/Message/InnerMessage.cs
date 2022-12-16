@@ -1476,6 +1476,9 @@ namespace ET
 		[ProtoMember(2)]
 		public long FubenInstanceId { get; set; }
 
+		[ProtoMember(3)]
+		public int FubenType { get; set; }
+
 	}
 
 	[ResponseType(nameof(G2T_GateUnitInfoResponse))]

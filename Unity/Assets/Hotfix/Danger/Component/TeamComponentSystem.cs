@@ -82,10 +82,21 @@ namespace ET
             T2C_TeamKickOutResponse r2c_roleEquip = (T2C_TeamKickOutResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
         }
 
-        public static async ETTask<int> SendTeamApply(this TeamComponent self, long teamId, int fubenId = 0)
+        /// <summary>
+        /// 申请组队
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="teamId"></param>
+        /// <param name="fubenId"></param>
+        /// <returns></returns>
+        public static async ETTask<int> SendTeamApply(this TeamComponent self, long teamId, int fubenId, int fubenType, int leaderLv)
         {
             try
             {
+                if (fubenId == 0)
+                {
+                    return ErrorCore.ERR_TeamIsFull;
+                }
                 TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
                 if (teamInfo != null && teamInfo.SceneId != 0)
                 {
@@ -93,28 +104,18 @@ namespace ET
                     EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
                     return ErrorCore.ERR_IsHaveTeam;
                 }
-
                 if (fubenId != 0)
                 {
-                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                    NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-                    UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-                    SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenId);
-                    //判断等级
-                    if (userInfoComponent.UserInfo.Lv < sceneConfig.EnterLv)
+                    int errorCode = self.CheckTimesAndLevel(fubenId, fubenType);
+                    if (errorCode != 0)
                     {
-                        EventType.CommonHintError.Instance.errorValue = ErrorCore.ERR_LevelIsNot;
-                        EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
-                        return ErrorCore.ERR_LevelIsNot;
+                        return errorCode;
                     }
-                    //判断次数
-                    if (numericComponent.GetAsInt(NumericType.TeamDungeonTimes) >= int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value))
-                    {
-                        EventType.CommonHintError.Instance.errorValue = ErrorCore.ERR_TimesIsNot;
-                        EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
-                        return ErrorCore.ERR_TimesIsNot;
-                    }
-
+                }
+                UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+                if (fubenType == TeamFubenType.XieZhu && userInfo.Lv > leaderLv)
+                {
+                    return ErrorCore.ERR_TeamerLevelIsNot;
                 }
 
                 C2T_TeamDungeonApplyRequest request = new C2T_TeamDungeonApplyRequest()
@@ -228,16 +229,15 @@ namespace ET
                 TeamComponent teamComponent = self.ZoneScene().GetComponent<TeamComponent>();
                 UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                 TeamInfo teamInfo = teamComponent.GetSelfTeam();
-                if (teamInfo==null || teamInfo.PlayerList[0].UserID != userInfoComponent.UserInfo.UserId)
+                int errorCode = self.CheckTimesAndLevel(teamInfo.SceneId, teamInfo.FubenType);
+                if (errorCode != ErrorCore.ERR_Success)
                 {
-                    return ErrorCore.ERR_IsNotLeader;
+                    return errorCode;
                 }
-
-                int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
-                int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
-                if (totalTimes - times <= 0)
+                errorCode = self.CheckCanOpenFuben(teamInfo.SceneId, teamInfo.FubenType);
+                if (errorCode != ErrorCore.ERR_Success)
                 {
-                    return ErrorCore.ERR_TimesIsNot;
+                    return errorCode;
                 }
                 SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
                 if (teamInfo.PlayerList.Count < sceneConfig.PlayerLimit)
@@ -256,10 +256,9 @@ namespace ET
             }
         }
 
-        //创建组队副本
-        public static async ETTask<int> RequestTeamDungeonCreate(this TeamComponent self, int fubenId)
+        public static int CheckTimesAndLevel(this TeamComponent self, int fubenId, int fubenType)
         {
-            try
+            if (fubenType == TeamFubenType.Normal)
             {
                 int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
                 int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
@@ -267,38 +266,79 @@ namespace ET
                 {
                     return ErrorCore.ERR_TimesIsNot;
                 }
-
-                UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-                SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenId);
-                if (userInfoComponent.UserInfo.Lv < sceneConfig.CreateLv)
+            }
+            else
+            {
+                int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
+                int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonXieZhu();
+                if (totalTimes - times <= 0)
                 {
-                    return ErrorCore.ERR_LevelIsNot;
+                    return ErrorCore.ERR_TimesIsNot;
                 }
+            }
 
-                //有队伍非队长返回
-                TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
-                if (teamInfo != null)
+            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenId);
+            if (userInfoComponent.UserInfo.Lv < sceneConfig.CreateLv)
+            {
+                return ErrorCore.ERR_LevelIsNot;
+            }
+            return ErrorCore.ERR_Success;
+        }
+
+        public static int CheckCanOpenFuben(this TeamComponent self, int fubenId, int fubenType)
+        {
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenId);
+            //有队伍非队长返回
+            TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
+            if (teamInfo != null)
+            {
+                if (teamInfo.SceneId == fubenId)
                 {
-                    if (teamInfo.SceneId == fubenId)
+                    return ErrorCore.ERR_IsHaveTeam;
+                }
+                if (teamInfo.PlayerList[0].UserID != self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId)
+                {
+                    return ErrorCore.ERR_IsNotLeader;
+                }
+                for (int i = 0; i < teamInfo.PlayerList.Count; i++)
+                {
+                    if (teamInfo.PlayerList[i].PlayerLv < sceneConfig.EnterLv)
                     {
-                        return ErrorCore.ERR_IsHaveTeam;
+                        return ErrorCore.ERR_TeamerLevelIsNot;
                     }
-                    if (teamInfo.PlayerList[0].UserID != self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId)
+                }
+                for (int i = 0; i < teamInfo.PlayerList.Count; i++)
+                {
+                    if (fubenType == TeamFubenType.XieZhu && teamInfo.PlayerList[i].PlayerLv > userInfoComponent.UserInfo.Lv - 10)
                     {
-                        return ErrorCore.ERR_IsNotLeader;
+                        return ErrorCore.ERR_TeamerLevelIsNot;
                     }
-                    for (int i = 0; i < teamInfo.PlayerList.Count; i++)
-                    {
-                        if (teamInfo.PlayerList[i].PlayerLv < sceneConfig.EnterLv)
-                        {
-                            return ErrorCore.ERR_TeamerLevelIsNot;
-                        }
-                    }
+                }
+            }
+            return ErrorCore.ERR_Success;
+        }
+
+        //创建组队副本
+        public static async ETTask<int> RequestTeamDungeonCreate(this TeamComponent self, int fubenId, int fubenType)
+        {
+            try
+            {
+                int errorCode = self.CheckTimesAndLevel(fubenId,  fubenType);
+                if (errorCode != ErrorCore.ERR_Success)
+                {
+                    return errorCode;
+                }
+                errorCode = self.CheckCanOpenFuben(fubenId, fubenType);
+                if (errorCode != ErrorCore.ERR_Success)
+                {
+                    return errorCode;
                 }
 
                 C2T_TeamDungeonCreateRequest c2M_ItemHuiShouRequest = new C2T_TeamDungeonCreateRequest()
                 {
                     FubenId = fubenId,
+                    FubenType = fubenType,  
                     TeamPlayerInfo = UnitHelper.GetSelfTeamPlayerInfo(self.ZoneScene())
                 };
                 //创建队伍

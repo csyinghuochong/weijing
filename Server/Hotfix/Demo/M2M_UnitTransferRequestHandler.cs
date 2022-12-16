@@ -167,7 +167,16 @@ namespace ET
 
 						if (!unit.IsRobot() && request.SceneType == SceneTypeEnum.TeamDungeon)
 						{
-							unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() + 1);
+							TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
+							int fubenType = teamDungeonComponent.FubenType;
+							if (fubenType == TeamFubenType.Normal || unit.Id != teamDungeonComponent.TeamInfo.TeamId)
+							{
+								unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() + 1);
+							}
+							else
+							{
+								unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonXieZhu, unit.GetTeamDungeonXieZhu() + 1);
+							}
 						}
 						if (request.SceneType == (int)SceneTypeEnum.Tower)
 						{

@@ -13,6 +13,12 @@ namespace ET
         public int Rotation;         //朝向
     }
 
+    public static class TeamFubenType
+    {
+        public const int Normal = 1;
+        public const int XieZhu = 2;
+    }
+
     public static class FubenDifficulty
     {
         public const int None = 0;

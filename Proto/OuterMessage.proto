@@ -1,4 +1,4 @@
-TeamInfosyntax = "proto3";
+syntax = "proto3";
 package ET;
 
 //IRequest   IResponse   请求返回配合使用   直连网关服的
@@ -2759,6 +2759,7 @@ message TeamInfo
 	int64 TeamId = 3;
 	int64 FubenInstanceId = 4;
 	int64 FubenUUId = 5;
+	int32 FubenType = 6;
 }
 
 message TeamPlayerInfo
@@ -2906,6 +2907,7 @@ message C2T_TeamDungeonCreateRequest // ITeamActorRequest
 
 	int32 FubenId = 1;
 	TeamPlayerInfo TeamPlayerInfo = 2;
+	int32 FubenType = 3;
 }
 
 message T2C_TeamDungeonCreateResponse // ITeamActorResponse

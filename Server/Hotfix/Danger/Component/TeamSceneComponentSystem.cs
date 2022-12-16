@@ -18,6 +18,7 @@ namespace ET
             mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(teamInfo.SceneId).MapID.ToString();
             teamDungeonComponent.TeamInfo = teamInfo;
             teamDungeonComponent.EnterTime = TimeHelper.ServerNow();
+            teamDungeonComponent.FubenType = teamInfo.FubenType;
             teamInfo.FubenInstanceId = fubenInstanceId;
             teamInfo.FubenUUId = fubenid;
             Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(mapComponent.NavMeshId));
