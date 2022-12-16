@@ -336,9 +336,7 @@ namespace ET
                 m2C_Skill.Error = ErrorCore.ERR_UseSkillError;
                 return m2C_Skill;
             }
-
-
-            if (skillcmd.ItemId == 0 && !ComHelp.IfNull(weaponSkillConfig.SkillAnimation))
+            if (skillcmd.ItemId == 0&& !ComHelp.IfNull(weaponSkillConfig.SkillAnimation))
             {
                 unit.GetComponent<MoveComponent>()?.Stop();
                 unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
@@ -348,7 +346,7 @@ namespace ET
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
             self.InterruptSing(skillcmd.SkillID);
-          
+
             for (int i = 0; i < skillList.Count; i++)
             {
                 SkillHandler skillAction = self.SkillFactory(skillList[i], unit);
@@ -372,7 +370,7 @@ namespace ET
             if (zhudong)
             {
                 unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(weaponSkillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7, skillcmd.TargetID, skillcmd.SkillID);
-                //unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(weaponSkillConfig.SkillRangeSize <= 4 ? SkillPassiveTypeEnum.AckDistance_9 : SkillPassiveTypeEnum.AckDistance_10, skillcmd.TargetID, skillcmd.SkillID);
+                unit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(weaponSkillConfig.SkillRangeSize <= 4 ? SkillPassiveTypeEnum.AckDistance_9 : SkillPassiveTypeEnum.AckDistance_10, skillcmd.TargetID, skillcmd.SkillID);
             }
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
             m2C_Skill.Error = ErrorCore.ERR_Success;

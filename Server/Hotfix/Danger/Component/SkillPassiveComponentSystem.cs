@@ -261,8 +261,8 @@ namespace ET
                 case SkillPassiveTypeEnum.ShanBi_5:
                 case SkillPassiveTypeEnum.WillDead_6:
                 case SkillPassiveTypeEnum.SkillGaiLv_7:
-                //case SkillPassiveTypeEnum.AckDistance_9:
-                //case SkillPassiveTypeEnum.AckDistance_10:
+                case SkillPassiveTypeEnum.AckDistance_9:
+                case SkillPassiveTypeEnum.AckDistance_10:
                     trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
                     break;
             }
