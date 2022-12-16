@@ -320,42 +320,44 @@ namespace ET
         {
             long enemyId = m2R_PetRankUpdateRequest.EnemyId;
 
-            int selfRankNum = -1;
-            int enemyRankNum = -1;
             RankPetInfo enemyRankPetInfo = null;
+            RankPetInfo selfRankPetInfo = null;
+
             for (int i = 0; i < self.DBRankInfo.rankingPets.Count; i++)
             {
                 RankPetInfo rankPetInfo = self.DBRankInfo.rankingPets[i];
                 if (rankPetInfo.UserId == m2R_PetRankUpdateRequest.RankPetInfo.UserId)
                 {
-                    selfRankNum = rankPetInfo.RankId;
+                    selfRankPetInfo = rankPetInfo;
                 }
                 if (rankPetInfo.UserId == enemyId)
                 {
-                    enemyRankNum = rankPetInfo.RankId;
                     enemyRankPetInfo = rankPetInfo;
                 }
             }
             //没找到对方或者高于对方排名，不更新排名
-            if (enemyRankNum == -1)
-            {
-                return;
-            }
-            if (selfRankNum != -1 && selfRankNum < enemyRankNum)
+            if (enemyRankPetInfo == null)
             {
                 return;
             }
 
-            m2R_PetRankUpdateRequest.RankPetInfo.RankId = enemyRankNum;
-            if (selfRankNum == -1)
+            if (selfRankPetInfo != null)
             {
+                if (selfRankPetInfo.RankId < enemyRankPetInfo.RankId)
+                {
+                    return;
+                }
+                int selfRank = selfRankPetInfo.RankId;
+                selfRankPetInfo.RankId = enemyRankPetInfo.RankId;
+                enemyRankPetInfo.RankId = selfRank;
+            }
+            else
+            {
+                m2R_PetRankUpdateRequest.RankPetInfo.RankId = enemyRankPetInfo.RankId;
                 self.DBRankInfo.rankingPets.Remove(enemyRankPetInfo);
                 self.DBRankInfo.rankingPets.Add(m2R_PetRankUpdateRequest.RankPetInfo);
             }
-            else 
-            {
-                enemyRankPetInfo.RankId = selfRankNum;
-            }
+           
             self.DBRankInfo.rankingPets.Sort(delegate (RankPetInfo a, RankPetInfo b)
             {
                 return a.RankId - b.RankId;

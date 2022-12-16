@@ -4122,6 +4122,8 @@ MonoBehaviour:
     path: Assets/Bundles/UI/Main/Country/UICountryChest.prefab
   - bundle: 2d6ff280331f2289f86feeb1bb9068ae.unity3d
     path: Assets/Bundles/UI/Main/Country/UICountryHuoDong.prefab
+  - bundle: 77b01a9fe25308f86523d53127affb7b.unity3d
+    path: Assets/Bundles/UI/Main/Country/UICountryHuoDongJieShao.prefab
   - bundle: 859921d7ab3cdd99ca758401b2601772.unity3d
     path: Assets/Bundles/UI/Main/Country/UICountryTask.prefab
   - bundle: 574d4f10a372831965401e0951df76af.unity3d
@@ -6640,6 +6642,9 @@ MonoBehaviour:
   - name: 2d6ff280331f2289f86feeb1bb9068ae.unity3d
     assets:
     - Assets/Bundles/UI/Main/Country/UICountryHuoDong.prefab
+  - name: 77b01a9fe25308f86523d53127affb7b.unity3d
+    assets:
+    - Assets/Bundles/UI/Main/Country/UICountryHuoDongJieShao.prefab
   - name: 859921d7ab3cdd99ca758401b2601772.unity3d
     assets:
     - Assets/Bundles/UI/Main/Country/UICountryTask.prefab
@@ -11597,6 +11602,9 @@ MonoBehaviour:
   - name: 5a6cd50010bbf0419416e2d5114278fe.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_391_1.png
+  - name: c99f6e18d2ad87ae1cf62a6add9bad61.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Button/Btn_59.png
   - name: 8cc7d1a1c8acafbb4b52d92a67e790a9.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_55.png
@@ -11639,9 +11647,6 @@ MonoBehaviour:
   - name: b99bb50da9dad77f14fc0fed63ad2d94.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/Pro_14.png
-  - name: c99f6e18d2ad87ae1cf62a6add9bad61.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Button/Btn_59.png
   - name: 378003f0aae41977900722226b5511da.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_85.png
