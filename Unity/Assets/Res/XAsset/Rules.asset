@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 408
+  version: 409
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -468,6 +468,8 @@ MonoBehaviour:
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_34.prefab
   - bundle: 0402229b5bef51ef22d051f007e3a9c6.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_35.prefab
+  - bundle: c2f29232a189f367aef5ba99ec568609.unity3d
+    path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_36.prefab
   - bundle: 6ffa896b28b5cea9c4d2ff5b1d181daa.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_4.prefab
   - bundle: b38456a6fadaa922b9f5a044c096c74e.unity3d
@@ -7444,6 +7446,9 @@ MonoBehaviour:
   - name: 0402229b5bef51ef22d051f007e3a9c6.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_35.prefab
+  - name: c2f29232a189f367aef5ba99ec568609.unity3d
+    assets:
+    - Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_36.prefab
   - name: 6ffa896b28b5cea9c4d2ff5b1d181daa.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_4.prefab
@@ -12802,6 +12807,51 @@ MonoBehaviour:
   - name: 422ce642352d319d67df8634e1a3896b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/RFX_Resources/Materials/Stretch_Hit01.mat
+  - name: cb4c92c73afeba6dd1114b08c9bc5107.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 3/Textures/Crater63.png
+  - name: 971d0f354be1c39b809e6e4f5ddc9393.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Textures/Point5.png
+  - name: efdaeb204fddc014733c40a055552dd3.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Materials/TwoSides9.mat
+  - name: 85d4a9cd8a82dcba8c67f275c005184e.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 3/Materials/Flare21bcg.mat
+  - name: eda8daaa100a0daf168bd6804c649afb.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Materials/TwoSides21.mat
+  - name: 394087d6b9a7933cbc93ac5c29418017.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Textures/SS2.png
+  - name: 8e6f08a8622eee849efaaba66d87c5dd.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 3/Textures/Trail65.png
+  - name: 4997da9d7321e1f8a886225f395ff4d3.unity3d
+    assets:
+    - "Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Models/\u0421ylindrical\u0421one.fbx"
+  - name: 47c6cf86449da6086c3d8df729948ee7.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Materials/Point5cg.mat
+  - name: 4d902f860495d2bd4b59e35878e21ec2.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Textures/Trail25.png
+  - name: 60213434e2d82363c84f410ceb6c0868.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 3/Textures/CircleBigMask.png
+  - name: 30996b9c47c2dd06a498f9d192051a87.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 3/Materials/Crater63bcg.mat
+  - name: 4f93427782ac303c77b9e0ad825d8d3e.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 3/Materials/Trail65cg.mat
+  - name: 5db4260e8e46e56b5f90eb3e1f85b2bb.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Materials/SS2bcg.mat
+  - name: a2843dec89f4e45e901323c5b28949de.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 3/Textures/Flare21.png
   - name: 46b3cbfc6ec5c212cd6935118209884d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/RFX_Resources/Materials/Light_Decal.mat
@@ -13592,21 +13642,12 @@ MonoBehaviour:
   - name: 548e50ac3b7276eac91f5ff22216d784.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Materials/TwoSides14.mat
-  - name: 85d4a9cd8a82dcba8c67f275c005184e.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 3/Materials/Flare21bcg.mat
-  - name: 4997da9d7321e1f8a886225f395ff4d3.unity3d
-    assets:
-    - "Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Models/\u0421ylindrical\u0421one.fbx"
   - name: faa85bbcbf59ed42911f0a33f3989dc2.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 2/Textures/Noise63.png
   - name: c051375320eea5364471c5c9b8713c51.unity3d
     assets:
     - Assets/Res/Effect/SkillBaseAct/ErbGameArt/Sword slash FX/Textures/Trail62.png
-  - name: a2843dec89f4e45e901323c5b28949de.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 3/Textures/Flare21.png
   - name: aa3593c9af0fd6bb89eede77b61ee850.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Ring51-1.mat
