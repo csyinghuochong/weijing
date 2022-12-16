@@ -221,6 +221,10 @@ namespace ET
             {
                 skillManagerComponent.SkillMoveTime = skillRigibTime;
             }
+            if (skillConfig.GameObjectName == "Skill_Other_ChongJi_1")
+            {
+                skillManagerComponent.SkillMoveTime = skillRigibTime;
+            }
 
             if (skillManagerComponent.SkillMoveTime > TimeHelper.ClientNow()
                || skillManagerComponent.SkillSingTime > TimeHelper.ClientNow())
