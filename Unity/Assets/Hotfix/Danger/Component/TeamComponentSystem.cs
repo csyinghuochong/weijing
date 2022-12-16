@@ -291,13 +291,14 @@ namespace ET
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenId);
             //有队伍非队长返回
             TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             if (teamInfo != null)
             {
                 if (teamInfo.SceneId == fubenId)
                 {
                     return ErrorCore.ERR_IsHaveTeam;
                 }
-                if (teamInfo.PlayerList[0].UserID != self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId)
+                if (teamInfo.PlayerList[0].UserID != userInfo.UserId)
                 {
                     return ErrorCore.ERR_IsNotLeader;
                 }
@@ -310,7 +311,7 @@ namespace ET
                 }
                 for (int i = 0; i < teamInfo.PlayerList.Count; i++)
                 {
-                    if (fubenType == TeamFubenType.XieZhu && teamInfo.PlayerList[i].PlayerLv > userInfoComponent.UserInfo.Lv - 10)
+                    if (fubenType == TeamFubenType.XieZhu && teamInfo.PlayerList[i].PlayerLv > userInfo.Lv - 10)
                     {
                         return ErrorCore.ERR_TeamerLevelIsNot;
                     }

@@ -29,7 +29,7 @@
                 TeamInfo teamInfo = teamComponent.GetTeamInfo(long.Parse(teamId[1]));
                 if (teamInfo != null)
                 {
-                    errorCode = await teamComponent.SendTeamApply(teamInfo.TeamId, teamInfo.SceneId, teamInfo.FubenType);
+                    errorCode = await teamComponent.SendTeamApply(teamInfo.TeamId, teamInfo.SceneId, teamInfo.FubenType, teamInfo.PlayerList[0].PlayerLv);
                 }
                 if (errorCode != 0)
                 {
