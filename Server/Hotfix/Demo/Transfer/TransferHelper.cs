@@ -102,6 +102,8 @@
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
             unit.GetComponent<HeroDataComponent>()?.BeforeTransfer();
             unit.GetComponent<BuffManagerComponent>().BeforeTransfer();
+            EventType.NumericChangeEvent.Instance.Attack = null;
+            unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(EventType.NumericChangeEvent.Instance);
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
             if (fightId != null)
             {

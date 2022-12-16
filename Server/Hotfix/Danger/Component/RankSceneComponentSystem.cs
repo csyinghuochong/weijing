@@ -318,8 +318,6 @@ namespace ET
 
         public static void OnRecvPetRank(this RankSceneComponent self, M2R_PetRankUpdateRequest m2R_PetRankUpdateRequest)
         {
-            long enemyId = m2R_PetRankUpdateRequest.EnemyId;
-
             RankPetInfo enemyRankPetInfo = null;
             RankPetInfo selfRankPetInfo = null;
 
@@ -330,7 +328,7 @@ namespace ET
                 {
                     selfRankPetInfo = rankPetInfo;
                 }
-                if (rankPetInfo.UserId == enemyId)
+                if (rankPetInfo.UserId == m2R_PetRankUpdateRequest.EnemyId)
                 {
                     enemyRankPetInfo = rankPetInfo;
                 }
