@@ -272,6 +272,12 @@ namespace ET
             return numericComponent.GetAsInt(NumericType.TeamDungeonTimes);
         }
 
+        public static int GetTeamDungeonXieZhu(this Unit self)
+        {
+            NumericComponent numericComponent = self.GetComponent<NumericComponent>();
+            return numericComponent.GetAsInt(NumericType.TeamDungeonXieZhu);
+        }
+
         public static int GetMaxPiLao(this Unit self)
         {
             return int.Parse(GlobalValueConfigCategory.Instance.Get(self.IsYueKaStates() ? 26 : 10).Value);

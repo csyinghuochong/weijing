@@ -103,6 +103,7 @@ namespace ET
 				if (message.GMMsg == "#resetfuben")
 				{
 					unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, 0);
+					unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonXieZhu, 0);
 					unit.GetComponent<UserInfoComponent>().UserInfo.DayFubenTimes.Clear();
 					return;
 				}

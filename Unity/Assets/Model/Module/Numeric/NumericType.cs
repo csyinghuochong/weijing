@@ -78,6 +78,7 @@
         public const int TeamId = 3072;
         public const int BattleTodayKill = 3073;                                   //战场击杀人数
         public const int PetExtendNumber = 3074;                                    //宠物扩展数量
+        public const int TeamDungeonXieZhu = 3075;                                  //协作副本
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

@@ -16,7 +16,7 @@
 {"_t":"GlobalValueConfig","_id":16,"Value":"10010001;10","Value2":0},
 {"_t":"GlobalValueConfig","_id":17,"Value":"880","Value2":0},
 {"_t":"GlobalValueConfig","_id":18,"Value":"0","Value2":0},
-{"_t":"GlobalValueConfig","_id":19,"Value":"3","Value2":0},
+{"_t":"GlobalValueConfig","_id":19,"Value":"3","Value2":3},
 {"_t":"GlobalValueConfig","_id":20,"Value":"200","Value2":0},
 {"_t":"GlobalValueConfig","_id":21,"Value":"20","Value2":0},
 {"_t":"GlobalValueConfig","_id":22,"Value":"300","Value2":0},
@@ -70,6 +70,6 @@
 {"_t":"GlobalValueConfig","_id":71,"Value":"100130;100240;100350","Value2":0},
 {"_t":"GlobalValueConfig","_id":72,"Value":"180","Value2":180},
 {"_t":"GlobalValueConfig","_id":73,"Value":"880","Value2":880},
-{"_t":"GlobalValueConfig","_id":74,"Value":"3","Value2":0},
+{"_t":"GlobalValueConfig","_id":74,"Value":"3","Value2":3},
 {"_t":"GlobalValueConfig","_id":75,"Value":"601502001","Value2":0},
 ]}
