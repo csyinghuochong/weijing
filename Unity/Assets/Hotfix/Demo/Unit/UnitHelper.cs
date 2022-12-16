@@ -110,7 +110,7 @@ namespace ET
 
         public static bool IsMasterOrPet(this Unit self, Unit defend, PetComponent petComponent)
         {
-            if (self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == defend.Id)
+            if (self.Type != UnitType.Player && self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == defend.Id)
             {
                 return true;
             }
