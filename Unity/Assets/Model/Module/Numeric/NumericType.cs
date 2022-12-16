@@ -652,6 +652,13 @@
         public const int Extra_Buff_PuGongAddPro_Add = Now_PuGongAddPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_PuGongAddPro_Mul = Now_PuGongAddPro * 100 + 12;            //属性Buff附加乘法
 
+        public const int Now_HpToDamgeAddPro = 2028;          //当前血量转换普攻加成比例  (一般默认为0,有此状态为100%)
+        public const int Base_HpToDamgeAddPro_Base = Now_HpToDamgeAddPro * 100 + 1;              //属性累加
+        public const int Base_HpToDamgeAddPro_Mul = Now_HpToDamgeAddPro * 100 + 2;               //属性乘法
+        public const int Base_HpToDamgeAddPro_Add = Now_HpToDamgeAddPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_HpToDamgeAddPro_Add = Now_HpToDamgeAddPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_HpToDamgeAddPro_Mul = Now_HpToDamgeAddPro * 100 + 12;            //属性Buff附加乘法
+
         //----------------抗性-------------
 
         public const int Now_Resistance_Shine_Pro = 2101;          //当前神圣抗性

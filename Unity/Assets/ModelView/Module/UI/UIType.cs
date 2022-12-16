@@ -56,6 +56,7 @@ namespace ET
 		public const string UICommonReward = "Main/Common/UICommonReward";
 		public const string UICountry = "Main/Country/UICountry";
 		public const string UICountryTips = "Main/Country/UICountryTips";
+		public const string UICountryHuoDongJieShao = "Main/Country/UICountryHuoDongJieShao";
 		public const string UIMakeLearn = "Main/MakeLearn/UIMakeLearn";
 		public const string UIRank = "Main/Rank/UIRank";
 		public const string UIRankReward = "Main/Rank/UIRankReward";

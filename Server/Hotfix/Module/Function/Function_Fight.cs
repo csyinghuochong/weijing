@@ -371,6 +371,28 @@ namespace ET
                     }
                 }
 
+                //怪物打玩家
+                if (attackUnit.Type == UnitType.Monster && defendUnit.Type == UnitType.Player)
+                {
+                    //战士降低受到怪物普攻20%的伤害
+                    if (defendUnit.GetComponent<UserInfoComponent>().UserInfo.Occ == 1) {
+
+                        if (skillconfig.SkillActType == 0)
+                        {
+                            damge = (int)((float)damge * 0.8f);
+                        }
+
+                        //技能受到10%伤害
+                        /*
+                        if (skillconfig.SkillActType == 1)
+                        {
+                            damge = (int)((float)damge * 0.1f);
+                        }
+                        */
+                    }
+
+                }
+
                 //技能倍伤
                 if (skillconfig.SkillActType == 1)
                 {
@@ -438,7 +460,32 @@ namespace ET
                 //普攻加成
                 if (skillconfig.SkillActType == 0)
                 {
+
+                    //普攻属性加成
                     damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_PuGongAddPro);
+
+                    //血量降低转换普攻伤害
+                    float hpDamgePro = numericComponentAttack.GetAsFloat(NumericType.Now_HpToDamgeAddPro);
+                    if (hpDamgePro > 0)
+                    {
+                        float acthpPro = (float)numericComponentAttack.GetAsInt(NumericType.Now_Hp) / (float)numericComponentAttack.GetAsInt(NumericType.Now_MaxHp);
+                        if (acthpPro < 1 && acthpPro > 0)
+                        {
+                            if (acthpPro >= 0.6f)
+                            {
+                                //大于0.5
+                                damgePro += (1f - acthpPro) / 4 * hpDamgePro;
+                            }
+                            else if (acthpPro >= 0.3f)
+                            {
+                                damgePro += (1f - acthpPro) / 2f * hpDamgePro;
+                            }
+                            else
+                            {
+                                damgePro += (1f - acthpPro) / 1.5f * hpDamgePro;
+                            }
+                        }
+                    }
                 }
 
                 //抗性
