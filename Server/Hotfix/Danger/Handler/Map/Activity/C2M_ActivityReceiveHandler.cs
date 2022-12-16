@@ -62,6 +62,17 @@ namespace ET
                             return;
                         }
                     }
+                    int selfRechage = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
+                    if (request.ReceiveIndex == 3 && selfRechage < 298)
+                    {
+                        reply();
+                        return;
+                    }
+                    if (request.ReceiveIndex == 2 && selfRechage < 98)
+                    {
+                        reply();
+                        return;
+                    }
                     zhanQuTokenRecvives.Add(new TokenRecvive() { ActivityId = request.ActivityId, ReceiveIndex = request.ReceiveIndex });
                     activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
                     string rewards = "";
