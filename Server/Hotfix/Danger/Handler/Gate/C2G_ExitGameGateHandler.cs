@@ -7,12 +7,21 @@ namespace ET
     {
         protected override async ETTask Run(Session session, C2G_ExitGameGate request, G2C_ExitGameGate response, Action reply)
         {
-            Player player = session.GetComponent<SessionPlayerComponent>().GetMyPlayer();
-            Log.Debug($"C2G_ExitGameGate  {player != null}");
-            if (player != null)
+            Log.Warning($"C2G_ExitGameGate  {request.Account}");
+
+            if (request.Account == 0)
             {
-                Log.Debug($"C2G_ExitGameGate  {player.UnitId}");
-                DisconnectHelper.KickPlayer(player).Coroutine();
+                Player player = session.GetComponent<SessionPlayerComponent>().GetMyPlayer();
+
+                if (player != null)
+                {
+                    Log.Warning($"C2G_ExitGameGate  {player.UnitId} 1111 ");
+                    DisconnectHelper.KickPlayer(player).Coroutine();
+                }
+                else
+                {
+                    Log.Warning($"C2G_ExitGameGate null");
+                }
             }
             reply();
             await ETTask.CompletedTask;

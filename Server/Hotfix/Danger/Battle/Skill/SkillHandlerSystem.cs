@@ -339,7 +339,7 @@ namespace ET
             }
             if (!SkillBuffConfigCategory.Instance.Contain(buffID))
             {
-                Log.Debug($"config==null： buffid{buffID}");
+                Log.Warning($"config==null： buffid{buffID}");
                 return;
             }
             SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffID);

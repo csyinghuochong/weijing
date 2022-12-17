@@ -44,5 +44,10 @@ namespace ET
 		{
 			return self.Domain.GetComponent<PlayerComponent>().Get(self.AccountId);
 		}
+
+		public static Player GetPlayer(this SessionPlayerComponent self, long accountId)
+		{
+			return self.Domain.GetComponent<PlayerComponent>().Get(accountId);
+		}
 	}
 }

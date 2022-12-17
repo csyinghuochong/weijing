@@ -45,7 +45,7 @@ namespace ET
             }
             try
             {
-                G2C_ExitGameGate response = await sessionComponent.Session.Call(new C2G_ExitGameGate()) as G2C_ExitGameGate;
+                G2C_ExitGameGate response = await sessionComponent.Session.Call(new C2G_ExitGameGate() {  }) as G2C_ExitGameGate;
             }
             catch (Exception e)
             {

@@ -31,15 +31,22 @@ namespace ET
 				ItemID = paiMaiSellConfig.ItemID,
 				BuyNum = request.BuyNum,
 				//Price = r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price,
+				ActorId = unit.GetComponent<UserInfoComponent>().UserInfo.Gold,
 			};
 
 			long paimaiServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.PaiMai)).InstanceId;
 			P2M_PaiMaiShopResponse r_PaiMaiShopResponse = (P2M_PaiMaiShopResponse)await ActorMessageSenderComponent.Instance.Call(paimaiServerId, m2P_PaiMaiShopRequest);
 
+			if (r_PaiMaiShopResponse.Error != ErrorCore.ERR_Success)
+			{
+				response.Error = r_PaiMaiShopResponse.Error;
+				reply();
+				return;
+			}
 
-			long costGold = r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price * request.BuyNum;
 			//消耗金币
-			if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold >= costGold)
+			long costGold = r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price * request.BuyNum;
+			if (costGold > 0 && unit.GetComponent<UserInfoComponent>().UserInfo.Gold >= costGold)
 			{
 				//发送金币
 				unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (costGold * -1).ToString());

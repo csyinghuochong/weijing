@@ -15,9 +15,17 @@ namespace ET
                 //获取当前的数据
                 PaiMaiSceneComponent paimaiCompontent = scene.GetComponent<PaiMaiSceneComponent>();
                 response.PaiMaiShopItemInfo = paimaiCompontent.GetPaiMaiShopInfo(request.ItemID);
+
+                long costGold = response.PaiMaiShopItemInfo.Price * request.BuyNum;
+                if (request.ActorId < costGold || costGold < 0)
+                {
+                    response.Error = ErrorCore.ERR_GoldNotEnoughError;
+                    reply();
+                    return;
+                }
+
                 //后面记录购买的数量
                 paimaiCompontent.PaiMaiShopInfoAddBuyNum(request.ItemID, request.BuyNum);
-
                 //扣除对应的上架道具
                 List<PaiMaiItemInfo> paiMaiItemInfo = paimaiCompontent.GetPaiMaiItemInfo(request.ItemID, response.PaiMaiShopItemInfo.Price);
                 if (paiMaiItemInfo != null)

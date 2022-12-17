@@ -166,15 +166,14 @@ namespace ET
 						StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), $"Map{ComHelp.MainCityID()}");
 						await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);
 
+						player.PlayerState = PlayerState.Game;
+						player.UnitId = request.UserID;
 						SessionStateComponent SessionStateComponent = session.GetComponent<SessionStateComponent>();
 						if (SessionStateComponent == null)
 						{
 							SessionStateComponent = session.AddComponent<SessionStateComponent>();
 						}
 						SessionStateComponent.State = SessionState.Game;
-
-						player.PlayerState = PlayerState.Game;
-						player.UnitId = request.UserID;
 					}
 					catch (Exception e)
 					{
