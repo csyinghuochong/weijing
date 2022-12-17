@@ -28,10 +28,6 @@ namespace ET
 			//对比出售数量和道具是否匹配
 			if (request.PaiMaiItemInfo.BagInfo.ItemNum <= unit.GetComponent<BagComponent>().GetItemNumber(request.PaiMaiItemInfo.BagInfo.ItemID))
 			{
-				//扣除对应道具
-				unit.GetComponent<BagComponent>().OnCostItemData(request.PaiMaiItemInfo.BagInfo.BagInfoID, request.PaiMaiItemInfo.BagInfo.ItemNum);
-				response.PaiMaiItemInfo = request.PaiMaiItemInfo;
-
 				//发送对应拍卖行信息
 				long paimaiServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.PaiMai)).InstanceId;
 				P2M_PaiMaiSellResponse r_GameStatusResponse = (P2M_PaiMaiSellResponse)await ActorMessageSenderComponent.Instance.Call
@@ -39,6 +35,12 @@ namespace ET
 					{
 						PaiMaiItemInfo = request.PaiMaiItemInfo
 					});
+
+				if (r_GameStatusResponse.Error == ErrorCore.ERR_Success) {
+					//扣除对应道具
+					unit.GetComponent<BagComponent>().OnCostItemData(request.PaiMaiItemInfo.BagInfo.BagInfoID, request.PaiMaiItemInfo.BagInfo.ItemNum);
+					response.PaiMaiItemInfo = request.PaiMaiItemInfo;
+				}
 			}
 			else
 			{
