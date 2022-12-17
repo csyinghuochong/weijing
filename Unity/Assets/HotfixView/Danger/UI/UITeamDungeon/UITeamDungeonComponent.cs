@@ -101,7 +101,7 @@ namespace ET
 
         public static bool CheckPageButton_1(this UITeamDungeonComponent self, int page)
         {
-            if ((TeamDungeonPageEnum)page != TeamDungeonPageEnum.TeamDungeonMy)
+            if (page != TeamDungeonPageEnum.TeamDungeonMy)
             {
                 return true;
             }
@@ -117,19 +117,19 @@ namespace ET
 
         public static void OnClickPageButton_1(this UITeamDungeonComponent self, int page)
         {
-            self.UITeamDungeonListComponent.GameObject.SetActive(page == (int)TeamDungeonPageEnum.TeamDungeonList);
-            self.UITeamDungeonMyComponent.GameObject.SetActive(page == (int)TeamDungeonPageEnum.TeamDungeonMy);
-            self.UITeamDungeonShopComponent.GameObject.SetActive(page == (int)TeamDungeonPageEnum.TeamDungeonShop);
+            self.UITeamDungeonListComponent.GameObject.SetActive(page == TeamDungeonPageEnum.TeamDungeonList);
+            self.UITeamDungeonMyComponent.GameObject.SetActive(page == TeamDungeonPageEnum.TeamDungeonMy);
+            self.UITeamDungeonShopComponent.GameObject.SetActive(page == TeamDungeonPageEnum.TeamDungeonShop);
             
             switch (page)
             {
-                case (int)TeamDungeonPageEnum.TeamDungeonList:
+                case TeamDungeonPageEnum.TeamDungeonList:
                     self.UITeamDungeonListComponent.OnUpdateUI();
                     break;
-                case (int)TeamDungeonPageEnum.TeamDungeonMy:
+                case TeamDungeonPageEnum.TeamDungeonMy:
                     self.UITeamDungeonMyComponent.OnUpdateUI();
                     break;
-                case (int)TeamDungeonPageEnum.TeamDungeonShop:
+                case TeamDungeonPageEnum.TeamDungeonShop:
                     self.UITeamDungeonShopComponent.OnUpdateUI();
                     break;
                 default:
