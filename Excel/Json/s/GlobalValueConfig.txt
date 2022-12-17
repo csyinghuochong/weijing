@@ -72,4 +72,5 @@
 {"_t":"GlobalValueConfig","_id":73,"Value":"880","Value2":880},
 {"_t":"GlobalValueConfig","_id":74,"Value":"3","Value2":3},
 {"_t":"GlobalValueConfig","_id":75,"Value":"601502001","Value2":0},
+{"_t":"GlobalValueConfig","_id":76,"Value":"40000001","Value2":40000001},
 ]}
