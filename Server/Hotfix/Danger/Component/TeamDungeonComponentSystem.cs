@@ -177,10 +177,14 @@ namespace ET
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(self.TeamInfo.SceneId);
             if (unit.ConfigId != sceneConfig.BossId)
             {
-                Unit leader = unit.GetParent<UnitComponent>().Get(self.TeamInfo.TeamId);
-                int dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(75).Value);
-                UnitFactory.CreateDropItems( leader, dropId, "1");
                 return;
+            }
+
+            int dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(75).Value);
+            Unit leader = unit.GetParent<UnitComponent>().Get(self.TeamInfo.TeamId);
+            if (leader != null && self.FubenType != TeamFubenType.XieZhu)
+            {
+                UnitFactory.CreateDropItems(leader, dropId, "1");
             }
 
             M2C_TeamDungeonSettlement m2C_FubenSettlement = new M2C_TeamDungeonSettlement();
