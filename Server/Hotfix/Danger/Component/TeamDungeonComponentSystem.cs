@@ -184,7 +184,7 @@ namespace ET
             Unit leader = unit.GetParent<UnitComponent>().Get(self.TeamInfo.TeamId);
             if (leader != null && self.FubenType != TeamFubenType.XieZhu)
             {
-                UnitFactory.CreateDropItems(leader, dropId, "1");
+                UnitFactory.CreateDropItems(leader, 1,dropId, "1");
             }
 
             M2C_TeamDungeonSettlement m2C_FubenSettlement = new M2C_TeamDungeonSettlement();

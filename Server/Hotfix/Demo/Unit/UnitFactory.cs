@@ -419,10 +419,10 @@ namespace ET
             }
         }
 
-        public static void CreateDropItems(Unit main, int dropId, string par)
+        public static void CreateDropItems(Unit main, int dropType,  int dropId, string par)
         {
-            //创建掉落
-            if (dropId > 0) //公共掉落
+            // 0 公共掉落 2保护掉落   1私有掉落
+            if (dropType == 0) 
             {
                 List<RewardItem> droplist = new List<RewardItem>();
                 DropHelper.DropIDToDropItem(dropId, droplist);
@@ -446,7 +446,7 @@ namespace ET
                     dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
                 }
             }
-            else
+            if (dropType == 1)
             {
                 M2C_CreateDropItems m2C_CreateDropItems = new M2C_CreateDropItems();
                 List<RewardItem> droplist = new List<RewardItem>();

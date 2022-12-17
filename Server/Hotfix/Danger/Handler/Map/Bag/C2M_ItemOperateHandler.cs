@@ -301,7 +301,7 @@ namespace ET
                                 //藏宝图
                             case 113:
                                 int dropid = int.Parse(useBagInfo.ItemPar.Split('@')[2]);
-                                UnitFactory.CreateDropItems(unit, dropid,  request.OperatePar);
+                                UnitFactory.CreateDropItems(unit,0, dropid,  request.OperatePar);
                                 break;
                             case 114: //宝石
                                 break;
