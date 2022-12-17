@@ -177,6 +177,9 @@ namespace ET
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(self.TeamInfo.SceneId);
             if (unit.ConfigId != sceneConfig.BossId)
             {
+                Unit leader = unit.GetParent<UnitComponent>().Get(self.TeamInfo.TeamId);
+                int dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(75).Value);
+                UnitFactory.CreateDropItems( leader, dropId, "1");
                 return;
             }
 

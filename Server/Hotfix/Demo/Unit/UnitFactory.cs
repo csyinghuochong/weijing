@@ -448,6 +448,22 @@ namespace ET
             }
             else
             {
+                M2C_CreateDropItems m2C_CreateDropItems = new M2C_CreateDropItems();
+                List<RewardItem> droplist = new List<RewardItem>();
+                DropHelper.DropIDToDropItem(dropId, droplist);
+                for (int k = 0; k < droplist.Count; k++)
+                {
+                    m2C_CreateDropItems.Drops.Add(new DropInfo()
+                    {
+                        DropType = 1,
+                        ItemID = droplist[k].ItemID,
+                        ItemNum = droplist[k].ItemNum,
+                        X = main.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f),
+                        Y = main.Position.y,
+                        Z = main.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
+                    });
+                }
+                MessageHelper.SendToClient(main, m2C_CreateDropItems);
             }
         }
     }
