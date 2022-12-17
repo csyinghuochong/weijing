@@ -6,7 +6,7 @@ namespace ET
 {
 
 
-    public class UITeamDungeonMyComponent : Entity, IAwake, IDestroy
+    public class UITeamDungeonMyComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public GameObject ButtonApplyList;
         public GameObject Button_Leave;
@@ -14,6 +14,7 @@ namespace ET
         public GameObject Button_Enter;
         public GameObject Button_Call;
         public GameObject Obj_Lab_FuBenName;
+        public GameObject GameObject;
 
         public GameObject[] UITeamNodeList = new GameObject[3];
         public List<UI> TeamUIList = new List<UI>();
@@ -32,12 +33,13 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UITeamDungeonMyComponentAwakeSystem : AwakeSystem<UITeamDungeonMyComponent>
+    public class UITeamDungeonMyComponentAwakeSystem : AwakeSystem<UITeamDungeonMyComponent, GameObject>
     {
 
-        public override void Awake(UITeamDungeonMyComponent self)
+        public override void Awake(UITeamDungeonMyComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Button_Enter = rc.Get<GameObject>("Button_Enter");
             ButtonHelp.AddListenerEx( self.Button_Enter, ()=> { self.OnButton_Enter().Coroutine();  } );

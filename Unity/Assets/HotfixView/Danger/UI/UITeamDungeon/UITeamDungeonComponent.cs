@@ -7,27 +7,18 @@ namespace ET
     //按钮枚举
     public enum TeamDungeonPageEnum : int
     {
-        TeamDungeonAll = 0,
+        TeamDungeonList = 0,
         TeamDungeonMy = 1,
         TeamDungeonShop = 2,
     }
 
     public class UITeamDungeonComponent : Entity, IAwake, IDestroy
     {
-        public GameObject UITeamDungeonList;
-        public GameObject UITeamDungeonMy;
-
-        public GameObject Text_XieZhuNum;
-        public GameObject Text_LeftTime;
-        public GameObject Button_Create;
-        public GameObject ItemNodeList;
-
-        public List<UI> TeamUIList = new List<UI>();
-
         public UIPageButtonComponent UIPageButtonComponent_1;
 
-
         public UITeamDungeonMyComponent UITeamDungeonMyComponent;
+        public UITeamDungeonListComponent UITeamDungeonListComponent;
+        public UITeamDungeonShopComponent UITeamDungeonShopComponent;
 
         public GameObject CloseButton;
     }
@@ -38,23 +29,10 @@ namespace ET
 
         public override void Awake(UITeamDungeonComponent self)
         {
-            self.TeamUIList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
-
-            self.Text_XieZhuNum = rc.Get<GameObject>("Text_XieZhuNum");
 
             self.CloseButton = rc.Get<GameObject>("CloseButton");
             self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeon); });
-
-            self.Text_LeftTime = rc.Get<GameObject>("Text_LeftTime");
-            self.UITeamDungeonList = rc.Get<GameObject>("UITeamDungeonList");
-            self.UITeamDungeonMy = rc.Get<GameObject>("UITeamDungeonMy");
-            self.UITeamDungeonMy.SetActive(false);
-
-            self.Button_Create = rc.Get<GameObject>("Button_Create");
-            self.Button_Create.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Create().Coroutine(); });
-
-            self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");
 
             //单选组件1
             GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
@@ -67,11 +45,11 @@ namespace ET
             uIPageViewComponent.ClickEnabled = false;
             self.UIPageButtonComponent_1 = uIPageViewComponent;
 
-            UI uiDungeonMy = self.AddChild<UI, string, GameObject>( "TeamDungeonMy", self.UITeamDungeonMy);
-            self.UITeamDungeonMyComponent = uiDungeonMy.AddComponent<UITeamDungeonMyComponent>();
+            self.UITeamDungeonListComponent = self.AddChild<UITeamDungeonListComponent, GameObject>(rc.Get<GameObject>("UITeamDungeonList"));
+            self.UITeamDungeonMyComponent = self.AddChild<UITeamDungeonMyComponent, GameObject>(rc.Get<GameObject>("UITeamDungeonMy"));
+            self.UITeamDungeonShopComponent = self.AddChild<UITeamDungeonShopComponent, GameObject>(rc.Get<GameObject>("UITeamDungeonShop"));
 
             self.RequestTeamDungeonInfo().Coroutine();
-
             DataUpdateComponent.Instance.AddListener(DataType.TeamUpdate, self);
         }
     }
@@ -96,23 +74,22 @@ namespace ET
             }
 
             self.UIPageButtonComponent_1.ClickEnabled = true;
-            //判定当前是否有副本队伍
             TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
             if (teamInfo == null || teamInfo.SceneId == 0)
             {
                 //无副本队伍
                 self.UIPageButtonComponent_1.OnSelectIndex(0);
             }
-            else {
+            else
+            {
                 //有副本队伍
                 self.UIPageButtonComponent_1.OnSelectIndex(1);
             }
-            self.OnUpdateUI().Coroutine();
+
         }
 
         public static void OnTeamUpdate(this UITeamDungeonComponent self)
         {
-            self.OnUpdateUI().Coroutine();
             self.UITeamDungeonMyComponent.OnUpdateUI();
 
             TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
@@ -124,103 +101,41 @@ namespace ET
 
         public static bool CheckPageButton_1(this UITeamDungeonComponent self, int page)
         {
-            if ((TeamDungeonPageEnum)page == TeamDungeonPageEnum.TeamDungeonMy)
+            if ((TeamDungeonPageEnum)page != TeamDungeonPageEnum.TeamDungeonMy)
             {
-                //判断当前是否有队伍
-                TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
-                if (teamInfo == null || teamInfo.SceneId == 0)
-                {
-                    FloatTipManager.Instance.ShowFloatTip("请先创建或加入副本队伍");
-                    return false;
-                }
                 return true;
+            }
+            //判断当前是否有队伍
+            TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
+            if (teamInfo == null || teamInfo.SceneId == 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先创建或加入副本队伍");
+                return false;
             }
             return true;
         }
 
         public static void OnClickPageButton_1(this UITeamDungeonComponent self, int page)
         {
-            //全部
-            if ((TeamDungeonPageEnum)page == TeamDungeonPageEnum.TeamDungeonAll) {
-                self.UITeamDungeonList.SetActive(true);
-                self.UITeamDungeonMy.SetActive(false);
-            }
+            self.UITeamDungeonListComponent.GameObject.SetActive(page == (int)TeamDungeonPageEnum.TeamDungeonList);
+            self.UITeamDungeonMyComponent.GameObject.SetActive(page == (int)TeamDungeonPageEnum.TeamDungeonMy);
+            self.UITeamDungeonShopComponent.GameObject.SetActive(page == (int)TeamDungeonPageEnum.TeamDungeonShop);
 
-            if ((TeamDungeonPageEnum)page == TeamDungeonPageEnum.TeamDungeonMy)
+            switch (page)
             {
-                self.OnBtn_Type_My();
+                case (int)TeamDungeonPageEnum.TeamDungeonList:
+                    self.UITeamDungeonListComponent.OnUpdateUI();
+                    break;
+                case (int)TeamDungeonPageEnum.TeamDungeonMy:
+                    self.UITeamDungeonMyComponent.OnUpdateUI();
+                    break;
+                case (int)TeamDungeonPageEnum.TeamDungeonShop:
+                    self.UITeamDungeonShopComponent.OnUpdateUI();
+                    break;
+                default:
+                    break;
             }
         }
-
-        public static void OnBtn_Type_My(this UITeamDungeonComponent self)
-        {
-            self.UITeamDungeonList.SetActive(false);
-            self.UITeamDungeonMy.SetActive(true);
-            self.UITeamDungeonMyComponent.OnUpdateUI();
-        }
-
-        public static async ETTask  OnButton_Create(this UITeamDungeonComponent self)
-        {
-            TeamInfo  teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
-            if (teamInfo != null && teamInfo.SceneId != 0)
-            {
-                FloatTipManager.Instance.ShowFloatTip("已经有队伍了");
-                return;
-            }
-
-            UI ui = await UIHelper.Create( self.DomainScene(), UIType.UITeamDungeonCreate );
-        }
-
-        public static async ETTask OnUpdateUI(this UITeamDungeonComponent self)
-        {
-            TeamComponent teamComponent = self.ZoneScene().GetComponent<TeamComponent>();
-            List<TeamInfo> teamList = teamComponent.TeamList;
-
-            var path = ABPathHelper.GetUGUIPath("TeamDungeon/UITeamDungeonItem");
-            await ETTask.CompletedTask;
-            var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
-            int number = 0;
-            for (int i = 0; i < teamList.Count; i++)
-            {
-                if (teamList[i].SceneId == 0)
-                {
-                    continue;
-                }
-                UI uI_1 = null;
-                if (number < self.TeamUIList.Count)
-                {
-                    uI_1 = self.TeamUIList[i];
-                    uI_1.GameObject.SetActive(true);
-                }
-                else
-                {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
-                    UICommonHelper.SetParent(go, self.ItemNodeList);
-                    uI_1 = self.AddChild<UI, string, GameObject>("UIItem_" + i, go);
-                    uI_1.AddComponent<UITeamDungeonItemComponent>();
-                    self.TeamUIList.Add(uI_1);
-                }
-                uI_1.GetComponent<UITeamDungeonItemComponent>().OnUpdateUI(teamList[i]);
-
-                number++;
-            }
-
-            for (int i = number; i < self.TeamUIList.Count; i++)
-            {
-                self.TeamUIList[i].GameObject.SetActive(false);
-            }
-
-            int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
-            int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
-            int leftTimes = totalTimes - times;
-            self.Text_LeftTime.SetActive(true);
-            self.Text_LeftTime.GetComponent<Text>().text = $"副本次数：{leftTimes}/{totalTimes}";
-
-            totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
-            times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonXieZhu();
-            self.Text_XieZhuNum.GetComponent<Text>().text = $"副本次数：{leftTimes}/{totalTimes}";
-        }      
 
     }
 

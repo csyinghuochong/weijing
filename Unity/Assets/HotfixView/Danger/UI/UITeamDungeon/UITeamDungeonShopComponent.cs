@@ -1,55 +1,49 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-
 namespace ET
 {
-    public class UIBattleShopComponent : Entity, IAwake
+    public class UITeamDungeonShopComponent : Entity, IAwake<GameObject>
     {
         public int SellId;
         public GameObject ButtonBuy;
         public GameObject ItemListNode;
+        public GameObject GameObject;
         public List<UIStoreItemComponent> SellList = new List<UIStoreItemComponent>();
     }
 
+
     [ObjectSystem]
-    public class UIBattleShopComponentAwakeSystem : AwakeSystem<UIBattleShopComponent>
+    public class UITeamDungeonShopComponentAwake : AwakeSystem<UITeamDungeonShopComponent, GameObject>
     {
 
-        public override void Awake(UIBattleShopComponent self)
+        public override void Awake(UITeamDungeonShopComponent self, GameObject gameObject)
         {
             self.SellId = 0;
             self.SellList.Clear();
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;   
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
 
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
-            ButtonHelp.AddListenerEx( self.ButtonBuy, self.OnButtonBuy );
-
-            self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
-            self.OnInitUI();
+            ButtonHelp.AddListenerEx(self.ButtonBuy, self.OnButtonBuy);
         }
     }
 
-    public static class UIBattleShopComponentSystem
+    public static class UITeamDungeonShopComponentSystem
     {
 
-        public static void OnButtonBuy(this UIBattleShopComponent self)
+        public static void OnButtonBuy(this UITeamDungeonShopComponent self)
         {
             if (self.SellId == 0)
             {
                 FloatTipManager.Instance.ShowFloatTip("请选择道具！");
                 return;
             }
-            self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.SellId).Coroutine(); 
+            self.ZoneScene().GetComponent<BagComponent>().SendBuyItem(self.SellId).Coroutine();
         }
 
-        public static void OnUpdateUI(this UIBattleShopComponent self)
-        {
-            self.OnClickHandler(0);
-        }
-
-        public static void OnClickHandler(this UIBattleShopComponent self, int sellId)
+        public static void OnClickHandler(this UITeamDungeonShopComponent self, int sellId)
         {
             self.SellId = sellId;
             for (int i = 0; i < self.SellList.Count; i++)
@@ -58,12 +52,16 @@ namespace ET
             }
         }
 
-        public static void OnInitUI(this UIBattleShopComponent self)
+        public static void OnUpdateUI(this UITeamDungeonShopComponent self)
         {
+            if (self.SellList.Count > 0)
+            {
+                return;
+            }
             string path_1 = ABPathHelper.GetUGUIPath("BattleDungeon/UIBattleShopItem");
             GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path_1);
 
-            int shopSellid = GlobalValueConfigCategory.Instance.Get(55).Value2;
+            int shopSellid = GlobalValueConfigCategory.Instance.Get(76).Value2;
             int playLv = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
             while (shopSellid != 0)
             {

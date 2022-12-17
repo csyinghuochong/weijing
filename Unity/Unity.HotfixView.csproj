@@ -312,6 +312,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryHuoDongComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UIMainBuffComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryHuoDongJieShaoEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIUnion\UIUnionApplyListItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UIRotateComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Register\UIRegisterEvent.cs" />
@@ -359,6 +360,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialDungeonItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIRoleHuiShouComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UICommonCostItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryHuoDongJieShaoComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\GameObjectPoolComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetSelectComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianLevelItemComponent.cs" />
@@ -567,8 +569,8 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryHuoDongJieShaoComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UICountry\UICountryHuoDongJieShaoEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonShopComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonListComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

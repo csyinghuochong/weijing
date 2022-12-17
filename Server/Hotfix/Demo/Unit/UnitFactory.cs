@@ -313,24 +313,22 @@ namespace ET
             }
 
             //1个人掉率降低
-            if (sceneType == SceneTypeEnum.TeamDungeon && playerNumer == 1) {
-                dropAdd_Pro -= 0.25f;
-            }
-
-            //正常掉率
-            if (sceneType == SceneTypeEnum.TeamDungeon && playerNumer == 2)
-            {
-                //dropAdd_Pro -= 0.3f;
-            }
-
-            //附加掉率
-            if (sceneType == SceneTypeEnum.TeamDungeon && playerNumer >= 3)
-            {
-                dropAdd_Pro += 0.25f;
+            if (sceneType == SceneTypeEnum.TeamDungeon) {
+                if (playerNumer == 1)
+                {
+                    dropAdd_Pro -= 0.25f;
+                }
+                if (playerNumer == 2)
+                {
+                    //dropAdd_Pro -= 0.3f;
+                }
+                if (playerNumer == 3)
+                {
+                    dropAdd_Pro += 0.25f;
+                }
             }
 
             //创建掉落
-
             if (main != null && monsterCof.MonsterSonType == 1)
             {
                 int nowUserLv = main.GetComponent<UserInfoComponent>().UserInfo.Lv;

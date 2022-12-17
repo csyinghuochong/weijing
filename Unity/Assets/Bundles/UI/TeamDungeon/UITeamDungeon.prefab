@@ -77,24 +77,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: ItemNodeList
-    gameObject: {fileID: 4609792291143842612}
   - key: Button_Create
     gameObject: {fileID: 2919376813699174881}
-  - key: UITeamDungeonList
-    gameObject: {fileID: 8672239262521736348}
-  - key: UITeamDungeonMy
-    gameObject: {fileID: 171660}
-  - key: Btn_Type_My
-    gameObject: {fileID: 2543128217612026585}
   - key: FunctionSetBtn
     gameObject: {fileID: 3312917037929196762}
-  - key: Text_LeftTime
-    gameObject: {fileID: 8445552799385046365}
   - key: CloseButton
     gameObject: {fileID: 9203210552201227102}
-  - key: Text_XieZhuNum
-    gameObject: {fileID: 3716495561711055760}
+  - key: UITeamDungeonShop
+    gameObject: {fileID: 1972194561822815811}
+  - key: UITeamDungeonMy
+    gameObject: {fileID: 171660}
+  - key: UITeamDungeonList
+    gameObject: {fileID: 8672239262521736348}
 --- !u!1 &171660
 GameObject:
   m_ObjectHideFlags: 0
@@ -2900,7 +2894,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5805287538025526211
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3657,13 +3651,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2610555755581579473}
+  - component: {fileID: 4286357882872511120}
   m_Layer: 5
   m_Name: UITeamDungeonShop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2610555755581579473
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3685,6 +3680,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4286357882872511120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1972194561822815811}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: ItemListNode
+    gameObject: {fileID: 9038777362064675133}
+  - key: ButtonBuy
+    gameObject: {fileID: 8332055745117587766}
 --- !u!1 &2072686211889549134
 GameObject:
   m_ObjectHideFlags: 0
@@ -20012,7 +20024,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &5750523100535385090
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35999,8 +36011,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6034694540990505663}
+  - component: {fileID: 5626827755660766871}
   m_Layer: 5
-  m_Name: UITeamDungeonAll
+  m_Name: UITeamDungeonList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36031,6 +36044,27 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &5626827755660766871
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672239262521736348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  data:
+  - key: Text_XieZhuNum
+    gameObject: {fileID: 3716495561711055760}
+  - key: Text_LeftTime
+    gameObject: {fileID: 8445552799385046365}
+  - key: ItemNodeList
+    gameObject: {fileID: 4609792291143842612}
+  - key: Button_Create
+    gameObject: {fileID: 2919376813699174881}
 --- !u!1 &8686862276915639405
 GameObject:
   m_ObjectHideFlags: 0
