@@ -5,11 +5,11 @@ using UnityEngine.UI;
 namespace ET
 {
     //按钮枚举
-    public enum TeamDungeonPageEnum : int
+    public static class TeamDungeonPageEnum
     {
-        TeamDungeonList = 0,
-        TeamDungeonMy = 1,
-        TeamDungeonShop = 2,
+        public const int TeamDungeonList = 0;
+        public const int TeamDungeonMy = 1;
+        public const int TeamDungeonShop = 2;
     }
 
     public class UITeamDungeonComponent : Entity, IAwake, IDestroy
@@ -120,7 +120,7 @@ namespace ET
             self.UITeamDungeonListComponent.GameObject.SetActive(page == (int)TeamDungeonPageEnum.TeamDungeonList);
             self.UITeamDungeonMyComponent.GameObject.SetActive(page == (int)TeamDungeonPageEnum.TeamDungeonMy);
             self.UITeamDungeonShopComponent.GameObject.SetActive(page == (int)TeamDungeonPageEnum.TeamDungeonShop);
-
+            
             switch (page)
             {
                 case (int)TeamDungeonPageEnum.TeamDungeonList:
