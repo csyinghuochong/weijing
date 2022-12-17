@@ -79,7 +79,20 @@ namespace ET
 
             SceneConfig teamDungeonConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
             self.Text_Condition.GetComponent<Text>().text = $"进入条件: {teamDungeonConfig.EnterLv}级";
-            self.Text_Name.GetComponent<Text>().text = teamDungeonConfig.Name;
+
+            string addStr = "";
+
+            if (teamInfo.FubenType == TeamFubenType.XieZhu)
+            {
+                int lvCha = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv - teamDungeonConfig.EnterLv;
+                if (lvCha >= 10)
+                {
+                    addStr = "(协助模式)";
+                }
+            }
+
+            self.Text_Name.GetComponent<Text>().text = teamDungeonConfig.Name + addStr;
+
             self.Text_Tuijian.GetComponent<Text>().text = $"推荐等级： {teamDungeonConfig.TuiJianLv[0]}-{teamDungeonConfig.TuiJianLv[1]}级";
         }
 

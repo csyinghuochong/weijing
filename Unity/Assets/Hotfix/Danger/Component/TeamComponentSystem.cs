@@ -305,6 +305,8 @@ namespace ET
                         return ErrorCore.ERR_TeamerLevelIsNot;
                     }
                 }
+
+                /*
                 for (int i = 0; i < teamInfo.PlayerList.Count; i++)
                 {
                     if (fubenType == TeamFubenType.XieZhu && teamInfo.PlayerList[i].PlayerLv < userInfo.Lv - 10)
@@ -312,6 +314,7 @@ namespace ET
                         return ErrorCore.ERR_TeamerLevelIsNot;
                     }
                 }
+                */
             }
             return ErrorCore.ERR_Success;
         }
