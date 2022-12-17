@@ -182,7 +182,7 @@ namespace ET
 
             int dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(75).Value);
             Unit leader = unit.GetParent<UnitComponent>().Get(self.TeamInfo.TeamId);
-            if (leader != null && self.FubenType != TeamFubenType.XieZhu)
+            if (leader != null && self.FubenType == TeamFubenType.XieZhu)
             {
                 UnitFactory.CreateDropItems(leader, 1,dropId, "1");
             }
