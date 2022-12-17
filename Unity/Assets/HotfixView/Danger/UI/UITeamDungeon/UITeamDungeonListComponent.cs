@@ -91,13 +91,12 @@ namespace ET
 
             int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
             int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
-            int leftTimes = totalTimes - times;
             self.Text_LeftTime.SetActive(true);
-            self.Text_LeftTime.GetComponent<Text>().text = $"副本次数：{leftTimes}/{totalTimes}";
+            self.Text_LeftTime.GetComponent<Text>().text = $"副本次数：{totalTimes - times}/{totalTimes}";
 
             totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
             times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonXieZhu();
-            self.Text_XieZhuNum.GetComponent<Text>().text = $"副本次数：{leftTimes}/{totalTimes}";
+            self.Text_XieZhuNum.GetComponent<Text>().text = $"副本次数：{totalTimes - times}/{totalTimes}";
         }
     }
 }
