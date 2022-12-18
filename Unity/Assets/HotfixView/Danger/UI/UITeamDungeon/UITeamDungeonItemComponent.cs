@@ -87,7 +87,7 @@ namespace ET
                 int lvCha = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv - teamDungeonConfig.EnterLv;
                 if (lvCha >= 10)
                 {
-                    addStr = "(协助模式)";
+                    addStr = "(帮助模式)";
                 }
             }
 

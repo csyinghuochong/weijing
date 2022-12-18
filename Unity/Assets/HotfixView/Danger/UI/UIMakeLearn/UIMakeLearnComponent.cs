@@ -117,7 +117,7 @@ namespace ET
             {
                 int cost = GlobalValueConfigCategory.Instance.Get(46).Value2;
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "技能重置",
-                    $"是否消耗{cost}钻石重置生活技能\n重置后自身学习的生活技能将全部遗忘,请谨慎选择!", ()=>
+                    $"重置后自身学习的生活技能将全部遗忘,请谨慎选择!", ()=>
                     {
                         self.RequestMakeSelect(makeId).Coroutine();
                     }, null).Coroutine();

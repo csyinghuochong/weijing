@@ -96,7 +96,7 @@ namespace ET
 
             totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
             times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonXieZhu();
-            self.Text_XieZhuNum.GetComponent<Text>().text = $"副本次数：{totalTimes - times}/{totalTimes}";
+            self.Text_XieZhuNum.GetComponent<Text>().text = $"帮助次数：{totalTimes - times}/{totalTimes}";
         }
     }
 }

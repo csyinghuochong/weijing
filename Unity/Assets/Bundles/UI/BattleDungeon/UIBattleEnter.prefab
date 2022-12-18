@@ -372,7 +372,7 @@ MonoBehaviour:
   m_StartCorner: 0
   m_StartAxis: 0
   m_CellSize: {x: 120, y: 120}
-  m_Spacing: {x: 0, y: 0}
+  m_Spacing: {x: 10, y: 0}
   m_Constraint: 2
   m_ConstraintCount: 1
 --- !u!1 &2172643028831827110
@@ -1024,7 +1024,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "2. \u5728\u6218\u573A\u80DC\u5229\u7684\u4E00\u623F\u5C06\u83B7\u5F97\u5956\u52B1"
+  m_Text: "2. \u5728\u6218\u573A\u80DC\u5229\u7684\u4E00\u65B9\u5C06\u83B7\u5F97\u5956\u52B1"
 --- !u!1 &5894980389085006668
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -9,6 +10,8 @@ namespace ET
         public GameObject ButtonBuy;
         public GameObject ItemListNode;
         public GameObject GameObject;
+        public GameObject ItemIconShow;
+        public GameObject ItemNum;
         public List<UIStoreItemComponent> SellList = new List<UIStoreItemComponent>();
     }
 
@@ -24,6 +27,8 @@ namespace ET
             self.GameObject = gameObject;   
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
+            self.ItemIconShow = rc.Get<GameObject>("ItemIconShow");
+            self.ItemNum = rc.Get<GameObject>("ItemNum");
 
             self.ButtonBuy = rc.Get<GameObject>("ButtonBuy");
             ButtonHelp.AddListenerEx(self.ButtonBuy, self.OnButtonBuy);
@@ -54,6 +59,12 @@ namespace ET
 
         public static void OnUpdateUI(this UITeamDungeonShopComponent self)
         {
+
+            //更新自身拥有的货币显示
+            int itemShowID = 10000149;
+            self.ItemIconShow.GetComponent<Image>().sprite = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemShowID.ToString());
+            self.ItemNum.GetComponent<Text>().text = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(itemShowID).ToString();
+
             if (self.SellList.Count > 0)
             {
                 return;
@@ -79,6 +90,7 @@ namespace ET
                 uIItemComponent.SetClickHandler(self.OnClickHandler);
                 self.SellList.Add(uIItemComponent);
             }
+
         }
     }
 }
