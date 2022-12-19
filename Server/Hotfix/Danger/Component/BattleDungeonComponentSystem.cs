@@ -17,7 +17,7 @@ namespace ET
 
     public static class BattleDungeonComponentSystem
     {
-        public static void OnKillEvent(this BattleDungeonComponent self, Unit defend)
+        public static void OnKillEvent(this BattleDungeonComponent self, Unit defend, Unit attack)
         {
             if (defend.Type != UnitType.Player)
             {
@@ -44,7 +44,11 @@ namespace ET
                 m2C_Battle.CampKill_2 = self.CampKillNumber_2;
                 MessageHelper.SendToClient(units[i], m2C_Battle);
             }
-            //attack.GetComponent<NumericComponent>().ApplyChange(null, NumericType.BattleTodayKill, 1,0);
+
+            if (attack != null && attack.Type == UnitType.Player)
+            {
+                attack.GetComponent<NumericComponent>().ApplyChange(null, NumericType.BattleTodayKill, 1, 0);
+            }
             int score = GlobalValueConfigCategory.Instance.Get(57).Value2;
             if (self.CampKillNumber_1 > score || self.CampKillNumber_2 > score)
             {

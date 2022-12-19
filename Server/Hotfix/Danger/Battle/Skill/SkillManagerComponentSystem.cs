@@ -576,6 +576,12 @@ namespace ET
         {
             for ( int i = self.Skills.Count - 1; i >= 0; i-- )
             {
+                if (self.Skills.Count == 0)
+                {
+                    Unit unit = self.GetParent<Unit>();
+                    Log.Warning($"SkillManagerComponent582:  {unit.Type} {unit.InstanceId}");
+                    break;
+                }
                 if (self.Skills[i].GetSkillState() == SkillState.Finished)
                 {
                     SkillHandler skillHandler = self.Skills[i];
