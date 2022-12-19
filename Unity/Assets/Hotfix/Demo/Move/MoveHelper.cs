@@ -14,7 +14,7 @@ namespace ET
         /// <param name="targetPos"></param>
         /// <param name="yangan"></param>
         /// <returns></returns>
-        public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos,bool yangan=false, ETCancellationToken cancellationToken = null)
+        public static async ETTask<int> MoveToAsync2(this Unit unit, Vector3 targetPos,bool yangan=true, ETCancellationToken cancellationToken = null)
         {
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
             stateComponent.StateTypeRemove(StateTypeEnum.Obstruct);

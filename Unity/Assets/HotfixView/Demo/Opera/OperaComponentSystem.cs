@@ -232,7 +232,7 @@ namespace ET
             Vector3 dir = (unit.Position - position).normalized;
             position += dir * 2f;
 
-            int ret = await self.MoveToPosition(position);
+            int ret = await self.MoveToPosition(position, true);
             if (ret != 0)
             {
                 return;
@@ -368,7 +368,7 @@ namespace ET
             if (!unit.GetComponent<StateComponent>().CanMove())
                 return;
 
-            int ret = await self.MoveToPosition(position);
+            int ret = await self.MoveToPosition(position, true);
             if (ret != 0)
             {
                 return;
@@ -405,7 +405,7 @@ namespace ET
                 self.OnUnitToSpeak(position).Coroutine();
                 return;
             }
-            int ret = await self.MoveToPosition(position);
+            int ret = await self.MoveToPosition(position, true);
             if (ret != 0)
             {
                 return;

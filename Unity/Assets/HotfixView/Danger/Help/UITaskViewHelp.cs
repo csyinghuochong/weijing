@@ -140,7 +140,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             EventType.BeforeMove.Instance.ZoneScene = zoneScene;
             Game.EventSystem.PublishClass(EventType.BeforeMove.Instance);
-            unit.MoveToAsync2(gameObject.transform.position).Coroutine();
+            unit.MoveToAsync2(gameObject.transform.position, true).Coroutine();
         }
 
         public int GetFubenByNpc(int npcId)

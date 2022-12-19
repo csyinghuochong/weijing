@@ -117,7 +117,7 @@ namespace ET
             // ETTask.CompletedTask;
             //FloatTipManager.Instance.ShowFloatTip("请前往主城摆摊222!");
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            unit.MoveToAsync2(new Vector3(46.28f,-3.61f,7.35f), false).Coroutine();
+            unit.MoveToAsync2(new Vector3(46.28f,-3.61f,7.35f), true).Coroutine();
         }
 
         public static async ETTask OnBtn_XiaJia(this UIPaiMaiSellComponent self)

@@ -1206,7 +1206,7 @@ namespace ET
         public static async ETTask MoveToShiQu(this UIMainComponent self, Vector3 position)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int value = await unit.MoveToAsync2(position, false);
+            int value = await unit.MoveToAsync2(position, true);
             List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
             if (value == 0 && ids.Count > 0)
             {
