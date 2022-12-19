@@ -1,15 +1,12 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using System.Linq;
-using System.Collections.Generic;
-
 
 namespace ET
 {
     public class UIBattleTaskComponent : Entity, IAwake
     {
         public GameObject TaskListNode;
-        public List<UICountryTaskItemComponent> TaskList = new List<UICountryTaskItemComponent>();
+        public List<UIBattleTaskItemComponent> TaskList = new List<UIBattleTaskItemComponent>();
     }
 
     [ObjectSystem]
@@ -61,7 +58,7 @@ namespace ET
                     continue;
                 }
 
-                UICountryTaskItemComponent ui_1 = null;
+                UIBattleTaskItemComponent ui_1 = null;
                 if (number < self.TaskList.Count)
                 {
                     ui_1 = self.TaskList[number];
@@ -71,7 +68,7 @@ namespace ET
                 {
                     GameObject taskTypeItem = GameObject.Instantiate(bundleObj);
                     UICommonHelper.SetParent(taskTypeItem, self.TaskListNode);
-                    ui_1 = self.AddChild<UICountryTaskItemComponent, GameObject>(taskTypeItem);
+                    ui_1 = self.AddChild<UIBattleTaskItemComponent, GameObject>(taskTypeItem);
                     self.TaskList.Add(ui_1);
                 }
 

@@ -221,6 +221,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIWorldLv\UIWorldLvComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIEnergy\UIEnergyEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampShouLieComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonShopComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\RelinkComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiSellComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRoleStory\UIRoleStoryEvent.cs" />
@@ -513,6 +514,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIMakeLearn\UIMakeLearnEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISetting\UISettingEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\TransferUIComponentSystem.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonListComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Queue\UIQueueEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UIBuffTipsEvent.cs" />
     <Compile Include="Assets\HotfixView\Demo\Unit\AnimatorComponentSystem.cs" />
@@ -569,8 +571,7 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonShopComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonListComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleTaskItemComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

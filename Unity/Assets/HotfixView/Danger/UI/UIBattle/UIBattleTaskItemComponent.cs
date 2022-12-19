@@ -3,8 +3,9 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UICountryTaskItemComponent : Entity, IAwake<GameObject>
+    public class UIBattleTaskItemComponent : Entity, IAwake<GameObject>
     {
+        public GameObject ItemListNode;
         public GameObject ButtonComplete;
         public GameObject ButtonReceive;
         public GameObject TextHuoyueValue;
@@ -19,14 +20,15 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UICountryTaskItemComponentAwakeSystem : AwakeSystem<UICountryTaskItemComponent, GameObject>
+    public class UIBattleTaskItemComponentAwake : AwakeSystem<UIBattleTaskItemComponent, GameObject>
     {
 
-        public override void Awake(UICountryTaskItemComponent self, GameObject gameObject)
+        public override void Awake(UIBattleTaskItemComponent self, GameObject gameObject)
         {
             self.GameObject = gameObject;
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
+            self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.ButtonComplete = rc.Get<GameObject>("ButtonComplete");
             self.ButtonReceive = rc.Get<GameObject>("ButtonReceive");
             //self.ButtonReceive.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Receive(); });
@@ -41,15 +43,16 @@ namespace ET
         }
     }
 
-    public static class UICountryTaskItemComponentSystem
+    public static class UIBattleTaskItemComponentSystem
     {
-
-        public static void OnUpdateData(this UICountryTaskItemComponent self, TaskPro taskPro)
+        public static void OnUpdateData(this UIBattleTaskItemComponent self, TaskPro taskPro)
         {
-
             self.TaskPro = taskPro;
             TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPro.taskID);
-
+            if (!ComHelp.IfNull(taskConfig.RewardItem))
+            {
+                UICommonHelper.ShowItemList(taskConfig.RewardItem, self.ItemListNode, self, 0.8f, true);
+            }
             self.TextTaskName.GetComponent<Text>().text = taskConfig.TaskName;
             self.TextTaskDesc.GetComponent<Text>().text = taskConfig.TaskDes;
 
@@ -71,7 +74,7 @@ namespace ET
 
         }
 
-        public static void OnBtn_Receive(this UICountryTaskItemComponent self)
+        public static void OnBtn_Receive(this UIBattleTaskItemComponent self)
         {
             if (self.TaskPro.taskStatus < (int)TaskStatuEnum.Completed)
             {
