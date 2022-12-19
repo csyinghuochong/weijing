@@ -51,6 +51,11 @@
                     userInfoComponent.UserInfo.MysteryItems.Clear();
                     zoneScene.GetComponent<TaskComponent>().OnZeroClockUpdate();
                     zoneScene.GetComponent<ActivityComponent>().OnZeroClockUpdate();
+                    UIHelper.GetUI(zoneScene, UIType.UIMain).GetComponent<UIMainComponent>().OnZeroClockUpdate();
+                    break;
+                case NumericType.HongBao:
+                    int hongbao= args.Unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao);
+                    UIHelper.GetUI(zoneScene, UIType.UIMain).GetComponent<UIMainComponent>().OnHongBao(hongbao);
                     break;
                 case NumericType.PointRemain:
                     ReddotComponent reddotComponent = args.Unit.ZoneScene().GetComponent<ReddotComponent>();

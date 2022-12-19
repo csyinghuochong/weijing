@@ -12,7 +12,7 @@ namespace ET
         {
             try
             {
-                self.OnUpdate();
+                self.OnCheckFuntionButton();
             }
             catch (Exception e)
             {
@@ -92,7 +92,7 @@ namespace ET
         public LockTargetComponent LockTargetComponent;
         public SkillIndicatorComponent SkillIndicatorComponent;
 
-        public float CheckButtonTime;
+        public List<KeyValuePair> FunctionButtons = new List<KeyValuePair>();
         public Unit MainUnit;
         public long Timer;
     }
@@ -262,6 +262,8 @@ namespace ET
 
             self.RegisterReddot();
 
+            self.InitFunctionButton();
+
             self.ZoneScene().GetComponent<GuideComponent>().FirstEnter();
 
             DataUpdateComponent.Instance.AddListener(DataType.SkillSetting, self);
@@ -282,8 +284,6 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.TeamUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.AddListener(DataType.MainHeroMove, self);
-
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(10000, TimerType.UIMainTimer, self);
         }
     }
 
@@ -341,10 +341,6 @@ namespace ET
 
     public static class UIMainComponentSystem
     {
-        public static void OnUpdate(this UIMainComponent self)
-        {
-            self.CheckButton();
-        }
 
         public static void OnMainHeroMove(this UIMainComponent self)
         {
@@ -744,30 +740,92 @@ namespace ET
             }
         }
 
-        public static void CheckButton(this UIMainComponent self)
+        public static void OnZeroClockUpdate(this UIMainComponent self)
         {
-            if (Time.time - self.CheckButtonTime < 1f )
-            {
-                return;
-            }
-            if (self.MainUnit  == null || self.MainUnit.IsDisposed)
-            {
-                return;
-            }
-            self.CheckButtonTime = Time.time;
-            self.CheckButtonItem(self.Button_HongBao, 1023);
+            self.InitFunctionButton();
         }
 
-        public static void CheckButtonItem(this UIMainComponent self , GameObject gameObject, int functionId)
+        public static void OnHongBao(this UIMainComponent self, int value)
         {
-            bool inTime = FunctionHelp.IsInTime(FuntionConfigCategory.Instance.OpenTimeList[functionId]);
-            switch (functionId)
+            if (value == 1)
             {
-                case 1023: //红包
-                    inTime = inTime && self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0;
-                    break;
+                self.Button_HongBao.SetActive(false);
             }
-            gameObject.SetActive(inTime);
+        }
+
+        public static void InitFunctionButton(this UIMainComponent self)
+        {
+            long serverTime = TimeHelper.ServerNow();
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            int curTime = dateTime.Hour * 60 + dateTime.Minute;
+            self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+
+            List<int> functonIds = new List<int>() { 1023, 1025 };
+            for (int i= 0; i < functonIds.Count; i++)
+            {
+                List<int> openTime =  FuntionConfigCategory.Instance.OpenTimeList[functonIds[i]];
+                int openTime_1 = openTime[0];
+                int openTime_2 = openTime[1];
+                int closeTime_1 = openTime[2];
+                int closeTime_2 = openTime[3];
+                int startTime = openTime_1 * 60 + openTime_2;
+                int endTime = closeTime_1 * 60 + closeTime_2;
+
+                if (curTime < startTime)
+                {
+                    long sTime = serverTime + (startTime - serverTime) * 60 * 1000;
+                    self.FunctionButtons.Add(new KeyValuePair() { KeyId = functonIds[1], Value = "1", Value2 = sTime.ToString() });
+                }
+                if (curTime < endTime)
+                {
+                    long sTime = serverTime + (endTime - curTime) * 60 * 1000;
+                    self.FunctionButtons.Add(new KeyValuePair() { KeyId = functonIds[1], Value = "0", Value2 = sTime.ToString() });
+                }
+                bool inTime = curTime >= startTime && curTime <= endTime;
+                switch (functonIds[i])
+                {
+                    case 1023:
+                        self.Button_HongBao.SetActive(inTime && self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0);
+                        break;
+                    case 1025:
+                        self.Btn_Battle.SetActive(inTime);
+                        break;
+                }
+            }
+
+            TimerComponent.Instance.Remove(ref self.Timer);
+            if (self.FunctionButtons.Count > 0)
+            {
+                self.Timer = TimerComponent.Instance.NewOnceTimer(long.Parse(self.FunctionButtons[0].Value2), TimerType.UIMainTimer, self);
+            }
+        }
+
+        public static void OnCheckFuntionButton(this UIMainComponent self)
+        {
+            long serverTime = TimeHelper.ServerNow();
+            for (int i = self.FunctionButtons.Count - 1; i >= 0; i--)
+            {
+                int functionId = self.FunctionButtons[i].KeyId;
+                long sTime = long.Parse(self.FunctionButtons[i].Value2);
+                if (serverTime >= sTime)
+                {
+                    switch (functionId)
+                    {
+                        case 1023:
+                            self.Button_HongBao.SetActive(self.FunctionButtons[i].Value == "1"
+                            && self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0);
+                            break;
+                        case 1025:
+                            self.Btn_Battle.SetActive(self.FunctionButtons[i].Value == "1");
+                            break;
+                    }
+                    self.FunctionButtons.RemoveAt(i);
+                }
+            }
+            if (self.FunctionButtons.Count == 0)
+            {
+                TimerComponent.Instance.Remove(ref self.Timer);
+            }
         }
 
         public static void SetFenBianLv1(this UIMainComponent self)

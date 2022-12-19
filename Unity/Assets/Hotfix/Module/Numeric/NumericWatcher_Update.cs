@@ -31,6 +31,7 @@
 	[NumericWatcher((int)NumericType.Ling_DiLv)]
 	[NumericWatcher((int)NumericType.Ling_DiExp)]
 	[NumericWatcher((int)NumericType.ZeroClock)]
+	[NumericWatcher((int)NumericType.HongBao)]
 	[NumericWatcher((int)NumericType.PointRemain)]
 	[NumericWatcher((int)NumericType.BossInCombat)]
 	[NumericWatcher((int)NumericType.XiuLian_ExpNumber)]
