@@ -59,12 +59,8 @@ namespace ET
         private async ETTask OnUnitDead(EventType.KillEvent args)
         {
             Unit unitDefend = args.UnitDefend;
-            await TimerComponent.Instance.WaitFrameAsync();
-            if (unitDefend.IsDisposed)
-            {
-                return;
-            }
-
+           
+            //玩家全部死亡，怪物技能清空
             if (unitDefend.Type == UnitType.Player)
             {
                 int playerNumber = FubenHelp.GetAliveUnitNumber(unitDefend.DomainScene(), UnitType.Player);
@@ -86,7 +82,21 @@ namespace ET
                     }
                 }
             }
-          
+            //怪物死亡， 清除玩家BUFF
+            if (unitDefend.Type == UnitType.Monster)  
+            {
+                List<Unit> units = FubenHelp.GetUnitList(unitDefend.DomainScene(), UnitType.Player);
+                for(int i = 0; i < units.Count; i++)
+                {
+                    units[i].GetComponent<BuffManagerComponent>().OnRemoveBuffByUnit(unitDefend.Id);
+                }
+            }
+
+            await TimerComponent.Instance.WaitFrameAsync();
+            if (unitDefend.IsDisposed)
+            {
+                return;
+            }
             if (unitDefend.Type != UnitType.Player && args.WaitRevive == 0)
             {
                 unitDefend.GetParent<UnitComponent>().Remove(unitDefend.Id);

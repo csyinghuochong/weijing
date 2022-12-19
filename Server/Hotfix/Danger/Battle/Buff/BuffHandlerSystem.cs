@@ -15,7 +15,6 @@ namespace ET
             self.TheUnitBelongto = theUnitBelongto;
             self.BuffData = buffData;
             self.BuffState = BuffState.Running;
-            self.SkillConf = buffData.SkillConfig;
             self.BeginTime = TimeHelper.ServerNow();
             self.DelayTime = (long)(1000*buffData.SkillConfig.SkillDelayTime);
             self.StartPosition = theUnitBelongto.Position;

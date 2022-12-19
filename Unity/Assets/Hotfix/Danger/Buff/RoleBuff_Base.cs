@@ -65,10 +65,10 @@
             EventType.SkillEffectFinish.Instance.Unit = this.TheUnitBelongto;
             EventSystem.Instance.PublishClass(EventType.SkillEffectFinish.Instance);
 
-            if (this.BuffData.BuffConfig.IfShowIconTips == 0)
-            {
-                return;
-            }
+            //if (this.BuffData.BuffConfig.IfShowIconTips == 0)
+            //{
+            //    return;
+            //}
             if (!this.TheUnitBelongto.MainHero)
             {
                 return;

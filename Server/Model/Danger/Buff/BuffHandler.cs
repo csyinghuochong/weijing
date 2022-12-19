@@ -51,8 +51,6 @@ namespace ET
         public Vector3 TargetPosition;
 
         public float DamageRange;
-
-        public SkillConfig SkillConf;
         public float Angle;
         public float StartAngle;
         public float Radius;

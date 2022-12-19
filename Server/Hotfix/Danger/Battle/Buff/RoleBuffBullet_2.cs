@@ -32,7 +32,7 @@ namespace ET
                 this.BuffState = BuffState.Finished;
             }
 
-            this.Angle = this.PassTime * (float)this.SkillConf.SkillMoveSpeed + this.StartAngle;
+            this.Angle = this.PassTime * (float)this.BuffData.SkillConfig.SkillMoveSpeed + this.StartAngle;
             if (Angle >= 360)
             {
                 this.mSkillHandler.HurtIds.Clear();

@@ -52,6 +52,17 @@ namespace ET
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
 
+        public static void OnRemoveBuffByUnit(this BuffManagerComponent self, long unitId)
+        {
+            for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
+            {
+                if (self.m_Buffs[i].TheUnitFrom.Id == unitId)
+                {
+                    self.BuffRemove(self.m_Buffs[i].BuffData.BuffConfig.Id);
+                }
+            }
+        }
+
         public static void OnDead(this BuffManagerComponent self)
         {
             for (int i = self.m_Buffs.Count - 1; i >= 0; i--)
