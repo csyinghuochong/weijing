@@ -419,7 +419,7 @@ namespace ET
             }
         }
 
-        public static void CreateDropItems(Unit main, int dropType,  int dropId, string par)
+        public static void CreateDropItems(Unit main, Unit beKill, int dropType,  int dropId, string par)
         {
             // 0 公共掉落 2保护掉落   1私有掉落
             if (dropType == 0) 
@@ -458,9 +458,9 @@ namespace ET
                         DropType = 1,
                         ItemID = droplist[k].ItemID,
                         ItemNum = droplist[k].ItemNum,
-                        X = main.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f),
-                        Y = main.Position.y,
-                        Z = main.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
+                        X = beKill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f),
+                        Y = beKill.Position.y,
+                        Z = beKill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
                     });
                 }
                 MessageHelper.SendToClient(main, m2C_CreateDropItems);

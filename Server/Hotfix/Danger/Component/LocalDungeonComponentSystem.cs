@@ -60,8 +60,6 @@ namespace ET
             NumericComponent numericComponent = attack.GetComponent<NumericComponent>();
             int killNumber = numericComponent.GetAsInt(NumericType.TiLiKillNumber);
 
-            Log.Debug($" {killNumber}");
-
             if (killNumber >= 4)
             {
                 numericComponent.ApplyValue(NumericType.TiLiKillNumber, 0, false);
