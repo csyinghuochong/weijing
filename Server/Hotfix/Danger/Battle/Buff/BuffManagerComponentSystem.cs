@@ -206,7 +206,7 @@ namespace ET
                 m2C_UnitBuffUpdate.UnitIdBelongTo = unit.Id;
                 m2C_UnitBuffUpdate.BuffID = buffData.BuffConfig.Id;
                 m2C_UnitBuffUpdate.BuffOperateType = addBufStatus;
-                //m2C_UnitBuffUpdate.BuffEndTime = buffHandler.BuffEndTime;
+                m2C_UnitBuffUpdate.BuffEndTime = buffHandler.BuffEndTime;
                 m2C_UnitBuffUpdate.ActorId = buffHandler.BuffEndTime;
                 m2C_UnitBuffUpdate.TargetPostion.Clear();
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.x);

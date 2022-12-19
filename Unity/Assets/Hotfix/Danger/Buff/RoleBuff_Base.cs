@@ -73,6 +73,7 @@
             {
                 return;
             }
+
             EventType.DataUpdate.Instance.DataType = DataType.BuffUpdate;
             EventType.DataUpdate.Instance.DataParams = $"{this.BuffData.BuffConfig.Id}@2";
             EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
