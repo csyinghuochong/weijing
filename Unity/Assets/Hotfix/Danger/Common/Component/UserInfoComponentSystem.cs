@@ -28,12 +28,6 @@ namespace ET
             }
         }
 
-        public static void CheckTiLi(this UserInfoComponent self)
-        {
-            long maxPilao = self.GetParent<Unit>().GetMaxPiLao();
-            self.UserInfo.PiLao = Math.Min( maxPilao, self.UserInfo.PiLao );
-        }
-
         public static void OnRongyuChanChu(this UserInfoComponent self, int coefficient, bool notice)
         {
             if (coefficient == 0)

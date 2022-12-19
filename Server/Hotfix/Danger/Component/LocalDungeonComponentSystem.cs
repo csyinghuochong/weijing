@@ -42,8 +42,12 @@ namespace ET
     public static class LocalDungeonComponentSystem
     {
 
-        public static void OnKillEvent(this LocalDungeonComponent self, Unit unit)
+        public static void OnKillEvent(this LocalDungeonComponent self, Unit unit, Unit attack)
         {
+            if (attack == null || attack.Type != UnitType.Player)
+            {
+                return;
+            }
             if (unit.Type != UnitType.Monster)
             {
                 return;
@@ -53,8 +57,11 @@ namespace ET
             {
                 return;
             }
-            NumericComponent numericComponent = self.MainUnit.GetComponent<NumericComponent>();
+            NumericComponent numericComponent = attack.GetComponent<NumericComponent>();
             int killNumber = numericComponent.GetAsInt(NumericType.TiLiKillNumber);
+
+            Log.Debug($" {killNumber}");
+
             if (killNumber >= 4)
             {
                 numericComponent.ApplyValue(NumericType.TiLiKillNumber, 0, false);

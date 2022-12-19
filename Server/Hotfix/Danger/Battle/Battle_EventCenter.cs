@@ -151,10 +151,10 @@ namespace ET
                     domainScene.GetComponent<TowerComponent>().OnKillEvent(defendUnit);
                     break;
                 case SceneTypeEnum.RandomTower:
-                    args.UnitAttack.DomainScene().GetComponent<RandomTowerComponent>().OnKillEvent(defendUnit);
+                    domainScene.GetComponent<RandomTowerComponent>().OnKillEvent(defendUnit);
                     break;
                 case SceneTypeEnum.LocalDungeon:
-                    domainScene.GetComponent<LocalDungeonComponent>().OnKillEvent(defendUnit);
+                    domainScene.GetComponent<LocalDungeonComponent>().OnKillEvent(defendUnit, player);
                     break;
                 case SceneTypeEnum.Battle:
                     domainScene.GetComponent<BattleDungeonComponent>().OnKillEvent(defendUnit, player);

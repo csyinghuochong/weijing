@@ -308,7 +308,7 @@ namespace ET
                     self.UpdateMainUI(sceneTypeEnum).Coroutine();
                     Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
                 }
-                if (self.PassTime < 1.2f)
+                if (self.PassTime < 2f)
                 {
                     return;
                 }

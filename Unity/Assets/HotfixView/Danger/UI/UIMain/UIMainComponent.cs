@@ -773,13 +773,13 @@ namespace ET
 
                 if (curTime < startTime)
                 {
-                    long sTime = serverTime + (startTime - serverTime) * 60 * 1000;
-                    self.FunctionButtons.Add(new KeyValuePair() { KeyId = functonIds[1], Value = "1", Value2 = sTime.ToString() });
+                    long sTime = serverTime + (startTime - curTime) * 60 * 1000;
+                    self.FunctionButtons.Add(new KeyValuePair() { KeyId = functonIds[i], Value = "1", Value2 = sTime.ToString() });
                 }
                 if (curTime < endTime)
                 {
                     long sTime = serverTime + (endTime - curTime) * 60 * 1000;
-                    self.FunctionButtons.Add(new KeyValuePair() { KeyId = functonIds[1], Value = "0", Value2 = sTime.ToString() });
+                    self.FunctionButtons.Add(new KeyValuePair() { KeyId = functonIds[i], Value = "0", Value2 = sTime.ToString() });
                 }
                 bool inTime = curTime >= startTime && curTime <= endTime;
                 switch (functonIds[i])
@@ -792,10 +792,17 @@ namespace ET
                         break;
                 }
             }
-
+            
             TimerComponent.Instance.Remove(ref self.Timer);
             if (self.FunctionButtons.Count > 0)
             {
+                self.FunctionButtons.Sort(delegate (KeyValuePair a, KeyValuePair b)
+                {
+                    long endTime_1 = long.Parse(a.Value2);
+                    long endTime_2 = long.Parse(b.Value2);
+                    return (int)(endTime_1 - endTime_2);     
+                });
+
                 self.Timer = TimerComponent.Instance.NewOnceTimer(long.Parse(self.FunctionButtons[0].Value2), TimerType.UIMainTimer, self);
             }
         }
@@ -822,9 +829,10 @@ namespace ET
                     self.FunctionButtons.RemoveAt(i);
                 }
             }
-            if (self.FunctionButtons.Count == 0)
+            TimerComponent.Instance.Remove(ref self.Timer);
+            if (self.FunctionButtons.Count > 0)
             {
-                TimerComponent.Instance.Remove(ref self.Timer);
+                self.Timer = TimerComponent.Instance.NewOnceTimer(long.Parse(self.FunctionButtons[0].Value2), TimerType.UIMainTimer, self);
             }
         }
 
