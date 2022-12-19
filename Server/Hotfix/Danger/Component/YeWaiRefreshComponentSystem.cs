@@ -304,20 +304,36 @@ namespace ET
         public static  void CreateMonsters(this YeWaiRefreshComponent self, RefreshMonster refreshMonster)
         {
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(refreshMonster.MonsterId);
-            int monsterNumber = FubenHelp.GetUnitListByCamp(self.GetParent<Scene>(), UnitType.Monster, monsterConfig.MonsterCamp).Count;
-            if (monsterNumber >= GlobalValueConfigCategory.Instance.Get(59).Value2)
-            {
-                return;
-            }
-
             Vector3 form = new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ);
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.MiJing && monsterConfig.MonsterType == MonsterTypeEnum.Boss)
             {
                 self.DomainScene().GetComponent<MiJingComponent>().BossId = refreshMonster.MonsterId;
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
-                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.YeWaiBoss,
-                    Message = $"{mapComponent.SceneId}@{form.x};{form.y};{form.z}@{refreshMonster.MonsterId}"});
+                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest()
+                {
+                    Zone = self.DomainZone(),
+                    MessageType = NoticeType.YeWaiBoss,
+                    Message = $"{mapComponent.SceneId}@{form.x};{form.y};{form.z}@{refreshMonster.MonsterId}"
+                });
+            }
+
+           
+            int monsterNumber = FubenHelp.GetUnitListByCamp(self.GetParent<Scene>(), UnitType.Monster, monsterConfig.MonsterCamp).Count;
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.Battle)
+            {
+                if (monsterConfig.MonsterSonType != 55 &&  monsterConfig.MonsterSonType != 56
+                    && monsterNumber >= GlobalValueConfigCategory.Instance.Get(59).Value2)
+                {
+                    return;
+                }
+            }
+            else
+            {
+                if (monsterNumber >= GlobalValueConfigCategory.Instance.Get(59).Value2)
+                {
+                    return;
+                }
             }
 
             for (int i = 0; i < refreshMonster.Number; i++)
