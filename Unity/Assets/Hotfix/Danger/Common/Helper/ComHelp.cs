@@ -396,7 +396,7 @@ namespace ET
         {
             if (itemId == 0)
             {
-                return ItemEquipType.Common;
+                return ItemEquipType.Sword;
             }
             else
             {
