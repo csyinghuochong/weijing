@@ -51,6 +51,7 @@ namespace ET
             TaskCountryConfig taskConfig = TaskCountryConfigCategory.Instance.Get(taskPro.taskID);
             if (!ComHelp.IfNull(taskConfig.RewardItem))
             {
+                UICommonHelper.DestoryChild(self.ItemListNode);
                 UICommonHelper.ShowItemList(taskConfig.RewardItem, self.ItemListNode, self, 0.8f, true);
             }
             self.TextTaskName.GetComponent<Text>().text = taskConfig.TaskName;
