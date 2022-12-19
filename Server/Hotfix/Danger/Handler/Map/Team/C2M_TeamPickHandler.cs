@@ -20,7 +20,7 @@ namespace ET
                     break;
                 }
             }
-            if (teamDropItem == null)
+            if (teamDropItem == null )
             {
                 return;
             }

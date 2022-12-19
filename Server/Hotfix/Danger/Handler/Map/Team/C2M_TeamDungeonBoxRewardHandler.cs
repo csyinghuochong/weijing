@@ -38,7 +38,8 @@ namespace ET
                 UserId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId,
                 BoxIndex = request.BoxIndex
             };
-            MessageHelper.Broadcast(unit, m2C_HorseNoticeInfo);
+            List<Unit> allPlayer = FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Player);
+            MessageHelper.SendToClient(allPlayer, m2C_HorseNoticeInfo);
 
             reply();
             await ETTask.CompletedTask;

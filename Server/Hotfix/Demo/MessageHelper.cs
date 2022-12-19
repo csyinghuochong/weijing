@@ -12,7 +12,15 @@ namespace ET
                 SendToClient(u.Unit, message);
             }
         }
-        
+
+        public static void SendToClient(List<Unit> units, IActorMessage message)
+        {
+            for (int i = 0; i < units.Count; i++)
+            {
+                SendToClient(units[i], message);
+            }
+        }
+
         public static void SendToClient(Unit unit, IActorMessage message)
         {
             if (unit.IsDisposed)

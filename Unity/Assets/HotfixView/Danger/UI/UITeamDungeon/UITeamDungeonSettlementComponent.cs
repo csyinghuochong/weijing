@@ -5,22 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    //[Timer(TimerType.DungeonSettlement)]
-    //public class DungeonSettlementTimer : ATimer<UITeamDungeonSettlementComponent>
-    //{
-    //    public override void Run(UITeamDungeonSettlementComponent self)
-    //    {
-    //        try
-    //        {
-    //            self.OnUpdate();
-    //        }
-    //        catch (Exception e)
-    //        {
-    //            Log.Error($"move timer error: {self.Id}\n{e}");
-    //        }
-    //    }
-    //}
-
+  
     public class UITeamDungeonSettlementComponent : Entity, IAwake, IDestroy
     {
         public GameObject Text_LeftTime;
@@ -37,6 +22,7 @@ namespace ET
         public List<UITeamDungeonSettlementPlayerComponent> PlayerUIList = new List<UITeamDungeonSettlementPlayerComponent>();
         public List<UISettlementRewardComponent> RewardUIList = new List<UISettlementRewardComponent>();
 
+        public int LeftTime;
         public bool IfLingQuStatus;
         public long SendGetTime;
     }
@@ -109,7 +95,6 @@ namespace ET
 
             self.IfLingQuStatus = false;
             self.BeingTimer().Coroutine();
-            //self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.DungeonSettlement, self) ;
         }
     }
 
@@ -120,17 +105,18 @@ namespace ET
             long instanceIds = self.InstanceId;
             for (int i = 10;  i >= 0; i-- )
             {
+                self.OnUpdate(i);
                 await TimerComponent.Instance.WaitAsync(1000);
                 if (instanceIds != self.InstanceId)
                 {
                     break;
                 }
-                self.OnUpdate(i);
             }
         }
 
         public static void OnUpdate(this UITeamDungeonSettlementComponent self, int leftTime)
         {
+            self.LeftTime = leftTime;
             if (leftTime <= 0)
             {
                 self.CheckSelfSelected();
@@ -262,6 +248,12 @@ namespace ET
 
         public static void OnButton_exit(this UITeamDungeonSettlementComponent self)
         {
+            if (self.LeftTime > 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip($"{self.LeftTime}秒后退出!");
+                return;
+            }
+
             //判断宝箱自己是否领取
             if (self.IfLingQuStatus == false) 
             {

@@ -52,10 +52,9 @@ namespace ET
             return ErrorCore.ERR_Success;
         }
 
-        private int OnTeamFubenPick(Unit unit, Actor_PickItemRequest request)
+        private int OnTeamPick(Unit unit, Actor_PickItemRequest request)
         {
             List<DropInfo> drops = request.ItemIds;
-            List<long> removeIds = new List<long>();
             long serverTime = TimeHelper.ServerNow();
 
             TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
@@ -80,7 +79,8 @@ namespace ET
                 int addItemNum = drops[i].ItemNum;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
                 //紫色品质通知客户端抉择
-                if (itemConfig.ItemQuality >= 4)
+                //DropType ==  0 公共掉落 2保护掉落   1私有掉落
+                if (drops[i].DropType != 1 && itemConfig.ItemQuality >= 4)
                 {
                     teamDungeonComponent.AddTeamDropItem(unit, drops[i]);
                     continue;
@@ -97,6 +97,10 @@ namespace ET
                 {
                     owner = unit.DomainScene().GetComponent<UnitComponent>().Get(teamDungeonComponent.ItemFlags[unitDrop.Id]);
                     m2C_SyncChatInfo.ChatInfo.ChatMsg = $"{owner.GetComponent<UserInfoComponent>().UserInfo.Name}拾取{itemConfig.ItemName}";
+                }
+                if (drops[i].DropType == 1)
+                {
+                    owner = unit;
                 }
                 if (owner == null)
                 {
@@ -133,10 +137,12 @@ namespace ET
                 }
 
                 //移除掉落
-                owner.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);       //移除掉落ID
-                removeIds.Add(drops[i].UnitId);
+                if (drops[i].DropType != 1)
+                {
+                    owner.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);
+                }
 
-                MessageHelper.Broadcast(unit, m2C_SyncChatInfo);
+                MessageHelper.SendToClient(allPlayer, m2C_SyncChatInfo);
             }
 
             return ErrorCode.ERR_Success;
@@ -147,7 +153,7 @@ namespace ET
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
-                response.Error = OnTeamFubenPick(unit, request);
+                response.Error = OnTeamPick(unit, request);
             }
             else
             {

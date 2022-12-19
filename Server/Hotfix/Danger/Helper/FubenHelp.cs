@@ -360,7 +360,7 @@ namespace ET
 				m2C_SyncChatInfo.ChatInfo.ChatMsg += (p == points.Count - 1 ? "" : "  ");
 			}
 
-			MessageHelper.Broadcast(unit, m2C_SyncChatInfo);
+			MessageHelper.SendToClient(GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
 		}
 
 		public static void SendPickMessage(Unit unit, DropInfo dropInfo, M2C_SyncChatInfo m2C_SyncChatInfo)
@@ -379,7 +379,7 @@ namespace ET
 			}
 			string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
 			m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
-			MessageHelper.Broadcast(unit, m2C_SyncChatInfo);
+			MessageHelper.SendToClient(GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
 		}
 	}
 }

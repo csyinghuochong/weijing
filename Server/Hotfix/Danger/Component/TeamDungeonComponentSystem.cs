@@ -72,6 +72,11 @@ namespace ET
                 teamDropItem.EndTime = -1;
 
                 int maxNumber = 0;
+                //全部放弃则默认分配
+                if (giveIds.Count >= playerCount || needIds.Count == 0)
+                {
+                    needIds.AddRange(giveIds);
+                }
                 List<int> randomNumbers = new List<int>();
                 for (int p = 0; p < needIds.Count; p++)
                 {
@@ -108,7 +113,7 @@ namespace ET
 
             TeamDropItem teamDropItem = self.AddChildWithId<TeamDropItem>(dropInfo.UnitId);
             teamDropItem.DropInfo = dropInfo;
-            teamDropItem.EndTime = TimeHelper.ServerNow() + 20 * 1000;
+            teamDropItem.EndTime = TimeHelper.ServerNow() + 22 * 1000;
             self.TeamDropItems.Add(teamDropItem);
             if (self.Timer == 0)
             {
@@ -117,7 +122,9 @@ namespace ET
             M2C_TeamPickMessage teamPickMessage = self.m2C_TeamPickMessage;
             teamPickMessage.DropItems.Clear();
             teamPickMessage.DropItems.Add(dropInfo);
-            MessageHelper.Broadcast(unit, teamPickMessage);
+
+            List<Unit> players = FubenHelp.GetUnitList(unit.DomainScene(),UnitType.Player);
+            MessageHelper.SendToClient(players, teamPickMessage);
             return teamDropItem;
         }
 
