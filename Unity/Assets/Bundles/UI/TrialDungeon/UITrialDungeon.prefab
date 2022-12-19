@@ -2104,7 +2104,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\u5728\u6307\u5B9A\u768460\u5206\u949F\u5185\u6210\u529F\u51FB\u8D25\u6311\u6218\r\n\u602A\u7269\u5373\u53EF\u83B7\u5F97\u5982\u4E0B\u5956\u52B1\r"
+  m_Text: "\u5728\u6307\u5B9A\u768460\u79D2\u5185\u6210\u529F\u51FB\u8D25\u6311\u6218\r\n\u602A\u7269\u5373\u53EF\u83B7\u5F97\u5982\u4E0B\u5956\u52B1\r"
 --- !u!114 &6884234642546781826
 MonoBehaviour:
   m_ObjectHideFlags: 0
