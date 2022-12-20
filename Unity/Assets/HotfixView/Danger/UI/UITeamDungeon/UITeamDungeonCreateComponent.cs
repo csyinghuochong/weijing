@@ -165,7 +165,17 @@ namespace ET
 
         public static async ETTask OnButton_Create(this UITeamDungeonCreateComponent self, int dungeonType)
         {
-
+            bool shenyuan = self.ShenYuanMode.activeSelf;
+            if (dungeonType == TeamFubenType.Normal && shenyuan)
+            {
+                BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+                if (bagComponent.GetItemNumber(ComHelp.ShenYuanCostId) < 1)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                    return;
+                }
+                dungeonType = TeamFubenType.ShenYuan;
+            }
 
             int errorCode = await self.ZoneScene().GetComponent<TeamComponent>().RequestTeamDungeonCreate(self.FubenId, dungeonType);
             if (errorCode != ErrorCore.ERR_Success)

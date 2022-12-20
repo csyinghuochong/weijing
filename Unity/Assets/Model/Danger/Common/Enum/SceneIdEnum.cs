@@ -17,6 +17,7 @@ namespace ET
     {
         public const int Normal = 1;
         public const int XieZhu = 2;
+        public const int ShenYuan = 3;
     }
 
     public static class FubenDifficulty

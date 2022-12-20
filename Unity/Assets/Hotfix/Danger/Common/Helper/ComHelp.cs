@@ -51,6 +51,8 @@ namespace ET
         //熔炼获得道具
         public const int MeltingItemId = 1;
 
+        public const int ShenYuanCostId = 10000150;
+
         public static int ReturnMeltingItem(int type) 
         {
             //根据不同的专业技能熔炼不同的道具

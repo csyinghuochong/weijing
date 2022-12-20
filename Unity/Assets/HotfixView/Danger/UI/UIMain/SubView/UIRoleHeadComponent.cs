@@ -85,7 +85,6 @@ namespace ET
             self.UpdateShowRoleName();
             self.UpdateShowRoleExp();
             self.UpdateShowRolePiLao();
-            self.UpdateShowRolePetName();
             self.OnPetFightSet();
             self.OnUpdateCombat();
             self.UpdateShowRoleHuoLi();
@@ -137,12 +136,6 @@ namespace ET
             int maxPiLao = unit.GetMaxHuoLi();
             self.Lab_RoleHuoLi.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("活力:") + self.UserInfoComponent.UserInfo.Vitality + "/" + maxPiLao;
             self.Img_RoleHuoLi.GetComponent<Image>().fillAmount = 1f* self.UserInfoComponent.UserInfo.Vitality / maxPiLao;
-        }
-
-        //初始化界面基础信息
-        public static void UpdateShowRolePetName(this UIRoleHeadComponent self)
-        {
-
         }
 
         //初始化界面基础信息
