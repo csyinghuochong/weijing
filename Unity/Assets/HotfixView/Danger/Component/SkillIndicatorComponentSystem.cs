@@ -121,10 +121,10 @@ namespace ET
         {
             try
             {
-                int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
                 switch (skillIndicatorItem.SkillZhishiType)
                 {
                     case SkillZhishiType.CommonAttack:
+                        int occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
                         float[] scaleList = new float[3] { 6f, 12f, 6f };
                         //法师加长
                         if (occ == 2)
