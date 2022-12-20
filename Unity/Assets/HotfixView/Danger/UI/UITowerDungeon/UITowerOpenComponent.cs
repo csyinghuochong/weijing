@@ -96,8 +96,13 @@ namespace ET
 
         public static async ETTask OnFubenResult(this UITowerOpenComponent self, M2C_FubenSettlement message)
         {
+            long instanceId = self.InstanceId;
             self.M2C_FubenSettlement = message;
             UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UITowerFightReward);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
             ui.GetComponent<UITowerFightRewardComponent>().OnUpdateUI(message);
         }
 
