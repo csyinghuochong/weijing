@@ -13,7 +13,7 @@
             //动态删除副本
             Scene scene = unit.DomainScene();
             TransferHelper.BeforeTransfer(unit);
-            await TransferHelper.Transfer(unit, mapInstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);
+            await TransferHelper.Transfer(unit, mapInstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0, "0");
             if (ComHelp.IsSingleFuben(sceneTypeEnum))
             {
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
@@ -34,10 +34,11 @@
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "LocalDungeon" + fubenid.ToString(), SceneType.Fuben);
             LocalDungeonComponent localDungeon = fubnescene.AddComponent<LocalDungeonComponent>();
+            fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LocalDungeon, sceneId, 0);
             localDungeon.FubenDifficulty = difficulty;
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;
             TransferHelper.BeforeTransfer(unit);
-            await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, 0, transferId);
+            await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, 0, transferId.ToString());
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             if (transferId != 0)
             {
@@ -54,14 +55,14 @@
         /// <param name="unit"></param>
         /// <param name="sceneInstanceId"></param>
         /// <param name="sceneType"></param>
-        /// <param name="chapterId"></param>
+        /// <param name="sceneId"></param>
         /// <param name="sonId"></param>
-        /// <param name="transferId"></param>
+        /// <param name="paramInfoId"></param>
         /// <returns></returns>
-        public static async ETTask Transfer(Unit unit, long sceneInstanceId, int sceneType, int chapterId, int sonId, int transferId=0)
+        public static async ETTask Transfer(Unit unit, long sceneInstanceId, int sceneType, int sceneId, int fubenDifficulty,  string paramInfo)
         {
             // 通知客户端开始切场景
-            M2C_StartSceneChange m2CStartSceneChange = new M2C_StartSceneChange() {SceneInstanceId = sceneInstanceId, SceneType = sceneType, ChapterId = chapterId, SonId = sonId};
+            M2C_StartSceneChange m2CStartSceneChange = new M2C_StartSceneChange() {SceneInstanceId = sceneInstanceId, SceneType = sceneType, ChapterId = sceneId, Difficulty = fubenDifficulty, ParamInfo = paramInfo };
             MessageHelper.SendToClient(unit, m2CStartSceneChange);
             
             M2M_UnitTransferRequest request = new M2M_UnitTransferRequest();
@@ -74,9 +75,9 @@
                 }
             }
             request.SceneType = sceneType;
-            request.ChapterId = chapterId;
-            request.TransferId = transferId;
-            request.SonId = sonId;
+            request.ChapterId = sceneId;
+            request.Difficulty = fubenDifficulty;
+            request.ParamInfo = paramInfo;
             // 删除Mailbox,让发给Unit的ActorLocation消息重发
             unit.RemoveComponent<MailBoxComponent>();
 

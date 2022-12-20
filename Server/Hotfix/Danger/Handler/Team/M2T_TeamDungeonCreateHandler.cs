@@ -3,15 +3,16 @@
 namespace ET
 {
     [ActorMessageHandler]
-    public class C2T_TeamDungeonCreateHandler : AMActorRpcHandler<Scene, C2T_TeamDungeonCreateRequest, T2C_TeamDungeonCreateResponse>
+    public class M2T_TeamDungeonCreateHandler : AMActorRpcHandler<Scene, M2T_TeamDungeonCreateRequest, T2M_TeamDungeonCreateResponse>
     {
-        protected override async ETTask Run(Scene scene, C2T_TeamDungeonCreateRequest request, T2C_TeamDungeonCreateResponse response, Action reply)
+        protected override async ETTask Run(Scene scene, M2T_TeamDungeonCreateRequest request, T2M_TeamDungeonCreateResponse response, Action reply)
         {
             TeamSceneComponent teamSceneComponent = scene.GetComponent<TeamSceneComponent>();
             TeamInfo teamInfo = teamSceneComponent.GetTeamInfo(request.TeamPlayerInfo.UserID);
             if (teamInfo != null && teamInfo.TeamId != request.TeamPlayerInfo.UserID)
             {
                 //非队长
+                response.Error = ErrorCore.ERR_IsNotLeader;
                 reply();
                 return;
             }

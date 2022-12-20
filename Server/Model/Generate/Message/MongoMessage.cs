@@ -42,10 +42,10 @@ namespace ET
 		public int ChapterId { get; set; }
 
 		[ProtoMember(7)]
-		public int SonId { get; set; }
+		public int Difficulty { get; set; }
 
 		[ProtoMember(8)]
-		public int TransferId { get; set; }
+		public string ParamInfo { get; set; }
 
 	}
 

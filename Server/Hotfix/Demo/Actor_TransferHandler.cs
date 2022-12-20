@@ -74,8 +74,9 @@ namespace ET
 							long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
 							Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "PetFuben" + fubenid.ToString(), SceneType.Fuben);
 							fubnescene.AddComponent<PetFubenSceneComponent>();
+							fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.PetDungeon, request.SceneId,int.Parse(request.paramInfo) );
 							TransferHelper.BeforeTransfer(unit);
-							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetDungeon, request.SceneId, int.Parse(request.paramInfo));
+							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetDungeon, request.SceneId, FubenDifficulty.None, request.paramInfo);
 							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 							break;
 						case (int)SceneTypeEnum.BaoZang:
@@ -86,7 +87,7 @@ namespace ET
 							F2M_YeWaiSceneIdResponse f2M_YeWaiSceneIdResponse = (F2M_YeWaiSceneIdResponse)await ActorMessageSenderComponent.Instance.Call(
 							DBHelper.GetFubenCenterId(unit.DomainZone()), new M2F_YeWaiSceneIdRequest() { SceneId = request.SceneId });
 
-							await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, mapType, request.SceneId, 0);
+							await TransferHelper.Transfer(unit, f2M_YeWaiSceneIdResponse.FubenInstanceId, mapType, request.SceneId, 0, "0");
 							break;
 						case (int)SceneTypeEnum.TrialDungeon:
 							fubenid = IdGenerater.Instance.GenerateId();
@@ -97,7 +98,7 @@ namespace ET
 							mapComponent.SetMapInfo((int)SceneTypeEnum.TrialDungeon, request.SceneId, int.Parse(request.paramInfo));
 							mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
 							TransferHelper.BeforeTransfer(unit);
-							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.TrialDungeon, request.SceneId, int.Parse(request.paramInfo));
+							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.TrialDungeon, request.SceneId, FubenDifficulty.None, request.paramInfo);
 							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 							break;
 						case (int)SceneTypeEnum.RandomTower:
@@ -110,7 +111,7 @@ namespace ET
 							mapComponent.SetMapInfo((int)SceneTypeEnum.RandomTower, request.SceneId, 0);
 							mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
 							TransferHelper.BeforeTransfer(unit);
-							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.RandomTower, request.SceneId, 0);
+							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.RandomTower, request.SceneId, 0, "0");
 							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 							break;
 						case (int)SceneTypeEnum.Tower:
@@ -123,7 +124,7 @@ namespace ET
 							mapComponent.SetMapInfo((int)SceneTypeEnum.Tower, request.SceneId, 0);
 							mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
 							TransferHelper.BeforeTransfer(unit);
-							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.Tower, request.SceneId, 0, request.Difficulty);
+							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.Tower, request.SceneId, request.Difficulty, "0");
 							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 							break;
 						case (int)SceneTypeEnum.PetTianTi:
@@ -133,8 +134,9 @@ namespace ET
 							fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
 							fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "Fuben" + fubenid.ToString(), SceneType.Fuben);
 							fubnescene.AddComponent<PetTianTiComponent>().EnemyId = enemyId;
+							fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.PetTianTi, request.SceneId, 0);
 							TransferHelper.BeforeTransfer(unit);
-							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetTianTi, request.SceneId, 0);
+							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.PetTianTi, request.SceneId, 0, "0");
 							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 							break;
 						case (int)SceneTypeEnum.LocalDungeon:
@@ -150,7 +152,7 @@ namespace ET
 							B2M_BattleEnterResponse battleEnter = (B2M_BattleEnterResponse)await ActorMessageSenderComponent.Instance.Call(
 							mapInstanceId, new M2B_BattleEnterRequest() { UserID = unit.Id, SceneId = request.SceneId });
 							TransferHelper.BeforeTransfer(unit);
-							await TransferHelper.Transfer(unit, battleEnter.FubenInstanceId, (int)SceneTypeEnum.Battle, request.SceneId, battleEnter.Camp);
+							await TransferHelper.Transfer(unit, battleEnter.FubenInstanceId, (int)SceneTypeEnum.Battle, request.SceneId, FubenDifficulty.Normal, battleEnter.Camp.ToString());
 							break;
 						case (int)SceneTypeEnum.TeamDungeon:
 							mapComponent = unit.DomainScene().GetComponent<MapComponent>();
@@ -165,7 +167,7 @@ namespace ET
 								return;
 							}
 							TransferHelper.BeforeTransfer(unit);
-							await TransferHelper.Transfer(unit, createUnit.FubenInstanceId, (int)SceneTypeEnum.TeamDungeon, createUnit.FubenId, 0);
+							await TransferHelper.Transfer(unit, createUnit.FubenInstanceId, (int)SceneTypeEnum.TeamDungeon, createUnit.FubenId, createUnit.FubenType, "0");
 							break;
 						default:
 							break;

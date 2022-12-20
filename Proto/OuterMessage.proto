@@ -90,23 +90,6 @@ message Actor_TransferResponse // IActorLocationResponse
 	string Message = 92;
 }
 
-//ResponseType Dungeon_TransferResponse
-message Dungeon_TransferRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int32 SceneType = 1;
-	int32 SceneId = 2;
-	int32 TransferId = 3;
-}
-
-message Dungeon_TransferResponse // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-}
-
 
 //ResponseType A2C_CreateRoleData
 message C2A_CreateRoleData // IRequest
@@ -386,7 +369,8 @@ message M2C_StartSceneChange // IActorMessage
 	int64 SceneInstanceId = 1;
 	int32 SceneType = 2;
 	int32 ChapterId = 3;
-	int32 SonId = 4;
+	int32 Difficulty = 4;
+	string ParamInfo = 5;
 }
 
 message M2C_RemoveUnits // IActorMessage
@@ -2899,8 +2883,8 @@ message T2C_TeamDungeonAgreeResponse // ITeamActorResponse
 }
 
 //创建组队副本
-//ResponseType T2C_TeamDungeonCreateResponse
-message C2T_TeamDungeonCreateRequest // ITeamActorRequest
+//ResponseType M2C_TeamDungeonCreateResponse
+message C2M_TeamDungeonCreateRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
@@ -2910,13 +2894,14 @@ message C2T_TeamDungeonCreateRequest // ITeamActorRequest
 	int32 FubenType = 3;
 }
 
-message T2C_TeamDungeonCreateResponse // ITeamActorResponse
+message M2C_TeamDungeonCreateResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
 
 	TeamInfo TeamInfo = 1;
+	int32 FubenType = 3;
 }
 
 //开启组队副本

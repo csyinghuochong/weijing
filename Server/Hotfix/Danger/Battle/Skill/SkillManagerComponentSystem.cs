@@ -208,7 +208,7 @@ namespace ET
                     }
                     else
                     {
-                        Log.Info($"target == null:  {weaponSkill}");
+                        Log.Warning($"target == null:  {weaponSkill}");
                     }
                     break;
             }

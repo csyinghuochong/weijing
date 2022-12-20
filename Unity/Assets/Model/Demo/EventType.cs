@@ -16,7 +16,6 @@ namespace ET
             public int LastSceneType;
             public int SceneType;
             public int ChapterId;
-            public int SonId;
         }
 
         public class SceneChangeFinish : DisposeObject

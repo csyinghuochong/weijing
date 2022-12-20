@@ -5,7 +5,7 @@
 	{
 		protected override void Run(Session session, M2C_StartSceneChange message)
 		{
-			 SceneChangeHelper.SceneChangeTo(session.ZoneScene(), message.SceneType, message.ChapterId, message.SonId, message.SceneInstanceId).Coroutine();
+			 SceneChangeHelper.SceneChangeTo(session.ZoneScene(), message.SceneType, message.ChapterId, message.Difficulty, message.ParamInfo).Coroutine();
 		}
 	}
 }

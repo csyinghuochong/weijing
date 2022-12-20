@@ -185,43 +185,6 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(Dungeon_TransferResponse))]
-	[Message(OuterOpcode.Dungeon_TransferRequest)]
-	[ProtoContract]
-	public partial class Dungeon_TransferRequest: Object, IActorLocationRequest
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public int SceneType { get; set; }
-
-		[ProtoMember(2)]
-		public int SceneId { get; set; }
-
-		[ProtoMember(3)]
-		public int TransferId { get; set; }
-
-	}
-
-	[Message(OuterOpcode.Dungeon_TransferResponse)]
-	[ProtoContract]
-	public partial class Dungeon_TransferResponse: Object, IActorLocationResponse
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(91)]
-		public int Error { get; set; }
-
-		[ProtoMember(92)]
-		public string Message { get; set; }
-
-	}
-
 	[ResponseType(nameof(A2C_CreateRoleData))]
 	[Message(OuterOpcode.C2A_CreateRoleData)]
 	[ProtoContract]
@@ -799,7 +762,10 @@ namespace ET
 		public int ChapterId { get; set; }
 
 		[ProtoMember(4)]
-		public int SonId { get; set; }
+		public int Difficulty { get; set; }
+
+		[ProtoMember(5)]
+		public string ParamInfo { get; set; }
 
 	}
 
@@ -6108,10 +6074,10 @@ namespace ET
 	}
 
 //创建组队副本
-	[ResponseType(nameof(T2C_TeamDungeonCreateResponse))]
-	[Message(OuterOpcode.C2T_TeamDungeonCreateRequest)]
+	[ResponseType(nameof(M2C_TeamDungeonCreateResponse))]
+	[Message(OuterOpcode.C2M_TeamDungeonCreateRequest)]
 	[ProtoContract]
-	public partial class C2T_TeamDungeonCreateRequest: Object, ITeamActorRequest
+	public partial class C2M_TeamDungeonCreateRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -6130,9 +6096,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.T2C_TeamDungeonCreateResponse)]
+	[Message(OuterOpcode.M2C_TeamDungeonCreateResponse)]
 	[ProtoContract]
-	public partial class T2C_TeamDungeonCreateResponse: Object, ITeamActorResponse
+	public partial class M2C_TeamDungeonCreateResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -6145,6 +6111,9 @@ namespace ET
 
 		[ProtoMember(1)]
 		public TeamInfo TeamInfo { get; set; }
+
+		[ProtoMember(3)]
+		public int FubenType { get; set; }
 
 	}
 

@@ -18,8 +18,8 @@ message M2M_UnitTransferRequest // IActorRequest
 	repeated Entity Entitys = 3;
 	int32 SceneType = 4;
 	int32 ChapterId = 6;
-	int32 SonId = 7;
-	int32 TransferId = 8;
+	int32 Difficulty = 7;
+	string ParamInfo = 8;
 }
 
 //ResponseType D2G_GetComponent

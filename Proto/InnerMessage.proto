@@ -684,6 +684,27 @@ message G2G_UnitListResponse // IActorResponse
 }
 
 
+//创建组队副本
+//ResponseType T2M_TeamDungeonCreateResponse
+message M2T_TeamDungeonCreateRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int32 FubenId = 1;
+	TeamPlayerInfo TeamPlayerInfo = 2;
+	int32 FubenType = 3;
+}
+
+message T2M_TeamDungeonCreateResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	TeamInfo TeamInfo = 1;
+}
+
 //进入组队副本
 //ResponseType T2M_TeamDungeonEnterResponse
 message M2T_TeamDungeonEnterRequest // IActorRequest

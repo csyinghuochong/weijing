@@ -342,14 +342,14 @@ namespace ET
                     return errorCode;
                 }
                
-                C2T_TeamDungeonCreateRequest c2M_ItemHuiShouRequest = new C2T_TeamDungeonCreateRequest()
+                C2M_TeamDungeonCreateRequest c2M_ItemHuiShouRequest = new C2M_TeamDungeonCreateRequest()
                 {
                     FubenId = fubenId,
                     FubenType = fubenType,  
                     TeamPlayerInfo = UnitHelper.GetSelfTeamPlayerInfo(self.ZoneScene())
                 };
                 //创建队伍
-                T2C_TeamDungeonCreateResponse r2c_roleEquip = (T2C_TeamDungeonCreateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
+                M2C_TeamDungeonCreateResponse r2c_roleEquip = (M2C_TeamDungeonCreateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
                 return r2c_roleEquip.Error;
             }
             catch (Exception e)

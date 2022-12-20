@@ -5,11 +5,12 @@ namespace ET
     public static class SceneChangeHelper
     {
         // 场景切换协程
-        public static async ETTask SceneChangeTo(Scene zoneScene, int sceneType, int chapterId, int sonId, long sceneInstanceId)
+        public static async ETTask SceneChangeTo(Scene zoneScene, int sceneType, int chapterId, int fubenDifficulty, string pagramInfo)
         {
             //zoneScene.RemoveComponent<AIComponent>();
             int lastSceneType = zoneScene.GetComponent<MapComponent>().SceneTypeEnum;
-            zoneScene.GetComponent<MapComponent>().SetMapInfo(sceneType, chapterId, sonId);
+            zoneScene.GetComponent<MapComponent>().SetMapInfo(sceneType, chapterId, int.Parse(pagramInfo));
+            zoneScene.GetComponent<MapComponent>().FubenDifficulty = fubenDifficulty;   
             CurrentScenesComponent currentScenesComponent = zoneScene.GetComponent<CurrentScenesComponent>();
             currentScenesComponent.Scene?.Dispose(); // 删除之前的CurrentScene，创建新的
 
@@ -22,7 +23,6 @@ namespace ET
             EventType.SceneChangeStart.Instance.LastSceneType = lastSceneType;
             EventType.SceneChangeStart.Instance.SceneType = sceneType;
             EventType.SceneChangeStart.Instance.ChapterId = chapterId;
-            EventType.SceneChangeStart.Instance.SonId = sonId;
             Game.EventSystem.PublishClass(EventType.SceneChangeStart.Instance);
 
             try

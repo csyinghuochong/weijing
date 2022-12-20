@@ -11,7 +11,6 @@ namespace ET
 			try
 			{
 				await ETTask.CompletedTask;
-				scene.GetComponent<MapComponent>().SetMapInfo((int)request.SceneType, request.ChapterId, request.SonId);
 				UnitComponent unitComponent = scene.GetComponent<UnitComponent>();
 				if (unitComponent.Get(request.Unit.Id) != null)
 				{
@@ -85,7 +84,7 @@ namespace ET
 						if (request.SceneType == (int)SceneTypeEnum.PetDungeon)
 						{
 							scene.GetComponent<PetFubenSceneComponent>().MainUnit = unit;
-							scene.GetComponent<PetFubenSceneComponent>().GeneratePetFuben(unit, request.SonId);
+							scene.GetComponent<PetFubenSceneComponent>().GeneratePetFuben(unit, int.Parse(request.ParamInfo));
 						}
 						if (request.SceneType == (int)SceneTypeEnum.PetTianTi)
 						{
@@ -101,9 +100,10 @@ namespace ET
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
 						//更新unit坐标
-						if (request.TransferId != 0)
+						int transferId = int.Parse(request.ParamInfo);
+						if (transferId != 0)
 						{
-							DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(request.TransferId);
+							DungeonTransferConfig transferConfig = DungeonTransferConfigCategory.Instance.Get(transferId);
 							unit.Position = new Vector3(transferConfig.BornPos[0] * 0.01f, transferConfig.BornPos[1] * 0.01f, transferConfig.BornPos[2] * 0.01f);
 						}
 						else
@@ -127,7 +127,7 @@ namespace ET
 						break;
 					case (int)SceneTypeEnum.Battle:
 						int todayCamp = numericComponent.GetAsInt(NumericType.BattleTodayCamp);
-						todayCamp = todayCamp > 0 ? todayCamp : request.SonId;
+						todayCamp = todayCamp > 0 ? todayCamp : int.Parse(request.ParamInfo);
 						numericComponent.Set(NumericType.BattleCamp, todayCamp); //1 2
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
@@ -191,7 +191,7 @@ namespace ET
 						if (request.SceneType == SceneTypeEnum.TrialDungeon)
 						{
 							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
-							scene.GetComponent<TrialDungeonComponent>().GenerateFuben();
+							scene.GetComponent<TrialDungeonComponent>().GenerateFuben(int.Parse(request.ParamInfo));
 						}
 						fightId = unit.GetComponent<PetComponent>().GetFightPet();
 						if (fightId != null)

@@ -164,7 +164,7 @@ namespace ET
 
 						reply();
 						StartSceneConfig startSceneConfig = StartSceneConfigCategory.Instance.GetBySceneName(session.DomainZone(), $"Map{ComHelp.MainCityID()}");
-						await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0);
+						await TransferHelper.Transfer(unit, startSceneConfig.InstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0, "0");
 
 						player.PlayerState = PlayerState.Game;
 						player.UnitId = request.UserID;
