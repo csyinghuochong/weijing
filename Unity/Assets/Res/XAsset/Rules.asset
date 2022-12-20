@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 412
+  version: 413
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -3786,6 +3786,8 @@ MonoBehaviour:
     path: Assets/Bundles/Icon/TaskIcon/100009.png
   - bundle: 318426cdf69782fa1a9b0dfbc8fe42d0.unity3d
     path: Assets/Bundles/Icon/TaskIcon/100010.png
+  - bundle: 318426cdf69782fa1a9b0dfbc8fe42d0.unity3d
+    path: Assets/Bundles/Icon/TaskIcon/100011.png
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
     path: Assets/Bundles/Icon/TiTleIcon/ImgBig_11.png
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
@@ -9655,6 +9657,7 @@ MonoBehaviour:
     - Assets/Bundles/Icon/TaskIcon/100008.png
     - Assets/Bundles/Icon/TaskIcon/100009.png
     - Assets/Bundles/Icon/TaskIcon/100010.png
+    - Assets/Bundles/Icon/TaskIcon/100011.png
   - name: f53a1bf78f7a146659363581f1b291fe.unity3d
     assets:
     - Assets/Bundles/Icon/TiTleIcon/ImgBig_11.png
@@ -11259,6 +11262,9 @@ MonoBehaviour:
   - name: 7c1daa07efbf1f3cdd00517afae5afe1.unity3d
     assets:
     - Assets/Mono/ThirdRes/GUI Pro Kit Fantasy RPG/Particles/Textures/fx_glow3.png
+  - name: 8561838f3cccb02af7700464ac936abb.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_197.png
   - name: 1f21981b56277187351de2a1d0a6ee91.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_136.png
@@ -11472,12 +11478,6 @@ MonoBehaviour:
   - name: fd91049ee6b939c843cc004390e04fac.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_319.png
-  - name: d3e6a2ae36897746099b363efe11d13d.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_327_1.png
-  - name: 8561838f3cccb02af7700464ac936abb.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_197.png
   - name: 040ea1e6fec9765739c1b9d086c193db.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_75.png
@@ -11649,6 +11649,9 @@ MonoBehaviour:
   - name: dc05148f5cedf80af99d39f711322b16.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_356.png
+  - name: d3e6a2ae36897746099b363efe11d13d.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_327_1.png
   - name: dd75dd98edaee765f85d40778a638096.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_56.png
