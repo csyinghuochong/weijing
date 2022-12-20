@@ -7,6 +7,8 @@ namespace ET
 {
     public class UITeamDungeonCreateComponent : Entity, IAwake
     {
+        public GameObject ShenYuanButton;
+        public GameObject ShenYuanMode;
         public GameObject Button_XieZhu;
         public GameObject CloseButton;
         public GameObject ItemNodeList;
@@ -38,7 +40,12 @@ namespace ET
             self.TextFubenName2 = rc.Get<GameObject>("TextFubenName2");
             self.Button_Create = rc.Get<GameObject>("Button_Create");
             self.CloseButton = rc.Get<GameObject>("CloseButton");
-            self.Button_Create.GetComponent<Button>().onClick.AddListener(() => { self.OnButton_Create(TeamFubenType.Normal).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.Button_Create, () => { self.OnButton_Create(TeamFubenType.Normal).Coroutine(); });
+
+            self.ShenYuanButton = rc.Get<GameObject>("ShenYuanButton");
+            self.ShenYuanMode = rc.Get<GameObject>("ShenYuanMode");
+            ButtonHelp.AddListenerEx(self.ShenYuanButton, () => { self.OnShenYuanMode(); });
+
             self.FubenIdList.Clear();
             self.ButtonList.Clear();
 
@@ -151,8 +158,15 @@ namespace ET
             UIHelper.Remove( self.DomainScene(), UIType.UITeamDungeonCreate );
         }
 
+        public static void OnShenYuanMode(this UITeamDungeonCreateComponent self)
+        {
+            self.ShenYuanMode.SetActive(!self.ShenYuanMode.activeSelf);
+        }
+
         public static async ETTask OnButton_Create(this UITeamDungeonCreateComponent self, int dungeonType)
         {
+
+
             int errorCode = await self.ZoneScene().GetComponent<TeamComponent>().RequestTeamDungeonCreate(self.FubenId, dungeonType);
             if (errorCode != ErrorCore.ERR_Success)
             {
