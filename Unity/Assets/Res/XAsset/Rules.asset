@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 410
+  version: 411
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -11961,6 +11961,9 @@ MonoBehaviour:
   - name: 0699fd56ccabccd41e86f4215dddebfa.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_339.png
+  - name: f645218539f5f153ebdb5ec75a6939a0.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_422.png
   - name: 7d4f8c02095b70f19ade0b16531345ca.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_78_2.png
@@ -11976,6 +11979,9 @@ MonoBehaviour:
   - name: 591f54e8ea8d58a8230f42c1f99b2722.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_191.png
+  - name: c8c4ba8c87c45afd8da004332c837b85.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_395.png
   - name: 85a35a265cd67ccca1790fc34f54a324.unity3d
     assets:
     - Assets/Mono/ThirdRes/GUI Pro Kit Fantasy RPG/Particles/Textures/fx_star1.png
