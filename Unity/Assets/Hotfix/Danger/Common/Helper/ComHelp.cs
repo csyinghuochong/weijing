@@ -274,10 +274,12 @@ namespace ET
 
             //鉴定符和当前装备的等级差
             float JianDingPro = (float)jianDingPinZhi / (float)pro;
+            float addJianDingPro = 0;
 
             if (JianDingPro >= 1.5f)
             {
                 JianDingPro = 1.5f;
+                addJianDingPro += 0.1f;
             }
 
             if (JianDingPro <= 0.5f)
@@ -286,7 +288,7 @@ namespace ET
             }
 
             int randomNum = 0;
-            float randomFloat = RandomHelper.RandFloat();
+            float randomFloat = RandomHelper.RandFloat() + addJianDingPro;
 
             Log.Info("randomFloat == " + randomFloat + "  JianDingPro = " + JianDingPro);
 
@@ -334,6 +336,17 @@ namespace ET
             {
                 //随机值
                 int randomValueInt = RandomHelper.RandomNumber(1, equipCof.OneProRandomValue);
+                randomValueInt = (int)(randomValueInt * JianDingPro);
+                if (randomValueInt > equipCof.OneProRandomValue) {
+                    randomValueInt = equipCof.OneProRandomValue;
+                }
+                //如果品质符足够好,保底为5
+                if (randomValueInt < 5) {
+                    if (JianDingPro >= 1.5f) {
+                        randomValueInt = 5;
+                    }
+                }
+
                 //随机属性类型
                 int randomIDInt = RandomHelper.RandomNumber(1, 5);
                 //

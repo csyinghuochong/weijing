@@ -46,8 +46,8 @@ namespace ET
                 self.ImageSelect2.SetActive(false);
                 self.PayType = PayTypeEnum.WeiXinPay;
             });
-            self.ImageSelect1.SetActive(true);
-            self.ImageSelect2.SetActive(false);
+            self.ImageSelect1.SetActive(false);
+            self.ImageSelect2.SetActive(true);
             self.RechargeList = rc.Get<GameObject>("RechargeList");
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
