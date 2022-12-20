@@ -50,7 +50,6 @@ namespace ET
                 m2C_FubenSettlement.StarInfos = new List<int>() { 1, 0, 0 };
             }
 
-            m2C_FubenSettlement.StarInfos = new List<int>() { 0, 0, 0 };
             m2C_FubenSettlement.BattleResult = allMonsterDead ? CombatResultEnum.Win : CombatResultEnum.Fail;
             if (m2C_FubenSettlement.BattleResult == CombatResultEnum.Win)
             {
