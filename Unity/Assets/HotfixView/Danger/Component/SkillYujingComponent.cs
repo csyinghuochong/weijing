@@ -59,7 +59,7 @@ namespace ET
     public static class SkillYujingComponentSystem
     {
 
-        public static string GetIndicatorPath(this SkillYujingComponent self, SkillZhishiType skillZhishiType)
+        public static string GetIndicatorPath(this SkillYujingComponent self, int skillZhishiType)
         {
             string effect = "";
             switch (skillZhishiType)
@@ -87,7 +87,7 @@ namespace ET
             self.mSkillConfig = skillConfig;
             SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
             skillIndicatorItem.SkillInfo = skillcmd;
-            skillIndicatorItem.SkillZhishiType = (SkillZhishiType)skillConfig.SkillZhishiType;
+            skillIndicatorItem.SkillZhishiType = skillConfig.SkillZhishiType;
             skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
             skillIndicatorItem.InstanceId = IdGenerater.Instance.GenerateInstanceId();
             skillIndicatorItem.TargetAngle = skillcmd.TargetAngle;

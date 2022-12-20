@@ -87,14 +87,14 @@ namespace ET
     //2: 直线释放.弹道
     //3: 60°
     //4: 120°
-    public enum SkillZhishiType
-    { 
-        None = 0,
-        Position,
-        Line,
-        Angle60,
-        Angle120,
-        CommonAttack = 101,
+    public static class SkillZhishiType
+    {
+        public const int None = 0;
+        public const int Position = 1;
+        public const int Line = 2;
+        public const int Angle60 = 3;
+        public const int Angle120 = 4;
+        public const int CommonAttack = 101;
     }
 
     public enum SkillSetEnum

@@ -36,7 +36,7 @@ namespace ET
             self.RecoveryEffect();
         }
 
-        public static string GetIndicatorPath(this SkillIndicatorComponent self, SkillZhishiType skillZhishiType)
+        public static string GetIndicatorPath(this SkillIndicatorComponent self, int skillZhishiType)
         {
             string effect = "";
             switch (skillZhishiType)
@@ -63,13 +63,14 @@ namespace ET
 
         public static void OnLoadGameObject(this SkillIndicatorComponent self, GameObject gameObject, long instanceId)
         {
-            if (self.InstanceId != instanceId)
-            {
-                return;
-            }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
-            if (self.IsDisposed || skillIndicatorItem == null || unit == null || unit.IsDisposed)
+            if (self.IsDisposed || skillIndicatorItem == null || unit == null)
+            {
+                GameObject.DestroyImmediate(gameObject);
+                return;
+            }
+            if (skillIndicatorItem.SkillZhishiType != instanceId)
             {
                 GameObject.DestroyImmediate(gameObject);
                 return;
@@ -97,10 +98,10 @@ namespace ET
             self.mSkillConfig = skillconfig;
             self.SkillRangeSize = (float)self.mSkillConfig.SkillRangeSize;
             SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
-            skillIndicatorItem.SkillZhishiType = (SkillZhishiType)skillconfig.SkillZhishiType;
-            skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
             self.SkillIndicator = skillIndicatorItem;
-            GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, self.InstanceId, self.OnLoadGameObject);
+            skillIndicatorItem.SkillZhishiType = skillconfig.SkillZhishiType;
+            skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
+            GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, skillIndicatorItem.SkillZhishiType, self.OnLoadGameObject);
         }
 
         /// <summary>
@@ -111,10 +112,10 @@ namespace ET
         {
             self.RecoveryEffect();
             SkillIndicatorItem skillIndicatorItem = new SkillIndicatorItem();
+            self.SkillIndicator = skillIndicatorItem;
             skillIndicatorItem.SkillZhishiType = SkillZhishiType.CommonAttack;
             skillIndicatorItem.EffectPath = self.GetIndicatorPath(skillIndicatorItem.SkillZhishiType);
-            self.SkillIndicator = skillIndicatorItem;
-            GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, self.InstanceId, self.OnLoadGameObject);
+            GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, skillIndicatorItem.SkillZhishiType, self.OnLoadGameObject);
         }
 
         public static void InitZhishiEffect(this SkillIndicatorComponent self, SkillIndicatorItem skillIndicatorItem)

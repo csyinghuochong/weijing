@@ -12,8 +12,7 @@ namespace ET
 
     public class SkillIndicatorItem
     {
-        public SkillZhishiType SkillZhishiType;
-        public GameObject GameObject;
+        public int SkillZhishiType;
         public string EffectPath;
         public int TargetAngle;
         public float AttackDistance;
@@ -21,16 +20,16 @@ namespace ET
         public float PassTime;
         public long InstanceId;
         public SkillInfo SkillInfo;
+        public GameObject GameObject;
     }
 
     public class SkillIndicatorComponent : Entity , IAwake, IDestroy
     {
         public long Timer;
         public float SkillRangeSize;
+        public Camera MainCamera;
         public SkillConfig mSkillConfig;
         public SkillIndicatorItem SkillIndicator;
-        public Camera MainCamera;
-
         public Vector2 StartIndicator;
     }
 }
