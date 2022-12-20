@@ -117,6 +117,12 @@ namespace ET
         public static void OnExitBattle(this UIMainSkillComponent self)
         {
             TimerComponent.Instance?.Remove(ref self.Timer);
+            for (int i = 0; i < self.UISkillGirdList.Count; i++)
+            {
+                UISkillGridComponent uISkillGridComponent = self.UISkillGirdList[i];
+                uISkillGridComponent.OnUpdate(0,  0);
+            }
+            self.UIFangunComponet.OnUpdate(0);
         }
 
         public static void CancelSkill(this UIMainSkillComponent self)
