@@ -18,6 +18,7 @@ namespace ET
                     reply();
                     return;
                 }
+                bagComponent.OnCostItemData($"{ComHelp.ShenYuanCostId};1");
             }
             if (request.FubenType == TeamFubenType.Normal)
             {

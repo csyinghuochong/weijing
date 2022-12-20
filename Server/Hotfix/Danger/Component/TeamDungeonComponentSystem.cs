@@ -183,11 +183,18 @@ namespace ET
 
             if (unit.IsBoss())
             {
-                int dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(75).Value);
                 Unit leader = unit.GetParent<UnitComponent>().Get(self.TeamInfo.TeamId);
                 if (leader != null && self.FubenType == TeamFubenType.XieZhu)
                 {
+                    //协助副本掉落
+                    int dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(75).Value);
                     UnitFactory.CreateDropItems(leader, unit, 1, dropId, "1");
+                }
+                if (self.FubenType == TeamFubenType.ShenYuan)
+                {
+                    //深渊副本掉落
+                    int dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(75).Value);
+                    UnitFactory.CreateDropItems(null, unit, 0, dropId, "1");
                 }
             }
 

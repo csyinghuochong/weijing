@@ -268,6 +268,10 @@ namespace ET
                     if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss)
                     {
                         unit.AddComponent<MonsterActRangeComponent, int>(monsterCof.Id);         //血条UI组件
+
+                        mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+                        bool shenYuan = mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon && mapComponent.FubenDifficulty == TeamFubenType.ShenYuan;
+                        go.transform.localScale = shenYuan ? Vector3.one * 1.3f : Vector3.one;
                     }
 
                     //51 场景怪 有AI 不显示名称

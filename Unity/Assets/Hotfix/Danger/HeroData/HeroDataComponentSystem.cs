@@ -398,31 +398,46 @@ namespace ET
             float ackCoefficient = 1f;
             //根据副本难度刷新属性
             //进入 挑战关卡 怪物血量增加 1.5 伤害增加 1.2 低于关卡 血量增加2 伤害增加 1.5
-            int sceneType = nowUnit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
+            MapComponent mapComponent = nowUnit.DomainScene().GetComponent<MapComponent>();
+            int sceneType = mapComponent.SceneTypeEnum;
             int fubenDifficulty = FubenDifficulty.None;
-            switch (sceneType)
+
+            if (sceneType == SceneTypeEnum.CellDungeon || sceneType == SceneTypeEnum.LocalDungeon)
             {
-                case SceneTypeEnum.CellDungeon:
-                    fubenDifficulty = nowUnit.DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
-                    break;
-                case SceneTypeEnum.LocalDungeon:
-                    fubenDifficulty = nowUnit.DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
-                    break;
-                default:
-                    break;
-            }
-            if (monsterConfig.MonsterType == MonsterTypeEnum.Boss)
-            {
-                switch (fubenDifficulty)
+                switch (sceneType)
                 {
-                    case FubenDifficulty.TiaoZhan:
-                        hpCoefficient = 1.5f;
-                        ackCoefficient = 1.2f;
+                    case SceneTypeEnum.CellDungeon:
+                        fubenDifficulty = nowUnit.DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
                         break;
-                    case FubenDifficulty.DiYu:
-                        hpCoefficient = 2f;
-                        ackCoefficient = 1.5f;
+                    case SceneTypeEnum.LocalDungeon:
+                        fubenDifficulty = nowUnit.DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
                         break;
+                    default:
+                        break;
+                }
+                if (monsterConfig.MonsterType == MonsterTypeEnum.Boss)
+                {
+                    switch (fubenDifficulty)
+                    {
+                        case FubenDifficulty.TiaoZhan:
+                            hpCoefficient = 1.5f;
+                            ackCoefficient = 1.2f;
+                            break;
+                        case FubenDifficulty.DiYu:
+                            hpCoefficient = 2f;
+                            ackCoefficient = 1.5f;
+                            break;
+                    }
+                }
+            }
+            if (sceneType == SceneTypeEnum.TeamDungeon)
+            {
+                //副本的怪物难度提升（类似不难度的个人副本 给个配置即可）
+                fubenDifficulty = mapComponent.FubenDifficulty;
+                if (fubenDifficulty == TeamFubenType.ShenYuan)
+                {
+                    hpCoefficient = 2f;
+                    ackCoefficient = 1.5f;
                 }
             }
 

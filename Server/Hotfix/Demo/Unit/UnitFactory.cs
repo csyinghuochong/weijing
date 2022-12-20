@@ -313,7 +313,8 @@ namespace ET
             }
 
             //1个人掉率降低
-            if (sceneType == SceneTypeEnum.TeamDungeon) {
+            if (sceneType == SceneTypeEnum.TeamDungeon)
+            {
                 if (playerNumer == 1)
                 {
                     dropAdd_Pro -= 0.25f;
@@ -325,6 +326,12 @@ namespace ET
                 if (playerNumer == 3)
                 {
                     dropAdd_Pro += 0.25f;
+                }
+
+                MapComponent mapComponent = bekill.DomainScene().GetComponent<MapComponent>();
+                if (mapComponent.FubenDifficulty == TeamFubenType.ShenYuan)
+                {
+                    dropAdd_Pro += 0.5f;
                 }
             }
 
@@ -433,15 +440,15 @@ namespace ET
 
                 for (int i = 0; i < droplist.Count; i++)
                 {
-                    UnitComponent unitComponent = main.DomainScene().GetComponent<UnitComponent>();
+                    UnitComponent unitComponent = beKill.DomainScene().GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
                     dropitem.AddComponent<UnitInfoComponent>();
                     dropitem.Type = UnitType.DropItem;
                     DropComponent dropCheckComponent = dropitem.AddComponent<DropComponent>();
                     dropCheckComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
-                    float dropX = main.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);
-                    float dropY = main.Position.y;
-                    float dropZ = main.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f);
+                    float dropX = beKill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);
+                    float dropY = beKill.Position.y;
+                    float dropZ = beKill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f);
                     dropitem.Position = new UnityEngine.Vector3(dropX, dropY, dropZ);
                     dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
                 }

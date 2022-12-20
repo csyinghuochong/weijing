@@ -208,7 +208,16 @@ namespace ET
                 string colorstr = isboos ? "<color=#FF5FFF>" : "<color=#FFFFFF>";
                 //NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 //this.ObjName.GetComponent<TextMeshProUGUI>().text = $"{colorstr}{monsterCof.MonsterName}_{numericComponent.GetAsInt(NumericType.Now_AI)}</color>";
-                this.ObjName.GetComponent<TextMeshProUGUI>().text = $"{colorstr}{monsterCof.MonsterName}</color>";
+                MapComponent mapComponent = unit.ZoneScene().GetComponent<MapComponent>();    
+                bool shenYuan = mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon && mapComponent.FubenDifficulty == TeamFubenType.ShenYuan;
+                if (shenYuan)
+                {
+                    this.ObjName.GetComponent<TextMeshProUGUI>().text = $"{colorstr}{monsterCof.MonsterName}_深渊</color>";
+                }
+                else
+                {
+                    this.ObjName.GetComponent<TextMeshProUGUI>().text = $"{colorstr}{monsterCof.MonsterName}</color>";
+                }
                 //怪物等级显示
                 ReferenceCollector rc = HeadBar.GetComponent<ReferenceCollector>();
                 int monsterLv = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Lv);

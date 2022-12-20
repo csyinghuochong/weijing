@@ -30,7 +30,7 @@ namespace ET
             teamSceneComponent.SyncTeamInfo(teamInfo, teamInfo.PlayerList).Coroutine();
 
             //启动机器人
-            if (request.FubenType == TeamFubenType.Normal)
+            if (request.FubenType != TeamFubenType.XieZhu)
             {
                 long robotSceneId = DBHelper.GetRobotServerId();
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest()

@@ -23,7 +23,9 @@ namespace ET
                     first = 1;
                     scene.GetComponent<TeamSceneComponent>().CreateTeamDungeon(teamInfo);
                 }
+
                 response.FubenId = teamInfo.SceneId;
+                response.FubenType = teamInfo.FubenType;
                 response.FubenInstanceId = teamInfo.FubenInstanceId;
                 reply();
                 await ETTask.CompletedTask;
