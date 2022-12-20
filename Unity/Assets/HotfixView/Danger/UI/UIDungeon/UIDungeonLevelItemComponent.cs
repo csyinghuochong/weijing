@@ -86,6 +86,10 @@ namespace ET
                     ErrorHelp.Instance.ErrorHint(errorCode);
                     return;
                 }
+                if (self.IsDisposed)
+                {
+                    return;
+                }
 
                 UIHelper.Remove(self.DomainScene(), UIType.UIDungeonLevel);
             }

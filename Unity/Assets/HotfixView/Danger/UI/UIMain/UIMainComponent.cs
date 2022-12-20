@@ -589,7 +589,7 @@ namespace ET
             Game.EventSystem.PublishClass(EventType.ReturnLogin.Instance);
         }
 
-        public static async ETTask OnHorseNotice(this UIMainComponent self)
+        public static  void OnHorseNotice(this UIMainComponent self)
         {
             M2C_HorseNoticeInfo m2C_HorseNoticeInfo = self.ZoneScene().GetComponent<ChatComponent>().HorseNoticeInfo;
             if (m2C_HorseNoticeInfo.NoticeType == NoticeType.StopSever)
@@ -600,7 +600,8 @@ namespace ET
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIHorseNotice);
             if (uI == null)
             {
-                uI = await UIHelper.Create(self.DomainScene(), UIType.UIHorseNotice);
+                UIHelper.Create(self.DomainScene(), UIType.UIHorseNotice).Coroutine();
+                return;
             }
             uI.GetComponent<UIHorseNoticeComponent>()?.OnRecvHorseNotice(m2C_HorseNoticeInfo);
         }
