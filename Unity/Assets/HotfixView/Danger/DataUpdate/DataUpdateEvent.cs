@@ -383,7 +383,7 @@ namespace ET
             {
                 if (component is UIMainComponent uimainComponent)
                 {
-                    uimainComponent.OnHorseNotice().Coroutine();
+                    uimainComponent.OnHorseNotice();
                     continue;
                 }
             }

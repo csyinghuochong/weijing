@@ -67,7 +67,10 @@ namespace ET
                     int userMaterModel = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.UseMasterModel);
                     long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
                     Unit master = unit.GetParent<UnitComponent>().Get(masterId);
-                    if (userMaterModel == 1 && master != null)
+
+                    if (userMaterModel == 1 && master != null
+                        && master.GetComponent<GameObjectComponent>()!= null
+                        && master.GetComponent<GameObjectComponent>().GameObject != null)
                     {
                         GameObject gameObject = GameObject.Instantiate(master.GetComponent<GameObjectComponent>().GameObject);
                         self.OnLoadGameObject(gameObject, self.InstanceId);

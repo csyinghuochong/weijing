@@ -69,6 +69,10 @@ namespace ET
             //{
             //    return;
             //}
+            if (!self.ClickMode)
+            {
+                return;
+            }
             if (Time.time - self.LastSendTime < 0.2f)
             {
                 return;
