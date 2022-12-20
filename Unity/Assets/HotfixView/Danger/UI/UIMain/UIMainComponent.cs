@@ -1252,9 +1252,8 @@ namespace ET
             }
         }
 
-        public static async void OnChapterOpen(this UIMainComponent self)
+        public static  void OnChapterOpen(this UIMainComponent self)
         {
-            await ETTask.CompletedTask;
             var BaseObj = ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("Chapter/UIChapterOpen"));
             UI uiskillButton = self.AddChild<UI, string, GameObject>("UIChapterOpen", GameObject.Instantiate(BaseObj));
             uiskillButton.AddComponent<UICellChapterOpenComponent>().OnUpdateUI();

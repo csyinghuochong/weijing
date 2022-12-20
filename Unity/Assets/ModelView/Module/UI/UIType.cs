@@ -37,6 +37,7 @@ namespace ET
 		public const string UICellDungeonRevive = "CellDungeon/UICellDungeonRevive";
 		public const string UICellDungeonSettlement = "CellDungeon/UICellDungeonSettlement";
 		public const string UIDungeon = "Dungeon/UIDungeon";
+		public const string UIEnterMapHint = "Dungeon/UIEnterMapHint";
 		public const string UIDungeonLevel = "Dungeon/UIDungeonLevel";
 		public const string UIMapBig = "Main/MiniMap/UIMapBig";
 		public const string UIOccTwo = "Main/OccTwo/UIOccTwo";

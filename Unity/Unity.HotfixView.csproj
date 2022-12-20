@@ -572,6 +572,8 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleTaskItemComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIDungeon\UIEnterMapHintComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIDungeon\UIEnterMapHintEvent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

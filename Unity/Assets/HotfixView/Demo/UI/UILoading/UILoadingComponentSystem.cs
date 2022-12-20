@@ -189,17 +189,27 @@ namespace ET
             self.text.text = $"{(int)(progress * 100)}%";
         }
 
-        public static async ETTask UpdateMainUI(this UILoadingComponent self, int sceneTypeEnum)
+        public static  void InitMainUI(this UILoadingComponent self, int sceneTypeEnum)
         {
             Scene zoneScene = self.ZoneScene();
             UI uimain = UIHelper.GetUI(zoneScene, UIType.UIMain);
             if (uimain == null)
             {
-                uimain = await UIHelper.Create(zoneScene, UIType.UIMain);
+                UIHelper.Create(zoneScene, UIType.UIMain).Coroutine();
             }
+        }
+
+        public static void  UpdateMainUI(this UILoadingComponent self, int sceneTypeEnum)
+        {
+            Scene zoneScene = self.ZoneScene();
+            UI uimain = UIHelper.GetUI(zoneScene, UIType.UIMain);
+            uimain.GetComponent<UIMainComponent>().AfterEnterScene(sceneTypeEnum);
             uimain.GetComponent<UIMainComponent>().AfterEnterScene(sceneTypeEnum);
             switch (sceneTypeEnum)
             {
+                case SceneTypeEnum.LocalDungeon:
+                    UIHelper.Create(zoneScene, UIType.UIEnterMapHint).Coroutine();
+                    break;
                 case (int)SceneTypeEnum.CellDungeon:
                     uimain.GetComponent<UIMainComponent>().OnCellDungeonEnterShow(self.ChapterId);
                     uimain.GameObject.transform.localScale = Vector3.one;
@@ -305,13 +315,14 @@ namespace ET
                 {
                     self.ShowMain = true;
                     int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
-                    self.UpdateMainUI(sceneTypeEnum).Coroutine();
+                    self.InitMainUI(sceneTypeEnum);
                     Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
                 }
                 if (self.PassTime < 2f)
                 {
                     return;
                 }
+                self.UpdateMainUI(self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum);
                 Camera camera = UIComponent.Instance.MainCamera;
                 camera.GetComponent<Camera>().fieldOfView = 50;
                 sceneManagerComponent.SceneAssetRequest = null;

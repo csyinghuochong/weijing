@@ -58,10 +58,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: title
+  - key: titleText
     gameObject: {fileID: 197512}
-  - key: Text
-    gameObject: {fileID: 0}
 --- !u!114 &-5524722706776497301
 MonoBehaviour:
   m_ObjectHideFlags: 0
