@@ -62,7 +62,7 @@ namespace ET
                 self.FubenIdList.Add(sceneConfig[i].Id);
                 GameObject item = GameObject.Instantiate(TeamdungeonItem);
                 UICommonHelper.SetParent(item, TeamdungeonList);
-                item.SetActive(true);
+                item.SetActive(false);
                 self.ButtonList.Add(item.transform);
 
                 //更新显示
