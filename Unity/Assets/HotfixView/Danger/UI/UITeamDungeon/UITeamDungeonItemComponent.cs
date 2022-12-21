@@ -91,6 +91,11 @@ namespace ET
                 }
             }
 
+            if (teamInfo.FubenType == TeamFubenType.ShenYuan)
+            {
+                addStr = "(深渊模式)";
+            }
+
             self.Text_Name.GetComponent<Text>().text = teamDungeonConfig.Name + addStr;
 
             self.Text_Tuijian.GetComponent<Text>().text = $"推荐等级： {teamDungeonConfig.TuiJianLv[0]}-{teamDungeonConfig.TuiJianLv[1]}级";

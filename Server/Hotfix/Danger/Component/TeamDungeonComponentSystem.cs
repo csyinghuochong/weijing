@@ -193,7 +193,7 @@ namespace ET
                 if (self.FubenType == TeamFubenType.ShenYuan)
                 {
                     //深渊副本掉落
-                    int dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(75).Value);
+                    int dropId = int.Parse(GlobalValueConfigCategory.Instance.Get(77).Value);
                     UnitFactory.CreateDropItems(null, unit, 0, dropId, "1");
                 }
             }

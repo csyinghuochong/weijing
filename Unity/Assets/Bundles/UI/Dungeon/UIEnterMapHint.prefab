@@ -60,6 +60,8 @@ MonoBehaviour:
   data:
   - key: titleText
     gameObject: {fileID: 197512}
+  - key: ShenYuanSet
+    gameObject: {fileID: 704572758109320353}
 --- !u!114 &-5524722706776497301
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -148,7 +148,18 @@ namespace ET
             }
 
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
-            self.Obj_Lab_FuBenName.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("挑战副本") + ":" + sceneConfig.Name;
+            string addStr = "";
+            if (teamInfo.FubenType == TeamFubenType.XieZhu)
+            {
+                addStr = "(帮助模式)";
+            }
+
+            if (teamInfo.FubenType == TeamFubenType.ShenYuan)
+            {
+                addStr = "(深渊模式)";
+            }
+
+            self.Obj_Lab_FuBenName.GetComponent<Text>().text = sceneConfig.Name + addStr;
             self.Lab_FuBenLv.GetComponent<Text>().text = $"{GameSettingLanguge.LoadLocalization("等级")}: {sceneConfig.EnterLv} - 50";
         }
 
