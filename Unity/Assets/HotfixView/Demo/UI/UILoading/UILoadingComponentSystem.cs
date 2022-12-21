@@ -208,6 +208,7 @@ namespace ET
             switch (sceneTypeEnum)
             {
                 case SceneTypeEnum.LocalDungeon:
+                case SceneTypeEnum.TeamDungeon:
                     UIHelper.Create(zoneScene, UIType.UIEnterMapHint).Coroutine();
                     break;
                 case (int)SceneTypeEnum.CellDungeon:

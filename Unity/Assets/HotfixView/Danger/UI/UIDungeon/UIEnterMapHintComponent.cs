@@ -27,7 +27,25 @@ namespace ET
         public static async ETTask OnInitUI(this UIEnterMapHintComponent self)
         {
             int dungeonId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
-            self.titleText.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(dungeonId).ChapterName;
+
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
+            {
+                int fubenType = mapComponent.FubenDifficulty;
+                if (fubenType == FubenDifficulty.DiYu)
+                { 
+                    //地狱难度
+                }
+                self.titleText.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(dungeonId).ChapterName;
+            }
+            if(mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
+            {
+                int fubenType = mapComponent.FubenDifficulty;
+                if (fubenType == TeamFubenType.ShenYuan)
+                { 
+                    //深渊模式
+                }
+            }
 
             long instanceId = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(3000);
