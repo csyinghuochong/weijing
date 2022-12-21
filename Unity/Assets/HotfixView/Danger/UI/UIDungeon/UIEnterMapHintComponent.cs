@@ -7,6 +7,7 @@ namespace ET
     public class UIEnterMapHintComponent : Entity, IAwake
     {
         public GameObject titleText;
+        public GameObject ShenYuanSet;
     }
 
     [ObjectSystem]
@@ -17,6 +18,7 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.titleText = rc.Get<GameObject>("titleText");
+            self.ShenYuanSet = rc.Get<GameObject>("ShenYuanSet");
 
             self.OnInitUI().Coroutine();
         }
@@ -42,8 +44,9 @@ namespace ET
             {
                 int fubenType = mapComponent.FubenDifficulty;
                 if (fubenType == TeamFubenType.ShenYuan)
-                { 
+                {
                     //深渊模式
+                    self.ShenYuanSet.SetActive(true);
                 }
             }
 
