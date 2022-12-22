@@ -120,6 +120,8 @@ MonoBehaviour:
     gameObject: {fileID: 5807277824167550395}
   - key: ShenYuanButton
     gameObject: {fileID: 2780773733593138719}
+  - key: ShenYuan
+    gameObject: {fileID: 3187600050992160226}
 --- !u!1 &1177177562814036
 GameObject:
   m_ObjectHideFlags: 0
