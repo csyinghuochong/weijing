@@ -47,7 +47,7 @@ namespace ET
             self.mSkillBuffConf = buffData.BuffConfig;
             self.mEffectConf = self.mSkillBuffConf.BuffEffectID == 0 ? null : EffectConfigCategory.Instance.Get(self.mSkillBuffConf.BuffEffectID);
             self.BuffEndTime = TimeHelper.ClientNow() + self.mSkillBuffConf.BuffTime;
-            self.BuffEndTime = buffData.BuffEndTime;
+            self.BuffEndTime = buffData.BuffEndTime > 0 ? buffData.BuffEndTime : self.BuffEndTime;
             self.BuffBeginTime = TimeHelper.ClientNow();
             self.StartPosition = theUnitBelongto.Position;
         }
