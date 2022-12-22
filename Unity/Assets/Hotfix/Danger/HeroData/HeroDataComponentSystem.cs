@@ -436,8 +436,8 @@ namespace ET
                 fubenDifficulty = mapComponent.FubenDifficulty;
                 if (fubenDifficulty == TeamFubenType.ShenYuan)
                 {
-                    hpCoefficient = 2f;
-                    ackCoefficient = 1.5f;
+                    hpCoefficient = 2.5f;
+                    ackCoefficient = 1.3f;
                 }
             }
 
