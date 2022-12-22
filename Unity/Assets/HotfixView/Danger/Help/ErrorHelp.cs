@@ -95,7 +95,8 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_BattleJoined, "已经参与过战场活动");
 
             ErrorHintList.Add(ErrorCore.Err_PaiMaiPriceLow, "拍卖行出售价格过低");
-            
+
+            ErrorHintList.Add(ErrorCore.Err_TeamDungeonXieZhu, "只能创建比自己等级低十级的副本");
         }
 
         public string GetHint(int code)

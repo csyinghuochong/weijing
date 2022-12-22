@@ -287,6 +287,12 @@ namespace ET
             {
                 return ErrorCore.ERR_LevelIsNot;
             }
+
+            if (fubenType == TeamFubenType.XieZhu && sceneConfig.EnterLv > userInfoComponent.UserInfo.Lv - 10)
+            {
+                return ErrorCore.Err_TeamDungeonXieZhu;
+            }
+
             return ErrorCore.ERR_Success;
         }
 
@@ -302,6 +308,7 @@ namespace ET
                 {
                     return ErrorCore.ERR_IsNotLeader;
                 }
+                
                 for (int i = 0; i < teamInfo.PlayerList.Count; i++)
                 {
                     if (teamInfo.PlayerList[i].PlayerLv < sceneConfig.EnterLv)
@@ -309,7 +316,6 @@ namespace ET
                         return ErrorCore.ERR_TeamerLevelIsNot;
                     }
                 }
-
                 /*
                 for (int i = 0; i < teamInfo.PlayerList.Count; i++)
                 {
