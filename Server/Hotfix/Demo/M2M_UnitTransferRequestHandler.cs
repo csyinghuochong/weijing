@@ -170,7 +170,7 @@ namespace ET
 						{
 							TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
 							int fubenType = teamDungeonComponent.FubenType;
-							if (fubenType == TeamFubenType.XieZhu || unit.Id == teamDungeonComponent.TeamInfo.TeamId)
+							if (fubenType == TeamFubenType.XieZhu && unit.Id == teamDungeonComponent.TeamInfo.TeamId)
 							{
 								int times_2 = unit.GetTeamDungeonXieZhu();
 								int totalTimes_2 = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
