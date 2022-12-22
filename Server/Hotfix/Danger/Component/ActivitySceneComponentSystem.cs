@@ -120,6 +120,7 @@ namespace ET
                 self.DBDayActivityInfo.Id = self.DomainZone();
             }
             int openServerDay = DBHelper.GetOpenServerDay(zone);
+            Log.Debug($" openserverDay_1 {zone}  {openServerDay}");
             self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerDay);
             self.DBDayActivityInfo.Day = TimeHelper.DateTimeNow().Day;
             self.SaveDB();

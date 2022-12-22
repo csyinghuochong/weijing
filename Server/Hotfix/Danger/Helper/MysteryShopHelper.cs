@@ -63,8 +63,6 @@ namespace ET
 
 		public static List<MysteryItemInfo> InitMysteryItemInfos(int openserverDay)
 		{
-
-			Log.Debug($" openserverDay   {openserverDay}");
 			List<MysteryItemInfo> mysteryItemInfos = new List<MysteryItemInfo>();
 
 			GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(11);
