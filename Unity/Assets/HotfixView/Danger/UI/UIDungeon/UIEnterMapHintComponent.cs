@@ -32,6 +32,7 @@ namespace ET
 
         public static async ETTask OnInitUI(this UIEnterMapHintComponent self)
         {
+            Scene zoneScene = self.ZoneScene();
             UICommonHelper.CrossFadeAlpha(self.Left.transform, 1f, 1f);
             UICommonHelper.DOLocalMove(self.Left.transform, Vector3.zero, 1f);
 
@@ -40,9 +41,9 @@ namespace ET
             UICommonHelper.CrossFadeAlpha(self.Left.transform, 0f, 1f);
             UICommonHelper.DOLocalMove(self.Left.transform, new Vector3(2000, 0, 0), 1f);
 
-            int dungeonId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
+            int dungeonId = zoneScene.GetComponent<MapComponent>().SceneId;
 
-            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
             {
                 int fubenType = mapComponent.FubenDifficulty;
@@ -64,11 +65,7 @@ namespace ET
 
             long instanceId = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(1000);
-            if (instanceId != self.InstanceId)
-            {
-                return;
-            }
-            UIHelper.Remove(self.ZoneScene(), UIType.UIEnterMapHint);
+            UIHelper.Remove(zoneScene, UIType.UIEnterMapHint);
         }
     }
 }
