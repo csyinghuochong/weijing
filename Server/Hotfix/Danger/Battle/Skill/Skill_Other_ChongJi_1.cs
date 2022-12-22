@@ -21,7 +21,7 @@ namespace ET
             float addMul = (newSpeed - oldSpeed) / oldSpeed;
             float curMul = theUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Extra_Buff_Speed_Mul);
             this.AddSpeed_Mul = addMul - curMul;
-            theUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, this.AddSpeed_Mul);
+            theUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, addMul);
             Unit targetUnit = theUnitFrom.GetParent<UnitComponent>().Get(skillId.TargetID);
             if (targetUnit!=null)
             {
