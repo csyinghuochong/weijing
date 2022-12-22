@@ -30,14 +30,18 @@
 
         private async ETTask RunAsync(EventType.RecvTeamDungeonOpen args)
         {
-            int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
-            int times = UnitHelper.GetMyUnitFromZoneScene(args.ZoneScene).GetTeamDungeonTimes();
-            if (totalTimes - times <= 0)
+            Scene zoneScene = args.ZoneScene;
+            TeamComponent teamComponent = zoneScene.GetComponent<TeamComponent>();
+            UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
+            TeamInfo teamInfo = teamComponent.GetSelfTeam();
+            int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(zoneScene), userInfo, teamInfo.SceneId, teamInfo.FubenType);
+            if (errorCode != ErrorCore.ERR_Success)
             {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_TimesIsNot);
+                ErrorHelp.Instance.ErrorHint(errorCode);
+                UIHelper.Remove(args.ZoneScene, UIType.UITeamDungeon);
                 return;
             }
-            int errorCode = await EnterFubenHelp.RequestTransfer(args.ZoneScene, (int)SceneTypeEnum.TeamDungeon, 0);
+            errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, (int)SceneTypeEnum.TeamDungeon, 0);
             if (errorCode != ErrorCore.ERR_Success)
             {
                 ErrorHelp.Instance.ErrorHint(errorCode);

@@ -174,7 +174,7 @@ namespace ET
 							{
 								int times_2 = unit.GetTeamDungeonXieZhu();
 								int totalTimes_2 = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
-								if (totalTimes_2 - times_2 > 0)
+								if (totalTimes_2 > times_2)
 								{
 									unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonXieZhu, unit.GetTeamDungeonXieZhu() + 1);
 								}

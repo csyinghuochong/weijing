@@ -219,6 +219,7 @@
     <Compile Include="Assets\Hotfix\Danger\Common\Component\MapComponentSystem.cs" />
     <Compile Include="Assets\Hotfix\Module\Numeric\NumericWatcher_Update.cs" />
     <Compile Include="Assets\Hotfix\Module\Message\NetKcpComponentSystem.cs" />
+    <Compile Include="Assets\Hotfix\Danger\Common\Helper\TeamHelper.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

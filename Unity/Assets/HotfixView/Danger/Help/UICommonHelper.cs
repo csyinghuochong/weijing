@@ -404,9 +404,24 @@ namespace ET
             transform.DOScale(vector3, time).SetEase(Ease.OutCubic);  //.SetDelay(time / 2);
         }
 
-        public static void DOLocalMove(Transform transform, Vector3 vector3, float time)
+        public static async ETTask DOLocalMove(Transform transform, Vector3 vector3, float totalTime)
         {
-            transform.DOLocalMove(vector3, time).SetEase(Ease.OutCubic);
+            //.DOLocalMove(vector3, time).SetEase(Ease.OutCubic);
+            Vector3 oldPostition = transform.localPosition;
+            float passTime = 0;
+            float starTime = Time.time;
+            while(passTime < totalTime)
+            {
+                passTime = Time.time - starTime;
+                float rate = passTime / totalTime ;
+                Vector3 curPostion = rate * (vector3 - oldPostition) + oldPostition;
+                transform.transform.localPosition = curPostion;
+                await TimerComponent.Instance.WaitFrameAsync();
+                if (transform == null)
+                {
+                    break;
+                }
+            }
         }
 
         public static void CrossFadeAlpha(Transform transform, float alpha, float duration)

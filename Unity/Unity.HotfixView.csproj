@@ -138,9 +138,11 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIMake\UIMakeComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Help\FunctionEffect.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetSelectEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleTaskItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\Config\ConfigComponent_SetConfigLoader_Awake.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIRoleQiangHuaComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITask\UITaskGetComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIDungeon\UIEnterMapHintEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIItemTips\UIItemTipsComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UIBuffTipsComponent.cs" />
@@ -486,6 +488,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetAddPointComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Component\HeroHeadBarComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Fsm\FsmComponentSystem.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIDungeon\UIEnterMapHintComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChat\UIChatComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIUnion\UIUnionListItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiShopComponent.cs" />
@@ -571,9 +574,6 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleTaskItemComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIDungeon\UIEnterMapHintComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIDungeon\UIEnterMapHintEvent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

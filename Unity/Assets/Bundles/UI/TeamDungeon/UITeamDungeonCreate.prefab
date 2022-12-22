@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 22482370}
   - component: {fileID: 5930103204839736917}
   - component: {fileID: 5594392290116009399}
+  - component: {fileID: 1916934457019297545}
   m_Layer: 5
   m_Name: UITeamDungeonCreate
   m_TagString: Untagged
@@ -123,6 +124,22 @@ MonoBehaviour:
     gameObject: {fileID: 2780773733593138719}
   - key: ShenYuan
     gameObject: {fileID: 3187600050992160226}
+--- !u!114 &1916934457019297545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 97cdb235702b63d488f2d37137469d13, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTypeEnum: 0
+  moveDistance: 0
+  isLoop: 0
+  MoveToTime: 0
 --- !u!1 &1177177562814036
 GameObject:
   m_ObjectHideFlags: 0

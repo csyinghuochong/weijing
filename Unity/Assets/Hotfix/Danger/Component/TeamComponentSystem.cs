@@ -104,15 +104,15 @@ namespace ET
                     EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
                     return ErrorCore.ERR_IsHaveTeam;
                 }
+                UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
                 if (fubenId != 0)
                 {
-                    int errorCode = self.CheckTimesAndLevel(fubenId, fubenType);
+                    int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), userInfo, fubenId, fubenType);
                     if (errorCode != 0)
                     {
                         return errorCode;
                     }
                 }
-                UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
                 if (fubenType == TeamFubenType.XieZhu && userInfo.Lv > leaderLv)
                 {
                     return ErrorCore.ERR_TeamerLevelIsNot;
@@ -243,6 +243,7 @@ namespace ET
 
                 C2M_TeamDungeonOpenRequest c2M_ItemHuiShouRequest = new C2M_TeamDungeonOpenRequest() { UserID = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId, FubenType = self.FubenType };
                 M2C_TeamDungeonOpenResponse r2c_roleEquip = (M2C_TeamDungeonOpenResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
+                teamInfo.FubenType = r2c_roleEquip.FubenType;
                 return r2c_roleEquip.Error;
             }
             catch (Exception e)
@@ -250,40 +251,6 @@ namespace ET
                 Log.Error(e);
                 return ErrorCore.ERR_NetWorkError;
             }
-        }
-
-        public static int CheckTimesAndLevel(this TeamComponent self, int fubenId, int fubenType)
-        {
-            if (fubenType == TeamFubenType.Normal || fubenType == TeamFubenType.ShenYuan)
-            {
-                int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
-                int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
-                if (totalTimes - times <= 0)
-                {
-                    return ErrorCore.ERR_TimesIsNot;
-                }
-            }
-            else
-            {
-                int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
-                int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
-
-                int totalTimes_2 = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
-                int times_2 = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonXieZhu();
-
-                if (totalTimes - times <= 0 && totalTimes_2 - times_2 <= 0)
-                {
-                    return ErrorCore.ERR_TimesIsNot;
-                }
-            }
-
-            UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
-            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenId);
-            if (userInfoComponent.UserInfo.Lv < sceneConfig.CreateLv)
-            {
-                return ErrorCore.ERR_LevelIsNot;
-            }
-            return ErrorCore.ERR_Success;
         }
 
         public static int CheckCanOpenFuben(this TeamComponent self, int fubenId, int fubenType)
@@ -330,8 +297,7 @@ namespace ET
                 {
                     return ErrorCore.ERR_IsNotLeader;
                 }
-
-                int errorCode = self.CheckTimesAndLevel(fubenId,  fubenType);
+                int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), userInfo,fubenId,  fubenType);
                 if (errorCode != ErrorCore.ERR_Success)
                 {
                     return errorCode;
@@ -356,6 +322,10 @@ namespace ET
                 //创建队伍
                 M2C_TeamDungeonCreateResponse r2c_roleEquip = (M2C_TeamDungeonCreateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
                 self.FubenType = r2c_roleEquip.FubenType;
+                if (teamInfo != null)
+                {
+                    teamInfo.FubenType = r2c_roleEquip.FubenType;
+                }
                 return r2c_roleEquip.Error;
             }
             catch (Exception e)
