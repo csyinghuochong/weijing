@@ -328,6 +328,11 @@ namespace ET
         public static void OnLineTime(this TaskComponent self, int time)
         {
             self.TriggerTaskCountryEvent(TaskCountryTargetType.OnLineTime_10, 0, 1);
+
+            if (self.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == SceneTypeEnum.Battle)
+            {
+                self.TriggerTaskCountryEvent(TaskCountryTargetType.BattleExist_103, 0, 1);
+            }
         }
 
         /// <summary>

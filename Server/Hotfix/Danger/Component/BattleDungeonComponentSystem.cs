@@ -115,7 +115,6 @@ namespace ET
         public static void KickOutPlayer(this BattleDungeonComponent self)
         {
             List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
-            long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < units.Count; i++)
             {
                 if (units[i].Type != UnitType.Player)

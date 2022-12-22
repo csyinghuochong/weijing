@@ -93,5 +93,6 @@ namespace ET
 
         BattleWin_101 = 101,
         BattleKillPlayer_102 = 102,
+        BattleExist_103 = 103,
     }
 }
