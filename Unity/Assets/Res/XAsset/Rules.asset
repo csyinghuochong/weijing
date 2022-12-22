@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 419
+  version: 420
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -320,6 +320,8 @@ MonoBehaviour:
     path: Assets/Bundles/Effect/SkillEffect/Eff_Buff_AddAct.prefab
   - bundle: af36fa1ea967851b6e40e461a314b9dc.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Buff_BingJianSu_1.prefab
+  - bundle: 02409675b493a94961878a9f5b661b50.unity3d
+    path: Assets/Bundles/Effect/SkillEffect/Eff_Buff_ChenMo.prefab
   - bundle: a9eed4d8f238ca48fa2944f31a6b89b2.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Buff_Def_Add_1.prefab
   - bundle: ae38377c5a92812b5e8138121b2346f1.unity3d
@@ -3788,6 +3790,16 @@ MonoBehaviour:
     path: Assets/Bundles/Icon/TaskIcon/100010.png
   - bundle: 318426cdf69782fa1a9b0dfbc8fe42d0.unity3d
     path: Assets/Bundles/Icon/TaskIcon/100011.png
+  - bundle: 318426cdf69782fa1a9b0dfbc8fe42d0.unity3d
+    path: Assets/Bundles/Icon/TaskIcon/100012.png
+  - bundle: 318426cdf69782fa1a9b0dfbc8fe42d0.unity3d
+    path: Assets/Bundles/Icon/TaskIcon/100013.png
+  - bundle: 318426cdf69782fa1a9b0dfbc8fe42d0.unity3d
+    path: Assets/Bundles/Icon/TaskIcon/100014.png
+  - bundle: 318426cdf69782fa1a9b0dfbc8fe42d0.unity3d
+    path: Assets/Bundles/Icon/TaskIcon/100015.png
+  - bundle: 318426cdf69782fa1a9b0dfbc8fe42d0.unity3d
+    path: Assets/Bundles/Icon/TaskIcon/100016.png
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
     path: Assets/Bundles/Icon/TiTleIcon/ImgBig_11.png
   - bundle: f53a1bf78f7a146659363581f1b291fe.unity3d
@@ -7231,6 +7243,9 @@ MonoBehaviour:
   - name: af36fa1ea967851b6e40e461a314b9dc.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Buff_BingJianSu_1.prefab
+  - name: 02409675b493a94961878a9f5b661b50.unity3d
+    assets:
+    - Assets/Bundles/Effect/SkillEffect/Eff_Buff_ChenMo.prefab
   - name: a9eed4d8f238ca48fa2944f31a6b89b2.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Buff_Def_Add_1.prefab
@@ -9663,6 +9678,11 @@ MonoBehaviour:
     - Assets/Bundles/Icon/TaskIcon/100009.png
     - Assets/Bundles/Icon/TaskIcon/100010.png
     - Assets/Bundles/Icon/TaskIcon/100011.png
+    - Assets/Bundles/Icon/TaskIcon/100012.png
+    - Assets/Bundles/Icon/TaskIcon/100013.png
+    - Assets/Bundles/Icon/TaskIcon/100014.png
+    - Assets/Bundles/Icon/TaskIcon/100015.png
+    - Assets/Bundles/Icon/TaskIcon/100016.png
   - name: f53a1bf78f7a146659363581f1b291fe.unity3d
     assets:
     - Assets/Bundles/Icon/TiTleIcon/ImgBig_11.png
@@ -11189,6 +11209,9 @@ MonoBehaviour:
   - name: b37c2a6a93bccaa6af5a54a7e1ad0e11.unity3d
     assets:
     - Assets/Mono/ThirdRes/GUI Pro Kit Fantasy RPG/Particles/Textures/fx_glow2.png
+  - name: caf55d071646e82a4ce3831d4de5e326.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_92.png
   - name: 69c0e87cad72e9a093b0636580c2f201.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_40.png
@@ -11279,9 +11302,6 @@ MonoBehaviour:
   - name: 7c1daa07efbf1f3cdd00517afae5afe1.unity3d
     assets:
     - Assets/Mono/ThirdRes/GUI Pro Kit Fantasy RPG/Particles/Textures/fx_glow3.png
-  - name: 8561838f3cccb02af7700464ac936abb.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_197.png
   - name: 1f21981b56277187351de2a1d0a6ee91.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_136.png
@@ -11417,9 +11437,6 @@ MonoBehaviour:
   - name: 9ffc8462c60b8d78364e6802e6d031c7.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_213.png
-  - name: caf55d071646e82a4ce3831d4de5e326.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_92.png
   - name: 3fee61081d4e30121bdc822a28dbf69f.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/EmojiOne.png
@@ -11486,6 +11503,9 @@ MonoBehaviour:
   - name: fd91049ee6b939c843cc004390e04fac.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_319.png
+  - name: 8561838f3cccb02af7700464ac936abb.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_197.png
   - name: 040ea1e6fec9765739c1b9d086c193db.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_75.png
@@ -11741,15 +11761,15 @@ MonoBehaviour:
   - name: 5d2383459e75c9d84111758904827d4c.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/Pro_13.png
-  - name: be3414f77fc92cb95df3e9934b09de27.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Pro/UI_pro_4_1.png
   - name: 552a8bfe79fb9097a7b8499e9191d415.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_28.png
   - name: 562147e9e1153c0cd7f6c6d17b3f8a15.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_372.png
+  - name: e25d622f1baca1bb66c77e201fd32c17.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_379.png
   - name: c0c32fd33fdd0bb0eaa4b2da41b5992e.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_6.png
@@ -11960,9 +11980,6 @@ MonoBehaviour:
   - name: f7a16331855f58a4cda29bc9437d43c2.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_313_1.png
-  - name: e25d622f1baca1bb66c77e201fd32c17.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_379.png
   - name: 962348998c5f3000313112b30fe9eee4.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_297.Png
