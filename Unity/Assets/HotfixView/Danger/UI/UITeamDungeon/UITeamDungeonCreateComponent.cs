@@ -85,8 +85,9 @@ namespace ET
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            self.Button_XieZhu.SetActive(true);
-            //self.Button_XieZhu.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
+            //self.Button_XieZhu.SetActive(true);
+            self.Button_XieZhu.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
+            self.ShenYuanMode.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
             self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonCreate); });
         }
     }
@@ -171,7 +172,7 @@ namespace ET
                 BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
                 if (bagComponent.GetItemNumber(ComHelp.ShenYuanCostId) < 1)
                 {
-                    FloatTipManager.Instance.ShowFloatTip("道具不足！");
+                    FloatTipManager.Instance.ShowFloatTip($"需要道具{ItemConfigCategory.Instance.Get(ComHelp.ShenYuanCostId).ItemName}！");
                     return;
                 }
                 dungeonType = TeamFubenType.ShenYuan;

@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 413
+  version: 415
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -4004,6 +4004,8 @@ MonoBehaviour:
     path: Assets/Bundles/UI/Dungeon/UIDungeonLevel.prefab
   - bundle: ff11229611034a565e883098321eb7fb.unity3d
     path: Assets/Bundles/UI/Dungeon/UIDungeonLevelItem.prefab
+  - bundle: 9e820d1083ee8329229a777f6d97c02e.unity3d
+    path: Assets/Bundles/UI/Dungeon/UIEnterMapHint.prefab
   - bundle: 298aac4e93869f8bc615e85690018cf0.unity3d
     path: Assets/Bundles/UI/JiaYuan/UIJiaYuan.prefab
   - bundle: 787a1a332fa7faee02a96ac768ff1b72.unity3d
@@ -6461,6 +6463,9 @@ MonoBehaviour:
   - name: ff11229611034a565e883098321eb7fb.unity3d
     assets:
     - Assets/Bundles/UI/Dungeon/UIDungeonLevelItem.prefab
+  - name: 9e820d1083ee8329229a777f6d97c02e.unity3d
+    assets:
+    - Assets/Bundles/UI/Dungeon/UIEnterMapHint.prefab
   - name: 298aac4e93869f8bc615e85690018cf0.unity3d
     assets:
     - Assets/Bundles/UI/JiaYuan/UIJiaYuan.prefab
@@ -11235,6 +11240,18 @@ MonoBehaviour:
   - name: c70bf2473f526d1f8e398a9a22e11327.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_78.png
+  - name: 7db5112b76945e3fe7923185edb82149.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_132.png
+  - name: 91d9ee885a50231ff75a1cdefa281e71.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_90.png
+  - name: e92a2154877cc6a895631516bd18387a.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_33.png
+  - name: 66b79c41bb658dcd9b14278171ee0bbb.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_78.png
   - name: 472698f27cfdaa63f01ab01748c7aba1.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_257.png
@@ -11340,9 +11357,6 @@ MonoBehaviour:
   - name: 48fd932c10b8daa67ffa0a59c889404e.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_30.png
-  - name: 66b79c41bb658dcd9b14278171ee0bbb.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_78.png
   - name: 07443da5060df957a13d0bf754161a92.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_212.png
@@ -11370,9 +11384,6 @@ MonoBehaviour:
   - name: d1b8ec5d38e1abbbf99bc61c922b421c.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_58_1.png
-  - name: 91d9ee885a50231ff75a1cdefa281e71.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_90.png
   - name: ad1eb8aca44f24857c13c99ac71707f9.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_57.png
@@ -11409,9 +11420,6 @@ MonoBehaviour:
   - name: caf55d071646e82a4ce3831d4de5e326.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_92.png
-  - name: e92a2154877cc6a895631516bd18387a.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_33.png
   - name: 3fee61081d4e30121bdc822a28dbf69f.unity3d
     assets:
     - Assets/Res/UI/UIRes/Pro/EmojiOne.png
@@ -11505,9 +11513,6 @@ MonoBehaviour:
   - name: e694d5d8b1657f29b947c926c2870a5e.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_201.png
-  - name: 7db5112b76945e3fe7923185edb82149.unity3d
-    assets:
-    - Assets/Res/UI/UIRes/Imgage/Img_132.png
   - name: b7866e0938fea07e3f98a3fe5fcd8eb2.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/ItemQuality_4.png
@@ -11925,6 +11930,9 @@ MonoBehaviour:
   - name: 25b1905422db91f79f74eb9394bcc49c.unity3d
     assets:
     - Assets/Res/UI/UIRes/Button/Btn_19.png
+  - name: 9f4b84031ece4f039df50511db9671b9.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_397.png
   - name: b86e2b799d5ef05767c524f44f9feaa1.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_238.png
