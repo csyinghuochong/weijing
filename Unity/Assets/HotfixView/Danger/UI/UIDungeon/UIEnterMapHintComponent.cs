@@ -34,7 +34,7 @@ namespace ET
         {
             Scene zoneScene = self.ZoneScene();
             UICommonHelper.CrossFadeAlpha(self.Left.transform, 1f, 1f);
-            UICommonHelper.DOLocalMove(self.Left.transform, Vector3.zero, 1f);
+            // UICommonHelper.DOLocalMove(self.Left.transform, Vector3.zero, 1f);
 
             int dungeonId = zoneScene.GetComponent<MapComponent>().SceneId;
             MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
@@ -60,7 +60,7 @@ namespace ET
             await TimerComponent.Instance.WaitAsync(2000);
 
             UICommonHelper.CrossFadeAlpha(self.Left.transform, 0f, 1f);
-            UICommonHelper.DOLocalMove(self.Left.transform, new Vector3(2000, 0, 0), 1f);
+            //UICommonHelper.DOLocalMove(self.Left.transform, new Vector3(2000, 0, 0), 1f);
 
             long instanceId = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(1000);

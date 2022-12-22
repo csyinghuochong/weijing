@@ -86,5 +86,10 @@ namespace ET
         /// 秒杀
         /// </summary>
         public const long MiaoSha = 1 << 19;
+
+        /// <summary>
+        /// 霸体 buff 霸体效果，免疫眩晕和禁锢状态
+        /// </summary>
+        public const long BaTi = 1 << 20;
     }
 }
