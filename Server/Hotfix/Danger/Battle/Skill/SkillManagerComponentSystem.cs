@@ -436,15 +436,18 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             SkillCDItem skillcd = null;
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+            double skillcdTime = skillConfig.SkillCD;
             float nocdPro = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_SkillNoCDPro);
             if (nocdPro > RandomHelper.RandFloat01())
             {
-                return skillcd;
+                //return skillcd;
+                skillcdTime = 1;  //1秒冷却CD
             }
 
             float reduceCD = 0f;
             SkillSetComponent skillSetComponent = unit.GetComponent<SkillSetComponent>();
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+            
             Dictionary<int, float> keyValuePairs = skillSetComponent != null ? skillSetComponent.GetSkillPropertyAdd(weaponSkill) : null;
             if (keyValuePairs != null)
             {
@@ -459,12 +462,12 @@ namespace ET
             if (zhudong)
             {
                 skillcd.SkillID = skillId;
-                skillcd.CDEndTime = TimeHelper.ServerNow() +  (int)(1000 * ( (float)skillConfig.SkillCD - reduceCD) );
+                skillcd.CDEndTime = TimeHelper.ServerNow() +  (int)(1000 * ( (float)skillcdTime - reduceCD) );
             }
             else
             {
                 skillcd.SkillID = skillId;
-                skillcd.CDPassive = TimeHelper.ServerNow() + (int)(1000 * ((float)skillConfig.SkillCD - reduceCD));
+                skillcd.CDPassive = TimeHelper.ServerNow() + (int)(1000 * ((float)skillcdTime - reduceCD));
             }
 
             if (skillConfig.IfPublicSkillCD == 0 )

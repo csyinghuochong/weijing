@@ -96,7 +96,7 @@ namespace ET
 
             ErrorHintList.Add(ErrorCore.Err_PaiMaiPriceLow, "拍卖行出售价格过低");
 
-            ErrorHintList.Add(ErrorCore.Err_TeamDungeonXieZhu, "只能创建比自己等级低十级的副本");
+            ErrorHintList.Add(ErrorCore.Err_TeamDungeonXieZhu, "帮助副本只能创建比自己等级低10级以上的副本");
         }
 
         public string GetHint(int code)
