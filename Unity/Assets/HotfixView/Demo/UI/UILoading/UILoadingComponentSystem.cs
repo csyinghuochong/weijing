@@ -204,7 +204,6 @@ namespace ET
             Scene zoneScene = self.ZoneScene();
             UI uimain = UIHelper.GetUI(zoneScene, UIType.UIMain);
             uimain.GetComponent<UIMainComponent>().AfterEnterScene(sceneTypeEnum);
-            uimain.GetComponent<UIMainComponent>().AfterEnterScene(sceneTypeEnum);
             switch (sceneTypeEnum)
             {
                 case SceneTypeEnum.LocalDungeon:
@@ -315,15 +314,20 @@ namespace ET
                 if (self.PassTime > 1f && !self.ShowMain)
                 {
                     self.ShowMain = true;
-                    int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
-                    self.InitMainUI(sceneTypeEnum);
-                    Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneTypeEnum);
+                    self.InitMainUI(self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum);
                 }
                 if (self.PassTime < 2f)
                 {
                     return;
                 }
-                self.UpdateMainUI(self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum);
+                Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                if (main == null)
+                {
+                    return;
+                }
+                int sceneType =  self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
+                self.UpdateMainUI(sceneType);
+                Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneType);
                 Camera camera = UIComponent.Instance.MainCamera;
                 camera.GetComponent<Camera>().fieldOfView = 50;
                 sceneManagerComponent.SceneAssetRequest = null;

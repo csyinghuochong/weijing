@@ -129,6 +129,7 @@ namespace ET
 						int todayCamp = numericComponent.GetAsInt(NumericType.BattleTodayCamp);
 						todayCamp = todayCamp > 0 ? todayCamp : int.Parse(request.ParamInfo);
 						numericComponent.Set(NumericType.BattleCamp, todayCamp); //1 2
+						numericComponent.Set(NumericType.BattleTodayCamp, todayCamp); //1 2
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						int startIndex = todayCamp == 1 ? 0 : 3;
@@ -171,8 +172,16 @@ namespace ET
 							int fubenType = teamDungeonComponent.FubenType;
 							if (fubenType == TeamFubenType.XieZhu || unit.Id == teamDungeonComponent.TeamInfo.TeamId)
 							{
-								unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonXieZhu, unit.GetTeamDungeonXieZhu() + 1);
-		
+								int times_2 = unit.GetTeamDungeonXieZhu();
+								int totalTimes_2 = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
+								if (totalTimes_2 - times_2 > 0)
+								{
+									unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonXieZhu, unit.GetTeamDungeonXieZhu() + 1);
+								}
+								else
+								{
+									unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() + 1);
+								}
 							}
 							else
 							{

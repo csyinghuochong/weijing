@@ -258,7 +258,7 @@ namespace ET
 
         public static int CheckTimesAndLevel(this TeamComponent self, int fubenId, int fubenType)
         {
-            if (fubenType == TeamFubenType.Normal)
+            if (fubenType == TeamFubenType.Normal || fubenType == TeamFubenType.ShenYuan)
             {
                 int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
                 int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
@@ -269,9 +269,13 @@ namespace ET
             }
             else
             {
-                int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
-                int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonXieZhu();
-                if (totalTimes - times <= 0)
+                int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
+                int times = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonTimes();
+
+                int totalTimes_2 = int.Parse(GlobalValueConfigCategory.Instance.Get(74).Value);
+                int times_2 = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetTeamDungeonXieZhu();
+
+                if (totalTimes - times <= 0 && totalTimes_2 - times_2 <= 0)
                 {
                     return ErrorCore.ERR_TimesIsNot;
                 }
