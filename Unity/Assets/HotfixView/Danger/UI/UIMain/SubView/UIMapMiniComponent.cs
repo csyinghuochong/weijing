@@ -230,15 +230,15 @@ namespace ET
                     string str = "";
                     if (difficulty == FubenDifficulty.Normal)
                     {
-                        str = "普通";
+                        str = "(普通)";
                     }
                     if (difficulty == FubenDifficulty.TiaoZhan)
                     {
-                        str = "挑战";
+                        str = "(挑战)";
                     }
                     if (difficulty == FubenDifficulty.DiYu)
                     {
-                        str = "地狱";
+                        str = "(地狱)";
                     }
                     self.Lab_MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(sceneId).ChapterName + str;
                     break;

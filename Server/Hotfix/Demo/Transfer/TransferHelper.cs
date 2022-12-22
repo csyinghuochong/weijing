@@ -26,7 +26,7 @@
             }
         }
 
-        public static async void LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty = 0)
+        public static async void LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty)
         {
             long oldsceneid = unit.DomainScene().Id;
 
@@ -38,7 +38,7 @@
             localDungeon.FubenDifficulty = difficulty;
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;
             TransferHelper.BeforeTransfer(unit);
-            await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, 0, transferId.ToString());
+            await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, difficulty, transferId.ToString());
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
             if (transferId != 0)
             {

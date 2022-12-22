@@ -18,7 +18,7 @@ namespace ET
             //1-10 表示 10%-100%
             double addPro = (double)theUnitFrom.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_JumpDisAdd) / 10;
             float newSpeed = (float)(this.SkillConf.SkillMoveSpeed * (1 + addPro));
-            this.AddSpeed_Mul = (newSpeed - oldSpeed) / oldSpeed;
+            this.AddSpeed_Mul = theUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Extra_Buff_Speed_Mul) - (newSpeed - oldSpeed) / oldSpeed;
             theUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, this.AddSpeed_Mul);
             Unit targetUnit = theUnitFrom.GetParent<UnitComponent>().Get(skillId.TargetID);
             if (targetUnit!=null)
