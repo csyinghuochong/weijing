@@ -36,24 +36,18 @@ namespace ET
             UICommonHelper.CrossFadeAlpha(self.Left.transform, 1f, 1f);
             UICommonHelper.DOLocalMove(self.Left.transform, Vector3.zero, 1f);
 
-            await TimerComponent.Instance.WaitAsync(2000);
-
-            UICommonHelper.CrossFadeAlpha(self.Left.transform, 0f, 1f);
-            UICommonHelper.DOLocalMove(self.Left.transform, new Vector3(2000, 0, 0), 1f);
-
             int dungeonId = zoneScene.GetComponent<MapComponent>().SceneId;
-
             MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon)
             {
                 int fubenType = mapComponent.FubenDifficulty;
                 if (fubenType == FubenDifficulty.DiYu)
-                { 
+                {
                     //地狱难度
                 }
                 self.titleText.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(dungeonId).ChapterName;
             }
-            if(mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
                 int fubenType = mapComponent.FubenDifficulty;
                 if (fubenType == TeamFubenType.ShenYuan)
@@ -62,6 +56,11 @@ namespace ET
                     self.ShenYuanSet.SetActive(true);
                 }
             }
+
+            await TimerComponent.Instance.WaitAsync(2000);
+
+            UICommonHelper.CrossFadeAlpha(self.Left.transform, 0f, 1f);
+            UICommonHelper.DOLocalMove(self.Left.transform, new Vector3(2000, 0, 0), 1f);
 
             long instanceId = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(1000);

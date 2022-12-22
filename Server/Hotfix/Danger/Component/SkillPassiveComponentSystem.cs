@@ -232,7 +232,6 @@ namespace ET
                 }
                 return;
             }
-
             //只触发一次
             if (skillIfo.LastTriggerTime > 0 && skillIfo.TriggerOnce == 1)
             {
@@ -266,7 +265,6 @@ namespace ET
                     trigger = skillIfo.SkillPro >= RandomHelper.RandFloat01();
                     break;
             }
-
             if (!trigger)
             {
                 return;
