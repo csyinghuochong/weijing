@@ -1481,6 +1481,44 @@ namespace ET
 
 	}
 
+//开启组队副本
+	[ResponseType(nameof(T2M_TeamDungeonOpenResponse))]
+	[Message(InnerOpcode.M2T_TeamDungeonOpenRequest)]
+	[ProtoContract]
+	public partial class M2T_TeamDungeonOpenRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UserID { get; set; }
+
+		[ProtoMember(3)]
+		public int FubenType { get; set; }
+
+	}
+
+	[Message(InnerOpcode.T2M_TeamDungeonOpenResponse)]
+	[ProtoContract]
+	public partial class T2M_TeamDungeonOpenResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(3)]
+		public int FubenType { get; set; }
+
+	}
+
 //进入组队副本
 	[ResponseType(nameof(T2M_TeamDungeonEnterResponse))]
 	[Message(InnerOpcode.M2T_TeamDungeonEnterRequest)]

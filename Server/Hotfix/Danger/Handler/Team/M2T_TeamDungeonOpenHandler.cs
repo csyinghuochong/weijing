@@ -4,18 +4,19 @@ namespace ET
 {
 
     [ActorMessageHandler]
-    public class C2T_TeamDungeonOpenHandler : AMActorRpcHandler<Scene, C2T_TeamDungeonOpenRequest, T2C_TeamDungeonOpenResponse>
+    public class M2T_TeamDungeonOpenHandler : AMActorRpcHandler<Scene, M2T_TeamDungeonOpenRequest, T2M_TeamDungeonOpenResponse>
     {
-        protected override async ETTask Run(Scene scene, C2T_TeamDungeonOpenRequest request, T2C_TeamDungeonOpenResponse response, Action reply)
+        protected override async ETTask Run(Scene scene, M2T_TeamDungeonOpenRequest request, T2M_TeamDungeonOpenResponse response, Action reply)
         {
             TeamInfo teamInfo = scene.GetComponent<TeamSceneComponent>().GetTeamInfo(request.UserID);
             if (teamInfo == null)
             {
+                Log.Warning($"M2T_TeamDungeonOpen: teamInfo == null");
                 response.Error = ErrorCore.ERR_TeamIsFull;
                 reply();
                 return;
             }
-
+            teamInfo.FubenType = request.FubenType;
             M2C_TeamDungeonOpenResult m2C_HorseNoticeInfo = new M2C_TeamDungeonOpenResult() { };
             long gateServerId = StartSceneConfigCategory.Instance.GetBySceneName(scene.DomainZone(), "Gate1").InstanceId;
             for (int i = 0; i < teamInfo.PlayerList.Count; i++)

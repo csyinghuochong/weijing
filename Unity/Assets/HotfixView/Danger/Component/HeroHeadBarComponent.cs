@@ -215,7 +215,8 @@ namespace ET
                     if (monsterCof.MonsterType == 3) {
                         this.ObjName.GetComponent<TextMeshProUGUI>().text = $"深渊召唤:{colorstr}{monsterCof.MonsterName}</color>";
                     }
-                    else {
+                    else
+                    {
                         this.ObjName.GetComponent<TextMeshProUGUI>().text = $"{colorstr}{monsterCof.MonsterName}</color>";
                     }
                 }

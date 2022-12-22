@@ -245,8 +245,8 @@ namespace ET
                     return ErrorCore.ERR_PlayerIsNot;
                 }
 
-                C2T_TeamDungeonOpenRequest c2M_ItemHuiShouRequest = new C2T_TeamDungeonOpenRequest() { UserID = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId };
-                T2C_TeamDungeonOpenResponse r2c_roleEquip = (T2C_TeamDungeonOpenResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
+                C2M_TeamDungeonOpenRequest c2M_ItemHuiShouRequest = new C2M_TeamDungeonOpenRequest() { UserID = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId };
+                M2C_TeamDungeonOpenResponse r2c_roleEquip = (M2C_TeamDungeonOpenResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
                 return r2c_roleEquip.Error;
             }
             catch (Exception e)

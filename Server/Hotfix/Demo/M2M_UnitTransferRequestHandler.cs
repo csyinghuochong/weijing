@@ -169,13 +169,14 @@ namespace ET
 						{
 							TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
 							int fubenType = teamDungeonComponent.FubenType;
-							if (fubenType == TeamFubenType.Normal || unit.Id != teamDungeonComponent.TeamInfo.TeamId)
+							if (fubenType == TeamFubenType.XieZhu || unit.Id == teamDungeonComponent.TeamInfo.TeamId)
 							{
-								unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() + 1);
+								unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonXieZhu, unit.GetTeamDungeonXieZhu() + 1);
+		
 							}
 							else
 							{
-								unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonXieZhu, unit.GetTeamDungeonXieZhu() + 1);
+								unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TeamDungeonTimes, unit.GetTeamDungeonTimes() + 1);
 							}
 						}
 						if (request.SceneType == (int)SceneTypeEnum.Tower)

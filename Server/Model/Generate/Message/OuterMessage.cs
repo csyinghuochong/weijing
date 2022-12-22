@@ -6118,10 +6118,10 @@ namespace ET
 	}
 
 //开启组队副本
-	[ResponseType(nameof(T2C_TeamDungeonOpenResponse))]
-	[Message(OuterOpcode.C2T_TeamDungeonOpenRequest)]
+	[ResponseType(nameof(M2C_TeamDungeonOpenResponse))]
+	[Message(OuterOpcode.C2M_TeamDungeonOpenRequest)]
 	[ProtoContract]
-	public partial class C2T_TeamDungeonOpenRequest: Object, ITeamActorRequest
+	public partial class C2M_TeamDungeonOpenRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -6132,11 +6132,14 @@ namespace ET
 		[ProtoMember(1)]
 		public long UserID { get; set; }
 
+		[ProtoMember(2)]
+		public int FubenType { get; set; }
+
 	}
 
-	[Message(OuterOpcode.T2C_TeamDungeonOpenResponse)]
+	[Message(OuterOpcode.M2C_TeamDungeonOpenResponse)]
 	[ProtoContract]
-	public partial class T2C_TeamDungeonOpenResponse: Object, ITeamActorResponse
+	public partial class M2C_TeamDungeonOpenResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -6146,6 +6149,9 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+		[ProtoMember(3)]
+		public int FubenType { get; set; }
 
 	}
 

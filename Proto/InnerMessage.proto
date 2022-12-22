@@ -705,6 +705,25 @@ message T2M_TeamDungeonCreateResponse // IActorResponse
 	TeamInfo TeamInfo = 1;
 }
 
+//开启组队副本
+//ResponseType T2M_TeamDungeonOpenResponse
+message M2T_TeamDungeonOpenRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int64 UserID = 1;
+	int32 FubenType = 3;
+}
+
+message T2M_TeamDungeonOpenResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int32 FubenType = 3;
+}
+
 //进入组队副本
 //ResponseType T2M_TeamDungeonEnterResponse
 message M2T_TeamDungeonEnterRequest // IActorRequest

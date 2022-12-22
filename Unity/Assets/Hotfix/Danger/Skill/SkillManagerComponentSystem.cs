@@ -256,10 +256,10 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
-            if (unit.MainHero)
-            {
-                self.CheckSkillCD(skillConfig, skillcmd.SkillID);
-            }
+            //if (unit.MainHero)
+            //{
+            //    self.CheckSkillCD(skillConfig, skillcmd.SkillID);
+            //}
             
             if (skillcmd.ItemId > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
             {

@@ -2905,20 +2905,22 @@ message M2C_TeamDungeonCreateResponse // IActorLocationResponse
 }
 
 //开启组队副本
-//ResponseType T2C_TeamDungeonOpenResponse
-message C2T_TeamDungeonOpenRequest // ITeamActorRequest
+//ResponseType M2C_TeamDungeonOpenResponse
+message C2M_TeamDungeonOpenRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 
 	int64 UserID = 1;
+	int32 FubenType = 2;
 }
 
-message T2C_TeamDungeonOpenResponse // ITeamActorResponse
+message M2C_TeamDungeonOpenResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+	int32 FubenType = 3;
 }
 
 //进入组队副本

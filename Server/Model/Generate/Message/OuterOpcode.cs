@@ -327,8 +327,8 @@ namespace ET
 		 public const ushort T2C_TeamDungeonAgreeResponse = 10324;
 		 public const ushort C2M_TeamDungeonCreateRequest = 10325;
 		 public const ushort M2C_TeamDungeonCreateResponse = 10326;
-		 public const ushort C2T_TeamDungeonOpenRequest = 10327;
-		 public const ushort T2C_TeamDungeonOpenResponse = 10328;
+		 public const ushort C2M_TeamDungeonOpenRequest = 10327;
+		 public const ushort M2C_TeamDungeonOpenResponse = 10328;
 		 public const ushort C2M_TeamDungeonEnterRequest = 10329;
 		 public const ushort M2C_TeamDungeonEnterResponse = 10330;
 		 public const ushort M2C_TeamDungeonQuitMessage = 10331;
