@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using DG.Tweening;
 
 namespace ET
 {
@@ -395,6 +396,33 @@ namespace ET
                     break;
             }
             return color;
+        }
+
+        public static void DOScale(Transform transform, Vector3 vector3, float time)
+        {
+            //transform.DOScale(new Vector3(1f, 1f, 1f), time / 2).SetEase(Ease.OutCubic).SetDelay(time / 2);
+            transform.DOScale(vector3, time).SetEase(Ease.OutCubic);  //.SetDelay(time / 2);
+        }
+
+        public static void DOLocalMove(Transform transform, Vector3 vector3, float time)
+        {
+            transform.DOLocalMove(vector3, time).SetEase(Ease.OutCubic);
+        }
+
+        public static void CrossFadeAlpha(Transform transform, float alpha, float duration)
+        {
+            for (int i = 0; i < transform.childCount; i++)
+            {
+                Transform child = transform.GetChild(i);
+                if (child.GetComponent<Text>()!=null)
+                {
+                    child.GetComponent<Text>().CrossFadeAlpha(alpha, duration, false);
+                }
+                if (transform.GetComponent<Image>() != null)
+                {
+                    child.GetComponent<Image>().CrossFadeAlpha(alpha, duration, false);
+                }
+            }
         }
 
         //数字转换万

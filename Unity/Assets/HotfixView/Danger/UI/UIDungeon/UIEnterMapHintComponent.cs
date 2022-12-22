@@ -8,6 +8,8 @@ namespace ET
     {
         public GameObject titleText;
         public GameObject ShenYuanSet;
+
+        public GameObject Left;
     }
 
     [ObjectSystem]
@@ -19,15 +21,25 @@ namespace ET
 
             self.titleText = rc.Get<GameObject>("titleText");
             self.ShenYuanSet = rc.Get<GameObject>("ShenYuanSet");
-
+            self.Left = rc.Get<GameObject>("Left");
+            UICommonHelper.CrossFadeAlpha(self.Left.transform, 0f, 0f);
             self.OnInitUI().Coroutine();
         }
     }
 
     public static class UIEnterMapHintComponentSystem
     {
+
         public static async ETTask OnInitUI(this UIEnterMapHintComponent self)
         {
+            UICommonHelper.CrossFadeAlpha(self.Left.transform, 1f, 1f);
+            UICommonHelper.DOLocalMove(self.Left.transform, Vector3.zero, 1f);
+
+            await TimerComponent.Instance.WaitAsync(2000);
+
+            UICommonHelper.CrossFadeAlpha(self.Left.transform, 0f, 1f);
+            UICommonHelper.DOLocalMove(self.Left.transform, new Vector3(2000, 0, 0), 1f);
+
             int dungeonId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
 
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
@@ -51,7 +63,7 @@ namespace ET
             }
 
             long instanceId = self.InstanceId;
-            await TimerComponent.Instance.WaitAsync(3000);
+            await TimerComponent.Instance.WaitAsync(1000);
             if (instanceId != self.InstanceId)
             {
                 return;

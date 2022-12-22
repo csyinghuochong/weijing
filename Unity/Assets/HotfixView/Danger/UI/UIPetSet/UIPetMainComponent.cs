@@ -184,7 +184,7 @@ namespace ET
             self.Image_3.SetActive(true);
             self.BeginTime = Time.time;
             self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.PetMainTimer, self);
-            DoTweenHelp.DOScale(self.Image_3.transform, Vector3.zero, 1f);
+            UICommonHelper.DOScale(self.Image_3.transform, Vector3.zero, 1f);
             await TimerComponent.Instance.WaitAsync(1000);
             if (instanceId != self.InstanceId)
             {
@@ -192,7 +192,7 @@ namespace ET
             }
             self.Image_3.SetActive(false);
             self.Image_2.SetActive(true);
-            DoTweenHelp.DOScale(self.Image_2.transform, Vector3.zero, 1f);
+            UICommonHelper.DOScale(self.Image_2.transform, Vector3.zero, 1f);
             await TimerComponent.Instance.WaitAsync(1000);
             if (instanceId != self.InstanceId)
             {
@@ -200,7 +200,7 @@ namespace ET
             }
             self.Image_2.SetActive(false);
             self.Image_1.SetActive(true);
-            DoTweenHelp.DOScale(self.Image_1.transform, Vector3.zero, 1f);
+            UICommonHelper.DOScale(self.Image_1.transform, Vector3.zero, 1f);
             await TimerComponent.Instance.WaitAsync(1000);
             if (instanceId != self.InstanceId)
             {
