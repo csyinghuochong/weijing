@@ -245,7 +245,7 @@ namespace ET
                     return ErrorCore.ERR_PlayerIsNot;
                 }
 
-                C2M_TeamDungeonOpenRequest c2M_ItemHuiShouRequest = new C2M_TeamDungeonOpenRequest() { UserID = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId };
+                C2M_TeamDungeonOpenRequest c2M_ItemHuiShouRequest = new C2M_TeamDungeonOpenRequest() { UserID = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId, FubenType = self.FubenType };
                 M2C_TeamDungeonOpenResponse r2c_roleEquip = (M2C_TeamDungeonOpenResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
                 return r2c_roleEquip.Error;
             }
@@ -354,6 +354,7 @@ namespace ET
                 };
                 //创建队伍
                 M2C_TeamDungeonCreateResponse r2c_roleEquip = (M2C_TeamDungeonCreateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
+                self.FubenType = r2c_roleEquip.FubenType;
                 return r2c_roleEquip.Error;
             }
             catch (Exception e)

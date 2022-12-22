@@ -10,6 +10,7 @@ namespace ET
         public GameObject ShenYuanButton;
         public GameObject ShenYuanMode;
         public GameObject Button_XieZhu;
+        public GameObject ShenYuan;
         public GameObject CloseButton;
         public GameObject ItemNodeList;
         public GameObject TextLevelLimit;
@@ -31,6 +32,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.ShenYuan = rc.Get<GameObject>("ShenYuan");
             self.Button_XieZhu = rc.Get<GameObject>("Button_XieZhu");
             ButtonHelp.AddListenerEx(self.Button_XieZhu, () => { self.OnButton_Create(TeamFubenType.XieZhu).Coroutine(); });
             self.ItemNodeList = rc.Get<GameObject>("ItemNodeList");
@@ -59,10 +61,11 @@ namespace ET
                 {
                     continue;
                 }
+
                 self.FubenIdList.Add(sceneConfig[i].Id);
                 GameObject item = GameObject.Instantiate(TeamdungeonItem);
                 UICommonHelper.SetParent(item, TeamdungeonList);
-                item.SetActive(false);
+                item.SetActive(true);
                 self.ButtonList.Add(item.transform);
 
                 //更新显示
@@ -85,9 +88,8 @@ namespace ET
 
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            //self.Button_XieZhu.SetActive(true);
             self.Button_XieZhu.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
-            self.ShenYuanMode.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
+            self.ShenYuan.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
             self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonCreate); });
         }
     }
