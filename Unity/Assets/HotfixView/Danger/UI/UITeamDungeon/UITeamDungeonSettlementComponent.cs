@@ -248,9 +248,8 @@ namespace ET
 
         public static void OnButton_exit(this UITeamDungeonSettlementComponent self)
         {
-            if (self.LeftTime > 0)
+            if (self.LeftTime > 5)
             {
-                FloatTipManager.Instance.ShowFloatTip($"{self.LeftTime}秒后退出!");
                 return;
             }
 
