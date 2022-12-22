@@ -229,12 +229,8 @@ namespace ET
                 TeamComponent teamComponent = self.ZoneScene().GetComponent<TeamComponent>();
                 UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
                 TeamInfo teamInfo = teamComponent.GetSelfTeam();
-                int errorCode = self.CheckTimesAndLevel(teamInfo.SceneId, teamInfo.FubenType);
-                if (errorCode != ErrorCore.ERR_Success)
-                {
-                    return errorCode;
-                }
-                errorCode = self.CheckCanOpenFuben(teamInfo.SceneId, teamInfo.FubenType);
+
+                int errorCode = self.CheckCanOpenFuben(teamInfo.SceneId, teamInfo.FubenType);
                 if (errorCode != ErrorCore.ERR_Success)
                 {
                     return errorCode;
@@ -287,12 +283,6 @@ namespace ET
             {
                 return ErrorCore.ERR_LevelIsNot;
             }
-
-            if (fubenType == TeamFubenType.XieZhu && sceneConfig.EnterLv > userInfoComponent.UserInfo.Lv - 10)
-            {
-                return ErrorCore.Err_TeamDungeonXieZhu;
-            }
-
             return ErrorCore.ERR_Success;
         }
 
@@ -345,6 +335,11 @@ namespace ET
                 if (errorCode != ErrorCore.ERR_Success)
                 {
                     return errorCode;
+                }
+                SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(fubenId);
+                if (fubenType == TeamFubenType.XieZhu && sceneConfig.EnterLv > userInfo.Lv - 10)
+                {
+                    return ErrorCore.Err_TeamDungeonXieZhu;
                 }
                 errorCode = self.CheckCanOpenFuben(fubenId, fubenType);
                 if (errorCode != ErrorCore.ERR_Success)
