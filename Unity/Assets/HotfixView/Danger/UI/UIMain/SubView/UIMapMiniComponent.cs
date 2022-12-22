@@ -216,22 +216,48 @@ namespace ET
             self.LoadMapCamera().Coroutine();
 
             int sceneTypeEnum = self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
+            int difficulty = self.ZoneScene().GetComponent<MapComponent>().FubenDifficulty;
             int sceneId = self.ZoneScene().GetComponent<MapComponent>().SceneId;
             self.MainCityShow.SetActive(true);
+
             //显示地图名称
-            if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
+            switch (sceneTypeEnum)
             {
-                //显示地图名称
-                self.Lab_MapName.GetComponent<Text>().text = ChapterConfigCategory.Instance.Get(sceneId).ChapterName;
-            }
-            else if (sceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
-            {
-                self.Lab_MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(sceneId).ChapterName;
-            }
-            else
-            {
-                //显示地图名称
-                self.Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).Name;
+                case (int)SceneTypeEnum.CellDungeon:
+                    self.Lab_MapName.GetComponent<Text>().text = ChapterConfigCategory.Instance.Get(sceneId).ChapterName;
+                    break;
+                case (int)SceneTypeEnum.LocalDungeon:
+                    string str = "";
+                    if (difficulty == FubenDifficulty.Normal)
+                    {
+                        str = "普通";
+                    }
+                    if (difficulty == FubenDifficulty.TiaoZhan)
+                    {
+                        str = "挑战";
+                    }
+                    if (difficulty == FubenDifficulty.DiYu)
+                    {
+                        str = "地狱";
+                    }
+                    self.Lab_MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(sceneId).ChapterName + str;
+                    break;
+                case (int)SceneTypeEnum.TeamDungeon:
+                    str = "";
+                    if (difficulty == TeamFubenType.XieZhu)
+                    {
+                        str = "(协助)";
+                    }
+                    if (difficulty == TeamFubenType.ShenYuan)
+                    {
+                        str = "(深渊)";
+                    }
+                    self.Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).Name + str;
+                    break;
+                default:
+                    //显示地图名称
+                    self.Lab_MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(sceneId).Name;
+                    break;
             }
 
             self.HeadList.SetActive(true);
