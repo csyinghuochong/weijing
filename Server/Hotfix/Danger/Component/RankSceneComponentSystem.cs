@@ -176,7 +176,7 @@ namespace ET
             {
                 self.DBRankInfo = d2GGetUnit.Component as DBRankInfo;
             }
-            self.InitRankPetList();
+            self.UpdateRankPetList();
         }
 
         public static async ETTask SaveDB(this RankSceneComponent self)
@@ -298,11 +298,13 @@ namespace ET
             //response.RankList.AddRange(rankComponent.DBRankInfo.rankingInfos.GetRange(0, 50)); 
         }
 
-        public static void InitRankPetList(this RankSceneComponent self)
+        public static void UpdateRankPetList(this RankSceneComponent self)
         {
-
             //读机器人配置表
-            self.DBRankInfo.rankingPets.Clear();
+            if (self.DBRankInfo.rankingPets.Count > 0)
+            {
+                return;
+            }
             List<int> allPet = new List<int>() { 1000101, 1000201 , 1000301 , 1000401 , 1000501 ,1000601, 1000701};
             for (int i = 0; i < ComHelp.PetRankNumber; i++)
             {
