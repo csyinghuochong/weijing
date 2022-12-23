@@ -241,17 +241,17 @@ namespace ET
             return 0;
         }
 
-        public static void OnMysteryBuy(this UserInfoComponent self, MysteryItemInfo itemInfo)
+        public static void OnMysteryBuy(this UserInfoComponent self, int mysteryId)
         {
             for (int i = 0; i < self.UserInfo.MysteryItems.Count; i++)
             {
-                if (self.UserInfo.MysteryItems[i].KeyId == itemInfo.MysteryId)
+                if (self.UserInfo.MysteryItems[i].KeyId == mysteryId)
                 {
                     self.UserInfo.MysteryItems[i].Value += 1;
                     return;
                 }
             }
-            self.UserInfo.MysteryItems.Add(new KeyValuePairInt() { KeyId = itemInfo.MysteryId, Value = 1 });
+            self.UserInfo.MysteryItems.Add(new KeyValuePairInt() { KeyId = mysteryId, Value = 1 });
         }
 
         //需要通知客户端

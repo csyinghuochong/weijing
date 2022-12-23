@@ -9,8 +9,15 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_MysteryBuyRequest request, M2C_MysteryBuyResponse response, Action reply)
         {
-            MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(request.MysteryItemInfo.MysteryId);
-            if (unit.GetComponent<UserInfoComponent>().GetMysteryBuy(request.MysteryItemInfo.MysteryId) >= mysteryConfig.BuyNumMax)
+            int mysteryId = request.MysteryItemInfo.MysteryId;
+            MysteryConfig mysteryConfig = MysteryConfigCategory.Instance.Get(mysteryId);
+            if (mysteryConfig == null)
+            {
+                response.Error = ErrorCore.ERR_NetWorkError;
+                reply();
+                return;
+            }
+            if (unit.GetComponent<UserInfoComponent>().GetMysteryBuy(mysteryId) >= mysteryConfig.BuyNumMax)
             {
                 response.Error = ErrorCore.ERR_MysteryItem_Max;
                 reply();
@@ -25,6 +32,8 @@ namespace ET
             }
 
             long chargeServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Activity)).InstanceId;
+            request.MysteryItemInfo.ItemID = mysteryConfig.SellItemID;
+            request.MysteryItemInfo.ItemNumber = mysteryConfig.BuyNumMax;
             A2M_MysteryBuyResponse r_GameStatusResponse = (A2M_MysteryBuyResponse)await ActorMessageSenderComponent.Instance.Call
                 (chargeServerId, new M2A_MysteryBuyRequest()
                 {
@@ -38,8 +47,8 @@ namespace ET
                 return;
             }
 
-            unit.GetComponent<UserInfoComponent>().OnMysteryBuy(request.MysteryItemInfo);
-            unit.GetComponent<BagComponent>().OnAddItemData($"{request.MysteryItemInfo.ItemID};{request.MysteryItemInfo.ItemNumber}",
+            unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
+            unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.SellItemID};{mysteryConfig.BuyNumMax}",
                 $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
 
             reply();

@@ -10,6 +10,13 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_StoreBuyRequest request, M2C_StoreBuyResponse response, Action reply)
         {
             StoreSellConfig storeSellConfig = StoreSellConfigCategory.Instance.Get(request.SellItemID);
+            if (storeSellConfig == null)
+            {
+                response.Error = ErrorCore.ERR_NetWorkError;
+                reply();
+                return;
+            }
+
             UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             List<RewardItem> rewardItems = new List<RewardItem>();
             rewardItems.Add(new RewardItem() { ItemID = storeSellConfig.SellItemID, ItemNum = storeSellConfig.SellItemNum });
@@ -44,7 +51,6 @@ namespace ET
                     }
                     break;
                 default:
-
                     if (unit.GetComponent<BagComponent>().GetItemNumber(costType) < storeSellConfig.SellValue)
                     {
                         response.Error = ErrorCore.ERR_ItemNotEnoughError;

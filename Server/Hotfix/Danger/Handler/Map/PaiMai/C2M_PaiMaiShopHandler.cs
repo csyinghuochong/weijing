@@ -24,6 +24,12 @@ namespace ET
 			}
 
 			PaiMaiSellConfig paiMaiSellConfig = PaiMaiSellConfigCategory.Instance.Get(request.PaiMaiId);
+			if (paiMaiSellConfig == null)
+			{
+				response.Error = ErrorCore.ERR_NetWorkError;
+				reply();
+				return;
+			}
 
 			//测试增加
 			M2P_PaiMaiShopRequest m2P_PaiMaiShopRequest = new M2P_PaiMaiShopRequest()

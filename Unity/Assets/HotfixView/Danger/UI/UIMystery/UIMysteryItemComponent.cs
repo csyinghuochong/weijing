@@ -67,7 +67,7 @@ namespace ET
                 return;
             }
 
-            MysteryItemInfo mysteryItemInfo = new MysteryItemInfo() { ItemID = self.MysteryItemInfo.ItemID, MysteryId = self.MysteryItemInfo.MysteryId, ItemNumber = 1 };
+            MysteryItemInfo mysteryItemInfo = new MysteryItemInfo() {  MysteryId = self.MysteryItemInfo.MysteryId };
             C2M_MysteryBuyRequest c2M_MysteryBuyRequest = new C2M_MysteryBuyRequest() { MysteryItemInfo = mysteryItemInfo,  NpcId =  self.NpcId };
             M2C_MysteryBuyResponse r2c_roleEquip = (M2C_MysteryBuyResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_MysteryBuyRequest);
 
