@@ -5,4 +5,5 @@
 {"_t":"StartProcessConfig","_id":5,"MachineId":1,"InnerPort":20106,"AppName":"Server"},
 {"_t":"StartProcessConfig","_id":201,"MachineId":1,"InnerPort":20107,"AppName":"BanHao"},
 {"_t":"StartProcessConfig","_id":202,"MachineId":1,"InnerPort":20108,"AppName":"Center"},
+{"_t":"StartProcessConfig","_id":203,"MachineId":1,"InnerPort":20109,"AppName":"Robot"},
 ]}

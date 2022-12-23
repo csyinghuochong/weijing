@@ -19,4 +19,5 @@
 {"_t":"StartSceneConfig","_id":20202,"Process":1,"Zone":202,"SceneType":"LoginCenter","Name":"LoginCenter","OuterPort":0},
 {"_t":"StartSceneConfig","_id":20203,"Process":1,"Zone":202,"SceneType":"Location","Name":"Location","OuterPort":0},
 {"_t":"StartSceneConfig","_id":20204,"Process":1,"Zone":202,"SceneType":"AccountCenter","Name":"AccountCenter","OuterPort":20104},
+{"_t":"StartSceneConfig","_id":20302,"Process":203,"Zone":203,"SceneType":"Robot","Name":"Robot01","OuterPort":0},
 ]}
