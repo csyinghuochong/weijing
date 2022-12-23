@@ -31,12 +31,37 @@ namespace ET
                 Game.Scene.GetComponent<DBComponent>().InitDatabase(startZoneConfig);
             }
 
+            Dictionary<long, UserInfoComponent> keyValuePairs = new Dictionary<long, UserInfoComponent>();    
             List<UserInfoComponent> userInfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(zone, d => d.Id > 0);
             foreach (var entity in userInfoComponents)
             {
+                keyValuePairs.Add(entity.Id, entity as UserInfoComponent);
                 if (entity.UserInfo.Gold > 10000000 && !entity.Account.Contains("_"))
                 {
-                    Log.Debug($"Account:{entity.Account} Name: {entity.UserInfo.Name}  Lv:{entity.UserInfo.Lv} Gold:{entity.UserInfo.Gold} ID:{entity.Id} ");
+                    Log.Warning($"Gold:{entity.UserInfo.Gold} ID:{entity.Id}  Account:{entity.Account} Name: {entity.UserInfo.Name}  Lv:{entity.UserInfo.Lv} ");
+                }
+            }
+            List<BagComponent> bagComponents = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(zone, d => d.Id > 0);
+            foreach (var entity in bagComponents)
+            {
+                if (1603804010379280384 == entity.Id)
+                {
+                    Log.Warning("11");
+                }
+
+                long itemNumber = 0;
+                UserInfoComponent userInfo= keyValuePairs[entity.Id];
+                List<BagInfo> baginfos = entity.GetAllItems();
+                for (int i= 0; i < baginfos.Count; i++)
+                {
+                    if (baginfos[i].ItemID == 10010045)
+                    {
+                        itemNumber += baginfos[i].ItemNum;
+                    }
+                }
+                if (itemNumber > 1)
+                {
+                    Log.Warning($"金条:{itemNumber} ID:{userInfo.Id}  Account:{userInfo.Account} Name: {userInfo.UserInfo.Name}  Lv:{userInfo.UserInfo.Lv} ");
                 }
             }
         }

@@ -827,7 +827,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Development: 1
   EditorMode: 1
-  OueNetMode: 0
+  OueNetMode: 1
   BigVersion: 9
   Updater: {fileID: 2018631435}
   FenXiang_Title: 
