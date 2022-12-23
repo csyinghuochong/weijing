@@ -480,8 +480,10 @@ namespace ET
 		 public const ushort C2C_SendBroadcastResponse = 10477;
 		 public const ushort M2C_UnitFinishSkill = 10478;
 		 public const ushort M2C_SyncMiJingDamage = 10479;
-		 public const ushort C2M_FubenMessageRequest = 10480;
-		 public const ushort M2C_FubenMessageResponse = 10481;
-		 public const ushort M2C_UpdateVersion = 10482;
+		 public const ushort C2M_FubenTimesResetRequest = 10480;
+		 public const ushort M2C_FubenTimesResetResponse = 10481;
+		 public const ushort C2M_FubenMessageRequest = 10482;
+		 public const ushort M2C_FubenMessageResponse = 10483;
+		 public const ushort M2C_UpdateVersion = 10484;
 	}
 }

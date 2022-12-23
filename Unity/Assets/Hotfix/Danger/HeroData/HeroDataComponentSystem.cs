@@ -110,6 +110,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.TeamDungeonXieZhu, 0, notice);
             numericComponent.ApplyValue(NumericType.BattleTodayCamp, 0, notice);
             numericComponent.ApplyValue(NumericType.BattleTodayKill, 0, notice);
+            numericComponent.ApplyValue(NumericType.FubenTimesReset, 0, notice);
         }
 
         /// <summary>

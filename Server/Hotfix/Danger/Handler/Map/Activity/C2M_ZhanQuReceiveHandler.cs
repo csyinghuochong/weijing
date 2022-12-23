@@ -9,8 +9,7 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, C2M_ZhanQuReceiveRequest request, M2C_ZhanQuReceiveResponse response, Action reply)
         {
-            //CoroutineLockType.Received
-            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, unit.Id))
+            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Received, unit.Id))
             {
                 ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();
                 if (activityComponent.ZhanQuReceiveIds.Contains(request.ActivityId))

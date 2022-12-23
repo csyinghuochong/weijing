@@ -185,5 +185,11 @@ namespace ET
             get;
             set;
         }
+
+        public int PackageNumber
+        {
+            get;
+            set;
+        }
     }
 }
