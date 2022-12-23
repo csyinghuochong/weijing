@@ -1,7 +1,3 @@
-{"list":[{"_t":"StartZoneConfig","_id":1,"DBConnection":"mongodb://localhost:27017/","PhysicZone":1,"DBName":"WJBeta1"},
-{"_t":"StartZoneConfig","_id":2,"DBConnection":"mongodb://localhost:27017/","PhysicZone":3,"DBName":"WJBeta2"},
-{"_t":"StartZoneConfig","_id":3,"DBConnection":"mongodb://localhost:27017/","PhysicZone":3,"DBName":"WJBeta3"},
-{"_t":"StartZoneConfig","_id":4,"DBConnection":"mongodb://localhost:27017/","PhysicZone":4,"DBName":"WJBeta4"},
-{"_t":"StartZoneConfig","_id":202,"DBConnection":"mongodb://localhost:27017/","PhysicZone":202,"DBName":"WJBeta202(center)"},
-{"_t":"StartZoneConfig","_id":203,"DBConnection":"mongodb://localhost:27017/","PhysicZone":203,"DBName":"WJBeta203(robot)"},
+{"list":[{"_t":"StartZoneConfig","_id":201,"DBConnection":"mongodb://localhost:27017/","PhysicZone":201,"DBName":"WeiJing201(banhao)"},
+{"_t":"StartZoneConfig","_id":202,"DBConnection":"mongodb://localhost:27017/","PhysicZone":202,"DBName":"WeiJing202(center)"},
 ]}
