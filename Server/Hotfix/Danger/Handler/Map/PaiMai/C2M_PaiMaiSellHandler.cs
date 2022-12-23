@@ -15,7 +15,6 @@ namespace ET
 					reply();
 					return;
 				}
-
 				//获取出售数据
 				request.PaiMaiItemInfo.Id = IdGenerater.Instance.GenerateId();
 				request.PaiMaiItemInfo.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
