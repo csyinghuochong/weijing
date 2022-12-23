@@ -494,7 +494,7 @@ namespace ET
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
                 if (itemCof.ItemQuality >= 4)
                 {
-                    Log.Debug($"itemCof.ItemQuality >= 4  {unit.Id} {rewardItems[i].ItemNum}");
+                    Log.Debug($"itemCof.ItemQuality >= 4  {unit.Id} {itemID} {rewardItems[i].ItemNum}");
                 }
 
                 int maxPileSum = gm ? 1000000 :  itemCof.ItemPileSum;
