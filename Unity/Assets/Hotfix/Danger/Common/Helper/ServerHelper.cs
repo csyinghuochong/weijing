@@ -56,7 +56,7 @@ namespace ET
             {
                 if (ComHelp.IsBanHaoZone(zone))
                 {
-                    serverItems_1.Add(new ServerItem() { ServerId = 201, ServerIp = "127.0.0.1:20105", ServerName = "封测1区", ServerOpenTime = 1662189906681 });
+                    serverItems_1.Add(new ServerItem() { ServerId = 201, ServerIp = "127.0.0.1:20105", ServerName = "封测1区", ServerOpenTime = 1662189906681, Show = 0 });
                 }
                 else
                 {
@@ -77,7 +77,7 @@ namespace ET
             {
                 if (ComHelp.IsBanHaoZone(zone))
                 {
-                    serverItems_1.Add(new ServerItem() { ServerId = 201, ServerIp = "39.96.194.143:20105", ServerName = "封测1区", ServerOpenTime = 1662189906681 });
+                    serverItems_1.Add(new ServerItem() { ServerId = 201, ServerIp = "39.96.194.143:20105", ServerName = "封测1区", ServerOpenTime = 1662189906681, Show = 0 });
                 }
                 else
                 {
