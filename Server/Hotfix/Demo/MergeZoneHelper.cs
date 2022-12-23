@@ -34,12 +34,12 @@ namespace ET
                 List<BagInfo> baginfos = entity.GetAllItems();
                 for (int i= 0; i < baginfos.Count; i++)
                 {
-                    if (baginfos[i].ItemID == 10010045)
+                    if (baginfos[i].ItemID == 10010099)
                     {
                         itemNumber += baginfos[i].ItemNum;
                     }
                 }
-                if (itemNumber > 1)
+                if (itemNumber > 10)
                 {
                     Log.Warning($"金条:{itemNumber} ID:{userInfo.Id}  Account:{userInfo.Account} Name: {userInfo.UserInfo.Name}  Lv:{userInfo.UserInfo.Lv} ");
                 }

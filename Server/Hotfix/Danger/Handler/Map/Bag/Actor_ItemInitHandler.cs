@@ -14,6 +14,12 @@ namespace ET
 			//读取数据库
 			List<BagInfo> bagInfos = bagComponent.GetAllItems();
 
+			/*
+			for (int i = 0; i < bagInfos.Count; i++) {
+				Log.Info("道具ID：" + bagInfos[i]  + bagInfos[i].GetWay);
+			}
+			*/
+
 			if (bagComponent.QiangHuaLevel.Count == 0)
 			{
 				for (int i = 0; i <= 11; i++)
