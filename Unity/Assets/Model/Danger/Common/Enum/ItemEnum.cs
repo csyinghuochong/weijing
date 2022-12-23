@@ -38,6 +38,7 @@ namespace ET
         public const int TiaoZhan = 28;             //挑战之地
         public const int SkillMake = 29;            //生活制造
         public const int HuiShou = 30;
+        public const int XiaJia = 31;
 
         public const int Activity = 100;
     }
