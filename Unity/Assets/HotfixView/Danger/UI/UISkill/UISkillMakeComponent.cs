@@ -330,12 +330,21 @@ namespace ET
             self.TextVitality.GetComponent<Text>().text = equipMakeConfig.CostVitality.ToString();
             self.Text_Current.GetComponent<Text>().text = $"当前活力:  {self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Vitality}";
 
+            int number = 0;
             for (int i = 0; i < itemsList.Length; i++)
             {
-                UIMakeNeedComponent ui_2 = null;
-                if (i < self.NeedListUI.Count)
+                string[] itemInfo = itemsList[i].Split(';');
+                if (itemInfo.Length < 2)
                 {
-                    ui_2 = self.NeedListUI[i];
+                    break;
+                }
+
+                int itemId = int.Parse(itemInfo[0]);
+                int itemNum = int.Parse(itemInfo[1]);
+                UIMakeNeedComponent ui_2 = null;
+                if (number < self.NeedListUI.Count)
+                {
+                    ui_2 = self.NeedListUI[number];
                     ui_2.GameObject.SetActive(true);
                 }
                 else
@@ -346,14 +355,11 @@ namespace ET
                     ui_2 = self.AddChild<UIMakeNeedComponent, GameObject>(itemSpace);
                     self.NeedListUI.Add(ui_2);
                 }
-
-                string[] itemInfo = itemsList[i].Split(';');
-                int itemId = int.Parse(itemInfo[0]);
-                int itemNum = int.Parse(itemInfo[1]);
                 ui_2.UpdateItem(itemId, itemNum);
+                number++;
             }
 
-            for (int k = itemsList.Length; k < self.NeedListUI.Count; k++)
+            for (int k = number; k < self.NeedListUI.Count; k++)
             {
                 self.NeedListUI[k].GameObject.SetActive(false);
             }
