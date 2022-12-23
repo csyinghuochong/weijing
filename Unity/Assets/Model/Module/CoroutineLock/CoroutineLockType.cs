@@ -27,6 +27,10 @@ namespace ET
 
         public const int Received = 23;
 
+        public const int Sell = 24;
+
+        public const int Buy = 25;
+
         public const int BeiYong = 99;
         public const int Max = 100; // 这个必须最大
     }

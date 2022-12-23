@@ -158,8 +158,11 @@ namespace ET
 						break;
 					case 6:
 						int newLevel = int.Parse(commands[1]);
-						int level = newLevel - unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-						unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Lv, level.ToString());
+						if (newLevel < 59)
+						{
+							int level = newLevel - unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+							unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Lv, level.ToString());
+						}
 						break;
 					case 7:
 						long userID = long.Parse(commands[1]);
