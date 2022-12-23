@@ -19,7 +19,7 @@ namespace ET
             self.PreLoadAssets.Clear();
             self.StartLoadAssets = false;
             self.PassTime = 0f;
-            self.ShowMain = false;
+            self.ShowMainUI = false;
         }
     }
 
@@ -189,16 +189,6 @@ namespace ET
             self.text.text = $"{(int)(progress * 100)}%";
         }
 
-        public static  void InitMainUI(this UILoadingComponent self, int sceneTypeEnum)
-        {
-            Scene zoneScene = self.ZoneScene();
-            UI uimain = UIHelper.GetUI(zoneScene, UIType.UIMain);
-            if (uimain == null)
-            {
-                UIHelper.Create(zoneScene, UIType.UIMain).Coroutine();
-            }
-        }
-
         public static void  UpdateMainUI(this UILoadingComponent self, int sceneTypeEnum)
         {
             Scene zoneScene = self.ZoneScene();
@@ -311,12 +301,7 @@ namespace ET
                     UnitHelper.LoadingScene = false;
                     UnitHelper.ShowAllUnit(self.DomainScene());
                 }
-                if (self.PassTime > 1f && !self.ShowMain)
-                {
-                    self.ShowMain = true;
-                    self.InitMainUI(self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum);
-                }
-                if (self.PassTime < 2f)
+                if (self.PassTime < 1f )
                 {
                     return;
                 }
@@ -325,6 +310,17 @@ namespace ET
                 {
                     return;
                 }
+                UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                if (uimain == null)
+                {
+                    if (!self.ShowMainUI)
+                    {
+                        self.ShowMainUI = true;
+                        UIHelper.Create(self.ZoneScene(), UIType.UIMain).Coroutine();
+                    }
+                    return;
+                }
+ 
                 int sceneType =  self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
                 self.UpdateMainUI(sceneType);
                 Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneType);

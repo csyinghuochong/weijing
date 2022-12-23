@@ -13,7 +13,7 @@ namespace ET
 		public GameObject BackSet;
 		public int ChapterId;
 		public float PassTime;
-		public bool ShowMain;
+		public bool ShowMainUI;
 
 		public bool StartLoadAssets = false;
 		public List<string> PreLoadAssets = new List<string>();

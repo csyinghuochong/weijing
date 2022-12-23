@@ -404,9 +404,13 @@ namespace ET
             transform.DOScale(vector3, time).SetEase(Ease.OutCubic);  //.SetDelay(time / 2);
         }
 
+        public static  void DOLocalMove2(Transform transform, Vector3 vector3, float totalTime)
+        {
+            transform.DOLocalMove(vector3, totalTime).SetEase(Ease.OutCubic);
+        }
+
         public static async ETTask DOLocalMove(Transform transform, Vector3 vector3, float totalTime)
         {
-            //.DOLocalMove(vector3, time).SetEase(Ease.OutCubic);
             Vector3 oldPostition = transform.localPosition;
             float passTime = 0;
             float starTime = Time.time;

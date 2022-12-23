@@ -23,6 +23,16 @@ namespace ET
                     Log.Warning($"C2G_ExitGameGate null");
                 }
             }
+            else
+            {
+                long mapInstanceId = DBHelper.GetRankServerId(session.DomainZone());
+                R2A_DeleteRoleData deleteResponse = (R2A_DeleteRoleData)await ActorMessageSenderComponent.Instance.Call
+                (mapInstanceId, new A2R_DeleteRoleData()
+                {
+                    DeleUserID = request.RoleId,
+                    AccountId = request.Account
+                });
+            }
             reply();
             await ETTask.CompletedTask;
         }
