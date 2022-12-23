@@ -25,6 +25,8 @@ namespace ET
 
         public const int TeamDungeon = 22;
 
+        public const int Received = 23;
+
         public const int Max = 100; // 这个必须最大
     }
 }

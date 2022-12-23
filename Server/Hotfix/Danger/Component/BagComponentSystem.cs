@@ -431,10 +431,6 @@ namespace ET
                 if (rewardItems[i].ItemID == 0) { continue; }
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(rewardItems[i].ItemID);
                 UserDataType userDataType = ComHelp.GetItemToUserDataType(rewardItems[i].ItemID);
-                if (userDataType == UserDataType.Gold && rewardItems[i].ItemNum > 1000000)
-                {
-                    Log.Warning($"UserDataType.Gold  {unit.Id} {rewardItems[i].ItemNum}");
-                }
                 if (userDataType != UserDataType.None)
                 {
                     continue;
@@ -484,9 +480,9 @@ namespace ET
                 int leftNum = rewardItems[i].ItemNum;
 
                 UserDataType userDataType = ComHelp.GetItemToUserDataType(itemID);
-                if (userDataType == UserDataType.Gold)
+                if (userDataType == UserDataType.Gold && rewardItems[i].ItemNum > 1000000)
                 {
-                    Log.Debug($"Gold:  {unit.Id} {leftNum} {getWay}");
+                    Log.Warning($"UserDataType.Gold  {unit.Id} {rewardItems[i].ItemNum}");
                 }
                 if (userDataType != UserDataType.None)
                 {
@@ -496,6 +492,11 @@ namespace ET
 
                 //最大堆叠数量
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
+                if (itemCof.ItemQuality >= 4)
+                {
+                    Log.Debug($"itemCof.ItemQuality >= 4  {unit.Id} {rewardItems[i].ItemNum}");
+                }
+
                 int maxPileSum = gm ? 1000000 :  itemCof.ItemPileSum;
                 List<BagInfo> itemlist = null;
                 if (itemCof.ItemType == ItemTypeEnum.Equipment)
