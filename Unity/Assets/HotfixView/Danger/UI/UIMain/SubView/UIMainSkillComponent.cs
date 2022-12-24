@@ -6,23 +6,6 @@ using UnityEngine.UI;
 
 namespace ET
 {
-
-    [Timer(TimerType.MainSkillTimer)]
-    public class UIMainSkillTimer : ATimer<UIMainSkillComponent>
-    {
-        public override void Run(UIMainSkillComponent self)
-        {
-            try
-            {
-                self.OnUpdate();
-            }
-            catch (Exception e)
-            {
-                Log.Error($"move timer error: {self.Id}\n{e}");
-            }
-        }
-    }
-
     public class UIMainSkillComponent : Entity, IAwake, IDestroy
     {
         public GameObject Btn_Target;
@@ -34,7 +17,8 @@ namespace ET
         public UIAttackGridComponent UIAttackGrid;
         public UIFangunSkillComponent UIFangunComponet;
         public List<UISkillGridComponent> UISkillGirdList = new List<UISkillGridComponent>();
-        public long Timer;
+        public SkillManagerComponent SkillManagerComponent;
+
         public float LockTime;
     }
 
@@ -43,7 +27,7 @@ namespace ET
     {
         public override void Destroy(UIMainSkillComponent self)
         {
-            TimerComponent.Instance?.Remove(ref self.Timer);
+            DataUpdateComponent.Instance.RemoveListener(DataType.SkillCDUpdate, self);
         }
     }
 
@@ -82,67 +66,39 @@ namespace ET
                 skillgrid.SetSkillCancelHandler((bool val) => { self.ShowCancelButton(val); });
                 self.UISkillGirdList.Add(skillgrid);
             }
+
+            DataUpdateComponent.Instance.AddListener(DataType.SkillCDUpdate, self);
         }
     }
 
     public static class UIMainSkillComponentSystem
     {
-        public static void OnUseSkill(this UIMainSkillComponent self)
+        public static void OnSkillCDUpdate(this UIMainSkillComponent self)
         {
-            if (self.Timer == 0)
-            {
-                self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.MainSkillTimer, self);
-            }
-        }
-
-        public static void OnUpdate(this UIMainSkillComponent self)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
-
             long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
                 UISkillGridComponent uISkillGridComponent = self.UISkillGirdList[i];
-                uISkillGridComponent.OnUpdate(skillManagerComponent.GetCdTime(uISkillGridComponent.GetSkillId(), serverTime), skillManagerComponent.SkillPublicCDTime);
+                uISkillGridComponent.OnUpdate(self.SkillManagerComponent.GetCdTime(uISkillGridComponent.GetSkillId(), serverTime), 
+                                              self.SkillManagerComponent.SkillPublicCDTime - serverTime);
             }
-            self.UIFangunComponet.OnUpdate(skillManagerComponent.GetCdTime(self.UIFangunComponet.SkillId, serverTime));
-
-            if (skillManagerComponent.SkillCDs.Count == 0 && TimeHelper.ClientNow() > skillManagerComponent.SkillPublicCDTime)
-            {
-                TimerComponent.Instance?.Remove(ref self.Timer);
-            }
+            self.UIFangunComponet.OnUpdate(self.SkillManagerComponent.GetCdTime(self.UIFangunComponet.SkillId, serverTime));
         }
 
-        public static void OnExitBattle(this UIMainSkillComponent self)
+        public static void OnEnterScene(this UIMainSkillComponent self, Unit unit)
         {
-            TimerComponent.Instance?.Remove(ref self.Timer);
+            self.SkillManagerComponent = unit.GetComponent<SkillManagerComponent>();
+        }
+
+        public static void ResetUI(this UIMainSkillComponent self)
+        {
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
                 UISkillGridComponent uISkillGridComponent = self.UISkillGirdList[i];
-                uISkillGridComponent.OnUpdate(0,  0);
+                uISkillGridComponent.OnUpdate(0,0);
+                uISkillGridComponent.UseSkill = false;
             }
             self.UIFangunComponet.OnUpdate(0);
-        }
-
-        public static void CancelSkill(this UIMainSkillComponent self)
-        {
-            for (int i = 0; i < self.UISkillGirdList.Count; i++)
-            {
-                self.UISkillGirdList[i].UseSkill = false;
-            }
-        }
-
-        public static void ResetUI(this UIMainSkillComponent self, bool reset)
-        {
-            if (!reset)
-            {
-                return;
-            }
-            for (int i = 0; i < self.UISkillGirdList.Count; i++)
-            {
-                self.UISkillGirdList[i].ResetUI();
-            }
         }
 
         public static void OnLockTargetUnit(this UIMainSkillComponent self)

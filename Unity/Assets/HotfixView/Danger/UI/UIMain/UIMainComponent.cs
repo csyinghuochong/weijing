@@ -514,7 +514,7 @@ namespace ET
             else
             {
                 self.ZoneScene().GetComponent<SkillIndicatorComponent>()?.RecoveryEffect();
-                self.UIJoystickMoveComponent.HideUI();
+                self.UIJoystickMoveComponent.ResetUI();
             }
         }
 
@@ -667,6 +667,7 @@ namespace ET
             GameObject mainSkill = rc.Get<GameObject>("UIMainSkill");
             UI uiskill = self.AddChild<UI, string, GameObject>("SubMainSkill", mainSkill);
             self.UIMainSkillComponent = uiskill.AddComponent<UIMainSkillComponent>();
+            self.UIMainSkillComponent.OnSkillSetUpdate();
 
             //摇杆
             self.JoystickMove = rc.Get<GameObject>("JoystickMove");
@@ -913,10 +914,11 @@ namespace ET
         /// <param name="self"></param>
         public static void BeginEnterScene(this UIMainComponent self, int lastScene)
         {
-            self.UIJoystickMoveComponent.HideUI();
-            self.UIMainSkillComponent.CancelSkill();
-            self.UIMainSkillComponent.OnExitBattle();
+            self.UIMainTeam.ResetUI();
+            self.UIMainSkillComponent.ResetUI();
             self.UIMainBuffComponent.ResetUI();
+            self.UIJoystickMoveComponent.ResetUI();
+
             self.UIMapMini.BeginChangeScene(lastScene);
             self.ZoneScene().GetComponent<SkillIndicatorComponent>().BeginEnterScene();
             self.ZoneScene().GetComponent<LockTargetComponent>().BeginEnterScene();
@@ -929,11 +931,11 @@ namespace ET
         /// <param name="sceneTypeEnum"></param>
         public static void AfterEnterScene(this UIMainComponent self, int sceneTypeEnum)
         {
+            self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.Btn_TopRight_1.SetActive(SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
             self.Btn_TopRight_2.SetActive(SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
-            self.UIMainSkillComponent.ResetUI(sceneTypeEnum == SceneTypeEnum.MainCityScene);
             if(!SceneConfigHelper.ShowLeftButton(sceneTypeEnum))
             {
                 self.FunctionSetBtn.SetActive(false);
@@ -944,36 +946,31 @@ namespace ET
                 self.FunctionSetBtn.SetActive(true);
                 self.UIPageButtonComponent.OnSelectIndex(sceneTypeEnum == SceneTypeEnum.TeamDungeon ? 1 : 0);
             }
-            self.UIMapMini.OnEnterScene();
-            
+
+            switch (sceneTypeEnum)
+            {
+                case SceneTypeEnum.CellDungeon:
+                    self.UILevelGuideMini.GetComponent<UICellDungeonCellMiniComponent>().OnUpdateUI();
+                    break;
+                case SceneTypeEnum.MainCityScene:
+                    self.UIMainHpBar.MonsterNode.SetActive(false);
+                    self.UIMainHpBar.BossNode.SetActive(false);
+                    self.HomeButton.SetActive(true);
+                    self.UIMainSkill.SetActive(false);
+                    self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-128f, 380f);
+                    break;
+                default:
+                    self.HomeButton.SetActive(false);
+                    self.UIMainSkill.SetActive(true);
+                    self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-95.7f, 738f);
+                    break;
+            }
+          
             self.UpdateShadow();
             self.UpdateNpcTaskUI();
-
-            if (sceneTypeEnum == SceneTypeEnum.CellDungeon)
-            {
-                self.UILevelGuideMini.GetComponent<UICellDungeonCellMiniComponent>().OnUpdateUI();
-            }
-            if (sceneTypeEnum == SceneTypeEnum.MainCityScene)
-            {
-                self.UIMainHpBar.MonsterNode.SetActive(false);
-                self.UIMainHpBar.BossNode.SetActive(false);
-                self.HomeButton.SetActive(true);
-                self.UIMainSkill.SetActive(false);
-                self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-128f, 380f);
-            }
-            else
-            {
-                self.HomeButton.SetActive(false);
-                self.UIMainSkill.SetActive(true);
-                self.UIMainSkillComponent.OnSkillSetUpdate();
-                self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-95.7f, 738f);
-            }
-
-            self.UIMainTeam.OnReset();
-
+            self.UIMapMini.OnEnterScene();
+            self.UIMainSkillComponent.OnEnterScene(self.MainUnit);
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
-
-            self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
         }
 
         public static void OnOpenTask(this UIMainComponent self)
@@ -1091,6 +1088,7 @@ namespace ET
             int openDay = ServerHelper.GetOpenServerDay(!GlobalHelp.IsOutNetMode, zone);
             int lastDay = ComHelp.GetWorldLvLastDay();
             self.Button_WorldLv.SetActive(openDay <= lastDay + 1);
+
         }
 
         //角色经验更新

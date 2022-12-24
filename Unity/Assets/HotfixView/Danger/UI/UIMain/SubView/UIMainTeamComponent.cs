@@ -68,7 +68,7 @@ namespace ET
             }
         }
 
-        public static void OnReset(this UIMainTeamComponent self)
+        public static void ResetUI(this UIMainTeamComponent self)
         {
             for (int i = 0; i < self.TeamUIList.Count; i++)
             {

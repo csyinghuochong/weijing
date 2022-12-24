@@ -52,6 +52,7 @@ namespace ET
             {
                 case AppType.Server:
                 {
+                    //await MergeZoneHelper.QueryRecharge();
                     //await MergeZoneHelper.QueryGold(9);
                     //await MergeZoneHelper.QueryAccount(4, 1551686987356897280);
                     //await TimerComponent.Instance.WaitAsync(600000);

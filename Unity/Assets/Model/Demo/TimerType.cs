@@ -35,7 +35,6 @@
         public const int SkillIndicator = 1033;
         public const int FloatTipTimer = 1034;
         public const int MainBuffTimer = 1035;
-        public const int MainSkillTimer = 1036;
         public const int ReviveTimer = 1037;
         public const int LocalDungeonTimer = 1038;
         public const int UIXiuLianTimer = 1039;

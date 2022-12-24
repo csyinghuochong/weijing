@@ -47,6 +47,19 @@ namespace ET
             DataUpdatelegateDics.Add(DataType.PetXiLianUpdate, OnPetXiLianUpdate);
             DataUpdatelegateDics.Add(DataType.PetHeChengUpdate, OnHeChengReturn);
             DataUpdatelegateDics.Add(DataType.MainHeroMove, OnMainHeroPosition);
+            DataUpdatelegateDics.Add(DataType.SkillCDUpdate, OnSkillCDUpdate);
+        }
+
+        public void OnSkillCDUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
+        {
+            foreach (var component in dataUpdateComponentDic.Values)
+            {
+                if (component is UIMainSkillComponent uiComponent)
+                {
+                    uiComponent.OnSkillCDUpdate();
+                    continue;
+                }
+            }
         }
 
         public void OnMainHeroPosition(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)

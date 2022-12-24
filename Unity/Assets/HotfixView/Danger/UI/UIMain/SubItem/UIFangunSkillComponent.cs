@@ -5,8 +5,8 @@ namespace ET
 {
     public class UIFangunSkillComponent : Entity, IAwake<GameObject>
     {
-        public GameObject Img_SkillCD;
-        public GameObject Text_Time;
+        public Image Img_SkillCD;
+        public Text Text_Time;
         public float LastSkillTime;
         public int SkillId;
 
@@ -20,8 +20,8 @@ namespace ET
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             GameObject button_1 = gameObject;
 
-            self.Img_SkillCD = rc.Get<GameObject>("Img_SkillCD");
-            self.Text_Time = rc.Get<GameObject>("Text_Time");
+            self.Img_SkillCD = rc.Get<GameObject>("Img_SkillCD").GetComponent<Image>();
+            self.Text_Time = rc.Get<GameObject>("Text_Time").GetComponent<Text>();
 
             button_1.GetComponent<Button>().onClick.AddListener(() => { self.OnUseFangunSkill(); });
 
@@ -36,18 +36,15 @@ namespace ET
         {
             if (leftTime > 0)
             {
-                //显示冷却CD
-                int showCostTime = (int)(leftTime / 1000) + 1;
-                self.Text_Time.GetComponent<Text>().text = showCostTime.ToString();
+                int showCostTime = (int)(leftTime / 1000f) + 1;
                 float proValue = (float)leftTime / 10000f;
-                self.Img_SkillCD.GetComponent<Image>().fillAmount = proValue;
-                self.Img_SkillCD.SetActive(true);
-                self.Text_Time.SetActive(true);
+                self.Text_Time.text = showCostTime.ToString();
+                self.Img_SkillCD.fillAmount = proValue;
             }
             else
             {
-                self.Text_Time.SetActive(false);
-                self.Img_SkillCD.SetActive(false);
+                self.Text_Time.text = string.Empty;
+                self.Img_SkillCD.fillAmount = 0f;
             }
         }
 

@@ -84,6 +84,12 @@ namespace ET
         public static void OnUpdate(this SkillManagerComponent self)
         {
             long nowTime = TimeHelper.ServerNow();
+
+            if (self.GetParent<Unit>().MainHero && self.SkillCDs.Count > 0)
+            {
+                EventType.DataUpdate.Instance.DataType = DataType.SkillCDUpdate;
+                EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
+            }
             for (int i = self.SkillCDs.Count - 1; i >= 0; i--)
             {
                 if (self.SkillCDs[i].CDEndTime < nowTime)
@@ -201,9 +207,6 @@ namespace ET
             skillcd.SkillID = skillId;
             skillcd.CDEndTime = skillCmd.CDEndTime + 100;
             self.SkillPublicCDTime = skillCmd.PublicCDTime + 100;
-            EventType.SkillCD.Instance.Unit = self.GetParent<Unit>();
-            Game.EventSystem.PublishClass(EventType.SkillCD.Instance);
-            self.AddSkillTimer();
         }
 
         public static void AddSkillTimer(this SkillManagerComponent self)
@@ -224,43 +227,10 @@ namespace ET
             }
         }
 
-        public static void CheckSkillCD(this SkillManagerComponent self, SkillConfig skillConfig, int skillId)
-        {
-            if (self.GetSkillCD(skillId) != null)
-            {
-                return;
-            }
-            SkillPro skillPro = self.ZoneScene().GetComponent<SkillSetComponent>().GetBySkillID(skillId);
-            if (skillPro == null || skillPro.SkillPosition == 0 || skillPro.SkillSetType == (int)SkillSetEnum.Item)
-            {
-                return;
-            }
-
-            if (skillConfig.SkillActType == 0 || skillConfig.Id == self.FangunSkillId)
-            {
-                return;
-            }
-            if (skillConfig.PassiveSkillType > 0)
-            {
-                return;
-            }
-
-            Log.Error($"CheckSkillCD {skillConfig.Id}");
-            M2C_SkillCmd m2C_SkillCmd = new M2C_SkillCmd();
-            m2C_SkillCmd.CDEndTime = TimeHelper.ServerNow() + (long)(1000 * skillConfig.SkillCD);
-            self.AddSkillCD(skillId, m2C_SkillCmd);
-        }
-
         public static void OnUseSkill(this SkillManagerComponent self, M2C_UnitUseSkill skillcmd )
         {
             Unit unit = self.GetParent<Unit>();
-            
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
-            //if (unit.MainHero)
-            //{
-            //    self.CheckSkillCD(skillConfig, skillcmd.SkillID);
-            //}
-            
             if (skillcmd.ItemId > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
             {
                 EventType.PlayAnimator.Instance.Animator = skillConfig.SkillAnimation;
@@ -288,7 +258,7 @@ namespace ET
                 int effctId = skillConfig1.SkillEffectID[0];
                 if (effctId != 0 && !EffectConfigCategory.Instance.Contain(effctId))
                 {
-                    Log.Debug($"无效的effectid {effctId}");
+                    Log.Error($"无效的effectid {effctId}");
                     continue;
                 }
 

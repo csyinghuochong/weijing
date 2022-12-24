@@ -21,32 +21,28 @@ namespace ET
         public GameObject Btn_SkillStart;
         public GameObject Img_SkillIcon;
         public GameObject Text_SkillItemNum;
-        public GameObject Img_SkillCD;
-        public GameObject Text_SkillCD;
-        public GameObject Img_PublicSkillCD;
+        public Image Img_SkillCD;
+        public Text Text_SkillCD;
+        public Image Img_PublicSkillCD;
         public GameObject Img_Mask;
-        //public GameObject BackIcon;
 
         public SkillConfig SkillWuqiConfig;
         public SkillConfig SkillBaseConfig;
 
-        public SkillPro skillPro;
         public bool UseSkill;
         public bool CancelSkill;
-        public Camera UIcam;
+        public SkillPro skillPro;
         public Action<bool> SkillCancelHandler;
 
         public void Awake(GameObject gameObject)
         {
-            this.UIcam = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
-          
             this.SkillDi = gameObject.transform.Find("SkillDi").gameObject;
             this.Btn_SkillStart = gameObject.transform.Find("Btn_SkillStart").gameObject;
             this.Img_SkillIcon = gameObject.transform.Find("Img_Mask/Img_SkillIcon").gameObject;
             this.Text_SkillItemNum = gameObject.transform.Find("Text_SkillItemNum").gameObject;
-            this.Img_SkillCD = gameObject.transform.Find("Img_SkillCD").gameObject;
-            this.Text_SkillCD = gameObject.transform.Find("Text_SkillCD").gameObject;
-            this.Img_PublicSkillCD = gameObject.transform.Find("Img_PublicSkillCD").gameObject;
+            this.Img_SkillCD = gameObject.transform.Find("Img_SkillCD").gameObject.GetComponent<Image>();
+            this.Text_SkillCD = gameObject.transform.Find("Text_SkillCD").gameObject.GetComponent<Text>();
+            this.Img_PublicSkillCD = gameObject.transform.Find("Img_PublicSkillCD").gameObject.GetComponent<Image>();
             this.Img_Mask = gameObject.transform.Find("Img_Mask").gameObject;
             //this.BackIcon = gameObject.transform.Find("BackIcon").gameObject;
 
@@ -65,49 +61,36 @@ namespace ET
         {
         }
 
-        public static void ResetUI(this UISkillGridComponent self)
-        {
-
-            self.Text_SkillCD.SetActive(false);
-            self.Img_SkillCD.SetActive(false);
-        }
-
         public static int GetSkillId(this UISkillGridComponent self)
         {
             return self.SkillBaseConfig != null ? self.SkillBaseConfig.Id : 0;
         }
 
-        public static void OnUpdate(this UISkillGridComponent self, long leftCDTime, long publicCDTime)
-        {
-            long nowTime = TimeHelper.ClientNow();
-            
-            if (leftCDTime <= 0)
+        public static void OnUpdate(this UISkillGridComponent self, long leftCDTime, long pulicCd)
+        { 
+            //显示冷却CD
+            if (leftCDTime > 0)
             {
-                self.Text_SkillCD.SetActive(false);
-                self.Img_SkillCD.SetActive(false);
-            }
-            else
-            {
-                //显示冷却CD
                 int showCostTime = (int)(leftCDTime / 1000) + 1;
-                self.Text_SkillCD.GetComponent<Text>().text = showCostTime.ToString();
+                self.Text_SkillCD.text = showCostTime.ToString();
                 float proValue = (float)leftCDTime / ((float)self.SkillBaseConfig.SkillCD * 1000f);
-                //Log.Info("proValue = " + proValue + "costTime = " + costTime + "cd：" + SkillConfig.SkillCD);
-                self.Img_SkillCD.GetComponent<Image>().fillAmount = proValue;
-                self.Text_SkillCD.SetActive(true);
-                self.Img_SkillCD.SetActive(true);
-            }
-            //显示公共CD
-            if (nowTime < publicCDTime)
-            {
-                long costTime = publicCDTime - nowTime;
-                float proValue = (float)costTime / (1 * 1000f);     //1秒公共CD
-                self.Img_PublicSkillCD.GetComponent<Image>().fillAmount = proValue;
-                self.Img_PublicSkillCD.SetActive(true);
+                self.Img_SkillCD.fillAmount = proValue;
             }
             else
             {
-                self.Img_PublicSkillCD.SetActive(false);
+                self.Img_SkillCD.fillAmount = 0f;
+                self.Text_SkillCD.text = string.Empty;
+            }
+
+            //显示公共CD
+            if (pulicCd > 0)
+            {
+                float proValue = (float)(pulicCd / 1000f);     //1秒公共CD
+                self.Img_PublicSkillCD.fillAmount = proValue;
+            }
+            else
+            {
+                self.Img_PublicSkillCD.fillAmount = 0f;
             }
         }
 
@@ -295,9 +278,8 @@ namespace ET
                 self.SkillWuqiConfig = null;
                 self.SkillBaseConfig = null;
                 self.skillPro = null;
-                self.Img_PublicSkillCD.SetActive(false);
+                self.Img_PublicSkillCD.fillAmount = 0;
                 self.Img_SkillIcon.SetActive(false);
-                //self.BackIcon.SetActive(false);
                 self.Img_Mask.SetActive(false);
                 return;
             }
@@ -318,12 +300,10 @@ namespace ET
 
                 self.SkillWuqiConfig = SkillConfigCategory.Instance.Get(skillId);
                 self.SkillBaseConfig = self.SkillWuqiConfig;
-
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
             }
             self.Img_SkillIcon.SetActive(true);
-            //self.BackIcon.SetActive(true);
             self.Img_Mask.SetActive(true);
         }
     }

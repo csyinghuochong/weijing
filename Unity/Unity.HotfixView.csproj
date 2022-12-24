@@ -131,7 +131,6 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiShopItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIActivity\UIActivitySingInComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubView\UIJoystickMoveComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Skill_OnSkillCD.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampShopItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChengJiu\UIChengJiuEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiShopTypeComponent.cs" />

@@ -239,7 +239,7 @@ namespace ET
             self.Thumb.SetActive(show);
         }
 
-        public static void HideUI(this UIJoystickMoveComponent self)
+        public static void ResetUI(this UIJoystickMoveComponent self)
         {
             self.CenterShow.SetActive(false);
             self.Thumb.SetActive(false);
@@ -248,7 +248,7 @@ namespace ET
 
         public static void EndDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
-            self.HideUI();
+            self.ResetUI();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (unit == null)
             {

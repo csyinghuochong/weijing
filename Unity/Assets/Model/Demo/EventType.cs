@@ -405,16 +405,6 @@ namespace ET
 
         }
 
-        public class SkillCD : DisposeObject
-        {
-            public static readonly SkillCD Instance = new SkillCD();
-            public Unit Unit;
-            public override void Dispose()
-            {
-                this.Unit = null;
-            }
-        }
-
         public class MoveStop : DisposeObject
         {
             public static readonly MoveStop Instance = new MoveStop();
