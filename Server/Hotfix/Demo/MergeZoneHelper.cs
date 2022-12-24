@@ -26,7 +26,17 @@ namespace ET
                     Log.Warning($"Gold:{entity.UserInfo.Gold} ID:{entity.Id}  Account:{entity.Account} Name: {entity.UserInfo.Name}  Lv:{entity.UserInfo.Lv} ");
                 }
             }
-            List<BagComponent> bagComponents = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(zone, d => d.Id > 0);
+
+            List<ActivityComponent> activityComponents = await Game.Scene.GetComponent<DBComponent>().Query<ActivityComponent>(zone, d => d.Id > 0);
+            foreach (var entity in activityComponents)
+            {
+                if (entity.ZhanQuReceiveIds.Contains(21004))
+                {
+                    Log.Debug("11");
+                }
+            }
+
+                List<BagComponent> bagComponents = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(zone, d => d.Id > 0);
             foreach (var entity in bagComponents)
             {
                 long itemNumber = 0;

@@ -63,6 +63,12 @@ namespace ET
                                 return;
                             }
                         }
+                        UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                        if (userInfoComponent.UserInfo.Lv < int.Parse(activityConfig.Par_1))
+                        {
+                            reply();
+                            return;
+                        }
                         int selfRechage = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
                         if (request.ReceiveIndex == 3 && selfRechage < 298)
                         {

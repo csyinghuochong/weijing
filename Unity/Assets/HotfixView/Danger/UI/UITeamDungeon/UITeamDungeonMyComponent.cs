@@ -147,8 +147,12 @@ namespace ET
                 ui_1.GetComponent<UITeamItemComponent>().OnUpdateItem(teamInfo.PlayerList[i]);
             }
 
-            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
+            if (teamInfo.SceneId ==0)
+            {
+                return;
+            }
             string addStr = "";
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(teamInfo.SceneId);
             if (teamInfo.FubenType == TeamFubenType.XieZhu)
             {
                 addStr = "(帮助模式)";
@@ -158,7 +162,6 @@ namespace ET
             {
                 addStr = "(深渊模式)";
             }
-
             self.Obj_Lab_FuBenName.GetComponent<Text>().text = sceneConfig.Name + addStr;
             self.Lab_FuBenLv.GetComponent<Text>().text = $"{GameSettingLanguge.LoadLocalization("等级")}: {sceneConfig.EnterLv} - 50";
         }
