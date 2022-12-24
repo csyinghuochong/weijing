@@ -27,30 +27,10 @@ namespace ET
                 //后面记录购买的数量
                 paimaiCompontent.PaiMaiShopInfoAddBuyNum(request.ItemID, request.BuyNum);
                 //扣除对应的上架道具
+                /*
                 List<PaiMaiItemInfo> paiMaiItemInfo = paimaiCompontent.GetPaiMaiItemInfo(request.ItemID, response.PaiMaiShopItemInfo.Price);
                 if (paiMaiItemInfo != null)
                 {
-                    //int sellSingPri = (int)((float)paiMaiItemInfo.Price / paiMaiItemInfo.BagInfo.ItemNum * 0.9f);
-                    /*
-                    if (sellSingPri < response.PaiMaiShopItemInfo.Price) {
-
-                        int costNum = request.BuyNum;
-                        if (paiMaiItemInfo.BagInfo.ItemNum > request.BuyNum)
-                        {
-                            //出售部分
-                            paiMaiItemInfo.BagInfo.ItemNum -= request.BuyNum;
-                        }
-                        else
-                        { 
-                            //出售全部
-                            paimaiCompontent.dBPaiMainInfo.PaiMaiItemInfos.Remove(paiMaiItemInfo);
-                            costNum = paiMaiItemInfo.BagInfo.ItemNum;
-                        }
-                        MailHelp.SendPaiMaiEmail(scene.DomainZone(), paiMaiItemInfo, costNum).Coroutine();
-
-                    }
-                    */
-                    
 
                     foreach (PaiMaiItemInfo info in paiMaiItemInfo) {
 
@@ -88,7 +68,7 @@ namespace ET
                     }
 
                 }
-                
+                */
               
                 //返回消息
                 reply();
