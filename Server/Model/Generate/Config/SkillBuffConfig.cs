@@ -80,7 +80,7 @@ namespace ET
 		public int Id { get; set; }
 		/// <summary>状态名称</summary>
 		[ProtoMember(2)]
-		public string 状态Name { get; set; }
+		public string BuffName { get; set; }
 		/// <summary>Buff等级</summary>
 		[ProtoMember(3)]
 		public int BuffLv { get; set; }
