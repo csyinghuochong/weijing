@@ -86,10 +86,10 @@ namespace ET
 
             self.OnClickButton(self.ButtonList[0]);
 
+            self.Button_XieZhu.SetActive(true);
+            self.ShenYuan.SetActive(true);
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            self.Button_XieZhu.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
-            self.ShenYuan.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
             self.CloseButton.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonCreate); });
         }
     }
