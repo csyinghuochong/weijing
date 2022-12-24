@@ -14742,518 +14742,51 @@ MonoBehaviour:
   - name: a7def754df4b766e3d5a4a2ea8e9b9bd.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A9.FBX
-  - name: d4c38cc847e05a87e68b6eccf96433e2.unity3d
+  - name: 4daf4696e1bef65028c8582a899d5191.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_C1.prefab
-  - name: 999f57779fd2632641fba4ec355b7a28.unity3d
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Right.bmp
+  - name: 50ef439457e9d970617f608d50da14a9.unity3d
     assets:
-    - Assets/Res/Models/fake shadow.prefab
-  - name: 3e08371f6e5902b9a93ca9c05dcabc1d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/grass_texture_01.png
-  - name: 5193b3f5e6ed5f2c7b992c2183430ab7.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_F3.FBX
-  - name: d25a69b3b3706fdf090bdd6753bf4b6d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_A3.prefab
-  - name: f1f03efba9cbb21ed5069867eaf6d2c0.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_F3.prefab
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Left.bmp
   - name: 61a24c6aebea08115f1dcdcd3720cd6b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Cloud/Cloud.png
-  - name: 0078e57f8a126ab4b120ed74188f48ad.unity3d
+  - name: 5bd50368ba29cf4fa1c8e67a67eda34e.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_F1.prefab
-  - name: f42979faccb723b888a7316c7cdfd5a0.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Texture/EnterGame_Terrian.png
-  - name: 43d3c31e59848a509f46c5979cdcb170.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Interiors_Props_Q2.prefab
-  - name: a5f65061686157e40866b51509fc90a3.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A18.prefab
-  - name: 30fa0324692c8b1f8080424392f5cb49.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C24_5.FBX
-  - name: 8be7ffab07161783ba796f0e77ae9a58.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_H1.prefab
-  - name: 31f696e5865b7f79c09bfc5d134fde59.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_E2.prefab
-  - name: 6c2c357f0c19162ee8126d5396cd50b6.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_grass
-      2.mat
-  - name: 6329596746b7d76b2c5df64b1ce74b20.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_Hua/Plant_A_1.jpg
-  - name: 391e064692678b9772821eb893752a20.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_B2.FBX
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_wenli_00245_1.mat
   - name: cc063d9078c4282b224a16d385128534.unity3d
     assets:
     - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Back.bmp
-  - name: abf911df58879992bd5de95530609ae8.unity3d
+  - name: 01f8ca24f2f332fd3daebba073411459.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_E2.FBX
-  - name: 858d64d8d6e859bacbd3791531d00ba3.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_A5.prefab
-  - name: 31569378802dbc6603aa80bd1be973a9.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_A2.FBX
-  - name: 583e22b23d9a2631c4cc398916d0a63d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_L2.FBX
-  - name: 83bc1d79cd1c411cf6a8f24bd45effb2.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/CITY_PLAZA_ROAD_02.png
-  - name: dd0b66560d7b0778a8dc8ae612737d87.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/ZONE01_RIDGE01.fbx
-  - name: f314b95821b8988ce2a93d7d2cfd6cf9.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C4_2.prefab
-  - name: ab8d6d36fe9dcb611d83b609989e4aab.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C2_1.prefab
-  - name: a712ca93c4234a629677dfef31f416fd.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Staircase2.jpg
-  - name: 9e8cd829b5c928e3911f5366832bc8a6.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Meshes/EnterGame_Terrian.obj
-  - name: 6673fd72d274466cdca8c569a32940c7.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_C1.FBX
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Front.bmp
   - name: 19d3e308a95ce50c7bbb8b0228cec712.unity3d
     assets:
     - Assets/Res/SkyBox/CartoonSkybox2/CartoonSkybox2.mat
-  - name: 56e690b2bf5a5cbf31aad4b72d70d35a.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A16.prefab
-  - name: a2035cb2dbc4c020b2f6acd3c60f2874.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C4_3.prefab
-  - name: da5fd44755c8194dfe6d715c9e3f0bd9.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C26.FBX
   - name: b4414671d4726437c7f7952f971eefb4.unity3d
     assets:
     - Assets/Res/Sci-Fi VFX/Textures/Beam/AnimatedBeam.png
-  - name: 591fa3a092b4b848fb39e3e02d66323e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_A7.FBX
-  - name: 9a706ae9b92cc3969b75a0d45bce0737.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_F1.FBX
-  - name: 9f5f6b736f08541e9d2769115ea670a4.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_F1.prefab
-  - name: c0b1c5cd6153455b63837d88b120552c.unity3d
-    assets:
-    - Assets/Scenes/1_2.terrainlayer
-  - name: 92047d1fc88f2ce4ccd3d61a548c9927.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A20.FBX
-  - name: 9978e913fb70d5a0a69e3f1151934e05.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A10.FBX
-  - name: d96e2fbb438b123903e5522b2a25c5f2.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B5_1.FBX
-  - name: a93aef11a97423f1eb5047c07f5e3bb9.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_C29_2.prefab
-  - name: 55842052d399788b0fe496585ecfbb3f.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Interiors_Props_R1.FBX
-  - name: c7ca6861cbc5cf9d292bf45b77667ccd.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Materials/Zone01_riverbed_fring.mat
-  - name: b6375fed0751ae4f0d8072c9282f57d5.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelCoconut.fbx
-  - name: be18054b733d8c8f25093e92e65f1038.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Materials/Interiors_Props.mat
-  - name: 6c04ef7f869476ca4e1d1ddb1b3445a6.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A23.FBX
-  - name: 06a8257292571d8a1b36e136d469262e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C4_2.FBX
-  - name: 0da9b2da5aa676bb9834452ec4fbc3fc.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_B5_1.prefab
-  - name: 9dee094486a6b97201bb719761d20bae.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_A5.FBX
-  - name: 9c4be66121029329e6d7e6e2c0d707d1.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_J3_2.FBX
-  - name: 06098e1a0450b005e05393f277c34b27.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Building_PotionShop.mat
   - name: ed5c0ef5310c9137dbbcfaf31d7041c4.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Cloud/Cloud.mat
   - name: 1cd2030cc8a13caef30bfaf9e88af8be.unity3d
     assets:
     - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Down.bmp
-  - name: 2fefe3885325437cd83bd4c15b9dab24.unity3d
-    assets:
-    - Assets/Scenes/1.asset
-  - name: e6fd59be6b3fb43f587a8b2ffd4604c0.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/RIVERBED_FRINGE.png
-  - name: e4672bf116e694130a21f0e56283431d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_F2.FBX
-  - name: 0352671adb1c4a57ddb710f3ed470b58.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_A1.FBX
-  - name: 587376d7c34878593a251b6be65e50fc.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelStaircase2_1.fbx
-  - name: 817f38b49ef869a95b143fd559d64439.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A15.FBX
-  - name: 1896a8e482d38bddd2e32b0f096103f9.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Tree01.mat
-  - name: 7db0466d3f6ad4405ed6dfe42ef1d210.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_E2.prefab
-  - name: d49e86bacd1dccde85934d39c79beb8e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_A2.FBX
-  - name: 3d8f1939bea0c21754a08ec1a99febfd.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_K1.prefab
-  - name: 0b1a605a73ecef90c580cbdfcfd6b146.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.FBX
-  - name: 8badf3c6dafa6358da3c14c84d4b3041.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Bonfire.jpg
-  - name: 02839a35bf610ce0a03bff9f0fe1466c.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Staircase2.mat
-  - name: 9268a2fadd3cf2daf2aab8c95594d31c.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A16.FBX
-  - name: 9703504eeb5408a5909b9b65e0dd7003.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Cloud/Cloud.prefab
-  - name: 7c67323bfb0d7795bedca05e45c8412b.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_A1.prefab
-  - name: e73a05dec78f4222a92e1c4da679a7f6.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.png
-  - name: a14c01bb1b4f2bd12dec019f708b468d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone01_grass_tund.002.mat
-  - name: 3eef2f583e950af9fcb5deba361eb1ba.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Material/EnterGame_Terrian.mat
-  - name: 03902cc2c2cf362a80143a7ca099606d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_I4.prefab
-  - name: a67d6ea40c426bad4b75e5472d0a5a40.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C2_3.prefab
-  - name: e43a94097d141d68ab1e97f54ab483c5.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_B21_2.prefab
-  - name: 29f7d335a6588f7dfd9b32e9cd9b1445.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_G1.FBX
-  - name: 8a3d292da0ddcf4f3a48d4398d757ac7.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_F2.FBX
-  - name: de7b0d4de77729933b50cc54dcb16db5.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_K1.FBX
-  - name: d49b63149c6cfe15053ef56d83832f9b.unity3d
-    assets:
-    - Assets/Scenes/TerrGuang_2.mat
-  - name: f6885705bb9835a5d4444c3c5ee34efb.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone01_riverbed_f.001.mat
-  - name: 4daf4696e1bef65028c8582a899d5191.unity3d
-    assets:
-    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Right.bmp
-  - name: a9b9f37fe5fa9cee1a27eb0728526733.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Interiors_Props_Q2.FBX
-  - name: 1ab8260b95af15b005ecff0a34260428.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.prefab
-  - name: 362284cb2d0a9fa12ee89ad13768afa4.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Textures/Interiors_Props_1.jpg
-  - name: 43df1d0263b96144b17dfd5329e34264.unity3d
-    assets:
-    - Assets/Scenes/1_1.terrainlayer
-  - name: 50ef439457e9d970617f608d50da14a9.unity3d
-    assets:
-    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Left.bmp
-  - name: 83046764ad088a721260c4f4a3dbb381.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C2_3.FBX
-  - name: 5bd50368ba29cf4fa1c8e67a67eda34e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_wenli_00245_1.mat
-  - name: 7f043e5ee488c64adfc9c3a05cbd6732.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B21_2.FBX
-  - name: 245cb5a8c43a02b1f4b621861449c6e0.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_H1.FBX
-  - name: 01f8ca24f2f332fd3daebba073411459.unity3d
-    assets:
-    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Front.bmp
-  - name: 0782b6f0e7a82110797a5ee4b68b27c1.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/modelLog.fbx
-  - name: 30d7a7557353f9af6856403c1167b46b.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone0_riverbed_sh.001.mat
-  - name: 2a52f1eff8062c6776b98529eff60c73.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C3.prefab
-  - name: e9a96a0bdb6b826beabf03538ace4d78.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A15.prefab
-  - name: 217c4e8fe62ffe64dfb475e237dbf527.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/TerrainTexture/NewLayer.terrainlayer
-  - name: 03efae2b516afdd71461838ac281d10a.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_A2.prefab
-  - name: 87e65982a96f8cc9254eb2ca8500f579.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C2_1.FBX
-  - name: 31c81ecd5e73e442dea50ee98c94d4d2.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/Materials/Tx_Log.mat
-  - name: 6894d67c0b8b41cc69a49ca8e6c26c87.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelTree01_1.fbx
-  - name: a16a2e6e4376c0d5b20346392d185a77.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C6_2.prefab
-  - name: fb5f6689c6ce7a21d4f7b4141f197e12.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/GRASS_RIDGE01.png
-  - name: 624453551d88cf4e1429a4710513ac67.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C26.prefab
-  - name: db6a004635387bcc6f43e7692b59e9cf.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_I4.FBX
-  - name: 02db57c42d6b4219f96fba716665e400.unity3d
-    assets:
-    - Assets/Scenes/1_3.terrainlayer
-  - name: d3de9dbc8882d56d235603cceef9edec.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Element_B.mat
-  - name: 39646623277f42dd29207f2d23c0863a.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C3.FBX
-  - name: 7687da1c38bd61e0037343238c80e652.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/TerrainTexture/GRASS_RISE1.png
-  - name: 2e2f4afbecf5117b9134e7568cda7c96.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Tree01.jpg
-  - name: f5428512645a1c08347e86e5fd7a6ec7.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/Ice_5.png
-  - name: 19f261c9ba619a3ff252f032169eac1d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C29_2.FBX
-  - name: 11b3667a10fd8adf63706754e2a9e52b.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/TerrainTexture/GRASS_TUNDRA01.png
-  - name: 40a9eec38c08fb0846843bdfef574730.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A6.FBX
-  - name: b36c72a0987088233d8564f9b17bcb71.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Meshes/Materials/defaultMat.mat
-  - name: bc01b805b433f04062d56c0f890ee9f1.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Interiors_Props_P1.prefab
-  - name: 3feb356d9435047224da62823c01be56.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Building_PotionShop.jpg
-  - name: cc884ea40d746dabd62221a09f042770.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.prefab
-  - name: 421f2d433fabec3b6a4b22322349d7f9.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_A2.prefab
-  - name: a7ab1affee5600664da3815924b420a6.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_I6.prefab
-  - name: 248f6db6090abcc0cb4bc3630c59d1be.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow_A.mat
-  - name: 5f4d50acff1bf740985b43a5c9ede825.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Materials/Zone0_riverbed_shadow.mat
-  - name: 00c3cf5063a76d455b56ae8420868c11.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow_A.prefab
-  - name: 651657622f7dfb09db774fd591ae9fdc.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Interiors_Props_P1.FBX
-  - name: fa6e021af05cfd33577e9548bfb08491.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_grass_patch.prefab
-  - name: b60260d205b36006e2fd1772f774a34d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/RIVERBED.png
-  - name: 4af69b370fd76ff9c36b44b8bab65e8c.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C24_5.prefab
-  - name: d63188aa6ca2ef31f0e5723a127d37f4.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/RIVERBED_MESA_03.fbx
-  - name: e0d5dc0ff17eb522c7b68e4fa7af7a84.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_grass_patch
-      - Copy.fbx
-  - name: a6820e5c0bd1a93a5bbb0d014846da7f.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Materials/Plant_A.mat
-  - name: b0cb235e048d2279ea27e3c671433e0e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone01_grass_tund.003.mat
-  - name: c881b3d774ee77db6e5fce6555eac569.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow.png
-  - name: 9b69b863db4b49bb53aa93d3bccb96ea.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/CITY_PLAZA_ROAD_01.png
-  - name: 07f9659649568cb0a419d9f960387d57.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_J3_1.FBX
-  - name: 38331e1caf4b108c9fee7b3ea39478e5.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_G1.prefab
-  - name: 6f28c17251d8f563265810bc4d3bf7e3.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Tree_AB5.prefab
-  - name: 6e388e4c0272d02c58a7721147c8e84f.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_I6.FBX
   - name: 696694700b6e5474c08a78ae45edf4bc.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_wenli_00245_A.tga
-  - name: 803d60a0f2c75a40b5e7a71c49e831cd.unity3d
+  - name: 9703504eeb5408a5909b9b65e0dd7003.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A23.prefab
-  - name: be38592dd226285d17480474ce088d1e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A6.prefab
-  - name: 383b3f7f3a78c2f28db5154fab55650b.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C6_2.FBX
-  - name: f913e5d67b012f3e4b07e46e981b19a3.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_F1.FBX
-  - name: 6ca526c7108b49cba4790d2f9cb511af.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_F1.FBX
-  - name: 378a5a565cbe8b74a2c6f87eae6d4bfb.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.tga
-  - name: 38555b23eaad0ef2f01a8856ab4fbe87.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_Hua/Plant_A.mat
-  - name: 9f19c78cd7de9a1f1f6c90ae43eb0662.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_E2.FBX
-  - name: e8306f4ea58ec6fbf268454fa85fdc02.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBuilding_PotionShop.fbx
-  - name: 7d0312a8e83218fdfd515a73d9de7f73.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A18.FBX
-  - name: 124b57c56d898510e5afca2f128e36e6.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_F3.prefab
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Cloud/Cloud.prefab
   - name: 8a30640b3f651baf6d13865c1c062d48.unity3d
     assets:
     - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Up.bmp
-  - name: 7b0587684f12cd3b756ccb144cdb7eb0.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_A3.FBX
-  - name: d65bd7e708aee1b7b75162b41bc86cd8.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.mat
-  - name: 36eab2a3356ae102aa38f784942a6b84.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_B2_1.FBX
-  - name: 9ddfa4c8355867e3b36b77a890b331b8.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Coconut.jpg
-  - name: e3c1b19ccf84a82109da11c257db026d.unity3d
-    assets:
-    - Assets/Res/TerrainTieTuSet/Textures/Ground/Ground16.tga
   - name: 59eb518bec0f0d8ee5065bc8277a3a79.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Scenes_FX/Common_FB0_shuiwen.prefab
-  - name: d9e87de7db1b6a03081ddc21bceac5a8.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_B2_1.prefab
   - name: 89f64febb8f760b15a81a079e092defc.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_wenli_00245_C.tga
-  - name: 30fc131b78ab6f25d83f7555b468d945.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Coconut.mat
-  - name: ae34bc76908d2099dfa71eadc2ef2547.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A20.prefab
-  - name: 1685df754d06300e934a773f2a0885c9.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_F2.prefab
-  - name: 36ed7175f00d2ef2e9f9f179ede40739.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Buildings_L2.prefab
-  - name: 19b7261e404e7cefa8d6179f3c4bc2de.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/_Grass_ridge01_sh.mat
-  - name: 41aa3e9a07d9ad985221a462de7fc72f.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Interiors_Props_R1.prefab
-  - name: 33854ddd28d66542d91941073fffde01.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_F2.prefab
-  - name: 19a07ea07fa1740c143a18b0ad0a176d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C4_3.FBX
-  - name: 87cb632637d456dc6d805236e175ca3f.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.mat
-  - name: fa213d98ea3f31fff593e596838f16d5.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Tree_F1.prefab
-  - name: 4dfb5b7a423bae2121b5804e9313292a.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_F3.FBX
-  - name: aa8396eeea0652f432c67256c0215116.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_A10.prefab
   - name: c91f4a11f8740951c5f0b0259d2e79e7.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBucket1.fbx
@@ -15284,6 +14817,9 @@ MonoBehaviour:
   - name: c6874cc8bdec9c9362b6fa67c112f6ab.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/DDS/NPC_DESTROYER.png
+  - name: a712ca93c4234a629677dfef31f416fd.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Staircase2.jpg
   - name: 10d331afeaff2b33a2aeeaf9b1c08c47.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBarrel.fbx
@@ -15299,6 +14835,12 @@ MonoBehaviour:
   - name: f54a9b439c1fd9cca93b8e6ff2c7d0d3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Lang/Lang_2_Animation.FBX
+  - name: b6375fed0751ae4f0d8072c9282f57d5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelCoconut.fbx
+  - name: 06098e1a0450b005e05393f277c34b27.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Building_PotionShop.mat
   - name: 19673ae068df5509314ba00a0e993307.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Lang/Materials/Wolf_Baby.mat
@@ -15308,6 +14850,12 @@ MonoBehaviour:
   - name: d9032b7781da333920201cf1ec029163.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/tent_stump_glow.tif
+  - name: 587376d7c34878593a251b6be65e50fc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelStaircase2_1.fbx
+  - name: 1896a8e482d38bddd2e32b0f096103f9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Tree01.mat
   - name: d35f8df9bfa515c9f7b589e53ccc5327.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/BaoXiang_1/Tx_Chest.mat
@@ -15317,9 +14865,15 @@ MonoBehaviour:
   - name: 485459e98bf56130f89f49108aa22663.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Lang/Lang_2.controller
+  - name: 02839a35bf610ce0a03bff9f0fe1466c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Staircase2.mat
   - name: 545fe8d21a39eb16bca593df5d1ae4b0.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelGrass02.fbx
+  - name: 8badf3c6dafa6358da3c14c84d4b3041.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Bonfire.jpg
   - name: bafce1b66181798247d5b26005d0b208.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Lang/Materials/Wolf_Boss.mat
@@ -15371,6 +14925,9 @@ MonoBehaviour:
   - name: d31330f5568b0549fd1d0bf15d165715.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_blue.mat
+  - name: 0782b6f0e7a82110797a5ee4b68b27c1.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/modelLog.fbx
   - name: 00a9eb44970c6511995a1eec936b7cdc.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_blue.jpg
@@ -15380,9 +14937,15 @@ MonoBehaviour:
   - name: 7476090832a87fec010e69debd506a3f.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Materials/plant_vege_062_01.mat
+  - name: 31c81ecd5e73e442dea50ee98c94d4d2.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/Materials/Tx_Log.mat
   - name: a27755c0e0ded475828d811251a9bf3b.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/DDS/FAMILIAR_BAG.png
+  - name: 6894d67c0b8b41cc69a49ca8e6c26c87.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelTree01_1.fbx
   - name: c670c8918b5abd3ae8cd733599bdde6b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelStage.fbx
@@ -15398,12 +14961,21 @@ MonoBehaviour:
   - name: 03e1c119eec030eed319a83d301a8c67.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/stone_002.FBX
+  - name: 2e2f4afbecf5117b9134e7568cda7c96.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Tree01.jpg
+  - name: b36c72a0987088233d8564f9b17bcb71.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/T4m/Old/Meshes/Materials/defaultMat.mat
   - name: e2d31690984c9c03139ab68442a6f353.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_LogBig.jpg
   - name: 32bffce44f8100c99af57380c554b323.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_JingTi/Crystal1.tif
+  - name: 3feb356d9435047224da62823c01be56.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Building_PotionShop.jpg
   - name: 04e6541c87bb65000cfbdfa2f3bfe9af.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Grass02.jpg
@@ -15425,6 +14997,9 @@ MonoBehaviour:
   - name: 1ffb89488693a90d69e3b63abffa1ea4.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Barrel.jpg
+  - name: e8306f4ea58ec6fbf268454fa85fdc02.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBuilding_PotionShop.fbx
   - name: 0a67fc6348b4aad5c0096b973a1884f6.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/Click/Direction_Circle.png
@@ -15437,6 +15012,12 @@ MonoBehaviour:
   - name: 654c75d989ec2ee21e7d43ae10c9ed1b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_blue.fbx
+  - name: 9ddfa4c8355867e3b36b77a890b331b8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Coconut.jpg
+  - name: 30fc131b78ab6f25d83f7555b468d945.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Coconut.mat
   - name: 4499af58cb5f1336cbcc18c83bbcde79.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/NPC_YongShi/Materials/merc.mat
@@ -15696,6 +15277,12 @@ MonoBehaviour:
   - name: 41b55d3c87580ed52b1ef60a1abcacb8.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/Water (Basic)/Sources/Textures/Water fallback.jpg
+  - name: 7687da1c38bd61e0037343238c80e652.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/TerrainTexture/GRASS_RISE1.png
+  - name: 11b3667a10fd8adf63706754e2a9e52b.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/TerrainTexture/GRASS_TUNDRA01.png
   - name: ac757c32eb01980c4055805d5851b542.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/Water (Basic)/Sources/Objects/Materials/water
@@ -16007,6 +15594,9 @@ MonoBehaviour:
   - name: 97749c6de79f61ed0853a4bf9f4bee02.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Materials/environment_common_muchangban_001_03.mat
+  - name: d49b63149c6cfe15053ef56d83832f9b.unity3d
+    assets:
+    - Assets/Scenes/TerrGuang_2.mat
   - name: 73b38f22c238b56d59f4d22e8313166b.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_smallparts_BaseMap.png
@@ -16186,21 +15776,36 @@ MonoBehaviour:
   - name: 609eab88ff6d677b405b8119975ec20a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/Tree_leaves_winter.tif
+  - name: 6329596746b7d76b2c5df64b1ce74b20.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_Hua/Plant_A_1.jpg
   - name: 32cef0d9eb543354d1e78c872bbc62e0.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Building/Model/Tent1_trunk.fbx
   - name: 0112ce73b2463c305a50fe4f896173be.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Tga/yewai_zhiwu.tga
+  - name: a6820e5c0bd1a93a5bbb0d014846da7f.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Materials/Plant_A.mat
   - name: 7ae2aadc1b3ec9fe185dff015c044196.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Building/Tent1_trunk.prefab
   - name: 784d875cffb636f146940d139056e23f.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Materials/Tree_leaves.mat
+  - name: 38555b23eaad0ef2f01a8856ab4fbe87.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_Hua/Plant_A.mat
   - name: ca28c507c9d402c48ce35b4c669f0250.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Tree_Dead1.fbx
+  - name: 124b57c56d898510e5afca2f128e36e6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_F3.prefab
+  - name: 4dfb5b7a423bae2121b5804e9313292a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_F3.FBX
   - name: a172c410f287b71231a92987461f744b.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.png
@@ -16213,6 +15818,9 @@ MonoBehaviour:
   - name: 68764a32ff3b2f9d2055c20ad260fa77.unity3d
     assets:
     - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Models/Coins/Coins.fbx
+  - name: 217c4e8fe62ffe64dfb475e237dbf527.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/TerrainTexture/NewLayer.terrainlayer
   - name: 399f09fb4acdd8c7927a40915d54b671.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories_roof.mat
@@ -16237,24 +15845,54 @@ MonoBehaviour:
   - name: c887be2ef0d8eaf041cf3bcebfe59adb.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.mat
+  - name: cc884ea40d746dabd62221a09f042770.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.prefab
   - name: 6154bd59bf8a0c52a6697634b2a35b2b.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shu_02.FBX
   - name: 6ec0d645077d81495405e8bcf6600753.unity3d
     assets:
     - Assets/Scenes/OldScenes/100101_1.terrainlayer
+  - name: d25a69b3b3706fdf090bdd6753bf4b6d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_A3.prefab
+  - name: 378a5a565cbe8b74a2c6f87eae6d4bfb.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.tga
+  - name: 31569378802dbc6603aa80bd1be973a9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_A2.FBX
   - name: 3116bfa818aa41a16f069ae0863310cc.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shu_01.FBX
+  - name: 0b1a605a73ecef90c580cbdfcfd6b146.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.FBX
+  - name: 03efae2b516afdd71461838ac281d10a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_A2.prefab
   - name: 6ed2d1b88859881c8ad63a62cf93bd0c.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/Tx_Log.mat
   - name: 509ff7904340965f67661ac3b1cc5ee8.unity3d
     assets:
     - Assets/Res/TerrainTieTuSet/Textures/Grass/Grass5.tga
+  - name: 7b0587684f12cd3b756ccb144cdb7eb0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_A3.FBX
   - name: b712eef5c747ff00b36af9a4746982e5.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/Tx_Log.jpg
+  - name: 1685df754d06300e934a773f2a0885c9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_F2.prefab
+  - name: 8a3d292da0ddcf4f3a48d4398d757ac7.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_F2.FBX
+  - name: 87cb632637d456dc6d805236e175ca3f.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Rainbow/Rainbow.mat
   - name: 18e7a694e678cf05dae0cae748d37f2b.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_mogu_02.FBX
@@ -16309,6 +15947,9 @@ MonoBehaviour:
   - name: 1983e93e3280baafb41ead8a75f7396f.unity3d
     assets:
     - Assets/Res/OldRes/OldMonster/chuansong.prefab
+  - name: c881b3d774ee77db6e5fce6555eac569.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow.png
   - name: 6b32be062885a5f82945fbdaa44c25e3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_B21_3.prefab
@@ -16318,9 +15959,24 @@ MonoBehaviour:
   - name: e2bd648893822b27d24d2ccd75739c7c.unity3d
     assets:
     - Assets/Scenes/texiao/Prefab/Teleport_9.prefab
+  - name: d65bd7e708aee1b7b75162b41bc86cd8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.mat
+  - name: e73a05dec78f4222a92e1c4da679a7f6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.png
   - name: a41ed5773d08211d0efcaff0025d07d5.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_chuansongzhen.FBX
+  - name: a14c01bb1b4f2bd12dec019f708b468d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Zone01_grass_tund.002.mat
+  - name: e3c1b19ccf84a82109da11c257db026d.unity3d
+    assets:
+    - Assets/Res/TerrainTieTuSet/Textures/Ground/Ground16.tga
+  - name: d3de9dbc8882d56d235603cceef9edec.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Element_B.mat
   - name: 769e52454fbb67d710388fc533cf209a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/BattleDragon/Colosseum/Dust/ParticleSystems/Textures/ParticleCloudWhite.png
@@ -16483,6 +16139,9 @@ MonoBehaviour:
   - name: d91a75685917dccf25e978df4aa9d6df.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/environment_common_juma_001_b.FBX
+  - name: 999f57779fd2632641fba4ec355b7a28.unity3d
+    assets:
+    - Assets/Res/Models/fake shadow.prefab
   - name: 4eb7ec892c29ab65d8beffecbc7c4fca.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/obj_small_047_01.mat
@@ -16772,42 +16431,174 @@ MonoBehaviour:
   - name: 39e4aa381a76d2c9d3baa08f27652afd.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Building/Textures/environment_Building_qiaoliang_003_02.png
+  - name: d4c38cc847e05a87e68b6eccf96433e2.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_C1.prefab
   - name: d00e56013b35b05387a1dde3a41e1c75.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_A4.FBX
+  - name: 5193b3f5e6ed5f2c7b992c2183430ab7.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_F3.FBX
+  - name: f1f03efba9cbb21ed5069867eaf6d2c0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_F3.prefab
+  - name: 0078e57f8a126ab4b120ed74188f48ad.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_F1.prefab
+  - name: 30fa0324692c8b1f8080424392f5cb49.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C24_5.FBX
+  - name: a5f65061686157e40866b51509fc90a3.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A18.prefab
+  - name: 8be7ffab07161783ba796f0e77ae9a58.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_H1.prefab
   - name: a412713813ab5305c3680f3ccc38bc79.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_A4.prefab
   - name: db763d69edb45dfee7fac612704665dc.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Tree_A10.FBX
+  - name: 391e064692678b9772821eb893752a20.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_B2.FBX
+  - name: abf911df58879992bd5de95530609ae8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_E2.FBX
+  - name: 858d64d8d6e859bacbd3791531d00ba3.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_A5.prefab
+  - name: 6673fd72d274466cdca8c569a32940c7.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_C1.FBX
+  - name: 591fa3a092b4b848fb39e3e02d66323e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_A7.FBX
+  - name: 9a706ae9b92cc3969b75a0d45bce0737.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Tree_F1.FBX
+  - name: 9f5f6b736f08541e9d2769115ea670a4.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_F1.prefab
+  - name: 9978e913fb70d5a0a69e3f1151934e05.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A10.FBX
+  - name: 92047d1fc88f2ce4ccd3d61a548c9927.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A20.FBX
+  - name: 9dee094486a6b97201bb719761d20bae.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Flower_A5.FBX
+  - name: 9c4be66121029329e6d7e6e2c0d707d1.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_J3_2.FBX
   - name: 61d9fc680090511eb37b2cb5e9c56d79.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Tree_A12.prefab
   - name: 210543dd27d955b585c357c5465c9dd0.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Tree_A9.prefab
+  - name: e4672bf116e694130a21f0e56283431d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_F2.FBX
   - name: cc480c84cd723e13542ec51e1e0cf921.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Tree_A14.prefab
   - name: cb638067fa829f31171dd15d557375bf.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Tree_A10.prefab
+  - name: 7db0466d3f6ad4405ed6dfe42ef1d210.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Flower_E2.prefab
+  - name: 03902cc2c2cf362a80143a7ca099606d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_I4.prefab
+  - name: a67d6ea40c426bad4b75e5472d0a5a40.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C2_3.prefab
+  - name: 29f7d335a6588f7dfd9b32e9cd9b1445.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_G1.FBX
   - name: 92f5f1cd2e0451c1dd2d9d14e4d37b83.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Tree_A14.FBX
+  - name: 1ab8260b95af15b005ecff0a34260428.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Shine/Shine.prefab
+  - name: 83046764ad088a721260c4f4a3dbb381.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C2_3.FBX
+  - name: 245cb5a8c43a02b1f4b621861449c6e0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_H1.FBX
+  - name: 2a52f1eff8062c6776b98529eff60c73.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C3.prefab
   - name: 7560dde6392b21248ed6557006a19300.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Tree_A9.FBX
+  - name: a16a2e6e4376c0d5b20346392d185a77.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C6_2.prefab
+  - name: db6a004635387bcc6f43e7692b59e9cf.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_I4.FBX
+  - name: 39646623277f42dd29207f2d23c0863a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C3.FBX
   - name: 55a1cb512d0f6f796381160e74b341ca.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Tree_A12.FBX
+  - name: 248f6db6090abcc0cb4bc3630c59d1be.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow_A.mat
+  - name: 00c3cf5063a76d455b56ae8420868c11.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Glow_A/Glow_A.prefab
+  - name: 4af69b370fd76ff9c36b44b8bab65e8c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_C24_5.prefab
+  - name: 07f9659649568cb0a419d9f960387d57.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_J3_1.FBX
+  - name: 38331e1caf4b108c9fee7b3ea39478e5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_G1.prefab
+  - name: 6f28c17251d8f563265810bc4d3bf7e3.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Tree_AB5.prefab
   - name: 4acbfc94790d5f719c5803610b40c424.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Tree_A13.prefab
+  - name: 383b3f7f3a78c2f28db5154fab55650b.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_C6_2.FBX
+  - name: f913e5d67b012f3e4b07e46e981b19a3.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_F1.FBX
+  - name: 6ca526c7108b49cba4790d2f9cb511af.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Plants_Grass_F1.FBX
+  - name: 7d0312a8e83218fdfd515a73d9de7f73.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A18.FBX
+  - name: ae34bc76908d2099dfa71eadc2ef2547.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Props_A20.prefab
   - name: 1d4d4e8eaebef995e7646580ddee3d75.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Tree_A13.FBX
+  - name: 33854ddd28d66542d91941073fffde01.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Grass_F2.prefab
+  - name: fa213d98ea3f31fff593e596838f16d5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Plants_Tree_F1.prefab
+  - name: aa8396eeea0652f432c67256c0215116.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Props_A10.prefab
   - name: 5de30053e40283897855fab475efe824.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Tree_04.fbx
@@ -16871,6 +16662,9 @@ MonoBehaviour:
   - name: 1a2dadbeda5755b80ac3d417fd0cc5a0.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Materials/Tree_leaves.mat
+  - name: f5428512645a1c08347e86e5fd7a6ec7.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Terrain/Ice_5.png
   - name: e15d84b6283171a6d945c499058eaef9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Ice/BingZhiZhu.controller
@@ -17700,6 +17494,9 @@ MonoBehaviour:
   - name: fe3197859d55dc6a5f37c9117e8ef334.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Grass01.mat
+  - name: 31f696e5865b7f79c09bfc5d134fde59.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_E2.prefab
   - name: db08ac9ab1ad6d3fbb92dba93ecbe8bc.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_purple.jpg
@@ -17781,6 +17578,9 @@ MonoBehaviour:
   - name: edd99fb372421e0fdfdb1c6e4cd3bd93.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/prefab/Tx_TablePotion.mat
+  - name: d49e86bacd1dccde85934d39c79beb8e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_A2.FBX
   - name: 659f4fac6c4be4ad9cad284cf912e72a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Building_WeaponShop.jpg
@@ -17874,6 +17674,12 @@ MonoBehaviour:
   - name: d01cbf7b661224b532861df2ab2a1758.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_RanLiaoPin/Tx_Potion.mat
+  - name: 421f2d433fabec3b6a4b22322349d7f9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_A2.prefab
+  - name: a7ab1affee5600664da3815924b420a6.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_I6.prefab
   - name: 9ea76f43433aebb8a705cb647f860507.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBuilding_QuestBar.fbx
@@ -17889,6 +17695,12 @@ MonoBehaviour:
   - name: 28519c99b08102593d6fd3d5fb226c23.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Building_WeaponShop.mat
+  - name: 9f19c78cd7de9a1f1f6c90ae43eb0662.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_E2.FBX
+  - name: 6e388e4c0272d02c58a7721147c8e84f.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_I6.FBX
   - name: 1912f0f62f4477b64c44d47ce0a25a71.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Table.jpg
@@ -18125,6 +17937,9 @@ MonoBehaviour:
   - name: 90e8ee490977ba26462f5a68786cc44d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_F2.prefab
+  - name: 3d8f1939bea0c21754a08ec1a99febfd.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_K1.prefab
   - name: 0be0bf0cb0a3bdfa5ea5c7ee9e156245.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Texture/Eyeblow/Eyeblow_00_00.png
@@ -18134,6 +17949,9 @@ MonoBehaviour:
   - name: ad32c5c035064d8f6fc797244339b657.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Faceskin/FaceSkin_00_00.mat
+  - name: de7b0d4de77729933b50cc54dcb16db5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Buildings_K1.FBX
   - name: b309dcd0514eadd7eb3b90ae6c89771e.unity3d
     assets:
     - Assets/Res/SD Unity-Chan Haon Custom/Materials/Costume/Costume_01_00.mat

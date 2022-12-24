@@ -52,7 +52,7 @@ namespace ET
 					//扣除对应道具
 					unit.GetComponent<BagComponent>().OnCostItemData(request.PaiMaiItemInfo.BagInfo.BagInfoID, request.PaiMaiItemInfo.BagInfo.ItemNum);
 					response.PaiMaiItemInfo = request.PaiMaiItemInfo;
-					Log.Info(response.PaiMaiItemInfo.PlayerName + "上架道具：" + request.PaiMaiItemInfo.BagInfo.ItemID + "数量" + request.PaiMaiItemInfo.BagInfo.ItemNum + "时间戳:" + currentTime.ToString());
+					Log.Debug(response.PaiMaiItemInfo.PlayerName + "上架道具：" + request.PaiMaiItemInfo.BagInfo.ItemID + "数量" + request.PaiMaiItemInfo.BagInfo.ItemNum + "时间戳:" + currentTime.ToString());
 				}
 				response.Error = r_GameStatusResponse.Error;
 				reply();
