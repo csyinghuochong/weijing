@@ -93,8 +93,6 @@ namespace ET
             bagComponent.OnAddItemData($"{getItemId};{getNumber}", $"{ItemGetWay.Melting}_{TimeHelper.ServerNow()}");
             reply();
             await ETTask.CompletedTask;
-
-            await ETTask.CompletedTask;
         }
     }
 }

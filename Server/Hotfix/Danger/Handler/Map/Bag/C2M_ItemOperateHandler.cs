@@ -284,7 +284,7 @@ namespace ET
                                 ExpConfig expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addCoin = (int)RandomHelper.RandomNumberFloat(float.Parse(jinbiInfos[0]) * expConfig.RoseGoldPro, float.Parse(jinbiInfos[1]) * expConfig.RoseGoldPro);
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, addCoin.ToString());
-                                Log.Debug($"Gold:  {unit.Id} {addCoin} itemoperate111");
+                                Log.Debug($"Gold[金币袋子]:  {unit.Id} {addCoin} ");
                                 break;
                             //经验木桩
                             case 112:

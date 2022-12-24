@@ -36,24 +36,28 @@ namespace ET
                 return;
             }
 
-            long paimaiServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.PaiMai)).InstanceId;
-            P2M_PaiMaiBuyResponse r_GameStatusResponse = (P2M_PaiMaiBuyResponse)await ActorMessageSenderComponent.Instance.Call
-                (paimaiServerId, new M2P_PaiMaiBuyRequest()
-                {
-                    PaiMaiItemInfo = request.PaiMaiItemInfo
-                });
-            if (r_GameStatusResponse.PaiMaiItemInfo == null)
+            using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Buy, unit.Id))
             {
-                reply();
-                return;
+                long paimaiServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.PaiMai)).InstanceId;
+                P2M_PaiMaiBuyResponse r_GameStatusResponse = (P2M_PaiMaiBuyResponse)await ActorMessageSenderComponent.Instance.Call
+                    (paimaiServerId, new M2P_PaiMaiBuyRequest()
+                    {
+                        PaiMaiItemInfo = request.PaiMaiItemInfo
+                    });
+                if (r_GameStatusResponse.PaiMaiItemInfo == null)
+                {
+                    reply();
+                    return;
+                }
+
+                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (needGold * -1).ToString());
+                //背包添加道具
+                unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo, $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
+
+                //给出售者邮件发送金币
+                MailHelp.SendPaiMaiEmail(unit.DomainZone(), r_GameStatusResponse.PaiMaiItemInfo, r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemNum).Coroutine();
             }
 
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (needGold * -1).ToString());
-            //背包添加道具
-            unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo, $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
-
-            //给出售者邮件发送金币
-            MailHelp.SendPaiMaiEmail(unit.DomainZone() ,r_GameStatusResponse.PaiMaiItemInfo, r_GameStatusResponse.PaiMaiItemInfo.BagInfo.ItemNum).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

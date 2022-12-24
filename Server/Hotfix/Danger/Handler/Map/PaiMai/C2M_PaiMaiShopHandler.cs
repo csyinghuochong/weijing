@@ -31,40 +31,43 @@ namespace ET
 				return;
 			}
 
-			//测试增加
-			M2P_PaiMaiShopRequest m2P_PaiMaiShopRequest = new M2P_PaiMaiShopRequest()
+			using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Buy, unit.Id))
 			{
-				ItemID = paiMaiSellConfig.ItemID,
-				BuyNum = request.BuyNum,
-				//Price = r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price,
-				ActorId = unit.GetComponent<UserInfoComponent>().UserInfo.Gold,
-			};
 
-			long paimaiServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.PaiMai)).InstanceId;
-			P2M_PaiMaiShopResponse r_PaiMaiShopResponse = (P2M_PaiMaiShopResponse)await ActorMessageSenderComponent.Instance.Call(paimaiServerId, m2P_PaiMaiShopRequest);
+				M2P_PaiMaiShopRequest m2P_PaiMaiShopRequest = new M2P_PaiMaiShopRequest()
+				{
+					ItemID = paiMaiSellConfig.ItemID,
+					BuyNum = request.BuyNum,
+					//Price = r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price,
+					ActorId = unit.GetComponent<UserInfoComponent>().UserInfo.Gold,
+				};
 
-			if (r_PaiMaiShopResponse.Error != ErrorCore.ERR_Success)
-			{
-				response.Error = r_PaiMaiShopResponse.Error;
-				reply();
-				return;
-			}
+				long paimaiServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.PaiMai)).InstanceId;
+				P2M_PaiMaiShopResponse r_PaiMaiShopResponse = (P2M_PaiMaiShopResponse)await ActorMessageSenderComponent.Instance.Call(paimaiServerId, m2P_PaiMaiShopRequest);
 
-			//消耗金币
-			long costGold = r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price * request.BuyNum;
-			if (costGold > 0 && unit.GetComponent<UserInfoComponent>().UserInfo.Gold >= costGold)
-			{
-				//发送金币
-				unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (costGold * -1).ToString());
+				if (r_PaiMaiShopResponse.Error != ErrorCore.ERR_Success)
+				{
+					response.Error = r_PaiMaiShopResponse.Error;
+					reply();
+					return;
+				}
 
-				//添加道具
-				List<RewardItem> rewardItems = new List<RewardItem>();
-				rewardItems.Add(new RewardItem(){ItemID = paiMaiSellConfig.ItemID, ItemNum = request.BuyNum});
-				unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
-			}
-			else
-			{
-				response.Error = ErrorCore.ERR_GoldNotEnoughError;
+				//消耗金币
+				long costGold = r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price * request.BuyNum;
+				if (costGold > 0 && unit.GetComponent<UserInfoComponent>().UserInfo.Gold >= costGold)
+				{
+					//发送金币
+					unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (costGold * -1).ToString());
+
+					//添加道具
+					List<RewardItem> rewardItems = new List<RewardItem>();
+					rewardItems.Add(new RewardItem() { ItemID = paiMaiSellConfig.ItemID, ItemNum = request.BuyNum });
+					unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
+				}
+				else
+				{
+					response.Error = ErrorCore.ERR_GoldNotEnoughError;
+				}
 			}
 			reply();
 			await ETTask.CompletedTask;
