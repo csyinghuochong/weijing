@@ -754,6 +754,7 @@ namespace ET
             }
 
             //通知客户端背包刷新
+            Unit unit = self.GetParent<Unit>();
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             m2c_bagUpdate.BagInfoAdd = new List<BagInfo>();
 
@@ -762,23 +763,24 @@ namespace ET
                 int itemID = costItems[i].ItemID;
                 int itemNum = costItems[i].ItemNum;
 
+                Log.Debug($"消耗道具: {unit.Id} {itemID} {itemNum}");
                 //扣除金币
                 if (itemID == (int)UserDataType.Gold)
                 {
                     itemNum = -1 * itemNum;
-                    self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, itemNum.ToString());
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, itemNum.ToString());
                     continue;
                 }
                 if (itemID == (int)UserDataType.Diamond)
                 {
                     itemNum = -1 * itemNum;
-                    self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, itemNum.ToString());
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, itemNum.ToString());
                     continue;
                 }
                 if (itemID == (int)UserDataType.RongYu)
                 {
                     itemNum = -1 * itemNum;
-                    self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.RongYu, itemNum.ToString());
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.RongYu, itemNum.ToString());
                     continue;
                 }
 
@@ -819,11 +821,11 @@ namespace ET
                         }
                     }
                 }
-                self.GetParent<Unit>().GetComponent<TaskComponent>().OnGetItem(itemID);
+                unit.GetComponent<TaskComponent>().OnGetItem(itemID);
             }
 
             //通知客户端背包道具发生改变
-            MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);
+            MessageHelper.SendToClient(unit, m2c_bagUpdate);
             return true;
         }
 
