@@ -18,6 +18,19 @@ namespace ET
                     reply();
                     return;
                 }
+                ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
+
+                UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
+                if (request.ActivityType == 21 && userInfo.Lv <int.Parse(activityConfig.Par_1))
+                {
+                    reply();
+                    return;
+                }
+                if (request.ActivityType == 22 && userInfo.Combat < int.Parse(activityConfig.Par_1))
+                {
+                    reply();
+                    return;
+                }
 
                 Log.Debug($"C2M_ZhanQuReceive:  {unit.Id} {request.ActivityId} {TimeHelper.ServerNow().ToString()}");
                 switch (request.ActivityType)
@@ -37,7 +50,7 @@ namespace ET
                             reply();
                             return;
                         }
-                        ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
+
                         activityComponent.ZhanQuReceiveIds.Add(request.ActivityId);
                         unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                         break;
