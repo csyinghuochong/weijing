@@ -38,24 +38,27 @@ namespace ET
                         int costNum = request.BuyNum;
                         int costItemNum = request.BuyNum;
 
-                        if (info.BagInfo.ItemNum > request.BuyNum)
+                        if (info.Price <= (int)(response.PaiMaiShopItemInfo.Price * 0.8f))
                         {
-                            //出售部分
-                            int nowSingPri = (int)((float)info.Price / (float)info.BagInfo.ItemNum);
-                            info.BagInfo.ItemNum -= request.BuyNum;
-                            //设置剩余价格
-                            info.Price = nowSingPri * info.BagInfo.ItemNum;
-                            costItemNum -= request.BuyNum;
-                        }
-                        else
-                        {
-                            //出售全部
-                            paimaiCompontent.dBPaiMainInfo.PaiMaiItemInfos.Remove(info);
-                            costNum = info.BagInfo.ItemNum;
-                            costItemNum -= info.BagInfo.ItemNum;
-                        }
+                            if (info.BagInfo.ItemNum > request.BuyNum)
+                            {
+                                //出售部分
+                                int nowSingPri = info.Price;
+                                info.BagInfo.ItemNum -= request.BuyNum;
+                                //设置剩余价格
+                                info.Price = nowSingPri * info.BagInfo.ItemNum;
+                                costItemNum -= request.BuyNum;
+                            }
+                            else
+                            {
+                                //出售全部
+                                paimaiCompontent.dBPaiMainInfo.PaiMaiItemInfos.Remove(info);
+                                costNum = info.BagInfo.ItemNum;
+                                costItemNum -= info.BagInfo.ItemNum;
+                            }
 
-                        MailHelp.SendPaiMaiEmail(scene.DomainZone(), info, costNum).Coroutine();
+                            MailHelp.SendPaiMaiEmail(scene.DomainZone(), info, costNum).Coroutine();
+                        }
 
                         if (costItemNum <= 0) {
                             ifEndFor = true;

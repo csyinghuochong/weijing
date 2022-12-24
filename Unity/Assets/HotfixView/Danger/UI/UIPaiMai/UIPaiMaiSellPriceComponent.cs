@@ -215,7 +215,8 @@ namespace ET
             }
             self.Lab_SellNumber.GetComponent<Text>().text = self.SellNum.ToString();
             //调整价格
-            self.PriceInputField.GetComponent<InputField>().text = ((int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum)).ToString();
+            //self.PriceInputField.GetComponent<InputField>().text = self.nowPrice.ToString();
+            self.Lab_SellSumPro.GetComponent<Text>().text = ((int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum)).ToString();
         }
 
         public static void OnCostNum(this UIPaiMaiSellPriceComponent self)
@@ -227,7 +228,8 @@ namespace ET
             }
             self.Lab_SellNumber.GetComponent<Text>().text = self.SellNum.ToString();
             //调整价格
-            self.PriceInputField.GetComponent<InputField>().text = ((int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum)).ToString();
+            //self.PriceInputField.GetComponent<InputField>().text = self.nowPrice.ToString();
+            self.Lab_SellSumPro.GetComponent<Text>().text = ((int)(self.oldPrice * (1f + 0.1f * self.priceProNum) * self.SellNum)).ToString();
         }
 
         public static void OnChange(this UIPaiMaiSellPriceComponent self, string str) {
