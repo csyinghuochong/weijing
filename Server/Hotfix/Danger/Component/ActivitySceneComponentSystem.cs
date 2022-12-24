@@ -78,7 +78,6 @@ namespace ET
                     self.OnBattleClose();
                 }
             }
-
             self.SaveDB();
         }
 
@@ -136,7 +135,6 @@ namespace ET
 
         public static int OnMysteryBuyRequest(this ActivitySceneComponent self, MysteryItemInfo mysteryInfo)
         {
-
             for (int i = 0; i < self.DBDayActivityInfo.MysteryItemInfos.Count; i++)
             {
                 MysteryItemInfo mysteryItemInfo1 = self.DBDayActivityInfo.MysteryItemInfos[i];
