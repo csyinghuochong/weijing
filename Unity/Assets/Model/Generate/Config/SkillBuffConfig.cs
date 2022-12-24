@@ -78,9 +78,9 @@ namespace ET
 		/// <summary>Id</summary>
 		[ProtoMember(1)]
 		public int Id { get; set; }
-		/// <summary>Buff名称</summary>
+		/// <summary>状态名称</summary>
 		[ProtoMember(2)]
-		public string BuffName { get; set; }
+		public string 状态Name { get; set; }
 		/// <summary>Buff等级</summary>
 		[ProtoMember(3)]
 		public int BuffLv { get; set; }
