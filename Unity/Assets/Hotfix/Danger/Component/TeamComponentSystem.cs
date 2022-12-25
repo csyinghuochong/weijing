@@ -105,9 +105,10 @@ namespace ET
                     return ErrorCore.ERR_IsHaveTeam;
                 }
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+                bool leader = teamInfo != null && teamInfo.TeamId == userInfo.UserId;
                 if (fubenId != 0)
                 {
-                    int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), userInfo, fubenId, fubenType);
+                    int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), userInfo, fubenId, fubenType, leader);
                     if (errorCode != 0)
                     {
                         return errorCode;
@@ -297,7 +298,8 @@ namespace ET
                 {
                     return ErrorCore.ERR_IsNotLeader;
                 }
-                int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), userInfo,fubenId,  fubenType);
+                bool leader = teamInfo != null && teamInfo.TeamId == userInfo.UserId;
+                int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), userInfo,fubenId,  fubenType,leader);
                 if (errorCode != ErrorCore.ERR_Success)
                 {
                     return errorCode;

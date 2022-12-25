@@ -3,9 +3,11 @@
     public static class TeamHelper
     {
 
-        public static int CheckTimesAndLevel(Unit unit, UserInfo userInfo, int fubenId, int fubenType)
+        public static int CheckTimesAndLevel(Unit unit, UserInfo userInfo, int fubenId, int fubenType, bool leader)
         {
-            if (fubenType == TeamFubenType.Normal || fubenType == TeamFubenType.ShenYuan)
+            if (fubenType == TeamFubenType.Normal || fubenType == TeamFubenType.ShenYuan
+                
+                || (fubenType == TeamFubenType.XieZhu && !leader))
             {
                 int totalTimes = int.Parse(GlobalValueConfigCategory.Instance.Get(19).Value);
                 int times = unit.GetTeamDungeonTimes();

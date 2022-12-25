@@ -34,7 +34,8 @@
             TeamComponent teamComponent = zoneScene.GetComponent<TeamComponent>();
             UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
             TeamInfo teamInfo = teamComponent.GetSelfTeam();
-            int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(zoneScene), userInfo, teamInfo.SceneId, teamInfo.FubenType);
+            bool leader = teamInfo != null && teamInfo.TeamId == userInfo.UserId;
+            int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(zoneScene), userInfo, teamInfo.SceneId, teamInfo.FubenType, leader);
             if (errorCode != ErrorCore.ERR_Success)
             {
                 ErrorHelp.Instance.ErrorHint(errorCode);
