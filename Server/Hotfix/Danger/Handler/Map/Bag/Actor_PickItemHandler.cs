@@ -92,15 +92,16 @@ namespace ET
                 m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.System;
 
                 Unit owner = null;
-                //已经有归属了
-                if (teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
-                {
-                    owner = unit.DomainScene().GetComponent<UnitComponent>().Get(teamDungeonComponent.ItemFlags[unitDrop.Id]);
-                    m2C_SyncChatInfo.ChatInfo.ChatMsg = $"{owner.GetComponent<UserInfoComponent>().UserInfo.Name}拾取{itemConfig.ItemName}";
-                }
+              
                 if (drops[i].DropType == 1)
                 {
                     owner = unit;
+                }
+                //已经有归属了
+                else if (teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
+                {
+                    owner = unit.DomainScene().GetComponent<UnitComponent>().Get(teamDungeonComponent.ItemFlags[unitDrop.Id]);
+                    m2C_SyncChatInfo.ChatInfo.ChatMsg = $"{owner.GetComponent<UserInfoComponent>().UserInfo.Name}拾取{itemConfig.ItemName}";
                 }
                 if (owner == null)
                 {

@@ -233,11 +233,6 @@ namespace ET
             return start;
         }
 
-        public static void ShowUI(this UIJoystickMoveComponent self, bool show)
-        {
-            self.CenterShow.SetActive(show);
-            self.Thumb.SetActive(show);
-        }
 
         public static void ResetUI(this UIJoystickMoveComponent self)
         {

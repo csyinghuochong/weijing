@@ -57,7 +57,7 @@ namespace ET
                 }
             }
 
-            await TimerComponent.Instance.WaitAsync(2000);
+            await TimerComponent.Instance.WaitAsync(3000);
 
             UICommonHelper.CrossFadeAlpha(self.Left.transform, 0f, 1f);
             UICommonHelper.DOLocalMove(self.Left.transform, new Vector3(2000, 0, 0), 1f).Coroutine();
