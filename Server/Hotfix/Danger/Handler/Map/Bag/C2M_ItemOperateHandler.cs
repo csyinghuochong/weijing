@@ -197,7 +197,7 @@ namespace ET
                             case 15:    //附魔道具
                                 unit.GetComponent<BagComponent>().OnEquipFuMo(itemCof.ItemUsePar);
                                 break;
-                            case 16:
+                            case 16: //附魔技能
                                 unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(int.Parse(itemCof.ItemUsePar));
                                 break;
                             //使用技能
@@ -330,6 +330,7 @@ namespace ET
                                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.CangKuNumber, cangkuNumber + 1);
                                 break;
                             case 125://坐骑获取
+                                unit.GetComponent<UserInfoComponent>().UserInfo.HorseIds.Add(int.Parse(itemCof.ItemUsePar));
                                 break;
                         }
 
