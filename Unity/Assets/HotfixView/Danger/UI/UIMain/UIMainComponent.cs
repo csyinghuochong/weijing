@@ -162,8 +162,10 @@ namespace ET
             //self.bagButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBag(); });
             ButtonHelp.AddListenerEx(self.bagButton, () => { self.OnOpenBag(); });
 
-            self.jiayuanButton = rc.Get<GameObject>("Btn_MyJiaYuan");
             self.TextPing = rc.Get<GameObject>("TextPing");
+
+            self.Button_JiaYuan.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            self.Button_Horse.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             self.buttonReturn = rc.Get<GameObject>("Btn_RerurnBuilding");
             //self.buttonReturn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickReturnButton(); });
