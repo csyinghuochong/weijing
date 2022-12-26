@@ -590,6 +590,9 @@ namespace ET
 		[ProtoMember(31)]
 		public List<KeyValuePairInt> DayItemUse = new List<KeyValuePairInt>();
 
+		[ProtoMember(32)]
+		public List<int> HorseIds = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

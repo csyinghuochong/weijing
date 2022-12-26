@@ -162,8 +162,10 @@ namespace ET
             //self.bagButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBag(); });
             ButtonHelp.AddListenerEx(self.bagButton, () => { self.OnOpenBag(); });
 
-            self.jiayuanButton = rc.Get<GameObject>("Btn_MyJiaYuan");
             self.TextPing = rc.Get<GameObject>("TextPing");
+
+            self.Button_JiaYuan.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            self.Button_Horse.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             self.buttonReturn = rc.Get<GameObject>("Btn_RerurnBuilding");
             //self.buttonReturn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickReturnButton(); });
@@ -600,7 +602,6 @@ namespace ET
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIHorseNotice);
             if (uI == null)
             {
-                UIHelper.Create(self.DomainScene(), UIType.UIHorseNotice).Coroutine();
                 return;
             }
             uI.GetComponent<UIHorseNoticeComponent>()?.OnRecvHorseNotice(m2C_HorseNoticeInfo);
@@ -730,6 +731,8 @@ namespace ET
             });
             uIPageViewComponent.OnSelectIndex(0);
             self.UIPageButtonComponent = uIPageViewComponent;
+
+            UIHelper.Create(self.DomainScene(), UIType.UIHorseNotice).Coroutine();
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.GetGameSettingValue(GameSettingEnum.FenBianlLv) == "1")

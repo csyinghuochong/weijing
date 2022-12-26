@@ -152,7 +152,7 @@ namespace ET
                                 if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
                                 {
                                     LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
-                                    TransferHelper.LocalDungeonTransfer(unit,0, int.Parse(itemCof.ItemUsePar), localDungeon.FubenDifficulty);
+                                    TransferHelper.LocalDungeonTransfer(unit, 0, int.Parse(itemCof.ItemUsePar), localDungeon.FubenDifficulty);
                                 }
                                 break;
                                 //图纸制造
@@ -318,16 +318,18 @@ namespace ET
                             case 120://120 冒险积分
                                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.MaoXianExp, int.Parse(itemCof.ItemUsePar), 0 );
                                 break;
-                            case 121:
+                            case 121: //鉴定符
                                 break;
                             case 122:   //宠物技能书
                                 break;
                             case 123:   //宠物扩展工具
                                 unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.PetExtendNumber, 1, 0);
                                 break;
-                            case 124:
+                            case 124: //仓库扩展工具
                                 int cangkuNumber = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CangKuNumber);
                                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.CangKuNumber, cangkuNumber + 1);
+                                break;
+                            case 125://坐骑获取
                                 break;
                         }
 

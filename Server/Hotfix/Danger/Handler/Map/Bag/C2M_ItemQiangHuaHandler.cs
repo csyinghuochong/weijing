@@ -10,7 +10,7 @@ namespace ET
         {
             int maxLevel = QiangHuaHelper.GetQiangHuaMaxLevel(request.WeiZhi);
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            if (maxLevel <=bagComponent.QiangHuaLevel[request.WeiZhi])
+            if (bagComponent.QiangHuaLevel[request.WeiZhi] >= maxLevel - 1)
             {
                 reply();
                 return;
