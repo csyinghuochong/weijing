@@ -194,7 +194,6 @@ namespace ET
                     string jiandingName = ItemConfigCategory.Instance.Get(appraisalItem).ItemName;
                     self.Obj_Lab_ItemCostDes.GetComponent<Text>().text = $"消耗<color=#EA8EF9>{jiandingName}</color>进行鉴定";
                 }
-
             }
 
             if (baginfo.MakePlayer != "" && baginfo.MakePlayer != null)
