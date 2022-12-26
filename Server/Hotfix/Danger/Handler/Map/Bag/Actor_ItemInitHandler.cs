@@ -28,6 +28,17 @@ namespace ET
 					bagComponent.QiangHuaFails.Add(0);
 				}
 			}
+			else
+            {
+				for (int i = 0; i <= 11; i++)
+				{
+					int maxLevel = QiangHuaHelper.GetQiangHuaMaxLevel(i);
+					if (bagComponent.QiangHuaLevel[i] >= maxLevel)
+					{
+						bagComponent.QiangHuaLevel[i] = maxLevel - 1;
+					}
+				}
+			}
 
 			//初始化
 			for (int i = 0; i < bagInfos.Count; i++)

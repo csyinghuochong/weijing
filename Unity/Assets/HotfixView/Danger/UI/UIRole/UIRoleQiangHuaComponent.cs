@@ -115,13 +115,13 @@ namespace ET
             self.Text_QiangHuaLv.GetComponent<Text>().text = $"+{qianghuaLevel}";
             self.Text_QiangHuaName.GetComponent<Text>().text = UIItemHelp.EquipWeiZhiToName[subType].Name;
             self.QiangHuaItemList[subType - 1].OnUpateUI(qianghuaLevel);
-            if (qianghuaLevel >= maxLevel)
+            if (qianghuaLevel >= maxLevel - 1)
             {
+                self.TextAttribute2.SetActive(false);
                 return;
             }
-
+            self.TextAttribute2.SetActive(true);
             EquipQiangHuaConfig next_equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(subType, qianghuaLevel+1);
-
             fvalue = float.Parse(next_equipQiangHuaConfig.EquipPropreAdd) * 100f;
             svalue = fvalue.ToString("0.#####"); ;/// string.Format("{0:P}", fvalue);
             self.TextAttribute2.GetComponent<Text>().text = $"对应部位提升 { svalue}%属性";
@@ -146,8 +146,9 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             int qianghuaLevel = bagComponent.QiangHuaLevel[self.ItemSubType];
             int maxLevel = QiangHuaHelper.GetQiangHuaMaxLevel(self.ItemSubType);
-            if (maxLevel <= qianghuaLevel)
+            if (qianghuaLevel >= maxLevel - 1)
             {
+                FloatTipManager.Instance.ShowFloatTip("已经强化到最大等级！");
                 return;
             }
 
