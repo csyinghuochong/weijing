@@ -300,8 +300,11 @@ namespace ET
                 {
                     return ErrorCore.ERR_IsNotLeader;
                 }
-                bool leader = teamInfo != null && teamInfo.TeamId == userInfo.UserId;
-                int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), userInfo,fubenId,  fubenType,leader);
+                if (teamInfo != null && teamInfo.TeamId != userInfo.UserId)
+                {
+                    return ErrorCore.ERR_IsNotLeader;
+                }
+                int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), userInfo,fubenId,  fubenType, true);
                 if (errorCode != ErrorCore.ERR_Success)
                 {
                     return errorCode;
