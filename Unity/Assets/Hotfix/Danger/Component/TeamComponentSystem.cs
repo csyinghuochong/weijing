@@ -200,6 +200,7 @@ namespace ET
             if (!haveTeam && message.TeamInfo.PlayerList.Count > 0)
             {
                 self.TeamList.Add(message.TeamInfo);
+                self.ApplyList.Clear();
             }
 
             HintHelp.GetInstance().DataUpdate(DataType.TeamUpdate);
@@ -245,6 +246,7 @@ namespace ET
                 C2M_TeamDungeonOpenRequest c2M_ItemHuiShouRequest = new C2M_TeamDungeonOpenRequest() { UserID = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId, FubenType = self.FubenType };
                 M2C_TeamDungeonOpenResponse r2c_roleEquip = (M2C_TeamDungeonOpenResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
                 teamInfo.FubenType = r2c_roleEquip.FubenType;
+                self.ApplyList.Clear();
                 return r2c_roleEquip.Error;
             }
             catch (Exception e)
@@ -328,6 +330,7 @@ namespace ET
                 {
                     teamInfo.FubenType = r2c_roleEquip.FubenType;
                 }
+                self.ApplyList.Clear();
                 return r2c_roleEquip.Error;
             }
             catch (Exception e)
