@@ -38,11 +38,8 @@ namespace ET
             { 
                 UserId = userInfo.UserId,
                 BoxIndex = request.BoxIndex,
+                PlayerName = userInfo.Name
             };
-            if (ComHelp.IsInnerNet())
-            {
-                m2C_HorseNoticeInfo.PlayerName = userInfo.Name;
-            }
             List<Unit> allPlayer = FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Player);
             MessageHelper.SendToClient(allPlayer, m2C_HorseNoticeInfo);
 

@@ -157,7 +157,7 @@ namespace ET
                 UIHelper.Remove(self.ZoneScene(), UIType.UITeamDungeonSettlement);
                 return;
             }
-
+            
             if (message.BoxIndex < 0 || message.BoxIndex >= self.RewardUIList.Count)
             {
                 Log.Error($"message.BoxIndex : {message.BoxIndex}");

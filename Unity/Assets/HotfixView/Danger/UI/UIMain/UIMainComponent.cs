@@ -600,7 +600,6 @@ namespace ET
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIHorseNotice);
             if (uI == null)
             {
-                UIHelper.Create(self.DomainScene(), UIType.UIHorseNotice).Coroutine();
                 return;
             }
             uI.GetComponent<UIHorseNoticeComponent>()?.OnRecvHorseNotice(m2C_HorseNoticeInfo);
@@ -730,6 +729,8 @@ namespace ET
             });
             uIPageViewComponent.OnSelectIndex(0);
             self.UIPageButtonComponent = uIPageViewComponent;
+
+            UIHelper.Create(self.DomainScene(), UIType.UIHorseNotice).Coroutine();
 
             UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
             if (userInfoComponent.GetGameSettingValue(GameSettingEnum.FenBianlLv) == "1")

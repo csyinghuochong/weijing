@@ -40,7 +40,9 @@ namespace ET
         public override void Update(UIHorseNoticeComponent self)
         {
             if (self.HorseNoticeInfoList.Count == 0)
+            {
                 return;
+            }
 
             self.MovePassTime += Time.deltaTime;
             self.CurPosition.x = self.MoveStartX - self.MoveSpeed * self.MovePassTime;
@@ -63,17 +65,15 @@ namespace ET
 
         public static void SetHorseNoticeInfo(this UIHorseNoticeComponent self, M2C_HorseNoticeInfo m2C_HorseNoticeInfo)
         {
+            self.MovePassTime = 0f;
             self.NoticePosition.SetActive(true);
             Text textMeshProUGUI = self.Text_TMP.GetComponent<Text>();
             textMeshProUGUI.text = m2C_HorseNoticeInfo.NoticeText;
-
-            self.MovePassTime = 0f;
 
             self.MoveStartX = 1924 * 0.5f + textMeshProUGUI.preferredWidth * 0.5f;
             self.MoveNeedTime = (self.MoveStartX * 2) / self.MoveSpeed;
 
             self.CurPosition.x = self.MoveStartX;
-            //self.Imagebg.GetComponent<RectTransform>().sizeDelta = new Vector2(textMeshProUGUI.preferredWidth, 100);
         }
 
         public static void OnRecvHorseNotice(this UIHorseNoticeComponent self, M2C_HorseNoticeInfo m2C_HorseNoticeInfo)

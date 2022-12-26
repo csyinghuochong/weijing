@@ -34,16 +34,22 @@
             long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
             Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "LocalDungeon" + fubenid.ToString(), SceneType.Fuben);
             LocalDungeonComponent localDungeon = fubnescene.AddComponent<LocalDungeonComponent>();
-            fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LocalDungeon, sceneId, 0);
             localDungeon.FubenDifficulty = difficulty;
             sceneId = transferId != 0 ? DungeonTransferConfigCategory.Instance.Get(transferId).MapID : sceneId;
+            fubnescene.GetComponent<MapComponent>().SetMapInfo((int)SceneTypeEnum.LocalDungeon, sceneId, 0);
             TransferHelper.BeforeTransfer(unit);
             await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.LocalDungeon, sceneId, difficulty, transferId.ToString());
             TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
-            if (transferId != 0)
+
+            Scene scene = Game.Scene.Get(oldsceneid);
+            MapComponent mapComponent = scene.GetComponent<MapComponent>(); 
+            if (transferId != 0 && mapComponent.SceneTypeEnum != SceneTypeEnum.LocalDungeon)
+            {
+                Log.Error($"transferId != 0:   {transferId} {mapComponent.SceneTypeEnum}");
+            }
+            if (transferId != 0 && scene.GetComponent<LocalDungeonComponent>()!=null)
             {
                 //动态删除副本
-                Scene scene = Game.Scene.Get(oldsceneid);
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
             }

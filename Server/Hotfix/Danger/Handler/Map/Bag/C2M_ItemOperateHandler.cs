@@ -152,7 +152,7 @@ namespace ET
                                 if (unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
                                 {
                                     LocalDungeonComponent localDungeon = unit.DomainScene().GetComponent<LocalDungeonComponent>();
-                                    TransferHelper.LocalDungeonTransfer(unit,0, int.Parse(itemCof.ItemUsePar), localDungeon.FubenDifficulty);
+                                    TransferHelper.LocalDungeonTransfer(unit, 0, int.Parse(itemCof.ItemUsePar), localDungeon.FubenDifficulty);
                                 }
                                 break;
                                 //图纸制造
