@@ -42,6 +42,7 @@ namespace ET
             if (self.HorseNoticeInfoList.Count == 0)
             {
                 return;
+
             }
 
             self.MovePassTime += Time.deltaTime;
