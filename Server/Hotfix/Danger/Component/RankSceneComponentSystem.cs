@@ -446,7 +446,7 @@ namespace ET
             {
                 return;
             }
-
+            Log.Debug($"发放战力排行榜奖励： {zone}");
             long serverTime = TimeHelper.ServerNow();
             List<RankingInfo> rankingInfos = self.DBRankInfo.rankingInfos;
             long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
@@ -489,6 +489,7 @@ namespace ET
             {
                 return;
             }
+            Log.Debug($"发放宠物排行榜奖励： {zone}");
             long serverTime = TimeHelper.ServerNow();
             List<RankPetInfo> rankingInfos = self.DBRankInfo.rankingPets;
             long mailServerId = StartSceneConfigCategory.Instance.GetBySceneName(self.DomainZone(), Enum.GetName(SceneType.EMail)).InstanceId;
@@ -500,6 +501,7 @@ namespace ET
                     if (rankingInfos[i].PetUId[k] > 0)
                     {
                         havePetUId = true;
+                        break;
                     }
                 }
                 if (!havePetUId)
