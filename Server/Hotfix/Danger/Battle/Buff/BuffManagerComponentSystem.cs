@@ -131,9 +131,13 @@ namespace ET
             {
                 return;
             }
-            if (stateComponent.StateTypeGet(StateTypeEnum.BaTi) &&(newType == StateTypeEnum.Shackle || newType == StateTypeEnum.Dizziness))
+            //霸体状态
+            if (stateComponent.StateTypeGet(StateTypeEnum.BaTi))
             {
-                return;
+                if (newType == StateTypeEnum.Shackle || newType == StateTypeEnum.Dizziness)
+                {
+                    return;
+                }
             }
 
             int addBufStatus = 1;   //1新增buff  2 移除 3 重置 4同状态返回
