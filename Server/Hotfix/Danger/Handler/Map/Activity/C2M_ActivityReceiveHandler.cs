@@ -89,6 +89,12 @@ namespace ET
                         unit.GetComponent<BagComponent>().OnAddItemData(rewards, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                         break;
                     case 31:    //登录奖励
+                        userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                        if (userInfoComponent.UserInfo.Lv < 10)
+                        {
+                            reply();
+                            return;
+                        }
                         serverNow = TimeHelper.ServerNow();
                         if (ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(activityComponent.LastLoginTime))
                         {

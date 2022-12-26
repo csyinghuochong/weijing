@@ -65,6 +65,13 @@ namespace ET
 
         public static async ETTask OnBtn_Receive(this UIActivityLoginItemComponent self)
         {
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            if (userInfo.Lv < 10)
+            {
+                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("10级才能领取！"));
+                return;
+            }
+
             if (!self.CanReceive(self.ActivityConfig.Id))
             {
                 FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("未达到领取条件！"));
