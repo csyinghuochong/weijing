@@ -33,11 +33,16 @@ namespace ET
             rewardItems.Add(request.RewardItem);
             unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
 
+            UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             M2C_TeamDungeonBoxRewardResult m2C_HorseNoticeInfo = new M2C_TeamDungeonBoxRewardResult()
             { 
-                UserId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId,
-                BoxIndex = request.BoxIndex
+                UserId = userInfo.UserId,
+                BoxIndex = request.BoxIndex,
             };
+            if (ComHelp.IsInnerNet())
+            {
+                m2C_HorseNoticeInfo.PlayerName = userInfo.Name;
+            }
             List<Unit> allPlayer = FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Player);
             MessageHelper.SendToClient(allPlayer, m2C_HorseNoticeInfo);
 

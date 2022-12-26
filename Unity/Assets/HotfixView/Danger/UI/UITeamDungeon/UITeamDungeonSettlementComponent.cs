@@ -164,7 +164,7 @@ namespace ET
                 return;
             }
 
-            self.RewardUIList[message.BoxIndex].ShowRewardItem();
+            self.RewardUIList[message.BoxIndex].ShowRewardItem(message.PlayerName);
             long userId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             if (userId == message.UserId)
             {

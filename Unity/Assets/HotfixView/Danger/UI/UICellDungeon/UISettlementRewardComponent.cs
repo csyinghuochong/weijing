@@ -9,12 +9,13 @@ namespace ET
         public GameObject Image_bg;
         public GameObject ImageButton;
         public GameObject Image_bgOpen;
+        public GameObject TextName;
 
         public RewardItem RewardItem;
         public Action<int> ClickHandler;
+        public int Index = -1;
         public bool IsSelect;
         public UI UiItem;
-        public int Index = -1;
 
         public GameObject ItemNode;
         public GameObject GameObject;
@@ -31,6 +32,8 @@ namespace ET
             self.GameObject = rc;
             self.Image_bgOpen = rc.transform.Find("Image_bgOpen").gameObject;
             self.Image_bgOpen.SetActive(false);
+
+            self.TextName = rc.transform.Find("TextName").gameObject;
 
             self.Image_bg = rc.transform.Find("Image_bg").gameObject;
 
@@ -75,8 +78,9 @@ namespace ET
             self.ClickHandler = action;
         }
 
-        public static void ShowRewardItem(this UISettlementRewardComponent self)
+        public static void ShowRewardItem(this UISettlementRewardComponent self, string name)
         {
+            self.TextName.GetComponent<Text>().text = name;
             if (self.ItemNode.activeSelf)
             {
                 return;
@@ -110,7 +114,7 @@ namespace ET
             if (self.ItemNode.activeSelf)
                 return;
 
-            self.ShowRewardItem();
+            self.ShowRewardItem(string.Empty);
             self.ClickHandler(self.Index);
         }
     }

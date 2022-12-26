@@ -6245,6 +6245,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int BoxIndex { get; set; }
 
+		[ProtoMember(3)]
+		public string PlayerName { get; set; }
+
 	}
 
 //组队副本结算

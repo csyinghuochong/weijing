@@ -2968,6 +2968,7 @@ message M2C_TeamDungeonBoxRewardResult // IActorMessage
 {
 	int64 UserId = 1;
 	int32 BoxIndex = 2;
+	string PlayerName =     3;
 }
 
 //组队副本结算
