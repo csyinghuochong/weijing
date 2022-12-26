@@ -296,6 +296,8 @@ message UserInfo
 
 	//每日道具使用限制
 	repeated KeyValuePairInt DayItemUse = 31;
+
+	repeated int32 HorseIds = 32;
 }
 
 message KeyValuePair

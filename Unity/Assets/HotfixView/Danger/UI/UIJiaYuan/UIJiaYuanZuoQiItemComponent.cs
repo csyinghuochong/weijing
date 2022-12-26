@@ -6,9 +6,9 @@ namespace ET
 {
     public class UIJiaYuanZuoQiItemComponent : Entity, IAwake<GameObject>, IDestroy
     {
+        public Text TextName;
         public GameObject GameObject;
         public Text Text_Attribute_1;
-        public Text TextName;
         public GameObject RawImage;
         public ZuoQiShowConfig ZuoQiConfig;
 
