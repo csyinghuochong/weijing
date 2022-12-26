@@ -122,11 +122,16 @@ namespace ET
                 return;
             }
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
-            if (stateComponent.StateTypeGet( StateTypeEnum.SilenceImmune) && buffData.BuffConfig.buffParameterType == StateTypeEnum.Silence)
+            int newType = buffData.BuffConfig.buffParameterType;
+            if (stateComponent.StateTypeGet( StateTypeEnum.SilenceImmune) && newType == StateTypeEnum.Silence)
             {
                 return;
             }
-            if (stateComponent.StateTypeGet(StateTypeEnum.DizzinessImmune) && buffData.BuffConfig.buffParameterType == StateTypeEnum.Dizziness)
+            if (stateComponent.StateTypeGet(StateTypeEnum.DizzinessImmune) && newType == StateTypeEnum.Dizziness)
+            {
+                return;
+            }
+            if (stateComponent.StateTypeGet(StateTypeEnum.BaTi) &&(newType == StateTypeEnum.Shackle || newType == StateTypeEnum.Dizziness))
             {
                 return;
             }
