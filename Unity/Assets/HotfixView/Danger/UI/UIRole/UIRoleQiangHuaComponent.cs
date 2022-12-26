@@ -99,8 +99,10 @@ namespace ET
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             int qianghuaLevel = bagComponent.QiangHuaLevel[subType];
             int maxLevel = QiangHuaHelper.GetQiangHuaMaxLevel(subType);
-            self.NextNode.SetActive(qianghuaLevel < maxLevel);
-            self.MaxNode.SetActive(qianghuaLevel >= maxLevel);
+           
+            self.MaxNode.SetActive(qianghuaLevel >= maxLevel - 1);
+            self.NextNode.SetActive(!self.MaxNode.activeSelf);
+
             UICommonHelper.SetParent(self.ImageSelect, self.QiangHuaItemList[subType-1].GameObject);
             self.ImageSelect.transform.localPosition = new Vector3(1f, -2f, 0f);
             string qianghuaName = UIItemHelp.EquipWeiZhiToName[subType].Name;
@@ -115,12 +117,15 @@ namespace ET
             self.Text_QiangHuaLv.GetComponent<Text>().text = $"+{qianghuaLevel}";
             self.Text_QiangHuaName.GetComponent<Text>().text = UIItemHelp.EquipWeiZhiToName[subType].Name;
             self.QiangHuaItemList[subType - 1].OnUpateUI(qianghuaLevel);
+
+            for (int i = 0; i < self.QiangHuaLevelList.transform.childCount; i++)
+            {
+                self.QiangHuaLevelList.transform.GetChild(i).gameObject.SetActive(i < qianghuaLevel);
+            }
             if (qianghuaLevel >= maxLevel - 1)
             {
-                self.TextAttribute2.SetActive(false);
                 return;
             }
-            self.TextAttribute2.SetActive(true);
             EquipQiangHuaConfig next_equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(subType, qianghuaLevel+1);
             fvalue = float.Parse(next_equipQiangHuaConfig.EquipPropreAdd) * 100f;
             svalue = fvalue.ToString("0.#####"); ;/// string.Format("{0:P}", fvalue);
@@ -134,11 +139,6 @@ namespace ET
             self.TextSuccessRate.GetComponent<Text>().text = $"强化成功率: {(int)(equipQiangHuaConfig.SuccessPro * 100)}%";
             double addPro = QiangHuaHelper.GetQiangHuaConfig(subType, qianghuaLevel).AdditionPro * bagComponent.QiangHuaFails[subType];
             self.TextSuccessAddition.GetComponent<Text>().text = $"附加成功率 { (int)(addPro *100)}%";
-
-            for (int i = 0; i < self.QiangHuaLevelList.transform.childCount; i++)
-            {
-                self.QiangHuaLevelList.transform.GetChild(i).gameObject.SetActive(i < qianghuaLevel);
-            }
         }
 
         public static async ETTask OnButtonQiangHua(this UIRoleQiangHuaComponent self)
