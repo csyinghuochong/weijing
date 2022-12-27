@@ -524,10 +524,10 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Item_DigForTreasure.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIJiaYuan\UIJiaYuanZuoQiItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMake\UIShenQiMakeEvent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonSettlementComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChat\UIChatEmojiComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiStallItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\Common\UIPopupEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UITeamDungeon\UITeamDungeonSettlementComponent.cs" />
     <Compile Include="Assets\HotfixView\Demo\Scene\AfterCreateCurrentScene_AddComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPet\UIPetHeChengComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampStrengthItemComponent.cs" />
