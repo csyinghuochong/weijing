@@ -1043,7 +1043,12 @@ namespace ET
                     mEquipCon.Equip_MinAct = mEquipCon.Equip_MaxAct;
                 }
 
-                addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[itemCof.ItemSubType])).EquipPropreAdd);
+                EquipQiangHuaConfig equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(itemCof.ItemSubType, qianghuaLv[itemCof.ItemSubType]);
+                if (equipQiangHuaConfig != null)
+                {
+                    addPro += float.Parse(equipQiangHuaConfig.EquipPropreAdd);
+                    //addPro += float.Parse(EquipQiangHuaConfigCategory.Instance.Get(QiangHuaHelper.GetQiangHuaId(itemCof.ItemSubType, qianghuaLv[itemCof.ItemSubType])).EquipPropreAdd);
+                }
                 //switch (itemCof.ItemSubType) {
 
                 //    //武器
