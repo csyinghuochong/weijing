@@ -167,6 +167,7 @@ namespace ET
             return rolePetInfo;
         }
 
+        //第一次获得宠物的时候调用
         public static RolePetInfo OnAddPet(this PetComponent self, int petId, int skinId = 0)
         {
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
@@ -179,7 +180,7 @@ namespace ET
 
             self.GetParent<Unit>().GetComponent<ChengJiuComponent>().OnGetPet(newpet);
             self.GetParent<Unit>().GetComponent<TaskComponent>().OnGetPet();
-            MessageHelper.SendToClient( self.GetParent<Unit>(), m2C_RolePetUpdate);
+            MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetUpdate);
 
             return newpet;
         }
