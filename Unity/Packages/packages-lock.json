@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.focus-creative-games.huatuo": {
+      "version": "0.1.7",
+      "depth": 0,
+      "source": "registry",
+      "dependencies": {},
+      "url": "https://package.openupm.com"
+    },
     "com.focus-creative-games.hybridclr_unity": {
       "version": "https://github.com/focus-creative-games/hybridclr_unity.git",
       "depth": 0,
