@@ -98,5 +98,8 @@
         public const int SkillCDUpdate = 36;
 
         public const int MainHeroMove = 37;
+
+        //接取任务
+        public const int TaskLoopGet = 38;
     }
 }

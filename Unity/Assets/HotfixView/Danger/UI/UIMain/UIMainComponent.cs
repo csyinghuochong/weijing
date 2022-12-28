@@ -274,6 +274,7 @@ namespace ET
             DataUpdateComponent.Instance.AddListener(DataType.TaskUpdate, self);
             DataUpdateComponent.Instance.AddListener(DataType.TaskTrace, self);
             DataUpdateComponent.Instance.AddListener(DataType.TaskGet, self);
+            DataUpdateComponent.Instance.AddListener(DataType.TaskLoopGet, self);
             DataUpdateComponent.Instance.AddListener(DataType.TaskComplete, self);
             DataUpdateComponent.Instance.AddListener(DataType.OnRecvChat, self);
             DataUpdateComponent.Instance.AddListener(DataType.HorseNotice, self);
@@ -323,6 +324,7 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.TaskUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.TaskTrace, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.TaskGet, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.TaskLoopGet, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.TaskComplete, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.OnRecvChat, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.HorseNotice, self);

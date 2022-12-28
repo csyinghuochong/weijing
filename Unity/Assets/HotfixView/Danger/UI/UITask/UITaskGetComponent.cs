@@ -44,12 +44,12 @@ namespace ET
             self.Obj_Lab_MoNnengHint = rc.Get<GameObject>("Lab_MoNnengHint");
 
             self.BtnCommitTask1 = rc.Get<GameObject>("BtnCommitTask1");
-            self.BtnCommitTask1.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_CommitTask().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.BtnCommitTask1, () => { self.OnBtn_CommitTask().Coroutine(); });
             self.BtnCommitTask1.SetActive(false);
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");
           
             self.ButtonGet = rc.Get<GameObject>("ButtonGet");
-            self.ButtonGet.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonGetTask(); });
+            ButtonHelp.AddListenerEx(self.ButtonGet, self.OnButtonGetTask);
             self.ButtonGet.SetActive(false);
 
             self.TaskListNode = rc.Get<GameObject>("TaskListNode");
@@ -103,6 +103,7 @@ namespace ET
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             if (taskComponent.GetTaskTypeList(TaskTypeEnum.EveryDay).Count > 0)
             {
+                FloatTipManager.Instance.ShowFloatTip("请先完成当前赏金任务");
                 return;
             }
 
@@ -118,12 +119,9 @@ namespace ET
             if (response.TaskLoop != null)
             {
                 taskComponent.RoleTaskList.Add(response.TaskLoop);
-                HintHelp.GetInstance().DataUpdate(DataType.TaskGet, response.TaskLoop.taskID.ToString());
+                HintHelp.GetInstance().DataUpdate(DataType.TaskLoopGet, response.TaskLoop.taskID.ToString());
             }
-            else
-            {
-                self.OnCloseNpcTask();
-            }
+            self.OnCloseNpcTask();
         }
 
         public static void InitData(this UITaskGetComponent self, int npcID)
