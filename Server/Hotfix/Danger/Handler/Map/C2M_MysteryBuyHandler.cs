@@ -24,7 +24,7 @@ namespace ET
                 return;
             }
 
-            if (!unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}"))
+            if (!unit.GetComponent<BagComponent>().CheckCostItem($"{mysteryConfig.SellType};{mysteryConfig.SellValue}"))
             {
                 response.Error = ErrorCore.ERR_ItemNotEnoughError;
                 reply();
@@ -48,6 +48,7 @@ namespace ET
             }
 
             unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
+            unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}");
             unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.SellItemID};{mysteryConfig.BuyNumMax}",
                 $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
 

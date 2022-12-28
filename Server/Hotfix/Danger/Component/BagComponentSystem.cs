@@ -662,6 +662,26 @@ namespace ET
             return true;
         }
 
+        public static bool CheckCostItem(this BagComponent self, string rewardItems)
+        {
+            string[] needList = rewardItems.Split('@');
+            for (int i = 0; i < needList.Length; i++)
+            {
+                string[] itemInfo = needList[i].Split(';');
+                if (itemInfo.Length < 2)
+                {
+                    continue;
+                }
+                int itemId = int.Parse(itemInfo[0]);
+                int itemNum = int.Parse(itemInfo[1]);
+                if (self.GetItemNumber(itemId) < itemNum)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         //字符串删除道具
         public static bool OnCostItemData(this BagComponent self, string rewardItems)
         {
