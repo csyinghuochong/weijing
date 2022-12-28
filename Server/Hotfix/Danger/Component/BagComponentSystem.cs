@@ -682,6 +682,19 @@ namespace ET
             return true;
         }
 
+        public static bool CheckCostItem(this BagComponent self, List<RewardItem> rewardItems)
+        {
+            for (int i = 0; i < rewardItems.Count; i++)
+            {
+                RewardItem itemInfo = rewardItems[i];
+                if (self.GetItemNumber(itemInfo.ItemID) < itemInfo.ItemNum)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         //字符串删除道具
         public static bool OnCostItemData(this BagComponent self, string rewardItems)
         {
