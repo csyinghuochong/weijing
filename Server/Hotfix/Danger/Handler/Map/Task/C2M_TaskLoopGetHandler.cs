@@ -64,7 +64,7 @@ namespace ET
             else
             {
                 response.Error = ErrorCore.ERR_TaskCanNotGet;
-                Log.Warning($"taskPro== null {unit.DomainZone()} {unit.Id} {taskId}");
+                Log.Warning($"taskPro== null[赏金任务] {unit.DomainZone()} {unit.Id} {taskId}");
             }
             reply();
             await ETTask.CompletedTask;

@@ -96,19 +96,22 @@ namespace ET
         /// <param name="request"></param>
         /// <param name="response"></param>
         /// <returns></returns>
-        public static TaskPro OnGetTask(this TaskComponent self, int taskid)
+        public static TaskPro OnGetTask(this TaskComponent self, int taskId)
         {
-            bool canget = FunctionHelp.CheckTaskOn(self.GetParent<Unit>(), TaskConfigCategory.Instance.Get(taskid));
+            Unit unit = self.GetParent<Unit>();
+            bool canget = FunctionHelp.CheckTaskOn(unit, TaskConfigCategory.Instance.Get(taskId));
             if (!canget)
             {
+                Log.Warning($"OnGetTask_1 {unit.DomainZone()} {unit.Id} {taskId}");
                 return null;
             }
-            if (self.IsHaveTask(taskid))
+            if (self.IsHaveTask(taskId))
             {
+                Log.Warning($"OnGetTask_2 {unit.DomainZone()} {unit.Id} {taskId}");
                 return null;
             }
 
-            TaskPro taskPro = self.CreateTask(taskid);
+            TaskPro taskPro = self.CreateTask(taskId);
             self.RoleTaskList.Add(taskPro);
             return taskPro;
         }
