@@ -133,6 +133,17 @@ namespace ET
             }
         }
 
+        /// <summary>
+        /// 施法中吟唱由服务器打断
+        /// </summary>
+        /// <param name="self"></param>
+        public static void OnInterrupt(this SingingComponent self)
+        {
+            self.PassTime = -1;
+            self.UpdateUISinging();
+            HintHelp.GetInstance().ShowHint("施法中断！");
+        }
+
         public static void BeginMoveOrSkill(this SingingComponent self)
         {
             if (self.PassTime > 0)

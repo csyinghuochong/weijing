@@ -365,8 +365,7 @@ namespace ET
             MessageHelper.Broadcast(unit, useSkill);
 
             //添加技能CD列表
-            SkillCDItem skillCd = null;
-            skillCd = self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig, zhudong);
+            SkillCDItem skillCd = self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig, zhudong);
             if (zhudong)
             {
                 SkillPassiveComponent skillPassiveComponent = unit.GetComponent<SkillPassiveComponent>();

@@ -149,10 +149,9 @@ namespace ET
                 }
 
                 mysteryItemInfo1.ItemNumber -= mysteryInfo.ItemNumber;
-                break;
+                return ErrorCore.ERR_Success;
             }
-
-            return ErrorCore.ERR_Success;
+            return ErrorCore.ERR_ItemNotEnoughError;
         }
 
         public static async ETTask NoticeActivityUpdate_Hour(this ActivitySceneComponent self, int hour)

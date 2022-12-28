@@ -64,11 +64,17 @@
 
         public static bool IsMasterOrPet(this Unit self, Unit defend, PetComponent petComponent)
         {
-            if (self.Type != UnitType.Player && self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == defend.Id)
+            long masterId = self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
+            long othermaster = defend.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
+            if (self.Type != UnitType.Player && masterId == defend.Id)
             {
                 return true;
             }
-            if (self.Type == UnitType.Player && defend.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == self.Id)
+            if (self.Type == UnitType.Player && othermaster == self.Id)
+            {
+                return true;
+            }
+            if (masterId > 0 && masterId == othermaster)
             {
                 return true;
             }

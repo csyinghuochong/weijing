@@ -198,6 +198,11 @@ namespace ET
         public static void AddSkillCD(this SkillManagerComponent self, int skillId, M2C_SkillCmd skillCmd)
         {
             //添加技能CD列表
+            if (skillCmd.CDEndTime == 0)
+            {
+                return;
+            }
+
             SkillCDItem skillcd = self.GetSkillCD(skillId);
             if (skillcd == null)
             {
@@ -227,10 +232,40 @@ namespace ET
             }
         }
 
+        public static void CheckSkillCD(this SkillManagerComponent self, SkillConfig skillConfig, int skillId)
+        {
+            if (self.GetSkillCD(skillId) != null)
+            {
+                return;
+            }
+            SkillPro skillPro = self.ZoneScene().GetComponent<SkillSetComponent>().GetBySkillID(skillId);
+            if (skillPro == null || skillPro.SkillPosition == 0 || skillPro.SkillSetType == (int)SkillSetEnum.Item)
+            {
+                return;
+            }
+
+            if (skillConfig.SkillActType == 0 || skillConfig.Id == self.FangunSkillId)
+            {
+                return;
+            }
+            if (skillConfig.PassiveSkillType > 0)
+            {
+                return;
+            }
+
+            M2C_SkillCmd m2C_SkillCmd = new M2C_SkillCmd();
+            m2C_SkillCmd.CDEndTime = TimeHelper.ServerNow() + (long)(1000 * skillConfig.SkillCD);
+            self.AddSkillCD(skillId, m2C_SkillCmd);
+        }
+
         public static void OnUseSkill(this SkillManagerComponent self, M2C_UnitUseSkill skillcmd )
         {
             Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
+            if (unit.MainHero && !unit.IsRobot())
+            {
+                self.CheckSkillCD(skillConfig, skillcmd.SkillID);
+            }
             if (skillcmd.ItemId > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
             {
                 EventType.PlayAnimator.Instance.Animator = skillConfig.SkillAnimation;
