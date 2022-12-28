@@ -116,7 +116,7 @@ namespace ET
 
             C2M_TaskLoopGetRequest request = new C2M_TaskLoopGetRequest() {  };
             M2C_TaskLoopGetResponse response = (M2C_TaskLoopGetResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.TaskLoop != null)
+            if (response.Error == ErrorCode.ERR_Success && response.TaskLoop != null)
             {
                 taskComponent.RoleTaskList.Add(response.TaskLoop);
                 HintHelp.GetInstance().DataUpdate(DataType.TaskLoopGet, response.TaskLoop.taskID.ToString());

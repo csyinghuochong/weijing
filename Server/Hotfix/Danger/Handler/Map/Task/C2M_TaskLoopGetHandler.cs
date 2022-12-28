@@ -12,8 +12,7 @@ namespace ET
             TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
             if (taskComponent.GetTaskList(TaskTypeEnum.EveryDay).Count > 0)
             {
-                taskPro = taskComponent.GetTaskList(TaskTypeEnum.EveryDay)[0];
-                response.TaskLoop = taskPro;
+                response.Error = ErrorCore.ERR_TaskCanNotGet;
                 reply();
                 return;
             }
@@ -57,8 +56,16 @@ namespace ET
 
             int taskId = allTaskIds[RandomHelper.RandomNumber(0, allTaskIds.Count)];
             taskPro = taskComponent.OnGetTask(taskId);
-            response.TaskLoop = taskPro;
-            numericComponent.ApplyChange(null, NumericType.TaskLoopNumber, 1, 0);
+            if (taskPro != null)
+            {
+                response.TaskLoop = taskPro;
+                numericComponent.ApplyChange(null, NumericType.TaskLoopNumber, 1, 0);
+            }
+            else
+            {
+                response.Error = ErrorCore.ERR_TaskCanNotGet;
+                Log.Warning($"taskPro== null {unit.DomainZone()} {unit.Id} {taskId}");
+            }
             reply();
             await ETTask.CompletedTask;
         }
