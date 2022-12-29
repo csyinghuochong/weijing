@@ -55,8 +55,8 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int skillID = unit.GetComponent<SkillManagerComponent>().FangunSkillId;
-            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().OnSpellStart();
+            EventType.BeforeSkill.Instance.ZoneScene = self.ZoneScene();    
+            EventSystem.Instance.PublishClass(EventType.BeforeSkill.Instance);
             unit.GetComponent<SkillManagerComponent>().SendUseSkill(skillID, 0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
 
             self.LastSkillTime = Time.time;

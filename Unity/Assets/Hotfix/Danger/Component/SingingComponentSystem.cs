@@ -144,7 +144,16 @@ namespace ET
             HintHelp.GetInstance().ShowHint("施法中断！");
         }
 
-        public static void BeginMoveOrSkill(this SingingComponent self)
+        public static void BeginMove(this SingingComponent self)
+        {
+            if (self.PassTime > 0)
+            {
+                self.PassTime = -1;
+                self.UpdateUISinging();
+            }
+        }
+
+        public static void BeginSkill(this SingingComponent self)
         {
             if (self.PassTime > 0)
             {

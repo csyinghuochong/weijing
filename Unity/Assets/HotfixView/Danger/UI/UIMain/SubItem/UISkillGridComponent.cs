@@ -181,8 +181,8 @@ namespace ET
                 angle = Mathf.FloorToInt(Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg);
             }
 
-            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-            uimain.GetComponent<UIMainComponent>().OnSpellStart();
+            EventType.BeforeSkill.Instance.ZoneScene = self.ZoneScene();
+            EventSystem.Instance.PublishClass(EventType.BeforeSkill.Instance);
             if (self.skillPro.SkillSetType == (int)SkillSetEnum.Skill)
             {
                 myUnit.GetComponent<SkillManagerComponent>().SendUseSkill(self.SkillBaseConfig.Id, 0, angle,  targetId, distance).Coroutine();

@@ -1340,6 +1340,14 @@ namespace ET
             self.UIMainSkillComponent.UIAttackGrid.OnMoveStart();
         }
 
+        public static void OnSpellStart(this UIMainComponent self)
+        {
+            if (self.UIOpenBoxComponent != null && self.UIOpenBoxComponent.BoxUnitId > 0)
+            {
+                self.UIOpenBoxComponent.OnOpenBox(0);
+            }
+        }
+
         public static void OnBeforeSkill(this UIMainComponent self)
         {
             self.UIJoystickMoveComponent.lastSendTime = 0f;
@@ -1356,14 +1364,6 @@ namespace ET
             string value = usevalue != "" ? usevalue :  userInfoComponent.GetGameSettingValue(GameSettingEnum.Shadow);
             Light light = gameObject.GetComponent<Light>();
             light.shadows = value == "0" ? LightShadows.None : LightShadows.Soft;
-        }
-
-        public static void OnSpellStart(this UIMainComponent self)
-        {
-            if (self.UIOpenBoxComponent != null && self.UIOpenBoxComponent.BoxUnitId > 0)
-            {
-                self.UIOpenBoxComponent.OnOpenBox(0);
-            }
         }
     }
 }

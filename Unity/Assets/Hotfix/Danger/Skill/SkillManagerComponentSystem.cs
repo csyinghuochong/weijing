@@ -150,7 +150,7 @@ namespace ET
                     return errorCode;       
                 }
 
-                unit.GetComponent<SingingComponent>().BeginMoveOrSkill();
+                unit.GetComponent<SingingComponent>().BeginSkill();
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
                 if (checksing && skillConfig.SkillFrontSingTime > 0)
                 {
@@ -177,8 +177,6 @@ namespace ET
         public static async ETTask<int> ImmediateUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillCmd)
         {
             Unit unit = self.GetParent<Unit>();
-            EventType.BeforeSkill.Instance.ZoneScene = unit.ZoneScene();
-            Game.EventSystem.PublishClass(EventType.BeforeSkill.Instance);
             unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NetWait);
             M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;
             unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);

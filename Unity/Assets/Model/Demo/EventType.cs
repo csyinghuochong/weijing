@@ -402,7 +402,6 @@ namespace ET
         {
             public static readonly SkillSound Instance = new SkillSound();
             public string Asset;
-
         }
 
         public class MoveStop : DisposeObject
