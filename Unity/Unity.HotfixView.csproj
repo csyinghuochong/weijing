@@ -475,6 +475,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRoleXiLian\UIRoleXiLianTenItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Guide_OnShowGuide.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Skill_BeforeSkill.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonSelectEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIEquipSetComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICelllDungeonCellItemComponent.cs" />
@@ -573,7 +574,6 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Skill_BeforeSkill.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

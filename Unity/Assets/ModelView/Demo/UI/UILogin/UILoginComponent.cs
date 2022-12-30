@@ -52,7 +52,7 @@ namespace ET
 		public AccountInfoComponent PlayerComponent;
 		public UI UIRotateComponent;
 
-		public int BigVersion = 9;      //同时要修改Init脚本的BigVersion
+		public int BigVersion = 10;      //同时要修改Init脚本的BigVersion
 		public string DownloadUrl = "http://39.96.194.143/weijing1/apk/beta/weijing.apk";
 
 		public string LoginType;

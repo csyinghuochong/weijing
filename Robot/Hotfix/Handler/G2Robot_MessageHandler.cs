@@ -66,7 +66,7 @@ namespace ET
                             }
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                             robotScene?.AddComponent<BehaviourComponent, int>(robotId);
-                            await TimerComponent.Instance.WaitAsync(200);
+                            await TimerComponent.Instance.WaitAsync(500);
                         }
                     }
                     break;
@@ -82,7 +82,7 @@ namespace ET
                                 continue;
                             }
                             robotManagerComponent.RemoveRobot(robotScene).Coroutine();
-                            await TimerComponent.Instance.WaitAsync(200);
+                            await TimerComponent.Instance.WaitAsync(500);
                         }
                     }
                     break;

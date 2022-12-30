@@ -33,6 +33,7 @@ using System.Text;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Networking;
+using UnityEngine.UI;
 
 namespace libx
 {
@@ -122,6 +123,7 @@ namespace libx
             baseURL = "http://39.96.194.143/weijing1/" + dlcPath + "/";
             baseURL = baseURL.EndsWith("/") ? baseURL : baseURL + "/";
 
+            transform.Find("Text_BigVersion").GetComponent<Text>().text = GameObject.Find("Global").GetComponent<Init>().BigVersion.ToString();
             UnityEngine.Debug.Log("baseURL  " +  baseURL);
 
             _downloader = gameObject.GetComponent<Downloader>();
