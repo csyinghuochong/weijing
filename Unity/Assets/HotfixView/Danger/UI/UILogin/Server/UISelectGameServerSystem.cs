@@ -7,6 +7,7 @@ namespace ET
     
     public class UISelectServerComponent : Entity, IAwake
     {
+        public GameObject ScrollView1;
         public GameObject LatelyServerNode;
         public GameObject ButtonClose;
         public GameObject ServerListNode;
@@ -28,6 +29,7 @@ namespace ET
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.ScrollView1 = rc.Get<GameObject>("ScrollView1");
             self.LatelyServerNode = rc.Get<GameObject>("LatelyServerNode");
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ServerListNode = rc.Get<GameObject>("ServerListNode");
@@ -143,6 +145,14 @@ namespace ET
             {
                 self.AllServerUIList[i].GameObject.SetActive(false);
             }
+
+            long instanceId = self.InstanceId;
+            await TimerComponent.Instance.WaitAsync(100);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
+            self.ScrollView1.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
         }
 
         public static void OnClickServerItem(this UISelectServerComponent self, ServerItem serverId)
