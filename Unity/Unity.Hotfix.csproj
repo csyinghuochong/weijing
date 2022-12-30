@@ -446,7 +446,7 @@
       <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="dnlib">
-      <HintPath>Library\PackageCache\com.focus-creative-games.hybridclr_unity@8eb94be37e\Plugins\dnlib.dll</HintPath>
+      <HintPath>Library\PackageCache\com.focus-creative-games.hybridclr_unity@83c336a5ce\Plugins\dnlib.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <HintPath>Assets\Mono\ThirdRes\GUI Pro Kit Fantasy RPG\SampleProject\Extensions\Demigiant\DOTween\DOTween.dll</HintPath>
@@ -455,7 +455,7 @@
       <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.8.1\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>
     </Reference>
     <Reference Include="LZ4">
-      <HintPath>Library\PackageCache\com.focus-creative-games.hybridclr_unity@8eb94be37e\Plugins\LZ4.dll</HintPath>
+      <HintPath>Library\PackageCache\com.focus-creative-games.hybridclr_unity@83c336a5ce\Plugins\LZ4.dll</HintPath>
     </Reference>
     <Reference Include="CommandLine">
       <HintPath>Assets\Plugins\BuglyPlugins\CommandLine.dll</HintPath>

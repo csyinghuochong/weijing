@@ -54,7 +54,8 @@ public static class InitHybridCLR
             fixed (byte* ptr = dllBytes)
             {
                 // 加载assembly对应的dll，会自动为它hook。一旦aot泛型函数的native函数不存在，用解释器版本代码
-                int err = RuntimeApi.LoadMetadataForAOTAssembly((IntPtr)ptr, dllBytes.Length);
+                //SuperSet 不需要补充元数据
+                LoadImageErrorCode err = RuntimeApi.LoadMetadataForAOTAssembly( dllBytes, HomologousImageMode.SuperSet);
                 Debug.Log($"LoadMetadataForAOTAssembly:{aotDllName}. ret:{err}");
             }
         }
