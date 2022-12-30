@@ -116,6 +116,13 @@ namespace ET
             return taskPro;
         }
 
+        public static TaskPro OnGetLoopTask(this TaskComponent self, int taskId)
+        {
+            TaskPro taskPro = self.CreateTask(taskId);
+            self.RoleTaskList.Add(taskPro);
+            return taskPro;
+        }
+
         public static List<TaskPro> GetTaskList(this TaskComponent self, int taskType)
         { 
             List<TaskPro> taskPros = new List<TaskPro>();
@@ -259,8 +266,10 @@ namespace ET
             {
                 return ErrorCore.ERR_TaskCommited;
             }
-
-            self.RoleComoleteTaskList.Add(taskid);
+            if (!self.RoleComoleteTaskList.Contains(taskid))
+            {
+                self.RoleComoleteTaskList.Add(taskid);
+            }
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
             int TaskExp = taskConfig.TaskExp;
             int TaskCoin = taskConfig.TaskCoin;

@@ -55,7 +55,7 @@ namespace ET
             }
 
             int taskId = allTaskIds[RandomHelper.RandomNumber(0, allTaskIds.Count)];
-            taskPro = taskComponent.OnGetTask(taskId);
+            taskPro = taskComponent.OnGetLoopTask(taskId);
             if (taskPro != null)
             {
                 response.TaskLoop = taskPro;
