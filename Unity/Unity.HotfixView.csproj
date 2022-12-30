@@ -162,8 +162,8 @@
     <Compile Include="Assets\HotfixView\Demo\UI\UILoading\UILoadingComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPaiMai\UIPaiMaiSellPriceEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\Handler\Skill\Fsm_OnFsmChange.cs" />
-    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Battle_OnBattleInfo.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UITeam\UITeamEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\Handler\Map\Battle_OnBattleInfo.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICellDungeon\UICellDungeonCellMiniComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIRole\UIEquipSetItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIChouKa\UIChouKaRewardEvent.cs" />

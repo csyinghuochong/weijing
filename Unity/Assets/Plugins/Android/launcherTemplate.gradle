@@ -183,9 +183,9 @@ android {
 
     signingConfigs {
             release {
-                keyAlias 'going'
+                keyAlias 'chinaboy'
                 keyPassword '829475'
-                storeFile file('D:\\GitWeiJing\\Unity\\user.keystore')
+                storeFile file('H:\\GitWeiJing\\Unity\\user.keystore')
                 storePassword '829475'
             }
     }
