@@ -8,7 +8,7 @@ namespace ET
         public static void OnKillEvent(this TrialDungeonComponent self, Unit defend)
         {
             List<Unit> players = FubenHelp.GetUnitList(self.DomainScene(), UnitType.Player);
-            if (defend.GetComponent<NumericComponent>().GetAsInt(NumericType.MasterId) == players[0].Id)
+            if (defend.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == players[0].Id)
             {
                 return;
             }

@@ -314,7 +314,7 @@ namespace ET
                     ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_MakeTypeError);
                     return;
                 }
-                if (unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Contains(makeNew))
+                if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.MakeList.Contains(makeNew))
                 {
                     FloatTipManager.Instance.ShowFloatTip("已经学习过该技能！");
                     return;
