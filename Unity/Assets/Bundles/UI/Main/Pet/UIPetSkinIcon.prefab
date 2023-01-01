@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6533600867836953487}
   - component: {fileID: 7423343236380318447}
   m_Layer: 5
-  m_Name: TextSkinName (1)
+  m_Name: JiHuoSet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -423,6 +423,8 @@ MonoBehaviour:
     gameObject: {fileID: 4344298520346282165}
   - key: TextSkinName
     gameObject: {fileID: 8539969385899682905}
+  - key: JiHuoSet
+    gameObject: {fileID: 2736314053324335500}
 --- !u!1 &4345023024314463589
 GameObject:
   m_ObjectHideFlags: 0

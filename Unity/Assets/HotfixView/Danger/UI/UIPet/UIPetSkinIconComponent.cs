@@ -11,6 +11,7 @@ namespace ET
         public GameObject Image_XuanZhong;
         public GameObject Image_ItemIcon;
         public GameObject Image_ItemQuality;
+        public GameObject JiHuoSet;
         public Action<int> ClickHandler;
         public int SkinId;
     }
@@ -26,6 +27,7 @@ namespace ET
             self.Image_XuanZhong = rc.Get<GameObject>("Image_XuanZhong");
             self.Image_ItemIcon = rc.Get<GameObject>("Image_ItemIcon");
             self.Image_ItemQuality = rc.Get<GameObject>("Image_ItemQuality");
+            self.JiHuoSet = rc.Get<GameObject>("JiHuoSet");
 
             self.Image_XuanZhong.SetActive(false);
             self.Image_ItemButton.GetComponent<Button>().onClick.AddListener( self.OnImage_ItemButton);
@@ -59,6 +61,14 @@ namespace ET
             self.TextSkinName.GetComponent<Text>().text = skillConfig.Name;
             UICommonHelper.SetImageGray(self.Image_ItemIcon, !unlocked);
             UICommonHelper.SetImageGray(self.Image_ItemQuality, !unlocked);
+            if (unlocked)
+            {
+                self.JiHuoSet.SetActive(true);
+            }
+            else {
+                self.JiHuoSet.SetActive(false);
+            }
+
         }
     }
 }
