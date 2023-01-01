@@ -28,6 +28,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD1, "技能冷却中!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD2, "技能公共冷却中!");
             ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill, "当前状态无法释放技能!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotSkillDead, "死亡状态无法释放技能!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillError, "释放技能出错!");
             ErrorHintList.Add(ErrorCore.ERR_NoUseItemSkill, "该场景不能使用药剂道具技能!");
             ErrorHintList.Add(ErrorCore.ERR_UnSafeSqlString, "非法字符串!");

@@ -26,18 +26,13 @@ namespace ET
                 ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(self.ActivityReceiveIds[i]);
                 if (activityConfig.ActivityType ==2)
                 {
-                    if (unitId == 1574246440534867968)
-                    {
-                        Log.Debug($"self.DayTeHui_1: RemoveAt {self.ActivityReceiveIds[i]} ");
-                    }
                     self.ActivityReceiveIds.RemoveAt(i);
                 }
             }
 
-            //卡拉哒卡拉哒
-            if (unitId == 1574246440534867968)
+            if (self.TotalSignNumber >= 30)
             {
-                Log.Debug($"self.DayTeHui_2:  {self.DayTeHui[0]}  {self.DayTeHui.Count} ");
+                self.TotalSignNumber = 0;
             }
         }
 #endif
