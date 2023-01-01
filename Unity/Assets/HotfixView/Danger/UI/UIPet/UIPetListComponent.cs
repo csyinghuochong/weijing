@@ -314,6 +314,7 @@ namespace ET
             }
             self.LastSelectItem.SkinId = self.PetSkinId;
             self.UpdatePetModel(self.LastSelectItem);
+            FloatTipManager.Instance.ShowFloatTip("宠物皮肤更换成功！");
         }
 
         public static void OnBtn_FangSheng(this UIPetListComponent self)
@@ -726,7 +727,7 @@ namespace ET
             }
             self.PetSkinList.Clear();
             UICommonHelper.DestoryChild(self.ScrollViewSkin);
-            PetConfig petConfig = PetConfigCategory.Instance.Get( self.LastSelectItem.ConfigId );
+            PetConfig petConfig = PetConfigCategory.Instance.Get(self.LastSelectItem.ConfigId);
 
             int selectIndex = 0;
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkinIcon");

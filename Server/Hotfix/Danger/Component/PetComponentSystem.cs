@@ -170,6 +170,13 @@ namespace ET
         //第一次获得宠物的时候调用
         public static RolePetInfo OnAddPet(this PetComponent self, int petId, int skinId = 0)
         {
+
+            PetConfig petConfig = PetConfigCategory.Instance.Get(petId);
+            List<int> weight = new List<int>(petConfig.SkinPro);
+            int index = RandomHelper.RandomByWeight(weight);
+            skinId = petConfig.Skin[index];
+            self.OnUnlockSkin(petConfig.Id + ";" + skinId.ToString());
+
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
             newpet = self.PetXiLian(newpet, 1);
             self.UpdatePetAttribute(newpet, false);
@@ -646,6 +653,7 @@ namespace ET
             {
                 if (self.PetSkinList[p].KeyId != petId)
                 {
+                    //重复激活
                     continue;
                 }
                 if (!self.PetSkinList[p].Value.Contains(skinId.ToString()))
