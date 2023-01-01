@@ -97,7 +97,7 @@ namespace ET
             //self.UIPetSkinIcon.SetActive(showSkin);
 
             //获取此模型是否被激活
-            if (UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<PetComponent>().HavePetSkin(petConfig.Id, rolePetInfo.SkinId) == false)
+            if (self.ZoneScene().GetComponent<PetComponent>().HavePetSkin(petConfig.Id, rolePetInfo.SkinId) == false)
             {
                 self.NewSkinName.SetActive(true);
                 self.PiFuJiHuo.SetActive(true);
