@@ -175,6 +175,7 @@ namespace ET
             int index = RandomHelper.RandomByWeight(weight);
             skinId = petConfig.Skin[index];
             self.OnUnlockSkin(petConfig.Id + ";" + skinId.ToString());
+            self.OnUnlockSkin(petConfig.Skin[0] + ";" + skinId.ToString());
 
             RolePetInfo newpet = self.GenerateNewPet(petId, skinId);
             newpet = self.PetXiLian(newpet, 1);
