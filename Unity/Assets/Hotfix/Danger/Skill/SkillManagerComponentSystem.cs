@@ -241,12 +241,15 @@ namespace ET
             {
                 return;
             }
-
             if (skillConfig.SkillActType == 0 || skillConfig.Id == self.FangunSkillId)
             {
                 return;
             }
             if (skillConfig.PassiveSkillType > 0)
+            {
+                return;
+            }
+            if (self.SkillCmd.SkillID != skillId)
             {
                 return;
             }
