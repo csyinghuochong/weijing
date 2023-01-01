@@ -87,15 +87,29 @@ namespace ET
             UIHelper.Remove(  self.DomainScene(), UIType.UIPetChouKaGet );
         }
 
-        public static void OnInitUI(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo, bool showSkin = false)
+        public static void OnInitUI(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo, List<KeyValuePair> oldSkins, bool showSkin = false)
         {
             self.InitModelShowView(rolePetInfo).Coroutine();
 
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 
+            bool newSkin = false;
+            for (int p = 0; p < oldSkins.Count; p++)
+            {
+                if (oldSkins[p].KeyId != rolePetInfo.ConfigId)
+                {
+                    continue;
+                }
+                if (oldSkins[p].Value.Contains(rolePetInfo.SkinId.ToString()))
+                {
+                    newSkin = true;
+                    break;
+                }
+            }
+
             //获取此模型是否被激活
-            if (self.ZoneScene().GetComponent<PetComponent>().HavePetSkin(petConfig.Id, rolePetInfo.SkinId) == false)
+            if (newSkin)
             {
                 self.NewSkinName.SetActive(true);
                 self.PiFuJiHuo.SetActive(true);

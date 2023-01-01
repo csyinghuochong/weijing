@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -168,6 +169,9 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("钻石不足！");
                 return;
             }
+
+            List<KeyValuePair> oldPetSkin = new List<KeyValuePair>();
+            oldPetSkin.AddRange(petComponent.PetSkinList);
             C2M_RolePetEggOpen c2M_RolePetEggHatch = new C2M_RolePetEggOpen()
             {
                 Index = self.Index,
@@ -183,7 +187,7 @@ namespace ET
             uI.GetComponent<UIPetEggComponent>().OnRolePetEggOpen();
 
             UI petchouka = await UIHelper.Create(self.ZoneScene(), UIType.UIPetChouKaGet);
-            petchouka.GetComponent<UIPetChouKaGetComponent>().OnInitUI(m2C_RolePetChouKaResponse.PetInfo);
+            petchouka.GetComponent<UIPetChouKaGetComponent>().OnInitUI(m2C_RolePetChouKaResponse.PetInfo, oldPetSkin);
         }
 
         public static void OnTimer(this UIPetEggListItemComponent self)
