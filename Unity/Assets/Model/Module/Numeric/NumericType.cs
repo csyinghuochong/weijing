@@ -309,6 +309,47 @@
         public const int Extra_Buff_MageQiangDuAdd_Mul = Now_ActQiangDuAdd * 100 + 12;           //属性Buff附加乘法
 
 
+        //宠物全体魔法攻击
+        public const int Now_PetAllMageAct = 1300;         //宠物全体魔法攻击
+        public const int Base_PetAllMageAct_Base = Now_PetAllMageAct * 100 + 1;                 //属性累加
+        public const int Base_PetAllMageAct_Mul = Now_PetAllMageAct * 100 + 2;                  //属性乘法
+        public const int Base_PetAllMageAct_Add = Now_PetAllMageAct * 100 + 3;                  //属性附加
+        public const int Extra_Buff_PetAllMageAct_Add = Now_PetAllMageAct * 100 + 11;           //属性Buff附加加法
+        public const int Extra_Buff_PetAllMageAct_Mul = Now_PetAllMageAct * 100 + 12;           //属性Buff附加乘法
+
+        //宠物全体攻击
+        public const int Now_PetAllAct = 1301;         //宠物全体攻击
+        public const int Base_PetAllAct_Base = Now_PetAllAct * 100 + 1;                 //属性累加
+        public const int Base_PetAllAct_Mul = Now_PetAllAct * 100 + 2;                  //属性乘法
+        public const int Base_PetAllAct_Add = Now_PetAllAct * 100 + 3;                  //属性附加
+        public const int Extra_Buff_PetAllAct_Add = Now_PetAllAct * 100 + 11;           //属性Buff附加加法
+        public const int Extra_Buff_PetAllAct_Mul = Now_PetAllAct * 100 + 12;           //属性Buff附加乘法
+
+        //宠物全体防御
+        public const int Now_PetAllDef = 1302;         //宠物全体防御
+        public const int Base_PetAllDef_Base = Now_PetAllDef * 100 + 1;                 //属性累加
+        public const int Base_PetAllDef_Mul = Now_PetAllDef * 100 + 2;                  //属性乘法
+        public const int Base_PetAllDef_Add = Now_PetAllDef * 100 + 3;                  //属性附加
+        public const int Extra_Buff_PetAllDef_Add = Now_PetAllDef * 100 + 11;           //属性Buff附加加法
+        public const int Extra_Buff_PetAllDef_Mul = Now_PetAllDef * 100 + 12;           //属性Buff附加乘法
+
+        //宠物全体魔防
+        public const int Now_PetAllAdf = 1303;         //宠物全体魔防
+        public const int Base_PetAllAdf_Base = Now_PetAllAdf * 100 + 1;                 //属性累加
+        public const int Base_PetAllAdf_Mul = Now_PetAllAdf * 100 + 2;                  //属性乘法
+        public const int Base_PetAllAdf_Add = Now_PetAllAdf * 100 + 3;                  //属性附加
+        public const int Extra_Buff_PetAllAdf_Add = Now_PetAllAdf * 100 + 11;           //属性Buff附加加法
+        public const int Extra_Buff_PetAllAdf_Mul = Now_PetAllAdf * 100 + 12;           //属性Buff附加乘法
+
+        //宠物全体血量
+        public const int Now_PetAllHp = 1304;         //宠物全体血量
+        public const int Base_PetAllHp_Base = Now_PetAllHp * 100 + 1;                 //属性累加
+        public const int Base_PetAllHp_Mul = Now_PetAllHp * 100 + 2;                  //属性乘法
+        public const int Base_PetAllHp_Add = Now_PetAllHp * 100 + 3;                  //属性附加
+        public const int Extra_Buff_PetAllHp_Add = Now_PetAllHp * 100 + 11;           //属性Buff附加加法
+        public const int Extra_Buff_PetAllHp_Mul = Now_PetAllHp * 100 + 12;           //属性Buff附加乘法
+
+
         //浮点数 2001-2999   其余区间为整数
         public const int Now_Cri = 2001;          //当前暴击概率
         public const int Base_Cri_Base = Now_Cri * 100 + 1;                  //属性累加
@@ -770,5 +811,32 @@
         public const int AOIPct = AOI * 10 + 3;
         public const int AOIFinalAdd = AOI * 10 + 4;
         public const int AOIFinalPct = AOI * 10 + 5;
-}
+
+
+
+        //宠物全体暴击
+        public const int Now_PetAllCri = 2301;         //宠物全体暴击
+        public const int Base_PetAllCri_Base = Now_PetAllCri * 100 + 1;                 //属性累加
+        public const int Base_PetAllCri_Mul = Now_PetAllCri * 100 + 2;                  //属性乘法
+        public const int Base_PetAllCri_Add = Now_PetAllCri * 100 + 3;                  //属性附加
+        public const int Extra_Buff_PetAllCri_Add = Now_PetAllCri * 100 + 11;           //属性Buff附加加法
+        public const int Extra_Buff_PetAllCri_Mul = Now_PetAllCri * 100 + 12;           //属性Buff附加乘法
+
+        //宠物全体命中
+        public const int Now_PetAllHit = 2302;         //宠物全体命中
+        public const int Base_PetAllHit_Base = Now_PetAllHit * 100 + 1;                 //属性累加
+        public const int Base_PetAllHit_Mul = Now_PetAllHit * 100 + 2;                  //属性乘法
+        public const int Base_PetAllHit_Add = Now_PetAllHit * 100 + 3;                  //属性附加
+        public const int Extra_Buff_PetAllHit_Add = Now_PetAllHit * 100 + 11;           //属性Buff附加加法
+        public const int Extra_Buff_PetAllHit_Mul = Now_PetAllHit * 100 + 12;           //属性Buff附加乘法
+
+        //宠物全体闪避
+        public const int Now_PetAllDodge = 2303;         //宠物全体闪避
+        public const int Base_PetAllDodge_Base = Now_PetAllDodge * 100 + 1;                 //属性累加
+        public const int Base_PetAllDodge_Mul = Now_PetAllDodge * 100 + 2;                  //属性乘法
+        public const int Base_PetAllDodge_Add = Now_PetAllDodge * 100 + 3;                  //属性附加
+        public const int Extra_Buff_PetAllDodge_Add = Now_PetAllDodge * 100 + 11;           //属性Buff附加加法
+        public const int Extra_Buff_PetAllDodge_Mul = Now_PetAllDodge * 100 + 12;           //属性Buff附加乘法
+
+    }
 }

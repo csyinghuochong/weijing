@@ -60,7 +60,7 @@ namespace ET
                 }
                 if (!havepet)
                 {
-                    self.PetSkinList.Add(new KeyValuePair() { KeyId = petConfigs[i].Id, Value = petConfigs[i].Skin[0].ToString() });
+                    //self.PetSkinList.Add(new KeyValuePair() { KeyId = petConfigs[i].Id, Value = petConfigs[i].Skin[0].ToString() });
                 }
             }
             for (int i = 0; i < self.RolePetInfos.Count; i++)
