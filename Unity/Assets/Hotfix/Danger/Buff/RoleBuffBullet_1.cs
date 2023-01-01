@@ -44,7 +44,7 @@ namespace ET
             {
                 this.BuffState = BuffState.Finished;
             }
-            if (this.EffectInstanceId > 0)
+            if (this.EffectInstanceId != 0)
             {
                 Quaternion rotation = Quaternion.Euler(0, this.BuffData.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
 

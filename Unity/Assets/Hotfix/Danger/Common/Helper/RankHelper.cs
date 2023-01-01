@@ -17,6 +17,10 @@ namespace ET
             {
                 globalValueConfig = GlobalValueConfigCategory.Instance.Get(67);
             }
+            if (day == 0)
+            {
+                day = 7;
+            }
             return globalValueConfig.Value.Contains(day.ToString());
         }
 

@@ -119,23 +119,53 @@ namespace ET
 
             if (vectorPoint.x <= 0)
             {
-                vectorPoint.x += (int)(weight * 0.5);
-                //vectorPoint.x -= 50;
-                vectorPoint.y = (height_2 - height_1) * 0.5f;
-                self.Tips1.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
-                vectorPoint.x += weight;
-                vectorPoint.y = 0;
-                self.Tips2.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
+                if (height_1 > height_2)
+                {
+                    vectorPoint.x += (int)(weight * 0.5);
+                    vectorPoint.y = 0f;
+                    vectorPoint.x -= 50;
+                    self.Tips1.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
+
+                    vectorPoint.x += weight;
+                    vectorPoint.y = (height_1 - height_2) * 0.5f;
+                    self.Tips2.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
+                }
+                else
+                {
+                    vectorPoint.x += (int)(weight * 0.5);
+                    vectorPoint.y = (height_2 - height_1) * 0.5f;
+                    vectorPoint.x -= 50;
+                    self.Tips1.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
+
+                    vectorPoint.x += weight;
+                    vectorPoint.y = 0f;
+                    self.Tips2.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
+                }
             }
             else
             {
-                vectorPoint.x -= (int)(weight * 0.5);
-                vectorPoint.y = 0f;
-                self.Tips2.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
-                vectorPoint.x -= (20+ weight);
-                vectorPoint.y = (height_2 - height_1) * 0.5f;
-                vectorPoint.x -= 30;
-                self.Tips1.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
+                if (height_1 > height_2)
+                {
+                    vectorPoint.x -= (int)(weight * 0.5);
+                    vectorPoint.y = (height_1 - height_2) * 0.5f;
+                    self.Tips2.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
+
+                    vectorPoint.x -= (20 + weight);
+                    vectorPoint.y = 0f;
+                    vectorPoint.x -= 30;
+                    self.Tips1.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
+                }
+                else
+                {
+                    vectorPoint.x -= (int)(weight * 0.5);
+                    vectorPoint.y = 0f;
+                    self.Tips2.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
+
+                    vectorPoint.x -= (20 + weight);
+                    vectorPoint.y = (height_2 - height_1) * 0.5f;
+                    vectorPoint.x -= 30;
+                    self.Tips1.GetComponent<RectTransform>().anchoredPosition = vectorPoint;
+                }
             }
         }
     }
