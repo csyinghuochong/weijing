@@ -76,8 +76,9 @@ namespace ET
             //配置摄像机位置[0,115,257]
             gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 115, 257f);
 
-            PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-            self.uIModelShowComponent.ShowOtherModel("Pet/" + petConfig.PetModel.ToString()).Coroutine();
+            //PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+            PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
+            self.uIModelShowComponent.ShowOtherModel("Pet/" + petSkinConfig.SkinID.ToString()).Coroutine();
 
 
         }

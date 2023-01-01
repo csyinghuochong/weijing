@@ -121,7 +121,8 @@ namespace ET
             {
                 self.OnUpdatePetPoint(rolePetInfo);
                 PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
+                PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
+                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
                 self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;
 
                 self.Img_CanZhan.SetActive(rolePetInfo.PetStatus == 1);
