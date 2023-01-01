@@ -23,6 +23,9 @@ namespace ET
 
         public static void OnRecvRolePetUpdate(this PetComponent self, M2C_RolePetUpdate m2C_RolePetUpdate)
         {
+            RolePetInfo rolePetInfo = m2C_RolePetUpdate.PetInfoAdd[0];
+            self.OnUnlockSkin($"{rolePetInfo.ConfigId};{rolePetInfo.SkinId}");
+
             self.RolePetInfos.AddRange(m2C_RolePetUpdate.PetInfoAdd);
         }
 
