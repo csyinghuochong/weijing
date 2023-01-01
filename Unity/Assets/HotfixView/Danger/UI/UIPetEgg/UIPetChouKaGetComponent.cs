@@ -41,8 +41,8 @@ namespace ET
             self.Text_Quality = rc.Get<GameObject>("Text_Quality");
             self.UIPetSkinIcon = rc.Get<GameObject>("UIPetSkinIcon");
 
-            self.NewSkinName = rc.Get<GameObject>("UIPetSkinIcon");
-            self.PiFuJiHuo = rc.Get<GameObject>("UIPetSkinIcon");
+            self.NewSkinName = rc.Get<GameObject>("NewSkinName");
+            self.PiFuJiHuo = rc.Get<GameObject>("PiFuJiHuo");
 
             for (int i = 0; i < self.PetZiZhiItemList.Length; i++)
             {
@@ -91,10 +91,8 @@ namespace ET
         {
             self.InitModelShowView(rolePetInfo).Coroutine();
 
-            PetConfig petConfig = PetConfigCategory.Instance.Get( rolePetInfo.ConfigId );
-            self.Text_Tip.GetComponent<Text>().text = $"{petConfig.PetName}";
-            self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, true);
-            //self.UIPetSkinIcon.SetActive(showSkin);
+
+            PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 
             //获取此模型是否被激活
             if (self.ZoneScene().GetComponent<PetComponent>().HavePetSkin(petConfig.Id, rolePetInfo.SkinId) == false)
@@ -102,10 +100,17 @@ namespace ET
                 self.NewSkinName.SetActive(true);
                 self.PiFuJiHuo.SetActive(true);
             }
-            else {
+            else
+            {
                 self.NewSkinName.SetActive(false);
                 self.PiFuJiHuo.SetActive(false);
             }
+
+            self.Text_Tip.GetComponent<Text>().text = $"{petConfig.PetName}";
+            self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, true);
+            //self.UIPetSkinIcon.SetActive(showSkin);
+
+
 
             self.UpdateSkillList(rolePetInfo);
             self.UpdateAttribute(rolePetInfo);
