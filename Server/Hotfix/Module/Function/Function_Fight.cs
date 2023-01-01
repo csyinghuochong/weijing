@@ -1027,6 +1027,7 @@ namespace ET
 
                 //极品属性
                 float addPro = 0;
+
                 if (equipList[i].HideSkillLists.Contains(68000104)) {
                     addPro = 0.1f;
                 }

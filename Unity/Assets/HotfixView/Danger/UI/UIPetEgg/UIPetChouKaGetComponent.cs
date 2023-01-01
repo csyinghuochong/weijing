@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,6 +21,9 @@ namespace ET
         public GameObject[] PetZiZhiItemList = new GameObject[6];
         public UIPetSkinIconComponent PetSkinIconComponent;
         public UIModelShowComponent uIModelShowComponent;
+
+        public GameObject NewSkinName;
+        public GameObject PiFuJiHuo;
     }
 
     [ObjectSystem]
@@ -36,6 +40,10 @@ namespace ET
             self.Text_PetLevel = rc.Get<GameObject>("Text_PetLevel");
             self.Text_Quality = rc.Get<GameObject>("Text_Quality");
             self.UIPetSkinIcon = rc.Get<GameObject>("UIPetSkinIcon");
+
+            self.NewSkinName = rc.Get<GameObject>("UIPetSkinIcon");
+            self.PiFuJiHuo = rc.Get<GameObject>("UIPetSkinIcon");
+
             for (int i = 0; i < self.PetZiZhiItemList.Length; i++)
             {
                 self.PetZiZhiItemList[i] = rc.Get<GameObject>("PetZiZhiItem" + (i + 1));
@@ -70,6 +78,8 @@ namespace ET
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             self.uIModelShowComponent.ShowOtherModel("Pet/" + petConfig.PetModel.ToString()).Coroutine();
+
+
         }
 
         public static void OnBtn_Close(this UIPetChouKaGetComponent self)
@@ -85,6 +95,18 @@ namespace ET
             self.Text_Tip.GetComponent<Text>().text = $"{petConfig.PetName}";
             self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, true);
             //self.UIPetSkinIcon.SetActive(showSkin);
+
+            //获取此模型是否被激活
+            if (UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<PetComponent>().HavePetSkin(petConfig.Id, rolePetInfo.SkinId) == false)
+            {
+                self.NewSkinName.SetActive(true);
+                self.PiFuJiHuo.SetActive(true);
+            }
+            else {
+                self.NewSkinName.SetActive(false);
+                self.PiFuJiHuo.SetActive(false);
+            }
+
             self.UpdateSkillList(rolePetInfo);
             self.UpdateAttribute(rolePetInfo);
         }
