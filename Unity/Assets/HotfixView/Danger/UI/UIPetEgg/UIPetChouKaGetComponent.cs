@@ -95,7 +95,7 @@ namespace ET
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 
-            bool newSkin = false;
+            bool newSkin = true;
             for (int p = 0; p < oldSkins.Count; p++)
             {
                 if (oldSkins[p].KeyId != rolePetInfo.ConfigId)
@@ -104,13 +104,13 @@ namespace ET
                 }
                 if (oldSkins[p].Value.Contains(rolePetInfo.SkinId.ToString()))
                 {
-                    newSkin = true;
+                    newSkin = false;
                     break;
                 }
             }
 
             //获取此模型是否被激活
-            if (newSkin)
+            if (newSkin == true)
             {
                 self.NewSkinName.SetActive(true);
                 self.PiFuJiHuo.SetActive(true);
@@ -122,10 +122,7 @@ namespace ET
             }
 
             self.Text_Tip.GetComponent<Text>().text = $"{petConfig.PetName}";
-            self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, newSkin);
-            //self.UIPetSkinIcon.SetActive(showSkin);
-
-
+            self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, true);
 
             self.UpdateSkillList(rolePetInfo);
             self.UpdateAttribute(rolePetInfo);

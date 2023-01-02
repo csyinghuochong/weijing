@@ -994,6 +994,9 @@ namespace ET
                 }
             }
 
+            //隐藏技能战力
+            int skillFightValue = 0;
+            
             int equipHpSum = 0;
             int equipMinActSum = 0;
             int equipMaxActSum = 0;
@@ -1042,6 +1045,11 @@ namespace ET
                 if (equipList[i].HideSkillLists.Contains(68000105))
                 {
                     mEquipCon.Equip_MinAct = mEquipCon.Equip_MaxAct;
+                }
+
+                for (int z = 0; i <= equipList[i].HideSkillLists.Count; z++) {
+                    HideProListConfig hideProListCof = HideProListConfigCategory.Instance.Get(equipList[i].HideSkillLists[z]);
+                    skillFightValue += hideProListCof.AddFightValue;
                 }
 
                 EquipQiangHuaConfig equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(itemCof.ItemSubType, qianghuaLv[itemCof.ItemSubType]);
@@ -1214,6 +1222,37 @@ namespace ET
                 //AddUpdateProDicList(shoujiProList[i].HideID, shoujiProList[i].HideValue, UpdateProDicList);
             }
 
+            //宠物皮肤属性
+            for (int p = 0; p < unit.GetComponent<PetComponent>().PetSkinList.Count; p++)
+            {
+                string[] strList = unit.GetComponent<PetComponent>().PetSkinList[p].Value.Split('_');
+                for (int y = 0; y < strList.Length; y++) {
+                    if (strList[y] != "" && strList[y] != null&& strList[y] != "0")
+                    {
+                        PetSkinConfig petSkinCof = PetSkinConfigCategory.Instance.Get(int.Parse(strList[y]));
+                        if (petSkinCof.PripertySet != "" && petSkinCof.PripertySet != "0" && petSkinCof.PripertySet != null) {
+                            string[] AddPropreList = petSkinCof.PripertySet.Split(';');
+                            for (int z = 0; z < AddPropreList.Length; z++)
+                            {
+                                int addProType = int.Parse(AddPropreList[z].Split(',')[0]);
+                                int type = NumericHelp.GetNumericValueType(addProType);
+                                int addProValue = 0;
+                                if (type == 1)
+                                {
+                                    addProValue = int.Parse(AddPropreList[z].Split(',')[1]);
+                                }
+                                else
+                                {
+                                    addProValue = (int)(float.Parse(AddPropreList[z].Split(',')[1]) * 10000);
+                                }
+
+                                AddUpdateProDicList(addProType, addProValue, UpdateProDicList);
+                            }
+                        }
+                    }
+                }
+            }
+
             //汇总属性
             long BaseHp = occBaseHp + equipHpSum + BaseHp_EquipSuit;
             long BaseMinAct = occBaseMinAct + equipMinActSum + BaseMinAct_EquipSuit;
@@ -1374,6 +1413,9 @@ namespace ET
             foreach (var Item in NumericHelp.ZhanLi_Act) {
                 ShiLi_Act += (int)((float)numericComponent.ReturnGetFightNumLong(Item.Key) * Item.Value);
             }
+
+            //隐藏技能算在攻击部分
+            ShiLi_Act += skillFightValue;
 
             foreach (var Item in NumericHelp.ZhanLi_ActPro)
             {

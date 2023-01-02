@@ -349,6 +349,11 @@ namespace ET
                     }
                 }
 
+                //保底为1点,防止出现0点属性
+                if (randomValueInt < 1) {
+                    randomValueInt = 1;
+                }
+
                 //随机属性类型
                 int randomIDInt = RandomHelper.RandomNumber(1, 5);
                 //

@@ -58,6 +58,8 @@ namespace ET
         public GameObject PetListNode;
         public GameObject PetSkillNode;
 
+        public GameObject PropertyShowText;
+
         public UI PetModelShowComponent;
         public UI SkinModelShowComponent;
         public PetComponent PetComponent;
@@ -112,6 +114,7 @@ namespace ET
             self.ScrollViewSkin = rc.Get<GameObject>("ScrollViewSkin");
             self.ButtonUseSkin = rc.Get<GameObject>("ButtonUseSkin");
             self.PetSkinRawImage = rc.Get<GameObject>("PetSkinRawImage");
+            self.PropertyShowText = rc.Get<GameObject>("PropertyShowText");
 
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
             UI PageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", BtnItemTypeSet);
@@ -770,6 +773,16 @@ namespace ET
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             self.SkinJiHuo.SetActive(petComponent.HavePetSkin( self.LastSelectItem.ConfigId, self.PetSkinId ));
             self.SkinWeiJiHuo.SetActive(!self.SkinJiHuo.activeSelf);
+
+            //显示激活属性
+            if (petConfig.PripertyShow != "" && petConfig.PripertyShow != "0")
+            {
+                self.PropertyShowText.GetComponent<Text>().text = petConfig.PripertyShow;
+            }
+            else {
+                self.PropertyShowText.SetActive(false);
+            }
+            
         }
 
         public static void OnBagItemUpdate(this UIPetListComponent self)

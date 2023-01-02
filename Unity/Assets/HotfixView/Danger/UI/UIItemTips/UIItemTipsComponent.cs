@@ -590,9 +590,18 @@ namespace ET
                 self.Img_back.GetComponent<RectTransform>().sizeDelta = new Vector2(self.Img_backVector2.x + exceedWidth + 30, self.Img_backVector2.y);
             }
 
+            //鉴定品质符
             if (itemconf.ItemSubType == 121)
             {
                 self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + $"鉴定符品质:{baginfo.ItemPar}" + "\n" + "品质越高,鉴定出极品的概率越高。" + "\n" + "鉴定符品质与制造者熟练度相关。";
+            }
+
+            //宠物技能
+            if (itemconf.ItemType == 2 && itemconf.ItemSubType == 122)
+            {
+                SkillConfig skillCof = SkillConfigCategory.Instance.Get(int.Parse(itemconf.ItemUsePar));
+                
+                self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + $"技能描述:{skillCof.SkillDescribe}";
             }
 
             string langStr = GameSettingLanguge.LoadLocalization("使用等级");
