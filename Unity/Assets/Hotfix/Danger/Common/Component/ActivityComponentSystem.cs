@@ -33,6 +33,14 @@ namespace ET
             if (self.TotalSignNumber >= 30)
             {
                 self.TotalSignNumber = 0;
+                for (int i = self.ActivityReceiveIds.Count - 1; i >= 0; i--)
+                {
+                    ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(self.ActivityReceiveIds[i]);
+                    if (activityConfig.ActivityType == 23)
+                    {
+                        self.ActivityReceiveIds.RemoveAt(i);
+                    }
+                }
             }
         }
 #endif

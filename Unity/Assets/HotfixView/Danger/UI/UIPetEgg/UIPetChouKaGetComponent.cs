@@ -122,7 +122,7 @@ namespace ET
             }
 
             self.Text_Tip.GetComponent<Text>().text = $"{petConfig.PetName}";
-            self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, true);
+            self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, newSkin);
             //self.UIPetSkinIcon.SetActive(showSkin);
 
 
