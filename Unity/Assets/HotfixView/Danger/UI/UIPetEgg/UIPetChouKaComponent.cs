@@ -100,8 +100,8 @@ namespace ET
             }
 
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            List<KeyValuePair> oldPetSkin = new List<KeyValuePair>();
-            oldPetSkin.AddRange(petComponent.PetSkinList);
+            List<KeyValuePair> oldPetSkin  = petComponent.GetPetSkinCopy();
+            Log.ILog.Debug($"oldPetSkin11: {oldPetSkin.Count}");
             C2M_RolePetChouKaRequest m_ItemOperateWear = new C2M_RolePetChouKaRequest() {  ChouKaType = choukaType };
             M2C_RolePetChouKaResponse r2c_roleEquip = (M2C_RolePetChouKaResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
 
@@ -116,6 +116,7 @@ namespace ET
             {
                 return;
             }
+            Log.ILog.Debug($"oldPetSkin22: {oldPetSkin.Count}");
             uI.GetComponent<UIPetChouKaGetComponent>().OnInitUI(r2c_roleEquip.RolePetInfo, oldPetSkin);
             self.UpdateMoney();
         }

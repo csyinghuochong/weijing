@@ -108,6 +108,9 @@ namespace ET
 		/// <summary>隐藏属性最大值</summary>
 		[ProtoMember(11)]
 		public string PropertyValueMax { get; set; }
+		/// <summary>附加战力</summary>
+		[ProtoMember(12)]
+		public int AddFightValue { get; set; }
 
 	}
 }

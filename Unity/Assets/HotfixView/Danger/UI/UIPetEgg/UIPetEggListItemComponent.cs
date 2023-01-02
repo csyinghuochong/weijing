@@ -170,8 +170,8 @@ namespace ET
                 return;
             }
 
-            List<KeyValuePair> oldPetSkin = new List<KeyValuePair>();
-            oldPetSkin.AddRange(petComponent.PetSkinList);
+
+            List<KeyValuePair> oldPetSkin = petComponent.GetPetSkinCopy();
             C2M_RolePetEggOpen c2M_RolePetEggHatch = new C2M_RolePetEggOpen()
             {
                 Index = self.Index,
@@ -185,7 +185,6 @@ namespace ET
             petComponent.RolePetEggs[self.Index].EndTime = 0;
             UI uI = UIHelper.GetUI( self.ZoneScene(), UIType.UIPetEgg );
             uI.GetComponent<UIPetEggComponent>().OnRolePetEggOpen();
-
             UI petchouka = await UIHelper.Create(self.ZoneScene(), UIType.UIPetChouKaGet);
             petchouka.GetComponent<UIPetChouKaGetComponent>().OnInitUI(m2C_RolePetChouKaResponse.PetInfo, oldPetSkin);
         }

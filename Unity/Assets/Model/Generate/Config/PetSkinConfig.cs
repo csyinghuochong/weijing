@@ -90,6 +90,9 @@ namespace ET
 		/// <summary>激活属性(暂时不用)</summary>
 		[ProtoMember(5)]
 		public string PripertySet { get; set; }
+		/// <summary>激活属性描述</summary>
+		[ProtoMember(6)]
+		public string PripertyShow { get; set; }
 
 	}
 }

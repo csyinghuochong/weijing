@@ -364,6 +364,16 @@ namespace ET
             return null;
         }
 
+        public static List<KeyValuePair> GetPetSkinCopy(this PetComponent self)
+        {
+            List<KeyValuePair> keyValuePairs = new List<KeyValuePair>();
+            for (int i = 0; i < self.PetSkinList.Count; i++)
+            {
+                keyValuePairs.Add(ComHelp.DeepCopy<KeyValuePair>(self.PetSkinList[i])) ;
+            }
+            return keyValuePairs;
+        }
+
         /// <summary>
         /// 宠物合成
         /// </summary>

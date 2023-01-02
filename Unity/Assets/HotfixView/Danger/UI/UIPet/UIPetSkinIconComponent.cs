@@ -65,10 +65,10 @@ namespace ET
             {
                 self.JiHuoSet.SetActive(true);
             }
-            else {
+            else
+            {
                 self.JiHuoSet.SetActive(false);
             }
-
         }
     }
 }

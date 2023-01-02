@@ -15,7 +15,6 @@ namespace ET
         {
             Game.Scene.AddComponent<ConfigComponent>();
             await ConfigComponent.Instance.LoadAsync();
-
             TimeInfo.Instance.TimeZone = 8;
             StartProcessConfig processConfig = StartProcessConfigCategory.Instance.Get(Game.Options.Process);
 

@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 445
+  version: 446
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -4896,6 +4896,8 @@ MonoBehaviour:
     path: Assets/Bundles/Unit/Npc/NPC_ShenShou_2.prefab
   - bundle: 0dfc914d7ecba35b95030d35593e203f.unity3d
     path: Assets/Bundles/Unit/Npc/NPC_ShenShou_3.prefab
+  - bundle: 0d8ede8c909b33a8db9fb586694623d5.unity3d
+    path: Assets/Bundles/Unit/Npc/NPC_ShiBing.prefab
   - bundle: ba17e795d4da0f0377a26c7dc461fae3.unity3d
     path: Assets/Bundles/Unit/Npc/NPC_Shu.prefab
   - bundle: 66b4c7a2be98f4e1d65aeca063a5785b.unity3d
@@ -6100,6 +6102,9 @@ MonoBehaviour:
   - name: 0dfc914d7ecba35b95030d35593e203f.unity3d
     assets:
     - Assets/Bundles/Unit/Npc/NPC_ShenShou_3.prefab
+  - name: 0d8ede8c909b33a8db9fb586694623d5.unity3d
+    assets:
+    - Assets/Bundles/Unit/Npc/NPC_ShiBing.prefab
   - name: ba17e795d4da0f0377a26c7dc461fae3.unity3d
     assets:
     - Assets/Bundles/Unit/Npc/NPC_Shu.prefab
@@ -10821,6 +10826,9 @@ MonoBehaviour:
   - name: 9b60dd03fe7b94d77bf0c12cab656fc8.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/Snake/Snake/Snake@Die.fbx
+  - name: f20c54702571569ea319c33bf28a3411.unity3d
+    assets:
+    - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/Snake/Snake/Snake@Idle.fbx
   - name: 0a47d865c1ba5fd59e7aa695854babdc.unity3d
     assets:
     - Assets/Res/Models/MonsterModel/Suriyun/MEGA Monsters Pack/Snake/Snake/Snake@Damage.fbx
@@ -11716,6 +11724,9 @@ MonoBehaviour:
   - name: 64b75d2923b1f65d02fc58ba942e2336.unity3d
     assets:
     - Assets/Res/UI/UIRes/ImageBig/ImgBig_1.png
+  - name: d40db5265fd16daa59f03ea45514bf97.unity3d
+    assets:
+    - Assets/Res/UI/UIRes/Imgage/Img_61A.png
   - name: 3faad92c3886d48a94f73e4ad10366b7.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_343_1.png
@@ -15818,9 +15829,15 @@ MonoBehaviour:
   - name: 68764a32ff3b2f9d2055c20ad260fa77.unity3d
     assets:
     - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Models/Coins/Coins.fbx
+  - name: 9b972be56f20f350ecc8f36f391fc8cb.unity3d
+    assets:
+    - Assets/Res/MonsterSet/Toon_RTS/Elves/animation/Spearman/ELF_spearman_01_idle.FBX
   - name: 217c4e8fe62ffe64dfb475e237dbf527.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/TerrainTexture/NewLayer.terrainlayer
+  - name: 87b54d0fa1b385c20bdb58ed61d44ed5.unity3d
+    assets:
+    - Assets/Res/AnimatorSet/ShiBing_1.controller
   - name: 399f09fb4acdd8c7927a40915d54b671.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories_roof.mat
