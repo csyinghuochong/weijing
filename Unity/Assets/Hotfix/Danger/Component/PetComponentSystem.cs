@@ -369,7 +369,8 @@ namespace ET
             List<KeyValuePair> keyValuePairs = new List<KeyValuePair>();
             for (int i = 0; i < self.PetSkinList.Count; i++)
             {
-                keyValuePairs.Add(ComHelp.DeepCopy<KeyValuePair>(self.PetSkinList[i])) ;
+                //keyValuePairs.Add(ComHelp.DeepCopy<KeyValuePair>(self.PetSkinList[i])) ;
+                keyValuePairs.Add(new KeyValuePair() { KeyId = self.PetSkinList[i].KeyId, Value = self.PetSkinList[i].Value });
             }
             return keyValuePairs;
         }
