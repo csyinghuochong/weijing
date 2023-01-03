@@ -77,7 +77,7 @@ namespace ET
 					{
 						try
 						{
-							//重连
+							//重连 [二次登录不成功可能导致Unit没移除]
 							Log.Debug($"LoginTest C2G_EnterGame 二次登录开始; player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
 							//主要判断unit还在不在
 							IActorResponse reqEnter =(M2G_RequestEnterGameState) await MessageHelper.CallLocationActor(player.UnitId, new G2M_RequestEnterGameState()
