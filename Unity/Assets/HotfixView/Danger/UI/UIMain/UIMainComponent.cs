@@ -783,7 +783,6 @@ namespace ET
                     endTime += 30 * 60 * 1000;
                 }
 
-
                 if (curTime < startTime)
                 {
                     long sTime = serverTime + (startTime - curTime) * 60 * 1000;
