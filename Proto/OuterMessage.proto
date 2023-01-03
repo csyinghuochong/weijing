@@ -3923,6 +3923,7 @@ message M2C_PetDuiHuanResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;
 	int32 Error = 92;
+	RolePetInfo RolePetInfo = 1;
 }
 
 //领取充值签到奖励

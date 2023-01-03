@@ -8201,6 +8201,9 @@ namespace ET
 		[ProtoMember(92)]
 		public int Error { get; set; }
 
+		[ProtoMember(1)]
+		public RolePetInfo RolePetInfo { get; set; }
+
 	}
 
 //领取充值签到奖励

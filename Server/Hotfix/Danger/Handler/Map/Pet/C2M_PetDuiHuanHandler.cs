@@ -26,7 +26,7 @@ namespace ET
                 reply();
                 return;
             }
-            petComponent.OnAddPet(int.Parse(configInfo[1]));
+            response.RolePetInfo = petComponent.OnAddPet(int.Parse(configInfo[1]));
             reply();
             await ETTask.CompletedTask;
         }
