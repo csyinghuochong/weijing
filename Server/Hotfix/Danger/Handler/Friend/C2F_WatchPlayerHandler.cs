@@ -40,6 +40,11 @@ namespace ET
 
                     response.TeamId = g_SendChatRequest1.TeamInfo != null ? g_SendChatRequest1.TeamInfo.TeamId : 0;
                     break;
+                case 3:
+                    D2G_GetComponent d2GGetUnit_3 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.PetComponent });
+                    break;
+                default:
+                    break;
             }
 
             reply();

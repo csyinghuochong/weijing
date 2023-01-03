@@ -104,7 +104,6 @@ namespace ET
             Log.ILog.Debug($"oldPetSkin11: {oldPetSkin.Count}");
             C2M_RolePetChouKaRequest m_ItemOperateWear = new C2M_RolePetChouKaRequest() {  ChouKaType = choukaType };
             M2C_RolePetChouKaResponse r2c_roleEquip = (M2C_RolePetChouKaResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
-
             if (r2c_roleEquip.Error != 0)
             {
                 return;
