@@ -64,8 +64,27 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选择要合成的宠物！");
                 return;
             }
+            bool havepetHexin = false;
+            for (int i = 0; i < self.HeChengPet_Left.PetHeXinList.Count; i++)
+            {
+                if (self.HeChengPet_Left.PetHeXinList[i]!= 0)
+                {
+                    havepetHexin = true;
+                    break;
+                }
+            }
+            for (int i = 0; i < self.HeChengPet_Right.PetHeXinList.Count; i++)
+            {
+                if (self.HeChengPet_Right.PetHeXinList[i] != 0)
+                {
+                    havepetHexin = true;
+                    break;
+                }
+            }
+            string addStr = havepetHexin ? "当前宠物身上穿戴的宠物之核将消失," : "";
+
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "宠物合成",
-                "合成后将随机保留一个宠物，另外一个宠物会销毁,请确认是否执行合成",
+                $"合成后将随机保留一个宠物，另外一个宠物会销毁,{addStr} 请确认是否执行合成",
                 () => { self.ReqestHeCheng().Coroutine(); }).Coroutine();
         }
 
