@@ -1047,7 +1047,13 @@ namespace ET
                     mEquipCon.Equip_MinAct = mEquipCon.Equip_MaxAct;
                 }
 
-                for (int z = 0; i <= equipList[i].HideSkillLists.Count; z++) {
+                for (int z = 0; z < equipList[i].HideSkillLists.Count; z++) 
+                {
+                    if (!HideProListConfigCategory.Instance.Contain(equipList[i].HideSkillLists[z]))
+                    {
+                        Log.Warning($"HideProListConfig==null:  {equipList[i].HideSkillLists[z]}");
+                        continue;
+                    }
                     HideProListConfig hideProListCof = HideProListConfigCategory.Instance.Get(equipList[i].HideSkillLists[z]);
                     skillFightValue += hideProListCof.AddFightValue;
                 }
