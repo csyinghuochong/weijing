@@ -777,6 +777,12 @@ namespace ET
                 int closeTime_2 = openTime[3];
                 int startTime = openTime_1 * 60 + openTime_2;
                 int endTime = closeTime_1 * 60 + closeTime_2;
+                //战场按钮延长30分钟消失
+                if (functonIds[i] == 1025)
+                {
+                    endTime += 30 * 60 * 1000;
+                }
+
 
                 if (curTime < startTime)
                 {
