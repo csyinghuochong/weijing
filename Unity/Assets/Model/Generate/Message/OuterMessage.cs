@@ -6379,6 +6379,9 @@ namespace ET
 		[ProtoMember(5)]
 		public int Occ { get; set; }
 
+		[ProtoMember(6)]
+		public RolePetInfo RolePetInfo { get; set; }
+
 	}
 
 //好友列表

@@ -3033,6 +3033,7 @@ message F2C_WatchPlayerResponse // IFriendActorResponse
 	repeated BagInfo EquipList = 3;	//装备 
 	int64 TeamId = 4;
 	int32 Occ = 5;
+	RolePetInfo RolePetInfo = 6;
 }
 
 //好友列表
