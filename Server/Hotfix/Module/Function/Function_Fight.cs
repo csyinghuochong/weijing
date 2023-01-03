@@ -63,6 +63,8 @@ namespace ET
             long attack_MinDef = numericComponentAttack.GetAsLong(NumericType.Now_MinDef);
             long attack_MaxDef = numericComponentAttack.GetAsLong(NumericType.Now_MaxDef);
 
+            float attackPet_hit = 0;
+            float attackPet_cri = 0;
 
             //当前幸运
             int nowluck = numericComponentAttack.GetAsInt(NumericType.Now_Luck);
@@ -156,6 +158,8 @@ namespace ET
             long defend_def = (long)RandomHelper.RandomNumberFloat(defend_MinDef, defend_MaxDef);
             long defend_adf = (long)RandomHelper.RandomNumberFloat(defend_MinAdf, defend_MaxAdf);
 
+            float defendPet_dodge = 0;
+
             bool ifMonsterBoss_Act = false;
             bool ifMonsterBoss_Def = false;
             bool petfuben = false;
@@ -182,6 +186,9 @@ namespace ET
                 case UnitType.Pet:
                     PetConfig petCof = PetConfigCategory.Instance.Get(defendUnit.ConfigId);
                     defendUnitLv = petCof.PetLv;
+                    defend_def += numericComponentAttack.GetAsLong(NumericType.Now_PetAllDef);
+                    defend_adf += numericComponentAttack.GetAsLong(NumericType.Now_PetAllAdf);
+                    defendPet_dodge += numericComponentAttack.GetAsFloat(NumericType.Now_PetAllDodge);
                     break;
                 //玩家
                 case UnitType.Player:
@@ -203,6 +210,12 @@ namespace ET
                 case UnitType.Pet:
                     PetConfig petCof = PetConfigCategory.Instance.Get(attackUnit.ConfigId);
                     attackUnitLv = petCof.PetLv;
+
+                    //增加宠物属性
+                    attack_MaxAct += numericComponentAttack.GetAsLong(NumericType.Now_PetAllAct);
+                    attack_MageAct += numericComponentAttack.GetAsLong(NumericType.Now_PetAllMageAct);
+                    attackPet_hit += numericComponentAttack.GetAsFloat(NumericType.Now_PetAllHit);
+                    attackPet_cri += numericComponentAttack.GetAsFloat(NumericType.Now_PetAllCri);
                     break;
                 //玩家
                 case UnitType.Player:
@@ -242,7 +255,7 @@ namespace ET
             }
 
             float initHitPro = 0.9f;
-            float HitPro = initHitPro + HitLvPro + addHitPro - (addDodgePro + DodgeLvPro);
+            float HitPro = initHitPro + HitLvPro + addHitPro + attackPet_hit - (addDodgePro + DodgeLvPro + defendPet_dodge);
             //最低命中
             if (HitPro <= 0.75f) {
                 HitPro = 0.75f;
@@ -448,7 +461,6 @@ namespace ET
                     {
                         damgePro -= numericComponentAttack.GetAsFloat(NumericType.Now_MageBossSubPro);
                     }
-
                 }
 
                 //是否触发斩杀
@@ -460,7 +472,6 @@ namespace ET
                 //普攻加成
                 if (skillconfig.SkillActType == 0)
                 {
-
                     //普攻属性加成
                     damgePro += numericComponentAttack.GetAsFloat(NumericType.Now_PuGongAddPro);
 
@@ -594,7 +605,7 @@ namespace ET
                     addCriPro += addCriLvPro;
                     addResPro += addResLvPro;
 
-                    float CriPro = addCriPro - addResPro;
+                    float CriPro = addCriPro + attackPet_cri - addResPro ;
 
                     if (CriPro <= 0f)
                     {
@@ -1049,6 +1060,7 @@ namespace ET
 
                 for (int z = 0; z < equipList[i].HideSkillLists.Count; z++) 
                 {
+                    /*
                     if (!HideProListConfigCategory.Instance.Contain(equipList[i].HideSkillLists[z]))
                     {
                         Log.Warning($"HideProListConfig==null:  {equipList[i].HideSkillLists[z]}");
@@ -1056,6 +1068,16 @@ namespace ET
                     }
                     HideProListConfig hideProListCof = HideProListConfigCategory.Instance.Get(equipList[i].HideSkillLists[z]);
                     skillFightValue += hideProListCof.AddFightValue;
+                    */
+
+                    Dictionary<int, HideProListConfig> hideCof = new Dictionary<int, HideProListConfig>();
+                    hideCof = HideProListConfigCategory.Instance.GetAll();
+
+                    foreach (HideProListConfig hideProConfig in hideCof.Values) {
+                        if (hideProConfig.PropertyType == equipList[i].HideSkillLists[z]) {
+                            skillFightValue += hideProConfig.AddFightValue;
+                        }
+                    }
                 }
 
                 EquipQiangHuaConfig equipQiangHuaConfig = QiangHuaHelper.GetQiangHuaConfig(itemCof.ItemSubType, qianghuaLv[itemCof.ItemSubType]);
