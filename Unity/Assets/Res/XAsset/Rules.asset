@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 447
+  version: 448
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -472,6 +472,8 @@ MonoBehaviour:
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_35.prefab
   - bundle: c2f29232a189f367aef5ba99ec568609.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_36.prefab
+  - bundle: ce03b70138ccb586b58a567a7317305d.unity3d
+    path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_37.prefab
   - bundle: 6ffa896b28b5cea9c4d2ff5b1d181daa.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_4.prefab
   - bundle: b38456a6fadaa922b9f5a044c096c74e.unity3d
@@ -7476,6 +7478,9 @@ MonoBehaviour:
   - name: c2f29232a189f367aef5ba99ec568609.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_36.prefab
+  - name: ce03b70138ccb586b58a567a7317305d.unity3d
+    assets:
+    - Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_37.prefab
   - name: 6ffa896b28b5cea9c4d2ff5b1d181daa.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Skill_BaoZha_4.prefab
@@ -12897,6 +12902,80 @@ MonoBehaviour:
   - name: a2843dec89f4e45e901323c5b28949de.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Hovl Studio/Epic toon VFX 3/Textures/Flare21.png
+  - name: 7720939cadacf9aae5728ef513e9a4df.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Model-E3D/E3D-Squaresheet49.fbx
+  - name: 548fc838624c3576a51aea2eecf80195.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Model-E3D/E3D-Squaresheet44.fbx
+  - name: 9c55d6c991b1fe45b758f4337ded19ba.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Point120-23.mat
+  - name: 6077c8ccac26b67235ffa864618c85de.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Ring58.tga
+  - name: 56025826a9af8aa7da95e2502e5a479d.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/B1/Effect/Animations/E3D-Spell-Blast-Violet2.controller
+  - name: 37156359e7aff6b6cf92d9f581290cb2.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Sequence165.png
+  - name: 99cbd73f435449009881514c0d1c681e.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Model-E3D/E3D-Squaresheet51.fbx
+  - name: 2a267ebaef18f1e00a5652dfb17715c4.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Direction111-2.mat
+  - name: 80da63f518680b76a26d16fa4841182b.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Point120-22.mat
+  - name: d14aa559ef9f92e131e1739cf2e88cb1.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
+      9.mat
+  - name: 6f78b9dbba2a819ded53d76c5b0d773c.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Loop4-41-5.mat
+  - name: 66a28afdb19eea914b67578b8cbe71b3.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/B1/Effect/Animations/E3D-Spell-Blast-Violet2.anim
+  - name: b07a852d0d43550a80bde15793b0a581.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Point135.mat
+  - name: a435d80d62c584db6818576da7e071dc.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-60.png
+  - name: 2ee53fc8fbe50753d48cdcf67aed3bdc.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-38.png
+  - name: 71a63e242e5e0b94b3eb5fd8a838ac72.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop2-5.png
+  - name: a4c066775639470899d0b68328af3de8.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Loop2-36.mat
+  - name: 527a77b07af0f3fe564424e244e1430d.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Shader61-1.mat
+  - name: 06a83d9f791efdcc5f0aae803566bb99.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-41.png
+  - name: 30ad782b37083287d5448cd6974b0194.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Model-E3D/E3D-Disk33.fbx
+  - name: 53a9279d14f4afeb22263c11d2975454.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
+      8.mat
+  - name: 64e9bb148d66f640f0a9b9298939ecc4.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Object94.tga
+  - name: 319e7428aa071da78a76f62b419a7886.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Materials-E3D/E3D-Direction111-3.mat
+  - name: 19de929d0f420d957614fecd160ebdbb.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Object95.tga
   - name: 46b3cbfc6ec5c212cd6935118209884d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/GameEffect/All/RFX_Resources/Materials/Light_Decal.mat
@@ -13569,12 +13648,6 @@ MonoBehaviour:
   - name: 9aa60b4e4b29a3a4e97d52a68f5fa8f7.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/GabrielAguiarProductions/Unique_Projectiles_Volume_1/Textures/Gradients/GradientCenter04.PNG
-  - name: a435d80d62c584db6818576da7e071dc.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-60.png
-  - name: 2ee53fc8fbe50753d48cdcf67aed3bdc.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-38.png
   - name: fde31f9b5d67360801873384c52f2f99.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-63.png

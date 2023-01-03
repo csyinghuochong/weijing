@@ -4,6 +4,6 @@ https://tool.lu/timestamp/
 如果要合区 一定要配置新的物理区
 
 1.  检测服务器进程配置
-2  检测配置
-
+2  检测区配置
+3 ServerHelper 开服时间
 
