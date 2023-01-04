@@ -1,16 +1,27 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
 {
+    public enum WatchPageEnum : int
+    { 
+        Equip = 0,
+        Pet = 1,
+
+        Number
+    }
+
     public class UIWatchComponent : Entity, IAwake
     {
-        public GameObject Img_Back;
-        public GameObject EquipSet1;
-        public GameObject EquipSet2;
+        public GameObject SubViewNode;
+        public GameObject FunctionSetBtn;
 
-        public UIEquipSetComponent UIEquipSetComponent1;
-        public UIEquipSetComponent UIEquipSetComponent2;
+        public UIPageButtonComponent UIPageButton;
+        public UIPageViewComponent UIPageView;
+
+        public F2C_WatchPlayerResponse F2C_WatchPlayerResponse;
     }
 
     [ObjectSystem]
@@ -19,25 +30,38 @@ namespace ET
         public override void Awake(UIWatchComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+          
+            GameObject pageView = rc.Get<GameObject>("SubViewNode");
+            UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
+            UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
 
-            self.Img_Back = rc.Get<GameObject>("Img_Back");
-            self.Img_Back.GetComponent<Button>().onClick.AddListener(() => { self.OnClickImageBg(); });
-            rc.Get<GameObject>("Img_Return").GetComponent<Button>().onClick.AddListener(() => { self.OnClickImageBg(); });
+            pageViewComponent.UISubViewList = new UI[(int)WatchPageEnum.Number];
+            pageViewComponent.UISubViewPath = new string[(int)WatchPageEnum.Number];
+            pageViewComponent.UISubViewType = new Type[(int)WatchPageEnum.Number];
+            pageViewComponent.UISubViewPath[(int)WatchPageEnum.Equip] = ABPathHelper.GetUGUIPath("Main/Watch/UIWatchEquip");
+            pageViewComponent.UISubViewPath[(int)WatchPageEnum.Pet] = ABPathHelper.GetUGUIPath("Main/Watch/UIWatchPet");
+            pageViewComponent.UISubViewType[(int)WatchPageEnum.Equip] = typeof(UIWatchEquipComponent);
+            pageViewComponent.UISubViewType[(int)WatchPageEnum.Pet] = typeof(UIWatchPetComponent);
 
-            self.EquipSet1 = rc.Get<GameObject>("EquipSet1");
-            self.EquipSet2 = rc.Get<GameObject>("EquipSet2");
+            self.UIPageView = pageViewComponent;
 
-         
-            self.UIEquipSetComponent1 = self.AddChild<UIEquipSetComponent,GameObject, int>(self.EquipSet1, 0);
-            self.UIEquipSetComponent1.Position = 4;
-
-            self.UIEquipSetComponent2 = self.AddChild<UIEquipSetComponent, GameObject, int>(self.EquipSet2, 1);
-            self.UIEquipSetComponent1.Position = 5;
+            self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
+            UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
+            self.UIPageButton = pageButton.AddComponent<UIPageButtonComponent>();
+            self.UIPageButton.SetClickHandler((int page) => {
+                self.OnClickPageButton(page);
+            });
+            self.UIPageButton.ClickEnabled = false;
         }
     }
 
     public static class UIWatchComponentSystem
     {
+        public static void OnClickPageButton(this UIWatchComponent self, int page)
+        {
+            self.UIPageView.OnSelectIndex(page).Coroutine();
+        }
+
         public static void OnClickImageBg(this UIWatchComponent self)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIWatch);
@@ -45,20 +69,9 @@ namespace ET
 
         public static void OnUpdateUI(this UIWatchComponent self, F2C_WatchPlayerResponse m2C_WatchPlayerResponse)
         {
-            self.UIEquipSetComponent1.PlayerLv(m2C_WatchPlayerResponse.Lv);
-            self.UIEquipSetComponent1.PlayerName(m2C_WatchPlayerResponse.Name);
-            self.UIEquipSetComponent1.UpdateBagUI(m2C_WatchPlayerResponse.EquipList, m2C_WatchPlayerResponse.Occ, ItemOperateEnum.Watch);
-
-            BagInfo bagInfo = ItemHelper.GetEquipByWeizhi(m2C_WatchPlayerResponse.EquipList, (int)ItemSubTypeEnum.Wuqi);
-            self.UIEquipSetComponent1.ShowPlayerModel(bagInfo, m2C_WatchPlayerResponse.Occ);
-
-            int selfOcc = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
-            self.UIEquipSetComponent2.PlayerLv(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv);
-            self.UIEquipSetComponent2.PlayerName(self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Name);
-            self.UIEquipSetComponent2.UpdateBagUI(self.ZoneScene().GetComponent<BagComponent>().GetEquipList(), selfOcc, ItemOperateEnum.Watch);
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            BagInfo bagInfo2 = bagComponent.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
-            self.UIEquipSetComponent2.ShowPlayerModel(bagInfo2, selfOcc);
+            self.F2C_WatchPlayerResponse = m2C_WatchPlayerResponse;
+            self.UIPageButton.ClickEnabled = true;
+            self.UIPageButton.OnSelectIndex(0);
         }
     }
 }

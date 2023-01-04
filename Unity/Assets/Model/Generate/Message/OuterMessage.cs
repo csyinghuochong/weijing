@@ -6382,6 +6382,9 @@ namespace ET
 		[ProtoMember(6)]
 		public RolePetInfo RolePetInfo { get; set; }
 
+		[ProtoMember(7)]
+		public List<RolePetInfo> RolePetInfos = new List<RolePetInfo>();
+
 	}
 
 //好友列表

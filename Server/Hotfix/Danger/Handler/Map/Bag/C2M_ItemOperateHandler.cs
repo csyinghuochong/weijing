@@ -330,7 +330,7 @@ namespace ET
                                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.CangKuNumber, cangkuNumber + 1);
                                 break;
                             case 125://坐骑获取
-                                //unit.GetComponent<UserInfoComponent>().UserInfo.HorseIds.Add(int.Parse(itemCof.ItemUsePar));
+                                unit.GetComponent<UserInfoComponent>().UserInfo.HorseIds.Add(int.Parse(itemCof.ItemUsePar));
                                 break;
                         }
 
