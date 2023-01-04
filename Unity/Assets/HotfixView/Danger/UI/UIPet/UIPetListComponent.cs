@@ -627,43 +627,55 @@ namespace ET
 
         public static void UpdateAttribute(this UIPetListComponent self, RolePetInfo rolePetInfo)
         {
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            long petAllAct = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_PetAllAct);
+            long petAllMageact = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_PetAllMageAct);
+            long petAllAdf = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_PetAllAdf);
+            long petAllDef = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_PetAllDef);
+            long petAllHp = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_PetAllHp);
+
+            float petAllCri = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllCri);
+            float petAllHit = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllHit);
+            float petAllDodge = unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_PetAllDodge);
+
             //基础属性
             self.UpdateAttributeItem(0, self.PetProSetItem_1, self.PetProSetNode_1, UIItemHelp.GetAttributeIcon(NumericType.Now_MaxAct),
-                self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxAct));
+                self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxAct, petAllAct));
 
             self.UpdateAttributeItem(1, self.PetProSetItem_1, self.PetProSetNode_1, UIItemHelp.GetAttributeIcon(NumericType.Now_Mage),
-                self.GetAttributeShow(rolePetInfo, NumericType.Now_Mage));
+                self.GetAttributeShow(rolePetInfo, NumericType.Now_Mage, petAllMageact));
 
             self.UpdateAttributeItem(2, self.PetProSetItem_1, self.PetProSetNode_1, UIItemHelp.GetAttributeIcon(NumericType.Now_MaxDef),
-                 self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxDef));
+                 self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxDef, petAllDef));
 
             self.UpdateAttributeItem(3, self.PetProSetItem_1, self.PetProSetNode_1, UIItemHelp.GetAttributeIcon(NumericType.Now_MaxAdf),
-                  self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxAdf));
+                  self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxAdf, petAllAdf));
 
             self.UpdateAttributeItem(4, self.PetProSetItem_1, self.PetProSetNode_1, UIItemHelp.GetAttributeIcon(NumericType.Now_MaxHp),
-                 self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxHp));
+                 self.GetAttributeShow(rolePetInfo, NumericType.Now_MaxHp, petAllHp));
 
 
             //特殊属性
-            self.UpdateAttributeItem(0, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Cri));
-            self.UpdateAttributeItem(1, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Res));
-            self.UpdateAttributeItem(2, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Hit));
-            self.UpdateAttributeItem(3, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Dodge));
+            self.UpdateAttributeItem(0, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Cri, petAllCri));
+            self.UpdateAttributeItem(1, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Res,0));
+            self.UpdateAttributeItem(2, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Hit, petAllHit));
+            self.UpdateAttributeItem(3, self.PetProSetItem_2, self.PetProSetNode_2, "", self.GetAttributeShow(rolePetInfo, NumericType.Now_Dodge, petAllDodge));
         }
 
-        public static string GetAttributeShow(this UIPetListComponent self, RolePetInfo rolePetInfo, int numericType)
+        public static string GetAttributeShow(this UIPetListComponent self, RolePetInfo rolePetInfo, int numericType,float addValue)
         {
             NumericAttribute numericAttribute = UIItemHelp.AttributeToName[numericType];
             if (NumericHelp.GetNumericValueType(numericType) == 2)
             {
-                float fvalue = (self.PetComponent.GetAttributeValue(rolePetInfo, numericType)) * 0.01f;
+                float fvalue = (self.PetComponent.GetAttributeValue(rolePetInfo, numericType)) * 0.01f + addValue * 100;
                 //string svalue = string.Format("{0:F}", fvalue);
                 string svalue = fvalue.ToString("0.#####");
                 return $"{UIItemHelp.GetAttributeName(numericType)} {svalue}%";
             }
             else
             {
-               return $"{UIItemHelp.GetAttributeName(numericType)} {self.PetComponent.GetAttributeValue(rolePetInfo, numericType)}";
+               return $"{UIItemHelp.GetAttributeName(numericType)} {(long)(self.PetComponent.GetAttributeValue(rolePetInfo, numericType) + addValue)}";
             }
         }
 
@@ -777,7 +789,8 @@ namespace ET
             //显示激活属性
             if (petConfig.PripertyShow != "" && petConfig.PripertyShow != "0")
             {
-                self.PropertyShowText.GetComponent<Text>().text = petConfig.PripertyShow;
+                self.PropertyShowText.SetActive(true);
+                self.PropertyShowText.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("激活属性") + ":" + petConfig.PripertyShow;
             }
             else {
                 self.PropertyShowText.SetActive(false);
