@@ -25,8 +25,12 @@ namespace ET
             //ErrorHintList.Add(ErrorCore.ERR_AccountOrPasswordError, "账号未注册!");
             ErrorHintList.Add(ErrorCore.ERR_GoldNotEnoughError, "金币不足!");
             ErrorHintList.Add(ErrorCore.ERR_DiamondNotEnoughError, "钻石不足!");
-            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD1, "技能冷却中!");
+            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD1, "技能冷却中...");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD2, "技能公共冷却中!");
+            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD3, "主动技能冷却中!");
+            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD4, "被动技能冷却中!");
+            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD5, "技能冷却中!");
+            ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD6, "公共技能冷却中!");
             ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill, "当前状态无法释放技能!");
             ErrorHintList.Add(ErrorCore.ERR_CanNotSkillDead, "死亡状态无法释放技能!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillError, "释放技能出错!");

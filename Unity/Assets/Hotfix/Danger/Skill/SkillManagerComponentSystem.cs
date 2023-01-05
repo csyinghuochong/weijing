@@ -326,13 +326,15 @@ namespace ET
             if (skillConfig.SkillActType != 0)
             {
                 SkillCDItem skillCDList = self.GetSkillCD(skillId);
+                //技能冷却中
                 if (skillCDList != null)
                 {
-                    return ErrorCore.ERR_UseSkillInCD1;
+                    return ErrorCore.ERR_UseSkillInCD5;
                 }
+                //公共技能冷却
                 if (TimeHelper.ServerNow() < self.SkillPublicCDTime)
                 {
-                    return ErrorCore.ERR_UseSkillInCD1;
+                    return ErrorCore.ERR_UseSkillInCD6;
                 }
             }
 

@@ -166,7 +166,7 @@ namespace ET
 
             //计算是否闪避
             int defendUnitLv = 0;
-            defendUnit.GetComponent<SkillManagerComponent>().InterruptSing(0);
+            defendUnit.GetComponent<SkillManagerComponent>().InterruptSing(0,false);
             switch (defendUnit.Type) 
             {
                 //怪物

@@ -270,7 +270,7 @@ namespace ET
         /// </summary>
         /// <param name="self"></param>
         /// <param name="skillId"></param>
-        public static void InterruptSing(this SkillManagerComponent self,int skillId)
+        public static void InterruptSing(this SkillManagerComponent self,int skillId,bool ifStop)
         {
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
@@ -278,11 +278,15 @@ namespace ET
                 if (skillHandler.SkillConf.SkillSingTime == 0)
                 {
                     continue;
-                }            
+                }
                 //打断
-                StateComponent stateComponent = self.GetParent<Unit>().GetComponent<StateComponent>();
-                skillHandler.SetSkillState(SkillState.Finished);
-                stateComponent.StateTypeAdd(StateTypeEnum.Interrupt);
+                if (ifStop)
+                {
+                    StateComponent stateComponent = self.GetParent<Unit>().GetComponent<StateComponent>();
+                    skillHandler.SetSkillState(SkillState.Finished);
+                    stateComponent.StateTypeAdd(StateTypeEnum.Interrupt);
+                }
+                
             }
 
             //移除互斥技能
@@ -345,7 +349,7 @@ namespace ET
             {
                 self.OnContinueSkill(skillcmd).Coroutine();
             }
-            self.InterruptSing(skillcmd.SkillID);
+            self.InterruptSing(skillcmd.SkillID,false);
 
             for (int i = 0; i < skillList.Count; i++)
             {
@@ -525,13 +529,15 @@ namespace ET
             long serverNow = TimeHelper.ServerNow();
             SkillCDItem skillCDItem = null;
             self.SkillCDs.TryGetValue(nowSkillID, out skillCDItem);
+            //被动技能触发冷却CD
             if (!zhudong && skillCDItem != null && serverNow < skillCDItem.CDPassive)
             {
-                return ErrorCore.ERR_UseSkillInCD2;
+                return ErrorCore.ERR_UseSkillInCD4;
             }
+            //主动技能触发冷却CD
             if (zhudong && skillCDItem != null && serverNow < skillCDItem.CDEndTime)
             {
-                return ErrorCore.ERR_UseSkillInCD2;
+                return ErrorCore.ERR_UseSkillInCD3;
             }
 
             if (unit.Type == UnitType.Monster)

@@ -8,7 +8,7 @@ namespace ET
 		protected override async ETTask Run(Unit unit, C2M_PathfindingResult message)
 		{
 			Vector3 target = new Vector3(message.X, message.Y, message.Z);
-			unit.GetComponent<SkillManagerComponent>().InterruptSing(0);
+			unit.GetComponent<SkillManagerComponent>().InterruptSing(0,true);
 			unit.FindPathMoveToAsync(target, null, message.YaoGan).Coroutine();
 			await ETTask.CompletedTask;
 		}

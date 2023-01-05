@@ -39,7 +39,7 @@ namespace ET
         public static void OnUpdateUI(this UIPetFubenResultComponent self, M2C_FubenSettlement message)
         {
             //  1胜利 2失败
-            self.TextResult.GetComponent<Text>().text = message.BattleResult == CombatResultEnum.Fail ? "0失败" : "胜利";
+            self.TextResult.GetComponent<Text>().text = message.BattleResult == CombatResultEnum.Fail ? "挑战失败" : "挑战胜利";
 
             self.Img_Star_1.gameObject.SetActive(message.StarInfos[0] == 1);
             self.Img_Star_2.gameObject.SetActive(message.StarInfos[1] == 1);
