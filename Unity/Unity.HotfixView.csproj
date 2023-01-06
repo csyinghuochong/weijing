@@ -155,6 +155,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UITrialDungeon\UITrialDungeonComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIFriend\UIFriendComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UICamp\UICampShopComponent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIWatch\UIWatchEquipComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UILogin\Register\UIRegisterComponentSystem.cs" />
     <Compile Include="Assets\HotfixView\Danger\Effect\RoleSkillEffect.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIZhanQu\UIFirstWinComponent.cs" />
@@ -373,6 +374,7 @@
     <Compile Include="Assets\HotfixView\Danger\UI\UIMiJing\UIMiJingMainComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillTipsEvent.cs" />
+    <Compile Include="Assets\HotfixView\Danger\UI\UIWatch\UIWatchPetComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UISkill\UISkillLearnItemComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIEnergy\UIEnergyEarlyupComponent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIMain\SubItem\UIMainChatItemComponent.cs" />
@@ -574,8 +576,6 @@
     <Compile Include="Assets\HotfixView\Danger\Handler\Map\Relink_OnBeginRelink.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIPetSet\UIPetFormationEvent.cs" />
     <Compile Include="Assets\HotfixView\Danger\UI\UIBattle\UIBattleEnterComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIWatch\UIWatchEquipComponent.cs" />
-    <Compile Include="Assets\HotfixView\Danger\UI\UIWatch\UIWatchPetComponent.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -49,11 +49,11 @@ namespace ET
             {
                 attack.GetComponent<NumericComponent>().ApplyChange(null, NumericType.BattleTodayKill, 1, 0);
             }
-            int score = GlobalValueConfigCategory.Instance.Get(57).Value2;
-            if (self.CampKillNumber_1 > score || self.CampKillNumber_2 > score)
-            {
-                self.SendReward();
-            }
+            //int score = GlobalValueConfigCategory.Instance.Get(57).Value2;
+            //if (self.CampKillNumber_1 > score || self.CampKillNumber_2 > score)
+            //{
+            //    self.SendReward();
+            //}
         }
 
         public static  void SendReward(this BattleDungeonComponent self)

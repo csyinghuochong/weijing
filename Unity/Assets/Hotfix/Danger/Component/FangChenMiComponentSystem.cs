@@ -31,7 +31,7 @@ namespace ET
         public static async ETTask OnLogin(this FangChenMiComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            bool jiari = await ComHelp.IsHolidayByDate(dateTime);
+            bool jiari = await HttpHelper.IsHolidayByDate(dateTime);
             int huor = dateTime.Hour;
             int minute = dateTime.Minute;
             if (self.GetPlayerAge() >= 18)

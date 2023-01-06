@@ -8666,6 +8666,37 @@ namespace ET
 
 	}
 
+	[ResponseType(nameof(M2C_IOSPayVerifyResponse))]
+	[Message(OuterOpcode.C2M_IOSPayVerifyRequest)]
+	[ProtoContract]
+	public partial class C2M_IOSPayVerifyRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public string payMessage { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_IOSPayVerifyResponse)]
+	[ProtoContract]
+	public partial class M2C_IOSPayVerifyResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 //通用协议 应急用
 	[ResponseType(nameof(M2C_FubenMessageResponse))]
 	[Message(OuterOpcode.C2M_FubenMessageRequest)]

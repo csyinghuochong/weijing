@@ -11,7 +11,6 @@ namespace ET
                 DBCacheComponent db = scene.Domain.GetComponent<DBCacheComponent>();
                 Entity entity = await db.Get(request.UnitId, request.Component);
                 response.Component = entity;
-                
                 reply();
                 await ETTask.CompletedTask;
             }

@@ -29,7 +29,7 @@ namespace ET
         public static async ETTask CheckHoliday(this FangChenMiComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-            self.IsHoliday = await ComHelp.IsHolidayByDate(dateTime);
+            self.IsHoliday = await HttpHelper.IsHolidayByDate(dateTime);
         }
 
     }

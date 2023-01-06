@@ -4157,6 +4157,21 @@ message M2C_FubenTimesResetResponse // IActorLocationResponse
 	string Message = 92;
 }
 
+//ResponseType M2C_IOSPayVerifyResponse
+message C2M_IOSPayVerifyRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	string payMessage = 2;
+}
+
+message M2C_IOSPayVerifyResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
 //通用协议 应急用
 //ResponseType M2C_FubenMessageResponse
 message C2M_FubenMessageRequest // IActorLocationRequest

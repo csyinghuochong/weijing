@@ -65,8 +65,9 @@ namespace ET
                 unit.GetComponent<UserInfoComponent>().OnMakeItem(equipMakeConfig.Id);
             }
             float rate = RandomHelper.RandFloat01();
-            if (success && equipMakeConfig.MakeSuccesPro > rate)
+            if (equipMakeConfig.MakeSuccesPro > rate)
             {
+                Log.Debug("制造成功！");
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 rewardItems.Add(new RewardItem() { ItemID = equipMakeConfig.MakeItemID, ItemNum = equipMakeConfig.MakeEquipNum });
                 unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, unit.GetComponent<UserInfoComponent>().UserInfo.Name, $"{ItemGetWay.SkillMake}_{TimeHelper.ServerNow()}");       //传入制造装备和制造玩家的ID
@@ -75,6 +76,7 @@ namespace ET
             }
             else
             {
+                Log.Debug("制造失败！");
                 response.ItemId = 0;
             }
 
