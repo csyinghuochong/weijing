@@ -320,7 +320,7 @@ namespace ET
                     }
                     return;
                 }
- 
+                Scene zoneScene = self.ZoneScene();
                 int sceneType =  self.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
                 self.UpdateMainUI(sceneType);
                 Game.Scene.GetComponent<SceneManagerComponent>().PlayBgmSound(self.ZoneScene(), sceneType);
@@ -328,6 +328,12 @@ namespace ET
                 camera.GetComponent<Camera>().fieldOfView = 50;
                 sceneManagerComponent.SceneAssetRequest = null;
                 UIHelper.Remove(self.DomainScene(), UIType.UILoading);
+
+                //播放传送特效
+                if (sceneType != SceneTypeEnum.MainCityScene)
+                {
+                    FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(zoneScene), 30000002);
+                }
             }
             catch (Exception ex)
             {

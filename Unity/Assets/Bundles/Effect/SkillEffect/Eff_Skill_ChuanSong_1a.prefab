@@ -53361,7 +53361,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2120246707535862503}
   m_Layer: 0
-  m_Name: Eff_Skill_ChuanSong_1
+  m_Name: Eff_Skill_ChuanSong_1a
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
