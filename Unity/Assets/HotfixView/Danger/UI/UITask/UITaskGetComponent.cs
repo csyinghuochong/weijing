@@ -263,7 +263,10 @@ namespace ET
 
             C2M_PetDuiHuanRequest   request = new C2M_PetDuiHuanRequest() { OperateId = configId };
             M2C_PetDuiHuanResponse response = (M2C_PetDuiHuanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-
+            if (response.RolePetInfo == null)
+            {
+                return;
+            }
             long instanceId = self.InstanceId;
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPetChouKaGet);
             if (instanceId != self.InstanceId)

@@ -43,6 +43,14 @@ namespace ET
 
         public static void OnBossInCombat(this MonsterActRangeComponent self, int combat)
         {
+            Scene zoneScene = self.ZoneScene();
+            MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.PetDungeon
+             || mapComponent.SceneTypeEnum == SceneTypeEnum.PetTianTi)
+            {
+                return;
+            }
+
             if (combat == 0)
             {
                 self.MonsterActRange?.SetActive(false);

@@ -58,7 +58,7 @@ namespace ET
 
         public static  void SendReward(this BattleDungeonComponent self)
         {
-            if (!self.SendReward)
+            if (self.SendReward)
             {
                 return;
             }

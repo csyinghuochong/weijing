@@ -53,12 +53,18 @@ namespace ET
             return aiComponent.TargetID == 0;
         }
 
-        public static Vector3 GetFollowPosition(Unit ai, Unit master)
+        public static Vector3 GetFollowPosition(Unit unit, Unit master)
         {
-            Vector3 cur = ai.Position;
-            Vector3 tar = master.Position;
-            Vector3 dir = (cur - tar).normalized;
-            tar = tar + (1f * dir);
+            //Vector3 cur = unit.Position;
+            //Vector3 tar = master.Position;
+            //Vector3 dir = (cur - tar).normalized;
+            //tar = tar + (1f * dir);
+            Vector3 dir = unit.Position - master.Position;
+            float ange = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));
+            float addg = unit.Id % 10 * (unit.Id % 2 == 0 ? 5 : -5);
+            addg += RandomHelper.RandFloat() * 5f;
+            Quaternion rotation = Quaternion.Euler(0, ange + addg, 0);
+            Vector3 tar = master.Position + rotation * Vector3.forward;
             return tar;
         }
 

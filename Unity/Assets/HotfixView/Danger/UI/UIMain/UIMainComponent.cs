@@ -1071,6 +1071,8 @@ namespace ET
 
         public static void OnClickReturnButton(this UIMainComponent self)
         {
+            Scene zoneScene = self.ZoneScene();
+            MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UITowerOpen);
             if (uI != null && uI.GetComponent<UITowerOpenComponent>().M2C_FubenSettlement == null)
             {
@@ -1078,7 +1080,13 @@ namespace ET
                 return;
             }
 
-            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("确定返回主城？"),
+            string tipStr = "确定返回主城？";
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.Battle)
+            {
+                tipStr = "现在离开战场,将不会获得战场胜利的奖励哦";
+            }
+
+            PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization(tipStr),
                 () =>
                 {
                     EnterFubenHelp.RequestQuitFuben(self.ZoneScene());
