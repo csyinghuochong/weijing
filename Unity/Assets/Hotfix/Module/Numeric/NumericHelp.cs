@@ -206,6 +206,10 @@ namespace ET
             {
                 return 1;
             }
+            if (key == 110103)
+            {
+                return 2;
+            }
 
             //增加
             if (key >= 200001 && key < 300000) {

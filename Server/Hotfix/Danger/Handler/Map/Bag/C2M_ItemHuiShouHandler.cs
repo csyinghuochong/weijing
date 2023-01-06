@@ -55,11 +55,11 @@ namespace ET
 
                         if (huishouGet.ContainsKey(itemId))
                         {
-                            huishouGet[itemId].ItemNum += int.Parse(itemInfo[1]);
+                            huishouGet[itemId].ItemNum += int.Parse(itemInfo[1]) * bagInfo.ItemNum;
                         }
                         else
                         {
-                            huishouGet.Add(itemId, new RewardItem() { ItemID = itemId, ItemNum = int.Parse(itemInfo[1]) });
+                            huishouGet.Add(itemId, new RewardItem() { ItemID = itemId, ItemNum = int.Parse(itemInfo[1]) * bagInfo.ItemNum });
                         }
                     }
                 }
