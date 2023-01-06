@@ -23,7 +23,7 @@ MonoBehaviour:
   searchPatternAtlas: '*.spriteatlas'
   searchPatternSound: '*.mp3'
   searchPatternText: '*.txt,*.bytes,*.json,*.csv,*.xml,*htm,*.html,*.yaml,*.fnt'
-  version: 448
+  version: 449
   scenesInBuild:
   - {fileID: 102900000, guid: e0d691ac8c1d0454ba07089ea820e18a, type: 3}
   rules:
@@ -520,6 +520,8 @@ MonoBehaviour:
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_ChuanSong_1.prefab
   - bundle: 3066419aad901b0b7a8ade8c324dfcfa.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_ChuanSong_1a.prefab
+  - bundle: eb168e888cfe6463e91321c96aa6dbfa.unity3d
+    path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_ChuanSong_1aaa.prefab
   - bundle: 9af55d71c07aa45e6a7c39946ac934d3.unity3d
     path: Assets/Bundles/Effect/SkillEffect/Eff_Skill_DianRan.prefab
   - bundle: 96b93aafdcba5b8e3aa0f4e40867c563.unity3d
@@ -4444,8 +4446,12 @@ MonoBehaviour:
     path: Assets/Bundles/UI/Main/Union/UIUnionMyItem.prefab
   - bundle: b66e908eef4f8b97fe1f030b17191741.unity3d
     path: Assets/Bundles/UI/Main/Watch/UIWatch.prefab
+  - bundle: 86588249d2633856f0a505bf984b2cfe.unity3d
+    path: Assets/Bundles/UI/Main/Watch/UIWatchEquip.prefab
   - bundle: 9498a91dbc6776e61566cd89cd0bc489.unity3d
     path: Assets/Bundles/UI/Main/Watch/UIWatchMenu.prefab
+  - bundle: 09f145ab5d777aa417ec5b614e2ce4ec.unity3d
+    path: Assets/Bundles/UI/Main/Watch/UIWatchPet.prefab
   - bundle: ee5fab25ac768f6718ae0667eab3b476.unity3d
     path: Assets/Bundles/UI/Main/WorldLv/UIWorldLv.prefab
   - bundle: 26c3a0124df95fb8687c6a2d9dbf2dd2.unity3d
@@ -7121,9 +7127,15 @@ MonoBehaviour:
   - name: b66e908eef4f8b97fe1f030b17191741.unity3d
     assets:
     - Assets/Bundles/UI/Main/Watch/UIWatch.prefab
+  - name: 86588249d2633856f0a505bf984b2cfe.unity3d
+    assets:
+    - Assets/Bundles/UI/Main/Watch/UIWatchEquip.prefab
   - name: 9498a91dbc6776e61566cd89cd0bc489.unity3d
     assets:
     - Assets/Bundles/UI/Main/Watch/UIWatchMenu.prefab
+  - name: 09f145ab5d777aa417ec5b614e2ce4ec.unity3d
+    assets:
+    - Assets/Bundles/UI/Main/Watch/UIWatchPet.prefab
   - name: ee5fab25ac768f6718ae0667eab3b476.unity3d
     assets:
     - Assets/Bundles/UI/Main/WorldLv/UIWorldLv.prefab
@@ -7550,6 +7562,9 @@ MonoBehaviour:
   - name: 3066419aad901b0b7a8ade8c324dfcfa.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Skill_ChuanSong_1a.prefab
+  - name: eb168e888cfe6463e91321c96aa6dbfa.unity3d
+    assets:
+    - Assets/Bundles/Effect/SkillEffect/Eff_Skill_ChuanSong_1aaa.prefab
   - name: 9af55d71c07aa45e6a7c39946ac934d3.unity3d
     assets:
     - Assets/Bundles/Effect/SkillEffect/Eff_Skill_DianRan.prefab
@@ -9777,9 +9792,6 @@ MonoBehaviour:
   - name: a643a1898ce00864ab626fb0d0f0b996.unity3d
     assets:
     - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_xiezi.tga
-  - name: 00d46a79e856a261ef7dc0ae72348d74.unity3d
-    assets:
-    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@Rest.fbx
   - name: 5a844e755b09610c40c9d7271bc3fa02.unity3d
     assets:
     - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_pifeng.tga
@@ -9897,15 +9909,18 @@ MonoBehaviour:
   - name: 636e76737fe1e2b97584cc4310907509.unity3d
     assets:
     - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@Dash.fbx
-  - name: 46a8a412bd2a689eb399acedc137289f.unity3d
-    assets:
-    - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_shangyi.tga
   - name: 0458fc11ee74a17380284b0c46fbc14a.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/BaseModel.FBX
+  - name: 46a8a412bd2a689eb399acedc137289f.unity3d
+    assets:
+    - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_shangyi.tga
   - name: 21a0cd5ddfb48d6fa44d677183c1b97e.unity3d
     assets:
     - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_xiashen.tga
+  - name: c15d00991d5fb4c56a11a28c52ab9de1.unity3d
+    assets:
+    - Assets/Res/Models/RoleModelSet/RoleZhanShi/dongzuo/ZuoQi.fbx
   - name: 2d35fd346bf563ab57ed8aa1eed73d42.unity3d
     assets:
     - Assets/Res/Models/Occ/zhanshi/tga/zhanshi_lian.tga
@@ -11123,6 +11138,9 @@ MonoBehaviour:
   - name: 08fe0097f28966aee502e0d7402d381b.unity3d
     assets:
     - Assets/Res/Models/RoleModelSet/RoleZhanShi/tga/Main.mat
+  - name: 00d46a79e856a261ef7dc0ae72348d74.unity3d
+    assets:
+    - Assets/Res/Models/Warrior/Suriyun/Animations/Animations_v3/AnimSD@Rest.fbx
   - name: 187bed9358ff055b8918a56f3d804be3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/RongYan/Materials/salamander_mat.mat
@@ -12038,15 +12056,21 @@ MonoBehaviour:
   - name: 165565aba071a4e5616db74c7cb1ba8d.unity3d
     assets:
     - Assets/Res/UI/UIRes/Imgage/Img_122.png
-  - name: 07f3b86365c5072d6635295e92c8c407.unity3d
+  - name: 0ed4b5529f4b94e173820258afb3cee2.unity3d
     assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/doorwayglow.png
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/verticalgradient.png
   - name: 703fe76b9cc7c07b426c4b2e3fd6e4a1.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/roundsmoothitem.png
-  - name: e1df16908fb69b637c7bdbab967a4cc4.unity3d
+  - name: 4e425bb477cdd67d0e3f22b2e249f3ed.unity3d
     assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/doorwayglow.mat
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Models/RPGFXVerticalGlow.FBX
+  - name: c8c03c40524d71e92b71c3a3aea7357f.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Models/Materials/Material #28.mat
+  - name: 96e6a9eff59663436d0d7b239b4a00ce.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/verticalgradient.mat
   - name: 4c170cae02d7f1010776c02118f52fa4.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/roundsmoothitem.mat
@@ -12195,24 +12219,12 @@ MonoBehaviour:
   - name: 219fecbf3788270a782912f2d1671bd0.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EScene/XWX-Effect-Dev/Noise-Distort/Noise-Distort00005.png
-  - name: 0ed4b5529f4b94e173820258afb3cee2.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/verticalgradient.png
   - name: 4169bed4f58861eb43b0704cd7ed227c.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Sparkles/sparkle_legendary.mat
-  - name: 4e425bb477cdd67d0e3f22b2e249f3ed.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Models/RPGFXVerticalGlow.FBX
   - name: e59ed6d8ecab85c56bc9ba72443e2d24.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/sparkle_legendary.png
-  - name: c8c03c40524d71e92b71c3a3aea7357f.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Models/Materials/Material #28.mat
-  - name: 96e6a9eff59663436d0d7b239b4a00ce.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/verticalgradient.mat
   - name: 63836d8161cd20bf5782872c6eaa6407.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EffectPackage/ArtData/Textures-E3D/E3D-Point140.png
@@ -12351,6 +12363,12 @@ MonoBehaviour:
   - name: 1328d534980063c35eca2a3d6b059b4b.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Sparkles/sparkle_set.mat
+  - name: 07f3b86365c5072d6635295e92c8c407.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/doorwayglow.png
+  - name: e1df16908fb69b637c7bdbab967a4cc4.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/Misc/doorwayglow.mat
   - name: 80a5fb2056febad7a285f3294cb37269.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/ARPG Effects/Models/Materials/SelfIllumGreen.mat
@@ -13582,6 +13600,92 @@ MonoBehaviour:
   - name: ab95fdcfc1a0d07cedd6ff3065e61f93.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TJTX_Textures_2695_4_A.png
+  - name: 66551bcb1fefb58d192a525a035dc716.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Model-E3D/E3D-Squaresheet62.fbx
+  - name: 7cc885f9d2e8aa1f9e2e9f9a43d5cf25.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point119-3.mat
+  - name: 7cfcda178f56f46d9f846d04677e99f6.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EScene/XWX-Effect-Dev/MaterialSample/E3D-Distort-Point20.mat
+  - name: 919c99fb1105afe70fc0c5feb3095dbb.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-44.png
+  - name: 2b6b893454d1bcff719f3be12386e2f1.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Object115.png
+  - name: b35e9c8d052a10cac6efdcbd52146eb2.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Object118.png
+  - name: 5fc8f5549346f78ffb391b8017fdef6b.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
+      47.mat
+  - name: eaf9f53e2f89f982a80163b47c01f630.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
+      48.mat
+  - name: c53e556f2c741a89b6ac7e3ea8aa084c.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Object107-3.mat
+  - name: 5902b7cb23c82a67017e28449f4c6ae1.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Ring73.png
+  - name: 7ac9c5b84d7c7094426f2821a88d8a5f.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Object112.png
+  - name: 8ab25ff2970b3fe89c5a3c8e39fb14c9.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-11.png
+  - name: 90126e3d0ee2414fe7f1c19698896835.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Object104.png
+  - name: 39a6af962d8fa3175fb5f76dbf354552.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/B1/Effect/Animations/E3D-Buff-Continuous-Orange2.anim
+  - name: e3eca70c560d12e0180bb988cd442237.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Model-E3D/E3D-Cylinder-Spread71.fbx
+  - name: c7ddd07bd5d358a371aedf7687949090.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
+      84.mat
+  - name: f8002abef7f726aaf1ef54ded8db5c45.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Model-E3D/E3D-Object36.fbx
+  - name: 3c04c4ee3771db798916b4048312deaa.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Point134.png
+  - name: 7efb9880b1f30d04ddf08132e1996bfa.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Model-E3D/E3D-Squaresheet54.fbx
+  - name: ea15b5f65ea804325928f2f644ab744f.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Direction137-13.mat
+  - name: f4c3742f89c17d22f28c5d64fd23f4f2.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point135-13.mat
+  - name: b86ae03336bd98c389b72c737c64ecb7.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
+      85.mat
+  - name: 1a482a89840ed96d064261c8c1298c0a.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
+      49.mat
+  - name: 4d4f371d2922e8a1db3fdeb63e46a1c4.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/B1/Effect/Animations/E3D-Buff-Continuous-Orange2.controller
+  - name: 5a8be409646afa59daa88c7af18b5892.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Ring73.mat
+  - name: 8137c021fa907def358144d641ca1314.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Model-E3D/E3D-Sphere26.fbx
+  - name: 3b7a6065ca90a6f7bd9e25a5cf289b7d.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Loop-Loop9.mat
   - name: 96b2ff47fc5636e81718821be1e42b3f.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect/EScene/XWX-Effect-Dev/MaterialSample/E3D-Distort-Point2.mat
@@ -14030,92 +14134,6 @@ MonoBehaviour:
   - name: cf458b252bc23fea5eed9dd821d25bd4.unity3d
     assets:
     - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Vein12.png
-  - name: 66551bcb1fefb58d192a525a035dc716.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Model-E3D/E3D-Squaresheet62.fbx
-  - name: 7cfcda178f56f46d9f846d04677e99f6.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EScene/XWX-Effect-Dev/MaterialSample/E3D-Distort-Point20.mat
-  - name: 7cc885f9d2e8aa1f9e2e9f9a43d5cf25.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point119-3.mat
-  - name: 919c99fb1105afe70fc0c5feb3095dbb.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-44.png
-  - name: 2b6b893454d1bcff719f3be12386e2f1.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Object115.png
-  - name: b35e9c8d052a10cac6efdcbd52146eb2.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Object118.png
-  - name: 5fc8f5549346f78ffb391b8017fdef6b.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
-      47.mat
-  - name: eaf9f53e2f89f982a80163b47c01f630.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
-      48.mat
-  - name: c53e556f2c741a89b6ac7e3ea8aa084c.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Object107-3.mat
-  - name: 7ac9c5b84d7c7094426f2821a88d8a5f.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Object112.png
-  - name: 5902b7cb23c82a67017e28449f4c6ae1.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Ring73.png
-  - name: 90126e3d0ee2414fe7f1c19698896835.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Object104.png
-  - name: 8ab25ff2970b3fe89c5a3c8e39fb14c9.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Loop4-11.png
-  - name: 39a6af962d8fa3175fb5f76dbf354552.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/B1/Effect/Animations/E3D-Buff-Continuous-Orange2.anim
-  - name: e3eca70c560d12e0180bb988cd442237.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Model-E3D/E3D-Cylinder-Spread71.fbx
-  - name: c7ddd07bd5d358a371aedf7687949090.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
-      84.mat
-  - name: f8002abef7f726aaf1ef54ded8db5c45.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Model-E3D/E3D-Object36.fbx
-  - name: 3c04c4ee3771db798916b4048312deaa.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Textures-E3D/E3D-Point134.png
-  - name: 7efb9880b1f30d04ddf08132e1996bfa.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Model-E3D/E3D-Squaresheet54.fbx
-  - name: ea15b5f65ea804325928f2f644ab744f.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Direction137-13.mat
-  - name: f4c3742f89c17d22f28c5d64fd23f4f2.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point135-13.mat
-  - name: b86ae03336bd98c389b72c737c64ecb7.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
-      85.mat
-  - name: 1a482a89840ed96d064261c8c1298c0a.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Point48-HDR
-      49.mat
-  - name: 4d4f371d2922e8a1db3fdeb63e46a1c4.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/B1/Effect/Animations/E3D-Buff-Continuous-Orange2.controller
-  - name: 5a8be409646afa59daa88c7af18b5892.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Ring73.mat
-  - name: 8137c021fa907def358144d641ca1314.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Model-E3D/E3D-Sphere26.fbx
-  - name: 3b7a6065ca90a6f7bd9e25a5cf289b7d.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/Effect2/EffectPackage/ArtData/Materials-E3D/E3D-Loop-Loop9.mat
   - name: 6d0e74c868215afe5aefe5453ef33162.unity3d
     assets:
     - Assets/Res/Effect/Skill/Texture/fire_01.jpg
@@ -14676,9 +14694,6 @@ MonoBehaviour:
   - name: e6c84c0bc008f2694dd3be445a95c2a3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Box3Box.jpg
-  - name: c8b7c6dcf17d8afe4028a46056d34485.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/questmarker_purple.mat
   - name: 2978c92fceff69a152b49b14d9dfcb31.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Building/Textures/tent_stump.tif
@@ -14688,9 +14703,6 @@ MonoBehaviour:
   - name: 9c54d8fa810822353ac3a367332cf68b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Mushrooms.jpg
-  - name: 39f92c9f3e1b4bdf8ecb75b8036ddfba.unity3d
-    assets:
-    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/questmarker_purple.png
   - name: 3e6d5c447fd9df2e48addc13827ecae4.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/Tree_bark_winter.tif
@@ -14730,6 +14742,9 @@ MonoBehaviour:
   - name: d017e93d9d042906bf5b449f76397902.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Material/yewai_dixing_01.mat
+  - name: c8b7c6dcf17d8afe4028a46056d34485.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Materials/questmarker_purple.mat
   - name: 71d8303e17ee7a09853dbbaa4c8059bf.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_jianshi_01.FBX
@@ -14793,6 +14808,9 @@ MonoBehaviour:
   - name: 776c80261898c1b6dec3c209599eb829.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_jianshi_02.FBX
+  - name: 39f92c9f3e1b4bdf8ecb75b8036ddfba.unity3d
+    assets:
+    - Assets/Res/Effect/EffectResSet/ARPG Effects/Textures/questmarker_purple.png
   - name: f24c6c55b0622929fdbf090a5beaa9d2.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_zhalan_01.FBX
@@ -14826,24 +14844,15 @@ MonoBehaviour:
   - name: a7def754df4b766e3d5a4a2ea8e9b9bd.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/Models/Props_A9.FBX
-  - name: 4daf4696e1bef65028c8582a899d5191.unity3d
-    assets:
-    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Right.bmp
-  - name: 50ef439457e9d970617f608d50da14a9.unity3d
-    assets:
-    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Left.bmp
   - name: 61a24c6aebea08115f1dcdcd3720cd6b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Cloud/Cloud.png
-  - name: 5bd50368ba29cf4fa1c8e67a67eda34e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_wenli_00245_1.mat
   - name: cc063d9078c4282b224a16d385128534.unity3d
     assets:
     - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Back.bmp
-  - name: 01f8ca24f2f332fd3daebba073411459.unity3d
+  - name: b6f316118abb5d24d364cc2ebf803609.unity3d
     assets:
-    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Front.bmp
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Material and Texture/Gradient.mat
   - name: 19d3e308a95ce50c7bbb8b0228cec712.unity3d
     assets:
     - Assets/Res/SkyBox/CartoonSkybox2/CartoonSkybox2.mat
@@ -14856,15 +14865,57 @@ MonoBehaviour:
   - name: 1cd2030cc8a13caef30bfaf9e88af8be.unity3d
     assets:
     - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Down.bmp
-  - name: 696694700b6e5474c08a78ae45edf4bc.unity3d
+  - name: d9032b7781da333920201cf1ec029163.unity3d
     assets:
-    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_wenli_00245_A.tga
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/tent_stump_glow.tif
+  - name: 64b02f0fd6c94107e09601ca6a5977ba.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Materials/tent_stump_winter.tif
+  - name: 545fe8d21a39eb16bca593df5d1ae4b0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelGrass02.fbx
   - name: 9703504eeb5408a5909b9b65e0dd7003.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/FX/Cloud/Cloud.prefab
+  - name: 4daf4696e1bef65028c8582a899d5191.unity3d
+    assets:
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Right.bmp
+  - name: 50ef439457e9d970617f608d50da14a9.unity3d
+    assets:
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Left.bmp
+  - name: 8922effa1068661cd987292f80d70245.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Material and Texture/Gradient.png
+  - name: 5bd50368ba29cf4fa1c8e67a67eda34e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Materials/TX_wenli_00245_1.mat
+  - name: 313b987ffc9832bcaca6e68f1f7b238a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Grass02.mat
+  - name: d31330f5568b0549fd1d0bf15d165715.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_blue.mat
+  - name: 01f8ca24f2f332fd3daebba073411459.unity3d
+    assets:
+    - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Front.bmp
+  - name: 00a9eb44970c6511995a1eec936b7cdc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_blue.jpg
+  - name: 2c1a851edfa0b07e4d7713097d42596e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Prefate/tent_stump.mat
+  - name: 04e6541c87bb65000cfbdfa2f3bfe9af.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Grass02.jpg
+  - name: 696694700b6e5474c08a78ae45edf4bc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/ArtResource/ArtEffects/Textures/TX_wenli_00245_A.tga
   - name: 8a30640b3f651baf6d13865c1c062d48.unity3d
     assets:
     - Assets/Res/SkyBox/CartoonSkybox2/toonyDay01_Up.bmp
+  - name: 654c75d989ec2ee21e7d43ae10c9ed1b.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_blue.fbx
   - name: 59eb518bec0f0d8ee5065bc8277a3a79.unity3d
     assets:
     - Assets/Mono/GameDemo/ArtResource/ArtEffects/Scenes_FX/Common_FB0_shuiwen.prefab
@@ -14880,6 +14931,9 @@ MonoBehaviour:
   - name: 83f18be1b5a0f6e8b70b397e85195dfa.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Lang/Lang_2.FBX
+  - name: fe3197859d55dc6a5f37c9117e8ef334.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Grass01.mat
   - name: 371176dff4d741689fb806c6db3f9b06.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/UseModel/CunZhang.fbx
@@ -14889,12 +14943,21 @@ MonoBehaviour:
   - name: 30f827add9d664cd0b2fa63932e945fc.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Bucket1.jpg
+  - name: d123f7629cccb92edc5a289893f8606a.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_white.fbx
   - name: 4d14e3fe412b18a5afff0442d024ca0c.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/UseModel/WuQiDian.FBX
+  - name: 7a9bc972a6ad08132fb5a032707fafbc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_pink.jpg
   - name: 15f821fcaa233fe9bafe639402ceec81.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/NPC_YongShi/YongShi.fbx
+  - name: db08ac9ab1ad6d3fbb92dba93ecbe8bc.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_purple.jpg
   - name: 59be5775b280d048ae064ff5046f63af.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/DDS/FAMILIAR.png
@@ -14913,15 +14976,27 @@ MonoBehaviour:
   - name: 3ddd6821c375bbb50323f1bf71c924f0.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Bucket1.mat
+  - name: 4b516b0bc3320f7093fa9c8f89b0cf72.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Materials/tent_stump.mat
   - name: a285695549b704cfd768bf8558a01e3f.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_StageModel.mat
+  - name: dd00c2aa48f2bd1b0ab2eb99d27a78fc.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Texture/Materials/Fire1_particle.mat
   - name: f54a9b439c1fd9cca93b8e6ff2c7d0d3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Lang/Lang_2_Animation.FBX
   - name: b6375fed0751ae4f0d8072c9282f57d5.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelCoconut.fbx
+  - name: dee88e762c0f5ede1325149782c1b731.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelGrass01.fbx
+  - name: aa4a69de4aab440de8a8beb360830f40.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_white.mat
   - name: 06098e1a0450b005e05393f277c34b27.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Building_PotionShop.mat
@@ -14931,18 +15006,27 @@ MonoBehaviour:
   - name: b2606b30f7ec51e48556c6aca703a35a.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/NPC_YongShi.controller
-  - name: d9032b7781da333920201cf1ec029163.unity3d
+  - name: c6ebd1413d331fd0bb55e44f0d35a472.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/tent_stump_glow.tif
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_pink.fbx
   - name: 587376d7c34878593a251b6be65e50fc.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelStaircase2_1.fbx
+  - name: 0049db98f1d3a0f774ac897bd865a100.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_pink.mat
+  - name: e082c4469218e1d7c850eba7ec8a3b80.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Campfire.fbx
   - name: 1896a8e482d38bddd2e32b0f096103f9.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Tree01.mat
   - name: d35f8df9bfa515c9f7b589e53ccc5327.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/BaoXiang_1/Tx_Chest.mat
+  - name: d823262a83d3ec90925b3e6843f7819e.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_yellow.mat
   - name: 8fe7da1d3382d2ea8441c6fb9570fca3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Barrel.mat
@@ -14952,9 +15036,9 @@ MonoBehaviour:
   - name: 02839a35bf610ce0a03bff9f0fe1466c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Staircase2.mat
-  - name: 545fe8d21a39eb16bca593df5d1ae4b0.unity3d
+  - name: 0b8675eac96cf4d4fadb189ba1177a78.unity3d
     assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelGrass02.fbx
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Grass01.jpg
   - name: 8badf3c6dafa6358da3c14c84d4b3041.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Bonfire.jpg
@@ -14967,6 +15051,9 @@ MonoBehaviour:
   - name: 00a38241d60d837539f94fa1c24a51f2.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_StageModel.jpg
+  - name: 23e44f47f1578e12d3442d69bf7855bb.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_purple.fbx
   - name: 9f7ec56b597fe730148d805042abcb15.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Armor_Texture.jpg
@@ -14976,15 +15063,21 @@ MonoBehaviour:
   - name: 2358311d35a6134c42cc8a6cc38c9f83.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/DDS/NPC_ESF_TOWN_05.png
-  - name: 64b02f0fd6c94107e09601ca6a5977ba.unity3d
+  - name: 3b433567a84799d6504e4177cd6ac0bf.unity3d
     assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Materials/tent_stump_winter.tif
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_yellow.jpg
   - name: dcf336bab3cf92ddbb36058a374044bf.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_LogBig.mat
   - name: 5b9adcdb700523e844b9fe20b3b7869e.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Wolf_Baby.jpg
+  - name: b09b21d4a9722d35167437479d0509f8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_white.jpg
+  - name: 3174860dbc01c1b2d877bf9b6db23889.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_yellow.fbx
   - name: b48b97f27f6acb136eba6800e7f186a8.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/UseModel/LiuLang.FBX
@@ -15003,18 +15096,9 @@ MonoBehaviour:
   - name: 8240c03ccfc0bbd45eeed1842972be75.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/Materials/Crystal1.mat
-  - name: 313b987ffc9832bcaca6e68f1f7b238a.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Grass02.mat
-  - name: d31330f5568b0549fd1d0bf15d165715.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_blue.mat
   - name: 0782b6f0e7a82110797a5ee4b68b27c1.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_MuCai/modelLog.fbx
-  - name: 00a9eb44970c6511995a1eec936b7cdc.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_blue.jpg
   - name: 8f8c4d3bdb26f33a80d996f1629199d8.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/Materials/familiar_familiar.mat
@@ -15033,15 +15117,15 @@ MonoBehaviour:
   - name: c670c8918b5abd3ae8cd733599bdde6b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelStage.fbx
+  - name: ce2cbe40b5740908c955178ab30d7662.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Texture/Materials/fire_01.mat
   - name: cc6db9a01f72ac604760db97c97fa657.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/UseModel/DESTRO_AXE.FBX
   - name: 066d57212d5411bc895048ba243d4a80.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/Materials/NPC_EsF_town_05_mat.mat
-  - name: 2c1a851edfa0b07e4d7713097d42596e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Prefate/tent_stump.mat
   - name: 03e1c119eec030eed319a83d301a8c67.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/stone_002.FBX
@@ -15060,9 +15144,6 @@ MonoBehaviour:
   - name: 3feb356d9435047224da62823c01be56.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Building_PotionShop.jpg
-  - name: 04e6541c87bb65000cfbdfa2f3bfe9af.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Grass02.jpg
   - name: 822681b975d4477da82a1ba9be86008a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/Lang/Lang_Boss_Animation.FBX
@@ -15084,6 +15165,9 @@ MonoBehaviour:
   - name: e8306f4ea58ec6fbf268454fa85fdc02.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBuilding_PotionShop.fbx
+  - name: 0ca683cea1ec254faca62900de969e6d.unity3d
+    assets:
+    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_purple.mat
   - name: 0a67fc6348b4aad5c0096b973a1884f6.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Effect/Old/Effect_BeiYong/Effects_02/Effect_Source/Click/Direction_Circle.png
@@ -15093,12 +15177,12 @@ MonoBehaviour:
   - name: 04aca8a5f51eda75ed9ff176f4fe0042.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/NPC/Old/FBX/Materials/NPC_Destroyer.mat
-  - name: 654c75d989ec2ee21e7d43ae10c9ed1b.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_blue.fbx
   - name: 9ddfa4c8355867e3b36b77a890b331b8.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Coconut.jpg
+  - name: 4b4ebcae20111f55a7eee570a7d861a7.unity3d
+    assets:
+    - Assets/Res/Effect/Skill/Texture/Fire1_particle.tiff
   - name: 30fc131b78ab6f25d83f7555b468d945.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Coconut.mat
@@ -15153,24 +15237,15 @@ MonoBehaviour:
   - name: c8a0da12b1fa4c3f6155087344188094.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Monster/Old/KuangDong/Texture/BAT_ELEC.png
-  - name: ce2cbe40b5740908c955178ab30d7662.unity3d
-    assets:
-    - Assets/Res/Effect/Skill/Texture/Materials/fire_01.mat
   - name: 8a8fca564771c0bc740b8a61d2d58a3c.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/TerrainTexture/a1dun_caves_FloorGravel_A_diff.png
   - name: 5b71d42b83caa9eb70fb969d1ce3c06c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Fence01.jpg
-  - name: 4b516b0bc3320f7093fa9c8f89b0cf72.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Materials/tent_stump.mat
   - name: b15b0817a40c837b80a1ca7bfdc5d3d1.unity3d
     assets:
     - Assets/T4M/Tutorial/Textures/Sunny2/Sunny2_front.tif
-  - name: dd00c2aa48f2bd1b0ab2eb99d27a78fc.unity3d
-    assets:
-    - Assets/Res/Effect/Skill/Texture/Materials/Fire1_particle.mat
   - name: 7d5d24d488e13a7c724d7771a907e0b7.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/stone_001.FBX
@@ -15186,9 +15261,6 @@ MonoBehaviour:
   - name: a9b7e9baa52613ac7d90e0b9827d0d01.unity3d
     assets:
     - Assets/T4M/Tutorial/Textures/Sunny2/Sunny2_back.tif
-  - name: e082c4469218e1d7c850eba7ec8a3b80.unity3d
-    assets:
-    - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Campfire.fbx
   - name: d180255b3c806dcb11976d628f964db5.unity3d
     assets:
     - Assets/T4M/Tutorial/Textures/Sunny2/Sunny2_down.tif
@@ -15204,9 +15276,6 @@ MonoBehaviour:
   - name: ffb85a455b820e6e6b78a3fa66717ee4.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Materials/props1.mat
-  - name: 4b4ebcae20111f55a7eee570a7d861a7.unity3d
-    assets:
-    - Assets/Res/Effect/Skill/Texture/Fire1_particle.tiff
   - name: 90e611085749aac53c6e5a8cea776eee.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Stone/Texture/stone_058_01.tga
@@ -15300,9 +15369,6 @@ MonoBehaviour:
   - name: fe17056140ba805a102ef30cded402e3.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Common/Textures/environment_common_zhilupai_001.png
-  - name: d123f7629cccb92edc5a289893f8606a.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_white.fbx
   - name: d99ae84a8a75a63231d05b0e76c63d9d.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Bones_05.fbx
@@ -15324,9 +15390,6 @@ MonoBehaviour:
   - name: add08143bc693673af7418e2f6408bca.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Stone/Materials/Tx_Rock01.jpg
-  - name: aa4a69de4aab440de8a8beb360830f40.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_white.mat
   - name: fcb16aee83f3edaeb655215be6e5dd5e.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/Water (Basic)/Sources/Textures/oceangradientcube.psd
@@ -15343,9 +15406,6 @@ MonoBehaviour:
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelCoconut
       1.fbx
-  - name: b09b21d4a9722d35167437479d0509f8.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_white.jpg
   - name: c9511305a11caa0b0438ea6d2c23ccd4.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelTree01_2.fbx
@@ -15684,6 +15744,12 @@ MonoBehaviour:
   - name: 73b38f22c238b56d59f4d22e8313166b.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_smallparts_BaseMap.png
+  - name: 16f46eaffa4d490a53cfb761afd96f3c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_bottles_BaseMap.png
+  - name: 76fb8681b20189d805fc1af262f5d7b5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_pottery_BaseMap.png
   - name: 2ac074d86a2973c5cfe5c66c642a0184.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_tree_02.fbx
@@ -15700,12 +15766,21 @@ MonoBehaviour:
   - name: fd7474d79222f472724e90b810914b05.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_tree_01.fbx
+  - name: d2aed3ba3b1e924f921b4603ae047ad1.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Props/SM_shelf_pottery.prefab
   - name: 9648681f88c32a15d5632d18d8262a71.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_woodenkit_02_Normal.png
   - name: a66ff8adc3966eb4b3a80abab2328da1.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_flowerpots.mat
+  - name: 5d69b5f943266ac904f044f3e3571998.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_lantern_Normal.png
+  - name: ebee8a5bf2d682a86521eb4726452ccb.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Props/SM_waterwell.fbx
   - name: 51e3ceae75498802e527dff897408f9e.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/SM_woodenbeam_wooden_planklow_default_BaseMap.png
@@ -15716,6 +15791,13 @@ MonoBehaviour:
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_flower
       3.mat
+  - name: b19fbea64552795296e36bf009380b66.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_bookset_BaseMap.png
+  - name: c04ace26d6045e7617850d647892e703.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_floor_tiles
+      1.mat
   - name: 1fc04e1bd36be401087be7fac1a39ceb.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_smallparts_MaskMap.png
@@ -15734,16 +15816,34 @@ MonoBehaviour:
   - name: 65982a1ca74075a1557144dae9727c8f.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/SM_woodenbeam_wooden_planklow_default_Normal.png
+  - name: 551b7350cda3cadbdbe1a799c299c5e9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_bottles_MaskMap.png
   - name: 91d8d1ae070c5540bb653f569d049b53.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Props/SM_crate_apples.fbx
+  - name: 27bed930f2213eefcbd074c4c79fab97.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_stonekit_01_BaseMap.png
+  - name: 97d0d1f35a359a51b93283e5376963a5.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Nature/SM_flowerbed_03_preset.fbx
+  - name: 9b81ef885ec1808e06c7b270be406da1.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_lanterns.mat
   - name: 2253053014dd1c6cf1b5eb152a2d4339.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_grass
       1.mat
+  - name: 48f6e38804790308896f8c2afe4318a0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_pottery.mat
   - name: 38cb3aa56f7d9912ac05f8300def6508.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Buildings/SM_tower_attachment.fbx
+  - name: 27ff5b0a000e7c69408a4b5c526cd80c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_light.mat
   - name: 896d209b790ecd8b4d41aff1f95e4395.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_metalbars_Normal.png
@@ -15751,6 +15851,15 @@ MonoBehaviour:
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_flower
       1.mat
+  - name: c7a76d8b57b0311ba4046e344e924e71.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Props/SM_shelf_books.prefab
+  - name: 7d58539525360189396434f8a41e69d0.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_floor_texture_BaseMap.png
+  - name: 6b0c436e0695ce3959030b91c08ca366.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Props/SM_shelf_books.fbx
   - name: 3cf62572e9f719a244e808af08402630.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/flower_texture_03.png
@@ -15764,24 +15873,45 @@ MonoBehaviour:
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_windowglass
       1.mat
+  - name: 36abe275a211df2f413518642915d652.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_bookset_Normal.png
+  - name: 299f5a974b8c63a75e8bd88e68d9de6b.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_bottles_Normal.png
+  - name: 3c9d71c04cb32ccac9a7b85f89dff830.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Props/SM_waterwell.prefab
   - name: 3c036ee881ac220194557aef7eaae30b.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_foods_Normal.png
+  - name: f835a05895eb197f747cc28f4b1f4d5b.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_bookset.mat
   - name: 5d425652971c2356fd3424c0ae05cb78.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rooftiles_Normal.png
   - name: 420dc74b7f5838e0c78c944fe9baaeab.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_smallparts_Normal.png
+  - name: aa380c2d4fc34e143bf21e0eb833f751.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_pottery_Normal.png
   - name: 796fd08bb7dcc4233b1e498b04f10c7e.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_treebase.mat
+  - name: af881fa474bbb42dccdc5301a2a9b001.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_bottleset.mat
   - name: 9fa2f7d7763c925c7bc66d8db2f14981.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_smallparts.mat
   - name: 6050b7307d2f80c20efae2672ae02ea7.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_flowerpots_Normal.png
+  - name: c4ddbea7bf3780395958b59a21b8d4e8.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_lantern_BaseMap.png
   - name: fce9582443a7bde6098730e604e4fee7.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_leaves
@@ -15802,6 +15932,9 @@ MonoBehaviour:
   - name: c0486856195c7887cf4fe5249e87b8c2.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_metalbars_BaseMap.png
+  - name: 7ef87a9e91fc0054541b4c13dc361436.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/M_stonekit.mat
   - name: 0c6be3e4ef3c755a8510a6a5f4d48675.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_flowerpots_BaseMap.png
@@ -15824,9 +15957,18 @@ MonoBehaviour:
   - name: 7cbce0beb20bf8b41b500c8eb4763fe9.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_windowglass.png
+  - name: 3f46c7dfe1f6a8782c308b56fd2fc54c.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_lantern_MaskMap.png
+  - name: c79102c86f3a58d7ebf73280bace1efd.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Buildings/SM_windmill.prefab
   - name: 1d889cf1681094542c50c3c538fd40e3.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_trees_base_Normal.png
+  - name: 69b73f81cb861a67604f16a1cfc0eea9.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_flowerbed_03_preset.prefab
   - name: 277157a2725d111e0e154557d1fd858a.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_woodenkit_02_BaseMap.png
@@ -15839,9 +15981,21 @@ MonoBehaviour:
   - name: 3aaca01b5c4593995bad76d9227012e5.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_rope_diff.png
+  - name: 9f6ed6eafff402869ebc6473ac53540f.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_floor_texture_Normal.png
+  - name: 8c331be3e6a869ba9826262e7b4cabe1.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Props/SM_shelf_pottery.fbx
+  - name: 69d41d07a39c2d5db6b74a62e1a39a85.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_bookset_MaskMap.png
   - name: f08f3938f78f701cce024aeb9ed2a893.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/MATERIALS/TEXTURES/M_basetexture_stylized.png
+  - name: 11bc8dd631e7c77d67b3ba2316897b6b.unity3d
+    assets:
+    - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/FBX FIles/Buildings/SM_windmill.fbx
   - name: 3c247bdc64a68e7ef04abe3a793e31aa.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Idyllic Fantasy Village/PREFABS/Nature/SM_tree_02.prefab
@@ -15893,12 +16047,12 @@ MonoBehaviour:
   - name: a172c410f287b71231a92987461f744b.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.png
-  - name: b6f316118abb5d24d364cc2ebf803609.unity3d
-    assets:
-    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Material and Texture/Gradient.mat
   - name: 00a0c2f5f65c8bcbfbe0907d70224c48.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/building_Accessories_lv1.FBX
+  - name: dc09e1aa2f9a2907e8ecd96f3416191d.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Vermilion-BuiltIn/Textures/Flower_C_01_BaseColor.png
   - name: 68764a32ff3b2f9d2055c20ad260fa77.unity3d
     assets:
     - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Models/Coins/Coins.fbx
@@ -15914,6 +16068,9 @@ MonoBehaviour:
   - name: 399f09fb4acdd8c7927a40915d54b671.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories_roof.mat
+  - name: 0283640d65576819081ed6c94205ab54.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Treasure/Treasure.003.prefab
   - name: 5d3696bf5b7a2f4a7231f273d88b556f.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories.mat
@@ -15929,9 +16086,12 @@ MonoBehaviour:
   - name: d3a64327cafa1263dc59f466f86300c9.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_Accessories.png
-  - name: 8922effa1068661cd987292f80d70245.unity3d
+  - name: 0b7ca612fe2834665aaff8819f332b81.unity3d
     assets:
-    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Material and Texture/Gradient.png
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Prefabs/Treasure/Treasure_lid.003.prefab
+  - name: b62e3ad83a2cd76055e7feebdea3cbfa.unity3d
+    assets:
+    - Assets/Res/ScenceModel/Simple Dungeon Props - YP/Models/Treasure/Treasure.fbx
   - name: c887be2ef0d8eaf041cf3bcebfe59adb.unity3d
     assets:
     - Assets/Res/Models/Fantasy upgrade building/building/Materials/building_etc01.mat
@@ -15992,9 +16152,6 @@ MonoBehaviour:
   - name: c1bafd1bca82a937a0f5d0bde86020c3.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_cigu_02.FBX
-  - name: 7a9bc972a6ad08132fb5a032707fafbc.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_pink.jpg
   - name: 5c11ecfcb12383737ddec7004125795f.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_shitou_05.FBX
@@ -16010,12 +16167,6 @@ MonoBehaviour:
   - name: 4fc16e3af1356ffbc261bed7269e938d.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/ZhuCheng/objectB/scene/build/stsm_build_diaoxiang_001.FBX
-  - name: c6ebd1413d331fd0bb55e44f0d35a472.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_pink.fbx
-  - name: 0049db98f1d3a0f774ac897bd865a100.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_pink.mat
   - name: 5f2354a54074e285f98c1c7d38aec298.unity3d
     assets:
     - Assets/Scenes/OldScenes/You Xi/Ye Wai Chang Jing/Fbx/yewai_xiaoshitou_01.FBX
@@ -16145,9 +16296,6 @@ MonoBehaviour:
   - name: c1404578d3f70b934851f41db77f903f.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Other/Model/Materials/environment_common_kuangkengwall_002_01.mat
-  - name: d823262a83d3ec90925b3e6843f7819e.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_yellow.mat
   - name: 23418075a3310ebf13b77a1b08babc04.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBottle02.fbx
@@ -16163,12 +16311,6 @@ MonoBehaviour:
   - name: 04984a32ecef59daa868e17a4f654562.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Other/Texture/Tx_Box.jpg
-  - name: 3b433567a84799d6504e4177cd6ac0bf.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_yellow.jpg
-  - name: 3174860dbc01c1b2d877bf9b6db23889.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_yellow.fbx
   - name: c7d6e2856f51d6ed8d94f75135a25285.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/Scene/Stone/Materials/Tx_Rock01.mat
@@ -17581,15 +17723,9 @@ MonoBehaviour:
   - name: eeb33ae163369d72d89ebdeb34b32382.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_TableAndChair.jpg
-  - name: fe3197859d55dc6a5f37c9117e8ef334.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Grass01.mat
   - name: 31f696e5865b7f79c09bfc5d134fde59.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/MaoXianDao2/UseModel/Buildings_E2.prefab
-  - name: db08ac9ab1ad6d3fbb92dba93ecbe8bc.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_flower_purple.jpg
   - name: abc6f5cc9048025bad4c3d44eb81b63b.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBottle03.fbx
@@ -17635,9 +17771,6 @@ MonoBehaviour:
   - name: 133ae0724b4db5c1e8a367677085d896.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Materials/plant_tree_001_03.mat
-  - name: dee88e762c0f5ede1325149782c1b731.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelGrass01.fbx
   - name: b693930281e572901ec5ac7b7ba156b8.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Texture/plant_vege_064_01.TGA
@@ -17674,9 +17807,6 @@ MonoBehaviour:
   - name: 659f4fac6c4be4ad9cad284cf912e72a.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Building_WeaponShop.jpg
-  - name: 0b8675eac96cf4d4fadb189ba1177a78.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Grass01.jpg
   - name: 15c66e74f93a5e2f8074e0ad9e97eb44.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Textrue/Tx_Building_House2.jpg
@@ -17695,9 +17825,6 @@ MonoBehaviour:
   - name: a56bbafa4b0458bb12887c0ad7117c72.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Tree/Materials/plant_tree_001_04.mat
-  - name: 23e44f47f1578e12d3442d69bf7855bb.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelFlower_purple.fbx
   - name: 9b7d2937c0510b272bb56508697c288a.unity3d
     assets:
     - Assets/Mono/GameDemo/OldResources/3DModel/ScenceItem/Scence_RanLiaoPin/modelPotion_red01.fbx
@@ -17797,9 +17924,6 @@ MonoBehaviour:
   - name: 7984f27cab1a35bbd2e4a4a2f3531736.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_Building_QuestBar.mat
-  - name: 0ca683cea1ec254faca62900de969e6d.unity3d
-    assets:
-    - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/Materials/Tx_flower_purple.mat
   - name: 395c1a07a9186b9636722f532a92976c.unity3d
     assets:
     - Assets/Mono/GameDemo/Editor Default Resources/Building/Old/xiaozhen/modelBuilding_House2.fbx
