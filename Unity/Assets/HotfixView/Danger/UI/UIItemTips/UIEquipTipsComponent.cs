@@ -649,6 +649,10 @@ namespace ET
                 int equipSuitNum = 0;
                 for (int i = 0; i < needEquipIDSet.Length; i++)
                 {
+                    if (!ItemConfigCategory.Instance.Contain(int.Parse(needEquipIDSet[i])))
+                    {
+                        continue;
+                    }
                     ItemConfig itemCof = ItemConfigCategory.Instance.Get(int.Parse(needEquipIDSet[i]));
                     string showType = "0";
                     if (itemIDList.Contains(int.Parse(needEquipIDSet[i])))
