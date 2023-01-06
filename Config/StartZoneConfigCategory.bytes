@@ -2,6 +2,14 @@
 )mongodb://localhost:27017/"WJBeta1
 )mongodb://localhost:27017/"WJBeta2
 )mongodb://localhost:27017/"WJBeta3
-)mongodb://localhost:27017/"WJBeta4
+)mongodb://localhost:27017/"WJBeta4
+)mongodb://localhost:27017/"WJBeta5
+)mongodb://localhost:27017/"WJBeta6
+)mongodb://localhost:27017/"WJBeta7
+)mongodb://localhost:27017/"WJBeta8
+)	mongodb://localhost:27017/	"WJBeta9
+*
+mongodb://localhost:27017/
+"WJBeta10
 5Êmongodb://localhost:27017/Ê"WJBeta202(center)
 4Ëmongodb://localhost:27017/Ë"WJBeta203(robot)
