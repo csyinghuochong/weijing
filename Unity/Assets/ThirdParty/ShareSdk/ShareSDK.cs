@@ -24,8 +24,8 @@ namespace cn.sharesdk.unity3d
 		public string appKey = "36af6e3967670";
 		public string appSecret = "c2b2d9e1afdfd9f6e1cfb3a399d01703";
 #elif UNITY_IPHONE
-		public string appKey = "36af6e3967670";
-		public string appSecret = "c2b2d9e1afdfd9f6e1cfb3a399d01703";
+		public string appKey = "2d21337c7dc80";
+		public string appSecret = "a2c24f564def8b4a450a88491e5cc353";
         public List<string> customAssociatedDomains = new List<string>();
 #endif
 
