@@ -3,6 +3,7 @@
 .pydevproject
 .sconsign.dblite
 .csproj
+.asset
 
 *.pyc
 *.suo
