@@ -106,6 +106,8 @@ namespace cn.sharesdk.unity3d
 					Hashtable datastore = (Hashtable)MiniJSON.jsonDecode( contents );
 					appKey = (string)datastore["MobAppKey"];
 					appSecret = (string)datastore["MobAppSecret"];
+
+                    Debug.LogWarning ("MOB.keypds appKey: " + appKey);
 				}
 				else
 				{
@@ -134,6 +136,7 @@ namespace cn.sharesdk.unity3d
 					Hashtable datastore = new Hashtable();
 					datastore["MobAppKey"] = appKey;
 					datastore["MobAppSecret"] = appSecret;
+                    Debug.LogWarning ("MOB.keypds MobAppKey: " + appKey);
 					var json = MiniJSON.jsonEncode(datastore);
 					StreamWriter sWriter = new StreamWriter(filePath);
 					sWriter.WriteLine(json);

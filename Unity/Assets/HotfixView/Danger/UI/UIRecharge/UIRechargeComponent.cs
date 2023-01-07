@@ -8,7 +8,7 @@ namespace ET
 
     public class Receipt
     {
-        public string Payoad;
+        public string Payload;
     }
 
     public class UIRechargeComponent: Entity, IAwake
@@ -81,8 +81,8 @@ namespace ET
         public static void OnIosPaySuccessedCallback(this UIRechargeComponent self, string info)
         {
             Receipt receipt = JsonHelper.FromJson<Receipt>(info);
-            ET.Log.ILog.Debug("payload:" + receipt.Payoad);
-            C2M_IOSPayVerifyRequest request = new C2M_IOSPayVerifyRequest() { payMessage = receipt.Payoad };
+            ET.Log.ILog.Debug("payload[内购成功]:" + receipt.Payload);
+            C2M_IOSPayVerifyRequest request = new C2M_IOSPayVerifyRequest() { payMessage = receipt.Payload };
             self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
         }
 
