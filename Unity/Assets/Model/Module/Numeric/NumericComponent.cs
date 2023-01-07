@@ -144,7 +144,12 @@ namespace ET
 			int buffAdd = nowValue * 100 + 11;
 			int buffMul = nowValue * 100 + 12;
 			long old = this.GetByKey(nowValue);
-			long nowPropertyValue = (long)((GetByKey(add) * (1 + GetAsFloat(mul)) + GetByKey(finalAdd)) * (1 + GetAsFloat(buffMul)) + GetByKey(buffAdd));
+			long nowPropertyValue = (long)
+				(
+				(GetByKey(add) * (1 + GetAsFloat(mul)) + GetByKey(finalAdd)) * (1 + GetAsFloat(buffMul)) 
+				
+				+ GetByKey(buffAdd)
+				);
 			this.NumericDic[nowValue] = nowPropertyValue;
 
 			if (notice && old != nowPropertyValue)

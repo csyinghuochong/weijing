@@ -21,7 +21,8 @@ namespace ET
             float addMul = (newSpeed - oldSpeed) / oldSpeed;
             float curMul = theUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Extra_Buff_Speed_Mul);
             this.AddSpeed_Mul = addMul - curMul;
-            theUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, addMul);
+            //theUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, addMul);
+            theUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, newSpeed - oldSpeed);
             Unit targetUnit = theUnitFrom.GetParent<UnitComponent>().Get(skillId.TargetID);
             if (targetUnit!=null)
             {
@@ -36,7 +37,6 @@ namespace ET
                     this.TargetPosition = targetUnit.Position + dir.normalized;
                 }
             }
-
             OnExecute();
         }
 
@@ -61,9 +61,11 @@ namespace ET
 
         public override void OnFinished()
         {
-            float cur_mul = TheUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Extra_Buff_Speed_Mul);
-            float speed_mul = cur_mul - this.AddSpeed_Mul;
-            TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, Mathf.Max(0, speed_mul));
+            //float cur_mul = TheUnitFrom.GetComponent<NumericComponent>().GetAsFloat(NumericType.Extra_Buff_Speed_Mul);
+            //float speed_mul = cur_mul - this.AddSpeed_Mul;
+            //Log.Debug($"OnFinished {speed_mul}");
+            //TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, Mathf.Max(0, speed_mul));
+            TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, 0);
         }
     }
 }
