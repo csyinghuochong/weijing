@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311915, g: 0.3807396, b: 0.35872662, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -905,9 +905,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff906ecbbd0163f4094f8fa4e305d39f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Development: 0
-  EditorMode: 0
-  OueNetMode: 1
+  Development: 1
+  EditorMode: 1
+  OueNetMode: 0
   BigVersion: 10
   Updater: {fileID: 2018631435}
   FenXiang_Title: 
@@ -956,37 +956,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   appKey: 2d21337c7dc80
   appSecret: a2c24f564def8b4a450a88491e5cc353
-  customAssociatedDomains: []
   devInfo:
     sinaweibo:
       Enable: 1
-      app_key: 568898243
-      app_secret: 38a4f8204cc784f81f9f0daaf31e02e3
-      redirect_uri: http://www.sharesdk.cn
-      app_universalLink: https://bj2ks.share2dlink.com/
+      SortId: 4
+      AppKey: 4243223096
+      AppSecret: a94b60256e1652fdcb379984db56a158
+      RedirectUrl: http://www.sharesdk.cn
+      ShareByAppClient: 1
     qq:
       Enable: 1
-      app_id: 101883752
-      app_key: ab9d332ee43d3259991047c7796767dd
+      SortId: 2
+      AppId: 101883752
+      AppKey: ab9d332ee43d3259991047c7796767dd
+      ShareByAppClient: 1
     qzone:
       Enable: 1
-      app_id: 101883752
-      app_key: ab9d332ee43d3259991047c7796767dd
+      SortId: 1
+      AppId: 101883752
+      AppKey: ab9d332ee43d3259991047c7796767dd
+      ShareByAppClient: 1
     wechat:
       Enable: 1
-      app_id: wx0f24f5e538739f0d
-      app_secret: dd075324e0a4ab44bd49d972efcffedc
-      app_universalLink: https://c4ovz.share2dlink.com/
+      SortId: 5
+      AppId: wx0f24f5e538739f0d
+      AppSecret: dd075324e0a4ab44bd49d972efcffedc
+      UserName: gh_afb25ac019c9@app
+      Path: /page/API/pages/share/share
+      BypassApproval: 0
+      WithShareTicket: 1
+      MiniprogramType: 0
     wechatMoments:
       Enable: 1
-      app_id: wx0f24f5e538739f0d
-      app_secret: dd075324e0a4ab44bd49d972efcffedc
-      app_universalLink: https://c4ovz.share2dlink.com/
+      SortId: 6
+      AppId: wx0f24f5e538739f0d
+      AppSecret: dd075324e0a4ab44bd49d972efcffedc
+      BypassApproval: 1
     wechatFavorites:
       Enable: 1
-      app_id: wx0f24f5e538739f0d
-      app_secret: dd075324e0a4ab44bd49d972efcffedc
-      app_universalLink: https://c4ovz.share2dlink.com/
+      SortId: 7
+      AppId: wx0f24f5e538739f0d
+      AppSecret: dd075324e0a4ab44bd49d972efcffedc
 --- !u!114 &575235022
 MonoBehaviour:
   m_ObjectHideFlags: 0
