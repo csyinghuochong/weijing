@@ -5,6 +5,7 @@
 
 *.pyc
 *.suo
+*.asset
 
 .settings/
 .localhistory/
@@ -25,6 +26,10 @@ _ReSharper.CSharp/
 *.sdf
 /CSharp/CSharp.sln.ide
 /Unity/Library
+/Unity/ios
+/Unity/Assets/Plugins/iOS
+/Unity/ProjectSettings
+/Unity/Assets/Res/XAsset/
 /Unity/AndroidTarget
 /Unity/Assets/Res/XAsset
 /Unity/CSharp60Support/compilation log.txt
