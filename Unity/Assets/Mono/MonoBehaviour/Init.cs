@@ -49,21 +49,6 @@ namespace ET
 		public string QQAppID = "1105893765";					 //危境
 		//apk sign 1  b119680ac96937de65f5c989ce485fb3   user_weijing2.keystore
 		//apk sign 2  3a0a616cdbf889b3565ba81fca3bed49   user.keystore
-#if UNITY_IPHONE
-		/*
-    [DllImport("__Internal")]
-    private static extern void InitIAPManager();//初始化
-
-    [DllImport("__Internal")]
-    private static extern bool IsProductAvailable();//判断是否可以购买
-
-    [DllImport("__Internal")]
-    private static extern void RequstProductInfo(string s);//获取商品信息
-
-    [DllImport("__Internal")]
-    private static extern void BuyProduct(string s);//购买商品
-		*/
-#endif
 
 		public AndroidJavaClass jc;
 		public AndroidJavaObject jo;
@@ -154,6 +139,7 @@ namespace ET
 
 		public void OpenBuglyAgent(long userId)
 		{
+#if UNITY_ANDROID
 			Log.ILog.Info("OpenBuglyAgent: " + userId);
 			// 开启SDK的日志打印，发布版本请务必关闭
 			BuglyAgent.ConfigDebugMode(false);
@@ -167,6 +153,8 @@ namespace ET
 #endif
 			// 如果你确认已在对应的iOS工程或Android工程中初始化SDK，那么在脚本中只需启动C#异常捕获上报功能即可
 			BuglyAgent.EnableExceptionHandler();
+
+#endif
 		}
 
 		private void Start()
@@ -258,7 +246,10 @@ namespace ET
 
 		public void GetUserInfo(string fenxiangtype)
 		{
-#if  !UNITY_EDITOR
+			Log.ILog.Debug($"sharesdk GetUserInfo1");
+#if !UNITY_EDITOR
+			Log.ILog.Debug($"sharesdk GetUserInfo2");
+
 			switch (fenxiangtype)
 			{
 				case "1":
@@ -298,6 +289,7 @@ namespace ET
 			print("get user info sucess ! platform :" + type);
 			if (type == PlatformType.WeChat)
 			{
+				print("WXAuthInfo:   " + MiniJSON.jsonEncode(ssdk.GetAuthInfo(type)));
 				if (state == ResponseState.Success)
 				{
 					this.OnGetUserInfoHandler("wx"+result["openid"].ToString());

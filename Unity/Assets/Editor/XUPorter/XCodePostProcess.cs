@@ -21,7 +21,7 @@ public static class XCodePostProcess
 			Debug.LogWarning("Target is not iPhone. XCodePostProcess will not run");
 			return;
 		}
-		
+		/*
 		// Create a new project object from build target
 		XCProject project = new XCProject( pathToBuiltProject );
 
@@ -42,7 +42,7 @@ public static class XCodePostProcess
 		
 		// Finally save the xcode project
 		project.Save();
-		
+		*/
 		
 	}
 #endif
