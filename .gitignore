@@ -2,6 +2,7 @@
 .project
 .pydevproject
 .sconsign.dblite
+.csproj
 
 *.pyc
 *.suo
@@ -28,7 +29,7 @@ _ReSharper.CSharp/
 /Unity/Library
 /Unity/ios
 /Unity/Assets/Plugins/iOS
-/Unity/ProjectSettings
+/Unity/ProjectSettings/
 /Unity/Assets/Res/XAsset/
 /Unity/AndroidTarget
 /Unity/Assets/Res/XAsset
