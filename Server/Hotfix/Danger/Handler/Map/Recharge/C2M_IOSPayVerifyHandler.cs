@@ -113,7 +113,7 @@ namespace ET
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Recharge, unit.Id))
             {
                 string verifyURL = string.Empty;
-                if (ComHelp.IsInnerNet())
+                if (ComHelp.IsInnerNet() || unit.Id == 1636544958309662720)
                 {
                     verifyURL = "https://sandbox.itunes.apple.com/verifyReceipt";
                 }
