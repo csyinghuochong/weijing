@@ -200,7 +200,7 @@ namespace ET
 
             //万能鉴定符固定为60
             if (bagInf0.ItemID == 11200000) {
-                bagInf0.ItemPar = "80";
+                bagInf0.ItemPar = "99";
                 return;
             }
 
@@ -260,6 +260,9 @@ namespace ET
                 JianDingPro = jianDingPinZhi / itemCof.UseLv * 0.5f;
             }
             */
+
+            //测试
+            //jianDingPinZhi = 99;
 
             //最低系数是20
             int pro = itemCof.UseLv;
