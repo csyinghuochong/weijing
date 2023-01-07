@@ -118,7 +118,17 @@ namespace ET
         public static void BeginTower(this TowerComponent self)
         {
             string[] ids = GlobalValueConfigCategory.Instance.Get(65).Value.Split(';');
-            self.CreateMonster(int.Parse(ids[self.FubenDifficulty - 1])).Coroutine();
+            int index = self.FubenDifficulty - 1;
+
+            if (index < 0)
+            {
+                index = 0;
+            }
+            if (index > 2)
+            {
+                index = 2;
+            }
+            self.CreateMonster(int.Parse(ids[index])).Coroutine();
         }
     }
 }
