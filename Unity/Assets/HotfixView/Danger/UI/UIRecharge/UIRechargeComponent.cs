@@ -2,10 +2,14 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 
-
 namespace ET
 {
 
+
+    public class Receipt
+    {
+        public string Payoad;
+    }
 
     public class UIRechargeComponent: Entity, IAwake
     {
@@ -55,12 +59,32 @@ namespace ET
             self.PayType = PayTypeEnum.AliPay;
 
             self.InitRechargeList().Coroutine();
+
+#if UNITY_IPHONE && !UNITY_EDITOR
+            self.ImageSelect1.SetActive(false);
+            self.ImageSelect2.SetActive(false);
+            self.ButtonAliPay.SetActive(false);
+            self.ButtonWeiXin.SetActive(false);    
+#endif
+
+#if UNITY_IPHONE
+            GameObject.Find("Global").GetComponent<PurchasingManager>().SuccessedCallback = self.OnIosPaySuccessedCallback;
+#endif
+
         }
 
     }
 
     public static class UIRechargeComponentSystem
     {
+
+        public static void OnIosPaySuccessedCallback(this UIRechargeComponent self, string info)
+        {
+            Receipt receipt = JsonHelper.FromJson<Receipt>(info);
+            ET.Log.ILog.Debug("payload:" + receipt.Payoad);
+            C2M_IOSPayVerifyRequest request = new C2M_IOSPayVerifyRequest() { payMessage = receipt.Payoad };
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
+        }
 
         public static async ETTask InitRechargeList(this UIRechargeComponent self)
         {
@@ -98,6 +122,10 @@ namespace ET
                 return;
             }
             self.ChargetNumber = chargetNumber;
+
+#if UNITY_IPHONE
+            GlobalHelp.OnIOSPurchase(chargetNumber);
+#else
             C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId, RechargeNumber = chargetNumber, PayType = self.PayType };
             M2C_RechargeResponse sendChatResponse = (M2C_RechargeResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
 
@@ -117,6 +145,9 @@ namespace ET
             {
                 GlobalHelp.WeChatPay(sendChatResponse.Message);
             }
+#endif
+
+            await ETTask.CompletedTask;
         }
 
         public static void OnRechageSucess(this UIRechargeComponent self)

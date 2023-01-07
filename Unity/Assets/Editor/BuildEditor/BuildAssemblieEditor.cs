@@ -18,7 +18,7 @@ namespace ET
         [MenuItem("Tools/Build/BuildWoLongCodeForBundle")]
         public static void BuildCodeForBundle()
         {
-            CompileDllCommand.CompileDll(BuildTarget.Android);
+            CompileDllCommand.CompileDll(EditorUserBuildSettings.activeBuildTarget);
             AfterCompiling_wolong(Define.HybridCLRBuildHotFixOutputDir);
         }
 

@@ -5,9 +5,17 @@ namespace ET
 	public static class Define
 	{
 		public const string BuildOutputDir = "./Temp/Bin/Debug";
+
+#if UNITY_IPHONE
+		public const string HybridCLRBuildOutputDir = "./HybridCLRData/AssembliesPostIl2CppStrip/Ios";
+		public const string HybridCLRBuildHotFixOutputDir = "./HybridCLRData/HotUpdateDlls/Ios";
+		public const string HybridCLRCutOutputDir = "./HybridCLRData/AssembliesPostIl2CppStrip/Ios";
+#else
 		public const string HybridCLRBuildOutputDir = "./HybridCLRData/AssembliesPostIl2CppStrip/Android";
 		public const string HybridCLRBuildHotFixOutputDir = "./HybridCLRData/HotUpdateDlls/Android";
 		public const string HybridCLRCutOutputDir = "./HybridCLRData/AssembliesPostIl2CppStrip/Android";
+#endif
+
 
 #if UNITY_EDITOR && !ASYNC
 		public static bool IsAsync = false;

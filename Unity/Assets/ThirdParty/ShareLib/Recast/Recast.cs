@@ -12,14 +12,15 @@ namespace ET
 #endif
         public const int MAX_POLYS = 256;
         
-        [DllImport(RecastDLL, CallingConvention=CallingConvention.Cdecl)]
-        private static extern IntPtr RecastLoad(int id, byte[] buffer, int n);
+        //[DllImport(RecastDLL, CallingConvention=CallingConvention.Cdecl)]
+        //private static extern IntPtr RecastLoad(int id, byte[] buffer, int n);
 
         public static long RecastLoadLong(int id, byte[] buffer, int n)
         {
-            return RecastLoad(id, buffer, n).ToInt64();
+            return 1;// RecastLoad(id, buffer, n).ToInt64();
         }
-        
+
+        /*
         [DllImport(RecastDLL, CallingConvention=CallingConvention.Cdecl)]
         private static extern IntPtr RecastGet(int id);
 
@@ -61,6 +62,6 @@ namespace ET
         public static int RecastFindRandomPoint(long navPtr, float[] randomPos)
         {
             return RecastFindRandomPoint(new IntPtr(navPtr), randomPos);
-        }
+        }*/
     }
 }

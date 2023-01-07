@@ -75,7 +75,6 @@
     <type fullname="System.Reflection.FieldInfo" preserve="all" />
     <type fullname="System.Reflection.MemberInfo" preserve="all" />
     <type fullname="System.Runtime.CompilerServices.AsyncStateMachineAttribute" preserve="all" />
-    <type fullname="System.Runtime.CompilerServices.AsyncTaskMethodBuilder`1" preserve="all" />
     <type fullname="System.Runtime.CompilerServices.AsyncVoidMethodBuilder" preserve="all" />
     <type fullname="System.Runtime.CompilerServices.CompilationRelaxationsAttribute" preserve="all" />
     <type fullname="System.Runtime.CompilerServices.CompilerGeneratedAttribute" preserve="all" />
@@ -200,6 +199,7 @@
     <type fullname="MongoDB.Bson.Serialization.Options.DictionaryRepresentation" preserve="all" />
     <type fullname="MyCamera_1" preserve="all" />
     <type fullname="NpcLocal" preserve="all" />
+    <type fullname="PurchasingManager" preserve="all" />
     <type fullname="ReferenceCollector" preserve="all" />
     <type fullname="ScrollCircle" preserve="all" />
     <type fullname="SMSSDemo" preserve="all" />

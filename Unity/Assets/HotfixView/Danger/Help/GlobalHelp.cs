@@ -70,6 +70,11 @@ namespace ET
             GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNum();
         }
 
+        public static void OnIOSPurchase(int rmb)
+        {
+            GameObject.Find("Global").GetComponent<PurchasingManager>().OnIOSPurchase(rmb);
+        }
+
         public static int GetVersion()
         {
             int versioncode = libx.Versions.LoadVersion(Application.persistentDataPath + '/' + libx.Versions.Filename);

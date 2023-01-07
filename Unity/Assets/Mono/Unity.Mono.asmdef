@@ -4,7 +4,9 @@
     "references": [
         "Unity.ThirdParty",
         "Unity.TextMeshPro",
-        "HybridCLR.Runtime"
+        "HybridCLR.Runtime",
+        "UnityEngine.Purchasing",
+        "UnityEngine.Purchasing.Stores"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

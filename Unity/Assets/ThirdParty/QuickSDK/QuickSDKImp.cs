@@ -116,7 +116,7 @@ namespace quicksdk
 		{
 #if UNITY_IOS && !UNITY_EDITOR
 			string gameObjectName = listener.gameObject.name;
-			quicksdk_nativeSetListener(gameObjectName);
+			//quicksdk_nativeSetListener(gameObjectName);
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			androidSupport.setListener(listener);
@@ -144,7 +144,7 @@ namespace quicksdk
 		public void login ()
 		{
 #if UNITY_IOS && !UNITY_EDITOR
-			quicksdk_nativeLogin();
+			//quicksdk_nativeLogin();
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			androidSupport.login();
@@ -153,7 +153,7 @@ namespace quicksdk
 		public void logout ()
 		{
 #if UNITY_IOS && !UNITY_EDITOR
-			quicksdk_nativeLogout();
+			//quicksdk_nativeLogout();
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			androidSupport.logout();
@@ -163,8 +163,8 @@ namespace quicksdk
 		public void pay (OrderInfo orderInfo, GameRoleInfo gameRoleInfo)
 		{
 #if UNITY_IOS && !UNITY_EDITOR
-			quicksdk_nativePay(orderInfo.goodsID, orderInfo.goodsName, orderInfo.goodsDesc, orderInfo.quantifier, orderInfo.cpOrderID, orderInfo.callbackUrl, orderInfo.extrasParams, orderInfo.price, orderInfo.amount, orderInfo.count,
-			                   gameRoleInfo.serverID, gameRoleInfo.serverName, gameRoleInfo.gameRoleName, gameRoleInfo.gameRoleID, gameRoleInfo.gameRoleBalance, gameRoleInfo.vipLevel, gameRoleInfo.gameRoleLevel, gameRoleInfo.partyName);
+			//quicksdk_nativePay(orderInfo.goodsID, orderInfo.goodsName, orderInfo.goodsDesc, orderInfo.quantifier, orderInfo.cpOrderID, orderInfo.callbackUrl, orderInfo.extrasParams, orderInfo.price, orderInfo.amount, orderInfo.count,
+			 //                  gameRoleInfo.serverID, gameRoleInfo.serverName, gameRoleInfo.gameRoleName, gameRoleInfo.gameRoleID, gameRoleInfo.gameRoleBalance, gameRoleInfo.vipLevel, gameRoleInfo.gameRoleLevel, gameRoleInfo.partyName);
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			androidSupport.pay(orderInfo, gameRoleInfo);
@@ -173,8 +173,9 @@ namespace quicksdk
 		public string userId()//uid
 		{
 #if UNITY_IOS && !UNITY_EDITOR
-			IntPtr intPtr = quicksdk_nativeUserId();
-			return Marshal.PtrToStringAnsi(intPtr);
+			//IntPtr intPtr = quicksdk_nativeUserId();
+			//return Marshal.PtrToStringAnsi(intPtr);
+			return "";
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			return androidSupport.getUserId();
@@ -210,7 +211,7 @@ namespace quicksdk
 		public int showToolBar(ToolbarPlace place)//1左上,2右上,3左中,4右中,5左下,6右下
 		{
 			#if UNITY_IOS && !UNITY_EDITOR
-			return (quicksdk_nativeShowToolBar((int)place) == -100?0:1);
+			return 0;//return (quicksdk_nativeShowToolBar((int)place) == -100?0:1);
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			return androidSupport.callFunc(FuncType.QUICK_SDK_FUNC_TYPE_SHOW_TOOLBAR);
@@ -222,7 +223,7 @@ namespace quicksdk
 		public int hideToolBar()
 		{
 			#if UNITY_IOS && !UNITY_EDITOR
-			return (quicksdk_nativeHideToolBar() == -100?0:1);
+			return 0;//return (quicksdk_nativeHideToolBar() == -100?0:1);
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			return androidSupport.callFunc(FuncType.QUICK_SDK_FUNC_TYPE_HIDE_TOOLBAR);
@@ -235,6 +236,7 @@ namespace quicksdk
 		public bool isFunctionSupported(FuncType type)//1暂停游戏,2进入用户中心,3进入论坛,4处理应用跳转(旧),5显示浮动工具栏,6隐藏浮动工具栏,7处理应用跳转(新)
 		{
 #if UNITY_IOS && !UNITY_EDITOR
+/*
 			switch (type) {
 			case FuncType.QUICK_SDK_FUNC_TYPE_ENTER_BBS:
 				return quicksdk_nativeIsFunctionTypeSupported(3);
@@ -253,6 +255,8 @@ namespace quicksdk
 			default:
 				return false;
 			}
+			*/
+			return false;
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			return androidSupport.isFuncSupport(type);
@@ -265,6 +269,7 @@ namespace quicksdk
         public void callFunction(FuncType type)
         {
 #if UNITY_IOS && !UNITY_EDITOR
+/*
 			switch (type) {
 			case FuncType.QUICK_SDK_FUNC_TYPE_ENTER_BBS:
 				quicksdk_nativeEnterBBS();
@@ -287,18 +292,20 @@ namespace quicksdk
 			default:
 				return;
 			}
+			*/
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			androidSupport.callFunc(type);
 #endif
-        }
-	
+		}
 
-        public string channelName()          //获取渠道名称
+
+		public string channelName()          //获取渠道名称
 		{
 #if UNITY_IOS && !UNITY_EDITOR
-			IntPtr intPtr = quicksdk_nativeChannelName();
-			return Marshal.PtrToStringAnsi(intPtr);
+			//IntPtr intPtr = quicksdk_nativeChannelName();
+			//return Marshal.PtrToStringAnsi(intPtr);
+			return "";
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			return androidSupport.getChannelName();
@@ -310,8 +317,9 @@ namespace quicksdk
 		public string channelVersion()       //获取渠道版本
 		{
 #if UNITY_IOS && !UNITY_EDITOR
-			IntPtr intPtr = quicksdk_nativeChannelVersion();
-			return Marshal.PtrToStringAnsi(intPtr);
+			//IntPtr intPtr = quicksdk_nativeChannelVersion();
+			//return Marshal.PtrToStringAnsi(intPtr);
+			return "";
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			return androidSupport.getChannelVersion();
@@ -323,7 +331,8 @@ namespace quicksdk
 		public int channelType()                 //获取渠道类别 渠道唯一标识
 		{
 #if UNITY_IOS && !UNITY_EDITOR
-			return quicksdk_nativeChannelType();
+			//return quicksdk_nativeChannelType();
+			return 0;
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			return androidSupport.getChannelType();
@@ -335,8 +344,9 @@ namespace quicksdk
 		public string SDKVersion()      //QuickSDK版本
 		{
 #if UNITY_IOS && !UNITY_EDITOR
-			IntPtr intPtr = quicksdk_nativeSDKVersion();
-			return Marshal.PtrToStringAnsi(intPtr);
+			//IntPtr intPtr = quicksdk_nativeSDKVersion();
+			//return Marshal.PtrToStringAnsi(intPtr);
+			return "";
 #elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			return androidSupport.getSDKVersion();
@@ -349,8 +359,9 @@ namespace quicksdk
 		public string getConfigValue(string key)      //QuickSDK版本
 		{
 #if UNITY_IOS && !UNITY_EDITOR
-			IntPtr intPtr = quicksdk_nativeGetConfigValue(key);
-			return Marshal.PtrToStringAnsi(intPtr);
+			//IntPtr intPtr = quicksdk_nativeGetConfigValue(key);
+			//return Marshal.PtrToStringAnsi(intPtr);
+			return "";
 #elif UNITY_ANDROID && !UNITY_EDITOR
             QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
             return androidSupport.getConfigValue(key);
@@ -363,8 +374,9 @@ namespace quicksdk
         public bool isChannelHasExitDialog()
         {
 #if UNITY_ANDROID && !UNITY_EDITOR
-            QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
-            return androidSupport.isChannelHasExitDialog();
+            //QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
+            //return androidSupport.isChannelHasExitDialog();
+			return false;
 #else
             return false;
 #endif
@@ -385,7 +397,7 @@ namespace quicksdk
 		public void updateRoleInfoWith(GameRoleInfo gameRoleInfo, bool isCreateRole)
 		{
 			#if UNITY_IOS && !UNITY_EDITOR
-			quicksdk_nativeUpdateRoleInfo(gameRoleInfo.serverID, gameRoleInfo.serverName, gameRoleInfo.gameRoleName, gameRoleInfo.gameRoleID, gameRoleInfo.gameRoleBalance, gameRoleInfo.vipLevel, gameRoleInfo.gameRoleLevel, gameRoleInfo.partyName, gameRoleInfo.roleCreateTime, isCreateRole);
+			;//quicksdk_nativeUpdateRoleInfo(gameRoleInfo.serverID, gameRoleInfo.serverName, gameRoleInfo.gameRoleName, gameRoleInfo.gameRoleID, gameRoleInfo.gameRoleBalance, gameRoleInfo.vipLevel, gameRoleInfo.gameRoleLevel, gameRoleInfo.partyName, gameRoleInfo.roleCreateTime, isCreateRole);
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			androidSupport.updateRoleInfo(gameRoleInfo, isCreateRole);
@@ -394,7 +406,7 @@ namespace quicksdk
 		public int enterUserCenter() //用户中心
 		{
 			#if UNITY_IOS && !UNITY_EDITOR
-			return (quicksdk_nativeEnterUserCenter() == -100?0:1);
+			return 0;//return (quicksdk_nativeEnterUserCenter() == -100?0:1);
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			return androidSupport.callFunc(FuncType.QUICK_SDK_FUNC_TYPE_ENTER_USER_CENTER);
@@ -406,7 +418,7 @@ namespace quicksdk
 
 		public void enterYunKeFuCenter(GameRoleInfo gameRoleInfo){
 			#if UNITY_IOS && !UNITY_EDITOR
-			quicksdk_nativeEnterYunKeFuCenter(gameRoleInfo.gameRoleID, gameRoleInfo.gameRoleName, gameRoleInfo.serverName, gameRoleInfo.vipLevel);
+			;//quicksdk_nativeEnterYunKeFuCenter(gameRoleInfo.gameRoleID, gameRoleInfo.gameRoleName, gameRoleInfo.serverName, gameRoleInfo.vipLevel);
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			androidSupport.callCustomPlugin(gameRoleInfo.gameRoleID, gameRoleInfo.gameRoleName, gameRoleInfo.serverName, gameRoleInfo.vipLevel);
@@ -424,7 +436,7 @@ namespace quicksdk
 		private int enterCustomerCenter() ////客服
 		{
 			#if UNITY_IOS && !UNITY_EDITOR
-			return (quicksdk_nativeEnterCustomerCenter() == -100?0:1);
+			return 0;//return (quicksdk_nativeEnterCustomerCenter() == -100?0:1);
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			return 0;
 			#else
@@ -435,7 +447,7 @@ namespace quicksdk
 		private int enterBBS()//BBS
 		{
 			#if UNITY_IOS && !UNITY_EDITOR
-			return (quicksdk_nativeEnterBBS() == -100?0:1);
+			return 0;//return (quicksdk_nativeEnterBBS() == -100?0:1);
 			#elif UNITY_ANDROID && !UNITY_EDITOR
 			QuickUnitySupportAndroid androidSupport = QuickUnitySupportAndroid.getInstance();
 			return androidSupport.callFunc(FuncType.QUICK_SDK_FUNC_TYPE_ENTER_BBS);
@@ -444,7 +456,8 @@ namespace quicksdk
 			#endif
 			
 		}
-		
+
+		/*
 		#if UNITY_IOS && !UNITY_EDITOR
 		[DllImport("__Internal")]
 		private static extern void quicksdk_nativeSetListener(string gameObjectName);
@@ -485,9 +498,9 @@ namespace quicksdk
 		private static extern IntPtr quicksdk_nativeSDKVersion();
 		[DllImport("__Internal")]
 		private static extern IntPtr quicksdk_nativeGetConfigValue(string key);
-		#endif
+		#endif*/
 
-    }
+	}
 
 #if UNITY_ANDROID && !UNITY_EDITOR
 

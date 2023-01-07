@@ -41,7 +41,7 @@ namespace ET
             self.EndPos[1] = target.y;
             self.EndPos[2] = target.z;
             //Log.Debug($"start find path: {self.GetParent<Unit>().Id}");
-            int n = Recast.RecastFind(self.NavMesh, PathfindingComponent.extents, self.StartPos, self.EndPos, self.Result);
+            int n = 1;// Recast.RecastFind(self.NavMesh, PathfindingComponent.extents, self.StartPos, self.EndPos, self.Result);
             for (int i = 0; i < n; ++i)
             {
                 int index = i * 3;
@@ -146,7 +146,7 @@ namespace ET
             self.StartPos[1] = pos.y;
             self.StartPos[2] = pos.z;
 
-            int ret = Recast.RecastFindNearestPoint(self.NavMesh, PathfindingComponent.extents, self.StartPos, self.EndPos);
+            int ret = 1;// Recast.RecastFindNearestPoint(self.NavMesh, PathfindingComponent.extents, self.StartPos, self.EndPos);
             if (ret == 0)
             {
                 throw new Exception($"RecastFindNearestPoint fail, 可能是位置配置有问题: sceneName:{self.DomainScene().Name} {pos} {self.Name} {self.GetParent<Unit>().Id} {self.EndPos.ArrayToString()}");

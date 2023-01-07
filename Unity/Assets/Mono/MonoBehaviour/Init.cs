@@ -3,6 +3,7 @@ using System.Threading;
 using UnityEngine;
 using cn.sharesdk.unity3d;
 using System.Collections;
+using System.Runtime.InteropServices;
 
 namespace ET
 {
@@ -49,7 +50,7 @@ namespace ET
 		//apk sign 1  b119680ac96937de65f5c989ce485fb3   user_weijing2.keystore
 		//apk sign 2  3a0a616cdbf889b3565ba81fca3bed49   user.keystore
 #if UNITY_IPHONE
-    /*
+		/*
     [DllImport("__Internal")]
     private static extern void InitIAPManager();//初始化
 
@@ -61,7 +62,7 @@ namespace ET
 
     [DllImport("__Internal")]
     private static extern void BuyProduct(string s);//购买商品
-    */
+		*/
 #endif
 
 		public AndroidJavaClass jc;
@@ -257,7 +258,7 @@ namespace ET
 
 		public void GetUserInfo(string fenxiangtype)
 		{
-#if UNITY_ANDROID && !UNITY_EDITOR
+#if  !UNITY_EDITOR
 			switch (fenxiangtype)
 			{
 				case "1":
@@ -312,7 +313,11 @@ namespace ET
 				if (state == ResponseState.Success)
 				{
 					result = ssdk.GetAuthInfo(type);
+#if UNITY_ANDROID
 					string openId = result["unionID"].ToString();
+#elif UNITY_IPHONE
+					string openId = result["uid"].ToString();
+#endif
 					Log.ILog.Debug($"openId: {openId}");
 					this.OnGetUserInfoHandler("qq"+openId);
 				}
@@ -501,6 +506,8 @@ namespace ET
 		{
 #if UNITY_ANDROID && !UNITY_EDITOR
 			jo.Call("GetPhoneNum", "+86");
+#elif UNITY_IPHONE && !UNITY_EDITOR
+			Log.ILog.Debug($"UNITY_IPHONE:");
 #else
 			this.OnGetPhoneNumHandler(PhoneNumberHelper.getRandomTel());
 #endif

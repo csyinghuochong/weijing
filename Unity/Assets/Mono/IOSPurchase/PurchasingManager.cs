@@ -14,6 +14,9 @@ public class PurchasingManager : MonoBehaviour, IStoreListener
     private Action<string> failedCallback;
     private Action<Product> successedCallback;
 
+    public Action<string> SuccessedCallback;
+
+
     private void Awake()
     {
         InitProduct();
@@ -52,7 +55,7 @@ public class PurchasingManager : MonoBehaviour, IStoreListener
 
     public void OnIOSPurchase(int rmb)
     {
-        string product = $"{rmb}6WJ";
+        string product = $"{rmb}SJ";
 
         Purchase(product, PurchaseSucess, PurchaseFail);
     }
@@ -60,6 +63,7 @@ public class PurchasingManager : MonoBehaviour, IStoreListener
     public void PurchaseSucess(Product product)
     {
         string payinfo = JsonHelper.ToJson(product);
+        SuccessedCallback(product.receipt);
         ET.Log.ILog.Debug("内购成功： " + payinfo);
     }
     public void PurchaseFail(string product)
@@ -75,8 +79,6 @@ public class PurchasingManager : MonoBehaviour, IStoreListener
     /// <param name="_failedCallback">购买失败回调</param>
     public void Purchase(string _productId, Action<Product> _successedCallback, Action<string> _failedCallback)
     {
-        _productId = "488SG";
-
         failedCallback = _failedCallback;
         successedCallback = _successedCallback;
 

@@ -156,8 +156,9 @@ public class SMSSDemo : MonoBehaviour, SMSSDKHandler
     public void OnButtonGetCode(string phoneNumber)
     {
         phone = phoneNumber;
-
-#if UNITY_ANDROID && !UNITY_EDITOR
+        UnityEngine.Debug.Log("OnButtonGetCode11");
+#if !UNITY_EDITOR
+        UnityEngine.Debug.Log("OnButtonGetCode22");
      smssdk.getCode(CodeType.TextCode, phoneNumber, zone, tempCode);
 #else
 #endif

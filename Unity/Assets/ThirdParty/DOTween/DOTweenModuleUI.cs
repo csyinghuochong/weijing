@@ -47,6 +47,7 @@ namespace DG.Tweening
         /// <param name="endValue">The end value to reach</param><param name="duration">The duration of the tween</param>
         public static TweenerCore<Color, Color, ColorOptions> DOFade(this Graphic target, float endValue, float duration)
         {
+            Color c = UnityEngine.Color.black;
             TweenerCore<Color, Color, ColorOptions> t = DOTween.ToAlpha(() => target.color, x => target.color = x, endValue, duration);
             t.SetTarget(target);
             return t;

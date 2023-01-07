@@ -141,7 +141,7 @@ namespace ILRuntime.Runtime.Generated
             ET_RpcException_Binding.Register(app);
             System_Collections_Generic_Dictionary_2_String_Int64_Binding.Register(app);
             System_Func_2_String_Byte_Array_Binding.Register(app);
-            ET_Recast_Binding.Register(app);
+            //ET_Recast_Binding.Register(app);
             ET_MathHelper_Binding.Register(app);
             ET_StringHelper_Binding.Register(app);
             UnityEngine_GameObject_Binding.Register(app);
