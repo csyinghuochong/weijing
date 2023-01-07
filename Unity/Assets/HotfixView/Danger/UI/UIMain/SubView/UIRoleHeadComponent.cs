@@ -21,6 +21,7 @@ namespace ET
         public GameObject Obj_Lab_RolePiLao;
         public GameObject Obj_Img_RolePiLao;
         public GameObject Obj_ImagePetHeadIcon;
+        public GameObject Lab_PetLv;
 
         public UserInfoComponent UserInfoComponent;
 
@@ -50,6 +51,7 @@ namespace ET
             self.Lab_ServerName = rc.Get<GameObject>("Lab_ServerName");
             self.Img_RoleHuoLi = rc.Get<GameObject>("Img_RoleHuoLi");
             self.Img_RolePiLao = rc.Get<GameObject>("Img_RolePiLao");
+            self.Lab_PetLv = rc.Get<GameObject>("Lab_PetLv");
 
             self.ButtonSet = rc.Get<GameObject>("ButtonSet");
             self.ButtonSet.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenSettingUI(); });
@@ -105,6 +107,7 @@ namespace ET
             self.Obj_ImagePetHeadIcon.GetComponent<Image>().sprite = sp;
             self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
             Unit pet = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(rolePetInfo.Id);
+            self.Lab_PetLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级")+":" + rolePetInfo.PetLv;
             self.OnUpdatePetHP(pet);
         }
 
