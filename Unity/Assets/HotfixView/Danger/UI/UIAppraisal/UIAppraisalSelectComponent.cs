@@ -165,6 +165,10 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选择鉴定符！");
                 return;
             }
+            if (self.BagInfo_Equip.BagInfoID == self.BagInfo_Appri.BagInfoID)
+            {
+                return;
+            }
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             bagComponent.SendAppraisalItem(self.BagInfo_Equip, self.BagInfo_Appri.BagInfoID).Coroutine();
