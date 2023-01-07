@@ -733,6 +733,8 @@ namespace ET
             });
             uIPageViewComponent.OnSelectIndex(0);
             self.UIPageButtonComponent = uIPageViewComponent;
+            GameObject PhoneLeft = rc.Get<GameObject>("PhoneLeft");
+            IPHoneHelper.SetPosition(PhoneLeft, new Vector2(100f, 0f));
 
             UIHelper.Create(self.DomainScene(), UIType.UIHorseNotice).Coroutine();
 
