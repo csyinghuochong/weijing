@@ -281,17 +281,18 @@ namespace libx
 
         public void StartUpdate()
         {
-            // Debug.Log("StartUpdate.Development:" + development);
+            Debug.Log("StartUpdate.Development:" + development);
 #if UNITY_EDITOR
             if (development)
             {
+                Debug.Log("StartUpdate.Development1:");
                 Assets.runtimeMode = false;
                 StartCoroutine(LoadGameScene());
                 return;
             }
 #endif
             OnStart();
-
+            Debug.Log("StartUpdate.Development1:OnStart");
             if (_checking != null)
             {
                 StopCoroutine(_checking);
