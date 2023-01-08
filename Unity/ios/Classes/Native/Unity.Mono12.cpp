@@ -962,6 +962,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral62F596359EF063DCE51F4182250A92B15C78ACAA
 IL2CPP_EXTERN_C String_t* _stringLiteral639E7103203005DE341C375870BF282D7C5D06CE;
 IL2CPP_EXTERN_C String_t* _stringLiteral65A0F9B64ACE7C859A284EA54B1190CBF83E1260;
 IL2CPP_EXTERN_C String_t* _stringLiteral69BF1049D6179616C2C87C9C94C4713478CD24CC;
+IL2CPP_EXTERN_C String_t* _stringLiteral6C36DCF3925B592613E295A80B22A996181668DC;
 IL2CPP_EXTERN_C String_t* _stringLiteral739573D70A64651EBA5F53303D89FAD390FA4E57;
 IL2CPP_EXTERN_C String_t* _stringLiteral7680806CDAEB580844B287F4CB4986C7ED3A7FAB;
 IL2CPP_EXTERN_C String_t* _stringLiteral76CBFDCA057FF2608F925086AB8DE5BF33BBFC5F;
@@ -981,6 +982,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral8B76A0D4B6701EA5E02C0413A42A3886C662DDED
 IL2CPP_EXTERN_C String_t* _stringLiteral8DDFEF33D9B795421ED881ADD814F43EBBF654C6;
 IL2CPP_EXTERN_C String_t* _stringLiteral90DE00D2C0EAC682C0534CEE784F87E972EA2790;
 IL2CPP_EXTERN_C String_t* _stringLiteral91C9C456B08A64BD1777BE1E377FB2353FF34E69;
+IL2CPP_EXTERN_C String_t* _stringLiteral92E155956EA45B8C48B757947621E5CB0FC8C520;
 IL2CPP_EXTERN_C String_t* _stringLiteral9384C6EF2DA5C0BD5274A0DACFF291D0ABBFD8B1;
 IL2CPP_EXTERN_C String_t* _stringLiteral946B25C5457BDF44DD98DE6B45C1C6FE4C73BE8A;
 IL2CPP_EXTERN_C String_t* _stringLiteral949B1AF2937CD26BC66C8B458B5596309F686939;
@@ -16192,6 +16194,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Assets_Clear_m6B6CDB33BA903397E10AA9044D
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR bool Directory_Exists_m17E38B91F6D9A0064D614FF2237BBFC0127468FE (String_t* ___path0, const RuntimeMethod* method);
 // System.Void System.IO.Directory::Delete(System.String,System.Boolean)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Directory_Delete_m06FEE269B5B5425033C931B3F4742933F50D7ACE (String_t* ___path0, bool ___recursive1, const RuntimeMethod* method);
+// System.String System.Boolean::ToString()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Boolean_ToString_m59BB8456DD05A874BBD756E57EA8AD983287015C (bool* __this, const RuntimeMethod* method);
 // System.Void libx.Updater::OnStart()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Updater_OnStart_m81B86874BF455D523255C9AD87AB559FFB5755FF (Updater_t55F11D8BF25783236336CEF177C35362D3247467 * __this, const RuntimeMethod* method);
 // System.Void UnityEngine.MonoBehaviour::StopCoroutine(System.Collections.IEnumerator)
@@ -28131,32 +28135,50 @@ IL_0013:
 // System.Void libx.Updater::StartUpdate()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Updater_StartUpdate_mA9672DEFDBF8AA465B6102FC88119B15E91F6C0A (Updater_t55F11D8BF25783236336CEF177C35362D3247467 * __this, const RuntimeMethod* method)
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
 	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&Debug_tEB68BCBEB8EFD60F8043C67146DC05E7F50F374B_il2cpp_TypeInfo_var);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral6C36DCF3925B592613E295A80B22A996181668DC);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral92E155956EA45B8C48B757947621E5CB0FC8C520);
+		s_Il2CppMethodInitialized = true;
+	}
+	{
+		// Debug.Log("StartUpdate.Development:" + development);
+		bool* L_0 = __this->get_address_of_development_6();
+		String_t* L_1;
+		L_1 = Boolean_ToString_m59BB8456DD05A874BBD756E57EA8AD983287015C((bool*)L_0, /*hidden argument*/NULL);
+		String_t* L_2;
+		L_2 = String_Concat_m4B4AB72618348C5DFBFBA8DED84B9E2EBDB55E1B(_stringLiteral92E155956EA45B8C48B757947621E5CB0FC8C520, L_1, /*hidden argument*/NULL);
+		IL2CPP_RUNTIME_CLASS_INIT(Debug_tEB68BCBEB8EFD60F8043C67146DC05E7F50F374B_il2cpp_TypeInfo_var);
+		Debug_Log_mC26E5AD0D8D156C7FFD173AA15827F69225E9DB8(L_2, /*hidden argument*/NULL);
 		// OnStart();
 		Updater_OnStart_m81B86874BF455D523255C9AD87AB559FFB5755FF(__this, /*hidden argument*/NULL);
+		// Debug.Log("StartUpdate.Development1:OnStart");
+		Debug_Log_mC26E5AD0D8D156C7FFD173AA15827F69225E9DB8(_stringLiteral6C36DCF3925B592613E295A80B22A996181668DC, /*hidden argument*/NULL);
 		// if (_checking != null)
-		RuntimeObject* L_0 = __this->get__checking_16();
-		if (!L_0)
+		RuntimeObject* L_3 = __this->get__checking_16();
+		if (!L_3)
 		{
-			goto IL_001a;
+			goto IL_003e;
 		}
 	}
 	{
 		// StopCoroutine(_checking);
-		RuntimeObject* L_1 = __this->get__checking_16();
-		MonoBehaviour_StopCoroutine_m3AB89AE7770E06BDB33BF39104BE5C57DF90616B(__this, L_1, /*hidden argument*/NULL);
+		RuntimeObject* L_4 = __this->get__checking_16();
+		MonoBehaviour_StopCoroutine_m3AB89AE7770E06BDB33BF39104BE5C57DF90616B(__this, L_4, /*hidden argument*/NULL);
 	}
 
-IL_001a:
+IL_003e:
 	{
 		// _checking = Checking();
-		RuntimeObject* L_2;
-		L_2 = Updater_Checking_mC6166EB4DA6C672060832503EC7F0B6125435561(__this, /*hidden argument*/NULL);
-		__this->set__checking_16(L_2);
+		RuntimeObject* L_5;
+		L_5 = Updater_Checking_mC6166EB4DA6C672060832503EC7F0B6125435561(__this, /*hidden argument*/NULL);
+		__this->set__checking_16(L_5);
 		// StartCoroutine(_checking);
-		RuntimeObject* L_3 = __this->get__checking_16();
-		Coroutine_t899D5232EF542CB8BA70AF9ECEECA494FAA9CCB7 * L_4;
-		L_4 = MonoBehaviour_StartCoroutine_m3E33706D38B23CDD179E99BAD61E32303E9CC719(__this, L_3, /*hidden argument*/NULL);
+		RuntimeObject* L_6 = __this->get__checking_16();
+		Coroutine_t899D5232EF542CB8BA70AF9ECEECA494FAA9CCB7 * L_7;
+		L_7 = MonoBehaviour_StartCoroutine_m3E33706D38B23CDD179E99BAD61E32303E9CC719(__this, L_6, /*hidden argument*/NULL);
 		// }
 		return;
 	}

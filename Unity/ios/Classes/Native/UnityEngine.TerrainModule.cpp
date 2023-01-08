@@ -2146,6 +2146,23 @@ public:
 };
 
 
+// UnityEngine.TerrainLayer
+struct TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E  : public Object_tF2F3778131EFF286AF62B7B013A170F95A91571A
+{
+public:
+
+public:
+};
+
+// Native definition for P/Invoke marshalling of UnityEngine.TerrainLayer
+struct TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshaled_pinvoke : public Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_marshaled_pinvoke
+{
+};
+// Native definition for COM marshalling of UnityEngine.TerrainLayer
+struct TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshaled_com : public Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_marshaled_com
+{
+};
+
 // UnityEngine.Experimental.TerrainAPI.TerrainUtility/TerrainMap
 struct TerrainMap_tDD61065279F906812F404E67C65CB7F40CA49453  : public RuntimeObject
 {
@@ -2911,6 +2928,46 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void TerrainData_get_size_Injected_m181495692
 	if (!_il2cpp_icall_func)
 	_il2cpp_icall_func = (TerrainData_get_size_Injected_m181495692C7B755ACD1D7F7F115A2CE8DC6A9E64_ftn)il2cpp_codegen_resolve_icall ("UnityEngine.TerrainData::get_size_Injected(UnityEngine.Vector3&)");
 	_il2cpp_icall_func(__this, ___ret0);
+}
+#ifdef __clang__
+#pragma clang diagnostic pop
+#endif
+#ifdef __clang__
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Winvalid-offsetof"
+#pragma clang diagnostic ignored "-Wunused-variable"
+#endif
+// Conversion methods for marshalling of: UnityEngine.TerrainLayer
+IL2CPP_EXTERN_C void TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshal_pinvoke(const TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E& unmarshaled, TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshaled_pinvoke& marshaled)
+{
+	marshaled.___m_CachedPtr_0 = unmarshaled.get_m_CachedPtr_0();
+}
+IL2CPP_EXTERN_C void TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshal_pinvoke_back(const TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshaled_pinvoke& marshaled, TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E& unmarshaled)
+{
+	intptr_t unmarshaled_m_CachedPtr_temp_0;
+	memset((&unmarshaled_m_CachedPtr_temp_0), 0, sizeof(unmarshaled_m_CachedPtr_temp_0));
+	unmarshaled_m_CachedPtr_temp_0 = marshaled.___m_CachedPtr_0;
+	unmarshaled.set_m_CachedPtr_0(unmarshaled_m_CachedPtr_temp_0);
+}
+// Conversion method for clean up from marshalling of: UnityEngine.TerrainLayer
+IL2CPP_EXTERN_C void TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshal_pinvoke_cleanup(TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshaled_pinvoke& marshaled)
+{
+}
+// Conversion methods for marshalling of: UnityEngine.TerrainLayer
+IL2CPP_EXTERN_C void TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshal_com(const TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E& unmarshaled, TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshaled_com& marshaled)
+{
+	marshaled.___m_CachedPtr_0 = unmarshaled.get_m_CachedPtr_0();
+}
+IL2CPP_EXTERN_C void TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshal_com_back(const TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshaled_com& marshaled, TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E& unmarshaled)
+{
+	intptr_t unmarshaled_m_CachedPtr_temp_0;
+	memset((&unmarshaled_m_CachedPtr_temp_0), 0, sizeof(unmarshaled_m_CachedPtr_temp_0));
+	unmarshaled_m_CachedPtr_temp_0 = marshaled.___m_CachedPtr_0;
+	unmarshaled.set_m_CachedPtr_0(unmarshaled_m_CachedPtr_temp_0);
+}
+// Conversion method for clean up from marshalling of: UnityEngine.TerrainLayer
+IL2CPP_EXTERN_C void TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshal_com_cleanup(TerrainLayer_t8DDE2984BBC3E36CF0EBC3F0DD1862106248D38E_marshaled_com& marshaled)
+{
 }
 #ifdef __clang__
 #pragma clang diagnostic pop
