@@ -50,6 +50,12 @@ public class ClipBoard
 public class MyEditorScript
 {
 	static string[] SCENES = FindEnabledEditorScenes();
+
+
+	static void PerformIOSBuild()
+	{
+	}
+
 	[MenuItem("Custom/Build Android QQ")]
 	static void PerformAndroidQQBuild()
 	{

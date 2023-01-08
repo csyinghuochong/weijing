@@ -1,10 +1,11 @@
 using UnityEngine;
+using System;
+using System.IO;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Callbacks;
 using UnityEditor.XCodeEditor;
 #endif
-using System.IO;
 
 public static class XCodePostProcess
 {
@@ -21,8 +22,9 @@ public static class XCodePostProcess
 			Debug.LogWarning("Target is not iPhone. XCodePostProcess will not run");
 			return;
 		}
-
+		UnityEngine.Debug.Log("PostProcess_1: " + pathToBuiltProject);
 		// Create a new project object from build target
+
 		XCProject project = new XCProject( pathToBuiltProject );
 
 		// Find and run through all projmods files to patch the project.
@@ -30,7 +32,7 @@ public static class XCodePostProcess
 		string[] files = Directory.GetFiles( Application.dataPath, "*.projmods", SearchOption.AllDirectories );
 		foreach( string file in files ) {
 			UnityEngine.Debug.Log("ProjMod File: "+file);
-			project.ApplyMod( file );
+			//project.ApplyMod( file );
 		}
 
 		//TODO disable the bitcode for iOS 9
@@ -39,10 +41,15 @@ public static class XCodePostProcess
 
 		//TODO implement generic settings as a module option
 //		project.overwriteBuildSetting("CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Distribution", "Release");
-		
+
+
+		string path_1 = "//Users/tangzhen/project/gitwj/Unity/HybridCLRData/iOSBuild/build/libil2cpp.a";
+		string path_2 = "//Users/tangzhen/project/gitwj/Unity/ios/Libraries/libil2cpp.a";
+		File.Copy(path_1, path_2, true);
+
 		// Finally save the xcode project
 		project.Save();
-		UnityEngine.Debug.Log("PostProcess");
+		UnityEngine.Debug.Log("PostProcess_2");
 	}
 #endif
 
