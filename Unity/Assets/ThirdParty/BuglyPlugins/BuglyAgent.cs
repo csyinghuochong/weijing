@@ -510,8 +510,8 @@ public sealed class BuglyAgent
     private static void ConfigCrashReporterType(){
         if (!_crashReporterTypeConfiged) {
             try {
-               // _BuglyConfigCrashReporterType(_crashReporterType);
-                //_crashReporterTypeConfiged = true;
+                _BuglyConfigCrashReporterType(_crashReporterType);
+                _crashReporterTypeConfiged = true;
              } catch {
                 
             }
@@ -522,7 +522,7 @@ public sealed class BuglyAgent
         ConfigCrashReporterType();
         
         try {
-            //_BuglyDefaultConfig(channel, version, user, null);
+            _BuglyDefaultConfig(channel, version, user, null);
         } catch {
             
         }
@@ -534,31 +534,31 @@ public sealed class BuglyAgent
     
     private static void InitBuglyAgent (string appId)
     {
-        //ConfigCrashReporterType();
+        ConfigCrashReporterType();
         
         if(!string.IsNullOrEmpty(appId)) {
             
-           // _BuglyInit(appId, _debugMode, _crashReproterCustomizedLogLevel); // Log level 
+            _BuglyInit(appId, _debugMode, _crashReproterCustomizedLogLevel); // Log level 
         }
     }
     
     private static void SetUnityVersion(){
         ConfigCrashReporterType();
         
-        //_BuglySetExtraConfig("UnityVersion", Application.unityVersion);
+        _BuglySetExtraConfig("UnityVersion", Application.unityVersion);
     }
     
     private static void SetUserInfo(string userInfo){
         if(!string.IsNullOrEmpty(userInfo)) {
-            //ConfigCrashReporterType();
+            ConfigCrashReporterType();
             
-            //_BuglySetUserId(userInfo);
+            _BuglySetUserId(userInfo);
         }
     }
     
     private static void ReportException (int type, string name, string reason, string stackTrace, bool quitProgram)
     {
-        //ConfigCrashReporterType();
+        ConfigCrashReporterType();
         
         string extraInfo = "";
         Dictionary<string, string> extras = null;
@@ -583,19 +583,19 @@ public sealed class BuglyAgent
         }
         
         // 4 is C# exception
-        //_BuglyReportException(4, name, reason, stackTrace, extraInfo, quitProgram);
+        _BuglyReportException(4, name, reason, stackTrace, extraInfo, quitProgram);
     }
     
     private static void SetCurrentScene(int sceneId) {
-        //ConfigCrashReporterType();
+        ConfigCrashReporterType();
         
-        //_BuglySetTag(sceneId);
+        _BuglySetTag(sceneId);
     }
     
     private static void AddKeyAndValueInScene(string key, string value){
-        //ConfigCrashReporterType();
+        ConfigCrashReporterType();
         
-        //_BuglySetKeyValue(key, value);
+        _BuglySetKeyValue(key, value);
     }
     
     private static void AddExtraDataWithException(string key, string value) {
@@ -607,9 +607,9 @@ public sealed class BuglyAgent
             DebugLog (level.ToString (), message);
         }
         
-        //ConfigCrashReporterType();
+        ConfigCrashReporterType();
         
-        //_BuglyLogMessage(LogSeverityToInt(level), null, message);
+        _BuglyLogMessage(LogSeverityToInt(level), null, message);
     }
     
     private static int LogSeverityToInt(LogSeverity logLevel){
@@ -638,8 +638,7 @@ public sealed class BuglyAgent
         }
         return level;
     }
-
-    /*
+    
     // --- dllimport start ---
     [DllImport("__Internal")]
     private static extern void _BuglyInit(string appId, bool debug, int level);
@@ -667,8 +666,7 @@ public sealed class BuglyAgent
     
     [DllImport("__Internal")]
     private static extern void _BuglySetExtraConfig(string key, string value);
-
-    */
+    
     // dllimport end
     #endregion
     
