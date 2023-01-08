@@ -42,6 +42,10 @@ public static class XCodePostProcess
 		//TODO implement generic settings as a module option
 //		project.overwriteBuildSetting("CODE_SIGN_IDENTITY[sdk=iphoneos*]", "iPhone Distribution", "Release");
 
+		var mainAppPath = Path.Combine(pathToBuiltProject, "MainApp", "main.mm");
+		var mainContent = File.ReadAllText(mainAppPath);
+		var newContent = mainContent.Replace("#include <UnityFramework/UnityFramework.h>", @"#include ""../UnityFramework/UnityFramework.h""");
+		File.WriteAllText(mainAppPath, newContent);
 
 		string path_1 = "//Users/tangzhen/project/gitwj/Unity/HybridCLRData/iOSBuild/build/libil2cpp.a";
 		string path_2 = "//Users/tangzhen/project/gitwj/Unity/ios/Libraries/libil2cpp.a";
