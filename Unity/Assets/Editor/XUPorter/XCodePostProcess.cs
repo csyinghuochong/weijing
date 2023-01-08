@@ -30,7 +30,7 @@ public static class XCodePostProcess
 		string[] files = Directory.GetFiles( Application.dataPath, "*.projmods", SearchOption.AllDirectories );
 		foreach( string file in files ) {
 			UnityEngine.Debug.Log("ProjMod File: "+file);
-			//project.ApplyMod( file );
+			project.ApplyMod( file );
 		}
 
 		//TODO disable the bitcode for iOS 9
