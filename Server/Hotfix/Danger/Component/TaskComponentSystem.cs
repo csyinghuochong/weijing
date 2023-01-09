@@ -277,10 +277,14 @@ namespace ET
             UserInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
             unitInfoComponent.UpdateRoleData(UserDataType.Exp, TaskExp.ToString());
             unitInfoComponent.UpdateRoleData(UserDataType.Gold, TaskCoin.ToString());
-            Log.Debug($"Gold:  {unitInfoComponent.Id} {TaskCoin} task");
+            Log.Debug($"任务领取:  {unitInfoComponent.Id} 金币：{TaskCoin} 任务{taskid}");
 
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
             List<RewardItem> rewardItems = TaskHelp.GetTaskRewards(taskid, taskConfig);
+            if (bagComponent.GetSpaceNumber() < rewardItems.Count)
+            {
+                return ErrorCore.ERR_BagIsFull; 
+            }
             bagComponent.OnAddItemData(rewardItems, "", $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
             if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
             {
