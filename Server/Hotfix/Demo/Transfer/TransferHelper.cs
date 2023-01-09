@@ -26,7 +26,7 @@
             }
         }
 
-        public static async void LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty)
+        public static async ETTask LocalDungeonTransfer(Unit unit, int sceneId, int transferId, int difficulty)
         {
             long oldsceneid = unit.DomainScene().Id;
 
