@@ -105,6 +105,7 @@ namespace ET
 
         public static void SetComboSkill(this AttackComponent self, long timeNow)
         {
+            int lastSkill = self.ComboSkillId;
             if (timeNow - self.LastSkillTime > self.CombatEndTime)
             {
                 self.ComboSkillId = self.SkillId;
@@ -118,7 +119,7 @@ namespace ET
             if ((EquipType == (int)ItemEquipType.Sword
                 || EquipType == (int)ItemEquipType.Common))
             {
-                self.ComboSkillId = self.RandomGetSkill();
+                self.ComboSkillId = self.RandomGetSkill(lastSkill);
             }
 
             if (self.ComboSkillId == 60000103 || self.ComboSkillId == 60000203)
@@ -156,10 +157,21 @@ namespace ET
             }
         }
 
-        public static int RandomGetSkill(this AttackComponent self)
+        public static int RandomGetSkill(this AttackComponent self, int lastSkill)
         {
             int index = RandomHelper.RandomByWeight(self.Weights);
-            return self.SkillList[index];
+            int lastIndex = self.SkillList.IndexOf(lastSkill);
+            int skillId = self.SkillList[index];
+            if (index == lastIndex)
+            {
+                index++;
+                index = index >= self.SkillList.Count ? 0 : index;
+                return self.SkillList[index];
+            }
+            else
+            {
+                return skillId;
+            }
         }
 
         public static int GetTargetAnagle(this AttackComponent self, Unit unit, Unit taretUnit)
