@@ -15,7 +15,7 @@ namespace ET
             
             ErrorHintList.Add(ErrorCore.ERR_NetWorkError, "网络错误!");
             ErrorHintList.Add(ErrorCore.ERR_AccountAlreadyRegister, "账号已注册!");
-            ErrorHintList.Add(ErrorCore.ERR_AccountInBlackListError, "账号异常,禁止登录!");
+            ErrorHintList.Add(ErrorCore.ERR_AccountInBlackListError, "账号异常!");
             ErrorHintList.Add(ErrorCore.ERR_LoginInfoIsNull, "未找到账号数据,请确认账号是否已经注册");
             ErrorHintList.Add(ErrorCore.ERR_AccountOrPasswordError, "密码错误,请检查重新输入");
             ErrorHintList.Add(ErrorCore.ERR_OtherAccountLogin, "账号异地登录");

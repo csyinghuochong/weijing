@@ -105,6 +105,15 @@ namespace ET
                         await Game.Scene.GetComponent<DBComponent>().Save<DBAccountInfo>(session.DomainZone(), account);
                     }
 
+                    if (account.AccountType == 2) //黑名单
+                    {
+                        response.Error = ErrorCore.ERR_AccountInBlackListError;
+                        response.AccountId = account.Id;
+                        reply();
+                        session.Disconnect().Coroutine();
+                        account?.Dispose();
+                        return;
+                    }
                     if (centerPlayerInfo.RealName == 0 )
                     {
                         response.Error = ErrorCore.ERR_NotRealName;
