@@ -34,20 +34,22 @@ namespace ET
                     reply();
                     return;
                 }
-
-                if (request.TaskId == 100011)
+                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(request.TaskId);
+                int itemItem = taskCountryConfig.RewardItem.Split('@').Length;
+                if (unit.GetComponent<BagComponent>().GetSpaceNumber() < itemItem)
                 {
-                    Log.Debug($"C2M_TaskCountryCommit100011:  {unit.Id}  {TimeHelper.ServerNow().ToString()}");
+                    response.Error = ErrorCore.ERR_BagIsFull;
+                    reply();
+                    return;
                 }
 
-                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(request.TaskId);
                 unit.GetComponent<BagComponent>().OnAddItemData(taskCountryConfig.RewardItem, $"{ItemGetWay.TaskCountry}_{TimeHelper.ServerNow()}");
 
                 //添加金币
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, taskCountryConfig.RewardGold.ToString());
                 //添加活跃
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.HuoYue, taskCountryConfig.EveryTaskRewardNum.ToString());
-                Log.Debug($"TaskCountry:  {unit.Id} gold: {taskCountryConfig.RewardGold}");
+                Log.Debug($"TaskCountry:  {unit.Id} gold: {taskCountryConfig.RewardGold} task: {request.TaskId}");
                 reply();
                 await ETTask.CompletedTask;
             }
