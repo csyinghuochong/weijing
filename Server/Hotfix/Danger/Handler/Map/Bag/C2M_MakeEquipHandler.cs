@@ -9,6 +9,13 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_MakeEquipRequest request, M2C_MakeEquipResponse response, Action reply)
         {
+            if (unit.GetComponent<BagComponent>().GetSpaceNumber() == 0)
+            {
+                response.Error = ErrorCore.ERR_BagIsFull;
+                reply();
+                return;
+            }
+
             ItemLocType locType = ItemLocType.ItemLocBag;
             int costItemId = 0;
             if (request.BagInfoID != 0)
