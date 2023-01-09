@@ -56,6 +56,7 @@ namespace ET
             }
 
             session.LastRecvTime = TimeHelper.ClientNow();
+            session.PackageNumber++;
             SessionStreamDispatcher.Instance.Dispatch(self.SessionStreamDispatcherType, session, memoryStream);
         }
 

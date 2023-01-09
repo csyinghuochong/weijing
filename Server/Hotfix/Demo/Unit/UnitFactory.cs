@@ -353,7 +353,11 @@ namespace ET
             List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro, false);
             if ((monsterCof.MonsterSonType == 55 || monsterCof.MonsterSonType == 56) && droplist.Count == 0)
             {
-                Log.Error($"宝箱掉落为空{monsterCof.Id}");
+                Log.Error($"宝箱掉落为空{monsterCof.Id} {main.Id}");
+            }
+            if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss && droplist.Count == 0)
+            {
+                Log.Error($"BOSS掉落为空{monsterCof.Id}  {main.Id}");
             }
             List<RewardItem> droplist_2 = null;
             if (main!=null && !main.IsDisposed)
