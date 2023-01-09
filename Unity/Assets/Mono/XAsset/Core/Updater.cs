@@ -582,6 +582,7 @@ namespace libx
             }
 
             //1
+            // downuri "http://39.96.194.143/weijing1/DLCBeta/Android/ver"
             string downuri = GetDownloadURL(Versions.Filename);
             var request = UnityWebRequest.Get(downuri);
             request.downloadHandler = new DownloadHandlerFile(_savePath + Versions.Filename);
@@ -706,6 +707,9 @@ namespace libx
 
         private IEnumerator RequestCopy()
         {
+            //先把APK的ver文件下载到缓存目录ver.tmp
+            // _savePath    C:/Users/Admin/AppData/LocalLow/yinghuochong/危境/DLC/" 
+            // basePath "file:///H:/GitWeiJing/Unity/Assets/StreamingAssets/"   
             var v1 = Versions.LoadVersion(_savePath + Versions.Filename);
             var basePath = GetBasePath();
             var request = UnityWebRequest.Get(Path.Combine(basePath, Versions.Filename));

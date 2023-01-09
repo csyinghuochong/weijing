@@ -81,7 +81,7 @@ namespace libx
                 DontDestroyOnLoad(instance.gameObject);
             } 
 
-            if (string.IsNullOrEmpty(basePath))
+            //if (string.IsNullOrEmpty(basePath))
             {
                 basePath = Application.streamingAssetsPath + Path.DirectorySeparatorChar;
             }
