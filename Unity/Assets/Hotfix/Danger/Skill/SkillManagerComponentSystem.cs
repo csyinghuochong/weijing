@@ -210,6 +210,7 @@ namespace ET
             skillcd.SkillID = skillId;
             skillcd.CDEndTime = skillCmd.CDEndTime + 100;
             self.SkillPublicCDTime = skillCmd.PublicCDTime + 100;
+            self.AddSkillTimer();
         }
 
         public static void AddSkillTimer(this SkillManagerComponent self)
@@ -263,16 +264,16 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
-            if (unit.MainHero && !unit.IsRobot())
-            {
-                self.CheckSkillCD(skillConfig, skillcmd.SkillID);
-            }
+            //if (unit.MainHero && !unit.IsRobot())
+            //{
+            //    self.CheckSkillCD(skillConfig, skillcmd.SkillID);
+            //}
             if (skillcmd.ItemId > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
             {
+                //回血技能只播放动画
                 EventType.PlayAnimator.Instance.Animator = skillConfig.SkillAnimation;
                 EventType.PlayAnimator.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
-                return;
             }
             if (skillcmd.ItemId == 0 && !ComHelp.IfNull(skillConfig.SkillAnimation))   //有技能动画
             {
@@ -287,7 +288,6 @@ namespace ET
                 Game.EventSystem.PublishClass(EventType.FsmChange.Instance);
             }
 
-            //野怪技能指示器
             for (int i = 0; i < skillcmd.SkillInfos.Count; i++)
             {
                 SkillConfig skillConfig1 = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[i].WeaponSkillID);
@@ -333,9 +333,9 @@ namespace ET
                 }
                 //公共技能冷却
                 long leftPublicCD = self.SkillPublicCDTime - TimeHelper.ServerNow();
-                if (leftPublicCD > 2000)
+                if (leftPublicCD > 1000)
                 {
-                    Log.Error($"leftPublicCD > 2000 {leftPublicCD}");
+                    Log.Error($"leftPublicCD > 1000 {leftPublicCD}");
                     self.SkillPublicCDTime = TimeHelper.ServerNow();
                     leftPublicCD = 0;
                 }
