@@ -44,6 +44,10 @@ namespace ET
 				ButtonHelp.AddListenerEx(self.ZhuCe.transform.Find("Btn_iPhone").gameObject, () => { self.OnBtn_iPhone(); });
 				self.ZhuCe.transform.Find("Btn_ZhuCe").gameObject.SetActive(GlobalHelp.IsEditorMode);
 
+#if UNITY_IPHONE || UNITY_IOS
+				self.ZhuCe.transform.Find("Btn_WeChat").gameObject.SetActive(false);
+#endif
+
 				self.AccountText = rc.Get<GameObject>("AccountText");
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
 				self.YanZheng = rc.Get<GameObject>("YanZheng");

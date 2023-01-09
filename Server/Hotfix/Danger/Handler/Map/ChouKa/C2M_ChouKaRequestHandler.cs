@@ -49,6 +49,15 @@ namespace ET
             {
                 DropHelper.DropIDToDropItem_2(dropid, droplist);
             }
+            for (int i = 0; i < droplist.Count; i++)
+            {
+                if (droplist[i].ItemID == 0)
+                {
+                    Log.Error($"抽卡[道具为0]： {unit.Id} {droplist[i].ItemID}");
+                }
+            }
+
+            Log.Debug($"抽卡： {unit.Id} {droplist.Count}");
             bagComponent.OnAddItemData(droplist, "",$"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
             
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ChouKa, request.ChouKaType, 0);

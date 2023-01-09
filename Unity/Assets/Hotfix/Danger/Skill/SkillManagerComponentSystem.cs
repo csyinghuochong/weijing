@@ -332,7 +332,14 @@ namespace ET
                     return ErrorCore.ERR_UseSkillInCD5;
                 }
                 //公共技能冷却
-                if (TimeHelper.ServerNow() < self.SkillPublicCDTime)
+                long leftPublicCD = self.SkillPublicCDTime - TimeHelper.ServerNow();
+                if (leftPublicCD > 2000)
+                {
+                    Log.Error($"leftPublicCD > 2000 {leftPublicCD}");
+                    self.SkillPublicCDTime = TimeHelper.ServerNow();
+                    leftPublicCD = 0;
+                }
+                if (leftPublicCD > 0)
                 {
                     return ErrorCore.ERR_UseSkillInCD6;
                 }

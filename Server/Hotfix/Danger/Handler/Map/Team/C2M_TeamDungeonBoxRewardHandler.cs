@@ -18,17 +18,22 @@ namespace ET
             }
 
             TeamDungeonComponent teamDungeonComponent = scene.GetComponent<TeamDungeonComponent>();
-            if (teamDungeonComponent != null)
+            if (teamDungeonComponent == null)
             {
-                if (teamDungeonComponent.BoxReward.Contains(request.BoxIndex))
-                {
-                    reply();
-                    return;
-                }
-                teamDungeonComponent.BoxReward.Add(request.BoxIndex);
+                Log.Debug($"TeamDungeonBoxReward scene.InstanceId == 0 {unit.Id}");
+                reply();
+                return;
             }
 
-            Log.Debug($"TeamDungeonBoxReward: {unit.Id} {request.BoxIndex}");
+            if (teamDungeonComponent.BoxReward.Contains(request.BoxIndex))
+            {
+                Log.Error($"TeamDungeonBoxReward[已翻牌]: {unit.Id} {request.BoxIndex}");
+                reply();
+                return;
+            }
+            teamDungeonComponent.BoxReward.Add(request.BoxIndex);
+
+            Log.Debug($"TeamDungeonBoxReward[可翻牌]: {unit.Id} {request.BoxIndex} {request.RewardItem.ItemID} {request.RewardItem.ItemNum}");
             List<RewardItem> rewardItems = new List<RewardItem>();
             rewardItems.Add(request.RewardItem);
             unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
