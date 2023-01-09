@@ -51,9 +51,19 @@ public class MyEditorScript
 {
 	static string[] SCENES = FindEnabledEditorScenes();
 
-
+	[MenuItem("Custom/Build IOS")]
 	static void PerformIOSBuild()
 	{
+		//打包之前先设置一下 预定义标签， 我建议大家最好 做一些  91 同步推 快用 PP助手一类的标签。 这样在代码中可以灵活的开启 或者关闭 一些代码。
+		//因为 这里我是承接 上一篇文章， 我就以sharesdk做例子 ，这样方便大家学习 ，
+		PlayerSettings.SetScriptingDefineSymbolsForGroup(BuildTargetGroup.iOS, "NET452;DISABLE_ILRUNTIME_DEBUG;ILRuntime:UNITY_EDITO");
+
+		//这里就是构建xcode工程的核心方法了，
+		//参数1 需要打包的所有场景
+		//参数2 需要打包的名子， 这里取到的就是 shell传进来的字符串 91
+		//参数3 打包平台
+		string[] scenes = new string[] { SCENES[0] };
+		BuildPipeline.BuildPlayer(scenes, "危境", BuildTarget.iOS, BuildOptions.None);
 	}
 
 	[MenuItem("Custom/Build Android QQ")]
