@@ -8582,65 +8582,67 @@ extern void GizmosDebug_Awake_m02926DEDFE1F41EAFF4C7C2B889197614C92949D (void);
 extern void GizmosDebug_OnDrawGizmos_m7287BEAF89C3A9FB034449CD3B094849C149C051 (void);
 // 0x000010F5 System.Void ET.GizmosDebug::.ctor()
 extern void GizmosDebug__ctor_m3B47B65F574F23438FE1BA2036FC3B7B7347034D (void);
-// 0x000010F6 System.Void ET.Init::Awake()
+// 0x000010F6 System.Void ET.Init::CheckIphoneYueyu(System.String)
+extern void Init_CheckIphoneYueyu_m182CD9924DC81EC08F0D3314F5EFB98BB2740222 (void);
+// 0x000010F7 System.Void ET.Init::Awake()
 extern void Init_Awake_m31D29836728015B65429E4BE3B1B663F45EAFC1F (void);
-// 0x000010F7 System.Void ET.Init::OnLogMessageReceived(System.String,System.String,UnityEngine.LogType)
+// 0x000010F8 System.Void ET.Init::OnLogMessageReceived(System.String,System.String,UnityEngine.LogType)
 extern void Init_OnLogMessageReceived_m32385C4928AF54FE54F0AC9BB3573486BC164A02 (void);
-// 0x000010F8 System.Void ET.Init::SetIsPermissionGranted()
+// 0x000010F9 System.Void ET.Init::SetIsPermissionGranted()
 extern void Init_SetIsPermissionGranted_mA3E4C528A4D115FD3D1F89C337A6D5C675D6FD1D (void);
-// 0x000010F9 System.Void ET.Init::OpenBuglyAgent(System.Int64)
+// 0x000010FA System.Void ET.Init::OpenBuglyAgent(System.Int64)
 extern void Init_OpenBuglyAgent_m9964212AA71BB07AE9AC1CD9A743DC7E20398E3A (void);
-// 0x000010FA System.Void ET.Init::Start()
+// 0x000010FB System.Void ET.Init::Start()
 extern void Init_Start_mC7C17FB9A89E2ABA572DBE1048419A0DCA287341 (void);
-// 0x000010FB System.Void ET.Init::Update()
+// 0x000010FC System.Void ET.Init::Update()
 extern void Init_Update_m7DBEB89E0EE7B4E6CD40D961E9B55D216C5EE6CB (void);
-// 0x000010FC System.Void ET.Init::CheckMouseInput()
+// 0x000010FD System.Void ET.Init::CheckMouseInput()
 extern void Init_CheckMouseInput_m6AF397B96CA71BA757D2326FE8188EBC1B147758 (void);
-// 0x000010FD System.Void ET.Init::LateUpdate()
+// 0x000010FE System.Void ET.Init::LateUpdate()
 extern void Init_LateUpdate_m57C13CF167573F967345A8A879C6340431F4420C (void);
-// 0x000010FE System.Void ET.Init::OnApplicationQuit()
+// 0x000010FF System.Void ET.Init::OnApplicationQuit()
 extern void Init_OnApplicationQuit_m84687EA90D87BA206862285BB1A4BE38D3AC62C8 (void);
-// 0x000010FF System.Void ET.Init::OnApplicationFocus(System.Boolean)
+// 0x00001100 System.Void ET.Init::OnApplicationFocus(System.Boolean)
 extern void Init_OnApplicationFocus_mB7EDE8DECAB6D07B35983AD5AF1C3398A919C5DB (void);
-// 0x00001100 System.Void ET.Init::Authorize(System.String)
+// 0x00001101 System.Void ET.Init::Authorize(System.String)
 extern void Init_Authorize_mC60FB210A7FA8EAD52A789A1CB282AB1CAB632EA (void);
-// 0x00001101 System.Void ET.Init::GetUserInfo(System.String)
+// 0x00001102 System.Void ET.Init::GetUserInfo(System.String)
 extern void Init_GetUserInfo_mC62D8F5744266BC9362B6034ACA2D60F2B7DC659 (void);
-// 0x00001102 System.Void ET.Init::OnNativeToUnit(System.String)
+// 0x00001103 System.Void ET.Init::OnNativeToUnit(System.String)
 extern void Init_OnNativeToUnit_m7D03AAFB4A28CEC98DC94CE6B4FB316E9847CDB5 (void);
-// 0x00001103 System.Void ET.Init::OnGetUserInfoResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
+// 0x00001104 System.Void ET.Init::OnGetUserInfoResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
 extern void Init_OnGetUserInfoResultHandler_m43418AE8A9A78EA13700BB6D54337E37A3101457 (void);
-// 0x00001104 System.Void ET.Init::FenXiang(System.String)
+// 0x00001105 System.Void ET.Init::FenXiang(System.String)
 extern void Init_FenXiang_mF419DE2A0F9F546005A29AE8A2B7E8CB9174169D (void);
-// 0x00001105 System.Void ET.Init::OnAuthResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
+// 0x00001106 System.Void ET.Init::OnAuthResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
 extern void Init_OnAuthResultHandler_m1DDC452289AEF786FAB777C493BCB350DF113143 (void);
-// 0x00001106 System.Void ET.Init::OnShareResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
+// 0x00001107 System.Void ET.Init::OnShareResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
 extern void Init_OnShareResultHandler_mDCE36D68988B0D54AB7BBD99BF2DB294EA0EF4E0 (void);
-// 0x00001107 System.Void ET.Init::OnGetFriendsResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
+// 0x00001108 System.Void ET.Init::OnGetFriendsResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
 extern void Init_OnGetFriendsResultHandler_m54A1A8BFA951E4C499D76E55EF86E383AAC11EDA (void);
-// 0x00001108 System.Void ET.Init::OnFollowFriendResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
+// 0x00001109 System.Void ET.Init::OnFollowFriendResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
 extern void Init_OnFollowFriendResultHandler_m0B7C58BFFFEF3DD383EDD9B2997D9CF7A3AC40DD (void);
-// 0x00001109 System.Void ET.Init::AliPay(System.String)
+// 0x0000110A System.Void ET.Init::AliPay(System.String)
 extern void Init_AliPay_m2E1BABF2FA5E2583DD5FE33046BCC389AD254F9C (void);
-// 0x0000110A System.Void ET.Init::AliPayCallback(System.String)
+// 0x0000110B System.Void ET.Init::AliPayCallback(System.String)
 extern void Init_AliPayCallback_m632A5FB8750250BCE521F4A45E0D9B47A8982339 (void);
-// 0x0000110B System.Void ET.Init::WeChatPay(System.String)
+// 0x0000110C System.Void ET.Init::WeChatPay(System.String)
 extern void Init_WeChatPay_m094DE1A4223DB52E1DBE3C3EFC04EF8AF703CF49 (void);
-// 0x0000110C System.Void ET.Init::OnGetPhoneNum()
+// 0x0000110D System.Void ET.Init::OnGetPhoneNum()
 extern void Init_OnGetPhoneNum_mB25AE42BF9EB02A1A0837DE11B2D56B1F9EE00A5 (void);
-// 0x0000110D System.Void ET.Init::OnRecvPhoneNum(System.String)
+// 0x0000110E System.Void ET.Init::OnRecvPhoneNum(System.String)
 extern void Init_OnRecvPhoneNum_mFA44AB86943DE2B49C3E77E3C8A26B792F8D1E0B (void);
-// 0x0000110E System.Void ET.Init::.ctor()
+// 0x0000110F System.Void ET.Init::.ctor()
 extern void Init__ctor_mB2E83C132074BA8C2F2CDD17A603386F8E307D30 (void);
-// 0x0000110F System.Void ET.Init/<>c::.cctor()
+// 0x00001110 System.Void ET.Init/<>c::.cctor()
 extern void U3CU3Ec__cctor_m321F00343A3718FA65C10C3E3C9B1D9175704AC3 (void);
-// 0x00001110 System.Void ET.Init/<>c::.ctor()
+// 0x00001111 System.Void ET.Init/<>c::.ctor()
 extern void U3CU3Ec__ctor_m1B4E9514D57B07637EEDE19CA0B970DA1D691773 (void);
-// 0x00001111 System.Void ET.Init/<>c::<Awake>b__31_0(System.Object,System.UnhandledExceptionEventArgs)
-extern void U3CU3Ec_U3CAwakeU3Eb__31_0_m79AC94079FB591B8A68779F08C30C3E99100926B (void);
-// 0x00001112 System.Void ET.UILayerScript::.ctor()
+// 0x00001112 System.Void ET.Init/<>c::<Awake>b__32_0(System.Object,System.UnhandledExceptionEventArgs)
+extern void U3CU3Ec_U3CAwakeU3Eb__32_0_mD04C420EB2256E5E8F920EB75A6CB19516E9D318 (void);
+// 0x00001113 System.Void ET.UILayerScript::.ctor()
 extern void UILayerScript__ctor_mF5FB2B51A72E49FFFE387F8CBFA6E0028BF1AAF1 (void);
-static Il2CppMethodPointer s_methodPointers[4370] = 
+static Il2CppMethodPointer s_methodPointers[4371] = 
 {
 	AI_1__ctor_m7A61848F87B7120517CC12FC55771BC21F0894A3,
 	AdditiveHide_Awake_mA7FAB21E49A8C68CA65ED6EEB5773B03301CFB6E,
@@ -12983,6 +12985,7 @@ static Il2CppMethodPointer s_methodPointers[4370] =
 	GizmosDebug_Awake_m02926DEDFE1F41EAFF4C7C2B889197614C92949D,
 	GizmosDebug_OnDrawGizmos_m7287BEAF89C3A9FB034449CD3B094849C149C051,
 	GizmosDebug__ctor_m3B47B65F574F23438FE1BA2036FC3B7B7347034D,
+	Init_CheckIphoneYueyu_m182CD9924DC81EC08F0D3314F5EFB98BB2740222,
 	Init_Awake_m31D29836728015B65429E4BE3B1B663F45EAFC1F,
 	Init_OnLogMessageReceived_m32385C4928AF54FE54F0AC9BB3573486BC164A02,
 	Init_SetIsPermissionGranted_mA3E4C528A4D115FD3D1F89C337A6D5C675D6FD1D,
@@ -13010,7 +13013,7 @@ static Il2CppMethodPointer s_methodPointers[4370] =
 	Init__ctor_mB2E83C132074BA8C2F2CDD17A603386F8E307D30,
 	U3CU3Ec__cctor_m321F00343A3718FA65C10C3E3C9B1D9175704AC3,
 	U3CU3Ec__ctor_m1B4E9514D57B07637EEDE19CA0B970DA1D691773,
-	U3CU3Ec_U3CAwakeU3Eb__31_0_m79AC94079FB591B8A68779F08C30C3E99100926B,
+	U3CU3Ec_U3CAwakeU3Eb__32_0_mD04C420EB2256E5E8F920EB75A6CB19516E9D318,
 	UILayerScript__ctor_mF5FB2B51A72E49FFFE387F8CBFA6E0028BF1AAF1,
 };
 extern void U3CNoRunU3Ed__21_MoveNext_mDFD3098E063387D2794E21A714C9F16E18A0EB07_AdjustorThunk (void);
@@ -13052,7 +13055,7 @@ static Il2CppTokenAdjustorThunkPair s_adjustorThunks[18] =
 	{ 0x060010EB, U3CStartAcceptU3Ed__12_MoveNext_mBF535DCEC52A35459F64CF39C14B0B8685F2110D_AdjustorThunk },
 	{ 0x060010EC, U3CStartAcceptU3Ed__12_SetStateMachine_m2F77662D5C4721760033BC3F3516F52987470B67_AdjustorThunk },
 };
-static const int32_t s_InvokerIndices[4370] = 
+static const int32_t s_InvokerIndices[4371] = 
 {
 	9317,
 	9317,
@@ -17395,6 +17398,7 @@ static const int32_t s_InvokerIndices[4370] =
 	9317,
 	9317,
 	9317,
+	12856,
 	9317,
 	2619,
 	9317,
@@ -17683,7 +17687,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_Unity_Mono_CodeGenModule;
 const Il2CppCodeGenModule g_Unity_Mono_CodeGenModule = 
 {
 	"Unity.Mono.dll",
-	4370,
+	4371,
 	s_methodPointers,
 	18,
 	s_adjustorThunks,

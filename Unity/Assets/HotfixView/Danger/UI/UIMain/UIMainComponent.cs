@@ -1071,6 +1071,7 @@ namespace ET
 
         public static void OnButton_FenXiang(this UIMainComponent self)
         {
+            ET.Log.ILog.Debug("OnButton_FenXiang");
             UIHelper.Create(self.ZoneScene(), UIType.UIFenXiang).Coroutine();
         }
 
