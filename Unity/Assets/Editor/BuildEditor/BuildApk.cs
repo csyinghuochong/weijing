@@ -63,7 +63,7 @@ public class MyEditorScript
 		//参数2 需要打包的名子， 这里取到的就是 shell传进来的字符串 91
 		//参数3 打包平台
 		string[] scenes = new string[] { SCENES[0] };
-		BuildPipeline.BuildPlayer(scenes, "危境", BuildTarget.iOS, BuildOptions.None);
+		BuildPipeline.BuildPlayer(scenes, "ios", BuildTarget.iOS, BuildOptions.None);
 	}
 
 	[MenuItem("Custom/Build Android QQ")]
