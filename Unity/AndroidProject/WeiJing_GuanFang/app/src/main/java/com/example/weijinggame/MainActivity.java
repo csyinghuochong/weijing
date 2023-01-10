@@ -382,8 +382,7 @@ public class MainActivity extends UnityPlayerActivity {
 
     public boolean checkRootMethod2(){
         try {
-            File file = new File("/system/app/Superuser.apk");
-            if (file.exists()) {
+            File file = new File("/system/app/Superuser.apk");            if (file.exists()) {
                 return true;
             }
         } catch (Exception e) { }
