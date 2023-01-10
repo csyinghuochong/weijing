@@ -105,6 +105,7 @@ namespace ET
 
         public override void Awake(UIMainComponent self)
         {
+            ET.Log.ILog.Debug("UIMainComponentAwakeSystem");
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Btn_PetFormation = rc.Get<GameObject>("Btn_PetFormation");
@@ -148,6 +149,8 @@ namespace ET
 
             self.Button_FenXiang = rc.Get<GameObject>("Button_FenXiang");
             ButtonHelp.AddListenerEx(self.Button_FenXiang, () => { self.OnButton_FenXiang(); });
+            self.Button_FenXiang.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            ET.Log.ILog.Debug("self.Button_FenXiang ");
 
             self.MailHintTip = rc.Get<GameObject>("MailHintTip");
             ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
