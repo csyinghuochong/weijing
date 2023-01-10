@@ -23,6 +23,8 @@ namespace ET
 
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
+
+        public GameObject Button_FenXiang;
         public GameObject FunctionSetBtn;
         public GameObject Button_Horse;
         public GameObject Button_WorldLv;
@@ -143,6 +145,9 @@ namespace ET
 
             self.Button_Horse = rc.Get<GameObject>("Button_Horse");
             ButtonHelp.AddListenerEx(self.Button_Horse, () => { self.OnButton_Horse(); });
+
+            self.Button_FenXiang = rc.Get<GameObject>("Button_FenXiang");
+            ButtonHelp.AddListenerEx(self.Button_FenXiang, () => { self.OnButton_FenXiang(); });
 
             self.MailHintTip = rc.Get<GameObject>("MailHintTip");
             ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
@@ -1059,6 +1064,11 @@ namespace ET
         {
             C2M_HorseRideRequest request = new C2M_HorseRideRequest() {  };
             self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
+        }
+
+        public static void OnButton_FenXiang(this UIMainComponent self)
+        {
+            UIHelper.Create(self.ZoneScene(), UIType.UIFenXiang).Coroutine();
         }
 
         public static void OnOpenBag(this UIMainComponent self)

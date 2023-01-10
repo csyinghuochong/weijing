@@ -113,6 +113,7 @@ namespace ET
 		public const string UITowerOpen = "TowerDungeon/UITowerOpen";
 		public const string UITowerFightReward = "TowerDungeon/UITowerFightReward";
 		public const string UIMiJingMain = "MiJing/UIMiJingMain";
+		public const string UIFenXiang = "Main/FenXiang/UIFenXiang";
 
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()

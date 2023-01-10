@@ -66,6 +66,11 @@ namespace ET
 		public CodeMode CodeMode = CodeMode.Mono;
 		public VersionMode VersionMode = VersionMode.Alpha;
 
+#if UNITY_IPHONE && !UNITY_EDITOR
+     [DllImport("__Internal")]
+     private static extern void CheckIphoneYueyu( string str );
+#endif
+
 		private void Awake()
 		{
 //#if ENABLE_IL2CPP
