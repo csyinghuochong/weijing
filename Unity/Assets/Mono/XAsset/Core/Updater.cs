@@ -652,6 +652,8 @@ namespace libx
                 var v1 = Versions.LoadVersion(_savePath + Versions.Filename);           //网络版本文件
                 var v2 = Versions.LoadVersion(_savePath + Versions.Filename + ".tmp");  //本地临时文件
 
+                Log.Debug($"网络版本：{v1}， 本地版本{v2}");
+
                 if (v2 > v1)
                 {
                     //如果本地版本高于网络版本，就别更新了
