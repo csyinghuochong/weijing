@@ -56,7 +56,7 @@ public static class XCodePostProcess
 		string plistPath = Path.Combine(pathToBuiltProject, "Info.plist");
 		PlistDocument plist = new PlistDocument();
 		plist.ReadFromFile(plistPath);
-		plist.root.SetString("Privacy - Photo Library Usage Description", "保存照片到系统相册");
+		plist.root.SetString("NSPhotoLibraryUsageDescription", "保存照片到系统相册");
 		plist.WriteToFile(plistPath);
 
 		// Finally save the xcode project
