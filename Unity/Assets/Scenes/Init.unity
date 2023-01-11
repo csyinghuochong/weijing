@@ -910,10 +910,6 @@ MonoBehaviour:
   OueNetMode: 0
   BigVersion: 10
   Updater: {fileID: 2018631435}
-  FenXiang_Title: 
-  FenXiang_Text: 
-  FenXiang_ImageUrl: 
-  FenXiang_ClickUrl: 
   ssdk: {fileID: 575235021}
   mobsdk: {fileID: 575235022}
   WXAppID: wx638f7f0efe37a825
@@ -979,8 +975,8 @@ MonoBehaviour:
     wechat:
       Enable: 1
       SortId: 5
-      AppId: wx0f24f5e538739f0d
-      AppSecret: dd075324e0a4ab44bd49d972efcffedc
+      AppId: wx638f7f0efe37a825
+      AppSecret: c45e594ab681035a1cae6ab166f64a20
       UserName: gh_afb25ac019c9@app
       Path: /page/API/pages/share/share
       BypassApproval: 0
@@ -989,14 +985,14 @@ MonoBehaviour:
     wechatMoments:
       Enable: 1
       SortId: 6
-      AppId: wx0f24f5e538739f0d
-      AppSecret: dd075324e0a4ab44bd49d972efcffedc
+      AppId: wx638f7f0efe37a825
+      AppSecret: c45e594ab681035a1cae6ab166f64a20
       BypassApproval: 1
     wechatFavorites:
       Enable: 1
       SortId: 7
-      AppId: wx0f24f5e538739f0d
-      AppSecret: dd075324e0a4ab44bd49d972efcffedc
+      AppId: wx638f7f0efe37a825
+      AppSecret: c45e594ab681035a1cae6ab166f64a20
 --- !u!114 &575235022
 MonoBehaviour:
   m_ObjectHideFlags: 0
