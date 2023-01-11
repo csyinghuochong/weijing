@@ -105,7 +105,23 @@ namespace libx
         {
             var watch = new Stopwatch();
             watch.Start();
-            ET.FileHelper.CleanDirectory(Directory.GetParent(Application.dataPath) + "/../Release/DLC");
+
+            string path = "DLC";
+            int version = EditorRuntimeInitializeOnLoad.GetVersion();
+            VersionMode versionMode = (VersionMode)version;
+            switch (versionMode)
+            {
+                case VersionMode.Alpha:
+                    path = "DLCAlpha";
+                    break;
+                case VersionMode.Beta:
+                    path = "DLCBeta";
+                    break;
+                case VersionMode.BanHao:
+                    path = "DLCBanHao";
+                    break;
+            }
+            ET.FileHelper.CleanDirectory(Directory.GetParent(Application.dataPath) + $"/../Release/{path}");
             //  DLLMgr.Delete(Directory.GetParent(Application.dataPath) + "/DLC");
             watch.Stop();
             ET.Log.Debug("Clean bundles in: " + watch.ElapsedMilliseconds + " ms.");
