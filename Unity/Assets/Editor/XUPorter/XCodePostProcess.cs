@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using System.IO;
+using UnityEditor.iOS.Xcode;
 #if UNITY_EDITOR
 using UnityEditor;
 using UnityEditor.Callbacks;
@@ -50,6 +51,13 @@ public static class XCodePostProcess
 		string path_1 = "//Users/tangzhen/project/gitwj/Unity/HybridCLRData/iOSBuild/build/libil2cpp.a";
 		string path_2 = "//Users/tangzhen/project/gitwj/Unity/ios/Libraries/libil2cpp.a";
 		File.Copy(path_1, path_2, true);
+
+		// 修改Info.plist文件
+		string plistPath = Path.Combine(pathToBuiltProject, "Info.plist");
+		PlistDocument plist = new PlistDocument();
+		plist.ReadFromFile(plistPath);
+		plist.root.SetString("Privacy - Photo Library Usage Description", "保存照片到系统相册");
+		plist.WriteToFile(plistPath);
 
 		// Finally save the xcode project
 		project.Save();
