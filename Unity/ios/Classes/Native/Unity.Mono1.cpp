@@ -602,6 +602,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteralC5BD3549DDA570245BB68EE889739C1DFDB1BEA9
 IL2CPP_EXTERN_C String_t* _stringLiteralC6A390121BBB3939358D3DD1A3B057A6C0F74C0D;
 IL2CPP_EXTERN_C String_t* _stringLiteralCE127C919334E7F1334A624C87581588816343C5;
 IL2CPP_EXTERN_C String_t* _stringLiteralCFD4ACF605EFBFC9AE8DE352761C7E00FE2C9C7F;
+IL2CPP_EXTERN_C String_t* _stringLiteralDA39A3EE5E6B4B0D3255BFEF95601890AFD80709;
 IL2CPP_EXTERN_C String_t* _stringLiteralEEAF5C0493DC83080735920994C6A796CC09D715;
 IL2CPP_EXTERN_C String_t* _stringLiteralF457DC9FC752769CC6C5C7D0B6B54D92D6A3ACFC;
 IL2CPP_EXTERN_C String_t* _stringLiteralFA05E319BC8330D71574DFDD4E89AB10C4EA4417;
@@ -8412,8 +8413,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ABPathHelper_GetEffetPath_m8DB1242A
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ABPathHelper_GetAtlasPath_2_m3A85B78C402B3046840CC2AC1833D189D33E0CF1 (String_t* ___path0, String_t* ___name1, const RuntimeMethod* method);
 // System.String ET.ABPathHelper::GetUnitPath(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ABPathHelper_GetUnitPath_m74CA772D4F16C4C507AB9E72E15607DFF41EE706 (String_t* ___fileName0, const RuntimeMethod* method);
-// System.String ET.ABPathHelper::GetTextPath()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ABPathHelper_GetTextPath_m94AE809F60F1AD5355118B2F94546FD5DE933676 (const RuntimeMethod* method);
+// System.String ET.ABPathHelper::GetTextPath(System.String)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ABPathHelper_GetTextPath_m6BC65EEAB786D6E18722A78F0C30852F97C5C0B5 (String_t* ___text0, const RuntimeMethod* method);
 // System.String ET.ABPathHelper::GetItemPath(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* ABPathHelper_GetItemPath_mADEA0F6FD3C42FD8E8CD2F087CF0B71BD7E92277 (String_t* ___fileName0, const RuntimeMethod* method);
 // System.String ET.ABPathHelper::GetMaterialPath(System.String)
@@ -9762,6 +9763,12 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR StackObject_tE6744C08AFF1FCC9F128C2BA84AB7140
 // ILRuntime.Runtime.Stack.StackObject* ILRuntime.Runtime.Generated.ET_ABPathHelper_Binding::GetTextPath_4(ILRuntime.Runtime.Intepreter.ILIntepreter,ILRuntime.Runtime.Stack.StackObject*,System.Collections.Generic.IList`1<System.Object>,ILRuntime.CLR.Method.CLRMethod,System.Boolean)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR StackObject_tE6744C08AFF1FCC9F128C2BA84AB714047221338 * ET_ABPathHelper_Binding_GetTextPath_4_m0A8BC71B2A3C664343BE613938156EFCD2AE2000 (ILIntepreter_t20BBD9C661D396C5AE01F8493FC7AC48E06E30F7 * _____intp0, StackObject_tE6744C08AFF1FCC9F128C2BA84AB714047221338 * _____esp1, RuntimeObject* _____mStack2, CLRMethod_tA19CA6A1F63438826A7ACCB01BB3946365CC130D * _____method3, bool ___isNewObj4, const RuntimeMethod* method)
 {
+	static bool s_Il2CppMethodInitialized;
+	if (!s_Il2CppMethodInitialized)
+	{
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteralDA39A3EE5E6B4B0D3255BFEF95601890AFD80709);
+		s_Il2CppMethodInitialized = true;
+	}
 	String_t* V_0 = NULL;
 	{
 		// ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
@@ -9773,9 +9780,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR StackObject_tE6744C08AFF1FCC9F128C2BA84AB7140
 		StackObject_tE6744C08AFF1FCC9F128C2BA84AB714047221338 * L_2 = _____esp1;
 		StackObject_tE6744C08AFF1FCC9F128C2BA84AB714047221338 * L_3;
 		L_3 = ILIntepreter_Minus_m425228EDBCE7E5D56EFC34D41A6EAB1C74A127A1_inline((StackObject_tE6744C08AFF1FCC9F128C2BA84AB714047221338 *)(StackObject_tE6744C08AFF1FCC9F128C2BA84AB714047221338 *)L_2, 0, /*hidden argument*/NULL);
-		// var result_of_this_method = ET.ABPathHelper.GetTextPath();
+		// var result_of_this_method = ET.ABPathHelper.GetTextPath("");
 		String_t* L_4;
-		L_4 = ABPathHelper_GetTextPath_m94AE809F60F1AD5355118B2F94546FD5DE933676(/*hidden argument*/NULL);
+		L_4 = ABPathHelper_GetTextPath_m6BC65EEAB786D6E18722A78F0C30852F97C5C0B5(_stringLiteralDA39A3EE5E6B4B0D3255BFEF95601890AFD80709, /*hidden argument*/NULL);
 		V_0 = L_4;
 		// return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
 		RuntimeObject* L_5 = _____mStack2;
