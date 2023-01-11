@@ -47,10 +47,10 @@ namespace ET
 		public ShareSDK ssdk;
 		public MobSDK mobsdk;
 
-		public string WXAppID = "wx74d544161221d62f";           //俄罗斯消除
-		public string WXAppSecret = "8cc10edcf1969478005ad631fec57b37"; 
+		public string WXAppID = "wx638f7f0efe37a825";           //俄罗斯消除
+		public string WXAppSecret = "c45e594ab681035a1cae6ab166f64a20"; 
 
-		public string QQAppID = "1105893765";					 //危境
+		public string QQAppID = "101883752";					 //危境
 		//apk sign 1  b119680ac96937de65f5c989ce485fb3   user_weijing2.keystore
 		//apk sign 2  3a0a616cdbf889b3565ba81fca3bed49   user.keystore
 

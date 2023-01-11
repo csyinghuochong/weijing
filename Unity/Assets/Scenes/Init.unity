@@ -913,8 +913,8 @@ MonoBehaviour:
   ssdk: {fileID: 575235021}
   mobsdk: {fileID: 575235022}
   WXAppID: wx638f7f0efe37a825
-  WXAppSecret: a53c07eac29a15df1422627a4cc97a7e
-  QQAppID: 1105893765
+  WXAppSecret: c45e594ab681035a1cae6ab166f64a20
+  QQAppID: 101883752
   javaClassStr: com.example.alinewsdk.AliSDKActivity
   javaActiveStr: currentActivity
   CodeMode: 4
