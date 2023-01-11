@@ -1552,13 +1552,13 @@ IL2CPP_EXTERN_C String_t* _stringLiteral0BBD071E77DF21D4DC0111EDDB6E6E1E92289DE6
 IL2CPP_EXTERN_C String_t* _stringLiteral0CBA75569797129EA7A2B274B73D49A36659B103;
 IL2CPP_EXTERN_C String_t* _stringLiteral0D4D77EAAACCFA953D3FDF38AE2FF8425194ED15;
 IL2CPP_EXTERN_C String_t* _stringLiteral0E3D82AEE96C503BD642E7351BF788B331E02CD7;
-IL2CPP_EXTERN_C String_t* _stringLiteral0E6BDED59FD3324F19988506D71C4CEFB86A797A;
 IL2CPP_EXTERN_C String_t* _stringLiteral0F44AF65BB2E10418EE302E82CF8D1AC9F60FB3D;
 IL2CPP_EXTERN_C String_t* _stringLiteral0FB35E81131B671F4688202534BABCBA25074FC2;
 IL2CPP_EXTERN_C String_t* _stringLiteral1168E92C164109D6220480DEDA987085B2A21155;
 IL2CPP_EXTERN_C String_t* _stringLiteral11FD2EF9BA651049A2864C7E2D89C93F249C0898;
 IL2CPP_EXTERN_C String_t* _stringLiteral120472D8D40924F6F8355A94DB677A8F142E2EB6;
 IL2CPP_EXTERN_C String_t* _stringLiteral1327FCE06C13903723ECD5FAFC4D2240363A81EC;
+IL2CPP_EXTERN_C String_t* _stringLiteral1356A911C1A03E307635BC30BC309C02F0FE027E;
 IL2CPP_EXTERN_C String_t* _stringLiteral14CBA0BF22D752838430816DFCE49E4F0D5764CC;
 IL2CPP_EXTERN_C String_t* _stringLiteral1517117F1C97F9858A0CAB40CD0F7B384BE59539;
 IL2CPP_EXTERN_C String_t* _stringLiteral151A6B28B3C992ACB07D61C8EA27B7625740EF01;
@@ -1575,6 +1575,7 @@ IL2CPP_EXTERN_C String_t* _stringLiteral2AD49508FEEE2ED6B87C00368D21B2C11D90DEDA
 IL2CPP_EXTERN_C String_t* _stringLiteral2B6D6F48C27C60C3B55391AB377D9DC8F5639AA1;
 IL2CPP_EXTERN_C String_t* _stringLiteral2BDE5C3E4A886B504C40DF6B5D5DE169356EF2B6;
 IL2CPP_EXTERN_C String_t* _stringLiteral2C8881AF7AE19FBD0714080B0DD6B0AA5A6FE3F4;
+IL2CPP_EXTERN_C String_t* _stringLiteral2CAC5728A89D00923ED5168238F58B135B1AC4D3;
 IL2CPP_EXTERN_C String_t* _stringLiteral30D7D2DEC5E256963327BC025E6D5D7858E973C2;
 IL2CPP_EXTERN_C String_t* _stringLiteral322E483945CFDCF90FB6C91D0E667C57D329CCF4;
 IL2CPP_EXTERN_C String_t* _stringLiteral32F1AC16281F859FB46B90CDFC698A2DDE0EBDBD;
@@ -1627,7 +1628,6 @@ IL2CPP_EXTERN_C String_t* _stringLiteral756EE9ADA191247CE02610B132F0D552814A20BC
 IL2CPP_EXTERN_C String_t* _stringLiteral75E238C67D6AAD0C48146D782E8BBAACD490F14A;
 IL2CPP_EXTERN_C String_t* _stringLiteral76FC5B9F7A1B851B8235649B53BDE7190B755463;
 IL2CPP_EXTERN_C String_t* _stringLiteral77D38C0623F92B292B925F6E72CF5CF99A20D4EB;
-IL2CPP_EXTERN_C String_t* _stringLiteral7842461CC7FF0CA07A41B88505A89B0466CA5041;
 IL2CPP_EXTERN_C String_t* _stringLiteral7ACEB0AE1502D2ED99D97211D5758BCE21FF49A5;
 IL2CPP_EXTERN_C String_t* _stringLiteral7CBA5564796C0E57A31B95517FEB96BF71A75CE2;
 IL2CPP_EXTERN_C String_t* _stringLiteral7D368DF002AEF2479DF9165CF9B748245D55366C;
@@ -39201,16 +39201,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WeChat__ctor_m1C9555C041F4F3C7E88AA6D229
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral0E6BDED59FD3324F19988506D71C4CEFB86A797A);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral7842461CC7FF0CA07A41B88505A89B0466CA5041);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral1356A911C1A03E307635BC30BC309C02F0FE027E);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral2CAC5728A89D00923ED5168238F58B135B1AC4D3);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral7D368DF002AEF2479DF9165CF9B748245D55366C);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		// public string app_id = "wx0f24f5e538739f0d";
-		__this->set_app_id_2(_stringLiteral7842461CC7FF0CA07A41B88505A89B0466CA5041);
-		// public string app_secret = "dd075324e0a4ab44bd49d972efcffedc";
-		__this->set_app_secret_3(_stringLiteral0E6BDED59FD3324F19988506D71C4CEFB86A797A);
+		// public string app_id = "wx638f7f0efe37a825";
+		__this->set_app_id_2(_stringLiteral2CAC5728A89D00923ED5168238F58B135B1AC4D3);
+		// public string app_secret = "c45e594ab681035a1cae6ab166f64a20";
+		__this->set_app_secret_3(_stringLiteral1356A911C1A03E307635BC30BC309C02F0FE027E);
 		// public string app_universalLink = "https://c4ovz.share2dlink.com/";
 		__this->set_app_universalLink_4(_stringLiteral7D368DF002AEF2479DF9165CF9B748245D55366C);
 		DevInfo__ctor_m38EFBA858B562F201C5B134E264819E4A236346B(__this, /*hidden argument*/NULL);
@@ -39231,16 +39231,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WeChatFavorites__ctor_m64ABC9BF478549240
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral0E6BDED59FD3324F19988506D71C4CEFB86A797A);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral7842461CC7FF0CA07A41B88505A89B0466CA5041);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral1356A911C1A03E307635BC30BC309C02F0FE027E);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral2CAC5728A89D00923ED5168238F58B135B1AC4D3);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral7D368DF002AEF2479DF9165CF9B748245D55366C);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		// public string app_id = "wx0f24f5e538739f0d";
-		__this->set_app_id_2(_stringLiteral7842461CC7FF0CA07A41B88505A89B0466CA5041);
-		// public string app_secret = "dd075324e0a4ab44bd49d972efcffedc";
-		__this->set_app_secret_3(_stringLiteral0E6BDED59FD3324F19988506D71C4CEFB86A797A);
+		// public string app_id = "wx638f7f0efe37a825";
+		__this->set_app_id_2(_stringLiteral2CAC5728A89D00923ED5168238F58B135B1AC4D3);
+		// public string app_secret = "c45e594ab681035a1cae6ab166f64a20";
+		__this->set_app_secret_3(_stringLiteral1356A911C1A03E307635BC30BC309C02F0FE027E);
 		// public string app_universalLink = "https://c4ovz.share2dlink.com/";
 		__this->set_app_universalLink_4(_stringLiteral7D368DF002AEF2479DF9165CF9B748245D55366C);
 		DevInfo__ctor_m38EFBA858B562F201C5B134E264819E4A236346B(__this, /*hidden argument*/NULL);
@@ -39261,16 +39261,16 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void WeChatMoments__ctor_m6319DEB89140409CB7D
 	static bool s_Il2CppMethodInitialized;
 	if (!s_Il2CppMethodInitialized)
 	{
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral0E6BDED59FD3324F19988506D71C4CEFB86A797A);
-		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral7842461CC7FF0CA07A41B88505A89B0466CA5041);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral1356A911C1A03E307635BC30BC309C02F0FE027E);
+		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral2CAC5728A89D00923ED5168238F58B135B1AC4D3);
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral7D368DF002AEF2479DF9165CF9B748245D55366C);
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		// public string app_id = "wx0f24f5e538739f0d";
-		__this->set_app_id_2(_stringLiteral7842461CC7FF0CA07A41B88505A89B0466CA5041);
-		// public string app_secret = "dd075324e0a4ab44bd49d972efcffedc";
-		__this->set_app_secret_3(_stringLiteral0E6BDED59FD3324F19988506D71C4CEFB86A797A);
+		// public string app_id = "wx638f7f0efe37a825";
+		__this->set_app_id_2(_stringLiteral2CAC5728A89D00923ED5168238F58B135B1AC4D3);
+		// public string app_secret = "c45e594ab681035a1cae6ab166f64a20";
+		__this->set_app_secret_3(_stringLiteral1356A911C1A03E307635BC30BC309C02F0FE027E);
 		// public string app_universalLink = "https://c4ovz.share2dlink.com/";
 		__this->set_app_universalLink_4(_stringLiteral7D368DF002AEF2479DF9165CF9B748245D55366C);
 		DevInfo__ctor_m38EFBA858B562F201C5B134E264819E4A236346B(__this, /*hidden argument*/NULL);
