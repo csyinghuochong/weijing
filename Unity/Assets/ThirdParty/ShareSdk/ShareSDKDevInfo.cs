@@ -105,8 +105,8 @@ namespace cn.sharesdk.unity3d
 		public string MiniprogramType = "0";
 #elif UNITY_IPHONE
 		public const int type = (int) PlatformType.WeChat;
-		public string app_id = "wx0f24f5e538739f0d";
-        public string app_secret = "dd075324e0a4ab44bd49d972efcffedc";
+		public string app_id = "wx638f7f0efe37a825";
+        public string app_secret = "c45e594ab681035a1cae6ab166f64a20";
         public string app_universalLink = "https://c4ovz.share2dlink.com/";
 #endif
 	}
@@ -122,8 +122,8 @@ namespace cn.sharesdk.unity3d
 		public bool BypassApproval = true;
 #elif UNITY_IPHONE
 		public const int type = (int) PlatformType.WeChatMoments;
-		public string app_id = "wx0f24f5e538739f0d";
-		public string app_secret = "dd075324e0a4ab44bd49d972efcffedc";
+		public string app_id = "wx638f7f0efe37a825";
+		public string app_secret = "c45e594ab681035a1cae6ab166f64a20";
         public string app_universalLink = "https://c4ovz.share2dlink.com/";
 #endif
 	}
@@ -138,8 +138,8 @@ namespace cn.sharesdk.unity3d
 		public string AppSecret = "dd075324e0a4ab44bd49d972efcffedc";
 #elif UNITY_IPHONE
 		public const int type = (int) PlatformType.WeChatFavorites;
-		public string app_id = "wx0f24f5e538739f0d";
-		public string app_secret = "dd075324e0a4ab44bd49d972efcffedc";
+		public string app_id = "wx638f7f0efe37a825";
+		public string app_secret = "c45e594ab681035a1cae6ab166f64a20";
         public string app_universalLink = "https://c4ovz.share2dlink.com/";
 #endif
 	}
