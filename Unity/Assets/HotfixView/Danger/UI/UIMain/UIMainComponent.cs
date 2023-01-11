@@ -48,7 +48,6 @@ namespace ET
         public GameObject Btn_PaiMaiHang;
         public GameObject Btn_EveryTask;
         public GameObject bagButton;
-        public GameObject jiayuanButton;
         public GameObject HomeButton;
         public GameObject UIMainSkill;
         public GameObject buttonReturn;
@@ -1065,13 +1064,18 @@ namespace ET
 
         public static void OnButton_Horse(this UIMainComponent self)
         {
+            //C2G_ExitGameGate c2G_ExitGameGate = new C2G_ExitGameGate()
+            //{
+            //    Account = 1592206859811487766,
+            //    RoleId = 1641218363831156736,
+            //};
+            //self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2G_ExitGameGate).Coroutine();
             C2M_HorseRideRequest request = new C2M_HorseRideRequest() {  };
             self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
         }
 
         public static void OnButton_FenXiang(this UIMainComponent self)
         {
-            ET.Log.ILog.Debug("OnButton_FenXiang");
             UIHelper.Create(self.ZoneScene(), UIType.UIFenXiang).Coroutine();
         }
 

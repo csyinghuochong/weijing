@@ -487,5 +487,7 @@ namespace ET
 		 public const ushort C2M_FubenMessageRequest = 10484;
 		 public const ushort M2C_FubenMessageResponse = 10485;
 		 public const ushort M2C_UpdateVersion = 10486;
+		 public const ushort C2M_ShareSucessRequest = 10487;
+		 public const ushort M2C_ShareSucessResponse = 10488;
 	}
 }

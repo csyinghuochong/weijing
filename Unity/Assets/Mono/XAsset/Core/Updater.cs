@@ -35,6 +35,14 @@ using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.UI;
 
+public class HotVersion
+{
+    public int Version;
+    public string IOS_URL;
+    public string Apk_URL;
+    public int ClearData;
+}
+
 namespace libx
 {
     public interface IUpdater
@@ -826,26 +834,52 @@ namespace libx
                 Assets.AddSearchPath("Assets/Res/Scenes");
                 init.Release();
 
-                yield return LoadHelper.PreLoad();
-                //yield return MessageBox.Show("提示", "是否进入游戏");
+                Init init_cs = GameObject.Find("Global").GetComponent<Init>();
+                int apkversion = init_cs.BigVersion;
 
-                //HotfixHelper.StartHotfix();
-                GameObject.Find("Global").GetComponent<Init>().enabled = true;
-                //this.gameObject.SetActive(false);
-                //Destroy(this.gameObject);
+                HotVersion hotVersion1 = GetHotVersion();
+                int hotVersion = hotVersion1.Version;
+                string downloadUrl = "http://39.96.194.143/weijing1/apk/beta/weijing.apk"; 
+#if UNITY_IPHONE
+                downloadUrl = hotVersion1.IOS_URL;
+#else
+                downloadUrl = hotVersion1.Apk_URL;
+#endif
+                if (apkversion < hotVersion)
+                {
+                    var mb = MessageBox.Show("提示", string.Format("应用版本过低，请重新下载：{0}, {1}", apkversion, hotVersion), "确定", "退出");
+                    yield return mb;
+                    if (mb.isOk)
+                    {
+                        Application.OpenURL(downloadUrl);
+                    }
+                    else
+                    {
+                        Quit();
+                    }
+                }
+                else
+                {
+                    yield return LoadHelper.PreLoad();
+                    //yield return MessageBox.Show("提示", "是否进入游戏");
+                    //HotfixHelper.StartHotfix();
+                    GameObject.Find("Global").GetComponent<Init>().enabled = true;
+                    //this.gameObject.SetActive(false);
+                    //Destroy(this.gameObject);
 
-                //OnProgress(0);
-                //OnMessage("加载游戏场景");
-                //var scene = Assets.LoadSceneAsync(gameScene, false);
-                //scene.completed += (AssetRequest request) =>
-                //{
-                //    HotfixHelper.StartHotfix();
-                //};
-                //while (!scene.isDone)
-                //{
-                //    OnProgress(scene.progress);
-                //    yield return null;
-                //}
+                    //OnProgress(0);
+                    //OnMessage("加载游戏场景");
+                    //var scene = Assets.LoadSceneAsync(gameScene, false);
+                    //scene.completed += (AssetRequest request) =>
+                    //{
+                    //    HotfixHelper.StartHotfix();
+                    //};
+                    //while (!scene.isDone)
+                    //{
+                    //    OnProgress(scene.progress);
+                    //    yield return null;
+                    //}
+                }
             }
             else
             {
@@ -854,6 +888,17 @@ namespace libx
                 yield return mb;
                 Quit();
             }
+        }
+
+       
+
+        public HotVersion GetHotVersion()
+        {
+            var path_1 = ABPathHelper.GetTextPath("Version");
+            var request = libx.Assets.LoadAsset(path_1, typeof(TextAsset));
+            TextAsset textAsset3 = request.asset as TextAsset;
+            //return int.Parse(textAsset3.text);
+            return JsonHelper.FromJson<HotVersion>(textAsset3.text);
         }
 
         private void OnDestroy()

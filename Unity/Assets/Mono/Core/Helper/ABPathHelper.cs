@@ -95,9 +95,9 @@
         }
 
         //文本
-        public static string GetTextPath()
+        public static string GetTextPath(string text)
         {
-            return $"Assets/Bundles/Text/Text.prefab";
+            return $"Assets/Bundles/Text/{text}.txt";
         }
     }
 }

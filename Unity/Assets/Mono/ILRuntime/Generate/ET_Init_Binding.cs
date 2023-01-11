@@ -124,7 +124,7 @@ namespace ILRuntime.Runtime.Generated
             ET.Init instance_of_this_method = (ET.Init)typeof(ET.Init).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)0);
             __intp.Free(ptr_of_this_method);
 
-            instance_of_this_method.FenXiang(@fenxiangtype);
+            instance_of_this_method.FenXiang(new ET.FenXiangContent());
 
             return __ret;
         }
@@ -522,14 +522,14 @@ namespace ILRuntime.Runtime.Generated
 
         static void set_OnShareHandler_11(ref object o, object v)
         {
-            ((ET.Init)o).OnShareHandler = (System.Action<System.Boolean>)v;
+            ((ET.Init)o).OnShareHandler = null;
         }
 
         static StackObject* AssignFromStack_OnShareHandler_11(ref object o, ILIntepreter __intp, StackObject* ptr_of_this_method, IList<object> __mStack)
         {
             ILRuntime.Runtime.Enviorment.AppDomain __domain = __intp.AppDomain;
             System.Action<System.Boolean> @OnShareHandler = (System.Action<System.Boolean>)typeof(System.Action<System.Boolean>).CheckCLRTypes(StackObject.ToObject(ptr_of_this_method, __domain, __mStack), (CLR.Utils.Extensions.TypeFlags)8);
-            ((ET.Init)o).OnShareHandler = @OnShareHandler;
+            ((ET.Init)o).OnShareHandler = null;
             return ptr_of_this_method;
         }
 

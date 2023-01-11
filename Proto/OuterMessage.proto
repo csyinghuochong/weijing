@@ -4190,10 +4190,25 @@ message M2C_FubenMessageResponse // IActorLocationResponse
 	string MessageValue = 1;
 }
 
-///////Max OpcodeID   放在最后
+///////Max OpcodeID  
 message M2C_UpdateVersion // IActorMessage
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int32 Version = 1;
+}
+
+//ResponseType M2C_ShareSucessResponse
+message C2M_ShareSucessRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 ShareType = 1;
+}
+
+message M2C_ShareSucessResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
 }

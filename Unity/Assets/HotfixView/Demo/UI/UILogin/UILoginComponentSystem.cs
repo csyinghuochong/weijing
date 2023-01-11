@@ -18,14 +18,7 @@ namespace ET
 				{
 					path = "banhao";
 				}
-				self.DownloadUrl = $"http://39.96.194.143/weijing1/apk/{path}/weijing.apk";
-				int version = GameObject.Find("Global").GetComponent<Init>().BigVersion;
-				if (version < self.BigVersion)
-				{
-					self.OpenDownLoadUI($"old:{version}_new:{self.BigVersion}");
-					return;
-				}
-
+				
 				Application.targetFrameRate = 30;
 				Application.runInBackground = true;
 				libx.Assets.MAX_BUNDLES_PERFRAME = 32;
@@ -77,7 +70,6 @@ namespace ET
 				ButtonHelp.AddListenerEx(self.ButtonYiJianLogin, () => { self.OnButtonYiJianLogin(); });
 
 				GameObject.Find("Global").GetComponent<SMSSDemo>().CommitCodeSucessHandler = (string text) => { self.OnCommitCodeHandler(text); };
-				GameObject.Find("Global").GetComponent<Init>().OnShareHandler = (bool value) => { self.OnShareHandler(value); };
 				GameObject.Find("Global").GetComponent<Init>().OnAuthorizeHandler = (string text) => { self.OnAuthorize(text); };
 				GameObject.Find("Global").GetComponent<Init>().OnGetUserInfoHandler = (string text) => { self.OnGetUserInfo(text); };
 				GameObject.Find("Global").GetComponent<Init>().OnGetPhoneNumHandler = (string text) => { self.OnGetPhoneNum(text); };
@@ -275,14 +267,6 @@ namespace ET
 			self.Password.SetActive(false);
 		}
 
-		public static void OpenDownLoadUI(this UILoginComponent self, string version)
-		{
-			PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "重新下载", $"应用版本过低，请重新下载{version}", () =>
-			{
-				Application.OpenURL(self.DownloadUrl);
-			}).Coroutine();
-		}
-
 		public static async ETTask RequestAllServer(this UILoginComponent self)
 		{
 			//请求服务器列表信息s
@@ -407,30 +391,6 @@ namespace ET
 				return;
 			}
 			self.RequestLogin(msg[1], self.LoginType,self.LoginType).Coroutine();
-		}
-
-		public static void OnQQShare(this UILoginComponent self)
-		{
-			//QQ空间
-			GlobalHelp.FenXiang("2");
-		}
-
-		public static void OnWeiXinShare(this UILoginComponent self)
-		{
-			//微信朋友圈
-			GlobalHelp.FenXiang("1");	
-		}
-
-		public static void OnWeChatMoments(this UILoginComponent self)
-		{
-			//微信好友
-			GlobalHelp.FenXiang("4");		
-		}
-
-		public static void OnQQZone(this UILoginComponent self)
-		{
-			//QQ好友
-			GlobalHelp.FenXiang("5");
 		}
 
 		public static void OnButtonCommitCode(this UILoginComponent self)

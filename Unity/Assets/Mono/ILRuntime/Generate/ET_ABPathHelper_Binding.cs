@@ -134,7 +134,7 @@ namespace ILRuntime.Runtime.Generated
             StackObject* __ret = ILIntepreter.Minus(__esp, 0);
 
 
-            var result_of_this_method = ET.ABPathHelper.GetTextPath();
+            var result_of_this_method = ET.ABPathHelper.GetTextPath("");
 
             return ILIntepreter.PushObject(__ret, __mStack, result_of_this_method);
         }

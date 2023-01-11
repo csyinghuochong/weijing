@@ -7,6 +7,15 @@ using System.Runtime.InteropServices;
 
 namespace ET
 {
+	public struct FenXiangContent
+	{
+		public string FenXiang_Title;          //分享标题
+		public string FenXiang_Text;           //分享文本
+		public string FenXiang_ImageUrl;       //分享图片路径
+		public string FenXiang_ClickUrl;       //分享点击链接
+		public int Fenxiangtype; 
+	}
+
 	// 1 mono模式 2 ILRuntime模式 3 mono热重载模式
 	public enum CodeMode
 	{
@@ -24,7 +33,7 @@ namespace ET
 		public bool OueNetMode;
 		public int BigVersion = 9;
 		public GameObject Updater;
-		public Action<bool> OnShareHandler;
+		public Action<int, bool> OnShareHandler;
 		public Action<string> OnAuthorizeHandler;
 		public Action<string> OnGetUserInfoHandler;
 		public Action<string> OnGetPhoneNumHandler;
@@ -34,11 +43,6 @@ namespace ET
 		public Action<int> OnGetKeyHandler;
 		public Action OnGetMouseButtonDown_1;
 		public Action OnGetMouseButtonDown_0;
-
-		public string FenXiang_Title;          //分享标题
-		public string FenXiang_Text;           //分享文本
-		public string FenXiang_ImageUrl;       //分享图片路径
-		public string FenXiang_ClickUrl;       //分享点击链接
 
 		public ShareSDK ssdk;
 		public MobSDK mobsdk;
@@ -325,71 +329,6 @@ namespace ET
 			}
 		}
 
-		public void FenXiang(string fenxiangtype)
-		{
-			//auth和getuser接口都可以实现授权登录功能，可以任意调用一个
-			//授权（每次都会跳转到第三方平台进行授权）进行授权
-			//ssdk.Authorize(PlatformType.WeChat);
-			//ssdk.GetUserInfo(PlatformType.WeChat);
-			string FenXiangTypeStr = "";
-			//设置分享
-			ShareContent content = new ShareContent();
-			//title标题，印象笔记、邮箱、信息、微信、人人网、QQ和QQ空间使用
-			FenXiang_Title = "梦境传说";
-			FenXiang_Text = "梦境传说";
-			FenXiang_ImageUrl = "https://img.tapimg.com/market/icons/6ae4a1e5df9d56dca02ecec3aa7e1252_360.png?imageMogr2/auto-orient/strip";
-			FenXiang_ClickUrl = "https://l.taptap.com/T28gNaHb";
-			content.SetTitle(FenXiang_Title);
-			//分享文本
-			content.SetText(FenXiang_Text);
-			//分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
-			content.SetImageUrl(FenXiang_ImageUrl);
-			// titleUrl是标题的网络链接，仅在Linked-in,QQ和QQ空间使用
-			content.SetTitleUrl(FenXiang_ClickUrl);
-			// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
-			//content.SetImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
-			// url仅在微信（包括好友和朋友圈）中使用
-			content.SetUrl(FenXiang_ClickUrl);
-			// site是分享此内容的网站名称，仅在QQ空间使用
-			content.SetSite(FenXiang_Title);
-			// siteUrl是分享此内容的网站地址，仅在QQ空间使用
-			content.SetSiteUrl(FenXiang_ClickUrl);
-			//设置分享类型
-			content.SetShareType(ContentType.Webpage);
-			//content.SetShareType(ContentType.Text);
-			FenXiangTypeStr = fenxiangtype;
-
-			switch (fenxiangtype)
-			{
-				//微信朋友圈
-				case "1":
-					//弹出菜单
-					ssdk.ShareContent(PlatformType.WeChatMoments, content);
-					break;
-				//QQ空间
-				case "2":
-					//弹出菜单
-					ssdk.ShareContent(PlatformType.QZone, content);
-					break;
-				//新浪微博
-				case "3":
-					//弹出菜单
-					ssdk.ShareContent(PlatformType.SinaWeibo, content);
-					break;
-				//微信好友
-				case "4":
-					//弹出菜单
-					ssdk.ShareContent(PlatformType.WeChat, content);
-					break;
-				//QQ好友
-				case "5":
-					//弹出菜单
-					ssdk.ShareContent(PlatformType.QQ, content);
-					break;
-			}
-		}
-
-
 		void OnAuthResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
 		{
 			Log.ILog.Debug("OnAuthResultHandler:" + MiniJSON.jsonEncode(result));
@@ -403,6 +342,64 @@ namespace ET
 			}
 		}
 
+		public void FenXiang(FenXiangContent fenxiangConent)
+		{
+			//auth和getuser接口都可以实现授权登录功能，可以任意调用一个
+			//授权（每次都会跳转到第三方平台进行授权）进行授权
+			//ssdk.Authorize(PlatformType.WeChat);
+			//ssdk.GetUserInfo(PlatformType.WeChat);
+			//设置分享
+			ShareContent content = new ShareContent();
+			//title标题，印象笔记、邮箱、信息、微信、人人网、QQ和QQ空间使用
+			content.SetTitle(fenxiangConent.FenXiang_Title);
+			//分享文本
+			content.SetText(fenxiangConent.FenXiang_Text);
+			//分享网络图片，新浪微博分享网络图片需要通过审核后申请高级写入接口，否则请注释掉测试新浪微博
+			content.SetImageUrl(fenxiangConent.FenXiang_ImageUrl);
+			// titleUrl是标题的网络链接，仅在Linked-in,QQ和QQ空间使用
+			content.SetTitleUrl(fenxiangConent.FenXiang_ClickUrl);
+			// imagePath是图片的本地路径，Linked-In以外的平台都支持此参数
+			//content.SetImagePath("/sdcard/test.jpg");//确保SDcard下面存在此张图片
+			// url仅在微信（包括好友和朋友圈）中使用
+			content.SetUrl(fenxiangConent.FenXiang_ClickUrl);
+			// site是分享此内容的网站名称，仅在QQ空间使用
+			content.SetSite(fenxiangConent.FenXiang_Title);
+			// siteUrl是分享此内容的网站地址，仅在QQ空间使用
+			content.SetSiteUrl(fenxiangConent.FenXiang_ClickUrl);
+			//设置分享类型
+			content.SetShareType(ContentType.Webpage);
+			//content.SetShareType(ContentType.Text);
+			
+			switch (fenxiangConent.Fenxiangtype)
+			{
+				//微信朋友圈
+				case 1:
+					//弹出菜单
+					ssdk.ShareContent(PlatformType.WeChatMoments, content);
+					break;
+				//QQ空间
+				case 2:
+					//弹出菜单
+					ssdk.ShareContent(PlatformType.QZone, content);
+					break;
+				//新浪微博
+				case 3:
+					//弹出菜单
+					ssdk.ShareContent(PlatformType.SinaWeibo, content);
+					break;
+				//微信好友
+				case 4:
+					//弹出菜单
+					ssdk.ShareContent(PlatformType.WeChat, content);
+					break;
+				//QQ好友
+				case 5:
+					//弹出菜单
+					ssdk.ShareContent(PlatformType.QQ, content);
+					break;
+			}
+		}
+
 		void OnShareResultHandler(int reqID, ResponseState state, PlatformType type, Hashtable result)
 		{
 			//Game_PublicClassVar.Get_function_UI.GameGirdHint_Front("进入微信用户回调！" + state);
@@ -413,7 +410,7 @@ namespace ET
 			if (state == ResponseState.Success)
 			{
 				showText = "分享成功1！";
-				this.OnShareHandler(true);
+				this.OnShareHandler((int)type, true);
 			}
 			else if (state == ResponseState.Fail)
 			{
@@ -423,13 +420,13 @@ namespace ET
 #elif UNITY_IPHONE
 				Log.ILog.Debug("fail! error code = " + result["error_code"] + "; error msg = " + result["error_msg"]);
 #endif
-				this.OnShareHandler(false);
+				this.OnShareHandler((int)type, false);
 			}
 			else if (state == ResponseState.Cancel)
 			{
 				showText = "进入指定用户回调取消！";
 				Log.ILog.Debug("cancel !");
-				this.OnShareHandler(false);
+				this.OnShareHandler((int)type, false);
 			}
 			Log.ILog.Debug(showText);
 		}

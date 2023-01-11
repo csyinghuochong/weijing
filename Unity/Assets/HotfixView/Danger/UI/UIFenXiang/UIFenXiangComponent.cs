@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using cn.sharesdk.unity3d;
 
 namespace ET 
 {

@@ -36,23 +36,20 @@ namespace ET
             base.InternalInit();
         }
 
-
-        public async ETTask InitRandomName() {
-
+        public async ETTask InitRandomName() 
+        {
             if (randomName_xing == null)
             {
-                var path = ABPathHelper.GetTextPath();
-                await ETTask.CompletedTask;
-                GameObject prefab = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-                TextAsset textAsset1 = prefab.Get<TextAsset>("RandName_Xing");
-                TextAsset textAsset2 = prefab.Get<TextAsset>("RandName_Name");
+                var path_1 = ABPathHelper.GetTextPath("RandName_Xing");
+                var path_2 = ABPathHelper.GetTextPath("RandName_Name");
+                TextAsset textAsset1 = await ResourcesComponent.Instance.LoadAssetAsync<TextAsset>(path_1);
+                TextAsset textAsset2 = await ResourcesComponent.Instance.LoadAssetAsync<TextAsset>(path_2);
                 LoadWWW_Xing(textAsset1.text);
                 LoadWWW_Name(textAsset2.text);
                 //Log.Debug(textAsset1.text);
                 Log.Debug(randomName_xing[0]);
                 Log.Debug(randomName_name[0]);
             }
-
         }
 
         /// <summary>

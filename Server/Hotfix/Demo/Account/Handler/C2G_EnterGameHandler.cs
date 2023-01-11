@@ -169,15 +169,18 @@ namespace ET
 						player.PlayerState = PlayerState.Game;
 						player.UnitId = request.UserID;
 						SessionStateComponent SessionStateComponent = session.GetComponent<SessionStateComponent>();
-						if (SessionStateComponent == null)
+						if (SessionStateComponent != null)
 						{
-							SessionStateComponent = session.AddComponent<SessionStateComponent>();
+							SessionStateComponent.State = SessionState.Game;
 						}
-						SessionStateComponent.State = SessionState.Game;
+						else
+						{
+							Log.Error($"切场景掉线了 {request.UserID}");
+						}
 					}
 					catch (Exception e)
 					{
-						Log.Error($"LoginTest 角色进入游戏逻辑服出现问题 账号Id: {player.AccountId}  request.UserID{request.UserID}  player.UnitId: {player.UnitId}   异常信息： {e.ToString()}");
+						Log.Error($"LoginTest 角色进入游戏逻辑服出现问题 区 账号Id: {player.AccountId}  request.UserID{request.UserID}  player.UnitId: {player.UnitId}   异常信息： {e.ToString()}");
 						response.Error = ErrorCore.ERR_EnterGameError;
 						reply();
 						await DisconnectHelper.KickPlayer(player, true);

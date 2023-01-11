@@ -30,9 +30,9 @@ namespace ET
             get { return GameObject.Find("Global").GetComponent<Init>().CodeMode; }
         }
 
-        public static void FenXiang(string shareType)
+        public static void FenXiang(FenXiangContent fenXiangContent)
         {
-            GameObject.Find("Global").GetComponent<Init>().FenXiang(shareType);
+            GameObject.Find("Global").GetComponent<Init>().FenXiang(fenXiangContent);
         }
 
         public static void Authorize(string shareType)

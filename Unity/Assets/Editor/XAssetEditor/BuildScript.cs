@@ -134,7 +134,7 @@ namespace libx
                    new BuildRule()
                 {
                     searchPath = hotUpdatePath+"Text",
-                    searchPattern = rule.searchPatternPrefab,
+                    searchPattern = rule.searchPatternText,
                     nameBy = NameBy.Path
                 },
                 new BuildRule()

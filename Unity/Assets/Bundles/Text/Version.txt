@@ -1,0 +1,1 @@
+﻿{"Version":10,"IOS_URL":"http://39.96.194.143/weijing1/apk/beta/weijing.apk","Apk_URL":"http://39.96.194.143/weijing1/apk/beta/weijing.apk"}

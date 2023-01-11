@@ -30,9 +30,8 @@ namespace ET
 
         public async ETTask InitMaskWordText(string maskword, string split)
         {
-            var path = ABPathHelper.GetTextPath();
-            GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            TextAsset textAsset3 = prefab.Get<TextAsset>(maskword);
+            var path_1 = ABPathHelper.GetTextPath(maskword);
+            TextAsset textAsset3 =await ResourcesComponent.Instance.LoadAssetAsync<TextAsset>(path_1);
             MaskWord = textAsset3.text;
             sensitiveWordsArray = Regex.Split(MaskWord, split, RegexOptions.IgnoreCase);
 

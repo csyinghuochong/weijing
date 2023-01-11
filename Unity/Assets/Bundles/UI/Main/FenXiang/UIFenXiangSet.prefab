@@ -52,10 +52,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: ScrollView1
-    gameObject: {fileID: 0}
-  - key: ApplyNodeList
-    gameObject: {fileID: 0}
+  - key: FenXiang_QQ
+    gameObject: {fileID: 2285746082542613002}
+  - key: FenXiang_WeiXin
+    gameObject: {fileID: 8570319912967791692}
+  - key: Button_support
+    gameObject: {fileID: 8207446804608944909}
 --- !u!1 &1063124106129313952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,4 +1907,4 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "QQ\u5206\u4EAB"
+  m_Text: "\u5FAE\u4FE1\u5206\u4EAB"
