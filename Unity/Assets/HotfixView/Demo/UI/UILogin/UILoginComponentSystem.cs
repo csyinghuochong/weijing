@@ -38,7 +38,7 @@ namespace ET
 				self.ZhuCe.transform.Find("Btn_ZhuCe").gameObject.SetActive(GlobalHelp.IsEditorMode);
 
 #if UNITY_IPHONE || UNITY_IOS
-				self.ZhuCe.transform.Find("Btn_WeChat").gameObject.SetActive(false);
+				//self.ZhuCe.transform.Find("Btn_WeChat").gameObject.SetActive(false);
 #endif
 
 				self.AccountText = rc.Get<GameObject>("AccountText");
