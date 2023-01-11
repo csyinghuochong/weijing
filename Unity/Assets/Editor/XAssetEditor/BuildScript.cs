@@ -576,6 +576,8 @@ namespace libx
 
                 if (!bundle2Ids.ContainsKey(item.bundle))
                 {
+                    UnityEngine.Debug.Log("xxx");
+                    Log.Debug(item.bundle);
                     Log.Debug(path);
                 }
                 try

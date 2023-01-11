@@ -30,6 +30,7 @@ using System.IO;
 using UnityEditor;
 using UnityEngine;
 using ET;
+using System.Collections.Generic;
 
 namespace libx
 {
@@ -42,6 +43,7 @@ namespace libx
         private const string KViewCachePath = "XAsset/View/Caches";
         private const string KViewDataPath = "XAsset/View/Built Bundles";
         private const string KCleanData = "XAsset/Bundles/Clean Built Bundles";
+        private const string KModifyFileModify = "XAsset/Bundles/ModifyFileModify";
 
         //[MenuItem("ET/build")]
 
@@ -151,6 +153,30 @@ namespace libx
         private static void CopyAssetBundles()
         {
             BuildScript.CopyAssetBundlesTo(Application.streamingAssetsPath);
+        }
+
+        [MenuItem(KModifyFileModify)]
+        private static void ModifyFileModify()
+        {
+            List<string> fileList = new List<string> { };
+            CheckReferences.GetFile(Application.dataPath + "/Bundles/Icon", fileList);
+            for (var index = 0; index < fileList.Count; index++)
+            {
+                string path = fileList[index];
+
+                if (path.Contains(".meta"))
+                {
+                    continue;
+                }
+
+                string kzm = Path.GetExtension(path);
+                if (kzm != ".png")
+                {
+                    UnityEngine.Debug.Log(path);
+                    FileInfo file = new FileInfo(path);
+                    file.MoveTo(Path.ChangeExtension(file.FullName, ".png"));
+                }
+            }
         }
 
         #region Tools 
