@@ -81,9 +81,16 @@ namespace ET
             {
                 return;
             }
-
-            int monsterid =  box.ConfigId;
+            int monsterid = box.ConfigId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
+
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            if (userInfo.PiLao <= 0 && (monsterConfig.MonsterSonType == 56))
+            {
+                FloatTipManager.Instance.ShowFloatTip("体力不足,无法拾取");
+                return;
+            }
+
             string itemneeds = "";
             if (monsterConfig.Parameter != null && monsterConfig.Parameter.Length > 0
                 && monsterConfig.Parameter[0] > 0)
