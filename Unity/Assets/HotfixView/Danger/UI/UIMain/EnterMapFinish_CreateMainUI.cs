@@ -1,7 +1,5 @@
 ﻿
 using UnityEngine;
-using TapTap.Bootstrap;
-using TapTap.Common;
 
 namespace ET
 {
