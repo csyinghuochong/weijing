@@ -41,15 +41,12 @@ namespace ET
         {
             //1 4微信  2 5QQ
             Log.ILog.Debug($"分享回调：  {pType} {share}");
-            int sType = self.ShareType == 1 || self.ShareType == 4 ? 1 : 0;
-            if (sType == 0)
-            {
-                sType = self.ShareType == 2 || self.ShareType == 5 ? 2 : 0;
-            }
-            if (sType == 0)
+            int sType = self.ShareType;
+            if (sType != 1 && sType != 2)
             {
                 return;
             }
+           
             C2M_ShareSucessRequest c2M_ShareSucessRequest = new C2M_ShareSucessRequest() { ShareType = sType };
             await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(c2M_ShareSucessRequest);
             self.OnUpdateUI();
@@ -108,20 +105,12 @@ namespace ET
         public static void OnWeChatMoments(this UIFenXiangSetComponent self)
         {
             //微信好友
-            if (self.IsShared(1))
-            {
-                return;
-            }
             self.FenXiangByType(4);
         }
 
         public static void OnQQZone(this UIFenXiangSetComponent self)
         {
             //QQ好友
-            if (self.IsShared(2))
-            {
-                return;
-            }
             self.FenXiangByType(5);
         }
     }
