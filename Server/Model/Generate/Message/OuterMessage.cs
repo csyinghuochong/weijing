@@ -8735,7 +8735,7 @@ namespace ET
 
 	}
 
-///////Max OpcodeID   放在最后
+///////Max OpcodeID
 	[Message(OuterOpcode.M2C_UpdateVersion)]
 	[ProtoContract]
 	public partial class M2C_UpdateVersion: Object, IActorMessage
@@ -8770,6 +8770,43 @@ namespace ET
 	[Message(OuterOpcode.M2C_ShareSucessResponse)]
 	[ProtoContract]
 	public partial class M2C_ShareSucessResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_NumericInfoResponse))]
+	[Message(OuterOpcode.C2M_NumericInfoRequest)]
+	[ProtoContract]
+	public partial class C2M_NumericInfoRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(6)]
+		public List<int> Ks = new List<int>();
+
+		[ProtoMember(7)]
+		public List<long> Vs = new List<long>();
+
+		[ProtoMember(8)]
+		public List<KeyValuePair> Additional = new List<KeyValuePair>();
+
+	}
+
+	[Message(OuterOpcode.M2C_NumericInfoResponse)]
+	[ProtoContract]
+	public partial class M2C_NumericInfoResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

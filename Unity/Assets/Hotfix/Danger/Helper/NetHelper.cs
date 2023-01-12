@@ -63,6 +63,7 @@
             await ETTask.CompletedTask;
         }
 
+
         public static async ETTask RequestBagInfo(Scene zoneScene)
         {
             await zoneScene.GetComponent<BagComponent>().GetAllBagItem();

@@ -97,8 +97,8 @@ MobSDK {
             Wechat {
                 id 4
                 sortId 4
-                appId "wx74d544161221d62f"
-                appSecret "8cc10edcf1969478005ad631fec57b37"
+                appId "wx638f7f0efe37a825"
+                appSecret "c45e594ab681035a1cae6ab166f64a20"
                 userName "gh_afb25ac019c9"
                 path "pages/index/index.html?id=1"
                 withShareTicket true
@@ -111,8 +111,8 @@ MobSDK {
             WechatMoments {
                 id 5
                 sortId 5
-                appId "wx74d544161221d62f"
-                appSecret "8cc10edcf1969478005ad631fec57b37"
+                appId "wx638f7f0efe37a825"
+                appSecret "c45e594ab681035a1cae6ab166f64a20"
                 bypassApproval false
                 enable true
             }
@@ -121,8 +121,8 @@ MobSDK {
             WechatFavorite {
                 id 6
                 sortId 6
-                appId "wx74d544161221d62f"
-                appSecret "8cc10edcf1969478005ad631fec57b37"
+                appId "wx638f7f0efe37a825"
+                appSecret "c45e594ab681035a1cae6ab166f64a20"
                 bypassApproval false
                 enable true
             }

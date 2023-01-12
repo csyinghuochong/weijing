@@ -77,9 +77,9 @@ namespace ET
 
 		private void Awake()
 		{
-//#if ENABLE_IL2CPP
-//			this.CodeMode = CodeMode.ILRuntime;
-//#endif
+			//#if ENABLE_IL2CPP
+			//			this.CodeMode = CodeMode.ILRuntime;
+			//#endif
 			Updater.SetActive(true);
 
 			System.AppDomain.CurrentDomain.UnhandledException += (sender, e) =>
@@ -369,8 +369,13 @@ namespace ET
 			//设置分享类型
 			content.SetShareType(ContentType.Webpage);
 			//content.SetShareType(ContentType.Text);
-			
-			switch (fenxiangConent.Fenxiangtype)
+
+			FenXiangShareContent(content, fenxiangConent.Fenxiangtype);
+		}
+
+		public void FenXiangShareContent(ShareContent content, int fenxiangtype)
+		{
+			switch (fenxiangtype)
 			{
 				//微信朋友圈
 				case 1:

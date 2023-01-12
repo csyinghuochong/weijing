@@ -36,7 +36,13 @@
     "com.unity.modules.unitywebrequestwww": "1.0.0",
     "com.unity.modules.vehicles": "1.0.0",
     "com.unity.modules.video": "1.0.0",
-    "com.unity.modules.wind": "1.0.0"
+    "com.unity.modules.wind": "1.0.0",
+    "com.taptap.tds.login":"https://github.com/TapTap/TapLogin-Unity.git#3.16.6",
+    "com.taptap.tds.common":"https://github.com/TapTap/TapCommon-Unity.git#3.16.6",
+    "com.taptap.tds.bootstrap":"https://github.com/TapTap/TapBootstrap-Unity.git#3.16.6",
+    "com.leancloud.realtime": "https://github.com/leancloud/csharp-sdk-upm.git#realtime-1.0.2",
+    "com.leancloud.storage": "https://github.com/leancloud/csharp-sdk-upm.git#storage-1.0.2",
+    "com.taptap.tds.tapdb": "https://github.com/TapTap/TapDB-Unity.git#3.16.6"
   },
   "scopedRegistries": []
 }

@@ -260,6 +260,11 @@ namespace ET
             self.AddSkillCD(skillId, m2C_SkillCmd);
         }
 
+        /// <summary>
+        /// CD异常 换客户端时间111111111111111
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="skillcmd"></param>
         public static void OnUseSkill(this SkillManagerComponent self, M2C_UnitUseSkill skillcmd )
         {
             Unit unit = self.GetParent<Unit>();

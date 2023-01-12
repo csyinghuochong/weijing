@@ -6,7 +6,12 @@
         "Unity.TextMeshPro",
         "HybridCLR.Runtime",
         "UnityEngine.Purchasing",
-        "UnityEngine.Purchasing.Stores"
+        "UnityEngine.Purchasing.Stores",
+        "TapTap.Common.Editor",
+        "TapTap.Login.Editor",
+        "TapTap.TapDB.Editor",
+        "TapTap.UI",
+        "TapTap.UI.Editor"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
