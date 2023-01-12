@@ -16,6 +16,7 @@ namespace ET
         public GameObject Btn_Close;
         public GameObject Text_Quality;
         public GameObject UIPetSkinIcon;
+        public GameObject Text_FightValue;
 
         public List<UICommonSkillItemComponent> PetSkillUIList = new List<UICommonSkillItemComponent>();
         public GameObject[] PetZiZhiItemList = new GameObject[6];
@@ -40,6 +41,7 @@ namespace ET
             self.Text_PetLevel = rc.Get<GameObject>("Text_PetLevel");
             self.Text_Quality = rc.Get<GameObject>("Text_Quality");
             self.UIPetSkinIcon = rc.Get<GameObject>("UIPetSkinIcon");
+            self.Text_FightValue = rc.Get<GameObject>("Text_FightValue");
 
             self.NewSkinName = rc.Get<GameObject>("NewSkinName");
             self.PiFuJiHuo = rc.Get<GameObject>("PiFuJiHuo");
@@ -80,7 +82,6 @@ namespace ET
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
             self.uIModelShowComponent.ShowOtherModel("Pet/" + petSkinConfig.SkinID.ToString()).Coroutine();
 
-
         }
 
         public static void OnBtn_Close(this UIPetChouKaGetComponent self)
@@ -91,7 +92,6 @@ namespace ET
         public static void OnInitUI(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo, List<KeyValuePair> oldSkins, bool showSkin = false)
         {
             self.InitModelShowView(rolePetInfo).Coroutine();
-
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 
@@ -126,6 +126,9 @@ namespace ET
 
             self.UpdateSkillList(rolePetInfo);
             self.UpdateAttribute(rolePetInfo);
+
+
+            self.Text_FightValue.GetComponent<Text>().text = ComHelp.PetPingJia(rolePetInfo).ToString();
         }
 
         public static  void UpdateSkillList(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo)

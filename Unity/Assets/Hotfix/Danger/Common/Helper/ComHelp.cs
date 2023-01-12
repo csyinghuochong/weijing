@@ -142,6 +142,43 @@ namespace ET
             return pro;
         }
 
+        //宠物评分
+        public static int PetPingJia(RolePetInfo petinfo) {
+
+            int fightValue = 0;
+            float fightValueFloat = 0f;
+
+            //宠物资质
+            fightValue += petinfo.ZiZhi_Act;
+            fightValue += petinfo.ZiZhi_Adf;
+            fightValue += petinfo.ZiZhi_Def;
+            fightValue += petinfo.ZiZhi_Hp;
+            fightValue += petinfo.ZiZhi_MageAct;
+
+            fightValueFloat = petinfo.ZiZhi_ChengZhang;
+
+            //宠物技能评分
+            for (int i = 0; i < petinfo.PetSkill.Count; i++) {
+
+                if (petinfo.PetSkill[i] >= 80001001 && petinfo.PetSkill[i] < 80001999) {
+
+                    fightValueFloat += 0.05f;
+
+                }
+
+                if (petinfo.PetSkill[i] >= 80002001 && petinfo.PetSkill[i] < 80002999) {
+
+                    fightValueFloat += 0.1f;
+
+                }
+            }
+
+            fightValue = (int)((float)fightValue * fightValueFloat);
+
+            return fightValue;
+
+        }
+
 #if NOT_UNITY
         public static bool IsInnerNet()
         {
