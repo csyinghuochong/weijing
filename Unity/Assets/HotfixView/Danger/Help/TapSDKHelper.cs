@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+#if UNITY_ANDROID
 using TapTap.Bootstrap;
 using TapTap.Common;
 using TapTap.TapDB;
+#endif
 
 namespace ET
 {
