@@ -9,6 +9,8 @@ using TapTap.TapDB;
 
 namespace ET
 {
+
+#if UNITY_ANDROID
     public static class TapSDKHelper
     {
 
@@ -281,4 +283,5 @@ namespace ET
             TapDB.UserAdd(properties);
         }
     }
+#endif
 }
