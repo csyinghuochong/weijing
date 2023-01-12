@@ -18,6 +18,7 @@ public static class XCodePostProcess
 	[PostProcessBuild(999)]
 	public static void OnPostProcessBuild( BuildTarget target, string pathToBuiltProject )
 	{
+		UnityEngine.Debug.Log("PostProcess_1");
         if (target != BuildTarget.iOS)
 		{
 			Debug.LogWarning("Target is not iPhone. XCodePostProcess will not run");
