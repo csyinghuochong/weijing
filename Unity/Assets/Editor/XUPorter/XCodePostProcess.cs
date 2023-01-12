@@ -1,9 +1,12 @@
+
+#if UNITY_IPHONE
+
 using UnityEngine;
 using System;
 using System.IO;
-using UnityEditor.iOS.Xcode;
 #if UNITY_EDITOR
 using UnityEditor;
+using UnityEditor.iOS.Xcode;
 using UnityEditor.Callbacks;
 using UnityEditor.XCodeEditor;
 #endif
@@ -15,11 +18,8 @@ public static class XCodePostProcess
 	[PostProcessBuild(999)]
 	public static void OnPostProcessBuild( BuildTarget target, string pathToBuiltProject )
 	{
-#if UNITY_5
-		if (target != BuildTarget.iOS) {
-#else
-        if (target != BuildTarget.iOS) {
-#endif
+        if (target != BuildTarget.iOS)
+		{
 			Debug.LogWarning("Target is not iPhone. XCodePostProcess will not run");
 			return;
 		}
@@ -70,3 +70,5 @@ public static class XCodePostProcess
 		UnityEngine.Debug.Log("PostProcess: "+message);
 	}
 }
+
+#endif

@@ -34,7 +34,7 @@ namespace ET
         /// TapDB 会根据 TapConfig 的配置进行自动初始化
         ///device_login	App 启动	调用 SDK 初始化接口时会上报此事件，首次上报一个设备 ID 时将在设备表产生一条记录 
 
-        public static void Init(string clientID, string clientToken, string serverURL)
+        public static void Init()
         {
             var config = new TapConfig.Builder()
             .ClientID("pm0a9qavoyvn0qqmse")  // 必须，开发者中心对应 Client ID
@@ -65,7 +65,7 @@ namespace ET
         /// <param name="userId"></param>
         public static void SetUser(string userId)
         {
-            TapDB.SetUser("userId");
+            TapDB.SetUser(userId);
         }
 
         //衍生事件

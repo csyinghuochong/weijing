@@ -14,9 +14,14 @@ namespace ET
 			UIHelper.Remove(args.ZoneScene, UIType.UILobby);
 			//UIHelper.Create(args.ZoneScene, UIType.UIMain).Coroutine();
 
+			long roleId = args.ZoneScene.GetComponent<AccountInfoComponent>().CurrentRoleId;
 			args.ZoneScene.GetComponent<FangChenMiComponent>().OnLogin().Coroutine();
-			GameObject.Find("Global").GetComponent<Init>().OpenBuglyAgent(args.ZoneScene.GetComponent<AccountInfoComponent>().CurrentRoleId);
-		}
+			GameObject.Find("Global").GetComponent<Init>().OpenBuglyAgent(roleId);
+#if UNITY_ANDROID
+			TapSDKHelper.Init();
+			TapSDKHelper.SetUser(roleId.ToString());
+#endif
 
+		}
 	}
 }
