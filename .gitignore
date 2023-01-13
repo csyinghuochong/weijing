@@ -29,6 +29,7 @@ _ReSharper.CSharp/
 *.sdf
 /CSharp/CSharp.sln.ide
 /Unity/Library
+/Unity/Packages/
 /Unity/ios/Libraries/
 /Unity/ios/Data/
 /Unity/ios/Data/Resources/
