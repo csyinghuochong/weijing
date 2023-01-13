@@ -1,5 +1,7 @@
 ﻿
 
+using System.Collections.Generic;
+
 namespace ET
 {
 
@@ -8,6 +10,12 @@ namespace ET
         public int Time;
         public string Conent;
         public long ServerTime;
+    }
+
+    public struct CollectionWord
+    {
+        public string Words;
+        public string Reward;
     }
 
     public static class CombatResultEnum

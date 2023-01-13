@@ -20,7 +20,11 @@ namespace ET
             new WorldSayConfig(){ Time = 2120, Conent = "一大波宝箱出现在宝藏之地,想要去的玩家赶紧前往哦!"  },
         };
 
-
+        public static Dictionary<int, CollectionWord> CollectionWordList = new Dictionary<int, ET.CollectionWord>
+        {
+            { 1, new CollectionWord(){ Words = "洗迎新年", Reward = "3;500@10010041;5@10010042;5@10010083;5@10010088;2"  } },
+            { 2, new CollectionWord(){ Words = "兔年大吉", Reward = "3;500@10010041;5@10010042;5@10010083;5@10010088;2"  } },
+        };
 
     }
 }
