@@ -33,6 +33,11 @@ public class DoTweeningMove : MonoBehaviour
         }
     }
 
+    public void SetOldPosition(Vector2 vector2)
+    {
+        oldPostition = vector2;
+    }
+
     private void OnEnable()
     {
         this.passTime = 0f;
@@ -49,8 +54,8 @@ public class DoTweeningMove : MonoBehaviour
             this.startPosition.x += this.moveDistance;
             this.transform.localPosition = startPosition;
             this.gameObject.GetComponent<RectTransform>().anchoredPosition = startPosition;
-
         }
+
         if (moveTypeEnum == MoveTypeEnum.MoveY)
         {
             this.startPosition = this.oldPostition;
@@ -73,6 +78,7 @@ public class DoTweeningMove : MonoBehaviour
             if (!this.isLoop)
             {
                 this.curPostion = this.oldPostition;
+                this.enabled = false;
                 return;
             }
             this.front = !this.front;

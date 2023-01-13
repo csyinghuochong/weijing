@@ -19,7 +19,7 @@ namespace ET
 
             if (gameObject.GetComponent<DoTweeningMove>() != null)
             {
-                gameObject.GetComponent<DoTweeningMove>().enabled = false;  
+                gameObject.GetComponent<DoTweeningMove>().SetOldPosition(newPosition);  
             }
             //Vector3 vector3 = gameObject.GetComponent<RectTransform>().anchoredPosition;
             //vector3.x += 100f;
