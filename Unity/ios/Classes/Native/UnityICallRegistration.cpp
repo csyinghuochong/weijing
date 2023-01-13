@@ -9250,13 +9250,25 @@ void RegisterAllStrippedInternalCalls()
 
 	//Start Registrations for type : UnityEngine.SystemInfo
 
+		//System.Boolean UnityEngine.SystemInfo::GetGraphicsMultiThreaded()
+		void Register_UnityEngine_SystemInfo_GetGraphicsMultiThreaded();
+		Register_UnityEngine_SystemInfo_GetGraphicsMultiThreaded();
+
 		//System.Boolean UnityEngine.SystemInfo::GetGraphicsUVStartsAtTop()
 		void Register_UnityEngine_SystemInfo_GetGraphicsUVStartsAtTop();
 		Register_UnityEngine_SystemInfo_GetGraphicsUVStartsAtTop();
 
+		//System.Boolean UnityEngine.SystemInfo::HasDynamicUniformArrayIndexingInFragmentShaders()
+		void Register_UnityEngine_SystemInfo_HasDynamicUniformArrayIndexingInFragmentShaders();
+		Register_UnityEngine_SystemInfo_HasDynamicUniformArrayIndexingInFragmentShaders();
+
 		//System.Boolean UnityEngine.SystemInfo::HasHiddenSurfaceRemovalOnGPU()
 		void Register_UnityEngine_SystemInfo_HasHiddenSurfaceRemovalOnGPU();
 		Register_UnityEngine_SystemInfo_HasHiddenSurfaceRemovalOnGPU();
+
+		//System.Boolean UnityEngine.SystemInfo::HasMipMaxLevel()
+		void Register_UnityEngine_SystemInfo_HasMipMaxLevel();
+		Register_UnityEngine_SystemInfo_HasMipMaxLevel();
 
 		//System.Boolean UnityEngine.SystemInfo::HasRenderTextureNative(UnityEngine.RenderTextureFormat)
 		void Register_UnityEngine_SystemInfo_HasRenderTextureNative();
@@ -9266,17 +9278,89 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_SystemInfo_IsFormatSupported();
 		Register_UnityEngine_SystemInfo_IsFormatSupported();
 
+		//System.Boolean UnityEngine.SystemInfo::IsGyroAvailable()
+		void Register_UnityEngine_SystemInfo_IsGyroAvailable();
+		Register_UnityEngine_SystemInfo_IsGyroAvailable();
+
+		//System.Boolean UnityEngine.SystemInfo::Supports2DArrayTextures()
+		void Register_UnityEngine_SystemInfo_Supports2DArrayTextures();
+		Register_UnityEngine_SystemInfo_Supports2DArrayTextures();
+
+		//System.Boolean UnityEngine.SystemInfo::Supports32bitsIndexBuffer()
+		void Register_UnityEngine_SystemInfo_Supports32bitsIndexBuffer();
+		Register_UnityEngine_SystemInfo_Supports32bitsIndexBuffer();
+
+		//System.Boolean UnityEngine.SystemInfo::Supports3DRenderTextures()
+		void Register_UnityEngine_SystemInfo_Supports3DRenderTextures();
+		Register_UnityEngine_SystemInfo_Supports3DRenderTextures();
+
 		//System.Boolean UnityEngine.SystemInfo::Supports3DTextures()
 		void Register_UnityEngine_SystemInfo_Supports3DTextures();
 		Register_UnityEngine_SystemInfo_Supports3DTextures();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsAccelerometer()
+		void Register_UnityEngine_SystemInfo_SupportsAccelerometer();
+		Register_UnityEngine_SystemInfo_SupportsAccelerometer();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsAsyncCompute()
+		void Register_UnityEngine_SystemInfo_SupportsAsyncCompute();
+		Register_UnityEngine_SystemInfo_SupportsAsyncCompute();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsAsyncGPUReadback()
+		void Register_UnityEngine_SystemInfo_SupportsAsyncGPUReadback();
+		Register_UnityEngine_SystemInfo_SupportsAsyncGPUReadback();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsAudio()
+		void Register_UnityEngine_SystemInfo_SupportsAudio();
+		Register_UnityEngine_SystemInfo_SupportsAudio();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsBlendingOnRenderTextureFormatNative(UnityEngine.RenderTextureFormat)
+		void Register_UnityEngine_SystemInfo_SupportsBlendingOnRenderTextureFormatNative();
+		Register_UnityEngine_SystemInfo_SupportsBlendingOnRenderTextureFormatNative();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsCompressed3DTextures()
+		void Register_UnityEngine_SystemInfo_SupportsCompressed3DTextures();
+		Register_UnityEngine_SystemInfo_SupportsCompressed3DTextures();
 
 		//System.Boolean UnityEngine.SystemInfo::SupportsComputeShaders()
 		void Register_UnityEngine_SystemInfo_SupportsComputeShaders();
 		Register_UnityEngine_SystemInfo_SupportsComputeShaders();
 
+		//System.Boolean UnityEngine.SystemInfo::SupportsConservativeRaster()
+		void Register_UnityEngine_SystemInfo_SupportsConservativeRaster();
+		Register_UnityEngine_SystemInfo_SupportsConservativeRaster();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsCubemapArrayTextures()
+		void Register_UnityEngine_SystemInfo_SupportsCubemapArrayTextures();
+		Register_UnityEngine_SystemInfo_SupportsCubemapArrayTextures();
+
 		//System.Boolean UnityEngine.SystemInfo::SupportsGPUFence()
 		void Register_UnityEngine_SystemInfo_SupportsGPUFence();
 		Register_UnityEngine_SystemInfo_SupportsGPUFence();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsGeometryShaders()
+		void Register_UnityEngine_SystemInfo_SupportsGeometryShaders();
+		Register_UnityEngine_SystemInfo_SupportsGeometryShaders();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsGpuRecorder()
+		void Register_UnityEngine_SystemInfo_SupportsGpuRecorder();
+		Register_UnityEngine_SystemInfo_SupportsGpuRecorder();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsHardwareQuadTopology()
+		void Register_UnityEngine_SystemInfo_SupportsHardwareQuadTopology();
+		Register_UnityEngine_SystemInfo_SupportsHardwareQuadTopology();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsInstancing()
+		void Register_UnityEngine_SystemInfo_SupportsInstancing();
+		Register_UnityEngine_SystemInfo_SupportsInstancing();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsLocationService()
+		void Register_UnityEngine_SystemInfo_SupportsLocationService();
+		Register_UnityEngine_SystemInfo_SupportsLocationService();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsMipStreaming()
+		void Register_UnityEngine_SystemInfo_SupportsMipStreaming();
+		Register_UnityEngine_SystemInfo_SupportsMipStreaming();
 
 		//System.Boolean UnityEngine.SystemInfo::SupportsMotionVectors()
 		void Register_UnityEngine_SystemInfo_SupportsMotionVectors();
@@ -9286,17 +9370,65 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_SystemInfo_SupportsMultisampleAutoResolve();
 		Register_UnityEngine_SystemInfo_SupportsMultisampleAutoResolve();
 
+		//System.Boolean UnityEngine.SystemInfo::SupportsMultisampled2DArrayTextures()
+		void Register_UnityEngine_SystemInfo_SupportsMultisampled2DArrayTextures();
+		Register_UnityEngine_SystemInfo_SupportsMultisampled2DArrayTextures();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsMultiview()
+		void Register_UnityEngine_SystemInfo_SupportsMultiview();
+		Register_UnityEngine_SystemInfo_SupportsMultiview();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsRawShadowDepthSampling()
+		void Register_UnityEngine_SystemInfo_SupportsRawShadowDepthSampling();
+		Register_UnityEngine_SystemInfo_SupportsRawShadowDepthSampling();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsRayTracing()
+		void Register_UnityEngine_SystemInfo_SupportsRayTracing();
+		Register_UnityEngine_SystemInfo_SupportsRayTracing();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsRenderTargetArrayIndexFromVertexShader()
+		void Register_UnityEngine_SystemInfo_SupportsRenderTargetArrayIndexFromVertexShader();
+		Register_UnityEngine_SystemInfo_SupportsRenderTargetArrayIndexFromVertexShader();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsSeparatedRenderTargetsBlend()
+		void Register_UnityEngine_SystemInfo_SupportsSeparatedRenderTargetsBlend();
+		Register_UnityEngine_SystemInfo_SupportsSeparatedRenderTargetsBlend();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsSetConstantBuffer()
+		void Register_UnityEngine_SystemInfo_SupportsSetConstantBuffer();
+		Register_UnityEngine_SystemInfo_SupportsSetConstantBuffer();
+
 		//System.Boolean UnityEngine.SystemInfo::SupportsShadows()
 		void Register_UnityEngine_SystemInfo_SupportsShadows();
 		Register_UnityEngine_SystemInfo_SupportsShadows();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsSparseTextures()
+		void Register_UnityEngine_SystemInfo_SupportsSparseTextures();
+		Register_UnityEngine_SystemInfo_SupportsSparseTextures();
 
 		//System.Boolean UnityEngine.SystemInfo::SupportsStoreAndResolveAction()
 		void Register_UnityEngine_SystemInfo_SupportsStoreAndResolveAction();
 		Register_UnityEngine_SystemInfo_SupportsStoreAndResolveAction();
 
+		//System.Boolean UnityEngine.SystemInfo::SupportsTessellationShaders()
+		void Register_UnityEngine_SystemInfo_SupportsTessellationShaders();
+		Register_UnityEngine_SystemInfo_SupportsTessellationShaders();
+
 		//System.Boolean UnityEngine.SystemInfo::SupportsTextureFormatNative(UnityEngine.TextureFormat)
 		void Register_UnityEngine_SystemInfo_SupportsTextureFormatNative();
 		Register_UnityEngine_SystemInfo_SupportsTextureFormatNative();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsVertexAttributeFormatNative(UnityEngine.Rendering.VertexAttributeFormat,System.Int32)
+		void Register_UnityEngine_SystemInfo_SupportsVertexAttributeFormatNative();
+		Register_UnityEngine_SystemInfo_SupportsVertexAttributeFormatNative();
+
+		//System.Boolean UnityEngine.SystemInfo::SupportsVibration()
+		void Register_UnityEngine_SystemInfo_SupportsVibration();
+		Register_UnityEngine_SystemInfo_SupportsVibration();
+
+		//System.Boolean UnityEngine.SystemInfo::UsesLoadStoreActions()
+		void Register_UnityEngine_SystemInfo_UsesLoadStoreActions();
+		Register_UnityEngine_SystemInfo_UsesLoadStoreActions();
 
 		//System.Boolean UnityEngine.SystemInfo::UsesReversedZBuffer()
 		void Register_UnityEngine_SystemInfo_UsesReversedZBuffer();
@@ -9318,13 +9450,77 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_SystemInfo_GetGraphicsShaderLevel();
 		Register_UnityEngine_SystemInfo_GetGraphicsShaderLevel();
 
+		//System.Int32 UnityEngine.SystemInfo::GetMaxComputeWorkGroupSize()
+		void Register_UnityEngine_SystemInfo_GetMaxComputeWorkGroupSize();
+		Register_UnityEngine_SystemInfo_GetMaxComputeWorkGroupSize();
+
+		//System.Int32 UnityEngine.SystemInfo::GetMaxComputeWorkGroupSizeX()
+		void Register_UnityEngine_SystemInfo_GetMaxComputeWorkGroupSizeX();
+		Register_UnityEngine_SystemInfo_GetMaxComputeWorkGroupSizeX();
+
+		//System.Int32 UnityEngine.SystemInfo::GetMaxComputeWorkGroupSizeY()
+		void Register_UnityEngine_SystemInfo_GetMaxComputeWorkGroupSizeY();
+		Register_UnityEngine_SystemInfo_GetMaxComputeWorkGroupSizeY();
+
+		//System.Int32 UnityEngine.SystemInfo::GetMaxComputeWorkGroupSizeZ()
+		void Register_UnityEngine_SystemInfo_GetMaxComputeWorkGroupSizeZ();
+		Register_UnityEngine_SystemInfo_GetMaxComputeWorkGroupSizeZ();
+
+		//System.Int32 UnityEngine.SystemInfo::GetMaxCubemapSize()
+		void Register_UnityEngine_SystemInfo_GetMaxCubemapSize();
+		Register_UnityEngine_SystemInfo_GetMaxCubemapSize();
+
+		//System.Int32 UnityEngine.SystemInfo::GetMaxRenderTextureSize()
+		void Register_UnityEngine_SystemInfo_GetMaxRenderTextureSize();
+		Register_UnityEngine_SystemInfo_GetMaxRenderTextureSize();
+
+		//System.Int32 UnityEngine.SystemInfo::GetMaxTextureSize()
+		void Register_UnityEngine_SystemInfo_GetMaxTextureSize();
+		Register_UnityEngine_SystemInfo_GetMaxTextureSize();
+
 		//System.Int32 UnityEngine.SystemInfo::GetPhysicalMemoryMB()
 		void Register_UnityEngine_SystemInfo_GetPhysicalMemoryMB();
 		Register_UnityEngine_SystemInfo_GetPhysicalMemoryMB();
 
+		//System.Int32 UnityEngine.SystemInfo::GetProcessorCount()
+		void Register_UnityEngine_SystemInfo_GetProcessorCount();
+		Register_UnityEngine_SystemInfo_GetProcessorCount();
+
+		//System.Int32 UnityEngine.SystemInfo::GetProcessorFrequencyMHz()
+		void Register_UnityEngine_SystemInfo_GetProcessorFrequencyMHz();
+		Register_UnityEngine_SystemInfo_GetProcessorFrequencyMHz();
+
 		//System.Int32 UnityEngine.SystemInfo::GetRenderTextureSupportedMSAASampleCount_Injected(UnityEngine.RenderTextureDescriptor&)
 		void Register_UnityEngine_SystemInfo_GetRenderTextureSupportedMSAASampleCount_Injected();
 		Register_UnityEngine_SystemInfo_GetRenderTextureSupportedMSAASampleCount_Injected();
+
+		//System.Int32 UnityEngine.SystemInfo::MaxComputeBufferInputsCompute()
+		void Register_UnityEngine_SystemInfo_MaxComputeBufferInputsCompute();
+		Register_UnityEngine_SystemInfo_MaxComputeBufferInputsCompute();
+
+		//System.Int32 UnityEngine.SystemInfo::MaxComputeBufferInputsDomain()
+		void Register_UnityEngine_SystemInfo_MaxComputeBufferInputsDomain();
+		Register_UnityEngine_SystemInfo_MaxComputeBufferInputsDomain();
+
+		//System.Int32 UnityEngine.SystemInfo::MaxComputeBufferInputsFragment()
+		void Register_UnityEngine_SystemInfo_MaxComputeBufferInputsFragment();
+		Register_UnityEngine_SystemInfo_MaxComputeBufferInputsFragment();
+
+		//System.Int32 UnityEngine.SystemInfo::MaxComputeBufferInputsGeometry()
+		void Register_UnityEngine_SystemInfo_MaxComputeBufferInputsGeometry();
+		Register_UnityEngine_SystemInfo_MaxComputeBufferInputsGeometry();
+
+		//System.Int32 UnityEngine.SystemInfo::MaxComputeBufferInputsHull()
+		void Register_UnityEngine_SystemInfo_MaxComputeBufferInputsHull();
+		Register_UnityEngine_SystemInfo_MaxComputeBufferInputsHull();
+
+		//System.Int32 UnityEngine.SystemInfo::MaxComputeBufferInputsVertex()
+		void Register_UnityEngine_SystemInfo_MaxComputeBufferInputsVertex();
+		Register_UnityEngine_SystemInfo_MaxComputeBufferInputsVertex();
+
+		//System.Int32 UnityEngine.SystemInfo::MinConstantBufferOffsetAlignment()
+		void Register_UnityEngine_SystemInfo_MinConstantBufferOffsetAlignment();
+		Register_UnityEngine_SystemInfo_MinConstantBufferOffsetAlignment();
 
 		//System.Int32 UnityEngine.SystemInfo::SupportedRandomWriteTargetCount()
 		void Register_UnityEngine_SystemInfo_SupportedRandomWriteTargetCount();
@@ -9337,6 +9533,14 @@ void RegisterAllStrippedInternalCalls()
 		//System.Int32 UnityEngine.SystemInfo::SupportsMultisampledTextures()
 		void Register_UnityEngine_SystemInfo_SupportsMultisampledTextures();
 		Register_UnityEngine_SystemInfo_SupportsMultisampledTextures();
+
+		//System.Int32 UnityEngine.SystemInfo::SupportsTextureWrapMirrorOnce()
+		void Register_UnityEngine_SystemInfo_SupportsTextureWrapMirrorOnce();
+		Register_UnityEngine_SystemInfo_SupportsTextureWrapMirrorOnce();
+
+		//System.Single UnityEngine.SystemInfo::GetBatteryLevel()
+		void Register_UnityEngine_SystemInfo_GetBatteryLevel();
+		Register_UnityEngine_SystemInfo_GetBatteryLevel();
 
 		//System.String UnityEngine.SystemInfo::GetDeviceModel()
 		void Register_UnityEngine_SystemInfo_GetDeviceModel();
@@ -9370,6 +9574,10 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_SystemInfo_GetProcessorType();
 		Register_UnityEngine_SystemInfo_GetProcessorType();
 
+		//UnityEngine.BatteryStatus UnityEngine.SystemInfo::GetBatteryStatus()
+		void Register_UnityEngine_SystemInfo_GetBatteryStatus();
+		Register_UnityEngine_SystemInfo_GetBatteryStatus();
+
 		//UnityEngine.DeviceType UnityEngine.SystemInfo::GetDeviceType()
 		void Register_UnityEngine_SystemInfo_GetDeviceType();
 		Register_UnityEngine_SystemInfo_GetDeviceType();
@@ -9382,6 +9590,14 @@ void RegisterAllStrippedInternalCalls()
 		void Register_UnityEngine_SystemInfo_GetGraphicsFormat();
 		Register_UnityEngine_SystemInfo_GetGraphicsFormat();
 
+		//UnityEngine.HDRDisplaySupportFlags UnityEngine.SystemInfo::GetHDRDisplaySupportFlags()
+		void Register_UnityEngine_SystemInfo_GetHDRDisplaySupportFlags();
+		Register_UnityEngine_SystemInfo_GetHDRDisplaySupportFlags();
+
+		//UnityEngine.NPOTSupport UnityEngine.SystemInfo::GetNPOTSupport()
+		void Register_UnityEngine_SystemInfo_GetNPOTSupport();
+		Register_UnityEngine_SystemInfo_GetNPOTSupport();
+
 		//UnityEngine.OperatingSystemFamily UnityEngine.SystemInfo::GetOperatingSystemFamily()
 		void Register_UnityEngine_SystemInfo_GetOperatingSystemFamily();
 		Register_UnityEngine_SystemInfo_GetOperatingSystemFamily();
@@ -9393,6 +9609,10 @@ void RegisterAllStrippedInternalCalls()
 		//UnityEngine.Rendering.GraphicsDeviceType UnityEngine.SystemInfo::GetGraphicsDeviceType()
 		void Register_UnityEngine_SystemInfo_GetGraphicsDeviceType();
 		Register_UnityEngine_SystemInfo_GetGraphicsDeviceType();
+
+		//UnityEngine.Rendering.RenderingThreadingMode UnityEngine.SystemInfo::GetRenderingThreadingMode()
+		void Register_UnityEngine_SystemInfo_GetRenderingThreadingMode();
+		Register_UnityEngine_SystemInfo_GetRenderingThreadingMode();
 
 	//End Registrations for type : UnityEngine.SystemInfo
 

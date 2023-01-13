@@ -888,7 +888,6 @@ IL2CPP_EXTERN_C RuntimeClass* Path_tF1D95B78D57C1C1211BA6633FF2AC22FD6C48921_il2
 IL2CPP_EXTERN_C RuntimeClass* QuaternionBinder_tBD25B36BF53BEB348B9B2315E14DBBCB841394FE_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Queue_1_tAF2A710AEBB98604F7E35A3CD161FA0838FD96D4_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* RawImage_tFE280EF0C73AF19FE9AC24DB06501937DC2D6F1A_il2cpp_TypeInfo_var;
-IL2CPP_EXTERN_C RuntimeClass* RuntimeObject_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* ScrollRect_tB16156010F89FFDAAB2127CA878608FD91B9FBEA_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Shadow_t96D9C6FC7BB4D9CBEB5788F2333125365DE12F8E_il2cpp_TypeInfo_var;
 IL2CPP_EXTERN_C RuntimeClass* Single_tE07797BA3C98D4CA9B5A19413C19A76688AB899E_il2cpp_TypeInfo_var;
@@ -16637,6 +16636,10 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR String_t* Utility_GetCRC32Hash_m32743BA14CB97
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VDisk_AddFile_mF84493BD84BE8D129584A14035F2BA4C81857B16 (VDisk_tE8E6E1457A0295477EE72D651AD72082DB7D8A99 * __this, String_t* ___path0, int64_t ___len1, String_t* ___hash2, const RuntimeMethod* method);
 // System.Void libx.VDisk::Save()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void VDisk_Save_m9D08426F258554040480A6B139CB6D00738E5F3D (VDisk_tE8E6E1457A0295477EE72D651AD72082DB7D8A99 * __this, const RuntimeMethod* method);
+// System.Text.Encoding System.Text.Encoding::get_ASCII()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * Encoding_get_ASCII_mD3E8370997347A3F6822BDA50BC0A1DBC0059173 (const RuntimeMethod* method);
+// System.Void System.IO.BinaryReader::.ctor(System.IO.Stream,System.Text.Encoding)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void BinaryReader__ctor_m0877557BEFE1C22B709C187A077D28CFBC777C76 (BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 * __this, Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB * ___input0, Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * ___encoding1, const RuntimeMethod* method);
 // System.IO.DirectoryInfo System.IO.Directory::CreateDirectory(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR DirectoryInfo_t4EF3610F45F0D234800D01ADA8F3F476AE0CF5CD * Directory_CreateDirectory_m38040338519C48CE52137CC146372A153D5C6A7A (String_t* ___path0, const RuntimeMethod* method);
 // System.Boolean System.Collections.Generic.Dictionary`2<System.String,libx.VFile>::ContainsKey(!0)
@@ -36208,111 +36211,118 @@ IL_0011:
 	try
 	{ // begin try (depth: 1)
 		{
-			// var reader = new BinaryReader(stream);
+			// var reader = new BinaryReader(stream, Encoding.ASCII);
 			FileStream_t6342275F1C1E26F5EEB5AD510933C95B78A5DA26 * L_4 = V_0;
-			BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 * L_5 = (BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 *)il2cpp_codegen_object_new(BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128_il2cpp_TypeInfo_var);
-			BinaryReader__ctor_m8D2F966D44EF5BD30D54D94653A831EFDB9C6A60(L_5, L_4, /*hidden argument*/NULL);
-			V_1 = L_5;
+			Encoding_tE901442411E2E70039D2A4AE77FB81C3D6064827 * L_5;
+			L_5 = Encoding_get_ASCII_mD3E8370997347A3F6822BDA50BC0A1DBC0059173(/*hidden argument*/NULL);
+			BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 * L_6 = (BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 *)il2cpp_codegen_object_new(BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128_il2cpp_TypeInfo_var);
+			BinaryReader__ctor_m0877557BEFE1C22B709C187A077D28CFBC777C76(L_6, L_4, L_5, /*hidden argument*/NULL);
+			V_1 = L_6;
 		}
 
-IL_0018:
+IL_001d:
 		try
 		{ // begin try (depth: 2)
 			{
-				goto IL_0023;
+				goto IL_0028;
 			}
 
-IL_001a:
+IL_001f:
 			{
 				// return reader.ReadInt32();
-				BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 * L_6 = V_1;
-				NullCheck(L_6);
-				int32_t L_7;
-				L_7 = VirtFuncInvoker0< int32_t >::Invoke(16 /* System.Int32 System.IO.BinaryReader::ReadInt32() */, L_6);
-				V_2 = L_7;
-				IL2CPP_LEAVE(0x6D, FINALLY_0063);
+				BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 * L_7 = V_1;
+				NullCheck(L_7);
+				int32_t L_8;
+				L_8 = VirtFuncInvoker0< int32_t >::Invoke(16 /* System.Int32 System.IO.BinaryReader::ReadInt32() */, L_7);
+				V_2 = L_8;
+				IL2CPP_LEAVE(0x7B, FINALLY_0071);
 			}
 
-IL_0023:
+IL_0028:
 			{
 				// while (reader.PeekChar() != -1)
-				BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 * L_8 = V_1;
-				NullCheck(L_8);
-				int32_t L_9;
-				L_9 = VirtFuncInvoker0< int32_t >::Invoke(8 /* System.Int32 System.IO.BinaryReader::PeekChar() */, L_8);
-				if ((!(((uint32_t)L_9) == ((uint32_t)(-1)))))
+				BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 * L_9 = V_1;
+				NullCheck(L_9);
+				int32_t L_10;
+				L_10 = VirtFuncInvoker0< int32_t >::Invoke(8 /* System.Int32 System.IO.BinaryReader::PeekChar() */, L_9);
+				if ((!(((uint32_t)L_10) == ((uint32_t)(-1)))))
 				{
-					goto IL_001a;
+					goto IL_001f;
 				}
 			}
 
-IL_002c:
+IL_0031:
 			{
 				// }
-				goto IL_005f;
+				goto IL_006d;
 			}
 		} // end try (depth: 2)
 		catch(Il2CppExceptionWrapper& e)
 		{
-			if(il2cpp_codegen_class_is_assignable_from (((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&RuntimeObject_il2cpp_TypeInfo_var)), il2cpp_codegen_object_class(e.ex)))
+			if(il2cpp_codegen_class_is_assignable_from (((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Exception_t_il2cpp_TypeInfo_var)), il2cpp_codegen_object_class(e.ex)))
 			{
 				IL2CPP_PUSH_ACTIVE_EXCEPTION(e.ex);
-				goto CATCH_002e;
+				goto CATCH_0033;
 			}
 			throw e;
 		}
 
-CATCH_002e:
-		{ // begin catch(System.Object)
+CATCH_0033:
+		{ // begin catch(System.Exception)
 			{
-				// catch
+				// UnityEngine.Debug.LogError(ex0.Message);
+				NullCheck(((Exception_t *)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t *)));
+				String_t* L_11;
+				L_11 = VirtFuncInvoker0< String_t* >::Invoke(19 /* System.String System.Exception::get_Message() */, ((Exception_t *)IL2CPP_GET_ACTIVE_EXCEPTION(Exception_t *)));
+				IL2CPP_RUNTIME_CLASS_INIT(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Debug_tEB68BCBEB8EFD60F8043C67146DC05E7F50F374B_il2cpp_TypeInfo_var)));
+				Debug_LogError_m8850D65592770A364D494025FF3A73E8D4D70485(L_11, /*hidden argument*/NULL);
 			}
 
-IL_002f:
+IL_003d:
 			try
 			{ // begin try (depth: 3)
 				{
-					goto IL_003a;
+					goto IL_0048;
 				}
 
-IL_0031:
+IL_003f:
 				{
 					// return reader.ReadInt32();
-					BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 * L_10 = V_1;
-					NullCheck(L_10);
-					int32_t L_11;
-					L_11 = VirtFuncInvoker0< int32_t >::Invoke(16 /* System.Int32 System.IO.BinaryReader::ReadInt32() */, L_10);
-					V_2 = L_11;
-					IL2CPP_LEAVE(0x6D, FINALLY_0063);
-				}
-
-IL_003a:
-				{
-					// while (reader.BaseStream.Position == reader.BaseStream.Length)
 					BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 * L_12 = V_1;
 					NullCheck(L_12);
-					Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB * L_13;
-					L_13 = VirtFuncInvoker0< Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB * >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_12);
-					NullCheck(L_13);
-					int64_t L_14;
-					L_14 = VirtFuncInvoker0< int64_t >::Invoke(13 /* System.Int64 System.IO.Stream::get_Position() */, L_13);
-					BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 * L_15 = V_1;
+					int32_t L_13;
+					L_13 = VirtFuncInvoker0< int32_t >::Invoke(16 /* System.Int32 System.IO.BinaryReader::ReadInt32() */, L_12);
+					V_2 = L_13;
+					IL2CPP_LEAVE(0x7B, FINALLY_0071);
+				}
+
+IL_0048:
+				{
+					// while (reader.BaseStream.Position == reader.BaseStream.Length)
+					BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 * L_14 = V_1;
+					NullCheck(L_14);
+					Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB * L_15;
+					L_15 = VirtFuncInvoker0< Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB * >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_14);
 					NullCheck(L_15);
-					Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB * L_16;
-					L_16 = VirtFuncInvoker0< Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB * >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_15);
-					NullCheck(L_16);
-					int64_t L_17;
-					L_17 = VirtFuncInvoker0< int64_t >::Invoke(12 /* System.Int64 System.IO.Stream::get_Length() */, L_16);
-					if ((((int64_t)L_14) == ((int64_t)L_17)))
+					int64_t L_16;
+					L_16 = VirtFuncInvoker0< int64_t >::Invoke(13 /* System.Int64 System.IO.Stream::get_Position() */, L_15);
+					BinaryReader_t4F45C15FF44F8E1C105704A21FFBE58D60015128 * L_17 = V_1;
+					NullCheck(L_17);
+					Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB * L_18;
+					L_18 = VirtFuncInvoker0< Stream_t5DC87DD578C2C5298D98E7802E92DEABB66E2ECB * >::Invoke(5 /* System.IO.Stream System.IO.BinaryReader::get_BaseStream() */, L_17);
+					NullCheck(L_18);
+					int64_t L_19;
+					L_19 = VirtFuncInvoker0< int64_t >::Invoke(12 /* System.Int64 System.IO.Stream::get_Length() */, L_18);
+					if ((((int64_t)L_16) == ((int64_t)L_19)))
 					{
-						goto IL_0031;
+						goto IL_003f;
 					}
 				}
 
-IL_0052:
+IL_0060:
 				{
 					// }
-					goto IL_005d;
+					goto IL_006b;
 				}
 			} // end try (depth: 3)
 			catch(Il2CppExceptionWrapper& e)
@@ -36320,12 +36330,12 @@ IL_0052:
 				if(il2cpp_codegen_class_is_assignable_from (((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Exception_t_il2cpp_TypeInfo_var)), il2cpp_codegen_object_class(e.ex)))
 				{
 					IL2CPP_PUSH_ACTIVE_EXCEPTION(e.ex);
-					goto CATCH_0054;
+					goto CATCH_0062;
 				}
 				throw e;
 			}
 
-CATCH_0054:
+CATCH_0062:
 			{ // begin catch(System.Exception)
 				// Debug.LogException(ex);
 				IL2CPP_RUNTIME_CLASS_INIT(((RuntimeClass*)il2cpp_codegen_initialize_runtime_metadata_inline((uintptr_t*)&Debug_tEB68BCBEB8EFD60F8043C67146DC05E7F50F374B_il2cpp_TypeInfo_var)));
@@ -36333,63 +36343,63 @@ CATCH_0054:
 				// return -1;
 				V_2 = (-1);
 				IL2CPP_POP_ACTIVE_EXCEPTION();
-				IL2CPP_LEAVE(0x6D, FINALLY_0063);
+				IL2CPP_LEAVE(0x7B, FINALLY_0071);
 			} // end catch (depth: 3)
 
-IL_005d:
+IL_006b:
 			{
 				// }
 				IL2CPP_POP_ACTIVE_EXCEPTION();
-				goto IL_005f;
+				goto IL_006d;
 			}
 		} // end catch (depth: 2)
 
-IL_005f:
+IL_006d:
 		{
 			// return -1;
 			V_2 = (-1);
-			IL2CPP_LEAVE(0x6D, FINALLY_0063);
+			IL2CPP_LEAVE(0x7B, FINALLY_0071);
 		}
 	} // end try (depth: 1)
 	catch(Il2CppExceptionWrapper& e)
 	{
 		__last_unhandled_exception = (Exception_t *)e.ex;
-		goto FINALLY_0063;
+		goto FINALLY_0071;
 	}
 
-FINALLY_0063:
+FINALLY_0071:
 	{ // begin finally (depth: 1)
 		{
-			FileStream_t6342275F1C1E26F5EEB5AD510933C95B78A5DA26 * L_18 = V_0;
-			if (!L_18)
+			FileStream_t6342275F1C1E26F5EEB5AD510933C95B78A5DA26 * L_20 = V_0;
+			if (!L_20)
 			{
-				goto IL_006c;
+				goto IL_007a;
 			}
 		}
 
-IL_0066:
+IL_0074:
 		{
-			FileStream_t6342275F1C1E26F5EEB5AD510933C95B78A5DA26 * L_19 = V_0;
-			NullCheck(L_19);
-			InterfaceActionInvoker0::Invoke(0 /* System.Void System.IDisposable::Dispose() */, IDisposable_t099785737FC6A1E3699919A94109383715A8D807_il2cpp_TypeInfo_var, L_19);
+			FileStream_t6342275F1C1E26F5EEB5AD510933C95B78A5DA26 * L_21 = V_0;
+			NullCheck(L_21);
+			InterfaceActionInvoker0::Invoke(0 /* System.Void System.IDisposable::Dispose() */, IDisposable_t099785737FC6A1E3699919A94109383715A8D807_il2cpp_TypeInfo_var, L_21);
 		}
 
-IL_006c:
+IL_007a:
 		{
-			IL2CPP_END_FINALLY(99)
+			IL2CPP_END_FINALLY(113)
 		}
 	} // end finally (depth: 1)
-	IL2CPP_CLEANUP(99)
+	IL2CPP_CLEANUP(113)
 	{
 		IL2CPP_RETHROW_IF_UNHANDLED(Exception_t *)
-		IL2CPP_JUMP_TBL(0x6D, IL_006d)
+		IL2CPP_JUMP_TBL(0x7B, IL_007b)
 	}
 
-IL_006d:
+IL_007b:
 	{
 		// }
-		int32_t L_20 = V_2;
-		return L_20;
+		int32_t L_22 = V_2;
+		return L_22;
 	}
 }
 // System.Collections.Generic.List`1<libx.VFile> libx.Versions::LoadVersions(System.String,System.Boolean)
