@@ -18,9 +18,11 @@ namespace ET
 		public GameObject TypeListNode;
 		public GameObject ImageButton;
 		public GameObject Text_comTaskNpc;
+		public GameObject FunctionSetBtn;
 
 
-        public int TaskId;
+
+		public int TaskId;
 		public TaskPro TaskPro;
 		public TaskConfig TaskConfig;
 
@@ -49,7 +51,9 @@ namespace ET
 			self.Text_jinbiValue = rc.Get<GameObject>("Text_jinbiValue");
 			self.Text_taskTarget = rc.Get<GameObject>("Text_taskTarget");
 			self.Text_jiangliText = rc.Get<GameObject>("Text_jiangliText");
-
+			self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
+			//IOS适配
+			IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
 
 			self.Button_CancelZhuizong = rc.Get<GameObject>("Button_CancelZhuizong");
 			self.Button_CancelZhuizong.GetComponent<Button>().onClick.AddListener(() => { self.OnTrackTask(false); });

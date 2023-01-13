@@ -2227,7 +2227,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveTypeEnum: 1
   moveDistance: -500
-  delayTime: 0
+  isLoop: 0
   MoveToTime: 0
 --- !u!1 &4518843702872312164
 GameObject:

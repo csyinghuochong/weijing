@@ -32,6 +32,10 @@ namespace ET
 
 			GameObject pageView = rc.Get<GameObject>("SubViewNode");
 			UI uiPageView = self.AddChild<UI, string, GameObject>("FunctionBtnSet", pageView);
+
+			//IOS适配
+			IPHoneHelper.SetPosition(rc.Get<GameObject>("FunctionSetBtn"), new Vector2(300f, 316f));
+
 			UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
 			pageViewComponent.UISubViewList = new UI[(int)ActivityPageEnum.Number];
 			pageViewComponent.UISubViewPath = new string[(int)ActivityPageEnum.Number];

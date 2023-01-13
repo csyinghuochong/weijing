@@ -81,6 +81,8 @@ MonoBehaviour:
     gameObject: {fileID: 3320985269145325742}
   - key: Text_comTaskNpc
     gameObject: {fileID: 4613522164664933097}
+  - key: FunctionSetBtn
+    gameObject: {fileID: 6681880636158051417}
 --- !u!114 &1383833215174124846
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -50,6 +50,10 @@ namespace ET
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             self.UIPageButton = self.AddChild<UI, string, GameObject>( "FunctionSetBtn", self.FunctionSetBtn);
+
+            //IOS适配
+            IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
+
             UIPageButtonComponent uIPageButtonComponent = self.UIPageButton.AddComponent<UIPageButtonComponent>();
             uIPageButtonComponent.SetClickHandler((int page) => {
                 self.OnClickPageButton(page);

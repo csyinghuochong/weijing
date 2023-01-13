@@ -37,6 +37,10 @@ namespace ET
             //单选组件1
             GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
             UI uiPage = self.AddChild<UI, string, GameObject>( "FunctionSetBtn", BtnItemTypeSet);
+
+            //IOS适配
+            IPHoneHelper.SetPosition(BtnItemTypeSet, new Vector2(300f, 316f));
+
             UIPageButtonComponent uIPageViewComponent = uiPage.AddComponent<UIPageButtonComponent>();
             uIPageViewComponent.SetClickHandler((int page) => {
                 self.OnClickPageButton_1(page);

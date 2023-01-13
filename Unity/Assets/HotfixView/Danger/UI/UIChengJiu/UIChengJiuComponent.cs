@@ -54,6 +54,10 @@ namespace ET
             });
             uIPageViewComponent.OnSelectIndex(0);
 
+
+            //IOS适配
+            IPHoneHelper.SetPosition(BtnItemTypeSet, new Vector2(300f, 316f));
+
             self.GetChengJiuList();
 
             DataUpdateComponent.Instance.AddListener(DataType.ChengJiuUpdate, self);

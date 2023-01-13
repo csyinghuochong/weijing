@@ -33,8 +33,9 @@ namespace ET
         string modelStr = UnityEngine.SystemInfo.deviceModel;
         Log.ILog.Debug("deviceModel:  " + modelStr);
         if (modelStr == "iPhone10,3" || modelStr == "iPhone10,6" || modelStr == "iPhone11,2" || modelStr == "iPhone11,6" || modelStr == "iPhone11,8"
-         || modelStr == "iPhone12,3")
+         || modelStr == "iPhone12,1"|| modelStr == "iPhone12,3"|| modelStr == "iPhone12,5"|| modelStr == "iPhone12,8"|| modelStr.Contains("iPhone12")||modelStr.Contains("iPhone13")||modelStr.Contains("iPhone14")||modelStr.Contains("iPhone15"))
         {
+            //需要适配
             return true;
         }
         else
@@ -43,6 +44,7 @@ namespace ET
         }
 #else
             return false;
+            //return true;
 #endif
         }
     }

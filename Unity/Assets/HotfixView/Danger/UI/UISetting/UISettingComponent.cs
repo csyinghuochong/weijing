@@ -92,6 +92,8 @@ namespace ET
             self.Authentication = rc.Get<GameObject>("Authentication");
             self.GameSetting = rc.Get<GameObject>("GameSetting");
 
+            //IOS适配
+            IPHoneHelper.SetPosition(rc.Get<GameObject>("FunctionSetBtn"), new Vector2(300f, 316f));
 
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnBeforeClose(); });
             self.Btn_CloseGame.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseGame(); });

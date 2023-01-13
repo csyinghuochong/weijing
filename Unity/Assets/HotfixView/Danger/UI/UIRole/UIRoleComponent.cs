@@ -84,7 +84,9 @@ namespace ET
 			});
 			self.UIPageButton = uIPageViewComponent;
 			uIPageViewComponent.OnSelectIndex(0);
-			IPHoneHelper.SetPosition(BtnItemTypeSet, new Vector2(209f, 316f));
+
+			//IOS适配
+			IPHoneHelper.SetPosition(BtnItemTypeSet, new Vector2(300f, 316f));
 			DataUpdateComponent.Instance.AddListener(DataType.BagItemUpdate, self);
 			DataUpdateComponent.Instance.AddListener(DataType.EquipWear, self);
 			DataUpdateComponent.Instance.AddListener(DataType.HuiShouSelect, self);
