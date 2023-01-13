@@ -332,6 +332,8 @@ namespace ET
                             case 125://坐骑获取
                                 unit.GetComponent<UserInfoComponent>().UserInfo.HorseIds.Add(int.Parse(itemCof.ItemUsePar));
                                 break;
+                            case 126: //集字
+                                break;
                         }
 
                         //扣除道具
