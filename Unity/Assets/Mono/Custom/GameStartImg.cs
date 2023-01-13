@@ -20,17 +20,24 @@ public class GameStartImg : MonoBehaviour
 
     //public GameObject Obj_BackMusic;
 
-	// Use this for initialization
+    // Use this for initialization
+    private float PassTime;
+
+
 	void Start () {
         nowShowImgNum = 0;
+        PassTime = 0f;
         Obj_StartImg[nowShowImgNum].SetActive(true);
 	}
 	
 	// Update is called once per frame
 	void Update () {
-
+        PassTime += Time.deltaTime; 
+        if (PassTime >= 5f)
+        { 
+            gameObject.SetActive(false);    
+        }
         //Debug.Log("Time.deltaTime = " + Time.deltaTime + "总时间:" + Time.time);
-
         //渐变进入
         if (!startShowEnterStatus)
         {

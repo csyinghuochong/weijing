@@ -174,6 +174,16 @@ namespace ET
 
         public static void OnCollisionUnit(this SkillHandler self, Unit uu)
         {
+            //鞭炮打年兽 鞭炮道具10030002 技能76001001年兽 72009001
+            if (self.SkillConf.Id == 76001001 && uu.ConfigId != 72009001)
+            {
+                return;
+            }
+            if (self.SkillConf.Id != 76001001 && uu.ConfigId == 72009001)
+            {
+                return;
+            }
+
             //触发Buff
             self.TriggerSkillBuff(uu);
 

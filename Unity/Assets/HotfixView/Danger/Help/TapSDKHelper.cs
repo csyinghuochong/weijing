@@ -169,7 +169,7 @@ namespace ET
         public static void TrackEvent(string eventName, string properties)
         {
             ET.Log.ILog.Debug("Tap TrackEvent");
-            TapDB.TrackEvent("#eventName_1", "{\"weapon\":\"axe\"}");
+            TapDB.TrackEvent("#eventName_2", "{\"weapon\":\"axe\"}");
         }
 
         /// <summary>

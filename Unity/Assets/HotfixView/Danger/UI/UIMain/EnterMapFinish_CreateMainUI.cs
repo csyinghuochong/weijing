@@ -21,6 +21,7 @@ namespace ET
 			TapSDKHelper.Init();
 			TapSDKHelper.SetUser(roleId.ToString());
 			TapSDKHelper.TrackEvent("", "");
+			Log.Error("test bugly");
 #endif
 
 		}

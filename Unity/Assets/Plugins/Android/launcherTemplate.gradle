@@ -18,6 +18,7 @@ MobSDK {
         gui true // 如不需要使用SDK自带UI发送短信，可设置为false
     }
 
+
     MobPush {
     //集成其他推送通道（可选）
 	    devInfo {
