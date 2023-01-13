@@ -22,6 +22,9 @@ namespace ET
             shareSet = shareSet | (long)request.ShareType;
             numericComponent.ApplyValue(NumericType.FenShangSet, shareSet);
 
+            //给钻石
+            unit.GetComponent<UserInfoComponent>().UpdateRoleData( UserDataType.Diamond, "120");
+
             reply();
             await ETTask.CompletedTask;
         }

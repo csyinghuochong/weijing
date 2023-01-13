@@ -84,12 +84,8 @@ namespace ET
 
         public static void OnQQShare(this UIFenXiangSetComponent self)
         {
-            //QQ空间
-            if (self.IsShared(2))
-            {
-                return;
-            }
-            self.FenXiangByType(2);
+            //QQ好友
+            self.FenXiangByType(5);
         }
 
         public static void OnWeiXinShare(this UIFenXiangSetComponent self)
@@ -110,8 +106,12 @@ namespace ET
 
         public static void OnQQZone(this UIFenXiangSetComponent self)
         {
-            //QQ好友
-            self.FenXiangByType(5);
+            //QQ空间
+            if (self.IsShared(2))
+            {
+                return;
+            }
+            self.FenXiangByType(2);
         }
     }
 }

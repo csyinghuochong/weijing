@@ -27,6 +27,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using UnityEngine;
 
 namespace libx
@@ -115,7 +116,7 @@ namespace libx
 				return -1;
 			using (var stream = File.OpenRead(filename))
 			{
-				var reader = new BinaryReader(stream);
+				var reader = new BinaryReader(stream, Encoding.ASCII);
 				try
 				{
 					while (reader.PeekChar() != -1)
@@ -123,8 +124,9 @@ namespace libx
 						return reader.ReadInt32();
 					}
 				}
-				catch
+				catch(Exception ex0)
 				{
+					UnityEngine.Debug.LogError(ex0.Message);	
 					try
 					{
 						while (reader.BaseStream.Position == reader.BaseStream.Length)

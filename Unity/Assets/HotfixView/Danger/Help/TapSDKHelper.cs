@@ -36,6 +36,7 @@ namespace ET
 
         public static void Init()
         {
+            ET.Log.ILog.Debug("Tap Bootstrap.Init");
             var config = new TapConfig.Builder()
             .ClientID("pm0a9qavoyvn0qqmse")  // 必须，开发者中心对应 Client ID
             .ClientToken("Amv51zGQvweTTsqPKtNdO9GDKPs6FlTcMpbMQ6BW")  // 必须，开发者中心对应 Client Token
@@ -56,6 +57,7 @@ namespace ET
         /// <param name="isCN">区域，true 表示中国大陆，false 表示中国大陆以外的国家或地区。</param>
         public static void TabDBInit(string clientId, string channel, string gameVersion, bool isCN)
         {
+            ET.Log.ILog.Debug("Tab DBInit.Init");
             TapDB.Init(clientId, channel, gameVersion, true);
         }
 
@@ -65,6 +67,7 @@ namespace ET
         /// <param name="userId"></param>
         public static void SetUser(string userId)
         {
+            ET.Log.ILog.Debug("Tab SetUser.Init");
             TapDB.SetUser(userId);
         }
 
@@ -165,7 +168,8 @@ namespace ET
         //事件属性传入预置属性时，SDK 默认采集的预置属性将被覆盖
         public static void TrackEvent(string eventName, string properties)
         {
-            TapDB.TrackEvent("eventName_1", "{\"weapon\":\"axe\"}");
+            ET.Log.ILog.Debug("Tap TrackEvent");
+            TapDB.TrackEvent("#eventName_1", "{\"weapon\":\"axe\"}");
         }
 
         /// <summary>
