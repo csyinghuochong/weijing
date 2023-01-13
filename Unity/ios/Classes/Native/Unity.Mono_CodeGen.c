@@ -8620,33 +8620,35 @@ extern void Init_OnGetUserInfoResultHandler_m43418AE8A9A78EA13700BB6D54337E37A31
 extern void Init_OnAuthResultHandler_m1DDC452289AEF786FAB777C493BCB350DF113143 (void);
 // 0x00001108 System.Void ET.Init::FenXiang(ET.FenXiangContent)
 extern void Init_FenXiang_m4BF4EBF31D6C3A5D43F1448C9CE6E8002060DB50 (void);
-// 0x00001109 System.Void ET.Init::OnShareResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
+// 0x00001109 System.Void ET.Init::FenXiangShareContent(cn.sharesdk.unity3d.ShareContent,System.Int32)
+extern void Init_FenXiangShareContent_m4D21F1DA6E9E3BD16045956FBD66E07F3AB96869 (void);
+// 0x0000110A System.Void ET.Init::OnShareResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
 extern void Init_OnShareResultHandler_mDCE36D68988B0D54AB7BBD99BF2DB294EA0EF4E0 (void);
-// 0x0000110A System.Void ET.Init::OnGetFriendsResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
+// 0x0000110B System.Void ET.Init::OnGetFriendsResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
 extern void Init_OnGetFriendsResultHandler_m54A1A8BFA951E4C499D76E55EF86E383AAC11EDA (void);
-// 0x0000110B System.Void ET.Init::OnFollowFriendResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
+// 0x0000110C System.Void ET.Init::OnFollowFriendResultHandler(System.Int32,cn.sharesdk.unity3d.ResponseState,cn.sharesdk.unity3d.PlatformType,System.Collections.Hashtable)
 extern void Init_OnFollowFriendResultHandler_m0B7C58BFFFEF3DD383EDD9B2997D9CF7A3AC40DD (void);
-// 0x0000110C System.Void ET.Init::AliPay(System.String)
+// 0x0000110D System.Void ET.Init::AliPay(System.String)
 extern void Init_AliPay_m2E1BABF2FA5E2583DD5FE33046BCC389AD254F9C (void);
-// 0x0000110D System.Void ET.Init::AliPayCallback(System.String)
+// 0x0000110E System.Void ET.Init::AliPayCallback(System.String)
 extern void Init_AliPayCallback_m632A5FB8750250BCE521F4A45E0D9B47A8982339 (void);
-// 0x0000110E System.Void ET.Init::WeChatPay(System.String)
+// 0x0000110F System.Void ET.Init::WeChatPay(System.String)
 extern void Init_WeChatPay_m094DE1A4223DB52E1DBE3C3EFC04EF8AF703CF49 (void);
-// 0x0000110F System.Void ET.Init::OnGetPhoneNum()
+// 0x00001110 System.Void ET.Init::OnGetPhoneNum()
 extern void Init_OnGetPhoneNum_mB25AE42BF9EB02A1A0837DE11B2D56B1F9EE00A5 (void);
-// 0x00001110 System.Void ET.Init::OnRecvPhoneNum(System.String)
+// 0x00001111 System.Void ET.Init::OnRecvPhoneNum(System.String)
 extern void Init_OnRecvPhoneNum_mFA44AB86943DE2B49C3E77E3C8A26B792F8D1E0B (void);
-// 0x00001111 System.Void ET.Init::.ctor()
+// 0x00001112 System.Void ET.Init::.ctor()
 extern void Init__ctor_mB2E83C132074BA8C2F2CDD17A603386F8E307D30 (void);
-// 0x00001112 System.Void ET.Init/<>c::.cctor()
+// 0x00001113 System.Void ET.Init/<>c::.cctor()
 extern void U3CU3Ec__cctor_m321F00343A3718FA65C10C3E3C9B1D9175704AC3 (void);
-// 0x00001113 System.Void ET.Init/<>c::.ctor()
+// 0x00001114 System.Void ET.Init/<>c::.ctor()
 extern void U3CU3Ec__ctor_m1B4E9514D57B07637EEDE19CA0B970DA1D691773 (void);
-// 0x00001114 System.Void ET.Init/<>c::<Awake>b__28_0(System.Object,System.UnhandledExceptionEventArgs)
+// 0x00001115 System.Void ET.Init/<>c::<Awake>b__28_0(System.Object,System.UnhandledExceptionEventArgs)
 extern void U3CU3Ec_U3CAwakeU3Eb__28_0_m8F273F32CF94DAD313115DFB6EFE1A1338C36B11 (void);
-// 0x00001115 System.Void ET.UILayerScript::.ctor()
+// 0x00001116 System.Void ET.UILayerScript::.ctor()
 extern void UILayerScript__ctor_mF5FB2B51A72E49FFFE387F8CBFA6E0028BF1AAF1 (void);
-static Il2CppMethodPointer s_methodPointers[4373] = 
+static Il2CppMethodPointer s_methodPointers[4374] = 
 {
 	AI_1__ctor_m7A61848F87B7120517CC12FC55771BC21F0894A3,
 	AdditiveHide_Awake_mA7FAB21E49A8C68CA65ED6EEB5773B03301CFB6E,
@@ -13008,6 +13010,7 @@ static Il2CppMethodPointer s_methodPointers[4373] =
 	Init_OnGetUserInfoResultHandler_m43418AE8A9A78EA13700BB6D54337E37A3101457,
 	Init_OnAuthResultHandler_m1DDC452289AEF786FAB777C493BCB350DF113143,
 	Init_FenXiang_m4BF4EBF31D6C3A5D43F1448C9CE6E8002060DB50,
+	Init_FenXiangShareContent_m4D21F1DA6E9E3BD16045956FBD66E07F3AB96869,
 	Init_OnShareResultHandler_mDCE36D68988B0D54AB7BBD99BF2DB294EA0EF4E0,
 	Init_OnGetFriendsResultHandler_m54A1A8BFA951E4C499D76E55EF86E383AAC11EDA,
 	Init_OnFollowFriendResultHandler_m0B7C58BFFFEF3DD383EDD9B2997D9CF7A3AC40DD,
@@ -13061,7 +13064,7 @@ static Il2CppTokenAdjustorThunkPair s_adjustorThunks[18] =
 	{ 0x060010ED, U3CStartAcceptU3Ed__12_MoveNext_mBF535DCEC52A35459F64CF39C14B0B8685F2110D_AdjustorThunk },
 	{ 0x060010EE, U3CStartAcceptU3Ed__12_SetStateMachine_m2F77662D5C4721760033BC3F3516F52987470B67_AdjustorThunk },
 };
-static const int32_t s_InvokerIndices[4373] = 
+static const int32_t s_InvokerIndices[4374] = 
 {
 	9318,
 	9318,
@@ -17423,6 +17426,7 @@ static const int32_t s_InvokerIndices[4373] =
 	1697,
 	1697,
 	7771,
+	4622,
 	1697,
 	1697,
 	1697,
@@ -17695,7 +17699,7 @@ IL2CPP_EXTERN_C const Il2CppCodeGenModule g_Unity_Mono_CodeGenModule;
 const Il2CppCodeGenModule g_Unity_Mono_CodeGenModule = 
 {
 	"Unity.Mono.dll",
-	4373,
+	4374,
 	s_methodPointers,
 	18,
 	s_adjustorThunks,

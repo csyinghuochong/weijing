@@ -22765,6 +22765,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ShareContent_SetSite_m1368D25F0FB51517A2
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ShareContent_SetSiteUrl_m0F264BB68CD304D09DEBE77B2710D7D98ED40BCA (ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * __this, String_t* ___siteUrl0, const RuntimeMethod* method);
 // System.Void cn.sharesdk.unity3d.ShareContent::SetShareType(System.Int32)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ShareContent_SetShareType_m67554A36461BC7F4541CA93B287F6D54A3A61AAA (ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * __this, int32_t ___shareType0, const RuntimeMethod* method);
+// System.Void ET.Init::FenXiangShareContent(cn.sharesdk.unity3d.ShareContent,System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_FenXiangShareContent_m4D21F1DA6E9E3BD16045956FBD66E07F3AB96869 (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * ___content0, int32_t ___fenxiangtype1, const RuntimeMethod* method);
 // System.Int32 cn.sharesdk.unity3d.ShareSDK::ShareContent(cn.sharesdk.unity3d.PlatformType,cn.sharesdk.unity3d.ShareContent)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR int32_t ShareSDK_ShareContent_m0EFDD4D9D038E8E937E5A71EFE010E2BC7D603DB (ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * __this, int32_t ___platform0, ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * ___content1, const RuntimeMethod* method);
 // System.Void System.Action`2<System.Int32,System.Boolean>::Invoke(!0,!1)
@@ -33342,7 +33344,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_FenXiang_m4BF4EBF31D6C3A5D43F1448C9
 		s_Il2CppMethodInitialized = true;
 	}
 	ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * V_0 = NULL;
-	int32_t V_1 = 0;
 	{
 		// ShareContent content = new ShareContent();
 		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_0 = (ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 *)il2cpp_codegen_object_new(ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962_il2cpp_TypeInfo_var);
@@ -33394,32 +33395,41 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_FenXiang_m4BF4EBF31D6C3A5D43F1448C9
 		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_22 = V_0;
 		NullCheck(L_22);
 		ShareContent_SetShareType_m67554A36461BC7F4541CA93B287F6D54A3A61AAA(L_22, 4, /*hidden argument*/NULL);
-		// switch (fenxiangConent.Fenxiangtype)
-		FenXiangContent_tF1C156F10556BC4C9E0D541A74096AEE860F4C12  L_23 = ___fenxiangConent0;
-		int32_t L_24 = L_23.get_Fenxiangtype_4();
-		V_1 = L_24;
-		int32_t L_25 = V_1;
-		switch (((int32_t)il2cpp_codegen_subtract((int32_t)L_25, (int32_t)1)))
+		// FenXiangShareContent(content, fenxiangConent.Fenxiangtype);
+		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_23 = V_0;
+		FenXiangContent_tF1C156F10556BC4C9E0D541A74096AEE860F4C12  L_24 = ___fenxiangConent0;
+		int32_t L_25 = L_24.get_Fenxiangtype_4();
+		Init_FenXiangShareContent_m4D21F1DA6E9E3BD16045956FBD66E07F3AB96869(__this, L_23, L_25, /*hidden argument*/NULL);
+		// }
+		return;
+	}
+}
+// System.Void ET.Init::FenXiangShareContent(cn.sharesdk.unity3d.ShareContent,System.Int32)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_FenXiangShareContent_m4D21F1DA6E9E3BD16045956FBD66E07F3AB96869 (Init_tBE82A7DCA5B68D9FFE90221B3D3344E27AA2214D * __this, ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * ___content0, int32_t ___fenxiangtype1, const RuntimeMethod* method)
+{
+	{
+		int32_t L_0 = ___fenxiangtype1;
+		switch (((int32_t)il2cpp_codegen_subtract((int32_t)L_0, (int32_t)1)))
 		{
 			case 0:
 			{
-				goto IL_0085;
+				goto IL_001d;
 			}
 			case 1:
 			{
-				goto IL_0095;
+				goto IL_002d;
 			}
 			case 2:
 			{
-				goto IL_00a4;
+				goto IL_003c;
 			}
 			case 3:
 			{
-				goto IL_00b3;
+				goto IL_004b;
 			}
 			case 4:
 			{
-				goto IL_00c3;
+				goto IL_005b;
 			}
 		}
 	}
@@ -33427,62 +33437,62 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init_FenXiang_m4BF4EBF31D6C3A5D43F1448C9
 		return;
 	}
 
-IL_0085:
+IL_001d:
 	{
 		// ssdk.ShareContent(PlatformType.WeChatMoments, content);
-		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_26 = __this->get_ssdk_18();
-		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_27 = V_0;
-		NullCheck(L_26);
-		int32_t L_28;
-		L_28 = ShareSDK_ShareContent_m0EFDD4D9D038E8E937E5A71EFE010E2BC7D603DB(L_26, ((int32_t)23), L_27, /*hidden argument*/NULL);
+		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_1 = __this->get_ssdk_18();
+		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_2 = ___content0;
+		NullCheck(L_1);
+		int32_t L_3;
+		L_3 = ShareSDK_ShareContent_m0EFDD4D9D038E8E937E5A71EFE010E2BC7D603DB(L_1, ((int32_t)23), L_2, /*hidden argument*/NULL);
 		// break;
 		return;
 	}
 
-IL_0095:
+IL_002d:
 	{
 		// ssdk.ShareContent(PlatformType.QZone, content);
-		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_29 = __this->get_ssdk_18();
-		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_30 = V_0;
-		NullCheck(L_29);
-		int32_t L_31;
-		L_31 = ShareSDK_ShareContent_m0EFDD4D9D038E8E937E5A71EFE010E2BC7D603DB(L_29, 6, L_30, /*hidden argument*/NULL);
+		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_4 = __this->get_ssdk_18();
+		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_5 = ___content0;
+		NullCheck(L_4);
+		int32_t L_6;
+		L_6 = ShareSDK_ShareContent_m0EFDD4D9D038E8E937E5A71EFE010E2BC7D603DB(L_4, 6, L_5, /*hidden argument*/NULL);
 		// break;
 		return;
 	}
 
-IL_00a4:
+IL_003c:
 	{
 		// ssdk.ShareContent(PlatformType.SinaWeibo, content);
-		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_32 = __this->get_ssdk_18();
-		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_33 = V_0;
-		NullCheck(L_32);
-		int32_t L_34;
-		L_34 = ShareSDK_ShareContent_m0EFDD4D9D038E8E937E5A71EFE010E2BC7D603DB(L_32, 1, L_33, /*hidden argument*/NULL);
+		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_7 = __this->get_ssdk_18();
+		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_8 = ___content0;
+		NullCheck(L_7);
+		int32_t L_9;
+		L_9 = ShareSDK_ShareContent_m0EFDD4D9D038E8E937E5A71EFE010E2BC7D603DB(L_7, 1, L_8, /*hidden argument*/NULL);
 		// break;
 		return;
 	}
 
-IL_00b3:
+IL_004b:
 	{
 		// ssdk.ShareContent(PlatformType.WeChat, content);
-		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_35 = __this->get_ssdk_18();
-		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_36 = V_0;
-		NullCheck(L_35);
-		int32_t L_37;
-		L_37 = ShareSDK_ShareContent_m0EFDD4D9D038E8E937E5A71EFE010E2BC7D603DB(L_35, ((int32_t)22), L_36, /*hidden argument*/NULL);
+		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_10 = __this->get_ssdk_18();
+		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_11 = ___content0;
+		NullCheck(L_10);
+		int32_t L_12;
+		L_12 = ShareSDK_ShareContent_m0EFDD4D9D038E8E937E5A71EFE010E2BC7D603DB(L_10, ((int32_t)22), L_11, /*hidden argument*/NULL);
 		// break;
 		return;
 	}
 
-IL_00c3:
+IL_005b:
 	{
 		// ssdk.ShareContent(PlatformType.QQ, content);
-		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_38 = __this->get_ssdk_18();
-		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_39 = V_0;
-		NullCheck(L_38);
-		int32_t L_40;
-		L_40 = ShareSDK_ShareContent_m0EFDD4D9D038E8E937E5A71EFE010E2BC7D603DB(L_38, ((int32_t)24), L_39, /*hidden argument*/NULL);
+		ShareSDK_tAB3B4C7FC2D0952582CDD1C657EF8F03A3519AA6 * L_13 = __this->get_ssdk_18();
+		ShareContent_t53C55C426949D2DB6FD3BA6F0785B5FDBEB1E962 * L_14 = ___content0;
+		NullCheck(L_13);
+		int32_t L_15;
+		L_15 = ShareSDK_ShareContent_m0EFDD4D9D038E8E937E5A71EFE010E2BC7D603DB(L_13, ((int32_t)24), L_14, /*hidden argument*/NULL);
 		// }
 		return;
 	}
