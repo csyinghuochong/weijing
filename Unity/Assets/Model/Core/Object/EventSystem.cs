@@ -115,39 +115,42 @@ namespace ET
         public void Add(Dictionary<string, Type> addTypes)
         {
             this.allTypes.Clear();
-            foreach (var kv in addTypes)
-            {
-                this.allTypes[kv.Key] = kv.Value;
-            }
-
             this.types.Clear();
-            List<Type> baseAttributeTypes = GetBaseAttributes();
-            foreach (Type baseAttributeType in baseAttributeTypes)
+            foreach (var item in addTypes)
             {
-                foreach (var kv in this.allTypes)
+                string fullName = item.Key;
+                Type type = item.Value;
+                this.allTypes[fullName] = type;
+
+                if (type.IsAbstract)
                 {
-                    Type type = kv.Value;
-                    if (type.IsAbstract)
-                    {
-                        continue;
-                    }
+                    continue;
+                }
 
-                    object[] objects = type.GetCustomAttributes(baseAttributeType, true);
-                    if (objects.Length == 0)
-                    {
-                        continue;
-                    }
+                // 记录所有的有BaseAttribute标记的的类型
+                object[] objects = type.GetCustomAttributes(typeof(BaseAttribute), true);
 
-                    this.types.Add(baseAttributeType, type);
+                foreach (object o in objects)
+                {
+                    if (this.types.TryGetValue(o.GetType(), out List<Type> listt))
+                    {
+                        if (listt.Contains(type))
+                        {
+                            continue;
+                        }
+                    }
+                    this.types.Add(o.GetType(), type);
                 }
             }
 
             this.typeSystems = new TypeSystems();
 
-            foreach (Type type in this.GetTypes(typeof (ObjectSystemAttribute)))
+            List<Type> typeList = this.GetTypes(typeof(ObjectSystemAttribute));
+            foreach (Type type in typeList)
             {
                 object obj = Activator.CreateInstance(type);
 
+         
                 if (obj is ISystemType iSystemType)
                 {
                     OneTypeSystems oneTypeSystems = this.typeSystems.GetOrCreateOneTypeSystems(iSystemType.Type());
@@ -156,19 +159,20 @@ namespace ET
             }
 
             this.allEvents.Clear();
-            foreach (Type type in types[typeof (EventAttribute)])
+            foreach (Type type in types[typeof(EventAttribute)])
             {
                 IEvent iEvent = Activator.CreateInstance(type) as IEvent;
-                if (iEvent != null)
+                if (iEvent == null)
                 {
-                    Type eventType = iEvent.GetEventType();
-                    if (!this.allEvents.ContainsKey(eventType))
-                    {
-                        this.allEvents.Add(eventType, new List<object>());
-                    }
-
-                    this.allEvents[eventType].Add(iEvent);
+                    throw new Exception($"type not is AEvent: {type.Name}");
                 }
+                Type eventType = iEvent.GetEventType();
+                if (!this.allEvents.ContainsKey(eventType))
+                {
+                    this.allEvents.Add(eventType, new List<object>());
+                }
+
+                this.allEvents[eventType].Add(iEvent);
             }
         }
 
@@ -345,6 +349,8 @@ namespace ET
         public void Awake(Entity component)
         {
             List<object> iAwakeSystems = this.typeSystems.GetSystems(component.GetType(), typeof (IAwakeSystem));
+
+
             if (iAwakeSystems == null)
             {
                 return;

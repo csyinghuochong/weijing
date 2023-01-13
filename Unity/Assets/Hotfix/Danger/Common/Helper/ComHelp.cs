@@ -149,13 +149,23 @@ namespace ET
             float fightValueFloat = 0f;
 
             //宠物资质
-            fightValue += petinfo.ZiZhi_Act;
-            fightValue += petinfo.ZiZhi_Adf;
-            fightValue += petinfo.ZiZhi_Def;
-            fightValue += petinfo.ZiZhi_Hp;
-            fightValue += petinfo.ZiZhi_MageAct;
+            fightValue += (int)(petinfo.ZiZhi_Act / 2);
+            fightValue += (int)(petinfo.ZiZhi_Adf / 2);
+            fightValue += (int)(petinfo.ZiZhi_Def / 2);
+            fightValue += (int)(petinfo.ZiZhi_Hp / 4);
+            fightValue += (int)(petinfo.ZiZhi_MageAct / 2);
 
-            fightValueFloat = petinfo.ZiZhi_ChengZhang;
+            float addfloat = petinfo.ZiZhi_ChengZhang - 1;
+
+            /*
+            if (addfloat >= 0) {
+                addfloat = addfloat * 5f;
+            }
+            */
+
+            fightValueFloat = addfloat * 5f + 1;
+
+            //fightValueFloat = petinfo.ZiZhi_ChengZhang * 5f;
 
             //宠物技能评分
             for (int i = 0; i < petinfo.PetSkill.Count; i++) {
@@ -168,12 +178,14 @@ namespace ET
 
                 if (petinfo.PetSkill[i] >= 80002001 && petinfo.PetSkill[i] < 80002999) {
 
-                    fightValueFloat += 0.1f;
+                    fightValueFloat += 0.15f;
 
                 }
             }
 
             fightValue = (int)((float)fightValue * fightValueFloat);
+
+            //fightValue += (int)(petinfo.ZiZhi_ChengZhang * 3000);
 
             return fightValue;
 
