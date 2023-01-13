@@ -3,6 +3,13 @@
 namespace ET
 {
 
+    public struct WorldSayConfig
+    {
+        public int Time;
+        public string Conent;
+        public long ServerTime;
+    }
+
     public static class CombatResultEnum
     {
         public const int None = 0;

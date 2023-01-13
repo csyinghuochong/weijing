@@ -3,13 +3,6 @@
 namespace ET
 {
 
-    public struct WorldSayConfig
-    {
-        public int Time;
-        public string Conent;
-        public long ServerTime;
-    }
-
     public class ChatInfoUnit : Entity, IAwake, IDestroy
     {
         public long GateSessionActorId; //player.InstanceId

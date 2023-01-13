@@ -54,9 +54,9 @@ namespace ET
             int second = dateTime.Second;
             int time1 = huor * 3600 + minute * 60 + second;
 
-            for (int i = 0; i < WorldSayHelper.WorldSayList.Count; i++)
+            for (int i = 0; i < ConfigHelper.WorldSayList.Count; i++)
             {
-                WorldSayConfig worldSayConfig = WorldSayHelper.WorldSayList[i];
+                WorldSayConfig worldSayConfig = ConfigHelper.WorldSayList[i];
                 int hour2 = worldSayConfig.Time / 100;
                 int minute2 = worldSayConfig.Time % 100;
                 int time2 = hour2 * 3600 + minute2 * 60;
