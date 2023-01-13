@@ -17069,6 +17069,8 @@ public:
 	bool ___startShowStopStatus_11;
 	// System.Single GameStartImg::startShowStopTimeSum
 	float ___startShowStopTimeSum_12;
+	// System.Single GameStartImg::PassTime
+	float ___PassTime_13;
 
 public:
 	inline static int32_t get_offset_of_Obj_StartImg_4() { return static_cast<int32_t>(offsetof(GameStartImg_t64A0930BE0E10623F2C50AC3FB2530B9BB33C96A, ___Obj_StartImg_4)); }
@@ -17142,6 +17144,14 @@ public:
 	inline void set_startShowStopTimeSum_12(float value)
 	{
 		___startShowStopTimeSum_12 = value;
+	}
+
+	inline static int32_t get_offset_of_PassTime_13() { return static_cast<int32_t>(offsetof(GameStartImg_t64A0930BE0E10623F2C50AC3FB2530B9BB33C96A, ___PassTime_13)); }
+	inline float get_PassTime_13() const { return ___PassTime_13; }
+	inline float* get_address_of_PassTime_13() { return &___PassTime_13; }
+	inline void set_PassTime_13(float value)
+	{
+		___PassTime_13 = value;
 	}
 };
 
@@ -29208,6 +29218,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameStartImg_Start_m6A5313E57DF60E6FBA88
 	{
 		// nowShowImgNum = 0;
 		__this->set_nowShowImgNum_5(0);
+		// PassTime = 0f;
+		__this->set_PassTime_13((0.0f));
 		// Obj_StartImg[nowShowImgNum].SetActive(true);
 		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_0 = __this->get_Obj_StartImg_4();
 		int32_t L_1 = __this->get_nowShowImgNum_5();
@@ -29233,27 +29245,49 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameStartImg_Update_mC87D0F1FAA1801F1C60
 	float V_0 = 0.0f;
 	float V_1 = 0.0f;
 	{
-		// if (!startShowEnterStatus)
-		bool L_0 = __this->get_startShowEnterStatus_7();
-		if (L_0)
+		// PassTime += Time.deltaTime;
+		float L_0 = __this->get_PassTime_13();
+		float L_1;
+		L_1 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		__this->set_PassTime_13(((float)il2cpp_codegen_add((float)L_0, (float)L_1)));
+		// if (PassTime >= 5f)
+		float L_2 = __this->get_PassTime_13();
+		if ((!(((float)L_2) >= ((float)(5.0f)))))
 		{
-			goto IL_0098;
+			goto IL_002b;
+		}
+	}
+	{
+		// gameObject.SetActive(false);
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_3;
+		L_3 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(__this, /*hidden argument*/NULL);
+		NullCheck(L_3);
+		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_3, (bool)0, /*hidden argument*/NULL);
+	}
+
+IL_002b:
+	{
+		// if (!startShowEnterStatus)
+		bool L_4 = __this->get_startShowEnterStatus_7();
+		if (L_4)
+		{
+			goto IL_00c3;
 		}
 	}
 	{
 		// startShowEnterSum = startShowEnterSum + Time.deltaTime;
-		float L_1 = __this->get_startShowEnterSum_6();
-		float L_2;
-		L_2 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
-		__this->set_startShowEnterSum_6(((float)il2cpp_codegen_add((float)L_1, (float)L_2)));
+		float L_5 = __this->get_startShowEnterSum_6();
+		float L_6;
+		L_6 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		__this->set_startShowEnterSum_6(((float)il2cpp_codegen_add((float)L_5, (float)L_6)));
 		// float touMingImgValue = startShowEnterSum / 1f;
-		float L_3 = __this->get_startShowEnterSum_6();
-		V_0 = ((float)((float)L_3/(float)(1.0f)));
+		float L_7 = __this->get_startShowEnterSum_6();
+		V_0 = ((float)((float)L_7/(float)(1.0f)));
 		// if (touMingImgValue > 1)
-		float L_4 = V_0;
-		if ((!(((float)L_4) > ((float)(1.0f)))))
+		float L_8 = V_0;
+		if ((!(((float)L_8) > ((float)(1.0f)))))
 		{
-			goto IL_0038;
+			goto IL_0063;
 		}
 	}
 	{
@@ -29261,13 +29295,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void GameStartImg_Update_mC87D0F1FAA1801F1C60
 		V_0 = (1.0f);
 	}
 
-IL_0038:
+IL_0063:
 	{
 		// if (nowShowImgNum == 0)
-		int32_t L_5 = __this->get_nowShowImgNum_5();
-		if (L_5)
+		int32_t L_9 = __this->get_nowShowImgNum_5();
+		if (L_9)
 		{
-			goto IL_0058;
+			goto IL_0083;
 		}
 	}
 	{
@@ -29279,28 +29313,28 @@ IL_0038:
 		__this->set_startShowEnterStatus_7((bool)1);
 	}
 
-IL_0058:
+IL_0083:
 	{
 		// Obj_StartImg[nowShowImgNum].GetComponent<Image>().color = new Color(1, 1, 1, touMingImgValue);
-		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_6 = __this->get_Obj_StartImg_4();
-		int32_t L_7 = __this->get_nowShowImgNum_5();
-		NullCheck(L_6);
-		int32_t L_8 = L_7;
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_9 = (L_6)->GetAt(static_cast<il2cpp_array_size_t>(L_8));
-		NullCheck(L_9);
-		Image_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C * L_10;
-		L_10 = GameObject_GetComponent_TisImage_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C_m16ABC1D7B4E804984517841F8D26E9C769FAE710(L_9, /*hidden argument*/GameObject_GetComponent_TisImage_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C_m16ABC1D7B4E804984517841F8D26E9C769FAE710_RuntimeMethod_var);
-		float L_11 = V_0;
-		Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  L_12;
-		memset((&L_12), 0, sizeof(L_12));
-		Color__ctor_m679019E6084BF7A6F82590F66F5F695F6A50ECC5((&L_12), (1.0f), (1.0f), (1.0f), L_11, /*hidden argument*/NULL);
+		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_10 = __this->get_Obj_StartImg_4();
+		int32_t L_11 = __this->get_nowShowImgNum_5();
 		NullCheck(L_10);
-		VirtActionInvoker1< Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  >::Invoke(23 /* System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color) */, L_10, L_12);
+		int32_t L_12 = L_11;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_13 = (L_10)->GetAt(static_cast<il2cpp_array_size_t>(L_12));
+		NullCheck(L_13);
+		Image_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C * L_14;
+		L_14 = GameObject_GetComponent_TisImage_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C_m16ABC1D7B4E804984517841F8D26E9C769FAE710(L_13, /*hidden argument*/GameObject_GetComponent_TisImage_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C_m16ABC1D7B4E804984517841F8D26E9C769FAE710_RuntimeMethod_var);
+		float L_15 = V_0;
+		Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  L_16;
+		memset((&L_16), 0, sizeof(L_16));
+		Color__ctor_m679019E6084BF7A6F82590F66F5F695F6A50ECC5((&L_16), (1.0f), (1.0f), (1.0f), L_15, /*hidden argument*/NULL);
+		NullCheck(L_14);
+		VirtActionInvoker1< Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  >::Invoke(23 /* System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color) */, L_14, L_16);
 		// if (startShowEnterSum > 1)
-		float L_13 = __this->get_startShowEnterSum_6();
-		if ((!(((float)L_13) > ((float)(1.0f)))))
+		float L_17 = __this->get_startShowEnterSum_6();
+		if ((!(((float)L_17) > ((float)(1.0f)))))
 		{
-			goto IL_0098;
+			goto IL_00c3;
 		}
 	}
 	{
@@ -29308,26 +29342,26 @@ IL_0058:
 		__this->set_startShowEnterStatus_7((bool)1);
 	}
 
-IL_0098:
+IL_00c3:
 	{
 		// if (startShowEnterStatus)
-		bool L_14 = __this->get_startShowEnterStatus_7();
-		if (!L_14)
+		bool L_18 = __this->get_startShowEnterStatus_7();
+		if (!L_18)
 		{
-			goto IL_00c6;
+			goto IL_00f1;
 		}
 	}
 	{
 		// startShowSum = startShowSum + Time.deltaTime;
-		float L_15 = __this->get_startShowSum_8();
-		float L_16;
-		L_16 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
-		__this->set_startShowSum_8(((float)il2cpp_codegen_add((float)L_15, (float)L_16)));
+		float L_19 = __this->get_startShowSum_8();
+		float L_20;
+		L_20 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		__this->set_startShowSum_8(((float)il2cpp_codegen_add((float)L_19, (float)L_20)));
 		// if (startShowSum > 1)
-		float L_17 = __this->get_startShowSum_8();
-		if ((!(((float)L_17) > ((float)(1.0f)))))
+		float L_21 = __this->get_startShowSum_8();
+		if ((!(((float)L_21) > ((float)(1.0f)))))
 		{
-			goto IL_00c6;
+			goto IL_00f1;
 		}
 	}
 	{
@@ -29335,29 +29369,29 @@ IL_0098:
 		__this->set_startShowStatus_9((bool)1);
 	}
 
-IL_00c6:
+IL_00f1:
 	{
 		// if (startShowStatus) {
-		bool L_18 = __this->get_startShowStatus_9();
-		if (!L_18)
+		bool L_22 = __this->get_startShowStatus_9();
+		if (!L_22)
 		{
-			goto IL_013c;
+			goto IL_0167;
 		}
 	}
 	{
 		// startShowTimeSum = startShowTimeSum + Time.deltaTime;
-		float L_19 = __this->get_startShowTimeSum_10();
-		float L_20;
-		L_20 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
-		__this->set_startShowTimeSum_10(((float)il2cpp_codegen_add((float)L_19, (float)L_20)));
+		float L_23 = __this->get_startShowTimeSum_10();
+		float L_24;
+		L_24 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		__this->set_startShowTimeSum_10(((float)il2cpp_codegen_add((float)L_23, (float)L_24)));
 		// float touMingImgValue = startShowTimeSum / 1;
-		float L_21 = __this->get_startShowTimeSum_10();
-		V_1 = ((float)((float)L_21/(float)(1.0f)));
+		float L_25 = __this->get_startShowTimeSum_10();
+		V_1 = ((float)((float)L_25/(float)(1.0f)));
 		// if (touMingImgValue > 1)
-		float L_22 = V_1;
-		if ((!(((float)L_22) > ((float)(1.0f)))))
+		float L_26 = V_1;
+		if ((!(((float)L_26) > ((float)(1.0f)))))
 		{
-			goto IL_00fb;
+			goto IL_0126;
 		}
 	}
 	{
@@ -29365,28 +29399,28 @@ IL_00c6:
 		V_1 = (1.0f);
 	}
 
-IL_00fb:
+IL_0126:
 	{
 		// Obj_StartImg[nowShowImgNum].GetComponent<Image>().color = new Color(1, 1, 1, 1 - touMingImgValue);
-		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_23 = __this->get_Obj_StartImg_4();
-		int32_t L_24 = __this->get_nowShowImgNum_5();
-		NullCheck(L_23);
-		int32_t L_25 = L_24;
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_26 = (L_23)->GetAt(static_cast<il2cpp_array_size_t>(L_25));
-		NullCheck(L_26);
-		Image_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C * L_27;
-		L_27 = GameObject_GetComponent_TisImage_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C_m16ABC1D7B4E804984517841F8D26E9C769FAE710(L_26, /*hidden argument*/GameObject_GetComponent_TisImage_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C_m16ABC1D7B4E804984517841F8D26E9C769FAE710_RuntimeMethod_var);
-		float L_28 = V_1;
-		Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  L_29;
-		memset((&L_29), 0, sizeof(L_29));
-		Color__ctor_m679019E6084BF7A6F82590F66F5F695F6A50ECC5((&L_29), (1.0f), (1.0f), (1.0f), ((float)il2cpp_codegen_subtract((float)(1.0f), (float)L_28)), /*hidden argument*/NULL);
+		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_27 = __this->get_Obj_StartImg_4();
+		int32_t L_28 = __this->get_nowShowImgNum_5();
 		NullCheck(L_27);
-		VirtActionInvoker1< Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  >::Invoke(23 /* System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color) */, L_27, L_29);
+		int32_t L_29 = L_28;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_30 = (L_27)->GetAt(static_cast<il2cpp_array_size_t>(L_29));
+		NullCheck(L_30);
+		Image_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C * L_31;
+		L_31 = GameObject_GetComponent_TisImage_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C_m16ABC1D7B4E804984517841F8D26E9C769FAE710(L_30, /*hidden argument*/GameObject_GetComponent_TisImage_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C_m16ABC1D7B4E804984517841F8D26E9C769FAE710_RuntimeMethod_var);
+		float L_32 = V_1;
+		Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  L_33;
+		memset((&L_33), 0, sizeof(L_33));
+		Color__ctor_m679019E6084BF7A6F82590F66F5F695F6A50ECC5((&L_33), (1.0f), (1.0f), (1.0f), ((float)il2cpp_codegen_subtract((float)(1.0f), (float)L_32)), /*hidden argument*/NULL);
+		NullCheck(L_31);
+		VirtActionInvoker1< Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  >::Invoke(23 /* System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color) */, L_31, L_33);
 		// if (touMingImgValue >= 1)
-		float L_30 = V_1;
-		if ((!(((float)L_30) >= ((float)(1.0f)))))
+		float L_34 = V_1;
+		if ((!(((float)L_34) >= ((float)(1.0f)))))
 		{
-			goto IL_013c;
+			goto IL_0167;
 		}
 	}
 	{
@@ -29394,87 +29428,87 @@ IL_00fb:
 		__this->set_startShowStopStatus_11((bool)1);
 	}
 
-IL_013c:
+IL_0167:
 	{
 		// if (startShowStopStatus) {
-		bool L_31 = __this->get_startShowStopStatus_11();
-		if (!L_31)
+		bool L_35 = __this->get_startShowStopStatus_11();
+		if (!L_35)
 		{
-			goto IL_0156;
+			goto IL_0181;
 		}
 	}
 	{
 		// startShowStopTimeSum = startShowStopTimeSum + Time.deltaTime;
-		float L_32 = __this->get_startShowStopTimeSum_12();
-		float L_33;
-		L_33 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
-		__this->set_startShowStopTimeSum_12(((float)il2cpp_codegen_add((float)L_32, (float)L_33)));
+		float L_36 = __this->get_startShowStopTimeSum_12();
+		float L_37;
+		L_37 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
+		__this->set_startShowStopTimeSum_12(((float)il2cpp_codegen_add((float)L_36, (float)L_37)));
 	}
 
-IL_0156:
+IL_0181:
 	{
 		// if (startShowStopTimeSum>=1.0f)
-		float L_34 = __this->get_startShowStopTimeSum_12();
-		if ((!(((float)L_34) >= ((float)(1.0f)))))
+		float L_38 = __this->get_startShowStopTimeSum_12();
+		if ((!(((float)L_38) >= ((float)(1.0f)))))
 		{
-			goto IL_0229;
+			goto IL_0254;
 		}
 	}
 	{
 		// if (nowShowImgNum >= Obj_StartImg.Length - 1)
-		int32_t L_35 = __this->get_nowShowImgNum_5();
-		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_36 = __this->get_Obj_StartImg_4();
-		NullCheck(L_36);
-		if ((((int32_t)L_35) < ((int32_t)((int32_t)il2cpp_codegen_subtract((int32_t)((int32_t)((int32_t)(((RuntimeArray*)L_36)->max_length))), (int32_t)1)))))
+		int32_t L_39 = __this->get_nowShowImgNum_5();
+		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_40 = __this->get_Obj_StartImg_4();
+		NullCheck(L_40);
+		if ((((int32_t)L_39) < ((int32_t)((int32_t)il2cpp_codegen_subtract((int32_t)((int32_t)((int32_t)(((RuntimeArray*)L_40)->max_length))), (int32_t)1)))))
 		{
-			goto IL_0184;
+			goto IL_01af;
 		}
 	}
 	{
 		// Destroy(this.gameObject);
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_37;
-		L_37 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(__this, /*hidden argument*/NULL);
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_41;
+		L_41 = Component_get_gameObject_m55DC35B149AFB9157582755383BA954655FE0C5B(__this, /*hidden argument*/NULL);
 		IL2CPP_RUNTIME_CLASS_INIT(Object_tF2F3778131EFF286AF62B7B013A170F95A91571A_il2cpp_TypeInfo_var);
-		Object_Destroy_m3EEDB6ECD49A541EC826EA8E1C8B599F7AF67D30(L_37, /*hidden argument*/NULL);
+		Object_Destroy_m3EEDB6ECD49A541EC826EA8E1C8B599F7AF67D30(L_41, /*hidden argument*/NULL);
 		// }
 		return;
 	}
 
-IL_0184:
+IL_01af:
 	{
 		// Obj_StartImg[nowShowImgNum].SetActive(false);
-		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_38 = __this->get_Obj_StartImg_4();
-		int32_t L_39 = __this->get_nowShowImgNum_5();
-		NullCheck(L_38);
-		int32_t L_40 = L_39;
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_41 = (L_38)->GetAt(static_cast<il2cpp_array_size_t>(L_40));
-		NullCheck(L_41);
-		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_41, (bool)0, /*hidden argument*/NULL);
+		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_42 = __this->get_Obj_StartImg_4();
+		int32_t L_43 = __this->get_nowShowImgNum_5();
+		NullCheck(L_42);
+		int32_t L_44 = L_43;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_45 = (L_42)->GetAt(static_cast<il2cpp_array_size_t>(L_44));
+		NullCheck(L_45);
+		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_45, (bool)0, /*hidden argument*/NULL);
 		// nowShowImgNum = nowShowImgNum + 1;
-		int32_t L_42 = __this->get_nowShowImgNum_5();
-		__this->set_nowShowImgNum_5(((int32_t)il2cpp_codegen_add((int32_t)L_42, (int32_t)1)));
+		int32_t L_46 = __this->get_nowShowImgNum_5();
+		__this->set_nowShowImgNum_5(((int32_t)il2cpp_codegen_add((int32_t)L_46, (int32_t)1)));
 		// Obj_StartImg[nowShowImgNum].GetComponent<Image>().color = new Color(1, 1, 1, 0);
-		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_43 = __this->get_Obj_StartImg_4();
-		int32_t L_44 = __this->get_nowShowImgNum_5();
-		NullCheck(L_43);
-		int32_t L_45 = L_44;
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_46 = (L_43)->GetAt(static_cast<il2cpp_array_size_t>(L_45));
-		NullCheck(L_46);
-		Image_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C * L_47;
-		L_47 = GameObject_GetComponent_TisImage_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C_m16ABC1D7B4E804984517841F8D26E9C769FAE710(L_46, /*hidden argument*/GameObject_GetComponent_TisImage_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C_m16ABC1D7B4E804984517841F8D26E9C769FAE710_RuntimeMethod_var);
-		Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  L_48;
-		memset((&L_48), 0, sizeof(L_48));
-		Color__ctor_m679019E6084BF7A6F82590F66F5F695F6A50ECC5((&L_48), (1.0f), (1.0f), (1.0f), (0.0f), /*hidden argument*/NULL);
+		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_47 = __this->get_Obj_StartImg_4();
+		int32_t L_48 = __this->get_nowShowImgNum_5();
 		NullCheck(L_47);
-		VirtActionInvoker1< Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  >::Invoke(23 /* System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color) */, L_47, L_48);
+		int32_t L_49 = L_48;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_50 = (L_47)->GetAt(static_cast<il2cpp_array_size_t>(L_49));
+		NullCheck(L_50);
+		Image_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C * L_51;
+		L_51 = GameObject_GetComponent_TisImage_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C_m16ABC1D7B4E804984517841F8D26E9C769FAE710(L_50, /*hidden argument*/GameObject_GetComponent_TisImage_t4021FF27176E44BFEDDCBE43C7FE6B713EC70D3C_m16ABC1D7B4E804984517841F8D26E9C769FAE710_RuntimeMethod_var);
+		Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  L_52;
+		memset((&L_52), 0, sizeof(L_52));
+		Color__ctor_m679019E6084BF7A6F82590F66F5F695F6A50ECC5((&L_52), (1.0f), (1.0f), (1.0f), (0.0f), /*hidden argument*/NULL);
+		NullCheck(L_51);
+		VirtActionInvoker1< Color_tF40DAF76C04FFECF3FE6024F85A294741C9CC659  >::Invoke(23 /* System.Void UnityEngine.UI.Graphic::set_color(UnityEngine.Color) */, L_51, L_52);
 		// Obj_StartImg[nowShowImgNum].SetActive(true);
-		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_49 = __this->get_Obj_StartImg_4();
-		int32_t L_50 = __this->get_nowShowImgNum_5();
-		NullCheck(L_49);
-		int32_t L_51 = L_50;
-		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_52 = (L_49)->GetAt(static_cast<il2cpp_array_size_t>(L_51));
-		NullCheck(L_52);
-		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_52, (bool)1, /*hidden argument*/NULL);
+		GameObjectU5BU5D_tA88FC1A1FC9D4D73D0B3984D4B0ECE88F4C47642* L_53 = __this->get_Obj_StartImg_4();
+		int32_t L_54 = __this->get_nowShowImgNum_5();
+		NullCheck(L_53);
+		int32_t L_55 = L_54;
+		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_56 = (L_53)->GetAt(static_cast<il2cpp_array_size_t>(L_55));
+		NullCheck(L_56);
+		GameObject_SetActive_mCF1EEF2A314F3AE85DA581FF52EB06ACEF2FFF86(L_56, (bool)1, /*hidden argument*/NULL);
 		// startShowEnterStatus = false;
 		__this->set_startShowEnterStatus_7((bool)0);
 		// startShowEnterSum = 0;
@@ -29491,7 +29525,7 @@ IL_0184:
 		__this->set_startShowStopTimeSum_12((0.0f));
 	}
 
-IL_0229:
+IL_0254:
 	{
 		// }
 		return;
@@ -33966,13 +34000,13 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init__ctor_mB2E83C132074BA8C2F2CDD17A603
 		s_Il2CppMethodInitialized = true;
 	}
 	{
-		// public int BigVersion = 9;
-		__this->set_BigVersion_7(((int32_t)9));
+		// public int BigVersion = 11;
+		__this->set_BigVersion_7(((int32_t)11));
 		// public string WXAppID = "wx638f7f0efe37a825";           //俄罗斯消除
 		__this->set_WXAppID_20(_stringLiteral2CAC5728A89D00923ED5168238F58B135B1AC4D3);
 		// public string WXAppSecret = "c45e594ab681035a1cae6ab166f64a20";
 		__this->set_WXAppSecret_21(_stringLiteral1356A911C1A03E307635BC30BC309C02F0FE027E);
-		// public string QQAppID = "101883752";                     //危境
+		// public string QQAppID = "101883752";
 		__this->set_QQAppID_22(_stringLiteral7D3CB1F4E815D8ECD2681764F9613C81126D5E56);
 		// public string javaClassStr = "com.example.alinewsdk.AliSDKActivity";  //"com.mafeng.aliopensdk.AliSDKActivity";
 		__this->set_javaClassStr_27(_stringLiteral43AC5D0138033AC7952034B226341EA89D1D617C);
