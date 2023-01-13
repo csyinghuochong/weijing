@@ -335,12 +335,12 @@ namespace ET
             }
             if (self.PetComponent.TeamPetList.Contains(self.LastSelectItem.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip("宠物天梯不能分解！");
+                FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物天梯上阵中,不能分解！");
                 return;
             }
             if (self.PetComponent.PetFormations.Contains(self.LastSelectItem.Id))
             {
-                FloatTipManager.Instance.ShowFloatTip("宠物副本不能分解！");
+                FloatTipManager.Instance.ShowFloatTip("当前宠物存在于宠物副本上阵中,不能分解！");
                 return;
             }
             PopupTipHelp.OpenPopupTip(self.DomainScene(), "", GameSettingLanguge.LoadLocalization("确定放生?"),
