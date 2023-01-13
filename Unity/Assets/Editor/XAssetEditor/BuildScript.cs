@@ -43,7 +43,7 @@ namespace libx
     public static class BuildScript
     {
 
-        public static string outputPath = "../Release/DLC/" + GetPlatformName();
+        public static string outputPath = string.Empty;
 
         private static BuildTarget Current_BuildTarget  => EditorUserBuildSettings.activeBuildTarget;
 
@@ -487,7 +487,25 @@ namespace libx
         public static void SaveAssetBundleList()
         {
             List<string> fileList = new List<string>();
-            fileList = CheckReferences.GetFile("H:/GitWeiJing/Release/DLCBeta/Android/assets", fileList);
+            int version = EditorRuntimeInitializeOnLoad.GetVersion();
+            VersionMode versionMode = (VersionMode)version;
+            string outputPath = string.Empty;
+            switch (versionMode)
+            {
+                case VersionMode.Alpha:
+                    outputPath = "DLCAlpha";
+                    break;
+                case VersionMode.Beta:
+                    outputPath = "DLCBeta";
+                    break;
+                case VersionMode.BanHao:
+                    outputPath = "DLCBanHao";
+                    break;
+            }
+            string dataPath = Application.dataPath;
+            dataPath = dataPath.Substring(0, dataPath.Length - 6);
+            dataPath = dataPath.Substring(0, dataPath.Length - 6);
+            fileList = CheckReferences.GetFile(dataPath + $"/Release/{outputPath}/Android/assets", fileList);
 
             List<ResourceInfo> ResourceInfos = new List<ResourceInfo>();
             for (var index = 0; index < fileList.Count; index++)

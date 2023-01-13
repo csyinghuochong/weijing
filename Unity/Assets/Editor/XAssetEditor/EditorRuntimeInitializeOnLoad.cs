@@ -93,8 +93,7 @@ namespace libx
         public static void OnInitialize()
         {
             Assets.basePath = BuildScript.outputPath + Path.DirectorySeparatorChar;
-            Assets.loadDelegate = AssetDatabase.LoadAssetAtPath; 
-
+            Assets.loadDelegate = AssetDatabase.LoadAssetAtPath;
             var assets = new List<string>();
             var rules = BuildScript.GetBuildRules();
             foreach (var asset in rules.scenesInBuild)
