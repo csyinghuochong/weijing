@@ -152,7 +152,7 @@ namespace ET
         public static void InitPriceUI(this UIPaiMaiSellPriceComponent self, BagInfo bagInfo)
         {
             self.BagInfo = bagInfo;
-            FunctionUI.GetInstance().ItemShowIcon(self.ItemShowSet, self.GetParent<UI>(), bagInfo, ItemOperateEnum.None, false,1).Coroutine();
+            FunctionUI.GetInstance().ItemShowIcon(self.ItemShowSet, self.GetParent<UI>(), bagInfo, ItemOperateEnum.None, false,1);
             FunctionUI.GetInstance().ItemObjShowName(self.Lab_Name, bagInfo.ItemID);
 
             //设置价格

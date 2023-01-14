@@ -56,6 +56,10 @@ MonoBehaviour:
   data:
   - key: ButtonDuiHuan
     gameObject: {fileID: 3252134274322548341}
+  - key: RewardList
+    gameObject: {fileID: 4373253785518688345}
+  - key: WordList
+    gameObject: {fileID: 8697614310201965531}
 --- !u!1 &3252134274322548341
 GameObject:
   m_ObjectHideFlags: 0

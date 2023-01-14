@@ -6,7 +6,7 @@ namespace ET
     public class UINewYearCollectionWordComponent : Entity, IAwake, IDestroy
     {
         public GameObject FriendNodeList;
-        public Dictionary<int, UINewYearCollectionWordIemComponent> CollectionWords = new Dictionary<int, UINewYearCollectionWordIemComponent>();
+        public List<UINewYearCollectionWordIemComponent> CollectionWords = new List<UINewYearCollectionWordIemComponent>();
     }
 
     [ObjectSystem]
@@ -19,19 +19,25 @@ namespace ET
 
             self.CollectionWords.Clear();
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
+
+            self.OnInitUI();
         }
     }
 
     public static class UINewYearCollectionWordComponentSystem
     {
-        public static void InitUI(this UINewYearCollectionWordComponent self)
+        public static void OnInitUI(this UINewYearCollectionWordComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/NewYear/UINewYearCollectionWordItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             foreach (var item in ConfigHelper.CollectionWordList)
             {
-                
+                GameObject gamitem = GameObject.Instantiate(bundleGameObject);
+                UINewYearCollectionWordIemComponent uINewYear = self.AddChild<UINewYearCollectionWordIemComponent, GameObject>(gamitem);
+                uINewYear.OnInitUI(item.Key, item.Value);
+                self.CollectionWords.Add(uINewYear);
+                UICommonHelper.SetParent( gamitem, self.FriendNodeList);
             }
         }
 
