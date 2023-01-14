@@ -287,5 +287,19 @@ namespace ET
         {
             return GlobalValueConfigCategory.Instance.Get(72).Value2;
         }
+
+        public static long GetAttributeValue(RolePetInfo rolePetInfo, int numericType)
+        {
+            for (int i = 0; i < rolePetInfo.Ks.Count; i++)
+            {
+                if (rolePetInfo.Ks[i] == numericType)
+                {
+                    return rolePetInfo.Vs[i];
+                }
+            }
+            //从其他字段寻找
+            //if (numericType == )
+            return 0;
+        }
     }
 }

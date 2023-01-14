@@ -112,7 +112,8 @@ namespace ET
             {
                 self.PetId = rolePetInfo.Id;
             }
-            else {
+            else 
+            {
                 self.PetId = 0;
             }
             self.Node_1.SetActive(rolePetInfo != null);

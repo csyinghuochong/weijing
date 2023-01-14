@@ -39,7 +39,7 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)WatchPageEnum.Equip] = ABPathHelper.GetUGUIPath("Main/Watch/UIWatchEquip");
             pageViewComponent.UISubViewPath[(int)WatchPageEnum.Pet] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetList");
             pageViewComponent.UISubViewType[(int)WatchPageEnum.Equip] = typeof(UIWatchEquipComponent);
-            pageViewComponent.UISubViewType[(int)WatchPageEnum.Pet] = typeof(UIPetListComponent);
+            pageViewComponent.UISubViewType[(int)WatchPageEnum.Pet] = typeof(UIWatchPetComponent);
 
             self.UIPageView = pageViewComponent;
 

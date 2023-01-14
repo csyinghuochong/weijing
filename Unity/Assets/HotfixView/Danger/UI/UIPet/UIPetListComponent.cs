@@ -7,7 +7,6 @@ namespace ET
 
     public class UIPetListComponent : Entity, IAwake, IDestroy
     {
-
         public GameObject ButtonCloseAddPoint;
         public GameObject AttributeNode;
         public GameObject ButtonCloseHexin;
@@ -670,14 +669,14 @@ namespace ET
             NumericAttribute numericAttribute = UIItemHelp.AttributeToName[numericType];
             if (NumericHelp.GetNumericValueType(numericType) == 2)
             {
-                float fvalue = (self.PetComponent.GetAttributeValue(rolePetInfo, numericType)) * 0.01f + addValue * 100;
+                float fvalue = (NumericHelp.GetAttributeValue(rolePetInfo, numericType)) * 0.01f + addValue * 100;
                 //string svalue = string.Format("{0:F}", fvalue);
                 string svalue = fvalue.ToString("0.#####");
                 return $"{UIItemHelp.GetAttributeName(numericType)} {svalue}%";
             }
             else
             {
-               return $"{UIItemHelp.GetAttributeName(numericType)} {(long)(self.PetComponent.GetAttributeValue(rolePetInfo, numericType) + addValue)}";
+               return $"{UIItemHelp.GetAttributeName(numericType)} {(long)(NumericHelp.GetAttributeValue(rolePetInfo, numericType) + addValue)}";
             }
         }
 

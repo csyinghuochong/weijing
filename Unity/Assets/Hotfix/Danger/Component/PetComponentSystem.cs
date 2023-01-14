@@ -31,19 +31,6 @@ namespace ET
             self.RolePetInfos.AddRange(m2C_RolePetUpdate.PetInfoAdd);
         }
 
-        public static long GetAttributeValue(this PetComponent self, RolePetInfo rolePetInfo, int numericType)
-        {
-            for (int i = 0; i < rolePetInfo.Ks.Count; i++)
-            {
-                if (rolePetInfo.Ks[i] == numericType)
-                {
-                    return rolePetInfo.Vs[i];
-                }
-            }
-            //从其他字段寻找
-            //if (numericType == )
-            return 0;
-        }
 
         public static RolePetInfo GetPetInfoByID(this PetComponent self, long petid)
         {
