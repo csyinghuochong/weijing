@@ -20,6 +20,10 @@ namespace ET
             self.ObjRoleList = rc.Get<GameObject>("RoleList");
             self.ObjRoleList.SetActive(false);
             self.ObjRoleListSet = rc.Get<GameObject>("RoleListSet");
+
+            //ios适配
+            IPHoneHelper.SetPosition(self.ObjRoleListSet, new Vector2(350f, 400f));
+
             self.ObjBtnEnterGame = rc.Get<GameObject>("BtnEnterGame");
             self.ObjRoleList.SetActive(false);
 
