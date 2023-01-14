@@ -63,7 +63,7 @@
             await ETTask.CompletedTask;
         }
 
-        public static async ETTask RequestUnitInfo(Scene zoneScene)
+        public static async ETTask RequestUnitInfo(Scene zoneScene, bool relink = false)
         {
             await ETTask.CompletedTask;
         }
