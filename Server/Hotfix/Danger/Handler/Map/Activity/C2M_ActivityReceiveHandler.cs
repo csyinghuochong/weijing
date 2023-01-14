@@ -12,7 +12,7 @@ namespace ET
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Received, unit.Id))
             {
                 ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();
-                if (activityComponent.ActivityReceiveIds.Contains(request.ActivityId))
+                if (!ActivityHelper.CheckReceive(activityComponent.ActivityReceiveIds, request.ActivityId))
                 {
                     reply();
                     return;
@@ -103,6 +103,10 @@ namespace ET
                             return;
                         }
                         activityComponent.LastLoginTime = serverNow;
+                        unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
+                        unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
+                        break;
+                    case 32:    //新年集字
                         unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
                         unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                         break;

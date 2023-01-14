@@ -7,6 +7,24 @@ namespace ET
     public static class ActivityHelper
     {
 
+        public static bool CheckReceive(List<int> receiveIds, int receiveId)
+        {
+            ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(receiveId);
+            if (activityConfig.ActivityType != 32)
+            { 
+                return !receiveIds.Contains(receiveId);
+            }
+            int receiveNumber = 0;
+            for (int i = 0; i < receiveIds.Count; i++)
+            {
+                if (receiveIds[i] == receiveId)
+                {
+                    receiveNumber++;
+                }
+            }
+            return receiveNumber < int.Parse(activityConfig.Par_1);
+        }
+
         public static int GetMaxActivityId(int activityType)
         {
             int activityId = 0;

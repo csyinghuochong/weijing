@@ -49,10 +49,10 @@ namespace ET
 
         public static void OnUpdateUI(this UINewYearCollectionWordComponent self)
         {
-            var path = ABPathHelper.GetUGUIPath("Main/NewYear/UINewYearCollectionWordItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
-           
+            for (int i = 0; i < self.CollectionWords.Count; i++)
+            {
+                self.CollectionWords[i].OnUpdateUI();
+            }
         }
 
     }

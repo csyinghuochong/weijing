@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 namespace ET
@@ -50,6 +46,15 @@ namespace ET
             UICommonHelper.ShowItemList(activityConfig.Par_3, self.RewardList, self, 0.8f);
         }
 
-
+        public static void OnUpdateUI(this UINewYearCollectionWordIemComponent self)
+        {
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            for (int i = 0; i < self.WordItems.Count; i++)
+            {
+                bool gray = bagComponent.GetItemNumber(self.WordItems[i].Baginfo.ItemID) <= 0;
+                UICommonHelper.SetImageGray(self.WordItems[i].Image_ItemIcon, gray);
+                UICommonHelper.SetImageGray(self.WordItems[i].Image_ItemQuality, gray);
+            }
+        }
     }
 }
