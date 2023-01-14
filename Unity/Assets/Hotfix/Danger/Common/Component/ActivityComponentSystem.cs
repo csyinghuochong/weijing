@@ -16,15 +16,13 @@ namespace ET
 
         public static void OnZeroClockUpdate(this ActivityComponent self, int level)
         {
-            long unitId = self.GetParent<Unit>().Id;
-
             self.DayTeHui = DayTeHuiHelper.GetDayTeHuiList(level);
             
-            //重置每日特惠
+            //重置每日特惠 和 新春活动
             for (int i = self.ActivityReceiveIds.Count -1; i >= 0; i--)
             {
                 ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(self.ActivityReceiveIds[i]);
-                if (activityConfig.ActivityType ==2)
+                if (activityConfig.ActivityType ==2 || activityConfig.ActivityType == 32)
                 {
                     self.ActivityReceiveIds.RemoveAt(i);
                 }
@@ -53,7 +51,7 @@ namespace ET
             for (int i = self.ActivityReceiveIds.Count - 1; i >= 0; i--)
             {
                 ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(self.ActivityReceiveIds[i]);
-                if (activityConfig.ActivityType == 2)
+                if (activityConfig.ActivityType == 2 || activityConfig.ActivityType == 32)
                 {
                     self.ActivityReceiveIds.RemoveAt(i);
                 }

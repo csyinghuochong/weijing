@@ -238,12 +238,13 @@ namespace ET
         public static void OnButtonPetHeXinItem(this UIPetListComponent self, int position)
         {
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemPetHeXinBag);
+            List<BagInfo> eqipInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemPetHeXinEquip);
             for (int i = 0; i < self.PetHeXinItemList.Length; i++)
             {
                 self.PetHeXinItemList[i].transform.Find("ImageSelect").gameObject.SetActive(i == position);
             }
             self.PetHeXinSetComponent.OnUpdateUI(self.LastSelectItem, position);
-            self.PetHeXinSetComponent.UpdatePetHexinItem(bagInfos);
+            self.PetHeXinSetComponent.UpdatePetHexinItem(eqipInfos);
             self.PetHeXinSetComponent.OnUpdateItemList(bagInfos).Coroutine();
         }
 
@@ -822,11 +823,12 @@ namespace ET
         public static void OnEquipPetHeXin(this UIPetListComponent self)
         {
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemPetHeXinBag);
+            List<BagInfo> eqipInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemPetHeXinEquip);
             self.LastSelectItem = self.PetComponent.GetPetInfoByID(self.LastSelectItem.Id);
             self.UpdatePetHeXin(self.LastSelectItem);
             self.UpdateAttribute(self.LastSelectItem);
             self.PetHeXinSetComponent.SelectItemHandlder(null);
-            self.PetHeXinSetComponent.UpdatePetHexinItem(bagInfos);
+            self.PetHeXinSetComponent.UpdatePetHexinItem(eqipInfos);
             self.PetHeXinSetComponent.OnUpdateItemList(bagInfos).Coroutine();
         }
 

@@ -151,8 +151,7 @@ namespace ET
 
             self.Button_NewYear = rc.Get<GameObject>("Button_NewYear");
             ButtonHelp.AddListenerEx(self.Button_NewYear, () => { self.OnButton_NewYear(); });
-            self.Button_NewYear.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
-            
+
             self.MailHintTip = rc.Get<GameObject>("MailHintTip");
             ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
             UI mailHintTipUI = self.AddChild<UI, string, GameObject>("MailHintTip", self.MailHintTip);
