@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
@@ -7,6 +8,7 @@ namespace ET
     {
         public GameObject WordList;
         public GameObject RewardList;
+        public GameObject LabDuiHuan;
 
         public ActivityConfig ActivityConfig;
         public List<UIItemComponent> WordItems = new List<UIItemComponent>();
@@ -20,6 +22,7 @@ namespace ET
             ReferenceCollector rc = a.GetComponent<ReferenceCollector>();
             self.WordList = rc.Get<GameObject>("WordList");
             self.RewardList = rc.Get<GameObject>("RewardList");
+            self.LabDuiHuan = rc.Get<GameObject>("LabDuiHuan");
         }
     }
 
@@ -44,7 +47,10 @@ namespace ET
                 UICommonHelper.SetParent(itemObject, self.WordList);
             }
 
-            UICommonHelper.ShowItemList(activityConfig.Par_3, self.RewardList, self, 0.8f);
+            UICommonHelper.ShowItemList(activityConfig.Par_3, self.RewardList, self);
+
+            //显示兑换次数
+            self.LabDuiHuan.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("兑换次数:") + "0" + "/" + activityConfig.Par_1;
         }
 
         public static void OnUpdateUI(this UINewYearCollectionWordIemComponent self)
