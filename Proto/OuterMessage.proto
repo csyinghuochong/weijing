@@ -4230,21 +4230,3 @@ message M2C_NumericInfoResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
-
-//领取奖励
-//ResponseType M2C_NewYearReceiveResponse
-message C2M_NewYearReceiveRequest // IActorLocationRequest
-{
-	int32 RpcId = 90;
-	int64 ActorId = 93;
-	int32 ActivityType = 1;		//活动类型
-	int32 ActivityId = 2;		//活动ID
-	int32 ReceiveIndex = 3;
-}
-
-message M2C_NewYearReceiveResponse // IActorLocationResponse
-{
-	int32 RpcId = 90;
-	int32 Error = 91;
-	string Message = 92;
-}
