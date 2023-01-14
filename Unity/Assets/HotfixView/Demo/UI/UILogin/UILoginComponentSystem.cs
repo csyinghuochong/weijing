@@ -528,14 +528,19 @@ namespace ET
 
 		public static void OnRegister(this UILoginComponent self)
 		{
+			bool register = false;
 			if (self.IOSReview)
 			{
 #if UNITY_IPHONE || UNITY_IOS
-		UIHelper.Create(self.ZoneScene(), UIType.UIRegister).Coroutine();
-#else
+				register = true;
+#endif
+			}
+			if (GlobalHelp.IsBanHaoMode)
+			{
+				register = true;
 			}
 
-			if (GlobalHelp.IsBanHaoMode)
+			if (register)
 			{
 				UIHelper.Create(self.ZoneScene(), UIType.UIRegister).Coroutine();
 			}
@@ -548,7 +553,6 @@ namespace ET
 				self.Password.SetActive(false);
 				self.HideNode.SetActive(false);
 			}
-#endif
 
 
 			PlayerPrefsHelp.SetString(PlayerPrefsHelp.LastLoginType, "");
