@@ -183,35 +183,38 @@ namespace ET
 		/// <summary>掉落类型</summary>
 		[ProtoMember(36)]
 		public int DropType { get; set; }
-		/// <summary>掉落ID</summary>
+		/// <summary>造成伤害才有掉落</summary>
 		[ProtoMember(37)]
+		public int IfDamgeDrop { get; set; }
+		/// <summary>掉落ID</summary>
+		[ProtoMember(38)]
 		public int[] DropID { get; set; }
 		/// <summary>分级掉落</summary>
-		[ProtoMember(38)]
+		[ProtoMember(39)]
 		public string LvDropID { get; set; }
 		/// <summary>极品掉落概率</summary>
-		[ProtoMember(39)]
+		[ProtoMember(40)]
 		public double HideDropPro { get; set; }
 		/// <summary>怪物出现概率</summary>
-		[ProtoMember(40)]
+		[ProtoMember(41)]
 		public double MonsterShowPro { get; set; }
 		/// <summary>普通攻击ID</summary>
-		[ProtoMember(41)]
+		[ProtoMember(42)]
 		public int ActSkillID { get; set; }
 		/// <summary>技能ID</summary>
-		[ProtoMember(42)]
+		[ProtoMember(43)]
 		public int[] SkillID { get; set; }
 		/// <summary>怪物参数</summary>
-		[ProtoMember(43)]
+		[ProtoMember(44)]
 		public int[] Parameter { get; set; }
 		/// <summary>AI</summary>
-		[ProtoMember(44)]
+		[ProtoMember(45)]
 		public int AI { get; set; }
 		/// <summary>AI相关参数</summary>
-		[ProtoMember(45)]
+		[ProtoMember(46)]
 		public string AIParameter { get; set; }
 		/// <summary>怪物出生自动死亡时间</summary>
-		[ProtoMember(46)]
+		[ProtoMember(47)]
 		public int DeathTime { get; set; }
 
 	}
