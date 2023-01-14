@@ -44,6 +44,7 @@ namespace ET
                 uIItemComponent.UpdateItem(new BagInfo() {ItemID = itemId });
                 uIItemComponent.Label_ItemNum.SetActive(false);
                 self.WordItems.Add(uIItemComponent);
+                UICommonHelper.SetParent(itemObject, self.WordList);
             }
 
             UICommonHelper.ShowItemList(collectionWord.Reward, self.RewardList, self, 0.8f);
