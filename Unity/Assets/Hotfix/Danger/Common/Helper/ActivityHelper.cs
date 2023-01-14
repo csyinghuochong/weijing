@@ -7,7 +7,7 @@ namespace ET
     public static class ActivityHelper
     {
 
-        public static bool CheckReceive(List<int> receiveIds, int receiveId)
+        public static bool HaveReceiveTimes(List<int> receiveIds, int receiveId)
         {
             ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(receiveId);
             if (activityConfig.ActivityType != 32)
