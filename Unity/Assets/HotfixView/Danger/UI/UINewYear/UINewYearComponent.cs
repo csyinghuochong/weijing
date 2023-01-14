@@ -51,6 +51,7 @@ namespace ET
                 self.OnClickPageButton(page);
             });
             self.UIPageButtonComponent = uIPageButtonComponent;
+            self.UIPageButtonComponent.OnSelectIndex(0);
         }
     }
 
