@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace ET
 {
@@ -39,9 +37,9 @@ namespace ET
             pageViewComponent.UISubViewPath = new string[(int)WatchPageEnum.Number];
             pageViewComponent.UISubViewType = new Type[(int)WatchPageEnum.Number];
             pageViewComponent.UISubViewPath[(int)WatchPageEnum.Equip] = ABPathHelper.GetUGUIPath("Main/Watch/UIWatchEquip");
-            pageViewComponent.UISubViewPath[(int)WatchPageEnum.Pet] = ABPathHelper.GetUGUIPath("Main/Watch/UIWatchPet");
+            pageViewComponent.UISubViewPath[(int)WatchPageEnum.Pet] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetList");
             pageViewComponent.UISubViewType[(int)WatchPageEnum.Equip] = typeof(UIWatchEquipComponent);
-            pageViewComponent.UISubViewType[(int)WatchPageEnum.Pet] = typeof(UIWatchPetComponent);
+            pageViewComponent.UISubViewType[(int)WatchPageEnum.Pet] = typeof(UIPetListComponent);
 
             self.UIPageView = pageViewComponent;
 
