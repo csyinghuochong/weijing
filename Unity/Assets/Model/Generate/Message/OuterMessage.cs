@@ -6389,10 +6389,10 @@ namespace ET
 		public List<BagInfo> PetHeXinList = new List<BagInfo>();
 
 		[ProtoMember(11)]
-		public List<string> EntityTypes = new List<string>();
+		public List<int> Ks = new List<int>();
 
 		[ProtoMember(12)]
-		public List<byte[]> EntityBytes = new List<byte[]>();
+		public List<long> Vs = new List<long>();
 
 	}
 
@@ -8817,11 +8817,11 @@ namespace ET
 		[ProtoMember(92)]
 		public string Message { get; set; }
 
-		[ProtoMember(11)]
-		public List<string> EntityTypes = new List<string>();
+		[ProtoMember(6)]
+		public List<int> Ks = new List<int>();
 
-		[ProtoMember(12)]
-		public List<byte[]> EntityBytes = new List<byte[]>();
+		[ProtoMember(7)]
+		public List<long> Vs = new List<long>();
 
 	}
 

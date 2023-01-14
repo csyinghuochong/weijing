@@ -65,6 +65,9 @@
 
         public static async ETTask RequestUnitInfo(Scene zoneScene, bool relink = false)
         {
+            C2M_UnitInfoRequest request = new C2M_UnitInfoRequest() { };
+            M2C_UnitInfoResponse response = (M2C_UnitInfoResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(request);
+            //NumericComponent numericComponent = JsonHelper.FromJson<NumericComponent>(response.EntityBytes[0]);
             await ETTask.CompletedTask;
         }
 

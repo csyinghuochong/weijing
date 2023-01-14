@@ -33,6 +33,18 @@ namespace ET
                     PetComponent petComponent = d2GGetUnit_3.Component as PetComponent;
                     response.RolePetInfos = petComponent.RolePetInfos;
                     response.PetSkinList = petComponent.PetSkinList;
+
+                    D2G_GetComponent d2GGetUnit_4 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.NumericComponent });
+                    NumericComponent numericComponent = d2GGetUnit_4.Component as NumericComponent;
+                    foreach ((int key, long value) in numericComponent.NumericDic)
+                    {
+                        if (key >= (int)NumericType.Max)
+                        {
+                            continue;
+                        }
+                        response.Ks.Add(key);
+                        response.Vs.Add(value);
+                    }
                     break;
                 //只返回名字
                 case 1:

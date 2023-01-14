@@ -3036,8 +3036,8 @@ message F2C_WatchPlayerResponse // IFriendActorResponse
 	repeated RolePetInfo RolePetInfos = 7;
 	repeated KeyValuePair PetSkinList = 8;
 	repeated BagInfo PetHeXinList = 9;
-	repeated string EntityTypes = 11; 
-	repeated bytes EntityBytes = 12; 
+	repeated int32 Ks = 11;
+	repeated int64 Vs = 12;
 }
 
 //好友列表
@@ -4229,6 +4229,6 @@ message M2C_UnitInfoResponse // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 
-	repeated string EntityTypes = 11; 
-	repeated bytes EntityBytes = 12; 
+	repeated int32 Ks = 6;
+	repeated int64 Vs = 7;
 }
