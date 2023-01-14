@@ -44,9 +44,12 @@ namespace ET
 				self.AccountText = rc.Get<GameObject>("AccountText");
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
+				if (self.IOSReview)
+				{
 #if UNITY_IPHONE || UNITY_IOS
 				self.AccountText.GetComponent<Text>().text = "注册账号";
 #endif
+				}
 
 				self.YanZheng = rc.Get<GameObject>("YanZheng");
 				self.SendYanzheng = rc.Get<GameObject>("SendYanzheng");
@@ -171,10 +174,12 @@ namespace ET
 			}
 
 			self.LoginType = GlobalHelp.IsBanHaoMode ? LoginTypeEnum.RegisterLogin.ToString() : self.LoginType;
+			if (self.IOSReview)
+			{
 #if UNITY_IPHONE || UNITY_IOS
 			self.LoginType =  LoginTypeEnum.RegisterLogin.ToString();
 #endif
-
+			}
 
 			self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 			self.Password.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastPassword(self.LoginType));
@@ -192,9 +197,12 @@ namespace ET
 			string lastAccount = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 
 			bool uppos = GlobalHelp.IsBanHaoMode || LoginTypeEnum.RegisterLogin.ToString() == self.LoginType;
+			if (self.IOSReview)
+			{
 #if UNITY_IPHONE || UNITY_IOS
 			uppos = true;
 #endif
+			}
 
 			self.BanHanNode.transform.localPosition = uppos ? new Vector3(0f, -20f, 0f) : new Vector3(0f,160f,0f);
 
@@ -520,9 +528,13 @@ namespace ET
 
 		public static void OnRegister(this UILoginComponent self)
 		{
+			if (self.IOSReview)
+			{
 #if UNITY_IPHONE || UNITY_IOS
 		UIHelper.Create(self.ZoneScene(), UIType.UIRegister).Coroutine();
 #else
+			}
+
 			if (GlobalHelp.IsBanHaoMode)
 			{
 				UIHelper.Create(self.ZoneScene(), UIType.UIRegister).Coroutine();

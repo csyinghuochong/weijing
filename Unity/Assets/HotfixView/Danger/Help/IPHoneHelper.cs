@@ -27,6 +27,24 @@ namespace ET
             gameObject.GetComponent<RectTransform>().anchoredPosition = newPosition;
         }
 
+        // 检测当前是横屏还是竖屏
+        // 理论上这样，但在Android上总可以返回true
+        // 即使手机已经禁止屏幕翻转了
+       public static  bool IsLandscape()
+        {
+            //设置手机屏幕显示布局、Screen.orientation
+            //获取手机当前朝向、Input.deviceOrientation
+            return Input.deviceOrientation == DeviceOrientation.LandscapeLeft ||
+            Input.deviceOrientation == DeviceOrientation.LandscapeRight;
+        }
+
+        // 可以用下面这个方法进行检测
+        // 当禁翻转时，若为竖屏，不会返回true
+        public static bool IsLandscape_2()
+        {
+            return Screen.width > Screen.height;
+        }
+
         public static bool CheckIphone()
         {
             //https://blog.csdn.net/qq_39162826/article/details/121654464

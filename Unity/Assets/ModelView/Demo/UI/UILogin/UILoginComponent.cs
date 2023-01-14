@@ -55,5 +55,7 @@ namespace ET
 		public string LoginType;
 
 		public int LoginErrorNumber;
+
+		public bool IOSReview = false;
 	}
 }
