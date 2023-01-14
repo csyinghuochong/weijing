@@ -154,8 +154,9 @@ namespace libx
 				var reader = new BinaryReader (stream);
 				var list = new List<VFile> ();
 				var ver = reader.ReadInt32 ();
-				Debug.Log ("LoadVersions:" + ver);
 				var count = reader.ReadInt32 ();
+
+				Debug.Log("LoadVersions[ver]:" + ver + "  count:" + count + " update: " + update);
 				for (var i = 0; i < count; i++) {
 					var version = new VFile ();
 					version.Deserialize (reader);
@@ -215,7 +216,15 @@ namespace libx
 				} 
 				if (verifyBy != VerifyBy.Hash)
 					return false;
-				return !Utility.GetCRC32Hash (stream).Equals (hash, StringComparison.OrdinalIgnoreCase);
+				bool bhash = !Utility.GetCRC32Hash (stream).Equals (hash, StringComparison.OrdinalIgnoreCase);
+				if (bhash)
+				{
+					return true;
+				}
+				else
+				{
+					return false;
+				}
 			}
 		} 
 	}

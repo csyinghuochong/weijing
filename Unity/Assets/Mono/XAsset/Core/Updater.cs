@@ -307,8 +307,40 @@ namespace libx
             }
 
             _checking = Checking();
-
+            CheckLocalAsset();
             StartCoroutine(_checking);
+        }
+
+        private void CheckLocalAsset()
+        {
+            if (!Directory.Exists(_savePath))
+            {
+                Directory.CreateDirectory(_savePath);
+            }
+            if (_localAssets.Count == 0)
+            {
+                string filePath = _savePath + "md5.txt";
+                if (!File.Exists(filePath))
+                {
+                    FileStream fs = new FileStream(filePath, FileMode.CreateNew);
+                    StreamWriter sw_2 = new StreamWriter(fs);
+                    sw_2.Flush();
+                    fs.Dispose();
+                }
+                else
+                {
+                    List<string> assetList = new List<string>();
+                    StreamReader sr = new StreamReader(filePath, Encoding.Default);
+                    string content;
+                    while ((content = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(content.ToString());
+                        assetList.Add(content);
+                    }
+                    sr.Close();
+                    InitLocalAssets(assetList);
+                }
+            }
         }
 
         private void AddDownload(VFile item)
@@ -489,33 +521,6 @@ namespace libx
 
         private IEnumerator Checking()
         {
-            if (!Directory.Exists(_savePath))
-            {
-                Directory.CreateDirectory(_savePath);
-            }
-
-            string filePath = _savePath + "md5.txt";
-            if (!File.Exists(filePath))
-            {
-                FileStream fs = new FileStream(filePath, FileMode.CreateNew);
-                StreamWriter sw_2 = new StreamWriter(fs);
-                sw_2.Flush();
-                fs.Dispose();
-            }
-            else
-            {
-                List<string> assetList = new List<string>();
-                StreamReader sr = new StreamReader(filePath, Encoding.Default);
-                string content;
-                while ((content = sr.ReadLine()) != null)
-                {
-                    Console.WriteLine(content.ToString());
-                    assetList.Add(content);
-                }
-                sr.Close();
-                InitLocalAssets(assetList);
-            }
-
             if (_step == Step.Wait)
             {
                 enableVFS = false;
@@ -530,17 +535,20 @@ namespace libx
                 yield return RequestCopy();
             }
 
-            if (_step == Step.Coping)
+            if (_step == Step.Coping)   //本地流目录版本高于或等于网络目录版本
             {
                 var path = _savePath + Versions.Filename + ".tmp";
+                //获取ver的数据
                 var versions = Versions.LoadVersions(path);
                 var basePath = GetBasePath();
                 yield return UpdateCopy(versions, basePath);
                 _step = Step.Versions;
             }
 
-            if (_step == Step.Versions)
+            if (_step == Step.Versions)   //本地流版本低于网络版本
             {
+                var path = _savePath + Versions.Filename + ".tmp";
+                var versions = Versions.LoadVersions(path);
                 yield return RequestVersions();
             }
 
