@@ -47,11 +47,11 @@ namespace ET
             self.Lab_TaskName.GetComponent<Text>().text = chengJiuConfig.Name;
             if (complete)
             {
-                self.Lab_ProValue.GetComponent<Text>().text = string.Format("{0}/{1}", chengJiuConfig.TargetValue, chengJiuConfig.TargetValue);
+                self.Lab_ProValue.GetComponent<Text>().text = string.Format("进度:{0}/{1}", chengJiuConfig.TargetValue, chengJiuConfig.TargetValue);
             }
             else
             {
-                self.Lab_ProValue.GetComponent<Text>().text = string.Format("{0}/{1}", chengJiuInfo != null ? chengJiuInfo.ChengJiuProgess : 0, chengJiuConfig.TargetValue);
+                self.Lab_ProValue.GetComponent<Text>().text = string.Format("进度:{0}/{1}", chengJiuInfo != null ? chengJiuInfo.ChengJiuProgess : 0, chengJiuConfig.TargetValue);
             }
             self.Ima_CompleteTask.SetActive(complete);
 
