@@ -298,7 +298,6 @@
     <type fullname="UnityEngine.SkinnedMeshRenderer" preserve="all" />
     <type fullname="UnityEngine.Space" preserve="all" />
     <type fullname="UnityEngine.Sprite" preserve="all" />
-    <type fullname="UnityEngine.SystemInfo" preserve="all" />
     <type fullname="UnityEngine.TextAsset" preserve="all" />
     <type fullname="UnityEngine.Texture" preserve="all" />
     <type fullname="UnityEngine.Texture2D" preserve="all" />
@@ -308,6 +307,7 @@
     <type fullname="UnityEngine.Vector3" preserve="all" />
   </assembly>
   <assembly fullname="UnityEngine.InputLegacyModule">
+    <type fullname="UnityEngine.DeviceOrientation" preserve="all" />
     <type fullname="UnityEngine.Input" preserve="all" />
     <type fullname="UnityEngine.Touch" preserve="all" />
     <type fullname="UnityEngine.TouchPhase" preserve="all" />

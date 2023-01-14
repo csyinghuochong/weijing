@@ -71,7 +71,7 @@ namespace ET
             fenXiangContent.FenXiang_Title = "危境";
             fenXiangContent.FenXiang_Text = "危境";
             fenXiangContent.FenXiang_ImageUrl = "https://img.tapimg.com/market/icons/6ae4a1e5df9d56dca02ecec3aa7e1252_360.png?imageMogr2/auto-orient/strip";
-            fenXiangContent.FenXiang_ClickUrl = "http://39.96.194.143/weijing1/apk/beta/weijing.apk";
+            fenXiangContent.FenXiang_ClickUrl = "https://l.taptap.com/T28gNaHb";
             fenXiangContent.Fenxiangtype = shareType;
             self.ShareType = shareType;
 
