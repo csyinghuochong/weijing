@@ -23,7 +23,7 @@ namespace ET
 
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
-
+        public GameObject Button_NewYear;
         public GameObject Button_FenXiang;
         public GameObject FunctionSetBtn;
         public GameObject Button_Horse;
@@ -151,6 +151,10 @@ namespace ET
             self.Button_FenXiang.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             ET.Log.ILog.Debug("self.Button_FenXiang ");
 
+            self.Button_NewYear = rc.Get<GameObject>("Button_FenXiang");
+            ButtonHelp.AddListenerEx(self.Button_NewYear, () => { self.OnButton_NewYear(); });
+            self.Button_NewYear.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
+            
             self.MailHintTip = rc.Get<GameObject>("MailHintTip");
             ButtonHelp.AddListenerEx(self.MailHintTip, () => { self.OnMailHintTip(); });
             UI mailHintTipUI = self.AddChild<UI, string, GameObject>("MailHintTip", self.MailHintTip);
@@ -1081,6 +1085,11 @@ namespace ET
         public static void OnButton_FenXiang(this UIMainComponent self)
         {
             UIHelper.Create(self.ZoneScene(), UIType.UIFenXiang).Coroutine();
+        }
+
+        public static void OnButton_NewYear(this UIMainComponent self)
+        {
+            UIHelper.Create(self.ZoneScene(), UIType.UINewYear).Coroutine();
         }
 
         public static void OnOpenBag(this UIMainComponent self)
