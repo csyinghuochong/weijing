@@ -40,7 +40,7 @@ namespace ET
             {
                 int itemId = int.Parse(wordItems[i]);
                 GameObject itemObject = GameObject.Instantiate(bundleGameObject);
-                UIItemComponent uIItemComponent = self.AddComponent<UIItemComponent, GameObject>(itemObject);
+                UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemObject);
                 uIItemComponent.UpdateItem(new BagInfo() {ItemID = itemId });
                 uIItemComponent.Label_ItemNum.SetActive(false);
                 self.WordItems.Add(uIItemComponent);
