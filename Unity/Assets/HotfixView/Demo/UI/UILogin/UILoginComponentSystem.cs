@@ -413,6 +413,8 @@ namespace ET
 				return;
 			}
 			Log.ILog.Debug($"Login: {msg[1]} {self.LoginType}");
+			self.Account.GetComponent<InputField>().text = msg[1];
+			self.Password.GetComponent<InputField>().text = self.LoginType;
 			self.RequestLogin(msg[1], self.LoginType,self.LoginType).Coroutine();
 		}
 
