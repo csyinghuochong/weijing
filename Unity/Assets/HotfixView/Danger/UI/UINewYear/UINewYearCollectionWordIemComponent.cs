@@ -33,7 +33,8 @@ namespace ET
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             for (int i =0; i < wordItems.Length; i++)
             {
-                int itemId = int.Parse(wordItems[i]);
+                string[] itemInfo = wordItems[i].Split(';');
+                int itemId = int.Parse(itemInfo[0]);
                 GameObject itemObject = GameObject.Instantiate(bundleGameObject);
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemObject);
                 uIItemComponent.UpdateItem(new BagInfo() {ItemID = itemId });
