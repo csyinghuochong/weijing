@@ -11,8 +11,8 @@ namespace ET
     {
         public GameObject WordList;
         public GameObject RewardList;
-        public int CollectionWordId;
 
+        public ActivityConfig ActivityConfig;
         public List<UIItemComponent> WordItems = new List<UIItemComponent>();
     }
 
@@ -29,11 +29,10 @@ namespace ET
 
     public static class UINewYearCollectionWordIemComponentSystem
     {
-        public static void OnInitUI(this UINewYearCollectionWordIemComponent self, int key, CollectionWord collectionWord)
+        public static void OnInitUI(this UINewYearCollectionWordIemComponent self, ActivityConfig  activityConfig)
         {
-            self.CollectionWordId = key;
-
-            string[] wordItems = collectionWord.Words.Split('@');
+            self.ActivityConfig = activityConfig;
+            string[] wordItems = activityConfig.Par_2.Split('@');
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             for (int i =0; i < wordItems.Length; i++)
@@ -48,7 +47,7 @@ namespace ET
                 UICommonHelper.SetParent(itemObject, self.WordList);
             }
 
-            UICommonHelper.ShowItemList(collectionWord.Reward, self.RewardList, self, 0.8f);
+            UICommonHelper.ShowItemList(activityConfig.Par_3, self.RewardList, self, 0.8f);
         }
 
 

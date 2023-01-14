@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 namespace ET
 {
@@ -31,11 +32,16 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/NewYear/UINewYearCollectionWordItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
-            foreach (var item in ConfigHelper.CollectionWordList)
+            List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
+            for(int i = 0; i< activityConfigs.Count; i++)
             {
+                if (activityConfigs[i].ActivityType != 32)
+                {
+                    continue;
+                }
                 GameObject gamitem = GameObject.Instantiate(bundleGameObject);
                 UINewYearCollectionWordIemComponent uINewYear = self.AddChild<UINewYearCollectionWordIemComponent, GameObject>(gamitem);
-                uINewYear.OnInitUI(item.Key, item.Value);
+                uINewYear.OnInitUI(activityConfigs[i]);
                 self.CollectionWords.Add(uINewYear);
                 UICommonHelper.SetParent( gamitem, self.FriendNodeList);
             }
