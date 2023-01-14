@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ namespace ET
         public GameObject LabDuiHuan;
         public GameObject ButtonDuiHuan;
 
+        public Action ReceiveHandler;
         public ActivityConfig ActivityConfig;
         public List<UIItemComponent> WordItems = new List<UIItemComponent>();
     }
@@ -77,6 +79,11 @@ namespace ET
             self.LabDuiHuan.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization($"兑换次数:{receiveNumber}/{activityConfig.Par_1}");
         }
 
+        public static void SetAction(this UINewYearCollectionWordIemComponent self, Action action)
+        {
+            self.ReceiveHandler = action;
+        }
+
         public static async ETTask OnButtonDuiHuan(this UINewYearCollectionWordIemComponent self)
         { 
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
@@ -92,7 +99,7 @@ namespace ET
                 return;
             }
             await activityComponent.GetActivityReward(self.ActivityConfig.ActivityType, self.ActivityConfig.Id);
-            self.OnUpdateUI();
+            self.ReceiveHandler();
         }
     }
 }

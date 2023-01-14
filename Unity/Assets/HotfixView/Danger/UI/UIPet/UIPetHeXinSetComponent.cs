@@ -62,8 +62,6 @@ namespace ET
             self.BagInfo = null;
             self.Position = position;
             self.RolePetInfo = rolePetInfo;
-            self.UpdatePetHexinItem();
-            self.OnUpdateItemList().Coroutine();
         }
 
         public static void OnButtonHeXinHeCheng(this UIPetHeXinSetComponent self)
@@ -71,15 +69,21 @@ namespace ET
             UIHelper.Create( self.ZoneScene(), UIType.UIPetHeXinHeCheng ).Coroutine();
         }
 
-        public static void UpdatePetHexinItem(this UIPetHeXinSetComponent self)
+        public static void UpdatePetHexinItem(this UIPetHeXinSetComponent self, List<BagInfo> bagInfos)
         {
             List<string> TypeNames = new List<string>() { "进攻能量", "守护能量", "生命能量" };
             self.TextType.GetComponent<Text>().text = TypeNames[self.Position];
 
             UICommonHelper.DestoryChild(self.AttributeListNode);
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             long baginfoId = self.RolePetInfo.PetHeXinList[self.Position];
-            BagInfo bagInfo = bagComponent.GetBagInfo(baginfoId);
+            BagInfo bagInfo = null;
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                if (bagInfos[i].BagInfoID == baginfoId)
+                {
+                    bagInfo = bagInfos[i];
+                }
+            }
             self.ImageIcon.SetActive(bagInfo != null);
             self.ButtonEquipXieXia.SetActive(bagInfo != null);
             if (bagInfo == null)
@@ -98,7 +102,7 @@ namespace ET
             UICommonHelper.ShowAttributeItemList(itemConfig.ItemUsePar, self.AttributeListNode, self.TextAttributeItem);
         }
 
-        public static async ETTask OnUpdateItemList(this UIPetHeXinSetComponent self)
+        public static async ETTask OnUpdateItemList(this UIPetHeXinSetComponent self, List<BagInfo> bagInfos)
         {
             self.BagInfo = null;
             long instanceid = self.InstanceId;
@@ -109,7 +113,6 @@ namespace ET
                 return;
             }
             int number = 0;
-            List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemPetHeXinBag);
             for (int i = 0; i < bagInfos.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get( bagInfos[i].ItemID );

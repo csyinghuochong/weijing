@@ -237,11 +237,14 @@ namespace ET
 
         public static void OnButtonPetHeXinItem(this UIPetListComponent self, int position)
         {
+            List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemPetHeXinBag);
             for (int i = 0; i < self.PetHeXinItemList.Length; i++)
             {
                 self.PetHeXinItemList[i].transform.Find("ImageSelect").gameObject.SetActive(i == position);
             }
             self.PetHeXinSetComponent.OnUpdateUI(self.LastSelectItem, position);
+            self.PetHeXinSetComponent.UpdatePetHexinItem(bagInfos);
+            self.PetHeXinSetComponent.OnUpdateItemList(bagInfos).Coroutine();
         }
 
         public static void OnClickPageButton(this UIPetListComponent self, int page)
@@ -801,7 +804,8 @@ namespace ET
 
         public static void OnBagItemUpdate(this UIPetListComponent self)
         {
-            self.PetHeXinSetComponent.OnUpdateItemList().Coroutine();
+            List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemPetHeXinBag);
+            self.PetHeXinSetComponent.OnUpdateItemList(bagInfos).Coroutine();
         }
 
         public static void OnUpdatePetPoint(this UIPetListComponent self, RolePetInfo rolePetItem)
@@ -817,12 +821,13 @@ namespace ET
 
         public static void OnEquipPetHeXin(this UIPetListComponent self)
         {
+            List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemPetHeXinBag);
             self.LastSelectItem = self.PetComponent.GetPetInfoByID(self.LastSelectItem.Id);
             self.UpdatePetHeXin(self.LastSelectItem);
             self.UpdateAttribute(self.LastSelectItem);
             self.PetHeXinSetComponent.SelectItemHandlder(null);
-            self.PetHeXinSetComponent.UpdatePetHexinItem();
-            self.PetHeXinSetComponent.OnUpdateItemList().Coroutine();
+            self.PetHeXinSetComponent.UpdatePetHexinItem(bagInfos);
+            self.PetHeXinSetComponent.OnUpdateItemList(bagInfos).Coroutine();
         }
 
         public static void OnUpdatePetInfo(this UIPetListComponent self, RolePetInfo rolePetInfo)

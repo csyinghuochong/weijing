@@ -27,10 +27,12 @@ namespace ET
                     response.Name = userinfo.UserInfo.Name;
                     BagComponent bagComponents = d2GGetUnit_2.Component as BagComponent;
                     response.EquipList = bagComponents.EquipList;
+                    response.PetHeXinList = bagComponents.PetHeXinList;
                     response.Occ = userinfo.UserInfo.Occ;
                     D2G_GetComponent d2GGetUnit_3 = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.UserId, Component = DBHelper.PetComponent });
                     PetComponent petComponent = d2GGetUnit_3.Component as PetComponent;
                     response.RolePetInfos = petComponent.RolePetInfos;
+                    response.PetSkinList = petComponent.PetSkinList;
                     break;
                 //只返回名字
                 case 1:

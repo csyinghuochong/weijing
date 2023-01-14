@@ -42,9 +42,15 @@ namespace ET
                 GameObject gamitem = GameObject.Instantiate(bundleGameObject);
                 UINewYearCollectionWordIemComponent uINewYear = self.AddChild<UINewYearCollectionWordIemComponent, GameObject>(gamitem);
                 uINewYear.OnInitUI(activityConfigs[i]);
+                uINewYear.SetAction(self.OnRecived);
                 self.CollectionWords.Add(uINewYear);
                 UICommonHelper.SetParent( gamitem, self.FriendNodeList);
             }
+        }
+
+        public static void OnRecived(this UINewYearCollectionWordComponent self)
+        {
+            self.OnUpdateUI();
         }
 
         public static void OnUpdateUI(this UINewYearCollectionWordComponent self)

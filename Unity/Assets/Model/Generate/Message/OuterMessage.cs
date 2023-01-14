@@ -6382,6 +6382,12 @@ namespace ET
 		[ProtoMember(7)]
 		public List<RolePetInfo> RolePetInfos = new List<RolePetInfo>();
 
+		[ProtoMember(8)]
+		public List<KeyValuePair> PetSkinList = new List<KeyValuePair>();
+
+		[ProtoMember(9)]
+		public List<BagInfo> PetHeXinList = new List<BagInfo>();
+
 	}
 
 //好友列表

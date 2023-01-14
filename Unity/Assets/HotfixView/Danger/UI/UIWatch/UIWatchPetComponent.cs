@@ -142,6 +142,7 @@ namespace ET
 
             GameObject PetHeXinSet = rc.Get<GameObject>("PetHeXinSet");
             self.PetHeXinSetComponent = self.AddChild<UIPetHeXinSetComponent, GameObject>(PetHeXinSet);
+            self.PetHeXinSetComponent.ButtonHeXinHeCheng.SetActive(false);
             self.PetHeXinSetComponent.GameObject.SetActive(false);
             self.ButtonCloseHexin = rc.Get<GameObject>("ButtonCloseHexin");
             self.ButtonCloseHexin.GetComponent<Button>().onClick.AddListener(() => {
@@ -230,6 +231,12 @@ namespace ET
             self.OnChangeNode(1);
         }
 
+        public static F2C_WatchPlayerResponse GetWatchPlayerInfo(this UIWatchPetComponent self)
+        {
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIWatch);
+            return uI.GetComponent<UIWatchComponent>().F2C_WatchPlayerResponse;
+        }
+
         public static void OnButtonPetHeXinItem(this UIWatchPetComponent self, int position)
         {
             for (int i = 0; i < self.PetHeXinItemList.Length; i++)
@@ -237,6 +244,7 @@ namespace ET
                 self.PetHeXinItemList[i].transform.Find("ImageSelect").gameObject.SetActive(i == position);
             }
             self.PetHeXinSetComponent.OnUpdateUI(self.LastSelectItem, position);
+            self.PetHeXinSetComponent.UpdatePetHexinItem(self.GetWatchPlayerInfo().PetHeXinList);
         }
 
         public static void OnClickPageButton(this UIWatchPetComponent self, int page)
@@ -301,29 +309,8 @@ namespace ET
             self.PetSkinId = 0;
             self.LastSelectItem = null;
 
-            self.OnInitUI(self.RolePetInfoList);
-        }
-
-        public static int NextPetNumber(this UIWatchPetComponent self)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int level = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Lv;
-            int curNumber = self.ZoneScene().GetComponent<PetComponent>().RolePetInfos.Count;
-            if (curNumber < ComHelp.GetPetMaxNumber(unit, level))
-            {
-                return 0;
-            }
-
-            string[] petInfos = GlobalValueConfigCategory.Instance.Get(34).Value.Split('@');
-            for (int i = 0; i < petInfos.Length; i++)
-            {
-                string[] petNumber = petInfos[i].Split(';');
-                if (level < int.Parse(petNumber[0]))
-                {
-                    return int.Parse(petNumber[0]);
-                }
-            }
-            return 0;
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIWatch);
+            self.OnInitUI(uI.GetComponent<UIWatchComponent>().F2C_WatchPlayerResponse.RolePetInfos);
         }
 
         public static  void OnInitUI(this UIWatchPetComponent self, List<RolePetInfo> rolePetInfos)
@@ -401,6 +388,20 @@ namespace ET
             self.UpdatePetHeXin(self.LastSelectItem);
         }
 
+        public static BagInfo GetBagInfo(this UIWatchPetComponent self, long bagId)
+        {
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIWatch);
+            List<BagInfo> bagInfos = uI.GetComponent<UIWatchComponent>().F2C_WatchPlayerResponse.PetHeXinList;
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                if (bagInfos[i].BagInfoID == bagId)
+                { 
+                    return bagInfos[i];
+                }
+            }
+            return null;
+        }
+
         public static void UpdatePetHeXin(this UIWatchPetComponent self, RolePetInfo rolePetItem)
         {
             for (int i = 0; i < self.PetHeXinItemList.Length; i++)
@@ -408,14 +409,18 @@ namespace ET
                 self.PetHeXinItemList[i].transform.Find("Node_2").gameObject.SetActive(false);
             }
 
-            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             for (int i = 0; i < rolePetItem.PetHeXinList.Count; i++)
             {
                 if (rolePetItem.PetHeXinList[i] == 0)
                 {
                     continue;
                 }
-                BagInfo bagInfo = bagComponent.GetBagInfo(rolePetItem.PetHeXinList[i]);
+                BagInfo bagInfo = self.GetBagInfo(rolePetItem.PetHeXinList[i]);
+                if (bagInfo == null)
+                {
+                    Log.ILog.Debug("PetHeXin == null");
+                    continue;
+                }
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
                 Transform itemTransform = self.PetHeXinItemList[i].transform;
                 //int position = int.Parse(itemConfig.ItemUsePar);
@@ -631,7 +636,6 @@ namespace ET
             int selectIndex = 0;
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkinIcon");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             for (int i = 0; i < petConfig.Skin.Length; i++)
             {
                 if (petConfig.Skin[i] == 0)
@@ -645,7 +649,7 @@ namespace ET
                 GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(bagSpace, self.ScrollViewSkin);
                 UIPetSkinIconComponent uIPetSkinIcon = self.AddChild<UIPetSkinIconComponent, GameObject>(bagSpace);
-                uIPetSkinIcon.OnUpdateUI(petConfig.Skin[i], petComponent.HavePetSkin(petConfig.Id, petConfig.Skin[i]));
+                uIPetSkinIcon.OnUpdateUI(petConfig.Skin[i], self.HavePetSkin(petConfig.Id, petConfig.Skin[i]));
                 uIPetSkinIcon.SetClickHandler(self.OnSelectSkinHandler);
                 self.PetSkinList.Add(uIPetSkinIcon);
             }
@@ -655,7 +659,17 @@ namespace ET
 
         public static bool HavePetSkin(this UIWatchPetComponent self, int petid, int skinid)
         {
-            return true;
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIWatch);
+            List<KeyValuePair> skinList = uI.GetComponent<UIWatchComponent>().F2C_WatchPlayerResponse.PetSkinList;
+            for (int p = 0; p < skinList.Count; p++)
+            {
+                if (skinList[p].KeyId != petid)
+                {
+                    continue;
+                }
+                return skinList[p].Value.Contains(skinid.ToString());
+            }
+            return false;
         }
 
         public static void OnSelectSkinHandler(this UIWatchPetComponent self, int skinId)
@@ -699,21 +713,11 @@ namespace ET
             self.UpdateAttribute(self.LastSelectItem);
         }
 
-        public static void OnEquipPetHeXin(this UIWatchPetComponent self)
-        {
-            self.LastSelectItem = self.GetPetInfoByID(self.LastSelectItem.Id);
-            self.UpdatePetHeXin(self.LastSelectItem);
-            self.UpdateAttribute(self.LastSelectItem);
-            self.PetHeXinSetComponent.SelectItemHandlder(null);
-            self.PetHeXinSetComponent.UpdatePetHexinItem();
-            self.PetHeXinSetComponent.OnUpdateItemList().Coroutine();
-        }
-
         public static void OnUpdatePetInfo(this UIWatchPetComponent self, RolePetInfo rolePetInfo)
         {
             self.InputFieldName.GetComponent<InputField>().text = rolePetInfo.PetName;
-            self.Btn_XiuXi.SetActive(rolePetInfo.PetStatus == 1);
-            self.Btn_ChuZhan.SetActive(rolePetInfo.PetStatus == 0);
+            self.Btn_XiuXi.SetActive(false);
+            self.Btn_ChuZhan.SetActive(false);
 
             self.UpdateAttribute(rolePetInfo);
             self.UpdateExpAndLv(rolePetInfo);

@@ -3034,6 +3034,8 @@ message F2C_WatchPlayerResponse // IFriendActorResponse
 	int64 TeamId = 4;
 	int32 Occ = 5;
 	repeated RolePetInfo RolePetInfos = 7;
+	repeated KeyValuePair PetSkinList = 8;
+	repeated BagInfo PetHeXinList = 9;
 }
 
 //好友列表
