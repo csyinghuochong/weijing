@@ -1,9 +1,0 @@
-diff a/Unity/Assets/HotfixView/Danger/UI/UINewYear/UINewYearCollectionWordIemComponent.cs b/Unity/Assets/HotfixView/Danger/UI/UINewYear/UINewYearCollectionWordIemComponent.cs	(rejected hunks)
-@@ -61,6 +61,7 @@
-                 UICommonHelper.SetImageGray(self.WordItems[i].Image_ItemQuality, gray);
-             }
-         }
-+
-         public static async ETTask OnButtonDuiHuan(this UINewYearCollectionWordIemComponent self)
-         {
-             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();

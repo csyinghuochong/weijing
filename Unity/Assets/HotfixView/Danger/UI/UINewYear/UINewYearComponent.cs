@@ -7,6 +7,7 @@ namespace ET
     public enum NewYearPageEnum : int
     {
         CollectionWord = 0,
+        Monster = 1,
         Number,
     }
 
@@ -35,8 +36,10 @@ namespace ET
             pageViewComponent.UISubViewType = new Type[(int)NewYearPageEnum.Number];
 
             pageViewComponent.UISubViewPath[(int)NewYearPageEnum.CollectionWord] = ABPathHelper.GetUGUIPath("Main/NewYear/UINewYearCollectionWord");
-           
+            pageViewComponent.UISubViewPath[(int)NewYearPageEnum.Monster] = ABPathHelper.GetUGUIPath("Main/NewYear/UINewYearMonster");
+
             pageViewComponent.UISubViewType[(int)NewYearPageEnum.CollectionWord] = typeof(UINewYearCollectionWordComponent);
+            pageViewComponent.UISubViewType[(int)NewYearPageEnum.Monster] = typeof(UINewYearMonsterComponent);
             self.UIPageView = pageViewComponent;
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");

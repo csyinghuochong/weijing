@@ -6388,6 +6388,12 @@ namespace ET
 		[ProtoMember(9)]
 		public List<BagInfo> PetHeXinList = new List<BagInfo>();
 
+		[ProtoMember(11)]
+		public List<string> EntityTypes = new List<string>();
+
+		[ProtoMember(12)]
+		public List<byte[]> EntityBytes = new List<byte[]>();
+
 	}
 
 //好友列表
