@@ -412,6 +412,7 @@ namespace ET
 			{
 				return;
 			}
+			Log.ILog.Debug($"Login: {msg[1]} {self.LoginType}");
 			self.RequestLogin(msg[1], self.LoginType,self.LoginType).Coroutine();
 		}
 
@@ -449,7 +450,7 @@ namespace ET
 
 			string account = self.Account.GetComponent<InputField>().text;
 			string password = self.Password.GetComponent<InputField>().text;
-
+			Log.ILog.Debug($"Login: {account} {password}");
 			self.RequestLogin(account, password, self.LoginType).Coroutine();
 		}
 
@@ -457,6 +458,7 @@ namespace ET
 		{
 			string account = self.PlayerComponent.Account;
 			string password = self.PlayerComponent.Password;
+			Log.ILog.Debug($"Login: {account} {password}");
 			self.RequestLogin(account, password, self.PlayerComponent.LoginType).Coroutine();
 		}
 
