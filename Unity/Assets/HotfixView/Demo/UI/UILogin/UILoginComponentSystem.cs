@@ -181,6 +181,7 @@ namespace ET
 #endif
 			}
 
+			Log.ILog.Debug($"lastloginType: {lastloginType} { self.LoginType}");
 			self.Account.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 			self.Password.GetComponent<InputField>().text = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastPassword(self.LoginType));
 		}
@@ -192,6 +193,7 @@ namespace ET
 		//public const int PhoneLogin = 4;        //手机号登录
 		public static void UpdateLoginType(this UILoginComponent self)
 		{
+			Log.ILog.Debug($"UpdateLoginType : {self.LoginType}");
 			self.ThirdLoginBg.SetActive(true);
 			self.YiJianDengLu.SetActive(int.Parse(self.LoginType) == LoginTypeEnum.PhoneNumLogin);
 			string lastAccount = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
