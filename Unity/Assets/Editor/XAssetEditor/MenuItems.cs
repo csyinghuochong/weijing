@@ -43,7 +43,7 @@ namespace libx
         private const string KViewCachePath = "XAsset/View/Caches";
         private const string KViewDataPath = "XAsset/View/Built Bundles";
         private const string KCleanData = "XAsset/Bundles/Clean Built Bundles";
-        private const string KModifyFileModify = "XAsset/Bundles/ModifyFileModify";
+        private const string KModifyFileExtension = "XAsset/Bundles/KModifyFileExtension";
 
         //[MenuItem("ET/build")]
 
@@ -155,7 +155,7 @@ namespace libx
             BuildScript.CopyAssetBundlesTo(Application.streamingAssetsPath);
         }
 
-        [MenuItem(KModifyFileModify)]
+        [MenuItem(KModifyFileExtension)]
         private static void ModifyFileModify()
         {
             List<string> fileList = new List<string> { };
