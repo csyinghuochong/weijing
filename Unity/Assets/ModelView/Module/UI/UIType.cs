@@ -114,6 +114,7 @@ namespace ET
 		public const string UITowerFightReward = "TowerDungeon/UITowerFightReward";
 		public const string UIMiJingMain = "MiJing/UIMiJingMain";
 		public const string UIFenXiang = "Main/FenXiang/UIFenXiang";
+		public const string UINewYear = "Main/NewYear/UINewYear";
 
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()
