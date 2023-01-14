@@ -101,7 +101,8 @@ namespace ET
                     self.Relink = false;
                     Log.ILog.Debug("重连成功！！");
                     self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_RefreshUnitRequest());
-                    await  NetHelper.RequestUserInfo(self.ZoneScene(), true);
+                    await NetHelper.RequestUserInfo(self.ZoneScene(), true);
+                    await NetHelper.RequestUnitInfo(self.ZoneScene(), true);
                     UIHelper.GetUI(self.DomainScene(), UIType.UIMain).GetComponent<UIMainComponent>().OnRelinkUpdate();
                     UIHelper.Remove(self.DomainScene(), UIType.UIRelink);
                     break;

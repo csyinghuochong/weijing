@@ -63,6 +63,10 @@
             await ETTask.CompletedTask;
         }
 
+        public static async ETTask RequestUnitInfo(Scene zoneScene)
+        {
+            await ETTask.CompletedTask;
+        }
 
         public static async ETTask RequestBagInfo(Scene zoneScene)
         {

@@ -489,7 +489,7 @@ namespace ET
 		 public const ushort M2C_UpdateVersion = 10486;
 		 public const ushort C2M_ShareSucessRequest = 10487;
 		 public const ushort M2C_ShareSucessResponse = 10488;
-		 public const ushort C2M_NumericInfoRequest = 10489;
-		 public const ushort M2C_NumericInfoResponse = 10490;
+		 public const ushort C2M_UnitInfoRequest = 10489;
+		 public const ushort M2C_UnitInfoResponse = 10490;
 	}
 }

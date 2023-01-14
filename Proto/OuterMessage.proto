@@ -4216,20 +4216,19 @@ message M2C_ShareSucessResponse // IActorLocationResponse
 	string Message = 92;
 }
 
-//ResponseType M2C_NumericInfoResponse
-message C2M_NumericInfoRequest // IActorLocationRequest
+//ResponseType M2C_UnitInfoResponse
+message C2M_UnitInfoRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
-	
-	repeated int32 Ks = 6;
-	repeated int64 Vs = 7;
-	repeated KeyValuePair Additional = 8;
 }
 
-message M2C_NumericInfoResponse // IActorLocationResponse
+message M2C_UnitInfoResponse // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+
+	repeated string EntityTypes = 11; 
+	repeated bytes EntityBytes = 12; 
 }

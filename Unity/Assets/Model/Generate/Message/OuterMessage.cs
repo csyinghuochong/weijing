@@ -8791,10 +8791,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_NumericInfoResponse))]
-	[Message(OuterOpcode.C2M_NumericInfoRequest)]
+	[ResponseType(nameof(M2C_UnitInfoResponse))]
+	[Message(OuterOpcode.C2M_UnitInfoRequest)]
 	[ProtoContract]
-	public partial class C2M_NumericInfoRequest: Object, IActorLocationRequest
+	public partial class C2M_UnitInfoRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -8802,20 +8802,11 @@ namespace ET
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
 
-		[ProtoMember(6)]
-		public List<int> Ks = new List<int>();
-
-		[ProtoMember(7)]
-		public List<long> Vs = new List<long>();
-
-		[ProtoMember(8)]
-		public List<KeyValuePair> Additional = new List<KeyValuePair>();
-
 	}
 
-	[Message(OuterOpcode.M2C_NumericInfoResponse)]
+	[Message(OuterOpcode.M2C_UnitInfoResponse)]
 	[ProtoContract]
-	public partial class M2C_NumericInfoResponse: Object, IActorLocationResponse
+	public partial class M2C_UnitInfoResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -8825,6 +8816,12 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+		[ProtoMember(11)]
+		public List<string> EntityTypes = new List<string>();
+
+		[ProtoMember(12)]
+		public List<byte[]> EntityBytes = new List<byte[]>();
 
 	}
 
