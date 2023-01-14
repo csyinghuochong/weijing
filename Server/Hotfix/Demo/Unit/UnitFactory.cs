@@ -374,7 +374,7 @@ namespace ET
             List<long> beattackIds = new List<long>();
             if (bekill.GetComponent<AIComponent>() != null)
             {
-                beattackIds = bekill.GetComponent<AIComponent>().BeAttackList;
+                beattackIds = bekill.GetComponent<AIComponent>().BeAttackPlayerList;
             }
             else if(main!=null)
             {
@@ -395,13 +395,13 @@ namespace ET
                     dropComponent.IfDamgeDrop = monsterCof.IfDamgeDrop;
                     if (bekill.GetComponent<AIComponent>() != null)
                     {
-                        dropComponent.BeAttackList = bekill.GetComponent<AIComponent>().BeAttackList;
+                        dropComponent.BeAttackPlayerList = bekill.GetComponent<AIComponent>().BeAttackPlayerList;
                     }
                     //掉落归属问题 掉落类型为2 原来为： 最后一刀 修改为 第一拾取权限为优先攻击他的人,如果这个人死了，那么拾取权限清空，下一次伤害是谁归属权就是谁。
                     long ownderId = main!=null ? main.Id : 0;
                     if (monsterCof.DropType == 2 && beattackIds.Count > 0 && unitComponent.Get(beattackIds[0])!=null)
                     {
-                        ownderId = UnitHelper.GetMasterId(unitComponent.Get(beattackIds[0]));
+                        ownderId = beattackIds[0];
                     }
                     dropComponent.OwnerId = monsterCof.DropType == 0 ? 0 : ownderId;
                     dropComponent.ProtectTime = monsterCof.DropType == 0 ? 0 : serverTime + 30000;

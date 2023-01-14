@@ -115,7 +115,7 @@ namespace ET
             Unit player = args.UnitAttack;
             if (args.UnitAttack != null && !args.UnitAttack.IsDisposed)
             {
-                player = domainScene.GetComponent<UnitComponent>().Get(UnitHelper.GetMasterId(args.UnitAttack));
+                player = domainScene.GetComponent<UnitComponent>().Get(args.UnitAttack.GetMasterId());
             }
             if (player != null)
             {

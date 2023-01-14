@@ -12,7 +12,7 @@ namespace ET
         public long ProtectTime;
 #if SERVER
         public int IfDamgeDrop;
-        public List<long> BeAttackList = new List<long>();
+        public List<long> BeAttackPlayerList = new List<long>();
 #else 
         public DropInfo DropInfo;
 #endif

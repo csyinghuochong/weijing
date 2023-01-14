@@ -100,7 +100,7 @@ namespace ET
             if (sendUnit.Type == UnitType.DropItem)
             {
                 DropComponent dropComponent = sendUnit.GetComponent<DropComponent>();
-                if (dropComponent.IfDamgeDrop == 1 && !dropComponent.BeAttackList.Contains(unit.Id))
+                if (dropComponent.IfDamgeDrop == 1 && dropComponent.BeAttackPlayerList.Contains(unit.Id))
                 {
                     return;
                 }
@@ -291,19 +291,6 @@ namespace ET
             BagComponent bagComponent = self.GetComponent<BagComponent>();
             int EquipType = bagComponent != null ? bagComponent.GetEquipType() : ItemEquipType.Common;
             return SkillHelp.GetWeaponSkill(skillId, EquipType);
-        }
-
-        public static long GetMasterId(this Unit self)
-        {
-            if (self.Type == UnitType.Player)
-            {
-                return self.Id;
-            }
-            if (self.Type == UnitType.Pet || self.Type == UnitType.Monster)
-            {
-                return self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);  
-            }
-            return 0;
         }
 
         public static void SetBornPosition(this Unit self, Vector3 vector3)

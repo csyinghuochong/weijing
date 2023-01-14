@@ -85,6 +85,19 @@
             return self.Id == defend.Id;
         }
 
+        public static long GetMasterId(this Unit self)
+        {
+            if (self.Type == UnitType.Player)
+            {
+                return self.Id;
+            }
+            if (self.Type == UnitType.Pet || self.Type == UnitType.Monster)
+            {
+                return self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
+            }
+            return 0;
+        }
+
         public static int GetBattleCamp(this Unit self)
         {
             return self.GetComponent<NumericComponent>().GetAsInt(NumericType.BattleCamp);

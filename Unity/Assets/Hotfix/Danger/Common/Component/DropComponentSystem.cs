@@ -11,7 +11,7 @@ namespace ET
             self.OwnerId = 0;   
             self.ProtectTime = 0;
 #if SERVER
-            self.BeAttackList.Clear();
+            self.BeAttackPlayerList.Clear();
 #endif
         }
     }
