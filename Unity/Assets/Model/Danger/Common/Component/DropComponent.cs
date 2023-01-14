@@ -1,4 +1,6 @@
-﻿namespace ET
+﻿using System.Collections.Generic;
+
+namespace ET
 {
     public class DropComponent : Entity, IAwake
     {
@@ -8,7 +10,10 @@
 
         public long OwnerId;
         public long ProtectTime;
-#if !SERVER
+#if SERVER
+        public int IfDamgeDrop;
+        public List<long> BeAttackList = new List<long>();
+#else 
         public DropInfo DropInfo;
 #endif
     }

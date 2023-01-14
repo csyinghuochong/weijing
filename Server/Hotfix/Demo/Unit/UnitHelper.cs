@@ -96,6 +96,16 @@ namespace ET
 
         public static void NoticeUnitAdd(Unit unit, Unit sendUnit)
         {
+            //非自己击杀的怪物。不同步
+            if (sendUnit.Type == UnitType.DropItem)
+            {
+                DropComponent dropComponent = sendUnit.GetComponent<DropComponent>();
+                if (dropComponent.IfDamgeDrop == 1 && !dropComponent.BeAttackList.Contains(unit.Id))
+                {
+                    return;
+                }
+            }
+
             M2C_CreateUnits createUnits = new M2C_CreateUnits();
             GetUnitInfo(sendUnit, createUnits);
             MessageHelper.SendToClient(unit, createUnits);
