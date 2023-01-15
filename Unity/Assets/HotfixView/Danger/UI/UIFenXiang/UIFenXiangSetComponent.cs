@@ -69,9 +69,9 @@ namespace ET
         {
             FenXiangContent fenXiangContent = new FenXiangContent();
             fenXiangContent.FenXiang_Title = "危境";
-            fenXiangContent.FenXiang_Text = "危境";
-            fenXiangContent.FenXiang_ImageUrl = "https://img.tapimg.com/market/icons/6ae4a1e5df9d56dca02ecec3aa7e1252_360.png?imageMogr2/auto-orient/strip";
-            fenXiangContent.FenXiang_ClickUrl = "https://l.taptap.com/T28gNaHb";
+            fenXiangContent.FenXiang_Text = "暗黑系列ARPG探索类手游《危境》系列正式开启！";
+            fenXiangContent.FenXiang_ImageUrl = "https://img.71acg.net/kbdev/opensj/20230109/15243214265";
+            fenXiangContent.FenXiang_ClickUrl = "http://weijingfenxiang.weijinggame.com/weijingchongzhi";
             fenXiangContent.Fenxiangtype = shareType;
             self.ShareType = shareType;
 
