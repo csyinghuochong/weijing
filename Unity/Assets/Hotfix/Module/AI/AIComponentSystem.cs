@@ -250,9 +250,9 @@ namespace ET
             {
                 attackId = attack.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
             }
-            if (attackId > 0 &&!self.BeAttackPlayerList.Contains(attack.Id))
+            if (attackId > 0 &&!self.BeAttackPlayerList.Contains(attackId))
             {
-                self.BeAttackPlayerList.Add(attack.Id);
+                self.BeAttackPlayerList.Add(attackId);
             }
 
             //0.1的概率概率转移仇恨
