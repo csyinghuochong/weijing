@@ -338,7 +338,7 @@ namespace ET
                 }
                 //公共技能冷却
                 long leftPublicCD = self.SkillPublicCDTime - TimeHelper.ServerNow();
-                if (leftPublicCD > 1000)
+                if (leftPublicCD > 1500)
                 {
                     Log.Error($"leftPublicCD > 1000 {leftPublicCD}");
                     self.SkillPublicCDTime = TimeHelper.ServerNow();

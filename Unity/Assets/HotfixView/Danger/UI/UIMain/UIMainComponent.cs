@@ -148,6 +148,7 @@ namespace ET
 
             self.Button_FenXiang = rc.Get<GameObject>("Button_FenXiang");
             ButtonHelp.AddListenerEx(self.Button_FenXiang, () => { self.OnButton_FenXiang(); });
+            self.Button_FenXiang.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             self.Button_NewYear = rc.Get<GameObject>("Button_NewYear");
             ButtonHelp.AddListenerEx(self.Button_NewYear, () => { self.OnButton_NewYear(); });
