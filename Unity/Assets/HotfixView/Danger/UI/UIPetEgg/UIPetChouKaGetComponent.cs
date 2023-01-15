@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -65,11 +66,11 @@ namespace ET
     public static class UIPetChouKaGetComponentSystem
     {
 
-        public static async ETTask InitModelShowView(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo)
+        public static  void InitModelShowView(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo)
         {
             //模型展示界面
             var path = ABPathHelper.GetUGUIPath("Common/UIModelShow1");
-            GameObject bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            GameObject bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
             UICommonHelper.SetParent(gameObject, self.RawImage);
             UI ui = self.AddChild<UI, string, GameObject>( "UIModelShow", gameObject);
@@ -91,44 +92,51 @@ namespace ET
 
         public static void OnInitUI(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo, List<KeyValuePair> oldSkins, bool showSkin = false)
         {
-            self.InitModelShowView(rolePetInfo).Coroutine();
-
-            PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
-
-            bool newSkin = true;
-            for (int p = 0; p < oldSkins.Count; p++)
+            try
             {
-                if (oldSkins[p].KeyId != rolePetInfo.ConfigId)
+                self.InitModelShowView(rolePetInfo);
+
+                PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+
+                bool newSkin = true;
+                for (int p = 0; p < oldSkins.Count; p++)
                 {
-                    continue;
+                    if (oldSkins[p].KeyId != rolePetInfo.ConfigId)
+                    {
+                        continue;
+                    }
+                    if (oldSkins[p].Value.Contains(rolePetInfo.SkinId.ToString()))
+                    {
+                        newSkin = false;
+                        break;
+                    }
                 }
-                if (oldSkins[p].Value.Contains(rolePetInfo.SkinId.ToString()))
+
+                //获取此模型是否被激活
+                if (newSkin == true)
                 {
-                    newSkin = false;
-                    break;
+                    self.NewSkinName.SetActive(true);
+                    self.PiFuJiHuo.SetActive(true);
                 }
-            }
+                else
+                {
+                    self.NewSkinName.SetActive(false);
+                    self.PiFuJiHuo.SetActive(false);
+                }
 
-            //获取此模型是否被激活
-            if (newSkin == true)
+                self.Text_Tip.GetComponent<Text>().text = $"{petConfig.PetName}";
+                self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, true);
+
+                self.UpdateSkillList(rolePetInfo);
+                self.UpdateAttribute(rolePetInfo);
+
+
+                self.Text_FightValue.GetComponent<Text>().text = ComHelp.PetPingJia(rolePetInfo).ToString();
+            }
+            catch (Exception ex)
             {
-                self.NewSkinName.SetActive(true);
-                self.PiFuJiHuo.SetActive(true);
+                Log.Error("PetChouKaError: " + ex.ToString());
             }
-            else
-            {
-                self.NewSkinName.SetActive(false);
-                self.PiFuJiHuo.SetActive(false);
-            }
-
-            self.Text_Tip.GetComponent<Text>().text = $"{petConfig.PetName}";
-            self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, true);
-
-            self.UpdateSkillList(rolePetInfo);
-            self.UpdateAttribute(rolePetInfo);
-
-
-            self.Text_FightValue.GetComponent<Text>().text = ComHelp.PetPingJia(rolePetInfo).ToString();
         }
 
         public static  void UpdateSkillList(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo)
