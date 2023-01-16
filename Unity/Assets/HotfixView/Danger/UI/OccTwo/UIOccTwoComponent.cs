@@ -124,10 +124,10 @@ namespace ET
         public static void OnClickOccTwo(this UIOccTwoComponent self)
         {
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
-            {
-                return;
-            }
+            //if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
+            //{
+            //    return;
+            //}
 
             OccupationTwoConfig occupationTwoConfig = OccupationTwoConfigCategory.Instance.Get(self.OccTwoId);
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "转职", $"是否转职为：{occupationTwoConfig.OccupationName}", () =>
