@@ -48210,6 +48210,17 @@ IL_0018:
 		return;
 	}
 }
+// System.Void DoTweeningMove::SetOldPosition(UnityEngine.Vector2)
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DoTweeningMove_SetOldPosition_m2543F0E4B484D923B8BCBF4285497461AA686F86 (DoTweeningMove_tB147B9FF5E2E1007B07E9BA4A77F71F3053D58CE * __this, Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  ___vector20, const RuntimeMethod* method)
+{
+	{
+		// oldPostition = vector2;
+		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_0 = ___vector20;
+		__this->set_oldPostition_6(L_0);
+		// }
+		return;
+	}
+}
 // System.Void DoTweeningMove::OnEnable()
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DoTweeningMove_OnEnable_m2FAF4BA9F3715D0CC58D04B1266D1188BF474A1C (DoTweeningMove_tB147B9FF5E2E1007B07E9BA4A77F71F3053D58CE * __this, const RuntimeMethod* method)
 {
@@ -48373,7 +48384,7 @@ IL_000d:
 		float L_2 = __this->get_MoveToTime_13();
 		if ((!(((float)L_1) > ((float)L_2))))
 		{
-			goto IL_004a;
+			goto IL_0051;
 		}
 	}
 	{
@@ -48381,18 +48392,20 @@ IL_000d:
 		bool L_3 = __this->get_isLoop_10();
 		if (L_3)
 		{
-			goto IL_0030;
+			goto IL_0037;
 		}
 	}
 	{
 		// this.curPostion = this.oldPostition;
 		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_4 = __this->get_oldPostition_6();
 		__this->set_curPostion_11(L_4);
+		// this.enabled = false;
+		Behaviour_set_enabled_mDE415591B28853D1CD764C53CB499A2142247F32(__this, (bool)0, /*hidden argument*/NULL);
 		// return;
 		return;
 	}
 
-IL_0030:
+IL_0037:
 	{
 		// this.front = !this.front;
 		bool L_5 = __this->get_front_5();
@@ -48401,7 +48414,7 @@ IL_0030:
 		__this->set_passTime_12((0.0f));
 	}
 
-IL_004a:
+IL_0051:
 	{
 		// this.passTime += Time.deltaTime;
 		float L_6 = __this->get_passTime_12();
@@ -48412,7 +48425,7 @@ IL_004a:
 		bool L_8 = __this->get_front_5();
 		if (!L_8)
 		{
-			goto IL_009a;
+			goto IL_00a1;
 		}
 	}
 	{
@@ -48430,10 +48443,10 @@ IL_004a:
 		L_16 = Vector2_op_Addition_m5EACC2AEA80FEE29F380397CF1F4B11D04BE71CC_inline(L_14, L_15, /*hidden argument*/NULL);
 		__this->set_curPostion_11(L_16);
 		// }
-		goto IL_00ce;
+		goto IL_00d5;
 	}
 
-IL_009a:
+IL_00a1:
 	{
 		// this.curPostion = (this.passTime / MoveToTime) * (this.startPosition - this.oldPostition) + this.oldPostition;
 		float L_17 = __this->get_passTime_12();
@@ -48450,14 +48463,14 @@ IL_009a:
 		__this->set_curPostion_11(L_24);
 	}
 
-IL_00ce:
+IL_00d5:
 	{
 		// if (this.passTime >= MoveToTime)
 		float L_25 = __this->get_passTime_12();
 		float L_26 = __this->get_MoveToTime_13();
 		if ((!(((float)L_25) >= ((float)L_26))))
 		{
-			goto IL_00f8;
+			goto IL_00ff;
 		}
 	}
 	{
@@ -48467,30 +48480,30 @@ IL_00ce:
 		if (L_27)
 		{
 			G_B12_0 = __this;
-			goto IL_00ed;
+			goto IL_00f4;
 		}
 	}
 	{
 		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_28 = __this->get_startPosition_7();
 		G_B13_0 = L_28;
 		G_B13_1 = G_B11_0;
-		goto IL_00f3;
+		goto IL_00fa;
 	}
 
-IL_00ed:
+IL_00f4:
 	{
 		Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  L_29 = __this->get_oldPostition_6();
 		G_B13_0 = L_29;
 		G_B13_1 = G_B12_0;
 	}
 
-IL_00f3:
+IL_00fa:
 	{
 		NullCheck(G_B13_1);
 		G_B13_1->set_curPostion_11(G_B13_0);
 	}
 
-IL_00f8:
+IL_00ff:
 	{
 		// this.gameObject.GetComponent<RectTransform>().anchoredPosition = this.curPostion;
 		GameObject_tC000A2E1A7CF1E10FD7BA08863287C072207C319 * L_30;
