@@ -27,9 +27,9 @@ public class UIDeleteAccountComponent : Entity, IAwake
         }
     }
 
-      public static class UIRegisterComponentSystem
+      public static class UIDeleteAccountComponentSystem
     {
-        public static async ETTask OnSendRegister(this UIRegisterComponent self)
+        public static async ETTask OnSendRegister(this UIDeleteAccountComponent self)
         {
             string account = self.account.GetComponent<InputField>().text;
             account = account.Replace(" ", "");
@@ -60,18 +60,14 @@ public class UIDeleteAccountComponent : Entity, IAwake
                 return;
             }
 
-            int errorCode = await LoginHelper.Register(self.DomainScene(),GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode, account, password);
-            if (errorCode == ErrorCore.ERR_Success)
-            {
-                FloatTipManager.Instance.ShowFloatTipDi("注册成功！");
-                UIHelper.Remove(self.ZoneScene(), UIType.UIRegister);
-            }
+             await ETTask.CompletedTask;
+             UIHelper.Remove(self.ZoneScene(), UIType.UIDeleteAccount);
         }
 
         //关闭界面
-        public static void OnCloseEquip(this UIRegisterComponent self)
+        public static void OnCloseEquip(this UIDeleteAccountComponent self)
         {
-            UIHelper.Remove(self.DomainScene(),UIType.UIRegister);
+            UIHelper.Remove(self.DomainScene(),UIType.UIDeleteAccount);
         }
     }
 
