@@ -227,7 +227,8 @@ namespace ET
 				if (mtype[0] == "3")
 				{
 					//野外场景定时刷新
-					scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList(createMonster);
+					//scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList(createMonster);
+					scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList(monsters[i]);
 				}
 				if (mtype[0] == "4")
 				{
@@ -255,7 +256,8 @@ namespace ET
 				//固定时间刷新
 				if (mtype[0] == "5" || mtype[0] == "6")
 				{
-					scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList_2(createMonster);
+					//scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList_2(createMonster);
+					scene.GetComponent<YeWaiRefreshComponent>().CreateMonsterList_2(monsters[i]);
 				}
 			}
 		}

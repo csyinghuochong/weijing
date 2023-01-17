@@ -186,6 +186,7 @@ namespace ET
                     continue;
                 }
                 //5;-50,0,2;80002001;10,25;1230,2030
+                //5;-29,0,0;72009002;1,1;2015
                 string[] mondels = monsters[i].Split(';');
                 int mtype = int.Parse(mondels[0]);
                 string[] position = mondels[1].Split(',');  //-50,0,2
