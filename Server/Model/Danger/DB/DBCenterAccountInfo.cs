@@ -8,6 +8,8 @@ namespace ET
         General = 0,
 
         BlackList = 1,  //黑名单
+
+        Delete = 2,
     }
 
 

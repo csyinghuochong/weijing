@@ -1,15 +1,20 @@
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
 
 
-public class UIDeleteAccountComponent : Entity, IAwake
+namespace ET
 {
+    public class UIDeleteAccountComponent : Entity, IAwake
+    {
         public GameObject account;
-		public GameObject password;
-		public GameObject registerButton;
-		public GameObject Btn_Close;
+        public GameObject password;
+        public GameObject registerButton;
+        public GameObject Btn_Close;
 
-}
+    }
 
-  [ObjectSystem]
+    [ObjectSystem]
     public class UIDeleteAccountComponentAwake : AwakeSystem<UIDeleteAccountComponent>
     {
 
@@ -17,7 +22,7 @@ public class UIDeleteAccountComponent : Entity, IAwake
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
-       
+
             self.account = rc.Get<GameObject>("InputField");
             self.password = rc.Get<GameObject>("InputField2");
             self.registerButton = rc.Get<GameObject>("BtnCreate");
@@ -27,7 +32,7 @@ public class UIDeleteAccountComponent : Entity, IAwake
         }
     }
 
-      public static class UIDeleteAccountComponentSystem
+    public static class UIDeleteAccountComponentSystem
     {
         public static async ETTask OnSendRegister(this UIDeleteAccountComponent self)
         {
@@ -42,14 +47,14 @@ public class UIDeleteAccountComponent : Entity, IAwake
                 return;
             }
             int length = account.Length;
-            if (length < 5|| length > 20)
+            if (length < 5 || length > 20)
             {
                 FloatTipManager.Instance.ShowFloatTip("账号长度为5-20！");
                 return;
             }
 
             if (!StringHelper.IsSpecialChar(password))
-          {
+            {
                 FloatTipManager.Instance.ShowFloatTip("请重新输入密码！");
                 return;
             }
@@ -60,14 +65,16 @@ public class UIDeleteAccountComponent : Entity, IAwake
                 return;
             }
 
-             await ETTask.CompletedTask;
-             UIHelper.Remove(self.ZoneScene(), UIType.UIDeleteAccount);
+            C2A_DeleteAccountRequest request = new C2A_DeleteAccountRequest() {  Account = account, Password = password };
+            A2C_DeleteAccountResponse response = (A2C_DeleteAccountResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+                
+            UIHelper.Remove(self.ZoneScene(), UIType.UIDeleteAccount);
         }
 
         //关闭界面
         public static void OnCloseEquip(this UIDeleteAccountComponent self)
         {
-            UIHelper.Remove(self.DomainScene(),UIType.UIDeleteAccount);
+            UIHelper.Remove(self.DomainScene(), UIType.UIDeleteAccount);
         }
     }
 

@@ -139,5 +139,7 @@ namespace ET
 		 public const ushort M2F_YeWaiSceneIdRequest = 20136;
 		 public const ushort F2M_YeWaiSceneIdResponse = 20137;
 		 public const ushort T2M_TeamUpdateRequest = 20138;
+		 public const ushort A2Center_DeleteAccount = 20139;
+		 public const ushort Center2A_DeleteAccount = 20140;
 	}
 }

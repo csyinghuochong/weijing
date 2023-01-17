@@ -38,8 +38,8 @@ namespace ET
 				self.ZhuCe.transform.Find("Btn_ZhuCe").gameObject.SetActive(GlobalHelp.IsEditorMode);
 
 				self.DeleteAccountBtn = rc.Get<GameObject>("DeleteAccountBtn");
-				self.DeleteAccountBtn.SetActive(false);
-				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { });
+				//self.DeleteAccountBtn.SetActive(false);
+				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
 #if UNITY_IPHONE || UNITY_IOS
 				//self.ZhuCe.transform.Find("Btn_WeChat").gameObject.SetActive(false);
@@ -149,9 +149,9 @@ namespace ET
 	public static class UILoginComponentSystem
 	{
 
-		public static void DeleteAccountBtn(this UILoginComponent sel)
+		public static  void OnDeleteAccountBtn(this UILoginComponent sel)
 		{
-			
+			UIHelper.Create(sel.ZoneScene(), UIType.UIDeleteAccount).Coroutine();
 		}
 
 		public static void OnBtn_Return(this UILoginComponent self)

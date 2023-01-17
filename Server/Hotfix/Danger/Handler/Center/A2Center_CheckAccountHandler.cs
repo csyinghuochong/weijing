@@ -14,6 +14,10 @@ namespace ET
             DBCenterAccountInfo dBCenterAccountInfo = centerAccountInfoList != null && centerAccountInfoList.Count > 0 ? centerAccountInfoList[0] : null;
             response.PlayerInfo = dBCenterAccountInfo !=null ? dBCenterAccountInfo.PlayerInfo : null;
             response.AccountId = dBCenterAccountInfo != null ? dBCenterAccountInfo.Id : 0;
+            if (dBCenterAccountInfo.AccountType == (int)AccountType.Delete)
+            {
+                response.PlayerInfo = null;
+            }
             reply();
             await ETTask.CompletedTask;
         }
