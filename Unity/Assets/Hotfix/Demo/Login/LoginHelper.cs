@@ -289,13 +289,6 @@ namespace ET
                     r2CRegister = (Center2C_DeleteAccountResponse)await session.Call(new C2Center_DeleteAccountRequest { Account = account, Password = password });
                 }
                 session.Dispose();
-
-                if (r2CRegister.Error == ErrorCore.ERR_AccountAlreadyRegister)
-                {
-                    Log.Info($"注册失败,账号已被注册: {account}");
-                    return r2CRegister.Error;
-                }
-
                 return ErrorCore.ERR_Success;
             }
             catch (Exception e)
