@@ -274,6 +274,38 @@ namespace ET
             }
         }
 
+        //移除账号
+        public static async ETTask<int> DeleteAccount(Scene zoneScene, bool outNet, VersionMode versionCode, string account, string password)
+        {
+            try
+            {
+                // 创建一个ETModel层的Session
+                Center2C_DeleteAccountResponse r2CRegister;
+                IPAddress[] xxc = Dns.GetHostEntry("weijinggame.weijinggame.com").AddressList;
+                //走的中心服
+                string address = outNet ? $"{xxc[0]}:{GetAccountCenterPort(versionCode)}" : $"127.0.0.1:{GetAccountCenterPort(versionCode)}";
+                Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
+                {
+                    r2CRegister = (Center2C_DeleteAccountResponse)await session.Call(new C2Center_DeleteAccountRequest { Account = account, Password = password });
+                }
+                session.Dispose();
+
+                if (r2CRegister.Error == ErrorCore.ERR_AccountAlreadyRegister)
+                {
+                    Log.Info($"注册失败,账号已被注册: {account}");
+                    return r2CRegister.Error;
+                }
+
+                return ErrorCore.ERR_Success;
+            }
+            catch (Exception e)
+            {
+                Log.Error(e);
+                return ErrorCore.ERR_Error;
+            }
+        }
+
+
         //注册账号
         public static async ETTask<int> Register(Scene zoneScene, bool outNet,  VersionMode versionCode, string account, string password)
         {

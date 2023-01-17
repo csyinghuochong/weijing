@@ -4233,15 +4233,15 @@ message M2C_UnitInfoResponse // IActorLocationResponse
 	repeated int64 Vs = 7;
 }
 
-//ResponseType A2C_DeleteRoleData
-message C2A_DeleteAccountRequest // IRequest
+//ResponseType Center2C_DeleteAccountResponse
+message C2Center_DeleteAccountRequest // IRequest
 {
 	int32 RpcId = 90;
 	string Account = 1;
 	string Password = 2;
 }
 
-message A2C_DeleteAccountResponse // IResponse
+message Center2C_DeleteAccountResponse // IResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;
