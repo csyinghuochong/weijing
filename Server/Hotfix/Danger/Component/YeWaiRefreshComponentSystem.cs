@@ -333,7 +333,7 @@ namespace ET
             }
             else
             {
-                if (monsterNumber >= GlobalValueConfigCategory.Instance.Get(59).Value2)
+                if (monsterNumber >= GlobalValueConfigCategory.Instance.Get(78).Value2)
                 {
                     return;
                 }
