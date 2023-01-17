@@ -38,7 +38,7 @@ namespace ET
 				self.ZhuCe.transform.Find("Btn_ZhuCe").gameObject.SetActive(GlobalHelp.IsEditorMode);
 
 				self.DeleteAccountBtn = rc.Get<GameObject>("DeleteAccountBtn");
-				//self.DeleteAccountBtn.SetActive(false);
+				self.DeleteAccountBtn.SetActive(false);
 				ButtonHelp.AddListenerEx(self.DeleteAccountBtn, () => { self.OnDeleteAccountBtn(); });
 
 #if UNITY_IPHONE || UNITY_IOS
@@ -51,6 +51,7 @@ namespace ET
 				if (self.IOSReview)
 				{
 #if UNITY_IPHONE || UNITY_IOS
+self.DeleteAccountBtn.SetActive(true);
 				self.AccountText.GetComponent<Text>().text = "注册账号";
 #endif
 				}
