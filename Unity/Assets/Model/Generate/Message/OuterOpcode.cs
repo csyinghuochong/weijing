@@ -491,7 +491,7 @@ namespace ET
 		 public const ushort M2C_ShareSucessResponse = 10488;
 		 public const ushort C2M_UnitInfoRequest = 10489;
 		 public const ushort M2C_UnitInfoResponse = 10490;
-		 public const ushort C2A_DeleteAccountRequest = 10491;
-		 public const ushort A2C_DeleteAccountResponse = 10492;
+		 public const ushort C2Center_DeleteAccountRequest = 10491;
+		 public const ushort Center2C_DeleteAccountResponse = 10492;
 	}
 }

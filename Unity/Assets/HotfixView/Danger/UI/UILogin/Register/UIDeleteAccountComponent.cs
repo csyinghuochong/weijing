@@ -65,9 +65,7 @@ namespace ET
                 return;
             }
 
-            C2A_DeleteAccountRequest request = new C2A_DeleteAccountRequest() {  Account = account, Password = password };
-            A2C_DeleteAccountResponse response = (A2C_DeleteAccountResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-                
+            await LoginHelper.DeleteAccount(self.ZoneScene(), GlobalHelp.IsOutNetMode, GlobalHelp.VersionMode, account, password); 
             UIHelper.Remove(self.ZoneScene(), UIType.UIDeleteAccount);
         }
 

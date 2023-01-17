@@ -8825,10 +8825,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(A2C_DeleteRoleData))]
-	[Message(OuterOpcode.C2A_DeleteAccountRequest)]
+	[ResponseType(nameof(Center2C_DeleteAccountResponse))]
+	[Message(OuterOpcode.C2Center_DeleteAccountRequest)]
 	[ProtoContract]
-	public partial class C2A_DeleteAccountRequest: Object, IRequest
+	public partial class C2Center_DeleteAccountRequest: Object, IRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -8841,9 +8841,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.A2C_DeleteAccountResponse)]
+	[Message(OuterOpcode.Center2C_DeleteAccountResponse)]
 	[ProtoContract]
-	public partial class A2C_DeleteAccountResponse: Object, IResponse
+	public partial class Center2C_DeleteAccountResponse: Object, IResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
