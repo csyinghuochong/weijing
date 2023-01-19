@@ -131,7 +131,13 @@ namespace libx
             baseURL = "http://39.96.194.143/weijing1/" + dlcPath + "/";
             baseURL = baseURL.EndsWith("/") ? baseURL : baseURL + "/";
 
-            transform.Find("Text_BigVersion").GetComponent<Text>().text = GameObject.Find("Global").GetComponent<Init>().BigVersion.ToString();
+            Init init = GameObject.Find("Global").GetComponent<Init>();
+#if UNITY_IPHONE
+            transform.Find("Text_BigVersion").GetComponent<Text>().text = init.BigVersionIOS.ToString();
+#else
+            transform.Find("Text_BigVersion").GetComponent<Text>().text = init.BigVersion.ToString();
+#endif
+
             UnityEngine.Debug.Log("baseURL  " +  baseURL);
 
             _downloader = gameObject.GetComponent<Downloader>();
@@ -847,11 +853,13 @@ namespace libx
 
                 HotVersion hotVersion1 = GetHotVersion();
                 int hotVersion = hotVersion1.Version;
-                string downloadUrl = "http://39.96.194.143/weijing1/apk/beta/weijing.apk"; 
+                string downloadUrl = "http://39.96.194.143/weijing1/apk/beta/weijing.apk";
 #if UNITY_IPHONE
                 downloadUrl = hotVersion1.IOS_URL;
+                 apkversion = init_cs.BigVersionIOS;
 #else
                 downloadUrl = hotVersion1.Apk_URL;
+                apkversion = init_cs.BigVersion;
 #endif
                 if (apkversion < hotVersion)
                 {
