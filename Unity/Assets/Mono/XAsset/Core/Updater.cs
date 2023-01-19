@@ -38,6 +38,7 @@ using UnityEngine.UI;
 public class HotVersion
 {
     public int Version;
+    public int VersionIOS;
     public string IOS_URL;
     public string Apk_URL;
     public int ClearData;
@@ -854,12 +855,16 @@ namespace libx
                 HotVersion hotVersion1 = GetHotVersion();
                 int hotVersion = hotVersion1.Version;
                 string downloadUrl = "http://39.96.194.143/weijing1/apk/beta/weijing.apk";
+
+
 #if UNITY_IPHONE
                 downloadUrl = hotVersion1.IOS_URL;
                  apkversion = init_cs.BigVersionIOS;
+                  hotVersion = hotVersion1.VersionIOS;
 #else
                 downloadUrl = hotVersion1.Apk_URL;
                 apkversion = init_cs.BigVersion;
+                hotVersion = hotVersion1.Version;
 #endif
                 if (apkversion < hotVersion)
                 {
