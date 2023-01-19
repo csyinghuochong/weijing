@@ -424,17 +424,7 @@ self.DeleteAccountBtn.SetActive(true);
 			{
 				return;
 			}
-			if (self.LoginType == LoginTypeEnum.WeixLogin.ToString() && !msg[1].Contains("wx"))
-			{
-				FloatTipManager.Instance.ShowFloatTip("请重新打开客户端!");
-				return;
-			}
-			if (self.LoginType == LoginTypeEnum.QQLogin.ToString() && !msg[1].Contains("qq"))
-			{
-				FloatTipManager.Instance.ShowFloatTip("请重新打开客户端!");
-				return;
-			}
-
+	
 			Log.ILog.Debug($"Login: {msg[1]} {self.LoginType}");
 			self.Account.GetComponent<InputField>().text = msg[1];
 			self.Password.GetComponent<InputField>().text = self.LoginType;
