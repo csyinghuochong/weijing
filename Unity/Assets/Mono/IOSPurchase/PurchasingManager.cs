@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Purchasing;
 using System;
 using ET;
+using System.Collections.Generic;
 
 public class PurchasingManager : MonoBehaviour, IStoreListener
 {
@@ -19,20 +20,15 @@ public class PurchasingManager : MonoBehaviour, IStoreListener
 
     private void Awake()
     {
-        InitProduct();
+        //InitProduct();
     }
 
-    //PurchasingManager()
-    //{
-    //    InitProduct();
-    //}
-
-
+ 
     /// <summary>
     /// 初始化商品
     /// 建议在游戏初始化完成的时候就去初始化商品
     /// </summary>
-    public void InitProduct()
+    public void InitProduct(string productlst)
     {
         if (IsInitialized()) return;
 
@@ -40,32 +36,25 @@ public class PurchasingManager : MonoBehaviour, IStoreListener
         var module = StandardPurchasingModule.Instance();
         ConfigurationBuilder builder = ConfigurationBuilder.Instance(module);
 
-        builder.AddProduct("6WJ", ProductType.Consumable);
-        builder.AddProduct("30WJ", ProductType.Consumable);
-        builder.AddProduct("50WJ", ProductType.Consumable);
-        builder.AddProduct("98WJ", ProductType.Consumable);
-        builder.AddProduct("198WJ", ProductType.Consumable);
-        builder.AddProduct("298WJ", ProductType.Consumable);
-        builder.AddProduct("488WJ", ProductType.Consumable);
-        builder.AddProduct("488SG", ProductType.Consumable);
-        builder.AddProduct("648WJ", ProductType.Consumable);
-
+        //builder.AddProduct("6WJ", ProductType.Consumable);
+        //builder.AddProduct("30WJ", ProductType.Consumable);
+        //builder.AddProduct("50WJ", ProductType.Consumable);
+        //builder.AddProduct("98WJ", ProductType.Consumable);
+        //builder.AddProduct("198WJ", ProductType.Consumable);
+        //builder.AddProduct("298WJ", ProductType.Consumable);
+        //builder.AddProduct("488WJ", ProductType.Consumable);
+        //builder.AddProduct("488SG", ProductType.Consumable);
+        //builder.AddProduct("648WJ", ProductType.Consumable);
+        string[] productList = productlst.Split('_');
+        for (int i = 0; i < productList.Length; i++)
+        {
+            builder.AddProduct(productList[i], ProductType.Consumable);
+        }
         UnityPurchasing.Initialize(this, builder);
     }
 
-    public void OnIOSPurchase(int rmb)
+    public void OnIOSPurchase(string product)
     {
-        string product = string.Empty;
-        if (rmb == 488)
-        {
-            product = $"{rmb}SG";
-        }
-        else
-        {
-            product = $"{rmb}WJ";
-        }
-        
-
         Purchase(product, PurchaseSucess, PurchaseFail);
     }
 

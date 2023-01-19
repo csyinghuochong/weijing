@@ -72,8 +72,35 @@ namespace ET
 
         public static void OnIOSPurchase(int rmb)
         {
-            GameObject.Find("Global").GetComponent<PurchasingManager>().OnIOSPurchase(rmb);
+            string product = string.Empty;
+            if (rmb == 488)
+            {
+                product = $"{rmb}SG";
+            }
+            else
+            {
+                product = $"{rmb}WJ";
+            }
+
+
+            GameObject.Find("Global").GetComponent<PurchasingManager>().OnIOSPurchase(product);
         }
+
+        public static void InitIOSPurchase(int rmb)
+        {
+            //builder.AddProduct("6WJ", ProductType.Consumable);
+            //builder.AddProduct("30WJ", ProductType.Consumable);
+            //builder.AddProduct("50WJ", ProductType.Consumable);
+            //builder.AddProduct("98WJ", ProductType.Consumable);
+            //builder.AddProduct("198WJ", ProductType.Consumable);
+            //builder.AddProduct("298WJ", ProductType.Consumable);
+            //builder.AddProduct("488WJ", ProductType.Consumable);
+            //builder.AddProduct("488SG", ProductType.Consumable);
+            //builder.AddProduct("648WJ", ProductType.Consumable);
+            string products = "6WJ_30WJ_50WJ_98WJ_198WJ_298WJ_488WJ_488SG_648WJ";
+            GameObject.Find("Global").GetComponent<PurchasingManager>().InitProduct(products);
+        }
+
 
         public static int GetVersion()
         {
