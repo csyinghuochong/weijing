@@ -648,10 +648,10 @@ extern void U3CLoadHotFixAssemblyU3Ed__4_System_Collections_IEnumerator_Reset_mB
 extern void U3CLoadHotFixAssemblyU3Ed__4_System_Collections_IEnumerator_get_Current_m4A51F0CE82DA3516A5BC4C4935722F9AF05E500B (void);
 // 0x0000013E System.Void PurchasingManager::Awake()
 extern void PurchasingManager_Awake_mACD85DC180E691FBF02BF7E2D92552429F795FD2 (void);
-// 0x0000013F System.Void PurchasingManager::InitProduct()
-extern void PurchasingManager_InitProduct_m66C4B4BEDFAF11CD803122A9D0F7080EA1BD52B0 (void);
-// 0x00000140 System.Void PurchasingManager::OnIOSPurchase(System.Int32)
-extern void PurchasingManager_OnIOSPurchase_mCE7FBD8845A885EDEE5CAD92CF54900E77F44909 (void);
+// 0x0000013F System.Void PurchasingManager::InitProduct(System.String)
+extern void PurchasingManager_InitProduct_mAFE472D01A798B5C11387108FE892420813EA82F (void);
+// 0x00000140 System.Void PurchasingManager::OnIOSPurchase(System.String)
+extern void PurchasingManager_OnIOSPurchase_m4CFE8BDFBDB147B33D5251BEFD08C9D62D3933E7 (void);
 // 0x00000141 System.Void PurchasingManager::PurchaseSucess(UnityEngine.Purchasing.Product)
 extern void PurchasingManager_PurchaseSucess_m4A0434638C6B1AD31197E8A852E32BCC06E662C4 (void);
 // 0x00000142 System.Void PurchasingManager::PurchaseFail(System.String)
@@ -8648,8 +8648,8 @@ extern void Init__ctor_mB2E83C132074BA8C2F2CDD17A603386F8E307D30 (void);
 extern void U3CU3Ec__cctor_m321F00343A3718FA65C10C3E3C9B1D9175704AC3 (void);
 // 0x00001116 System.Void ET.Init/<>c::.ctor()
 extern void U3CU3Ec__ctor_m1B4E9514D57B07637EEDE19CA0B970DA1D691773 (void);
-// 0x00001117 System.Void ET.Init/<>c::<Awake>b__28_0(System.Object,System.UnhandledExceptionEventArgs)
-extern void U3CU3Ec_U3CAwakeU3Eb__28_0_m8F273F32CF94DAD313115DFB6EFE1A1338C36B11 (void);
+// 0x00001117 System.Void ET.Init/<>c::<Awake>b__29_0(System.Object,System.UnhandledExceptionEventArgs)
+extern void U3CU3Ec_U3CAwakeU3Eb__29_0_m5C4F7131327F971353257184265B48D5A5F5E6CD (void);
 // 0x00001118 System.Void ET.UILayerScript::.ctor()
 extern void UILayerScript__ctor_mF5FB2B51A72E49FFFE387F8CBFA6E0028BF1AAF1 (void);
 static Il2CppMethodPointer s_methodPointers[4376] = 
@@ -8972,8 +8972,8 @@ static Il2CppMethodPointer s_methodPointers[4376] =
 	U3CLoadHotFixAssemblyU3Ed__4_System_Collections_IEnumerator_Reset_mB67512B97B229931E43B55700F18385A3E1429AD,
 	U3CLoadHotFixAssemblyU3Ed__4_System_Collections_IEnumerator_get_Current_m4A51F0CE82DA3516A5BC4C4935722F9AF05E500B,
 	PurchasingManager_Awake_mACD85DC180E691FBF02BF7E2D92552429F795FD2,
-	PurchasingManager_InitProduct_m66C4B4BEDFAF11CD803122A9D0F7080EA1BD52B0,
-	PurchasingManager_OnIOSPurchase_mCE7FBD8845A885EDEE5CAD92CF54900E77F44909,
+	PurchasingManager_InitProduct_mAFE472D01A798B5C11387108FE892420813EA82F,
+	PurchasingManager_OnIOSPurchase_m4CFE8BDFBDB147B33D5251BEFD08C9D62D3933E7,
 	PurchasingManager_PurchaseSucess_m4A0434638C6B1AD31197E8A852E32BCC06E662C4,
 	PurchasingManager_PurchaseFail_m349939512B57AB837B6DDC8001E3A50510671BA7,
 	PurchasingManager_Purchase_mA54F0022E1F9D3C07CCEF07B474A360F9257F3AF,
@@ -13028,7 +13028,7 @@ static Il2CppMethodPointer s_methodPointers[4376] =
 	Init__ctor_mB2E83C132074BA8C2F2CDD17A603386F8E307D30,
 	U3CU3Ec__cctor_m321F00343A3718FA65C10C3E3C9B1D9175704AC3,
 	U3CU3Ec__ctor_m1B4E9514D57B07637EEDE19CA0B970DA1D691773,
-	U3CU3Ec_U3CAwakeU3Eb__28_0_m8F273F32CF94DAD313115DFB6EFE1A1338C36B11,
+	U3CU3Ec_U3CAwakeU3Eb__29_0_m5C4F7131327F971353257184265B48D5A5F5E6CD,
 	UILayerScript__ctor_mF5FB2B51A72E49FFFE387F8CBFA6E0028BF1AAF1,
 };
 extern void U3CNoRunU3Ed__21_MoveNext_mDFD3098E063387D2794E21A714C9F16E18A0EB07_AdjustorThunk (void);
@@ -13390,8 +13390,8 @@ static const int32_t s_InvokerIndices[4376] =
 	9318,
 	9211,
 	9318,
-	9318,
-	7799,
+	7826,
+	7826,
 	7826,
 	7826,
 	2623,
