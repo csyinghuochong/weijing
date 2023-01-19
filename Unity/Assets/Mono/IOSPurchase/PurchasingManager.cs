@@ -44,10 +44,11 @@ public class PurchasingManager : MonoBehaviour, IStoreListener
         builder.AddProduct("30WJ", ProductType.Consumable);
         builder.AddProduct("50WJ", ProductType.Consumable);
         builder.AddProduct("98WJ", ProductType.Consumable);
-        //builder.AddProduct("198WJ", ProductType.Consumable);
-        //builder.AddProduct("298WJ", ProductType.Consumable);
+        builder.AddProduct("198WJ", ProductType.Consumable);
+        builder.AddProduct("298WJ", ProductType.Consumable);
+        builder.AddProduct("488WJ", ProductType.Consumable);
         builder.AddProduct("488SG", ProductType.Consumable);
-        //builder.AddProduct("648WJ", ProductType.Consumable);
+        builder.AddProduct("648WJ", ProductType.Consumable);
 
         UnityPurchasing.Initialize(this, builder);
     }

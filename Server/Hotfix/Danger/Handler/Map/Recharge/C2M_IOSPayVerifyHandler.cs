@@ -124,17 +124,20 @@ namespace ET
                 string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
                 string postReturnStr = await HttpHelper.GetIosPayParameter(verifyURL, sendStr);
 
+                Log.Debug($"IOS充值回调11 {postReturnStr}");
                 Root rt = JsonHelper.FromJson<Root>(postReturnStr);
-
+                Log.Debug($"IOS充值回调22 {rt}");
                 //交易失败，直接返回
                 if (rt.status != 0)
                 {
+                    Log.Debug($"IOS充值回调ERROR1 {rt.status}");
                     reply();
                     return;
                 }
 
                 if (rt.receipt.in_app == null || rt.receipt.in_app.Count == 0)
                 {
+                    Log.Debug($"IOS充值回调ERROR2 ");
                     reply();
                     return;
                 }
@@ -142,12 +145,14 @@ namespace ET
                 //封号处理 使用IAPFree工具
                 if (rt.receipt.in_app[0].product_id == "com.zeptolab.ctrbonus.superpower1")
                 {
+                    Log.Debug($"IOS充值回调ERROR3 ");
                     reply();
                     return;
                 }
 
                 if (!string.IsNullOrEmpty(rt.receipt.bundle_id) && rt.receipt.bundle_id != "com.guangying.weijing2")
                 {
+                    Log.Debug($"IOS充值回调ERROR4");
                     reply();
                     return;
                 }
@@ -157,8 +162,9 @@ namespace ET
 
                 string product_id = rt.receipt.in_app[0].product_id;
                 //198SG
-                if (!product_id.Contains("SG"))
+                if (!product_id.Contains("WJ") && !product_id.Contains("SG"))
                 {
+                    Log.Debug($"IOS充值回调ERROR5");
                     reply();
                     return;
                 }

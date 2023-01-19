@@ -25,12 +25,17 @@ namespace ET
             }
             else
             {
-                Log.Debug($"OnDoFangchenmi1  {request.IdCardNO}");
-                //1573651621924110336
-                string ai = accountInfo.Id + "_eeeeeeeeeeee";
+                string ai = accountInfo.Id + "_";
+                if (ai.Length < 32)
+                {
+                    for (int i = ai.Length; i < 32; i++)
+                    {
+                        ai += "a";
+                    }
+                }
                 result_check = FangChenMiHelper.OnDoFangchenmi(new
                 {
-                    ai = ai, // 1669902416,// TimeHelper.ServerNow() / 1000, //accountInfo.Id,
+                    ai = ai,
                     name = request.Name,
                     idNum = request.IdCardNO,
                 }, EType.Check);
