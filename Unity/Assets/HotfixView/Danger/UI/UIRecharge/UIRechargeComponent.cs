@@ -123,14 +123,6 @@ namespace ET
             }
             self.ChargetNumber = chargetNumber;
 
-#if UNITY_IPHONE && !UNITY_EDITOR
-              if (chargetNumber == 198 || chargetNumber == 298 || chargetNumber == 648)
-            {
-                FloatTipManager.Instance.ShowFloatTip("额度暂时不可用，请选择98或者488的额度！");
-                return;
-            }
-#endif
-
 #if UNITY_IPHONE
             GlobalHelp.OnIOSPurchase(chargetNumber);
 #else
