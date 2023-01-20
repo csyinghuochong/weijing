@@ -72,7 +72,7 @@ namespace ET
                 unit.GetComponent<UserInfoComponent>().OnMakeItem(equipMakeConfig.Id);
             }
             float rate = RandomHelper.RandFloat01();
-            if (equipMakeConfig.MakeSuccesPro > rate)
+            if (equipMakeConfig.MakeSuccesPro >= rate)
             {
                 Log.Debug("制造成功！");
                 List<RewardItem> rewardItems = new List<RewardItem>();

@@ -54,7 +54,8 @@ namespace ET
             string result = "";
             try
             {
-                var httpClient = new HttpClient();
+                HttpClient httpClient = new HttpClient();
+                httpClient.Timeout = TimeSpan.FromMinutes(100);
                 HttpContent httpContent = new StringContent(postData);
                 httpContent.Headers.ContentType = new MediaTypeHeaderValue("application/x-www-form-urlencoded");
                 HttpResponseMessage response = await httpClient.PostAsync(url, httpContent);
