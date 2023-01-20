@@ -17,6 +17,11 @@ namespace ET
 			long roleId = args.ZoneScene.GetComponent<AccountInfoComponent>().CurrentRoleId;
 			args.ZoneScene.GetComponent<FangChenMiComponent>().OnLogin().Coroutine();
 			GameObject.Find("Global").GetComponent<Init>().OpenBuglyAgent(roleId);
+
+#if UNITY_IPHONE
+			GlobalHelp.InitIOSPurchase();
+#endif
+
 #if UNITY_ANDROID
 			TapSDKHelper.Init();
 			TapSDKHelper.SetUser(roleId.ToString());

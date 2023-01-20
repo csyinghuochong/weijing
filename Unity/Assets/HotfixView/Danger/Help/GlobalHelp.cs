@@ -86,7 +86,7 @@ namespace ET
             GameObject.Find("Global").GetComponent<PurchasingManager>().OnIOSPurchase(product);
         }
 
-        public static void InitIOSPurchase(int rmb)
+        public static void InitIOSPurchase( )
         {
             //builder.AddProduct("6WJ", ProductType.Consumable);
             //builder.AddProduct("30WJ", ProductType.Consumable);
