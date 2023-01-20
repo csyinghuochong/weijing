@@ -120,7 +120,7 @@ namespace ET
             rolePetInfo.ZiZhi_ChengZhang = self.RandomNumberFloatKeep2((float)petConfig.ZiZhi_ChengZhang_Min, (float)petConfig.ZiZhi_ChengZhang_Max);
 
             //表示出生创建
-            if (XiLianType == 1) 
+            if (XiLianType == 1)    
             {
                 int minStart = petConfig.InitStartNum[0];
                 int maxStart = petConfig.InitStartNum[1];
@@ -157,7 +157,7 @@ namespace ET
                 for (int i = 0; i < randomSkillList.Length; i++)
                 {
                     int skillID = int.Parse(randomSkillList[i]);
-                    if (RandomHelper.RandFloat() <= 0.25f)
+                    if (RandomHelper.RandFloat() <= 0.2f)
                     {
                         rolePetInfo.PetSkill.Add(skillID);
                     }
