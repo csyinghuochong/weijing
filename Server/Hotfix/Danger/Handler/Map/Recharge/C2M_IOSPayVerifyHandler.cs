@@ -102,18 +102,22 @@ namespace ET
         {
 
             //发送支付数据做验证
+            Log.Debug($"IOS充值回调,收到支付请求消息:");
             string payLoad = request.payMessage;
+            Log.Debug($"IOS充值回调,收到支付请求消息:" + "payLoad:" + payLoad + "id:" + unit.Id);
             if (unit.GetComponent<RechargeComponent>().PayLoadList.Contains(payLoad))
             {
+                Log.Debug($"IOS充值回调错误,直接返回" + "id:" + unit.Id);
                 reply();
                 return;
             }
-
+            Log.Debug($"IOS充值回调执行 " + "id:" + unit.Id);
             //携程锁
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Recharge, unit.Id))
             {
+                Log.Debug($"IOS充值回调执行00 " + "id:" + unit.Id);
                 string verifyURL = string.Empty;
-                if (ComHelp.IsInnerNet() || unit.Id == 1636544958309662720)
+                if (ComHelp.IsInnerNet() || unit.Id == 1636544958309662720||unit.Id == 1655723533625524224)
                 {
                     verifyURL = "https://sandbox.itunes.apple.com/verifyReceipt";
                 }
