@@ -334,8 +334,10 @@ namespace ET
             }
             else
             {
-                if (monsterNumber >= GlobalValueConfigCategory.Instance.Get(78).Value2)
+                //if (monsterNumber >= GlobalValueConfigCategory.Instance.Get(78).Value2)
+                if (monsterNumber >= 100)
                 {
+                    Log.Debug("未刷新怪物:" + monsterConfig.MonsterName + "monsterNumber : " + monsterNumber);
                     return;
                 }
             }
