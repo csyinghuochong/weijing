@@ -118,6 +118,16 @@ namespace ET
                     {
                         costNumber = 0;
                     }
+                    if (itemCof.ItemSubType == 112)
+                    {
+                        int openDay = DBHelper.GetOpenServerDay(unit.DomainZone());
+                        if (openDay <= 1)
+                        {
+                            response.Error = ErrorCore.ERR_ItemNoUseTime;
+                            reply();
+                            return;
+                        }
+                    }
 
                     if (bagIsFull)
                     {
