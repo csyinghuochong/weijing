@@ -275,12 +275,26 @@ namespace ET
             return (time2 - time1) * 1000;
         }
 
+        public static void Baozangzhixiufu(this YeWaiRefreshComponent self)
+        {
+            self.RefreshMonsters.Clear();
+
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(mapComponent.SceneId);
+
+            FubenHelp.CreateMonsterList(self.DomainScene(), sceneConfig.CreateMonster);
+            FubenHelp.CreateMonsterList(self.DomainScene(), sceneConfig.CreateMonsterPosi);
+        }
+
         public static void OnTimer(this YeWaiRefreshComponent self)
         {
             long time = TimeHelper.ServerNow();
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+
             for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
             {
                 RefreshMonster refreshMonster = self.RefreshMonsters[i];
+             
                 if (time < refreshMonster.NextTime)
                 {
                     continue;
@@ -307,6 +321,8 @@ namespace ET
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(refreshMonster.MonsterId);
             Vector3 form = new Vector3(refreshMonster.PositionX, refreshMonster.PositionY, refreshMonster.PositionZ);
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+
+
             if (mapComponent.SceneTypeEnum == SceneTypeEnum.MiJing && monsterConfig.MonsterType == MonsterTypeEnum.Boss)
             {
                 self.DomainScene().GetComponent<MiJingComponent>().BossId = refreshMonster.MonsterId;
