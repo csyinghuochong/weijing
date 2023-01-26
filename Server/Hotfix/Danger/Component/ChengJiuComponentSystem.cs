@@ -32,6 +32,10 @@ namespace ET
             {
                 fubenDifficulty = (int)self.GetParent<Unit>().DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
             }
+            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+            {
+                fubenDifficulty = (int)self.GetParent<Unit>().DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
+            }
 
             self.TriggerEvent(ChengJiuTargetEnum.KillIDMonster_1, unitconfigId, 1);
             self.TriggerEvent(ChengJiuTargetEnum.KillTotalMonster_2, 0, 1);
@@ -39,15 +43,15 @@ namespace ET
             if (isBoss)
             {
                 self.TriggerEvent(ChengJiuTargetEnum.KillTotalBoss_3, 0, 1);
-                self.TriggerEvent(ChengJiuTargetEnum.KillNormalBoss_4, 0, 1);
+                self.TriggerEvent(ChengJiuTargetEnum.KillNormalBoss_4, unitconfigId, 1);
             }
             if (fubenDifficulty >= (int)FubenDifficulty.TiaoZhan && isBoss) //挑战
             {
-                self.TriggerEvent(ChengJiuTargetEnum.KillChallengeBoss_5, 0, 1);
+                self.TriggerEvent(ChengJiuTargetEnum.KillChallengeBoss_5, unitconfigId, 1);
             }
             if (fubenDifficulty == (int)FubenDifficulty.DiYu && isBoss) //地狱
             {
-                self.TriggerEvent(ChengJiuTargetEnum.KillInfernalBoss_6, 0, 1);
+                self.TriggerEvent(ChengJiuTargetEnum.KillInfernalBoss_6, unitconfigId, 1);
             }
         }
 
