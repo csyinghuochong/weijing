@@ -126,13 +126,18 @@ namespace ET
                     return;
                 }
 
+           
+                //此处存储所有的支付返回数据（因为返回数据是用aaa = bbb 的结构 所以用此方法进行解析,直接调用Key即可获取对应的Value）
+                Dictionary<string, string> aliPayResultDic = self.StringToDictionary(pay_notice);
+                if (aliPayResultDic == null)
+                {
+                    return;
+                }
+
                 //设置支付结果打印颜色并输出结果
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Log.Debug("支付宝支付结果来了：" + pay_notice);
                 Console.ForegroundColor = ConsoleColor.White;
-
-                //此处存储所有的支付返回数据（因为返回数据是用aaa = bbb 的结构 所以用此方法进行解析,直接调用Key即可获取对应的Value）
-                Dictionary<string, string> aliPayResultDic = self.StringToDictionary(pay_notice);
 
                 //根据加密算法 验签 API 
                 bool result = AlipaySignature.RSACheckV1(aliPayResultDic, self.AliPay_Public_Key, "UTF-8", "RSA2", false);
