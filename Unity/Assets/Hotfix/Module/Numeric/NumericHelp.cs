@@ -83,7 +83,7 @@ namespace ET
         public static Dictionary<int,float> ZhanLi_Act = new Dictionary<int, float>()
         {
             { (int)NumericType.Now_MaxAct, 1 },
-            { (int)NumericType.Now_Mage, 1 },
+            { (int)NumericType.Now_Mage, 0.5f },
             { (int)NumericType.Now_ZhongJi, 1 },
             { (int)NumericType.Now_ZhenShi, 1 },    //真实伤害
             { (int)NumericType.Now_HuShiDef, 1 },
@@ -169,22 +169,17 @@ namespace ET
             { (int)NumericType.Now_MageDodgePro, 0.5f },
             { (int)NumericType.Now_FuHuoPro, 0.5f },
             { (int)NumericType.Now_ActDodgePro, 0.5f },
-            
-
-
-
-
 
         };
 
-        //攻击部分
+        //血量部分
         public static Dictionary<int, float> ZhanLi_Hp = new Dictionary<int, float>()
         {
-            { (int)NumericType.Now_MaxHp, 1 },
+            { (int)NumericType.Now_MaxHp, 0.75f },
             { (int)NumericType.Now_HuiXue, 5 },
         };
 
-        //攻击部分
+        //血量部分
         public static Dictionary<int, float> ZhanLi_HpPro = new Dictionary<int, float>()
         {
 

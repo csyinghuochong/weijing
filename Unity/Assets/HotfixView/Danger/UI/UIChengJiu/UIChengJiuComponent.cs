@@ -8,7 +8,8 @@ namespace ET
     { 
         Reward = 0,
         ChengJiu = 1,
-        Number = 2,
+        Spirit = 2,
+        Number = 3,
     }
 
     public class UIChengJiuComponent : Entity, IAwake, IDestroy
@@ -37,9 +38,11 @@ namespace ET
             pageViewComponent.UISubViewType = new Type[(int)ChengJiuPageEnum.Number];
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.Reward] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuReward");
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.ChengJiu] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuShow");
+            pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.Spirit] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UISpiritShow");
 
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.Reward] = typeof(UIChengJiuRewardComponent);
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.ChengJiu] = typeof(UIChengJiuShowComponent);
+            pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.Spirit] = typeof(UISpiritShowComponent);
             self.UIPageView = pageViewComponent;
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");

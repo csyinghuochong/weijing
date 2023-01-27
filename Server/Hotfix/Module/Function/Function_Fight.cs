@@ -277,7 +277,6 @@ namespace ET
                 }
             }
 
-
             //物理闪避
             if (skillconfig.DamgeType == 1)
             {
@@ -1377,7 +1376,7 @@ namespace ET
             //体质换算
             if (Constitution_value > 0)
             {
-                AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, Constitution_value * 80, UpdateProDicList);
+                AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, Constitution_value * 100, UpdateProDicList);
                 //AddUpdateProDicList((int)NumericType.Base_ResLv_Base, Constitution_value * 5, UpdateProDicList);
             }
 
@@ -1393,7 +1392,7 @@ namespace ET
             long skillAddLv = 0;
 
             //属性点加成
-            int aaa = numericComponent.GetAsInt(NumericType.Now_Power);
+            //int aaa = numericComponent.GetAsInt(NumericType.Now_Power);
             criLv = criLv + (PointLiLiang + Power_value) * 5;
             resLv = resLv + (PointTiZhi + Constitution_value) * 5;
             dodgeLv = dodgeLv + (PointNaiLi + Stamina_value) * 5;

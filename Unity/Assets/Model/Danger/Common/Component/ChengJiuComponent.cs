@@ -12,6 +12,15 @@ namespace ET
         Number = 4,
     }
 
+    public enum SpiritTypeEnum : int
+    {
+        None = 0,
+        GuanKa = 1,
+        TanSuo = 2,
+        ShouJi = 3,
+        Number = 4,
+    }
+
     //1.击杀指定怪物ID的数量
     //2.击杀任意怪物数量
     //3.击杀任意BOSS
