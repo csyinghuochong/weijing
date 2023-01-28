@@ -72,8 +72,8 @@ namespace ET
                     serverItems_1.Add(new ServerItem() { ServerId = 10, ServerIp = "127.0.0.1:20385", ServerName = "先锋六区", ServerOpenTime = 1672398000000, Show = 1 });
                     serverItems_1.Add(new ServerItem() { ServerId = 11, ServerIp = "127.0.0.1:20395", ServerName = "先锋七区", ServerOpenTime = 1673002800000, Show = 1 });
                     serverItems_1.Add(new ServerItem() { ServerId = 12, ServerIp = "127.0.0.1:20405", ServerName = "兔年大吉", ServerOpenTime = 1674212400000, Show = 1 });
-
-                    serverItems_1.Add(new ServerItem() { ServerId = 13, ServerIp = "127.0.0.1:20415", ServerName = "先锋九区", ServerOpenTime = 0, Show = 0 });
+                    serverItems_1.Add(new ServerItem() { ServerId = 13, ServerIp = "127.0.0.1:20415", ServerName = "玉兔新春", ServerOpenTime = 1674903600000, Show = 1 });
+                    
                     serverItems_1.Add(new ServerItem() { ServerId = 14, ServerIp = "127.0.0.1:20425", ServerName = "先锋十区", ServerOpenTime = 0, Show = 0 });
                 }
             }
@@ -97,8 +97,8 @@ namespace ET
                     serverItems_1.Add(new ServerItem() { ServerId = 10, ServerIp = "39.96.194.143:20385", ServerName = "先锋六区", ServerOpenTime = 1672398000000, Show = 1 });
                     serverItems_1.Add(new ServerItem() { ServerId = 11, ServerIp = "39.96.194.143:20395", ServerName = "先锋七区", ServerOpenTime = 1673002800000, Show = 1 });
                     serverItems_1.Add(new ServerItem() { ServerId = 12, ServerIp = "39.96.194.143:20405", ServerName = "兔年大吉", ServerOpenTime = 1674212400000, Show = 1 });
-
-                    serverItems_1.Add(new ServerItem() { ServerId = 13, ServerIp = "39.96.194.143:20415", ServerName = "先锋九区", ServerOpenTime = 0, Show = 0 });
+                    serverItems_1.Add(new ServerItem() { ServerId = 13, ServerIp = "39.96.194.143:20415", ServerName = "玉兔新春", ServerOpenTime = 1674903600000, Show = 1 });
+                    
                     serverItems_1.Add(new ServerItem() { ServerId = 14, ServerIp = "39.96.194.143:20425", ServerName = "先锋十区", ServerOpenTime = 0, Show = 0 });
                 }
             }
