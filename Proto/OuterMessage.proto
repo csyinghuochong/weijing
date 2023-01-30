@@ -2730,6 +2730,7 @@ message ZhanQuReceiveNumber
 {
 	int32 ActivityId = 1;
 	int32 ReceiveNum = 2;
+	repeated int64 ReceiveUnitIds = 3; 
 }
 
 message TokenRecvive

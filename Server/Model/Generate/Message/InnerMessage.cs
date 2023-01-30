@@ -1120,6 +1120,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int ActivityId { get; set; }
 
+		[ProtoMember(3)]
+		public long UnitId { get; set; }
+
 	}
 
 	[Message(InnerOpcode.A2M_ZhanQuReceiveResponse)]

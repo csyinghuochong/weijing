@@ -29,20 +29,34 @@ namespace ET
                 return;
             }
 
-            if (receiveNum == 0)
+            ZhanQuReceiveNumber zhanQuReceive = null;
+            for (int i = 0; i < zhanQuReceiveNumbers.Count; i++)
             {
-                zhanQuReceiveNumbers.Add(new ZhanQuReceiveNumber() { ActivityId = request.ActivityId, ReceiveNum = 1 });
-            }
-            else
-            {
-                for (int i = 0; i < zhanQuReceiveNumbers.Count; i++)
+                if (zhanQuReceiveNumbers[i].ActivityId != request.ActivityId)
                 {
-                    if (zhanQuReceiveNumbers[i].ActivityId == request.ActivityId)
-                    {
-                        zhanQuReceiveNumbers[i].ReceiveNum++;
-                    }
+                    continue;
                 }
+                if (zhanQuReceiveNumbers[i].ReceiveUnitIds.Contains(request.UnitId))
+                {
+                    response.Error = ErrorCore.ERR_AlreadyReceived;
+                    reply();
+                }
+                zhanQuReceive = zhanQuReceiveNumbers[i];
+                zhanQuReceiveNumbers[i].ReceiveNum++;
+                zhanQuReceiveNumbers[i].ReceiveUnitIds.Add(request.UnitId);
+                break;
             }
+            if (zhanQuReceive!=null)
+            {
+                reply();
+                return;
+            }
+
+            ZhanQuReceiveNumber zhanQuReceiveNumber = new ZhanQuReceiveNumber();
+            zhanQuReceiveNumber.ActivityId = request.ActivityId;
+            zhanQuReceiveNumber.ReceiveNum = 1;
+            zhanQuReceiveNumber.ReceiveUnitIds.Add(request.UnitId);
+            zhanQuReceiveNumbers.Add(zhanQuReceiveNumber);
             reply();
             await ETTask.CompletedTask;
         }

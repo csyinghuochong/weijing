@@ -528,6 +528,7 @@ message M2A_ZhanQuReceiveRequest // IActorRequest
     int64 ActorId = 93;
     int32 ActivityType = 1;		//活动类型
     int32 ActivityId = 2;		//活动ID
+    int64 UnitId = 3;
 }
 
 message A2M_ZhanQuReceiveResponse // IActorResponse

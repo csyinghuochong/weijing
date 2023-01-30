@@ -42,7 +42,8 @@ namespace ET
                             (paimaiServerId, new M2A_ZhanQuReceiveRequest()
                             {
                                 ActivityId = request.ActivityId,
-                                ActivityType = request.ActivityType
+                                ActivityType = request.ActivityType,
+                                UnitId = unit.Id,   
                             });
                         if (r_GameStatusResponse.Error != ErrorCore.ERR_Success)
                         {

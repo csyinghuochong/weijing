@@ -5760,6 +5760,9 @@ namespace ET
 		[ProtoMember(2)]
 		public int ReceiveNum { get; set; }
 
+		[ProtoMember(3)]
+		public List<long> ReceiveUnitIds = new List<long>();
+
 	}
 
 	[Message(OuterOpcode.TokenRecvive)]
