@@ -69,7 +69,7 @@ namespace ET
         public List<UI> PetUIList = new List<UI>();
         public List<UICommonSkillItemComponent> PetSkillUIList = new List<UICommonSkillItemComponent>();
         public List<UIPetSkinIconComponent> PetSkinList = new List<UIPetSkinIconComponent>();
-        public UIPageButtonComponent uIPageButton;
+        public UIPageButtonComponent UIPageButton;
 
         public int PetSkinId;
     }
@@ -117,13 +117,13 @@ namespace ET
             self.PropertyShowText = rc.Get<GameObject>("PropertyShowText");
 
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
-            UI PageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", BtnItemTypeSet);
+            UI PageButton = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
             UIPageButtonComponent uIPageButtonComponent = PageButton.AddComponent<UIPageButtonComponent>();
             uIPageButtonComponent.SetClickHandler((int page) => {
                 self.OnClickPageButton(page);
             });
             uIPageButtonComponent.OnSelectIndex(0);
-            self.uIPageButton = uIPageButtonComponent;
+            self.UIPageButton = uIPageButtonComponent;
 
             self.ButtonRName = rc.Get<GameObject>("ButtonRName");
             ButtonHelp.AddListenerEx( self.ButtonRName, ()=> {  } );
@@ -451,7 +451,7 @@ namespace ET
         {
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetListItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-            List<RolePetInfo> rolePetInfos = self.ZoneScene().GetComponent<PetComponent>().RolePetInfos;
+            List<RolePetInfo> rolePetInfos = self.PetComponent.RolePetInfos;
             
             List<RolePetInfo> showList = new List<RolePetInfo>();
             showList.AddRange(rolePetInfos);
@@ -507,15 +507,21 @@ namespace ET
 
         public static void OnClickPetHandler(this UIPetListComponent self, long petId)
         {
+            if (self.PetComponent.GetPetInfoByID(petId) == null)
+            {
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                Log.Error($"petinfo==null:  {unit.Id} {petId}");
+                return;
+            }
+
             self.PetSkinId = 0;
             self.LastSelectItem = self.PetComponent.GetPetInfoByID(petId);
-            self.uIPageButton.OnSelectIndex(0);
+            self.UIPageButton.OnSelectIndex(0);
             self.OnChangeNode(1);
             self.OnUpdatePetInfo(self.LastSelectItem);
             self.UpdatePetModel(self.LastSelectItem);
             self.UpdatePetSelected(self.LastSelectItem);
             self.UpdatePetHeXin(self.LastSelectItem);
-            //self.OnButtonPetHeXinItem(0);
         }
 
         public static void UpdatePetHeXin(this UIPetListComponent self, RolePetInfo rolePetItem)
