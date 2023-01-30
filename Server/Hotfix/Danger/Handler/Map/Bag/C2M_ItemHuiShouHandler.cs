@@ -69,6 +69,7 @@ namespace ET
                 bagComponent.OnCostItemData(bagsList, ItemLocType.ItemLocBag);
                 bagComponent.OnAddItemData(huishouGet.Values.ToList(), $"{ItemGetWay.HuiShou}_{TimeHelper.ServerNow()}");
                 unit.GetComponent<TaskComponent>().OnItemHuiShow();
+                unit.GetComponent<ChengJiuComponent>().OnItemHuiShow(bagsList.Count);
 
                 reply();
                 await ETTask.CompletedTask;

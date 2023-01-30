@@ -8,7 +8,7 @@ namespace ET
     {
         public override void Awake(ChengJiuComponent self)
         {
-            self.TriggerEvent(ChengJiuTargetEnum.PlayerLevel, 0, self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv);
+            self.TriggerEvent(ChengJiuTargetEnum.PlayerLevel_205, 0, self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv);
         }
     }
 
@@ -74,48 +74,63 @@ namespace ET
 
         public static void OnChouKaTen(this ChengJiuComponent self)
         {
-            self.TriggerEvent(ChengJiuTargetEnum.TotalChouKaTen, 0, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.TotalChouKaTen_202, 0, 1);
         }
 
         public static void OnEquipXiLian(this ChengJiuComponent self, int times)
         {
-            self.TriggerEvent(ChengJiuTargetEnum.TotalEquipXiLian, 0, times);
+            self.TriggerEvent(ChengJiuTargetEnum.TotalEquipXiLian_203, 0, times);
         }
 
         public static void OnRevive(this ChengJiuComponent self)
         {
-            self.TriggerEvent(ChengJiuTargetEnum.TotalRevive, 0, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.TotalRevive_204, 0, 1);
         }
 
         public static void OnUpdateLevel(this ChengJiuComponent self, int lv)
         {
-            self.TriggerEvent(ChengJiuTargetEnum.PlayerLevel, 0, lv);
+            self.TriggerEvent(ChengJiuTargetEnum.PlayerLevel_205, 0, lv);
         }
 
         public static void OnGetGold(this ChengJiuComponent self, int coin)
         {
             if (coin < 0)
                 return;
-            self.TriggerEvent(ChengJiuTargetEnum.TotalCoin_201,0, coin);
+            self.TriggerEvent(ChengJiuTargetEnum.TotalCoinGet_201,0, coin);
         }
 
         public static void OnGetPet(this ChengJiuComponent self, RolePetInfo rolePetInfo)
         {
-            self.TriggerEvent(ChengJiuTargetEnum.PetIdNumber, rolePetInfo.ConfigId, 1);
-            self.TriggerEvent(ChengJiuTargetEnum.TotalPetNumber, 0, 1);
-            self.TriggerEvent(ChengJiuTargetEnum.PetNSkill, rolePetInfo.PetSkill.Count, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.PetIdNumber_301, rolePetInfo.ConfigId, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.TotalPetNumber_302, 0, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.PetNSkill_305, rolePetInfo.PetSkill.Count, 1);
         }
 
         public static void OnPetHeCheng(this ChengJiuComponent self, RolePetInfo rolePetInfo)
         {
-            self.TriggerEvent(ChengJiuTargetEnum.TotalPetHeCheng, 0, 1);
-            self.TriggerEvent(ChengJiuTargetEnum.PetNSkill, rolePetInfo.PetSkill.Count, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.TotalPetHeCheng_303, 0, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.PetNSkill_305, rolePetInfo.PetSkill.Count, 1);
         }
 
         public static void OnPetXiLian(this ChengJiuComponent self, RolePetInfo rolePetInfo)
         {
-            self.TriggerEvent(ChengJiuTargetEnum.TotalPetXiLian, 0, 1);
-            self.TriggerEvent(ChengJiuTargetEnum.PetNSkill, rolePetInfo.PetSkill.Count, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.TotalPetXiLian_304, 0, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.PetNSkill_305, rolePetInfo.PetSkill.Count, 1);
+        }
+
+        public static void OnItemHuiShow(this ChengJiuComponent self, int itemNumber)
+        {
+            self.TriggerEvent(ChengJiuTargetEnum.TotalEquipHuiShou_206, 0, itemNumber);
+        }
+
+        public static void OnCostDiamond(this ChengJiuComponent self, long costNumber)
+        {
+            self.TriggerEvent(ChengJiuTargetEnum.TotalDiamondCost_207, 0, (int)(costNumber * -1));
+        }
+
+        public static void OnSkillShuLianDu(this ChengJiuComponent self, int shuLianDu)
+        {
+            self.TriggerEvent(ChengJiuTargetEnum.SkillShuLianDu_208, 0, shuLianDu);
         }
 
         public static int ReceivedReward(this ChengJiuComponent self, int rewardId)
@@ -144,7 +159,9 @@ namespace ET
             List<int> chengjiuList = null;
             ChengJiuHelper.Instance.ChengJiuTargetData.TryGetValue(chengJiuTargetInt, out chengjiuList);
             if (chengjiuList == null)
+            {
                 return;
+            }
 
             for (int i = 0;i < chengjiuList.Count;i ++)
             {
@@ -183,7 +200,8 @@ namespace ET
                 {
                     continue;
                 }
-                if (chengJiuTarget == ChengJiuTargetEnum.PlayerLevel)
+                if (chengJiuTarget == ChengJiuTargetEnum.PlayerLevel_205 
+                 || chengJiuTarget == ChengJiuTargetEnum.SkillShuLianDu_208)
                 {
                     chengJiuInfo.ChengJiuProgess = target_value;
                 }

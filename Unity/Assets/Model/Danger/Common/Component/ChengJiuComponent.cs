@@ -38,6 +38,9 @@ namespace ET
     //203 累计装备洗练
     //204 累计复活
     //205 玩家等级
+    //206 累计回收装备(未添加)
+    //207 累计消耗钻石(未添加)
+    //208 生活技能熟练度达到X点(未添加)
     //301 获取ID宠物
     //302 累计宠物总数量
     //303 累计合成宠物
@@ -59,16 +62,19 @@ namespace ET
         PassInfernalFubenID_13 = 13,
         PerfectPassInfernalFubenID_14 = 14,
 
-        TotalCoin_201 = 201,
-        TotalChouKaTen = 202,
-        TotalEquipXiLian = 203,
-        TotalRevive = 204,
-        PlayerLevel = 205,
-        PetIdNumber = 301,
-        TotalPetNumber = 302,
-        TotalPetHeCheng = 303,
-        TotalPetXiLian = 304,
-        PetNSkill = 305,
+        TotalCoinGet_201 = 201,
+        TotalChouKaTen_202 = 202,
+        TotalEquipXiLian_203 = 203,
+        TotalRevive_204 = 204,
+        PlayerLevel_205 = 205,
+        TotalEquipHuiShou_206 = 206,
+        TotalDiamondCost_207 = 207,
+        SkillShuLianDu_208 = 208,
+        PetIdNumber_301 = 301,
+        TotalPetNumber_302 = 302,
+        TotalPetHeCheng_303 = 303,
+        TotalPetXiLian_304 = 304,
+        PetNSkill_305 = 305,
     }
 
     public class ChengJiuComponent : Entity, IAwake, ITransfer, IUnitCache

@@ -106,6 +106,7 @@ namespace ET
                 curShuLian += addShuLian;
                 curShuLian = Math.Min(ComHelp.MaxShuLianDu(), curShuLian);
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.MakeShuLianDu, curShuLian);
+                unit.GetComponent<ChengJiuComponent>().OnSkillShuLianDu(curShuLian);
             }
             
             reply();

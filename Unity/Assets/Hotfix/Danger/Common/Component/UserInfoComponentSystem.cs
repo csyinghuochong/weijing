@@ -299,9 +299,14 @@ namespace ET
                     saveValue = self.UserInfo.RongYu.ToString();
                     break;
                 case UserDataType.Diamond:
-                    self.UserInfo.Diamond += long.Parse(value);
+                    long addDiamond = long.Parse(value);
+                    self.UserInfo.Diamond += addDiamond;
                     self.UserInfo.Diamond = Math.Max(self.UserInfo.Diamond, 0);
                     saveValue = self.UserInfo.Diamond.ToString();
+                    if (addDiamond < 0)
+                    {
+                        unit.GetComponent<ChengJiuComponent>().OnCostDiamond(addDiamond);
+                    }
                     break;
                 case UserDataType.Occ:
                     break;
