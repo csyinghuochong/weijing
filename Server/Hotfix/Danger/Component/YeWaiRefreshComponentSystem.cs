@@ -303,6 +303,11 @@ namespace ET
                 if (refreshMonster.Interval == -1)
                 {
                     self.RefreshMonsters.RemoveAt(i);
+
+                    if (mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
+                    {
+                        Log.Debug($" self.RefreshMonsters.RemoveAt : {i}");
+                    }
                 }
                 else
                 {
@@ -350,10 +355,8 @@ namespace ET
             }
             else
             {
-                //if (monsterNumber >= GlobalValueConfigCategory.Instance.Get(78).Value2)
-                if (monsterNumber >= 100)
+                if (monsterNumber >= GlobalValueConfigCategory.Instance.Get(78).Value2)
                 {
-                    Log.Debug("未刷新怪物:" + monsterConfig.MonsterName + "monsterNumber : " + monsterNumber);
                     return;
                 }
             }

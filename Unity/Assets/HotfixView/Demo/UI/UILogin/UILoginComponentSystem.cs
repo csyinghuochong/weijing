@@ -13,12 +13,6 @@ namespace ET
 		{
 			try
 			{
-				string path = "beta";
-				if (GlobalHelp.IsBanHaoMode)
-				{
-					path = "banhao";
-				}
-				
 				Application.targetFrameRate = 30;
 				Application.runInBackground = true;
 				libx.Assets.MAX_BUNDLES_PERFRAME = 32;
