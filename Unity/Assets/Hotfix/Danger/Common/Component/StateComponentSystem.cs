@@ -174,6 +174,7 @@ namespace ET
                 self.StateTypeRemove(StateTypeEnum.Dizziness);
                 self.StateTypeRemove(StateTypeEnum.Silence);
                 self.StateTypeRemove(StateTypeEnum.Shackle);
+                self.StateTypeRemove(StateTypeEnum.NetWait);
             }
         }
 

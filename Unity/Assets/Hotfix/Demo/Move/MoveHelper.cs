@@ -8,7 +8,7 @@ namespace ET
         public static C2M_PathfindingResult c2M_PathfindingResult = new C2M_PathfindingResult();
 
         /// <summary>
-        /// 猪脚移动
+        /// 主角移动
         /// </summary>
         /// <param name="unit"></param>
         /// <param name="targetPos"></param>
