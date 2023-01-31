@@ -275,7 +275,8 @@ namespace ET
                 Log.Debug($"SkillPassiveComponent: {skillIfo.SkillId}");
                 return;
             }
-            if (unit.GetComponent<SkillManagerComponent>().IsCanUseSkill(skillIfo.SkillId) == ErrorCore.ERR_Success)
+            SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
+            if (skillManagerComponent.IsCanUseSkill(skillIfo.SkillId) == ErrorCore.ERR_Success)
             {
                 int weaponSkill = unit.GetWeaponSkill(skillIfo.SkillId);
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
@@ -289,7 +290,8 @@ namespace ET
                 {
                     targetId = aIComponent.TargetID;
                     Unit aiTarget = unit.DomainScene().GetComponent<UnitComponent>().Get(targetId);
-                    if (aiTarget != null && PositionHelper.Distance2D(unit.Position, aiTarget.Position) > aIComponent.ActDistance)
+                    if (aiTarget != null && skillConfig.SkillTargetType == (int)SkillTargetType.TargetOnly
+                        && PositionHelper.Distance2D(unit.Position, aiTarget.Position) > aIComponent.ActDistance)
                     {
                         return;
                     }
@@ -326,7 +328,7 @@ namespace ET
                     cmd.TargetAngle = targetAngle;
                     cmd.SkillID = skillIfo.SkillId;
                     cmd.TargetID = targetId;
-                    unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd,false);
+                    skillManagerComponent.OnUseSkill(cmd,false);
                 }
 
                 skillIfo.LastTriggerTime = TimeHelper.ServerNow();

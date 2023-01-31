@@ -484,6 +484,10 @@ namespace ET
                 {
                     Log.Warning($"UserDataType.Gold  {unit.Id} {rewardItems[i].ItemNum} {getType}");
                 }
+                if (userDataType == UserDataType.Diamond)
+                {
+                    Log.Warning($"UserDataType.Diamond  {unit.Id} {rewardItems[i].ItemNum} {getType}");
+                }
                 if (userDataType != UserDataType.None)
                 {
                     unit.GetComponent<UserInfoComponent>().UpdateRoleData(userDataType, leftNum.ToString());
