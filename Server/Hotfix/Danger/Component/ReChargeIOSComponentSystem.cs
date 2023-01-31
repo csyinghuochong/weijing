@@ -40,7 +40,7 @@ namespace ET
 
             Log.Debug($"IOS充值回调11 {postReturnStr}");
             Root rt = JsonHelper.FromJson<Root>(postReturnStr);
-            Log.Debug($"IOS充值回调22 {rt}");
+            Log.Debug($"IOS充值回调22 {rt.status}");
             //交易失败，直接返回
             if (rt.status != 0)
             {
@@ -94,6 +94,7 @@ namespace ET
             {
                 self.PayLoadList.RemoveAt(0);
             }
+            Log.Debug($"IOS充值成功！");
             RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber).Coroutine();
             return ErrorCore.ERR_Success;
         }

@@ -16,7 +16,7 @@ public class PurchasingManager : MonoBehaviour, IStoreListener
     private Action<Product> successedCallback;
 
     public Action<string> SuccessedCallback;
-
+    public Action FailedCallback;
 
     private void Awake()
     {
@@ -67,6 +67,7 @@ public class PurchasingManager : MonoBehaviour, IStoreListener
     public void PurchaseFail(string product)
     {
         ET.Log.ILog.Debug("内购失败： " + product.ToString());
+        FailedCallback?.Invoke();
     }
 
     /// <summary>
