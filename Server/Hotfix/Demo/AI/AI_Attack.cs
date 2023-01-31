@@ -47,7 +47,7 @@ namespace ET
                     cmd.TargetAngle = Mathf.FloorToInt(ange);
                     cmd.TargetDistance = Vector3.Distance(unit.Position, target.Position);
                     unit.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
-                    rigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + TimeHelper.ServerNow();
+                    rigidityEndTime = (long)(SkillConfigCategory.Instance.Get(cmd.SkillID).SkillRigidity * 1000) + TimeHelper.ClientNow();
                 }
                 if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
                 {

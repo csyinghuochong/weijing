@@ -165,6 +165,10 @@ namespace ET
             }
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.NetWait))
+            {
+                return;
+            }
             Quaternion rotation = Quaternion.Euler(0, direction, 0);
             Vector3 newv3 = unit.Position + rotation * Vector3.forward * 3f;
             int obstruct = self.CheckObstruct(newv3);

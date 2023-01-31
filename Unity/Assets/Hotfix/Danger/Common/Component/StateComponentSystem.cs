@@ -35,7 +35,7 @@ namespace ET
 
         public static bool IsRigidity(this StateComponent self)
         {
-            return  TimeHelper.ServerNow() <  self.RigidityEndTime;
+            return  TimeHelper.ClientNow() <  self.RigidityEndTime;
         }
 
         public static int CanUseSkill(this StateComponent self)

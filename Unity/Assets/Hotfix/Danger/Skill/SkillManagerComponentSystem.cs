@@ -188,7 +188,7 @@ namespace ET
                 SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
 
                 long addTime = unit.IsTestSkillID() ? 100 : (long)(skillWeaponConfig.SkillRigidity * 1000);
-                unit.GetComponent<StateComponent>().RigidityEndTime = addTime + TimeHelper.ServerNow();
+                unit.GetComponent<StateComponent>().RigidityEndTime = addTime + TimeHelper.ClientNow();
             }
             return m2C_SkillCmd.Error;
         }
