@@ -343,7 +343,10 @@ namespace ET
                 case UserDataType.Combat:
                     self.UserInfo.Combat = int.Parse(value);
                     saveValue = self.UserInfo.Combat.ToString();
-                    self.UpdateRankInfo().Coroutine();
+                    if (notice)
+                    {
+                        self.UpdateRankInfo().Coroutine();
+                    }
                     break;
                 case UserDataType.Vitality:
                     maxValue = unit.GetMaxHuoLi();
