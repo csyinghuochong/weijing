@@ -795,7 +795,7 @@ namespace ET
                 //战场按钮延长30分钟消失
                 if (functonIds[i] == 1025)
                 {
-                    endTime += 30 * 60 * 1000;
+                    endTime += 30;
                 }
 
                 if (curTime < startTime)
