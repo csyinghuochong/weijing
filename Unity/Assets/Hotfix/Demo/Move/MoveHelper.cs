@@ -18,8 +18,10 @@ namespace ET
         {
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
             stateComponent.StateTypeRemove(StateTypeEnum.Obstruct);
-            if (!stateComponent.CanMove())
+            int errorCode = stateComponent.CanMove();
+            if (ErrorCore.ERR_Success!= errorCode)
             {
+                HintHelp.GetInstance().ShowHintError(errorCode);
                 stateComponent.CheckSilence();
                 return -1;
             }

@@ -249,7 +249,7 @@ namespace ET
             {
                 return;
             }
-            if (!unit.GetComponent<StateComponent>().CanMove())
+            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
             {
                 return;
             }

@@ -113,7 +113,7 @@ namespace ET
             if (dir != Vector3.zero)
             {
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                if (!unit.GetComponent<StateComponent>().CanMove())
+                if (ErrorCore.ERR_Success!=unit.GetComponent<StateComponent>().CanMove())
                 {
                     return;
                 }
@@ -228,7 +228,7 @@ namespace ET
         public static async ETTask MoveToChest(this OperaComponent self, long boxid)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (!unit.GetComponent<StateComponent>().CanMove())
+            if (ErrorCore.ERR_Success!=unit.GetComponent<StateComponent>().CanMove())
                 return;
             Unit box = UnitHelper.GetUnitFromZoneSceneByID(self.ZoneScene(), boxid);
 
@@ -369,7 +369,7 @@ namespace ET
         public static async ETTask MoveToNpc(this OperaComponent self, Vector3 position)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (!unit.GetComponent<StateComponent>().CanMove())
+            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
                 return;
 
             int ret = await self.MoveToPosition(position, true);
@@ -400,7 +400,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             self.UnitStartPosition = unit.Position;
-            if (!unit.GetComponent<StateComponent>().CanMove())
+            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
                 return;
 
             if (Vector3.Distance(unit.Position, position) < TaskHelper.NpcSpeakDistance)

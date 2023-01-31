@@ -31,10 +31,24 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD4, "被动技能冷却中!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD5, "技能冷却中!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillInCD6, "公共技能冷却中!");
-            ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill, "当前状态无法释放技能!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill_1, "当前状态无法释放技能!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill_Rigidity, "僵直状态无法释放技能!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill_NetWait, "消息未返回无法释放技能!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill_Dizziness, "眩晕状态无法释放技能!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill_JiTui, "击退状态无法释放技能!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotUseSkill_Silence, "沉默状态无法释放技能!");
+            ErrorHintList.Add(ErrorCore.ERR_SkillMoveTime, "当前为技能释放状态!");
             ErrorHintList.Add(ErrorCore.ERR_CanNotSkillDead, "死亡状态无法释放技能!");
             ErrorHintList.Add(ErrorCore.ERR_UseSkillError, "释放技能出错!");
             ErrorHintList.Add(ErrorCore.ERR_NoUseItemSkill, "该场景不能使用药剂道具技能!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotMove_1, "当前状态无法移动!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotMove_Dead, "死亡状态无法移动!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotMove_Rigidity, "僵直状态无法移动!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotMove_NetWait, "消息未返回无法移动!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotMove_Dizziness, "眩晕状态无法移动!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotMove_JiTui, "击退状态无法移动!");
+            ErrorHintList.Add(ErrorCore.ERR_CanNotMove_Shackle, "禁锢状态无法移动!");
+
             ErrorHintList.Add(ErrorCore.ERR_UnSafeSqlString, "非法字符串!");
             ErrorHintList.Add(ErrorCore.ERR_EquipLvLimit, "装备等级不足!");
             ErrorHintList.Add(ErrorCore.ERR_BagIsFull, "背包已满!");

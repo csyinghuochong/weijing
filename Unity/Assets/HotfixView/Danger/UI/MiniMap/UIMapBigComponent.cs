@@ -276,7 +276,7 @@ namespace ET
             self.ImageSelect.transform.SetSiblingIndex(0);
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (!unit.GetComponent<StateComponent>().CanMove())
+            if (ErrorCore.ERR_Success != unit.GetComponent<StateComponent>().CanMove())
                 return;
 
             self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npcid);

@@ -38,7 +38,7 @@ namespace ET
                     {
                         unit.Stop(-1);
                     }
-                    if (distance >= aiComponent.ActDistance && i % 5 == 0 && unit.GetComponent<StateComponent>().CanMove())
+                    if (distance >= aiComponent.ActDistance && i % 5 == 0 && unit.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success)
                     {
                         //Vector3 dir = unit.Position - target.Position;
                         //float ange = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));

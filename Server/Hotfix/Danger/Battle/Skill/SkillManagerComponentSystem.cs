@@ -544,15 +544,16 @@ namespace ET
             {
                 if (stateComponent.IsRigidity() && skillConfig.SkillActType == 0)
                 {
-                    return ErrorCore.ERR_CanNotUseSkill;
+                    return ErrorCore.ERR_CanNotUseSkill_Rigidity;
                 }
             }
             if (unit.Type != UnitType.Player)
             {
                 //判断当前眩晕状态
-                if (!stateComponent.CanUseSkill())
+                int errorCode = stateComponent.CanUseSkill();
+                if (ErrorCore.ERR_Success!= errorCode)
                 {
-                    return ErrorCore.ERR_CanNotUseSkill;
+                    return errorCode;
                 }
                 //判定是否再公共冷却时间
                 if (serverNow < self.SkillPublicCDTime && skillConfig.SkillActType != 0)

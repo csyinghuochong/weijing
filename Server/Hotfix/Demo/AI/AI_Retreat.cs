@@ -32,7 +32,7 @@ namespace ET
 
             while (true)
             {
-                if (unit.GetComponent<StateComponent>().CanMove())
+                if (unit.GetComponent<StateComponent>().CanMove()== ErrorCore.ERR_Success)
                 {
                     unit.FindPathMoveToAsync(bornVector3, cancellationToken, false).Coroutine();
                 }

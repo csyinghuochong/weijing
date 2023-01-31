@@ -164,7 +164,7 @@
         /// <summary>
         /// 当前状态无法释放技能
         /// </summary>
-        public const int ERR_CanNotUseSkill = 300803;
+        public const int ERR_CanNotUseSkill_1 = 300803;
         public const int ERR_UseSkillError = 300804;
         public const int ERR_NoUseItemSkill = 300805;
         public const int ERR_CanNotSkillDead = 300806;
@@ -174,7 +174,22 @@
 
         public const int ERR_UseSkillInCD5 = 300813;
         public const int ERR_UseSkillInCD6 = 300814;
+        public const int ERR_SkillMoveTime = 300815;
 
+        public const int ERR_CanNotUseSkill_Rigidity = 300816;
+        public const int ERR_CanNotUseSkill_NetWait = 300817;
+        public const int ERR_CanNotUseSkill_Dizziness = 300818;
+        public const int ERR_CanNotUseSkill_JiTui = 300819;
+        public const int ERR_CanNotUseSkill_Silence = 300820;
+
+        public const int ERR_CanNotMove_1 = 300830;
+        public const int ERR_CanNotMove_Dead = 300831;
+        public const int ERR_CanNotMove_Rigidity = 300832;
+        public const int ERR_CanNotMove_NetWait = 300833;
+        public const int ERR_CanNotMove_Dizziness = 300834;
+        public const int ERR_CanNotMove_JiTui = 300835;
+        public const int ERR_CanNotMove_Shackle = 300836;
+  
         //宠物
         public const int ERR_Pet_Hint_1 = 300901;                                   //宠物星级出错
         public const int ERR_Pet_UpStar = 300902;                                   //宠物星级失败                                                                 //宠物

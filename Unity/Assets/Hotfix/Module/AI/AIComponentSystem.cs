@@ -228,7 +228,7 @@ namespace ET
         public static bool IsCanZhuiJi(this AIComponent self)
         {
             StateComponent stateComponent = self.GetParent<Unit>().GetComponent<StateComponent>();
-            if (!stateComponent.CanMove())
+            if (ErrorCore.ERR_Success!=stateComponent.CanMove())
             {
                 return false;
             }

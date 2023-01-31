@@ -351,14 +351,15 @@ namespace ET
             }
 
             StateComponent stateComponent = unit.GetComponent<StateComponent>();
-            if (!stateComponent.CanUseSkill())
+            int errorCode = stateComponent.CanUseSkill();
+            if (errorCode!=ErrorCore.ERR_Success)
             {
                 stateComponent.CheckSilence();
-                return ErrorCore.ERR_CanNotUseSkill;
+                return errorCode;
             }
             if (self.IsSkillMoveTime())
             {
-                return ErrorCore.ERR_CanNotUseSkill;
+                return ErrorCore.ERR_SkillMoveTime;
             }
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             if (itemId > 0 && SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))

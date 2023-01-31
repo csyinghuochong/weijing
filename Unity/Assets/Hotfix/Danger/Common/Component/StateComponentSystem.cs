@@ -38,45 +38,63 @@ namespace ET
             return  TimeHelper.ServerNow() <  self.RigidityEndTime;
         }
 
-        public static bool CanUseSkill(this StateComponent self)
+        public static int CanUseSkill(this StateComponent self)
         {
             //判断当前是否是眩晕状态
-            if (self.StateTypeGet(StateTypeEnum.NetWait)
-                || self.StateTypeGet(StateTypeEnum.Dizziness)
-                || self.StateTypeGet(StateTypeEnum.JiTui)
-                || self.StateTypeGet(StateTypeEnum.Silence))
+            if (self.StateTypeGet(StateTypeEnum.NetWait))
             {
-                return false;                                                                                                          
+                return ErrorCore.ERR_CanNotUseSkill_NetWait;                                                                                                          
+            }
+            if (self.StateTypeGet(StateTypeEnum.Dizziness))
+            {
+                return ErrorCore.ERR_CanNotUseSkill_Dizziness;
+            }
+            if (self.StateTypeGet(StateTypeEnum.JiTui))
+            {
+                return ErrorCore.ERR_CanNotUseSkill_JiTui;
+            }
+            if (self.StateTypeGet(StateTypeEnum.Silence))
+            {
+                return ErrorCore.ERR_CanNotUseSkill_Silence;
             }
             if (self.Parent.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
-                return false;
+                return ErrorCore.ERR_CanNotSkillDead;
             }
 
-            return true;
+            return ErrorCore.ERR_Success;
         }
 
-        public static bool CanMove(this StateComponent self)
+        public static int CanMove(this StateComponent self)
         { 
             //判断当前是否是眩晕状态
-            if (self.StateTypeGet(StateTypeEnum.NetWait)
-                || self.StateTypeGet(StateTypeEnum.Dizziness)
-                || self.StateTypeGet(StateTypeEnum.JiTui)
-                || self.StateTypeGet(StateTypeEnum.Shackle))
+            if (self.StateTypeGet(StateTypeEnum.NetWait))
             {
-                return false;
+                return ErrorCore.ERR_CanNotMove_NetWait;
+            }
+            if (self.StateTypeGet(StateTypeEnum.Dizziness))
+            {
+                return ErrorCore.ERR_CanNotMove_Dizziness;
+            }
+            if (self.StateTypeGet(StateTypeEnum.JiTui))
+            {
+                return ErrorCore.ERR_CanNotMove_JiTui;
+            }
+            if (self.StateTypeGet(StateTypeEnum.Shackle))
+            {
+                return ErrorCore.ERR_CanNotMove_Shackle;
             }
             if (self.IsRigidity())
             {
-                return false;
+                return ErrorCore.ERR_CanNotMove_Rigidity;
             }
 
             if (self.Parent.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
-                return false;
+                return ErrorCore.ERR_CanNotMove_Dead;
             }
 
-            return true;
+            return ErrorCore.ERR_Success;
         }
 
         /// <summary>
@@ -85,18 +103,19 @@ namespace ET
         /// <param name="nowStateType"></param>
         public static void StateTypeAdd(this StateComponent self, long nowStateType, string stateValue ="0")
         {
+           
             self.CurrentStateType = self.CurrentStateType | nowStateType;
 #if SERVER
             //发送改变属性的相关消息
             MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateValue = stateValue, StateOperateType = 1, StateTime = 0 });
             //眩晕状态停止当前移动(服务器代码)
-            if (!self.CanMove())
+            if ( ErrorCore.ERR_Success!=self.CanMove())
             {
                 self.GetParent<Unit>().Stop(-1);        //停止当前移动
             }
 #else
             Unit unit = self.GetParent<Unit>();
-            if (unit.MainHero && !self.CanMove())
+            if (unit.MainHero && ErrorCore.ERR_Success!=self.CanMove())
             {
                 self.SilenceCheckTime = TimeHelper.ServerNow();
             }
@@ -123,7 +142,7 @@ namespace ET
             MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitStateUpdate() { UnitId = self.Parent.Id, StateType = (long)nowStateType, StateOperateType = 2, StateTime = 0 });
 #else
             Unit unit = self.GetParent<Unit>();
-            if (unit.MainHero && self.CanMove())
+            if (unit.MainHero && self.CanMove()== ErrorCore.ERR_Success)
             {
                 self.SilenceCheckTime = 0;
             }
