@@ -96,9 +96,13 @@ namespace ET
             self.Loading.SetActive(false);
             Receipt receipt = JsonHelper.FromJson<Receipt>(info);
             ET.Log.ILog.Debug("payload[内购成功]:" + receipt.Payload);
-            C2M_IOSPayVerifyRequest request = new C2M_IOSPayVerifyRequest() { payMessage = receipt.Payload };
+
+            //C2M_IOSPayVerifyRequest request = new C2M_IOSPayVerifyRequest() { payMessage = receipt.Payload };
+            //session.Call(request).Coroutine();          
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest() { UnitId = unit.Id, payMessage = receipt.Payload };
             session.Call(request).Coroutine();
-        }
+        }       
 
         public static void OnRelinkUpdate(this UIRechargeComponent self)
         {
