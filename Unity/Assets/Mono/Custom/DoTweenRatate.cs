@@ -7,11 +7,11 @@ public class DoTweenRatate : MonoBehaviour
 
     void LateUpdate()
     {
-        float y = Speed * Time.deltaTime + this.transform.eulerAngles.y;
-        if (y > 360)
+        float z = Speed * Time.deltaTime + this.transform.eulerAngles.z;
+        if (z > 360)
         {
-            y = y % 360f;
+            z = z % 360f;
         }
-        this.transform.eulerAngles = new Vector3(0, y, 0);
+        this.transform.eulerAngles = new Vector3(0, 0,z);
     }
 }

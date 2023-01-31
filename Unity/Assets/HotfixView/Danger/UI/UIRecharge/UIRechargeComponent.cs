@@ -15,6 +15,7 @@ namespace ET
     {
 
         public GameObject Loading;
+        public GameObject Img_Loading;
         public GameObject ImageSelect2;
         public GameObject ImageSelect1;
         public GameObject ButtonAliPay;
@@ -41,6 +42,10 @@ namespace ET
             self.Loading.SetActive(false);
             self.ImageSelect2 = rc.Get<GameObject>("ImageSelect2");
             self.ImageSelect1 = rc.Get<GameObject>("ImageSelect1");
+            self.Img_Loading = rc.Get<GameObject>("Img_Loading");
+
+            UI uirotate = self.AddChild<UI, string, GameObject>("Img_Loading", self.Img_Loading);
+            uirotate.AddComponent<UIRotateComponent>().Start = true;
 
             self.ButtonAliPay = rc.Get<GameObject>("ButtonAliPay");
             self.ButtonAliPay.GetComponent<Button>().onClick.AddListener(() => 
