@@ -46,6 +46,7 @@ namespace ET
         public const int WeiXinPay = 1;
         public const int AliPay = 2;
         public const int QuDaoPay = 3;
+        public const int IOSPay = 4;
     }
 
     public static class HeadBarType

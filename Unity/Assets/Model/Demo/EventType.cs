@@ -104,6 +104,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class RelinkSucess : DisposeObject
+        {
+            public static readonly RelinkSucess Instance = new RelinkSucess();
+            public Scene ZoneScene;
+            public int ErrorCode;
+        }
+
         public class ReturnLogin : DisposeObject
         {
             public static readonly ReturnLogin Instance = new ReturnLogin();

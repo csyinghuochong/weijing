@@ -46,10 +46,11 @@ message G2G_LockResponse // IActorResponse
 message M2R_RechargeRequest // IActorRequest
 {
 	int32 RpcId = 90;
-	int64 UserId = 93;
+	int64 UnitId = 93;
 	int32 RechargeNumber = 1;
 	int64 PayType = 2;
 	int32 Zone = 3;
+	string payMessage = 4;
 }
 
 message R2M_RechargeResponse // IActorResponse

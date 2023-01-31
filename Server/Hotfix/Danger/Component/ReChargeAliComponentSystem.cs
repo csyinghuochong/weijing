@@ -52,7 +52,7 @@ namespace ET
             AliPayOrderInfo model = self.AddChild<AliPayOrderInfo>(true);
             model.SetInfo(request.RechargeNumber.ToString(), dingDanID);
             model.objID = request.RechargeNumber.ToString();
-            self.OrderDic.Add(dingDanID, request.UserId.ToString());
+            self.OrderDic.Add(dingDanID, request.UnitId.ToString());
             model.Dispose();
 
             //第三步:向支付宝的服务器请求 可用于 客户端调起支付的 参数
@@ -61,7 +61,7 @@ namespace ET
             //第四步:拼接格式 发送给客户端
             string toClientStr = "AliPay" + "," + aliRequestStr;
             //agent.SendClientStr(toClientStr);
-            Log.Debug($"支付宝支付请求 {request.UserId} {request.RechargeNumber}");
+            Log.Debug($"支付宝支付请求 {request.UnitId} {request.RechargeNumber}");
             return aliRequestStr;
         }
 

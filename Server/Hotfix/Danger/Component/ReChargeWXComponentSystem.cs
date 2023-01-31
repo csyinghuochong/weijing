@@ -51,7 +51,7 @@ namespace ET
             data.Add("spbill_create_ip", "123.12.12.123");
             data.Add("notify_url", self.notify_url);
             data.Add("trade_type", "APP");
-            Log.Debug($"微信支付请求 {request.UserId}  {msg[1]}");
+            Log.Debug($"微信支付请求 {request.UnitId}  {msg[1]}");
             string tempXML = self.GetParamToXml(data);
             string result = "";
             try
@@ -70,7 +70,7 @@ namespace ET
             }
 
             //存储订单信息,方便面收到返回数据进行比对
-            self.orderDic.Add(dingDanID, $"{request.Zone}_{request.UserId}");
+            self.orderDic.Add(dingDanID, $"{request.Zone}_{request.UnitId}");
 
             ////第三步:将返回的参数再进行签名 并且按照我们跟客户端协定好的格式拼接
             self.orderNumber++;

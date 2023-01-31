@@ -2311,9 +2311,6 @@ namespace ET
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
-		[ProtoMember(3)]
-		public long UserId { get; set; }
-
 		[ProtoMember(1)]
 		public int RechargeNumber { get; set; }
 
@@ -8847,6 +8844,40 @@ namespace ET
 	[Message(OuterOpcode.Center2C_DeleteAccountResponse)]
 	[ProtoContract]
 	public partial class Center2C_DeleteAccountResponse: Object, IResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(R2C_IOSPayVerifyResponse))]
+	[Message(OuterOpcode.C2R_IOSPayVerifyRequest)]
+	[ProtoContract]
+	public partial class C2R_IOSPayVerifyRequest: Object, IRechargeActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(2)]
+		public string payMessage { get; set; }
+
+	}
+
+	[Message(OuterOpcode.R2C_IOSPayVerifyResponse)]
+	[ProtoContract]
+	public partial class R2C_IOSPayVerifyResponse: Object, IRechargeActorResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }

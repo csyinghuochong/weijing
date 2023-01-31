@@ -19,10 +19,19 @@ namespace ET
                 reply();    //当天已领取
                 return;
             }
+            string reward = GlobalValueConfigCategory.Instance.Get(28).Value;
+            int itemNumber = reward.Split('@').Length;
+            if (unit.GetComponent<BagComponent>().GetSpaceNumber() < itemNumber)
+            {
+                response.Error = ErrorCore.ERR_BagIsFull;
+                reply();    
+                return;
+            }
+
             int remainTimes = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.YueKaRemainTimes);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.YueKaAward, 1);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.YueKaRemainTimes, remainTimes -1);
-            string reward = GlobalValueConfigCategory.Instance.Get(28).Value;
+          
             unit.GetComponent<BagComponent>().OnAddItemData(reward, $"{ItemGetWay.YueKaReward}_{TimeHelper.ServerNow()}");
 
             reply();

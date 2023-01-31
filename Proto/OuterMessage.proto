@@ -1073,7 +1073,6 @@ message M2C_SyncChatInfo // IActorMessage
 message C2M_RechargeRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
-	int64 UserId = 3;
 	int32 RechargeNumber = 1;
 	int64 PayType = 2;
 }
@@ -4243,6 +4242,22 @@ message C2Center_DeleteAccountRequest // IRequest
 }
 
 message Center2C_DeleteAccountResponse // IResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//ResponseType R2C_IOSPayVerifyResponse
+message C2R_IOSPayVerifyRequest // IRechargeActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitId = 1;
+	string payMessage = 2;
+}
+
+message R2C_IOSPayVerifyResponse // IRechargeActorResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

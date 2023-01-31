@@ -23,6 +23,7 @@ namespace ET
 
         public int PayType; //1微信  2支付宝
         public int ChargetNumber;
+        public string PayloadInfo;
     }
 
     [ObjectSystem]
@@ -33,6 +34,7 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
+            self.PayloadInfo = string.Empty;
             self.ImageSelect2 = rc.Get<GameObject>("ImageSelect2");
             self.ImageSelect1 = rc.Get<GameObject>("ImageSelect1");
 
@@ -80,10 +82,27 @@ namespace ET
 
         public static void OnIosPaySuccessedCallback(this UIRechargeComponent self, string info)
         {
+            //掉线
+            Session session = self.ZoneScene().GetComponent<SessionComponent>().Session;
+            if (session == null || session.IsDisposed)
+            {
+                self.PayloadInfo = info;
+                return;
+            }
+
             Receipt receipt = JsonHelper.FromJson<Receipt>(info);
             ET.Log.ILog.Debug("payload[内购成功]:" + receipt.Payload);
             C2M_IOSPayVerifyRequest request = new C2M_IOSPayVerifyRequest() { payMessage = receipt.Payload };
-            self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request).Coroutine();
+            session.Call(request).Coroutine();
+        }
+
+        public static void OnRelinkUpdate(this UIRechargeComponent self)
+        {
+            if (!string.IsNullOrEmpty(self.PayloadInfo))
+            {
+                self.OnIosPaySuccessedCallback(self.PayloadInfo);
+            }
+            self.PayloadInfo = string.Empty;
         }
 
         public static async ETTask InitRechargeList(this UIRechargeComponent self)
@@ -126,7 +145,7 @@ namespace ET
 #if UNITY_IPHONE
             GlobalHelp.OnIOSPurchase(chargetNumber);
 #else
-            C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId, RechargeNumber = chargetNumber, PayType = self.PayType };
+            C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() {  RechargeNumber = chargetNumber, PayType = self.PayType };
             M2C_RechargeResponse sendChatResponse = (M2C_RechargeResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);
 
             if (sendChatResponse.Error != ErrorCore.ERR_Success)

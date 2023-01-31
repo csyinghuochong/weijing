@@ -19,6 +19,9 @@ namespace ET
                 case PayTypeEnum.QuDaoPay:
                     response.Message = scene.GetComponent<ReChargeQDComponent>().QudaoPay(request);
                     break;
+                case PayTypeEnum.IOSPay:
+                    response.Error = await scene.GetComponent<ReChargeIOSComponent>().OnIOSPayVerify(request);
+                    break;
             }
 
             reply();

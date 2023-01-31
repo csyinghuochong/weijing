@@ -44,7 +44,7 @@ namespace ET
 
             QudaoOrderInfo model = self.AddChild<QudaoOrderInfo>();
             model.zone = request.Zone;
-            model.userId = request.UserId;
+            model.userId = request.UnitId;
             model.amount = request.RechargeNumber;
             model.objID = request.RechargeNumber;
 

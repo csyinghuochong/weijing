@@ -42,6 +42,10 @@
     {
     }
 
+    public interface IRechargeActorRequest : IActorRequest
+    {
+    }
+
     public interface IRechargeActorResponse : IActorResponse
     {
     }

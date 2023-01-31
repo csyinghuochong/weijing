@@ -100,97 +100,22 @@ namespace ET
        
         protected override async ETTask Run(Unit unit, C2M_IOSPayVerifyRequest request, M2C_IOSPayVerifyResponse response, Action reply)
         {
-
             //发送支付数据做验证
             Log.Debug($"IOS充值回调,收到支付请求消息:");
-            string payLoad = request.payMessage;
-            Log.Debug($"IOS充值回调,收到支付请求消息:" + "payLoad:" + payLoad + "id:" + unit.Id);
-            if (unit.GetComponent<RechargeComponent>().PayLoadList.Contains(payLoad))
-            {
-                Log.Debug($"IOS充值回调错误,直接返回" + "id:" + unit.Id);
-                reply();
-                return;
-            }
-            Log.Debug($"IOS充值回调执行 " + "id:" + unit.Id);
+
             //携程锁
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Recharge, unit.Id))
             {
-                Log.Debug($"IOS充值回调执行00 " + "id:" + unit.Id);
-                string verifyURL = string.Empty;
-                if (ComHelp.IsInnerNet() || unit.Id == 1636544958309662720||unit.Id == 1655723533625524224)
+                long rechareId = DBHelper.GetRechargeCenter();
+                R2M_RechargeResponse r2M_RechargeResponse = (R2M_RechargeResponse)await ActorMessageSenderComponent.Instance.Call(rechareId, new M2R_RechargeRequest()
                 {
-                    verifyURL = "https://sandbox.itunes.apple.com/verifyReceipt";
-                }
-                else
-                {
-                    verifyURL = "https://buy.itunes.apple.com/verifyReceipt";
-                }
-                string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
-                string postReturnStr = await HttpHelper.GetIosPayParameter(verifyURL, sendStr);
-
-                Log.Debug($"IOS充值回调11 {postReturnStr}");
-                Root rt = JsonHelper.FromJson<Root>(postReturnStr);
-                Log.Debug($"IOS充值回调22 {rt}");
-                //交易失败，直接返回
-                if (rt.status != 0)
-                {
-                    Log.Debug($"IOS充值回调ERROR1 {rt.status}");
-                    reply();
-                    return;
-                }
-
-                if (rt.receipt.in_app == null || rt.receipt.in_app.Count == 0)
-                {
-                    Log.Debug($"IOS充值回调ERROR2 ");
-                    reply();
-                    return;
-                }
-
-                //封号处理 使用IAPFree工具
-                if (rt.receipt.in_app[0].product_id == "com.zeptolab.ctrbonus.superpower1")
-                {
-                    Log.Debug($"IOS充值回调ERROR3 ");
-                    reply();
-                    return;
-                }
-
-                if (!string.IsNullOrEmpty(rt.receipt.bundle_id) && rt.receipt.bundle_id != "com.guangying.weijing2")
-                {
-                    Log.Debug($"IOS充值回调ERROR4");
-                    reply();
-                    return;
-                }
-
-                string dingDanTime = rt.receipt.purchase_date_ms;
-                //判断时间
-
-                string product_id = rt.receipt.in_app[0].product_id;
-                //198SG
-                if (!product_id.Contains("WJ") && !product_id.Contains("SG"))
-                {
-                    Log.Debug($"IOS充值回调ERROR5");
-                    reply();
-                    return;
-                }
-
-                product_id = product_id.Substring(0, product_id.Length - 2);
-                int rechargeNumber = 0;
-                try
-                {
-                    rechargeNumber = int.Parse(product_id);
-                }
-                catch (Exception ex)
-                {
-                    Log.Warning(ex.ToString());
-                    reply();
-                    return;
-                }
-
-                //充值成功
-                unit.GetComponent<RechargeComponent>().PayLoadList.Add(payLoad);
-                RechargeHelp.SendDiamondToUnit(unit, rechargeNumber);
-                reply();
+                    Zone = unit.DomainZone(),
+                    PayType = PayTypeEnum.IOSPay,
+                    UnitId = unit.Id,
+                    payMessage = request.payMessage
+                });
             }
+            reply();
             await ETTask.CompletedTask;
         }
     }

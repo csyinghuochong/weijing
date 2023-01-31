@@ -96,7 +96,7 @@ namespace ET
 		public int RpcId { get; set; }
 
 		[ProtoMember(93)]
-		public long UserId { get; set; }
+		public long UnitId { get; set; }
 
 		[ProtoMember(1)]
 		public int RechargeNumber { get; set; }
@@ -106,6 +106,9 @@ namespace ET
 
 		[ProtoMember(3)]
 		public int Zone { get; set; }
+
+		[ProtoMember(4)]
+		public string payMessage { get; set; }
 
 	}
 

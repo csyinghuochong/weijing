@@ -128,6 +128,7 @@
         public const int ERR_IsNotLeader = 300405;                                  //队长才能创建副本
         public const int ERR_PlayerIsNot = 300406;                                  //人数不足
         public const int ERR_TeamerLevelIsNot = 300407;                            //队员等级不足
+        public const int Err_TeamDungeonXieZhu = 300408;
 
         //防沉迷
         public const int ERR_FangChengMi_Tip1 = 300501;
@@ -193,8 +194,9 @@
         //拍卖行
         public const int Err_PaiMaiPriceLow = 301301;                               //拍卖出售价格过低
 
+        //充值
+        public const int ERR_IOSVerify = 301401;
 
-        public const int Err_TeamDungeonXieZhu = 301303;
         public static bool IsRpcNeedThrowException(int error)
         {
             if (error == 0)

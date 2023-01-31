@@ -90,6 +90,7 @@ namespace ET
                     scene.AddComponent<ReChargeWXComponent>();
                     scene.AddComponent<ReChargeQDComponent>();
                     scene.AddComponent<ReChargeAliComponent>();
+                    scene.AddComponent<ReChargeIOSComponent>();
                     break;
                 case SceneType.Battle:
                     scene.AddComponent<BattleSceneComponent>();
