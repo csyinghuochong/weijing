@@ -171,10 +171,9 @@ namespace ET
             if (self.SilenceCheckTime < TimeHelper.ServerNow() - 5000)
             {
                 self.SilenceCheckTime = 0;
-                //self.StateTypeRemove(StateTypeEnum.Dizziness);
-                //self.StateTypeRemove(StateTypeEnum.Silence);
-                //self.StateTypeRemove(StateTypeEnum.Shackle);
-                self.Reset();
+                self.StateTypeRemove(StateTypeEnum.Dizziness);
+                self.StateTypeRemove(StateTypeEnum.Silence);
+                self.StateTypeRemove(StateTypeEnum.Shackle);
             }
         }
 

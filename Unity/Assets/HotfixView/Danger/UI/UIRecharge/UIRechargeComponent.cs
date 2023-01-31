@@ -13,6 +13,8 @@ namespace ET
 
     public class UIRechargeComponent: Entity, IAwake
     {
+
+        public GameObject Loading;
         public GameObject ImageSelect2;
         public GameObject ImageSelect1;
         public GameObject ButtonAliPay;
@@ -35,6 +37,7 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.PayloadInfo = string.Empty;
+            self.Loading = rc.Get<GameObject>("Loading");
             self.ImageSelect2 = rc.Get<GameObject>("ImageSelect2");
             self.ImageSelect1 = rc.Get<GameObject>("ImageSelect1");
 
@@ -89,7 +92,7 @@ namespace ET
                 self.PayloadInfo = info;
                 return;
             }
-
+            self.Loading.SetActive(false);
             Receipt receipt = JsonHelper.FromJson<Receipt>(info);
             ET.Log.ILog.Debug("payload[内购成功]:" + receipt.Payload);
             C2M_IOSPayVerifyRequest request = new C2M_IOSPayVerifyRequest() { payMessage = receipt.Payload };
@@ -143,6 +146,7 @@ namespace ET
             self.ChargetNumber = chargetNumber;
 
 #if UNITY_IPHONE
+            self.Loading.SetActive(true);
             GlobalHelp.OnIOSPurchase(chargetNumber);
 #else
             C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() {  RechargeNumber = chargetNumber, PayType = self.PayType };

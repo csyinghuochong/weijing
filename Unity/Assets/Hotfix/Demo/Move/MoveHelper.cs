@@ -23,6 +23,7 @@ namespace ET
                 stateComponent.CheckSilence();
                 return -1;
             }
+
             unit.GetComponent<SingingComponent>().BeginMove();
             C2M_PathfindingResult msg = c2M_PathfindingResult;
             msg.X = targetPos.x;
