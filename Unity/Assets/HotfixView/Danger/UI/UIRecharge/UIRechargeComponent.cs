@@ -38,6 +38,7 @@ namespace ET
 
             self.PayloadInfo = string.Empty;
             self.Loading = rc.Get<GameObject>("Loading");
+            self.Loading.SetActive(false);
             self.ImageSelect2 = rc.Get<GameObject>("ImageSelect2");
             self.ImageSelect1 = rc.Get<GameObject>("ImageSelect1");
 
