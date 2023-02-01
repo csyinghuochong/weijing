@@ -53,10 +53,6 @@ namespace ET
             }
         }
 
-        private int GetValueType()
-        {
-            return 1;
-        }
 
         private void buffSetProperty()
         {
@@ -137,27 +133,30 @@ namespace ET
                     break;
                 case 3: //释放技能 
                     //buff來源者再次釋放技能
-                    C2M_SkillCmd cmd = new C2M_SkillCmd();
-                    cmd.SkillID = this.BuffData.BuffConfig.buffParameterType;
-                    cmd.TargetID = this.TheUnitBelongto.Id;
-                    Vector3 direction = this.TheUnitBelongto.Position - this.TheUnitFrom.Position;
-                    float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
-                    if (direction == Vector3.zero)
+                    if (!this.TheUnitFrom.IsDisposed)
                     {
-                        cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(this.TheUnitBelongto.Rotation).y;
+                        C2M_SkillCmd cmd = new C2M_SkillCmd();
+                        cmd.SkillID = this.BuffData.BuffConfig.buffParameterType;
+                        cmd.TargetID = this.TheUnitBelongto.Id;
+                        Vector3 direction = this.TheUnitBelongto.Position - this.TheUnitFrom.Position;
+                        float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
+                        if (direction == Vector3.zero)
+                        {
+                            cmd.TargetAngle = (int)Quaternion.QuaternionToEuler(this.TheUnitBelongto.Rotation).y;
+                        }
+                        else
+                        {
+                            cmd.TargetAngle = Mathf.FloorToInt(ange);
+                        }
+                        cmd.TargetDistance = Vector3.Distance(this.TheUnitBelongto.Position, this.TheUnitFrom.Position);
+                        //int weaponSkill = this.TheUnitBelongto.GetWeaponSkill(cmd.SkillID);
+                        //SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
+                        //if (!ComHelp.IfNull(skillConfig.SkillAnimation))
+                        //{
+                        //    this.TheUnitBelongto.Stop(-1);
+                        //}
+                        this.TheUnitFrom.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
                     }
-                    else
-                    {
-                        cmd.TargetAngle = Mathf.FloorToInt(ange);
-                    }
-                    cmd.TargetDistance = Vector3.Distance(this.TheUnitBelongto.Position, this.TheUnitFrom.Position);
-                    //int weaponSkill = this.TheUnitBelongto.GetWeaponSkill(cmd.SkillID);
-                    //SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
-                    //if (!ComHelp.IfNull(skillConfig.SkillAnimation))
-                    //{
-                    //    this.TheUnitBelongto.Stop(-1);
-                    //}
-                    this.TheUnitFrom.GetComponent<SkillManagerComponent>().OnUseSkill(cmd, true);
                     break;
             }
         }

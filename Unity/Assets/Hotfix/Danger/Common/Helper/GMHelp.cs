@@ -5,6 +5,7 @@ namespace ET
     public static class GMHelp
     {
 
+        //qqUID_84E70C11CC937F72EE508CD43D7DD4DA 一直胖头鱼
         public static List<string> GmAccount = new List<string>()
         {
             "tcg01",
