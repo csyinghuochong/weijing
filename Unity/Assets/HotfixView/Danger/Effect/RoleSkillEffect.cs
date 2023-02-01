@@ -26,7 +26,7 @@ namespace ET
             try
             {
                 this.EffectObj = gameObject;
-                if (this.EffectData == null || gameObject == null || instanceId != this.InstanceId)
+                if (this.EffectData.InstanceId == 0 || gameObject == null || instanceId != this.InstanceId)
                 {
                     this.EffectState = BuffState.Finished;
                 }
@@ -118,7 +118,7 @@ namespace ET
         /// </summary>
         public  void PlayEffect()
         {
-            if (this.EffectData == null)
+            if (this.EffectData.InstanceId == 0)
             {
                 return;
             }
@@ -160,7 +160,7 @@ namespace ET
                 this.EffectState = BuffState.Finished;
                 return;
             }
-            if (this.TheUnitBelongto == null || this.TheUnitBelongto.IsDisposed || this.EffectData == null)
+            if (this.TheUnitBelongto == null || this.TheUnitBelongto.IsDisposed || this.EffectData.InstanceId == 0)
             {
                 this.EffectState = BuffState.Finished;
                 return;
@@ -191,11 +191,11 @@ namespace ET
         {
             GameObjectPoolComponent.Instance.RecoverGameObject(this.EffectPath, this.EffectObj);
             this.EffectState = BuffState.Waiting;
-            this.EffectEndTime = 0;
-            this.PassTime = 0;
-            this.EffectData = null;
+            this.EffectData.InstanceId = 0;
             this.TheUnitBelongto = null;
             this.EffectPath = String.Empty;
+            this.EffectEndTime = 0;
+            this.PassTime = 0;
         }
 
     }

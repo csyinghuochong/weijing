@@ -17,6 +17,7 @@ namespace ET
         public int BuffID;
         public long BuffTime;
         public long EndTime;
+        public string SpellCast;
         public string showTimeStr;
     }
 
@@ -49,7 +50,7 @@ namespace ET
             RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject.GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out localPoint);
-            skillTips.GetComponent<UIBuffTipsComponent>().OnUpdateData(self.BuffID, new Vector3(localPoint.x, localPoint.y, 0f), self.showTimeStr);
+            skillTips.GetComponent<UIBuffTipsComponent>().OnUpdateData(self.BuffID, new Vector3(localPoint.x, localPoint.y, 0f), self.showTimeStr, self.SpellCast);
         }
 
         public static void EndDrag(this UIMainBuffItemComponent self, PointerEventData pdata)
@@ -72,11 +73,13 @@ namespace ET
             self.EndTime = TimeHelper.ClientNow() + self.BuffTime;
         }
 
-        public static void OnAddBuff(this UIMainBuffItemComponent self, int buffId, long endTime)
+        public static void OnAddBuff(this UIMainBuffItemComponent self, int buffId, ABuffHandler buffHandler)
         {
+            long endTime = buffHandler.BuffData.BuffEndTime;
             SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffId);
             self.BuffTime = skillBuffConfig.BuffTime;
             self.TextBuffName.GetComponent<Text>().text = skillBuffConfig.BuffName;
+            self.SpellCast = buffHandler.BuffData.Spellcaster;
             self.EndTime = endTime;
             self.BuffID = buffId;
 

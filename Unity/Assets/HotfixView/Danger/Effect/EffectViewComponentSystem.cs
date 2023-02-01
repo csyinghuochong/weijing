@@ -68,10 +68,6 @@ namespace ET
         {
             for (int i = self.Effects.Count - 1; i >= 0; i--)
             {
-                if (self.Effects[i].EffectData == null)
-                {
-                    continue;
-                }
                 if (self.Effects[i].EffectData.InstanceId == instanceId)
                 {
                     return self.Effects[i];
@@ -85,7 +81,7 @@ namespace ET
             for (int i = self.Effects.Count - 1; i >= 0; i--)
             {
                 AEffectHandler aEffectHandler = self.Effects[i];
-                if (aEffectHandler.EffectData == null)
+                if (aEffectHandler.EffectData.InstanceId == 0)
                 {
                     continue;
                 }
@@ -137,7 +133,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (aBuffHandler.mSkillConf ==null || aBuffHandler.EffectData == null)
+                if (aBuffHandler.mSkillConf ==null || aBuffHandler.EffectData.InstanceId == 0)
                 {
                     continue;
                 }

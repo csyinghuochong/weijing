@@ -2142,6 +2142,9 @@ namespace ET
 		[ProtoMember(6)]
 		public long BuffEndTime { get; set; }
 
+		[ProtoMember(7)]
+		public string Spellcaster { get; set; }
+
 	}
 
 	[ResponseType(nameof(G2C_OffLine))]

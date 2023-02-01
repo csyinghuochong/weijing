@@ -11,11 +11,20 @@ namespace ET
         {
             try
             {
+                
+                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(request.TaskId);
+                int itemItem = taskCountryConfig.RewardItem.Split('@').Length;
+                if (unit.GetComponent<BagComponent>().GetSpaceNumber() < itemItem)
+                {
+                    response.Error = ErrorCore.ERR_BagIsFull;
+                    reply();
+                    return;
+                }
                 int errorCode = ErrorCore.ERR_Success;
                 TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
                 for (int i = 0; i < taskComponent.TaskCountryList.Count; i++)
                 {
-                    TaskPro taskPro = taskComponent.TaskCountryList[i]; 
+                    TaskPro taskPro = taskComponent.TaskCountryList[i];
                     if (taskPro.taskID != request.TaskId)
                     {
                         continue;
@@ -28,17 +37,9 @@ namespace ET
                     taskPro.taskStatus = (int)TaskStatuEnum.Commited;
                     break;
                 }
-                if (errorCode!= ErrorCore.ERR_Success)
+                if (errorCode != ErrorCore.ERR_Success)
                 {
-                    response.Error = errorCode; 
-                    reply();
-                    return;
-                }
-                TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(request.TaskId);
-                int itemItem = taskCountryConfig.RewardItem.Split('@').Length;
-                if (unit.GetComponent<BagComponent>().GetSpaceNumber() < itemItem)
-                {
-                    response.Error = ErrorCore.ERR_BagIsFull;
+                    response.Error = errorCode;
                     reply();
                     return;
                 }

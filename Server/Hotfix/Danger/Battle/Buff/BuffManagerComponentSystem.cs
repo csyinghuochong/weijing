@@ -216,11 +216,11 @@ namespace ET
                 m2C_UnitBuffUpdate.BuffID = buffData.BuffConfig.Id;
                 m2C_UnitBuffUpdate.BuffOperateType = addBufStatus;
                 m2C_UnitBuffUpdate.BuffEndTime = buffHandler.BuffEndTime;
-                m2C_UnitBuffUpdate.ActorId = buffHandler.BuffEndTime;
                 m2C_UnitBuffUpdate.TargetPostion.Clear();
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.x);
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.y);
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.z);
+                m2C_UnitBuffUpdate.Spellcaster = from.GetComponent<UnitInfoComponent>().PlayerName; 
                 if (unit.GetComponent<AOIEntity>() == null)
                 {
                     Log.Error($"unit.GetComponent<AOIEntity>() == null  {unit.Type} {unit.ConfigId}  {unit.Id}  {unit.IsDisposed}");
@@ -281,7 +281,10 @@ namespace ET
                 {
                     continue;
                 }
-                Buffs.Add(new KeyValuePair() { KeyId = skillBuffConfig.Id, Value2 = buffHandler.BuffEndTime.ToString() });
+                Buffs.Add(new KeyValuePair() {
+                    KeyId = skillBuffConfig.Id,
+                    Value = buffHandler.TheUnitFrom.GetComponent<UnitInfoComponent>().PlayerName,
+                    Value2 = buffHandler.BuffEndTime.ToString() });
             }
             return Buffs;
         }

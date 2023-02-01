@@ -51,6 +51,7 @@ namespace ET
             HeroDataComponent heroDataComponent = unit.AddComponent<HeroDataComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unitInfoComponent.EnergySkillId = createMonsterInfo.SkillId;
+            unitInfoComponent.PlayerName = monsterConfig.MonsterName;
             unit.Type = UnitType.Monster;
             unit.Position = vector3;
             unit.ConfigId = monsterConfig.Id;
@@ -159,11 +160,12 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-            unit.AddComponent<UnitInfoComponent>();
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
+            unitInfoComponent.PlayerName = master.GetComponent<UnitInfoComponent>().PlayerName;
             unit.GetComponent<NumericComponent>().Set(NumericType.MasterId, master.Id);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
             numericComponent.Set(NumericType.TeamId, master.GetTeamId());
@@ -232,11 +234,12 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-            unit.AddComponent<UnitInfoComponent>();
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
+            unitInfoComponent.PlayerName = master.GetComponent<UnitInfoComponent>().PlayerName;
             numericComponent.Set(NumericType.MasterId, master.Id);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
             numericComponent.Set(NumericType.TeamId, master.GetTeamId());

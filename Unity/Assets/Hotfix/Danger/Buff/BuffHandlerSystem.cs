@@ -64,12 +64,11 @@ namespace ET
         {
             self.PassTime = 0;
             self.BuffEndTime = 0;
-            self.BuffData = null;
-            self.EffectData = null;
             self.mSkillConf = null;
             self.mEffectConf = null;
             self.mSkillBuffConf = null;
             self.TheUnitBelongto = null;
+            self.EffectData.InstanceId = 0;
             self.BuffState = BuffState.Waiting;
         }
 

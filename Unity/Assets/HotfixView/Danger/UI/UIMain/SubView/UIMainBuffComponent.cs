@@ -82,16 +82,18 @@ namespace ET
         {
             //1添加  2移除 3重置
             string[] operateParams = dataParams.Split('@');
+            int buffId = int.Parse(operateParams[0]);
             switch (int.Parse(operateParams[1]))
             {
                 case 1:
-                    self.OnAddBuff(int.Parse(operateParams[0]), long.Parse(operateParams[2]));
+                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                    self.OnAddBuff(buffId, unit.GetComponent<BuffManagerComponent>().GetBuffById(buffId));
                     break;
                 case 2:
-                    self.OnRemoveBuff(int.Parse(operateParams[0]));
+                    self.OnRemoveBuff(buffId);
                     break;
                 case 3:
-                    self.OnResetBuff(int.Parse(operateParams[0]));
+                    self.OnResetBuff(buffId);
                     break;
             }
         }
@@ -122,11 +124,11 @@ namespace ET
                 {
                     return;
                 }
-                self.OnAddBuff(buffHandler.mSkillBuffConf.Id, buffHandler.BuffEndTime);
+                self.OnAddBuff(buffHandler.mSkillBuffConf.Id, buffHandler);
             }
         }
 
-        public static void OnAddBuff(this UIMainBuffComponent self, int buffID, long endTime)
+        public static void OnAddBuff(this UIMainBuffComponent self, int buffID, ABuffHandler buffHandler)
         {
             UIMainBuffItemComponent ui_buff = self.CacheUIList.Count > 0 ? self.CacheUIList[0] : null ;
             if (ui_buff == null)
@@ -139,7 +141,7 @@ namespace ET
             }
             self.MainBuffUIList.Add(ui_buff);
             ui_buff.GameObject.SetActive(true);
-            ui_buff.OnAddBuff(buffID, endTime);
+            ui_buff.OnAddBuff(buffID, buffHandler);
             UICommonHelper.SetParent(ui_buff.GameObject, self.GetParent<UI>().GameObject);
             if (self.Timer == 0)
             {

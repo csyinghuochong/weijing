@@ -5,7 +5,7 @@ namespace ET
 {
     public class UIBuffTipsComponent : Entity, IAwake
     {
-
+        public GameObject Lab_Spellcaster;
         public GameObject PositionNode;
         public GameObject ImageButton;
         public GameObject Lab_SkillDes;
@@ -23,6 +23,7 @@ namespace ET
 
             self.PositionNode = rc.Get<GameObject>("PositionNode");
 
+            self.Lab_Spellcaster = rc.Get<GameObject>("Lab_Spellcaster");
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.OnImageButton(); });
             self.ImageButton.SetActive(false);
@@ -42,7 +43,7 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
         }
 
-        public static void OnUpdateData(this UIBuffTipsComponent self, int skillId, Vector3 vector3,string showStr)
+        public static void OnUpdateData(this UIBuffTipsComponent self, int skillId, Vector3 vector3,string showStr, string spellcast)
         {
             SkillBuffConfig skillBufConfig = SkillBuffConfigCategory.Instance.Get(skillId);
 
@@ -60,6 +61,7 @@ namespace ET
             self.Lab_BuffTime.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("剩余时间") + ":" + showStr;
 
             self.PositionNode.transform.localPosition = vector3 + new Vector3(100, 0f, 0f);
+            self.Lab_Spellcaster.GetComponent<Text>().text = $"施法者：{spellcast}";
         }
 
     }

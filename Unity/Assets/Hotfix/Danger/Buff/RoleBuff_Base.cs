@@ -17,7 +17,7 @@
             //    return;
             //}
             EventType.DataUpdate.Instance.DataType = DataType.BuffUpdate;
-            EventType.DataUpdate.Instance.DataParams = $"{buffData.BuffConfig.Id}@1@{this.BuffEndTime}";
+            EventType.DataUpdate.Instance.DataParams = $"{buffData.BuffConfig.Id}@1";
             EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
         }
 

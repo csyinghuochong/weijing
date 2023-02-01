@@ -25,8 +25,8 @@ namespace ET
                     buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get((int)message.BuffID);
                     buffData.BuffClassScript = buffData.BuffConfig.BuffScript;
                     buffData.TargetPosition = new Vector3(message.TargetPostion[0], message.TargetPostion[1], message.TargetPostion[2] );
-                    //m2C_UnitBuffUpdate.BuffEndTime m2C_UnitBuffUpdate.ActorId
-                    buffData.BuffEndTime = message.ActorId;
+                    buffData.Spellcaster = message.Spellcaster;
+                    buffData.BuffEndTime = message.BuffEndTime;
                     msgUnitBelongTo.GetComponent<BuffManagerComponent>().BuffFactory(buffData);
                     break;
                 case 2: //移除

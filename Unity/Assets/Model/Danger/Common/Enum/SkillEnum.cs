@@ -155,7 +155,16 @@ namespace ET
         public long CDPassive;
     }
 
-    public class EffectData
+    /// <summary>
+    /// Buff逻辑类型
+    /// </summary>
+    public static class EffectTypeEnum
+    {
+        public const int SkillEffect = 1;              //技能特效
+        public const int BuffEffect = 2;
+    }
+
+    public struct EffectData
     {
         //必填项
         public int EffectTypeEnum;
@@ -167,7 +176,7 @@ namespace ET
         public Vector3 EffectPosition;
         public float EffectAngle;
 
-        public bool FollowUnitMove = true;
+        public bool FollowUnitMove;
 
         public int TargetAngle;
         public long TargetID;
@@ -175,16 +184,7 @@ namespace ET
         public long InstanceId;
     }
 
-    /// <summary>
-    /// Buff逻辑类型
-    /// </summary>
-    public static class EffectTypeEnum
-    {
-        public const int SkillEffect = 1;              //技能特效
-        public const int BuffEffect = 2;
-    }
-
-    public class BuffData
+    public struct BuffData
     {
         public SkillBuffConfig BuffConfig;
 
@@ -199,6 +199,8 @@ namespace ET
         public long BuffEndTime;
 
         public Vector3 TargetPosition;
+
+        public string Spellcaster;
     }
 
     public enum SkillState

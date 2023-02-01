@@ -992,6 +992,7 @@ message M2C_UnitBuffUpdate // IActorMessage
 	int32 BuffOperateType = 4;
 	repeated float TargetPostion = 5;
 	int64 BuffEndTime = 6;
+	string Spellcaster = 7;
 }
 
 //ResponseType G2C_OffLine

@@ -23,8 +23,8 @@ namespace ET
         {
             if (!IsDelayPlay)
             {
-                EffectInstanceId = this.PlayBuffEffects();
-                this.EffectData = null;
+                this.EffectInstanceId = this.PlayBuffEffects();
+                this.EffectData.InstanceId = 0;
             }
 
             this.BuffState = BuffState.Running;
@@ -38,7 +38,7 @@ namespace ET
             {
                 IsDelayPlay = false;
                 EffectInstanceId = this.PlayBuffEffects();
-                this.EffectData = null;
+                this.EffectData.InstanceId = 0;
             }
             if (TimeHelper.ClientNow() > this.BuffEndTime)
             {
