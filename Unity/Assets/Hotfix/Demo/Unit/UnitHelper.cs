@@ -95,7 +95,7 @@ namespace ET
 
         public static bool IsTestSkillID(this Unit self)
         {
-            return self.Id == 1573692389753683968;
+            return false;// self.Id == 1573692389753683968;
         }
 
         public static Vector3 GetBornPostion(this Unit self)

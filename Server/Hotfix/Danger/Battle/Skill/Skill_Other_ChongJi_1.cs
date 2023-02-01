@@ -38,13 +38,19 @@ namespace ET
                 }
             }
             OnExecute();
+            MoveToAsync().Coroutine();
         }
 
         public override void OnExecute()
         {
             this.InitSelfBuff();
             this.BaseOnUpdate();
-            this.TheUnitFrom.FindPathMoveToAsync(TargetPosition, null, false).Coroutine();
+        }
+
+        public async ETTask MoveToAsync()
+        {
+            await this.TheUnitFrom.FindPathMoveToAsync(TargetPosition, null, false);
+            OnFinished();
         }
 
         public override void OnUpdate()

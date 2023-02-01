@@ -25,7 +25,7 @@ namespace ET
 				return;
 			}
 
-			if (Vector3.Distance(unit.Position, pos) < 0.2f)
+			if (Vector3.Distance(unit.Position, pos) < 0.3f)
 			{
 				Quaternion rotation = new Quaternion(message.A, message.B, message.C, message.W);
 				MoveComponent moveComponent = unit.GetComponent<MoveComponent>();

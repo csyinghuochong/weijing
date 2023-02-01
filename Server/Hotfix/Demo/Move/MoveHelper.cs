@@ -46,7 +46,7 @@ namespace ET
 
             if (path.Count < 2)
             {
-                Log.Info("path.Count < 2");
+                Log.Warning("path.Count < 2");
             }
             MessageHelper.Broadcast(unit, m2CPathfindingResult);
             bool ret = await unit.GetComponent<MoveComponent>().MoveToAsync(path, speed, 100, cancellationToken);
