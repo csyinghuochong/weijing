@@ -18,12 +18,13 @@
 
     public static class BattleSceneComponentSystem
     {
-        public static void OnBattleOver(this BattleSceneComponent self)
+        public static async ETTask OnBattleOver(this BattleSceneComponent self)
         {
             for (int i = 0; i < self.BattleInfos.Count;i++)
             {
                 Scene scene = Game.Scene.Get(self.BattleInfos[i].FubenId);
                 scene.GetComponent<BattleDungeonComponent>().OnBattleOver();
+                await TimerComponent.Instance.WaitAsync(10000);
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
             }
