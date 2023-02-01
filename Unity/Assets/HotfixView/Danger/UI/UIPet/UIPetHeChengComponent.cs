@@ -85,7 +85,9 @@ namespace ET
 
             PopupTipHelp.OpenPopupTip(self.ZoneScene(), "宠物合成",
                 $"合成后将随机保留一个宠物，另外一个宠物会销毁,{addStr} 请确认是否执行合成",
-                () => { self.ReqestHeCheng().Coroutine(); }).Coroutine();
+                () => {
+                    self.ReqestHeCheng().Coroutine();
+                }).Coroutine();
         }
 
         public static async ETTask ReqestHeCheng(this UIPetHeChengComponent self)
@@ -94,11 +96,11 @@ namespace ET
             List<KeyValuePair> oldPetSkin = petComponent.GetPetSkinCopy();
             C2M_RolePetHeCheng c2M_RolePetHeCheng = new C2M_RolePetHeCheng() { PetInfoId1 = self.HeChengPet_Left.Id, PetInfoId2 = self.HeChengPet_Right.Id };
             M2C_RolePetHeCheng m2C_RolePetHeCheng = (M2C_RolePetHeCheng)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetHeCheng);
-            if (m2C_RolePetHeCheng.Error != 0)
+            if (m2C_RolePetHeCheng.Error != 0 || m2C_RolePetHeCheng.rolePetInfo == null)
             {
                 return;
             }
-            //HintHelp.GetInstance().ShowHint("融合宠物成功,请前往列表查看合成宠物!");
+
             long instanceId = self.InstanceId;
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPetChouKaGet);
             if (instanceId != self.InstanceId)

@@ -575,10 +575,10 @@ namespace ET
             }
         }
 
-        public static async ETTask UpdateSkillList(this UIPetListComponent self, RolePetInfo rolePetInfo)
+        public static void  UpdateSkillList(this UIPetListComponent self, RolePetInfo rolePetInfo)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             List<int> zhuanzhuids = new List<int>();
@@ -745,7 +745,7 @@ namespace ET
             self.PetZiZhiItemList[5].transform.Find("ImageExpValue").GetComponent<Image>().fillAmount = Mathf.Clamp((float)rolePetInfo.ZiZhi_MageAct / (float)petConfig.ZiZhi_MageAct_Max, 0f, 1f);
         }
 
-        public static async ETTask UpdatePetSkin(this UIPetListComponent self, RolePetInfo rolePetInfo)
+        public static  void UpdatePetSkin(this UIPetListComponent self, RolePetInfo rolePetInfo)
         {
             if (self.LastSelectItem == null)
             {
@@ -757,7 +757,7 @@ namespace ET
 
             int selectIndex = 0;
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkinIcon");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             for (int i = 0; i < petConfig.Skin.Length; i++)
             {
@@ -847,8 +847,8 @@ namespace ET
             self.UpdateAttribute(rolePetInfo);
             self.UpdateExpAndLv(rolePetInfo);
             self.UpdatePetZizhi(rolePetInfo);
-            self.UpdatePetSkin(rolePetInfo).Coroutine();
-            self.UpdateSkillList(rolePetInfo).Coroutine();
+            self.UpdatePetSkin(rolePetInfo);
+            self.UpdateSkillList(rolePetInfo);
 
             self.Text_PetPingFen.GetComponent<Text>().text = ComHelp.PetPingJia(rolePetInfo).ToString();
         }
