@@ -283,7 +283,6 @@ namespace ET
                 }
                 Buffs.Add(new KeyValuePair() {
                     KeyId = skillBuffConfig.Id,
-                    Value = buffHandler.TheUnitFrom.GetComponent<UnitInfoComponent>().PlayerName,
                     Value2 = buffHandler.BuffEndTime.ToString() });
             }
             return Buffs;

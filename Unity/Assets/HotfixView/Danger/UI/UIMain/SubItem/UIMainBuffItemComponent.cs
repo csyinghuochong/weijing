@@ -45,6 +45,15 @@ namespace ET
         public static async ETTask BeginDrag(this UIMainBuffItemComponent self, PointerEventData pdata)
         {
             UI skillTips = await UIHelper.Create(self.DomainScene(), UIType.UIBuffTips);
+            if (self.IsDisposed)
+            {
+                return;
+            }
+            if (self.BuffID == 0)
+            {
+                Log.Error($"UIMainBuffItemComponent {self.BuffID == 0}");
+                return;
+            }
 
             Vector2 localPoint;
             RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject.GetComponent<RectTransform>();
