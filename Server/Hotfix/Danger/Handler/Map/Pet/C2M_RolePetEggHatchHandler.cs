@@ -11,10 +11,13 @@ namespace ET
         {
             PetComponent petComponent = unit.GetComponent<PetComponent>();
             RolePetEgg rolePetEgg = petComponent.RolePetEggs[request.Index];
+            if (rolePetEgg.EndTime == 0)
+            {
+                string[] useparams = ItemConfigCategory.Instance.Get(rolePetEgg.ItemId).ItemUsePar.Split('@');
+                long needTime = long.Parse(useparams[0]);
+                rolePetEgg.EndTime = TimeHelper.ServerNow() + needTime * 1000;
+            }
 
-            string[] useparams = ItemConfigCategory.Instance.Get(rolePetEgg.ItemId).ItemUsePar.Split('@');
-            long needTime = long.Parse(useparams[0]);
-            rolePetEgg.EndTime = TimeHelper.ServerNow() + needTime  * 1000;
             response.RolePetEgg = rolePetEgg;
             reply();
             await ETTask.CompletedTask;
