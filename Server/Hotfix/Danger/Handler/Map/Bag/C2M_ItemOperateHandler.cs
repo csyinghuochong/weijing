@@ -446,6 +446,26 @@ namespace ET
                         return;
                     }
 
+                    //对应部位是否符合
+                    if (itemCof.ItemType == 3 && itemCof.EquipType != 0) {
+
+                        //查看自身是否是二转
+                        if (useInfo.OccTwo > 0)
+                        {
+                            OccupationTwoConfig occtwoCof = OccupationTwoConfigCategory.Instance.Get(useInfo.OccTwo);
+                            if (occtwoCof.ArmorMastery == itemCof.EquipType || itemCof.EquipType == 99)
+                            {
+                                //可以穿戴
+                            }
+                            else {
+                                //佩戴部位不符
+                                response.Error = ErrorCore.ERR_EquipType;     //错误码:穿戴类型不符
+                                reply();
+                                return;
+                            }
+                        }
+                    }
+
                     //获取之前的位置是否有装备
                     BagInfo beforeequip = null;
                     if (weizhi == (int)ItemSubTypeEnum.Shiping && !ComHelp.IsBanHaoZone(unit.DomainZone()))

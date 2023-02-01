@@ -217,7 +217,7 @@ namespace ET
             float rigibTime = float.Parse(animationinfos[3]);
             long skillRigibTime = TimeHelper.ClientNow() + (int)(1000f * rigibTime);
             //光之能量 保持在动作的最后一帧
-            if (skillConfig.Id >= 61022301 || skillConfig.Id >= 61022306)
+            if (skillConfig.Id >= 61022301 && skillConfig.Id <= 61022306)
             {
                 skillManagerComponent.SkillMoveTime = skillRigibTime;
             }

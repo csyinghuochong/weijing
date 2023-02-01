@@ -287,7 +287,7 @@ namespace ET
             if (itemconf.ItemSubType != (int)ItemSubTypeEnum.Wuqi && occTwo != 0)
             {
                 OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
-                if (itemconf.EquipType != 0 && itemconf.EquipType != occupationTwo.ArmorMastery)
+                if (itemconf.EquipType != 0 && itemconf.EquipType != occupationTwo.ArmorMastery&& itemconf.EquipType!=99)
                 {
                     //FloatTipManager.Instance.ShowFloatTip("请选择合适的装备！");
                     switch (occupationTwo.ArmorMastery)
@@ -1046,6 +1046,9 @@ namespace ET
 
                 case 13:
                     return "重甲";
+
+                case 99:
+                    return "无限制";
             }
 
             return "";
