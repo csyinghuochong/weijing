@@ -53,20 +53,19 @@ namespace ET
         public static void OnShowSkillIndicator(this ASkillHandler self, SkillInfo skillcmd)
         {
             Unit unit = self.TheUnitFrom;
-            if (unit.Type != UnitType.Monster)
-            {
-                return;
-            }
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
             if (skillConfig.SkillZhishiType == 0 || skillConfig.SkillDelayTime == 0)
             {
                 return;
             }
-
-            EventType.SkillYuJing.Instance.Unit = unit;
-            EventType.SkillYuJing.Instance.SkillInfo = skillcmd;
-            EventType.SkillYuJing.Instance.SkillConfig = skillConfig;
-            Game.EventSystem.PublishClass(EventType.SkillYuJing.Instance);
+            if ( (unit.Type == UnitType.Monster && skillConfig.SkillDelayTime > 0f)
+               || (unit.Type == UnitType.Player && skillConfig.SkillDelayTime > 1f))
+            {
+                EventType.SkillYuJing.Instance.Unit = unit;
+                EventType.SkillYuJing.Instance.SkillInfo = skillcmd;
+                EventType.SkillYuJing.Instance.SkillConfig = skillConfig;
+                Game.EventSystem.PublishClass(EventType.SkillYuJing.Instance);
+            }
         }
 
         //播放技能特效

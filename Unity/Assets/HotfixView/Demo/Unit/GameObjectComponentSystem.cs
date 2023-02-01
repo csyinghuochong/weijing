@@ -238,6 +238,7 @@ namespace ET
                     unit.AddComponent<FsmComponent>();                         //当前状态组建
                     unit.AddComponent<HeroHeadBarComponent>();
                     unit.AddComponent<EffectViewComponent>();               //添加特效组建
+                    unit.AddComponent<SkillYujingComponent>(true);
                     //血条UI组件
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                     self.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));
