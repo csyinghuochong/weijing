@@ -782,7 +782,7 @@ namespace ET
         /// 更新基础的属性
         /// </summary>
         /// <param name="unit"></param>
-        public void UnitUpdateProperty_Base(Unit unit, bool notice = true)
+        public int UnitUpdateProperty_Base(Unit unit, bool notice = true)
         {
             //基础职业属性
             UserInfoComponent UnitInfoComponent = unit.GetComponent<UserInfoComponent>();
@@ -1516,7 +1516,7 @@ namespace ET
             //更新战力
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Combat, zhanliValue.ToString(), notice);
 
-
+            return zhanliValue;
             //暴击等级等属性二次换算,因为不能写在前面,要不升级会降战力
             //缓存列表
             /*

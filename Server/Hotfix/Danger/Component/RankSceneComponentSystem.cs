@@ -179,9 +179,47 @@ namespace ET
             self.UpdateRankPetList();
         }
 
+        public static async ETTask UpdateCombat(this RankSceneComponent self)
+        {
+            await ETTask.CompletedTask;
+            self.DomainScene().AddComponent<UnitComponent>();
+            List<RankingInfo> rankingInfoList = new List<RankingInfo>();
+            for (int i = self.DBRankInfo.rankingInfos.Count - 1; i >=0; i--)
+            {
+                rankingInfoList.Add(self.DBRankInfo.rankingInfos[i]);
+            }
+
+            for (int i = rankingInfoList.Count - 1; i >= 0; i--)
+            {
+                RankingInfo rankingInfo = rankingInfoList[i];
+
+                Unit unit = UnitFactory.Create(self.DomainScene(), rankingInfo.UserId, UnitType.Player);
+                await DBHelper.AddDataComponent<UserInfoComponent>(unit, rankingInfo.UserId, DBHelper.UserInfoComponent);
+                await DBHelper.AddDataComponent<NumericComponent>(unit, rankingInfo.UserId, DBHelper.NumericComponent);
+                await DBHelper.AddDataComponent<TaskComponent>(unit, rankingInfo.UserId, DBHelper.TaskComponent);
+                await DBHelper.AddDataComponent<ShoujiComponent>(unit, rankingInfo.UserId, DBHelper.ShoujiComponent);
+                await DBHelper.AddDataComponent<BagComponent>(unit, rankingInfo.UserId, DBHelper.BagComponent);
+                await DBHelper.AddDataComponent<ChengJiuComponent>(unit, rankingInfo.UserId, DBHelper.ChengJiuComponent);
+                await DBHelper.AddDataComponent<PetComponent>(unit, rankingInfo.UserId, DBHelper.PetComponent);
+                await DBHelper.AddDataComponent<SkillSetComponent>(unit, rankingInfo.UserId, DBHelper.SkillSetComponent);
+                await DBHelper.AddDataComponent<EnergyComponent>(unit, rankingInfo.UserId, DBHelper.EnergyComponent);
+                await DBHelper.AddDataComponent<ActivityComponent>(unit, rankingInfo.UserId, DBHelper.ActivityComponent);
+                await DBHelper.AddDataComponent<RechargeComponent>(unit, rankingInfo.UserId, DBHelper.RechargeComponent);
+                await DBHelper.AddDataComponent<ReddotComponent>(unit, rankingInfo.UserId, DBHelper.ReddotComponent);
+                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false);
+
+                await TimerComponent.Instance.WaitAsync(1000);
+            }
+        }
+
         public static async ETTask SaveDB(this RankSceneComponent self)
         {
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
+            if (self.UpdateCombat == 0)
+            {
+                self.UpdateCombat = 1;
+                await self.UpdateCombat();
+            }
 
             await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = self.DBRankInfo, ComponentType = DBHelper.DBRankInfo });
             await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = self.DBServerInfo, ComponentType = DBHelper.DBServerInfo });

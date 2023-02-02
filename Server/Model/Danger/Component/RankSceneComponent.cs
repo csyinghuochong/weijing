@@ -7,5 +7,7 @@
         public DBRankInfo DBRankInfo = new DBRankInfo();
 
         public DBServerInfo DBServerInfo = new DBServerInfo();
+
+        public int UpdateCombat = 0;
     }
 }
