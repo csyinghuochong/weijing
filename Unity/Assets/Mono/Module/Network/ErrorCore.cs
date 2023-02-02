@@ -196,9 +196,11 @@
         public const int ERR_Pet_UpStar = 300902;                                   //宠物星级失败                                                                 //宠物
         public const int ERR_Pet_AddSkillSame = 300903;                             //宠物打书技能ID相同
         public const int ERR_Pet_NoUseItem = 300904;                              //无法给宠物使用道具
+        public const int ERR_PetIsFull = 300905;                                    //宠物已满
 
         public const int ERR_Union_Same_Name = 301001;                              //同名的家族
         public const int ERR_MysteryItem_Max = 301002;                              //改道具每日购买次数已达上限
+
 
 
         //赏金任务

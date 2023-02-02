@@ -36,10 +36,28 @@ namespace ET
                 reply();
                 return;
             }
-           
+
+            if (monsterConfig.MonsterSonType == 57) {
+                //背包是否满
+                if (unit.GetComponent<BagComponent>().IsBagFull()) {
+                    response.Error = ErrorCore.ERR_BagIsFull;
+                    reply();
+                    return;
+                }
+
+                //宠物已满
+                if (unit.GetComponent<PetComponent>().PetIsFull())
+                {
+                    response.Error = ErrorCore.ERR_PetIsFull;
+                    reply();
+                    return;
+                }
+            }
+
             EventType.NumericChangeEvent.Instance.Attack = unit;
             EventType.NumericChangeEvent.Instance.Parent = boxUnit;
             boxUnit.GetComponent<HeroDataComponent>().OnDead(EventType.NumericChangeEvent.Instance);
+
             response.Error = ErrorCore.ERR_Success;
 
             reply();

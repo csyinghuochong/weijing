@@ -689,5 +689,19 @@ namespace ET
             }
             self.PetFubenInfos.Add( new PetFubenInfo() { PetFubenId = petfubenId, Star = star, Reward = 0 } );
         }
+
+        //判断当前宠物是否已满
+        public static bool PetIsFull(this PetComponent self) {
+
+            Unit unit = self.GetParent<Unit>();
+            int userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+            if (self.RolePetInfos.Count >= ComHelp.GetPetMaxNumber(unit, userLv))
+            {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
 }
