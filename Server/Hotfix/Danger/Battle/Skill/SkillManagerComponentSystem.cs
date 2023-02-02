@@ -401,7 +401,7 @@ namespace ET
             {
                 skillCd = self.UpdateFangunSkillCD();
             }
-            if (weaponConfig.SkillActType == 0)
+            else if (weaponConfig.SkillActType == 0)
             {
                 Unit unit = self.GetParent<Unit>();
                 if (unit.Type != UnitType.Player)

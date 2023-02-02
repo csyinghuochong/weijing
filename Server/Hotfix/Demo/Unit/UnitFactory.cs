@@ -90,7 +90,7 @@ namespace ET
                 unit.AddComponent<BuffManagerComponent>();      //添加Buff管理器
                 unit.GetComponent<SkillPassiveComponent>().UpdateMonsterPassiveSkill();
                 numericComponent.Set(NumericType.MasterId, createMonsterInfo.MasterID);
-                AIComponent aIComponent = unit.AddComponent<AIComponent, int>(createMonsterInfo.MasterID > 0 ? 2 : monsterConfig.AI);
+                AIComponent aIComponent = unit.AddComponent<AIComponent, int>( monsterConfig.AI);
                 switch (mapComponent.SceneTypeEnum)
                 {
                     case (int)SceneTypeEnum.PetDungeon:

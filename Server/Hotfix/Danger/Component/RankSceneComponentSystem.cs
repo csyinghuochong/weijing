@@ -181,6 +181,7 @@ namespace ET
 
         public static async ETTask UpdateCombat(this RankSceneComponent self)
         {
+            Log.Debug("UpdateCombatUpdateCombat");
             await ETTask.CompletedTask;
             self.DomainScene().AddComponent<UnitComponent>();
             List<RankingInfo> rankingInfoList = new List<RankingInfo>();
@@ -215,12 +216,7 @@ namespace ET
         public static async ETTask SaveDB(this RankSceneComponent self)
         {
             long dbCacheId = DBHelper.GetDbCacheId(self.DomainZone());
-            if (self.UpdateCombat == 0)
-            {
-                self.UpdateCombat = 1;
-                await self.UpdateCombat();
-            }
-
+           
             await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = self.DBRankInfo, ComponentType = DBHelper.DBRankInfo });
             await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = self.DomainZone(), Component = self.DBServerInfo, ComponentType = DBHelper.DBServerInfo });
         }

@@ -1,15 +1,14 @@
 时间戳在线转换
 https://tool.lu/timestamp/
-
+ 
 StartZoneConfig@s 如果要合区 一定要配置新的物理区
 
 1.  检测服务器进程配置
 2  检测区配置
 3 ServerHelper 开服时间
 
-
-1 合区。 先备份要合的区，用bson的export.    
+4 合区。 先备份要合的区，用bson的export.    
    执行    1_merge_zone， 传入要合并的两个区
-
-2  删档，  先备份要合的区，用bson的export.    
-   
+5  删档，  先备份要合的区，用bson的export.    
+6  注意config不要拷贝错了
+ 
