@@ -55,6 +55,7 @@ namespace ET
         public CellDungeonInfo[][] FubenCellInfoList;
 #if SERVER
         //神秘商品
+        public List<int> EnergySkills = new List<int>() { };
         public List<MysteryItemInfo> MysteryItemInfos = new List<MysteryItemInfo>();
         public CellDungeonInfo CurrentFubenCell;
         public Unit MainUnit;   //队长

@@ -9,7 +9,6 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, Actor_EnterSonFubenRequest request, Actor_EnterSonFubenResponse response, Action reply)
         {
-            FubenHelp.EnterCellFuben();
             unit.GetComponent<MoveComponent>().Stop();
             unit.GetComponent<SkillManagerComponent>().OnDispose();
             CellDungeonComponent fubenComponent = unit.DomainScene().GetComponent<CellDungeonComponent>();

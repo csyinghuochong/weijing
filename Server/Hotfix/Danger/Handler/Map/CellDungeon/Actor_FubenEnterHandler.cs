@@ -14,7 +14,6 @@ namespace ET
 			CellDungeonComponent fubenComponent = null;
 			unit.GetComponent<MoveComponent>().Stop();
 			unit.GetComponent<UserInfoComponent>().UpdateRoleData(  UserDataType.PiLao, "-1");
-			FubenHelp.EnterCellFuben();
 
 			//首次进入
 			if (request.RepeatEnter == 0)
@@ -28,6 +27,7 @@ namespace ET
 				fubenComponent.FubenDifficulty = request.Difficulty;
 				fubenComponent.InitFubenCell(request.ChapterId);
 				curCell = fubenComponent.CurrentFubenCell;
+				fubenComponent.EnergySkills = new List<int>() { 64000001, 64000002, 64000003, 64000004, 64000005, 64000006, 64000007, 64000008 };
 				MapComponent mapComponent = fubnescene.GetComponent<MapComponent>();
 				mapComponent.SetMapInfo((int)SceneTypeEnum.CellDungeon, request.ChapterId, curCell.sonid);
 				mapComponent.NavMeshId = ChapterSonConfigCategory.Instance.Get(curCell.sonid).MapID.ToString();
