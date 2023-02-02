@@ -83,7 +83,7 @@ namespace ET
                 //60030060 吟唱   61022102光能击  67000277旋转攻击
                 //UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                 //uI.GetComponent<UIMainComponent>().UIMainSkillComponent.UIAttackGrid.PointerUp(null);
-                List<int> skillids = new List<int>() { 66001013 };
+                List<int> skillids = new List<int>() { 66001012, 66001013 };
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 unit.GetComponent<SkillManagerComponent>().SendUseSkill(skillids[RandomHelper.RandomNumber(0, skillids.Count)],
                     0, Mathf.FloorToInt(unit.Rotation.eulerAngles.y), 0, 0).Coroutine();
@@ -337,7 +337,7 @@ namespace ET
             if (PositionHelper.Distance2D(unit.Position, newTarget) <= TaskHelper.NpcSpeakDistance + 0.2f)
             {
                 self.OnArriveToNpc();
-                self.OnUnitToSpeak(newTarget).Coroutine();
+                self.OnUnitToSpeak(newTarget);
                 return;
             }
 
@@ -382,18 +382,16 @@ namespace ET
                 return;
             }
             self.OnArriveToNpc();
-            self.OnUnitToSpeak(position).Coroutine();
+            self.OnUnitToSpeak(position);
             UIHelper.Remove(self.ZoneScene(), UIType.UIMapBig);
         }
 
-        public static async ETTask OnUnitToSpeak(this OperaComponent self, Vector3 vector3)
+        public static void OnUnitToSpeak(this OperaComponent self, Vector3 vector3)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmNpcSpeak);
             unit.Rotation = Quaternion.LookRotation(vector3 - self.UnitStartPosition);
-            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NetWait);
-            await TimerComponent.Instance.WaitAsync(200);
-            unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);
+            unit.GetComponent<StateComponent>().SetNetWaitEndTime(TimeHelper.ClientNow()+200);
         }
 
         public static async ETTask MoveToNpc(this OperaComponent self, Vector3 position, Action action = null)
@@ -406,7 +404,7 @@ namespace ET
             if (Vector3.Distance(unit.Position, position) < TaskHelper.NpcSpeakDistance)
             {
                 action?.Invoke();
-                self.OnUnitToSpeak(position).Coroutine();
+                self.OnUnitToSpeak(position);
                 return;
             }
             int ret = await self.MoveToPosition(position, true);
@@ -415,7 +413,7 @@ namespace ET
                 return;
             }
             action?.Invoke();
-            self.OnUnitToSpeak(position).Coroutine();
+            self.OnUnitToSpeak(position);
         }
 
         public static int CheckObstruct(this OperaComponent self, Vector3 start, Vector3 target)

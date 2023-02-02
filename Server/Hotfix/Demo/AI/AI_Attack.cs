@@ -51,7 +51,7 @@ namespace ET
                 }
                 if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
                 {
-                    unit.GetComponent<StateComponent>().RigidityEndTime = rigidityEndTime;
+                    unit.GetComponent<StateComponent>().SetRigidityEndTime(rigidityEndTime);
                 }
 
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回

@@ -177,9 +177,12 @@ namespace ET
         public static async ETTask<int> ImmediateUseSkill(this SkillManagerComponent self, C2M_SkillCmd skillCmd)
         {
             Unit unit = self.GetParent<Unit>();
-            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NetWait);
+            unit.GetComponent<StateComponent>().SetNetWaitEndTime(TimeHelper.ClientNow()+100);
             M2C_SkillCmd m2C_SkillCmd = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(skillCmd) as M2C_SkillCmd;
-            unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);
+            if (unit.IsDisposed)
+            {
+                return ErrorCore.ERR_NetWorkError;
+            }
             if (m2C_SkillCmd.Error == 0)
             {
                 BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
@@ -187,7 +190,8 @@ namespace ET
                 SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
 
                 long addTime = unit.IsTestSkillID() ? 100 : (long)(skillWeaponConfig.SkillRigidity * 1000);
-                unit.GetComponent<StateComponent>().RigidityEndTime = addTime + TimeHelper.ClientNow();
+                unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
+                unit.GetComponent<StateComponent>().SetRigidityEndTime ( addTime + TimeHelper.ClientNow());
             }
             return m2C_SkillCmd.Error;
         }

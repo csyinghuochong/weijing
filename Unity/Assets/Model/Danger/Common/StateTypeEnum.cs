@@ -9,19 +9,9 @@ namespace ET
         public const long None = 1 << 0;
 
         /// <summary>
-        /// 等待
-        /// </summary>
-        public const long NetWait = 1 << 1;
-
-        /// <summary>
         /// 空闲
         /// </summary>
         public const long  Idle = 1 << 2;
-
-        /// <summary>
-        /// 释放技能
-        /// </summary>
-        public const long SkillRigidity = 1 << 3;
 
         /// <summary>
         /// 击退

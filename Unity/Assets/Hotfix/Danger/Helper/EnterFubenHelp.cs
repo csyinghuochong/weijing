@@ -119,13 +119,12 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             unit.GetComponent<MoveComponent>().Stop();
-            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.NetWait);
+            unit.GetComponent<StateComponent>().SetNetWaitEndTime(TimeHelper.ClientNow()+500);
             UnitHelper.LoadingScene = true;
 
             Actor_EnterSonFubenRequest actor_EnterFubenRequest = new Actor_EnterSonFubenRequest() { CurrentCell = cellindex, DirectionType = direction };
             Actor_EnterSonFubenResponse actor_EnterSonFubenResponse = await zoneScene.GetComponent<SessionComponent>().Session.Call(actor_EnterFubenRequest) as Actor_EnterSonFubenResponse;
             zoneScene.GetComponent<MapComponent>().SetSubLevel(actor_EnterSonFubenResponse.SonFubenInfo.SonSceneId);
-            unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);
             if (actor_EnterSonFubenResponse.Error != 0)
             {
                 return;

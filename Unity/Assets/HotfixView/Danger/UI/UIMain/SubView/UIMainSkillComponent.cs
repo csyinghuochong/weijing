@@ -83,6 +83,10 @@ namespace ET
             int skillId = int.Parse(dataParams);
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
+                if (self.UISkillGirdList[i].SkillPro==null)
+                {
+                    continue;
+                }
                 if (self.UISkillGirdList[i].SkillPro.SkillID == skillId)
                 {
                     self.UISkillGirdList[i].Button_Cancle.SetActive(true);

@@ -60,7 +60,8 @@ namespace ET
                 && sceneTypeEnum != (int)SceneTypeEnum.PetDungeon;
                 Unit mainUnit = UnitHelper.GetMyUnitFromZoneScene(scene);
                 //宠物副本 禁止玩家移动
-                mainUnit.GetComponent<StateComponent>().StateTypeAdd(showMainUnit ? StateTypeEnum.None : StateTypeEnum.NetWait);
+                long rigidityEndTime = showMainUnit ? 0 :TimeHelper.ServerNow() + TimeHelper.OneDay;
+                mainUnit.GetComponent<StateComponent>().SetNetWaitEndTime(rigidityEndTime);
             }
         }
 

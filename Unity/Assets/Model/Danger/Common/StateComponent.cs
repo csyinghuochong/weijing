@@ -8,6 +8,7 @@ namespace ET
 
         public long RigidityEndTime;
 
+        public long NetWaitEndTime;
 #if !SERVER
 
         /// <summary>

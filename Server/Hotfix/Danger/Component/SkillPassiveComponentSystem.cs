@@ -343,7 +343,7 @@ namespace ET
             }
             if (rigidityEndTime > unit.GetComponent<StateComponent>().RigidityEndTime)
             {
-                unit.GetComponent<StateComponent>().RigidityEndTime = rigidityEndTime;
+                unit.GetComponent<StateComponent>().SetRigidityEndTime(rigidityEndTime);
             }
         }
     }

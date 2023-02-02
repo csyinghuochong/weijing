@@ -33,17 +33,31 @@ namespace ET
             self.CurrentStateType = StateTypeEnum.None;
         }
 
+        public static void SetRigidityEndTime(this StateComponent self, long addTime)
+        {
+            self.RigidityEndTime =  addTime;
+        }
+
         public static bool IsRigidity(this StateComponent self)
         {
             return  TimeHelper.ClientNow() <  self.RigidityEndTime;
         }
 
+        public static void SetNetWaitEndTime(this StateComponent self, long addTime)
+        {
+            self.NetWaitEndTime =  addTime;
+        }
+
+        public static bool IsNetWaitEndTime(this StateComponent self)
+        {
+            return TimeHelper.ClientNow() < self.NetWaitEndTime;
+        }
+
         public static int CanUseSkill(this StateComponent self)
         {
-            //判断当前是否是眩晕状态
-            if (self.StateTypeGet(StateTypeEnum.NetWait))
+            if (self.IsNetWaitEndTime())
             {
-                return ErrorCore.ERR_CanNotUseSkill_NetWait;                                                                                                          
+                return ErrorCore.ERR_CanNotUseSkill_NetWait;
             }
             if (self.StateTypeGet(StateTypeEnum.Dizziness))
             {
@@ -66,11 +80,14 @@ namespace ET
         }
 
         public static int CanMove(this StateComponent self)
-        { 
-            //判断当前是否是眩晕状态
-            if (self.StateTypeGet(StateTypeEnum.NetWait))
+        {
+            if (self.IsNetWaitEndTime())
             {
                 return ErrorCore.ERR_CanNotMove_NetWait;
+            }
+            if (self.IsRigidity())
+            {
+                return ErrorCore.ERR_CanNotMove_Rigidity;
             }
             if (self.StateTypeGet(StateTypeEnum.Dizziness))
             {
@@ -83,10 +100,6 @@ namespace ET
             if (self.StateTypeGet(StateTypeEnum.Shackle))
             {
                 return ErrorCore.ERR_CanNotMove_Shackle;
-            }
-            if (self.IsRigidity())
-            {
-                return ErrorCore.ERR_CanNotMove_Rigidity;
             }
 
             if (self.Parent.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
@@ -193,7 +206,6 @@ namespace ET
                 self.StateTypeRemove(StateTypeEnum.Dizziness);
                 self.StateTypeRemove(StateTypeEnum.Silence);
                 self.StateTypeRemove(StateTypeEnum.Shackle);
-                self.StateTypeRemove(StateTypeEnum.NetWait);
             }
         }
 
