@@ -101,5 +101,9 @@
 
         //接取任务
         public const int TaskLoopGet = 38;
+
+        public const int SkillBeging = 39;
+
+        public const int SkillFinish = 40;
     }
 }

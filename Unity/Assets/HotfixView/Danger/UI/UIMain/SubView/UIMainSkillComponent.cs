@@ -28,6 +28,8 @@ namespace ET
         public override void Destroy(UIMainSkillComponent self)
         {
             DataUpdateComponent.Instance.RemoveListener(DataType.SkillCDUpdate, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.SkillBeging, self);
+            DataUpdateComponent.Instance.RemoveListener(DataType.SkillFinish, self);
         }
     }
 
@@ -68,11 +70,38 @@ namespace ET
             }
 
             DataUpdateComponent.Instance.AddListener(DataType.SkillCDUpdate, self);
+            DataUpdateComponent.Instance.AddListener(DataType.SkillBeging, self);
+            DataUpdateComponent.Instance.AddListener(DataType.SkillFinish, self);
         }
     }
 
     public static class UIMainSkillComponentSystem
     {
+
+        public static void OnSkillBeging(this UIMainSkillComponent self, string dataParams)
+        { 
+            int skillId = int.Parse(dataParams);
+            for (int i = 0; i < self.UISkillGirdList.Count; i++)
+            {
+                if (self.UISkillGirdList[i].SkillPro.SkillID == skillId)
+                {
+                    self.UISkillGirdList[i].Button_Cancle.SetActive(true);
+                }
+            }
+        }
+
+        public static void OnSkillFinish(this UIMainSkillComponent self, string dataParams)
+        {
+            int skillId = int.Parse(dataParams);
+            for (int i = 0; i < self.UISkillGirdList.Count; i++)
+            {
+                if (self.UISkillGirdList[i].SkillPro.SkillID == skillId)
+                {
+                    self.UISkillGirdList[i].Button_Cancle.SetActive(false);
+                }
+            }
+        }
+
         public static void OnSkillCDUpdate(this UIMainSkillComponent self)
         {
             long serverTime = TimeHelper.ServerNow();

@@ -17,6 +17,7 @@ namespace ET
 
     public class UISkillGridComponent : Entity, IAwake, IAwake<GameObject>
     {
+        public GameObject Button_Cancle;
         public GameObject SkillDi;
         public GameObject Btn_SkillStart;
         public GameObject Img_SkillIcon;
@@ -31,11 +32,12 @@ namespace ET
 
         public bool UseSkill;
         public bool CancelSkill;
-        public SkillPro skillPro;
+        public SkillPro SkillPro;
         public Action<bool> SkillCancelHandler;
 
         public void Awake(GameObject gameObject)
         {
+            this.Button_Cancle = gameObject.transform.Find("Button_Cancle").gameObject;
             this.SkillDi = gameObject.transform.Find("SkillDi").gameObject;
             this.Btn_SkillStart = gameObject.transform.Find("Btn_SkillStart").gameObject;
             this.Img_SkillIcon = gameObject.transform.Find("Img_Mask/Img_SkillIcon").gameObject;
@@ -44,8 +46,10 @@ namespace ET
             this.Text_SkillCD = gameObject.transform.Find("Text_SkillCD").gameObject.GetComponent<Text>();
             this.Img_PublicSkillCD = gameObject.transform.Find("Img_PublicSkillCD").gameObject.GetComponent<Image>();
             this.Img_Mask = gameObject.transform.Find("Img_Mask").gameObject;
+            this.Button_Cancle.SetActive(false);
             //this.BackIcon = gameObject.transform.Find("BackIcon").gameObject;
 
+            ButtonHelp.AddListenerEx(this.Button_Cancle, this.SendCancleSkill);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.Draging(pdata); }, EventTriggerType.Drag);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.EndDrag(pdata); }, EventTriggerType.EndDrag);
             ButtonHelp.AddEventTriggers(this.Btn_SkillStart, (PointerEventData pdata) => { this.OnPointDown(pdata); }, EventTriggerType.PointerDown);
@@ -183,19 +187,19 @@ namespace ET
 
             EventType.BeforeSkill.Instance.ZoneScene = self.ZoneScene();
             EventSystem.Instance.PublishClass(EventType.BeforeSkill.Instance);
-            if (self.skillPro.SkillSetType == (int)SkillSetEnum.Skill)
+            if (self.SkillPro.SkillSetType == (int)SkillSetEnum.Skill)
             {
                 myUnit.GetComponent<SkillManagerComponent>().SendUseSkill(self.SkillBaseConfig.Id, 0, angle,  targetId, distance).Coroutine();
             }
             else
             {
-                BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(self.skillPro.SkillID);
+                BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(self.SkillPro.SkillID);
                 if (bagInfo == null)
                 {
                     return;
                 }
-                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.skillPro.SkillID);
-                myUnit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), self.skillPro.SkillID, angle, targetId, distance).Coroutine();
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.SkillPro.SkillID);
+                myUnit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), self.SkillPro.SkillID, angle, targetId, distance).Coroutine();
             }
         }
 
@@ -253,15 +257,15 @@ namespace ET
         public static void UpdateItemNumber(this UISkillGridComponent self)
         {
             self.Text_SkillItemNum.SetActive(false);
-            if (self.skillPro == null)
+            if (self.SkillPro == null)
             {
                 return;
             }
-            if (self.skillPro.SkillSetType!= (int)SkillSetEnum.Item)
+            if (self.SkillPro.SkillSetType!= (int)SkillSetEnum.Item)
             {
                 return;
             }
-            long number = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(self.skillPro.SkillID);
+            long number = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(self.SkillPro.SkillID);
             self.Text_SkillItemNum.SetActive(true);
             self.Text_SkillItemNum.GetComponent<Text>().text = number.ToString();
 
@@ -269,15 +273,24 @@ namespace ET
             UICommonHelper.SetImageGray( self.Img_SkillIcon.gameObject, number == 0);
         }
 
-        public static void UpdateSkillInfo(this UISkillGridComponent self , SkillPro skillpro)
+        public static void SendCancleSkill(this UISkillGridComponent self)
         {
-            self.skillPro = skillpro;
+            C2M_SkillInterruptRequest request = new C2M_SkillInterruptRequest() { SkillID = self.SkillPro.SkillID };
+            self.ZoneScene().GetComponent<SessionComponent>().Session.Send(request);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            unit.GetComponent<SkillManagerComponent>().AddSkillCD(self.SkillPro.SkillID, TimeHelper.ServerNow() + 10000, TimeHelper.ServerNow()+1000);
+            self.Button_Cancle.SetActive(false);
+        }
+
+        public static void UpdateSkillInfo(this UISkillGridComponent self, SkillPro skillpro)
+        {
+            self.SkillPro = skillpro;
             self.UpdateItemNumber();
             if (skillpro == null)
             {
                 self.SkillWuqiConfig = null;
                 self.SkillBaseConfig = null;
-                self.skillPro = null;
+                self.SkillPro = null;
                 self.Img_PublicSkillCD.fillAmount = 0;
                 self.Img_SkillIcon.SetActive(false);
                 self.Img_Mask.SetActive(false);
@@ -303,6 +316,7 @@ namespace ET
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 self.Img_SkillIcon.GetComponent<Image>().sprite = sp;
             }
+            self.Button_Cancle.SetActive(false);
             self.Img_SkillIcon.SetActive(true);
             self.Img_Mask.SetActive(true);
         }

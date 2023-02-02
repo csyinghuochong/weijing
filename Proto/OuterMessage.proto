@@ -795,6 +795,8 @@ message M2C_UnitUseSkill // IActorMessage
 	int32 TargetAngle = 3;				//用来角色转向
 	repeated SkillInfo SkillInfos = 4;		//技能列表[一个技能可以同时触发多个技能]
 	int32 ItemId = 6;
+	int64 CDEndTime = 7;
+	int64 PublicCDTime = 8;
 }
 
 //闪电链
@@ -4264,3 +4266,19 @@ message R2C_IOSPayVerifyResponse // IRechargeActorResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//技能打断
+message C2M_SkillInterruptRequest // IActorLocationMessage
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    int32 SkillID = 1;
+}
+
+message M2C_SkillInterruptResult // IActorMessage
+{
+	int64 ActorId = 93;
+	int64 UnitId = 1;
+	int32 SkillId = 2;
+}
+

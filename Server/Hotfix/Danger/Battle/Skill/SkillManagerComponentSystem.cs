@@ -265,6 +265,15 @@ namespace ET
             self.OnUseSkill(skillcmd, false);
         }
 
+        public static void InterruptSkill(this SkillManagerComponent self, int skillId)
+        {
+            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            {
+                SkillHandler skillHandler = self.Skills[i];
+                skillHandler.SetSkillState(SkillState.Finished);
+            }
+        }
+
         /// <summary>
         /// 打断吟唱中， 吟唱前客户端处理
         /// </summary>
@@ -286,7 +295,6 @@ namespace ET
                     skillHandler.SetSkillState(SkillState.Finished);
                     stateComponent.StateTypeAdd(StateTypeEnum.Interrupt);
                 }
-                
             }
 
             //移除互斥技能
@@ -358,18 +366,24 @@ namespace ET
                 skillList[i].SkillEndTime = skillAction.SkillEndTime;
                 self.Skills.Add(skillAction);
             }
+
+            //添加技能CD列表
+            SkillCDItem skillCd = self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig, zhudong);
+            m2C_Skill.Error = ErrorCore.ERR_Success;
+            m2C_Skill.CDEndTime = skillCd != null ? skillCd.CDEndTime : 0;
+            m2C_Skill.PublicCDTime = self.SkillPublicCDTime;
             M2C_UnitUseSkill useSkill = new M2C_UnitUseSkill()
             {
                 UnitId = unit.Id,
                 ItemId = skillcmd.ItemId,
                 SkillID = skillcmd.SkillID,
                 TargetAngle = skillcmd.TargetAngle,
-                SkillInfos = skillList
+                SkillInfos = skillList,
+                CDEndTime = skillCd != null ? skillCd.CDEndTime : 0,
+                PublicCDTime = self.SkillPublicCDTime
             };
             MessageHelper.Broadcast(unit, useSkill);
 
-            //添加技能CD列表
-            SkillCDItem skillCd = self.AddSkillCD(skillcmd.SkillID, weaponSkillConfig, zhudong);
             if (zhudong)
             {
                 SkillPassiveComponent skillPassiveComponent = unit.GetComponent<SkillPassiveComponent>();
@@ -377,29 +391,30 @@ namespace ET
                 skillPassiveComponent.OnTrigegerPassiveSkill(weaponSkillConfig.SkillRangeSize <= 4 ? SkillPassiveTypeEnum.AckDistance_9 : SkillPassiveTypeEnum.AckDistance_10, skillcmd.TargetID, skillcmd.SkillID);
             }
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
-            m2C_Skill.Error = ErrorCore.ERR_Success;
-            m2C_Skill.CDEndTime = skillCd != null ? skillCd.CDEndTime : 0;
-            m2C_Skill.PublicCDTime = self.SkillPublicCDTime;
             return m2C_Skill;
         }
 
         public static SkillCDItem AddSkillCD(this SkillManagerComponent self, int skillid, SkillConfig weaponConfig, bool zhudong)
         {
             SkillCDItem skillCd = null;
+            if (skillid == self.FangunSkillId)
+            {
+                skillCd = self.UpdateFangunSkillCD();
+            }
             if (weaponConfig.SkillActType == 0)
             {
                 Unit unit = self.GetParent<Unit>();
-                if (unit.Type!=UnitType.Player)
+                if (unit.Type != UnitType.Player)
                 {
                     skillCd = self.UpdateSkillCD(skillid, weaponConfig.Id, zhudong);
                 }
             }
-            else if (skillid == self.FangunSkillId)
-            {
-                skillCd = self.UpdateFangunSkillCD();
-            }
             else
             {
+                if (weaponConfig.SkillType == 1 && weaponConfig.PassiveSkillType == 1)
+                {
+                    return null;
+                }
                 skillCd = self.UpdateSkillCD(skillid, weaponConfig.Id, zhudong);
             }
             return skillCd;

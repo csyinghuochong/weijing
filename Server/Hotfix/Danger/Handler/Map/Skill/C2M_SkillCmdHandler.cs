@@ -25,8 +25,6 @@ namespace ET
                     unit.GetComponent<BagComponent>().OnCostItemData($"{request.ItemId};1");
                 }
                 response.Error = m2C_SkillCmd.Error;
-                response.CDEndTime = m2C_SkillCmd.CDEndTime;
-                response.PublicCDTime = m2C_SkillCmd.PublicCDTime;
 
                 reply();
                 await ETTask.CompletedTask;

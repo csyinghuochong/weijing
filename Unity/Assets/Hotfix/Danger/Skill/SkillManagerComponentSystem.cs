@@ -182,7 +182,6 @@ namespace ET
             unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.NetWait);
             if (m2C_SkillCmd.Error == 0)
             {
-                self.AddSkillCD(skillCmd.SkillID, m2C_SkillCmd);
                 BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
                 int weaponSkill = SkillHelp.GetWeaponSkill(skillCmd.SkillID, bagComponent.GetEquipType());
                 SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
@@ -193,14 +192,9 @@ namespace ET
             return m2C_SkillCmd.Error;
         }
 
-        public static void AddSkillCD(this SkillManagerComponent self, int skillId, M2C_SkillCmd skillCmd)
+        public static void AddSkillCD(this SkillManagerComponent self, int skillId, long cdEndTime, long pulicCD)
         {
             //添加技能CD列表
-            if (skillCmd.CDEndTime == 0)
-            {
-                return;
-            }
-
             SkillCDItem skillcd = self.GetSkillCD(skillId);
             if (skillcd == null)
             {
@@ -208,8 +202,8 @@ namespace ET
                 self.SkillCDs.Add(skillcd);
             }
             skillcd.SkillID = skillId;
-            skillcd.CDEndTime = skillCmd.CDEndTime + 100;
-            self.SkillPublicCDTime = skillCmd.PublicCDTime + 100;
+            skillcd.CDEndTime = cdEndTime + 100;
+            self.SkillPublicCDTime = pulicCD + 100;
             self.AddSkillTimer();
         }
 
@@ -231,35 +225,6 @@ namespace ET
             }
         }
 
-        public static void CheckSkillCD(this SkillManagerComponent self, SkillConfig skillConfig, int skillId)
-        {
-            if (self.GetSkillCD(skillId) != null)
-            {
-                return;
-            }
-            SkillPro skillPro = self.ZoneScene().GetComponent<SkillSetComponent>().GetBySkillID(skillId);
-            if (skillPro == null || skillPro.SkillPosition == 0 || skillPro.SkillSetType == (int)SkillSetEnum.Item)
-            {
-                return;
-            }
-            if (skillConfig.SkillActType == 0 || skillConfig.Id == self.FangunSkillId)
-            {
-                return;
-            }
-            if (skillConfig.PassiveSkillType > 0)
-            {
-                return;
-            }
-            if (self.SkillCmd.SkillID != skillId)
-            {
-                return;
-            }
-
-            M2C_SkillCmd m2C_SkillCmd = new M2C_SkillCmd();
-            m2C_SkillCmd.CDEndTime = TimeHelper.ServerNow() + (long)(1000 * skillConfig.SkillCD);
-            self.AddSkillCD(skillId, m2C_SkillCmd);
-        }
-
         /// <summary>
         /// CD异常 换客户端时间111111111111111
         /// </summary>
@@ -269,10 +234,10 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.SkillInfos[0].WeaponSkillID);
-            //if (unit.MainHero && !unit.IsRobot())
-            //{
-            //    self.CheckSkillCD(skillConfig, skillcmd.SkillID);
-            //}
+            if (unit.MainHero && !unit.IsRobot())
+            {
+                self.AddSkillCD( skillcmd.SkillID, skillcmd.CDEndTime, skillcmd.PublicCDTime);
+            }
             if (skillcmd.ItemId > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
             {
                 //回血技能只播放动画
@@ -304,10 +269,19 @@ namespace ET
                 }
 
                 ASkillHandler skillHandler = (ASkillHandler)ObjectPool.Instance.Fetch(SkillDispatcherComponent.Instance.SkillTypes[skillConfig1.GameObjectName]);
-                skillHandler.OnInit(skillcmd.SkillInfos[i], unit);
                 self.Skills.Add(skillHandler);
+                skillHandler.OnInit(skillcmd.SkillInfos[i], unit);
             }
             self.AddSkillTimer();
+        }
+
+        public static void InterruptSkill(this SkillManagerComponent self, int skillId)
+        {
+            for (int i = self.Skills.Count - 1; i >= 0; i--)
+            {
+                ASkillHandler skillHandler = self.Skills[i];
+                skillHandler.SetSkillState(SkillState.Finished);
+            }
         }
 
         public static void InterruptSing(this SkillManagerComponent self)

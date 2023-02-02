@@ -182,8 +182,10 @@ namespace ET
 
         public static void AddPassiveSkillByType(this SkillPassiveComponent self,SkillConfig  skillConfig)
         {
-            if (skillConfig.PassiveSkillType == 0)
+            if (skillConfig.SkillType == 1 || skillConfig.PassiveSkillType == 0)
+            {
                 return;
+            }
             for (int i = 0; i < self.SkillPassiveInfos.Count; i++)
             {
                 if (self.SkillPassiveInfos[i].SkillId == skillConfig.Id)

@@ -9,6 +9,13 @@
         {
             this.BaseOnInit(skillId, theUnitFrom);
             OnExecute();
+
+            if (theUnitFrom.MainHero && this.SkillConf.SkillType == 1 && this.SkillConf.PassiveSkillType == 1)
+            {
+                EventType.DataUpdate.Instance.DataType = DataType.SkillBeging;
+                EventType.DataUpdate.Instance.DataParams = this.SkillConf.Id.ToString();
+                EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
+            }
         }
 
         public override void OnExecute()
@@ -24,6 +31,13 @@
 
         public override void OnFinished()
         {
+            if (this.TheUnitFrom.MainHero && this.SkillConf.SkillType == 1 && this.SkillConf.PassiveSkillType == 1)
+            {
+                EventType.DataUpdate.Instance.DataType = DataType.SkillFinish;
+                EventType.DataUpdate.Instance.DataParams = this.SkillConf.Id.ToString();
+                EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
+            }
+
             this.EndSkillEffect();
         }
     }

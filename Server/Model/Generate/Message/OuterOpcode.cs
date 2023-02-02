@@ -495,5 +495,7 @@ namespace ET
 		 public const ushort Center2C_DeleteAccountResponse = 10492;
 		 public const ushort C2R_IOSPayVerifyRequest = 10493;
 		 public const ushort R2C_IOSPayVerifyResponse = 10494;
+		 public const ushort C2M_SkillInterruptRequest = 10495;
+		 public const ushort M2C_SkillInterruptResult = 10496;
 	}
 }
