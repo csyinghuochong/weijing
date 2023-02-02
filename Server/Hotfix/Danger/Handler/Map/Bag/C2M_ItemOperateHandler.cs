@@ -458,10 +458,22 @@ namespace ET
                                 //可以穿戴
                             }
                             else {
+                                bool ifWear = false;
+                                if (useInfo.Occ == 1 && (itemCof.EquipType == 1 || itemCof.EquipType == 2)) {
+                                    ifWear = true;
+                                }
+
+                                if (useInfo.Occ == 2 && (itemCof.EquipType == 3 || itemCof.EquipType == 4))
+                                {
+                                    ifWear = true;
+                                }
                                 //佩戴部位不符
-                                response.Error = ErrorCore.ERR_EquipType;     //错误码:穿戴类型不符
-                                reply();
-                                return;
+                                if (ifWear == false)
+                                {
+                                    response.Error = ErrorCore.ERR_EquipType;     //错误码:穿戴类型不符
+                                    reply();
+                                    return;
+                                }
                             }
                         }
                     }
