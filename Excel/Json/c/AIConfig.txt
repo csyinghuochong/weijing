@@ -14,4 +14,7 @@
 {"_t":"AIConfig","_id":604,"AIConfigId":6,"Order":4,"Name":"AI_Attack","NodeParams":""},
 {"_t":"AIConfig","_id":605,"AIConfigId":6,"Order":5,"Name":"AI_Transfer","NodeParams":"1"},
 {"_t":"AIConfig","_id":701,"AIConfigId":7,"Order":1,"Name":"AI_BattleWuDi","NodeParams":""},
+{"_t":"AIConfig","_id":801,"AIConfigId":8,"Order":1,"Name":"AI_XunLuo","NodeParams":""},
+{"_t":"AIConfig","_id":802,"AIConfigId":8,"Order":2,"Name":"AI_ZhuiJi","NodeParams":""},
+{"_t":"AIConfig","_id":803,"AIConfigId":8,"Order":3,"Name":"AI_Attack","NodeParams":""},
 ]}
