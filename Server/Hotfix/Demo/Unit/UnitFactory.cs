@@ -283,7 +283,9 @@ namespace ET
                 drop = main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || bekill.IsBoss();
 
                 //场景宝箱掉落和体力无关
-                if (monsterCof.MonsterType == 5 && monsterCof.MonsterSonType == 55) {
+                if (monsterCof.MonsterType == 5 &&
+                    (monsterCof.MonsterSonType == 55 || monsterCof.MonsterSonType == 57)) 
+                {
                     drop = true;
                 }
             }
@@ -383,8 +385,8 @@ namespace ET
             {
                 beattackIds.Add(main.Id);
             }
-
-            if (monsterCof.DropType == 0 || monsterCof.DropType == 2) // 0 公共掉落 2保护掉落   1私有掉落
+            // 0 公共掉落 2保护掉落   1私有掉落
+            if (monsterCof.DropType == 0 || monsterCof.DropType == 2) 
             {
                 long serverTime = TimeHelper.ServerNow();
                 for (int i = 0; i < droplist.Count; i++)
@@ -424,9 +426,17 @@ namespace ET
                     {
                         continue;
                     }
+
                     M2C_CreateDropItems m2C_CreateDropItems = new M2C_CreateDropItems();
                     for (int k = 0; k < droplist.Count; k++)
                     {
+                        //宠物蛋直接进背包
+                        if (monsterCof.MonsterSonType == 57)
+                        {
+                            beAttack.GetComponent<BagComponent>().OnAddItemData($"{droplist[k].ItemID};{droplist[k].ItemNum}", $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
+                            continue;
+                        }
+
                         m2C_CreateDropItems.Drops.Add(new DropInfo() {
                             DropType = 1, ItemID = droplist[k].ItemID, ItemNum = droplist[k].ItemNum,
                             X = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f),
