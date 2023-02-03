@@ -92,22 +92,12 @@ namespace ET
 
         public static async ETTask ReqestHeCheng(this UIPetHeChengComponent self)
         {
-            PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
-            List<KeyValuePair> oldPetSkin = petComponent.GetPetSkinCopy();
             C2M_RolePetHeCheng c2M_RolePetHeCheng = new C2M_RolePetHeCheng() { PetInfoId1 = self.HeChengPet_Left.Id, PetInfoId2 = self.HeChengPet_Right.Id };
             M2C_RolePetHeCheng m2C_RolePetHeCheng = (M2C_RolePetHeCheng)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetHeCheng);
             if (m2C_RolePetHeCheng.Error != 0 || m2C_RolePetHeCheng.rolePetInfo == null)
             {
                 return;
             }
-
-            long instanceId = self.InstanceId;
-            UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPetChouKaGet);
-            if (instanceId != self.InstanceId)
-            {
-                return;
-            }
-            uI.GetComponent<UIPetChouKaGetComponent>().OnInitUI(m2C_RolePetHeCheng.rolePetInfo, oldPetSkin, false);
             self.ZoneScene().GetComponent<PetComponent>().OnRecvHeCheng(m2C_RolePetHeCheng);
         }
 

@@ -212,6 +212,15 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class RolePetAdd : DisposeObject
+        {
+            public static readonly RolePetAdd Instance = new RolePetAdd();
+            public List<KeyValuePair> OldPetSkin;
+            public RolePetInfo RolePetInfo;
+            public Scene ZoneScene;
+        }
+
+
         public class TeamDungeonQuit : DisposeObject
         {
             public static readonly TeamDungeonQuit Instance = new TeamDungeonQuit();

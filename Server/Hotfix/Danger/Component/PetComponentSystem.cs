@@ -170,7 +170,6 @@ namespace ET
         //第一次获得宠物的时候调用
         public static RolePetInfo OnAddPet(this PetComponent self, int petId, int skinId = 0)
         {
-
             PetConfig petConfig = PetConfigCategory.Instance.Get(petId);
             List<int> weight = new List<int>(petConfig.SkinPro);
             int index = RandomHelper.RandomByWeight(weight);
