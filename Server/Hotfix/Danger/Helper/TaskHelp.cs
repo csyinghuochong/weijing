@@ -30,13 +30,25 @@ namespace ET
                 {
                     writeTaskID = writeTaskID_Next;
                     taskCountryConfig = TaskCountryConfigCategory.Instance.Get(writeTaskID);
+
+                    if (taskCountryConfig.TriggerType == 1 && playerLv < taskCountryConfig.TargetValue)
+                    {
+                        //条件不满足
+                        if (taskCountryConfig.NextTask == 0)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            writeTaskID_Next = taskCountryConfig.NextTask;
+                            continue;
+                        }
+                    }
+
+
                     triggerPro = taskCountryConfig.TriggerPro;
                     writeTaskID_Next = taskCountryConfig.NextTask;
 
-                    if (taskCountryConfig.TriggerType == 1 && playerLv <taskCountryConfig.TargetValue )
-                    {
-                        writeTaskID = writeTaskID_Next;
-                    }
 
                     if (writeTaskID_Next == 0)
                     {
