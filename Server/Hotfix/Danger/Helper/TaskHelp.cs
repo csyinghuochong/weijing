@@ -10,9 +10,11 @@ namespace ET
         /// 活跃任务
         /// </summary>
         /// <returns></returns>
-        public static List<int> GetTaskCountrys()
+        public static List<int> GetTaskCountrys(Unit unit)
         {
             //活跃任务
+            int playerLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;  
+
             List<int> taskCountryList = new List<int>();
             string[] dayTaskID =  GlobalValueConfigCategory.Instance.Get(8).Value.Split(';');
             for (int i = 0; i < dayTaskID.Length; i++)
@@ -22,11 +24,12 @@ namespace ET
                 float taskRandValue = RandomHelper.RandFloat01();
                 int writeTaskID = int.Parse( dayTaskID[i] );
                 int writeTaskID_Next = writeTaskID;
+                TaskCountryConfig taskCountryConfig = null;
                 double triggerPro = 0;
                 do
                 {
                     writeTaskID = writeTaskID_Next;
-                    TaskCountryConfig taskCountryConfig = TaskCountryConfigCategory.Instance.Get(writeTaskID);
+                    taskCountryConfig = TaskCountryConfigCategory.Instance.Get(writeTaskID);
                     triggerPro = taskCountryConfig.TriggerPro;
                     writeTaskID_Next = taskCountryConfig.NextTask;
                     if (writeTaskID_Next == 0)
@@ -36,7 +39,11 @@ namespace ET
 
                 } while (taskRandValue >= triggerPro);
 
-                taskCountryList.Add(writeTaskID);
+
+                if (taskCountryConfig.TriggerType != 1 || taskCountryConfig.TargetValue <= playerLv)
+                {
+                    taskCountryList.Add(writeTaskID);
+                }
             }
 
             return taskCountryList;

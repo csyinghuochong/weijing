@@ -130,11 +130,20 @@ namespace ET
             ComHelp.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
 
+            self.LogTest();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             if (numericComponent.GetAsLong(NumericType.LastGameTime) == 0)
             {
                 numericComponent.ApplyValue(NumericType.LastGameTime, TimeHelper.ServerNow(), false);
             }
+        }
+
+        public static void LogTest(this DBSaveComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+
+            Log.Debug(unit.GetComponent<ActivityComponent>().ToString());
+            Log.Debug(unit.GetComponent<TaskComponent>().ToString());
         }
 
         public static int OnDisconnect(this DBSaveComponent self)
@@ -152,6 +161,7 @@ namespace ET
                 unit.RecordPostion(sceneTypeEnum, ComHelp.MainCityID());
             }
             unit.GetComponent<EnergyComponent>().OnDisconnect();
+            self.LogTest();
             self.UpdateCacheDB();
 
             long unitId = unit.Id;

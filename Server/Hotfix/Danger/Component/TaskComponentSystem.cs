@@ -665,7 +665,7 @@ namespace ET
             self.ReceiveHuoYueIds.Clear();
             self.TaskCountryList.Clear();
             List<int> taskCountryList = new List<int>();
-            taskCountryList.AddRange(TaskHelp.GetTaskCountrys());
+            taskCountryList.AddRange(TaskHelp.GetTaskCountrys(unit));
             taskCountryList.AddRange(TaskHelp.GetBattleTask());
             for (int i = 0; i < taskCountryList.Count; i++)
             {
