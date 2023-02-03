@@ -18,16 +18,24 @@ namespace ET
             await NetHelper.RequestUserInfo(zoneScene, true);
             await NetHelper.RequestUnitInfo(zoneScene, true);
 
+            AccountInfoComponent accountInfoComponent = zoneScene.GetComponent<AccountInfoComponent>();
+            string info = PlayerPrefsHelp.GetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString());
+            if (!string.IsNullOrEmpty(info))
+            {
+                NetHelper.SendIOSPayVerifyRequest(zoneScene, info);
+                PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), string.Empty);
+            }
+
             UI uIMain = UIHelper.GetUI(zoneScene, UIType.UIMain);
             if (uIMain != null)
             {
                 uIMain.GetComponent<UIMainComponent>().OnRelinkUpdate();
             }
-            UI uiRecharge = UIHelper.GetUI(zoneScene, UIType.UIRecharge);
-            if (uiRecharge != null)
-            {
-                uiRecharge.GetComponent<UIRechargeComponent>().OnRelinkUpdate();
-            }
+            //UI uiRecharge = UIHelper.GetUI(zoneScene, UIType.UIRecharge);
+            //if (uiRecharge != null)
+            //{
+            //    uiRecharge.GetComponent<UIRechargeComponent>().OnRelinkUpdate();
+            //}
         }
     }
 }

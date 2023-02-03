@@ -1,5 +1,10 @@
 ﻿namespace ET
 {
+    public class Receipt
+    {
+        public string Payload;
+    }
+
     /// <summary>
     /// 数据类型枚举
     /// </summary>

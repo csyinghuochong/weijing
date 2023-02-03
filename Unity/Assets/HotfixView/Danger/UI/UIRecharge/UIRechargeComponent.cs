@@ -4,13 +4,6 @@ using System.Collections.Generic;
 
 namespace ET
 {
-
-
-    public class Receipt
-    {
-        public string Payload;
-    }
-
     public class UIRechargeComponent: Entity, IAwake
     {
 
@@ -26,7 +19,6 @@ namespace ET
 
         public int PayType; //1微信  2支付宝
         public int ChargetNumber;
-        public string PayloadInfo;
     }
 
     [ObjectSystem]
@@ -37,7 +29,6 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
-            self.PayloadInfo = string.Empty;
             self.Loading = rc.Get<GameObject>("Loading");
             self.Loading.SetActive(false);
             self.ImageSelect2 = rc.Get<GameObject>("ImageSelect2");
@@ -95,7 +86,8 @@ namespace ET
             Session session = self.ZoneScene().GetComponent<SessionComponent>().Session;
             if (session == null || session.IsDisposed)
             {
-                self.PayloadInfo = info;
+                AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                PlayerPrefsHelp.SetString("IOS_"+ accountInfoComponent.CurrentRoleId.ToString(), info);
                 return;
             }
             self.Loading.SetActive(false);
@@ -108,15 +100,6 @@ namespace ET
             C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest() { UnitId = unit.Id, payMessage = receipt.Payload };
             session.Call(request).Coroutine();
         }       
-
-        public static void OnRelinkUpdate(this UIRechargeComponent self)
-        {
-            if (!string.IsNullOrEmpty(self.PayloadInfo))
-            {
-                self.OnIosPaySuccessedCallback(self.PayloadInfo);
-            }
-            self.PayloadInfo = string.Empty;
-        }
 
         public static async ETTask InitRechargeList(this UIRechargeComponent self)
         {

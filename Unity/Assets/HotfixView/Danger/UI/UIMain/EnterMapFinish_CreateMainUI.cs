@@ -10,6 +10,7 @@ namespace ET
 		protected override void  Run(object cls)
 		{
 			EventType.EnterMapFinish args = cls as EventType.EnterMapFinish;
+			Scene zoneScene = args.ZoneScene;
 			Game.Scene.GetComponent<SoundComponent>().InitData(args.ZoneScene.GetComponent<UserInfoComponent>().UserInfo.GameSettingInfos);
 			UIHelper.Remove(args.ZoneScene, UIType.UILobby);
 			//UIHelper.Create(args.ZoneScene, UIType.UIMain).Coroutine();
@@ -20,6 +21,13 @@ namespace ET
 
 #if UNITY_IPHONE
 			GlobalHelp.InitIOSPurchase();
+
+			string info = PlayerPrefsHelp.GetString("IOS_" + roleId.ToString());
+			if (!string.IsNullOrEmpty(info))
+			{
+				NetHelper.SendIOSPayVerifyRequest(zoneScene, info);
+				PlayerPrefsHelp.SetString("IOS_" + roleId.ToString(), string.Empty);
+			}
 #endif
 
 #if UNITY_ANDROID

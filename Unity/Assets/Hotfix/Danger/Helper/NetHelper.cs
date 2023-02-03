@@ -160,6 +160,15 @@
             F2C_FriendBlacklistResponse f2C_FriendApplyResponse = (F2C_FriendBlacklistResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2F_FriendApplyReplyRequest);
         }
 
+        public static void SendIOSPayVerifyRequest(Scene zoneScene, string info)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            Receipt receipt = JsonHelper.FromJson<Receipt>(info);
+            ET.Log.ILog.Debug("payload[内购成功]:" + receipt.Payload);
+            C2R_IOSPayVerifyRequest request = new C2R_IOSPayVerifyRequest() { UnitId = unit.Id, payMessage = receipt.Payload };
+            zoneScene.GetComponent<SessionComponent>().Session.Call(request).Coroutine();
+        }
+
         public static async ETTask<int> RequestEquipMake(Scene zoneScene, long  baginfoId, int makeId)
         {
             C2M_MakeEquipRequest request = new C2M_MakeEquipRequest() { BagInfoID = baginfoId, MakeId = makeId };
