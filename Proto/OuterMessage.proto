@@ -865,6 +865,8 @@ message SpilingInfo
 	float ForwardX = 12;
 	float ForwardY = 13;
 	float ForwardZ = 14;
+	repeated KeyValuePair Buffs = 19;
+	repeated SkillInfo Skills = 20;
 }
 
 message M2C_UnitNumericUpdate // IActorMessage

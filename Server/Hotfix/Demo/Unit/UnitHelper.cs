@@ -72,7 +72,6 @@ namespace ET
             //携带的buff
             unitInfo.Buffs = unit.GetComponent<BuffManagerComponent>().GetMessageBuff();
             unitInfo.Skills = unit.GetComponent<SkillManagerComponent>().GetMessageSkill();
-            
             //设置数据
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             unitInfo.PlayerName = userInfoComponent.UserInfo.Name;
@@ -181,6 +180,9 @@ namespace ET
                 }
             }
 
+            unitInfo.Buffs = unit.GetComponent<BuffManagerComponent>().GetMessageBuff();
+            unitInfo.Skills = unit.GetComponent<SkillManagerComponent>().GetMessageSkill();
+
             spilingInfo.ReviveTime = reviveTime;
             //广播创建的是那个怪物ID
             spilingInfo.SkillId = unit.GetComponent<UnitInfoComponent>().EnergySkillId;
@@ -215,6 +217,8 @@ namespace ET
                 rolePetInfo.Vs.Add(value);
             }
 
+            unitInfo.Buffs = unit.GetComponent<BuffManagerComponent>().GetMessageBuff();
+            unitInfo.Skills = unit.GetComponent<SkillManagerComponent>().GetMessageSkill();
             return rolePetInfo;
         }
 
