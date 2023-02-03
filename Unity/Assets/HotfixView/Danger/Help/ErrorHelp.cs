@@ -118,6 +118,8 @@ namespace ET
             
             ErrorHintList.Add(ErrorCore.ERR_VitalityNotEnoughError, "活力不足");
             ErrorHintList.Add(ErrorCore.Err_TeamDungeonXieZhu, "帮助副本只能创建比自己等级低10级以上的副本");
+
+            ErrorHintList.Add(ErrorCore.ERR_AlreadyReceived, "已经领取过奖励");
         }
 
         public string GetHint(int code)

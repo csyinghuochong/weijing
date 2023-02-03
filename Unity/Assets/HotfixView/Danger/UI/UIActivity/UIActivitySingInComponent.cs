@@ -39,7 +39,7 @@ namespace ET
             self.Btn_Com2 = rc.Get<GameObject>("Btn_Com2");
             ButtonHelp.AddListenerEx(self.Btn_Com2, () => { self.OnBtn_Com_Sign2().Coroutine(); });
 
-            self.OnInitUI().Coroutine();
+            self.OnInitUI();
         }
     }
 
