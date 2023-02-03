@@ -155,6 +155,7 @@ namespace ET
                 if (checksing && skillConfig.SkillFrontSingTime > 0)
                 {
                     unit.GetComponent<SingingComponent>().BeforeSkillSing(skillCmd);
+                    unit.ZoneScene().GetComponent<AttackComponent>().RemoveTimer();
                     errorCode =  ErrorCore.ERR_Success;
                 }
                 else
