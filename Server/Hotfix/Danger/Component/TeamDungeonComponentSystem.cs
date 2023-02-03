@@ -93,7 +93,7 @@ namespace ET
                 {
                     List<RewardItem> rewardItems = new List<RewardItem>();
                     rewardItems.Add(new RewardItem() { ItemID = teamDropItem.DropInfo.ItemID, ItemNum = teamDropItem.DropInfo.ItemNum });
-                    bool ret =  unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
+                    bool ret =  unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                     Log.Debug($"TeamDungeonComponent.DropInfo  {teamDropItem.DropInfo.ItemID} {teamDropItem.DropInfo.ItemNum} {ret}");
                     FubenHelp.SendPickMessage(unit, teamDropItem.DropInfo, self.m2C_SyncChatInfo, needIds, randomNumbers);
                 }
@@ -242,7 +242,7 @@ namespace ET
                 unit1.GetComponent<TaskComponent>().OnPassTeamFuben();
                 if (unit1.GetComponent<UserInfoComponent>().UserInfo.UserId == idExtra)
                 {
-                    unit1.GetComponent<BagComponent>().OnAddItemData(m2C_FubenSettlement.RewardExtraItem, "", $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
+                    unit1.GetComponent<BagComponent>().OnAddItemData(m2C_FubenSettlement.RewardExtraItem, string.Empty, $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");
                 }
                 MessageHelper.SendToClient(unit1, m2C_FubenSettlement);
             }

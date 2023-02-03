@@ -126,7 +126,7 @@ namespace ET
 
 						List<RewardItem> rewardItems = new List<RewardItem>();
 						rewardItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNumber });
-						unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}", true, true);
+						unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}", true, true);
 						break;
 					case 2:             //新增怪物2#-70#0#5#72002013#1  90000005-爆炸怪 72002013-脱战技能没移除
 						float posX = float.Parse(commands[1]);

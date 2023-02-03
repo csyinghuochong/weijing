@@ -23,7 +23,7 @@ namespace ET
                 rewardItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
             }
 
-            bool sucess = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems);
+            bool sucess = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, string.Empty);
             response.Error = sucess ? ErrorCore.ERR_Success : ErrorCore.ERR_BagIsFull;
 
             reply();

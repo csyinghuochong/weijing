@@ -58,7 +58,7 @@ namespace ET
             }
 
             Log.Debug($"抽卡： {unit.Id} {droplist.Count}");
-            bagComponent.OnAddItemData(droplist, "",$"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
+            bagComponent.OnAddItemData(droplist, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
             
             unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.ChouKa, request.ChouKaType, 0);
             if (mianfei)

@@ -48,7 +48,7 @@ namespace ET
             {
                 DropHelper.DropIDToDropItem_2(dropId, rewardItems);
             }
-            if (!unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}"))
+            if (!unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}"))
             {
                 response.Error = ErrorCore.ERR_BagIsFull;
                 reply();

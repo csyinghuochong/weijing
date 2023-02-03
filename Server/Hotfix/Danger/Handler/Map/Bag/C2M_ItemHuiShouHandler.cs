@@ -67,7 +67,7 @@ namespace ET
                 //扣除装备
                 bagComponent.OnCostItemData(petHexin, ItemLocType.ItemPetHeXinBag);
                 bagComponent.OnCostItemData(bagsList, ItemLocType.ItemLocBag);
-                bagComponent.OnAddItemData(huishouGet.Values.ToList(), $"{ItemGetWay.HuiShou}_{TimeHelper.ServerNow()}");
+                bagComponent.OnAddItemData(huishouGet.Values.ToList(), string.Empty, $"{ItemGetWay.HuiShou}_{TimeHelper.ServerNow()}");
                 unit.GetComponent<TaskComponent>().OnItemHuiShow();
                 unit.GetComponent<ChengJiuComponent>().OnItemHuiShow(bagsList.Count);
 

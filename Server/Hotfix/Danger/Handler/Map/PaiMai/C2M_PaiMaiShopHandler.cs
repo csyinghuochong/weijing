@@ -62,7 +62,7 @@ namespace ET
 					//添加道具
 					List<RewardItem> rewardItems = new List<RewardItem>();
 					rewardItems.Add(new RewardItem() { ItemID = paiMaiSellConfig.ItemID, ItemNum = request.BuyNum });
-					unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
+					unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
 				}
 				else
 				{

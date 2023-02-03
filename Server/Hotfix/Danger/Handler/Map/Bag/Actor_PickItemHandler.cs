@@ -34,7 +34,7 @@ namespace ET
                 int addItemNum = dropComponent != null ? dropComponent.ItemNum : drops[i].ItemNum;
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 rewardItems.Add(new RewardItem() { ItemID = addItemID, ItemNum = addItemNum });
-                bool success = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
+                bool success = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                 if (!success)
                 {
                     return  ErrorCore.ERR_BagIsFull;
@@ -130,7 +130,7 @@ namespace ET
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 rewardItems.Add(new RewardItem() { ItemID = addItemID, ItemNum = addItemNum });
 
-                bool success = owner.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
+                bool success = owner.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                 if (!success && !teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                 {
                     teamDungeonComponent.ItemFlags.Add(unitDrop.Id, owner.Id);

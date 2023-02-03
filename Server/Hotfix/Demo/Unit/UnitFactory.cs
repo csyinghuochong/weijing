@@ -272,7 +272,7 @@ namespace ET
                 DropHelper.DropIDToDropItem(dropID[i], dropItemList_2, monsterID, dropProValue, all);
                 if (dropConfig.ifEnterBag == 1)
                 {
-                    unit.GetComponent<BagComponent>().OnAddItemData(dropItemList_2, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
+                    unit.GetComponent<BagComponent>().OnAddItemData(dropItemList_2, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                 }
                 else
                 {

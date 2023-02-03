@@ -34,7 +34,7 @@ namespace ET
                     else
                     {
                         unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, costValue);
-                        unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
+                        unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
                         response.Error = ErrorCore.ERR_Success;
                     }
                     break;
@@ -46,7 +46,7 @@ namespace ET
                     else
                     {
                         unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, costValue);
-                        unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
+                        unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
                         response.Error = ErrorCore.ERR_Success;
                     }
                     break;
@@ -58,7 +58,7 @@ namespace ET
                     else
                     {
                         unit.GetComponent<BagComponent>().OnCostItemData($"{costType};{storeSellConfig.SellValue}");
-                        unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
+                        unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
                     }
                     break;
             }

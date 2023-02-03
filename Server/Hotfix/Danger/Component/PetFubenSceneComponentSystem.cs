@@ -58,7 +58,7 @@ namespace ET
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 DropHelper.DropIDToDropItem(dropId, rewardItems);
                 m2C_FubenSettlement.ReardList.AddRange(rewardItems);
-                self.MainUnit.GetComponent<BagComponent>().OnAddItemData(rewardItems, $"{ItemGetWay.PetFubenReward}_{TimeHelper.ServerNow()}");
+                self.MainUnit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PetFubenReward}_{TimeHelper.ServerNow()}");
             }
             MessageHelper.SendToClient(self.MainUnit, m2C_FubenSettlement);
         }

@@ -285,7 +285,7 @@ namespace ET
             {
                 return ErrorCore.ERR_BagIsFull; 
             }
-            bagComponent.OnAddItemData(rewardItems, "", $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
+            bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
             if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
             {
                 bagComponent.OnCostItemData($"{taskConfig.Target[0]};{taskConfig.TargetValue[0]}");

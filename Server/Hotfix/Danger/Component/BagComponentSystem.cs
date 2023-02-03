@@ -385,7 +385,7 @@ namespace ET
                 int itemNum = int.Parse(itemInfo[1]);
                 costItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNum });
             }
-            return self.OnAddItemData(costItems, "", getType, notice);
+            return self.OnAddItemData(costItems, string.Empty, getType, notice);
         }
 
         public static void OnAddItemData(this BagComponent self, List<BagInfo> bagInfos, string getType)
@@ -420,7 +420,7 @@ namespace ET
         }
 
         //添加背包道具道具[支持同时添加多个]
-        public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems, string makeUserID = "", string getWay = "0", bool notice = true, bool gm = false)
+        public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems, string makeUserID, string getWay, bool notice = true, bool gm = false)
         {
             int bagCellNumber = 0;
             int petHeXinNumber = 0;
