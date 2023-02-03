@@ -8,7 +8,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, R2G_RechargeResultRequest request, G2R_RechargeResultResponse response, Action reply)
         {
-            RechargeHelp.OnPaySucessToUnit(scene, request.UserID, request.RechargeNumber).Coroutine();
+            RechargeHelp.OnPaySucessToUnit(scene, request.UserID, request.RechargeNumber, request.OrderInfo).Coroutine();
             reply();
             await ETTask.CompletedTask;
         }

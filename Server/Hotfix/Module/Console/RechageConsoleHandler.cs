@@ -26,7 +26,7 @@ namespace ET
 
 #if SERVER
                     Log.Info($"充值：邮件发送完成{long.Parse(mailInfo[2])}");
-                    RechargeHelp.OnPaySucessToGate(int.Parse(mailInfo[1]), long.Parse(mailInfo[2]), int.Parse(mailInfo[3])).Coroutine();
+                    RechargeHelp.OnPaySucessToGate(int.Parse(mailInfo[1]), long.Parse(mailInfo[2]), int.Parse(mailInfo[3]), "补偿").Coroutine();
 #endif
                     Log.Info("邮件发送完成！");
                     break;

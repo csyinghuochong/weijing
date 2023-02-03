@@ -247,7 +247,7 @@ namespace ET
                         long userId = long.Parse(userinfo.Split('_')[1]);
                         amount /= 100;
                         Log.Debug($"微信支付成功 {userId}  {amount}");
-                        RechargeHelp.OnPaySucessToGate( zone, userId, amount).Coroutine();
+                        RechargeHelp.OnPaySucessToGate( zone, userId, amount, "微信").Coroutine();
                         //删除本地缓存的订单
                         self.orderDic.Remove(dingdanStr);
                     }

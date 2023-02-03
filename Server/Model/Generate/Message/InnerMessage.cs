@@ -147,6 +147,9 @@ namespace ET
 		[ProtoMember(3)]
 		public long UserID { get; set; }
 
+		[ProtoMember(4)]
+		public string OrderInfo { get; set; }
+
 	}
 
 	[Message(InnerOpcode.G2R_RechargeResultResponse)]
@@ -180,6 +183,9 @@ namespace ET
 
 		[ProtoMember(2)]
 		public int RechargeNumber { get; set; }
+
+		[ProtoMember(4)]
+		public string OrderInfo { get; set; }
 
 	}
 

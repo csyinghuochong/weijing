@@ -5,13 +5,13 @@ namespace ET
     public static class RechargeHelp
     {
 
-        public static void  SendDiamondToUnit(Unit unit, int rechargeNumber)
+        public static void  SendDiamondToUnit(Unit unit, int rechargeNumber, string orderInfo)
         {
             Log.Debug($"RechargeHelp.SendDiamond {unit.Id} {rechargeNumber}");
             OnRechage(unit, rechargeNumber, true);
             long accountId = unit.GetComponent<UserInfoComponent>().UserInfo.AccInfoID;
             long userId = unit.GetComponent<UserInfoComponent>().UserInfo.UserId;
-            SendToAccountCenter(accountId, userId, rechargeNumber).Coroutine();
+            SendToAccountCenter(accountId, userId, rechargeNumber, orderInfo).Coroutine();
             unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
         }
 
@@ -32,7 +32,7 @@ namespace ET
             }
         }
 
-        public static async ETTask SendToAccountCenter(long accountId, long userId, int rechargeNumber )
+        public static async ETTask SendToAccountCenter(long accountId, long userId, int rechargeNumber, string ordinfo)
         {
             A2Center_RechargeRequest rechargeRequest = new A2Center_RechargeRequest()
             {
@@ -42,20 +42,21 @@ namespace ET
                     Amount = rechargeNumber,
                     Time = TimeHelper.ServerNow(),
                     UserId = userId,
+                    OrderInfo = ordinfo
                 }
             };
             long accountZone = DBHelper.GetAccountCenter();
             Center2A_RechargeResponse saveAccount = (Center2A_RechargeResponse)await ActorMessageSenderComponent.Instance.Call(accountZone, rechargeRequest);
         }
 
-        public static async ETTask OnPaySucessToUnit(Scene scene,  long userId, int rechargeNumber)
+        public static async ETTask OnPaySucessToUnit(Scene scene,  long userId, int rechargeNumber, string orderInfo)
         {
             Player gateUnitInfo = scene.GetComponent<PlayerComponent>().GetByUserId(userId);
             //&& gateUnitInfo.ClientSession!=null
             if (gateUnitInfo != null  && gateUnitInfo.PlayerState == PlayerState.Game && gateUnitInfo.InstanceId > 0)
             {
                 Log.Debug($"充值OnPaySucess PlayerState.Game: {userId}  rechargeNumber:{rechargeNumber}");
-                G2M_RechargeResultRequest r2M_RechargeRequest = new G2M_RechargeResultRequest() { RechargeNumber = rechargeNumber };
+                G2M_RechargeResultRequest r2M_RechargeRequest = new G2M_RechargeResultRequest() { RechargeNumber = rechargeNumber , OrderInfo = orderInfo};
                 M2G_RechargeResultResponse m2G_RechargeResponse = (M2G_RechargeResultResponse)await ActorLocationSenderComponent.Instance.Call(gateUnitInfo.UnitId, r2M_RechargeRequest);
             }
             else
@@ -78,15 +79,15 @@ namespace ET
                 UserInfoComponent userInfoComponent = (d2GGetUnit.Component as UserInfoComponent);
                 
                 long accountId = userInfoComponent.UserInfo.AccInfoID;
-                SendToAccountCenter(accountId, userId, rechargeNumber).Coroutine();
+                SendToAccountCenter(accountId, userId, rechargeNumber, orderInfo).Coroutine();
                 await ETTask.CompletedTask;
             }
         }
 
-        public static async ETTask OnPaySucessToGate( int zone, long userId, int rechargeNumber)
+        public static async ETTask OnPaySucessToGate( int zone, long userId, int rechargeNumber, string orderInfo)
         {
             long gateServerId = DBHelper.GetGateServerId(zone);
-            R2G_RechargeResultRequest r2M_RechargeRequest = new R2G_RechargeResultRequest() { RechargeNumber = rechargeNumber, UserID = userId };
+            R2G_RechargeResultRequest r2M_RechargeRequest = new R2G_RechargeResultRequest() { RechargeNumber = rechargeNumber, UserID = userId , OrderInfo = orderInfo};
             G2R_RechargeResultResponse m2G_RechargeResponse = (G2R_RechargeResultResponse)await ActorMessageSenderComponent.Instance.Call(gateServerId, r2M_RechargeRequest);
         }
     }

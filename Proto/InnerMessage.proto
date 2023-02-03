@@ -68,6 +68,7 @@ message R2G_RechargeResultRequest // IActorRequest
     int64 Id = 1;
     int32 RechargeNumber = 2;
     int64 UserID = 3;
+    string OrderInfo = 4;
 }
 
 message G2R_RechargeResultResponse // IActorResponse
@@ -84,6 +85,7 @@ message G2M_RechargeResultRequest // IActorRequest
     int64 ActorId = 93;
     int64 Id = 1;
     int32 RechargeNumber = 2;
+    string OrderInfo = 4;
 }
 
 message M2G_RechargeResultResponse // IActorResponse
