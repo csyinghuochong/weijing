@@ -180,8 +180,11 @@ namespace ET
                 }
             }
 
-            spilingInfo.Buffs = unit.GetComponent<BuffManagerComponent>().GetMessageBuff();
-            spilingInfo.Skills = unit.GetComponent<SkillManagerComponent>().GetMessageSkill();
+            if (unit.GetComponent<BuffManagerComponent>() != null)
+            {
+                spilingInfo.Buffs = unit.GetComponent<BuffManagerComponent>().GetMessageBuff();
+                spilingInfo.Skills = unit.GetComponent<SkillManagerComponent>().GetMessageSkill();
+            }
 
             spilingInfo.ReviveTime = reviveTime;
             //广播创建的是那个怪物ID

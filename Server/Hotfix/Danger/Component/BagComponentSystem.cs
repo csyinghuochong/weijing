@@ -482,11 +482,11 @@ namespace ET
                 UserDataType userDataType = ComHelp.GetItemToUserDataType(itemID);
                 if (userDataType == UserDataType.Gold && rewardItems[i].ItemNum > 1000000)
                 {
-                    Log.Warning($"UserDataType.Gold  {unit.Id} {rewardItems[i].ItemNum} {getType}");
+                    Log.Warning($"[获取金币]UserDataType.Gold  {unit.Id} {rewardItems[i].ItemNum} {getType}");
                 }
                 if (userDataType == UserDataType.Diamond)
                 {
-                    Log.Warning($"UserDataType.Diamond  {unit.Id} {rewardItems[i].ItemNum} {getType}");
+                    Log.Warning($"[获取钻石]UserDataType.Diamond  {unit.Id} {rewardItems[i].ItemNum} {getType}");
                 }
                 if (userDataType != UserDataType.None)
                 {
@@ -498,7 +498,7 @@ namespace ET
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
                 if (itemCof.ItemQuality >= 4)
                 {
-                    Log.Debug($"itemCof.ItemQuality >= 4  {unit.Id} {itemID} {rewardItems[i].ItemNum} {getType}");
+                    Log.Debug($"[获取道具]itemCof.ItemQuality >= 4  {unit.Id} {itemID} {rewardItems[i].ItemNum} {getType}");
                 }
 
                 int maxPileSum = gm ? 1000000 :  itemCof.ItemPileSum;
