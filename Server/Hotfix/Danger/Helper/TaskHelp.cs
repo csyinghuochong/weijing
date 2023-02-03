@@ -32,6 +32,12 @@ namespace ET
                     taskCountryConfig = TaskCountryConfigCategory.Instance.Get(writeTaskID);
                     triggerPro = taskCountryConfig.TriggerPro;
                     writeTaskID_Next = taskCountryConfig.NextTask;
+
+                    if (taskCountryConfig.TriggerType == 1 && playerLv <taskCountryConfig.TargetValue )
+                    {
+                        writeTaskID = writeTaskID_Next;
+                    }
+
                     if (writeTaskID_Next == 0)
                     {
                         taskRandValue = -1;
@@ -39,11 +45,7 @@ namespace ET
 
                 } while (taskRandValue >= triggerPro);
 
-
-                if (taskCountryConfig.TriggerType != 1 || taskCountryConfig.TargetValue <= playerLv)
-                {
-                    taskCountryList.Add(writeTaskID);
-                }
+                taskCountryList.Add(writeTaskID);
             }
 
             return taskCountryList;
