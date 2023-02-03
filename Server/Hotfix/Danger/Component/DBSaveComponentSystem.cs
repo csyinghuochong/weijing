@@ -141,7 +141,10 @@ namespace ET
         public static void LogTest(this DBSaveComponent self)
         {
             Unit unit = self.GetParent<Unit>();
-
+            if (unit.IsRobot())
+            {
+                return;
+            }
             Log.Debug(unit.GetComponent<ActivityComponent>().ToString());
             Log.Debug(unit.GetComponent<TaskComponent>().ToString());
         }
