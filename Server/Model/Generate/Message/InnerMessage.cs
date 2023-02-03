@@ -2092,14 +2092,14 @@ namespace ET
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
 
-		[ProtoMember(1)]
-		public long UserId { get; set; }
-
 		[ProtoMember(2)]
 		public string Itemlist { get; set; }
 
 		[ProtoMember(3)]
 		public string Title { get; set; }
+
+		[ProtoMember(4)]
+		public string UserName { get; set; }
 
 	}
 

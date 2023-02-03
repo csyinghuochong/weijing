@@ -13,36 +13,43 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
             List<DBMailInfo> dBMailInfos = null;
 
-            if (request.UserId == 0)
+            if (request.UserName == "0")   //request.UserId == 0)
             {
                 dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id > 0);
             }
             else
             {
-                dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id == request.UserId);
+                List<UserInfoComponent> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(scene.DomainZone(), d => d.UserInfo.Name == request.UserName);
+                if (accountInfoList.Count > 0)
+                {
+                    dBMailInfos = await Game.Scene.GetComponent<DBComponent>().Query<DBMailInfo>(scene.DomainZone(), d => d.Id == accountInfoList[0].Id);
+                }
             }
 
-            for (int i = 0; i < dBMailInfos.Count; i++)
+            if (dBMailInfos != null)
             {
-                MailInfo mailInfo = new MailInfo();
-                mailInfo.Status = 0;
-                mailInfo.Context = "福利发放";
-                mailInfo.Title = "福利发放";
-                mailInfo.MailId = IdGenerater.Instance.GenerateId();
-                string[] needList = request.Itemlist.Split('@');
-                for (int k = 0; k < needList.Length; k++)
+                for (int i = 0; i < dBMailInfos.Count; i++)
                 {
-                    string[] itemInfo = needList[k].Split(';');
-                    if (itemInfo.Length < 2)
+                    MailInfo mailInfo = new MailInfo();
+                    mailInfo.Status = 0;
+                    mailInfo.Context = "福利发放";
+                    mailInfo.Title = "福利发放";
+                    mailInfo.MailId = IdGenerater.Instance.GenerateId();
+                    string[] needList = request.Itemlist.Split('@');
+                    for (int k = 0; k < needList.Length; k++)
                     {
-                        continue;
+                        string[] itemInfo = needList[k].Split(';');
+                        if (itemInfo.Length < 2)
+                        {
+                            continue;
+                        }
+                        int itemId = int.Parse(itemInfo[0]);
+                        int itemNum = int.Parse(itemInfo[1]);
+                        mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.RankReward}_{serverTime}" });
                     }
-                    int itemId = int.Parse(itemInfo[0]);
-                    int itemNum = int.Parse(itemInfo[1]);
-                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.RankReward}_{serverTime}" });
-                }
 
-                await MailHelp.SendUserMail((int)request.ActorId, dBMailInfos[i].Id, mailInfo);
+                    await MailHelp.SendUserMail((int)request.ActorId, dBMailInfos[i].Id, mailInfo);
+                }
             }
             reply();
             await ETTask.CompletedTask;

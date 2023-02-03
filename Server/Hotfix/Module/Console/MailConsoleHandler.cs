@@ -60,7 +60,8 @@ namespace ET
                         E2M_GMEMailSendResponse g2M_UpdateUnitResponse = (E2M_GMEMailSendResponse)await ActorMessageSenderComponent.Instance.Call
                             (gateServerId, new M2E_GMEMailSendRequest()
                             { 
-                                UserId = long.Parse(mailInfo[2]),
+                                //UserId = long.Parse(mailInfo[2]),
+                                UserName = mailInfo[2],
                                 Itemlist = mailInfo[3],
                                 Title = titie,    
                                 ActorId = zoneList[i],

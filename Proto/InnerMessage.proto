@@ -1001,9 +1001,9 @@ message M2E_GMEMailSendRequest // IActorRequest
 {
     int32 RpcId = 90;
     int64 ActorId = 93;
-    int64 UserId = 1;
     string Itemlist = 2;
     string Title = 3; 
+    string UserName = 4;
 }
 
 message E2M_GMEMailSendResponse // IActorResponse
