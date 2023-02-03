@@ -40,23 +40,21 @@ namespace ET
                 {
                     response.Error = ErrorCore.ERR_AlreadyReceived;
                     reply();
+                    return;
                 }
                 zhanQuReceive = zhanQuReceiveNumbers[i];
                 zhanQuReceiveNumbers[i].ReceiveNum++;
                 zhanQuReceiveNumbers[i].ReceiveUnitIds.Add(request.UnitId);
                 break;
             }
-            if (zhanQuReceive!=null)
+            if (zhanQuReceive==null)
             {
-                reply();
-                return;
+                ZhanQuReceiveNumber zhanQuReceiveNumber = new ZhanQuReceiveNumber();
+                zhanQuReceiveNumber.ActivityId = request.ActivityId;
+                zhanQuReceiveNumber.ReceiveNum = 1;
+                zhanQuReceiveNumber.ReceiveUnitIds.Add(request.UnitId);
+                zhanQuReceiveNumbers.Add(zhanQuReceiveNumber);
             }
-
-            ZhanQuReceiveNumber zhanQuReceiveNumber = new ZhanQuReceiveNumber();
-            zhanQuReceiveNumber.ActivityId = request.ActivityId;
-            zhanQuReceiveNumber.ReceiveNum = 1;
-            zhanQuReceiveNumber.ReceiveUnitIds.Add(request.UnitId);
-            zhanQuReceiveNumbers.Add(zhanQuReceiveNumber);
             reply();
             await ETTask.CompletedTask;
         }
