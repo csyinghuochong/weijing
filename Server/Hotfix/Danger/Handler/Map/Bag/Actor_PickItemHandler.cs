@@ -17,24 +17,21 @@ namespace ET
             for (int i = 0; i < drops.Count; i++)
             {
                 Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);
-                DropComponent dropComponent = unitDrop.GetComponent<DropComponent>();
-
+                DropComponent dropComponent = null;
                 if (drops[i].DropType != 1)
                 {
                     if (unitDrop == null)
                     {
                         continue;
                     }
-
-                    
+                    dropComponent = unitDrop.GetComponent<DropComponent>();
                     if (dropComponent.OwnerId!=0 && dropComponent.OwnerId!=unit.Id && serverTime < dropComponent.ProtectTime)
                     {
                         return ErrorCore.ERR_ItemDropProtect;
                     }
                 }
-
-                int addItemID = dropComponent.ItemID;
-                int addItemNum = dropComponent.ItemNum;
+                int addItemID = dropComponent !=null ? dropComponent.ItemID : drops[i].ItemID;
+                int addItemNum = dropComponent != null ? dropComponent.ItemNum : drops[i].ItemNum;
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 rewardItems.Add(new RewardItem() { ItemID = addItemID, ItemNum = addItemNum });
                 bool success = unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, "", $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
