@@ -421,7 +421,7 @@ namespace ET
 
             for (int i = 0; i < dayMonsterConfig.Count; i++)
             {
-                if (RandomHelper.RandFloat01() < dayMonsterConfig[i].GaiLv)
+                if (RandomHelper.RandFloat01() > dayMonsterConfig[i].GaiLv)
                 {
                     continue;
                 }
@@ -440,7 +440,7 @@ namespace ET
                     keyValuePairInt = new KeyValuePairInt() { KeyId = dayMonsterConfig[i].MonsterId, Value = 0 };
                     dayMonster.Add(keyValuePairInt);
                 }
-                if (keyValuePairInt.Value < dayMonsterConfig[i].TotalNumber)
+                if (keyValuePairInt.Value < dayMonsterConfig[i].TotalNumber * 100)
                 {
                     keyValuePairInt.Value++;
                     return dayMonsterConfig[i].MonsterId;

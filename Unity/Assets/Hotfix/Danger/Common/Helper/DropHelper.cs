@@ -267,7 +267,7 @@ namespace ET
 			while (DropSonStatus);
 
 			//掉落为空在默认第一个
-			if (monsterID == 0 && dropItemList.Count == oldNumber)
+			if (dropconf.DropLimit >=1 && dropItemList.Count == oldNumber)
 			{
 				dropItemList.Add(new RewardItem() { ItemID = dropconf.DropItemID1, ItemNum = 1 });
 			}
@@ -603,6 +603,7 @@ namespace ET
 									//Debug.Log("Str6666 = " + i);
 									//Debug.Log("HideDropPro = " + HideDropPro);
 									//Debug.Log("itemID = " + itemID + "itemDropNum = " + itemDropNum + "HideDropPro = " + HideDropPro);
+									/*
 									bool ifDrop = true;   // Function_Role.GetInstance().SendRewardToBag(itemID, itemDropNum, "0", HideDropPro, "0", true, "12");
 														  //Debug.Log("Str7777 = " + i);
 														  //背包满了的话直接掉落到地上
@@ -620,6 +621,30 @@ namespace ET
 										}
 										//Debug.Log("Str8888 = " + i);
 									}
+									*/
+
+									//如果是金币掉落显示掉落数量为1
+									if (dropItemID == 1)
+									{
+										//金币数量
+										itemDropNum = 1;
+										dropItemList.Add(new RewardItem() { ItemID = 1, ItemNum = randomSet });
+									}
+									else
+									{
+										//当掉落数量不为0时,循环实例化每个掉落
+										if (itemDropNum != 0)
+										{
+											for (int n = 1; n <= itemDropNum; n++)
+											{
+												//执行掉落
+												dropItemList.Add(new RewardItem() { ItemID = dropItemID, ItemNum = 1 });
+											}
+										}
+
+									}
+
+
 									break;
 							}
 							//累计掉落数量

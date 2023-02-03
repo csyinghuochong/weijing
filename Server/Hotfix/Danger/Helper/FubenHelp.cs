@@ -203,7 +203,7 @@ namespace ET
 						}
 						else
 						{
-							UnitFactory.CreateMonster(scene, monsterConfig.Id, vector3,  new CreateMonsterInfo()
+							UnitFactory.CreateMonster(scene, monsterid, vector3,  new CreateMonsterInfo()
 							{
 								Camp = monsterConfig.MonsterCamp
 							});
