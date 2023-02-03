@@ -173,10 +173,7 @@ namespace ET
             int updatevalue = unit.GetMaxHuoLi() - self.UserInfo.Vitality;
             self.UpdateRoleData(UserDataType.Vitality, updatevalue.ToString(), notice);
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1,  notice);
-            self.UserInfo.DayFubenTimes.Clear();
-            self.UserInfo.ChouKaRewardIds.Clear();
-            self.UserInfo.MysteryItems.Clear();
-            self.UserInfo.DayItemUse.Clear();
+            self.ClearDayData();
             self.LastLoginTime = TimeHelper.ServerNow();
         }
 
@@ -413,6 +410,45 @@ namespace ET
                 self.UpdateRoleData(UserDataType.Lv, "1", notice);
             }
         }
+
+        public static int GetRandomMonsterId(this UserInfoComponent self, int monsterId)
+        {
+            Unit mainUnit = self.GetParent<Unit>();
+            UserInfoComponent userInfoComponent = mainUnit.GetComponent<UserInfoComponent>();
+            List<KeyValuePairInt> dayMonster = userInfoComponent.UserInfo.DayMonsters;
+            List<DayMonsters> dayMonsterConfig = GlobalValueConfigCategory.Instance.DayMonsterList;
+
+            for (int i = 0; i < dayMonsterConfig.Count; i++)
+            {
+                if (RandomHelper.RandFloat01() < dayMonsterConfig[i].GaiLv)
+                {
+                    continue;
+                }
+
+                KeyValuePairInt keyValuePairInt = null;
+                for (int d = 0; d < dayMonster.Count; d++)
+                {
+                    if (dayMonster[d].KeyId != dayMonsterConfig[i].MonsterId)
+                    {
+                        continue;
+                    }
+                    keyValuePairInt = dayMonster[d];
+                }
+                if (keyValuePairInt == null)
+                {
+                    keyValuePairInt = new KeyValuePairInt() { KeyId = dayMonsterConfig[i].MonsterId, Value = 0 };
+                    dayMonster.Add(keyValuePairInt);
+                }
+                if (keyValuePairInt.Value < dayMonsterConfig[i].TotalNumber)
+                {
+                    keyValuePairInt.Value++;
+                    return dayMonsterConfig[i].MonsterId;
+                }
+            }
+
+            return monsterId;
+        }
+
 #endif
 
         public static long GetMakeTime(this UserInfoComponent self, int makeId)
@@ -686,6 +722,15 @@ namespace ET
                 }
             }
             return true;
+        }
+
+        public static void ClearDayData(this UserInfoComponent self)
+        {
+            self.UserInfo.DayFubenTimes.Clear();
+            self.UserInfo.ChouKaRewardIds.Clear();
+            self.UserInfo.MysteryItems.Clear();
+            self.UserInfo.DayItemUse.Clear();
+            self.UserInfo.DayMonsters.Clear();
         }
 
     }

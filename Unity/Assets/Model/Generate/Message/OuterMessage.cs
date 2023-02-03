@@ -573,9 +573,11 @@ namespace ET
 		[ProtoMember(26)]
 		public List<int> XiLianRewardIds = new List<int>();
 
+//购买过的神秘商品
 		[ProtoMember(27)]
 		public List<KeyValuePairInt> MysteryItems = new List<KeyValuePairInt>();
 
+//已开启的宝箱记录
 		[ProtoMember(28)]
 		public List<KeyValuePair> OpenChestList = new List<KeyValuePair>();
 
@@ -592,6 +594,10 @@ namespace ET
 
 		[ProtoMember(32)]
 		public List<int> HorseIds = new List<int>();
+
+//剧情副本每日刷新 global79
+		[ProtoMember(33)]
+		public List<KeyValuePairInt> DayMonsters = new List<KeyValuePairInt>();
 
 	}
 

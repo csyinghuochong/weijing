@@ -45,10 +45,7 @@
                     args.Unit.AddComponent<GameObjectComponent>();
                     break;
                 case NumericType.ZeroClock:
-                    UserInfoComponent userInfoComponent = zoneScene.GetComponent<UserInfoComponent>();
-                    userInfoComponent.UserInfo.DayFubenTimes.Clear();
-                    userInfoComponent.UserInfo.ChouKaRewardIds.Clear();
-                    userInfoComponent.UserInfo.MysteryItems.Clear();
+                    zoneScene.GetComponent<UserInfoComponent>().ClearDayData();
                     zoneScene.GetComponent<TaskComponent>().OnZeroClockUpdate();
                     zoneScene.GetComponent<ActivityComponent>().OnZeroClockUpdate();
                     UIHelper.GetUI(zoneScene, UIType.UIMain).GetComponent<UIMainComponent>().OnZeroClockUpdate();

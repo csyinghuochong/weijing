@@ -136,7 +136,9 @@ namespace ET
             {
 				return;
             }
-			long instanceId = scene.InstanceId;
+			
+			MapComponent mapComponent = scene.GetComponent<MapComponent>();
+			int sceneType = mapComponent.SceneTypeEnum;
 			string[] monsters = createMonster.Split('@');
 			//1;37.65,0,3.2;70005005;1@138.43,0,0.06;70005010;1
 			for (int i = 0; i < monsters.Length; i++)
@@ -153,14 +155,22 @@ namespace ET
 				string[] mcount = mondels[3].Split(',');
 				if (!MonsterConfigCategory.Instance.Contain(monsterid))
 				{
-					Log.Debug($"monsterid==null {monsterid}");
+					Log.Error($"monsterid==null {monsterid}");
 					continue;
 				}
+
+				MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
+				if (sceneType == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterType == MonsterTypeEnum.Normal)
+				{
+					Unit mainUnit = scene.GetComponent<LocalDungeonComponent>().MainUnit;
+					monsterid = mainUnit.GetComponent<UserInfoComponent>().GetRandomMonsterId(monsterid);
+				}
+
 				if (mtype[0] == "1")    //固定位置刷怪
 				{
 					for (int c = 0; c < int.Parse(mcount[0]); c++)
 					{
-						MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
+						
 						Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
 
 						//51 场景怪 有AI 不显示名称
@@ -196,11 +206,6 @@ namespace ET
 					int cmcount = int.Parse(mcount[0]);
 					for (int c = 0; c < cmcount; c++)
 					{
-						if (instanceId != scene.InstanceId)
-						{
-							return;
-						}
-						MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 						float range = float.Parse(mcount[1]);
 						Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
 						Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
@@ -233,7 +238,6 @@ namespace ET
 						Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
 						Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
 						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
-						MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
 						UnitFactory.CreateMonster(scene, monsterid, vector3,  new CreateMonsterInfo() {
 							PlayerLevel = playerLv, AttributeParams = mondels[4] + ";" + mondels[5],
 							Camp = monsterConfig.MonsterCamp

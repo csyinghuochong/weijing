@@ -286,8 +286,10 @@ message UserInfo
 
 	repeated int32 XiLianRewardIds = 26;
 
+	//购买过的神秘商品
 	repeated KeyValuePairInt  MysteryItems = 27;
-
+	
+	//已开启的宝箱记录
 	repeated KeyValuePair  OpenChestList = 28;
 
 	repeated KeyValuePairInt  MakeIdList = 29;
@@ -298,6 +300,9 @@ message UserInfo
 	repeated KeyValuePairInt DayItemUse = 31;
 
 	repeated int32 HorseIds = 32;
+
+	//剧情副本每日刷新 global79
+	repeated KeyValuePairInt DayMonsters = 33;
 }
 
 message KeyValuePair
