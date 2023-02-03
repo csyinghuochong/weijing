@@ -270,7 +270,7 @@ namespace ET
                 DropConfig dropConfig = DropConfigCategory.Instance.Get(dropID[i]);
                 List<RewardItem> dropItemList_2 = new List<RewardItem>();
                 DropHelper.DropIDToDropItem(dropID[i], dropItemList_2, monsterID, dropProValue, all);
-                if (dropConfig.DropType == 1)
+                if (dropConfig.ifEnterBag == 1)
                 {
                     unit.GetComponent<BagComponent>().OnAddItemData(dropItemList_2, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                 }

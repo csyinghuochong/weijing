@@ -328,9 +328,9 @@ namespace ET
                 self.OnCloseTips();
                 return;
             }
-            if (itemConfig.ItemSubType == 102 || itemConfig.ItemSubType == 103)
+            if (itemConfig.ItemSubType == 102)
             {
-                FloatTipManager.Instance.ShowFloatTip("请前往主成的宠物蛋孵化处!");
+                FloatTipManager.Instance.ShowFloatTip("请前往主城的宠物蛋孵化处!");
                 return;
             }
             if (itemConfig.ItemSubType == 112)
