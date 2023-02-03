@@ -165,6 +165,15 @@ namespace ET
 					Unit mainUnit = scene.GetComponent<LocalDungeonComponent>().MainUnit;
 					monsterid = mainUnit.GetComponent<UserInfoComponent>().GetRandomMonsterId(monsterid);
 				}
+				if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterSonType == 55)
+				{
+					Unit mainUnit = scene.GetComponent<LocalDungeonComponent>().MainUnit;
+					UserInfoComponent userInfoComponent = mainUnit.GetComponent<UserInfoComponent>();
+					if (userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterid))
+					{
+						return;
+					}
+				}
 
 				if (mtype[0] == "1")    //固定位置刷怪
 				{
