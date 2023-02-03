@@ -293,9 +293,7 @@ namespace ET
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
                         unit.AddComponent<UISceneItemComponent>().InitSceneData().Coroutine();         //血条UI组件
                     }
-                    else if (monsterCof.MonsterSonType == 55 
-                        || monsterCof.MonsterSonType == 56
-                        || monsterCof.MonsterSonType == 57)
+                    else if (unit.IsChest())
                     {
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
                         unit.AddComponent<UISceneItemComponent>().InitSceneData().Coroutine();         //血条UI组件

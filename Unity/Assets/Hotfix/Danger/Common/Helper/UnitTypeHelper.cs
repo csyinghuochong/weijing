@@ -150,7 +150,7 @@
                 return false;
             }
             int sonType = MonsterConfigCategory.Instance.Get(self.ConfigId).MonsterSonType;
-            return sonType == 55 || sonType == 56;
+            return sonType == 55 || sonType == 56 || sonType == 57;
         }
     }
 }
