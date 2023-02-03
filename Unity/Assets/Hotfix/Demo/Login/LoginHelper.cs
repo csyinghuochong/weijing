@@ -129,7 +129,7 @@ namespace ET
             return ErrorCore.ERR_Success;
         }
 
-        public static async ETTask<int> EnterGame(Scene zoneScene, bool relink = false )
+        public static async ETTask<int> EnterGame(Scene zoneScene, string devicename, bool relink = false )
         {
             string realmAddress = zoneScene.GetComponent<AccountInfoComponent>().RealmAddress;
             // 1. 连接Realm，获取分配的Gate
@@ -187,7 +187,8 @@ namespace ET
                 g2CEnterGame = (G2C_EnterGame)await gateSession.Call(new C2G_EnterGame() { 
                     MapId= 1,
                     Relink = relink,
-                    UserID = currentRoleId
+                    UserID = currentRoleId,
+                    DeviceName = devicename
                 });
             }
             catch (Exception e)

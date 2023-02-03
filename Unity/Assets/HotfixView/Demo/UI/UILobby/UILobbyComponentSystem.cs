@@ -173,7 +173,8 @@ namespace ET
                 Log.Error(loginErroCode.ToString());
                 return;
             }
-            await  LoginHelper.EnterGame(self.ZoneScene());
+            
+            await  LoginHelper.EnterGame(self.ZoneScene(), SystemInfo.deviceName, false);
         }
 
         //删除角色

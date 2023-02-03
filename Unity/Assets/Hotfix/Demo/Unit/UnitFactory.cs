@@ -81,7 +81,6 @@ namespace ET
 				unit.AddComponent<BuffManagerComponent>(true);              //buff管理器组建
 				unit.AddComponent<SkillManagerComponent>(true);
 			}
-
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
 		}

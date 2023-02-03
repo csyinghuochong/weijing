@@ -207,6 +207,7 @@ message C2G_EnterGame // IRequest
 	int64 UserID = 2;
 	int64 AccountId = 3;
 	bool Relink = 4;
+	string DeviceName = 5;
 }
 
 message G2C_EnterGame // IResponse
@@ -1884,6 +1885,8 @@ message RolePetInfo
 	string PlayerName = 33;
 	int32 SkinId = 34;
 	repeated int64 PetHeXinList = 35;
+	repeated KeyValuePair Buffs = 36;
+	repeated SkillInfo Skills = 37;
 }
 
 //ResponseType M2C_SkillInitResponse
@@ -3164,6 +3167,7 @@ message RechargeInfo
 	int32 Amount = 1;
 	int64 Time = 2;
 	int64 UserId = 3;
+	string OrderInfo = 4;
 }
 
 message ShouJiChapterInfo

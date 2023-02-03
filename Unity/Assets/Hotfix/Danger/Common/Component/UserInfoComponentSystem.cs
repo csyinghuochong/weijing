@@ -90,10 +90,11 @@ namespace ET
             return index_2 - index_1;   
         }
 
-        public static void  OnLogin(this UserInfoComponent self, string remoteIp)
+        public static void  OnLogin(this UserInfoComponent self, string remoteIp, string deviceName)
         {
             //跨天登录，则重新请求
             self.RemoteAddress = remoteIp;
+            self.DeviceName = deviceName;
             Unit unit = self.GetParent<Unit>();
             long currentTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(currentTime);

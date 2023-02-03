@@ -72,7 +72,7 @@ namespace ET
                 zoneScene.GetComponent<AccountInfoComponent>().ServerId = 1;
                 zoneScene.GetComponent<AccountInfoComponent>().CurrentRoleId = g2cCreateRole.createRoleInfo.UserID;
                 await LoginHelper.GetRealmKey(zoneScene);
-                await LoginHelper.EnterGame(zoneScene);
+                await LoginHelper.EnterGame(zoneScene, "", false);
                 Log.Debug($"create robot ok: {zone}");
                 return zoneScene;
             }

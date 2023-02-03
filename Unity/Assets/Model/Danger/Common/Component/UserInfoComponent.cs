@@ -36,6 +36,7 @@
         public long TotalOnLineTime;
         public int LingDiOnLine;
         public string RemoteAddress;
+        public string DeviceName;
         public string UserName;
         public string Account;
         public UserInfo UserInfo = new UserInfo();

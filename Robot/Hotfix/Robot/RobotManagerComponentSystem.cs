@@ -55,7 +55,7 @@ namespace ET
                     playerComponent.CurrentRoleId = g2cCreateRole.createRoleInfo.UserID;
 
                     errorCode = await LoginHelper.GetRealmKey(zoneScene);
-                    errorCode = await LoginHelper.EnterGame(zoneScene);
+                    errorCode = await LoginHelper.EnterGame(zoneScene, "", false);
                 }
                 if (registerCode == ErrorCore.ERR_AccountAlreadyRegister)
                 {
@@ -66,7 +66,7 @@ namespace ET
                         playerComponent.CurrentRoleId = playerComponent.CreateRoleList[0].UserID;
 
                         errorCode = await LoginHelper.GetRealmKey(zoneScene);
-                        errorCode = await LoginHelper.EnterGame(zoneScene);
+                        errorCode = await LoginHelper.EnterGame(zoneScene, "", false);
                     }
                     else
                     {

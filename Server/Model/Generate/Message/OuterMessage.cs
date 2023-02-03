@@ -434,6 +434,9 @@ namespace ET
 		[ProtoMember(4)]
 		public bool Relink { get; set; }
 
+		[ProtoMember(5)]
+		public string DeviceName { get; set; }
+
 	}
 
 	[Message(OuterOpcode.G2C_EnterGame)]
@@ -1854,6 +1857,12 @@ namespace ET
 
 		[ProtoMember(14)]
 		public float ForwardZ { get; set; }
+
+		[ProtoMember(19)]
+		public List<KeyValuePair> Buffs = new List<KeyValuePair>();
+
+		[ProtoMember(20)]
+		public List<SkillInfo> Skills = new List<SkillInfo>();
 
 	}
 
@@ -4003,6 +4012,12 @@ namespace ET
 
 		[ProtoMember(35)]
 		public List<long> PetHeXinList = new List<long>();
+
+		[ProtoMember(36)]
+		public List<KeyValuePair> Buffs = new List<KeyValuePair>();
+
+		[ProtoMember(37)]
+		public List<SkillInfo> Skills = new List<SkillInfo>();
 
 	}
 
@@ -6645,6 +6660,9 @@ namespace ET
 
 		[ProtoMember(3)]
 		public long UserId { get; set; }
+
+		[ProtoMember(4)]
+		public string OrderInfo { get; set; }
 
 	}
 

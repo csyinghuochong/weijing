@@ -140,7 +140,7 @@ namespace ET
             {
                 return code;
             }
-            code = await LoginHelper.EnterGame(self.ZoneScene(), true);
+            code = await LoginHelper.EnterGame(self.ZoneScene(), SystemInfo.deviceName, true);
             return code;
         }
 
