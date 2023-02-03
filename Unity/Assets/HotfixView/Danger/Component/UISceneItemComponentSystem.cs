@@ -50,7 +50,8 @@ namespace ET
             }
             else if (monsterConfig.MonsterSonType == 54 
                   || monsterConfig.MonsterSonType == 55
-                  || monsterConfig.MonsterSonType == 56)
+                  || monsterConfig.MonsterSonType == 56
+                  || monsterConfig.MonsterSonType == 57)
             {
                 path = ABPathHelper.GetUGUIPath("Battle/UISceneItem");
             }
