@@ -18,7 +18,7 @@ namespace ET
                 EventType.RolePetAdd.Instance.ZoneScene = session.ZoneScene();
                 EventType.RolePetAdd.Instance.OldPetSkin = oldPetSkin;
                 EventType.RolePetAdd.Instance.RolePetInfo = message.PetInfoAdd[0];
-                EventSystem.Instance.PublishClass(EventType.BattleInfo.Instance);
+                EventSystem.Instance.PublishClass(EventType.RolePetAdd.Instance);
             }
         }
     }
