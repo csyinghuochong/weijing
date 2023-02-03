@@ -254,6 +254,34 @@ namespace ET
             return unit;
         }
 
+
+        public static List<RewardItem> AI_MonsterDrop(Unit unit, int monsterID, float dropProValue, bool all)
+        {
+            //根据怪物ID获得掉落ID
+            MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(monsterID);
+            int[] dropID = monsterCof.DropID;
+            List<RewardItem> dropItemList = new List<RewardItem>();
+
+            for (int i = 0; i < dropID.Length; i++)
+            {
+                if (dropID[i] == 0)
+                    continue;
+
+                DropConfig dropConfig = DropConfigCategory.Instance.Get(dropID[i]);
+                List<RewardItem> dropItemList_2 = new List<RewardItem>();
+                DropHelper.DropIDToDropItem(dropID[i], dropItemList_2, monsterID, dropProValue, all);
+                if (dropConfig.DropType == 1)
+                {
+                    unit.GetComponent<BagComponent>().OnAddItemData(dropItemList_2, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
+                }
+                else
+                {
+                    dropItemList.AddRange(dropItemList_2);
+                }
+            }
+            return dropItemList;
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -346,7 +374,7 @@ namespace ET
                 }
             }
             
-            List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterCof.Id, dropAdd_Pro, false);
+            List<RewardItem> droplist = AI_MonsterDrop(main, monsterCof.Id, dropAdd_Pro, false);
            
             List<RewardItem> droplist_2 = null;
             if (main!=null && !main.IsDisposed)

@@ -251,7 +251,7 @@ namespace ET
 			bool noupdatestatus = userInfoComponent.GetReviveTime(bossId) > TimeHelper.ServerNow();
 			self.Text_UpdateStatus.GetComponent<Text>().text = noupdatestatus ? "(未刷新)"  : "(已刷新)";
 			self.Text_UpdateStatus.GetComponent<Text>().color = noupdatestatus ? new Color(50f / 255, 50f / 255f, 50f / 255f): new Color(25f/255,180f/255f,25f/255f);
-			List<RewardItem> droplist = DropHelper.AI_MonsterDrop(monsterConfig.Id, 1f, true);
+			List<RewardItem> droplist = DropHelper.Show_MonsterDrop(monsterConfig.Id, 1f, true);
 			List<int> itemIdList = new List<int>();
 			for (int i = droplist.Count - 1; i >=0;  i--)
 			{

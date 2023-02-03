@@ -177,7 +177,7 @@ namespace ET
 		/// <param name="monsterID"></param>
 		/// <param name="dropProValue"></param>
 		/// <returns></returns>
-		public static List<RewardItem> AI_MonsterDrop(int monsterID, float dropProValue, bool all)
+		public static List<RewardItem> Show_MonsterDrop(int monsterID, float dropProValue, bool all)
 		{
 			//根据怪物ID获得掉落ID
 			MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(monsterID);
