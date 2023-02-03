@@ -139,7 +139,7 @@
 {"_t":"PaiMaiSellConfig","_id":31001056,"PaiMaiType":3,"ChapterId":31,"BuyLv":1,"ItemID":10052028,"Price":[1,1000000]},
 {"_t":"PaiMaiSellConfig","_id":32000001,"PaiMaiType":3,"ChapterId":32,"BuyLv":1,"ItemID":10000132,"Price":[1,100000]},
 {"_t":"PaiMaiSellConfig","_id":32000002,"PaiMaiType":3,"ChapterId":32,"BuyLv":1,"ItemID":10000131,"Price":[1,50000]},
-{"_t":"PaiMaiSellConfig","_id":32000003,"PaiMaiType":3,"ChapterId":32,"BuyLv":1,"ItemID":10000140,"Price":[1,1000000]},
-{"_t":"PaiMaiSellConfig","_id":32000004,"PaiMaiType":3,"ChapterId":32,"BuyLv":1,"ItemID":10010086,"Price":[1,300000]},
+{"_t":"PaiMaiSellConfig","_id":32000003,"PaiMaiType":3,"ChapterId":32,"BuyLv":1,"ItemID":10000140,"Price":[1,500000]},
+{"_t":"PaiMaiSellConfig","_id":32000004,"PaiMaiType":3,"ChapterId":32,"BuyLv":1,"ItemID":10010086,"Price":[1,400000]},
 {"_t":"PaiMaiSellConfig","_id":32000005,"PaiMaiType":3,"ChapterId":32,"BuyLv":1,"ItemID":10010098,"Price":[1,50000]},
 ]}

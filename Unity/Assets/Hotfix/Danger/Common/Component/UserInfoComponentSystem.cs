@@ -440,7 +440,7 @@ namespace ET
                     keyValuePairInt = new KeyValuePairInt() { KeyId = dayMonsterConfig[i].MonsterId, Value = 0 };
                     dayMonster.Add(keyValuePairInt);
                 }
-                if (keyValuePairInt.Value < dayMonsterConfig[i].TotalNumber * 100)
+                if (keyValuePairInt.Value < dayMonsterConfig[i].TotalNumber)
                 {
                     keyValuePairInt.Value++;
                     return dayMonsterConfig[i].MonsterId;
