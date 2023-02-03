@@ -5,14 +5,13 @@ namespace ET
 {
     public class UIMakeNeedComponent : Entity, IAwake<GameObject>
     {
-
         public GameObject Image_EventTrigger;
         public GameObject Image_ItemIcon;
         public GameObject Image_ItemQuality;
         public GameObject Label_ItemNum;
         public GameObject Label_ItemName;
-
         public GameObject GameObject;
+        public int ItemId;
     }
 
     [ObjectSystem]
@@ -28,14 +27,27 @@ namespace ET
             self.Image_ItemQuality = rc.Get<GameObject>("Image_ItemQuality");
             self.Label_ItemNum = rc.Get<GameObject>("Label_ItemNum");
             self.Label_ItemName = rc.Get<GameObject>("Label_ItemName");
+
+            self.Image_EventTrigger.GetComponent<Button>().onClick.AddListener(() => { self.OnClickUIItem(); });
         }
     }
 
     public static class UIMakeNeedComponentSystem
     {
+        public static void OnClickUIItem(this UIMakeNeedComponent self)
+        {
+            //弹出Tips
+            EventType.ShowItemTips.Instance.ZoneScene = self.DomainScene();
+            EventType.ShowItemTips.Instance.bagInfo =new BagInfo() { ItemID = self.ItemId };
+            EventType.ShowItemTips.Instance.itemOperateEnum = ItemOperateEnum.None;
+            EventType.ShowItemTips.Instance.inputPoint = Input.mousePosition;
+            EventType.ShowItemTips.Instance.Occ = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Occ;
+            Game.EventSystem.PublishClass(EventType.ShowItemTips.Instance);
+        }
 
         public static void UpdateItem(this UIMakeNeedComponent self, int itemId, int needNumber)
         {
+            self.ItemId = itemId;
             ItemConfig itemconfig = ItemConfigCategory.Instance.Get(itemId);
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemconfig.Icon);
             self.Image_ItemIcon.GetComponent<Image>().sprite = sp;
