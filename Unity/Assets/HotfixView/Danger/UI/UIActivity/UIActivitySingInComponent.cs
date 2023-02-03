@@ -46,10 +46,10 @@ namespace ET
     public static class UIActivitySingInComponentSystem
     {
 
-        public static async ETTask OnInitUI(this UIActivitySingInComponent self)
+        public static  void OnInitUI(this UIActivitySingInComponent self)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Activity/UIActivitySingInItem");
-            GameObject bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            GameObject bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
 
             int curDay = 0;
@@ -116,7 +116,7 @@ namespace ET
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             long serverNow = TimeHelper.ServerNow();
             bool isSign = ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(activityComponent.LastSignTime);
-            bool ifShow = int.Parse(ActivityConfig.Par_1) <= activityComponent.TotalSignNumber || isSign;
+            bool ifShow = int.Parse(ActivityConfig.Par_1) <= activityComponent.TotalSignNumber || isSign || activityComponent.ActivityReceiveIds.Contains(activityId);
             self.Img_lingQu.SetActive(ifShow);
             self.Btn_Com.SetActive(!ifShow);
         }
@@ -137,7 +137,6 @@ namespace ET
 
         public static async ETTask OnBtn_Com_Sign(this UIActivitySingInComponent self)
         {
-
             ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
             if (activityComponent.TotalSignNumber == 30)
             {
@@ -146,6 +145,11 @@ namespace ET
             }
             long serverNow = TimeHelper.ServerNow();
             if (ComHelp.GetDayByTime(serverNow) == ComHelp.GetDayByTime(activityComponent.LastSignTime))
+            {
+                FloatTipManager.Instance.ShowFloatTip("当日奖励已领取！");
+                return;
+            }
+            if (activityComponent.ActivityReceiveIds.Contains(self.ActivityId))
             {
                 FloatTipManager.Instance.ShowFloatTip("当日奖励已领取！");
                 return;
