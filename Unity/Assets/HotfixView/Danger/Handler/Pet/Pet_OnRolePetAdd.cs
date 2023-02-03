@@ -14,7 +14,7 @@ namespace ET
         private async ETTask RunAnsyc(EventType.RolePetAdd args)
         {
             UI uiBattleMain = UIHelper.GetUI(args.ZoneScene, UIType.UIPetChouKaGet);
-            if (uiBattleMain == null)
+            if (uiBattleMain != null)
             {
                 return;
             }
