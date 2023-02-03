@@ -471,6 +471,7 @@ namespace ET
         {
             if (self.TaskCountryList.Count == 0)
             {
+                Log.Debug($"矫正活跃任务:  {self.GetParent<Unit>().Id} {self.TaskCountryList.Count}");
                 self.OnZeroClockUpdate(false);
             }
             for (int i = self.RoleTaskList.Count - 1; i >=0; i--)
