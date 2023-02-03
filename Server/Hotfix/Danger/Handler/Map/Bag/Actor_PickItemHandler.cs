@@ -151,28 +151,27 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, Actor_PickItemRequest request, Actor_PickItemResponse response, Action reply)
         {
-            List<DropInfo> drops = request.ItemIds;
             //DropType ==  0 公共掉落 2保护掉落   1私有掉落
-            for (int i = 0; i < drops.Count; i++) 
+            for (int i = request.ItemIds.Count - 1; i >= 0; i--) 
             {
-                if (drops[i].DropType == 1)
+                if (request.ItemIds[i].DropType != 1)
                 {
-                    bool have = false;
-                    UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
-                    for (int d = unitInfoComponent.Drops.Count - 1; d >= 0; d--)
+                    continue;
+                }
+
+                bool have = false;
+                UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
+                for (int d = unitInfoComponent.Drops.Count - 1; d >= 0; d--)
+                {
+                    if (unitInfoComponent.Drops[d].ItemID == request.ItemIds[i].ItemID
+                      && unitInfoComponent.Drops[d].ItemID == request.ItemIds[i].ItemNum)
                     {
-                        if (unitInfoComponent.Drops[d].ItemID == drops[i].ItemID
-                          && unitInfoComponent.Drops[d].ItemID == drops[i].ItemNum)
-                        {
-                            unitInfoComponent.Drops.RemoveAt(d);
-                        }
+                        unitInfoComponent.Drops.RemoveAt(d);
                     }
-                    if (!have)
-                    {
-                        response.Error = ErrorCore.ERR_NetWorkError;
-                        reply();
-                        return;
-                    }
+                }
+                if (!have)
+                {
+                    request.ItemIds.RemoveAt(i);
                 }
             }
 

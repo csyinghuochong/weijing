@@ -366,7 +366,6 @@ namespace ET
             {
                 Log.Warning($"BOSS掉落为空{monsterCof.Id}  {main.Id}");
             }
-
             List<long> beattackIds = new List<long>();
             if (bekill.GetComponent<AIComponent>() != null)
             {
