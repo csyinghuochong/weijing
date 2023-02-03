@@ -427,13 +427,17 @@ namespace ET
                             beAttack.GetComponent<BagComponent>().OnAddItemData($"{droplist[k].ItemID};{droplist[k].ItemNum}", $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                             continue;
                         }
-
-                        m2C_CreateDropItems.Drops.Add(new DropInfo() {
-                            DropType = 1, ItemID = droplist[k].ItemID, ItemNum = droplist[k].ItemNum,
+                        DropInfo dropInfo = new DropInfo()
+                        {
+                            DropType = 1,
+                            ItemID = droplist[k].ItemID,
+                            ItemNum = droplist[k].ItemNum,
                             X = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f),
                             Y = bekill.Position.y,
                             Z = bekill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
-                    }) ;
+                        };
+                        m2C_CreateDropItems.Drops.Add(dropInfo);
+                        beAttack.GetComponent<UnitInfoComponent>().Drops.Add(dropInfo);
                     }                    
                     MessageHelper.SendToClient(beAttack, m2C_CreateDropItems);
                 }
@@ -474,7 +478,7 @@ namespace ET
                 DropHelper.DropIDToDropItem(dropId, droplist);
                 for (int k = 0; k < droplist.Count; k++)
                 {
-                    m2C_CreateDropItems.Drops.Add(new DropInfo()
+                    DropInfo dropInfo = new DropInfo()
                     {
                         DropType = 1,
                         ItemID = droplist[k].ItemID,
@@ -482,7 +486,9 @@ namespace ET
                         X = beKill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f),
                         Y = beKill.Position.y,
                         Z = beKill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
-                    });
+                    };
+                    m2C_CreateDropItems.Drops.Add(dropInfo);
+                    main.GetComponent<UnitInfoComponent>().Drops.Add(dropInfo);
                 }
                 MessageHelper.SendToClient(main, m2C_CreateDropItems);
             }

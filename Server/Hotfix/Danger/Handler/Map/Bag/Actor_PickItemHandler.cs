@@ -61,21 +61,22 @@ namespace ET
             for (int i = 0; i < drops.Count; i++)
             {
                 Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);
+                DropComponent dropComponent = null;
                 if (drops[i].DropType != 1)
                 {
                     if (unitDrop == null)
                     {
                         continue;
                     }
-                    DropComponent dropComponent = unitDrop.GetComponent<DropComponent>();
+                    dropComponent = unitDrop.GetComponent<DropComponent>();
                     if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
                     {
                         return ErrorCore.ERR_ItemDropProtect;
                     }
                 }
 
-                int addItemID = drops[i].ItemID;
-                int addItemNum = drops[i].ItemNum;
+                int addItemID = dropComponent!=null ? dropComponent.ItemID : drops[i].ItemID;
+                int addItemNum = dropComponent != null ? dropComponent.ItemNum : drops[i].ItemNum;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
                 //紫色品质通知客户端抉择
                 //DropType ==  0 公共掉落 2保护掉落   1私有掉落
@@ -150,6 +151,31 @@ namespace ET
 
         protected override async ETTask Run(Unit unit, Actor_PickItemRequest request, Actor_PickItemResponse response, Action reply)
         {
+            List<DropInfo> drops = request.ItemIds;
+            //DropType ==  0 公共掉落 2保护掉落   1私有掉落
+            for (int i = 0; i < drops.Count; i++) 
+            {
+                if (drops[i].DropType == 1)
+                {
+                    bool have = false;
+                    UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
+                    for (int d = unitInfoComponent.Drops.Count - 1; d >= 0; d--)
+                    {
+                        if (unitInfoComponent.Drops[d].ItemID == drops[i].ItemID
+                          && unitInfoComponent.Drops[d].ItemID == drops[i].ItemNum)
+                        {
+                            unitInfoComponent.Drops.RemoveAt(d);
+                        }
+                    }
+                    if (!have)
+                    {
+                        response.Error = ErrorCore.ERR_NetWorkError;
+                        reply();
+                        return;
+                    }
+                }
+            }
+
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
