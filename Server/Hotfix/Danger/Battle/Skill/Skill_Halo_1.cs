@@ -21,7 +21,7 @@
         {
             this.BaseOnUpdate();
 
-            IsExcuteHurt = false;
+            this.IsExcuteHurt = false;
             this.UpdateCheckPoint();
             for (int i = HurtIds.Count - 1; i >= 0; i--)
             {

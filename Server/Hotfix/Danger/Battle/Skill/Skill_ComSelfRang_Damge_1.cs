@@ -26,6 +26,10 @@ namespace ET
             this.BaseOnUpdate();
 
             this.IsExcuteHurt = false;
+            if (this.SkillConf.SkillTargetType == SkillTargetType.SelfFollow)
+            {
+                this.UpdateCheckPoint();
+            }
             long curTime = TimeHelper.ServerNow();
             for (int i = HurtIds.Count - 1; i >= 0; i--)
             {

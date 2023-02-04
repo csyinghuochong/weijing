@@ -62,6 +62,7 @@ namespace ET
             switch (skillConfig.SkillTargetType)
             {
                 case (int)SkillTargetType.SelfPosition:
+                case (int)SkillTargetType.SelfFollow:
                     skillInfo = new SkillInfo();
                     skillInfo.WeaponSkillID = weaponSkill;
                     skillInfo.PosX = unit.Position.x;

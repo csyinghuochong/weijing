@@ -68,18 +68,20 @@ namespace ET
     //6  跟随目标随机
     //7  指定目标
     //8  指定自己
+    //9  跟随自己
 
-    public enum SkillTargetType
-    { 
-        SelfPosition = 0,  
-        TargetPositon,
-        FixedPosition,
-        SelfRandom,
-        TargetRandom,
-        PositionRandom,
-        TargetFollow,
-        TargetOnly,
-        SelfOnly,
+    public static class SkillTargetType
+    {
+        public const int SelfPosition = 0;
+        public const int TargetPositon = 1;
+        public const int FixedPosition = 2;
+        public const int SelfRandom = 3;
+        public const int TargetRandom = 4;
+        public const int PositionRandom = 5;
+        public const int TargetFollow = 6;
+        public const int TargetOnly = 7;
+        public const int SelfOnly = 8;
+        public const int SelfFollow = 9;
     }
 
     //0：
