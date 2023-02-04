@@ -6,7 +6,8 @@ namespace ET
         protected override void Run(object numerice)
         {
             EventType.SkillEffect args = numerice as EventType.SkillEffect;
-            args.Unit.GetComponent<EffectViewComponent>()?.EffectFactory(args.EffectData);
+            EffectViewComponent effectViewComponent = args.Unit.GetComponent<EffectViewComponent>();
+            effectViewComponent?.EffectFactory(args.EffectData);
         }
     }
 }

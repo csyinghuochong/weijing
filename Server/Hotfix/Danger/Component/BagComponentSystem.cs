@@ -188,16 +188,32 @@ namespace ET
                 int itemIdb = b.ItemID;
                 int isBinginga = a.isBinging ? 1 : 0;
                 int isBingingb = b.isBinging ? 1 : 0;
-                int quliatya = ItemConfigCategory.Instance.Get(itemIda).ItemQuality;
-                int quliatyb = ItemConfigCategory.Instance.Get(itemIdb).ItemQuality;
+                ItemConfig itemConfig_a = ItemConfigCategory.Instance.Get(itemIda);
+                ItemConfig itemConfig_b = ItemConfigCategory.Instance.Get(itemIdb);
+                int quliatya = itemConfig_a.ItemQuality;
+                int quliatyb = itemConfig_b.ItemQuality;
+                int jianDingLva = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar) : 0;
+                int jianDingLvb = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(b.ItemPar) : 0;
+
                 if (isBinginga == isBingingb)
                 {
                     if (quliatya == quliatyb)
                     {
-                        if (itemIda == itemIdb)
-                            return b.ItemNum - a.ItemNum;
+                        if (jianDingLva == jianDingLvb)
+                        {
+                            if (itemIda == itemIdb)
+                            {
+                                return b.ItemNum - a.ItemNum;
+                            }
+                            else
+                            {
+                                return itemIda - itemIdb;
+                            }
+                        }
                         else
-                            return itemIda - itemIdb;
+                        {
+                            return jianDingLvb - jianDingLva;
+                        }
                     }
                     else
                     {

@@ -459,9 +459,13 @@ namespace ET
 
         public static async ETTask UpdateSkillList(this UIWatchPetComponent self, RolePetInfo rolePetInfo)
         {
+            long instanceId = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
-
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             List<int> zhuanzhuids = new List<int>();
             string[] zhuanzhuskills = petConfig.ZhuanZhuSkillID.Split(';');
@@ -634,8 +638,13 @@ namespace ET
             PetConfig petConfig = PetConfigCategory.Instance.Get(self.LastSelectItem.ConfigId);
 
             int selectIndex = 0;
+            long instanceId = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Pet/UIPetSkinIcon");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
             for (int i = 0; i < petConfig.Skin.Length; i++)
             {
                 if (petConfig.Skin[i] == 0)

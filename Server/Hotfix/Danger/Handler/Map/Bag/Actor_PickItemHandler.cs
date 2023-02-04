@@ -11,7 +11,6 @@ namespace ET
         {
             List<DropInfo> drops = request.ItemIds;
             List<long> removeIds = new List<long>();
-            M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
             long serverTime = TimeHelper.ServerNow();
             //DropType ==  0 公共掉落 2保护掉落   1私有掉落
             for (int i = 0; i < drops.Count; i++)
@@ -45,7 +44,7 @@ namespace ET
                     unit.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);       //移除掉落ID
                     removeIds.Add(drops[i].UnitId);
                 }
-                FubenHelp.SendPickMessage(unit, drops[i], m2C_SyncChatInfo);
+                FubenHelp.SendPickMessage(unit, drops[i]);
             }
             
             return ErrorCore.ERR_Success;
@@ -85,11 +84,11 @@ namespace ET
                     teamDungeonComponent.AddTeamDropItem(unit, drops[i]);
                     continue;
                 }
-                M2C_SyncChatInfo m2C_SyncChatInfo = teamDungeonComponent.m2C_SyncChatInfo;
+                M2C_SyncChatInfo m2C_SyncChatInfo = FubenHelp.m2C_SyncChatInfo;
                 m2C_SyncChatInfo.ChatInfo = new ChatInfo();
                 m2C_SyncChatInfo.ChatInfo.PlayerLevel = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                 m2C_SyncChatInfo.ChatInfo.Occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
-                m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.System;
+                m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.Pick;
 
                 Unit owner = null;
               
@@ -158,15 +157,16 @@ namespace ET
                 {
                     continue;
                 }
-
                 bool have = false;
                 UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
                 for (int d = unitInfoComponent.Drops.Count - 1; d >= 0; d--)
                 {
                     if (unitInfoComponent.Drops[d].ItemID == request.ItemIds[i].ItemID
-                      && unitInfoComponent.Drops[d].ItemID == request.ItemIds[i].ItemNum)
+                      && unitInfoComponent.Drops[d].ItemNum == request.ItemIds[i].ItemNum)
                     {
+                        have = true;
                         unitInfoComponent.Drops.RemoveAt(d);
+                        break;
                     }
                 }
                 if (!have)

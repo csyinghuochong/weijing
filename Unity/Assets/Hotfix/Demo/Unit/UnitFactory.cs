@@ -47,8 +47,8 @@ namespace ET
 						unit.MoveToAsync(list).Coroutine();
 					}
 			}
-			unit.GetComponent<BuffManagerComponent>().InitBuff(unitInfo.Buffs);
-			unit.GetComponent<SkillManagerComponent>().InitSkill(unitInfo.Skills);
+			unit.GetComponent<BuffManagerComponent>().t_Buffs = unitInfo.Buffs;
+			unit.GetComponent<SkillManagerComponent>().t_Skills =unitInfo.Skills;
 			UnitHelper.OnAfterCreateUnit(unit);
             return unit;
         }

@@ -59,27 +59,16 @@ namespace ET
         private async ETTask OnUnitDead(EventType.KillEvent args)
         {
             Unit unitDefend = args.UnitDefend;
+            Unit unitAttack = args.UnitAttack;
            
             //玩家全部死亡，怪物技能清空
-            if (unitDefend.Type == UnitType.Player)
+            if (unitDefend.Type == UnitType.Player && unitAttack.Type == UnitType.Monster)
             {
-                int playerNumber = FubenHelp.GetAliveUnitNumber(unitDefend.DomainScene(), UnitType.Player);
-                if (playerNumber > 0)
+                Unit nearest = AIHelp.GetNearestEnemy(unitAttack, unitAttack.GetComponent<AIComponent>().ActRange);
+                if (nearest == null)
                 {
-                    return;
-                }
-                List<Unit> units = FubenHelp.GetUnitList(unitDefend.DomainScene(), UnitType.Monster);
-                for (int i = 0; i < units.Count; i++)
-                {
-                    AIComponent aIComponent = units[i].GetComponent<AIComponent>();
-                    if (aIComponent!= null && aIComponent.TargetID == unitDefend.Id)
-                    {
-                        aIComponent.ChangeTarget(0);
-                    }
-                    if (units[i].IsBoss())
-                    {
-                        units[i].GetComponent<SkillManagerComponent>().OnFinish(true);
-                    }
+                    unitAttack.GetComponent<AIComponent>().ChangeTarget(0);
+                    unitAttack.GetComponent<SkillManagerComponent>().OnFinish(true);
                 }
             }
             //怪物死亡， 清除玩家BUFF

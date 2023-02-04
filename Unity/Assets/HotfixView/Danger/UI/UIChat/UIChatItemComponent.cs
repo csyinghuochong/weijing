@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIChatItemComponent : Entity, IAwake
+    public class UIChatItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject Text_System_TMP;
         public GameObject Node2;
@@ -17,16 +17,18 @@ namespace ET
         public GameObject Text_Speak;
         public GameObject Obj_ImgHeadIcon;
         public GameObject Obj_ImgHeadIconXiTong;
+        public GameObject GameObject;
 
-        public GameObject[] TitleList = new GameObject[3];
+        public GameObject[] TitleList = new GameObject[ChannelEnum.Number];
     }
 
     [ObjectSystem]
-    public class UIChatItemComponentAwakeSystem : AwakeSystem<UIChatItemComponent>
+    public class UIChatItemComponentAwakeSystem : AwakeSystem<UIChatItemComponent, GameObject>
     {
-        public override void Awake(UIChatItemComponent self)
+        public override void Awake(UIChatItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;   
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.Text_Level = rc.Get<GameObject>("Text_Level");
             self.Text_TMP = rc.Get<GameObject>("Text_TMP");
             self.Imagebg = rc.Get<GameObject>("Imagebg");
@@ -40,11 +42,13 @@ namespace ET
             self.Node2.SetActive(false);
             self.Node1.SetActive(false);
 
-            self.TitleList[0] = rc.Get<GameObject>("0");
-            self.TitleList[1] = rc.Get<GameObject>("1");
-            self.TitleList[2] = rc.Get<GameObject>("2");
+            for (int i = 0; i < ChannelEnum.Number; i++)
+            {
+                self.TitleList[i] = rc.Get<GameObject>(i.ToString());
+                self.TitleList[i].SetActive(false);
+            }
 
-            self.GetParent<UI>().GameObject.GetComponent<TmpClickRichText>().ClickHandler = (string text) => { self.OnClickRickText(text);  };
+            self.GameObject.GetComponent<TmpClickRichText>().ClickHandler = (string text) => { self.OnClickRickText(text);  };
         }
     }
 

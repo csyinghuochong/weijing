@@ -6,6 +6,9 @@ namespace ET
 { 
     public static class FubenHelp
 	{
+
+		public static M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
+
 		/// <summary>
 		/// 寻找一个可通行的随机位置
 		/// </summary>
@@ -334,12 +337,12 @@ namespace ET
 			return units;
 		}
 
-		public static void SendPickMessage(Unit unit, DropInfo dropInfo, M2C_SyncChatInfo m2C_SyncChatInfo,List<long> ids,  List<int> points)
+		public static void SendPickMessage(Unit unit, DropInfo dropInfo,List<long> ids,  List<int> points)
 		{
 			m2C_SyncChatInfo.ChatInfo = new ChatInfo();
 			m2C_SyncChatInfo.ChatInfo.PlayerLevel = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
 			m2C_SyncChatInfo.ChatInfo.Occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
-			m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.System;
+			m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.Pick;
 
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
 			string numShow = "";
@@ -365,13 +368,13 @@ namespace ET
 			MessageHelper.SendToClient(GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
 		}
 
-		public static void SendPickMessage(Unit unit, DropInfo dropInfo, M2C_SyncChatInfo m2C_SyncChatInfo)
+		public static void SendPickMessage(Unit unit, DropInfo dropInfo)
 		{
 			UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
 			m2C_SyncChatInfo.ChatInfo = new ChatInfo();
 			m2C_SyncChatInfo.ChatInfo.PlayerLevel = userInfoComponent.UserInfo.Lv;
 			m2C_SyncChatInfo.ChatInfo.Occ = userInfoComponent.UserInfo.Occ;
-			m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.System;
+			m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.Pick;
 
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(dropInfo.ItemID);
 			string numShow = "";

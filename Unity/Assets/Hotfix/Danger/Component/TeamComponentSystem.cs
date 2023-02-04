@@ -100,8 +100,7 @@ namespace ET
                 TeamInfo teamInfo = self.ZoneScene().GetComponent<TeamComponent>().GetSelfTeam();
                 if (teamInfo != null && teamInfo.SceneId != 0)
                 {
-                    EventType.CommonHintError.Instance.errorValue = ErrorCore.ERR_IsHaveTeam;
-                    EventSystem.Instance.PublishClass(EventType.CommonHintError.Instance);
+                    HintHelp.GetInstance().ShowHintError(ErrorCore.ERR_IsHaveTeam);
                     return ErrorCore.ERR_IsHaveTeam;
                 }
                 UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
@@ -111,14 +110,16 @@ namespace ET
                     int errorCode = TeamHelper.CheckTimesAndLevel(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), userInfo, fubenId, fubenType, leader);
                     if (errorCode != 0)
                     {
+                        HintHelp.GetInstance().ShowHintError(errorCode);
                         return errorCode;
                     }
                 }
                 if (fubenType == TeamFubenType.XieZhu && userInfo.Lv > leaderLv)
                 {
+                    HintHelp.GetInstance().ShowHintError(ErrorCore.ERR_TeamerLevelIsNot);
                     return ErrorCore.ERR_TeamerLevelIsNot;
                 }
-
+                HintHelp.GetInstance().ShowHint("已申请加入队伍！");
                 C2T_TeamDungeonApplyRequest request = new C2T_TeamDungeonApplyRequest()
                 {
                     TeamId = teamId,

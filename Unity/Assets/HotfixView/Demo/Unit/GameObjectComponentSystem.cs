@@ -247,6 +247,11 @@ namespace ET
                         EventType.UnitDead.Instance.Unit = unit;
                         Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
                     }
+                    else
+                    {
+                        unit.GetComponent<BuffManagerComponent>().InitBuff();
+                        unit.GetComponent<SkillManagerComponent>().InitSkill();
+                    }
                     if (unit.MainHero)
                     {
                         Transform topTf = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head).transform;

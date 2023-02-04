@@ -10,6 +10,7 @@ namespace ET
             {
                 return;
             }
+
             EffectViewComponent effectViewComponent = args.Unit.GetComponent<EffectViewComponent>();
             if (effectViewComponent == null)
             {

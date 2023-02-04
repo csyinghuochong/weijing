@@ -9,7 +9,7 @@ namespace ET
     public class ChatComponent : Entity, IAwake
     {
 
-        public Dictionary<ChannelEnum, List<ChatInfo>> ChatTypeList = new Dictionary<ChannelEnum, List<ChatInfo>>();
+        public Dictionary<int, List<ChatInfo>> ChatTypeList = new Dictionary<int, List<ChatInfo>>();
 
         public long LastSendWord;
 

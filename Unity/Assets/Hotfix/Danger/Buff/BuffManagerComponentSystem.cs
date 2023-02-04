@@ -25,6 +25,7 @@ namespace ET
     {
         public override void Awake(BuffManagerComponent self)
         {
+            self.t_Buffs.Clear();
             self.m_Buffs.Clear();
         }
     }
@@ -77,8 +78,9 @@ namespace ET
         }
 
         #region 添加，移除Buff
-        public static void InitBuff(this BuffManagerComponent self, List<KeyValuePair> buffs)
+        public static void InitBuff(this BuffManagerComponent self)
         {
+            List<KeyValuePair> buffs = self.t_Buffs;
             long timeNow = TimeHelper.ClientNow();
             for (int i = 0; i < buffs.Count; i++)
             {
@@ -95,7 +97,7 @@ namespace ET
                 buffData.BuffEndTime = buffEndTime;
                 self.BuffFactory(buffData);
             }
-            buffs.Clear();
+            self.t_Buffs.Clear();
         }
 
         public  static void BuffFactory(this BuffManagerComponent self, BuffData buffData)

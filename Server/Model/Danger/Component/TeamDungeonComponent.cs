@@ -21,6 +21,5 @@ namespace ET
         public Dictionary<long, long> ItemFlags = new Dictionary<long, long>();
 
         public M2C_TeamPickMessage m2C_TeamPickMessage = new M2C_TeamPickMessage();
-        public M2C_SyncChatInfo m2C_SyncChatInfo = new M2C_SyncChatInfo();
     }
 }

@@ -6,8 +6,9 @@ namespace ET
     {
         public long Timer;
         public int Type;
-        
+
 #if !SERVER
+        public List<KeyValuePair> t_Buffs = new List<KeyValuePair>();
         public List<ABuffHandler> m_Buffs = new List<ABuffHandler>();
 #else
         public List<BuffHandler> m_Buffs = new List<BuffHandler>();
