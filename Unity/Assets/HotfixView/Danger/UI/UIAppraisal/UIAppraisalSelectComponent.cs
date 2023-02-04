@@ -85,8 +85,16 @@ namespace ET
             self.Text_EquipLevel.GetComponent<Text>().text = itemCof.UseLv + "级";
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            bagComponent.OnRecvItemSort(ItemLocType.ItemLocBag);
             List<BagInfo> bagInfos = bagComponent.GetBagList();
+            bagInfos.Sort(delegate (BagInfo a, BagInfo b)
+            {
+                ItemConfig itemConfig_a = ItemConfigCategory.Instance.Get(a.ItemID);
+                ItemConfig itemConfig_b = ItemConfigCategory.Instance.Get(b.ItemID);
+                int jianDingLva = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar) : 0;
+                int jianDingLvb = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(b.ItemPar) : 0;
+                return jianDingLvb - jianDingLva;
+            });
+
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             for (int i = 0; i < bagInfos.Count; i++)
