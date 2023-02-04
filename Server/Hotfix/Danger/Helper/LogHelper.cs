@@ -60,5 +60,15 @@ namespace ET
             }
         }
 
+
+        /// <summary>
+        /// 每小时检测一次
+        /// </summary>
+        /// <param name="unit"></param>
+        public static void CheckZuoBi(Unit unit)
+        {
+            LogHelper.ZuobiInfo($"ceshi {unit.Id} ");
+
+        }
     }
 }
