@@ -23,7 +23,7 @@ namespace ET
             for (int i = 0; i < sceneConfigs.Count; i++)
             {
                 if (sceneConfigs[i].MapType != SceneTypeEnum.BaoZang 
-                 && sceneConfigs[i].MapType != SceneTypeEnum.MiJing)
+                && sceneConfigs[i].MapType != SceneTypeEnum.MiJing)
                 {
                     continue;
                 }
