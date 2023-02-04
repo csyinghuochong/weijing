@@ -55,6 +55,15 @@ namespace ET
             GameObject.Find("Global").GetComponent<Init>().WeChatPay(orderInfo);
         }
 
+        public static int GetBigVersion()
+        {
+#if UNITY_IPHONE || UNITY_IOS
+            return GameObject.Find("Global").GetComponent<Init>().BigVersionIOS;
+#else
+            return GameObject.Find("Global").GetComponent<Init>().BigVersion;
+#endif
+        }
+
         public static void OnButtonGetCode(string phone)
         {
             GameObject.Find("Global").GetComponent<SMSSDemo>().OnButtonGetCode(phone);

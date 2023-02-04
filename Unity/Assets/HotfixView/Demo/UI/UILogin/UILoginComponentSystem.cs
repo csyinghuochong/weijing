@@ -42,10 +42,10 @@ namespace ET
 				self.AccountText = rc.Get<GameObject>("AccountText");
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
-				if (self.IOSReview)
+				if (self.IOSReview && GlobalHelp.GetBigVersion() == 12)
 				{
 #if UNITY_IPHONE || UNITY_IOS
-self.DeleteAccountBtn.SetActive(true);
+				self.DeleteAccountBtn.SetActive(true);
 				self.AccountText.GetComponent<Text>().text = "注册账号";
 #endif
 				}
@@ -178,7 +178,7 @@ self.DeleteAccountBtn.SetActive(true);
 			}
 
 			self.LoginType = GlobalHelp.IsBanHaoMode ? LoginTypeEnum.RegisterLogin.ToString() : self.LoginType;
-			if (self.IOSReview)
+			if (self.IOSReview && GlobalHelp.GetBigVersion() == 12)
 			{
 #if UNITY_IPHONE || UNITY_IOS
 			self.LoginType =  LoginTypeEnum.RegisterLogin.ToString();
@@ -203,7 +203,7 @@ self.DeleteAccountBtn.SetActive(true);
 			string lastAccount = PlayerPrefsHelp.GetString(PlayerPrefsHelp.LastAccount(self.LoginType));
 
 			bool uppos = GlobalHelp.IsBanHaoMode || LoginTypeEnum.RegisterLogin.ToString() == self.LoginType;
-			if (self.IOSReview)
+			if (self.IOSReview && GlobalHelp.GetBigVersion() == 12)
 			{
 #if UNITY_IPHONE || UNITY_IOS
 			uppos = true;
@@ -540,7 +540,7 @@ self.DeleteAccountBtn.SetActive(true);
 		public static void OnRegister(this UILoginComponent self)
 		{
 			bool register = false;
-			if (self.IOSReview)
+			if (self.IOSReview && GlobalHelp.GetBigVersion() == 12)
 			{
 #if UNITY_IPHONE || UNITY_IOS
 				register = true;

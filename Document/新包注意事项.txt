@@ -1,0 +1,4 @@
+1.  修改Init 版本号
+2.  bundle Version 
+3.  loginComponet IOSReview  
+4.  loginComponet 特定版本号才显示账号登录
