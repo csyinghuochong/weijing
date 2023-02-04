@@ -157,13 +157,12 @@ namespace ET
                 {
                     continue;
                 }
-
                 bool have = false;
                 UnitInfoComponent unitInfoComponent = unit.GetComponent<UnitInfoComponent>();
                 for (int d = unitInfoComponent.Drops.Count - 1; d >= 0; d--)
                 {
                     if (unitInfoComponent.Drops[d].ItemID == request.ItemIds[i].ItemID
-                      && unitInfoComponent.Drops[d].ItemID == request.ItemIds[i].ItemNum)
+                      && unitInfoComponent.Drops[d].ItemNum == request.ItemIds[i].ItemNum)
                     {
                         have = true;
                         unitInfoComponent.Drops.RemoveAt(d);

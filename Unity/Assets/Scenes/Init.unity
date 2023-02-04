@@ -925,6 +925,7 @@ MonoBehaviour:
   EditorMode: 1
   OueNetMode: 1
   BigVersion: 11
+  BigVersionIOS: 11
   Updater: {fileID: 2018631435}
   ssdk: {fileID: 575235021}
   mobsdk: {fileID: 575235022}

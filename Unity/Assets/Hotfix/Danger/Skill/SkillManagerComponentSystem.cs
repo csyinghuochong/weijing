@@ -26,6 +26,7 @@ namespace ET
     {
         public override void Awake(SkillManagerComponent self)
         {
+            self.t_Skills.Clear();
             self.Skills.Clear();
             self.SkillCDs.Clear();
             self.FangunSkillId = int.Parse(GlobalValueConfigCategory.Instance.Get(2).Value);
@@ -220,14 +221,20 @@ namespace ET
             }
         }
 
-        public static void InitSkill(this SkillManagerComponent self, List<SkillInfo> skillInfos)
+        public static void InitSkill(this SkillManagerComponent self)
         {
+            List<SkillInfo> skillInfos = self.t_Skills;
             for (int i = 0; i < skillInfos.Count; i++)
             {
+                if (skillInfos[i].SkillEndTime < TimeHelper.ServerNow())
+                {
+                    continue;
+                }
                 M2C_UnitUseSkill m2C_UnitUseSkill = new M2C_UnitUseSkill();
                 m2C_UnitUseSkill.SkillInfos.Add(skillInfos[i]);
                 self.OnUseSkill(m2C_UnitUseSkill);
             }
+            self.t_Skills.Clear();
         }
 
         /// <summary>

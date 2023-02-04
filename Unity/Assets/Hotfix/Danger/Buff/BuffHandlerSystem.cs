@@ -72,7 +72,7 @@ namespace ET
             self.BuffState = BuffState.Waiting;
         }
 
-        //播放技能特效
+        //播放特效
         public static long PlayBuffEffects(this ABuffHandler self)
         {
             EffectData playEffectBuffData = new EffectData();
