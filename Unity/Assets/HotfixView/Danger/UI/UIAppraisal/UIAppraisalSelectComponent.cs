@@ -85,6 +85,7 @@ namespace ET
             self.Text_EquipLevel.GetComponent<Text>().text = itemCof.UseLv + "级";
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            bagComponent.OnRecvItemSort(ItemLocType.ItemLocBag);
             List<BagInfo> bagInfos = bagComponent.GetBagList();
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
