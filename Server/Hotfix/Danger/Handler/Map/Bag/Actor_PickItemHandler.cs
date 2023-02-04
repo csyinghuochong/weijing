@@ -165,7 +165,9 @@ namespace ET
                     if (unitInfoComponent.Drops[d].ItemID == request.ItemIds[i].ItemID
                       && unitInfoComponent.Drops[d].ItemID == request.ItemIds[i].ItemNum)
                     {
+                        have = true;
                         unitInfoComponent.Drops.RemoveAt(d);
+                        break;
                     }
                 }
                 if (!have)
