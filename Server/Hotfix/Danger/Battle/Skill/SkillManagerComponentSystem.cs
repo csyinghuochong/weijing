@@ -348,7 +348,12 @@ namespace ET
                 m2C_Skill.Error = ErrorCore.ERR_UseSkillError;
                 return m2C_Skill;
             }
-            if (skillcmd.ItemId == 0&& !ComHelp.IfNull(weaponSkillConfig.SkillAnimation))
+            //if (skillcmd.ItemId == 0&& !ComHelp.IfNull(weaponSkillConfig.SkillAnimation))
+            //{
+            //    unit.GetComponent<MoveComponent>()?.Stop();
+            //    unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
+            //}
+            if (weaponSkillConfig.IfStopMove == 0)
             {
                 unit.GetComponent<MoveComponent>()?.Stop();
                 unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);

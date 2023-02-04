@@ -244,15 +244,36 @@ namespace ET
             {
                 self.AddSkillCD( skillcmd.SkillID, skillcmd.CDEndTime, skillcmd.PublicCDTime);
             }
-            if (skillcmd.ItemId > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
+
+            //if (skillcmd.ItemId > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
+            //{
+            //    //回血技能只播放动画[不进入状态机]
+            //    EventType.PlayAnimator.Instance.Animator = skillConfig.SkillAnimation;
+            //    EventType.PlayAnimator.Instance.Unit = unit;
+            //    Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
+            //}
+            //if (skillcmd.ItemId == 0 && !ComHelp.IfNull(skillConfig.SkillAnimation))   //有技能动画
+            //{
+            //    if (skillConfig.GameObjectName != "Skill_Other_ChongJi_1")
+            //    {
+            //        unit.GetComponent<MoveComponent>()?.Stop();
+            //    }
+            //    unit.Rotation = Quaternion.Euler(0, skillcmd.SkillInfos[0].TargetAngle, 0);
+            //    EventType.FsmChange.Instance.FsmHandlerType = skillConfig.ComboSkillID > 0 ? 5 : 4;
+            //    EventType.FsmChange.Instance.FsmValue = skillcmd.SkillInfos[0].WeaponSkillID;
+            //    EventType.FsmChange.Instance.Unit = unit;
+            //    Game.EventSystem.PublishClass(EventType.FsmChange.Instance);
+            //}
+            if (skillConfig.IfStopMove > 0 && !unit.GetComponent<MoveComponent>().IsArrived())
             {
-                //回血技能只播放动画
+                //回血技能只播放动画[不进入状态机]
                 EventType.PlayAnimator.Instance.Animator = skillConfig.SkillAnimation;
                 EventType.PlayAnimator.Instance.Unit = unit;
                 Game.EventSystem.PublishClass(EventType.PlayAnimator.Instance);
             }
-            if (skillcmd.ItemId == 0 && !ComHelp.IfNull(skillConfig.SkillAnimation))   //有技能动画
+            else
             {
+                //中断移动
                 if (skillConfig.GameObjectName != "Skill_Other_ChongJi_1")
                 {
                     unit.GetComponent<MoveComponent>()?.Stop();

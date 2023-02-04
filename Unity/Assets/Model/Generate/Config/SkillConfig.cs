@@ -249,6 +249,9 @@ namespace ET
 		/// <summary>触发自身拥有技能</summary>
 		[ProtoMember(58)]
 		public int[] TriggerSelfSkillID { get; set; }
+		/// <summary>释放技能是否打断移动</summary>
+		[ProtoMember(59)]
+		public int IfStopMove { get; set; }
 
 	}
 }

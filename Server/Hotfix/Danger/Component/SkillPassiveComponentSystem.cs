@@ -282,10 +282,6 @@ namespace ET
             {
                 int weaponSkill = unit.GetWeaponSkill(skillIfo.SkillId);
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(weaponSkill);
-                //if (!ComHelp.IfNull(skillConfig.SkillAnimation))
-                //{
-                //    unit.Stop(-1);
-                //}
                 List<long> targetIdList = new List<long>();
                 AIComponent aIComponent = unit.GetComponent<AIComponent>();
                 if (aIComponent != null)
