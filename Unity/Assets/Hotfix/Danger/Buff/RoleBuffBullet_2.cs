@@ -24,7 +24,7 @@ namespace ET
 
         public override void OnExecute()
         {
-            this.EffectInstanceId = this.PlayBuffEffects(false);
+            this.EffectInstanceId = this.PlayBuffEffects();
             this.EffectData.InstanceId = 0;
             this.BuffState = BuffState.Running;
         }

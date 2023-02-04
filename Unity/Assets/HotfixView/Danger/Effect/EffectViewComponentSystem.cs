@@ -85,10 +85,6 @@ namespace ET
                 {
                     continue;
                 }
-                if (!aEffectHandler.EffectData.FollowUnitMove)
-                {
-                    continue;
-                }
                 if (aEffectHandler.EffectData.EffectConfig.SkillParent!=2)
                 {
                     continue;

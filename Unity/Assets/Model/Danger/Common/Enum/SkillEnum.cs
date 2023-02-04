@@ -178,8 +178,6 @@ namespace ET
         public Vector3 EffectPosition;
         public float EffectAngle;
 
-        public bool FollowUnitMove;
-
         public int TargetAngle;
         public long TargetID;
 

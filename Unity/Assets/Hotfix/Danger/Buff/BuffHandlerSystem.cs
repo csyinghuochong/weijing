@@ -73,7 +73,7 @@ namespace ET
         }
 
         //播放技能特效
-        public static long PlayBuffEffects(this ABuffHandler self, bool followUpdate = true)
+        public static long PlayBuffEffects(this ABuffHandler self)
         {
             EffectData playEffectBuffData = new EffectData();
             if (self.mEffectConf == null)
@@ -85,7 +85,6 @@ namespace ET
                 playEffectBuffData.SkillConfig = self.mSkillConf;                   //技能相关配置
             }
             playEffectBuffData.TargetAngle = self.BuffData.TargetAngle;
-            playEffectBuffData.FollowUnitMove = followUpdate;
             playEffectBuffData.EffectConfig = self.mEffectConf;
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.BuffEffect;
             playEffectBuffData.InstanceId = IdGenerater.Instance.GenerateInstanceId();
