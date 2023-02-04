@@ -3,13 +3,16 @@
 
 namespace ET
 {
-    public enum ChannelEnum
-    { 
-        Word =0 ,               //世界 
-        Team = 1,               //组队
-        System = 2,             //系统
-        Union = 3,                  //帮派
-        Friend = 11,             //私聊
+    public static class ChannelEnum
+    {
+        public const int Word = 0;               //世界 
+        public const int Team = 1;              //组队
+        public const int System = 2;             //系统
+        public const int Union = 3;               //帮派
+        public const int Friend = 4;             //私聊
+        public const int Pick = 5;
+
+        public const int Number = 6;
     }
 
     public static class NoticeType

@@ -10,7 +10,7 @@ namespace ET
         public bool UpdateHeight;
         public GameObject Lab_ChatText;
         public GameObject ImageButton;
-        public GameObject[] TitleList = new GameObject[3];
+        public GameObject[] TitleList = new GameObject[ChannelEnum.Number];
 
         public ChatInfo m2C_SyncChatInfo;
         public Action ClickHanlder;
@@ -26,12 +26,11 @@ namespace ET
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.Lab_ChatText = rc.Get<GameObject>("Lab_ChatText");
 
-            self.TitleList[0] = rc.Get<GameObject>("0");
-            self.TitleList[1] = rc.Get<GameObject>("1");
-            self.TitleList[2] = rc.Get<GameObject>("2");
-            self.TitleList[0].SetActive(false);
-            self.TitleList[1].SetActive(false);
-            self.TitleList[2].SetActive(false);
+            for (int i = 0; i < ChannelEnum.Number; i++)
+            {
+                self.TitleList[i] = rc.Get<GameObject>(i.ToString());
+                self.TitleList[i].SetActive(false);
+            }
 
             self.ImageButton = rc.Get<GameObject>("ImageButton");
             self.ImageButton.GetComponent<Button>().onClick.AddListener(() => { self.ClickHanlder(); });

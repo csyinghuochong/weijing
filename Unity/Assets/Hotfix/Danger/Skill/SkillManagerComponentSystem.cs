@@ -165,7 +165,6 @@ namespace ET
                 if (errorCode == ErrorCode.ERR_Success)
                 {
                     unit.GetComponent<SingingComponent>().AfterSkillSing(skillConfig);
-                    unit.ZoneScene().GetComponent<AttackComponent>().RemoveTimer();
                 }
                 return errorCode;
             }

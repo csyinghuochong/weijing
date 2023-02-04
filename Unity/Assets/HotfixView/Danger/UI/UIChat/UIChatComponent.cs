@@ -8,7 +8,6 @@ namespace ET
 {
     public class UIChatComponent : Entity, IAwake, IDestroy
     {
-
         public GameObject ChatSendNode;
         public GameObject UIChatEmoji;
         public GameObject ButtonEmoji;
@@ -20,7 +19,7 @@ namespace ET
         public ScrollRect ScrollRect;
 
         public UI UIPageComponent;
-        public List<UI> ChatUIList = new List<UI>();
+        public List<UIChatItemComponent> ChatUIList = new List<UIChatItemComponent>();
     }
 
     [ObjectSystem]
@@ -107,12 +106,12 @@ namespace ET
         public static async ETTask OnChatRecv(this UIChatComponent self)
         {
             int itemType = self.UIPageComponent.GetComponent<UIPageButtonComponent>().GetCurrentIndex();
-            List<ChatInfo> chatlist = self.ZoneScene().GetComponent<ChatComponent>().GetChatListByType((ChannelEnum)itemType);
+            List<ChatInfo> chatlist = self.ZoneScene().GetComponent<ChatComponent>().GetChatListByType(itemType);
             self.ChatSendNode.SetActive(itemType != (int)ChannelEnum.System);
             GameObject chatItem = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(ABPathHelper.GetUGUIPath("Main/Chat/UIChatItem"));
             for (int i = 0; i < chatlist.Count; i++)
             {
-                UI ui_2 = null;
+                UIChatItemComponent ui_2 = null;
                 if (i < self.ChatUIList.Count)
                 {
                     ui_2 = self.ChatUIList[i];
@@ -123,12 +122,11 @@ namespace ET
                     GameObject itemSpace = GameObject.Instantiate(chatItem);
                     itemSpace.SetActive(true);
                     UICommonHelper.SetParent(itemSpace, self.ChatContent);
-                    ui_2 = self.AddChild<UI, string, GameObject>("chatItem_" + i.ToString(), itemSpace);
-                    ui_2.AddComponent<UIChatItemComponent>();
+                    ui_2 = self.AddChild<UIChatItemComponent, GameObject>(itemSpace);
                     self.ChatUIList.Add(ui_2);
                 }
 
-                ui_2.GetComponent<UIChatItemComponent>().OnUpdateUI(chatlist[i]);
+                ui_2.OnUpdateUI(chatlist[i]);
             }
             for (int i = chatlist.Count; i < self.ChatUIList.Count; i++)
             {
@@ -251,7 +249,7 @@ namespace ET
                     FloatTipManager.Instance.ShowFloatTip("被禁言中！");
                     return;
                 }
-                self.ZoneScene().GetComponent<ChatComponent>().SendChat((ChannelEnum)itemType, text).Coroutine();
+                self.ZoneScene().GetComponent<ChatComponent>().SendChat(itemType, text).Coroutine();
             }
 
             self.InputFieldTMP.GetComponent<TMP_InputField>().text = "";
