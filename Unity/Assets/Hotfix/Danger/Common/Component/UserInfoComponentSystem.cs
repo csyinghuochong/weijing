@@ -156,6 +156,18 @@ namespace ET
             {
                 self.RecoverPiLao(30, notice);
             }
+
+            self.CheckZuoBi();
+        }
+
+        /// <summary>
+        /// 每小时触发一次
+        /// </summary>
+        /// <param name="self"></param>
+        public static void CheckZuoBi(this UserInfoComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            LogHelper.ZuobiInfo($"ceshi {unit.Id} ");
         }
 
         public static void RecoverPiLao(this UserInfoComponent self, int addValue, bool notice)

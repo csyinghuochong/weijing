@@ -210,30 +210,6 @@ namespace ET
             return SceneConfigCategory.Instance.Get(sceneId).PlayerLimit;
         }
 
-        public static void LoginInfo(string log)
-        {
-            string filePath = "../Logs/login.txt"; 
-            if (File.Exists(filePath))
-            {
-                StreamWriter sw = File.AppendText(filePath);
-                sw.WriteLineAsync(log);
-                sw.Flush();
-                sw.Close();
-            }
-            else
-            {
-                FileStream fs = new FileStream(filePath, FileMode.OpenOrCreate);
-                StreamWriter sw = new StreamWriter(fs);
-                //开始写入
-                sw.WriteLineAsync(log);
-                //清空缓冲区
-                sw.Flush();
-                //关闭流
-                sw.Close();
-                fs.Close();
-            }
-        }
-
         /// <summary>
         /// 鉴定符根据熟练度算品质的方法
         /// </summary>

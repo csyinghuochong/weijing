@@ -103,7 +103,7 @@ namespace ET
                $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
                $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                $"{  TimeHelper.DateTimeNow().ToString()}   二次登录";
-            ComHelp.LoginInfo(offLineInfo);
+            LogHelper.LoginInfo(offLineInfo);
             //需要通知其他服务器吗？
             Log.Debug(offLineInfo);
         }
@@ -115,7 +115,7 @@ namespace ET
                 $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
                 $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                 $"{  TimeHelper.DateTimeNow().ToString()}   离线";
-            ComHelp.LoginInfo(offLineInfo);
+            LogHelper.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
             self.UpdateCacheDB();
         }
@@ -127,7 +127,7 @@ namespace ET
                $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
                $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
                $"{  TimeHelper.DateTimeNow().ToString()}   登录";
-            ComHelp.LoginInfo(offLineInfo);
+            LogHelper.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
 
             self.LogTest();
@@ -156,7 +156,7 @@ namespace ET
               $"unit.id: {unit.GetComponent<UserInfoComponent>().Id} : " +
               $" {unit.GetComponent<UserInfoComponent>().UserInfo.Name} : " +
               $"{  TimeHelper.DateTimeNow().ToString()}  移除";
-            ComHelp.LoginInfo(offLineInfo);
+            LogHelper.LoginInfo(offLineInfo);
             Log.Debug(offLineInfo);
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == SceneTypeEnum.MainCityScene)
