@@ -54,9 +54,11 @@ namespace ET
             {
                 self.UISubViewList[self.LastIndex].GameObject.SetActive(false);
             }
-            self.UISubViewList[page].GameObject.SetActive(true);
-            self.UISubViewList[page].OnUpdateUI?.Invoke();
-
+            if (self.UISubViewList[page] != null && self.UISubViewList[page].GameObject != null)
+            {
+                self.UISubViewList[page].GameObject.SetActive(true);
+                self.UISubViewList[page].OnUpdateUI?.Invoke();
+            }
             self.LastIndex = page;
         }
 

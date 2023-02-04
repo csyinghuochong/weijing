@@ -509,8 +509,6 @@ namespace ET
         {
             if (self.PetComponent.GetPetInfoByID(petId) == null)
             {
-                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                Log.Error($"petinfo==null:  {unit.Id} {petId}");
                 return;
             }
 
