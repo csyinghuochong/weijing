@@ -14,6 +14,7 @@ namespace ET
 		public const string UICreateRole = "CreateRole/UICreateRole";
 		public const string UIMain = "Main/Main/UIMain";
 		public const string UIRole = "Main/Role/UIRole";
+		public const string UIRoleZodiac = "Main/Role/UIRoleZodiac";
 		public const string UITask = "Main/Task/UITask";
 		public const string UITaskGet = "Main/Task/UITaskGet";
 		public const string UIStorySpeak = "Main/RoleStory/UIStorySpeak";

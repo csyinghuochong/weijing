@@ -55,10 +55,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07fa58a9b14314c0787b105dbeab5d75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UILayer: 20
+  UILayer: 30
   UIType: 0
   HideMainUI: 0
-  ShowHuoBi: 1
+  ShowHuoBi: 0
 --- !u!114 &3122888181883201266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -71,7 +71,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: []
+  data:
+  - key: BtnItemTypeSet
+    gameObject: {fileID: 6866137370092678219}
+  - key: ZodiacList
+    gameObject: {fileID: 7806480495901165634}
+  - key: ButtonColse
+    gameObject: {fileID: 1794178901871096}
 --- !u!1 &1794178901871096
 GameObject:
   m_ObjectHideFlags: 0
@@ -85,7 +91,7 @@ GameObject:
   - component: {fileID: 114032902746847200}
   - component: {fileID: 2896753389301137655}
   m_Layer: 5
-  m_Name: Img_Button
+  m_Name: ButtonColse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -105,10 +111,10 @@ RectTransform:
   m_Father: {fileID: 22441214}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -4, y: 418}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &222319980387678238
 CanvasRenderer:
@@ -138,7 +144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bb2206f06151bf049a7a6f39cb074d70, type: 3}
+  m_Sprite: {fileID: 21300000, guid: e406784528774d847949b402f3b8e7b2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -5989,10 +5995,10 @@ RectTransform:
   m_Father: {fileID: 22441214}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -425, y: 0}
+  m_SizeDelta: {x: 1000, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1587554247014905067
 CanvasRenderer:
@@ -6014,7 +6020,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: a64356c35c809be4c936978512e7f925, type: 2}
+  m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -6022,8 +6028,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fea6ce0200057704aa96ce937abaa643, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: 2a54a18e52447094cb706b13272eeab5, type: 3}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -8386,7 +8392,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2508489390117880571}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: ZodiacList
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

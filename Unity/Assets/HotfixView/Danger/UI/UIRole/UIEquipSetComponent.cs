@@ -42,6 +42,7 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();    
             self.ButtonZodiac = gameObject.transform.Find("ButtonZodiac").gameObject;
             self.ButtonZodiac.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account)) ;
+            ButtonHelp.AddListenerEx(self.ButtonZodiac, () => { UIHelper.Create(self.ZoneScene(), UIType.UIRoleZodiac).Coroutine(); });
 
             self.RawImage = gameObject.transform.Find("EquipSetHide/RawImage").gameObject;
             self.RawImage.SetActive(false);
