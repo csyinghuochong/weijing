@@ -5,7 +5,7 @@
 {"_t":"GlobalValueConfig","_id":5,"Value":"10010087;1","Value2":0},
 {"_t":"GlobalValueConfig","_id":6,"Value":"1;1","Value2":0},
 {"_t":"GlobalValueConfig","_id":7,"Value":"12001004;1","Value2":0},
-{"_t":"GlobalValueConfig","_id":8,"Value":"100011;100021;100031;100041;100051;100061;100071;100081;100091;100101","Value2":0},
+{"_t":"GlobalValueConfig","_id":8,"Value":"100011;100021;100031;100041;100051;100061;100071;100081;100091;100101;100111;100121","Value2":0},
 {"_t":"GlobalValueConfig","_id":9,"Value":"10010001;20@10010011;20@10010076;1","Value2":0},
 {"_t":"GlobalValueConfig","_id":10,"Value":"160","Value2":160},
 {"_t":"GlobalValueConfig","_id":11,"Value":"100001;8@200001;8","Value2":0},
