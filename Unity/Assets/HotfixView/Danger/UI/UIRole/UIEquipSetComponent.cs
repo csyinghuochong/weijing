@@ -7,6 +7,8 @@ namespace ET
 {
     public class UIEquipSetComponent : Entity, IAwake, IAwake<GameObject, int>
     {
+
+        public GameObject ButtonZodiac;
         public GameObject RawImage;
         public UIModelShowComponent UIModelShowComponent;
         public List<UIEquipSetItemComponent> EquipList = new List<UIEquipSetItemComponent>();
@@ -36,6 +38,10 @@ namespace ET
                 gameObject.transform.Find("Equip_6").gameObject.SetActive(true);
                 gameObject.transform.Find("Equip_7").gameObject.SetActive(true);
             }
+
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();    
+            self.ButtonZodiac = gameObject.transform.Find("ButtonZodiac").gameObject;
+            self.ButtonZodiac.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account)) ;
 
             self.RawImage = gameObject.transform.Find("EquipSetHide/RawImage").gameObject;
             self.RawImage.SetActive(false);
