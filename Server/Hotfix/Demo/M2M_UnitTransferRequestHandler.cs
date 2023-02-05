@@ -191,6 +191,7 @@ namespace ET
 						if (request.SceneType == (int)SceneTypeEnum.Tower)
 						{
 							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
+							unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.Tower_13, 0, 1);
 							scene.GetComponent<TowerComponent>().MainUnit = unit;
 						}
 						if (request.SceneType == SceneTypeEnum.RandomTower)
@@ -202,6 +203,7 @@ namespace ET
 						{
 							Game.Scene.GetComponent<RecastPathComponent>().Update(int.Parse(scene.GetComponent<MapComponent>().NavMeshId));
 							scene.GetComponent<TrialDungeonComponent>().GenerateFuben(int.Parse(request.ParamInfo));
+							unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TrialFuben_12, 0, 1);
 						}
 						fightId = unit.GetComponent<PetComponent>().GetFightPet();
 						if (fightId != null)

@@ -253,6 +253,15 @@ namespace ET
         //领取奖励
         public static int OnCommitTask(this TaskComponent self, int taskid)
         {
+
+            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
+            BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
+            List<RewardItem> rewardItems = TaskHelp.GetTaskRewards(taskid, taskConfig);
+            if (bagComponent.GetSpaceNumber() < rewardItems.Count)
+            {
+                return ErrorCore.ERR_BagIsFull;
+            }
+
             bool have = false;
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {
@@ -270,7 +279,7 @@ namespace ET
             {
                 self.RoleComoleteTaskList.Add(taskid);
             }
-            TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
+            
             int TaskExp = taskConfig.TaskExp;
             int TaskCoin = taskConfig.TaskCoin;
 
@@ -279,16 +288,14 @@ namespace ET
             unitInfoComponent.UpdateRoleData(UserDataType.Gold, TaskCoin.ToString());
             Log.Debug($"任务领取:  {unitInfoComponent.Id} 金币：{TaskCoin} 任务{taskid}");
 
-            BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
-            List<RewardItem> rewardItems = TaskHelp.GetTaskRewards(taskid, taskConfig);
-            if (bagComponent.GetSpaceNumber() < rewardItems.Count)
-            {
-                return ErrorCore.ERR_BagIsFull; 
-            }
             bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
             if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
             {
                 bagComponent.OnCostItemData($"{taskConfig.Target[0]};{taskConfig.TargetValue[0]}");
+            }
+            if (taskConfig.TaskType == TaskTypeEnum.EveryDay)
+            {
+                self.TriggerTaskCountryEvent(TaskCountryTargetType.TaskLoop_14, 0, 1);
             }
             return ErrorCore.ERR_Success;
         }

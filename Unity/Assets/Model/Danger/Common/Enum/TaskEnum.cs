@@ -74,6 +74,12 @@ namespace ET
     //9：装备重铸
     //10：在线时间
     //11：回收装备行为
+    //12：进入试炼之地
+    //13：进入挑战之地
+    //14：赏金任务完成次数
+    //15：拍卖行上架道具
+    //16：幸运探宝（抽奖）次数
+    //17：使用鉴定符鉴定一件装备
 
     //101： 战场胜利
     //102： 战场击杀玩家数量
@@ -90,6 +96,13 @@ namespace ET
         EquipXiLian_9 = 9,
         OnLineTime_10 = 10,
         ItemHuiShou_11 =11,
+        TrialFuben_12 = 12,
+        Tower_13 = 13,
+        TaskLoop_14 = 14,
+        PaiMaiSell_15 = 15,
+        ChouKa_16 = 16,
+        JianDing_17 = 17,
+
 
         BattleWin_101 = 101,
         BattleKillPlayer_102 = 102,

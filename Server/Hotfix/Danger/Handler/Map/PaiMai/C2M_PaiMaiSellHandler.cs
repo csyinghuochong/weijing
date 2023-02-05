@@ -51,6 +51,7 @@ namespace ET
 				{
 					//扣除对应道具
 					unit.GetComponent<BagComponent>().OnCostItemData(request.PaiMaiItemInfo.BagInfo.BagInfoID, request.PaiMaiItemInfo.BagInfo.ItemNum);
+					unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.PaiMaiSell_15, 0, 1);
 					response.PaiMaiItemInfo = request.PaiMaiItemInfo;
 					Log.Debug(response.PaiMaiItemInfo.PlayerName + "上架道具：" + request.PaiMaiItemInfo.BagInfo.ItemID + "数量" + request.PaiMaiItemInfo.BagInfo.ItemNum + "时间戳:" + currentTime.ToString());
 				}
