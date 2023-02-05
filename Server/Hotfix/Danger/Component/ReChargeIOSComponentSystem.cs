@@ -90,10 +90,10 @@ namespace ET
                 return ErrorCore.ERR_IOSVerify;
             }
             self.PayLoadList.Add(payLoad);
-            //if (self.PayLoadList.Count >= 100)
-            //{
-            //    self.PayLoadList.RemoveAt(0);
-            //}
+            if (self.PayLoadList.Count >= 100)
+            {
+                self.PayLoadList.RemoveAt(0);
+            }
             Log.Debug($"IOS充值成功！{rechargeNumber}");
             RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, payLoad).Coroutine();
             return ErrorCore.ERR_Success;

@@ -42,6 +42,9 @@ namespace ET
 				self.AccountText = rc.Get<GameObject>("AccountText");
 
 				self.AccountText.GetComponent<Text>().text = GlobalHelp.IsBanHaoMode ? "注册账号" : "切换账号";
+
+				Log.Debug($"self.IOSReview:  {self.IOSReview}");
+				Log.Debug($"self.GetBigVersion:  {GlobalHelp.GetBigVersion()}");
 				if (self.IOSReview && GlobalHelp.GetBigVersion() == 12)
 				{
 #if UNITY_IPHONE || UNITY_IOS
