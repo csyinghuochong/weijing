@@ -37,6 +37,10 @@ namespace ET
                 if (equipQiangHuaConfig.ItemSubType == subType)
                 {
                     maxLevel++;
+                    if (equipQiangHuaConfig.NextID == 0)
+                    {
+                        break;
+                    }
                 }
             }
             return maxLevel;
