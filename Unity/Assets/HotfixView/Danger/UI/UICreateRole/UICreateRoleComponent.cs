@@ -19,9 +19,10 @@ namespace ET
         public GameObject OccShow_ZhanShi;
         public GameObject OccShow_FaShi;
 
+        public int Occ;
         public UI uIPageView;
         public List<int> OccList;
-        public int Occ;
+        public float LastCrateRoleTime;
 
         public UI UIModelShowComponent;
         public ETCancellationToken eTCancellation = null;
@@ -34,6 +35,7 @@ namespace ET
 
         public override void Awake(UICreateRoleComponent self)
         {
+            self.LastCrateRoleTime = 0;
             self.OccList = new List<int>() { 1 , 2 };
             self.SkillUIList.Clear();
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
@@ -58,7 +60,7 @@ namespace ET
 
 
             self.BtnCreateRole = rc.Get<GameObject>("BtnCreateRole");
-            self.BtnCreateRole.GetComponent<Button>().onClick.AddListener(() => { self.OnBtnCreateRole().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.BtnCreateRole, () => { self.OnBtnCreateRole().Coroutine(); });
 
             GameObject BtnItemTypeSet = rc.Get<GameObject>("FunctionSetBtn");
             UI uiJoystick = self.AddChild<UI, string, GameObject>( "FunctionBtnSet", BtnItemTypeSet);
@@ -106,6 +108,11 @@ namespace ET
         public static async ETTask OnBtnCreateRole(this UICreateRoleComponent self)
         {
             string createName = self.InputCreateRoleName.GetComponent<InputField>().text;
+
+            if (Time.time - self.LastCrateRoleTime < 3f)
+            {
+                return;
+            }
             if (createName.Contains("*") 
                 || !StringHelper.IsSpecialChar(createName))
             {
