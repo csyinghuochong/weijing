@@ -95,7 +95,7 @@ namespace ET
         {
             int openserverDay =  DBHelper.GetOpenServerDay(self.DomainZone());
             Log.Info($"PaiMaiScene开服天数 {self.DomainZone()} {openserverDay}");
-            if (openserverDay > 15) {
+            if (openserverDay == 0 || openserverDay > 15) {
                 return;
             }
 
@@ -107,6 +107,7 @@ namespace ET
 
                 info.PricePro = 1 + upPrice;
                 info.Price = (int)(info.Price * info.PricePro);
+                Log.Debug($"{info.Id} {info.Price}");
             }
         }
 
@@ -210,6 +211,7 @@ namespace ET
 
         public static async ETTask SaveDB(this PaiMaiSceneComponent self)
         {
+
             //检测超时的道具
             long currentTime = TimeHelper.ServerNow();
             for (int i = self.dBPaiMainInfo.PaiMaiItemInfos.Count - 1; i >= 0; i--)

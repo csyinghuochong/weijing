@@ -36,7 +36,7 @@ namespace ET
             foreach (var entity in userInfoComponents)
             {
                 keyValuePairs.Add(entity.Id, entity as UserInfoComponent);
-                if ((entity.UserInfo.Gold > 10000000 || entity.UserInfo.Diamond > 10000)  && !entity.Account.Contains("_"))
+                if ((entity.UserInfo.Gold > 1000000 || entity.UserInfo.Diamond > 10000)  && !entity.Account.Contains("_"))
                 {
                     Log.Warning($"Gold:{entity.UserInfo.Gold}  Diamond:{entity.UserInfo.Diamond}  ID:{entity.Id}  Account:{entity.Account} Name: {entity.UserInfo.Name}  Lv:{entity.UserInfo.Lv} ");
                 }
@@ -45,13 +45,9 @@ namespace ET
             List<ActivityComponent> activityComponents = await Game.Scene.GetComponent<DBComponent>().Query<ActivityComponent>(zone, d => d.Id > 0);
             foreach (var entity in activityComponents)
             {
-                if (entity.ZhanQuReceiveIds.Contains(21004))
-                {
-                    Log.Debug("11");
-                }
             }
 
-                List<BagComponent> bagComponents = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(zone, d => d.Id > 0);
+            List<BagComponent> bagComponents = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(zone, d => d.Id > 0);
             foreach (var entity in bagComponents)
             {
                 long itemNumber = 0;
@@ -59,14 +55,14 @@ namespace ET
                 List<BagInfo> baginfos = entity.GetAllItems();
                 for (int i= 0; i < baginfos.Count; i++)
                 {
-                    if (baginfos[i].ItemID == 10010099)
+                    if (baginfos[i].ItemID == 10020001)
                     {
                         itemNumber += baginfos[i].ItemNum;
                     }
                 }
-                if (itemNumber > 10)
+                if (itemNumber > 1)
                 {
-                    Log.Warning($"金条:{itemNumber} ID:{userInfo.Id}  Account:{userInfo.Account} Name: {userInfo.UserInfo.Name}  Lv:{userInfo.UserInfo.Lv} ");
+                    Log.Warning($"{itemNumber} ID:{userInfo.Id}  Account:{userInfo.Account} Name: {userInfo.UserInfo.Name}  Lv:{userInfo.UserInfo.Lv} ");
                 }
             }
         }
