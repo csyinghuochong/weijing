@@ -367,7 +367,7 @@ namespace ET
 
             numericComponent.Set((int)NumericType.Now_Lv, masterUnit.GetComponent<UserInfoComponent>().UserInfo.Lv , false);
             numericComponent.Set((int)NumericType.Base_MaxHp_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp) * float.Parse(attributeList_1[0])), false);
-            numericComponent.Set((int)NumericType.Base_MinAct_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MinAct) * float.Parse(attributeList_1[1])), false);
+            numericComponent.Set((int)NumericType.Base_MinAct_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[1])), false);  //召唤怪物继承当前角色最大攻击
             numericComponent.Set((int)NumericType.Base_MaxAct_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[1])), false);
             numericComponent.Set((int)NumericType.Base_Mage_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Mage) * float.Parse(attributeList_1[2])), false);
             numericComponent.Set((int)NumericType.Base_MinDef_Base, (int)((float)masterUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxAct) * float.Parse(attributeList_1[3])), false);

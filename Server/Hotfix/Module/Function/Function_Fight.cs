@@ -112,8 +112,15 @@ namespace ET
                 attack_MinAct = attack_MaxAct;
             }
 
+            //最低攻击之换算
+            long minActAttack = (long)((attack_MaxAct * 0.5f) + attack_MaxAct * ((float)attack_MinAct / (float)attack_MaxAct) / 2);
+            if (minActAttack > attack_MaxAct)
+            {
+                minActAttack = attack_MaxAct;
+            }
+
             //获取攻击值
-            long attack_Act = (long)RandomHelper.RandomNumberFloat(attack_MinAct, attack_MaxAct);
+            long attack_Act = (long)RandomHelper.RandomNumberFloat(minActAttack, attack_MaxAct);
             if (attackUnit.Type == UnitType.Player)
             {
                 //攻击强度和法术强度
