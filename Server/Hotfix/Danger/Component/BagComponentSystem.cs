@@ -506,7 +506,7 @@ namespace ET
                 }
                 if (userDataType != UserDataType.None)
                 {
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(userDataType, leftNum.ToString());
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(userDataType, leftNum.ToString(), true, getType);
                     continue;
                 }
 
