@@ -24,6 +24,11 @@ namespace ET
             {
                 NetHelper.SendIOSPayVerifyRequest(zoneScene, info);
                 PlayerPrefsHelp.SetString("IOS_" + accountInfoComponent.CurrentRoleId.ToString(), string.Empty);
+                FloatTipManager.Instance.ShowFloatTip("重连成功_IOS！");
+            }
+            else
+            {
+                FloatTipManager.Instance.ShowFloatTip("重连成功！");
             }
 
             UI uIMain = UIHelper.GetUI(zoneScene, UIType.UIMain);

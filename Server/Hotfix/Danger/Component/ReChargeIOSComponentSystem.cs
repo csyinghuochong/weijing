@@ -20,11 +20,11 @@ namespace ET
             await ETTask.CompletedTask;
             Log.Warning($"IOS充值回调执行00 " + "id:" + request.UnitId);
             string verifyURL = string.Empty;
-            //if (request.UnitId == 1636544958309662720 || request.UnitId == 1655723533625524224)
-            //{
-            //    verifyURL = "https://sandbox.itunes.apple.com/verifyReceipt";
-            //}
-            //else
+            if (request.UnitId == 1603809198615887872)
+            {
+                verifyURL = "https://sandbox.itunes.apple.com/verifyReceipt";
+            }
+            else
             {
                 verifyURL = "https://buy.itunes.apple.com/verifyReceipt";
             }
