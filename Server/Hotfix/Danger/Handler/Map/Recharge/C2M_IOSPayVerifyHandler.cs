@@ -101,7 +101,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_IOSPayVerifyRequest request, M2C_IOSPayVerifyResponse response, Action reply)
         {
             //发送支付数据做验证
-            Log.Debug($"IOS充值回调,收到支付请求消息:");
+            Log.Warning($"IOS充值回调,收到支付请求消息:");
 
             //携程锁
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Recharge, unit.Id))

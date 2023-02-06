@@ -67,8 +67,8 @@ namespace ET
         /// <param name="unit"></param>
         public static void CheckZuoBi(Unit unit)
         {
+            int openDay = DBHelper.GetOpenServerDay(unit.DomainZone());
             LogHelper.ZuobiInfo($"ceshi {unit.Id} ");
-
         }
 
         public static Dictionary<int, string> ToItemGetWay = new Dictionary<int, string>()

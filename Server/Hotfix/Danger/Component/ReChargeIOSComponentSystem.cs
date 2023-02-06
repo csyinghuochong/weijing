@@ -94,7 +94,7 @@ namespace ET
             {
                 self.PayLoadList.RemoveAt(0);
             }
-            Log.Debug($"IOS充值成功！{rechargeNumber}");
+            Log.Warning($"IOS充值成功！{rechargeNumber}");
             RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, postReturnStr).Coroutine();
             return ErrorCore.ERR_Success;
         }
