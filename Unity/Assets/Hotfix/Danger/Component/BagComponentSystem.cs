@@ -101,7 +101,6 @@ namespace ET
             M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
             if (r2c_roleEquip.Error > 0)
             {
-                HintHelp.GetInstance().ShowHint("角色等级不足");
                 return;
             }
 

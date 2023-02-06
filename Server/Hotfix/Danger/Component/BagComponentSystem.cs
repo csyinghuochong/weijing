@@ -882,6 +882,15 @@ namespace ET
             return true;
         }
 
+        public static int GetQiangHuaLevel(this BagComponent self, int subType)
+        {
+            if (subType > 1000)
+            {
+                return 0;
+            }
+            return self.QiangHuaLevel[subType];
+        }
+
         public static void OnEquipFuMo(this BagComponent self, string itemParams)
         {
 

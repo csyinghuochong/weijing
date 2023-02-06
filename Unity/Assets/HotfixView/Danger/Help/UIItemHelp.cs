@@ -152,6 +152,13 @@ namespace ET
            {  1202,  GameSettingLanguge.LoadLocalization("丑牛·破风") },
         };
 
+        public static string GetItemSubType3Name(int subType)
+        { 
+            string name = string.Empty;
+            ItemSubType3Name.TryGetValue(subType, out name);
+            return name;
+        }
+
         public struct EquipWeiZhiInfo
         {
             public string Name;
@@ -254,7 +261,7 @@ namespace ET
             //{
             for (int i = 0; i < spaces.Length; i++)
             {
-                tip += ItemSubType3Name[spaces[i]] + "、";
+                tip += GetItemSubType3Name(spaces[i]) + "、";
             }
             tip = tip.Substring(0, tip.Length - 1);
             //}
@@ -862,6 +869,11 @@ namespace ET
             //显示装备附加属性
             for (int i = 0; i < equipconf.AddPropreListType.Length; i++)
             {
+                if (equipconf.AddPropreListIfShow.Length <= i)
+                {
+                    continue;
+                }
+
                 if (equipconf.AddPropreListIfShow[i] == 0)
                 {
                     int numericType = equipconf.AddPropreListType[i];

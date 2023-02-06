@@ -303,7 +303,7 @@ namespace ET
             public BagInfo bagInfo;
             public ItemOperateEnum itemOperateEnum;
             public Vector3 inputPoint;
-            public List<int> EquipList = new List<int>();
+            public List<BagInfo> EquipList = new List<BagInfo>();
             public int Occ;
         }
 

@@ -14,7 +14,7 @@ namespace ET
         public GameObject Img_EquipQuality;
         public GameObject Btn_Equip;
         public GameObject Img_EquipBangDing;
-        public List<int> EquipIdList = new List<int>();
+        public List<BagInfo> EquipIdList = new List<BagInfo>();
         public BagInfo BagInfo;
         public int Occ;
 
@@ -59,14 +59,17 @@ namespace ET
             self.Img_EquipQuality.SetActive(false);
             self.Img_EquipBangDing.SetActive(false);
 
-            string qianghuaName = UIItemHelp.EquipWeiZhiToName[subType].Icon;
-            ABAtlasHelp.GetIconSprite( ABAtlasTypes.OtherIcon, qianghuaName);
+            if (subType < 100)
+            {
+                string qianghuaName = UIItemHelp.EquipWeiZhiToName[subType].Icon;
+                ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, qianghuaName);
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, qianghuaName);
-            self.Img_EquipBack.GetComponent<Image>().sprite = sp;
+                Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.OtherIcon, qianghuaName);
+                self.Img_EquipBack.GetComponent<Image>().sprite = sp;
+            }
         }
 
-        public static void UpdateData(this UIEquipSetItemComponent self, BagInfo bagInfo, int occ, ItemOperateEnum itemOperateEnum, List<int> equipIdList)
+        public static void UpdateData(this UIEquipSetItemComponent self, BagInfo bagInfo, int occ, ItemOperateEnum itemOperateEnum, List<BagInfo> equipIdList)
         {
             try
             {

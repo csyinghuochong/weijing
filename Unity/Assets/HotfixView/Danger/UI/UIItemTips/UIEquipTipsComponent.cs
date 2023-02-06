@@ -266,6 +266,7 @@ namespace ET
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             int occTwo = userInfo.OccTwo;
 
+
             if (itemconf.ItemSubType == (int)ItemSubTypeEnum.Wuqi)
             {
                 if (!UIItemHelp.OccWeaponList[userInfo.Occ].Contains(itemconf.EquipType))
@@ -284,7 +285,7 @@ namespace ET
                     return;
                 }
             }
-            if (itemconf.ItemSubType != (int)ItemSubTypeEnum.Wuqi && occTwo != 0)
+            if ( (itemconf.ItemSubType != (int)ItemSubTypeEnum.Wuqi  && itemconf.ItemSubType <= (int)ItemSubTypeEnum.Xianglian)  && occTwo != 0)
             {
                 OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(occTwo);
                 if (itemconf.EquipType != 0 && itemconf.EquipType != occupationTwo.ArmorMastery&& itemconf.EquipType!=99)
@@ -627,7 +628,7 @@ namespace ET
         }
 
         //套装信息
-        public static int ShowSuitEquipInfo(this UIEquipTipsComponent self, ItemConfig  itemConfig, int equipSuitID, float startPostionY, List<int> itemIDList)
+        public static int ShowSuitEquipInfo(this UIEquipTipsComponent self, ItemConfig  itemConfig, int equipSuitID, float startPostionY, List<BagInfo> itemList)
         {
             int properShowNum = 0;
             if (equipSuitID != 0)
@@ -644,6 +645,12 @@ namespace ET
                 string[] needEquipIDSet = equipSuit.NeedEquipID.Split(';');
                 //string[] needEquipNumSet = equipSuit.NeedEquipNum.Split(';');
                 string[] suitPropertyIDSet = equipSuit.SuitPropertyID.Split(';');
+
+                List<int> itemIDList = new List<int>();
+                for (int i = 0; i < itemList.Count; i++)
+                {
+                    itemIDList.Add(itemList[i].ItemID);
+                }
 
                 //获取自身拥有的装备
                 int equipSuitNum = 0;
@@ -726,7 +733,7 @@ namespace ET
             string ItemBlackDes = itemconf.ItemDes;
             string textEquipType = "";
             string textEquipTypeSon = "";
-            textEquipType = UIItemHelp.ItemSubType3Name[itemconf.ItemSubType];
+            textEquipType = UIItemHelp.GetItemSubType3Name(itemconf.ItemSubType);
             textEquipTypeSon = self.GetEquipType(itemconf.EquipType);
             textEquipType = GameSettingLanguge.LoadLocalization(textEquipType);
 
@@ -953,7 +960,7 @@ namespace ET
         }
 
 
-        public static void InitData(this UIEquipTipsComponent self, BagInfo baginfo, ItemOperateEnum equipTipsType, int occTwoValue, List<int> equipItemList)
+        public static void InitData(this UIEquipTipsComponent self, BagInfo baginfo, ItemOperateEnum equipTipsType, int occTwoValue, List<BagInfo> equipItemList)
         {
             //初始化值
             self.BagInfo = baginfo;

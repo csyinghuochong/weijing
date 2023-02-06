@@ -441,7 +441,7 @@ namespace ET
 
                     if (roleLv < equipLv)
                     {
-                        response.Error = ErrorCore.ERR_EquipLvLimit;     //错误码:无效的装备ID
+                        response.Error = ErrorCore.ERR_EquipLvLimit;    
                         reply();
                         return;
                     }
@@ -453,7 +453,7 @@ namespace ET
                         if (useInfo.OccTwo > 0)
                         {
                             OccupationTwoConfig occtwoCof = OccupationTwoConfigCategory.Instance.Get(useInfo.OccTwo);
-                            if (occtwoCof.ArmorMastery == itemCof.EquipType || itemCof.EquipType == 99)
+                            if (occtwoCof.ArmorMastery == itemCof.EquipType || itemCof.EquipType == 99 || itemCof.EquipType == 101)
                             {
                                 //可以穿戴
                             }

@@ -12,10 +12,13 @@ namespace ET
         public GameObject RawImage;
         public UIModelShowComponent UIModelShowComponent;
         public List<UIEquipSetItemComponent> EquipList = new List<UIEquipSetItemComponent>();
-        public List<int> EquipIdList = new List<int>();
+        public List<BagInfo> EquipInfoList = new List<BagInfo>();
+        public ItemOperateEnum ItemOperateEnum;
         public GameObject GameObject;
-        public int Index;
+
         public int Position;
+        public int Index;
+        public int Occ;
     }
 
     [ObjectSystem]
@@ -24,6 +27,7 @@ namespace ET
         public override void Awake(UIEquipSetComponent self,GameObject gameObject, int index)
         {
             self.GameObject = gameObject;   
+            self.EquipInfoList.Clear();
             self.EquipList.Clear();
 
             ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
@@ -42,7 +46,7 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();    
             self.ButtonZodiac = gameObject.transform.Find("ButtonZodiac").gameObject;
             self.ButtonZodiac.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account)) ;
-            ButtonHelp.AddListenerEx(self.ButtonZodiac, () => { UIHelper.Create(self.ZoneScene(), UIType.UIRoleZodiac).Coroutine(); });
+            ButtonHelp.AddListenerEx(self.ButtonZodiac, () => { self.OnButtonZodiac().Coroutine(); });
 
             self.RawImage = gameObject.transform.Find("EquipSetHide/RawImage").gameObject;
             self.RawImage.SetActive(false);
@@ -54,6 +58,7 @@ namespace ET
 
     public static class UIEquipSetComponentSystem
     {
+
         public static  void InitModelShowView(this UIEquipSetComponent self, int index)
         {
             //模型展示界面
@@ -119,33 +124,48 @@ namespace ET
             self.GameObject.transform.Find("EquipSetHide/RoseNameLv/Lab_RoseName").GetComponent<Text>().text = playerName;
         }
 
+        public static async ETTask OnButtonZodiac(this UIEquipSetComponent self)
+        {
+            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIRoleZodiac);
+            uI.GetComponent<UIRoleZodiacComponent>().OnInitUI(self.EquipInfoList, self.Occ, self.ItemOperateEnum);
+        }
+
         public static void UpdateBagUI(this UIEquipSetComponent self, List<BagInfo> equiplist, int occ, ItemOperateEnum itemOperateEnum)
         {
             self.ResetEquipShow();
 
             int shipingIndex = 0;
-            self.EquipIdList.Clear();
-            for (int i = 0; i < equiplist.Count; i++)
-            {
-                self.EquipIdList.Add(equiplist[i].ItemID);
-            }
+            self.Occ = occ;
+            self.EquipInfoList = equiplist;
+            self.ItemOperateEnum = itemOperateEnum;
             for (int i = 0; i < equiplist.Count; i++)
             {
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID);
+                if (itemConfig.EquipType == 101)
+                {
+                    continue;
+                }
 
                 if (itemConfig.ItemSubType < (int)ItemSubTypeEnum.Shiping)
                 {
-                    self.EquipList[itemConfig.ItemSubType - 1].UpdateData(equiplist[i], occ, itemOperateEnum, self.EquipIdList);
+                    self.EquipList[itemConfig.ItemSubType - 1].UpdateData(equiplist[i], occ, itemOperateEnum, equiplist);
                 }
                 if (itemConfig.ItemSubType == (int)ItemSubTypeEnum.Shiping)
                 {
-                    self.EquipList[itemConfig.ItemSubType + shipingIndex - 1].UpdateData(equiplist[i], occ, itemOperateEnum, self.EquipIdList);
+                    self.EquipList[itemConfig.ItemSubType + shipingIndex - 1].UpdateData(equiplist[i], occ, itemOperateEnum, equiplist);
                     shipingIndex++;
                 }
                 if (itemConfig.ItemSubType > (int)ItemSubTypeEnum.Shiping)
                 {
-                    self.EquipList[itemConfig.ItemSubType + 1].UpdateData(equiplist[i], occ, itemOperateEnum, self.EquipIdList);
+                    self.EquipList[itemConfig.ItemSubType + 1].UpdateData(equiplist[i], occ, itemOperateEnum, equiplist);
                 }
+            }
+
+
+            UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIRoleZodiac);
+            if (uI != null)
+            {
+                uI.GetComponent<UIRoleZodiacComponent>().UpdateBagUI(self.EquipInfoList, self.Occ, self.ItemOperateEnum);
             }
         }
     }
