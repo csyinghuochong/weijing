@@ -340,7 +340,7 @@ namespace ET
                     self.PetUIList.Add(ui_pet);
                 }
 
-                ui_pet.GetComponent<UIPetListItemComponent>().OnInitData(rolePetInfos[i], 0);
+                ui_pet.OnInitData(rolePetInfos[i], 0);
             }
 
             for (int i = rolePetInfos.Count; i < self.PetUIList.Count; i++)
