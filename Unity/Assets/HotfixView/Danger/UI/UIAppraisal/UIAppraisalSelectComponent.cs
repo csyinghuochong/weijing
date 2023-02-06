@@ -90,7 +90,7 @@ namespace ET
             {
                 ItemConfig itemConfig_a = ItemConfigCategory.Instance.Get(a.ItemID);
                 ItemConfig itemConfig_b = ItemConfigCategory.Instance.Get(b.ItemID);
-                int jianDingLva = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar) : 0;
+                int jianDingLva = itemConfig_a.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar) : 0;
                 int jianDingLvb = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(b.ItemPar) : 0;
                 return jianDingLvb - jianDingLva;
             });

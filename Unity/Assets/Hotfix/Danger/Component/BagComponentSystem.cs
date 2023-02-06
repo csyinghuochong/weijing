@@ -715,7 +715,7 @@ namespace ET
 
         public static int GetQiangHuaLevel(this BagComponent self, int subType)
         {
-            if (subType > 100)
+            if (subType > 1000)
             {
                 return 0;
             }
