@@ -821,13 +821,13 @@ namespace ET
                 if (itemID == (int)UserDataType.Gold)
                 {
                     itemNum = -1 * itemNum;
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, itemNum.ToString());
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, itemNum.ToString(), true, 34);// ItemGetWay.CostItem);
                     continue;
                 }
                 if (itemID == (int)UserDataType.Diamond)
                 {
                     itemNum = -1 * itemNum;
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, itemNum.ToString());
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, itemNum.ToString(), true, 34);// ItemGetWay.CostItem);
                     continue;
                 }
                 if (itemID == (int)UserDataType.RongYu)

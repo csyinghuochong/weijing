@@ -48,7 +48,7 @@ namespace ET
 
                 int hongbaoAmount = RandomHelper.RandomNumber(minGold, maxGold);
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HongBao, 1);
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, hongbaoAmount.ToString());
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, hongbaoAmount.ToString(), true, 33);// ItemGetWay.HongBao);
                 response.HongbaoAmount = hongbaoAmount;
             }
             reply();

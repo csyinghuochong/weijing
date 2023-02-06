@@ -474,7 +474,7 @@ namespace ET
                 fubenPassInfo.Difficulty = ((int)self.FubenDifficulty > fubenPassInfo.Difficulty) ? (int)self.FubenDifficulty : fubenPassInfo.Difficulty;
 
                 self.MainUnit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Exp, chapterConfig.RewardExp.ToString());
-                self.MainUnit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, chapterConfig.RewardGold.ToString());
+                self.MainUnit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, chapterConfig.RewardGold.ToString(), true, ItemGetWay.FubenGetReward);
 
                 self.MainUnit.GetComponent<TaskComponent>().OnPassFuben(self.FubenDifficulty, self.ChapterId, starNumber);
                 self.MainUnit.GetComponent<ChengJiuComponent>().OnPassFuben(self.FubenDifficulty, self.ChapterId, starNumber);

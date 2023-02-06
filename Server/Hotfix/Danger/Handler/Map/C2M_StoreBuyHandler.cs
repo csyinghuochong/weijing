@@ -33,7 +33,7 @@ namespace ET
                     }
                     else
                     {
-                        unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, costValue);
+                        unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, costValue);
                         unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
                         response.Error = ErrorCore.ERR_Success;
                     }
@@ -45,7 +45,7 @@ namespace ET
                     }
                     else
                     {
-                        unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, costValue);
+                        unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, costValue, true, ItemGetWay.CostItem);
                         unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
                         response.Error = ErrorCore.ERR_Success;
                     }

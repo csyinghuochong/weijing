@@ -254,6 +254,32 @@ namespace ET
             self.UserInfo.MysteryItems.Add(new KeyValuePairInt() { KeyId = mysteryId, Value = 1 });
         }
 
+        //加金币
+        public static void UpdateRoleMoneyAdd(this UserInfoComponent self, UserDataType Type, string value, bool notice = true, int getWay = ItemGetWay.System)
+        {
+            Unit unit = self.GetParent<Unit>();
+            long gold =  long.Parse(value);
+            if (gold < 0)
+            {
+                Log.Error($"增加货币出错: {unit.Id} {value} {getWay}");
+            }
+
+            self.UpdateRoleData(Type, value, notice);
+        }
+
+        //扣金币
+        public static void UpdateRoleMoneySub(this UserInfoComponent self, UserDataType Type, string value, bool notice = true, int getWay = ItemGetWay.System)
+        {
+            Unit unit = self.GetParent<Unit>();
+            long gold = long.Parse(value);
+            if (gold > 0)
+            {
+                Log.Error($"扣除货币出错: {unit.Id} {value} {getWay}");
+            }
+
+            self.UpdateRoleData(Type, value, notice);
+        }
+
         //需要通知客户端
         public static  void UpdateRoleData(this UserInfoComponent self, UserDataType Type, string value,  bool notice = true)
         {

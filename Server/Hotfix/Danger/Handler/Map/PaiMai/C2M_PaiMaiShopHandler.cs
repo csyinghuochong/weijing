@@ -57,7 +57,7 @@ namespace ET
 				if (costGold > 0 && unit.GetComponent<UserInfoComponent>().UserInfo.Gold >= costGold)
 				{
 					//发送金币
-					unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (costGold * -1).ToString());
+					unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (costGold * -1).ToString(), true, ItemGetWay.PaiMaiShop);
 
 					//添加道具
 					List<RewardItem> rewardItems = new List<RewardItem>();

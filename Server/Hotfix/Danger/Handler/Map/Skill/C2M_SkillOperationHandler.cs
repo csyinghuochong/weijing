@@ -25,7 +25,7 @@ namespace ET
 			switch (request.OperationType)
 			{
 				case 1:
-					userInfoComponent.UpdateRoleData(UserDataType.Diamond, (needGold * -1).ToString());
+					userInfoComponent.UpdateRoleMoneySub(UserDataType.Diamond, (needGold * -1).ToString());
 					userInfoComponent.UpdateRoleData(UserDataType.Sp, (level - sp - 1).ToString());
 					unit.GetComponent<SkillSetComponent>().OnSkillReset();
 					break;

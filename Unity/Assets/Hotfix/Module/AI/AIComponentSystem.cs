@@ -79,10 +79,6 @@ namespace ET
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
             foreach (AIConfig aiConfig in oneAI.Values)
             {
-                //if (unit.ConfigId == 70002003)  //螃蟹将军
-                //{
-                //    ;
-                //}
                 AIDispatcherComponent.Instance.AIHandlers.TryGetValue(aiConfig.Name, out AAIHandler aaiHandler);
                 if (aaiHandler == null)
                 {

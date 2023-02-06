@@ -39,6 +39,10 @@ namespace ET
         public const int SkillMake = 29;            //生活制造
         public const int HuiShou = 30;
         public const int XiaJia = 31;
+        public const int DuiHuan = 32;
+        public const int HongBao = 33;
+        public const int CostItem = 34;
+        public const int Share = 35;
 
         public const int Activity = 100;
     }

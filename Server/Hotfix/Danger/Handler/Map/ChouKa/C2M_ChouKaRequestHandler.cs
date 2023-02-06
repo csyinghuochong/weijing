@@ -67,7 +67,7 @@ namespace ET
             }
             else
             {
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (needZuanshi * -1).ToString());
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (needZuanshi * -1).ToString(), true, ItemGetWay.ChouKa);
             }
             if (request.ChouKaType == 10)
             {

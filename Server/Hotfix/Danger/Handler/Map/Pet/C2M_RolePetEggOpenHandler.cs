@@ -27,7 +27,7 @@ namespace ET
                 reply();
                 return;
             }
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (needCost * -1).ToString());
+            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, (needCost * -1).ToString(), true,ItemGetWay.ChouKa);
             List<int> weights = new List<int>();
             List<int> petlists = new List<int>();
             for (int i = 2; i < petinfos.Length; i++)

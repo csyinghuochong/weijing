@@ -80,7 +80,7 @@ namespace ET
 
             UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();
             userInfoComponent.UpdateRoleData(UserDataType.Exp, message.RewardExp.ToString());
-            userInfoComponent.UpdateRoleData(UserDataType.Gold, message.RewardGold.ToString());
+            userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, message.RewardGold.ToString(), true, ItemGetWay.TiaoZhan);
         }
 
         public static void OnTimer(this TowerComponent self)

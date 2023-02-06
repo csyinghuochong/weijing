@@ -285,9 +285,8 @@ namespace ET
 
             UserInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UserInfoComponent>();
             unitInfoComponent.UpdateRoleData(UserDataType.Exp, TaskExp.ToString());
-            unitInfoComponent.UpdateRoleData(UserDataType.Gold, TaskCoin.ToString());
-            Log.Debug($"任务领取:  {unitInfoComponent.Id} 金币：{TaskCoin} 任务{taskid}");
-
+            unitInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, TaskCoin.ToString(), true, ItemGetWay.TaskReward);
+          
             bagComponent.OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.TaskReward}_{TimeHelper.ServerNow()}");
             if (taskConfig.TargetType == (int)TaskTargetType.ItemID_Number_2)
             {

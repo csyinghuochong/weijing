@@ -47,10 +47,9 @@ namespace ET
                 unit.GetComponent<BagComponent>().OnAddItemData(taskCountryConfig.RewardItem, $"{ItemGetWay.TaskCountry}_{TimeHelper.ServerNow()}");
 
                 //添加金币
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, taskCountryConfig.RewardGold.ToString());
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, taskCountryConfig.RewardGold.ToString(), true, ItemGetWay.TaskCountry);
                 //添加活跃
                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.HuoYue, taskCountryConfig.EveryTaskRewardNum.ToString());
-                Log.Debug($"TaskCountry:  {unit.Id} gold: {taskCountryConfig.RewardGold} task: {request.TaskId}");
                 reply();
                 await ETTask.CompletedTask;
             }

@@ -150,7 +150,7 @@ namespace ET
                         {
                             //增加金币
                             case 1:
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, itemCof.ItemUsePar);
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, itemCof.ItemUsePar);
                                 Log.Debug($"Gold:  {unit.Id} {itemCof.ItemUsePar} itemoperate1");
                                 break;
                             //增加经验
@@ -293,7 +293,7 @@ namespace ET
                                 int userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                                 ExpConfig expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addCoin = (int)RandomHelper.RandomNumberFloat(float.Parse(jinbiInfos[0]) * expConfig.RoseGoldPro, float.Parse(jinbiInfos[1]) * expConfig.RoseGoldPro);
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, addCoin.ToString());
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, addCoin.ToString());
                                 Log.Debug($"Gold[金币袋子]:  {unit.Id} {addCoin} ");
                                 break;
                             //经验木桩
@@ -305,7 +305,7 @@ namespace ET
                                 expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addExp = (int)RandomHelper.RandomNumberFloat(float.Parse(paramInfo[0]) * expConfig.RoseExpPro, float.Parse(paramInfo[1]) * expConfig.RoseExpPro);
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Exp, addExp.ToString());
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Diamond, (needZuanshi * -1).ToString());
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Diamond, (needZuanshi * -1).ToString());
                                 response.OperatePar = addExp.ToString();
                                 break;
                                 //藏宝图

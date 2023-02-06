@@ -49,7 +49,7 @@ namespace ET
 			}
 	
 			response.NewSkillID = nextSkillID;
-			unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (costGoldValue*-1).ToString());
+			unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (costGoldValue*-1).ToString(), true, ItemGetWay.CostItem);
 			unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Sp, (costSPValue * -1).ToString());
 
 			//测试跑马灯

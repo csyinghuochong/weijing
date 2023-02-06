@@ -29,7 +29,6 @@ namespace ET
                 return;
             }
 
-            
             //钱是否足够
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < needGold)
             {
@@ -52,7 +51,7 @@ namespace ET
                     return;
                 }
 
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (needGold * -1).ToString());
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (needGold * -1).ToString(), true, ItemGetWay.PaiMaiShop);
                 //背包添加道具
                 unit.GetComponent<BagComponent>().OnAddItemData(r_GameStatusResponse.PaiMaiItemInfo.BagInfo, $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
 

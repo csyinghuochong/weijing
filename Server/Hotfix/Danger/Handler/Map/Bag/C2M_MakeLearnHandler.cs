@@ -59,7 +59,7 @@ namespace ET
                 bool success = unit.GetComponent<BagComponent>().OnCostItemData(costItems);
                 if (success)
                 {
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, (equipMakeConfig.LearnGoldValue * -1).ToString());
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (equipMakeConfig.LearnGoldValue * -1).ToString(), true, ItemGetWay.SkillMake);
                     unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(request.MakeId);
                 }
                 else
