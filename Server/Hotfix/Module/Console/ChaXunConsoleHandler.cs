@@ -43,7 +43,7 @@ namespace ET
                         long gold = userInfoComponent.UserInfo.Gold;
                         long diamond = userInfoComponent.UserInfo.Diamond;
 
-                        if (gold > 10000 || diamond > 10000)
+                        if (gold > 1000000 || diamond > 10000)
                         {
                             long unitId = userinfoInfoList[0].Id;
 
