@@ -70,5 +70,19 @@ namespace ET
             LogHelper.ZuobiInfo($"ceshi {unit.Id} ");
 
         }
+
+        public static Dictionary<int, string> ToItemGetWay = new Dictionary<int, string>()
+        {
+            { ItemGetWay.System, "系统"},
+            { ItemGetWay.FubenGetReward, "副本"},
+        };
+
+        public static string GetItemGetWay(int getWay)
+        {
+            string info = string.Empty;
+            ToItemGetWay.TryGetValue(getWay, out info);
+            return info;
+        }
+
     }
 }
