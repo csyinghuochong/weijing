@@ -566,6 +566,18 @@ namespace ET
                         useBagInfo.IfJianDing = false;
                         useBagInfo.HideProLists = ComHelp.GetEquipZhuanJingHidePro(itemCof.ItemEquipID, itemCof.Id, int.Parse(qulitylv), unit, ifItem);
                         m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
+
+                        //如果当前有隐藏技能一起飘出
+                        if (useBagInfo.HideSkillLists.Count>0)
+                        {
+                            string skillName = "";
+                            for (int i = 0; i < useBagInfo.HideSkillLists.Count; i++) {
+                                skillName = skillName + $" {SkillConfigCategory.Instance.Get(useBagInfo.HideSkillLists[0]).SkillName}";
+                            }
+                            string noticeContent = $"恭喜玩家<color=#B6FF00>{unit.GetComponent<UserInfoComponent>().UserName}</color>在拾取装备时,意外在装备上发现了隐藏技能:<color=#FFA313>{skillName}</color>";
+                            ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
+                        }
+
                     }
                     else 
                     {

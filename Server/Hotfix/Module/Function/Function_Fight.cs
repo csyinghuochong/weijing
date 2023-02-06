@@ -622,7 +622,7 @@ namespace ET
                     if (RandomHelper.RandFloat() <= CriPro)
                     {
                         DamgeType = 1;
-                        damge = damge * 2;
+                        damge = (long)((float)damge * 1.75f);
                         //Log.Debug("暴击了!");
 
                         //闪避触发被动技能

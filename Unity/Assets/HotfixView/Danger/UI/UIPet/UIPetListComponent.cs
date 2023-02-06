@@ -61,6 +61,7 @@ namespace ET
         public GameObject Text_PetPingFen;
 
         public GameObject ImageJinHua;
+        public GameObject JinHuaReddot;
 
         public UI PetModelShowComponent;
         public UI SkinModelShowComponent;
@@ -193,6 +194,7 @@ namespace ET
             self.PetSkillNode = rc.Get<GameObject>("PetSkillNode");
             self.Text_PetPingFen = rc.Get<GameObject>("Text_PetPingFen");
             self.ImageJinHua = rc.Get<GameObject>("ImageJinHua");
+            self.JinHuaReddot = rc.Get<GameObject>("JinHuaReddot");
 
             self.Btn_XiuXi.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
             //self.Btn_FangSheng.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
@@ -860,6 +862,9 @@ namespace ET
             self.UpdateSkillList(rolePetInfo);
 
             self.Text_PetPingFen.GetComponent<Text>().text = ComHelp.PetPingJia(rolePetInfo).ToString();
+
+            //更新宠物是否进化
+            UICommonHelper.SetImageGray(self.ImageJinHua, true);
         }
     }
 }
