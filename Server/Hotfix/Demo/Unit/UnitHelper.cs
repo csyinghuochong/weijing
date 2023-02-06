@@ -202,12 +202,8 @@ namespace ET
             rolePetInfo.Y = unit.Position.y;
             rolePetInfo.Z = unit.Position.z;
 
-            long masterId = unit.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-            Unit player = unit.GetParent<UnitComponent>().Get(masterId);
-            if (player != null)
-            {
-                rolePetInfo.PlayerName = player.GetComponent<UserInfoComponent>().UserInfo.Name;
-            }
+            rolePetInfo.PlayerName = unit.GetComponent<UnitInfoComponent>().PlayerName;
+            rolePetInfo.PetName = unit.GetComponent<UnitInfoComponent>().StallName;
 
             NumericComponent nc = unit.GetComponent<NumericComponent>();
             foreach ((int key, long value) in nc.NumericDic)

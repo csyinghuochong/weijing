@@ -64,7 +64,7 @@ namespace ET
         public RolePetInfo LastSelectItem;
         public UIPetAddPointComponent PetAddPointComponent;
         public UIPetHeXinSetComponent PetHeXinSetComponent;
-        public List<UI> PetUIList = new List<UI>();
+        public List<UIPetListItemComponent> PetUIList = new List<UIPetListItemComponent>();
         public List<UICommonSkillItemComponent> PetSkillUIList = new List<UICommonSkillItemComponent>();
         public List<UIPetSkinIconComponent> PetSkinList = new List<UIPetSkinIconComponent>();
         public UIPageButtonComponent uIPageButton;
@@ -325,7 +325,7 @@ namespace ET
 
             for (int i = 0; i < rolePetInfos.Count; i++)
             {
-                UI ui_pet = null;
+                UIPetListItemComponent ui_pet = null;
                 if (i < self.PetUIList.Count)
                 {
                     ui_pet = self.PetUIList[i];
@@ -335,9 +335,8 @@ namespace ET
                 {
                     GameObject go = GameObject.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(go, self.PetListNode);
-                    ui_pet = self.AddChild<UI, string, GameObject>("PetItem_" + i, go);
-                    UIPetListItemComponent uIRolePetItemComponent = ui_pet.AddComponent<UIPetListItemComponent>();
-                    uIRolePetItemComponent.SetClickHandler((long petId) => { self.OnClickPetHandler(petId); });
+                    ui_pet = self.AddChild<UIPetListItemComponent, GameObject>(go);
+                    ui_pet.SetClickHandler((long petId) => { self.OnClickPetHandler(petId); });
                     self.PetUIList.Add(ui_pet);
                 }
 
@@ -353,7 +352,7 @@ namespace ET
             {
                 self.GameObject1.SetActive(true);
                 self.GameObject2.SetActive(false);
-                self.PetUIList[0].GetComponent<UIPetListItemComponent>().OnClickPetItem();
+                self.PetUIList[0].OnClickPetItem();
             }
             else
             {
@@ -437,7 +436,7 @@ namespace ET
         {
             for (int i = 0; i < self.PetUIList.Count; i++)
             {
-                self.PetUIList[i].GetComponent<UIPetListItemComponent>().OnSelectUI(rolePetItem);
+                self.PetUIList[i].OnSelectUI(rolePetItem);
             }
 
             self.OnUpdatePetPoint(rolePetItem);
@@ -717,7 +716,7 @@ namespace ET
             self.ButtonAddPoint.transform.Find("Reddot").gameObject.SetActive(rolePetItem != null && rolePetItem.AddPropretyNum > 0);
             for (int i = 0; i < self.PetUIList.Count; i++)
             {
-                self.PetUIList[i].GetComponent<UIPetListItemComponent>().OnUpdatePetPoint(rolePetItem);
+                self.PetUIList[i].OnUpdatePetPoint(rolePetItem);
             }
             self.UpdateAttribute(self.LastSelectItem);
         }

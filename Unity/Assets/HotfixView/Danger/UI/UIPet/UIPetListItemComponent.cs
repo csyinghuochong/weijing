@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UIPetListItemComponent : Entity, IAwake
+    public class UIPetListItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject Reddot;
         public GameObject Node_2;
@@ -28,17 +28,19 @@ namespace ET
         public GameObject StartShowSet;
         public GameObject StartSet;
         public GameObject Lab_PetQuality;
+        public GameObject GameObject;
 
         public long  PetId;
         public Action<long> ClickPetHandler;
     }
 
     [ObjectSystem]
-    public class UIPetListItemComponentAwakeSystem : AwakeSystem<UIPetListItemComponent>
+    public class UIPetListItemComponentAwakeSystem : AwakeSystem<UIPetListItemComponent, GameObject>
     {
-        public override void Awake(UIPetListItemComponent self)
+        public override void Awake(UIPetListItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.Node_2 = rc.Get<GameObject>("Node_2");
             self.Node_1 = rc.Get<GameObject>("Node_1");
@@ -94,6 +96,11 @@ namespace ET
             }
             self.PetId = rolePetInfo.Id;
             self.Reddot.SetActive(rolePetInfo.AddPropretyNum > 0);
+        }
+
+        public static void OnRName(this UIPetListItemComponent self, RolePetInfo rolePetInfo)
+        {
+            self.Lab_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
         }
 
         public static void OnPetFightingSet(this UIPetListItemComponent self,RolePetInfo rolePetInfo)

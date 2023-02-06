@@ -239,8 +239,9 @@ namespace ET
             }
             if (this.GetParent<Unit>().Type == UnitType.Pet) 
             {
-                ObjName.GetComponent<TextMeshProUGUI>().text = PetConfigCategory.Instance.Get(this.GetParent<Unit>().ConfigId).PetName;
-                this.Lal_NameOwner.GetComponent<TextMeshProUGUI>().text = $"{this.GetParent<Unit>().GetComponent<UnitInfoComponent>().PlayerName }的宠物";
+                UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
+                ObjName.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.StallName;
+                this.Lal_NameOwner.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.PlayerName }的宠物";
             }
         }
 
@@ -348,11 +349,6 @@ namespace ET
 
     public static class HeroHeadBarComponentSystem
     {
-        public static void UpdatePlayerName(this HeroHeadBarComponent self, string playerName)
-        { 
-            
-        }
-
         public static void UpdateStallName(this HeroHeadBarComponent self, string stallName)
         {
             self.Lal_ShopName.GetComponent<TextMeshProUGUI>().text = stallName;

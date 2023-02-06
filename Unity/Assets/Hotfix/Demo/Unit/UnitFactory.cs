@@ -106,6 +106,7 @@ namespace ET
 			unit.AddComponent<SkillManagerComponent>();
 
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+			unitInfoComponent.StallName = rolePetInfo.PetName;
 			unitInfoComponent.PlayerName = rolePetInfo.PlayerName;
 
 			UnitHelper.OnAfterCreateUnit(unit);

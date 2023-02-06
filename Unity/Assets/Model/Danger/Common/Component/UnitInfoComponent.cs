@@ -12,7 +12,7 @@ namespace ET
 
         public List<long> ZhaohuanIds = new List<long>();
 
-        public string StallName { get; set; }
+        public string StallName { get; set; }  //玩家摆摊名字 / 宠物名字
 
         public string UnionName { get; set; }
 

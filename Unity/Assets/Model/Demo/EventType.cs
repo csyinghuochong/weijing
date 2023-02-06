@@ -220,6 +220,14 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class RolePetUpdate : DisposeObject
+        {
+            public static readonly RolePetUpdate Instance = new RolePetUpdate();
+            public Scene ZoneScene;
+            public long PetId;
+            public int UpdateType;
+            public string UpdateValue;
+        }
 
         public class TeamDungeonQuit : DisposeObject
         {

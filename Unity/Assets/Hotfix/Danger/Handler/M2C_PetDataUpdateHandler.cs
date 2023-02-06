@@ -5,7 +5,7 @@
     public class M2C_PetDataUpdateHandler : AMHandler<M2C_PetDataUpdate>
     {
 
-        protected override  void Run(Session session, M2C_PetDataUpdate message)
+        protected override void Run(Session session, M2C_PetDataUpdate message)
         {
             if (message.UpdateType == (int)UserDataType.Lv)
             {
@@ -29,12 +29,19 @@
             if (message.UpdateType == (int)UserDataType.PetStatus)
             {
                 RolePetInfo rolePetInfo = session.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(message.PetId);
-                if (rolePetInfo != null )
+                if (rolePetInfo != null)
                 {
                     rolePetInfo.PetStatus = int.Parse(message.UpdateTypeValue);
                 }
             }
+            if (message.UpdateType == (int)UserDataType.PetStatus)
+            {
+                RolePetInfo rolePetInfo = session.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(message.PetId);
+                if (rolePetInfo != null)
+                {
+                    rolePetInfo.PetName = message.UpdateTypeValue;
+                }
+            }
         }
-
     }
 }

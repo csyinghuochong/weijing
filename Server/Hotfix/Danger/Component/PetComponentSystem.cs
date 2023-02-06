@@ -63,12 +63,16 @@ namespace ET
                     self.PetSkinList.Add(new KeyValuePair() { KeyId = petConfigs[i].Id, Value = String.Empty });
                 }
             }
+
+            Unit unit = self.GetParent<Unit>();
+            UserInfo userInfo = unit.GetComponent<UserInfoComponent>().UserInfo;
             for (int i = 0; i < self.RolePetInfos.Count; i++)
             {
                 if (self.RolePetInfos[i].PetHeXinList.Count == 0)
                 {
                     self.RolePetInfos[i].PetHeXinList = new List<long>() { 0, 0, 0 };
                 }
+                self.RolePetInfos[i].PlayerName = userInfo.Name;
             }
         }
 

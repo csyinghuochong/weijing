@@ -230,7 +230,8 @@ namespace ET
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
-            unitInfoComponent.PlayerName = master.GetComponent<UnitInfoComponent>().PlayerName;
+            unitInfoComponent.PlayerName = petinfo.PlayerName;
+            unitInfoComponent.StallName = petinfo.PetName;
             numericComponent.Set(NumericType.MasterId, master.Id);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
             numericComponent.Set(NumericType.TeamId, master.GetTeamId());
