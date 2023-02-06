@@ -48028,7 +48028,7 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DoTweenRatate_LateUpdate_mF383E6A31F7B3F
 {
 	float V_0 = 0.0f;
 	{
-		// float y = Speed * Time.deltaTime + this.transform.eulerAngles.y;
+		// float z = Speed * Time.deltaTime + this.transform.eulerAngles.z;
 		float L_0 = __this->get_Speed_4();
 		float L_1;
 		L_1 = Time_get_deltaTime_mCC15F147DA67F38C74CE408FB5D7FF4A87DA2290(/*hidden argument*/NULL);
@@ -48037,9 +48037,9 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DoTweenRatate_LateUpdate_mF383E6A31F7B3F
 		NullCheck(L_2);
 		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_3;
 		L_3 = Transform_get_eulerAngles_mCF1E10C36ED1F03804A1D10A9BAB272E0EA8766F(L_2, /*hidden argument*/NULL);
-		float L_4 = L_3.get_y_3();
+		float L_4 = L_3.get_z_4();
 		V_0 = ((float)il2cpp_codegen_add((float)((float)il2cpp_codegen_multiply((float)L_0, (float)L_1)), (float)L_4));
-		// if (y > 360)
+		// if (z > 360)
 		float L_5 = V_0;
 		if ((!(((float)L_5) > ((float)(360.0f)))))
 		{
@@ -48047,20 +48047,20 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void DoTweenRatate_LateUpdate_mF383E6A31F7B3F
 		}
 	}
 	{
-		// y = y % 360f;
+		// z = z % 360f;
 		float L_6 = V_0;
 		V_0 = (fmodf(L_6, (360.0f)));
 	}
 
 IL_002e:
 	{
-		// this.transform.eulerAngles = new Vector3(0, y, 0);
+		// this.transform.eulerAngles = new Vector3(0, 0,z);
 		Transform_tA8193BB29D4D2C7EC04918F3ED1816345186C3F1 * L_7;
 		L_7 = Component_get_transform_mE8496EBC45BEB1BADB5F314960F1DF1C952FA11F(__this, /*hidden argument*/NULL);
 		float L_8 = V_0;
 		Vector3_t65B972D6A585A0A5B63153CF1177A90D3C90D65E  L_9;
 		memset((&L_9), 0, sizeof(L_9));
-		Vector3__ctor_m57495F692C6CE1CEF278CAD9A98221165D37E636_inline((&L_9), (0.0f), L_8, (0.0f), /*hidden argument*/NULL);
+		Vector3__ctor_m57495F692C6CE1CEF278CAD9A98221165D37E636_inline((&L_9), (0.0f), (0.0f), L_8, /*hidden argument*/NULL);
 		NullCheck(L_7);
 		Transform_set_eulerAngles_mFDCBC6282E4B1196AA26BF01008B2AAA2DD2969E(L_7, L_9, /*hidden argument*/NULL);
 		// }

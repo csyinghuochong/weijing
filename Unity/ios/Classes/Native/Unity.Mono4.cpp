@@ -20307,6 +20307,8 @@ public:
 	Action_1_tA1980BF879FC3C2BEF14A6B79268F3DBBB7EB865 * ___successedCallback_9;
 	// System.Action`1<System.String> PurchasingManager::SuccessedCallback
 	Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 * ___SuccessedCallback_10;
+	// System.Action PurchasingManager::FailedCallback
+	Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * ___FailedCallback_11;
 
 public:
 	inline static int32_t get_offset_of_storeController_5() { return static_cast<int32_t>(offsetof(PurchasingManager_tA49161D64ECBADFF23BDFC90E74495B8DB787562, ___storeController_5)); }
@@ -20343,6 +20345,15 @@ public:
 	{
 		___SuccessedCallback_10 = value;
 		Il2CppCodeGenWriteBarrier((void**)(&___SuccessedCallback_10), (void*)value);
+	}
+
+	inline static int32_t get_offset_of_FailedCallback_11() { return static_cast<int32_t>(offsetof(PurchasingManager_tA49161D64ECBADFF23BDFC90E74495B8DB787562, ___FailedCallback_11)); }
+	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * get_FailedCallback_11() const { return ___FailedCallback_11; }
+	inline Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 ** get_address_of_FailedCallback_11() { return &___FailedCallback_11; }
+	inline void set_FailedCallback_11(Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * value)
+	{
+		___FailedCallback_11 = value;
+		Il2CppCodeGenWriteBarrier((void**)(&___FailedCallback_11), (void*)value);
 	}
 };
 
@@ -27928,6 +27939,8 @@ inline void Action_1_Invoke_m6E81F94353B45920E7018D209DCF4B63DBE8D8B6 (Action_1_
 {
 	((  void (*) (Action_1_tC0D73E03177C82525D78670CDC2165F7CBF0A9C3 *, String_t*, const RuntimeMethod*))Action_1_Invoke_m587509C88BB83721D7918D89DF07606BB752D744_gshared)(__this, ___obj0, method);
 }
+// System.Void System.Action::Invoke()
+IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_Invoke_m3FFA5BE3D64F0FF8E1E1CB6F953913FADB5EB89E (Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * __this, const RuntimeMethod* method);
 // System.Void PurchasingManager::OnFailedCallback(System.String)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PurchasingManager_OnFailedCallback_mC62782F2F31F6E3C4B14B2DC910A6A01C7554CC3 (PurchasingManager_tA49161D64ECBADFF23BDFC90E74495B8DB787562 * __this, String_t* ____reason0, const RuntimeMethod* method);
 // UnityEngine.Purchasing.Product UnityEngine.Purchasing.ProductCollection::WithID(System.String)
@@ -28467,8 +28480,6 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void UIBehaviour_Start_m7334773773C9454A7A6E9
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR Vector2_tBB32F2736AEC229A7BFBCE18197EC0F6AC7EC2D9  RectTransform_get_sizeDelta_mCFAE8C916280C173AB79BE32B910376E310D1C50 (RectTransform_t8A6A306FB29A6C8C22010CF9040E319753571072 * __this, const RuntimeMethod* method);
 // System.Void UnityEngine.UI.ScrollRect::OnBeginDrag(UnityEngine.EventSystems.PointerEventData)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ScrollRect_OnBeginDrag_mFD8547604ADE7E19C1CB247BE3C3D30EDBF6F170 (ScrollRect_tB16156010F89FFDAAB2127CA878608FD91B9FBEA * __this, PointerEventData_tC6C1BEE9D4C8755A31DA7FC0C9A1F28A36456954 * ___eventData0, const RuntimeMethod* method);
-// System.Void System.Action::Invoke()
-IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Action_Invoke_m3FFA5BE3D64F0FF8E1E1CB6F953913FADB5EB89E (Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * __this, const RuntimeMethod* method);
 // System.Void UnityEngine.UI.ScrollRect::OnEndDrag(UnityEngine.EventSystems.PointerEventData)
 IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void ScrollRect_OnEndDrag_m655F48C5CD01CFC9802144038A635B6F663FE828 (ScrollRect_tB16156010F89FFDAAB2127CA878608FD91B9FBEA * __this, PointerEventData_tC6C1BEE9D4C8755A31DA7FC0C9A1F28A36456954 * ___eventData0, const RuntimeMethod* method);
 // System.Void UnityEngine.UI.ScrollRect::OnDrag(UnityEngine.EventSystems.PointerEventData)
@@ -35056,6 +35067,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PurchasingManager_PurchaseFail_m34993951
 		il2cpp_codegen_initialize_runtime_metadata((uintptr_t*)&_stringLiteral35E1A3B546DD46E479E27AFBF669F0E1CC8963B8);
 		s_Il2CppMethodInitialized = true;
 	}
+	Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * G_B2_0 = NULL;
+	Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * G_B1_0 = NULL;
 	{
 		// ET.Log.ILog.Debug("内购失败： " + product.ToString());
 		RuntimeObject* L_0;
@@ -35068,6 +35081,24 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void PurchasingManager_PurchaseFail_m34993951
 		L_3 = String_Concat_m4B4AB72618348C5DFBFBA8DED84B9E2EBDB55E1B(_stringLiteral35E1A3B546DD46E479E27AFBF669F0E1CC8963B8, L_2, /*hidden argument*/NULL);
 		NullCheck(L_0);
 		InterfaceActionInvoker1< String_t* >::Invoke(3 /* System.Void ET.ILog::Debug(System.String) */, ILog_t325C021B3494DABC9C59A92DDA7F32D89415B258_il2cpp_TypeInfo_var, L_0, L_3);
+		// FailedCallback?.Invoke();
+		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_4 = __this->get_FailedCallback_11();
+		Action_tAF41423D285AE0862865348CF6CE51CD085ABBA6 * L_5 = L_4;
+		G_B1_0 = L_5;
+		if (L_5)
+		{
+			G_B2_0 = L_5;
+			goto IL_0025;
+		}
+	}
+	{
+		return;
+	}
+
+IL_0025:
+	{
+		NullCheck(G_B2_0);
+		Action_Invoke_m3FFA5BE3D64F0FF8E1E1CB6F953913FADB5EB89E(G_B2_0, /*hidden argument*/NULL);
 		// }
 		return;
 	}

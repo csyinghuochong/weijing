@@ -34022,8 +34022,8 @@ IL2CPP_EXTERN_C IL2CPP_METHOD_ATTR void Init__ctor_mB2E83C132074BA8C2F2CDD17A603
 	{
 		// public int BigVersion = 11;
 		__this->set_BigVersion_7(((int32_t)11));
-		// public int BigVersionIOS = 11;
-		__this->set_BigVersionIOS_8(((int32_t)11));
+		// public int BigVersionIOS = 12;
+		__this->set_BigVersionIOS_8(((int32_t)12));
 		// public string WXAppID = "wx638f7f0efe37a825";           //俄罗斯消除
 		__this->set_WXAppID_21(_stringLiteral2CAC5728A89D00923ED5168238F58B135B1AC4D3);
 		// public string WXAppSecret = "c45e594ab681035a1cae6ab166f64a20";
