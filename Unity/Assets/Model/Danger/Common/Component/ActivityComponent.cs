@@ -25,6 +25,7 @@ namespace ET
         public List<TokenRecvive> QuTokenRecvive = new List<TokenRecvive>();
 
         public List<int> ZhanQuReceiveIds = new List<int>();
+
 #if !SERVER
         public List<ZhanQuReceiveNumber> ZhanQuReceiveNumbers = new List<ZhanQuReceiveNumber>();
 #endif

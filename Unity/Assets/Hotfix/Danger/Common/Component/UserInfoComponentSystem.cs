@@ -261,11 +261,11 @@ namespace ET
             long gold =  long.Parse(value);
             if (gold < 0)
             {
-                Log.Warning($"增加货币出错: {unit.Id} {self.UserInfo.Name}  {value} {getWay}");
+                Log.Warning($"增加货币出错:{Type}  {unit.Id} {self.UserInfo.Name}  {value} {getWay}");
             }
             else
             {
-                Log.Warning($"增加货币: {unit.Id} {self.UserInfo.Name}  {value} {getWay}");
+                Log.Warning($"增加货币:{Type} {unit.Id} {self.UserInfo.Name}  {value} {getWay}");
             }
 
             self.UpdateRoleData(Type, value, notice);
@@ -278,11 +278,11 @@ namespace ET
             long gold = long.Parse(value);
             if (gold > 0)
             {
-                Log.Warning($"扣除货币出错: {unit.Id} {self.UserInfo.Name} {value} {getWay}"); 
+                Log.Warning($"扣除货币出错:{Type}  {unit.Id} {self.UserInfo.Name}  {value} {getWay}"); 
             }
             else
             {
-                Log.Warning($"扣除货币: {unit.Id} {self.UserInfo.Name} {value} {getWay}");
+                Log.Warning($"扣除货币:{Type}  {unit.Id} {self.UserInfo.Name} {value} {getWay}");
             }
             self.UpdateRoleData(Type, value, notice);
         }

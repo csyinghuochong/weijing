@@ -15,6 +15,8 @@ namespace ET
             rankScene.OnDeleteRole(rankScene.DBRankInfo.rankingCamp1, request.DeleUserID);
             rankScene.OnDeleteRole(rankScene.DBRankInfo.rankingCamp2, request.DeleUserID);
 
+            rankScene.OnDeleteRole(rankScene.DBRankInfo.rankingPets, request.DeleUserID);
+
             reply();
             await ETTask.CompletedTask;
         }

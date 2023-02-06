@@ -459,6 +459,18 @@ namespace ET
             return rankPetInfos;
         }
 
+        public static void OnDeleteRole(this RankSceneComponent self, List<RankPetInfo> rankingInfos, long userId)
+        {
+            for (int i = rankingInfos.Count - 1; i >= 0; i--)
+            {
+                if (rankingInfos[i].UserId == userId)
+                {
+                    rankingInfos.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
         public static void  OnDeleteRole(this RankSceneComponent self, List<RankingInfo> rankingInfos, long userId)
         {
             for (int i = rankingInfos.Count - 1; i >= 0; i-- )
