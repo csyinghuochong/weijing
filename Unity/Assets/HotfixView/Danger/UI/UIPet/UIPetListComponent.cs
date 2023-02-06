@@ -60,6 +60,8 @@ namespace ET
         public GameObject PropertyShowText;
         public GameObject Text_PetPingFen;
 
+        public GameObject ImageJinHua;
+
         public UI PetModelShowComponent;
         public UI SkinModelShowComponent;
         public PetComponent PetComponent;
@@ -190,6 +192,7 @@ namespace ET
             self.PetListNode = rc.Get<GameObject>("PetListNode");
             self.PetSkillNode = rc.Get<GameObject>("PetSkillNode");
             self.Text_PetPingFen = rc.Get<GameObject>("Text_PetPingFen");
+            self.ImageJinHua = rc.Get<GameObject>("ImageJinHua");
 
             self.Btn_XiuXi.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
             //self.Btn_FangSheng.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
