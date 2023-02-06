@@ -15,11 +15,9 @@ namespace ET
             {
                 dBCenterAccountInfo.AccountType = (int)AccountType.Delete;
                 await Game.Scene.GetComponent<DBComponent>().Save<DBCenterAccountInfo>(session.DomainZone(), dBCenterAccountInfo); 
-                Log.Warning($"账号移除：{request.Account}");
             }
             else
             {
-                Log.Warning($"账号无效：{request.Account}");
             }
             //response.PlayerInfo = dBCenterAccountInfo != null ? dBCenterAccountInfo.PlayerInfo : null;
             //response.AccountId = dBCenterAccountInfo != null ? dBCenterAccountInfo.Id : 0;

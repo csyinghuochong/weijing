@@ -7,7 +7,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene session, M2A_Reload request, A2M_Reload response, Action reply)
         {
-            Log.Warning("C2M_Reload_b: " + session.Name);
+            Log.Info("C2M_Reload_b: " + session.Name);
 
             switch (request.LoadType)
             {
@@ -55,11 +55,11 @@ namespace ET
                     break;
             }
 
-            Log.Warning(" EventSystem.Instance.ToString: 1");
-            Log.Warning(EventSystem.Instance.ToString());
-            Log.Warning(TimerComponent.Instance.ToString());
-            Log.Warning(ObjectPool.Instance.ToString());
-            Log.Warning(" EventSystem.Instance.ToString: 2");
+            Log.Info(" EventSystem.Instance.ToString: 1");
+            Log.Info(EventSystem.Instance.ToString());
+            Log.Info(TimerComponent.Instance.ToString());
+            Log.Info(ObjectPool.Instance.ToString());
+            Log.Info(" EventSystem.Instance.ToString: 2");
 
             reply();
             await ETTask.CompletedTask;

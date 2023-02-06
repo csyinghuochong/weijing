@@ -20,7 +20,7 @@ namespace ET
             int number = 100000;
             Scene zoneScene = aiComponent.ZoneScene();
             Unit myUnit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-            Log.ILog.Debug("Behaviour_Stroll: Enter");
+            Log.Debug("Behaviour_Stroll: Enter");
             while (number > 0)
             {
                 int random = RandomHelper.RandomNumber(0, BehaviourComponent.StrollPositionList.Count);
@@ -34,7 +34,7 @@ namespace ET
                 bool timeRet = await TimerComponent.Instance.WaitAsync(60000, cancellationToken);
                 if (!timeRet)
                 {
-                    Log.ILog.Debug("Behaviour_Stroll: Eixt2");
+                    Log.Debug("Behaviour_Stroll: Eixt2");
                     return;
                 }
                 //几率转其他

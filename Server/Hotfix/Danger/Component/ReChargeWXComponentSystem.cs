@@ -109,7 +109,7 @@ namespace ET
             //状态码:SUCCESS 成功   FAIL 失败
             if (xml["return_code"].InnerText == "FAIL")//获取预支付单号失败
             {
-                Log.Debug($"请求预支付单号异常:{ xml["return_msg"].InnerText}");
+                Log.Warning($"请求预支付单号异常:{ xml["return_msg"].InnerText}");
                 //实际上这里对错误 不应该直接处理 而是需要根据错误原因做相应的逻辑
                 //如充值单号如果重复了 随机字符串如果重复了 就重新生成
                 //但是 像这类异常 应该是在请求之前 就有相应的策略 而不应该等到这里来响应处理
@@ -196,13 +196,13 @@ namespace ET
                 //判定读取到的信息不为空
                 if (context == null)
                 {
-                    Log.Debug("微信支付通知结果来了context == null");
+                    Log.Warning("微信支付通知结果来了context == null");
                     return;
                 }
                 //将支付的回调结果转换成字符串
                 StreamReader body = new StreamReader(request.InputStream, Encoding.UTF8);       //读取流，用来获取微信请求的数据
                 string pay_notice = HttpUtility.UrlDecode(body.ReadToEnd(), Encoding.UTF8);     //HttpUtility.UrlDecode：解码                                                  //打印看看支付宝给我们发了什么
-                Log.Debug("微信支付通知结果来了:" + pay_notice);
+                Log.Warning("微信支付通知结果来了:" + pay_notice);
                 if (string.IsNullOrEmpty(pay_notice))
                 {
                     return;
@@ -238,7 +238,7 @@ namespace ET
                     //安全验证 单号对应的金额 
                     //验证单号上的金额和xml中的金额是否一致
                     int amount = int.Parse(dingdanStr.Split('_')[1]);
-                    Log.Debug($"单号金额: {xml["total_fee"].InnerText}  {amount} ");
+                    Log.Warning($"单号金额: {xml["total_fee"].InnerText}  {amount} ");
                     if (int.Parse(xml["total_fee"].InnerText) == amount)
                     {
                         //消息协议 SendProps,会话ID/订单号，道具ID,数量...(道具实体)
@@ -246,14 +246,14 @@ namespace ET
                         int zone = int.Parse(userinfo.Split('_')[0]);
                         long userId = long.Parse(userinfo.Split('_')[1]);
                         amount /= 100;
-                        Log.Debug($"微信支付成功 {userId}  {amount}");
+                        Log.Warning($"微信支付成功 {userId}  {amount}");
                         RechargeHelp.OnPaySucessToGate( zone, userId, amount, dingdanStr).Coroutine();
                         //删除本地缓存的订单
                         self.orderDic.Remove(dingdanStr);
                     }
                     else
                     {
-                        Log.Debug("微信支付失败,单号金额不一致");
+                        Log.Warning("微信支付失败,单号金额不一致");
                     }
                 }
 

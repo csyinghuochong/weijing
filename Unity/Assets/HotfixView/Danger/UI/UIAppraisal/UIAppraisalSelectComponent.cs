@@ -74,7 +74,6 @@ namespace ET
 
             UIItemComponent item_equip = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem_1);
             item_equip.UpdateItem(bagInfo, ItemOperateEnum.None);
-点击开始->运行->输入“rdpclip.exe ”
             ItemConfig itemConfig_app = ItemConfigCategory.Instance.Get(appItem);
             UIItemComponent item_app = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem_2);
             self.UIItemComponent_2 = item_app;

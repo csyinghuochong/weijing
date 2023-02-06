@@ -209,7 +209,7 @@ namespace ET
                     }
                     else
                     {
-                        Log.Warning($"SkillManagerComponent: target == null:  {weaponSkill}");
+                        Log.Debug($"SkillManagerComponent: target == null:  {weaponSkill}");
                     }
                     break;
             }
@@ -610,7 +610,7 @@ namespace ET
                 if (self.Skills.Count == 0)
                 {
                     Unit unit = self.GetParent<Unit>();
-                    Log.Warning($"SkillManagerComponent582:  {unit.Type} {unit.InstanceId}");
+                    Log.Debug($"SkillManagerComponent582:  {unit.Type} {unit.InstanceId}");
                     break;
                 }
                 if (self.Skills[i].GetSkillState() == SkillState.Finished)

@@ -27,7 +27,7 @@ namespace ET
                         }
 
                         StartSceneConfig startSceneConfig = processScenes[0];
-                        Log.Debug("C2M_Reload_a: processScenes " + startSceneConfig);
+                        Log.Info("C2M_Reload_a: processScenes " + startSceneConfig);
                         long mapInstanceId = StartSceneConfigCategory.Instance.GetBySceneName(startSceneConfig.Zone, startSceneConfig.Name).InstanceId;
                         A2M_Reload createUnit = (A2M_Reload)await ActorMessageSenderComponent.Instance.Call(
                             mapInstanceId, new M2A_Reload() { LoadType = 0, LoadValue = "0" });

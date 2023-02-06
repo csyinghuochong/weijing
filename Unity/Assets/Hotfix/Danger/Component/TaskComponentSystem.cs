@@ -367,7 +367,7 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int fubenId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TaskDungeonId);
-            Log.ILog.Debug($"Behaviour_Task: GetTaskFubenId {fubenId}");
+            Log.Debug($"Behaviour_Task: GetTaskFubenId {fubenId}");
 
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(maxTask);
             List<DungeonConfig> dungeonConfigs = DungeonConfigCategory.Instance.GetAll().Values.ToList();
@@ -429,13 +429,13 @@ namespace ET
                 List<TaskPro> taskProCompleted = taskComponent.GetCompltedTaskByNpc(npcList[i]);
                 for (int t = 0; t < taskProCompleted.Count; t++)
                 {
-                    Log.ILog.Debug($"Behaviour_Task: SendCommitTask {taskProCompleted[t].taskID}");
+                    Log.Debug($"Behaviour_Task: SendCommitTask {taskProCompleted[t].taskID}");
                     await self.SendCommitTask(taskProCompleted[t].taskID);
                 }
                 List<int> canGets = taskComponent.GetOpenTaskIds(npcList[i]);
                 for (int g = 0;  g < canGets.Count; g++)
                 {
-                    Log.ILog.Debug($"Behaviour_Task: SendGetTask {canGets[g]}");
+                    Log.Debug($"Behaviour_Task: SendGetTask {canGets[g]}");
                     await self.SendGetTask(canGets[g]);
                 }
             }

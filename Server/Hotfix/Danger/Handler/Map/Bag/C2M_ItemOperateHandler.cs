@@ -151,7 +151,6 @@ namespace ET
                             //增加金币
                             case 1:
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, itemCof.ItemUsePar);
-                                Log.Debug($"Gold:  {unit.Id} {itemCof.ItemUsePar} itemoperate1");
                                 break;
                             //增加经验
                             case 2:
@@ -172,7 +171,7 @@ namespace ET
                             case 6:
                                 List<RewardItem> rewardItems = new List<RewardItem>();
                                 DropHelper.DropIDToDropItem_2(int.Parse(itemCof.ItemUsePar), rewardItems);
-                                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}");
+                                unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.ItemBox}_{TimeHelper.ServerNow()}_{itemCof.Id}");
                                 break;
                             //兑换：
                             case 8:
@@ -294,7 +293,6 @@ namespace ET
                                 ExpConfig expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addCoin = (int)RandomHelper.RandomNumberFloat(float.Parse(jinbiInfos[0]) * expConfig.RoseGoldPro, float.Parse(jinbiInfos[1]) * expConfig.RoseGoldPro);
                                 unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, addCoin.ToString());
-                                Log.Debug($"Gold[金币袋子]:  {unit.Id} {addCoin} ");
                                 break;
                             //经验木桩
                             case 112:

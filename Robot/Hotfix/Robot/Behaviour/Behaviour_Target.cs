@@ -17,7 +17,7 @@ namespace ET
 
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
-            Log.ILog.Debug("Behaviour_Target: Enter");
+            Log.Debug("Behaviour_Target: Enter");
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene());
             Vector3 targetPosition = aiComponent.TargetPosition;
             while (true)
@@ -42,7 +42,7 @@ namespace ET
                 bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
                 if (!timeRet)
                 {
-                    Log.ILog.Debug("Behaviour_Target: Exit1");
+                    Log.Debug("Behaviour_Target: Exit1");
                     return;
                 }
             }

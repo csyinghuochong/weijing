@@ -255,28 +255,28 @@ namespace ET
         }
 
         //加金币
-        public static void UpdateRoleMoneyAdd(this UserInfoComponent self, UserDataType Type, string value, bool notice = true, int getWay = ItemGetWay.System)
+        public static void UpdateRoleMoneyAdd(this UserInfoComponent self, UserDataType Type, string value, bool notice = true, int getWay = ItemGetWay.System, string paramsifo = "")
         {
             Unit unit = self.GetParent<Unit>();
             long gold =  long.Parse(value);
             if (gold < 0)
             {
-                Log.Error($"增加货币出错: {unit.Id} {value} {getWay}");
+                Log.Warning($"增加货币出错: {unit.Id} {self.UserInfo.Name}  {value} {getWay}");
             }
 
             self.UpdateRoleData(Type, value, notice);
         }
 
         //扣金币
-        public static void UpdateRoleMoneySub(this UserInfoComponent self, UserDataType Type, string value, bool notice = true, int getWay = ItemGetWay.System)
+        public static void UpdateRoleMoneySub(this UserInfoComponent self, UserDataType Type, string value, bool notice = true, int getWay = ItemGetWay.System, string paramsifo = "")
         {
             Unit unit = self.GetParent<Unit>();
             long gold = long.Parse(value);
             if (gold > 0)
             {
-                Log.Error($"扣除货币出错: {unit.Id} {value} {getWay}");
+                Log.Warning($"扣除货币出错: {unit.Id} {self.UserInfo.Name} {value} {getWay}");
             }
-
+            Log.Warning()
             self.UpdateRoleData(Type, value, notice);
         }
 
@@ -340,7 +340,7 @@ namespace ET
                     unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.MaoXianExp, long.Parse(value), 0);
                     break;
                 case UserDataType.Recharge:
-                    RechargeHelp.SendDiamondToUnit(unit, int.Parse(value),"邮件");
+                    RechargeHelp.SendDiamondToUnit(unit, int.Parse(value),"道具");
                     break;
                 case UserDataType.PiLao:
                     int maxValue = unit.IsYueKaStates() ? int.Parse(GlobalValueConfigCategory.Instance.Get(26).Value) : int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);

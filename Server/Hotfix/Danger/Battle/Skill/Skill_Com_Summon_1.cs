@@ -27,7 +27,7 @@ namespace ET
                 int createMonsterID = int.Parse(skillParList[0]);
                 if (!MonsterConfigCategory.Instance.Contain(createMonsterID))
                 {
-                    Log.Warning($"config==null  monsterid {createMonsterID}");
+                    Log.Error($"config==null  monsterid {createMonsterID}");
                     break;
                 }
 

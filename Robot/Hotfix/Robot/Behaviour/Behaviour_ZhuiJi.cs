@@ -19,7 +19,7 @@ namespace ET
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(aiComponent.ZoneScene());
             long instanceId = unit.InstanceId;
-            Log.ILog.Debug("Behaviour_ZhuiJi: Enter");
+            Log.Debug("Behaviour_ZhuiJi: Enter");
 
             while (true)
             {
@@ -51,7 +51,7 @@ namespace ET
                 bool timeRet = await TimerComponent.Instance.WaitAsync(500, cancellationToken);
                 if (!timeRet)
                 {
-                    Log.ILog.Debug("Behaviour_ZhuiJi: Exit1");
+                    Log.Debug("Behaviour_ZhuiJi: Exit1");
                     return;
                 }
             }

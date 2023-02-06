@@ -7,25 +7,17 @@ namespace ET
     {
         protected override async ETTask Run(Session session, C2G_ExitGameGate request, G2C_ExitGameGate response, Action reply)
         {
-            Log.Warning($"C2G_ExitGameGate.Account  {request.Account}");
-
             if (request.Account == 0)
             {
                 Player player = session.GetComponent<SessionPlayerComponent>().GetMyPlayer();
 
                 if (player != null)
                 {
-                    Log.Warning($"C2G_ExitGameGate  {player.UnitId} 1111 ");
                     DisconnectHelper.KickPlayer(player).Coroutine();
-                }
-                else
-                {
-                    Log.Warning($"C2G_ExitGameGate null");
                 }
             }
             else
             {
-                Log.Warning($"C2G_ExitGameGate.RoleId  {request.RoleId}");
                 long mapInstanceId = DBHelper.GetRankServerId(session.DomainZone());
                 //Uid 1628585061177688064  Aid 1628584562793709626
                 var m2GRequestExitGame = (M2G_RequestExitGame)await MessageHelper.CallLocationActor(request.RoleId, new G2M_RequestExitGame());

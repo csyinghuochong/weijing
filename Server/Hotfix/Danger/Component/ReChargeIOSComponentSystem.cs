@@ -18,7 +18,7 @@ namespace ET
         public static async ETTask<int> OnIOSPayVerify(this ReChargeIOSComponent self, M2R_RechargeRequest request)
         {
             await ETTask.CompletedTask;
-            Log.Debug($"IOS充值回调执行00 " + "id:" + request.UnitId);
+            Log.Warning($"IOS充值回调执行00 " + "id:" + request.UnitId);
             string verifyURL = string.Empty;
             //if (request.UnitId == 1636544958309662720 || request.UnitId == 1655723533625524224)
             //{
@@ -38,32 +38,32 @@ namespace ET
             string sendStr = "{\"receipt-data\":\"" + payLoad + "\"}";
             string postReturnStr = await HttpHelper.GetIosPayParameter(verifyURL, sendStr);
 
-            Log.Debug($"IOS充值回调11 {postReturnStr}");
+            Log.Warning($"IOS充值回调11 {postReturnStr}");
             Root rt = JsonHelper.FromJson<Root>(postReturnStr);
             Log.Debug($"IOS充值回调22 {rt.status}");
             //交易失败，直接返回
             if (rt.status != 0)
             {
-                Log.Debug($"IOS充值回调ERROR1 {rt.status}");
+                Log.Warning($"IOS充值回调ERROR1 {rt.status}");
                 return ErrorCore.ERR_IOSVerify;
             }
 
             if (rt.receipt.in_app == null || rt.receipt.in_app.Count == 0)
             {
-                Log.Debug($"IOS充值回调ERROR2 ");
+                Log.Warning($"IOS充值回调ERROR2 ");
                 return ErrorCore.ERR_IOSVerify;
             }
 
             //封号处理 使用IAPFree工具
             if (rt.receipt.in_app[0].product_id == "com.zeptolab.ctrbonus.superpower1")
             {
-                Log.Debug($"IOS充值回调ERROR3 ");
+                Log.Warning($"IOS充值回调ERROR3 ");
                 return ErrorCore.ERR_IOSVerify;
             }
 
             if (!string.IsNullOrEmpty(rt.receipt.bundle_id) && rt.receipt.bundle_id != "com.guangying.weijing2")
             {
-                Log.Debug($"IOS充值回调ERROR4");
+                Log.Warning($"IOS充值回调ERROR4");
                 return ErrorCore.ERR_IOSVerify;
             }
 
@@ -74,7 +74,7 @@ namespace ET
             //198SG
             if (!product_id.Contains("WJ") && !product_id.Contains("SG"))
             {
-                Log.Debug($"IOS充值回调ERROR5");
+                Log.Warning($"IOS充值回调ERROR5");
                 return ErrorCore.ERR_IOSVerify;
             }
 

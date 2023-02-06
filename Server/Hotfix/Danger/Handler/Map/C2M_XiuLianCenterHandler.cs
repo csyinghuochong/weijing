@@ -38,8 +38,7 @@ namespace ET
                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.XiuLian_CoinTime, TimeHelper.ServerNow());
                 float coefficient = float.Parse(GlobalValueConfigCategory.Instance.Get(30).Value);
                 int addValue = Mathf.CeilToInt(coefficient * level);
-                unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Gold, addValue.ToString());
-                Log.Debug($"Gold:  {unit.Id} {addValue} xiuliancenter");
+                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, addValue.ToString(), true, 37);// ItemGetWay.XiuLian);
             }
             reply();
             await ETTask.CompletedTask;

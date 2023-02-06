@@ -237,7 +237,7 @@ namespace ET
                 if (self.m_Buffs.Count == 0)
                 {
                     Unit unit = self.GetParent<Unit>();
-                    Log.Warning($"BuffManagerComponent220:  {unit.Type} {unit.InstanceId}");
+                    Log.Debug($"BuffManagerComponent220:  {unit.Type} {unit.InstanceId}");
                     break;
                 }
                 if (self.m_Buffs[i].BuffState == BuffState.Finished)

@@ -388,11 +388,11 @@ namespace ET
             }
             if ((monsterCof.MonsterSonType == 55 || monsterCof.MonsterSonType == 56) && droplist.Count == 0)
             {
-                Log.Warning($"宝箱掉落为空{monsterCof.Id} {main.Id}");
+                Log.Debug($"宝箱掉落为空{monsterCof.Id} {main.Id}");
             }
             if (monsterCof.MonsterType == (int)MonsterTypeEnum.Boss && droplist.Count == 0)
             {
-                Log.Warning($"BOSS掉落为空{monsterCof.Id}  {main.Id}");
+                Log.Debug($"BOSS掉落为空{monsterCof.Id}  {main.Id}");
             }
             List<long> beattackIds = new List<long>();
             if (bekill.GetComponent<AIComponent>() != null)

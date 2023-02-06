@@ -36,7 +36,7 @@ namespace ET
 
             if (createResponse.Error != ErrorCore.ERR_Success)
             {
-                Log.Warning($"T2M_TeamDungeonOpenResponse:{createResponse.Error}");
+                Log.Debug($"T2M_TeamDungeonOpenResponse:{createResponse.Error}");
                 bagComponent.OnAddItemData($"{ComHelp.ShenYuanCostId};1", "0");
                 response.Error = createResponse.Error;
                 reply();

@@ -20,7 +20,7 @@
             Scene zoneScene = aiComponent.ZoneScene();
             TeamComponent teamComponent = zoneScene.GetComponent<TeamComponent>();
             await zoneScene.GetComponent<BagComponent>().CheckEquipList();
-            Log.ILog.Debug("Behaviour_TeamDungeon: Enter");
+            Log.Debug("Behaviour_TeamDungeon: Enter");
             while (true)
             {
                 //获取队伍列表
@@ -33,7 +33,7 @@
                 }
                 if (errorCode != 0)
                 {
-                    Log.Info($"Behaviour_TeamDungeon: Execute {errorCode}");
+                    Log.Debug($"Behaviour_TeamDungeon: Execute {errorCode}");
                 }
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
                 bool ret = await TimerComponent.Instance.WaitAsync(6000000, cancellationToken);
@@ -44,7 +44,7 @@
                 }
                 else
                 {
-                    Log.ILog.Debug("Behaviour_TeamDungeon: Exit1");
+                    Log.Debug("Behaviour_TeamDungeon: Exit1");
                     return;
                 }
             }

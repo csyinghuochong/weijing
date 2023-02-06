@@ -34,7 +34,6 @@ namespace ET
 
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
-            Log.ILog.Debug("Behaviour_Attack: Enter");
             Scene zoneScene = aiComponent.ZoneScene();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
             aiComponent.ZoneScene().GetComponent<BagComponent>().CheckBagIsFull();
@@ -89,7 +88,6 @@ namespace ET
                 bool timeRet = await TimerComponent.Instance.WaitAsync(zoneScene.GetComponent<AttackComponent>().CDTime + 10, cancellationToken);
                 if (!timeRet)
                 {
-                    Log.ILog.Debug("Behaviour_Attack: Eixt2");
                     return;
                 }
             }

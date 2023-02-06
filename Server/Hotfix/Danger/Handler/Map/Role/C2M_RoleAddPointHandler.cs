@@ -39,7 +39,7 @@ namespace ET
             }
             catch (Exception ex)
             {
-                Log.Debug("C2M_RoleAddPointError: " + ex.ToString());
+                Log.Error("C2M_RoleAddPointError: " + ex.ToString());
             }
         }
     }

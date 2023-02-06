@@ -28,7 +28,7 @@ namespace ET
         public const int RankReward = 18;           //排行榜奖励
         public const int FirstWin = 19;             //首胜
         public const int PickItem = 20;             //拾取
-        public const int PaiMaiShop = 21;           //拍賣处购买
+        public const int PaiMaiShop = 21;           //拍賣商店
         public const int PetEggDuiHuan = 22;        //宠物蛋兑换
         public const int TaskReward = 23;           //宠物分解
         public const int PetFenjie = 24;            //任务奖励
@@ -43,6 +43,8 @@ namespace ET
         public const int HongBao = 33;
         public const int CostItem = 34;
         public const int Share = 35;
+        public const int PaiMaiBuy = 36;
+        public const int XiuLian = 37;
 
         public const int Activity = 100;
     }
