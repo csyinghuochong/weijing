@@ -714,6 +714,15 @@ namespace ET
             return null;
         }
 
+        public static int GetQiangHuaLevel(this BagComponent self, int subType)
+        {
+            if (subType > 100)
+            {
+                return 0;
+            }
+            return self.QiangHuaLevel[subType];
+        }
+
         public static BagInfo GetEquipBySubType(this BagComponent self, int subType)
         {
             List<BagInfo> bagInfos = self.GetEquipList();

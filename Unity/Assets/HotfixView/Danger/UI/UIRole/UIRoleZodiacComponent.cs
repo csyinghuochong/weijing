@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace ET
@@ -10,6 +8,8 @@ namespace ET
         public GameObject ButtonColse;
         public GameObject ZodiacList;
         public GameObject BtnItemTypeSet;
+
+        public UIPageButtonComponent UIPageButtonComponent;
     }
 
     [ObjectSystem]
@@ -24,6 +24,16 @@ namespace ET
 
             self.ButtonColse = rc.Get<GameObject>("ButtonColse");
             self.ButtonColse.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIRoleZodiac); });
+
+            //单选组件
+            GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
+            UI uiPage = self.AddChild<UI, string, GameObject>("BtnItemTypeSet", BtnItemTypeSet);
+            UIPageButtonComponent pageButton = uiPage.AddComponent<UIPageButtonComponent>();
+            self.UIPageButtonComponent = pageButton;
+            pageButton.SetClickHandler((int page) => {
+                self.OnClickPageButton(page);
+            });
+            pageButton.OnSelectIndex(0);
         }
     }
 
@@ -33,6 +43,14 @@ namespace ET
         public override void Destroy(UIRoleZodiacComponent self)
         {
             
+        }
+    }
+
+    public static class UIRoleZodiacComponentSystem
+    {
+        public static void OnClickPageButton(this UIRoleZodiacComponent self, int page)
+        { 
+
         }
     }
 }

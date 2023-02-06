@@ -39,6 +39,13 @@ namespace ET
 					reply();
 					return;
 				}
+				int gold = request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price;
+				if (gold < 0)
+				{
+					reply();
+					return;
+				}
+
 				//发送对应拍卖行信息
 				long paimaiServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.PaiMai)).InstanceId;
 				P2M_PaiMaiSellResponse r_GameStatusResponse = (P2M_PaiMaiSellResponse)await ActorMessageSenderComponent.Instance.Call

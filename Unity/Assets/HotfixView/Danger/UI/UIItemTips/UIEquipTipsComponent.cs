@@ -731,7 +731,7 @@ namespace ET
             textEquipType = GameSettingLanguge.LoadLocalization(textEquipType);
 
             string langStr = GameSettingLanguge.LoadLocalization("强化");
-            int qianghuaLevel = self.BagComponent.QiangHuaLevel[itemconf.ItemSubType];
+            int qianghuaLevel = self.BagComponent.GetQiangHuaLevel(itemconf.ItemSubType);
             if (qianghuaLevel != 0)
             {
                 //EquipQiangHuaConfig equipQiangHua = EquipQiangHuaConfigCategory.Instance.Get(self.EquipQiangHuaID);

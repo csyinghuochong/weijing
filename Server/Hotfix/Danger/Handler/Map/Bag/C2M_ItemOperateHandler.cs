@@ -89,7 +89,7 @@ namespace ET
                             return;
                         }
                     }
-                     if (itemCof.ItemSubType == 102 || (itemCof.ItemSubType == 103))
+                    if (itemCof.ItemSubType == 102 || (itemCof.ItemSubType == 103))
                     {
                         if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
                         {

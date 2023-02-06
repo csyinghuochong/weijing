@@ -148,10 +148,9 @@ namespace ET
            {  8,  GameSettingLanguge.LoadLocalization("腰带") },
            {  9,  GameSettingLanguge.LoadLocalization("手镯") },
            {  10,  GameSettingLanguge.LoadLocalization("头盔") },
-           {  11,  GameSettingLanguge.LoadLocalization("项链") }
+           {  11,  GameSettingLanguge.LoadLocalization("项链") },
+           {  1202,  GameSettingLanguge.LoadLocalization("丑牛·破风") },
         };
-
-
 
         public struct EquipWeiZhiInfo
         {

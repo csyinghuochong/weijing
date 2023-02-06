@@ -21,13 +21,15 @@ namespace ET
                 reply();
                 return;
             }
-            if (paiMaiItemInfo.BagInfo.ItemNum < 0)
+
+            long needGold = paiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;
+            if (paiMaiItemInfo.BagInfo.ItemNum < 0 || needGold < 0)
             {
                 reply();
                 return;
             }
 
-            long needGold = paiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;
+            
             //钱是否足够
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < needGold)
             {
