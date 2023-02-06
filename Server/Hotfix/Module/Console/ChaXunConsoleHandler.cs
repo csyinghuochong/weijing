@@ -31,11 +31,11 @@ namespace ET
 
                     long dbCacheId = DBHelper.GetDbCacheId(pyzone);
 
-                    List<UserInfoComponent> userinfoInfoList = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(pyzone, d => d.Id > 0);
+                    List<UserInfoComponent> userinfoComponentList = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(pyzone, d => d.Id > 0);
 
-                    for (int i = 0; i < userinfoInfoList.Count; i++)
+                    for (int i = 0; i < userinfoComponentList.Count; i++)
                     { 
-                        UserInfoComponent userInfoComponent = userinfoInfoList[i];
+                        UserInfoComponent userInfoComponent = userinfoComponentList[i];
                         if (userInfoComponent.UserInfo.RobotId != 0)
                         {
                             continue;
@@ -45,7 +45,7 @@ namespace ET
 
                         if (gold > 1000000 || diamond > 10000)
                         {
-                            long unitId = userinfoInfoList[0].Id;
+                            long unitId = userinfoComponentList[0].Id;
 
                             List<BagComponent> baginfoInfoList = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(pyzone, d => d.Id == unitId);
                             List<BagInfo> bagInfosAll = baginfoInfoList[0].GetAllItems();
@@ -61,7 +61,6 @@ namespace ET
                             Log.Warning(infolist);
                         }
                     }
-
                     break;
             }
 
