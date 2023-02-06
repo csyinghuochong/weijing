@@ -16,6 +16,7 @@ namespace ET
         public const string Mail = "mail";
         public const string StopServer = "stopserver";
         public const string Rechage = "rechage";
+        public const string ChaXun = "chaxun";
     }
 
     public class ConsoleComponent: Entity, IAwake, ILoad
