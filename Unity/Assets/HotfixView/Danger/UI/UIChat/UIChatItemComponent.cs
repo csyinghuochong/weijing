@@ -65,17 +65,22 @@ namespace ET
         //<sprite=0>
         public static void OnUpdateUI(this UIChatItemComponent self, ChatInfo chatInfo)
         {
-            self.Node1.SetActive(chatInfo.ChannelId != (int)ChannelEnum.System);
-            self.Node2.SetActive(chatInfo.ChannelId == (int)ChannelEnum.System);
+           
             if (chatInfo.ChannelId == (int)ChannelEnum.System || chatInfo.ChannelId == ChannelEnum.Pick)
             {
+                self.Node1.SetActive(false);
+                self.Node2.SetActive(true);
+
                 TextMeshProUGUI textMeshProUGUI = self.Text_System_TMP.GetComponent<TextMeshProUGUI>();
                 textMeshProUGUI.text = chatInfo.ChatMsg;
 
-                self.GetParent<UI>().GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_System_TMP.GetComponent<TextMeshProUGUI>().preferredHeight + 50);
+                self.GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_System_TMP.GetComponent<TextMeshProUGUI>().preferredHeight + 50);
             }
             else
             {
+                self.Node1.SetActive(true);
+                self.Node2.SetActive(false);
+
                 self.Text_Name.GetComponent<Text>().text = chatInfo.PlayerName;
 
                 self.Text_Level.GetComponent<Text>().text = chatInfo.PlayerLevel.ToString();
