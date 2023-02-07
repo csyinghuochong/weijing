@@ -67,7 +67,7 @@ namespace ET
         {
             self.Node1.SetActive(chatInfo.ChannelId != (int)ChannelEnum.System);
             self.Node2.SetActive(chatInfo.ChannelId == (int)ChannelEnum.System);
-            if (chatInfo.ChannelId == (int)ChannelEnum.System)
+            if (chatInfo.ChannelId == (int)ChannelEnum.System || chatInfo.ChannelId == ChannelEnum.Pick)
             {
                 TextMeshProUGUI textMeshProUGUI = self.Text_System_TMP.GetComponent<TextMeshProUGUI>();
                 textMeshProUGUI.text = chatInfo.ChatMsg;
@@ -94,12 +94,12 @@ namespace ET
                 }
                 self.TitleList[chatInfo.ChannelId].SetActive(true);
 
-                if (chatInfo.ChannelId == ChannelEnum.System)
-                {
-                    self.Obj_ImgHeadIcon.SetActive(false);
-                    self.Obj_ImgHeadIconXiTong.SetActive(true);
-                }
-                else
+                //if (chatInfo.ChannelId == ChannelEnum.Word)
+                //{
+                //    self.Obj_ImgHeadIcon.SetActive(false);
+                //    self.Obj_ImgHeadIconXiTong.SetActive(true);
+                //}
+                //else
                 {
                     self.Obj_ImgHeadIcon.SetActive(true);
                     self.Obj_ImgHeadIconXiTong.SetActive(false);
