@@ -88,12 +88,13 @@ namespace ET
                     self.GetParent<UI>().GameObject.GetComponent<RectTransform>().sizeDelta = new Vector2(1000, self.Text_TMP.GetComponent<TextMeshProUGUI>().preferredHeight + 110);
                 }
 
-                self.TitleList[0].SetActive(false);
-                self.TitleList[1].SetActive(false);
-                self.TitleList[2].SetActive(false);
+                for (int i = 0; i < ChannelEnum.Number; i++)
+                {
+                    self.TitleList[i].SetActive(false);
+                }
                 self.TitleList[chatInfo.ChannelId].SetActive(true);
 
-                if (chatInfo.ChannelId == 1)
+                if (chatInfo.ChannelId == ChannelEnum.System)
                 {
                     self.Obj_ImgHeadIcon.SetActive(false);
                     self.Obj_ImgHeadIconXiTong.SetActive(true);

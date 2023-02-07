@@ -8,13 +8,17 @@ namespace ET
         {
             try
             {
-                if (request.GateSessionActorId != 0)
+                if (request.GateSessionActorId != 0)  //重连
                 {
                     unit.GetComponent<DBSaveComponent>().OnRelogin(request.GateSessionActorId);
                 }
-                else
+                if(request.GateSessionActorId == 0)  //重登
                 {
                     unit.GetComponent<DBSaveComponent>().OnDisconnect();
+                }
+                if (request.GateSessionActorId == -1) //查询
+                {
+                    Log.Debug($"玩家在线: {unit.Id}");
                 }
             }
             catch (Exception ex)
