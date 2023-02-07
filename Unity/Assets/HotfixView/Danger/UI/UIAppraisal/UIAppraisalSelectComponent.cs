@@ -85,7 +85,18 @@ namespace ET
 
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
             List<BagInfo> bagInfos = bagComponent.GetBagList();
-            bagInfos.Sort(delegate (BagInfo a, BagInfo b)
+
+            //鉴定符
+            List<BagInfo> appList = new List<BagInfo>();
+            for (int i = 0; i < bagInfos.Count; i++)
+            {
+                if (bagInfos[i].ItemID != appItem && bagInfos[i].ItemID != 11200000)
+                {
+                    continue;
+                }
+                appList.Add(bagInfos[i]);
+            }
+            appList.Sort(delegate (BagInfo a, BagInfo b)
             {
                 ItemConfig itemConfig_a = ItemConfigCategory.Instance.Get(a.ItemID);
                 ItemConfig itemConfig_b = ItemConfigCategory.Instance.Get(b.ItemID);
@@ -96,18 +107,15 @@ namespace ET
 
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            for (int i = 0; i < bagInfos.Count; i++)
+            for (int i = 0; i < appList.Count; i++)
             {
-                if (bagInfos[i].ItemID != appItem && bagInfos[i].ItemID != 11200000)
-                {
-                    continue;
-                }
+              
                 GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(itemSpace, self.ItemListNode);
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(itemSpace);
-                uIItemComponent.UpdateItem(bagInfos[i], ItemOperateEnum.None);
+                uIItemComponent.UpdateItem(appList[i], ItemOperateEnum.None);
                 uIItemComponent.SetClickHandler((BagInfo baginfo) => { self.OnSelectItem(baginfo, itemCof);  } );
-                string pingzhi = $"品质:{bagInfos[i].ItemPar}";
+                string pingzhi = $"品质:{appList[i].ItemPar}";
                 uIItemComponent.Label_ItemName.GetComponent<Text>().text = pingzhi;
                 uIItemComponent.Label_ItemName.SetActive(true);
                 self.uIItems.Add(uIItemComponent);

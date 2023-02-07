@@ -76,8 +76,7 @@ namespace ET
             Unit defendUnit = args.UnitDefend;
             Scene domainScene = defendUnit.DomainScene();
             MapComponent mapComponent = domainScene.GetComponent<MapComponent>();
-            defendUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
-
+           
             int sceneTypeEnum = mapComponent.SceneTypeEnum;
             int sceneId = mapComponent.SceneId;
 

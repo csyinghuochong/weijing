@@ -116,7 +116,6 @@ namespace ET
         /// <param name="nowStateType"></param>
         public static void StateTypeAdd(this StateComponent self, long nowStateType, string stateValue ="0")
         {
-           
             self.CurrentStateType = self.CurrentStateType | nowStateType;
 #if SERVER
             //发送改变属性的相关消息

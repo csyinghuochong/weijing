@@ -276,10 +276,12 @@ namespace ET
                     units[i].GetComponent<BuffManagerComponent>().OnRemoveBuffByUnit(unit.Id);
                 }
             }
+            int waitRevive = self.OnWaitRevive();
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
 
             Game.EventSystem.Publish(new EventType.KillEvent()
             {
-                WaitRevive = self.OnWaitRevive(),
+                WaitRevive = waitRevive,
                 UnitAttack = args.Attack,
                 UnitDefend = unit,
             });

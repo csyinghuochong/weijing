@@ -282,6 +282,7 @@ namespace ET
         /// <param name="skillId"></param>
         public static void InterruptSing(this SkillManagerComponent self,int skillId,bool ifStop)
         {
+            Unit unit =self.GetParent<Unit>();
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
                 SkillHandler skillHandler = self.Skills[i];
@@ -292,10 +293,12 @@ namespace ET
                 //打断
                 if (ifStop)
                 {
-                    StateComponent stateComponent = self.GetParent<Unit>().GetComponent<StateComponent>();
                     skillHandler.SetSkillState(SkillState.Finished);
-                    stateComponent.StateTypeAdd(StateTypeEnum.Interrupt);
+
+                    M2C_SkillInterruptResult m2C_SkillInterruptResult = new M2C_SkillInterruptResult() { UnitId = unit.Id, SkillId = skillHandler.SkillConf.Id };
+                    MessageHelper.Broadcast(unit, m2C_SkillInterruptResult);
                 }
+
             }
 
             //移除互斥技能
