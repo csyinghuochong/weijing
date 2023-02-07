@@ -56,31 +56,10 @@ namespace ET
     public class KillEvent_NotifyUnit : AEvent<EventType.KillEvent>
     {
 
-        private async ETTask OnUnitDead(EventType.KillEvent args)
+        private async ETTask OnRemoveUnit(EventType.KillEvent args)
         {
             Unit unitDefend = args.UnitDefend;
-            Unit unitAttack = args.UnitAttack;
-           
-            //玩家全部死亡，怪物技能清空
-            if (unitDefend.Type == UnitType.Player && unitAttack.Type == UnitType.Monster)
-            {
-                Unit nearest = AIHelp.GetNearestEnemy(unitAttack, unitAttack.GetComponent<AIComponent>().ActRange);
-                if (nearest == null)
-                {
-                    unitAttack.GetComponent<AIComponent>().ChangeTarget(0);
-                    unitAttack.GetComponent<SkillManagerComponent>().OnFinish(true);
-                }
-            }
-            //怪物死亡， 清除玩家BUFF
-            if (unitDefend.Type == UnitType.Monster)  
-            {
-                List<Unit> units = FubenHelp.GetUnitList(unitDefend.DomainScene(), UnitType.Player);
-                for(int i = 0; i < units.Count; i++)
-                {
-                    units[i].GetComponent<BuffManagerComponent>().OnRemoveBuffByUnit(unitDefend.Id);
-                }
-            }
-
+         
             await TimerComponent.Instance.WaitFrameAsync();
             if (unitDefend.IsDisposed)
             {
@@ -112,6 +91,7 @@ namespace ET
                 player.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
                 player.GetComponent<PetComponent>().OnKillUnit(defendUnit);
             }
+
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
                 List<Unit> units = FubenHelp.GetUnitList(domainScene, UnitType.Player);
@@ -162,7 +142,7 @@ namespace ET
                     domainScene.GetComponent<TrialDungeonComponent>().OnKillEvent(defendUnit);
                     break;
             }
-            OnUnitDead(args).Coroutine();
+            OnRemoveUnit(args).Coroutine();
         }
     }
 }

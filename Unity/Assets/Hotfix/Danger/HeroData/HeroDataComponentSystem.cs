@@ -245,6 +245,16 @@ namespace ET
                     unit.GetComponent<PetComponent>().OnPetDead(rolePetInfo.Id);
                 }
             }
+            //玩家死亡，怪物技能清空
+            if (unit.Type == UnitType.Player && args.Attack.Type == UnitType.Monster)
+            {
+                Unit nearest = AIHelp.GetNearestEnemy(args.Attack, args.Attack.GetComponent<AIComponent>().ActRange);
+                if (nearest == null)
+                {
+                    args.Attack.GetComponent<AIComponent>().ChangeTarget(0);
+                    args.Attack.GetComponent<SkillManagerComponent>().OnFinish(true);
+                }
+            }
             if (unit.Type == UnitType.Pet)
             {
                 int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
@@ -257,7 +267,16 @@ namespace ET
                     unit_manster.GetComponent<PetComponent>().OnPetDead(unit.Id);
                 }
             }
-          
+            //怪物死亡， 清除玩家BUFF
+            if (unit.Type == UnitType.Monster)
+            {
+                List<Unit> units = FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Player);
+                for (int i = 0; i < units.Count; i++)
+                {
+                    units[i].GetComponent<BuffManagerComponent>().OnRemoveBuffByUnit(unit.Id);
+                }
+            }
+
             Game.EventSystem.Publish(new EventType.KillEvent()
             {
                 WaitRevive = self.OnWaitRevive(),
