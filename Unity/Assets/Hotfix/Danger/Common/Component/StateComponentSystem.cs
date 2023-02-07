@@ -124,6 +124,7 @@ namespace ET
             //眩晕状态停止当前移动(服务器代码)
             if ( ErrorCore.ERR_Success!=self.CanMove())
             {
+                self.GetParent<Unit>().GetComponent<SkillManagerComponent>().InterruptSing(0, true);
                 self.GetParent<Unit>().Stop(-1);        //停止当前移动
             }
 #else
