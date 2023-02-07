@@ -317,19 +317,6 @@ namespace ET
             }
         }
 
-        public static void InterruptSing(this SkillManagerComponent self)
-        {
-            for (int i = self.Skills.Count - 1; i >= 0; i--)
-            {
-                ASkillHandler skillHandler = self.Skills[i];
-                if (skillHandler.SkillConf.SkillSingTime == 0f)
-                {
-                    continue;
-                }
-                skillHandler.SetSkillState(SkillState.Finished);
-            }
-        }
-
         public static int CanUseSkill(this SkillManagerComponent self,int itemId, int skillId)
         {
             Unit unit = self.GetParent<Unit>();

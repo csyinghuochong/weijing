@@ -27,15 +27,6 @@ namespace ET
                 nowNunt.GetComponent<StateComponent>().StateTypeRemove(message.StateType);
             }
 
-            if (message.StateOperateType == 1 && message.StateType == StateTypeEnum.Interrupt)
-            {
-                nowNunt.GetComponent<SkillManagerComponent>().InterruptSing();
-                if (nowNunt.MainHero)
-                {
-                    nowNunt.GetComponent<SingingComponent>().OnInterrupt();
-                }
-            }
-
             EventType.StateChange.Instance.m2C_UnitStateUpdate = message;
             EventType.StateChange.Instance.Unit = nowNunt;
             Game.EventSystem.PublishClass(EventType.StateChange.Instance);

@@ -28,10 +28,6 @@
             {
                 fsmComponent.ChangeState(FsmStateEnum.FsmIdleState, message.StateValue);
             }
-            if (message.StateType == StateTypeEnum.Interrupt && message.StateOperateType == 1)
-            {
-                fsmComponent.ChangeState(FsmStateEnum.FsmIdleState, message.StateValue);
-            }
         }
     }
 }

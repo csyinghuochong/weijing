@@ -15,6 +15,10 @@ namespace ET
                 return;
             }
             unit.GetComponent<SkillManagerComponent>().InterruptSkill(message.SkillId);
+
+            EventType.SkillInterrup.Instance.ZoneScene = session.ZoneScene();
+            EventType.SkillInterrup.Instance.Unit = unit;
+            EventSystem.Instance.PublishClass(EventType.SkillInterrup.Instance);
         }
     }
 }

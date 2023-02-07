@@ -271,6 +271,10 @@ namespace ET
             for (int i = self.Skills.Count - 1; i >= 0; i--)
             {
                 SkillHandler skillHandler = self.Skills[i];
+                if (skillHandler.SkillConf.Id != skillId)
+                {
+                    continue;
+                }
                 skillHandler.SetSkillState(SkillState.Finished);
             }
         }
@@ -294,7 +298,6 @@ namespace ET
                 if (ifStop)
                 {
                     skillHandler.SetSkillState(SkillState.Finished);
-
                     M2C_SkillInterruptResult m2C_SkillInterruptResult = new M2C_SkillInterruptResult() { UnitId = unit.Id, SkillId = skillHandler.SkillConf.Id };
                     MessageHelper.Broadcast(unit, m2C_SkillInterruptResult);
                 }
@@ -329,7 +332,6 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             M2C_SkillCmd m2C_Skill = self.M2C_SkillCmd;
-
             //判断技能是否可以释放
             int errorCode = self.IsCanUseSkill(skillcmd.SkillID, zhudong);
             if (zhudong && errorCode != ErrorCore.ERR_Success)
@@ -433,7 +435,11 @@ namespace ET
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
             int addSkillId = skillConfig.AddSkillID;
-            if (addSkillId!=0)
+            if (addSkillId!= 0 && !SkillConfigCategory.Instance.Contain(addSkillId))
+            {
+                Log.Debug($"skillConfig.AddSkillID无效：  {skillId} {addSkillId}");
+            }
+            if (addSkillId!=0 && SkillConfigCategory.Instance.Contain(addSkillId))
             {
                 c2M_SkillCmd.SkillID = addSkillId;
                 self.OnUseSkill(c2M_SkillCmd, false);

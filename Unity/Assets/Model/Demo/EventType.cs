@@ -409,6 +409,13 @@ namespace ET
             }
         }
 
+        public class SkillInterrup : DisposeObject
+        {
+            public static readonly SkillInterrup Instance = new SkillInterrup();
+            public Scene ZoneScene;
+            public Unit Unit;
+        }
+
         //技能预警
         public class SkillYuJing : DisposeObject
         {
