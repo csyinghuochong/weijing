@@ -145,8 +145,9 @@ namespace ET
             {
                 return;
             }
-            Log.Debug(unit.GetComponent<ActivityComponent>().ToString());
-            Log.Debug(unit.GetComponent<TaskComponent>().ToString());
+            ActivityComponent activityComponent = unit.GetComponent<ActivityComponent>();
+            Log.Debug($"活动领取： {activityComponent.ActivityReceiveIds.Count}  {activityComponent.QuTokenRecvive.Count}");
+            Log.Debug($"活跃任务： {unit.GetComponent<TaskComponent>().TaskCountryList.Count}");
         }
 
         public static int OnDisconnect(this DBSaveComponent self)

@@ -265,7 +265,10 @@ namespace ET
             }
             else
             {
-                Log.Warning($"增加货币:{Type} {unit.Id} {self.UserInfo.Name}  {value} {getWay}");
+                if (getWay != ItemGetWay.PickItem || gold > 1000)
+                {
+                    Log.Warning($"增加货币:{Type} {unit.Id} {self.UserInfo.Name}  {value} {getWay}");
+                }
             }
 
             self.UpdateRoleData(Type, value, notice);
