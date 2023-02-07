@@ -75,21 +75,38 @@ namespace ET
         {
             Unit defendUnit = args.UnitDefend;
             Scene domainScene = defendUnit.DomainScene();
-            defendUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
             MapComponent mapComponent = domainScene.GetComponent<MapComponent>();
+            defendUnit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Dead, 1);
+
             int sceneTypeEnum = mapComponent.SceneTypeEnum;
             int sceneId = mapComponent.SceneId;
 
-            Unit player = args.UnitAttack;
+            Unit mainAttack = args.UnitAttack;
             if (args.UnitAttack != null && !args.UnitAttack.IsDisposed)
             {
-                player = domainScene.GetComponent<UnitComponent>().Get(args.UnitAttack.GetMasterId());
+                mainAttack = domainScene.GetComponent<UnitComponent>().Get(args.UnitAttack.GetMasterId());
             }
-            if (player != null)
+
+            //队友共享
+            List<long> allAttackIds = new List<long>();
+            if (defendUnit.GetComponent<AIComponent>() != null)
             {
-                player.GetComponent<TaskComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
-                player.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
-                player.GetComponent<PetComponent>().OnKillUnit(defendUnit);
+                allAttackIds = defendUnit.GetComponent<AIComponent>().BeAttackPlayerList;
+            }
+            else if (mainAttack != null)
+            {
+                allAttackIds.Add(mainAttack.Id);
+            }
+            for (int i = 0; i < allAttackIds.Count; i++)
+            {
+                Unit beAttack = domainScene.GetComponent<UnitComponent>().Get(allAttackIds[i]);
+                if (beAttack == null || beAttack.Type != UnitType.Player)
+                {
+                    continue;
+                }
+                beAttack.GetComponent<TaskComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
+                beAttack.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
+                beAttack.GetComponent<PetComponent>().OnKillUnit(defendUnit);
             }
 
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
@@ -99,12 +116,15 @@ namespace ET
                 {
                     units[k].GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
                 }
-                UnitFactory.CreateDropItems(defendUnit, player, sceneTypeEnum, units.Count);
+                UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, units.Count);
             }
-            else if (player != null)
+            else
             {
-                player.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
-                UnitFactory.CreateDropItems(defendUnit, player, sceneTypeEnum, 1);
+                if (mainAttack != null)
+                {
+                    mainAttack.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
+                    UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, 1);
+                } 
             }
             switch (sceneTypeEnum)
             {
@@ -133,10 +153,10 @@ namespace ET
                     domainScene.GetComponent<RandomTowerComponent>().OnKillEvent(defendUnit);
                     break;
                 case SceneTypeEnum.LocalDungeon:
-                    domainScene.GetComponent<LocalDungeonComponent>().OnKillEvent(defendUnit, player);
+                    domainScene.GetComponent<LocalDungeonComponent>().OnKillEvent(defendUnit, mainAttack);
                     break;
                 case SceneTypeEnum.Battle:
-                    domainScene.GetComponent<BattleDungeonComponent>().OnKillEvent(defendUnit, player);
+                    domainScene.GetComponent<BattleDungeonComponent>().OnKillEvent(defendUnit, mainAttack);
                     break;
                 case SceneTypeEnum.TrialDungeon:
                     domainScene.GetComponent<TrialDungeonComponent>().OnKillEvent(defendUnit);
