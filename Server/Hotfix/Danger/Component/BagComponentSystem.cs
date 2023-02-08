@@ -653,13 +653,13 @@ namespace ET
                     //藏宝图
                     if (itemCof.ItemSubType == 113)
                     {
-                        ComHelp.TreasureItem(useBagInfo);
+                        ItemAddHelper.TreasureItem(useBagInfo);
                     }
                     //鉴定符
                     if (itemCof.ItemSubType == 121)
                     {
                         int shuliandu = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
-                        ComHelp.JianDingFuItem(useBagInfo, shuliandu, getType);
+                        ItemAddHelper.JianDingFuItem(useBagInfo, shuliandu, getType);
                     }
 
                     //拾取到橙色装备

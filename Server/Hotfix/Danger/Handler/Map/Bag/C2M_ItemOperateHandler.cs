@@ -549,7 +549,7 @@ namespace ET
                     {
                         //金币鉴定，扣除金币
                         qulitylv = itemCof.UseLv.ToString();
-                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData($"1;{ComHelp.GetJianDingCoin(itemCof.UseLv)}");
+                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData($"1;{ItemAddHelper.GetJianDingCoin(itemCof.UseLv)}");
                     }
                     else
                     {
@@ -564,7 +564,7 @@ namespace ET
                     {
                         //未鉴定才可以
                         useBagInfo.IfJianDing = false;
-                        useBagInfo.HideProLists = ComHelp.GetEquipZhuanJingHidePro(itemCof.ItemEquipID, itemCof.Id, int.Parse(qulitylv), unit, ifItem);
+                        useBagInfo.HideProLists = ItemAddHelper.GetEquipZhuanJingHidePro(itemCof.ItemEquipID, itemCof.Id, int.Parse(qulitylv), unit, ifItem);
                         m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
 
                         //如果当前有隐藏技能一起飘出
