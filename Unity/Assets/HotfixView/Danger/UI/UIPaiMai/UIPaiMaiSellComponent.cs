@@ -265,8 +265,13 @@ namespace ET
         /// <returns></returns>
         public static async ETTask UpdateSellItemUILIist(this UIPaiMaiSellComponent self, int subType)
         {
+            long instanceId = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiSellItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
 
             int number = 0;
             for (int i = 0; i < self.PaiMaiItemInfos.Count; i++)

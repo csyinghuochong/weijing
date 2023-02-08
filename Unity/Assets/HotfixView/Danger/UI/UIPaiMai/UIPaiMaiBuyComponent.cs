@@ -158,15 +158,25 @@ namespace ET
 
         public static async ETTask RequestAllPaiMaiList(this UIPaiMaiBuyComponent self)
         {
+            long instanceId = self.InstanceId;
             C2P_PaiMaiListRequest c2M_PaiMaiBuyRequest = new C2P_PaiMaiListRequest()
             {
                 PaiMaiType = 2,
                 UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId
             };
             P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse = (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
 
+            instanceId = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/PaiMai/UIPaiMaiBuyItem");
             var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
 
             int number = 0;
             List<PaiMaiItemInfo> PaiMaiItemInfos = m2C_PaiMaiBuyResponse.PaiMaiItemInfos;
