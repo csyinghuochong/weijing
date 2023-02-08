@@ -467,41 +467,6 @@ namespace ET
             return userDataType;
         }
 
-        //金币鉴定消费
-        public static int GetJianDingCoin(int level)
-        {
-            int gold = 25000;
-            bool ifStatus = false;
-
-            if (level <= 18)
-            {
-                gold = 25000;
-                ifStatus = true;
-            }
-
-            if (level <= 29 && ifStatus == false)
-            {
-                gold = 30000;
-            }
-
-            if (level <= 39 && ifStatus == false)
-            {
-                gold = 35000;
-            }
-
-            if (level <= 49 && ifStatus == false)
-            {
-                gold = 40000;
-            }
-
-            if (level <= 100 && ifStatus == false)
-            {
-                gold = 50000;
-            }
-
-            return gold;
-        }
-
         //浅拷贝即可
         public static T DeepCopy<T>(T obj)
         {

@@ -544,12 +544,11 @@ namespace ET
                     int rolelv = useInfo.Lv;
                     string qulitylv = "";
                     bool ifItem = false;
-
                     if (baginfoId == 0)        
                     {
                         //金币鉴定，扣除金币
                         qulitylv = itemCof.UseLv.ToString();
-                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData($"1;{ItemAddHelper.GetJianDingCoin(itemCof.UseLv)}");
+                        ifSell = unit.GetComponent<BagComponent>().OnCostItemData($"1;{ItemHelper.GetJianDingCoin(itemCof.UseLv)}");
                     }
                     else
                     {
