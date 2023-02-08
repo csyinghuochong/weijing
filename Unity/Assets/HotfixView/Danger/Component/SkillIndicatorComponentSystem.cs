@@ -172,23 +172,20 @@ namespace ET
         }
 
         //鼠标按下
+        /// <summary>
+        /// /0 默认为目标点  1 默认为自身位置 2 当前朝向最远处
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="targetId"></param>
         public static void OnMouseDown(this SkillIndicatorComponent self, long targetId = 0)
         {
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit target = unit.GetParent<UnitComponent>().Get(targetId);
             Vector2 vector2 = Vector2.zero;
             self.StartIndicator = Vector2.zero;
-            if (target == null  || self.ToSelfSkill(self.mSkillConfig.Id))
+
+            if (self.mSkillConfig.SkillZhishiTargetType == 0 && target != null)
             {
-                float roationy = Mathf.FloorToInt(unit.Rotation.eulerAngles.y);
-                Quaternion rotation = Quaternion.Euler(0, roationy, 0);
-                Vector3 postition = rotation * Vector3.forward * 0.01f;
-                vector2.x = postition.x;
-                vector2.y = postition.z;
-                self.OnMouseDrag(vector2);
-            }
-            else
-            { 
                 float distance = PositionHelper.Distance2D(target.Position, unit.Position);
                 float rate = distance / self.SkillRangeSize;
                 rate = Mathf.Min(rate, 1f);
@@ -196,6 +193,25 @@ namespace ET
                 vector2.x = direction.x;
                 vector2.y = direction.z;
                 vector2 = vector2.normalized * 80 * rate;
+                self.OnMouseDrag(vector2);
+            }
+            else if (self.mSkillConfig.SkillZhishiTargetType == 2)
+            {
+                float roationy = Mathf.FloorToInt(unit.Rotation.eulerAngles.y);
+                Quaternion rotation = Quaternion.Euler(0, roationy, 0);
+                Vector3 postition = rotation * Vector3.forward * 0.01f;
+                vector2.x = postition.x;
+                vector2.y = postition.z;
+                vector2 = vector2.normalized * 80 * 1f;
+                self.OnMouseDrag(vector2);
+            }
+            else
+            {
+                float roationy = Mathf.FloorToInt(unit.Rotation.eulerAngles.y);
+                Quaternion rotation = Quaternion.Euler(0, roationy, 0);
+                Vector3 postition = rotation * Vector3.forward * 0.01f;
+                vector2.x = postition.x;
+                vector2.y = postition.z;
                 self.OnMouseDrag(vector2);
             }
         }

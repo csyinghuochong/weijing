@@ -166,7 +166,7 @@ namespace ET
 
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Quaternion rotation = Quaternion.Euler(0, direction, 0);
-            Vector3 newv3 = unit.Position + rotation * Vector3.forward * 3f;
+            Vector3 newv3 = unit.Position + rotation * Vector3.forward * 4f;
             int obstruct = self.CheckObstruct(newv3);
             if (obstruct!= 0)
             {
