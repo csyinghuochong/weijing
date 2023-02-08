@@ -58,7 +58,6 @@ namespace ET
         public static void PetItemSelect(this UIPetXianjiComponent self, string dataParams)
         {
             string[] paramsList = dataParams.Split('@');
-
             self.PetXianjiId = long.Parse(paramsList[1]);
             RolePetInfo rolePetInfo = self.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(self.PetXianjiId);
 

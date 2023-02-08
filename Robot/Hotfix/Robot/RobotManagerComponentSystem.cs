@@ -70,7 +70,7 @@ namespace ET
                     }
                     else
                     {
-                        Log.Error($"{account}  {zone} 角色为空");
+                        Log.Debug($"{account}  {zone} 角色为空");
                         zoneScene?.Dispose();
                         return null;
                     }

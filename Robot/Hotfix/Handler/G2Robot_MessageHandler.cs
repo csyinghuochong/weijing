@@ -26,7 +26,10 @@ namespace ET
                         int robotId = BattleHelper.GetTeamRobotId(fubenId);
                         Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
                         BehaviourComponent behaviourComponent =  robotScene?.AddComponent<BehaviourComponent, int>(robotId);
-                        behaviourComponent.MessageValue = message.Message;
+                        if (behaviourComponent != null)
+                        {
+                            behaviourComponent.MessageValue = message.Message;
+                        }
                         await TimerComponent.Instance.WaitAsync(200);
                     }
                     break;
