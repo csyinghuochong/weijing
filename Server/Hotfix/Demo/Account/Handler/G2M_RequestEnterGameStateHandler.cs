@@ -19,7 +19,7 @@ namespace ET
                 if (request.GateSessionActorId == -1) //查询
                 {
                     response.Message = "玩家在线: {unit.Id}";
-                    Log.Debug(response.Message);
+                    //Log.Debug(response.Message);
                 }
             }
             catch (Exception ex)
