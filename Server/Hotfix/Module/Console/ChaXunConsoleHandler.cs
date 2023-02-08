@@ -81,6 +81,10 @@ namespace ET
                         {
                             Log.Debug("玩家不在线！");
                         }
+                        else
+                        {
+                            Log.Debug(reqEnter.Message);
+                        }
                     }
                     break;
             }
