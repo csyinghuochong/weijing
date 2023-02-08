@@ -177,14 +177,15 @@ namespace ET
                     {
                         string[] itemInfo = itemList[k].Split(',');
                         int itemId = int.Parse(itemInfo[0]);
+                        int itemNum = int.Parse(itemInfo[1]) * self.HuiShouInfos[i].ItemNum;
 
                         if (huishouGet.ContainsKey(itemId))
                         {
-                            huishouGet[itemId].ItemNum += int.Parse(itemInfo[1]);
+                            huishouGet[itemId].ItemNum += itemNum;
                         }
                         else
                         {
-                            huishouGet.Add(itemId, new BagInfo() { ItemID = itemId, ItemNum = int.Parse(itemInfo[1]) });
+                            huishouGet.Add(itemId, new BagInfo() { ItemID = itemId, ItemNum = itemNum });
                         }
                     }
                 }
