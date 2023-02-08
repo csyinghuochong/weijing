@@ -124,7 +124,7 @@ namespace ET
             if ( ErrorCore.ERR_Success!=self.CanMove())
             {
                 self.GetParent<Unit>().GetComponent<SkillManagerComponent>().InterruptSing(0, true);
-                self.GetParent<Unit>().Stop(-1);        //停止当前移动
+                self.GetParent<Unit>().Stop(0);        //停止当前移动
             }
 #else
             Unit unit = self.GetParent<Unit>();
