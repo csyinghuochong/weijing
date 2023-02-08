@@ -252,6 +252,9 @@ namespace ET
 		/// <summary>释放技能是否打断移动</summary>
 		[ProtoMember(59)]
 		public int IfStopMove { get; set; }
+		/// <summary>释放区域目标点类型</summary>
+		[ProtoMember(60)]
+		public int SkillZhishiTargetType { get; set; }
 
 	}
 }
