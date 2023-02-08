@@ -27,6 +27,12 @@ namespace ET
 				reply();
 				return;
 			}
+			
+
+			RolePetInfo petinfo_2_old = ComHelp.DeepCopy_2<RolePetInfo>(petinfo_2);
+
+			petinfo_2.PetHeXinList.Clear();
+
 
 			//错误码
 			//判定是否出战

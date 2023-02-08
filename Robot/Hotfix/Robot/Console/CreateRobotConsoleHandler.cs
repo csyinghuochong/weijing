@@ -21,7 +21,7 @@ namespace ET
                             .WithNotParsed(error => throw new Exception($"CreateRobotArgs error!"))
                             .WithParsed(o => { options = o; });
 
-                    // 获取当前进程的RobotScene
+  // 获取当前进程的RobotScene
                     using (ListComponent<StartSceneConfig> thisProcessRobotScenes = ListComponent<StartSceneConfig>.Create())
                     {
                         List<StartSceneConfig> robotSceneConfigs = StartSceneConfigCategory.Instance.Robots;
@@ -48,7 +48,7 @@ namespace ET
                             Log.Console($"create robot {robot.Zone}");
                             await TimerComponent.Instance.WaitAsync(1000);
                         }
-                    }
+                    }                  
                     break;
             }
             contex.Parent.RemoveComponent<ModeContex>();
