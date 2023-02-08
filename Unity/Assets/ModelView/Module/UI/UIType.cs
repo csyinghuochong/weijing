@@ -27,6 +27,7 @@ namespace ET
 		public const string UISelectServer = "Login/UISelectServer";
 		public const string UILoading = "Common/UILoading";
 		public const string UIPet = "Main/Pet/UIPet";
+		public const string UIPetXianji = "Main/Pet/UIPetXianji";
 		public const string UIPetChouKaGet = "Main/PetEgg/UIPetChouKaGet";
 		public const string UIPetSelect = "Main/Pet/UIPetSelect";
 		public const string UISkill = "Main/Skill/UISkill";

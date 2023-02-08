@@ -11,6 +11,7 @@ namespace ET
         UpStar_Main = 3,
         UpStar_FuZh = 4,
         RankPet_Team = 5,
+        XianJi  = 6,
     }
 
 
@@ -64,6 +65,12 @@ namespace ET
                 UI uipet = UIHelper.GetUI(self.DomainScene(), UIType.UIPet);
                 selected = uipet.GetComponent<UIPetComponent>().UIPageView.UISubViewList[(int)PetPageEnum.PetUpStar].GetComponent<UIPetUpStarComponent>().GetSelectedPet();
                 selected.AddRange(petTeamList);
+            }
+            if (self.OperationType == PetOperationType.XianJi)
+            {
+                UI uipet = UIHelper.GetUI(self.DomainScene(), UIType.UIPet);
+                long petinfoId = uipet.GetComponent<UIPetComponent>().UIPageView.UISubViewList[(int)PetPageEnum.PetList].GetComponent<UIPetListComponent>().LastSelectItem.Id;
+                selected.Add(petinfoId);
             }
             if (fightPetInfo != null)
             {

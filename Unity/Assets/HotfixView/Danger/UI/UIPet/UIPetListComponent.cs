@@ -7,6 +7,7 @@ namespace ET
 
     public class UIPetListComponent : Entity, IAwake, IDestroy
     {
+
         public GameObject ButtonCloseAddPoint;
         public GameObject AttributeNode;
         public GameObject ButtonCloseHexin;
@@ -201,7 +202,10 @@ namespace ET
             self.Btn_XiuXi.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
             //self.Btn_FangSheng.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
             self.Btn_ChuZhan.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
-            self.ImageJinHua.GetComponent<Button>().onClick.AddListener(() => { self.OnClickJinHua(); });
+            self.ImageJinHua.GetComponent<Button>().onClick.AddListener(() => { self.OnClickJinHua().Coroutine(); });
+
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            self.ImageJinHua.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
 
             self.PetComponent = self.ZoneScene().GetComponent<PetComponent>();
 
@@ -383,8 +387,11 @@ namespace ET
         }
 
         //进化按钮
-        public static void OnClickJinHua(this UIPetListComponent self)
+        public static async ETTask OnClickJinHua(this UIPetListComponent self)
         {
+            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIPetXianji);
+            uI.GetComponent<UIPetXianjiComponent>().OnInitUI(self.LastSelectItem.Id);
+
             RolePetInfo rolePetInfo = self.LastSelectItem;
             if (rolePetInfo.UpStageStatus == 0) {
                 FloatTipManager.Instance.ShowFloatTip("宠物在1-60级有概率进行进化,进化消耗1个宠之晶可以全面提升属性并有概率获得新的技能。");
@@ -406,10 +413,9 @@ namespace ET
 
         public static async ETTask OnJinHua(this UIPetListComponent self,long petInfoID)
         {
-
             RolePetInfo oldpetInfo = self.PetComponent.GetPetInfoByID(petInfoID);
 
-            C2M_RolePetUpStage c2M_RolePetUpStage = new C2M_RolePetUpStage() {PetInfoId = petInfoID };
+            C2M_RolePetUpStage c2M_RolePetUpStage = new C2M_RolePetUpStage() { PetInfoId = petInfoID };
             M2C_RolePetUpStage m2C_RolePetUpStageg = (M2C_RolePetUpStage)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetUpStage);
 
             if (m2C_RolePetUpStageg.Error == ErrorCore.ERR_Success)

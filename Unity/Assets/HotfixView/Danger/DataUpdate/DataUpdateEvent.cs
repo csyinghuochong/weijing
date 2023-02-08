@@ -264,6 +264,11 @@ namespace ET
                     uiComponent.PetItemSelect(DataParams);
                     continue;
                 }
+                if (component is UIPetXianjiComponent uixianjiComponent)
+                {
+                    uixianjiComponent.PetItemSelect(DataParams);
+                    continue;
+                }
             }
             return;
         }
