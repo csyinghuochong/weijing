@@ -87,7 +87,9 @@ namespace ET
 
             List<RewardItem> taskRewards = new List<RewardItem>();
             string ItemIDs = taskConfig.ItemID;
+            string ItemNum = taskConfig.ItemNum;
             string[] ids = ItemIDs.Split(';');
+            string[] nums = ItemNum.Split(';');
             for (int i = 0; i < ids.Length; i++)
             {
                 if (ids[i] == "0" || ids[i] == "")
@@ -96,7 +98,7 @@ namespace ET
                 }
                 RewardItem taskReward = new RewardItem();
                 taskReward.ItemID = int.Parse(ids[i]);
-                taskReward.ItemNum = 1;
+                taskReward.ItemNum = int.Parse(nums[i]);
                 taskRewards.Add(taskReward);
             }
             return taskRewards;
