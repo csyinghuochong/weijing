@@ -84,6 +84,7 @@ namespace ET
             skillIndicatorItem.GameObject = gameObject;
             skillIndicatorItem.GameObject.SetActive(true);
             self.InitZhishiEffect(skillIndicatorItem);
+            self.OnMouseDrag(Vector2.zero);
         }
 
         /// <summary>
@@ -219,13 +220,13 @@ namespace ET
         //鼠标拖拽
         public static void OnMouseDrag(this SkillIndicatorComponent self,Vector2 indicator)
         {
+            self.StartIndicator += indicator;
             SkillIndicatorItem skillIndicatorItem = self.SkillIndicator;
             if (skillIndicatorItem == null)
             {
                 return;
             }
 
-            self.StartIndicator += indicator;
             if (skillIndicatorItem.SkillZhishiType == SkillZhishiType.Position)
             {
                 float rate = 1;

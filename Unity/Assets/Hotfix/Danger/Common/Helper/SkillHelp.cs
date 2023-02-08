@@ -11,7 +11,7 @@ namespace ET
                 return skillId;
             if (!SkillWeaponConfigCategory.Instance.Contain(skillId))
             {
-                Log.Debug("错误的技能配置[WeaponType]_:" + skillId.ToString());
+                Log.Error("错误的技能配置[WeaponType]_:" + skillId.ToString());
                 return skillId;
             }
 
