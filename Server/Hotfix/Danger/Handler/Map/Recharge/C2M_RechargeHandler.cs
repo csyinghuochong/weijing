@@ -20,8 +20,15 @@ namespace ET
                 }
                 if (ComHelp.IsBanHaoZone(unit.DomainZone()))
                 {
-                    Log.Warning($"充值[版号服]SendDiamondToUnit： {unit.Id}");
+                    Log.Warning($"{unit.Id}: 充值[版号服]SendDiamondToUnit");
                     RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber, "版号服");
+                    reply();
+                    return;
+                }
+
+                if (request.PayType == PayTypeEnum.IOSPay || request.RechargeNumber == 0)
+                {
+                    Log.Warning($"{unit.Id}:  IOS拉起充值");
                     reply();
                     return;
                 }

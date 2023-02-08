@@ -509,6 +509,10 @@ namespace ET
                     uifriend.GetComponent<UIFriendComponent>().OnLeaveUnion();
                 }
             }
+            if (userDataType == UserDataType.Message)
+            {
+                PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "系统消息", updateValue, null).Coroutine();
+            }
         }
         public static void OnSettingUpdate(this UIMainComponent self)
         {

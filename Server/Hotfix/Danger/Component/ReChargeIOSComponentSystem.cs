@@ -40,7 +40,7 @@ namespace ET
 
             Log.Warning($"IOS充值回调11 {postReturnStr}");
             Root rt = JsonHelper.FromJson<Root>(postReturnStr);
-            Log.Debug($"IOS充值回调22 {rt.status}");
+            Log.Warning($"IOS充值回调22 {rt.status}");
             //交易失败，直接返回
             if (rt.status != 0)
             {

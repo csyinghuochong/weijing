@@ -141,6 +141,8 @@ namespace ET
 #if UNITY_IPHONE
             self.Loading.SetActive(true);
             GlobalHelp.OnIOSPurchase(chargetNumber);
+            C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() { RechargeNumber = 0, PayType = PayTypeEnum.IOSPay };
+            self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest).Coroutine();
 #else
             C2M_RechargeRequest c2E_GetAllMailRequest = new C2M_RechargeRequest() {  RechargeNumber = chargetNumber, PayType = self.PayType };
             M2C_RechargeResponse sendChatResponse = (M2C_RechargeResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_GetAllMailRequest);

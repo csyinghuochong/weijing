@@ -39,8 +39,8 @@ namespace ET
             LingDiConfig lingDiConfig = LingDiConfigCategory.Instance.Get(lingdiLv);
 
             //unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Exp, (coefficient *lingDiConfig.HoureExp).ToString(), notice).Coroutine();
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.FangRong, (coefficient * lingDiConfig.HoureExp).ToString(), notice);
-            unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.RongYu, (coefficient * lingDiConfig.HoureHonor).ToString(), notice);
+            self.UpdateRoleData(UserDataType.FangRong, (coefficient * lingDiConfig.HoureExp).ToString(), notice);
+            self.UpdateRoleData(UserDataType.RongYu, (coefficient * lingDiConfig.HoureHonor).ToString(), notice);
         }
          
         public static void OpenAll(this UserInfoComponent self)
