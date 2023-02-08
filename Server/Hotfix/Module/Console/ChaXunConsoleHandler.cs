@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace ET
@@ -19,10 +20,8 @@ namespace ET
                 default:
                     //chaxun 1 ""
                     string[] chaxunInfo = content.Split(" ");
-                    
                     if (chaxunInfo[0] != "chaxun")
                     {
-                        
                         return;
                     }
 
@@ -67,6 +66,7 @@ namespace ET
                     //查询单个玩家
                     if (chaxunInfo.Length == 3)
                     {
+                        Log.Debug($"name: {chaxunInfo[2]}");
                         List<UserInfoComponent> userinfoComponentList = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(pyzone, d => d.Id > 0&&d.UserInfo.Name == chaxunInfo[2]);
                         if (userinfoComponentList.Count == 0)
                         {
