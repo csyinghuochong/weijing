@@ -128,13 +128,13 @@ namespace ET
 						rewardItems.Add(new RewardItem() { ItemID = itemId, ItemNum = itemNumber });
 						unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.GM}_{TimeHelper.ServerNow()}", true, true);
 						break;
-					case 2:             //新增怪物2#-70#0#5#72000001#1  90000005-爆炸怪 72002013-脱战技能没移除
+					case 2:             //新增怪物2#7.2#0#-2.5#72000001#1  90000005-爆炸怪 72002013-脱战技能没移除
 						float posX = float.Parse(commands[1]);
 						float posY = float.Parse(commands[2]);
 						float posZ = float.Parse(commands[3]);
 						int monsterId = int.Parse(commands[4]);
 						int number = int.Parse(commands[5]);
-					
+						
 						for (int c = 0; c < number; c++)
 						{
 							await TimerComponent.Instance.WaitAsync(1);

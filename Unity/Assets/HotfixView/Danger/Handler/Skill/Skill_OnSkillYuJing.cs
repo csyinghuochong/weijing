@@ -6,7 +6,12 @@ namespace ET
         protected override void Run(object numerice)
         {
             EventType.SkillYuJing args = numerice as EventType.SkillYuJing;
-            args.Unit.GetComponent<SkillYujingComponent>()?.ShowMonsterSkillYujin(args.SkillInfo, args.SkillConfig.SkillDelayTime);
+
+            Unit unit = args.Unit;
+            Unit mainUnit = UnitHelper.GetMyUnitFromCurrentScene(unit.DomainScene());
+            bool canattack = mainUnit.IsCanAttackUnit(unit);
+
+            args.Unit.GetComponent<SkillYujingComponent>()?.ShowMonsterSkillYujin(args.SkillInfo, args.SkillConfig.SkillDelayTime, canattack);
         }
     }
 }

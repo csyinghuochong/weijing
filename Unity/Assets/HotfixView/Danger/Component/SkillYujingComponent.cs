@@ -81,7 +81,7 @@ namespace ET
         }
 
         //怪物技能预警
-        public static  void ShowMonsterSkillYujin(this SkillYujingComponent self, SkillInfo skillcmd, double delayTime)
+        public static  void ShowMonsterSkillYujin(this SkillYujingComponent self, SkillInfo skillcmd, double delayTime, bool enemyColor)
         {
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillcmd.WeaponSkillID);
             self.mSkillConfig = skillConfig;
@@ -93,6 +93,7 @@ namespace ET
             skillIndicatorItem.TargetAngle = skillcmd.TargetAngle;
             skillIndicatorItem.PassTime = 0;
             skillIndicatorItem.LiveTime = (float)delayTime;
+            skillIndicatorItem.EnemyColor = enemyColor;
             self.SkillIndicatorList.Add(skillIndicatorItem);
             GameObjectPoolComponent.Instance.AddLoadQueue(skillIndicatorItem.EffectPath, skillIndicatorItem.InstanceId, self.OnLoadGameObject);
         }
@@ -122,6 +123,43 @@ namespace ET
             SkillInfo skillcmd = skillIndicatorItem.SkillInfo;
             skillIndicatorItem.GameObject = gameObject;
             skillIndicatorItem.GameObject.transform.localScale = Vector3.one * 0.1f;
+
+            Color colorred = Color.red;
+            Color colorgreen = Color.green;
+
+            GameObject Quad_1 = null;
+            GameObject Quad_2 = null;
+
+            switch (skillIndicatorItem.SkillZhishiType)
+            {
+                case SkillZhishiType.Position:
+                    //effect = "SkillZhishi/Yujing_Position";
+                    Quad_1 = gameObject.transform.Find("Skill_InnerArea/Position/Quad").gameObject;
+                    Quad_2 = gameObject.transform.Find("Skill_OuterArea/Position/Quad").gameObject;
+
+                    //Quad_1.GetComponent<MeshRenderer>().material.color = skillIndicatorItem.EnemyColor ? Color.red : Color.green;
+                    //Quad_2.GetComponent<MeshRenderer>().material.color = skillIndicatorItem.EnemyColor ? Color.red : Color.green;
+                    break;
+                case SkillZhishiType.Line:
+                    //effect = "SkillZhishi/Yujing_Dir";
+                    Quad_1 = gameObject.transform.Find("Skill_Dir/scale/Quad1").gameObject;
+                    Quad_2 = gameObject.transform.Find("Skill_Dir/scale/Quad2").gameObject;
+                    break;
+                case SkillZhishiType.Angle60:
+                    //effect = "SkillZhishi/Yujing_Area_60";
+                    Quad_1 = gameObject.transform.Find("Skill_Area/Position/Quad").gameObject;
+                    Quad_2 = gameObject.transform.Find("Skill_Area_60/Position/scale/Quad").gameObject;
+                    break;
+                case SkillZhishiType.Angle120:
+                    //effect = "SkillZhishi/Yujing_Area_120";
+                    Quad_1 = gameObject.transform.Find("Skill_Area/Position/Quad").gameObject;
+                    Quad_2 = gameObject.transform.Find("Skill_Area_120/Position/scale/Quad").gameObject;
+                    break;
+            }
+
+            Quad_1.GetComponent<MeshRenderer>().material.SetColor("_TintColor", skillIndicatorItem.EnemyColor ? colorred : colorgreen);
+            Quad_2.GetComponent<MeshRenderer>().material.SetColor("_TintColor", skillIndicatorItem.EnemyColor ? colorred : colorgreen);
+
             skillIndicatorItem.GameObject.SetActive(true);
             UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);
             skillIndicatorItem.GameObject.transform.position = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ);
