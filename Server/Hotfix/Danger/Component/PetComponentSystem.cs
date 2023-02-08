@@ -337,7 +337,7 @@ namespace ET
             rolePetInfo.PetLv = newLevel;
 
             //每次升级有概率进化状态
-            if (RandomHelper.RandFloat01() > 0.01f && rolePetInfo.UpStageStatus == 0) {
+            if (RandomHelper.RandFloat01() > 0.02f && rolePetInfo.UpStageStatus == 0) {
                 rolePetInfo.UpStageStatus = 1;
             }
             
@@ -347,6 +347,8 @@ namespace ET
             //通知客户端
             MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataUpdate() { UpdateType = (int)UserDataType.Lv, PetId = rolePetInfo.Id, UpdateTypeValue = rolePetInfo.PetLv.ToString() });
             MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_PetDataBroadcast() { UnitId = self.GetParent<Unit>().Id, UpdateType = (int)UserDataType.Lv, PetId = rolePetInfo.Id, UpdateTypeValue = rolePetInfo.PetLv.ToString() });
+
+            self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "恭喜你,你的宠物在升级时金光一闪,领悟进化！");
         }
 
         public static void OnPetDead(this PetComponent self, long petId)

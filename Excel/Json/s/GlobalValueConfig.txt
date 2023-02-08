@@ -46,7 +46,7 @@
 {"_t":"GlobalValueConfig","_id":47,"Value":"101","Value2":101},
 {"_t":"GlobalValueConfig","_id":48,"Value":"3;100","Value2":0},
 {"_t":"GlobalValueConfig","_id":49,"Value":"1;9","Value2":0},
-{"_t":"GlobalValueConfig","_id":50,"Value":"10","Value2":10},
+{"_t":"GlobalValueConfig","_id":50,"Value":"20","Value2":20},
 {"_t":"GlobalValueConfig","_id":51,"Value":"1;100000","Value2":0},
 {"_t":"GlobalValueConfig","_id":52,"Value":"10000136;100@2000001","Value2":0},
 {"_t":"GlobalValueConfig","_id":53,"Value":"10000136;100@2000002","Value2":0},

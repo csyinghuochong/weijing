@@ -737,6 +737,12 @@ namespace ET
             textEquipTypeSon = self.GetEquipType(itemconf.EquipType);
             textEquipType = GameSettingLanguge.LoadLocalization(textEquipType);
 
+            //生肖处理
+            if (itemconf.EquipType == 101) {
+                textEquipType = self.GetEquipShengXiaoType(itemconf.ItemSubType%100);
+                textEquipTypeSon = GameSettingLanguge.LoadLocalization("生肖");
+            }
+
             string langStr = GameSettingLanguge.LoadLocalization("强化");
             int qianghuaLevel = self.BagComponent.GetQiangHuaLevel(itemconf.ItemSubType);
             if (qianghuaLevel != 0)
@@ -750,6 +756,12 @@ namespace ET
             {
                 self.Obj_Lab_EquipQiangHua.GetComponent<Text>().text = "+" + 0 + langStr;
             }
+
+            //生效不显示
+            if (itemconf.ItemType == 3 && itemconf.EquipType == 101) {
+                self.Obj_Lab_EquipQiangHua.SetActive(false);
+            }
+
 
             //显示是否绑定
             if (self.BagInfo.isBinging)
@@ -1060,6 +1072,54 @@ namespace ET
 
             return "";
         }
+
+        //获取装备子类型名称
+        public static string GetEquipShengXiaoType(this UIEquipTipsComponent self, int type)
+        {
+
+            switch (type)
+            {
+
+                case 1:
+                    return "鼠";
+
+                case 2:
+                    return "牛";
+
+                case 3:
+                    return "虎";
+
+                case 4:
+                    return "兔";
+
+                case 5:
+                    return "龙";
+
+                case 6:
+                    return "蛇";
+
+                case 7:
+                    return "马";
+
+                case 8:
+                    return "羊";
+
+                case 9:
+                    return "猴";
+
+                case 10:
+                    return "鸡";
+
+                case 11:
+                    return "狗";
+
+                case 12:
+                    return "猪";
+            }
+
+            return "";
+        }
+
     }
 
 }
