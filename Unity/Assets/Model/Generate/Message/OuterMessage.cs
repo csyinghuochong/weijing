@@ -4019,6 +4019,9 @@ namespace ET
 		[ProtoMember(37)]
 		public List<SkillInfo> Skills = new List<SkillInfo>();
 
+		[ProtoMember(38)]
+		public int UpStageStatus { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_SkillInitResponse))]
@@ -8951,6 +8954,41 @@ namespace ET
 
 		[ProtoMember(2)]
 		public int SkillId { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_RolePetUpStage))]
+//宠物进化
+	[Message(OuterOpcode.C2M_RolePetUpStage)]
+	[ProtoContract]
+	public partial class C2M_RolePetUpStage: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long PetInfoId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_RolePetUpStage)]
+	[ProtoContract]
+	public partial class M2C_RolePetUpStage: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
+
+		[ProtoMember(1)]
+		public RolePetInfo OldPetInfo { get; set; }
+
+		[ProtoMember(2)]
+		public RolePetInfo NewPetInfo { get; set; }
 
 	}
 

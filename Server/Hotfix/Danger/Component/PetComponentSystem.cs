@@ -213,10 +213,13 @@ namespace ET
             }
             MonsterConfig mCof = MonsterConfigCategory.Instance.Get(beKill.ConfigId);
             int playerLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
+
+            //超过5级不能获得经验
             if (rolePetInfo.PetLv >= playerLv + 5)
             {
                 return;
             }
+
             self.PetAddExp(rolePetInfo, mCof.Exp);
         }
 
@@ -243,6 +246,63 @@ namespace ET
             rolePetInfo.ZiZhi_Def = Math.Min(rolePetInfo.ZiZhi_Def, petConfig.ZiZhi_Def_Max);
             rolePetInfo.ZiZhi_Adf = Math.Min(rolePetInfo.ZiZhi_Adf, petConfig.ZiZhi_Adf_Max);
             rolePetInfo.ZiZhi_MageAct = Math.Min(rolePetInfo.ZiZhi_MageAct,petConfig.ZiZhi_MageAct_Max);
+        }
+
+        //宠物进化
+        public static void UpdatePetStage(this PetComponent self, RolePetInfo rolePetInfo)
+        {
+            PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+
+            int maxZiZhi = 25;
+            int minZiZhi = 5;
+
+            string[] ZiZhi_Hp = new string[] { (minZiZhi * 2).ToString(), (maxZiZhi * 2f).ToString() };
+            string[] ZiZhi_Act = new string[] { minZiZhi.ToString(), maxZiZhi.ToString() };
+            string[] ZiZhi_Def = new string[] { minZiZhi.ToString(), maxZiZhi.ToString() };
+            string[] ZiZhi_Adf = new string[] { minZiZhi.ToString(), maxZiZhi.ToString() };
+            string[] ZiZhi_MageAct = new string[] { minZiZhi.ToString(), maxZiZhi.ToString() };
+
+            rolePetInfo.ZiZhi_Hp += RandomHelper.RandomNumber(int.Parse(ZiZhi_Hp[0]), int.Parse(ZiZhi_Hp[1]));
+            rolePetInfo.ZiZhi_Act += RandomHelper.RandomNumber(int.Parse(ZiZhi_Act[0]), int.Parse(ZiZhi_Act[1]));
+            rolePetInfo.ZiZhi_Def += RandomHelper.RandomNumber(int.Parse(ZiZhi_Def[0]), int.Parse(ZiZhi_Def[1]));
+            rolePetInfo.ZiZhi_Adf += RandomHelper.RandomNumber(int.Parse(ZiZhi_Adf[0]), int.Parse(ZiZhi_Adf[1]));
+            rolePetInfo.ZiZhi_MageAct += RandomHelper.RandomNumber(int.Parse(ZiZhi_MageAct[0]), int.Parse(ZiZhi_MageAct[1]));
+
+            rolePetInfo.ZiZhi_Hp = Math.Min(rolePetInfo.ZiZhi_Hp, petConfig.ZiZhi_Hp_Max);
+            rolePetInfo.ZiZhi_Act = Math.Min(rolePetInfo.ZiZhi_Act, petConfig.ZiZhi_Act_Max);
+            rolePetInfo.ZiZhi_Def = Math.Min(rolePetInfo.ZiZhi_Def, petConfig.ZiZhi_Def_Max);
+            rolePetInfo.ZiZhi_Adf = Math.Min(rolePetInfo.ZiZhi_Adf, petConfig.ZiZhi_Adf_Max);
+            rolePetInfo.ZiZhi_MageAct = Math.Min(rolePetInfo.ZiZhi_MageAct, petConfig.ZiZhi_MageAct_Max);
+
+            //概率增加1个技能    1-2  100%   3 30%   4 10%    5 5%  
+            int addSkillID = 0;
+            if (RandomHelper.RandFloat01() <= 0.7f) {
+                //低级技能概率70%
+                int add = RandomHelper.RandomNumber(1, 28);
+                addSkillID = 80001000 + add;
+            }
+            else {
+                //高级技能30%
+                int add = RandomHelper.RandomNumber(1, 28);
+                addSkillID = 80002000 + add;
+            }
+
+            //如果当前技能有了那么就忽略掉此次技能附加。
+            if (rolePetInfo.PetSkill.Contains(addSkillID)) {
+                addSkillID = 0;
+            }
+
+            if (addSkillID != 0)
+            {
+                rolePetInfo.PetSkill.Add(addSkillID);
+            }
+
+            //设置成已进化
+            rolePetInfo.PetStatus = 2;
+
+            //刷新一下宠物属性
+            self.UpdatePetAttribute(rolePetInfo, true);
+
         }
 
         public static void UpdatePetChengZhang(this PetComponent self, RolePetInfo rolePetInfo, int itemId)
@@ -276,12 +336,18 @@ namespace ET
             rolePetInfo.AddPropretyNum += (newLevel - rolePetInfo.PetLv) * 5;
             rolePetInfo.PetLv = newLevel;
 
+            //每次升级有概率进化状态
+            if (RandomHelper.RandFloat01() > 0.01f && rolePetInfo.UpStageStatus == 0) {
+                rolePetInfo.UpStageStatus = 1;
+            }
+            
             //刷新属性
             self.UpdatePetAttribute(rolePetInfo, true);
 
             //通知客户端
             MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataUpdate() { UpdateType = (int)UserDataType.Lv, PetId = rolePetInfo.Id, UpdateTypeValue = rolePetInfo.PetLv.ToString() });
-            MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataBroadcast() {  UnitId = self.GetParent<Unit>().Id, UpdateType = (int)UserDataType.Lv, PetId = rolePetInfo.Id, UpdateTypeValue = rolePetInfo.PetLv.ToString() });
+            MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataBroadcast() { UnitId = self.GetParent<Unit>().Id, UpdateType = (int)UserDataType.Lv, PetId = rolePetInfo.Id, UpdateTypeValue = rolePetInfo.PetLv.ToString() });
+
         }
 
         public static void OnPetDead(this PetComponent self, long petId)
@@ -306,10 +372,12 @@ namespace ET
                 self.PetAddLv(rolePetInfo, 1);
                 newExp -= xiulianconf1.PetUpExp;
             }
+
             rolePetInfo.PetExp = newExp;
 
             //通知客户端
             MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataUpdate() { UpdateType = (int)UserDataType.Exp, PetId = rolePetInfo.Id, UpdateTypeValue = rolePetInfo.PetExp.ToString() });
+
         }
 
         public static long GetByKey(this PetComponent self, RolePetInfo rolePetInfo, int numericType)
@@ -347,7 +415,6 @@ namespace ET
             int pro_ZhiLi = int.Parse(attributeinfos[1]);            //智力
             int pro_TiZhi = int.Parse(attributeinfos[2]);            //体制
             int pro_NaiLi = int.Parse(attributeinfos[3]);            //耐力
-
 
             int act_Now = (int)((petCof.Base_Act + rolePetInfo.PetLv * petCof.Lv_Act + pro_LiLiang * 10) * actPro * rolePetInfo.ZiZhi_ChengZhang);
             int mage_Now = (int)((petCof.Base_MageAct + rolePetInfo.PetLv * petCof.Lv_MageAct + pro_ZhiLi * 10) * magePro * rolePetInfo.ZiZhi_ChengZhang);

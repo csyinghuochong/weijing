@@ -12,6 +12,7 @@ namespace ET
         public GameObject GameObject;
         //public GameObject Text_XiLianName;
         public GameObject TextSkillName;
+        public GameObject NewSkillHint;
         public ABAtlasTypes SkillAtlas;
         public int SkillId;
         public string addTip;
@@ -29,6 +30,7 @@ namespace ET
             self.ImageKuang = rc.Get<GameObject>("ImageKuang");
             //self.Text_XiLianName = rc.Get<GameObject>("Text_XiLianName");
             self.TextSkillName = rc.Get<GameObject>("TextSkillName");
+            self.NewSkillHint = rc.Get<GameObject>("NewSkillHint");
 
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.BeginDrag(pdata).Coroutine(); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(self.ImageIcon, (PointerEventData pdata) => { self.EndDrag(pdata); }, EventTriggerType.PointerUp);

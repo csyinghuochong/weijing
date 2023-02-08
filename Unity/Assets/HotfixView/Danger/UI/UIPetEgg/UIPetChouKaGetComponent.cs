@@ -21,6 +21,7 @@ namespace ET
 
         public List<UICommonSkillItemComponent> PetSkillUIList = new List<UICommonSkillItemComponent>();
         public GameObject[] PetZiZhiItemList = new GameObject[6];
+        public GameObject[] PetZiZhiItemAddList = new GameObject[6];
         public UIPetSkinIconComponent PetSkinIconComponent;
         public UIModelShowComponent uIModelShowComponent;
 
@@ -90,7 +91,7 @@ namespace ET
             UIHelper.Remove(  self.DomainScene(), UIType.UIPetChouKaGet );
         }
 
-        public static void OnInitUI(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo, List<KeyValuePair> oldSkins, bool showSkin = false)
+        public static void OnInitUI(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo, List<KeyValuePair> oldSkins, bool showSkin = false, RolePetInfo oldRolePetInfo = null)
         {
             try
             {
@@ -127,11 +128,11 @@ namespace ET
                 self.Text_Tip.GetComponent<Text>().text = $"{petConfig.PetName}";
                 self.PetSkinIconComponent.OnUpdateUI(rolePetInfo.SkinId, true);
 
-                self.UpdateSkillList(rolePetInfo);
-                self.UpdateAttribute(rolePetInfo);
-
+                self.UpdateSkillList(rolePetInfo, oldRolePetInfo);
+                self.UpdateAttribute(rolePetInfo, oldRolePetInfo);
 
                 self.Text_FightValue.GetComponent<Text>().text = ComHelp.PetPingJia(rolePetInfo).ToString();
+
             }
             catch (Exception ex)
             {
@@ -139,7 +140,7 @@ namespace ET
             }
         }
 
-        public static  void UpdateSkillList(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo)
+        public static  void UpdateSkillList(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo, RolePetInfo oldPetInfo = null)
         {
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonSkillItem");
             var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -156,8 +157,14 @@ namespace ET
                 {
                     GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(bagSpace, self.PetSkillNode);
-                    ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>( bagSpace);
+                    ui_item = self.AddChild<UICommonSkillItemComponent, GameObject>(bagSpace);
                     self.PetSkillUIList.Add(ui_item);
+
+                    if (oldPetInfo != null) {
+                        if (oldPetInfo.PetSkill.Contains(rolePetInfo.PetSkill[i]) == false) {
+                            ui_item.NewSkillHint.SetActive(true);
+                        }
+                    }
                 }
                 ui_item.OnUpdateUI(rolePetInfo.PetSkill[i], ABAtlasTypes.PetSkillIcon);
             }
@@ -168,7 +175,7 @@ namespace ET
             }
         }
 
-        public static void UpdateAttribute(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo)
+        public static void UpdateAttribute(this UIPetChouKaGetComponent self, RolePetInfo rolePetInfo, RolePetInfo oldPetInfo = null)
         {
             for (int i = 0; i < self.ImageStarList.transform.childCount; i++)
             {
@@ -195,7 +202,15 @@ namespace ET
             self.PetZiZhiItemList[3].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text = string.Format("{0}/{1}", rolePetInfo.ZiZhi_Adf, petConfig.ZiZhi_Adf_Max);
             self.PetZiZhiItemList[4].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text = string.Format("{0}/{1}", rolePetInfo.ZiZhi_MageAct, petConfig.ZiZhi_MageAct_Max);
             self.PetZiZhiItemList[5].transform.Find("Text_ZiZhiValue").GetComponent<Text>().text = string.Format("{0}/{1}", rolePetInfo.ZiZhi_ChengZhang, petConfig.ZiZhi_ChengZhang_Max);
-
+            if (oldPetInfo != null)
+            {
+                self.PetZiZhiItemList[0].transform.Find("Text_ZiZhiAddValue").GetComponent<Text>().text = string.Format("(提升" + (rolePetInfo.ZiZhi_Hp - oldPetInfo.ZiZhi_Hp) + "点)");
+                self.PetZiZhiItemList[1].transform.Find("Text_ZiZhiAddValue").GetComponent<Text>().text = string.Format("(提升" + (rolePetInfo.ZiZhi_Act - oldPetInfo.ZiZhi_Act) + "点)");
+                self.PetZiZhiItemList[2].transform.Find("Text_ZiZhiAddValue").GetComponent<Text>().text = string.Format("(提升" + (rolePetInfo.ZiZhi_Def - oldPetInfo.ZiZhi_Def) + "点)");
+                self.PetZiZhiItemList[3].transform.Find("Text_ZiZhiAddValue").GetComponent<Text>().text = string.Format("(提升" + (rolePetInfo.ZiZhi_Adf - oldPetInfo.ZiZhi_Adf) + "点)");
+                self.PetZiZhiItemList[4].transform.Find("Text_ZiZhiAddValue").GetComponent<Text>().text = string.Format("(提升" + (rolePetInfo.ZiZhi_MageAct - oldPetInfo.ZiZhi_MageAct) + "点)");
+                self.PetZiZhiItemList[5].transform.Find("Text_ZiZhiAddValue").GetComponent<Text>().text = string.Format("(提升" + (rolePetInfo.ZiZhi_ChengZhang - oldPetInfo.ZiZhi_ChengZhang) + "点)");
+            }
             self.PetZiZhiItemList[0].transform.Find("ImageExpValue").localScale = new Vector3(Mathf.Clamp(rolePetInfo.ZiZhi_Hp * 1f / petConfig.ZiZhi_Hp_Max, 0f, 1f), 1f, 1f);
             self.PetZiZhiItemList[1].transform.Find("ImageExpValue").localScale = new Vector3(Mathf.Clamp(rolePetInfo.ZiZhi_Act * 1f / petConfig.ZiZhi_Act_Max, 0f, 1f), 1f, 1f);
             self.PetZiZhiItemList[2].transform.Find("ImageExpValue").localScale = new Vector3(Mathf.Clamp(rolePetInfo.ZiZhi_Def * 1f / petConfig.ZiZhi_Def_Max, 0f, 1f), 1f, 1f);

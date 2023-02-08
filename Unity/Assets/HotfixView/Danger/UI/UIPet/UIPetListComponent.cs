@@ -62,6 +62,7 @@ namespace ET
 
         public GameObject ImageJinHua;
         public GameObject JinHuaReddot;
+        public GameObject Lab_JinHua;
 
         public UI PetModelShowComponent;
         public UI SkinModelShowComponent;
@@ -195,10 +196,12 @@ namespace ET
             self.Text_PetPingFen = rc.Get<GameObject>("Text_PetPingFen");
             self.ImageJinHua = rc.Get<GameObject>("ImageJinHua");
             self.JinHuaReddot = rc.Get<GameObject>("JinHuaReddot");
+            self.Lab_JinHua = rc.Get<GameObject>("Lab_JinHua");
 
             self.Btn_XiuXi.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
             //self.Btn_FangSheng.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
             self.Btn_ChuZhan.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
+            self.ImageJinHua.GetComponent<Button>().onClick.AddListener(() => { self.OnClickJinHua(); });
 
             self.PetComponent = self.ZoneScene().GetComponent<PetComponent>();
 
@@ -377,6 +380,45 @@ namespace ET
 
             RolePetInfo rolePetInfo = self.LastSelectItem;
             NetHelper.RequestPetFight(self.DomainScene(), rolePetInfo.Id, rolePetInfo.PetStatus == 0 ? 1 : 0).Coroutine();
+        }
+
+        //进化按钮
+        public static void OnClickJinHua(this UIPetListComponent self)
+        {
+            RolePetInfo rolePetInfo = self.LastSelectItem;
+            if (rolePetInfo.UpStageStatus == 0) {
+                FloatTipManager.Instance.ShowFloatTip("宠物在1-60级有概率进行进化,进化消耗1个宠之晶可以全面提升属性并有概率获得新的技能。");
+            }
+            if (rolePetInfo.UpStageStatus == 1)
+            {
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(),"宠物进化","是否消耗1个宠之晶全面进化一次宠物资质",
+                    () =>
+                    {
+                        self.OnJinHua(rolePetInfo.Id).Coroutine();
+                    }
+                    ).Coroutine();
+            }
+            if (rolePetInfo.UpStageStatus == 2)
+            {
+                FloatTipManager.Instance.ShowFloatTip("您的宠物已进化完成。");
+            }
+        }
+
+        public static async ETTask OnJinHua(this UIPetListComponent self,long petInfoID)
+        {
+
+            RolePetInfo oldpetInfo = self.PetComponent.GetPetInfoByID(petInfoID);
+
+            C2M_RolePetUpStage c2M_RolePetUpStage = new C2M_RolePetUpStage() {PetInfoId = petInfoID };
+            M2C_RolePetUpStage m2C_RolePetUpStageg = (M2C_RolePetUpStage)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RolePetUpStage);
+
+            if (m2C_RolePetUpStageg.Error == ErrorCore.ERR_Success)
+            {
+                UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIPetChouKaGet);
+                PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
+                List<KeyValuePair> oldPetSkin = petComponent.GetPetSkinCopy();
+                uI.GetComponent<UIPetChouKaGetComponent>().OnInitUI(m2C_RolePetUpStageg.NewPetInfo, oldPetSkin, false, oldpetInfo);
+            }
         }
 
         public static async ETTask InitModelShowView_1(this UIPetListComponent self)
@@ -864,7 +906,22 @@ namespace ET
             self.Text_PetPingFen.GetComponent<Text>().text = ComHelp.PetPingJia(rolePetInfo).ToString();
 
             //更新宠物是否进化
-            UICommonHelper.SetImageGray(self.ImageJinHua, true);
+            if (rolePetInfo.UpStageStatus == 0 || rolePetInfo.UpStageStatus == 1)
+            {
+                UICommonHelper.SetImageGray(self.ImageJinHua, true);
+                if (rolePetInfo.UpStageStatus == 1) {
+                    self.JinHuaReddot.SetActive(true);
+                    self.Lab_JinHua.GetComponent<Text>().text = "点击进化";
+                }
+                else {
+                    self.JinHuaReddot.SetActive(false);
+                    self.Lab_JinHua.GetComponent<Text>().text = "未进化";
+                }
+            }
+            else {
+                UICommonHelper.SetImageGray(self.ImageJinHua, false);
+                self.Lab_JinHua.GetComponent<Text>().text = "已进化";
+            }
         }
     }
 }

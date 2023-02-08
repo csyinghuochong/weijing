@@ -497,5 +497,7 @@ namespace ET
 		 public const ushort R2C_IOSPayVerifyResponse = 10494;
 		 public const ushort C2M_SkillInterruptRequest = 10495;
 		 public const ushort M2C_SkillInterruptResult = 10496;
+		 public const ushort C2M_RolePetUpStage = 10497;
+		 public const ushort M2C_RolePetUpStage = 10498;
 	}
 }

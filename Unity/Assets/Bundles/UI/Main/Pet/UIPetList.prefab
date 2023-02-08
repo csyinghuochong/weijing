@@ -23282,6 +23282,8 @@ MonoBehaviour:
     gameObject: {fileID: 5075901570445472654}
   - key: JinHuaReddot
     gameObject: {fileID: 3617618232627461815}
+  - key: Lab_JinHua
+    gameObject: {fileID: 5335834794595542990}
 --- !u!1 &4937500015458314991
 GameObject:
   m_ObjectHideFlags: 0
@@ -23890,7 +23892,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &7600943538590376678
 RectTransform:
   m_ObjectHideFlags: 0
@@ -24384,7 +24386,7 @@ GameObject:
   - component: {fileID: 8273207749946722042}
   - component: {fileID: 1903366355921444602}
   m_Layer: 5
-  m_Name: Text
+  m_Name: Lab_JinHua
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

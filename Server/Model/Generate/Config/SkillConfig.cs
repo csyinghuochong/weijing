@@ -172,89 +172,86 @@ namespace ET
 		[ProtoMember(32)]
 		public int SkillZhishiType { get; set; }
 		/// <summary>释放区域大小</summary>
-		[ProtoMember(33)]
+		[ProtoMember(34)]
 		public double SkillRangeSize { get; set; }
 		/// <summary>技能指示器增加范围</summary>
-		[ProtoMember(34)]
+		[ProtoMember(35)]
 		public int SkillRangeZhiShiSize { get; set; }
 		/// <summary>施法前吟唱时间</summary>
-		[ProtoMember(35)]
+		[ProtoMember(36)]
 		public double SkillFrontSingTime { get; set; }
 		/// <summary>施法中吟唱时间</summary>
-		[ProtoMember(36)]
+		[ProtoMember(37)]
 		public double SkillSingTime { get; set; }
 		/// <summary>技能僵直</summary>
-		[ProtoMember(37)]
+		[ProtoMember(38)]
 		public double SkillRigidity { get; set; }
 		/// <summary>技能存在时间[毫秒]</summary>
-		[ProtoMember(38)]
+		[ProtoMember(39)]
 		public int SkillLiveTime { get; set; }
 		/// <summary>技能效果延迟时间</summary>
-		[ProtoMember(39)]
+		[ProtoMember(40)]
 		public double SkillDelayTime { get; set; }
 		/// <summary>技能移动速度</summary>
-		[ProtoMember(40)]
+		[ProtoMember(41)]
 		public double SkillMoveSpeed { get; set; }
 		/// <summary>初始化BUFFID</summary>
-		[ProtoMember(41)]
+		[ProtoMember(42)]
 		public int[] InitBuffID { get; set; }
 		/// <summary>释放BUFFID</summary>
-		[ProtoMember(42)]
+		[ProtoMember(43)]
 		public int[] BuffID { get; set; }
 		/// <summary>施法动作名称</summary>
-		[ProtoMember(43)]
+		[ProtoMember(44)]
 		public string SkillAnimation { get; set; }
 		/// <summary>技能音效</summary>
-		[ProtoMember(44)]
+		[ProtoMember(45)]
 		public string SkillMusic { get; set; }
 		/// <summary>技能特效ID</summary>
-		[ProtoMember(45)]
+		[ProtoMember(46)]
 		public int SkillHitEffectID { get; set; }
 		/// <summary>技能特效ID</summary>
-		[ProtoMember(46)]
+		[ProtoMember(47)]
 		public int[] SkillEffectID { get; set; }
 		/// <summary>脚本名称</summary>
-		[ProtoMember(47)]
+		[ProtoMember(48)]
 		public string GameObjectName { get; set; }
 		/// <summary>每个脚本对应参数</summary>
-		[ProtoMember(48)]
+		[ProtoMember(49)]
 		public string GameObjectParameter { get; set; }
 		/// <summary>所有脚本通用参数</summary>
-		[ProtoMember(49)]
+		[ProtoMember(50)]
 		public string ComObjParameter { get; set; }
 		/// <summary>是否显示</summary>
-		[ProtoMember(50)]
+		[ProtoMember(51)]
 		public int IsShow { get; set; }
 		/// <summary>技能描述</summary>
-		[ProtoMember(51)]
+		[ProtoMember(52)]
 		public string SkillDescribe { get; set; }
 		/// <summary>施法时面对目标时间</summary>
-		[ProtoMember(52)]
+		[ProtoMember(53)]
 		public double IfLookAtTatgetTime { get; set; }
 		/// <summary>触发技能时附带技能</summary>
-		[ProtoMember(53)]
+		[ProtoMember(54)]
 		public int AddSkillID { get; set; }
 		/// <summary>技能触发时间</summary>
-		[ProtoMember(54)]
+		[ProtoMember(55)]
 		public double PassiveSkillTriggerTime { get; set; }
 		/// <summary>施法时是否面对目标</summary>
-		[ProtoMember(55)]
+		[ProtoMember(56)]
 		public int IfLookAtTarget { get; set; }
 		/// <summary>怪物技能延迟</summary>
-		[ProtoMember(56)]
+		[ProtoMember(57)]
 		public double MonsterDelayTime { get; set; }
 		/// <summary>宠物互斥ID</summary>
-		[ProtoMember(57)]
+		[ProtoMember(58)]
 		public int HuChiID { get; set; }
 		/// <summary>触发自身拥有技能</summary>
-		[ProtoMember(58)]
+		[ProtoMember(59)]
 		public int[] TriggerSelfSkillID { get; set; }
 		/// <summary>释放技能是否打断移动</summary>
-		[ProtoMember(59)]
-		public int IfStopMove { get; set; }
-		/// <summary>释放区域目标点类型</summary>
 		[ProtoMember(60)]
-		public int SkillZhishiTargetType { get; set; }
+		public int IfStopMove { get; set; }
 
 	}
 }

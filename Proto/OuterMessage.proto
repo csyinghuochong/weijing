@@ -1887,6 +1887,8 @@ message RolePetInfo
 	repeated int64 PetHeXinList = 35;
 	repeated KeyValuePair Buffs = 36;
 	repeated SkillInfo Skills = 37;
+	int32 UpStageStatus = 38;			//0 未进化  1 可进化  2 已进化
+
 }
 
 //ResponseType M2C_SkillInitResponse
@@ -4291,5 +4293,22 @@ message M2C_SkillInterruptResult // IActorMessage
 	int64 ActorId = 93;
 	int64 UnitId = 1;
 	int32 SkillId = 2;
+}
+
+//ResponseType M2C_RolePetUpStage
+//宠物进化
+message C2M_RolePetUpStage // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 PetInfoId = 1;
+}
+
+message M2C_RolePetUpStage // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;		
+	int32 Error = 92;
+	RolePetInfo OldPetInfo = 1;
+	RolePetInfo NewPetInfo = 2;
 }
 
