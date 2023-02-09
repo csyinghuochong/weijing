@@ -158,7 +158,7 @@ namespace ET
             if (horseId == 0)
             {
                 self.RecoverHorse();
-                unit.GetComponent<AnimatorComponent>().OnUpdateHorse(self.GameObject);
+                unit.GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
                 unit.GetComponent<FsmComponent>().SetIdleState();
             }
             else
@@ -170,7 +170,7 @@ namespace ET
                 UICommonHelper.SetParent(self.GameObject, HoreseHelper.GetHorseNode(self.ObjectHorse));
                 self.GameObject.transform.localScale = HoreseHelper.GetRoleScale(horseId) * Vector3.one;
                 unit.GetComponent<FsmComponent>().SetHorseState();
-                unit.GetComponent<AnimatorComponent>().OnUpdateHorse(go);
+                unit.GetComponent<AnimatorComponent>().UpdateAnimator(go);
             }
         }
 
@@ -251,7 +251,7 @@ namespace ET
                     if (unit.MainHero)
                     {
                         Transform topTf = unit.GetComponent<HeroTransformComponent>().GetTranform(PosType.Head).transform;
-                        self.OnMainHero(topTf, go.transform, mapComponent.SceneTypeEnum);
+                        NpcLocalHelper.OnMainHero(topTf, go.transform, mapComponent.SceneTypeEnum);
                     }
                     break;
                 case UnitType.Monster:
@@ -362,34 +362,6 @@ namespace ET
                     unit.AddComponent<TransferUIComponent>().OnInitUI(unit.ConfigId).Coroutine();
                     unit.GetComponent<ChuansongComponent>().ChuanSongOpen = true;
                     break;
-            }
-        }
-
-        public static void OnMainHero(this GameObjectComponent self, Transform topTf, Transform mainTf, int sceneTypeEnum)
-        {
-            Camera camera = UIComponent.Instance.MainCamera;
-            camera.GetComponent<MyCamera_1>().enabled = sceneTypeEnum == SceneTypeEnum.MainCityScene;
-            camera.GetComponent<MyCamera_1>().Target = topTf;
-
-            GameObject shiBingSet = GameObject.Find("ShiBingSet");
-            if (shiBingSet != null)
-            {
-                string path_2 = ABPathHelper.GetUGUIPath($"Battle/UINpcLocal");
-                GameObject npc_go = ResourcesComponent.Instance.LoadAsset<GameObject>(path_2);
-                for (int i = 0; i < shiBingSet.transform.childCount; i++)
-                {
-                    GameObject shiBingItem = shiBingSet.transform.GetChild(i).gameObject;
-                    NpcLocal npcLocal = shiBingItem.GetComponent<NpcLocal>();
-                    if (npcLocal == null)
-                    {
-                        continue;
-                    }
-                    NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcLocal.NpcId);
-                    npcLocal.Target = mainTf;
-                    npcLocal.NpcName = npcConfig.Name;
-                    npcLocal.NpcSpeak = npcConfig.SpeakText;
-                    npcLocal.AssetBundle = npc_go;
-                }
             }
         }
 

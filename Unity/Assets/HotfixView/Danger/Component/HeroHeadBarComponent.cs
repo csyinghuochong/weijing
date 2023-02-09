@@ -172,6 +172,10 @@ namespace ET
             {
                 return;
             }
+            if (this.HeadBar == null)
+            {
+                return;
+            }
             this.HeadBar.transform.localPosition = houseId > 0 ? new Vector3(0f, 180f, 0f): new Vector3(0f, 120f, 0f);
         }
 
@@ -196,6 +200,8 @@ namespace ET
                 {
                     JiaZuShowSet.SetActive(false);
                 }
+
+                unit.GetComponent<GameObjectComponent>().OnUpdateHorse();
             }
             //显示怪物名称
             if (unit.Type == UnitType.Monster)

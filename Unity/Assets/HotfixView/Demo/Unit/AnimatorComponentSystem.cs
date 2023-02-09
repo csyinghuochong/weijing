@@ -29,10 +29,6 @@ namespace ET
 		public static int Speed = 1;
 		//public static SkillActionBase skill;
 
-		public static void OnUpdateHorse(this AnimatorComponent self, GameObject go)
-		{
-			self.UpdateAnimator(go);
-		}
 
 		public static void UpdateAnimator(this AnimatorComponent self, GameObject gameObject)
 		{
