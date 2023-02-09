@@ -29,7 +29,10 @@ namespace ET
                     //移除宠物
                     petComponent.RemovePet(request.PetInfoXianJiId);
                     response.OldPetInfo = ComHelp.DeepCopy<RolePetInfo>(rolePetInfo);
-                    petComponent.UpdatePetStage(rolePetInfo);
+
+                    //获取评分
+                    int pingfen = ComHelp.PetPingJia(rolePetInfoXianJi);
+                    petComponent.UpdatePetStage(rolePetInfo, pingfen);
                     response.NewPetInfo = rolePetInfo;
                 }
                 else {

@@ -249,12 +249,19 @@ namespace ET
         }
 
         //宠物进化
-        public static void UpdatePetStage(this PetComponent self, RolePetInfo rolePetInfo)
+        public static void UpdatePetStage(this PetComponent self, RolePetInfo rolePetInfo,int pingfen)
         {
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
 
             int maxZiZhi = 25;
             int minZiZhi = 5;
+
+            float floatPro = (float)(pingfen / 5000);
+            minZiZhi = (int)((float)minZiZhi * floatPro);
+            maxZiZhi = (int)((float)maxZiZhi * floatPro);
+
+            minZiZhi = Math.Min(minZiZhi,5);
+            maxZiZhi = Math.Min(maxZiZhi, 25);
 
             string[] ZiZhi_Hp = new string[] { (minZiZhi * 2).ToString(), (maxZiZhi * 2f).ToString() };
             string[] ZiZhi_Act = new string[] { minZiZhi.ToString(), maxZiZhi.ToString() };
@@ -275,16 +282,19 @@ namespace ET
             rolePetInfo.ZiZhi_MageAct = Math.Min(rolePetInfo.ZiZhi_MageAct, petConfig.ZiZhi_MageAct_Max);
 
             //概率增加1个技能    1-2  100%   3 30%   4 10%    5 5%  
+
             int addSkillID = 0;
-            if (RandomHelper.RandFloat01() <= 0.7f) {
+            if (RandomHelper.RandFloat01() <= floatPro + 0.5f) {
+                if (RandomHelper.RandFloat01() <= 0.7f) {
                 //低级技能概率70%
                 int add = RandomHelper.RandomNumber(1, 28);
                 addSkillID = 80001000 + add;
-            }
-            else {
-                //高级技能30%
-                int add = RandomHelper.RandomNumber(1, 28);
-                addSkillID = 80002000 + add;
+                }
+                else {
+                    //高级技能30%
+                    int add = RandomHelper.RandomNumber(1, 28);
+                    addSkillID = 80002000 + add;
+                }
             }
 
             //如果当前技能有了那么就忽略掉此次技能附加。

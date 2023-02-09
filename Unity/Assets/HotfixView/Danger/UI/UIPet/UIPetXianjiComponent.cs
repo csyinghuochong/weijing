@@ -83,21 +83,25 @@ namespace ET
                 if (fightNum <= 3000)
                 {
                     self.Label_JianDingShow.GetComponent<Text>().text = "一般";
+                    self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(1);
                 }
 
                 if (fightNum <= 5000)
                 {
                     self.Label_JianDingShow.GetComponent<Text>().text = "较好";
+                    self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(2);
                 }
 
                 if (fightNum <= 7000)
                 {
                     self.Label_JianDingShow.GetComponent<Text>().text = "极好";
+                    self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(3);
                 }
 
                 if (fightNum > 7000)
                 {
                     self.Label_JianDingShow.GetComponent<Text>().text = "完美";
+                    self.Label_JianDingShow.GetComponent<Text>().color = UICommonHelper.QualityReturnColor(4);
                 }
             }
             
