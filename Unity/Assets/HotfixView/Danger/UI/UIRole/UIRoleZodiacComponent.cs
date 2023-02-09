@@ -40,9 +40,9 @@ namespace ET
             self.ButtonColse = rc.Get<GameObject>("ButtonColse");
             self.ButtonColse.GetComponent<Button>().onClick.AddListener(() => 
             { 
-                UIHelper.Remove(self.ZoneScene(), UIType.UIRoleZodiac);
                 UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIRole);
                 ui.GetComponent<UIRoleComponent>().OnCloseRoleZodiac();
+                UIHelper.Remove(self.ZoneScene(), UIType.UIRoleZodiac);
             });
 
             //单选组件
@@ -85,6 +85,7 @@ namespace ET
             self.Occ = occ;
 
             self.UIPageButtonComponent.OnSelectIndex(0);
+
         }
 
         public static void UpdateBagUI(this UIRoleZodiacComponent self, List<BagInfo> equiplist, int occ, ItemOperateEnum itemOperateEnum)
@@ -104,6 +105,25 @@ namespace ET
             List<BagInfo> equiplist = self.EquipInfoList;
             for (int i = 0; i < equiplist.Count; i++)
             {
+                //改变底框
+                if (page == 0)
+                {
+                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, "ItemQuality_2");
+                    self.EquipList[i].GameObject.transform.Find("Img_EquipBack").GetComponent<Image>().sprite = sp;
+                }
+
+                if (page == 1)
+                {
+                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, "ItemQuality_3");
+                    self.EquipList[i].GameObject.transform.Find("Img_EquipBack").GetComponent<Image>().sprite = sp;
+                }
+
+                if (page == 2)
+                {
+                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, "ItemQuality_4");
+                    self.EquipList[i].GameObject.transform.Find("Img_EquipBack").GetComponent<Image>().sprite = sp;
+                }
+
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID);
                 if (itemConfig.EquipType != 101)
                 {
@@ -125,7 +145,12 @@ namespace ET
                 }
 
                 self.EquipList[itemConfig.ItemSubType % 100 - 1].UpdateData(equiplist[i], self.Occ, self.ItemOperateEnum, equiplist);
+
+
             }
+
+
+
         }
     }
 }
