@@ -87,9 +87,13 @@ namespace ET
 
         public static async ETTask UpdateLatelyServer(this UISelectServerComponent self, List<ServerItem> ids)
         {
+            long instanceId = self.InstanceId;
             string path = ABPathHelper.GetUGUIPath("Login/UISelectServerItem");
-            await ETTask.CompletedTask;
-            GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            GameObject bundleObj =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
 
             for (int i = 0; i < ids.Count; i++)
             {
@@ -108,7 +112,7 @@ namespace ET
                     uIItemComponent.SetClickHandler((ServerItem serverId) => { self.OnClickServerItem(serverId); });
                     self.LateServerUIList.Add(ui_1);
                 }
-                ui_1.GetComponent<UISelectServerItemComponent>().OnUpdateData(ids[i]);
+                ui_1.GetComponent<UISelectServerItemComponent>().OnUpdateData(ids[i], -1);
             }
             for (int i = ids.Count; i < self.LateServerUIList.Count; i++)
             {
@@ -118,10 +122,17 @@ namespace ET
 
         public static async ETTask UpdateAllServerList(this UISelectServerComponent self, List<ServerItem> allserverList)
         {
+            long instanceId = self.InstanceId;
             string path = ABPathHelper.GetUGUIPath("Login/UISelectServerItem");
-            await ETTask.CompletedTask;
-            GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-
+            GameObject bundleObj =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
+            allserverList.Sort(delegate (ServerItem a, ServerItem b)
+            {
+                return b.ServerId - a.ServerId;
+            });
             for (int i = 0; i < allserverList.Count; i++)
             {
                 UI ui_1;
@@ -139,20 +150,18 @@ namespace ET
                     uIItemComponent.SetClickHandler((ServerItem serverId) => { self.OnClickServerItem(serverId); });
                     self.AllServerUIList.Add(ui_1);
                 }
-                ui_1.GetComponent<UISelectServerItemComponent>().OnUpdateData(allserverList[i]);
+                ui_1.GetComponent<UISelectServerItemComponent>().OnUpdateData(allserverList[i], i);
             }
             for (int i = allserverList.Count; i < self.AllServerUIList.Count; i++)
             {
                 self.AllServerUIList[i].GameObject.SetActive(false);
             }
-
-            long instanceId = self.InstanceId;
-            await TimerComponent.Instance.WaitAsync(100);
-            if (instanceId != self.InstanceId)
-            {
-                return;
-            }
-            self.ScrollView1.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
+            //await TimerComponent.Instance.WaitAsync(100);
+            //if (instanceId != self.InstanceId)
+            //{
+            //    return;
+            //}
+            //self.ScrollView1.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
         }
 
         public static void OnClickServerItem(this UISelectServerComponent self, ServerItem serverId)
