@@ -37,6 +37,7 @@ namespace ET
             }
 
             // 广播寻路路径
+            M2C_PathfindingResult m2CPathfindingResult = new M2C_PathfindingResult();
             m2CPathfindingResult.Xs.Clear();
             m2CPathfindingResult.Ys.Clear();
             m2CPathfindingResult.Zs.Clear();

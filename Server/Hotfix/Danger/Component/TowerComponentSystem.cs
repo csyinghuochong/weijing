@@ -41,6 +41,10 @@ namespace ET
 
         public static void OnTowerOver(this TowerComponent self)
         {
+            if (self.Timer == 0)
+            {
+                return;
+            }
             TimerComponent.Instance.Remove(ref self.Timer);
 
             string[] ids = GlobalValueConfigCategory.Instance.Get(65).Value.Split(';');
