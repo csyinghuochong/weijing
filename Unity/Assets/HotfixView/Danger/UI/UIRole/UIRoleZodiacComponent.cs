@@ -38,7 +38,12 @@ namespace ET
             self.BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
 
             self.ButtonColse = rc.Get<GameObject>("ButtonColse");
-            self.ButtonColse.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIRoleZodiac); });
+            self.ButtonColse.GetComponent<Button>().onClick.AddListener(() => 
+            { 
+                UIHelper.Remove(self.ZoneScene(), UIType.UIRoleZodiac);
+                UI ui = UIHelper.GetUI(self.ZoneScene(), UIType.UIRole);
+                ui.GetComponent<UIRoleComponent>().OnCloseRoleZodiac();
+            });
 
             //单选组件
             GameObject BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
