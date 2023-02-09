@@ -149,11 +149,6 @@ namespace ET
             }
         }
 
-        public static GameObject GetHorseNode(this GameObjectComponent self)
-        {
-            return self.ObjectHorse.Get<GameObject>("Root");
-        }
-
         public static void OnLoadHorse(this GameObjectComponent self, GameObject go, long formId)
         {
             self.ObjectHorse = go;
@@ -172,7 +167,8 @@ namespace ET
                 go.SetActive(true);
                 go.transform.localPosition = unit.Position;
                 go.transform.rotation = unit.Rotation;
-                UICommonHelper.SetParent(self.GameObject, self.GetHorseNode());
+                UICommonHelper.SetParent(self.GameObject, HoreseHelper.GetHorseNode(self.ObjectHorse));
+                self.GameObject.transform.localScale = HoreseHelper.GetRoleScale(horseId) * Vector3.one;
                 unit.GetComponent<FsmComponent>().SetHorseState();
                 unit.GetComponent<AnimatorComponent>().OnUpdateHorse(go);
             }
