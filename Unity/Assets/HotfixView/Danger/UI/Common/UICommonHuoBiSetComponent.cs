@@ -88,6 +88,10 @@ namespace ET
                 {
                     UIHelper.GetUI(self.DomainScene(), UIType.UISetting).GetComponent<UISettingComponent>().OnBeforeClose();
                 }
+                if (UIHelper.OpenUIList[0] == UIType.UIRole)
+                {
+                    UIHelper.Remove(self.ZoneScene(), UIType.UIRoleZodiac);
+                }
                 UIHelper.Remove(self.DomainScene(), UIHelper.OpenUIList[0]);
             }
         }
