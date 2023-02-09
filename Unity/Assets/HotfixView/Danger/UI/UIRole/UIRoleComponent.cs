@@ -24,6 +24,7 @@ namespace ET
 		public GameObject ObjLabRoleName;
 		public GameObject ObjLab_RoseComBat;
 		public GameObject ObjLab_RoseOccShow;
+		public GameObject ButtonZodiac;
 
 		public GameObject RawImage;
 		public UIPageButtonComponent UIPageButton;
@@ -73,6 +74,12 @@ namespace ET
 			self.ObjLab_RoseComBat = rc.Get<GameObject>("Lab_RoseComBat");
 			self.ObjLab_RoseOccShow = rc.Get<GameObject>("Lab_RoseOccShow");
 
+			AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+			self.ButtonZodiac = rc.Get<GameObject>("ButtonZodiac");
+			self.ButtonZodiac.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
+			ButtonHelp.AddListenerEx(self.ButtonZodiac, () => { self.OnButtonZodiac().Coroutine(); });
+
+
 			//初始化显示背包
 			self.InitSubView();
 
@@ -117,6 +124,20 @@ namespace ET
 
 	public static class UIRoleComponentSystem
 	{
+
+		public static async ETTask OnButtonZodiac(this UIRoleComponent self)
+		{
+			UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIRoleZodiac);
+			UIEquipSetComponent EquipSetComponent = self.UIEquipSetComponent;
+			uI.GetComponent<UIRoleZodiacComponent>().OnInitUI(EquipSetComponent.EquipInfoList, EquipSetComponent.Occ, EquipSetComponent.ItemOperateEnum);
+
+			self.UIEquipSetComponent.GameObject.SetActive(false);
+		}
+
+		public static void OnCloseRoleZodiac(this UIRoleComponent self)
+		{
+			self.UIEquipSetComponent.GameObject.SetActive(false);
+		}
 
 		public static void Reddot_RolePoint(this UIRoleComponent self, int num)
 		{

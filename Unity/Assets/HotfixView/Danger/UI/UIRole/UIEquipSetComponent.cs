@@ -8,7 +8,6 @@ namespace ET
     public class UIEquipSetComponent : Entity, IAwake, IAwake<GameObject, int>
     {
 
-        public GameObject ButtonZodiac;
         public GameObject RawImage;
         public UIModelShowComponent UIModelShowComponent;
         public List<UIEquipSetItemComponent> EquipList = new List<UIEquipSetItemComponent>();
@@ -42,11 +41,6 @@ namespace ET
                 gameObject.transform.Find("Equip_6").gameObject.SetActive(true);
                 gameObject.transform.Find("Equip_7").gameObject.SetActive(true);
             }
-
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();    
-            self.ButtonZodiac = gameObject.transform.Find("ButtonZodiac").gameObject;
-            self.ButtonZodiac.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account)) ;
-            ButtonHelp.AddListenerEx(self.ButtonZodiac, () => { self.OnButtonZodiac().Coroutine(); });
 
             self.RawImage = gameObject.transform.Find("EquipSetHide/RawImage").gameObject;
             self.RawImage.SetActive(false);
@@ -122,12 +116,6 @@ namespace ET
         public static void PlayerName(this UIEquipSetComponent self, string playerName)
         {
             self.GameObject.transform.Find("EquipSetHide/RoseNameLv/Lab_RoseName").GetComponent<Text>().text = playerName;
-        }
-
-        public static async ETTask OnButtonZodiac(this UIEquipSetComponent self)
-        {
-            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIRoleZodiac);
-            uI.GetComponent<UIRoleZodiacComponent>().OnInitUI(self.EquipInfoList, self.Occ, self.ItemOperateEnum);
         }
 
         public static void UpdateBagUI(this UIEquipSetComponent self, List<BagInfo> equiplist, int occ, ItemOperateEnum itemOperateEnum)
