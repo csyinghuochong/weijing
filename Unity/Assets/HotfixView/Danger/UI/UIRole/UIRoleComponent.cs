@@ -157,6 +157,11 @@ namespace ET
 			{
 				self.UIEquipSetComponent.PlayShowIdelAnimate(null);
 			}
+			if (page == 0)
+			{
+				self.OnCloseRoleZodiac();
+			}
+			UIHelper.Remove(self.ZoneScene(), UIType.UIRoleZodiac);
 			self.UIEquipSetComponent.EquipSetHide(page!= 2);
 		}
 

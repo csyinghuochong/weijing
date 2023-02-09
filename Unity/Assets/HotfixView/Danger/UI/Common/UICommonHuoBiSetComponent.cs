@@ -92,6 +92,7 @@ namespace ET
                 {
                     UIHelper.Remove(self.ZoneScene(), UIType.UIRoleZodiac);
                 }
+                UIHelper.Remove(self.ZoneScene(), UIType.UIRoleZodiac);
                 UIHelper.Remove(self.DomainScene(), UIHelper.OpenUIList[0]);
             }
         }
