@@ -131,12 +131,14 @@ namespace ET
 			UIEquipSetComponent EquipSetComponent = self.UIEquipSetComponent;
 			uI.GetComponent<UIRoleZodiacComponent>().OnInitUI(EquipSetComponent.EquipInfoList, EquipSetComponent.Occ, EquipSetComponent.ItemOperateEnum);
 
+			self.ButtonZodiac.SetActive(false);
 			self.UIEquipSetComponent.GameObject.SetActive(false);
 		}
 
 		public static void OnCloseRoleZodiac(this UIRoleComponent self)
 		{
-			self.UIEquipSetComponent.GameObject.SetActive(false);
+			self.ButtonZodiac.SetActive(true);
+			self.UIEquipSetComponent.GameObject.SetActive(true);
 		}
 
 		public static void Reddot_RolePoint(this UIRoleComponent self, int num)
