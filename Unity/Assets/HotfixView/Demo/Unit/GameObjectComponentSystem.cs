@@ -151,7 +151,7 @@ namespace ET
 
         public static GameObject GetHorseNode(this GameObjectComponent self)
         {
-            return self.ObjectHorse.transform.Find("RoleBoneSet/Head").gameObject;
+            return self.ObjectHorse.Get<GameObject>("Root");
         }
 
         public static void OnLoadHorse(this GameObjectComponent self, GameObject go, long formId)
