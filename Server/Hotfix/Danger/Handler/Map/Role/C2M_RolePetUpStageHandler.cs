@@ -12,13 +12,22 @@ namespace ET
             PetComponent petComponent = unit.GetComponent<PetComponent>();
             RolePetInfo rolePetInfo = petComponent.GetPetInfo(request.PetInfoId);
 
+            if (request.PetInfoXianJiId <= 0) {
+                response.Error = ErrorCore.ERR_Pet_UpStage;
+                reply();
+            }
+
+            RolePetInfo rolePetInfoXianJi = petComponent.GetPetInfo(request.PetInfoXianJiId);
+
             //判断当前宠物是否是进阶中的状态
             if (rolePetInfo.UpStageStatus == 1)
             {
-                //判断当前背包是否有宠之晶
-                BagComponent bag = unit.GetComponent<BagComponent>();
-                if (bag.OnCostItemData("10010086;1"))
+                //判断当前宠物是否有献祭
+                //BagComponent bag = unit.GetComponent<BagComponent>();
+                if (rolePetInfoXianJi != null)
                 {
+                    //移除宠物
+                    petComponent.RemovePet(request.PetInfoXianJiId);
                     response.OldPetInfo = ComHelp.DeepCopy<RolePetInfo>(rolePetInfo);
                     petComponent.UpdatePetStage(rolePetInfo);
                     response.NewPetInfo = rolePetInfo;

@@ -4301,6 +4301,7 @@ message C2M_RolePetUpStage // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 PetInfoId = 1;
+	int64 PetInfoXianJiId = 2;
 }
 
 message M2C_RolePetUpStage // IActorLocationResponse

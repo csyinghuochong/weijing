@@ -125,7 +125,7 @@ namespace ET
             }
 
             int randomNum = 0;
-            float randomFloat = RandomHelper.RandFloat() + addJianDingPro;
+            float randomFloat = RandomHelper.RandFloat01() + addJianDingPro;
 
             Log.Info("randomFloat == " + randomFloat + "  JianDingPro = " + JianDingPro);
 
@@ -184,6 +184,10 @@ namespace ET
                     if (JianDingPro >= 1.5f)
                     {
                         randomValueInt = 5;
+                    }
+                    else if (JianDingPro >= 1f)
+                    {
+                        randomValueInt = 3;
                     }
                 }
 

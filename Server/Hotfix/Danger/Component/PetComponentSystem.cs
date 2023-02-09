@@ -298,7 +298,7 @@ namespace ET
             }
 
             //设置成已进化
-            rolePetInfo.PetStatus = 2;
+            rolePetInfo.UpStageStatus = 2;
 
             //刷新一下宠物属性
             self.UpdatePetAttribute(rolePetInfo, true);
@@ -337,8 +337,9 @@ namespace ET
             rolePetInfo.PetLv = newLevel;
 
             //每次升级有概率进化状态
-            if (RandomHelper.RandFloat01() > 0.02f && rolePetInfo.UpStageStatus == 0) {
+            if (RandomHelper.RandFloat01() <= 0.02f && rolePetInfo.UpStageStatus == 0) {
                 rolePetInfo.UpStageStatus = 1;
+                self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "恭喜你,你的宠物在升级时金光一闪,领悟进化！");
             }
             
             //刷新属性
@@ -348,7 +349,6 @@ namespace ET
             MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_PetDataUpdate() { UpdateType = (int)UserDataType.Lv, PetId = rolePetInfo.Id, UpdateTypeValue = rolePetInfo.PetLv.ToString() });
             MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_PetDataBroadcast() { UnitId = self.GetParent<Unit>().Id, UpdateType = (int)UserDataType.Lv, PetId = rolePetInfo.Id, UpdateTypeValue = rolePetInfo.PetLv.ToString() });
 
-            self.GetParent<Unit>().GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Message, "恭喜你,你的宠物在升级时金光一闪,领悟进化！");
         }
 
         public static void OnPetDead(this PetComponent self, long petId)

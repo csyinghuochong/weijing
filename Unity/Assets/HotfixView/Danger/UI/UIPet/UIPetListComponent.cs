@@ -202,7 +202,7 @@ namespace ET
             self.Btn_XiuXi.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
             //self.Btn_FangSheng.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
             self.Btn_ChuZhan.GetComponent<Button>().onClick.AddListener(() => { self.OnClickChuZhan(); });
-            self.ImageJinHua.GetComponent<Button>().onClick.AddListener(() => { self.OnClickJinHua().Coroutine(); });
+            self.ImageJinHua.GetComponent<Button>().onClick.AddListener(() => { self.OnClickJinHua(); });
 
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             self.ImageJinHua.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
@@ -328,6 +328,7 @@ namespace ET
             {
                 return;
             }
+
             PetComponent petComponent = self.ZoneScene().GetComponent<PetComponent>();
             if (!petComponent.HavePetSkin(self.LastSelectItem.ConfigId, self.PetSkinId))
             {
@@ -387,28 +388,34 @@ namespace ET
         }
 
         //进化按钮
-        public static async ETTask OnClickJinHua(this UIPetListComponent self)
+        public static void OnClickJinHua(this UIPetListComponent self)
         {
-            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIPetXianji);
-            uI.GetComponent<UIPetXianjiComponent>().OnInitUI(self.LastSelectItem.Id);
-
             RolePetInfo rolePetInfo = self.LastSelectItem;
             if (rolePetInfo.UpStageStatus == 0) {
-                FloatTipManager.Instance.ShowFloatTip("宠物在1-60级有概率进行进化,进化消耗1个宠之晶可以全面提升属性并有概率获得新的技能。");
+                FloatTipManager.Instance.ShowFloatTip("宠物在1-60级有概率进行进化,进化消耗1个基础宠物全面提升属性并有概率获得新的技能。");
             }
             if (rolePetInfo.UpStageStatus == 1)
             {
-                PopupTipHelp.OpenPopupTip(self.ZoneScene(),"宠物进化","是否消耗1个宠之晶全面进化一次宠物资质",
+                self.OpenJinHuaUI().Coroutine();
+                /*
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(),"宠物进化","是否献祭1个宠物后全面进化一次宠物资质",
                     () =>
                     {
-                        self.OnJinHua(rolePetInfo.Id).Coroutine();
+                        self.OpenJinHuaUI().Coroutine();
                     }
                     ).Coroutine();
+                */
             }
             if (rolePetInfo.UpStageStatus == 2)
             {
                 FloatTipManager.Instance.ShowFloatTip("您的宠物已进化完成。");
             }
+        }
+
+        public static async ETTask OpenJinHuaUI(this UIPetListComponent self)
+        {
+            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIPetXianji);
+            uI.GetComponent<UIPetXianjiComponent>().OnInitUI(self.LastSelectItem.Id);
         }
 
         public static async ETTask OnJinHua(this UIPetListComponent self,long petInfoID)
@@ -926,6 +933,7 @@ namespace ET
             }
             else {
                 UICommonHelper.SetImageGray(self.ImageJinHua, false);
+                self.JinHuaReddot.SetActive(false);
                 self.Lab_JinHua.GetComponent<Text>().text = "已进化";
             }
         }

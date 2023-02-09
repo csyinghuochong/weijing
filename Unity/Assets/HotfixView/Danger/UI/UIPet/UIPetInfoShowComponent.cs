@@ -123,10 +123,12 @@ namespace ET
 
         public static void UpdateAttribute(this UIPetInfoShowComponent self, RolePetInfo rolePetInfo)
         {
+            /*
             for (int i = 0; i < self.ImageStarList.transform.childCount; i++)
             {
                 self.ImageStarList.transform.GetChild(i).gameObject.SetActive(rolePetInfo.Star > i);
             }
+            */
             self.Text_PetName.GetComponent<Text>().text = rolePetInfo.PetName;
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petConfig.HeadIcon);
@@ -168,7 +170,7 @@ namespace ET
 
         public static void CheckNoPet(this UIPetInfoShowComponent self, bool havepet)
         {
-            self.ImageStarList.SetActive(havepet && !GlobalHelp.IsBanHaoMode);
+            //self.ImageStarList.SetActive(havepet && !GlobalHelp.IsBanHaoMode);
             self.Img_PetHeroIon.SetActive(havepet);
             self.Text_PetLevel.SetActive(havepet);
             self.Text_PetExp.SetActive(havepet);
