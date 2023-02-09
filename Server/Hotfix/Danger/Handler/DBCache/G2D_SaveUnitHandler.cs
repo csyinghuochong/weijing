@@ -34,6 +34,11 @@ namespace ET
                 }
                 await unitCacheComponent.AddOrUpdate(request.UnitId, entityList);
             }
+
+            if (request.UnitId == 1603809198615887872)
+            {
+                Log.Debug($"缓存数据： {unitCacheComponent.UnitCaches.Count}") ;
+            }
         }
 
     }

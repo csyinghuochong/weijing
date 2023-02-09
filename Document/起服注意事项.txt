@@ -12,3 +12,6 @@ StartZoneConfig@s 如果要合区 一定要配置新的物理区
 5  合区。 先备份要合的区，用bson的export.    
     执行    1_merge_zone， 传入要合并的两个区
 6   删档，  先备份要合的区，用bson的export.    
+
+7  重启一下mongindb.exe
+以管理员运行命令行，手动输入命令 net start mongodb 开启服务。

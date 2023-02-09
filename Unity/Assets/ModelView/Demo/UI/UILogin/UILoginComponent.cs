@@ -57,6 +57,6 @@ namespace ET
 
 		public int LoginErrorNumber;
 
-		public bool IOSReview = true;
+		public bool IOSReview = false;
 	}
 }
