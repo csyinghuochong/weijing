@@ -20,7 +20,7 @@ namespace ET
         }
     }
 
-    public class UIOpenBoxComponent : Entity, IAwake
+    public class UIOpenBoxComponent : Entity, IAwake, IDestroy
     {
         public GameObject Img_Progress;
         public long TotalTime = 3000;
@@ -41,6 +41,15 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.Img_Progress = rc.Get<GameObject>("Img_Progress");
             self.GetParent<UI>().GameObject.SetActive(false);
+        }
+    }
+
+    [ObjectSystem]
+    public class UIOpenBoxComponentDestroy : DestroySystem<UIOpenBoxComponent>
+    {
+        public override void Destroy(UIOpenBoxComponent self)
+        {
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
@@ -75,6 +84,10 @@ namespace ET
             self.GetParent<UI>().GameObject.SetActive(unitId != 0);
             TimerComponent.Instance?.Remove(ref self.Timer);
 
+            if (unitId == 0)
+            {
+                return;
+            }
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             Unit box = unit.GetParent<UnitComponent>().Get(unitId);
             if (box == null)
