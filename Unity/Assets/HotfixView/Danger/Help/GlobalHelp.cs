@@ -81,17 +81,7 @@ namespace ET
 
         public static void OnIOSPurchase(int rmb)
         {
-            string product = string.Empty;
-            if (rmb == 488)
-            {
-                product = $"{rmb}SG";
-            }
-            else
-            {
-                product = $"{rmb}WJ";
-            }
-
-
+            string product =  $"{rmb}WJ";
             GameObject.Find("Global").GetComponent<PurchasingManager>().OnIOSPurchase(product);
         }
 

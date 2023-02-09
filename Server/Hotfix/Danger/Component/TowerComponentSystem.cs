@@ -10,6 +10,7 @@ namespace ET
         public override void Awake(TowerComponent self)
         {
             self.TowerId = 0;
+            self.Timer = 0;
         }
     }
 
@@ -18,7 +19,6 @@ namespace ET
     {
         public override void Destroy(TowerComponent self)
         {
-            TimerComponent.Instance.Remove(ref self.Timer);
         }
     }
 
@@ -41,7 +41,7 @@ namespace ET
 
         public static void OnTowerOver(this TowerComponent self)
         {
-            if (self.Timer == 0)
+            if (self.TowerId == 0)
             {
                 return;
             }
@@ -85,11 +85,11 @@ namespace ET
             UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();
             userInfoComponent.UpdateRoleData(UserDataType.Exp, message.RewardExp.ToString());
             userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, message.RewardGold.ToString(), true, ItemGetWay.TiaoZhan);
+            self.TowerId = 0;
         }
 
         public static void OnTimer(this TowerComponent self)
         {
-            TimerComponent.Instance.Remove(ref self.Timer);
             //奖励
             self.TowerId = self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
             if (TowerHelper.GetLastTower(self.FubenDifficulty) == self.TowerId)

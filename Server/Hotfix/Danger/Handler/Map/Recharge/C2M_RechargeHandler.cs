@@ -20,7 +20,7 @@ namespace ET
                 }
                 if (ComHelp.IsBanHaoZone(unit.DomainZone()))
                 {
-                    Log.Warning($"{unit.Id}: 充值[版号服]SendDiamondToUnit");
+                    Log.Warning($"充值[版号服]SendDiamondToUnit: {unit.Id}");
                     RechargeHelp.SendDiamondToUnit(unit, request.RechargeNumber, "版号服");
                     reply();
                     return;
@@ -28,7 +28,7 @@ namespace ET
 
                 if (request.PayType == PayTypeEnum.IOSPay || request.RechargeNumber == 0)
                 {
-                    Log.Warning($"{unit.Id}:  IOS拉起充值");
+                    Log.Warning($"IOS拉起充值 :  {unit.Id}  {request.RechargeNumber}");
                     reply();
                     return;
                 }

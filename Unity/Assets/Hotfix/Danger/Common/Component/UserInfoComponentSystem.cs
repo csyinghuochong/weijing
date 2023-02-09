@@ -389,6 +389,9 @@ namespace ET
                     self.UserInfo.Vitality = (int)newValue;
                     saveValue = self.UserInfo.Vitality.ToString();
                     break;
+                default:
+                    saveValue = value;
+                    break;
             }
 
             //发送更新值

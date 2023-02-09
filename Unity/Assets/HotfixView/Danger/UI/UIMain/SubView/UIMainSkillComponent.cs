@@ -112,6 +112,11 @@ namespace ET
 
         public static void OnSkillCDUpdate(this UIMainSkillComponent self)
         {
+            if (self.SkillManagerComponent == null)
+            {
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                self.SkillManagerComponent = unit.GetComponent<SkillManagerComponent>();
+            }
             long serverTime = TimeHelper.ServerNow();
             for (int i = 0; i < self.UISkillGirdList.Count; i++)
             {
@@ -125,6 +130,7 @@ namespace ET
         public static void OnEnterScene(this UIMainSkillComponent self, Unit unit)
         {
             self.SkillManagerComponent = unit.GetComponent<SkillManagerComponent>();
+            self.OnSkillCDUpdate();
         }
 
         public static void ResetUI(this UIMainSkillComponent self)

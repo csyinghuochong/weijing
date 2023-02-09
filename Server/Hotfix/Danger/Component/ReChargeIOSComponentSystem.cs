@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -17,10 +18,9 @@ namespace ET
 
         public static async ETTask<int> OnIOSPayVerify(this ReChargeIOSComponent self, M2R_RechargeRequest request)
         {
-            await ETTask.CompletedTask;
             Log.Warning($"IOS充值回调执行00 " + "id:" + request.UnitId);
             string verifyURL = string.Empty;
-            if (request.UnitId == 1603809198615887872)
+            if (request.UnitId == 1603809198615887872 || request.UnitId == 1636544958309662720)
             {
                 verifyURL = "https://sandbox.itunes.apple.com/verifyReceipt";
             }
@@ -69,33 +69,44 @@ namespace ET
 
             string dingDanTime = rt.receipt.purchase_date_ms;
             //判断时间
+            List<InApp> in_app_list = rt.receipt.in_app;
+            Log.Warning($"IOS充值回调[inapp]: {in_app_list.Count}");
+            for (int i = 0; i < in_app_list.Count; i++)
+            {
+                InApp inApp = in_app_list[i];   
+                string product_id = inApp.product_id;
 
-            string product_id = rt.receipt.in_app[0].product_id;
-            //198SG
-            if (!product_id.Contains("WJ") && !product_id.Contains("SG"))
-            {
-                Log.Warning($"IOS充值回调ERROR5");
-                return ErrorCore.ERR_IOSVerify;
+                if (product_id.Contains("SG"))
+                {
+                    Log.Warning($"IOS充值回调ERROR5 : SG");
+                    continue;
+                }
+                if (!product_id.Contains("WJ"))
+                {
+                    Log.Warning($"IOS充值回调ERROR6 : !WJ");
+                    continue;
+                }
+
+                product_id = product_id.Substring(0, product_id.Length - 2);
+                int rechargeNumber = 0;
+                try
+                {
+                    rechargeNumber = int.Parse(product_id);
+                }
+                catch (Exception ex)
+                {
+                    Log.Warning(ex.ToString());
+                    continue;
+                }
+                self.PayLoadList.Add(payLoad);
+                if (self.PayLoadList.Count >= 100)
+                {
+                    self.PayLoadList.RemoveAt(0);
+                }
+                Log.Warning($"IOS充值成功！{rechargeNumber}");
+                await RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, postReturnStr);
             }
 
-            product_id = product_id.Substring(0, product_id.Length - 2);
-            int rechargeNumber = 0;
-            try
-            {
-                rechargeNumber = int.Parse(product_id);
-            }
-            catch (Exception ex)
-            {
-                Log.Warning(ex.ToString());
-                return ErrorCore.ERR_IOSVerify;
-            }
-            self.PayLoadList.Add(payLoad);
-            if (self.PayLoadList.Count >= 100)
-            {
-                self.PayLoadList.RemoveAt(0);
-            }
-            Log.Warning($"IOS充值成功！{rechargeNumber}");
-            RechargeHelp.OnPaySucessToGate(request.Zone, request.UnitId, rechargeNumber, postReturnStr).Coroutine();
             return ErrorCore.ERR_Success;
         }
     }

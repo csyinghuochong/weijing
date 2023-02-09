@@ -73,6 +73,9 @@ namespace ET
                     updateValue = (int.Parse(message.UpdateTypeValue) - userInfo.Vitality).ToString();
                     userInfo.Vitality = int.Parse(message.UpdateTypeValue);
                     break;
+                default:
+                    updateValue = message.UpdateTypeValue;
+                    break;
             }
 
             //发送监听,更新当前信息显示
