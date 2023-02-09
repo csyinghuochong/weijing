@@ -15,6 +15,7 @@ namespace ET
         public GameObject Btn_Equip;
         public GameObject Img_EquipBangDing;
         public List<BagInfo> EquipIdList = new List<BagInfo>();
+        public GameObject GameObject;
         public BagInfo BagInfo;
         public int Occ;
 
@@ -27,6 +28,7 @@ namespace ET
         public override void Awake(UIEquipSetItemComponent self, GameObject gameObject)
         {
             //ReferenceCollector rc = .GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
             Transform tf = gameObject.transform;
             self.Img_EquipIcon = tf.Find("Img_EquipIcon").gameObject;
             self.Btn_Equip = tf.Find("Btn_Equip").gameObject;
