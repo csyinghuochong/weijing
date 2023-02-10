@@ -37,7 +37,10 @@ namespace ET
 
             if (request.UnitId == 1603809198615887872)
             {
-                Log.Debug($"缓存数据： {unitCacheComponent.UnitCaches.Count}") ;
+                foreach ((string comname, UnitCache UnitCache) in unitCacheComponent.UnitCaches)
+                {
+                    Log.Debug($"缓存数据：{comname} {UnitCache.CacheCompoenntsDictionary.Count}");
+                }
             }
         }
 
