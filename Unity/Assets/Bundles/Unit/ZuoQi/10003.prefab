@@ -1,5 +1,35 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &728033966901984651
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 782310791791792971}
+  m_Layer: 0
+  m_Name: ZuoQiPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &782310791791792971
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728033966901984651}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.0183, y: -0.0611, z: -0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2917600072398103195}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2911635540867869381
 GameObject:
   m_ObjectHideFlags: 0
@@ -802,7 +832,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502d8cafd6a5a0447ab1db9a24cdcb10, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: []
+  data:
+  - key: Head
+    gameObject: {fileID: 728033966901984651}
 --- !u!1 &2912008186297545303
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,6 +1172,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2910291048751762553}
+  - {fileID: 782310791791792971}
   m_Father: {fileID: 2917357079951036635}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1857,10 +1890,10 @@ Transform:
   m_GameObject: {fileID: 2912886826734449789}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.000069961556, y: -0.00009999998, z: 0.00234}
-  m_LocalScale: {x: 0.0018, y: 0.0018, z: 0.0018}
+  m_LocalScale: {x: 0.025, y: 0.025, z: 0.025}
   m_Children: []
   m_Father: {fileID: 2912886827200796454}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &2912886826734449786
 MeshFilter:
@@ -1940,8 +1973,8 @@ Transform:
   m_Children:
   - {fileID: 2910111670743675979}
   - {fileID: 2917336225299034649}
-  - {fileID: 2917261778614220269}
   - {fileID: 2912886826734449788}
+  - {fileID: 2917261778614220269}
   m_Father: {fileID: 2910172358818355007}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1977,7 +2010,7 @@ Transform:
   - {fileID: 2909921044973215525}
   - {fileID: 2917453002211507495}
   m_Father: {fileID: 2912886827200796454}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2913602856131563555
 GameObject:

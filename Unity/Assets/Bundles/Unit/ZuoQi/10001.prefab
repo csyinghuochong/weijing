@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 1984687687749805}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.0011660259, y: -0.0016666664, z: 0.039}
-  m_LocalScale: {x: 0.03, y: 0.03, z: 0.03}
+  m_LocalScale: {x: 0.04, y: 0.04, z: 0.04}
   m_Children: []
   m_Father: {fileID: 1984687738647980}
   m_RootOrder: 2
@@ -113,6 +113,36 @@ Transform:
   - {fileID: 1984687687749810}
   m_Father: {fileID: 5699965474386253129}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &4670342697206793123
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4885629803166202373}
+  m_Layer: 0
+  m_Name: ZuoQiPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4885629803166202373
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4670342697206793123}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.04, y: 0.1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 5699965474386253125}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5699965474386675969
 GameObject:
@@ -452,6 +482,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 5699965474386253127}
+  - {fileID: 4885629803166202373}
   m_Father: {fileID: 5699965474386253161}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -551,7 +582,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   data:
   - key: Head
-    gameObject: {fileID: 5699965474386676069}
+    gameObject: {fileID: 4670342697206793123}
 --- !u!1 &5699965474386676075
 GameObject:
   m_ObjectHideFlags: 0
