@@ -590,6 +590,12 @@ namespace ET
             double equip_Speed = equipconf.Equip_Speed;
             double equip_Lucky = equipconf.Equip_Lucky;
 
+            int equip_Power = 0;
+            int equip_Agility = 0;
+            int equip_Intellect = 0;
+            int equip_Stamina = 0;
+            int equip_Constitution = 0;
+
             /*
             HideProList hide1 = new HideProList();
             hide1.HideID = (int)NumericType.Base_MaxAct_Base;
@@ -620,6 +626,11 @@ namespace ET
                         case NumericType.Base_MaxAdf_Base:
                             equip_MaxAdf = equip_MaxAdf + hidePropertyValue;
                             break;
+                        /*
+                        case NumericType.Base_Agility_Base:
+                            equip_MaxAdf = equip_MaxAdf + hidePropertyValue;
+                            break;
+                        */
                     }
 
                 }
@@ -883,6 +894,14 @@ namespace ET
                     }
                     string attribute = "";
                     long numericValue = equipconf.AddPropreListValue[i];
+
+                    for (int y = 0; y < baginfo.XiLianHideProLists.Count; y++)
+                    {
+                        if (baginfo.XiLianHideProLists[i].HideID == equipconf.AddPropreListType[y]) {
+                            numericValue += baginfo.XiLianHideProLists[i].HideValue;
+                        }
+                    }
+
                     int showType = NumericHelp.GetNumericValueType(numericType);
                     if (showType == 2)
                     {

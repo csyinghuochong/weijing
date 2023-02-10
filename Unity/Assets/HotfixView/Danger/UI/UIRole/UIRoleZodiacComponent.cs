@@ -9,6 +9,7 @@ namespace ET
         public GameObject ButtonColse;
         public GameObject ZodiacList;
         public GameObject BtnItemTypeSet;
+        public GameObject LinkShowSet;
 
         public List<UIEquipSetItemComponent> EquipList = new List<UIEquipSetItemComponent>();
         public UIPageButtonComponent UIPageButtonComponent;
@@ -36,6 +37,7 @@ namespace ET
 
             self.ZodiacList = rc.Get<GameObject>("ZodiacList");
             self.BtnItemTypeSet = rc.Get<GameObject>("BtnItemTypeSet");
+            self.LinkShowSet = rc.Get<GameObject>("LinkShowSet");
 
             self.ButtonColse = rc.Get<GameObject>("ButtonColse");
             self.ButtonColse.GetComponent<Button>().onClick.AddListener(() => 
@@ -102,9 +104,8 @@ namespace ET
 
             self.ResetEquipShow();
 
-            List<BagInfo> equiplist = self.EquipInfoList;
-            for (int i = 0; i < equiplist.Count; i++)
-            {
+            for (int i = 0; i < self.EquipList.Count; i++) {
+
                 //改变底框
                 if (page == 0)
                 {
@@ -123,6 +124,13 @@ namespace ET
                     Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, "ItemQuality_4");
                     self.EquipList[i].GameObject.transform.Find("Img_EquipBack").GetComponent<Image>().sprite = sp;
                 }
+
+                self.EquipList[i].GameObject.transform.Find("Lab_JiHuo").gameObject.SetActive(false);
+            }
+
+            List<BagInfo> equiplist = self.EquipInfoList;
+            for (int i = 0; i < equiplist.Count; i++)
+            {
 
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equiplist[i].ItemID);
                 if (itemConfig.EquipType != 101)
@@ -146,11 +154,39 @@ namespace ET
 
                 self.EquipList[itemConfig.ItemSubType % 100 - 1].UpdateData(equiplist[i], self.Occ, self.ItemOperateEnum, equiplist);
 
+                //判断是否激活
+                self.EquipList[itemConfig.ItemSubType % 100 - 1].GameObject.transform.Find("Lab_JiHuo").gameObject.SetActive(ItemHelper.IfShengXiaoActive(equiplist[i].ItemID, equiplist)==false);
 
             }
 
+            //线条显示
+            for (int i = 0; i < self.LinkShowSet.transform.childCount; i++)
+            {
 
+                GameObject obj = self.LinkShowSet.transform.GetChild(i).gameObject;
+                obj.SetActive(false);
+                string linkName = obj.name;
+                string resName = "Link_2";
 
+                if (page == 1) {
+                    linkName = linkName.Replace("160001", "160002");
+                    resName = "Link_3";
+                }
+
+                if (page == 2)
+                {
+                    linkName = linkName.Replace("160001", "160003");
+                    resName = "Link_4";
+                }
+
+                if (ItemHelper.IfShengXiaoActiveLine(linkName, equiplist))
+                {
+                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemQualityIcon, resName);
+                    obj.GetComponent<Image>().sprite = sp;
+                    obj.SetActive(true);
+                }
+            
+            }
         }
     }
 }

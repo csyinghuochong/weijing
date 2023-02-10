@@ -57,6 +57,8 @@ namespace ET
 
         public static void InitUI(this UIEquipSetItemComponent self, int subType)
         {
+            self.BagInfo = null;
+
             self.Img_EquipIcon.SetActive(false);
             self.Img_EquipQuality.SetActive(false);
             self.Img_EquipBangDing.SetActive(false);

@@ -847,6 +847,8 @@ namespace ET
                 //存储装备ID
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(userBagInfo.ItemID);
 
+                //生肖装备没激活直接跳出来
+
                 bool ifAddHidePro = true;
                 int occTwoValue = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
                 if (occTwoValue != 0)

@@ -560,6 +560,27 @@ namespace ET
             itemXiLianResult.XiLianHideTeShuProLists = TeShuHideProList;  //特殊属性洗炼
             return itemXiLianResult;
         }
+
+        //生肖洗炼
+        public static ItemXiLianResult XiLianShengXiao(BagInfo bagInfo)
+        {
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+            EquipConfig equipConfig = EquipConfigCategory.Instance.Get(itemConfig.ItemEquipID);
+
+            List<HideProList> proList = new List<HideProList>();
+
+            for (int i = 0; i < equipConfig.AddPropreListType.Length; i++) {
+                int randInt = RandomHelper.NextInt(0, (equipConfig.HideMax));
+                proList.Add(new HideProList() { HideID = equipConfig.AddPropreListType[i], HideValue = randInt });
+            }
+
+            ItemXiLianResult itemXiLianResult = new ItemXiLianResult();
+            itemXiLianResult.XiLianHideProLists = proList;          //属性随机赋值
+            //itemXiLianResult.XiLianHideTeShuProLists = proList;     //属性随机赋值
+            return itemXiLianResult;
+
+        }
+
 #endif
 
     }

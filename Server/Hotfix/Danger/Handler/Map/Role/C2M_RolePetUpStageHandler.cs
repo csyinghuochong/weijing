@@ -17,6 +17,13 @@ namespace ET
                 reply();
             }
 
+            //神兽不能进化
+            PetConfig petCof = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
+            if (petCof.PetType == 2) {
+                response.Error = ErrorCore.ERR_Pet_UpStage;
+                reply();
+            }
+
             RolePetInfo rolePetInfoXianJi = petComponent.GetPetInfo(request.PetInfoXianJiId);
 
             //判断当前宠物是否是进阶中的状态

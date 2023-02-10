@@ -622,6 +622,11 @@ namespace ET
                         {
                             useBagInfo.IfJianDing = false ;
                         }
+
+                        if (itemCof.EquipType == 101) 
+                        {
+                            useBagInfo.IfJianDing = false;
+                        }
                     }
                     //默认洗练
                     if (!ItemHelper.IsBuyItem(getType) && itemCof.ItemEquipID != 0)
@@ -634,7 +639,17 @@ namespace ET
                             xilianType = 2;
                         }
 
-                        ItemXiLianResult itemXiLian =  XiLianHelper.XiLianItem(unit, useBagInfo, xilianType, xilianLevel);
+                        //装备洗炼
+                        ItemXiLianResult itemXiLian = new ItemXiLianResult();
+                        if (itemCof.EquipType != 101)
+                        {
+                            itemXiLian = XiLianHelper.XiLianItem(unit, useBagInfo, xilianType, xilianLevel);
+                        }
+                        else {
+                            //生肖洗炼
+                            itemXiLian = XiLianHelper.XiLianShengXiao(useBagInfo);
+                        }
+
                         useBagInfo.XiLianHideProLists = itemXiLian.XiLianHideProLists;              //基础属性洗炼
                         useBagInfo.HideSkillLists = itemXiLian.HideSkillLists;                      //隐藏技能
                         useBagInfo.XiLianHideTeShuProLists = itemXiLian.XiLianHideTeShuProLists;    //特殊属性洗炼

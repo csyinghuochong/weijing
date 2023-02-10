@@ -294,5 +294,12 @@ namespace ET
             //if (numericType == )
             return 0;
         }
+
+        //传入子值返回母值
+        public static int ReturnNumParValue(int sonValue) {
+
+            return (int)(sonValue / 100);
+
+        }
     }
 }

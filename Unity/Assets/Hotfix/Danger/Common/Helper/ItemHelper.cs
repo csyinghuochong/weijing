@@ -190,5 +190,310 @@ namespace ET
 
             return textEquipType;
         }
+
+        //客户端线条用的
+        public static bool IfShengXiaoActiveLine(string shengXiaoItemID, List<BagInfo> equipList) {
+
+            List<int> idList = new List<int>();
+            for (int i = 0; i < equipList.Count; i++)
+            {
+                idList.Add(equipList[i].ItemID);
+            }
+
+            switch (shengXiaoItemID)
+            {
+
+                case "16000104a":
+                    if (idList.Contains(16000102) && idList.Contains(16000103))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000104b":
+                    if (idList.Contains(16000101))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000111a":
+                    if (idList.Contains(16000109) && idList.Contains(16000110))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000111b":
+                    if (idList.Contains(16000112))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000204a":
+                    if (idList.Contains(16000202) && idList.Contains(16000203))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000204b":
+                    if (idList.Contains(16000201))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000211a":
+                    if (idList.Contains(16000209) && idList.Contains(16000210))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000211b":
+                    if (idList.Contains(16000212))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000304a":
+                    if (idList.Contains(16000302) && idList.Contains(16000303))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000304b":
+                    if (idList.Contains(16000301))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000311a":
+                    if (idList.Contains(16000309) && idList.Contains(16000310))
+                    {
+                        return true;
+                    }
+                    return false;
+
+                case "16000311b":
+                    if (idList.Contains(16000312))
+                    {
+                        return true;
+                    }
+                    return false;
+            }
+
+            return IfShengXiaoActive(int.Parse(shengXiaoItemID), equipList);
+        }
+
+
+        //生肖激活前缀
+        public static bool IfShengXiaoActive(int shengXiaoItemID,List<BagInfo> equipList) {
+
+            List<int> idList = new List<int>();
+            for (int i = 0; i < equipList.Count; i++) {
+                idList.Add(equipList[i].ItemID);
+            }
+
+            switch (shengXiaoItemID){
+
+                case 16000101:
+                    return true;
+
+                case 16000102:
+                    return true;
+
+                case 16000103:
+                    if (idList.Contains(16000102)) {
+                        return true;
+                    }
+                    break;
+
+                case 16000104:
+                    if (idList.Contains(16000102)&& idList.Contains(16000103)|| idList.Contains(16000101))
+                    {
+                        return true;
+                    }
+                    break;
+                case 16000105:
+                    return true;
+
+                case 16000106:
+                    if (idList.Contains(16000105))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000107:
+                    if (idList.Contains(16000105)&& idList.Contains(16000106))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000108:
+                    if (idList.Contains(16000105) && idList.Contains(16000106) && idList.Contains(16000108))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000109:
+                    return true;
+
+                case 16000110:
+                    if (idList.Contains(16000109))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000111:
+                    if (idList.Contains(16000109)&& idList.Contains(16000110)|| idList.Contains(16000112))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000112:
+                    return true;
+
+                case 16000201:
+                    return true;
+
+                case 16000202:
+                    return true;
+
+                case 16000203:
+                    if (idList.Contains(16000202))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000204:
+                    if (idList.Contains(16000202) && idList.Contains(16000203) || idList.Contains(16000201))
+                    {
+                        return true;
+                    }
+                    break;
+                case 16000205:
+                    return true;
+
+                case 16000206:
+                    if (idList.Contains(16000205))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000207:
+                    if (idList.Contains(16000205) && idList.Contains(16000206))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000208:
+                    if (idList.Contains(16000205) && idList.Contains(16000206) && idList.Contains(16000208))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000209:
+                    return true;
+
+                case 16000210:
+                    if (idList.Contains(16000209))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000211:
+                    if (idList.Contains(16000209) && idList.Contains(16000210) || idList.Contains(16000212))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000212:
+                    return true;
+
+                case 16000301:
+                    return true;
+
+                case 16000302:
+                    return true;
+
+                case 16000303:
+                    if (idList.Contains(16000302))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000304:
+                    if (idList.Contains(16000302) && idList.Contains(16000303) || idList.Contains(16000301))
+                    {
+                        return true;
+                    }
+                    break;
+                case 16000305:
+                    return true;
+
+                case 16000306:
+                    if (idList.Contains(16000305))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000307:
+                    if (idList.Contains(16000305) && idList.Contains(16000306))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000308:
+                    if (idList.Contains(16000305) && idList.Contains(16000306) && idList.Contains(16000308))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000309:
+                    return true;
+
+                case 16000310:
+                    if (idList.Contains(16000309))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000311:
+                    if (idList.Contains(16000309) && idList.Contains(16000310) || idList.Contains(16000312))
+                    {
+                        return true;
+                    }
+                    break;
+
+                case 16000312:
+                    return true;
+            }
+
+
+            return false;
+
+        }
     }
 }

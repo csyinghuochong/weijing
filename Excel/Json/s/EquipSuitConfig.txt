@@ -60,4 +60,13 @@
 {"_t":"EquipSuitConfig","_id":16021,"Name":"神谕套装","NeedEquipID":"15601002;15602002;15603002;15604002;15605002;15611002","SuitPropertyID":"2,160121;4,160122;6,160123"},
 {"_t":"EquipSuitConfig","_id":16031,"Name":"永恒套装","NeedEquipID":"15601003;15602003;15603003;15604003;15605003;15611003","SuitPropertyID":"2,160131;4,160132;6,160133"},
 {"_t":"EquipSuitConfig","_id":16051,"Name":"炙热能量套装","NeedEquipID":"15606001;15610001;15610002;15610101;15610102","SuitPropertyID":"2,200001"},
+{"_t":"EquipSuitConfig","_id":30001,"Name":"生肖套装","NeedEquipID":"16000101;16000102;16000103;16000104","SuitPropertyID":"2,300011;3,300012;4,300013"},
+{"_t":"EquipSuitConfig","_id":30002,"Name":"生肖套装","NeedEquipID":"16000105;16000106;16000107;16000108","SuitPropertyID":"2,300021;3,300022;4,300023"},
+{"_t":"EquipSuitConfig","_id":30003,"Name":"生肖套装","NeedEquipID":"16000109;16000110;16000111;16000112","SuitPropertyID":"2,300031;3,300032;4,300033"},
+{"_t":"EquipSuitConfig","_id":30011,"Name":"生肖套装","NeedEquipID":"16000201;16000202;16000203;16000204","SuitPropertyID":"2,300111;3,300112;4,300113"},
+{"_t":"EquipSuitConfig","_id":30012,"Name":"生肖套装","NeedEquipID":"16000205;16000206;16000207;16000208","SuitPropertyID":"2,300121;3,300122;4,300123"},
+{"_t":"EquipSuitConfig","_id":30013,"Name":"生肖套装","NeedEquipID":"16000209;16000210;16000211;16000212","SuitPropertyID":"2,300131;3,300132;4,300133"},
+{"_t":"EquipSuitConfig","_id":30021,"Name":"生肖套装","NeedEquipID":"16000301;16000302;16000303;16000304","SuitPropertyID":"2,300211;3,300212;4,300213"},
+{"_t":"EquipSuitConfig","_id":30022,"Name":"生肖套装","NeedEquipID":"16000305;16000306;16000307;16000308","SuitPropertyID":"2,300221;3,300222;4,300223"},
+{"_t":"EquipSuitConfig","_id":30023,"Name":"生肖套装","NeedEquipID":"16000309;16000310;16000311;16000312","SuitPropertyID":"2,300231;3,300232;4,300233"},
 ]}
