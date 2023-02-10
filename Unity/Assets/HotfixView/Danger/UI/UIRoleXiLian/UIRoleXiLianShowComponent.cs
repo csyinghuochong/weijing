@@ -162,6 +162,11 @@ namespace ET
 				{
 					continue;
 				}
+				ItemConfig itemConfig = ItemConfigCategory.Instance.Get(equipInfos[i].ItemID);
+				if (itemConfig.EquipType == 101)
+				{
+					continue;
+				}
 
 				UIItemComponent uI = null;
 				if (number < self.EquipUIList.Count)
