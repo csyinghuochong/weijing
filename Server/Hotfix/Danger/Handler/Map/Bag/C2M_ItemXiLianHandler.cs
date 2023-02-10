@@ -13,6 +13,14 @@ namespace ET
             {
                 BagInfo bagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID);
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+
+                if (itemConfig.EquipType == 101)
+                {
+                    response.Error = ErrorCore.ERR_ItemUseError;
+                    reply();
+                    return;
+                }
+
                 int[] costItems = itemConfig.XiLianStone;
                 List<RewardItem> rewardItems = new List<RewardItem>();
 
