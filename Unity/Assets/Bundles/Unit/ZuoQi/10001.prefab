@@ -550,8 +550,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
-  - key: Root
-    gameObject: {fileID: 5699965474386675979}
+  - key: Head
+    gameObject: {fileID: 5699965474386676069}
 --- !u!1 &5699965474386676075
 GameObject:
   m_ObjectHideFlags: 0
