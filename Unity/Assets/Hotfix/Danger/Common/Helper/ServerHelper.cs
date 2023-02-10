@@ -78,6 +78,9 @@ namespace ET
                     serverItems_1.Add(new ServerItem() { ServerId = 12, ServerIp = "127.0.0.1:20405", ServerName = "兔年大吉", ServerOpenTime = 1674212400000, Show = 1 });
                     serverItems_1.Add(new ServerItem() { ServerId = 13, ServerIp = "127.0.0.1:20415", ServerName = "玉兔新春", ServerOpenTime = 1674903600000, Show = 1 });
                     serverItems_1.Add(new ServerItem() { ServerId = 14, ServerIp = "127.0.0.1:20425", ServerName = "元宵佳节", ServerOpenTime = 1675580400000, Show = 1 });
+                    serverItems_1.Add(new ServerItem() { ServerId = 15, ServerIp = "127.0.0.1:20435", ServerName = "金戈铁马", ServerOpenTime = 1676026800000, Show = 1 });
+
+                    serverItems_1.Add(new ServerItem() { ServerId = 16, ServerIp = "127.0.0.1:20445", ServerName = "先锋十二", ServerOpenTime = 0, Show = 0 });
                 }
             }
             else
@@ -106,6 +109,9 @@ namespace ET
                     serverItems_1.Add(new ServerItem() { ServerId = 12, ServerIp = "39.96.194.143:20405", ServerName = "兔年大吉", ServerOpenTime = 1674212400000, Show = 1 });
                     serverItems_1.Add(new ServerItem() { ServerId = 13, ServerIp = "39.96.194.143:20415", ServerName = "玉兔新春", ServerOpenTime = 1674903600000, Show = 1 });
                     serverItems_1.Add(new ServerItem() { ServerId = 14, ServerIp = "39.96.194.143:20425", ServerName = "元宵佳节", ServerOpenTime = 1675580400000, Show = 1 });
+                    serverItems_1.Add(new ServerItem() { ServerId = 15, ServerIp = "39.96.194.143:20435", ServerName = "金戈铁马", ServerOpenTime = 1676026800000, Show = 1 });
+                    
+                    serverItems_1.Add(new ServerItem() { ServerId = 16, ServerIp = "39.96.194.143:20445", ServerName = "先锋十二", ServerOpenTime = 0, Show = 0 });
                 }
             }
 
