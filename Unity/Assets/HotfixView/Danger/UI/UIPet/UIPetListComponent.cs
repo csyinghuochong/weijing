@@ -205,7 +205,7 @@ namespace ET
             self.ImageJinHua.GetComponent<Button>().onClick.AddListener(() => { self.OnClickJinHua(); });
 
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            self.ImageJinHua.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
+            self.ImageJinHua.SetActive(true);
 
             self.PetComponent = self.ZoneScene().GetComponent<PetComponent>();
 
