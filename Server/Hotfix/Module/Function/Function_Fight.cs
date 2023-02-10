@@ -848,6 +848,9 @@ namespace ET
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(userBagInfo.ItemID);
 
                 //生肖装备没激活直接跳出来
+                if (itemCof.EquipType == 101 && ItemHelper.IfShengXiaoActive(itemCof.Id, equipList) == false) {
+                    continue;
+                }
 
                 bool ifAddHidePro = true;
                 int occTwoValue = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo;
@@ -1025,12 +1028,14 @@ namespace ET
 
             for (int i = 0; i < equipList.Count; i++)
             {
-                /*
-                if (equipIDList[i] == 0) {
-                    break;
-                }
-                */
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(equipList[i].ItemID);
+
+                //生肖装备没激活直接跳出来
+                if (itemCof.EquipType == 101 && ItemHelper.IfShengXiaoActive(itemCof.Id, equipList) == false)
+                {
+                    continue;
+                }
+
                 EquipConfig mEquipCon = EquipConfigCategory.Instance.Get(itemCof.ItemEquipID);
 
                 //职业专精
