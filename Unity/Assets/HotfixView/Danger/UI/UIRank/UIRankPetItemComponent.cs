@@ -81,11 +81,6 @@ namespace ET
 
         public static void OnClickBtn_PVP(this UIRankPetItemComponent self)
         {
-            if (self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.PiLao <= 0)
-            {
-                FloatTipManager.Instance.ShowFloatTip("体力不足!");
-                return;
-            }
             int teamNumber = 0;
             List<long> teamList = self.ZoneScene().GetComponent<PetComponent>().TeamPetList;
             for (int i = 0; i < teamList.Count; i++)

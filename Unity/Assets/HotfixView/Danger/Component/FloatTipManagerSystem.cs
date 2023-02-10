@@ -87,6 +87,10 @@ namespace ET
 		//不带底图的Tips
 		public static void ShowFloatTip(this FloatTipManager self, string tip)
 		{
+			if (self.WaitFloatTip.Count >= 20)
+			{
+				return;
+			}
 			self.WaitFloatTip.Add(new FloatTipType() {  type = 0, tip = tip });
 			if (self.Timer == 0)
 			{
@@ -97,6 +101,10 @@ namespace ET
 		//带底图的Tips
 		public static void ShowFloatTipDi(this FloatTipManager self, string tip)
 		{
+			if (self.WaitFloatTip.Count >= 20)
+			{
+				return;
+			}
 			self.WaitFloatTip.Add(new FloatTipType() { type = 1, tip = tip });
 			if (self.Timer == 0)
 			{

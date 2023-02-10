@@ -104,7 +104,6 @@ namespace ET
 
         public override void Awake(UIMainComponent self)
         {
-            ET.Log.ILog.Debug("UIMainComponentAwakeSystem");
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Btn_PetFormation = rc.Get<GameObject>("Btn_PetFormation");
@@ -1398,6 +1397,11 @@ namespace ET
         public static void OnBeforeSkill(this UIMainComponent self)
         {
             self.UIJoystickMoveComponent.lastSendTime = 0f;
+        }
+
+        public static void OnSelfDead(this UIMainComponent self)
+        {
+            self.UIJoystickMoveComponent.ResetUI();
         }
 
         public static void UpdateShadow(this UIMainComponent self, string usevalue = "")
