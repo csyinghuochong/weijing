@@ -9,8 +9,9 @@ namespace ET
 		public const string Root = "Root";
 		public const string UIRegister = "Login/UIRegister";
 		public const string UILogin = "Login/UILogin";
-		public const string UILobby = "CreateRole/UILobby";
 		public const string UIRelink = "Login/UIRelink";
+		public const string UIPhoneCode = "Login/UIPhoneCode";
+		public const string UILobby = "CreateRole/UILobby";
 		public const string UICreateRole = "CreateRole/UICreateRole";
 		public const string UIMain = "Main/Main/UIMain";
 		public const string UIRole = "Main/Role/UIRole";

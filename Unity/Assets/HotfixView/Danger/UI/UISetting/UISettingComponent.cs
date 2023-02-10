@@ -8,7 +8,7 @@ namespace ET
 
     public class UISettingComponent : Entity, IAwake
     {
-
+        public GameObject ButtonPhone;
         public GameObject LastLoginTime;
         public GameObject TextVersion;
         public GameObject Image_YinYing;
@@ -103,6 +103,9 @@ namespace ET
             self.Btn_YinYue.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_YinYue(); });
             self.ButtonRname.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonRname().Coroutine(); });
 
+            self.ButtonPhone = rc.Get<GameObject>("ButtonPhone");
+            ButtonHelp.AddListenerEx(self.ButtonPhone, self.OnButtonPhone);
+           
             self.Image_Fixed = rc.Get<GameObject>("Image_Fixed");
             self.Image_Move = rc.Get<GameObject>("Image_Move");
             self.Btn_Fixed = rc.Get<GameObject>("Btn_Fixed");
@@ -294,6 +297,11 @@ namespace ET
             string text_old = self.InputFieldCName.GetComponent<InputField>().text;
             MaskWordHelper.Instance.IsContainSensitiveWords(ref text_old, out text_new);
             self.InputFieldCName.GetComponent<InputField>().text = text_old;
+        }
+
+        public static  void OnButtonPhone(this UISettingComponent self)
+        {
+            UIHelper.Create( self.ZoneScene(), UIType.UIPhoneCode ).Coroutine();
         }
 
         public static async ETTask OnButtonRname(this UISettingComponent self)
