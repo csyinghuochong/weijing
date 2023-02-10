@@ -170,7 +170,7 @@ namespace ET
 
         public static int GetOpenServerDay(int zone)
         {
-            return ServerHelper.GetOpenServerDay(true, zone);
+            return ServerHelper.GetOpenServerDay(false, zone);
             //long openSerTime = GetOpenServerTime(zone);
             //if (openSerTime == 0)
             //{

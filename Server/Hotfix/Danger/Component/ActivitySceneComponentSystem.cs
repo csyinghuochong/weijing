@@ -86,8 +86,11 @@ namespace ET
             self.OnBattleOpen = true;
             self.OnBattleClose = false;
 
-            long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
-            MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOpen });
+            if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
+            {
+                long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOpen });
+            }
         }
 
         public static  void OnBattleClose(this ActivitySceneComponent self)

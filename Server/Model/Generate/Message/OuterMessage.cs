@@ -1067,6 +1067,9 @@ namespace ET
 		[ProtoMember(7)]
 		public List<int> BuChangZone = new List<int>();
 
+		[ProtoMember(8)]
+		public string PhoneNumber { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_TestActorResponse))]
@@ -8992,6 +8995,35 @@ namespace ET
 
 		[ProtoMember(2)]
 		public RolePetInfo NewPetInfo { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_PhoneBingingResponse))]
+//手机号绑定
+	[Message(OuterOpcode.C2M_PhoneBingingRequest)]
+	[ProtoContract]
+	public partial class C2M_PhoneBingingRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string PhoneCode { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_PhoneBingingResponse)]
+	[ProtoContract]
+	public partial class M2C_PhoneBingingResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
 
 	}
 

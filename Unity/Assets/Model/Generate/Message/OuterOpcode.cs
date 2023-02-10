@@ -499,5 +499,7 @@ namespace ET
 		 public const ushort M2C_SkillInterruptResult = 10496;
 		 public const ushort C2M_RolePetUpStage = 10497;
 		 public const ushort M2C_RolePetUpStage = 10498;
+		 public const ushort C2M_PhoneBingingRequest = 10499;
+		 public const ushort M2C_PhoneBingingResponse = 10500;
 	}
 }

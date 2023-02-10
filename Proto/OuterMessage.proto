@@ -512,6 +512,7 @@ message PlayerInfo
 	repeated RechargeInfo RechargeInfos = 5;
 	repeated KeyValuePair DeleteUserList = 6;
 	repeated int32 BuChangZone = 7;
+	string PhoneNumber = 8;
 }
 
 //ResponseType M2C_TestActorResponse
@@ -4313,3 +4314,17 @@ message M2C_RolePetUpStage // IActorLocationResponse
 	RolePetInfo NewPetInfo = 2;
 }
 
+//ResponseType M2C_PhoneBingingResponse
+//手机号绑定
+message C2M_PhoneBingingRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	string PhoneCode = 1;
+}
+
+message M2C_PhoneBingingResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;		
+	int32 Error = 92;
+}

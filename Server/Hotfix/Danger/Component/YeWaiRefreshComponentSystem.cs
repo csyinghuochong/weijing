@@ -332,7 +332,7 @@ namespace ET
             {
                 self.DomainScene().GetComponent<MiJingComponent>().BossId = refreshMonster.MonsterId;
 
-                if (!ComHelp.IsBanHaoZone(self.DomainZone()))
+                if (!ComHelp.IsBanHaoZone(self.DomainZone()) && DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
                 {
                     long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                     MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest()
