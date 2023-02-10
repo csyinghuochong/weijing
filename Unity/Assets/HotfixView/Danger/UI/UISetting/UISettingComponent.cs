@@ -105,7 +105,9 @@ namespace ET
 
             self.ButtonPhone = rc.Get<GameObject>("ButtonPhone");
             ButtonHelp.AddListenerEx(self.ButtonPhone, self.OnButtonPhone);
-           
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            self.ButtonPhone.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
+
             self.Image_Fixed = rc.Get<GameObject>("Image_Fixed");
             self.Image_Move = rc.Get<GameObject>("Image_Move");
             self.Btn_Fixed = rc.Get<GameObject>("Btn_Fixed");
