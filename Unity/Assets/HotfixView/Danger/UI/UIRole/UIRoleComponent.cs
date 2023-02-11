@@ -76,7 +76,7 @@ namespace ET
 
 			AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
 			self.ButtonZodiac = rc.Get<GameObject>("ButtonZodiac");
-			self.ButtonZodiac.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
+			self.ButtonZodiac.SetActive(true);
 			ButtonHelp.AddListenerEx(self.ButtonZodiac, () => { self.OnButtonZodiac().Coroutine(); });
 
 
