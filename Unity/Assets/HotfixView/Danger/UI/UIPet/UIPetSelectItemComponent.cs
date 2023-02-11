@@ -48,7 +48,6 @@ namespace ET
         {
             self.RolePetInfo = rolePetInfo;
 
-            PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
             PetSkinConfig petSkinConfig = PetSkinConfigCategory.Instance.Get(rolePetInfo.SkinId);
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.PetHeadIcon, petSkinConfig.IconID.ToString());
             self.Img_PetHeroIon.GetComponent<Image>().sprite = sp;

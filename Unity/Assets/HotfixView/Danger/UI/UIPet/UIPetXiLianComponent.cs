@@ -68,6 +68,14 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("请选择道具！");
                 return;
             }
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.CostItemInfo.ItemID);
+            if ((itemConfig.ItemSubType == 108 || itemConfig.ItemSubType == 109) && self.RolePetInfo.PetLv >= userInfo.Lv)
+            {
+                FloatTipManager.Instance.ShowFloatTip("宠物等级不能高于玩家5级！");
+                return;
+            }
+
             self.ZoneScene().GetComponent<PetComponent>().RequestXiLian(self.CostItemInfo.BagInfoID, self.RolePetInfo.Id).Coroutine();
         }
 
