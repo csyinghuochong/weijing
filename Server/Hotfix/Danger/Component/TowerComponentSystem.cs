@@ -27,7 +27,7 @@ namespace ET
 
         public static void OnKillEvent(this TowerComponent self, Unit defend)
         {
-            if (self.TowerId == 0)
+            if (defend.GetBattleCamp() == self.MainUnit.GetBattleCamp())
             {
                 return;
             }
