@@ -164,6 +164,8 @@ MonoBehaviour:
     gameObject: {fileID: 2896623065750155953}
   - key: Lab_LaiYuan
     gameObject: {fileID: 6323351409517268034}
+  - key: StarList
+    gameObject: {fileID: 8754145749353781383}
 --- !u!1 &1210086304161773587
 GameObject:
   m_ObjectHideFlags: 0
