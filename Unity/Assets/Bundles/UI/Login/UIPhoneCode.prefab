@@ -386,13 +386,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6511062186501679292}
   m_TextComponent: {fileID: 3872724404743414650}
   m_Placeholder: {fileID: 2846371603597666102}
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 1
   m_CharacterLimit: 0
   m_OnEndEdit:
     m_PersistentCalls:
@@ -479,20 +479,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data:
+  - key: ImageClose
+    gameObject: {fileID: 7850023061552978516}
   - key: SendYanzheng
     gameObject: {fileID: 5530743365423775931}
   - key: YanZheng
     gameObject: {fileID: 1412183869274496240}
   - key: PhoneNumber
     gameObject: {fileID: 2017868267901245075}
-  - key: ButtonGetCode
-    gameObject: {fileID: 8865116069140641326}
+  - key: TextYanzheng
+    gameObject: {fileID: 8738948248607562877}
   - key: TextPhoneCode
     gameObject: {fileID: 2533113608753044988}
   - key: ButtonCommitCode
     gameObject: {fileID: 5581721566691445665}
-  - key: ImageClose
-    gameObject: {fileID: 7850023061552978516}
+  - key: ButtonGetCode
+    gameObject: {fileID: 8865116069140641326}
 --- !u!1 &2533113608753044988
 GameObject:
   m_ObjectHideFlags: 0
@@ -825,7 +827,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4850982652496257426
 RectTransform:
   m_ObjectHideFlags: 0

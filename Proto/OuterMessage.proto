@@ -34,7 +34,6 @@ message Center2C_Register // IResponse
     int32 RpcId = 90;
     int32 Error = 91;
     string Message = 92;
-    
 }
 
 //ResponseType A2C_RealNameResponse
@@ -60,6 +59,8 @@ message A2C_RealNameResponse // IResponse
 message C2M_TestRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
+
+
 	int64 ActorId = 93;
 	string request = 1;
 }
@@ -4314,17 +4315,22 @@ message M2C_RolePetUpStage // IActorLocationResponse
 	RolePetInfo NewPetInfo = 2;
 }
 
-//ResponseType M2C_PhoneBingingResponse
+
+//ResponseType Center2C_PhoneBinging
 //手机号绑定
-message C2M_PhoneBingingRequest // IActorLocationRequest
+message C2Center_PhoneBinging // IRequest
 {
-	int32 RpcId = 90;
-	string PhoneCode = 1;
+    int32 RpcId = 90;
+    string PhoneNumber = 1;
+    int64 AccountId  = 2;	// 帐号Id
+    string Account  = 3;	// 帐号
+    string  Password = 4;	// 密码
 }
 
-message M2C_PhoneBingingResponse // IActorLocationResponse
+message Center2C_PhoneBinging // IResponse
 {
-	int32 RpcId = 90;
-	string Message = 91;		
-	int32 Error = 92;
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+    
 }

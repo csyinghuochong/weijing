@@ -8998,32 +8998,41 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_PhoneBingingResponse))]
+	[ResponseType(nameof(Center2C_PhoneBinging))]
 //手机号绑定
-	[Message(OuterOpcode.C2M_PhoneBingingRequest)]
+	[Message(OuterOpcode.C2Center_PhoneBinging)]
 	[ProtoContract]
-	public partial class C2M_PhoneBingingRequest: Object, IActorLocationRequest
+	public partial class C2Center_PhoneBinging: Object, IRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
 		[ProtoMember(1)]
-		public string PhoneCode { get; set; }
+		public string PhoneNumber { get; set; }
+
+		[ProtoMember(2)]
+		public long AccountId { get; set; }
+
+		[ProtoMember(3)]
+		public string Account { get; set; }
+
+		[ProtoMember(4)]
+		public string Password { get; set; }
 
 	}
 
-	[Message(OuterOpcode.M2C_PhoneBingingResponse)]
+	[Message(OuterOpcode.Center2C_PhoneBinging)]
 	[ProtoContract]
-	public partial class M2C_PhoneBingingResponse: Object, IActorLocationResponse
+	public partial class Center2C_PhoneBinging: Object, IResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
 		[ProtoMember(91)]
-		public string Message { get; set; }
+		public int Error { get; set; }
 
 		[ProtoMember(92)]
-		public int Error { get; set; }
+		public string Message { get; set; }
 
 	}
 

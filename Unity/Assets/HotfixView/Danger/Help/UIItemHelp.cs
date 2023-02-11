@@ -897,7 +897,12 @@ namespace ET
 
                     for (int y = 0; y < baginfo.XiLianHideProLists.Count; y++)
                     {
-                        if (baginfo.XiLianHideProLists[i].HideID == equipconf.AddPropreListType[y]) {
+                        if (equipconf.AddPropreListType.Length <= y)
+                        {
+                            break;
+                        }
+                        if (baginfo.XiLianHideProLists[i].HideID == equipconf.AddPropreListType[y])
+                        {
                             numericValue += baginfo.XiLianHideProLists[i].HideValue;
                         }
                     }
