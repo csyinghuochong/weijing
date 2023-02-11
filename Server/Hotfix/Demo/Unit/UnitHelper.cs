@@ -315,11 +315,12 @@ namespace ET
         public static void OnRideHorse(this Unit self, int oldId, bool init)
         {
             int horseId = self.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Horse);
-            ZuoQiShowConfig zuoqiCof = ZuoQiShowConfigCategory.Instance.Get(horseId);
+            ZuoQiShowConfig zuoqiCof = null;
 
             if (horseId > 0)
             {
                 BuffData buffData_2 = new BuffData();
+                zuoqiCof = ZuoQiShowConfigCategory.Instance.Get(horseId);
                 buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(zuoqiCof.MoveBuffID);
                 buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
                 self.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, self, null);
