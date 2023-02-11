@@ -83,12 +83,12 @@ namespace ET
             {
                 using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountName.Trim().GetHashCode()))
                 {
-                    List<DBAccountInfo> accountInfoList = null;
-                    if (AccountId > 0)
-                    {
-                        accountInfoList= await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Account == request.AccountName && d.Password == request.Password);
-                        //accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == AccountId);
-                    }
+                    List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Account == request.AccountName && d.Password == request.Password); ;
+                    //if (AccountId > 0)
+                    //{
+                    //    //accountInfoList= await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Account == request.AccountName && d.Password == request.Password);
+                    //    //accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == AccountId);
+                    //}
 
                     DBAccountInfo account = accountInfoList != null && accountInfoList.Count > 0 ? accountInfoList[0] : null;
                     long accountZone = DBHelper.GetAccountCenter();

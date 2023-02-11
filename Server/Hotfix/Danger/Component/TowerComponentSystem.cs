@@ -27,6 +27,10 @@ namespace ET
 
         public static void OnKillEvent(this TowerComponent self, Unit defend)
         {
+            if (self.TowerId == 0)
+            {
+                return;
+            }
             if (FubenHelp.IsAllMonsterDead(self.DomainScene(), self.MainUnit))
             {
                 self.OnTimer();

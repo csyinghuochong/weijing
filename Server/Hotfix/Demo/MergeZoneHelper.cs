@@ -36,9 +36,14 @@ namespace ET
             foreach (var entity in userInfoComponents)
             {
                 keyValuePairs.Add(entity.Id, entity as UserInfoComponent);
-                if ((entity.UserInfo.Gold > 1000000 || entity.UserInfo.Diamond > 10000)  && !entity.Account.Contains("_"))
+                if ((entity.UserInfo.Gold > 1000000 || entity.UserInfo.Diamond > 10000) && !entity.Account.Contains("_"))
                 {
                     Log.Warning($"Gold:{entity.UserInfo.Gold}  Diamond:{entity.UserInfo.Diamond}  ID:{entity.Id}  Account:{entity.Account} Name: {entity.UserInfo.Name}  Lv:{entity.UserInfo.Lv} ");
+                }
+
+                if (entity.UserInfo.AccInfoID == 1682231745157595380)
+                {
+                    Log.Warning($"Gold:{entity.Id} ");
                 }
             }
 
