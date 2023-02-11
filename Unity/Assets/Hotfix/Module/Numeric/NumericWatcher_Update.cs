@@ -25,18 +25,7 @@
 
 #if SERVER
 			Unit unit = args.Parent;
-			long horseId = args.NewValue;
-			if (horseId > 0)
-			{
-				BuffData buffData_2 = new BuffData();
-				buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(98001104);
-				buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
-				unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
-			}
-			else
-			{
-				unit.GetComponent<BuffManagerComponent>().BuffRemove(98001104);
-			}
+			unit.OnRideHorse(false);
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
 			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;

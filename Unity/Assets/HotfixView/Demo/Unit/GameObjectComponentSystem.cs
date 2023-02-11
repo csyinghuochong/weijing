@@ -187,7 +187,8 @@ namespace ET
         public static void OnUpdateHorse(this GameObjectComponent self)
         {
             self.RecoverHorse();
-            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            Unit unit = self.GetParent<Unit>();
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int horseId = numericComponent.GetAsInt(NumericType.Now_Horse);
             if (horseId != 0)
             {
@@ -200,8 +201,15 @@ namespace ET
             {
                 UICommonHelper.SetParent(self.GameObject, GlobalComponent.Instance.Unit.gameObject);
                 self.UpdatePositon(self.GetParent<Unit>().Position);
-                self.GetParent<Unit>().GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
+                unit.GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
                 self.ShowRoleDi(true);
+
+                MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+                bool run = moveComponent!=null && !moveComponent.IsArrived();
+                if (run)
+                {
+                    unit.GetComponent<FsmComponent>().OnEnterFsmRunState();
+                }
             }
             self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseId);
         }

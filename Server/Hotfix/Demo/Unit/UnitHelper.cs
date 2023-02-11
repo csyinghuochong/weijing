@@ -312,6 +312,23 @@ namespace ET
                 numericComponent.GetAsFloat(NumericType.Born_Z));
         }
 
+        public static void OnRideHorse(this Unit self, bool init)
+        {
+            int horseId = self.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Horse);
+
+            if (horseId > 0)
+            {
+                BuffData buffData_2 = new BuffData();
+                buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(98001104);
+                buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
+                self.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, self, null);
+            }
+            if (horseId == 0 && !init)
+            {
+                self.GetComponent<BuffManagerComponent>().BuffRemove(98001104);
+            }
+        }
+
         public static void RecordPostion(this Unit self, int sceneType, int sceneId)
         {
             bool record = false;
