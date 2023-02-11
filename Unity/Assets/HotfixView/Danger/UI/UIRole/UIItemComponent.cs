@@ -97,7 +97,7 @@ namespace ET
 
         public static void SetSelected(this UIItemComponent self, BagInfo bagInfo)
         {
-            self.Image_XuanZhong.SetActive(self.Baginfo == bagInfo && self.Baginfo!=null);
+            self.Image_XuanZhong.SetActive(self.Baginfo != null && self.Baginfo.BagInfoID == bagInfo.BagInfoID );
         }
 
         public static void BeginDrag(this UIItemComponent self, PointerEventData pdata)

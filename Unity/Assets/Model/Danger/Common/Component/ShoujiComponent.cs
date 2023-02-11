@@ -9,6 +9,8 @@ namespace ET
         public List<ShouJiChapterInfo> ShouJiChapterInfos = new List<ShouJiChapterInfo>();
         public List<int> ShouJiItemList = new List<int>();
 
+
+
         [BsonDictionaryOptions(DictionaryRepresentation.ArrayOfArrays)]
         public Dictionary<int, int> ChapterStar = new Dictionary<int, int>();
     }

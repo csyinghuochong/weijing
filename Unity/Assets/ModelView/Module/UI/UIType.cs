@@ -87,6 +87,7 @@ namespace ET
 		public const string UIUnionApplyList = "Main/Union/UIUnionApplyList";
 		public const string UIGuide = "Main/Guide/UIGuide";
 		public const string UIShouJi = "Main/ShouJi/UIShouJi";
+		public const string UITreasureSelect = "Main/ShouJi/UITreasureSelect";
 		public const string UIRoleXiLian = "Main/RoleXiLian/UIRoleXiLian";
 		public const string UIRoleXiLianTen = "Main/RoleXiLian/UIRoleXiLianTen";
 		public const string UILingDi = "Main/LingDi/UILingDi";
@@ -146,7 +147,8 @@ namespace ET
 			{ "UIGemMake", UIGemMake},
 			{ "UITowerDungeon", UITower},
 			{ "UITrialDungeon", UITrialDungeon},
-			{ "UIShenQiMake", UIShenQiMake}
+			{ "UIShenQiMake", UIShenQiMake},
+			{ "UIJiaYuan", UIJiaYuan},
 		};
 	}
 }
