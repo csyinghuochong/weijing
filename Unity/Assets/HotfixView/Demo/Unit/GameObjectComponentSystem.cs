@@ -33,6 +33,7 @@ namespace ET
                 GameObjectPoolComponent.Instance.RecoverGameObject(self.UnitAssetsPath, self.GameObject);
                 self.GameObject = null;
             }
+            self.RecoverHorse();
             GameObjectPoolComponent.Instance.RecoverGameObject(ABPathHelper.GetUnitPath("Player/BaiTan"), self.BaiTan);
             self.BaiTan = null;
         }
