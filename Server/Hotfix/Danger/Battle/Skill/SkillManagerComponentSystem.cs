@@ -358,7 +358,7 @@ namespace ET
             //{
             //    unit.GetComponent<MoveComponent>()?.Stop();
             //    unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
-            //}
+            //}0:中断  1:不中断
             if (weaponSkillConfig.IfStopMove == 0)
             {
                 unit.GetComponent<MoveComponent>()?.Stop();

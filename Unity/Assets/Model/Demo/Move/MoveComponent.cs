@@ -78,5 +78,10 @@ namespace ET
         public Quaternion From;
 
         public Quaternion To;
+
+        //0 摇杆移动 1点击移动
+        public bool MoveWait;
+        public int MoveType;
+        public Vector3 TargetPosition;
     }
 }

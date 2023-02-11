@@ -289,6 +289,25 @@ namespace ET
             self.Clear();
         }
 
+        public static void SkillStop(this MoveComponent self, int IfStopMove)
+        {
+            if (IfStopMove != 1)    //1 不中断移动
+            {
+                return;
+            }
+
+            //if (self.MoveType != 1 || !self.MoveWait)
+            //{
+            //    return;
+            //}
+            //if (self.IsArrived())
+            //{
+            //    return;
+            //}
+            //self.MoveWait = true;
+            //self.TargetPosition = self.Targets[self.Targets.Count - 1];
+        }
+
         public static void Clear(this MoveComponent self)
         {
             self.StartTime = 0;

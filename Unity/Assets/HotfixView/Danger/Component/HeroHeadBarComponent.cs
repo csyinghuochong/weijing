@@ -167,11 +167,6 @@ namespace ET
 
         public void OnUpdateHorse(int houseId)
         {
-            Unit unit = this.GetParent<Unit>();
-            if (!unit.MainHero)
-            {
-                return;
-            }
             if (this.HeadBar == null)
             {
                 return;

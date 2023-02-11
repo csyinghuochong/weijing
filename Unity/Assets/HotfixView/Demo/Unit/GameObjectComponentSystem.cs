@@ -160,6 +160,7 @@ namespace ET
                 self.RecoverHorse();
                 unit.GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
                 unit.GetComponent<FsmComponent>().SetIdleState();
+                self.ShowRoleDi(true);
             }
             else
             {
@@ -168,10 +169,18 @@ namespace ET
                 go.transform.localPosition = unit.Position;
                 go.transform.rotation = unit.Rotation;
                 UICommonHelper.SetParent(self.GameObject, HoreseHelper.GetHorseNode(self.ObjectHorse));
-                self.GameObject.transform.localScale = HoreseHelper.GetRoleScale(horseId) * Vector3.one;
+                self.GameObject.transform.localScale = HoreseHelper.GetRoleScale(go, horseId) * Vector3.one;
                 unit.GetComponent<FsmComponent>().SetHorseState();
                 unit.GetComponent<AnimatorComponent>().UpdateAnimator(go);
+                self.ShowRoleDi(false);
             }
+            self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseId);
+        }
+
+        public static void ShowRoleDi(this GameObjectComponent self, bool show)
+        {
+            GameObject di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
+            di.SetActive(show);
         }
 
         public static void OnUpdateHorse(this GameObjectComponent self)
@@ -184,12 +193,14 @@ namespace ET
                 ZuoQiShowConfig zuoQiShowConfig = ZuoQiShowConfigCategory.Instance.Get(horseId);
                 self.HorseAssetsPath = ABPathHelper.GetUnitPath($"ZuoQi/{zuoQiShowConfig.ModelID}");
                 GameObjectPoolComponent.Instance.AddLoadQueue(self.HorseAssetsPath, self.InstanceId, self.OnLoadHorse);
+                self.ShowRoleDi(false);
             }
             else
             {
                 UICommonHelper.SetParent(self.GameObject, GlobalComponent.Instance.Unit.gameObject);
                 self.UpdatePositon(self.GetParent<Unit>().Position);
                 self.GetParent<Unit>().GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
+                self.ShowRoleDi(true);
             }
             self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseId);
         }
