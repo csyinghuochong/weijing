@@ -127,6 +127,13 @@ namespace ET
 
 		public static async ETTask OnButtonZodiac(this UIRoleComponent self)
 		{
+			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
+			if (userInfoComponent.UserInfo.Lv < 30)
+			{
+				FloatTipManager.Instance.ShowFloatTip("30级以后开启！");
+				return;
+			}
+
 			UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIRoleZodiac);
 			UIEquipSetComponent EquipSetComponent = self.UIEquipSetComponent;
 			uI.GetComponent<UIRoleZodiacComponent>().OnInitUI(EquipSetComponent.EquipInfoList, EquipSetComponent.Occ, EquipSetComponent.ItemOperateEnum);
