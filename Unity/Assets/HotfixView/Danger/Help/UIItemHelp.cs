@@ -901,7 +901,7 @@ namespace ET
                         {
                             break;
                         }
-                        if (baginfo.XiLianHideProLists[i].HideID == equipconf.AddPropreListType[y])
+                        if (baginfo.XiLianHideProLists[y].HideID == equipconf.AddPropreListType[i])
                         {
                             numericValue += baginfo.XiLianHideProLists[i].HideValue;
                         }
