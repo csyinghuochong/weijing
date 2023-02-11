@@ -133,29 +133,5 @@ namespace ET
             }
             return proList;
         }
-
-#if !SERVER
-        public static async ETTask<int> ReqestShoujiReward(this ShoujiComponent self, int chapterId, int index)
-        {
-            try
-            {
-                C2M_ShoujiRewardRequest c2M_ItemHuiShouRequest = new C2M_ShoujiRewardRequest() { ChapterId = chapterId, RewardIndex = index };
-                M2C_ShoujiRewardResponse r2c_roleEquip = (M2C_ShoujiRewardResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
-
-                if (r2c_roleEquip.Error == ErrorCore.ERR_Success)
-                {
-                    ShouJiChapterInfo shouJiChapterInfo = self.GetShouJiChapterInfo(chapterId);
-                    shouJiChapterInfo.RewardInfo |= (1 << index);
-                }
-                return r2c_roleEquip.Error;
-            }
-            catch (Exception ex)
-            {
-                Log.Error(ex.ToString());
-            }
-            return ErrorCore.ERR_NetWorkError;
-        }
-#endif
-
     }
 }
