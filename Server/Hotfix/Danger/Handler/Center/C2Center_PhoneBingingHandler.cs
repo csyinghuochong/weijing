@@ -12,11 +12,20 @@ namespace ET
         {
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Register, request.Account.Trim().GetHashCode()))
             {
-                List<DBCenterAccountInfo> resultAccounts = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(session.DomainZone(), 
-                    _account => _account.PlayerInfo!=null && _account.PlayerInfo.PhoneNumber.Equals(request.PhoneNumber));
+                List<DBCenterAccountInfo> resultAccounts = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(session.DomainZone(),
+                    _account => _account.Account.Equals(request.PhoneNumber));
                 if (resultAccounts.Count > 0)
                 {
                     response.Error = ErrorCore.ERR_BingPhoneError_1;
+                    reply();
+                    return;
+                }
+
+                resultAccounts = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(session.DomainZone(), 
+                    _account => _account.PlayerInfo!=null && _account.PlayerInfo.PhoneNumber.Equals(request.PhoneNumber));
+                if (resultAccounts.Count > 0)
+                {
+                    response.Error = ErrorCore.ERR_BingPhoneError_2;
                     reply();
                     return;
                 }

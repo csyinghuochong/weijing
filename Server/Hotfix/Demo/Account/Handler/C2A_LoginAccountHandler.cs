@@ -56,6 +56,7 @@ namespace ET
             //    return;
             //}
             //先检测一下QQ和微信登录
+            long AccountId = 0;
             if (!string.IsNullOrEmpty(request.ThirdLogin) && request.ThirdLogin.Length > 0)
             {
                 using (session.AddComponent<SessionLockingComponent>())
@@ -65,7 +66,7 @@ namespace ET
                         long accountZone = DBHelper.GetAccountCenter();
                         Center2A_CheckAccount centerAccount = (Center2A_CheckAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_CheckAccount() { AccountName = request.AccountName, Password = request.Password });
                         PlayerInfo playerInfo = centerAccount.PlayerInfo != null ? centerAccount.PlayerInfo : null;
-
+                        AccountId = centerAccount.AccountId;
                         if (centerAccount.PlayerInfo == null)
                         {
                             Center2A_RegisterAccount saveAccount = (Center2A_RegisterAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_RegisterAccount()
@@ -82,9 +83,14 @@ namespace ET
             {
                 using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, request.AccountName.Trim().GetHashCode()))
                 {
-                    List<DBAccountInfo> accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Account == request.AccountName&&d.Password == request.Password);
-                    DBAccountInfo account = accountInfoList != null && accountInfoList.Count > 0 ? accountInfoList[0] : null;
+                    List<DBAccountInfo> accountInfoList = null;
+                    if (AccountId > 0)
+                    {
+                        //accountInfoList= await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Account == request.AccountName && d.Password == request.Password);
+                        accountInfoList = await Game.Scene.GetComponent<DBComponent>().Query<DBAccountInfo>(session.DomainZone(), d => d.Id == AccountId);
+                    }
 
+                    DBAccountInfo account = accountInfoList != null && accountInfoList.Count > 0 ? accountInfoList[0] : null;
                     long accountZone = DBHelper.GetAccountCenter();
                     Center2A_CheckAccount centerAccount = (Center2A_CheckAccount)await ActorMessageSenderComponent.Instance.Call(accountZone, new A2Center_CheckAccount() { AccountName = request.AccountName, Password = request.Password });
                     PlayerInfo centerPlayerInfo = centerAccount.PlayerInfo;

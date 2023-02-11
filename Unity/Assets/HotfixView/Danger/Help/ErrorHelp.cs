@@ -21,7 +21,8 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_OtherAccountLogin, "账号异地登录");
             ErrorHintList.Add(ErrorCore.ERR_RequestRepeatedly, "请求重复");
             ErrorHintList.Add(ErrorCore.ERR_StopServer, "停服维护");
-            ErrorHintList.Add(ErrorCore.ERR_BingPhoneError_1, "手机号只能绑定一个账号");
+            ErrorHintList.Add(ErrorCore.ERR_BingPhoneError_1, "改手机号已经注册过账号");
+            ErrorHintList.Add(ErrorCore.ERR_BingPhoneError_2, "手机号只能绑定一个账号");
             
             //ErrorHintList.Add(ErrorCore.ERR_AccountOrPasswordError, "账号未注册!");
             ErrorHintList.Add(ErrorCore.ERR_GoldNotEnoughError, "金币不足!");

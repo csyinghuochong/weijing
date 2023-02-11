@@ -32,7 +32,7 @@ namespace ET
                 self.OnTimer();
                 return;
             }
-            if (defend.Type == UnitType.Player)
+            if (defend.Id == self.MainUnit.Id)
             {
                 self.OnTowerOver();
                 return;
@@ -79,7 +79,7 @@ namespace ET
                 int itemNum = (int)(cengNum / 5f);
                 self.MainUnit.GetComponent<BagComponent>().OnAddItemData("10000148;" + itemNum, $"{ItemGetWay.TiaoZhan}_{TimeHelper.ServerNow()}");
             }
-            
+            Log.Debug($"挑战奖励:  {self.MainUnit.Id}");
             MessageHelper.SendToClient(self.MainUnit, message);
 
             UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();

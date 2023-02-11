@@ -33,7 +33,7 @@
                     }
                     break;
                 case (int)UserDataType.Name:
-                     rolePetInfo = session.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(message.PetId);
+                    rolePetInfo = session.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(message.PetId);
                     if (rolePetInfo != null)
                     {
                         rolePetInfo.PetName = message.UpdateTypeValue;

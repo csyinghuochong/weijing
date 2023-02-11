@@ -117,6 +117,7 @@ message A2Center_CheckAccount // IActorRequest
     int64 ActorId = 93;
     string AccountName = 1;
     string Password = 2;
+    string ThirdLogin = 4;
 }
 
 message Center2A_CheckAccount // IActorResponse

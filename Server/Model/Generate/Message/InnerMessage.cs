@@ -252,6 +252,9 @@ namespace ET
 		[ProtoMember(2)]
 		public string Password { get; set; }
 
+		[ProtoMember(4)]
+		public string ThirdLogin { get; set; }
+
 	}
 
 	[Message(InnerOpcode.Center2A_CheckAccount)]
