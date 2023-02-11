@@ -34,7 +34,7 @@
                     rolePetInfo.PetStatus = int.Parse(message.UpdateTypeValue);
                 }
             }
-            if (message.UpdateType == (int)UserDataType.PetStatus)
+            if (message.UpdateType == (int)UserDataType.Name)
             {
                 RolePetInfo rolePetInfo = session.ZoneScene().GetComponent<PetComponent>().GetPetInfoByID(message.PetId);
                 if (rolePetInfo != null)
