@@ -49,6 +49,7 @@ namespace ET
 				case 105:
 					//重置资质系数
 					petInfo = unit.GetComponent<PetComponent>().PetXiLian(petInfo,2);
+					unit.GetComponent<PetComponent>().UpdatePetAttribute(petInfo, true);
 					response.rolePetInfo = petInfo;
 					break;
 				//增加经验
