@@ -11,6 +11,9 @@ namespace ET
         public Text Text_Attribute_1;
         public GameObject RawImage;
         public ZuoQiShowConfig ZuoQiConfig;
+        public GameObject LabProDes;
+        public GameObject Lab_LaiYuan;
+        public GameObject LabDes;
 
         public RenderTexture RenderTexture;
         public UIModelDynamicComponent UIModelShowComponent;
@@ -26,6 +29,11 @@ namespace ET
             self.Text_Attribute_1 = rc.Get<GameObject>("Text_Attribute_1").GetComponent<Text>();
             self.TextName = rc.Get<GameObject>("TextName").GetComponent<Text>();
             self.RawImage = rc.Get<GameObject>("RawImage");
+
+            self.LabProDes = rc.Get<GameObject>("LabProDes");
+            self.Lab_LaiYuan = rc.Get<GameObject>("Lab_LaiYuan");
+            self.LabDes = rc.Get<GameObject>("LabDes");
+
         }
     }
 
@@ -59,8 +67,17 @@ namespace ET
             self.UIModelShowComponent = self.AddChild<UIModelDynamicComponent, GameObject>(gameObject);
             self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
             self.UIModelShowComponent.ShowModel("ZuoQi/" + zuoQiConfig.ModelID).Coroutine();
-            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 70f, 260f);
+            gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 112f, 300f);
             gameObject.transform.localPosition = new Vector2(zuoQiConfig.Id % 10 * 1000, 0);
+            gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f,-45f,0f);
+
+            //显示属性和来源
+            self.LabProDes.GetComponent<Text>().text = self.ZuoQiConfig.Des;
+            self.Lab_LaiYuan.GetComponent<Text>().text = self.ZuoQiConfig.GetDes;
+            //获取技能Buff
+            SkillBuffConfig buffCof = SkillBuffConfigCategory.Instance.Get(self.ZuoQiConfig.MoveBuffID);
+            self.LabDes.GetComponent<Text>().text = buffCof.BuffDescribe;
+
         }
     }
 }

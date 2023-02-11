@@ -27,6 +27,7 @@ namespace ET
         public GameObject Button_FenXiang;
         public GameObject FunctionSetBtn;
         public GameObject Button_Horse;
+        public GameObject Button_CityHorse;
         public GameObject Button_WorldLv;
         public GameObject Button_ZhenYing;
         public GameObject Button_Tower;
@@ -143,7 +144,9 @@ namespace ET
             ButtonHelp.AddListenerEx(self.Button_WorldLv, () => { self.OnButton_WorldLv(); });
 
             self.Button_Horse = rc.Get<GameObject>("Button_Horse");
+            self.Button_CityHorse = rc.Get<GameObject>("Button_CityHorse");
             ButtonHelp.AddListenerEx(self.Button_Horse, () => { self.OnButton_Horse(); });
+            ButtonHelp.AddListenerEx(self.Button_CityHorse, () => { self.OnButton_Horse(); });
 
             self.Button_FenXiang = rc.Get<GameObject>("Button_FenXiang");
             ButtonHelp.AddListenerEx(self.Button_FenXiang, () => { self.OnButton_FenXiang(); });

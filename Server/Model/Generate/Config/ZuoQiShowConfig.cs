@@ -102,6 +102,9 @@ namespace ET
 		/// <summary>描述</summary>
 		[ProtoMember(9)]
 		public string GetDes { get; set; }
+		/// <summary>对应骑乘Buff</summary>
+		[ProtoMember(10)]
+		public int MoveBuffID { get; set; }
 
 	}
 }

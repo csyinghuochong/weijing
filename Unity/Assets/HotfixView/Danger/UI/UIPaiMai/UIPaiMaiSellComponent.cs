@@ -225,6 +225,7 @@ namespace ET
             {
                 self.BagItemUILIist[i].GameObject.SetActive(false);
             }
+
         }
 
         public static void OnPaiBuyShangJia(this UIPaiMaiSellComponent self, PaiMaiItemInfo paiMaiItemInfo)
@@ -310,6 +311,9 @@ namespace ET
             {
                 self.SellItemUILIist[i].GameObject.SetActive(false);
             }
+
+            //显示上架数量
+            self.Text_SellTime.GetComponent<Text>().text = "已上架:" + self.PaiMaiItemInfos.Count + "/20";
         }
         
         public static async ETTask OnPointerDown(this UIPaiMaiSellComponent self, BagInfo binfo, PointerEventData pdata)

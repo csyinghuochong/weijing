@@ -87,6 +87,15 @@ namespace ET
 		/// <summary>道具星数</summary>
 		[ProtoMember(4)]
 		public int StartNum { get; set; }
+		/// <summary>章节</summary>
+		[ProtoMember(5)]
+		public int Chap { get; set; }
+		/// <summary>激活数量</summary>
+		[ProtoMember(6)]
+		public int AcitveNum { get; set; }
+		/// <summary>附加属性</summary>
+		[ProtoMember(7)]
+		public string AddPropreListStr { get; set; }
 
 	}
 }
