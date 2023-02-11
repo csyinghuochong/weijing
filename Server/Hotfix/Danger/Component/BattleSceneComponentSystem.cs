@@ -25,7 +25,7 @@
             {
                 Scene scene = Game.Scene.Get(self.BattleInfos[i].FubenId);
                 scene.GetComponent<BattleDungeonComponent>().OnBattleOver();
-                await TimerComponent.Instance.WaitAsync(10000);
+                await TimerComponent.Instance.WaitAsync(2000);
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
             }

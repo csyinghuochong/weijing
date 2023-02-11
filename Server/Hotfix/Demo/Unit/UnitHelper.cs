@@ -312,7 +312,7 @@ namespace ET
                 numericComponent.GetAsFloat(NumericType.Born_Z));
         }
 
-        public static void OnRideHorse(this Unit self, bool init)
+        public static void OnRideHorse(this Unit self, int oldId, bool init)
         {
             int horseId = self.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Horse);
             ZuoQiShowConfig zuoqiCof = ZuoQiShowConfigCategory.Instance.Get(horseId);
@@ -324,8 +324,10 @@ namespace ET
                 buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
                 self.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, self, null);
             }
-            if (horseId == 0 && !init)
+
+            if (horseId == 0 && oldId > 0 && !init)
             {
+                zuoqiCof = ZuoQiShowConfigCategory.Instance.Get(oldId);
                 self.GetComponent<BuffManagerComponent>().BuffRemove(zuoqiCof.MoveBuffID);
             }
         }

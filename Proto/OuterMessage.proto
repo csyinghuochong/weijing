@@ -3163,7 +3163,9 @@ message M2C_UserInfoInitResponse // IActorLocationResponse
 	string Message = 92;
 	UserInfo UserInfo = 1;
 	repeated KeyValuePair ReddontList = 3;
+	repeated KeyValuePairInt TreasureInfo = 4;
 	repeated ShouJiChapterInfo ShouJiChapterInfos = 5;
+
 }
 
 message RechargeInfo
@@ -3466,6 +3468,23 @@ message M2C_ShoujiRewardResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
+}
+
+//ResponseType M2C_ShouJiTreasureResponse
+//宠物进化
+message C2M_ShouJiTreasureRequest  // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int ShouJiId = 1;
+	repeated int64 ItemIds = 2;
+}
+
+message M2C_ShouJiTreasureResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;		
+	int32 Error = 92;
+	
 }
 
 //ResponseType M2C_LingDiUpResponse

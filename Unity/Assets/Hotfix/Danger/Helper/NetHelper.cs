@@ -59,6 +59,7 @@
             M2C_UserInfoInitResponse m2C_PaiMaiBuyResponse = (M2C_UserInfoInitResponse)await zoneScene.GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
             zoneScene.GetComponent<UserInfoComponent>().UserInfo = m2C_PaiMaiBuyResponse.UserInfo;
             zoneScene.GetComponent<ReddotComponent>().ReddontList = m2C_PaiMaiBuyResponse.ReddontList;
+            zoneScene.GetComponent<ShoujiComponent>().TreasureInfo = m2C_PaiMaiBuyResponse.TreasureInfo;
             zoneScene.GetComponent<ShoujiComponent>().ShouJiChapterInfos = m2C_PaiMaiBuyResponse.ShouJiChapterInfos;
             await ETTask.CompletedTask;
         }

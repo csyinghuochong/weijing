@@ -68,6 +68,19 @@ namespace ET
             }
         }
 
+        public static void OnShouJiTreasure(this ShoujiComponent self, int shoujiId, int itemNum)
+        {
+            KeyValuePairInt keyValuePairInt = null;
+            for (int i = 0; i < self.TreasureInfo.Count; i++)
+            {
+                if (self.TreasureInfo[i].KeyId == shoujiId)
+                {
+                    keyValuePairInt = self.TreasureInfo[i];
+                    keyValuePairInt.Value += itemNum;
+                }
+            }
+        }
+
         public static int GetChapterStar(this ShoujiComponent self, int chapterid)
         {
             ShouJiChapterInfo shouJiChapterInfo = self.GetShouJiChapterInfo((int)chapterid);
