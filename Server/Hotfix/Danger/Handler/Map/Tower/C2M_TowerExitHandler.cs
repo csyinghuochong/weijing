@@ -18,7 +18,7 @@ namespace ET
                 }
             }
 
-            unit.DomainScene().GetComponent<TowerComponent>().OnTowerOver();
+            unit.DomainScene().GetComponent<TowerComponent>().OnTowerOver("TowerExit");
             reply();
             await ETTask.CompletedTask;
         }

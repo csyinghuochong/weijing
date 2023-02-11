@@ -34,12 +34,12 @@ namespace ET
             }
             if (defend.Id == self.MainUnit.Id)
             {
-                self.OnTowerOver();
+                self.OnTowerOver("PlayerDie");
                 return;
             }
         }
 
-        public static void OnTowerOver(this TowerComponent self)
+        public static void OnTowerOver(this TowerComponent self, string way)
         {
             if (self.TowerId == 0)
             {
@@ -79,7 +79,7 @@ namespace ET
                 int itemNum = (int)(cengNum / 5f);
                 self.MainUnit.GetComponent<BagComponent>().OnAddItemData("10000148;" + itemNum, $"{ItemGetWay.TiaoZhan}_{TimeHelper.ServerNow()}");
             }
-            Log.Debug($"挑战奖励:  {self.MainUnit.Id}");
+            Log.Debug($"挑战奖励:  {self.MainUnit.Id}  {way}");
             MessageHelper.SendToClient(self.MainUnit, message);
 
             UserInfoComponent userInfoComponent = self.MainUnit.GetComponent<UserInfoComponent>();
@@ -94,7 +94,7 @@ namespace ET
             self.TowerId = self.MainUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
             if (TowerHelper.GetLastTower(self.FubenDifficulty) == self.TowerId)
             {
-                self.OnTowerOver();
+                self.OnTowerOver("PassAll");
                 return;
             }
             self.CreateMonster(self.TowerId + 1).Coroutine();
