@@ -63,6 +63,19 @@ namespace ET
             self.OnUpdateTreasureItemList(chapter);
         }
 
+        public static void OnShouJiTreasure(this UIShouJiTreasureComponent self)
+        {
+            int chapterId = 0;
+            for (int i = 0; i < self.TreasureTypeList.Count; i++)
+            {
+                if (self.TreasureTypeList[i].Ima_SelectStatus.activeSelf)
+                {
+                    chapterId = self.TreasureTypeList[i].Chapter;
+                }
+            }
+            self.OnUpdateTreasureItemList(chapterId);
+        }
+
         public static void OnUpdateTreasureItemList(this UIShouJiTreasureComponent self, int chapter)
         {
             string path = ABPathHelper.GetUGUIPath("Main/ShouJi/UIShouJiTreasureItem");

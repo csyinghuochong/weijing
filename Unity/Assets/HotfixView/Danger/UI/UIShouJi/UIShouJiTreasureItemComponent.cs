@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIShouJiTreasureItemComponent:Entity, IAwake<GameObject>
     {
+        public GameObject TextNumber;
         public GameObject TextAttribute;
         public GameObject ButtonActive;
         public GameObject ImageActived;
@@ -14,6 +15,7 @@ namespace ET
 
         public int ShoujiId;
         public UIItemComponent UIItemComponent;
+        public ShoujiComponent ShoujiComponent;
     }
 
     [ObjectSystem]
@@ -28,9 +30,12 @@ namespace ET
             self.ButtonActive = rc.Get<GameObject>("ButtonActive");
             self.ImageActived = rc.Get<GameObject>("ImageActived");
             self.UICommonItem = rc.Get<GameObject>("UICommonItem");
+            self.TextNumber = rc.Get<GameObject>("TextNumber");
 
             self.UIItemComponent = self.AddChild<UIItemComponent, GameObject>(self.UICommonItem);
             self.ButtonActive.GetComponent<Button>().onClick.AddListener(() => { self.OnButtonActive().Coroutine(); });
+
+            self.ShoujiComponent = self.ZoneScene().GetComponent<ShoujiComponent>();
         }
     }
 
@@ -73,8 +78,16 @@ namespace ET
                 }
             }
             self.TextAttribute.GetComponent<Text>().text = attributeStr;
-        }
 
+            KeyValuePairInt keyValuePairInt = self.ShoujiComponent.GetTreasureInfo(shouijId);
+            int haveNumber = keyValuePairInt!=null ? (int)keyValuePairInt.Value : 0;
+            self.TextNumber.GetComponent<Text>().text = $"{haveNumber}/{shouJiItemConfig.AcitveNum}";
+
+            bool actived = haveNumber >= shouJiItemConfig.AcitveNum;
+
+            self.ButtonActive.SetActive(!actived);
+            self.ImageActived.SetActive(actived);  
+        }
 
     }
 }

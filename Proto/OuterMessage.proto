@@ -3471,7 +3471,7 @@ message M2C_ShoujiRewardResponse // IActorLocationResponse
 }
 
 //ResponseType M2C_ShouJiTreasureResponse
-//宠物进化
+//手机珍宝
 message C2M_ShouJiTreasureRequest  // IActorLocationRequest
 {
 	int32 RpcId = 90;

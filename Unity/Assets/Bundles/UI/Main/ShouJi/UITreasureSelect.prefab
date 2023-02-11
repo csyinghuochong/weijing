@@ -464,6 +464,8 @@ MonoBehaviour:
     gameObject: {fileID: 5264112796306943976}
   - key: ButtonClose
     gameObject: {fileID: 7561516227198472245}
+  - key: ButtonTunShi
+    gameObject: {fileID: 5776509744861435932}
 --- !u!114 &2513308697494365840
 MonoBehaviour:
   m_ObjectHideFlags: 0

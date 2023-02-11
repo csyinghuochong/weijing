@@ -79,6 +79,57 @@ namespace ET
                     keyValuePairInt.Value += itemNum;
                 }
             }
+            if (keyValuePairInt == null)
+            {
+                keyValuePairInt = new KeyValuePairInt() { KeyId = shoujiId, Value = itemNum };
+                self.TreasureInfo.Add(keyValuePairInt); 
+            }
+        }
+
+        public static KeyValuePairInt GetTreasureInfo(this ShoujiComponent self, int shoujiId)
+        {
+            KeyValuePairInt keyValuePairInt = null;
+            for (int i = 0; i < self.TreasureInfo.Count; i++)
+            {
+                if (self.TreasureInfo[i].KeyId == shoujiId)
+                {
+                    keyValuePairInt = self.TreasureInfo[i];
+                }
+            }
+            return keyValuePairInt;
+        }
+
+        public static List<HideProList> GetTreasurePro(this ShoujiComponent self)
+        {
+            List<HideProList> proList = new List<HideProList>();
+
+            for (int i = 0; i < self.TreasureInfo.Count; i++)
+            {
+                ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(self.TreasureInfo[i].KeyId);
+                if (self.TreasureInfo[i].Value < shouJiItemConfig.AcitveNum)
+                {
+                    continue;
+                }
+
+                string[] attributeInfoList = shouJiItemConfig.AddPropreListStr.Split('@');
+                for (int a = 0; a < attributeInfoList.Length; a++)
+                {
+                    string[] attributeInfo = attributeInfoList[a].Split(',');
+                    int numericType = int.Parse(attributeInfo[0]);
+
+                    if (NumericHelp.GetNumericValueType(numericType) == 2)
+                    {
+                        float fvalue = float.Parse(attributeInfo[1]);
+                        proList.Add(new HideProList() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+                    }
+                    else
+                    {
+                        proList.Add(new HideProList() { HideID = numericType, HideValue = long.Parse(attributeInfo[1]) });
+                    }
+                }
+            }
+
+            return proList;
         }
 
         public static int GetChapterStar(this ShoujiComponent self, int chapterid)
@@ -144,6 +195,8 @@ namespace ET
                 proList.AddRange(self.GetChapterPro(item.ChapterId, 2));
                 proList.AddRange(self.GetChapterPro(item.ChapterId, 3));
             }
+
+            proList.AddRange(self.GetTreasurePro());
             return proList;
         }
     }

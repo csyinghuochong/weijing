@@ -60,6 +60,12 @@ namespace ET
 
     public static class UIShouJiComponentSystem
     {
+
+        public static void OnShouJiTreasure(this UIShouJiComponent self)
+        {
+            self.UIPageView.UISubViewList[(int)ShouJiPageEnum.ShouJiTreasure].GetComponent<UIShouJiTreasureComponent>().OnShouJiTreasure();  
+        }
+
         public static void OnClickPageButton(this UIShouJiComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();
