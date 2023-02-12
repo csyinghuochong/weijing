@@ -996,7 +996,8 @@ namespace ET
                     self.duihuaButton.GetComponent<RectTransform>().anchoredPosition = new Vector2(-95.7f, 738f);
                     break;
             }
-          
+
+            self.OnHorseRide();
             self.UpdateShadow();
             self.UpdateNpcTaskUI();
             self.UIMapMini.OnEnterScene();
@@ -1196,6 +1197,12 @@ namespace ET
                 return;
             }
             self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickNpc(npc.ConfigId);
+        }
+
+        public static void OnHorseRide(this UIMainComponent self)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            self.Button_Horse.SetActive(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseRide) == 1);
         }
 
         public static void OnShowFubenIndex(this UIMainComponent self)

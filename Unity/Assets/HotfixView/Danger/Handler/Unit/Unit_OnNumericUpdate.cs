@@ -66,6 +66,11 @@
                     args.Unit.GetComponent<HeroHeadBarComponent>()?.UpdateAI();
                     break;
                 case NumericType.HorseRide:
+                    if (args.Unit.MainHero)
+                    {
+                        UI uI = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
+                        uI.GetComponent<UIMainComponent>().OnHorseRide();
+                    }
                     args.Unit.GetComponent<GameObjectComponent>()?.OnUpdateHorse();
                     break;
                 case NumericType.BattleTodayKill:
