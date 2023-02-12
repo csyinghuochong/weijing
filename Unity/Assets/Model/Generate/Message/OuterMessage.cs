@@ -7286,38 +7286,6 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_ShouJiTreasureResponse))]
-//宠物进化
-	[Message(OuterOpcode.C2M_ShouJiTreasureRequest)]
-	[ProtoContract]
-	public partial class C2M_ShouJiTreasureRequest: Object, IActorLocationRequest
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(1)]
-		public int ShouJiId { get; set; }
-
-		[ProtoMember(2)]
-		public List<long> ItemIds = new List<long>();
-
-	}
-
-	[Message(OuterOpcode.M2C_ShouJiTreasureResponse)]
-	[ProtoContract]
-	public partial class M2C_ShouJiTreasureResponse: Object, IActorLocationResponse
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(91)]
-		public string Message { get; set; }
-
-		[ProtoMember(92)]
-		public int Error { get; set; }
-
-	}
-
 	[ResponseType(nameof(M2C_LingDiUpResponse))]
 	[Message(OuterOpcode.C2M_LingDiUpRequest)]
 	[ProtoContract]
@@ -9068,6 +9036,38 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_ShouJiTreasureResponse))]
+//手机珍宝
+	[Message(OuterOpcode.C2M_ShouJiTreasureRequest)]
+	[ProtoContract]
+	public partial class C2M_ShouJiTreasureRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int ShouJiId { get; set; }
+
+		[ProtoMember(2)]
+		public List<long> ItemIds = new List<long>();
+
+	}
+
+	[Message(OuterOpcode.M2C_ShouJiTreasureResponse)]
+	[ProtoContract]
+	public partial class M2C_ShouJiTreasureResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public string Message { get; set; }
+
+		[ProtoMember(92)]
+		public int Error { get; set; }
 
 	}
 

@@ -27,6 +27,11 @@ namespace ET
 
         public static void OnKillEvent(this TowerComponent self, Unit defend)
         {
+            if (defend.Id == self.MainUnit.Id)
+            {
+                self.OnTowerOver("PlayerDie");
+                return;
+            }
             if (defend.GetBattleCamp() == self.MainUnit.GetBattleCamp())
             {
                 return;
@@ -34,11 +39,6 @@ namespace ET
             if (FubenHelp.IsAllMonsterDead(self.DomainScene(), self.MainUnit))
             {
                 self.OnTimer();
-                return;
-            }
-            if (defend.Id == self.MainUnit.Id)
-            {
-                self.OnTowerOver("PlayerDie");
                 return;
             }
         }
