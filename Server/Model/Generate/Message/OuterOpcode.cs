@@ -505,5 +505,7 @@ namespace ET
 		 public const ushort M2C_RolePetUpStage = 10502;
 		 public const ushort C2Center_PhoneBinging = 10503;
 		 public const ushort Center2C_PhoneBinging = 10504;
+		 public const ushort C2M_ItemTreasureOpenRequest = 10505;
+		 public const ushort M2C_ItemTreasureOpenResponse = 10506;
 	}
 }

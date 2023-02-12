@@ -4369,3 +4369,24 @@ message Center2C_PhoneBinging // IResponse
     string Message = 92;
     
 }
+
+//ResponseType M2C_ItemTreasureOpenResponse
+//藏宝图开启
+message C2M_ItemTreasureOpenRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 OperateType = 1;				
+	int64 OperateBagID = 2;				
+	string OperatePar = 3;		
+	
+}
+
+message M2C_ItemTreasureOpenResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	string OperatePar = 1;
+
+	RewardItem ReardItem = 5;
+}
