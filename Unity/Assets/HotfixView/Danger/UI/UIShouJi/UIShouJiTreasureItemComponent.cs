@@ -53,6 +53,7 @@ namespace ET
             self.ShoujiId = shouijId;
             ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(shouijId);
             self.UIItemComponent.UpdateItem(new BagInfo() { ItemID = shouJiItemConfig.ItemID });
+            self.UIItemComponent.Label_ItemNum.SetActive(false);
 
             string attributeStr = string.Empty;
 
@@ -70,7 +71,7 @@ namespace ET
                 }
                 else
                 {
-                    attributeStr = attributeStr +  $"{UIItemHelp.GetAttributeName(numericType)} {int.Parse(attributeInfo[1])}";
+                    attributeStr = attributeStr +  $"提升{UIItemHelp.GetAttributeName(numericType)}{int.Parse(attributeInfo[1])}点";
                 }
                 if (i < attributeInfoList.Length - 1)
                 {
@@ -81,7 +82,7 @@ namespace ET
 
             KeyValuePairInt keyValuePairInt = self.ShoujiComponent.GetTreasureInfo(shouijId);
             int haveNumber = keyValuePairInt!=null ? (int)keyValuePairInt.Value : 0;
-            self.TextNumber.GetComponent<Text>().text = $"{haveNumber}/{shouJiItemConfig.AcitveNum}";
+            self.TextNumber.GetComponent<Text>().text = $"激活:{haveNumber}/{shouJiItemConfig.AcitveNum}";
 
             bool actived = haveNumber >= shouJiItemConfig.AcitveNum;
 
