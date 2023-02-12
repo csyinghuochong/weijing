@@ -41,15 +41,19 @@ namespace ET
 
                 if (needNumber < bagInfo.ItemNum)
                 {
+                    curNumber += needNumber;
                     bagComponent.OnCostItemData(huishouList[i], needNumber);
-                    curNumber += bagInfo.ItemNum;
-                    break;
                 }
                 else
                 {
                     needNumber -= bagInfo.ItemNum;
                     curNumber += bagInfo.ItemNum;
                     bagComponent.OnCostItemData(huishouList[i], bagInfo.ItemNum);
+                }
+
+                if (curNumber >= needNumber)
+                {
+                    break;
                 }
             }
            
