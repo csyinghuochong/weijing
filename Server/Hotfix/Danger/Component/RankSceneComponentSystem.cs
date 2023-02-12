@@ -254,6 +254,19 @@ namespace ET
             });
         }
 
+        public static int GetCombatRank(this RankSceneComponent self, long usrerId)
+        {
+
+            for (int i = 0; i < self.DBRankInfo.rankingInfos.Count; i++)
+            {
+                if (self.DBRankInfo.rankingInfos[i].UserId == usrerId)
+                {
+                    return i +1;
+                }
+            }
+            return -1;
+        }
+
         public static void UpdateCampRankList(this RankSceneComponent self, int campId, RankingInfo rankingInfo)
         {
             if (campId == 0)

@@ -247,7 +247,7 @@ namespace ET
 				unit.GetComponent<BuffManagerComponent>().InitBuff();
 				unit.GetComponent<DBSaveComponent>().Activeted();
 				unit.GetComponent<SkillPassiveComponent>().Activeted();
-				unit.OnRideHorse(0, true);
+				unit.OnUpdateHorseRide();
 
 				unit.SingleScene = request.SceneType == SceneTypeEnum.LocalDungeon || request.SceneType == SceneTypeEnum.PetDungeon;
 				response.NewInstanceId = unit.InstanceId;

@@ -9,7 +9,9 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2R_RankUpdateRequest request, R2M_RankUpdateResponse response, Action reply)
         {
-            scene.GetComponent<RankSceneComponent>().OnRecvRankUpdate(request.CampId, request.RankingInfo);
+            RankSceneComponent rankSceneComponent = scene.GetComponent<RankSceneComponent>();
+            rankSceneComponent.OnRecvRankUpdate(request.CampId, request.RankingInfo);
+            response.RankId = rankSceneComponent.GetCombatRank(request.CampId);
 
             reply();
             await ETTask.CompletedTask;

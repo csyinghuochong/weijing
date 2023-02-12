@@ -17,15 +17,14 @@
 		}
 	}
 
-	[NumericWatcher((int)NumericType.Now_Horse)]
-	public class NumericWatcher_Now_Horse : INumericWatcher
+	[NumericWatcher((int)NumericType.RankID)]
+	public class NumericWatcher_RankID : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{
 
 #if SERVER
-			Unit unit = args.Parent;
-			unit.OnRideHorse((int)args.OldValue, false);
+			
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
 			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
@@ -35,6 +34,45 @@
 		}
 	}
 
+	/// <summary>
+	/// 出战ID
+	/// </summary>
+	[NumericWatcher((int)NumericType.HorseFightID)]
+	public class NumericWatcher_HorseFightID : INumericWatcher
+	{
+		public void Run(EventType.NumericChangeEvent args)
+		{
+
+#if SERVER
+#else
+			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
+			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
+			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
+			Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
+#endif
+		}
+	}
+
+	/// <summary>
+	/// 出战状态
+	/// </summary>
+	[NumericWatcher((int)NumericType.HorseRide)]
+	public class NumericWatcher_HorseRide : INumericWatcher
+	{
+		public void Run(EventType.NumericChangeEvent args)
+		{
+
+#if SERVER
+			Unit unit = args.Parent;
+			unit.OnUpdateHorseRide();
+#else
+			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
+			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
+			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
+			Game.EventSystem.PublishClass(EventType.UnitNumericUpdate.Instance);
+#endif
+		}
+	}
 
 	[NumericWatcher((int)NumericType.Now_AI)]
 	[NumericWatcher((int)NumericType.Now_Stall)]

@@ -65,7 +65,7 @@
                 case NumericType.Now_AI:
                     args.Unit.GetComponent<HeroHeadBarComponent>()?.UpdateAI();
                     break;
-                case NumericType.Now_Horse:
+                case NumericType.HorseRide:
                     args.Unit.GetComponent<GameObjectComponent>()?.OnUpdateHorse();
                     break;
                 case NumericType.BattleTodayKill:

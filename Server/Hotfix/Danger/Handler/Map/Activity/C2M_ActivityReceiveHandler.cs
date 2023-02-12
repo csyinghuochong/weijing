@@ -28,6 +28,15 @@ namespace ET
                             reply();
                             return;
                         }
+
+                        string[] needList = activityConfig.Par_3.Split('@');
+                        if (unit.GetComponent<BagComponent>().GetSpaceNumber() < needList.Length)
+                        {
+                            response.Error = ErrorCore.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }
+
                         activityComponent.ActivityReceiveIds.Add(request.ActivityId);
                         unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                         break;

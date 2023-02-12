@@ -419,12 +419,14 @@ namespace ET
             rankPetInfo.PlayerLv = userInfoComponent.UserInfo.Lv;
             rankPetInfo.Combat = userInfoComponent.UserInfo.Combat;
             rankPetInfo.Occ = userInfoComponent.UserInfo.Occ;
-            R2M_RankUpdateResponse m2m_TrasferUnitResponse = (R2M_RankUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+            R2M_RankUpdateResponse Response = (R2M_RankUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                      (mapInstanceId, new M2R_RankUpdateRequest() 
                      {
                             CampId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CampId),
                             RankingInfo = rankPetInfo
                      });
+
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RankID, Response.RankId);
         }
 
         //增加经验
@@ -764,6 +766,16 @@ namespace ET
                 }
             }
             return true;
+        }
+
+        public static void OnHorseActive(this UserInfoComponent self, string parainfo)
+        {
+            int horseId = int.Parse(parainfo);
+            if (self.UserInfo.HorseIds.Contains(horseId))
+            {
+                return;
+            }
+            self.UserInfo.HorseIds.Add(horseId);
         }
 
         public static void ClearDayData(this UserInfoComponent self)

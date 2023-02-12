@@ -70,7 +70,7 @@ namespace ET
             }
             UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.CostItemInfo.ItemID);
-            if ((itemConfig.ItemSubType == 108 || itemConfig.ItemSubType == 109) && self.RolePetInfo.PetLv >= userInfo.Lv)
+            if ((itemConfig.ItemSubType == 108 || itemConfig.ItemSubType == 109) && self.RolePetInfo.PetLv >= userInfo.Lv + 5)
             {
                 FloatTipManager.Instance.ShowFloatTip("宠物等级不能高于玩家5级！");
                 return;

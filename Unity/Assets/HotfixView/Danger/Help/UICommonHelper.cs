@@ -285,6 +285,19 @@ namespace ET
             }
         }
 
+        public static void SetRawImageGray(GameObject obj, bool val)
+        {
+            if (val)
+            {
+                Material mat = ResourcesComponent.Instance.LoadAsset<Material>(ABPathHelper.GetMaterialPath("UI_Hui"));
+                obj.GetComponent<RawImage>().material = mat;
+            }
+            else
+            {
+                obj.GetComponent<RawImage>().material = null;
+            }
+        }
+
         //传入值显示名称
         public static string GetProName(int proID) {
 

@@ -73,7 +73,6 @@
         public const int TeamDungeonTimes = 3067;
         public const int Now_AI = 3068;
         public const int TrialDungeonId = 3069;
-        public const int Now_Horse = 3070;
         public const int BattleTodayCamp = 3071;                                   //今日战场
         public const int TeamId = 3072;
         public const int BattleTodayKill = 3073;                                   //战场击杀人数
@@ -81,6 +80,9 @@
         public const int TeamDungeonXieZhu = 3075;                                  //协作副本
         public const int FubenTimesReset = 3076;                                    //宠物天梯重置
         public const int FenShangSet = 3077;                                           //分享
+        public const int RankID = 3078;                                             //排名
+        public const int HorseFightID = 3079;                                       //出战的坐骑
+        public const int HorseRide = 3080;                                          //骑乘状态
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

@@ -250,6 +250,10 @@ namespace ET
                 {
                     self.ZoneScene().GetComponent<PetComponent>().OnUnlockSkin(itemConfig.ItemUsePar);
                 }
+                if (itemConfig.ItemSubType == 125)
+                {
+                    self.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(itemConfig.ItemUsePar);
+                }
 
                 if (itemConfig.DayUseNum > 0)
                 {

@@ -10,11 +10,8 @@ namespace ET
         {
             try
             {
-                int horseId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Horse);
-                if (horseId > 0)
-                {
-                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.Now_Horse, 0);
-                }
+                //int horseId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseRide);
+                unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseRide, 0);
                 M2C_SkillCmd m2C_SkillCmd = unit.GetComponent<SkillManagerComponent>().OnUseSkill(request, true);
                 if (request.ItemId > 0 && m2C_SkillCmd.Error == ErrorCore.ERR_Success)
                 {

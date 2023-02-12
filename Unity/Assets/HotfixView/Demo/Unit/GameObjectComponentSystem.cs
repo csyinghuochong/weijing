@@ -155,15 +155,13 @@ namespace ET
             self.ObjectHorse = go;
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            int horseId = numericComponent.GetAsInt(NumericType.Now_Horse);
+            int horseId = numericComponent.GetAsInt(NumericType.HorseFightID);
             if (horseId == 0)
             {
-                self.RecoverHorse();
-                unit.GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
-                unit.GetComponent<FsmComponent>().SetIdleState();
-                self.ShowRoleDi(true);
+                return;
             }
-            else
+            int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
+            if (horseRide != 0)
             {
                 UICommonHelper.SetParent(go, GlobalComponent.Instance.Unit.gameObject);
                 go.SetActive(true);
@@ -175,7 +173,14 @@ namespace ET
                 unit.GetComponent<AnimatorComponent>().UpdateAnimator(go);
                 self.ShowRoleDi(false);
             }
-            self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseId);
+            else
+            {
+                self.RecoverHorse();
+                unit.GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
+                unit.GetComponent<FsmComponent>().SetIdleState();
+                self.ShowRoleDi(true);
+            }
+            self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseRide);
         }
 
         public static void ShowRoleDi(this GameObjectComponent self, bool show)
@@ -189,8 +194,13 @@ namespace ET
             self.RecoverHorse();
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            int horseId = numericComponent.GetAsInt(NumericType.Now_Horse);
-            if (horseId != 0)
+            int horseId = numericComponent.GetAsInt(NumericType.HorseFightID);
+            if (horseId == 0)
+            {
+                return;
+            }
+            int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
+            if (horseRide != 0)
             {
                 ZuoQiShowConfig zuoQiShowConfig = ZuoQiShowConfigCategory.Instance.Get(horseId);
                 self.HorseAssetsPath = ABPathHelper.GetUnitPath($"ZuoQi/{zuoQiShowConfig.ModelID}");
@@ -211,7 +221,7 @@ namespace ET
                     unit.GetComponent<FsmComponent>().OnEnterFsmRunState();
                 }
             }
-            self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseId);
+            self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseRide);
         }
 
         public static void OnAddCollider(this GameObjectComponent self, GameObject go)

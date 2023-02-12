@@ -218,6 +218,10 @@
         //充值
         public const int ERR_IOSVerify = 301401;
 
+        //坐骑
+        public const int ERR_HoreseNotActive = 301501;                                //坐骑未激活
+        public const int ERR_HoreseNotFight = 301502;                                 //坐骑未出战
+
         public static bool IsRpcNeedThrowException(int error)
         {
             if (error == 0)

@@ -312,23 +312,25 @@ namespace ET
                 numericComponent.GetAsFloat(NumericType.Born_Z));
         }
 
-        public static void OnRideHorse(this Unit self, int oldId, bool init)
+        public static void OnUpdateHorseRide(this Unit self)
         {
-            int horseId = self.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Horse);
-            ZuoQiShowConfig zuoqiCof = null;
+            int horseId = self.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseFightID);
+            if (horseId==0)
+            {
+                return;
+            }
 
-            if (horseId > 0)
+            int horseRide = self.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseRide);
+            ZuoQiShowConfig zuoqiCof = ZuoQiShowConfigCategory.Instance.Get(horseId);
+            if (horseRide == 1)
             {
                 BuffData buffData_2 = new BuffData();
-                zuoqiCof = ZuoQiShowConfigCategory.Instance.Get(horseId);
                 buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(zuoqiCof.MoveBuffID);
                 buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
                 self.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, self, null);
             }
-
-            if (horseId == 0 && oldId > 0 && !init)
+            if (horseRide == 0)
             {
-                zuoqiCof = ZuoQiShowConfigCategory.Instance.Get(oldId);
                 self.GetComponent<BuffManagerComponent>().BuffRemove(zuoqiCof.MoveBuffID);
             }
         }

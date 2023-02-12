@@ -572,6 +572,7 @@ message R2M_RankUpdateResponse // IActorResponse
     int32 RpcId = 90;
     int32 Error = 91;
     string Message = 92;
+    int32 RankId = 1; //战力排行
 }
 
 //ResponseType P2M_PaiMaiSellResponse
