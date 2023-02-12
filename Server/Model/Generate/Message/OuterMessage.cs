@@ -7316,6 +7316,9 @@ namespace ET
 		[ProtoMember(92)]
 		public int Error { get; set; }
 
+		[ProtoMember(1)]
+		public int AddNum { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_LingDiUpResponse))]

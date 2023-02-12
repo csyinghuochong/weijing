@@ -51,9 +51,8 @@ namespace ET
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
 
-            List<BagInfo> allInfos = new List<BagInfo>();
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Equipment));
+            List<BagInfo> allInfos = (bagComponent.GetBagList());
 
             for (int i = 0; i < allInfos.Count; i++)
             {
@@ -100,7 +99,7 @@ namespace ET
           
             if (response.Error == ErrorCore.ERR_Success)
             {
-                self.ShoujiComponent.OnShouJiTreasure(self.ShouJIId, selects.Count);
+                self.ShoujiComponent.OnShouJiTreasure(self.ShouJIId, response.AddNum);
             }
 
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIShouJi);

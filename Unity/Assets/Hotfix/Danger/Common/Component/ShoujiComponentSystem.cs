@@ -76,7 +76,7 @@ namespace ET
                 if (self.TreasureInfo[i].KeyId == shoujiId)
                 {
                     keyValuePairInt = self.TreasureInfo[i];
-                    keyValuePairInt.Value += itemNum;
+                    keyValuePairInt.Value = itemNum;
                 }
             }
             if (keyValuePairInt == null)

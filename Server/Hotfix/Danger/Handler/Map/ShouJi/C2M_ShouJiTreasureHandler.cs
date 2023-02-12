@@ -52,6 +52,7 @@ namespace ET
                     curNumber += bagInfo.ItemNum;
                 }
             }
+           
             shoujiComponent.OnShouJiTreasure(request.ShouJiId, curNumber);
 
             reply();
