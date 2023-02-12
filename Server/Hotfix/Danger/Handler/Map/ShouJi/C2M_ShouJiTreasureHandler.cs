@@ -9,6 +9,16 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_ShouJiTreasureRequest request, M2C_ShouJiTreasureResponse response, Action reply)
         {
+            ShoujiComponent shoujiComponent = unit.GetComponent<ShoujiComponent>();
+            KeyValuePairInt keyValuePairInt = shoujiComponent.GetTreasureInfo(request.ShouJiId);
+            ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(request.ShouJiId);
+            if (keyValuePairInt != null && keyValuePairInt.Value > shouJiItemConfig.AcitveNum)
+            {
+                response.Error = ErrorCore.ERR_ShouJIActived;
+                reply();
+                return;
+            }
+
             List<long> huishouList = request.ItemIds;
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             for (int i = 0; i < huishouList.Count; i++)
@@ -22,9 +32,27 @@ namespace ET
                 }
             }
 
-            bagComponent.OnCostItemData(huishouList, ItemLocType.ItemLocBag);
-            ShoujiComponent shoujiComponent = unit.GetComponent<ShoujiComponent>();
-            shoujiComponent.OnShouJiTreasure(request.ShouJiId, request.ItemIds.Count);
+            int curNumber   = keyValuePairInt!=null ? (int)keyValuePairInt.Value : 0;  
+            int needNumber  = shouJiItemConfig.AcitveNum - curNumber;
+            
+            for (int i = 0; i < huishouList.Count; i++)
+            {
+                BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, huishouList[i]);
+
+                if (needNumber < bagInfo.ItemNum)
+                {
+                    bagComponent.OnCostItemData(huishouList[i], needNumber);
+                    curNumber += bagInfo.ItemNum;
+                    break;
+                }
+                else
+                {
+                    bagComponent.OnCostItemData(huishouList[i], bagInfo.ItemNum);
+                    needNumber -= bagInfo.ItemNum;
+                    curNumber += bagInfo.ItemNum;
+                }
+            }
+            shoujiComponent.OnShouJiTreasure(request.ShouJiId, curNumber);
 
             reply();
             await ETTask.CompletedTask;

@@ -121,7 +121,6 @@ namespace ET
             return ids;
         }
 
-
         public static void OnSelectItem(this UITreasureSelectComponent self, BagInfo bagInfo)
         {
             for (int i = 0; i < self.UIItems.Count; i++)

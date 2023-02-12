@@ -222,6 +222,9 @@
         public const int ERR_HoreseNotActive = 301501;                                //坐骑未激活
         public const int ERR_HoreseNotFight = 301502;                                 //坐骑未出战
 
+        //珍宝
+        public const int ERR_ShouJIActived = 301601;                                    //已经激活
+
         public static bool IsRpcNeedThrowException(int error)
         {
             if (error == 0)
