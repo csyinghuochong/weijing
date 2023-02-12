@@ -194,8 +194,7 @@ namespace ET
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_RolePetUpdate);
 
             //如果有皮肤的话更新一次角色属性
-            Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>());
-
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>(), true, true);
             return newpet;
         }
 

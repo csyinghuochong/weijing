@@ -145,7 +145,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.PointNaiLi, 0);
             numericComponent.ApplyValue(NumericType.PointMinJie,0);
             numericComponent.ApplyValue(NumericType.PointRemain, (userInfoComponent.UserInfo.Lv - 1) * 5);
-            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true); ;
         }
 
         /// <summary>

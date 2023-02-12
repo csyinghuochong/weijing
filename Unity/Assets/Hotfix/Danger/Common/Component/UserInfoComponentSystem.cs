@@ -318,7 +318,6 @@ namespace ET
                     unit.GetComponent<TaskComponent>().OnUpdateLevel(self.UserInfo.Lv);
                     unit.GetComponent<ChengJiuComponent>().OnUpdateLevel(self.UserInfo.Lv);
                     self.UpdateRoleData(UserDataType.Sp, value, notice);
-                    self.UpdateRankInfo().Coroutine();
                     break;
                 case UserDataType.Sp:
                     self.UserInfo.Sp += int.Parse(value);
@@ -379,7 +378,6 @@ namespace ET
                 case UserDataType.Combat:
                     self.UserInfo.Combat = int.Parse(value);
                     saveValue = self.UserInfo.Combat.ToString();
-                    self.UpdateRankInfo().Coroutine();
                     break;
                 case UserDataType.Vitality:
                     maxValue = unit.GetMaxHuoLi();
@@ -425,7 +423,10 @@ namespace ET
                             CampId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CampId),
                             RankingInfo = rankPetInfo
                      });
-
+            if (unit.IsDisposed)
+            {
+                return;
+            }
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RankID, Response.RankId);
         }
 
@@ -768,14 +769,17 @@ namespace ET
             return true;
         }
 
-        public static void OnHorseActive(this UserInfoComponent self, string parainfo)
+        public static void OnHorseActive(this UserInfoComponent self, string parainfo, bool active)
         {
             int horseId = int.Parse(parainfo);
-            if (self.UserInfo.HorseIds.Contains(horseId))
+            if (active && !self.UserInfo.HorseIds.Contains(horseId))
             {
-                return;
+                self.UserInfo.HorseIds.Add(horseId);
             }
-            self.UserInfo.HorseIds.Add(horseId);
+            if(!active && self.UserInfo.HorseIds.Contains(horseId))
+            {
+                self.UserInfo.HorseIds.Remove(horseId);
+            }
         }
 
         public static void ClearDayData(this UserInfoComponent self)

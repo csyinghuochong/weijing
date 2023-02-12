@@ -252,7 +252,7 @@ namespace ET
                 }
                 if (itemConfig.ItemSubType == 125)
                 {
-                    self.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(itemConfig.ItemUsePar);
+                    self.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(itemConfig.ItemUsePar, true);
                 }
 
                 if (itemConfig.DayUseNum > 0)

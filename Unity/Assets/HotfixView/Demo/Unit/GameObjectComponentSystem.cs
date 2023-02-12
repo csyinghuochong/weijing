@@ -176,6 +176,14 @@ namespace ET
         {
             GameObject di = self.GameObject.transform.Find("fake shadow (5)").gameObject;
             di.SetActive(show);
+
+            Unit unit = self.GetParent<Unit>();
+            MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+            bool run = moveComponent != null && !moveComponent.IsArrived();
+            if (run)
+            {
+                unit.GetComponent<FsmComponent>().OnEnterFsmRunState();
+            }
         }
 
         public static void OnShangMa(this GameObjectComponent self, GameObject go, int horseId)
@@ -190,13 +198,6 @@ namespace ET
             unit.GetComponent<FsmComponent>().SetHorseState();
             unit.GetComponent<AnimatorComponent>().UpdateAnimator(go);
             self.ShowRoleDi(false);
-
-            MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-            bool run = moveComponent != null && !moveComponent.IsArrived();
-            if (run)
-            {
-                unit.GetComponent<FsmComponent>().OnEnterFsmRunState();
-            }
         }
 
         public static void OnXiaMa(this GameObjectComponent self)
@@ -207,13 +208,6 @@ namespace ET
             self.UpdatePositon(self.GetParent<Unit>().Position);
             unit.GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
             self.ShowRoleDi(true);
-
-            MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-            bool run = moveComponent != null && !moveComponent.IsArrived();
-            if (run)
-            {
-                unit.GetComponent<FsmComponent>().OnEnterFsmRunState();
-            }
         }
 
         public static void OnUpdateHorse(this GameObjectComponent self)

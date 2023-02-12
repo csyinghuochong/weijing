@@ -22,10 +22,31 @@
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{
-
+			Unit unit = args.Parent;
 #if SERVER
-			
+			if (args.NewValue != 0) //没排名
+			{
+				unit.GetComponent<UserInfoComponent>().OnHorseActive("10004", false);
+				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+				if (numericComponent.GetAsInt(NumericType.HorseFightID) == 1004)
+				{
+					numericComponent.ApplyValue(NumericType.HorseFightID, 0);
+					numericComponent.ApplyValue(NumericType.HorseRide, 0);
+				}
+			}
+			else
+			{
+				unit.GetComponent<UserInfoComponent>().OnHorseActive("10004", true);
+			}
 #else
+			if (args.NewValue != 0) //没排名
+			{
+				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive("1004", false);
+			}
+			else
+			{
+				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive("1004", true);
+			}
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
 			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
 			EventType.UnitNumericUpdate.Instance.NumericType = args.NumericType;
@@ -42,7 +63,6 @@
 	{
 		public void Run(EventType.NumericChangeEvent args)
 		{
-
 #if SERVER
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;

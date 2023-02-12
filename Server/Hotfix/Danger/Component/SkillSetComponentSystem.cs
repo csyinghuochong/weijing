@@ -443,8 +443,7 @@ namespace ET
 				self.SkillList.Add(skillPro);
 			}
 
-			Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>(), true);
-
+			Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>(), true, true);
 			self.GetParent<Unit>().GetComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 		}
 

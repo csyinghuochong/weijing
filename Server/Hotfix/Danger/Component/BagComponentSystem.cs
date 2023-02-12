@@ -514,7 +514,7 @@ namespace ET
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
                 if (itemCof.ItemQuality >= 4)
                 {
-                    Log.Warning($"[获取道具]itemCof.ItemQuality >= 4  {unit.Id} {itemID} {rewardItems[i].ItemNum} {getType}");
+                    Log.Warning($"[获取道具]itemCof.ItemQuality >= 4  1634933160296906752 16000111 {rewardItems[i].ItemNum} {getType}");
                 }
                 if (leftNum >= 99)
                 {
@@ -947,7 +947,7 @@ namespace ET
 
             //通知客户端背包道具发生改变
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);
-            Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>());
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(self.GetParent<Unit>(), true, true);
         }
 
         public static bool OnCostItemData(this BagComponent self, BagInfo bagInfo, ItemLocType locType,  int number)

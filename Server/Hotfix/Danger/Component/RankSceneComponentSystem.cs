@@ -20,8 +20,6 @@ namespace ET
         }
     }
 
-
-
     [ObjectSystem]
     public class RankSceneComponentAwakeSystem : AwakeSystem<RankSceneComponent>
     {
@@ -207,8 +205,7 @@ namespace ET
                 await DBHelper.AddDataComponent<ActivityComponent>(unit, rankingInfo.UserId, DBHelper.ActivityComponent);
                 await DBHelper.AddDataComponent<RechargeComponent>(unit, rankingInfo.UserId, DBHelper.RechargeComponent);
                 await DBHelper.AddDataComponent<ReddotComponent>(unit, rankingInfo.UserId, DBHelper.ReddotComponent);
-                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false);
-
+                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, true);
                 await TimerComponent.Instance.WaitAsync(1000);
             }
         }
@@ -224,9 +221,19 @@ namespace ET
         public static void UpdateRankList(this RankSceneComponent self, RankingInfo rankingInfo)
         {
             bool have = false;
+
+            long oldNo1 = 0;
+            long newNo1 = 0;
+           
             for (int i = 0; i < self.DBRankInfo.rankingInfos.Count; i++)
             {
-                if (self.DBRankInfo.rankingInfos[i].UserId == rankingInfo.UserId)
+                RankingInfo rankingInfoTemp = self.DBRankInfo.rankingInfos[i];
+                if (i == 0)
+                {
+                    oldNo1 = rankingInfoTemp.UserId;
+                }
+
+                if (rankingInfoTemp.UserId == rankingInfo.UserId)
                 {
                     self.DBRankInfo.rankingInfos[i] = rankingInfo;
                     have = true;
@@ -252,16 +259,56 @@ namespace ET
             {
                 return (int)b.Combat - (int)a.Combat;
             });
+
+            newNo1 = self.DBRankInfo.rankingInfos[0].UserId;
+            if (oldNo1 == newNo1)
+            {
+                self.UpdateRankNo1(newNo1).Coroutine();
+            }
+            else
+            {
+                self.UpdateRankNo1(oldNo1).Coroutine();
+                self.UpdateRankNo1(newNo1).Coroutine();
+            }
+        }
+
+        /// <summary>
+        /// 通知排行榜第一刷新
+        /// </summary>
+        public static async ETTask UpdateRankNo1(this RankSceneComponent self, long userId)
+        {
+            int zone = self.DomainZone();
+            if (DBHelper.GetOpenServerDay(zone) < 3)
+            {
+                return;
+            }
+            int rankId = self.GetCombatRank(userId);
+            if (rankId == -1)
+            {
+                return;
+            }
+
+            //通知玩家
+            long gateServerId = DBHelper.GetGateServerId(zone);
+            G2T_GateUnitInfoResponse g2M_UpdateUnitResponse = (G2T_GateUnitInfoResponse)await ActorMessageSenderComponent.Instance.Call
+               (gateServerId, new T2G_GateUnitInfoRequest()
+               {
+                   UserID = userId
+               });
+            if (g2M_UpdateUnitResponse.PlayerState == (int)PlayerState.Game && g2M_UpdateUnitResponse.SessionInstanceId > 0)
+            {
+                R2M_RankNo1Message r2M_RechargeRequest = new R2M_RankNo1Message() { RankId = rankId };
+                ActorLocationSenderComponent.Instance.Send(g2M_UpdateUnitResponse.UnitId, r2M_RechargeRequest);
+            }
         }
 
         public static int GetCombatRank(this RankSceneComponent self, long usrerId)
         {
-
             for (int i = 0; i < self.DBRankInfo.rankingInfos.Count; i++)
             {
                 if (self.DBRankInfo.rankingInfos[i].UserId == usrerId)
                 {
-                    return i +1;
+                    return i;
                 }
             }
             return -1;
@@ -415,7 +462,7 @@ namespace ET
             }
         }
 
-        public static int GetRankByUserId(this RankSceneComponent self, long userId)
+        public static int GetPetRankIndex(this RankSceneComponent self, long userId)
         {
             for (int i = 0; i < self.DBRankInfo.rankingPets.Count; i++)
             {

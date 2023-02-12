@@ -338,7 +338,7 @@ namespace ET
                                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.CangKuNumber, cangkuNumber + 1);
                                 break;
                             case 125://坐骑获取
-                                unit.GetComponent<UserInfoComponent>().OnHorseActive(itemConfig.ItemUsePar);
+                                unit.GetComponent<UserInfoComponent>().OnHorseActive(itemConfig.ItemUsePar, true);
                                 break;
                             case 126: //集字
                                 break;
@@ -502,7 +502,7 @@ namespace ET
                         unit.GetComponent<SkillSetComponent>().OnWearEquip(useBagInfo);
                     }
                     useBagInfo.isBinging = true;
-                    Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
+                    Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
                     m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
 
                     if (weizhi == (int)ItemSubTypeEnum.Wuqi)
@@ -526,7 +526,7 @@ namespace ET
 
                     unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.ItemLocBag, ItemLocType.ItemLocEquip);
                     unit.GetComponent<SkillSetComponent>().OnTakeOffEquip(useBagInfo);
-                    Function_Fight.GetInstance().UnitUpdateProperty_Base(unit);
+                    Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
                     m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
                     if (weizhi == (int)ItemSubTypeEnum.Wuqi)
                     {

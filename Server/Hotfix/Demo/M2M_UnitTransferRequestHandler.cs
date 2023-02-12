@@ -243,11 +243,11 @@ namespace ET
 				}
 
 				unit.GetComponent<HeroDataComponent>().CheckNumeric();
-				Function_Fight.GetInstance().UnitUpdateProperty_Base(unit,false);
 				unit.GetComponent<BuffManagerComponent>().InitBuff();
 				unit.GetComponent<DBSaveComponent>().Activeted();
 				unit.GetComponent<SkillPassiveComponent>().Activeted();
 				unit.OnUpdateHorseRide();
+				Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, true);
 
 				unit.SingleScene = request.SceneType == SceneTypeEnum.LocalDungeon || request.SceneType == SceneTypeEnum.PetDungeon;
 				response.NewInstanceId = unit.InstanceId;

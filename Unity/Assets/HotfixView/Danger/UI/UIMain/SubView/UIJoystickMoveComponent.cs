@@ -233,7 +233,6 @@ namespace ET
             return start;
         }
 
-
         public static void ResetUI(this UIJoystickMoveComponent self)
         {
             self.CenterShow.SetActive(false);
