@@ -163,22 +163,11 @@ namespace ET
             int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
             if (horseRide != 0)
             {
-                UICommonHelper.SetParent(go, GlobalComponent.Instance.Unit.gameObject);
-                go.SetActive(true);
-                go.transform.localPosition = unit.Position;
-                go.transform.rotation = unit.Rotation;
-                UICommonHelper.SetParent(self.GameObject, HoreseHelper.GetHorseNode(self.ObjectHorse));
-                self.GameObject.transform.localScale = HoreseHelper.GetRoleScale(go, horseId) * Vector3.one;
-                unit.GetComponent<FsmComponent>().SetHorseState();
-                unit.GetComponent<AnimatorComponent>().UpdateAnimator(go);
-                self.ShowRoleDi(false);
+                self.OnShangMa(go, horseId);
             }
             else
             {
-                self.RecoverHorse();
-                unit.GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
-                unit.GetComponent<FsmComponent>().SetIdleState();
-                self.ShowRoleDi(true);
+                self.OnXiaMa();
             }
             self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseRide);
         }
@@ -189,9 +178,46 @@ namespace ET
             di.SetActive(show);
         }
 
-        public static void OnUpdateHorse(this GameObjectComponent self)
+        public static void OnShangMa(this GameObjectComponent self, GameObject go, int horseId)
+        {
+            Unit unit = self.GetParent<Unit>();
+            UICommonHelper.SetParent(go, GlobalComponent.Instance.Unit.gameObject);
+            go.SetActive(true);
+            go.transform.localPosition = unit.Position;
+            go.transform.rotation = unit.Rotation;
+            UICommonHelper.SetParent(self.GameObject, HoreseHelper.GetHorseNode(self.ObjectHorse));
+            self.GameObject.transform.localScale = HoreseHelper.GetRoleScale(go, horseId) * Vector3.one;
+            unit.GetComponent<FsmComponent>().SetHorseState();
+            unit.GetComponent<AnimatorComponent>().UpdateAnimator(go);
+            self.ShowRoleDi(false);
+
+            MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+            bool run = moveComponent != null && !moveComponent.IsArrived();
+            if (run)
+            {
+                unit.GetComponent<FsmComponent>().OnEnterFsmRunState();
+            }
+        }
+
+        public static void OnXiaMa(this GameObjectComponent self)
         {
             self.RecoverHorse();
+            Unit unit = self.GetParent<Unit>();
+            UICommonHelper.SetParent(self.GameObject, GlobalComponent.Instance.Unit.gameObject);
+            self.UpdatePositon(self.GetParent<Unit>().Position);
+            unit.GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
+            self.ShowRoleDi(true);
+
+            MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+            bool run = moveComponent != null && !moveComponent.IsArrived();
+            if (run)
+            {
+                unit.GetComponent<FsmComponent>().OnEnterFsmRunState();
+            }
+        }
+
+        public static void OnUpdateHorse(this GameObjectComponent self)
+        {
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             int horseId = numericComponent.GetAsInt(NumericType.HorseFightID);
@@ -205,21 +231,10 @@ namespace ET
                 ZuoQiShowConfig zuoQiShowConfig = ZuoQiShowConfigCategory.Instance.Get(horseId);
                 self.HorseAssetsPath = ABPathHelper.GetUnitPath($"ZuoQi/{zuoQiShowConfig.ModelID}");
                 GameObjectPoolComponent.Instance.AddLoadQueue(self.HorseAssetsPath, self.InstanceId, self.OnLoadHorse);
-                self.ShowRoleDi(false);
             }
             else
             {
-                UICommonHelper.SetParent(self.GameObject, GlobalComponent.Instance.Unit.gameObject);
-                self.UpdatePositon(self.GetParent<Unit>().Position);
-                unit.GetComponent<AnimatorComponent>().UpdateAnimator(self.GameObject);
-                self.ShowRoleDi(true);
-
-                MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
-                bool run = moveComponent!=null && !moveComponent.IsArrived();
-                if (run)
-                {
-                    unit.GetComponent<FsmComponent>().OnEnterFsmRunState();
-                }
+                self.OnXiaMa();
             }
             self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseRide);
         }
