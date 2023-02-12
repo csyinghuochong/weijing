@@ -26,6 +26,8 @@ namespace ET
             NumericType.Born_Z,
             NumericType.Now_AI,
             NumericType.TeamId,
+            NumericType.HorseFightID,
+            NumericType.HorseRide,
         };
 
         //1 整数  2 浮点数
