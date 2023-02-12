@@ -47,9 +47,9 @@ namespace ET
                 }
                 else
                 {
-                    bagComponent.OnCostItemData(huishouList[i], bagInfo.ItemNum);
                     needNumber -= bagInfo.ItemNum;
                     curNumber += bagInfo.ItemNum;
+                    bagComponent.OnCostItemData(huishouList[i], bagInfo.ItemNum);
                 }
             }
            
