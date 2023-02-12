@@ -666,7 +666,7 @@ namespace ET
                         useBagInfo.IfJianDing = false;
                     }
                     //藏宝图
-                    if (itemCof.ItemSubType == 113)
+                    if (itemCof.ItemSubType == 113 || itemCof.ItemSubType == 127)
                     {
                         ItemAddHelper.TreasureItem(useBagInfo);
                     }

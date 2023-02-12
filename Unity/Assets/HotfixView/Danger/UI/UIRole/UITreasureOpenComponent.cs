@@ -5,8 +5,6 @@ using UnityEngine.UI;
 
 namespace ET
 {
-
-
     public class UITreasureOpenComponent : Entity, IAwake, IDestroy
     {
         public GameObject ImageSelect;
@@ -20,9 +18,8 @@ namespace ET
 
         public BagInfo BagInfo;
 
-        public long Interval = 1000;     //匀速
+        public long Interval = 500;     //匀速
         public long AcceTime = 100;   //加速
-
         public int TargetIndex = 0; 
         public int CurrentIndex = 0;
         public bool OnStopTurn;
@@ -34,6 +31,11 @@ namespace ET
         public override void Awake(UITreasureOpenComponent self)
         {
             self.UIItems.Clear();
+            self.OnStopTurn = false;
+            self.TargetIndex = 0;
+            self.CurrentIndex = 0;
+            self.Interval = 500;
+            self.AcceTime = 100;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.ButtonStop = rc.Get<GameObject>("ButtonStop");
@@ -43,6 +45,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonOpen, () => { self.OnButtonOpen().Coroutine(); });
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
+            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITreasureOpen); });
 
             self.BuildingList = rc.Get<GameObject>("BuildingList");
 
@@ -55,9 +58,30 @@ namespace ET
     {
         public static void OnInitUI(this UITreasureOpenComponent self, BagInfo bagInfo)
         { 
-            self.BagInfo = bagInfo; 
+            self.BagInfo = bagInfo;
 
+            // $"{dungeonid}@{"TaskMove_6"}@{dropId}";
+            //self.BagInfo.ItemPar.Split('@')[1]
 
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+            List<RewardItem> rewardItems = new List<RewardItem>();
+            DropHelper.DropIDToDropItem(int.Parse(self.BagInfo.ItemPar.Split('@')[2]), rewardItems);
+
+            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            for (int i = 0; i < rewardItems.Count; i++)
+            {
+                GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
+                UICommonHelper.SetParent(itemSpace, self.BuildingList);
+                UI ui_2 = self.AddChild<UI, string, GameObject>("UICommonItem_" + i, itemSpace);
+                UIItemComponent uIItemComponent = ui_2.AddComponent<UIItemComponent>();
+                uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
+                uIItemComponent.Label_ItemName.SetActive(false);
+                uIItemComponent.Label_ItemNum.SetActive(false);
+                itemSpace.transform.localScale = Vector3.one * 1f;
+
+                self.UIItems.Add(uIItemComponent);
+            }
         }
 
         public static async ETTask OnStartTurn(this UITreasureOpenComponent self)
@@ -75,7 +99,8 @@ namespace ET
 
                 self.ImageSelect.SetActive(true);
                 UICommonHelper.SetParent( self.ImageSelect, self.UIItems[self.CurrentIndex].GameObject);
-                if (self.CurrentIndex == self.UIItems.Count - 1)
+                self.CurrentIndex++;
+                if (self.CurrentIndex == self.UIItems.Count)
                 {
                     self.CurrentIndex = 0;
                 }
@@ -85,7 +110,7 @@ namespace ET
         public static async ETTask OnButtonStop(this UITreasureOpenComponent self)
         {
             self.OnStopTurn = true;
-            int targetItem = int.Parse(self.BagInfo.ItemPar.Split(';')[0]);
+            int targetItem = self.BagInfo.HideProLists[0].HideID;
             for (int i = 0; i < self.UIItems.Count; i++)
             {
                 if (self.UIItems[i].Baginfo.ItemID == targetItem)
@@ -120,12 +145,16 @@ namespace ET
                 self.ImageSelect.SetActive(true);
                 UICommonHelper.SetParent(self.ImageSelect, self.UIItems[self.CurrentIndex].GameObject);
                 self.CurrentIndex++;
-                if (self.CurrentIndex == self.UIItems.Count - 1)
+                if (self.CurrentIndex == self.UIItems.Count)
                 {
                     self.CurrentIndex = 0;
                 }
                 moveNumber--;
             }
+
+            Log.Debug("over");
+
+            self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo).Coroutine();
         }
 
         public static async ETTask OnButtonOpen(this UITreasureOpenComponent self)
@@ -137,7 +166,8 @@ namespace ET
             {
                 return;
             }
-            self.BagInfo.ItemPar = $"{response.ReardItem.ItemID};{response.ReardItem.ItemNum}";
+            self.BagInfo.HideProLists.Clear();
+            self.BagInfo.HideProLists.Add(new HideProList() { HideID = response.ReardItem.ItemID, HideValue = response.ReardItem.ItemNum });
             self.OnStartTurn().Coroutine();
         }
     }

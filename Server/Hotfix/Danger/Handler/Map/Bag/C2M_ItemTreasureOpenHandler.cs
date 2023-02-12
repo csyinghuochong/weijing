@@ -10,17 +10,23 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_ItemTreasureOpenRequest request, M2C_ItemTreasureOpenResponse response, Action reply)
         {
             BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID);
-            if (useBagInfo == null || !string.IsNullOrEmpty(useBagInfo.ItemPar))
+            if (useBagInfo == null)
             {
                 response.Error = ErrorCore.ERR_ItemUseError;
                 reply();
                 return;
             }
+            if (useBagInfo.HideProLists.Count > 0)
+            {
+                response.ReardItem = new RewardItem() { ItemID = useBagInfo.HideProLists[0].HideID, ItemNum = (int)useBagInfo.HideProLists[0].HideValue };
+                reply();
+                return;
+            }
 
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
-            int dropId = int.Parse(itemConfig.ItemUsePar);
+            // // $"{dungeonid}@{"TaskMove_6"}@{dropId}";
+            int dropId = int.Parse(useBagInfo.ItemPar.Split('@')[2]);
 
-            List<RewardItem> rewardItems = new List<RewardItem>();  
+            List <RewardItem> rewardItems = new List<RewardItem>();  
             DropHelper.DropIDToDropItem_2(dropId, rewardItems);
             if (rewardItems.Count == 0)
             {
@@ -30,7 +36,8 @@ namespace ET
             }
 
             response.ReardItem = rewardItems[0];
-            useBagInfo.ItemPar = $"{rewardItems[0].ItemID};{rewardItems[0].ItemNum}";
+            useBagInfo.HideProLists.Clear();
+            useBagInfo.HideProLists.Add(new HideProList() { HideID = rewardItems[0].ItemID, HideValue = rewardItems[0].ItemNum });
             reply();
             await ETTask.CompletedTask;
         }

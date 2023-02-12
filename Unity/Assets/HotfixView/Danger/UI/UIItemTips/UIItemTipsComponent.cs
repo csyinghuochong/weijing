@@ -346,7 +346,7 @@ namespace ET
                 self.OnCloseTips();
                 return;
             }
-            if (itemConfig.ItemSubType == 113)
+            if (itemConfig.ItemSubType == 113 || itemConfig.ItemSubType == 127)
             {
                 int curSceneId = 0;
                 int needSceneId = int.Parse(self.BagInfo.ItemPar.Split('@')[0]);
@@ -363,9 +363,8 @@ namespace ET
                 }
                 else
                 {
+                    // $"{dungeonid}@{"TaskMove_6"}@{dropId}";
                     Scene zoneScene = self.ZoneScene();
-                    string path = $"ScenceRosePositionSet/{self.BagInfo.ItemPar.Split('@')[1]}";
-                    GameObject gameObject = GameObject.Find(path);
                     EventType.DigForTreasure.Instance.BagInfo = self.BagInfo;
                     EventType.DigForTreasure.Instance.ZoneScene = self.ZoneScene();
                     Game.EventSystem.PublishClass(EventType.DigForTreasure.Instance);

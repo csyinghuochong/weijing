@@ -55,7 +55,7 @@ namespace ET
         public static void TreasureItem(BagInfo bagInfo)
         {
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            if (itemConfig.ItemSubType != 113)
+            if (itemConfig.ItemSubType != 113 && itemConfig.ItemSubType != 127)
             {
                 return;
             }

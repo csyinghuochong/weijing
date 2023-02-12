@@ -44,6 +44,7 @@ namespace ET
         public const int Share = 35;
         public const int PaiMaiBuy = 36;
         public const int XiuLian = 37;
+        public const int TreasureMap = 38;
 
         public const int Activity = 100;
     }
