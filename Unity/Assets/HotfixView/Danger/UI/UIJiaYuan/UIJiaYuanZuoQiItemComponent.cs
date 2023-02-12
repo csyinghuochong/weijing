@@ -105,7 +105,7 @@ namespace ET
             UICommonHelper.SetRawImageGray(self.RawImage.gameObject, !self.IsHaveZuoQi(zuoQiConfig.Id));
 
             self.ButtonFight.SetActive(self.IsHaveZuoQi(zuoQiConfig.Id));
-
+            self.Lab_LaiYuan.SetActive(!self.IsHaveZuoQi(zuoQiConfig.Id));
             int quility = zuoQiConfig.Quality;
             for (int i = 0; i < self.StarList.transform.childCount; i++)
             {

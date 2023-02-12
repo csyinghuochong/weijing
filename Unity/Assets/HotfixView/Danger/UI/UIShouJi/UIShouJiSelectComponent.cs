@@ -105,6 +105,8 @@ namespace ET
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIShouJi);
             uI.GetComponent<UIShouJiComponent>().OnShouJiTreasure();
             UIHelper.Remove(self.ZoneScene(), UIType.UIShouJiSelect);
+
+            FloatTipManager.Instance.ShowFloatTip("吞噬道具完成。");
         }
 
         public static List<long> GetSelectItems(this UIShouJiSelectComponent self)
