@@ -44,8 +44,8 @@ namespace ET
 
         public static async ETTask OnButtonActive(this UIShouJiTreasureItemComponent self)
         {
-            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UITreasureSelect);
-            uI.GetComponent<UITreasureSelectComponent>().OnInitUI(self.ShoujiId);
+            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIShouJiSelect);
+            uI.GetComponent<UIShouJiSelectComponent>().OnInitUI(self.ShoujiId);
         }
 
         public static void OnInitUI(this UIShouJiTreasureItemComponent self, int shouijId)

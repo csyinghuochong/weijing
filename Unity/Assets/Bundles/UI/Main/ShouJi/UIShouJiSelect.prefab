@@ -753,7 +753,7 @@ GameObject:
   - component: {fileID: 8331971711227579542}
   - component: {fileID: 2513308697494365840}
   m_Layer: 5
-  m_Name: UITreasureSelect
+  m_Name: UIShouJiSelect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

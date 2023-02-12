@@ -7,7 +7,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    public class UITreasureSelectComponent : Entity, IAwake
+    public class UIShouJiSelectComponent : Entity, IAwake
     {
         public GameObject ButtonClose;
         public GameObject BuildingList;
@@ -19,9 +19,9 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UITreasureSelectComponentAwake : AwakeSystem<UITreasureSelectComponent>
+    public class UIShouJiSelectEventComponentAwake : AwakeSystem<UIShouJiSelectComponent>
     {
-        public override void Awake(UITreasureSelectComponent self)
+        public override void Awake(UIShouJiSelectComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
@@ -33,7 +33,7 @@ namespace ET
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
             self.ButtonClose.GetComponent<Button>().onClick.AddListener(() =>
             {
-                UIHelper.Remove(self.ZoneScene(), UIType.UITreasureSelect);
+                UIHelper.Remove(self.ZoneScene(), UIType.UIShouJiSelect);
             });
 
             self.BuildingList = rc.Get<GameObject>("BuildingList");
@@ -42,9 +42,9 @@ namespace ET
         }
     }
 
-    public static class UITreasureSelectComponentSystem
+    public static class UIShouJiSelectEventSystem
     {
-        public static void OnInitUI(this UITreasureSelectComponent self, int shouiId)
+        public static void OnInitUI(this UIShouJiSelectComponent self, int shouiId)
         {
             self.ShouJIId = shouiId;
             ShouJiItemConfig shouJiItemConfig = ShouJiItemConfigCategory.Instance.Get(shouiId);
@@ -75,7 +75,7 @@ namespace ET
             }
         }
 
-        public static async ETTask OnButtonTunShi(this UITreasureSelectComponent self)
+        public static async ETTask OnButtonTunShi(this UIShouJiSelectComponent self)
         {
             KeyValuePairInt keyValuePairInt = self.ShoujiComponent.GetTreasureInfo(self.ShouJIId);
             
@@ -99,15 +99,15 @@ namespace ET
           
             if (response.Error == ErrorCore.ERR_Success)
             {
-                self.ShoujiComponent.OnShouJiTreasure(self.ShouJIId, response.AddNum);
+                self.ShoujiComponent.OnShouJiTreasure(self.ShouJIId, response.ActiveNum);
             }
 
             UI uI = UIHelper.GetUI(self.ZoneScene(), UIType.UIShouJi);
             uI.GetComponent<UIShouJiComponent>().OnShouJiTreasure();
-            UIHelper.Remove(self.ZoneScene(), UIType.UITreasureSelect);
+            UIHelper.Remove(self.ZoneScene(), UIType.UIShouJiSelect);
         }
 
-        public static List<long> GetSelectItems(this UITreasureSelectComponent self)
+        public static List<long> GetSelectItems(this UIShouJiSelectComponent self)
         { 
             List<long> ids =  new List<long>();
             for (int i = 0; i < self.UIItems.Count; i++)
@@ -120,7 +120,7 @@ namespace ET
             return ids;
         }
 
-        public static void OnSelectItem(this UITreasureSelectComponent self, BagInfo bagInfo)
+        public static void OnSelectItem(this UIShouJiSelectComponent self, BagInfo bagInfo)
         {
             for (int i = 0; i < self.UIItems.Count; i++)
             {

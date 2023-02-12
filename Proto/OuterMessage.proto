@@ -3471,7 +3471,7 @@ message M2C_ShoujiRewardResponse // IActorLocationResponse
 }
 
 //ResponseType M2C_ShouJiTreasureResponse
-//手机珍宝
+//收集珍宝
 message C2M_ShouJiTreasureRequest  // IActorLocationRequest
 {
 	int32 RpcId = 90;
@@ -3484,7 +3484,7 @@ message M2C_ShouJiTreasureResponse // IActorLocationResponse
 	int32 RpcId = 90;
 	string Message = 91;		
 	int32 Error = 92;
-	int32 AddNum = 1;
+	int32 ActiveNum = 1;
 }
 
 //ResponseType M2C_LingDiUpResponse

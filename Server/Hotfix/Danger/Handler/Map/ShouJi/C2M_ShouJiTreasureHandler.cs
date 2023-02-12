@@ -58,7 +58,7 @@ namespace ET
             }
            
             shoujiComponent.OnShouJiTreasure(request.ShouJiId, curNumber);
-            response.AddNum = curNumber;
+            response.ActiveNum = curNumber;
             reply();
             await ETTask.CompletedTask;
         }

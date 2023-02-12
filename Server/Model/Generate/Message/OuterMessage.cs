@@ -7317,7 +7317,7 @@ namespace ET
 		public int Error { get; set; }
 
 		[ProtoMember(1)]
-		public int AddNum { get; set; }
+		public int ActiveNum { get; set; }
 
 	}
 
