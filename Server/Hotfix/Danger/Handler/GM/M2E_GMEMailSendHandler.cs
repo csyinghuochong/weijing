@@ -30,11 +30,28 @@ namespace ET
             {
                 for (int i = 0; i < dBMailInfos.Count; i++)
                 {
+                    List<NumericComponent> numericInfoList = await Game.Scene.GetComponent<DBComponent>().Query<NumericComponent>(scene.DomainZone(), d => d.Id == dBMailInfos[i].Id);
                     switch (request.MailType)
                     {
-                        case 2:
+                        case 2: // 298 送  10000202 
+                            if (numericInfoList.Count == 0)
+                            {
+                                continue;
+                            }
+                            if (numericInfoList[0].GetAsLong(NumericType.RechargeNumber) < 298)
+                            {
+                                continue;
+                            }
                             break;
-                        case 3:
+                        case 3: //800以上 补 10000205
+                            if (numericInfoList.Count == 0)
+                            {
+                                continue;
+                            }
+                            if (numericInfoList[0].GetAsLong(NumericType.RechargeNumber) < 800)
+                            {
+                                continue;
+                            }
                             break;
                         default:
                             break;

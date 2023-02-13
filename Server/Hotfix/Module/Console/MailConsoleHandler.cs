@@ -66,7 +66,7 @@ namespace ET
                                 Itemlist = mailInfo[3],
                                 Title = titie,    
                                 ActorId = zoneList[i],
-                                MailType = int.Parse(titie),
+                                MailType = int.Parse(mailInfo[4]),
                             });
                     }
 
