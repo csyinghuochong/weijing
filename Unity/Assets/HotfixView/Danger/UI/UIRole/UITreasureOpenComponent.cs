@@ -90,18 +90,17 @@ namespace ET
 
             while(!self.OnStopTurn)
             {
-                await TimerComponent.Instance.WaitAsync(self.Interval);
-                if (instanceId != self.InstanceId)
-                {
-                    return;
-                }
-
                 self.ImageSelect.SetActive(true);
                 UICommonHelper.SetParent( self.ImageSelect, self.UIItems[self.CurrentIndex].GameObject);
                 self.CurrentIndex++;
                 if (self.CurrentIndex == self.UIItems.Count)
                 {
                     self.CurrentIndex = 0;
+                }
+                await TimerComponent.Instance.WaitAsync(self.Interval);
+                if (instanceId != self.InstanceId)
+                {
+                    return;
                 }
             }
         }
@@ -133,12 +132,6 @@ namespace ET
             long instanceId = self.InstanceId;
             while (moveNumber > 0)
             {
-                await TimerComponent.Instance.WaitAsync(self.Interval);
-                if (instanceId != self.InstanceId)
-                {
-                    return;
-                }
-
                 self.Interval -= self.AcceTime;
                 self.Interval = Math.Max(1, self.Interval);
                 self.ImageSelect.SetActive(true);
@@ -149,6 +142,11 @@ namespace ET
                     self.CurrentIndex = 0;
                 }
                 moveNumber--;
+                await TimerComponent.Instance.WaitAsync(self.Interval);
+                if (instanceId != self.InstanceId)
+                {
+                    return;
+                }
             }
 
             Log.Debug("over");
