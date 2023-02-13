@@ -769,9 +769,8 @@ namespace ET
             return true;
         }
 
-        public static void OnHorseActive(this UserInfoComponent self, string parainfo, bool active)
+        public static void OnHorseActive(this UserInfoComponent self, int horseId, bool active)
         {
-            int horseId = int.Parse(parainfo);
             if (active && !self.UserInfo.HorseIds.Contains(horseId))
             {
                 self.UserInfo.HorseIds.Add(horseId);

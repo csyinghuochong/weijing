@@ -338,7 +338,7 @@ namespace ET
                                 unit.GetComponent<NumericComponent>().ApplyValue(NumericType.CangKuNumber, cangkuNumber + 1);
                                 break;
                             case 125://坐骑获取
-                                unit.GetComponent<UserInfoComponent>().OnHorseActive(itemConfig.ItemUsePar, true);
+                                unit.GetComponent<UserInfoComponent>().OnHorseActive(int.Parse(itemConfig.ItemUsePar), true);
                                 break;
                             case 126: //集字
                                 break;

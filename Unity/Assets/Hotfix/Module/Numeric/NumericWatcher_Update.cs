@@ -23,12 +23,13 @@
 		public void Run(EventType.NumericChangeEvent args)
 		{
 			Unit unit = args.Parent;
+			int no1_horse = 10004;
 #if SERVER
 			if (args.NewValue != 0) //没排名
 			{
-				unit.GetComponent<UserInfoComponent>().OnHorseActive("10004", false);
+				unit.GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
 				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-				if (numericComponent.GetAsInt(NumericType.HorseFightID) == 1004)
+				if (numericComponent.GetAsInt(NumericType.HorseFightID) == no1_horse)
 				{
 					numericComponent.ApplyValue(NumericType.HorseFightID, 0);
 					numericComponent.ApplyValue(NumericType.HorseRide, 0);
@@ -36,16 +37,16 @@
 			}
 			else
 			{
-				unit.GetComponent<UserInfoComponent>().OnHorseActive("10004", true);
+				unit.GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
 			}
 #else
 			if (args.NewValue != 0) //没排名
 			{
-				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive("1004", false);
+				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
 			}
 			else
 			{
-				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive("1004", true);
+				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
 			}
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
 			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;
