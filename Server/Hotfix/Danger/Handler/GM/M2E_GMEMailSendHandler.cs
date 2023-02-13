@@ -28,18 +28,18 @@ namespace ET
 
             if (dBMailInfos != null)
             {
-                switch (request.MailType)
-                {
-                    case 2:
-                        break;
-                    case 3:
-                        break;
-                    default:
-                        break;
-                }
-              
                 for (int i = 0; i < dBMailInfos.Count; i++)
                 {
+                    switch (request.MailType)
+                    {
+                        case 2:
+                            break;
+                        case 3:
+                            break;
+                        default:
+                            break;
+                    }
+
                     MailInfo mailInfo = new MailInfo();
                     mailInfo.Status = 0;
                     mailInfo.Context = "福利发放";
