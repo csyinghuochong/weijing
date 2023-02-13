@@ -64,8 +64,7 @@ namespace ET
             //self.BagInfo.ItemPar.Split('@')[1]
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            List<RewardItem> rewardItems = new List<RewardItem>();
-            DropHelper.DropIDToDropItem(int.Parse(self.BagInfo.ItemPar.Split('@')[2]), rewardItems);
+            List<RewardItem> rewardItems = DropHelper.DropIDToShowItem(int.Parse(self.BagInfo.ItemPar.Split('@')[2]));
 
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
