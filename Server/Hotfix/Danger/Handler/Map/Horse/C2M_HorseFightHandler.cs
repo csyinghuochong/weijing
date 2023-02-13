@@ -16,6 +16,14 @@ namespace ET
                 reply();
                 return;
             }
+
+            if (userInfo.Lv < 25)
+            {
+                response.Error = ErrorCore.ERR_EquipLvLimit;
+                reply();
+                return;
+            }
+
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.HorseFightID, request.HorseId);
             reply();
             await ETTask.CompletedTask;

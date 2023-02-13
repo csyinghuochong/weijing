@@ -130,7 +130,7 @@ namespace ET
 			UserInfoComponent userInfoComponent = self.ZoneScene().GetComponent<UserInfoComponent>();
 			if (userInfoComponent.UserInfo.Lv < 30)
 			{
-				FloatTipManager.Instance.ShowFloatTip("30级以后开启！");
+				FloatTipManager.Instance.ShowFloatTip("30级开启生肖系统喔！");
 				return;
 			}
 

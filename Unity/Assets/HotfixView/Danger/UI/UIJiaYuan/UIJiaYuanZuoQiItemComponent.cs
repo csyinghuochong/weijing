@@ -65,8 +65,19 @@ namespace ET
                 return;
             }
 
+            UserInfo userInfo = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo;
+            if (userInfo.Lv < 25) {
+                FloatTipManager.Instance.ShowFloatTip("等级达到25级才可以骑乘坐骑喔！");
+                return;
+            }
+
             C2M_HorseFightRequest  request = new C2M_HorseFightRequest() { HorseId = self.ZuoQiConfig.Id };
             M2C_HorseFightResponse response = await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request) as M2C_HorseFightResponse;
+
+            if (response.Error == ErrorCode.ERR_Success)
+            {
+                FloatTipManager.Instance.ShowFloatTip("激活坐骑成功,清在主界面点击骑乘按钮即可喔！");
+            }
 
         }
 
