@@ -410,6 +410,9 @@ namespace ET
                 long serverTime = TimeHelper.ServerNow();
                 for (int i = 0; i < droplist.Count; i++)
                 {
+                    droplist[i].ItemID = 10030018;
+                    droplist[i].ItemNum = 1;
+
                     UnitComponent unitComponent = bekill.DomainScene().GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
                     dropitem.AddComponent<UnitInfoComponent>();

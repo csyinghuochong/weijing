@@ -18,7 +18,7 @@ namespace ET
                     Log.Console($"C must have mail zone userid items title");
                     break;
                 default:
-                    //mail 区服(0所有区服  1指定区服)  玩家ID(0所有玩家)  道具 邮件标题
+                    //mail 区服(0所有区服  1指定区服)  玩家ID(0所有玩家)  道具 邮件类型
                     //mail  1 0 1; 10000  "清档补偿"
                     string[] mailInfo = content.Split(" ");
                     if (mailInfo[0]!= "mail" && mailInfo.Length < 5)
