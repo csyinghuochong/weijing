@@ -74,6 +74,34 @@ namespace ET
             return nearest;
         }
 
+        public static Unit GetNearestEnemyMonster(Unit main, float mindis, float maxdis)
+        {
+            Unit nearest = null;
+            float distance = -1f;
+            List<Unit> units = main.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                Unit unit = units[i];
+                if (unit.IsDisposed || main.Id == unit.Id || unit.Type != UnitType.Monster)
+                {
+                    continue;
+                }
+                if (!main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+                float dd = PositionHelper.Distance2D(main, unit);
+                if (dd < mindis || dd > maxdis)
+                {
+                    continue;
+                }
+                nearest = unit;
+                distance = dd;
+                break;
+            }
+            return nearest;
+        }
+
         public struct EnemyUnitInfo
         {
             public float Distacne;
