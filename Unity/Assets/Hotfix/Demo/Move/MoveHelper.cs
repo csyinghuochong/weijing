@@ -25,6 +25,10 @@ namespace ET
                 stateComponent.CheckSilence();
                 return -1;
             }
+            if (unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_Speed) <= 0f)
+            {
+                HintHelp.GetInstance().ShowHint("速度异常,请重新登录");
+            }
 
             unit.GetComponent<SingingComponent>().BeginMove();
             C2M_PathfindingResult msg = c2M_PathfindingResult;
