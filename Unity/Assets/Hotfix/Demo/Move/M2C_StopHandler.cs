@@ -12,10 +12,7 @@ namespace ET
 			{
 				return;
 			}
-			//if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
-			//{
-			//	return;
-			//}
+			
 			Vector3 pos = new Vector3(message.X, message.Y, message.Z);
 			//立即停止
 			if (message.Error == -1)
@@ -24,9 +21,17 @@ namespace ET
 				moveComponent.Stop();
 				return;
 			}
-
-			if (Vector3.Distance(unit.Position, pos) < 0.3f)
+			if (message.Error == -2)
 			{
+				Log.Debug("立即停止且同步坐标");
+			}
+
+			//message.Error == -1立即停止不同步坐标
+			//message.Error == -2立即停止且同步坐标
+			if (Vector3.Distance(unit.Position, pos) < 0.3f || message.Error == -2)
+			{
+
+
 				Quaternion rotation = new Quaternion(message.A, message.B, message.C, message.W);
 				MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
 				moveComponent.Stop();

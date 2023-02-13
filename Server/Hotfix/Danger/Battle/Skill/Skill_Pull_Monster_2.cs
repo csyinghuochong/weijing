@@ -2,9 +2,7 @@
 
 namespace ET
 {
-
-    //拉怪技能67000279 67000280
-    public class Skill_Pull_Monster_1 : SkillHandler
+    public class Skill_Pull_Monster_2 : SkillHandler
     {
         //初始化
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
@@ -16,7 +14,7 @@ namespace ET
 
         public override void OnExecute()
         {
-            
+
         }
 
         public override void OnUpdate()
@@ -32,16 +30,6 @@ namespace ET
             if (!this.IsExcuteHurt)
             {
                 this.IsExcuteHurt = true;
-
-                //2-10米内的怪随机拉一个到自身一米范围内
-                Unit monster = AIHelp.GetNearestEnemyMonster(this.TheUnitFrom, 2f, 10f);
-                if (monster == null)
-                {
-                    return;
-                }
-                Vector3 t_postion = this.TheUnitFrom.Position;
-                monster.Position = new Vector3() { x = t_postion.x + RandomHelper.RandFloat01(),y = t_postion.y,z = t_postion.z + RandomHelper.RandFloat01() } ;
-                monster.SendStop(-2);
             }
 
             //根据技能存在时间设置其结束状态

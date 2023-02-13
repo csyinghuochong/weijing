@@ -9147,4 +9147,14 @@ namespace ET
 
 	}
 
+//闪电链
+	[Message(OuterOpcode.M2C_PullMonster)]
+	[ProtoContract]
+	public partial class M2C_PullMonster: Object, IActorMessage
+	{
+		[ProtoMember(3)]
+		public List<SpilingInfo> Spilings = new List<SpilingInfo>();
+
+	}
+
 }
