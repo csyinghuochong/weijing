@@ -149,8 +149,6 @@ namespace ET
                 }
             }
 
-            Log.Debug("over");
-
             self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo).Coroutine();
         }
 
