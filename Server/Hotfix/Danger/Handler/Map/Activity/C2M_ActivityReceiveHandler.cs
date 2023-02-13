@@ -54,6 +54,14 @@ namespace ET
                             reply();
                             return;
                         }
+                        string[] rewarditems = activityConfig.Par_3.Split('@');
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetSpaceNumber())
+                        {
+                            response.Error = ErrorCore.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }
+
                         activityComponent.TotalSignNumber++;
                         activityComponent.LastSignTime = TimeHelper.ServerNow();
                         activityComponent.ActivityReceiveIds.Add(request.ActivityId);
@@ -94,6 +102,14 @@ namespace ET
                         if (request.ReceiveIndex == 1) rewards = activityConfig.Par_2;
                         if (request.ReceiveIndex == 2) rewards = activityConfig.Par_3;
                         if (request.ReceiveIndex == 3) rewards = activityConfig.Par_4;
+
+                        rewarditems = rewards.Split('@');
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetSpaceNumber())
+                        {
+                            response.Error = ErrorCore.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }
                         unit.GetComponent<BagComponent>().OnAddItemData(rewards, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                         break;
                     case 31:    //登录奖励
@@ -110,11 +126,28 @@ namespace ET
                             reply();
                             return;
                         }
+
+                        rewarditems = activityConfig.Par_3.Split('@');
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetSpaceNumber())
+                        {
+                            response.Error = ErrorCore.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }
+
                         activityComponent.LastLoginTime = serverNow;
                         unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
                         unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                         break;
                     case 32:    //新年集字
+                        rewarditems = activityConfig.Par_3.Split('@');
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetSpaceNumber())
+                        {
+                            response.Error = ErrorCore.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }
+
                         if (unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2))
                         {
                             unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
@@ -127,6 +160,15 @@ namespace ET
                         break;
                     case 101:   //冒险家
                                 //需要从dbaccountinfo中获取当前角色重置额度
+
+                        rewarditems = activityConfig.Par_3.Split('@');
+                        if (rewarditems.Length > unit.GetComponent<BagComponent>().GetSpaceNumber())
+                        {
+                            response.Error = ErrorCore.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }
+
                         unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
                         unit.GetComponent<BagComponent>().OnAddItemData(activityConfig.Par_3, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                         break;

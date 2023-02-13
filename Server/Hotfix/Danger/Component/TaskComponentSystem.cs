@@ -423,9 +423,14 @@ namespace ET
                 bool isBoss = monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss;
                 MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
                 int fubenDifficulty = FubenDifficulty.None;
+                Scene DomainScene = self.GetParent<Unit>().DomainScene();
                 if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
                 {
-                    fubenDifficulty = self.GetParent<Unit>().DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
+                    fubenDifficulty = DomainScene.GetComponent<CellDungeonComponent>().FubenDifficulty;
+                }
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+                {
+                    fubenDifficulty = DomainScene.GetComponent<LocalDungeonComponent>().FubenDifficulty;
                 }
 
                 self.TriggerTaskEvent(TaskTargetType.KillMonsterID_1, unitconfigId, 1);
