@@ -10,6 +10,13 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_ActivityRechargeSignRequest request, M2C_ActivityRechargeSignResponse response, Action reply)
         {
+            if (!ActivityConfigCategory.Instance.Contain(request.ActivityId))
+            {
+                Log.Debug($"C2M_ActivityRechargeError {unit.Id} {request.ActivityId}");
+                reply();
+                return;
+            }
+
             ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(request.ActivityId);
             int itemNumber = activityConfig.Par_2.Split('@').Length;
 

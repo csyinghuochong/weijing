@@ -26,7 +26,7 @@ namespace ET
     {
         public override void Awake(UnionSceneComponent self)
         {
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000, TimerType.UnionTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000 + self.DomainZone() * 300, TimerType.UnionTimer, self);
         }
     }
 

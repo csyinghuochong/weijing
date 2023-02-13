@@ -160,6 +160,11 @@ namespace ET
         //点击Tips
         public static void OnCloseTips(this UIItemTipsComponent self)
         {
+            if (self.IsDisposed)
+            {
+                return;
+            }
+
             UIHelper.Remove(self.DomainScene(), UIType.UIItemTips);
         }
 

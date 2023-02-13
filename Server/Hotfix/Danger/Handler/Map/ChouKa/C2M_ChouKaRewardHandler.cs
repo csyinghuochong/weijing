@@ -13,6 +13,12 @@ namespace ET
                 reply();
                 return;
             }
+            if (!TakeCardRewardConfigCategory.Instance.Contain(request.RewardId))
+            {
+                Log.Debug($"C2M_ChouKaRewardError {unit.Id} {request.RewardId}");
+                reply();
+                return;
+            }
             TakeCardRewardConfig rewardConfig = TakeCardRewardConfigCategory.Instance.Get(request.RewardId);
             userInfoComponent.UserInfo.ChouKaRewardIds.Add(request.RewardId);
 
