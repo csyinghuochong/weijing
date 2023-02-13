@@ -1016,6 +1016,7 @@ message M2E_GMEMailSendRequest // IActorRequest
     string Itemlist = 2;
     string Title = 3; 
     string UserName = 4;
+    int MailType = 5;
 }
 
 message E2M_GMEMailSendResponse // IActorResponse

@@ -2129,6 +2129,9 @@ namespace ET
 		[ProtoMember(4)]
 		public string UserName { get; set; }
 
+		[ProtoMember(5)]
+		public int MailType { get; set; }
+
 	}
 
 	[Message(InnerOpcode.E2M_GMEMailSendResponse)]

@@ -28,6 +28,16 @@ namespace ET
 
             if (dBMailInfos != null)
             {
+                switch (request.MailType)
+                {
+                    case 2:
+                        break;
+                    case 3:
+                        break;
+                    default:
+                        break;
+                }
+              
                 for (int i = 0; i < dBMailInfos.Count; i++)
                 {
                     MailInfo mailInfo = new MailInfo();
