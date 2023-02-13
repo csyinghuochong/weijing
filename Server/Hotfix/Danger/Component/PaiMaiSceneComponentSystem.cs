@@ -125,8 +125,8 @@ namespace ET
                 PaiMaiShopItemInfo shopInfo = self.GetPaiMaiShopInfo(paiMaiItem.BagInfo.ItemID);
                 if (shopInfo != null && shopInfo.Price <= 500000 && ItemConfigCategory.Instance.Get(paiMaiItem.BagInfo.ItemID).ItemType != 3)
                 {
-                    int singPro = (int)(paiMaiItem.Price / paiMaiItem.BagInfo.ItemNum);  //单价
-                    float pro = singPro / shopInfo.Price;
+                    //int singPro = (int)(paiMaiItem.Price / paiMaiItem.BagInfo.ItemNum);  //单价
+                    float pro = paiMaiItem.Price / shopInfo.Price;
                     float buyPro = 0;
 
                     if (pro <= 0.5f)
@@ -150,13 +150,38 @@ namespace ET
                         buyPro = 0.025f;
                     }
 
+                    ItemConfig itemCof = ItemConfigCategory.Instance.Get(paiMaiItem.BagInfo.ItemID);
+                    int costNum = 0;
+                    switch (itemCof.ItemQuality) {
+
+                        case 1:
+                            costNum = RandomHelper.NextInt(1, 100);
+                            break;
+                        //绿色道具随机数量
+                        case 2:
+                            costNum = RandomHelper.NextInt(1,100);
+                            break;
+                        //蓝道具随机数量
+                        case 3:
+                            costNum = RandomHelper.NextInt(1, 10);
+                            break;
+                        //紫色道具随机数量
+                        case 4:
+                            costNum = RandomHelper.NextInt(1, 5);
+                            break;
+                    
+                    }
+
+                    //不能超过当前拥有上限
+                    costNum = Math.Min(costNum, paiMaiItem.BagInfo.ItemNum);
+
                     if (pro < 1.5f)
                     {
                         //概率购买
                         if (RandomHelper.RandFloat01() < buyPro)
                         {
-                            Log.Warning("拍卖行系统购买 概率:" + buyPro + "出售价格:" + paiMaiItem.Price + "玩家名称:" + paiMaiItem.PlayerName + "出售道具:" + paiMaiItem.BagInfo.ItemID + "出售单价:" + singPro);
-                            MailHelp.SendPaiMaiEmail(self.DomainZone(), paiMaiItem, paiMaiItem.BagInfo.ItemNum).Coroutine();
+                            Log.Info("拍卖行系统购买 概率:" + buyPro + "出售价格:" + paiMaiItem.Price * costNum + "玩家名称:" + paiMaiItem.PlayerName + "出售道具:" + paiMaiItem.BagInfo.ItemID + "出售单价:" + paiMaiItem.Price + "道具拥有数量:" + paiMaiItem.BagInfo.ItemNum);
+                            MailHelp.SendPaiMaiEmail(self.DomainZone(), paiMaiItem, costNum).Coroutine();
                         }
                     }
                 }
