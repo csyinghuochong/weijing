@@ -79,10 +79,12 @@ namespace ET
 
                 //回收宝石
                 Log.Debug($"拆下宝石: {unit.Id} {gemItemId}");
-                unit.GetComponent<BagComponent>().OnAddItemData($"{gemItemId};1", $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
-                Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
+                if (gemItemId != 0)
+                {
+                    unit.GetComponent<BagComponent>().OnAddItemData($"{gemItemId};1", $"{ItemGetWay.StoreBuy}_{TimeHelper.ServerNow()}");
+                    Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
+                }
             }
-
             MessageHelper.SendToClient(unit, m2c_bagUpdate);
             reply();
             await ETTask.CompletedTask;
