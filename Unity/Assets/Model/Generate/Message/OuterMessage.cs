@@ -437,6 +437,9 @@ namespace ET
 		[ProtoMember(5)]
 		public string DeviceName { get; set; }
 
+		[ProtoMember(6)]
+		public int Version { get; set; }
+
 	}
 
 	[Message(OuterOpcode.G2C_EnterGame)]

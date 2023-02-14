@@ -23,6 +23,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_StopServer, "停服维护");
             ErrorHintList.Add(ErrorCore.ERR_BingPhoneError_1, "改手机号已经注册过账号");
             ErrorHintList.Add(ErrorCore.ERR_BingPhoneError_2, "手机号只能绑定一个账号");
+            ErrorHintList.Add(ErrorCore.ERR_VersionNoMatch, "版本不一致，请更新客户端");
             
             //ErrorHintList.Add(ErrorCore.ERR_AccountOrPasswordError, "账号未注册!");
             ErrorHintList.Add(ErrorCore.ERR_GoldNotEnoughError, "金币不足!");

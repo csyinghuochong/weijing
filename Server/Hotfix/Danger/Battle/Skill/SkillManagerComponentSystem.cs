@@ -354,14 +354,10 @@ namespace ET
                 m2C_Skill.Error = ErrorCore.ERR_UseSkillError;
                 return m2C_Skill;
             }
-            //if (skillcmd.ItemId == 0&& !ComHelp.IfNull(weaponSkillConfig.SkillAnimation))
-            //{
-            //    unit.GetComponent<MoveComponent>()?.Stop();
-            //    unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
-            //}0:中断  1:不中断
-            if (weaponSkillConfig.IfStopMove == 0)
+            
+            if (unit.GetComponent<MoveComponent>()!=null)
             {
-                unit.GetComponent<MoveComponent>()?.Stop();
+                unit.Stop(-1);
                 unit.Rotation = Quaternion.Euler(0, skillcmd.TargetAngle, 0);
             }
             if (!zhudong && RandomHelper.RandFloat01() < unit.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ZhuanZhuPro))

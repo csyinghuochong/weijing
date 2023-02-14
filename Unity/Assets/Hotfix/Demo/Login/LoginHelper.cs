@@ -188,7 +188,8 @@ namespace ET
                     MapId= 1,
                     Relink = relink,
                     UserID = currentRoleId,
-                    DeviceName = devicename
+                    DeviceName = devicename,
+                    Version = ComHelp.Version,
                 });
             }
             catch (Exception e)

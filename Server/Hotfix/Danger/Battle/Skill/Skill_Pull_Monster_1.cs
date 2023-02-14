@@ -41,7 +41,7 @@ namespace ET
                 }
                 Vector3 t_postion = this.TheUnitFrom.Position;
                 monster.Position = new Vector3() { x = t_postion.x + RandomHelper.RandFloat01(),y = t_postion.y,z = t_postion.z + RandomHelper.RandFloat01() } ;
-                monster.SendStop(-2);
+                monster.Stop(-2);
             }
 
             //根据技能存在时间设置其结束状态

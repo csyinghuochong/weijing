@@ -209,6 +209,7 @@ message C2G_EnterGame // IRequest
 	int64 AccountId = 3;
 	bool Relink = 4;
 	string DeviceName = 5;
+	int32 Version = 6;
 }
 
 message G2C_EnterGame // IResponse

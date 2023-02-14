@@ -103,6 +103,7 @@
         public const int ERR_StopServer = 200117;
         public const int ERR_BingPhoneError_1 = 200118;
         public const int ERR_BingPhoneError_2 = 200119;
+        public const int ERR_VersionNoMatch = 200120;
 
         //300001-400001 服务器提示性错误码
         //角色
