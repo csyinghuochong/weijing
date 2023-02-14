@@ -112,9 +112,11 @@ namespace ET
             }
 
             if (self.ItemNode.activeSelf)
+            {
                 return;
+            };
 
-            self.ShowRewardItem(string.Empty);
+            //self.ShowRewardItem(string.Empty);
             self.ClickHandler(self.Index);
         }
     }
