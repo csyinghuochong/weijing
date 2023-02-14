@@ -14,7 +14,7 @@ namespace ET
 			}
 			
 			Vector3 pos = new Vector3(message.X, message.Y, message.Z);
-			//message.Error == -1立即停止不同步坐标
+			//message.Error == -1移动异常立即停止
 			if (message.Error == -1)
 			{
 				MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
@@ -31,6 +31,14 @@ namespace ET
 				unit.Position = pos;
 				unit.Rotation = rotation;
 			}
+			//message.Error == -3释放技能立即停止
+			if (message.Error > 1) 
+			{
+				MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+				moveComponent.SkillStop(unit, message.Error);
+				moveComponent.Stop();
+			}
+
 			//移动停止，插值同步
 			if (message.Error == 0)
 			{

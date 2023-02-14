@@ -45,6 +45,7 @@ namespace ET
 
         public static void SetNetWaitEndTime(this StateComponent self, long addTime)
         {
+            Log.Debug($"SetNetWaitEndTime111  {addTime}");
             self.NetWaitEndTime =  addTime;
         }
 

@@ -289,25 +289,6 @@ namespace ET
             self.Clear();
         }
 
-        public static void SkillStop(this MoveComponent self, int IfStopMove)
-        {
-            if (IfStopMove != 1)    //1 不中断移动
-            {
-                return;
-            }
-
-            //if (self.MoveType != 1 || !self.MoveWait)
-            //{
-            //    return;
-            //}
-            //if (self.IsArrived())
-            //{
-            //    return;
-            //}
-            //self.MoveWait = true;
-            //self.TargetPosition = self.Targets[self.Targets.Count - 1];
-        }
-
         public static void Clear(this MoveComponent self)
         {
             self.StartTime = 0;
@@ -328,5 +309,45 @@ namespace ET
                 callback.Invoke(false);
             }
         }
+
+
+#if !SERVER
+        /// 0:中断
+        /// 1:不中断
+        public static async void SkillStop(this MoveComponent self, Unit unit, int skillId)
+        {
+            self.MoveWait = false;
+            int targetCount = self.Targets.Count;
+            if (self.IsArrived() || targetCount == 0)
+            {
+                return;
+            }
+            if (!unit.MainHero || self.YaoganMove)
+            {
+                return;
+            }
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+            if (skillConfig.IfStopMove == 0)
+            {
+                return;
+            }
+            if (Vector3.Distance(unit.Position, self.Targets[targetCount - 1]) < 2f)
+            {
+                return;
+            }
+            self.MoveWait = true;
+            self.TargetPosition = self.Targets[targetCount - 1];
+            unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
+            unit.GetComponent<StateComponent>().SetRigidityEndTime(0);
+            await TimerComponent.Instance.WaitAsync((long)(skillConfig.SkillRigidity * 1000));
+            if (unit.IsDisposed || !self.MoveWait)
+            {
+                return;
+            }
+            Log.Debug($" MoveToAsync2 {skillConfig.SkillRigidity}" );
+
+            MoveHelper.MoveToAsync2(unit, self.TargetPosition, self.YaoganMove).Coroutine();
+        }
+#endif
     }
 }

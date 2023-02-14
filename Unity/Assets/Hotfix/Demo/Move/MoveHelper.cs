@@ -30,6 +30,9 @@ namespace ET
                 HintHelp.GetInstance().ShowHint("速度异常,请重新登录");
             }
 
+            MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
+            moveComponent.MoveWait = false;
+            moveComponent.YaoganMove = yangan;
             unit.GetComponent<SingingComponent>().BeginMove();
             C2M_PathfindingResult msg = c2M_PathfindingResult;
             msg.X = targetPos.x;

@@ -81,7 +81,7 @@ namespace ET
 
         //0 摇杆移动 1点击移动
         public bool MoveWait;
-        public int MoveType;
+        public bool YaoganMove;
         public Vector3 TargetPosition;
     }
 }
