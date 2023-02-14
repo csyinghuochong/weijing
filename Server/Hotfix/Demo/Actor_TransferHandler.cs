@@ -70,6 +70,12 @@ namespace ET
 							break;
 						//宠物闯关
 						case (int)SceneTypeEnum.PetDungeon:
+							int petfubenid = int.Parse(request.paramInfo);
+							if (!PetFubenConfigCategory.Instance.Contain(petfubenid))
+							{
+								reply();
+								return;
+							}
 							long fubenid = IdGenerater.Instance.GenerateId();
 							long fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
 							Scene fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "PetFuben" + fubenid.ToString(), SceneType.Fuben);

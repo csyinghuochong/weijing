@@ -572,6 +572,13 @@ namespace ET
 			newSkill.SkillPosition = request.Position;
 			newSkill.SkillSetType = request.SkillType;
 
+			for (int i = self.SkillList.Count -1; i >= 0; i--)
+			{
+				if (self.SkillList[i].SkillID == 0)
+				{
+					self.SkillList.RemoveAt(i);	
+				}
+			}
 			return ErrorCore.ERR_Success;
 		}
 

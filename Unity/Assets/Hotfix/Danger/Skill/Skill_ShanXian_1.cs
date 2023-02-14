@@ -18,7 +18,7 @@ namespace ET
             if (this.SkillConf.GameObjectParameter == "0")
             {
                 //先跳过去再触发伤害
-                TheUnitFrom.Position = TargetPosition;
+                //TheUnitFrom.Position = TargetPosition;
                 this.PlaySkillEffects(this.TargetPosition);
             }
             else
@@ -35,7 +35,7 @@ namespace ET
             if (this.SkillConf.GameObjectParameter == "1" && this.IsExcuteHurt && serverNow >= this.SkillExcuteHurtTime)
             {
                 //先跳过去再触发伤害
-                TheUnitFrom.Position = TargetPosition;
+                //TheUnitFrom.Position = TargetPosition;
             }
             this.BaseOnUpdate();
         }
