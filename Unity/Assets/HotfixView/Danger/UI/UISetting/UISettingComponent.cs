@@ -8,6 +8,7 @@ namespace ET
 
     public class UISettingComponent : Entity, IAwake
     {
+        public GameObject Smooth;
         public GameObject ButtonPhone;
         public GameObject LastLoginTime;
         public GameObject TextVersion;
@@ -108,6 +109,9 @@ namespace ET
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
             self.ButtonPhone.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
 
+            self.Smooth = rc.Get<GameObject>("Smooth");
+            ButtonHelp.AddListenerEx(self.Smooth.transform.Find("Btn_Click").gameObject, self.OnSmooth);
+
             self.Image_Fixed = rc.Get<GameObject>("Image_Fixed");
             self.Image_Move = rc.Get<GameObject>("Image_Move");
             self.Btn_Fixed = rc.Get<GameObject>("Btn_Fixed");
@@ -194,8 +198,10 @@ namespace ET
             self.ScreenToggle1.isOn = self.userInfoComponent.GetGameSettingValue(GameSettingEnum.FenBianlLv) == "2";
             self.Image_Click.SetActive(self.userInfoComponent.GetGameSettingValue(GameSettingEnum.Click) == "1");
 
+
             self.UpdateYaoGan();
             self.UpdateShadow();
+            self.UpdateSmooth();
             self.TextVersion.GetComponent<Text>().text = GlobalHelp.GetVersion().ToString();
             self.InputFieldCName.GetComponent<InputField>().text = self.userInfoComponent.UserInfo.Name;
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
@@ -291,6 +297,20 @@ namespace ET
         {
             self.SaveSettings(GameSettingEnum.YanGan, "1");
             self.UpdateYaoGan();
+        }
+
+        public static void OnSmooth(this UISettingComponent self)
+        {
+            string oldValue = self.userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
+            Application.targetFrameRate = oldValue == "0" ? 60 : 30;
+            self.SaveSettings(GameSettingEnum.Smooth, oldValue == "0"? "1" : "0");
+            self.UpdateSmooth();
+        }
+
+        public static void UpdateSmooth(this UISettingComponent self)
+        {
+            string oldValue = self.userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
+            self.Smooth.transform.Find("Image_Click").gameObject.SetActive(oldValue == "1");
         }
 
         public static void CheckSensitiveWords(this UISettingComponent self)

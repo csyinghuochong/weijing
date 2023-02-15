@@ -87,6 +87,7 @@ namespace ET
         MusicVolume,    //音乐大小
         SoundVolume,    //音效大小
         FenBianlLv,     //分辨率[1流暢 2一般]
+        Smooth,         //0 30帧 1 60帧
         Click,
         Shadow,
     }
