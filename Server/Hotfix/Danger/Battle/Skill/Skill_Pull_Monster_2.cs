@@ -40,13 +40,10 @@ namespace ET
             this.NowPosition.y = this.TargetPosition.y + 0.5f;
             //获取目标与自身的距离是否小于0.5f,小于触发将伤害,销毁自身
             dis = PositionHelper.Distance2D(NowPosition, this.TargetPosition);
-            if (dis > 0.5f)
+            if (dis < 0.5f)
             {
-                return;
+                this.SetSkillState(SkillState.Finished);
             }
-            float damgeRange = (float)this.SkillConf.DamgeRange[0];
-            
-            this.SetSkillState(SkillState.Finished);
         }
 
         public override void OnFinished()
