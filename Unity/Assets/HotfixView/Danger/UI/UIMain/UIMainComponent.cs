@@ -69,7 +69,6 @@ namespace ET
         public GameObject Btn_Battle;
         public GameObject Btn_TopRight_2;
         public GameObject Btn_TopRight_1;
-        public GameObject Button_JiaYuan;
         public GameObject Button_Recharge;
         public GameObject Btn_Rank;
 
@@ -134,9 +133,6 @@ namespace ET
             self.Button_Tower = rc.Get<GameObject>("Button_Tower");
             ButtonHelp.AddListenerEx(self.Button_Tower, () => { self.OnButton_Tower(); });
 
-            self.Button_JiaYuan = rc.Get<GameObject>("Button_JiaYuan");
-            ButtonHelp.AddListenerEx(self.Button_JiaYuan, () => { self.OnButton_JiaYuan(); });
-
             self.Button_ZhenYing = rc.Get<GameObject>("Button_ZhenYing");
             ButtonHelp.AddListenerEx(self.Button_ZhenYing, () => { self.OnButton_ZhenYing(); });
 
@@ -174,8 +170,6 @@ namespace ET
             ButtonHelp.AddListenerEx(self.bagButton, () => { self.OnOpenBag(); });
 
             self.TextPing = rc.Get<GameObject>("TextPing");
-
-            self.Button_JiaYuan.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
             self.Button_Horse.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             self.buttonReturn = rc.Get<GameObject>("Btn_RerurnBuilding");
