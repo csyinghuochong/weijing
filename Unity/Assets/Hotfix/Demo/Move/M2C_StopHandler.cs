@@ -24,7 +24,6 @@ namespace ET
 			//message.Error == -2立即停止且同步坐标
 			if (message.Error == -2)
 			{
-				Log.Debug("立即停止且同步坐标");
 				Quaternion rotation = new Quaternion(message.A, message.B, message.C, message.W);
 				MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
 				moveComponent.Stop();

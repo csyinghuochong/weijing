@@ -58,6 +58,7 @@ namespace ET
             }
            
             shoujiComponent.OnShouJiTreasure(request.ShouJiId, curNumber);
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
             response.ActiveNum = curNumber;
             reply();
             await ETTask.CompletedTask;
