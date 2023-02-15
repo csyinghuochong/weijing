@@ -302,7 +302,6 @@ namespace ET
         public static void OnSmooth(this UISettingComponent self)
         {
             string oldValue = self.userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
-            Application.targetFrameRate = oldValue == "0" ? 60 : 30;
             self.SaveSettings(GameSettingEnum.Smooth, oldValue == "0"? "1" : "0");
             self.UpdateSmooth();
         }
@@ -311,6 +310,7 @@ namespace ET
         {
             string oldValue = self.userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
             self.Smooth.transform.Find("Image_Click").gameObject.SetActive(oldValue == "1");
+            Application.targetFrameRate = oldValue == "1" ? 60 : 30;
         }
 
         public static void CheckSensitiveWords(this UISettingComponent self)
