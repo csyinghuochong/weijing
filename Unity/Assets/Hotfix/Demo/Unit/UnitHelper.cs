@@ -93,11 +93,6 @@ namespace ET
             Game.EventSystem.PublishClass(EventType.AfterUnitCreate.Instance);
         }
 
-        public static bool IsTestSkillID(this Unit self)
-        {
-            return false;// self.Id == 1573692389753683968;
-        }
-
         public static Vector3 GetBornPostion(this Unit self)
         {
             NumericComponent numericComponent = self.GetComponent<NumericComponent>();

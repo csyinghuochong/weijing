@@ -191,7 +191,7 @@ namespace ET
                 int weaponSkill = SkillHelp.GetWeaponSkill(skillCmd.SkillID, bagComponent.GetEquipType());
                 SkillConfig skillWeaponConfig = SkillConfigCategory.Instance.Get(weaponSkill);
 
-                long addTime = unit.IsTestSkillID() ? 100 : (long)(skillWeaponConfig.SkillRigidity * 1000);
+                long addTime = (long)(skillWeaponConfig.SkillRigidity * 1000);
                 unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
                 unit.GetComponent<StateComponent>().SetRigidityEndTime ( addTime + TimeHelper.ClientNow());
             }

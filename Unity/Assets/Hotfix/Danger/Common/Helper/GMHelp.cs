@@ -24,6 +24,11 @@ namespace ET
 
         };
 
+        public static bool IsTestPlayer(string account)
+        {
+            return account == "18407228910";
+        }
+
         public static List<string> GetChuJi()
         {
             List<string> vs = new List<string>();
