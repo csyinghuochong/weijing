@@ -36,6 +36,14 @@ namespace ET
             {
                 uIMain.GetComponent<UIMainComponent>().OnRelinkUpdate();
             }
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1
+                && UIHelper.GetUI(zoneScene, UIType.UICellDungeonRevive)== null)
+            {
+                unit.GetComponent<HeroDataComponent>().OnDead();
+                EventType.UnitDead.Instance.Unit = unit;
+                Game.EventSystem.PublishClass(EventType.UnitDead.Instance);
+            }
             //UI uiRecharge = UIHelper.GetUI(zoneScene, UIType.UIRecharge);
             //if (uiRecharge != null)
             //{

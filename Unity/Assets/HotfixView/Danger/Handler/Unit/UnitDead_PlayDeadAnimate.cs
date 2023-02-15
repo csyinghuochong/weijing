@@ -94,8 +94,11 @@ namespace ET
             unit.ZoneScene().GetComponent<LockTargetComponent>().LastLockId = 0;
             UI uimain = UIHelper.GetUI(unit.ZoneScene(), UIType.UIMain);
             uimain.GetComponent<UIMainComponent>().OnSelfDead();
-            UI uI =await UIHelper.Create(unit.ZoneScene(), UIType.UICellDungeonRevive);
-            uI.GetComponent<UICellDungeonReviveComponent>().OnInitUI(mapComponent.SceneTypeEnum);
+            if (UIHelper.GetUI(unit.ZoneScene(), UIType.UICellDungeonRevive) == null)
+            {
+                UI uI = await UIHelper.Create(unit.ZoneScene(), UIType.UICellDungeonRevive);
+                uI.GetComponent<UICellDungeonReviveComponent>().OnInitUI(mapComponent.SceneTypeEnum);
+            }
         }
 
         private async ETTask OnBossDead(Unit unit)

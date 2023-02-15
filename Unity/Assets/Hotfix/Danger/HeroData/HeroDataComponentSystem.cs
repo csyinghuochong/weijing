@@ -556,16 +556,16 @@ namespace ET
         }
 
 #else
-        public static void OnDead(this HeroDataComponent self, EventType.NumericChangeEvent args)
+        public static void OnDead(this HeroDataComponent self)
         {
             Unit unit = self.GetParent<Unit>();
             unit.GetComponent<MoveComponent>()?.Stop();
             unit.GetComponent<SkillManagerComponent>()?.OnFinish();
             unit.GetComponent<BuffManagerComponent>()?.OnFinish();
-            int sceneTypeEnum = args.Parent.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
+            int sceneTypeEnum = unit.ZoneScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
             {
-                args.Parent.ZoneScene().GetComponent<CellDungeonComponent>().CheckChuansongOpen();
+                unit.ZoneScene().GetComponent<CellDungeonComponent>().CheckChuansongOpen();
             }
             if (sceneTypeEnum == (int)SceneTypeEnum.LocalDungeon 
                 && unit.Type == UnitType.Monster && unit.GetMonsterType() == (int)MonsterTypeEnum.Boss)
