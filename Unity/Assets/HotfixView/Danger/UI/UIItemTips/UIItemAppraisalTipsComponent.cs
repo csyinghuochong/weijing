@@ -142,14 +142,12 @@ namespace ET
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "是否出售道具:" + itemConfig.ItemName, () =>
                 {
                     self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo).Coroutine();
-                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具出售完成!"));
                     self.OnCloseTips();
                 }).Coroutine();
             }
             else
             {
                 self.ZoneScene().GetComponent<BagComponent>().SendSellItem(self.BagInfo).Coroutine();
-                FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("道具出售完成!"));
                 self.OnCloseTips();
             }
         }

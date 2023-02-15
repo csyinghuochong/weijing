@@ -341,7 +341,6 @@ namespace ET
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "该装备镶嵌有宝石，是否出售道具？", () =>
                 {
                     self.BagComponent.SendSellItem(self.BagInfo).Coroutine();
-                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("装备出售完成!"));
                     self.OnCloseTips();
                 }).Coroutine();
 
@@ -354,7 +353,6 @@ namespace ET
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "出售道具", "是否出售道具:" + itemConfig.ItemName, () =>
                 {
                     self.BagComponent.SendSellItem(self.BagInfo).Coroutine();
-                    FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("装备出售完成!"));
                     self.OnCloseTips();
                 }).Coroutine();
 
@@ -362,7 +360,6 @@ namespace ET
             }
 
             self.BagComponent.SendSellItem(self.BagInfo).Coroutine();
-            FloatTipManager.Instance.ShowFloatTip(GameSettingLanguge.LoadLocalization("装备出售完成!"));
             self.OnCloseTips();
         }
 

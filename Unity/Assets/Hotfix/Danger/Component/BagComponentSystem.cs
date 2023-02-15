@@ -173,6 +173,11 @@ namespace ET
         {
             C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 2, OperateBagID = bagInfo.BagInfoID, OperatePar = bagInfo.ItemID.ToString() };
             M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
+
+            if (r2c_roleEquip.Error == ErrorCore.ERR_Success)
+            {
+                HintHelp.GetInstance().ShowHint("装备出售完成!");
+            }
         }
 
 
