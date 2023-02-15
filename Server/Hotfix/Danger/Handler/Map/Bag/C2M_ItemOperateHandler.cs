@@ -292,7 +292,7 @@ namespace ET
                                 int userLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                                 ExpConfig expConfig = ExpConfigCategory.Instance.Get(userLv);
                                 int addCoin = (int)RandomHelper.RandomNumberFloat(float.Parse(jinbiInfos[0]) * expConfig.RoseGoldPro, float.Parse(jinbiInfos[1]) * expConfig.RoseGoldPro);
-                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, addCoin.ToString());
+                                unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(UserDataType.Gold, addCoin.ToString(), true, 39);
                                 break;
                             //经验木桩
                             case 112:
@@ -394,7 +394,7 @@ namespace ET
                     }
 
                     itemConf = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleData((UserDataType)itemConf.SellMoneyType, (useBagInfo.ItemNum * sellValue).ToString());
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd((UserDataType)itemConf.SellMoneyType, (useBagInfo.ItemNum * sellValue).ToString(), true, 39);
                     unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo, locType, useBagInfo.ItemNum);
                     if (useBagInfo.ItemNum == 0)
                     {
