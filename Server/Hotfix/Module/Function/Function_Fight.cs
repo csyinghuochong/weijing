@@ -1219,12 +1219,15 @@ namespace ET
             for (int p = 0; p < unit.GetComponent<PetComponent>().PetSkinList.Count; p++)
             {
                 string[] strList = unit.GetComponent<PetComponent>().PetSkinList[p].Value.Split('_');
+
                 for (int y = 0; y < strList.Length; y++) {
+
                     if (strList[y] != "" && strList[y] != null&& strList[y] != "0")
                     {
                         PetSkinConfig petSkinCof = PetSkinConfigCategory.Instance.Get(int.Parse(strList[y]));
                         if (petSkinCof.PripertySet != "" && petSkinCof.PripertySet != "0" && petSkinCof.PripertySet != null) {
                             string[] AddPropreList = petSkinCof.PripertySet.Split(';');
+
                             for (int z = 0; z < AddPropreList.Length; z++)
                             {
                                 int addProType = int.Parse(AddPropreList[z].Split(',')[0]);
