@@ -137,64 +137,67 @@ namespace ET
             self.EnergySkill.SetActive(false);
             self.UILoopTask.SetActive(false);
 
-            if (npcConfig.NpcType == 1//神兽兑换
-               || npcConfig.NpcType == 2)  //挑戰之地
+
+            switch(npcConfig.NpcType)
             {
-                self.TaskFubenList.SetActive(true);
-                List<int> fubenList = new List<int>(npcConfig.NpcPar);
-                for (int i = 0; i < fubenList.Count; i++)
-                {
-                    GameObject go = GameObject.Instantiate(self.UITaskFubenItem);
-                    go.SetActive(true);
-                    UICommonHelper.SetParent(go, self.TaskFubenList);
-                    UITaskFubenItemComponent uITaskFubenItemComponent = self.AddChild<UITaskFubenItemComponent, GameObject>(go);
-                    uITaskFubenItemComponent.OnInitData((int npcType, int fubenId) => { self.OnClickFubenItem(npcType, fubenId); }, npcConfig.NpcType, fubenList[i]);
-                }
-            }
-            else if (npcConfig.NpcType == 3)    //循环任务
-            {
-                bool update = self.UpdataTask();
-                self.ScrollView1.SetActive(update);
-                self.UILoopTask.SetActive(!update);
-            }
-            else if (npcConfig.NpcType == 4)       //魔能老人
-            {
-                int costItemID = 12000006;
-                long itemNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(costItemID);
-                self.EnergySkill.SetActive(true);
-                //获取
-                self.Obj_Lab_MoNnengHint.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(costItemID).ItemName + "  " + itemNum + "/" + 5;
-            }
-            else if (npcConfig.NpcType == 5) //补偿大师
-            {
-                self.TaskFubenList.SetActive(true);
-                UICommonHelper.DestoryChild(self.TaskFubenList);
-                AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                int buchangNumber = BuChangHelper.ShowNewBuChang(accountInfo.PlayerInfo, accountInfo.MyId);
-                if (buchangNumber > 0)
-                {
-                    GameObject goitem = GameObject.Instantiate(self.UITaskFubenItem);
-                    goitem.SetActive(true);
-                    UICommonHelper.SetParent(goitem, self.TaskFubenList);
-                    UIBuChangItemComponent uIBuChangItem = self.AddChild<UIBuChangItemComponent, GameObject>(goitem);
-                    uIBuChangItem.OnInitUI_2((long userid) => { self.OnClickBuChangItem(userid); }, buchangNumber);
-                }
-                else
-                {
-                    for (int i = 0; i < accountInfo.PlayerInfo.DeleteUserList.Count; i++)
+
+                case 1://神兽兑换
+                case 2: //挑戰之地
+                    self.TaskFubenList.SetActive(true);
+                    List<int> fubenList = new List<int>(npcConfig.NpcPar);
+                    for (int i = 0; i < fubenList.Count; i++)
+                    {
+                        GameObject go = GameObject.Instantiate(self.UITaskFubenItem);
+                        go.SetActive(true);
+                        UICommonHelper.SetParent(go, self.TaskFubenList);
+                        UITaskFubenItemComponent uITaskFubenItemComponent = self.AddChild<UITaskFubenItemComponent, GameObject>(go);
+                        uITaskFubenItemComponent.OnInitData((int npcType, int fubenId) => { self.OnClickFubenItem(npcType, fubenId); }, npcConfig.NpcType, fubenList[i]);
+                    }
+                    break;
+                case 3://循环任务
+                    bool update = self.UpdataTask();
+                    self.ScrollView1.SetActive(update);
+                    self.UILoopTask.SetActive(!update);
+                    break;
+                case 4: //魔能老人
+                    int costItemID = 12000006;
+                    long itemNum = self.ZoneScene().GetComponent<BagComponent>().GetItemNumber(costItemID);
+                    self.EnergySkill.SetActive(true);
+                    //获取
+                    self.Obj_Lab_MoNnengHint.GetComponent<Text>().text = ItemConfigCategory.Instance.Get(costItemID).ItemName + "  " + itemNum + "/" + 5;
+                    break;
+                case 5://补偿大师
+                    self.TaskFubenList.SetActive(true);
+                    UICommonHelper.DestoryChild(self.TaskFubenList);
+                    AccountInfoComponent accountInfo = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                    int buchangNumber = BuChangHelper.ShowNewBuChang(accountInfo.PlayerInfo, accountInfo.MyId);
+                    if (buchangNumber > 0)
                     {
                         GameObject goitem = GameObject.Instantiate(self.UITaskFubenItem);
                         goitem.SetActive(true);
                         UICommonHelper.SetParent(goitem, self.TaskFubenList);
                         UIBuChangItemComponent uIBuChangItem = self.AddChild<UIBuChangItemComponent, GameObject>(goitem);
-                        uIBuChangItem.OnInitUI((long userid) => { self.OnClickBuChangItem(userid); }, accountInfo.PlayerInfo.DeleteUserList[i]);
+                        uIBuChangItem.OnInitUI_2((long userid) => { self.OnClickBuChangItem(userid); }, buchangNumber);
                     }
-                }
-            }
-            else
-            {
-                self.ScrollView1.SetActive(true);
-                self.UpdataTask();
+                    else
+                    {
+                        for (int i = 0; i < accountInfo.PlayerInfo.DeleteUserList.Count; i++)
+                        {
+                            GameObject goitem = GameObject.Instantiate(self.UITaskFubenItem);
+                            goitem.SetActive(true);
+                            UICommonHelper.SetParent(goitem, self.TaskFubenList);
+                            UIBuChangItemComponent uIBuChangItem = self.AddChild<UIBuChangItemComponent, GameObject>(goitem);
+                            uIBuChangItem.OnInitUI((long userid) => { self.OnClickBuChangItem(userid); }, accountInfo.PlayerInfo.DeleteUserList[i]);
+                        }
+                    }
+                    break;
+                case 6: //节日使者
+                    Log.Debug("节日使者");
+                    break;
+                default:
+                    self.ScrollView1.SetActive(true);
+                    self.UpdataTask();
+                    break;
             }
         }
 

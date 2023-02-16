@@ -122,4 +122,5 @@
 {"_t":"ActivityConfig","_id":32006,"ActivityType":32,"Icon":"","Par_1":"1","Par_2":"10030013;1@10030016;1","Par_3":"1;60000","Par_4":"新春活动兑换"},
 {"_t":"ActivityConfig","_id":32007,"ActivityType":32,"Icon":"","Par_1":"1","Par_2":"10030013;1@10030014;1","Par_3":"1;60000","Par_4":"新春活动兑换"},
 {"_t":"ActivityConfig","_id":32008,"ActivityType":32,"Icon":"","Par_1":"1","Par_2":"10030015;1@10030016;1","Par_3":"1;60000","Par_4":"新春活动兑换"},
+{"_t":"ActivityConfig","_id":33001,"ActivityType":33,"Icon":"","Par_1":"2;19","Par_2":"10030015;1@10030016;1","Par_3":"","Par_4":"2月19雨水节"},
 ]}
