@@ -371,35 +371,6 @@ namespace ET
             return color;
         }
 
-        public static int CanLogin(string identityCard, bool isHoliday)
-        {
-            int age = ComHelp.GetBirthdayAgeSex(identityCard);
-            if (age >= 18)
-            {
-                return ErrorCore.ERR_Success;
-            }
-            if (age < 12)
-            {
-                return ErrorCore.ERR_FangChengMi_Tip6;
-            }
-            DateTime dateTime = TimeHelper.DateTimeNow();
-            if (isHoliday)
-            {
-                if (dateTime.Hour == 20)
-                {
-                    return ErrorCore.ERR_Success;           //允许登录
-                }
-                else
-                {
-                    return ErrorCore.ERR_FangChengMi_Tip7;
-                }
-            }
-            else
-            {
-                return ErrorCore.ERR_FangChengMi_Tip7;
-            }
-        }
-
         public static int GetBirthdayAgeSex(string identityCard)
         {
             if (string.IsNullOrEmpty(identityCard))

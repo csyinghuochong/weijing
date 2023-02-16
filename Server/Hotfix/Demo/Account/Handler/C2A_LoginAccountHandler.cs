@@ -5,6 +5,35 @@ namespace ET
 {
     public class C2A_LoginAccountHandler : AMRpcHandler<C2A_LoginAccount, A2C_LoginAccount>
     {
+        public int CanLogin(string identityCard, bool isHoliday)
+        {
+            int age = ComHelp.GetBirthdayAgeSex(identityCard);
+            if (age >= 18)
+            {
+                return ErrorCore.ERR_Success;
+            }
+            if (age < 12)
+            {
+                return ErrorCore.ERR_FangChengMi_Tip6;
+            }
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            if (isHoliday)
+            {
+                if (dateTime.Hour == 20)
+                {
+                    return ErrorCore.ERR_Success;           //允许登录
+                }
+                else
+                {
+                    return ErrorCore.ERR_FangChengMi_Tip7;
+                }
+            }
+            else
+            {
+                return ErrorCore.ERR_FangChengMi_Tip7;
+            }
+        }
+
         protected override async ETTask Run(Session session, C2A_LoginAccount request, A2C_LoginAccount response, Action reply)
         {
             Log.Debug($"LoginTest request.AccountName:{request.AccountName} {request.Password} {session.RemoteAddress}");
@@ -140,7 +169,7 @@ namespace ET
                     //}
                     //防沉迷相关
                     string idCardNo = centerPlayerInfo.IdCardNo;
-                    int canLogin = ComHelp.CanLogin(idCardNo, session.DomainScene().GetComponent<FangChenMiComponent>().IsHoliday);
+                    int canLogin = CanLogin(idCardNo, session.DomainScene().GetComponent<FangChenMiComponent>().IsHoliday);
                     if (canLogin != ErrorCode.ERR_Success)
                     {
                         response.Error = canLogin;

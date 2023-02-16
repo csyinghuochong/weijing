@@ -7,6 +7,8 @@ namespace ET
     public static class ActivityHelper
     {
 
+
+
         public static bool HaveReceiveTimes(List<int> receiveIds, int receiveId)
         {
             ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(receiveId);
@@ -55,6 +57,7 @@ namespace ET
             }
             return activityId;
         }
+
 
     }
 }
