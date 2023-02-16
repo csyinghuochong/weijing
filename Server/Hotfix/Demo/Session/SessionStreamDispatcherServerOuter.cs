@@ -3,7 +3,11 @@ using System.IO;
 
 namespace ET
 {
-    [SessionStreamDispatcher(SessionStreamDispatcherType.SessionStreamDispatcherServerOuter)]
+
+	//判断每秒收到的消息数量，超过一定数量就断开session，这个判断可以放到SessionStreamDispatcherServerOuter中去判断，
+	//不需要修改session的代码，要注意软路由会自动重连的情况，会导致一瞬间出现大量消息，
+	//不过一般也不会超过100个，基本上限制成100就行了
+	[SessionStreamDispatcher(SessionStreamDispatcherType.SessionStreamDispatcherServerOuter)]
     public class SessionStreamDispatcherServerOuter: ISessionStreamDispatcher
     {
         public void Dispatch(Session session, MemoryStream memoryStream)
