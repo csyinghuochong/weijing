@@ -354,6 +354,8 @@ message UnitInfo
 	string UnionName = 18;
 	repeated KeyValuePair Buffs = 19;
 	repeated SkillInfo Skills = 20;
+
+	int32 UnitType = 21;
 }
 
 message M2C_CreateUnits // IActorMessage

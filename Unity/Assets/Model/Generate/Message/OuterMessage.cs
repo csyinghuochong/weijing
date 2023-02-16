@@ -719,6 +719,9 @@ namespace ET
 		[ProtoMember(20)]
 		public List<SkillInfo> Skills = new List<SkillInfo>();
 
+		[ProtoMember(21)]
+		public int UnitType { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_CreateUnits)]

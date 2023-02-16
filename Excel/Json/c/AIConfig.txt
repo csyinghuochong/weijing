@@ -17,4 +17,6 @@
 {"_t":"AIConfig","_id":801,"AIConfigId":8,"Order":1,"Name":"AI_XunLuo","NodeParams":""},
 {"_t":"AIConfig","_id":802,"AIConfigId":8,"Order":2,"Name":"AI_ZhuiJi","NodeParams":""},
 {"_t":"AIConfig","_id":803,"AIConfigId":8,"Order":3,"Name":"AI_Attack","NodeParams":""},
+{"_t":"AIConfig","_id":901,"AIConfigId":9,"Order":1,"Name":"AI_Pull","NodeParams":""},
+{"_t":"AIConfig","_id":902,"AIConfigId":9,"Order":2,"Name":"AI_Transfer","NodeParams":"1"},
 ]}
