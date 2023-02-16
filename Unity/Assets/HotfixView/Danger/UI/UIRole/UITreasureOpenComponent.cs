@@ -19,7 +19,6 @@ namespace ET
         public BagInfo BagInfo;
 
         public long Interval = 0;     //匀速
-        public long AcceTime = 0;   //加速
         public int TargetIndex = 0; 
         public int CurrentIndex = 0;
         public bool OnStopTurn;
@@ -35,7 +34,6 @@ namespace ET
             self.TargetIndex = 0;
             self.CurrentIndex = 0;
             self.Interval = 100;
-            self.AcceTime = 100;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.ButtonStop = rc.Get<GameObject>("ButtonStop");
@@ -113,8 +111,7 @@ namespace ET
             }
 
             //开始触发
-            self.OnStartTurn().Coroutine();
-
+            self.OnButtonOpen().Coroutine();
         }
 
         public static async ETTask OnStartTurn(this UITreasureOpenComponent self)
@@ -162,13 +159,15 @@ namespace ET
                 moveNumber = self.TargetIndex + self.UIItems.Count - self.CurrentIndex;
             }
 
-            self.AcceTime = (long)(self.Interval * 1f / moveNumber);
 
             long instanceId = self.InstanceId;
             while (moveNumber >= 0)
             {
-                self.Interval -= self.AcceTime;
-                self.Interval = Math.Max(1, self.Interval);
+                if (moveNumber < 5)
+                {
+                    self.Interval += 50;
+                }
+
                 self.ImageSelect.SetActive(true);
                 UICommonHelper.SetParent(self.ImageSelect, self.UIItems[self.CurrentIndex].GameObject);
                 self.CurrentIndex++;
@@ -178,6 +177,7 @@ namespace ET
                 }
                 moveNumber--;
                 await TimerComponent.Instance.WaitAsync(self.Interval);
+                Log.Debug($" self.Interval:  {self.Interval}   {moveNumber}");
                 if (instanceId != self.InstanceId)
                 {
                     return;
