@@ -95,6 +95,11 @@ namespace ET
             Log.Info("rewardShowItems.Count = " + rewardShowItems.Count);
             for (int i = 0; i < rewardShowItems.Count; i++)
             {
+                if (!ItemConfigCategory.Instance.Contain(rewardShowItems[i]))
+                {
+                    continue;
+                }
+
                 GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(itemSpace, self.BuildingList);
                 UI ui_2 = self.AddChild<UI, string, GameObject>("UICommonItem_" + i, itemSpace);
@@ -157,7 +162,7 @@ namespace ET
             self.AcceTime = (long)(self.Interval * 1f / moveNumber);
 
             long instanceId = self.InstanceId;
-            while (moveNumber > 0)
+            while (moveNumber >= 0)
             {
                 self.Interval -= self.AcceTime;
                 self.Interval = Math.Max(1, self.Interval);

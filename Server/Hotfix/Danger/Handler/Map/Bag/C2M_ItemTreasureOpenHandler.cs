@@ -23,18 +23,10 @@ namespace ET
                 return;
             }
 
-            // // $"{dungeonid}@{"TaskMove_6"}@{dropId}";
-            int rewardItemStr = int.Parse(useBagInfo.ItemPar.Split('@')[2]);
-            List <RewardItem> rewardItems = new List<RewardItem>();
-            ItemConfig itemCof = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
-            DropHelper.DropIDToDropItem_2(int.Parse(itemCof.ItemUsePar), rewardItems);
-            if (rewardItems.Count == 0)
-            {
-                response.Error = ErrorCore.ERR_ItemUseError;
-                reply();
-                return;
-            }
-
+            //40006@TaskMove_6@10010071;1
+            string rewardItemStr = useBagInfo.ItemPar.Split('@')[2];
+            List<RewardItem> rewardItems = ItemHelper.GetRewardItems(rewardItemStr);
+            
             response.ReardItem = rewardItems[0];
             useBagInfo.HideProLists.Clear();
             useBagInfo.HideProLists.Add(new HideProList() { HideID = rewardItems[0].ItemID, HideValue = rewardItems[0].ItemNum });
