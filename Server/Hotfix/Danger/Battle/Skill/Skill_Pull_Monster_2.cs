@@ -53,7 +53,7 @@ namespace ET
                     continue;
                 }
                 AIComponent aIComponent = unit.GetComponent<AIComponent>();
-                if (aIComponent == null)
+                if (aIComponent == null || aIComponent.TargetPoint.Count == 0)
                 {
                     continue;
                 }
