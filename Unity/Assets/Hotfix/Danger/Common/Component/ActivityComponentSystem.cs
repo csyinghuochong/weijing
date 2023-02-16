@@ -64,7 +64,10 @@ namespace ET
             {
                 C2M_ActivityReceiveRequest c2M_ItemHuiShouRequest = new C2M_ActivityReceiveRequest() { ActivityType = activityType, ActivityId = activityId };
                 M2C_ActivityReceiveResponse r2c_roleEquip = (M2C_ActivityReceiveResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemHuiShouRequest);
-                self.ActivityReceiveIds.Add(activityId);
+                if (r2c_roleEquip.Error == ErrorCore.ERR_Success)
+                {
+                    self.ActivityReceiveIds.Add(activityId);
+                }
                 return r2c_roleEquip.Error;
             }
             catch (Exception ex)

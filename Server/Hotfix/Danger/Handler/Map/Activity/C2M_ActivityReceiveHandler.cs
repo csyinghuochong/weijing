@@ -147,7 +147,6 @@ namespace ET
                             reply();
                             return;
                         }
-
                         if (unit.GetComponent<BagComponent>().OnCostItemData(activityConfig.Par_2))
                         {
                             unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
@@ -157,6 +156,23 @@ namespace ET
                         {
                             response.Error = ErrorCore.ERR_ItemNotEnoughError;
                         }
+                        break;
+                    case 33:
+                        if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
+                        {
+                            response.Error = ErrorCore.ERR_BagIsFull;
+                            reply();
+                            return;
+                        }
+                        if (!ActivityHelper.IsJieRiActivityId(request.ActivityId))
+                        {
+                            response.Error = ErrorCore.ERR_AlreadyFinish;
+                            reply();
+                            return;
+                        }
+                        unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
+                        string rewardItemlist = ActivityHelper.GetJieRiReward(unit.GetComponent<UserInfoComponent>());
+                        unit.GetComponent<BagComponent>().OnAddItemData(rewardItemlist, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
                         break;
                     case 101:   //冒险家
                                 //需要从dbaccountinfo中获取当前角色重置额度

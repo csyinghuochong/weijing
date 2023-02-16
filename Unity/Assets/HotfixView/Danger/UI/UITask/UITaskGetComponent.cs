@@ -10,6 +10,7 @@ namespace ET
         public int TaskId;
 
         //NpcID
+        public GameObject ButtonJieRiReward;
         public GameObject TaskFubenList;
         public GameObject UITaskFubenItem;
         public GameObject Btn_EnergyDuihuan;
@@ -62,6 +63,10 @@ namespace ET
             self.UITaskFubenItem = rc.Get<GameObject>("UITaskFubenItem");
             self.UITaskFubenItem.SetActive(false);
 
+            self.ButtonJieRiReward = rc.Get<GameObject>("ButtonJieRiReward");
+            self.ButtonJieRiReward.SetActive(false);
+            ButtonHelp.AddListenerEx(self.ButtonJieRiReward, () => { self.OnButtonJieRiReward();  });
+
             self.Img_button = rc.Get<GameObject>("Img_button");
             self.Img_button.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseNpcTask(); });
 
@@ -96,6 +101,23 @@ namespace ET
         public static void OnCloseNpcTask(this UITaskGetComponent self)
         {
             UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
+        }
+
+        public static void OnButtonJieRiReward(this UITaskGetComponent self)
+        {
+            int activityId = ActivityHelper.GetJieRiActivityId();
+            ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(activityId);
+            if (activityConfig == null)
+            {
+                return;
+            }
+            ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+            if (activityComponent.ActivityReceiveIds.Contains(activityId))
+            {
+                FloatTipManager.Instance.ShowFloatTip("已经领取过奖励！");
+            }
+            activityComponent.GetActivityReward( activityConfig.ActivityType, activityId).Coroutine();
+            self.ButtonJieRiReward.SetActive(false);
         }
 
         public static async ETTask OnButtonLoopTask(this UITaskGetComponent self)
@@ -136,7 +158,6 @@ namespace ET
             self.ScrollView1.SetActive(false);
             self.EnergySkill.SetActive(false);
             self.UILoopTask.SetActive(false);
-
 
             switch(npcConfig.NpcType)
             {
@@ -192,8 +213,9 @@ namespace ET
                     }
                     break;
                 case 6: //节日使者
-
-                    Log.Debug("节日使者");
+                    int activityId = ActivityHelper.GetJieRiActivityId();
+                    ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
+                    self.ButtonJieRiReward.SetActive(activityId > 0 && !activityComponent.ActivityReceiveIds.Contains(activityId));
                     break;
                 default:
                     self.ScrollView1.SetActive(true);

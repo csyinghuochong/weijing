@@ -7,7 +7,41 @@ namespace ET
     public static class ActivityHelper
     {
 
+        public static string GetJieRiReward(UserInfoComponent userInfoComponent)
+        {
+            int gold = 0;
+            int diamonds = 0;
+            return $"1;{gold}@2;{diamonds}";
+        }
 
+        public static int GetJieRiActivityId()
+        {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            int activityId = 0;
+            List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < activityConfigs.Count; i++)
+            {
+                if (activityConfigs[i].ActivityType != 33)
+                {
+                    continue;
+                }
+                string[] dayInfo = activityConfigs[i].Par_1.Split(';');
+                if (dateTime.Month == int.Parse(dayInfo[0]) && dateTime.Day == int.Parse(dayInfo[1]))
+                {
+                    activityId = activityConfigs[i].Id;
+                    break;
+                }
+            }
+            return activityId;
+        }
+
+        public static bool IsJieRiActivityId(int activityId)
+        {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            ActivityConfig activityConfigs = ActivityConfigCategory.Instance.Get(activityId);
+            string[] dayInfo = activityConfigs.Par_1.Split(';');
+            return dateTime.Month == int.Parse(dayInfo[0]) && dateTime.Day == int.Parse(dayInfo[1]);
+        }
 
         public static bool HaveReceiveTimes(List<int> receiveIds, int receiveId)
         {
