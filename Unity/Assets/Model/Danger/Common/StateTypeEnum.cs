@@ -9,9 +9,9 @@ namespace ET
         public const long None = 1 << 0;
 
         /// <summary>
-        /// 空闲
+        /// 被拉扯
         /// </summary>
-        public const long  Idle = 1 << 2;
+        public const long BePulled = 1 << 1;    
 
         /// <summary>
         /// 击退
@@ -52,11 +52,6 @@ namespace ET
         /// 禁锢 不能移动
         /// </summary>
         public const long Shackle = 1 << 11;
-
-        /// <summary>
-        /// 打断
-        /// </summary>
-        public const long Interrupt = 1 << 12;
 
         /// <summary>
         /// 遇到障碍物

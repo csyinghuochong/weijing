@@ -14,13 +14,13 @@ namespace ET
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = aiComponent.GetParent<Unit>();
+            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.BePulled);
             float limitDis = 0.5f;
 
             for (int i = 0; i < 10000; i++)
             {
                 if (aiComponent.TargetPoint.Count > 0)
                 {
-
                     Vector3 targetPosition = aiComponent.TargetPoint[aiComponent.TargetPoint.Count - 1];
                     float distance = Vector3.Distance(unit.Position, targetPosition);
 
@@ -32,11 +32,11 @@ namespace ET
                         Quaternion rotation = Quaternion.Euler(0, ange + addg, 0);
                         Vector3 ttt = targetPosition + rotation * Vector3.forward * (limitDis);
                         unit.FindPathMoveToAsync(ttt, cancellationToken, false).Coroutine();
-                        unit.FindPathMoveToAsync(targetPosition, cancellationToken, false).Coroutine();
                     }
                     else
                     {
                         aiComponent.TargetPoint.Clear();
+                        unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
                     }
                 }
 

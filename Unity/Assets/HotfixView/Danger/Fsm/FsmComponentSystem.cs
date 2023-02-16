@@ -49,12 +49,6 @@ namespace ET
     /// </summary>
     public static class FsmComponentSystem
     {
-
-        public static void ChangeAnimator(this FsmComponent self, Animator animator)
-        { 
-            
-        }
-
         public static void Check(this FsmComponent self)
         {
             if (self.Animator == null)
@@ -243,7 +237,14 @@ namespace ET
 
         public static void OnEnterFsmRunState(this FsmComponent self, string paramss = "")
         {
-            SkillManagerComponent skillManagerComponent = self.GetParent<Unit>().GetComponent<SkillManagerComponent>();
+            Unit unit = self.GetParent<Unit>();
+            if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.BePulled))
+            {
+
+                return;
+            }
+
+            SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
             if (TimeHelper.ClientNow() > skillManagerComponent.SkillMoveTime)
             {
                 self.SetRunState();
