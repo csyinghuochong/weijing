@@ -1212,7 +1212,7 @@ namespace ET
             List<HideProList> shoujiProList = unit.GetComponent<ShoujiComponent>().GetProList();
             for (int i = 0; i < shoujiProList.Count; i++)
             {
-                //AddUpdateProDicList(shoujiProList[i].HideID, shoujiProList[i].HideValue, UpdateProDicList);
+                AddUpdateProDicList(shoujiProList[i].HideID, shoujiProList[i].HideValue, UpdateProDicList);
             }
 
             //宠物皮肤属性

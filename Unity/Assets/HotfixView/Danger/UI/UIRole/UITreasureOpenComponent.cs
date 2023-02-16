@@ -66,7 +66,7 @@ namespace ET
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             List<int> rewardItems = DropHelper.TreasureDropItmeShow(int.Parse(itemConfig.ItemUsePar), 27);
-            Log.Info("rewardItems = " + rewardItems.Count);
+            //Log.Info("rewardItems = " + rewardItems.Count);
             var path = ABPathHelper.GetUGUIPath("Main/Role/UITreasureItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             bool ifAddStatus = false;
@@ -79,7 +79,7 @@ namespace ET
                 {
                     ifAddStatus = true;
                     rewardShowItems.Add(int.Parse(rewardItemID));
-                    Log.Info("rewardItemID = " + rewardItemID);
+                    //Log.Info("rewardItemID = " + rewardItemID);
                 }
                 rewardShowItems.Add(rewardItems[i]);
             }
@@ -88,9 +88,9 @@ namespace ET
             {
                 ifAddStatus = true;
                 rewardShowItems.Add(int.Parse(rewardItemID));
-                Log.Info("rewardItemID222 = " + rewardItemID);
+                //Log.Info("rewardItemID222 = " + rewardItemID);
             }
-            Log.Info("rewardShowItems.Count = " + rewardShowItems.Count);
+            //Log.Info("rewardShowItems.Count = " + rewardShowItems.Count);
             for (int i = 0; i < rewardShowItems.Count; i++)
             {
                 if (!ItemConfigCategory.Instance.Contain(rewardShowItems[i]))
@@ -177,7 +177,7 @@ namespace ET
                 }
                 moveNumber--;
                 await TimerComponent.Instance.WaitAsync(self.Interval);
-                Log.Debug($" self.Interval:  {self.Interval}   {moveNumber}");
+                //Log.Debug($" self.Interval:  {self.Interval}   {moveNumber}");
                 if (instanceId != self.InstanceId)
                 {
                     return;
