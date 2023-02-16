@@ -66,8 +66,10 @@ namespace ET
             List<DropConfig> dropConfigs = DropConfigCategory.Instance.GetAll().Values.ToList();
             int dropIndex = RandomHelper.RandomNumber(0, dropConfigs.Count);
             int dropId = dropConfigs[dropIndex].Id;
-
-            bagInfo.ItemPar = $"{dungeonid}@{"TaskMove_6"}@{dropId}";
+            List<RewardItem> rewardList = new List<RewardItem>();
+            //获取最终奖励
+            DropHelper.DropIDToDropItem_2(dropId, rewardList);
+            bagInfo.ItemPar = $"{dungeonid}@{"TaskMove_6"}@{rewardList[0].ItemID + ";" + rewardList[0].ItemNum}";
         }
 
 

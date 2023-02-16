@@ -24,10 +24,10 @@ namespace ET
             }
 
             // // $"{dungeonid}@{"TaskMove_6"}@{dropId}";
-            int dropId = int.Parse(useBagInfo.ItemPar.Split('@')[2]);
-
-            List <RewardItem> rewardItems = new List<RewardItem>();  
-            DropHelper.DropIDToDropItem_2(dropId, rewardItems);
+            int rewardItemStr = int.Parse(useBagInfo.ItemPar.Split('@')[2]);
+            List <RewardItem> rewardItems = new List<RewardItem>();
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
+            DropHelper.DropIDToDropItem_2(int.Parse(itemCof.ItemUsePar), rewardItems);
             if (rewardItems.Count == 0)
             {
                 response.Error = ErrorCore.ERR_ItemUseError;

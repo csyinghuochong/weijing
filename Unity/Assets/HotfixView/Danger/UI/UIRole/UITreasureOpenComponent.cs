@@ -63,24 +63,51 @@ namespace ET
             // $"{dungeonid}@{"TaskMove_6"}@{dropId}";
             //self.BagInfo.ItemPar.Split('@')[1]
 
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            List<RewardItem> rewardItems = DropHelper.DropIDToShowItem(int.Parse(self.BagInfo.ItemPar.Split('@')[2]));
+            string rewardStr = bagInfo.ItemPar.Split('@')[2];
+            string rewardItemID = rewardStr.Split(';')[0];
 
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+            List<int> rewardItems = DropHelper.TreasureDropItmeShow(int.Parse(itemConfig.ItemUsePar), 27);
+            Log.Info("rewardItems = " + rewardItems.Count);
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            bool ifAddStatus = false;
+
+            List<int> rewardShowItems = new List<int>();
             for (int i = 0; i < rewardItems.Count; i++)
+            {
+                //每次添加5%概率添加
+                if (RandomHelper.RandFloat01() <= 0.05f && ifAddStatus == false)
+                {
+                    ifAddStatus = true;
+                    rewardShowItems.Add(int.Parse(rewardItemID));
+                    Log.Info("rewardItemID = " + rewardItemID);
+                }
+                rewardShowItems.Add(rewardItems[i]);
+            }
+
+            if (ifAddStatus == false)
+            {
+                ifAddStatus = true;
+                rewardShowItems.Add(int.Parse(rewardItemID));
+                Log.Info("rewardItemID222 = " + rewardItemID);
+            }
+            Log.Info("rewardShowItems.Count = " + rewardShowItems.Count);
+            for (int i = 0; i < rewardShowItems.Count; i++)
             {
                 GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
                 UICommonHelper.SetParent(itemSpace, self.BuildingList);
                 UI ui_2 = self.AddChild<UI, string, GameObject>("UICommonItem_" + i, itemSpace);
                 UIItemComponent uIItemComponent = ui_2.AddComponent<UIItemComponent>();
-                uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardItems[i].ItemID, ItemNum = rewardItems[i].ItemNum }, ItemOperateEnum.None);
+                uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardShowItems[i], ItemNum = 0 }, ItemOperateEnum.None);
                 uIItemComponent.Label_ItemName.SetActive(false);
                 uIItemComponent.Label_ItemNum.SetActive(false);
                 itemSpace.transform.localScale = Vector3.one * 1f;
 
                 self.UIItems.Add(uIItemComponent);
             }
+
+
         }
 
         public static async ETTask OnStartTurn(this UITreasureOpenComponent self)
