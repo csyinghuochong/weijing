@@ -12,9 +12,7 @@ namespace ET
 			unit.MainHero = mainHero;
 			unit.Type = UnitType.Player;
 			unit.ConfigId = unitInfo.PlayerOcc;
-			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
-	        unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
-	        
+			
 	        NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 	        for (int i = 0; i < unitInfo.Ks.Count; ++i)
 	        {
@@ -49,6 +47,9 @@ namespace ET
 			}
 			unit.GetComponent<BuffManagerComponent>().t_Buffs = unitInfo.Buffs;
 			unit.GetComponent<SkillManagerComponent>().t_Skills =unitInfo.Skills;
+			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
+			unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
+
 			UnitHelper.OnAfterCreateUnit(unit);
             return unit;
         }
@@ -57,8 +58,6 @@ namespace ET
 		{
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(unitInfo.UnitId, 1);
-			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
-			unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
 			unitComponent.Add(unit);
 			unit.Type = UnitType.Monster;
 			unit.ConfigId = unitInfo.MonsterID;
@@ -81,6 +80,9 @@ namespace ET
 				unit.AddComponent<BuffManagerComponent>(true);              //buff管理器组建
 				unit.AddComponent<SkillManagerComponent>(true);
 			}
+			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
+			unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
+
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
 		}
@@ -89,7 +91,6 @@ namespace ET
 		{
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(rolePetInfo.Id, 1);
-			unit.Position = new Vector3(rolePetInfo.X, rolePetInfo.Y, rolePetInfo.Z);
 			unit.Type = UnitType.Pet;
 			unit.ConfigId = rolePetInfo.ConfigId;
 			unitComponent.Add(unit);
@@ -108,7 +109,7 @@ namespace ET
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
 			unitInfoComponent.StallName = rolePetInfo.PetName;
 			unitInfoComponent.PlayerName = rolePetInfo.PlayerName;
-
+			unit.Position = new Vector3(rolePetInfo.X, rolePetInfo.Y, rolePetInfo.Z);
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
 		}
@@ -118,13 +119,13 @@ namespace ET
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 			long unitId = dropinfo.DropType == 1 ? IdGenerater.Instance.GenerateId() : dropinfo.UnitId;
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(unitId, 1);
-			unit.Position = new Vector3(dropinfo.X, dropinfo.Y, dropinfo.Z);
 			unit.Type = UnitType.DropItem;
 			unitComponent.Add(unit);
 
 			dropinfo.UnitId = unitId;
 			unit.AddComponent<DropComponent>().DropInfo =  dropinfo;
 			unit.AddComponent<UnitInfoComponent>();
+			unit.Position = new Vector3(dropinfo.X, dropinfo.Y, dropinfo.Z);
 
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
@@ -135,7 +136,6 @@ namespace ET
 		{
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(transferInfo.UnitId, 1);
-			unit.Position = new Vector3(transferInfo.X, transferInfo.Y, transferInfo.Z);
 			unit.Type = UnitType.Chuansong;
 			unit.ConfigId = transferInfo.TransferId;
 			unitComponent.Add(unit);
@@ -143,7 +143,8 @@ namespace ET
 			ChuansongComponent chuansongComponent = unit.AddComponent<ChuansongComponent>();
 			chuansongComponent.CellIndex = transferInfo.CellIndex;
 			chuansongComponent.DirectionType = transferInfo.Direction;
-			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+			unit.AddComponent<UnitInfoComponent>();
+			unit.Position = new Vector3(transferInfo.X, transferInfo.Y, transferInfo.Z);
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
 		}
@@ -154,8 +155,6 @@ namespace ET
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
 			NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcInfo.NpcID);
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(npcInfo.UnitId, 1);
-			unit.Position = new Vector3(npcInfo.X, npcInfo.Y, npcInfo.Z);
-			unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
 			unit.Type = UnitType.Npc;
 			unit.ConfigId = npcInfo.NpcID;
 			unitComponent.Add(unit);
@@ -164,7 +163,10 @@ namespace ET
 			unit.AddComponent<StateComponent>();
 			NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 			numericComponent.Set((int)NumericType.Now_Speed, 3.0f);
-			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+			unit.AddComponent<UnitInfoComponent>();
+			unit.Position = new Vector3(npcInfo.X, npcInfo.Y, npcInfo.Z);
+			unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
+
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
 		}

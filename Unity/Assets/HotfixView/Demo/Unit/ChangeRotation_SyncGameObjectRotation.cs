@@ -9,9 +9,10 @@ namespace ET
             EventType.ChangeRotation args = cls as EventType.ChangeRotation;
             Unit unit = args.Unit;
             GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
-            if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.BePulled))
+            StateComponent stateComponent = unit.GetComponent<StateComponent>();
+            if (stateComponent.StateTypeGet(StateTypeEnum.BePulled))
             {
-                //gameObjectComponent?.UpdateRotation(args.Unit.Rotation * new Vector3(0,0,180));
+                gameObjectComponent?.UpdateRotation(Quaternion.AngleAxis(180, Vector3.up) * args.Unit.Rotation);
             }
             else
             {
