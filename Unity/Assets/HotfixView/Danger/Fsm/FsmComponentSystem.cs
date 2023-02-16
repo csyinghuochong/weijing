@@ -238,12 +238,6 @@ namespace ET
         public static void OnEnterFsmRunState(this FsmComponent self, string paramss = "")
         {
             Unit unit = self.GetParent<Unit>();
-            if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.BePulled))
-            {
-
-                return;
-            }
-
             SkillManagerComponent skillManagerComponent = unit.GetComponent<SkillManagerComponent>();
             if (TimeHelper.ClientNow() > skillManagerComponent.SkillMoveTime)
             {

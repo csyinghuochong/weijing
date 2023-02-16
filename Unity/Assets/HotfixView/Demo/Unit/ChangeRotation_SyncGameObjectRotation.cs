@@ -7,8 +7,16 @@ namespace ET
         protected override void Run(object cls)
         {
             EventType.ChangeRotation args = cls as EventType.ChangeRotation;
-            GameObjectComponent gameObjectComponent = args.Unit.GetComponent<GameObjectComponent>();
-            gameObjectComponent?.UpdateRotation(args.Unit.Rotation);
+            Unit unit = args.Unit;
+            GameObjectComponent gameObjectComponent = unit.GetComponent<GameObjectComponent>();
+            if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.BePulled))
+            {
+                //gameObjectComponent?.UpdateRotation(args.Unit.Rotation * new Vector3(0,0,180));
+            }
+            else
+            {
+                gameObjectComponent?.UpdateRotation(args.Unit.Rotation);
+            }
         }
     }
 }

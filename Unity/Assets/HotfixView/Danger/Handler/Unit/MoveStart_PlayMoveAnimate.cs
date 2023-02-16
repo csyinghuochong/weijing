@@ -10,8 +10,13 @@ namespace ET
         protected override  void Run(object cls)
         {
             EventType.MoveStart args = (EventType.MoveStart)cls;
-            args.Unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmRunState);
-            args.Unit.GetComponent<HeroTransformComponent>()?.ShowRunEffect();
+            Unit unit = args.Unit;
+            if (unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.BePulled))
+            {
+                return;
+            }
+            unit.GetComponent<FsmComponent>()?.ChangeState(FsmStateEnum.FsmRunState);
+            unit.GetComponent<HeroTransformComponent>()?.ShowRunEffect();
         }
 
     }

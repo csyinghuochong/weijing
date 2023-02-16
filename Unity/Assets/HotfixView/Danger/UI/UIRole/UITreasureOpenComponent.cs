@@ -18,8 +18,8 @@ namespace ET
 
         public BagInfo BagInfo;
 
-        public long Interval = 500;     //匀速
-        public long AcceTime = 100;   //加速
+        public long Interval = 0;     //匀速
+        public long AcceTime = 0;   //加速
         public int TargetIndex = 0; 
         public int CurrentIndex = 0;
         public bool OnStopTurn;
@@ -69,7 +69,7 @@ namespace ET
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             List<int> rewardItems = DropHelper.TreasureDropItmeShow(int.Parse(itemConfig.ItemUsePar), 27);
             Log.Info("rewardItems = " + rewardItems.Count);
-            var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
+            var path = ABPathHelper.GetUGUIPath("Main/Role/UITreasureItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             bool ifAddStatus = false;
 
@@ -159,6 +159,7 @@ namespace ET
             {
                 moveNumber = self.TargetIndex + self.UIItems.Count - self.CurrentIndex;
             }
+
             self.AcceTime = (long)(self.Interval * 1f / moveNumber);
 
             long instanceId = self.InstanceId;
