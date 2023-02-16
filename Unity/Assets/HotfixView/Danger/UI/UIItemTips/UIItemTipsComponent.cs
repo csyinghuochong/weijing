@@ -608,8 +608,15 @@ namespace ET
             if (itemconf.ItemType == 2 && itemconf.ItemSubType == 122)
             {
                 SkillConfig skillCof = SkillConfigCategory.Instance.Get(int.Parse(itemconf.ItemUsePar));
-                
                 self.ItemDes.GetComponent<Text>().text = Text_ItemDes + "\n" + "\n" + $"技能描述:{skillCof.SkillDescribe}";
+            }
+
+            //藏宝图
+            if (itemconf.ItemSubType == 127) {
+
+                int sceneID = int.Parse(self.BagInfo.ItemPar.Split('@')[0]);
+                self.ItemDes.GetComponent<Text>().text =  $"前往地图:{DungeonConfigCategory.Instance.Get(sceneID).ChapterName}开启藏宝图!";
+
             }
 
             string langStr = GameSettingLanguge.LoadLocalization("使用等级");

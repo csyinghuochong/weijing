@@ -34,7 +34,7 @@ namespace ET
             self.OnStopTurn = false;
             self.TargetIndex = 0;
             self.CurrentIndex = 0;
-            self.Interval = 500;
+            self.Interval = 100;
             self.AcceTime = 100;
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
@@ -112,6 +112,8 @@ namespace ET
                 self.UIItems.Add(uIItemComponent);
             }
 
+            //开始触发
+            self.OnStartTurn().Coroutine();
 
         }
 
