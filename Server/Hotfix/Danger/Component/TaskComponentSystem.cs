@@ -170,11 +170,11 @@ namespace ET
                     {
                         if (i == 0)
                         {
-                            taskPro.taskTargetNum_1 = (int)self.GetParent<Unit>().GetComponent<BagComponent>().GetItemNumber(taskConfig.Target[i]);
+                            taskPro.taskTargetNum_1 = (int)unit.GetComponent<BagComponent>().GetItemNumber(taskConfig.Target[i]);
                         }
                         if (i == 1)
                         {
-                            taskPro.taskTargetNum_2 = (int)self.GetParent<Unit>().GetComponent<BagComponent>().GetItemNumber(taskConfig.Target[i]);
+                            taskPro.taskTargetNum_2 = (int)unit.GetComponent<BagComponent>().GetItemNumber(taskConfig.Target[i]);
                         }
                     }
                     break;
@@ -182,10 +182,10 @@ namespace ET
                     taskPro.taskTargetNum_1 = 1;
                     break;
                 case (int)(int)TaskTargetType.PlayerLv_4:
-                    taskPro.taskTargetNum_1 = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
+                    taskPro.taskTargetNum_1 = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                     break;
                 case (int)TaskTargetType.ChangeOcc_8:
-                    taskPro.taskTargetNum_1 = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0 ? 1 : 0;
+                    taskPro.taskTargetNum_1 = unit.GetComponent<UserInfoComponent>().UserInfo.OccTwo > 0 ? 1 : 0;
                     break;
                 default:
                     taskPro.taskTargetNum_1 = 0;

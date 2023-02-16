@@ -18,6 +18,7 @@ namespace ET
         public const int Branch = 2;            //支线任务
         public const int EveryDay = 3;          //每日任务
         public const int Trial = 4;             //试炼任务
+        public const int Weekly = 5;            //每周任务
     }
 
     public static class TaskCountryType
