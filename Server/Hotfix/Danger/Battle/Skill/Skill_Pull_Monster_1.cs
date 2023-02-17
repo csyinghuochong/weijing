@@ -39,8 +39,9 @@ namespace ET
                 {
                     return;
                 }
-                Vector3 t_postion = this.TheUnitFrom.Position;
-                monster.Position = new Vector3() { x = t_postion.x + RandomHelper.RandFloat01(),y = t_postion.y,z = t_postion.z + RandomHelper.RandFloat01() } ;
+                Vector3 dir = (monster.Position - this.TheUnitFrom.Position).normalized;
+                monster.GetComponent<MoveComponent>().Stop();
+                monster.Position = this.TheUnitFrom.Position + dir * Vector3.one;
                 monster.Stop(-2);
             }
 
