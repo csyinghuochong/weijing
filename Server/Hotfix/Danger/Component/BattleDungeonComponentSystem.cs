@@ -112,7 +112,7 @@ namespace ET
         /// 踢出还在副本的玩家
         /// </summary>
         /// <param name="self"></param>
-        public static void KickOutPlayer(this BattleDungeonComponent self)
+        public static async ETTask KickOutPlayer(this BattleDungeonComponent self)
         {
             List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
             for (int i = 0; i < units.Count; i++)
@@ -121,14 +121,15 @@ namespace ET
                 {
                     continue;
                 }
+                await TimerComponent.Instance.WaitAsync(500);
                 TransferHelper.MainCityTransfer(units[i]).Coroutine();
             }
         }
 
-        public static void OnBattleOver(this BattleDungeonComponent self)
+        public static async ETTask OnBattleOver(this BattleDungeonComponent self)
         {
             self.SendReward();
-            self.KickOutPlayer();
+            await self.KickOutPlayer();
         }
     }
 }
