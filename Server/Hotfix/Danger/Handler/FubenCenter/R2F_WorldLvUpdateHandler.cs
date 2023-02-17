@@ -15,12 +15,20 @@ namespace ET
             mapIdList.AddRange(fubenCenterComponent.FubenInstanceList );
             for (int i = mapIdList.Count - 1; i >= 0; i--)
             {
-                M2F_ServerInfoUpdateResponse m2m_TrasferUnitResponse = (M2F_ServerInfoUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                        (mapIdList[i], new F2M_ServerInfoUpdateRequest() { ServerInfo = request.ServerInfo  });
-
-                if (i!= 0 && m2m_TrasferUnitResponse.Error != ErrorCore.ERR_Success)
+                try
                 {
-                    mapIdList.Remove(i);
+                    M2F_ServerInfoUpdateResponse m2m_TrasferUnitResponse = (M2F_ServerInfoUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                           (mapIdList[i], new F2M_ServerInfoUpdateRequest() { ServerInfo = request.ServerInfo });
+
+                    if (i != 0 && m2m_TrasferUnitResponse.Error != ErrorCore.ERR_Success)
+                    {
+                        Log.Debug($"WorldLvUpdateError: {mapIdList[i]}");
+                        mapIdList.Remove(i);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Log.Debug(ex.ToString());
                 }
             }
             fubenCenterComponent.ServerInfo = request.ServerInfo;

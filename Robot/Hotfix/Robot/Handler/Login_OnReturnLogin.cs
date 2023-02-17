@@ -4,7 +4,7 @@
     {
         protected override void Run(object cls)
         {
-            EventType.BeginRelink args = (EventType.BeginRelink)cls;
+            EventType.ReturnLogin args = (EventType.ReturnLogin)cls;
 
             RobotManagerComponent robotManager = args.ZoneScene.GetParent<RobotManagerComponent>();
             if (robotManager == null)

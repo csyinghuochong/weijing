@@ -35,7 +35,7 @@ namespace ET
             ServerItem serverItem = GetGetServerItem(innerNet, zone);
             if (serverItem == null)
             {
-                Log.Debug($"serverItem == null {}");
+                Log.Debug($"serverItem == null {zone}");
                 return 0;
             }
             return serverItem.ServerOpenTime;   
