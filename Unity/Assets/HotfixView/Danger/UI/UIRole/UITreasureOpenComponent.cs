@@ -65,7 +65,14 @@ namespace ET
             string rewardItemID = rewardStr.Split(';')[0];
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            List<int> rewardItems = DropHelper.TreasureDropItmeShow(int.Parse(itemConfig.ItemUsePar), 27);
+            int num = RandomHelper.NextInt(10,15);
+            List<int> rewardItems = DropHelper.TreasureDropItmeShow(int.Parse(itemConfig.ItemUsePar), num);
+
+            int dungeonid = int.Parse(bagInfo.ItemPar.Split('@')[0]);
+            int dropID2 = ComHelp.TreasureToDropID(dungeonid);
+            List<int> rewardItemsTeShu = DropHelper.TreasureDropItmeShow(dropID2, 27 - num);
+            rewardItems.AddRange(rewardItemsTeShu);
+
             //Log.Info("rewardItems = " + rewardItems.Count);
             var path = ABPathHelper.GetUGUIPath("Main/Role/UITreasureItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
@@ -103,7 +110,7 @@ namespace ET
                 UI ui_2 = self.AddChild<UI, string, GameObject>("UICommonItem_" + i, itemSpace);
                 UIItemComponent uIItemComponent = ui_2.AddComponent<UIItemComponent>();
                 uIItemComponent.UpdateItem(new BagInfo() { ItemID = rewardShowItems[i], ItemNum = 0 }, ItemOperateEnum.None);
-                uIItemComponent.Label_ItemName.SetActive(false);
+                //uIItemComponent.Label_ItemName.SetActive(false);
                 uIItemComponent.Label_ItemNum.SetActive(false);
                 itemSpace.transform.localScale = Vector3.one * 1f;
 

@@ -556,6 +556,39 @@ namespace ET
         }
 
 
+        //藏宝图等级对应掉落
+        public static int TreasureToDropID(int dungeonID) {
+
+            DungeonConfig dungCof = DungeonConfigCategory.Instance.Get(dungeonID);
+            if (dungCof.EnterLv <= 18) 
+            {
+                return 60801101;
+            }
+
+            if (dungCof.EnterLv <= 29)
+            {
+                return 60801201;
+            }
+
+            if (dungCof.EnterLv <= 39)
+            {
+                return 60801301;
+            }
+
+            if (dungCof.EnterLv <= 49)
+            {
+                return 60801401;
+            }
+
+            if (dungCof.EnterLv <= 100)
+            {
+                return 60801501;
+            }
+
+            return 0;
+
+        }
+
         /// <summary>
         /// 根据出生日期，计算精确的年龄
         /// </summary>

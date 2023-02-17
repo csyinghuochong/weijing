@@ -54,6 +54,7 @@ namespace ET
 
         public static void TreasureItem(BagInfo bagInfo)
         {
+
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             if (itemConfig.ItemSubType != 113 && itemConfig.ItemSubType != 127)
             {
@@ -67,9 +68,19 @@ namespace ET
             int dropIndex = RandomHelper.RandomNumber(0, dropConfigs.Count);
             int dropId = dropConfigs[dropIndex].Id;
             List<RewardItem> rewardList = new List<RewardItem>();
+
             //获取最终奖励
-            DropHelper.DropIDToDropItem_2(dropId, rewardList);
+            if (RandomHelper.RandFloat01() <= 0.45f)
+            {
+                DropHelper.DropIDToDropItem_2(dropId, rewardList);
+            }
+            else {
+                int dropID2 = ComHelp.TreasureToDropID(dungeonid);
+                DropHelper.DropIDToDropItem_2(dropID2, rewardList);
+            }
+
             bagInfo.ItemPar = $"{dungeonid}@{"TaskMove_6"}@{rewardList[0].ItemID + ";" + rewardList[0].ItemNum}";
+
         }
 
 
