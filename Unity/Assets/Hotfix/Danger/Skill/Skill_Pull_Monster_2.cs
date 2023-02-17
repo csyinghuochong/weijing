@@ -9,11 +9,18 @@ namespace ET
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
-            this.NowPosition = theUnitFrom.Position;
-
-            Quaternion rotation = Quaternion.Euler(0, skillId.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
-            Vector3 movePosition = rotation * Vector3.forward * (this.SkillConf.SkillLiveTime * (float)(this.SkillConf.SkillMoveSpeed) * 0.001f);
-            this.TargetPosition = this.NowPosition + movePosition;
+           
+            if (this.SkillConf.SkillMoveSpeed == 0f)
+            {
+                this.NowPosition = this.TargetPosition;
+            }
+            else
+            {
+                this.NowPosition = theUnitFrom.Position;
+                Quaternion rotation = Quaternion.Euler(0, skillId.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
+                Vector3 movePosition = rotation * Vector3.forward * (this.SkillConf.SkillLiveTime * (float)(this.SkillConf.SkillMoveSpeed) * 0.001f);
+                this.TargetPosition = this.NowPosition + movePosition;
+            }
             OnExecute();
         }
 
@@ -48,7 +55,7 @@ namespace ET
             EventSystem.Instance.PublishClass(EventType.SkillEffectMove.Instance);
 
             dis = PositionHelper.Distance2D(this.NowPosition, this.TargetPosition);
-            if (dis < 0.5f)
+            if (this.SkillConf.SkillMoveSpeed > 0f &&  dis < 0.5f  )
             {
                 this.SetSkillState(SkillState.Finished);
             }
