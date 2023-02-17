@@ -170,6 +170,14 @@ namespace ET
                             reply();
                             return;
                         }
+
+                        if (unit.GetComponent<UserInfoComponent>().UserInfo.Lv < 20)
+                        {
+                            response.Error = ErrorCore.ERR_EquipLvLimit;
+                            reply();
+                            return;
+                        }
+
                         unit.GetComponent<ActivityComponent>().ActivityReceiveIds.Add(request.ActivityId);
                         string rewardItemlist = ActivityHelper.GetJieRiReward(unit.GetComponent<UserInfoComponent>());
                         unit.GetComponent<BagComponent>().OnAddItemData(rewardItemlist, $"{ItemGetWay.Activity}_{TimeHelper.ServerNow()}");
