@@ -79,7 +79,7 @@ namespace ET
             this.UpdatePullMonster();
             //获取目标与自身的距离是否小于0.5f,小于触发将伤害,销毁自身
             dis = PositionHelper.Distance2D(NowPosition, this.TargetPosition);
-            if (dis < 0.5f)
+            if (dis < 0.5f || serverNow > this.SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
             }
