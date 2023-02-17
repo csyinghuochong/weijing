@@ -441,10 +441,6 @@ namespace ET
             {
                 return;
             }
-            if (unit.Id == 1679287029914992640)
-            {
-                Log.Debug($"排名更新2[抹茶星冰乐]:  {unit.Id} {Response.RankId}");
-            }
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RankID, Response.RankId);
         }
 
