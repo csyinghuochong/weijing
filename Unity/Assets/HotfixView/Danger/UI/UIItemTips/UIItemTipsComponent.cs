@@ -373,6 +373,7 @@ namespace ET
                     Game.EventSystem.PublishClass(EventType.DigForTreasure.Instance);
                     UIHelper.Remove(zoneScene, UIType.UIRole);
                     self.OnCloseTips();
+                    FloatTipManager.Instance.ShowFloatTip($"消耗道具:{itemConfig.ItemName}");
                     return;
                     //if (gameObject == null)
                     //{

@@ -119,7 +119,7 @@ namespace ET
         /// 洗练装备
         /// </summary>
         /// <param name="bagInfo"></param>
-        /// xilianType  洗炼类型   0 普通掉落  1 装备洗炼功能   2 装备第一次打造
+        /// xilianType  洗炼类型   0 普通掉落  1 装备洗炼功能   2 (不显示广播消息)
         public static ItemXiLianResult XiLianItem(Unit unit, BagInfo bagInfo, int xilianType, int xilianLv)
         {
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);

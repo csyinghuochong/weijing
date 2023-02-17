@@ -514,7 +514,7 @@ namespace ET
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
                 if (itemCof.ItemQuality >= 4 || (itemCof.Id >= 16000101 && itemCof.Id<= 16000312) || (itemCof.Id >= 10030011 && itemCof.Id <= 10030019))
                 {
-                    Log.Warning($"[获取道具]itemCof.ItemQuality >= 4  1634933160296906752 16000111 {rewardItems[i].ItemNum} {getType}");
+                    Log.Warning($"[获取道具]itemCof.ItemQuality >= 4 {unit.Id} {itemID} {rewardItems[i].ItemNum} {getType}");
                 }
                 if (leftNum >= 99)
                 {
@@ -635,7 +635,7 @@ namespace ET
                         xilianLevel = xilianLevel != 0 ? EquipXiLianConfigCategory.Instance.Get(xilianLevel).XiLianLevel : 0;
 
                         int xilianType = 0;
-                        if (getType == ItemGetWay.SkillMake) {
+                        if (getType == ItemGetWay.SkillMake || getType == ItemGetWay.TreasureMap) {
                             xilianType = 2;
                         }
 

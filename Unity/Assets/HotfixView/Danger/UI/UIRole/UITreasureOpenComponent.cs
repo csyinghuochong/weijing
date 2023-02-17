@@ -13,6 +13,7 @@ namespace ET
 
         public GameObject ButtonClose;
         public GameObject BuildingList;
+        public GameObject ButtonDi;
 
         public List<UIItemComponent> UIItems = new List<UIItemComponent>();
 
@@ -22,6 +23,7 @@ namespace ET
         public int TargetIndex = 0;
         public int CurrentIndex = 0;
         public bool OnStopTurn;
+        public bool ifStop;
     }
 
     [ObjectSystem]
@@ -49,6 +51,9 @@ namespace ET
 
             self.ImageSelect = rc.Get<GameObject>("ImageSelect");
             self.ImageSelect.SetActive(false);
+
+            self.ButtonDi = rc.Get<GameObject>("ButtonDi");
+            self.ButtonDi.GetComponent<Button>().onClick.AddListener(self.OnButtonClose);
         }
     }
 
@@ -57,15 +62,22 @@ namespace ET
 
         public static void OnButtonClose(this UITreasureOpenComponent self)
         {
-            UIHelper.Remove(self.ZoneScene(), UIType.UITreasureOpen);
+            if (self.ifStop == true)
+            {
+                UIHelper.Remove(self.ZoneScene(), UIType.UITreasureOpen);
+            }
         }
 
         public static void ShotTip(this UITreasureOpenComponent self)
         {
-            string itemInfo = self.BagInfo.ItemPar.Split('@')[2];
-            int itemId = int.Parse(itemInfo.Split(';')[0]);
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
-            FloatTipManager.Instance.ShowFloatTip($"获得物品 {itemConfig.ItemName} x{itemInfo.Split(';')[1]}");
+            if (self.ifStop == false)
+            {
+                self.ifStop = true;
+                string itemInfo = self.BagInfo.ItemPar.Split('@')[2];
+                int itemId = int.Parse(itemInfo.Split(';')[0]);
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
+                FloatTipManager.Instance.ShowFloatTip($"获得物品 {itemConfig.ItemName} x{itemInfo.Split(';')[1]}");
+            }
         }
 
         public static void OnInitUI(this UITreasureOpenComponent self, BagInfo bagInfo)
@@ -164,6 +176,8 @@ namespace ET
                 return;
             }
 
+
+            self.ButtonStop.SetActive(false);
             self.OnStopTurn = true;
             int targetItem = int.Parse(self.BagInfo.ItemPar.Split('@')[2].Split(';')[0]);
             for (int i = 0; i < self.UIItems.Count; i++)
@@ -210,6 +224,14 @@ namespace ET
             }
 
             self.ShotTip();
+
+            await TimerComponent.Instance.WaitAsync(3000);
+            //Log.Debug($" self.Interval:  {self.Interval}   {moveNumber}");
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
+            self.OnButtonClose();
         }
 
         public static void  OnButtonOpen(this UITreasureOpenComponent self)

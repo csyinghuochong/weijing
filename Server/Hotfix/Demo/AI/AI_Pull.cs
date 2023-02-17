@@ -14,30 +14,20 @@ namespace ET
         public override async ETTask Execute(AIComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Unit unit = aiComponent.GetParent<Unit>();
-            unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.BePulled);
             float limitDis = 0.5f;
 
             for (int i = 0; i < 10000; i++)
             {
-                Vector3 targetPosition = aiComponent.TargetPoint[aiComponent.TargetPoint.Count - 1];
-                float distance = Vector3.Distance(unit.Position, targetPosition);
-                if (distance <= limitDis + 0.1f)
+                if (aiComponent.TargetPoint.Count == 0)
                 {
-                    aiComponent.TargetPoint.Clear();
-                    unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
                     break;
                 }
 
+                Vector3 targetPosition = aiComponent.TargetPoint[0];
+                float distance = Vector3.Distance(unit.Position, targetPosition);
                 using var list = ListComponent<Vector3>.Create();
                 unit.Domain.GetComponent<MapComponent>().SearchPath(unit, targetPosition, list);
-                if (list.Count < 2)
-                {
-                    aiComponent.TargetPoint.Clear();
-                    unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
-                    break;
-                }
-
-                if (unit.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success)
+                if (distance >= limitDis && list.Count >= 2 && unit.GetComponent<StateComponent>().CanMove() == ErrorCore.ERR_Success)
                 {
                     Vector3 dir = unit.Position - targetPosition;
                     float ange = Mathf.Rad2Deg(Mathf.Atan2(dir.x, dir.z));
