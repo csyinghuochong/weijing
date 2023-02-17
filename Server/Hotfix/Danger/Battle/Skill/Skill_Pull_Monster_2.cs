@@ -44,7 +44,7 @@ namespace ET
                 }
                 
                 BuffData buffData_2 = new BuffData();
-                buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(99001004);
+                buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(99001003);
                 buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
                 unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
 
@@ -90,7 +90,7 @@ namespace ET
                 {
                     continue;
                 }
-                unit.GetComponent<BuffManagerComponent>().BuffRemove(99001004);
+                unit.GetComponent<BuffManagerComponent>().BuffRemove(99001003);
                 unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
                 aIComponent.TargetPoint.Clear();
             }

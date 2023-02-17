@@ -59,7 +59,6 @@ namespace ET
                 session.Disconnect().Coroutine();
                 return;
             }
-
             if (string.IsNullOrEmpty(request.AccountName) || string.IsNullOrEmpty(request.Password))
             {
                 response.Error = ErrorCore.ERR_LoginInfoIsNull;

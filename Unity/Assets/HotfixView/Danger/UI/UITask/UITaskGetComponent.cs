@@ -272,6 +272,12 @@ namespace ET
             {
                 return;
             }
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
+            {
+                return;
+            }
+
             self.UIWeeklyTask.SetActive(true);
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             List<TaskPro> taskPros = taskComponent.GetTaskTypeList(TaskTypeEnum.Weekly);

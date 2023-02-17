@@ -12,13 +12,13 @@ namespace ET
 				session.Dispose();
 				return;
 			}
-			//if (request.Version != ComHelp.Version)
-			//{
-			//	response.Error = ErrorCore.ERR_VersionNoMatch;
-			//	reply();
-			//	return;
-			//}	
-			if (session.GetComponent<SessionLockingComponent>() != null)
+            if (request.Version != ComHelp.Version)
+            {
+                response.Error = ErrorCore.ERR_VersionNoMatch;
+                reply();
+                return;
+            }
+            if (session.GetComponent<SessionLockingComponent>() != null)
 			{
 				response.Error = ErrorCore.ERR_RequestRepeatedly;
 				reply();

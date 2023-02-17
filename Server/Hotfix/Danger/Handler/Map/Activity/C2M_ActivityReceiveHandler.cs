@@ -157,7 +157,7 @@ namespace ET
                             response.Error = ErrorCore.ERR_ItemNotEnoughError;
                         }
                         break;
-                    case 33:
+                    case 33://节日活动
                         if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
                         {
                             response.Error = ErrorCore.ERR_BagIsFull;
