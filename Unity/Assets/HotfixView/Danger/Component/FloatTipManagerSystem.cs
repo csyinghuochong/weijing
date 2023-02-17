@@ -91,10 +91,22 @@ namespace ET
 			{
 				return;
 			}
+			self.CheckTheSameTime(tip);
 			self.WaitFloatTip.Add(new FloatTipType() {  type = 0, tip = tip });
 			if (self.Timer == 0)
 			{
 				self.Timer = TimerComponent.Instance.NewFrameTimer(TimerType.FloatTipTimer, self);
+			}
+		}
+
+		public static void CheckTheSameTime(this FloatTipManager self, string tip)
+		{
+			for (int i = self.WaitFloatTip.Count - 1; i >= 0; i--)
+			{
+				if (self.WaitFloatTip[i].tip.Equals(tip))
+				{
+					self.WaitFloatTip.RemoveAt(i);	
+				}
 			}
 		}
 
@@ -105,6 +117,7 @@ namespace ET
 			{
 				return;
 			}
+			self.CheckTheSameTime(tip);
 			self.WaitFloatTip.Add(new FloatTipType() { type = 1, tip = tip });
 			if (self.Timer == 0)
 			{
