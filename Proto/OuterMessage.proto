@@ -4393,3 +4393,25 @@ message M2C_ItemTreasureOpenResponse // IActorLocationResponse
 
 	RewardItem ReardItem = 5;
 }
+
+//ResponseType A2C_ActivityInfoResponse
+message C2A_ActivityInfoRequest // IActivityActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 ActivityType = 1;
+}
+
+message A2C_ActivityInfoResponse // IActivityActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	string ActivityContent = 1;
+}
+
+message ActivityInfo
+{
+	int32 WeeklyTask = 1;
+	string ActivityContent = 2;
+}

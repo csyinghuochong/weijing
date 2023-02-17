@@ -2386,4 +2386,36 @@ namespace ET
 
 	}
 
+//通知副本中心服活动刷新
+	[ResponseType(nameof(F2A_ActivityUpdateResponse))]
+	[Message(InnerOpcode.A2F_ActivityUpdateRequest)]
+	[ProtoContract]
+	public partial class A2F_ActivityUpdateRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public ActivityInfo ServerInfo { get; set; }
+
+	}
+
+	[Message(InnerOpcode.F2A_ActivityUpdateResponse)]
+	[ProtoContract]
+	public partial class F2A_ActivityUpdateResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

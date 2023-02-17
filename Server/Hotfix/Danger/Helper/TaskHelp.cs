@@ -1,10 +1,25 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace ET
 {
 
     public static class TaskHelp
     {
+
+        public static int GetWeeklyTaskId()
+        { 
+            List<int> taskids = new List<int>();
+            Dictionary<int, TaskConfig> taskConfigs = TaskConfigCategory.Instance.GetAll();
+            foreach ((int id, TaskConfig TaskConfig) in taskConfigs)
+            {
+                if (TaskConfig.TaskType == TaskTypeEnum.Weekly)
+                {
+                    taskids.Add(id);
+                }
+            }
+            return taskids[RandomHelper.RandomNumber(0, taskids.Count)];
+        }
 
         /// <summary>
         /// 活跃任务

@@ -58,7 +58,7 @@ namespace ET
             if (self.DBDayActivityInfo.LastHour != dateTime.Hour)
             {
                 self.DBDayActivityInfo.LastHour = dateTime.Hour;
-                self.NoticeActivityUpdate_Hour(dateTime.Hour).Coroutine();
+                self.NoticeActivityUpdate_Hour(dateTime.DayOfWeek, dateTime.Hour).Coroutine();
             }
             if (!self.OnBattleOpen)
             {
@@ -123,8 +123,11 @@ namespace ET
             }
             int openServerDay = DBHelper.GetOpenServerDay(zone);
             Log.Debug($" openserverDay_1 {zone}  {openServerDay}");
+            if (self.DBDayActivityInfo.WeeklyTask == 0)
+            {
+                self.DBDayActivityInfo.WeeklyTask = TaskHelp.GetWeeklyTaskId();
+            }
             self.DBDayActivityInfo.MysteryItemInfos =  MysteryShopHelper.InitMysteryItemInfos( openServerDay);
-            self.DBDayActivityInfo.Day = TimeHelper.DateTimeNow().Day;
             self.SaveDB();
 
             //每日活动
@@ -157,7 +160,7 @@ namespace ET
             return ErrorCore.ERR_ItemNotEnoughError;
         }
 
-        public static async ETTask NoticeActivityUpdate_Hour(this ActivitySceneComponent self, int hour)
+        public static async ETTask NoticeActivityUpdate_Hour(this ActivitySceneComponent self, DayOfWeek dayOfWeek, int hour)
         {
             int openServerDay =  DBHelper.GetOpenServerDay(self.DomainZone());
             for (int i = 0; i < self.MapIdList.Count; i++)
@@ -168,10 +171,13 @@ namespace ET
 
             if (hour == 0)
             {
-                self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
-
                 self.OnBattleOpen = false;
                 self.OnBattleClose = false;
+                self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
+            }
+            if (hour == 0 && dayOfWeek == DayOfWeek.Monday)
+            {
+                self.DBDayActivityInfo.WeeklyTask = TaskHelp.GetWeeklyTaskId();
             }
         }
     }

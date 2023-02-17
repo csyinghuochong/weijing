@@ -1144,3 +1144,19 @@ message T2M_TeamUpdateRequest // IActorLocationMessage
 	int64 UnitId = 2;
 	int64 TeamId = 3;
 }
+
+//通知副本中心服活动刷新
+//ResponseType F2A_ActivityUpdateResponse
+message A2F_ActivityUpdateRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	ActivityInfo ServerInfo = 1;
+}
+
+message F2A_ActivityUpdateResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

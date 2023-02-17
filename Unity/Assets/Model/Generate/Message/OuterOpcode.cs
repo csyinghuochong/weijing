@@ -507,5 +507,8 @@ namespace ET
 		 public const ushort Center2C_PhoneBinging = 10504;
 		 public const ushort C2M_ItemTreasureOpenRequest = 10505;
 		 public const ushort M2C_ItemTreasureOpenResponse = 10506;
+		 public const ushort C2A_ActivityInfoRequest = 10507;
+		 public const ushort A2C_ActivityInfoResponse = 10508;
+		 public const ushort ActivityInfo = 10509;
 	}
 }

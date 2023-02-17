@@ -140,5 +140,7 @@ namespace ET
 		 public const ushort M2F_YeWaiSceneIdRequest = 20137;
 		 public const ushort F2M_YeWaiSceneIdResponse = 20138;
 		 public const ushort T2M_TeamUpdateRequest = 20139;
+		 public const ushort A2F_ActivityUpdateRequest = 20140;
+		 public const ushort F2A_ActivityUpdateResponse = 20141;
 	}
 }

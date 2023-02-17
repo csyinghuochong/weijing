@@ -10,6 +10,9 @@ namespace ET
         public int TaskId;
 
         //NpcID
+        public GameObject ButtonWeeklyCommit;
+        public GameObject ButtonWeeklyGet;
+        public GameObject UIWeeklyTask;
         public GameObject ButtonJieRiReward;
         public GameObject TaskFubenList;
         public GameObject UITaskFubenItem;
@@ -55,6 +58,7 @@ namespace ET
 
             self.TaskListNode = rc.Get<GameObject>("TaskListNode");
             self.ScrollView1 = rc.Get<GameObject>("ScrollView1");
+            self.ScrollView1.SetActive(false);
 
             self.Lab_NpcSpeak = rc.Get<GameObject>("Lab_NpcSpeak");
             self.Lab_NpcName = rc.Get<GameObject>("Lab_NpcName");
@@ -66,6 +70,15 @@ namespace ET
             self.ButtonJieRiReward = rc.Get<GameObject>("ButtonJieRiReward");
             self.ButtonJieRiReward.SetActive(false);
             ButtonHelp.AddListenerEx(self.ButtonJieRiReward, () => { self.OnButtonJieRiReward();  });
+
+            self.UIWeeklyTask = rc.Get<GameObject>("UIWeeklyTask");
+            self.UIWeeklyTask.SetActive(false);
+            self.ButtonWeeklyCommit = rc.Get<GameObject>("ButtonWeeklyCommit");
+            self.ButtonWeeklyGet = rc.Get<GameObject>("ButtonWeeklyGet");
+            self.ButtonWeeklyCommit.SetActive(false);
+            self.ButtonWeeklyGet.SetActive(false);
+            ButtonHelp.AddListenerEx(self.ButtonWeeklyGet, () => { self.OnButtonWeeklyGet(); });
+            ButtonHelp.AddListenerEx(self.ButtonWeeklyCommit, () => { self.OnButtonWeeklyCommit(); });
 
             self.Img_button = rc.Get<GameObject>("Img_button");
             self.Img_button.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseNpcTask(); });
@@ -101,6 +114,16 @@ namespace ET
         public static void OnCloseNpcTask(this UITaskGetComponent self)
         {
             UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
+        }
+
+        public static void OnButtonWeeklyCommit(this UITaskGetComponent self)
+        { 
+            
+        }
+
+        public static void OnButtonWeeklyGet(this UITaskGetComponent self)
+        {
+
         }
 
         public static void OnButtonJieRiReward(this UITaskGetComponent self)
@@ -158,6 +181,8 @@ namespace ET
             self.ScrollView1.SetActive(false);
             self.EnergySkill.SetActive(false);
             self.UILoopTask.SetActive(false);
+            self.ButtonJieRiReward.SetActive(false);
+            self.UIWeeklyTask.SetActive(false);
 
             switch(npcConfig.NpcType)
             {
@@ -216,6 +241,13 @@ namespace ET
                     int activityId = ActivityHelper.GetJieRiActivityId();
                     ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
                     self.ButtonJieRiReward.SetActive(activityId > 0 && !activityComponent.ActivityReceiveIds.Contains(activityId));
+                    break;
+                case 7:
+                    TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+                    List<TaskPro> taskPros = taskComponent.GetTaskTypeList(TaskTypeEnum.Weekly);
+                    TaskPro taskPro = taskPros.Count > 0 ? taskPros[0] : null;  
+                    self.ButtonWeeklyCommit.SetActive(taskPro!=null && taskPro.taskStatus == (int)TaskStatuEnum.Completed);
+                    self.ButtonWeeklyGet.SetActive(taskPro == null);
                     break;
                 default:
                     self.ScrollView1.SetActive(true);

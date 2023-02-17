@@ -19,6 +19,12 @@ namespace ET
                 reply();
                 return;
             }
+            if (!TakeCardConfigCategory.Instance.Contain(request.ChapterId))
+            {
+                response.Error = ErrorCore.ERR_NetWorkError;
+                reply();
+                return;
+            }
 
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 
