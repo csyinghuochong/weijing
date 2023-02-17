@@ -28,7 +28,7 @@ namespace ET
 
                 if (request.PayType == PayTypeEnum.IOSPay || request.RechargeNumber == 0)
                 {
-                    Log.Warning($"IOS拉起充值 :  {unit.Id}  {request.RechargeNumber}");
+                    Log.Warning($"IOS拉起充值 :  1697281705968205824  {request.RechargeNumber}");
                     reply();
                     return;
                 }
