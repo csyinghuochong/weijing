@@ -343,7 +343,7 @@ namespace ET
                             case 126: //集字
                                 break;
                             case 127: //藏宝图
-                                string rewardItem = $"{useBagInfo.HideProLists[0].HideID};{useBagInfo.HideProLists[0].HideValue}";
+                                string rewardItem = useBagInfo.ItemPar.Split('@')[2];
                                 unit.GetComponent<BagComponent>().OnAddItemData(rewardItem, $"{ItemGetWay.TreasureMap}_{TimeHelper.ServerNow()}");
                                 break;
                         }

@@ -31,7 +31,7 @@ namespace ET
         /// </summary>
         public int CurrentHouse;
 
-        public bool ShowTip;
+        public bool RealAddItem;
 #endif
     }
 }

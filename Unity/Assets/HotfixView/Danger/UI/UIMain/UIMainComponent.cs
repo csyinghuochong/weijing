@@ -390,6 +390,11 @@ namespace ET
 
         public static void OnBagItemAdd(this UIMainComponent self, string dataPaams)
         {
+            if (UIHelper.GetUI(self.ZoneScene(), UIType.UITreasureOpen) != null)
+            {
+                return;
+            }
+
             string[] iteminfo = dataPaams.Split('_');
             int itemId = int.Parse(iteminfo[0]);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);

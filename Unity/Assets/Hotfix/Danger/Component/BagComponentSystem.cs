@@ -8,7 +8,7 @@ namespace ET
     {
         public override void Awake(BagComponent self)
         {
-            self.ShowTip = true;
+            self.RealAddItem = true;
             self.AllItemList = new List<BagInfo>[(int)ItemLocType.ItemLocMax];
             for (int i = 0; i < (int)ItemLocType.ItemLocMax; i++)
             {
@@ -46,11 +46,11 @@ namespace ET
         //排序
         public static async ETTask SendSortByLoc(this BagComponent self, ItemLocType loc)
         {
-            self.ShowTip = false;
+            self.RealAddItem = false;
             int loctype = (int)loc;
             C2M_ItemOperateRequest m_ItemOperateWear = new C2M_ItemOperateRequest() { OperateType = 8, OperateBagID = 0, OperatePar = loctype.ToString() };
             M2C_ItemOperateResponse r2c_roleEquip = (M2C_ItemOperateResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(m_ItemOperateWear);
-            self.ShowTip = true;
+            self.RealAddItem = true;
 
             self.OnRecvItemSort(loc);
         }
@@ -386,7 +386,7 @@ namespace ET
                 self.SendUseItem( bagInfo).Coroutine();
                 return;
             }
-            if (self.ShowTip)
+            if (self.RealAddItem)
             {
                 self.ZoneScene().GetComponent<ShoujiComponent>().OnGetItem(bagInfo.ItemID);
                 HintHelp.GetInstance().DataUpdate(DataType.BagItemAdd, $"{bagInfo.ItemID}_{addNum}");

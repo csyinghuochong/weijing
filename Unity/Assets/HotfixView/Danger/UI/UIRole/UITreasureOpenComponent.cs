@@ -19,7 +19,7 @@ namespace ET
         public BagInfo BagInfo;
 
         public long Interval = 0;     //匀速
-        public int TargetIndex = 0; 
+        public int TargetIndex = 0;
         public int CurrentIndex = 0;
         public bool OnStopTurn;
     }
@@ -40,10 +40,10 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonStop, () => { self.OnButtonStop().Coroutine(); });
 
             self.ButtonOpen = rc.Get<GameObject>("ButtonOpen");
-            ButtonHelp.AddListenerEx(self.ButtonOpen, () => { self.OnButtonOpen().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.ButtonOpen, () => { self.OnButtonOpen(); });
 
             self.ButtonClose = rc.Get<GameObject>("ButtonClose");
-            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UITreasureOpen); });
+            self.ButtonClose.GetComponent<Button>().onClick.AddListener(self.OnButtonClose);
 
             self.BuildingList = rc.Get<GameObject>("BuildingList");
 
@@ -54,18 +54,28 @@ namespace ET
 
     public static class UITreasureOpenComponentSystem
     {
+
+        public static void OnButtonClose(this UITreasureOpenComponent self)
+        {
+            string itemInfo = self.BagInfo.ItemPar.Split('@')[2];
+            int itemId = int.Parse(itemInfo.Split(';')[0]);
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
+            FloatTipManager.Instance.ShowFloatTip($"获得物品 {itemConfig.ItemName} x{itemInfo.Split(';')[1]}");
+            UIHelper.Remove(self.ZoneScene(), UIType.UITreasureOpen);
+        }
+
         public static void OnInitUI(this UITreasureOpenComponent self, BagInfo bagInfo)
-        { 
+        {
             self.BagInfo = bagInfo;
 
-            // $"{dungeonid}@{"TaskMove_6"}@{dropId}";
+            // $"{dungeonid}@{"TaskMove_6"}@{11;1}";
             //self.BagInfo.ItemPar.Split('@')[1]
 
             string rewardStr = bagInfo.ItemPar.Split('@')[2];
             string rewardItemID = rewardStr.Split(';')[0];
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
-            int num = RandomHelper.NextInt(10,15);
+            int num = RandomHelper.NextInt(10, 15);
             List<int> rewardItems = DropHelper.TreasureDropItmeShow(int.Parse(itemConfig.ItemUsePar), num);
 
             int dungeonid = int.Parse(bagInfo.ItemPar.Split('@')[0]);
@@ -118,7 +128,7 @@ namespace ET
             }
 
             //开始触发
-            self.OnButtonOpen().Coroutine();
+            self.OnButtonOpen();
         }
 
         public static async ETTask OnStartTurn(this UITreasureOpenComponent self)
@@ -126,10 +136,10 @@ namespace ET
             long instanceId = self.InstanceId;
             self.CurrentIndex = 0;
 
-            while(!self.OnStopTurn)
+            while (!self.OnStopTurn)
             {
                 self.ImageSelect.SetActive(true);
-                UICommonHelper.SetParent( self.ImageSelect, self.UIItems[self.CurrentIndex].GameObject);
+                UICommonHelper.SetParent(self.ImageSelect, self.UIItems[self.CurrentIndex].GameObject);
                 self.CurrentIndex++;
                 if (self.CurrentIndex == self.UIItems.Count)
                 {
@@ -146,7 +156,7 @@ namespace ET
         public static async ETTask OnButtonStop(this UITreasureOpenComponent self)
         {
             self.OnStopTurn = true;
-            int targetItem = self.BagInfo.HideProLists[0].HideID;
+            int targetItem = int.Parse(self.BagInfo.ItemPar.Split('@')[2].Split(';')[0]);
             for (int i = 0; i < self.UIItems.Count; i++)
             {
                 if (self.UIItems[i].Baginfo.ItemID == targetItem)
@@ -190,22 +200,21 @@ namespace ET
                     return;
                 }
             }
-
-            self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo).Coroutine();
         }
 
-        public static async ETTask OnButtonOpen(this UITreasureOpenComponent self)
+        public static void  OnButtonOpen(this UITreasureOpenComponent self)
         {
-            C2M_ItemTreasureOpenRequest request = new C2M_ItemTreasureOpenRequest() { OperateBagID = self.BagInfo.BagInfoID };
-            M2C_ItemTreasureOpenResponse response = (M2C_ItemTreasureOpenResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            //C2M_ItemTreasureOpenRequest request = new C2M_ItemTreasureOpenRequest() { OperateBagID = self.BagInfo.BagInfoID };
+            //M2C_ItemTreasureOpenResponse response = (M2C_ItemTreasureOpenResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            if (response.Error != ErrorCode.ERR_Success)
-            {
-                return;
-            }
-            self.BagInfo.HideProLists.Clear();
-            self.BagInfo.HideProLists.Add(new HideProList() { HideID = response.ReardItem.ItemID, HideValue = response.ReardItem.ItemNum });
+            //if (response.Error != ErrorCode.ERR_Success)
+            //{
+            //    return;
+            //}
+            //self.BagInfo.HideProLists.Clear();
+            //self.BagInfo.HideProLists.Add(new HideProList() { HideID = response.ReardItem.ItemID, HideValue = response.ReardItem.ItemNum });
             self.OnStartTurn().Coroutine();
+            self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo).Coroutine();
         }
     }
 }

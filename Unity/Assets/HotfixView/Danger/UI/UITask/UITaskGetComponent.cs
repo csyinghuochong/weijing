@@ -268,6 +268,10 @@ namespace ET
             {
                 return;   
             }
+            if (response.ActivityContent == "0")
+            {
+                return;
+            }
             self.UIWeeklyTask.SetActive(true);
             TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
             List<TaskPro> taskPros = taskComponent.GetTaskTypeList(TaskTypeEnum.Weekly);
