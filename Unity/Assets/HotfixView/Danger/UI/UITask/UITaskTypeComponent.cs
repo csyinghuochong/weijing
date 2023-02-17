@@ -81,7 +81,13 @@ namespace ET
                 return;
             }
 
-            List<TaskPro> taskPros = self.ZoneScene().GetComponent<TaskComponent>().GetTaskTypeList(self.TaskTypeEnum);
+            List<TaskPro> taskPros = new List<TaskPro>();
+            TaskComponent TaskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+            taskPros = TaskComponent.GetTaskTypeList(self.TaskTypeEnum);
+            if (self.TaskTypeEnum == TaskTypeEnum.Branch)
+            {
+                taskPros.AddRange(TaskComponent.GetTaskTypeList(TaskTypeEnum.Weekly));
+            }
             for (int i = 0; i < taskPros.Count; i++)
             {
                 UITaskTypeItemComponent ui_1 = null;

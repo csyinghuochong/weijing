@@ -134,6 +134,11 @@ namespace ET
                     self.RecoverPiLao(tiliTimes * 30, false);
                 }
             }
+            else
+            {
+                Log.Debug($"OnZeroClockUpdate [数据初始化]: {unit.Id}");
+                unit.GetComponent<TaskComponent>().OnZeroClockUpdate(false);
+            }
 
             unit.GetComponent<TaskComponent>().OnLogin();
             unit.GetComponent<HeroDataComponent>().OnLogin();

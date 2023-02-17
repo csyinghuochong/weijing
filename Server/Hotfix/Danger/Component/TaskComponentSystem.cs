@@ -480,8 +480,7 @@ namespace ET
         {
             if (self.TaskCountryList.Count == 0)
             {
-                Log.Debug($"矫正活跃任务:  {self.GetParent<Unit>().Id} {self.TaskCountryList.Count}");
-                self.OnZeroClockUpdate(false);
+                Log.Debug($"活跃任务为空: {self.DomainZone()} {self.GetParent<Unit>().Id}");
             }
             for (int i = self.RoleTaskList.Count - 1; i >=0; i--)
             { 
@@ -659,20 +658,16 @@ namespace ET
             MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
         }
 
-        /// <summary>
-        /// 重置每日活跃
-        /// </summary> 
-        /// <param name="self"></param>
-
-        public static void OnZeroClockUpdate(this TaskComponent self,  bool notice = false)
+        public static void UpdateCountryList(this TaskComponent self,  bool notice)
         {
-            Unit unit = self.GetParent<Unit>(); 
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            int taskLoop = self.GetTaskList(TaskTypeEnum.EveryDay).Count > 0 ? 1 : 0;
-            numericComponent.ApplyValue(NumericType.TaskLoopNumber, taskLoop, notice);
-
-            self.ReceiveHuoYueIds.Clear();
+            Unit unit = self.GetParent<Unit>();
+            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+            if (userInfoComponent.UserInfo.HuoYue > 0 && self.TaskCountryList.Count == 0)
+            {
+                Log.Debug($"每日更新任务ERROE:  {unit.Id} {notice} {self.DomainZone()} {userInfoComponent.UserInfo.HuoYue}");
+            }
             self.TaskCountryList.Clear();
+            self.ReceiveHuoYueIds.Clear();
             List<int> taskCountryList = new List<int>();
             taskCountryList.AddRange(TaskHelp.GetTaskCountrys(unit));
             taskCountryList.AddRange(TaskHelp.GetBattleTask());
@@ -680,6 +675,48 @@ namespace ET
             {
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
             }
+            userInfoComponent.UpdateRoleData(UserDataType.HuoYue, (0 - userInfoComponent.UserInfo.HuoYue).ToString(), notice);
+            Log.Debug($"每日更新任务:  {unit.Id} {self.DomainZone()} {userInfoComponent.UserInfo.HuoYue} {self.TaskCountryList.Count}");
+        }
+
+        public static void UpdateDayTask(this TaskComponent self, bool notice)
+        {
+            //清空每日任务
+            Unit unit = self.GetParent<Unit>();
+
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int taskLoop = self.GetTaskList(TaskTypeEnum.EveryDay).Count > 0 ? 1 : 0;
+            numericComponent.ApplyValue(NumericType.TaskLoopNumber, taskLoop, notice);
+
+            System.DateTime dateTime = TimeHelper.DateTimeNow();
+            for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
+            {
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
+                if (taskConfig.TaskType == TaskTypeEnum.EveryDay)
+                {
+                    self.RoleTaskList.RemoveAt(i);
+                    continue;
+                }
+                if (taskConfig.TaskType == TaskTypeEnum.Weekly && dateTime.DayOfWeek == System.DayOfWeek.Sunday)
+                {
+                    self.RoleTaskList.RemoveAt(i);
+                    continue;
+                }
+            }
+        }
+
+        /// <summary>
+        /// 重置每日活跃
+        /// </summary> 
+        /// <param name="self"></param>
+
+        public static void OnZeroClockUpdate(this TaskComponent self, bool notice)
+        {
+            Unit unit = self.GetParent<Unit>();
+
+            self.UpdateCountryList(notice);
+            self.UpdateDayTask(notice);
+
             if (notice)
             {
                 M2C_TaskCountryUpdate m2C_TaskUpdate = self.m2C_TaskCountryUpdate;
@@ -687,10 +724,12 @@ namespace ET
                 m2C_TaskUpdate.TaskCountryList = self.TaskCountryList;
                 MessageHelper.SendToClient(unit, m2C_TaskUpdate);
             }
-
-            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-            userInfoComponent.UpdateRoleData(UserDataType.HuoYue, (0 - userInfoComponent.UserInfo.HuoYue).ToString(), notice);
-            Log.Debug($"更新活跃任务:  {unit.Id} {notice} {userInfoComponent.UserInfo.HuoYue} {self.TaskCountryList.Count}");
+            if (notice)
+            {
+                M2C_TaskUpdate m2C_TaskUpdate = self.M2C_TaskUpdate;
+                m2C_TaskUpdate.RoleTaskList = self.RoleTaskList;
+                MessageHelper.SendToClient(self.GetParent<Unit>(), m2C_TaskUpdate);
+            }
         }
     }
 }

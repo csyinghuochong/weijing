@@ -10,6 +10,7 @@ namespace ET
         public int TaskId;
 
         //NpcID
+        public GameObject UIWeeklyTaskItem;
         public GameObject ButtonWeeklyCommit;
         public GameObject ButtonWeeklyGet;
         public GameObject UIWeeklyTask;
@@ -75,6 +76,8 @@ namespace ET
             self.UIWeeklyTask.SetActive(false);
             self.ButtonWeeklyCommit = rc.Get<GameObject>("ButtonWeeklyCommit");
             self.ButtonWeeklyGet = rc.Get<GameObject>("ButtonWeeklyGet");
+            self.UIWeeklyTaskItem = rc.Get<GameObject>("UIWeeklyTaskItem");
+            self.UIWeeklyTaskItem.SetActive(false);
             self.ButtonWeeklyCommit.SetActive(false);
             self.ButtonWeeklyGet.SetActive(false);
             ButtonHelp.AddListenerEx(self.ButtonWeeklyGet, () => { self.OnButtonWeeklyGet(); });
@@ -114,16 +117,6 @@ namespace ET
         public static void OnCloseNpcTask(this UITaskGetComponent self)
         {
             UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
-        }
-
-        public static void OnButtonWeeklyCommit(this UITaskGetComponent self)
-        { 
-            
-        }
-
-        public static void OnButtonWeeklyGet(this UITaskGetComponent self)
-        {
-
         }
 
         public static void OnButtonJieRiReward(this UITaskGetComponent self)
@@ -243,17 +236,47 @@ namespace ET
                     self.ButtonJieRiReward.SetActive(activityId > 0 && !activityComponent.ActivityReceiveIds.Contains(activityId));
                     break;
                 case 7:
-                    TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
-                    List<TaskPro> taskPros = taskComponent.GetTaskTypeList(TaskTypeEnum.Weekly);
-                    TaskPro taskPro = taskPros.Count > 0 ? taskPros[0] : null;  
-                    self.ButtonWeeklyCommit.SetActive(taskPro!=null && taskPro.taskStatus == (int)TaskStatuEnum.Completed);
-                    self.ButtonWeeklyGet.SetActive(taskPro == null);
+                    self.RequestWeeklyTask().Coroutine();
                     break;
                 default:
                     self.ScrollView1.SetActive(true);
                     self.UpdataTask();
                     break;
             }
+        }
+
+        public static void OnButtonWeeklyCommit(this UITaskGetComponent self)
+        {
+            self.OnBtn_CommitTask().Coroutine();
+        }
+
+        public static void OnButtonWeeklyGet(this UITaskGetComponent self)
+        {
+            NetHelper.SendGetTask(self.ZoneScene(), self.TaskId).Coroutine();
+        }
+
+        public static async ETTask RequestWeeklyTask(this UITaskGetComponent self)
+        {
+            long instanceId = self.InstanceId;
+            C2A_ActivityInfoRequest  request = new C2A_ActivityInfoRequest() { ActivityType = 1 };
+            A2C_ActivityInfoResponse response = (A2C_ActivityInfoResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
+            if (response.Error != ErrorCore.ERR_Success)
+            {
+                return;   
+            }
+            self.UIWeeklyTask.SetActive(true);
+            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+            List<TaskPro> taskPros = taskComponent.GetTaskTypeList(TaskTypeEnum.Weekly);
+            TaskPro taskPro = taskPros.Count > 0 ? taskPros[0] : null;
+            self.ButtonWeeklyCommit.SetActive(taskPro != null && taskPro.taskStatus == (int)TaskStatuEnum.Completed);
+            self.ButtonWeeklyGet.SetActive(taskPro == null);
+            self.TaskId = int.Parse(response.ActivityContent);
+            self.UIWeeklyTaskItem.SetActive(true);
+            self.UIWeeklyTaskItem.transform.Find("TextFubenName").GetComponent<Text>().text = TaskConfigCategory.Instance.Get(self.TaskId).TaskName;
         }
 
         public static  void OnClickBuChangItem(this UITaskGetComponent self, long userid)
