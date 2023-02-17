@@ -32,7 +32,12 @@ namespace ET
 
         public static long GetOpenServerTime(bool innerNet, int zone)
         { 
-            ServerItem serverItem = GetGetServerItem(innerNet, zone);   
+            ServerItem serverItem = GetGetServerItem(innerNet, zone);
+            if (serverItem == null)
+            {
+                Log.Debug($"serverItem == null {}");
+                return 0;
+            }
             return serverItem.ServerOpenTime;   
         }
 
@@ -60,6 +65,8 @@ namespace ET
                 }
                 else
                 {
+                    serverItems_1.Add(new ServerItem() { ServerId = 1, ServerIp = "127.0.0.1:20305", ServerName = "封测一区", ServerOpenTime = 1662189906681, Show = 0 });
+
                     serverItems_1.Add(new ServerItem() { ServerId = 2, ServerIp = "127.0.0.1:20325", ServerName = "封测区", ServerOpenTime = 1662189906681, Show = 0 });
                     serverItems_1.Add(new ServerItem() { ServerId = 3, ServerIp = "127.0.0.1:20325", ServerName = "封测区", ServerOpenTime = 1662189906681, Show = 1 });
                     serverItems_1.Add(new ServerItem() { ServerId = 4, ServerIp = "127.0.0.1:20325", ServerName = "封测区", ServerOpenTime = 1662189906681, Show = 0 });
@@ -91,6 +98,8 @@ namespace ET
                 }
                 else
                 {
+                    serverItems_1.Add(new ServerItem() { ServerId = 1, ServerIp = "39.96.194.143:20305", ServerName = "封测一区", ServerOpenTime = 1662189906681, Show = 0 });
+
                     serverItems_1.Add(new ServerItem() { ServerId = 2, ServerIp = "39.96.194.143:20325", ServerName = "封测区", ServerOpenTime = 1662189906681, Show = 0 });
                     serverItems_1.Add(new ServerItem() { ServerId = 3, ServerIp = "39.96.194.143:20325", ServerName = "封测区", ServerOpenTime = 1662189906681, Show = 1 });
                     serverItems_1.Add(new ServerItem() { ServerId = 4, ServerIp = "39.96.194.143:20325", ServerName = "封测区", ServerOpenTime = 1662189906681, Show = 0 });
