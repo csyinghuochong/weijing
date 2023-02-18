@@ -383,7 +383,7 @@ namespace ET
             {
                 return 20205;
             }
-            return 20305;
+            return 20325;
         }
 
         //请求服务器列表【外网】

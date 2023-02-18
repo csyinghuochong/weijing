@@ -19,6 +19,8 @@ namespace ET
     {         
         public long Timer;
         public int SceneId;
-        public List<RefreshMonster> RefreshMonsters = new List<RefreshMonster>();  
+        public List<RefreshMonster> RefreshMonsters = new List<RefreshMonster>();
+
+        public bool LogTest;
     }
 }
