@@ -459,6 +459,10 @@ namespace ET
             }
             if (userDataType == UserDataType.Gold)
             {
+                if (UIHelper.GetUI(self.ZoneScene(), UIType.UITreasureOpen) != null)
+                {
+                    return;
+                }
                 if (int.Parse(updateValue) > 0)
                 {
                     FloatTipManager.Instance.ShowFloatTip($"获得{ updateValue} 金币");
@@ -466,6 +470,18 @@ namespace ET
                 if (int.Parse(updateValue) < 0)
                 {
                     FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 金币");
+                }
+            }
+            if (userDataType == UserDataType.Diamond)
+            {
+                if (UIHelper.GetUI(self.ZoneScene(), UIType.UITreasureOpen) != null)
+                {
+                    return;
+                }
+                UI uIRechage = UIHelper.GetUI(self.ZoneScene(), UIType.UIRecharge);
+                if (uIRechage != null)
+                {
+                    uIRechage.GetComponent<UIRechargeComponent>().OnRechageSucess();
                 }
             }
             if (userDataType == UserDataType.RongYu)
@@ -477,14 +493,6 @@ namespace ET
                 if (int.Parse(updateValue) < 0)
                 {
                     FloatTipManager.Instance.ShowFloatTip($"消耗{ int.Parse(updateValue) * -1} 荣誉");
-                }
-            }
-            if (userDataType == UserDataType.Diamond)
-            {
-                UI uIRechage = UIHelper.GetUI(self.ZoneScene(), UIType.UIRecharge);
-                if (uIRechage != null)
-                {
-                    uIRechage.GetComponent<UIRechargeComponent>().OnRechageSucess();
                 }
             }
             if (userDataType == UserDataType.Combat)

@@ -159,6 +159,11 @@ namespace ET
 
         public static async ETTask OnButtonStop(this UITreasureOpenComponent self)
         {
+            if (self.OnStopTurn)
+            {
+                return;
+            }
+
             self.OnStopTurn = true;
             int targetItem = int.Parse(self.BagInfo.ItemPar.Split('@')[2].Split(';')[0]);
             for (int i = 0; i < self.UIItems.Count; i++)
@@ -179,7 +184,6 @@ namespace ET
             {
                 moveNumber = self.TargetIndex + self.UIItems.Count - self.CurrentIndex;
             }
-
 
             long instanceId = self.InstanceId;
             while (moveNumber >= 0)
@@ -204,7 +208,6 @@ namespace ET
                     return;
                 }
             }
-
 
             self.ShotTip();
         }
