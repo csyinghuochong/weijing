@@ -57,11 +57,15 @@ namespace ET
 
         public static void OnButtonClose(this UITreasureOpenComponent self)
         {
+            UIHelper.Remove(self.ZoneScene(), UIType.UITreasureOpen);
+        }
+
+        public static void ShotTip(this UITreasureOpenComponent self)
+        {
             string itemInfo = self.BagInfo.ItemPar.Split('@')[2];
             int itemId = int.Parse(itemInfo.Split(';')[0]);
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(itemId);
             FloatTipManager.Instance.ShowFloatTip($"获得物品 {itemConfig.ItemName} x{itemInfo.Split(';')[1]}");
-            UIHelper.Remove(self.ZoneScene(), UIType.UITreasureOpen);
         }
 
         public static void OnInitUI(this UITreasureOpenComponent self, BagInfo bagInfo)
@@ -200,6 +204,9 @@ namespace ET
                     return;
                 }
             }
+
+
+            self.ShotTip();
         }
 
         public static void  OnButtonOpen(this UITreasureOpenComponent self)
