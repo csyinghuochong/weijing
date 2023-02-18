@@ -26,7 +26,7 @@ namespace ET
 			unit.AddComponent<SkillManagerComponent>();
 			unit.AddComponent<SingingComponent>();
 
-			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
 			unitInfoComponent.PlayerName = unitInfo.PlayerName;
 			unitInfoComponent.StallName = unitInfo.StallName;
 			unitInfoComponent.UnionName = string.IsNullOrEmpty(unitInfo.UnionName) ? "" : unitInfo.UnionName;
@@ -71,7 +71,7 @@ namespace ET
 			unit.AddComponent<ObjectWait>(true);
 			unit.AddComponent<HeroDataComponent>(true);
 			unit.AddComponent<StateComponent>(true);
-			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
 			unitInfoComponent.EnergySkillId = unitInfo.SkillId;
 			
 			MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unitInfo.MonsterID);
@@ -106,7 +106,7 @@ namespace ET
 			unit.AddComponent<BuffManagerComponent>();              //buff管理器组建
 			unit.AddComponent<SkillManagerComponent>();
 
-			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
 			unitInfoComponent.StallName = rolePetInfo.PetName;
 			unitInfoComponent.PlayerName = rolePetInfo.PlayerName;
 			unit.Position = new Vector3(rolePetInfo.X, rolePetInfo.Y, rolePetInfo.Z);
@@ -124,7 +124,7 @@ namespace ET
 
 			dropinfo.UnitId = unitId;
 			unit.AddComponent<DropComponent>().DropInfo =  dropinfo;
-			unit.AddComponent<UnitInfoComponent>();
+			unit.AddComponent<UnitInfoComponent>(true);
 			unit.Position = new Vector3(dropinfo.X, dropinfo.Y, dropinfo.Z);
 
 			UnitHelper.OnAfterCreateUnit(unit);
@@ -143,7 +143,7 @@ namespace ET
 			ChuansongComponent chuansongComponent = unit.AddComponent<ChuansongComponent>();
 			chuansongComponent.CellIndex = transferInfo.CellIndex;
 			chuansongComponent.DirectionType = transferInfo.Direction;
-			unit.AddComponent<UnitInfoComponent>();
+			unit.AddComponent<UnitInfoComponent>(true);
 			unit.Position = new Vector3(transferInfo.X, transferInfo.Y, transferInfo.Z);
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
@@ -163,7 +163,7 @@ namespace ET
 			unit.AddComponent<StateComponent>();
 			NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 			numericComponent.Set((int)NumericType.Now_Speed, 3.0f);
-			unit.AddComponent<UnitInfoComponent>();
+			unit.AddComponent<UnitInfoComponent>(true);
 			unit.Position = new Vector3(npcInfo.X, npcInfo.Y, npcInfo.Z);
 			unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
 

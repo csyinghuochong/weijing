@@ -17,7 +17,7 @@ namespace ET
                     unit.AddComponent<MoveComponent>();
                     unit.Position = new Vector3(-10, 0, -10);
                     unit.Type = UnitType.Player;
-                    unit.AddComponent<UnitInfoComponent>();
+                    unit.AddComponent<UnitInfoComponent>(true);
                     //NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
                     //numericComponent.Set((int)NumericType.Now_Speed, 6f); // 速度是6米每秒
                     //numericComponent.Set(NumericType.AOI, 15000); // 视野15米
@@ -39,7 +39,7 @@ namespace ET
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
             HeroDataComponent heroDataComponent = unit.AddComponent<HeroDataComponent>();
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
             unitInfoComponent.EnergySkillId = createMonsterInfo.SkillId;
             unitInfoComponent.PlayerName = monsterConfig.MonsterName;
             unit.Type = UnitType.Monster;
@@ -124,7 +124,7 @@ namespace ET
             NpcConfig npcConfig = NpcConfigCategory.Instance.Get(npcId);
 
             Unit unit = domainScene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
-            unit.AddComponent<UnitInfoComponent>();
+            unit.AddComponent<UnitInfoComponent>(true);
             unit.ConfigId = npcId;
             unit.Position = new Vector3(npcConfig.Position[0] * 0.01f, npcConfig.Position[1] * 0.01f, npcConfig.Position[2] * 0.01f);
             unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
@@ -151,7 +151,7 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
@@ -187,7 +187,7 @@ namespace ET
             numericComponent.Set(NumericType.BattleCamp, roleCamp);
             numericComponent.Set(NumericType.MasterId, masterId);
             unit.AddComponent<MoveComponent>();
-            unit.AddComponent<UnitInfoComponent>();
+            unit.AddComponent<UnitInfoComponent>(true);
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
 
@@ -225,7 +225,7 @@ namespace ET
             scene.GetComponent<UnitComponent>().Add(unit);
             unit.AddComponent<ObjectWait>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
-            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>();
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
@@ -412,7 +412,7 @@ namespace ET
                 {
                     UnitComponent unitComponent = bekill.DomainScene().GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
-                    dropitem.AddComponent<UnitInfoComponent>();
+                    dropitem.AddComponent<UnitInfoComponent>(true);
                     dropitem.Type = UnitType.DropItem;
                     DropComponent dropComponent = dropitem.AddComponent<DropComponent>();
                     dropComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
@@ -488,7 +488,7 @@ namespace ET
                 {
                     UnitComponent unitComponent = beKill.DomainScene().GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
-                    dropitem.AddComponent<UnitInfoComponent>();
+                    dropitem.AddComponent<UnitInfoComponent>(true);
                     dropitem.Type = UnitType.DropItem;
                     DropComponent dropCheckComponent = dropitem.AddComponent<DropComponent>();
                     dropCheckComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);

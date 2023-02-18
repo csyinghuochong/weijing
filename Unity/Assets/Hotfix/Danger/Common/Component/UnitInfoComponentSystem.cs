@@ -9,7 +9,10 @@ namespace ET
     {
         public override void Awake(UnitInfoComponent self)
         {
+            self.EnergySkillId = 0;
             self.ZhaohuanIds.Clear();
+            self.Buffs.Clear();
+            self.Drops.Clear();
         }
     }
 

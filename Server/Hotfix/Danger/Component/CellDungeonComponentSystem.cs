@@ -413,7 +413,7 @@ namespace ET
                     ChuansongComponent chuansongComponent = chuansong.AddComponent<ChuansongComponent>();
                     chuansongComponent.CellIndex = self.GetCellIndex(fubenCellInfo.row, fubenCellInfo.line);        //走过的格子
                     chuansongComponent.DirectionType = i + 1;
-                    UnitInfoComponent unitInfoComponent = chuansong.AddComponent<UnitInfoComponent>();
+                    UnitInfoComponent unitInfoComponent = chuansong.AddComponent<UnitInfoComponent>(true);
                     chuansong.Position = vector3;
                     chuansong.AddComponent<AOIEntity, int, Vector3>(9 * 1000, chuansong.Position);
                 }
