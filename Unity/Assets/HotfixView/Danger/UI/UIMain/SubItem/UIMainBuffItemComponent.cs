@@ -62,6 +62,15 @@ namespace ET
             skillTips.GetComponent<UIBuffTipsComponent>().OnUpdateData(self.BuffID, new Vector3(localPoint.x, localPoint.y, 0f), self.showTimeStr, self.SpellCast);
         }
 
+        public static void BeforeRemove(this UIMainBuffItemComponent self)
+        { 
+            UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIBuffTips);
+            if (uI != null && self.BuffID == uI.GetComponent<UIBuffTipsComponent>().BuffId)
+            {
+                UIHelper.Remove(self.DomainScene(), UIType.UIBuffTips);
+            }
+        }
+
         public static void EndDrag(this UIMainBuffItemComponent self, PointerEventData pdata)
         {
             UIHelper.Remove(self.DomainScene(), UIType.UIBuffTips);

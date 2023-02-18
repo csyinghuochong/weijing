@@ -66,6 +66,7 @@ namespace ET
                 bool update = uIMainBuffItemComponent.OnUpdate();
                 if (!update)
                 {
+                    uIMainBuffItemComponent.BeforeRemove();
                     uIMainBuffItemComponent.BuffID = 0;
                     self.MainBuffUIList[i].GameObject.SetActive(false);
                     self.CacheUIList.Add(self.MainBuffUIList[i]);

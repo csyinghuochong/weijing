@@ -12,6 +12,7 @@ namespace ET
         public GameObject Lab_SkillName;
         public GameObject Image_SkillIcon;
         public GameObject Lab_BuffTime;
+        public int BuffId;
     }
 
     [ObjectSystem]
@@ -43,9 +44,10 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
         }
 
-        public static void OnUpdateData(this UIBuffTipsComponent self, int skillId, Vector3 vector3,string showStr, string spellcast)
+        public static void OnUpdateData(this UIBuffTipsComponent self, int buffid, Vector3 vector3,string showStr, string spellcast)
         {
-            SkillBuffConfig skillBufConfig = SkillBuffConfigCategory.Instance.Get(skillId);
+            self.BuffId = buffid;
+            SkillBuffConfig skillBufConfig = SkillBuffConfigCategory.Instance.Get(buffid);
 
             string bufficon = skillBufConfig.BuffIcon;
             if (ComHelp.IfNull(bufficon))

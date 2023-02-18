@@ -64,6 +64,10 @@ namespace ET
 
             long instanceId = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(1000);
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
             UIHelper.Remove(zoneScene, UIType.UIEnterMapHint);
         }
     }

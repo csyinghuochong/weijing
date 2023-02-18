@@ -27,7 +27,7 @@ namespace ET
 
             if (teamDungeonComponent.BoxReward.Contains(request.BoxIndex))
             {
-                Log.Error($"TeamDungeonBoxReward[已翻牌]: {unit.Id} {request.BoxIndex}");
+                Log.Debug($"TeamDungeonBoxReward[已翻牌]: {unit.Id} {request.BoxIndex}");
                 response.Error = ErrorCore.ERR_AlreadyReceived;
                 reply();
                 return;
