@@ -36,7 +36,7 @@ namespace ET
                 {
                     continue;
                 }
-                if (Vector3.Distance(this.TheUnitFrom.Position, unit.Position) > 5f)
+                if (Vector3.Distance(this.TargetPosition, unit.Position) > 5f)
                 {
                     continue;
                 }
