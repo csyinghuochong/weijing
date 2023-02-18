@@ -90,11 +90,14 @@ namespace ET
 		/// <summary>章节</summary>
 		[ProtoMember(5)]
 		public int Chap { get; set; }
-		/// <summary>激活数量</summary>
+		/// <summary>收集类型</summary>
 		[ProtoMember(6)]
+		public int StartType { get; set; }
+		/// <summary>激活数量</summary>
+		[ProtoMember(7)]
 		public int AcitveNum { get; set; }
 		/// <summary>附加属性</summary>
-		[ProtoMember(7)]
+		[ProtoMember(8)]
 		public string AddPropreListStr { get; set; }
 
 	}

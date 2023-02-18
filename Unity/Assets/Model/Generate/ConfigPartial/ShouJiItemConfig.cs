@@ -15,7 +15,7 @@ namespace ET
         {
             foreach (ShouJiItemConfig shoujiConfig in this.GetAll().Values)
             {
-                if (shoujiConfig.StartNum != 2)
+                if (shoujiConfig.StartType != 2)
                 {
                     continue;
                 }
