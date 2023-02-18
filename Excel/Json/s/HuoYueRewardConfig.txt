@@ -1,5 +1,5 @@
 {"list":[{"_t":"HuoYueRewardConfig","_id":1,"NeedPoint":20,"RewardItems":"1;3000@10010088;1","Icon":10100001,"Desc":""},
 {"_t":"HuoYueRewardConfig","_id":2,"NeedPoint":40,"RewardItems":"1;3000@10010085;10@10010088;1","Icon":10100002,"Desc":""},
 {"_t":"HuoYueRewardConfig","_id":3,"NeedPoint":70,"RewardItems":"1;5000@10010085;20@8;2@10010088;1","Icon":10100003,"Desc":""},
-{"_t":"HuoYueRewardConfig","_id":4,"NeedPoint":100,"RewardItems":"1;5000@10010085;30@8;3@10010088;1","Icon":10100003,"Desc":""},
+{"_t":"HuoYueRewardConfig","_id":4,"NeedPoint":100,"RewardItems":"1;5000@10010085;30@8;3@10010088;1@10010039;1","Icon":10100003,"Desc":""},
 ]}
