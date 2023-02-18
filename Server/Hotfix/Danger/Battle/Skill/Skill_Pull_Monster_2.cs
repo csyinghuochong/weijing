@@ -33,7 +33,7 @@ namespace ET
         public void UpdatePullMonster()
         {
             List<Unit> monsters = AIHelp.GetEnemyMonsters(this.TheUnitFrom, this.NowPosition, 5f);
-            for (int i = 0; i < monsters.Count; i++)
+            for (int i = monsters.Count - 1; i >= 0; i--)
             {
                 Unit unit = monsters[i];
                 AIComponent aIComponent = unit.GetComponent<AIComponent>();
@@ -46,7 +46,6 @@ namespace ET
                     continue;
                 }
                 this.HurtIds.Add(monsters[i].Id);
-
                 BuffData buffData_2 = new BuffData();
                 buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(99002001);
                 buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
@@ -55,7 +54,6 @@ namespace ET
                 unit.GetComponent<StateComponent>().StateTypeAdd(StateTypeEnum.BePulled);
                 aIComponent.TargetPoint.Clear();
                 aIComponent.TargetPoint.Add(this.NowPosition);
-
                 monsters[i].Stop(0);
                 aIComponent.AIConfigId = 9;   //牵引AI
             }
@@ -115,7 +113,6 @@ namespace ET
             {
                 return;
             }
-            this.BaseOnUpdate();
             Vector3 dir = (this.TargetPosition - NowPosition).normalized;
             float dis = PositionHelper.Distance2D(NowPosition, this.TargetPosition);
             float move = (float)this.SkillConf.SkillMoveSpeed * 0.1f;            //服务器0.1秒一帧
@@ -126,6 +123,10 @@ namespace ET
             //获取目标与自身的距离是否小于0.5f,小于触发将伤害,销毁自身
             dis = PositionHelper.Distance2D(NowPosition, this.TargetPosition);
             if (this.SkillConf.SkillMoveSpeed > 0f && dis < 0.5f)
+            {
+                this.SetSkillState(SkillState.Finished);
+            }
+            if (serverNow > this.SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
             }
