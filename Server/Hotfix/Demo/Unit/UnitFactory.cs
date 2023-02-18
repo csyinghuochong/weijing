@@ -209,7 +209,7 @@ namespace ET
                     aIComponent.InitPet(petinfo);
                     break;
             }
-            unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill();
+            unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill(petinfo);
           
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitPet(petinfo, false);
@@ -248,7 +248,7 @@ namespace ET
 
             if (scene.GetComponent<MapComponent>().SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
             {
-                unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill();
+                unit.AddComponent<SkillPassiveComponent>().UpdatePetPassiveSkill(petinfo);
                 unit.GetComponent<SkillPassiveComponent>().Activeted();
             }
 

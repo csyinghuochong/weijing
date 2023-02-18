@@ -152,7 +152,7 @@ namespace ET
             }
         }
 
-        public static void UpdatePetPassiveSkill(this SkillPassiveComponent self)
+        public static void UpdatePetPassiveSkill(this SkillPassiveComponent self, RolePetInfo rolePetInfo)
         {
             self.SkillPassiveInfos.Clear();
             int configId = self.GetParent<Unit>().ConfigId;
@@ -170,6 +170,18 @@ namespace ET
             for (int i = 0; i < baseSkillID.Length; i++ )
             {
                 int baseSkillId = int.Parse(baseSkillID[i]);
+                if (baseSkillId == 0)
+                {
+                    continue;
+                }
+
+                skillConfig = SkillConfigCategory.Instance.Get(baseSkillId);
+                self.AddPassiveSkillByType(skillConfig);
+            }
+
+            for (int i = 0; i < rolePetInfo.PetSkill.Count; i++)
+            {
+                int baseSkillId = rolePetInfo.PetSkill[i];
                 if (baseSkillId == 0)
                 {
                     continue;
