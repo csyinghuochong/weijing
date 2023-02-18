@@ -22,6 +22,7 @@ namespace ET
         {
             this.InitSelfBuff();
             this.BaseOnUpdate();
+            this.InitPullMonster();
         }
 
         public void InitPullMonster()
