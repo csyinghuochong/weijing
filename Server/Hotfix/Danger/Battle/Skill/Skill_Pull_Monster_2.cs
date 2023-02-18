@@ -28,21 +28,25 @@ namespace ET
         {
             this.InitSelfBuff();
             this.BaseOnUpdate();
-            this.InitPullMonster(); 
         }
 
-        public void InitPullMonster()
+        public void UpdatePullMonster()
         {
-            List<Unit> monsters = AIHelp.GetNearestMonsters(this.TheUnitFrom, 5f);
+            List<Unit> monsters = AIHelp.GetEnemyMonsters(this.TheUnitFrom, this.NowPosition, 5f);
             for (int i = 0; i < monsters.Count; i++)
             {
-                Unit unit = monsters[i];    
-                AIComponent aIComponent = monsters[i].GetComponent<AIComponent>();
+                Unit unit = monsters[i];
+                AIComponent aIComponent = unit.GetComponent<AIComponent>();
                 if (aIComponent == null)
                 {
                     continue;
                 }
-                
+                if (this.HurtIds.Contains(monsters[i].Id))
+                {
+                    continue;
+                }
+                this.HurtIds.Add(monsters[i].Id);
+
                 BuffData buffData_2 = new BuffData();
                 buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(99002001);
                 buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
@@ -54,13 +58,9 @@ namespace ET
 
                 monsters[i].Stop(0);
                 aIComponent.AIConfigId = 9;   //牵引AI
-                this.HurtIds.Add(monsters[i].Id);
             }
-        }
 
-        public void UpdatePullMonster()
-        {
-            for (int i = this.HurtIds.Count - 1; i >=0; i--)
+            for (int i = this.HurtIds.Count - 1; i >= 0; i--)
             {
                 Unit unit = this.TheUnitFrom.GetParent<UnitComponent>().Get(this.HurtIds[i]);
                 if (unit == null)
@@ -68,16 +68,17 @@ namespace ET
                     continue;
                 }
                 AIComponent aIComponent = unit.GetComponent<AIComponent>();
-                if (aIComponent == null || aIComponent.TargetPoint.Count == 0)
+                if (aIComponent == null)
                 {
                     continue;
                 }
+                
                 if (Vector3.Distance(unit.Position, this.NowPosition) > 6)
                 {
                     unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
                     unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
                     aIComponent.TargetPoint.Clear();
-                    this.HurtIds.RemoveAt(i);   
+                    this.HurtIds.RemoveAt(i);
                     continue;
                 }
 

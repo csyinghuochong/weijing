@@ -74,6 +74,32 @@ namespace ET
             return nearest;
         }
 
+        public static List<Unit> GetEnemyMonsters(Unit main, Vector3 pos, float maxdis)
+        {
+            List<Unit> nearest = new List<Unit>();
+
+            List<Unit> monsters = main.GetParent<UnitComponent>().GetAll();
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                Unit unit = monsters[i];
+                AIComponent aIComponent = monsters[i].GetComponent<AIComponent>();
+                if (aIComponent == null || unit.Type != UnitType.Monster)
+                {
+                    continue;
+                }
+                if (!main.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+                if (Vector3.Distance(pos, unit.Position) > maxdis)
+                {
+                    continue;
+                }
+                nearest.Add(unit);  
+            }
+            return nearest;
+        }
+
         public static List<Unit> GetNearestMonsters(Unit main, float maxdis)
         {
             List<Unit> nearest = new List<Unit>();
