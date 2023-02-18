@@ -9,7 +9,7 @@ namespace ET
     {
         protected override async ETTask Run(Session session, C2A_ServerList request, A2C_ServerList response, Action reply)
         {
-            List<ServerItem> serverItems = ServerHelper.GetServerList(ComHelp.IsInnerNet(), session.DomainZone()); ;
+            List<ServerItem> serverItems = ServerHelper.GetServerList(ComHelp.IsInnerNet(), session.DomainZone());
             for (int i = serverItems.Count - 1; i >= 0; i--)
             {
                 if (serverItems[i].Show == 0)

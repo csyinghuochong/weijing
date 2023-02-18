@@ -33,7 +33,7 @@ namespace ET
 
         public void InitPullMonster()
         {
-            List<Unit> monsters = AIHelp.GetNearestMonsters(this.TheUnitFrom, 10f);
+            List<Unit> monsters = AIHelp.GetNearestMonsters(this.TheUnitFrom, 5f);
             for (int i = 0; i < monsters.Count; i++)
             {
                 Unit unit = monsters[i];    
@@ -60,7 +60,7 @@ namespace ET
 
         public void UpdatePullMonster()
         {
-            for (int i = 0; i < this.HurtIds.Count; i++)
+            for (int i = this.HurtIds.Count - 1; i >=0; i--)
             {
                 Unit unit = this.TheUnitFrom.GetParent<UnitComponent>().Get(this.HurtIds[i]);
                 if (unit == null)
@@ -72,6 +72,15 @@ namespace ET
                 {
                     continue;
                 }
+                if (Vector3.Distance(unit.Position, this.NowPosition) > 6)
+                {
+                    unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
+                    unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
+                    aIComponent.TargetPoint.Clear();
+                    this.HurtIds.RemoveAt(i);   
+                    continue;
+                }
+
                 aIComponent.TargetPoint[0] = this.NowPosition;
             }
         }
@@ -94,6 +103,7 @@ namespace ET
                 unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
                 aIComponent.TargetPoint.Clear();
             }
+            this.HurtIds.Clear();
         }
 
         public override void OnUpdate()
