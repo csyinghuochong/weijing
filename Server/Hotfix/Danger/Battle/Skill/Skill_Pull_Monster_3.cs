@@ -11,10 +11,6 @@ namespace ET
             this.BaseOnInit(skillId, theUnitFrom);
 
             this.NowPosition = theUnitFrom.Position;
-            Quaternion rotation = Quaternion.Euler(0, skillId.TargetAngle, 0); //按照Z轴旋转30度的Quaterion
-            Vector3 movePosition = rotation * Vector3.forward * (this.SkillConf.SkillLiveTime * (float)(this.SkillConf.SkillMoveSpeed) * 0.001f);
-            this.TargetPosition = this.NowPosition + movePosition;
-
             OnExecute();
         }
 
@@ -27,19 +23,27 @@ namespace ET
 
         public void InitPullMonster()
         {
-            List<Unit> monsters = AIHelp.GetNearestMonsters(this.TheUnitFrom, 5f);
+            List<Unit> monsters = this.TheUnitFrom.GetParent<UnitComponent>().GetAll();
             for (int i = 0; i < monsters.Count; i++)
             {
                 Unit unit = monsters[i];
                 AIComponent aIComponent = monsters[i].GetComponent<AIComponent>();
-                if (aIComponent == null)
+                if (aIComponent == null || unit.Type != UnitType.Monster)
+                {
+                    continue;
+                }
+                if (!this.TheUnitFrom.IsCanAttackUnit(unit))
+                {
+                    continue;
+                }
+                if (Vector3.Distance(this.TheUnitFrom.Position, unit.Position) > 5f)
                 {
                     continue;
                 }
 
-                Vector3 dir = (unit.Position - this.TheUnitFrom.Position).normalized;
+                Vector3 dir = (unit.Position - this.TargetPosition).normalized;
                 unit.GetComponent<MoveComponent>().Stop();
-                unit.Position = this.TheUnitFrom.Position + dir * Vector3.one;
+                unit.Position = this.TargetPosition + dir * Vector3.one;
                 unit.Stop(-2);
             }
         }
