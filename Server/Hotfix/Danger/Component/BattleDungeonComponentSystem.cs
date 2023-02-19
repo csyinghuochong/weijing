@@ -121,9 +121,13 @@ namespace ET
                 {
                     continue;
                 }
-                await TimerComponent.Instance.WaitAsync(500);
+                if (units[i].IsDisposed || units[i].IsRobot())
+                {
+                    continue;
+                }
                 TransferHelper.MainCityTransfer(units[i]).Coroutine();
             }
+            await ETTask.CompletedTask;
         }
 
         public static async ETTask OnBattleOver(this BattleDungeonComponent self)

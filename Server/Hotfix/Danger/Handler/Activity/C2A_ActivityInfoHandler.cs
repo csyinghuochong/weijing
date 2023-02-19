@@ -12,7 +12,7 @@ namespace ET
             switch (request.ActivityType)
             {
                 case 1:
-                    response.ActivityContent = dBDayActivityInfo.WeeklyTask.ToString();
+                    response.ActivityContent = "0";// dBDayActivityInfo.WeeklyTask.ToString();
                     break;
                 default:
                     break;

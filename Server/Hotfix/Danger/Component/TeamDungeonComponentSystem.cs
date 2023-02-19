@@ -56,7 +56,6 @@ namespace ET
             int playerCount = FubenHelp.GetUnitList(self.DomainScene(),  UnitType.Player).Count;
             for (int i = self.TeamDropItems.Count - 1; i >= 0; i--)
             {
-         
                 TeamDropItem teamDropItem = self.TeamDropItems[i];
                 if (teamDropItem.EndTime == -1)
                 {
@@ -95,6 +94,7 @@ namespace ET
                     rewardItems.Add(new RewardItem() { ItemID = teamDropItem.DropInfo.ItemID, ItemNum = teamDropItem.DropInfo.ItemNum });
                     bool ret =  unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                     Log.Debug($"TeamDungeonComponent.DropInfo： {unit.Id}  {teamDropItem.DropInfo.ItemID} {teamDropItem.DropInfo.ItemNum} {ret}");
+                    
                     FubenHelp.SendPickMessage(unit, teamDropItem.DropInfo, needIds, randomNumbers);
                 }
                 self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID

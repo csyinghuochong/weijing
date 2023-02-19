@@ -74,13 +74,17 @@ namespace ET
                     }
                     break;
                 case NoticeType.BattleClose:
-                    if (message.Zone == 1)
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.RemoveRobot, 1))
                     {
                         ts = robotManagerComponent.Children.Values.ToList();
                         for (int i = 0; i < ts.Count; i++)
                         {
                             Scene robotScene = ts[i] as Scene;
                             if (robotScene.GetComponent<BehaviourComponent>().GetBehaviour() != 3)
+                            {
+                                continue;
+                            }
+                            if (message.Zone != robotScene.GetComponent<AccountInfoComponent>().ServerId)
                             {
                                 continue;
                             }

@@ -79,7 +79,17 @@ namespace ET
                     this.HurtIds.RemoveAt(i);
                     continue;
                 }
-
+                //夹角大于20度认为不是直线移动，停止拉怪
+                //Vector3 fromVector = this.TargetPosition - unit.Position;
+                //Vector3 toVector = this.TargetPosition - this.NowPosition;
+                //fromVector = fromVector.normalized;
+                //toVector = toVector.normalized;
+                //Vector2 v1 = new Vector2() { x = fromVector.x, y = fromVector.z };
+                //Vector2 v2 = new Vector2() { x = toVector.x, y = toVector.z };
+                //float angle = Mathf.Acos( Vector2.Dot(v1, v2));
+                //float angle_1 = Mathf.Rad2Deg(Mathf.Atan2(v1.x, v1.y));
+                //float angle_2 = Mathf.Rad2Deg(Mathf.Atan2(v2.x, v2.y));
+                //Log.Debug($" angle:  {angle_1} { angle_2}  {angle}");
                 aIComponent.TargetPoint[0] = this.NowPosition;
             }
         }

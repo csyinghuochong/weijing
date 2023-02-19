@@ -20,11 +20,11 @@
     {
         public static async ETTask OnBattleOver(this BattleSceneComponent self)
         {
-            await TimerComponent.Instance.WaitAsync(60000);
             for (int i = 0; i < self.BattleInfos.Count;i++)
             {
                 Scene scene = Game.Scene.Get(self.BattleInfos[i].FubenId);
                 await scene.GetComponent<BattleDungeonComponent>().OnBattleOver();
+                await TimerComponent.Instance.WaitAsync(60000 + self.DomainZone() * 10000);
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
             }

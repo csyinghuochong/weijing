@@ -37,7 +37,7 @@ namespace ET
                     unit.FindPathMoveToAsync(ttt, cancellationToken, false).Coroutine();
                 }
 
-                bool timeRet = await TimerComponent.Instance.WaitAsync(1000, cancellationToken);
+                bool timeRet = await TimerComponent.Instance.WaitAsync(200, cancellationToken);
                 if (!timeRet)
                 {
                     return;

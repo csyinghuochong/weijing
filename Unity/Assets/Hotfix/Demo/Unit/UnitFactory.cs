@@ -31,24 +31,24 @@ namespace ET
 			unitInfoComponent.StallName = unitInfo.StallName;
 			unitInfoComponent.UnionName = string.IsNullOrEmpty(unitInfo.UnionName) ? "" : unitInfo.UnionName;
 
+			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
+			unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
 			unit.AddComponent<MoveComponent>();
 			if (unitInfo.MoveInfo != null && unitInfo.MoveInfo.X.Count > 0)
 			{
-					using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
+				using (ListComponent<Vector3> list = ListComponent<Vector3>.Create())
+				{
+					list.Add(unit.Position);
+					for (int i = 0; i < unitInfo.MoveInfo.X.Count; ++i)
 					{
-						list.Add(unit.Position);
-						for (int i = 0; i < unitInfo.MoveInfo.X.Count; ++i)
-						{
-							list.Add(new Vector3(unitInfo.MoveInfo.X[i], unitInfo.MoveInfo.Y[i], unitInfo.MoveInfo.Z[i]));
-						}
-
-						unit.MoveToAsync(list).Coroutine();
+						list.Add(new Vector3(unitInfo.MoveInfo.X[i], unitInfo.MoveInfo.Y[i], unitInfo.MoveInfo.Z[i]));
 					}
+
+					unit.MoveToAsync(list).Coroutine();
+				}
 			}
 			unit.GetComponent<BuffManagerComponent>().t_Buffs = unitInfo.Buffs;
-			unit.GetComponent<SkillManagerComponent>().t_Skills =unitInfo.Skills;
-			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
-			unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
+			unit.GetComponent<SkillManagerComponent>().t_Skills = unitInfo.Skills;
 
 			UnitHelper.OnAfterCreateUnit(unit);
             return unit;
@@ -61,7 +61,6 @@ namespace ET
 			unitComponent.Add(unit);
 			unit.Type = UnitType.Monster;
 			unit.ConfigId = unitInfo.MonsterID;
-			unit.AddComponent<MoveComponent>();
 			NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 			for (int i = 0; i < unitInfo.Ks.Count; ++i)
 			{
@@ -82,6 +81,7 @@ namespace ET
 			}
 			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
 			unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
+			unit.AddComponent<MoveComponent>();
 
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
@@ -94,8 +94,7 @@ namespace ET
 			unit.Type = UnitType.Pet;
 			unit.ConfigId = rolePetInfo.ConfigId;
 			unitComponent.Add(unit);
-		
-			unit.AddComponent<MoveComponent>();
+
 			NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 			for (int i = 0; i < rolePetInfo.Ks.Count; ++i)
 			{
@@ -110,6 +109,8 @@ namespace ET
 			unitInfoComponent.StallName = rolePetInfo.PetName;
 			unitInfoComponent.PlayerName = rolePetInfo.PlayerName;
 			unit.Position = new Vector3(rolePetInfo.X, rolePetInfo.Y, rolePetInfo.Z);
+			unit.AddComponent<MoveComponent>();
+
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
 		}
@@ -159,13 +160,13 @@ namespace ET
 			unit.ConfigId = npcInfo.NpcID;
 			unitComponent.Add(unit);
 
-			unit.AddComponent<MoveComponent>();
 			unit.AddComponent<StateComponent>();
 			NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 			numericComponent.Set((int)NumericType.Now_Speed, 3.0f);
 			unit.AddComponent<UnitInfoComponent>(true);
 			unit.Position = new Vector3(npcInfo.X, npcInfo.Y, npcInfo.Z);
 			unit.Rotation = Quaternion.Euler(0, npcConfig.Rotation, 0);
+			unit.AddComponent<MoveComponent>();
 
 			UnitHelper.OnAfterCreateUnit(unit);
 			return unit;
