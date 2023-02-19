@@ -94,8 +94,10 @@ namespace ET
                     rewardItems.Add(new RewardItem() { ItemID = teamDropItem.DropInfo.ItemID, ItemNum = teamDropItem.DropInfo.ItemNum });
                     bool ret =  unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                     Log.Debug($"TeamDungeonComponent.DropInfo： {unit.Id}  {teamDropItem.DropInfo.ItemID} {teamDropItem.DropInfo.ItemNum} {ret}");
-                    
-                    FubenHelp.SendPickMessage(unit, teamDropItem.DropInfo, needIds, randomNumbers);
+                    if (ret)
+                    {
+                        FubenHelp.SendPickMessage(unit, teamDropItem.DropInfo, needIds, randomNumbers);
+                    }
                 }
                 self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
             }
