@@ -13,6 +13,7 @@ namespace ET
             response.ReddontList =  unit.GetComponent<ReddotComponent>().ReddontList;
             response.TreasureInfo = unit.GetComponent<ShoujiComponent>().TreasureInfo;
             response.ShouJiChapterInfos = unit.GetComponent<ShoujiComponent>().ShouJiChapterInfos;
+            response.TitleList = unit.GetComponent<TitleComponent>().TitleList;
             reply();
             await ETTask.CompletedTask;
         }

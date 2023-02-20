@@ -394,7 +394,19 @@ namespace ET
                 }
                 await Game.Scene.GetComponent<DBComponent>().Save<UserInfoComponent>(newzone, entity);
             }
-            Log.Debug("UserInfoComponent Complelte");
+
+            dbcount = 0;
+            List<TitleComponent> titleComponents = await Game.Scene.GetComponent<DBComponent>().Query<TitleComponent>(oldzone, d => d.Id > 0);
+            foreach (var entity in titleComponents)
+            {
+                dbcount++;
+                if (dbcount % onecount == 0)
+                {
+                    await TimerComponent.Instance.WaitFrameAsync();
+                }
+                await Game.Scene.GetComponent<DBComponent>().Save<TitleComponent>(newzone, entity);
+            }
+            Log.Debug("TitleComponent Complelte");
         }
     }
 }

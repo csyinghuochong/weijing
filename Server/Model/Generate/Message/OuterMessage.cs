@@ -6661,6 +6661,9 @@ namespace ET
 		[ProtoMember(5)]
 		public List<ShouJiChapterInfo> ShouJiChapterInfos = new List<ShouJiChapterInfo>();
 
+		[ProtoMember(6)]
+		public List<KeyValuePairInt> TitleList = new List<KeyValuePairInt>();
+
 	}
 
 	[Message(OuterOpcode.RechargeInfo)]

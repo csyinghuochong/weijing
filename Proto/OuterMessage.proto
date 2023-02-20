@@ -3168,7 +3168,7 @@ message M2C_UserInfoInitResponse // IActorLocationResponse
 	repeated KeyValuePair ReddontList = 3;
 	repeated KeyValuePairInt TreasureInfo = 4;
 	repeated ShouJiChapterInfo ShouJiChapterInfos = 5;
-
+	repeated KeyValuePairInt TitleList = 6;
 }
 
 message RechargeInfo

@@ -16,6 +16,7 @@ StartZoneConfig@s 如果要合区 一定要配置新的物理区
 7  重启一下mongindb.exe
 以管理员运行命令行，手动输入命令 net start mongodb 开启服务。
 
+测一下  TitleComponent
 
 dotTrace性能分析
 https://www.bbsmax.com/A/MAzAOgDn59/
