@@ -68,6 +68,21 @@ namespace ET
             }
         }
 
+        public static int GetShoujiIdByItemId(this ShoujiComponent self, int itemId)
+        {
+            int shoujiId = 0;   
+            Dictionary<int, ShouJiItemConfig> keyValuePairs = ShouJiItemConfigCategory.Instance.GetAll();
+            foreach (var item in keyValuePairs)
+            {
+                if (item.Value.ItemID == itemId)
+                {
+                    return item.Key;
+                }
+            }
+
+            return shoujiId;
+        }
+
         public static void UpdateShouJIStar(this ShoujiComponent self)
         {
             for (int i = 0; i < self.ShouJiChapterInfos.Count; i++)
@@ -76,7 +91,12 @@ namespace ET
 
                 for (int k = 0; k < self.ShouJiChapterInfos[i].ShouJiItemList.Count; k++)
                 {
-                    self.ShouJiChapterInfos[i].StarNum += ShouJiItemConfigCategory.Instance.Get(self.ShouJiChapterInfos[i].ShouJiItemList[k]).StartNum;
+                    int shoujiId = self.GetShoujiIdByItemId(self.ShouJiChapterInfos[i].ShouJiItemList[k]);
+                    if (!ShouJiItemConfigCategory.Instance.Contain(shoujiId))
+                    {
+                        continue;
+                    }
+                    self.ShouJiChapterInfos[i].StarNum += ShouJiItemConfigCategory.Instance.Get(shoujiId).StartNum;
                 }
             }
         }

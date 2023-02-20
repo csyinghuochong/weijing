@@ -45,6 +45,9 @@ namespace ET
                 {
                     continue;
                 }
+
+                this.OnCollisionUnit(unit);
+
                 this.HurtIds.Add(monsters[i].Id);
                 BuffData buffData_2 = new BuffData();
                 buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(99002001);
