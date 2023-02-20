@@ -958,6 +958,7 @@ namespace ET
             self.UIJoystickMoveComponent.ResetUI();
 
             self.UIMapMini.BeginChangeScene(lastScene);
+            self.UISingingComponent.GameObject.SetActive(false);
             self.ZoneScene().GetComponent<SkillIndicatorComponent>().BeginEnterScene();
             self.ZoneScene().GetComponent<LockTargetComponent>().BeginEnterScene();
         }
