@@ -234,6 +234,15 @@ namespace ET
                     int activityId = ActivityHelper.GetJieRiActivityId();
                     ActivityComponent activityComponent = self.ZoneScene().GetComponent<ActivityComponent>();
                     self.ButtonJieRiReward.SetActive(activityId > 0 && !activityComponent.ActivityReceiveIds.Contains(activityId));
+
+                    if (activityId == 0)
+                    {
+                        int nextid = ActivityHelper.GetNextRiActivityId();
+                        ActivityConfig activityConfig = ActivityConfigCategory.Instance.Get(nextid);
+                        string[] riqi = activityConfig.Par_1.Split(';');
+                        string speek = self.Lab_NpcSpeak.GetComponent<Text>().text;
+                        self.Lab_NpcSpeak.GetComponent<Text>().text = $"{speek} 下次领取时间:{riqi[0]}月{riqi[1]}日 {activityConfig.Par_4}";
+                    }
                     break;
                 case 7:
                     self.RequestWeeklyTask().Coroutine();

@@ -36,6 +36,39 @@ namespace ET
             return activityId;
         }
 
+        public static int GetNextRiActivityId()
+        {
+            List<KeyValuePairInt> jirRiList = new List<KeyValuePairInt>();
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            int curDay = dateTime.Month * 100 + dateTime.Day;
+
+            List<ActivityConfig> activityConfigs = ActivityConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < activityConfigs.Count; i++)
+            {
+                if (activityConfigs[i].ActivityType != 33)
+                {
+                    continue;
+                }
+                string[] dayInfo = activityConfigs[i].Par_1.Split(';');
+                KeyValuePairInt keyValuePair = new KeyValuePairInt() { KeyId = activityConfigs[i].Id, Value = int.Parse(dayInfo[0]) * 100 + int.Parse(dayInfo[1]) };
+                jirRiList.Add(keyValuePair);
+            }
+            jirRiList.Sort(delegate (KeyValuePairInt a, KeyValuePairInt b)
+            {
+                return (int)a.Value - (int)b.Value;
+            });
+
+            for (int i = 0; i < jirRiList.Count;i++)
+            {
+                if (jirRiList[i].Value >= curDay)
+                {
+                    return jirRiList[i].KeyId;
+                }
+            }
+
+            return jirRiList[0].KeyId;
+        }
+
         public static bool IsJieRiActivityId(int activityId)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
