@@ -33,7 +33,7 @@ namespace ET
 
         public void UpdatePullMonster()
         {
-            List<Unit> monsters = AIHelp.GetEnemyMonsters(this.TheUnitFrom, this.NowPosition, (float)(1.5f *this.SkillConf.DamgeRange[0]));
+            List<Unit> monsters = AIHelp.GetEnemyMonsters(this.TheUnitFrom, this.NowPosition, (float)(2f *this.SkillConf.DamgeRange[0]));
             for (int i = monsters.Count - 1; i >= 0; i--)
             {
                 Unit unit = monsters[i];

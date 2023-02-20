@@ -22,7 +22,7 @@ namespace ET
 
         public void InitPullMonster()
         {
-            List<Unit> monsters = AIHelp.GetEnemyMonsters(this.TheUnitFrom, this.TargetPosition, (float)(this.SkillConf.DamgeRange[0]));
+            List<Unit> monsters = AIHelp.GetEnemyMonsters(this.TheUnitFrom, this.TargetPosition, (float)(this.SkillConf.DamgeRange[0])*2);
          
             for (int i = 0; i < monsters.Count; i++)
             {
