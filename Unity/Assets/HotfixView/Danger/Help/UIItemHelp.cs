@@ -149,7 +149,7 @@ namespace ET
            {  9,  GameSettingLanguge.LoadLocalization("手镯") },
            {  10,  GameSettingLanguge.LoadLocalization("头盔") },
            {  11,  GameSettingLanguge.LoadLocalization("项链") },
-           {  1202,  GameSettingLanguge.LoadLocalization("丑牛·破风") },
+           {  1100,  GameSettingLanguge.LoadLocalization("生肖") },
         };
 
         public static string GetItemSubType3Name(int subType)

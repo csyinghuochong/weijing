@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
+using TapTap.Common;
 
 namespace ET
 {
@@ -129,7 +130,12 @@ namespace ET
                     else
                     {
                         //子类符合对应关系
-                        self.PaiMaiList[i].GameObject.SetActive(itemConfig.ItemType == typeid && itemConfig.ItemSubType == subtypeid);
+                        int itemSubType = itemConfig.ItemSubType;
+                        //生肖特殊处理
+                        if (itemConfig.ItemType == 3 && itemConfig.ItemSubType > 1101 && itemConfig.ItemSubType < 1600) {
+                            itemSubType = 1100;
+                        }
+                        self.PaiMaiList[i].GameObject.SetActive(itemConfig.ItemType == typeid && itemSubType == subtypeid);
                     }
                 }
             }
