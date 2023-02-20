@@ -68,6 +68,19 @@ namespace ET
             }
         }
 
+        public static void UpdateShouJIStar(this ShoujiComponent self)
+        {
+            for (int i = 0; i < self.ShouJiChapterInfos.Count; i++)
+            {
+                self.ShouJiChapterInfos[i].StarNum = 0;
+
+                for (int k = 0; k < self.ShouJiChapterInfos[i].ShouJiItemList.Count; k++)
+                {
+                    self.ShouJiChapterInfos[i].StarNum += ShouJiItemConfigCategory.Instance.Get(self.ShouJiChapterInfos[i].ShouJiItemList[k]).StartNum;
+                }
+            }
+        }
+
         public static void OnShouJiTreasure(this ShoujiComponent self, int shoujiId, int itemNum)
         {
             KeyValuePairInt keyValuePairInt = null;
