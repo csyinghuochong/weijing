@@ -259,6 +259,10 @@ namespace ET
                 {
                     self.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(int.Parse(itemConfig.ItemUsePar), true);
                 }
+                if (itemConfig.ItemSubType == 128)
+                {
+                    self.ZoneScene().GetComponent<TitleComponent>().OnActiveTile(int.Parse(itemConfig.ItemUsePar));
+                }
 
                 if (itemConfig.DayUseNum > 0)
                 {

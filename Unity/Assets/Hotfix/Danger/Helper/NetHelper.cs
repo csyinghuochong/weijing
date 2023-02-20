@@ -61,6 +61,7 @@
             zoneScene.GetComponent<ReddotComponent>().ReddontList = m2C_PaiMaiBuyResponse.ReddontList;
             zoneScene.GetComponent<ShoujiComponent>().TreasureInfo = m2C_PaiMaiBuyResponse.TreasureInfo;
             zoneScene.GetComponent<ShoujiComponent>().ShouJiChapterInfos = m2C_PaiMaiBuyResponse.ShouJiChapterInfos;
+            zoneScene.GetComponent<TitleComponent>().TitleList = m2C_PaiMaiBuyResponse.TitleList;
             await ETTask.CompletedTask;
         }
 

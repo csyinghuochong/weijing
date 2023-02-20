@@ -346,6 +346,9 @@ namespace ET
                                 string rewardItem = useBagInfo.ItemPar.Split('@')[2];
                                 unit.GetComponent<BagComponent>().OnAddItemData(rewardItem, $"{ItemGetWay.TreasureMap}_{TimeHelper.ServerNow()}");
                                 break;
+                            case 128://激活称号
+                                unit.GetComponent<TitleComponent>().OnActiveTile(int.Parse(itemConfig.ItemUsePar));
+                                break;
                         }
 
                         //扣除道具
