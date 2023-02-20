@@ -79,6 +79,11 @@ namespace ET
                     this.HurtIds.RemoveAt(i);
                     continue;
                 }
+                if (aIComponent.TargetPoint.Count == 0)
+                {
+                    this.HurtIds.RemoveAt(i);
+                    continue;
+                }
                 //夹角大于20度认为不是直线移动，停止拉怪
                 //Vector3 fromVector = this.TargetPosition - unit.Position;
                 //Vector3 toVector = this.TargetPosition - this.NowPosition;
