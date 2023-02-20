@@ -16,6 +16,7 @@
 ×"Battle*Battle
 Ø"Map*Map101
 Ù"Map*Map102
+Ú"Arena*Arena
 ‘"Account*Account0ï
 ’"Realm*Realm0ğ
 “"Gate*Gate10ñ
@@ -33,6 +34,7 @@
 Ÿ"Battle*Battle
  "Map*Map101
 ¡"Map*Map102
+¢"Arena*Arena
 ¡	"Account*Account0—Ÿ
 ¢	"Realm*Realm0˜Ÿ
 £	"Gate*Gate10™Ÿ
@@ -50,6 +52,7 @@
 ¯	"Battle*Battle
 °	"Map*Map101
 ±	"Map*Map102
+²	"Arena*Arena
 Í"Account*Account0µŸ
 Î"Realm*Realm0¶Ÿ
 Ï"Gate*Gate10·Ÿ
@@ -67,6 +70,7 @@
 Û"Battle*Battle
 Ü"Map*Map101
 İ"Map*Map102
+Ş"Arena*Arena
 •
 "Account*Account0ÉŸ
 –
@@ -101,6 +105,8 @@
 "Map*Map101
 ¥
 "Map*Map102
+¦
+"Arena*Arena
 ù
 "Account*Account0ÓŸ
 ú
@@ -125,6 +131,7 @@
 ‡"Battle*Battle
 ˆ"Map*Map101
 ‰"Map*Map102
+Š"Arena*Arena
 İ"Account*Account0İŸ
 Ş"Realm*Realm0ŞŸ
 ß"Gate*Gate10ßŸ
@@ -142,6 +149,7 @@
 ë"Battle*Battle
 ì"Map*Map101
 í"Map*Map102
+î"Arena*Arena
 Á"Account*Account0çŸ
 Â"Realm*Realm0èŸ
 Ã"Gate*Gate10éŸ
@@ -159,6 +167,7 @@
 Ï"Battle*Battle
 Ğ"Map*Map101
 Ñ"Map*Map102
+Ò"Arena*Arena
 éÊ"Center*Center
 #êÊ"LoginCenter*LoginCenter
 ëÊ"Location*Location

@@ -28,6 +28,7 @@
 		AccountCenter = 23,
 		FubenCenter = 24,
 		Battle = 25,
+		Arena = 26,
 
 		// 客户端Model层
 		Client = 30,
