@@ -32,7 +32,6 @@ namespace ET
 
         public override void OnUpdate()
         {
-            this.BaseOnUpdate();
             long serverNow = TimeHelper.ServerNow();
             float passTime = (serverNow - this.SkillInfo.SkillBeginTime) * 0.001f;
             if (passTime < this.SkillConf.SkillDelayTime)
@@ -59,6 +58,7 @@ namespace ET
             {
                 this.SetSkillState(SkillState.Finished);
             }
+            this.BaseOnUpdate();
         }
 
         public override void OnFinished()
