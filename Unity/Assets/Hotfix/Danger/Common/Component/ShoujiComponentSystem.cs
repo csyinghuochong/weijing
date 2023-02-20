@@ -74,7 +74,7 @@ namespace ET
             Dictionary<int, ShouJiItemConfig> keyValuePairs = ShouJiItemConfigCategory.Instance.GetAll();
             foreach (var item in keyValuePairs)
             {
-                if (item.Value.ItemID == itemId)
+                if (item.Value.ItemID == itemId && item.Value.StartType == 1)
                 {
                     return item.Key;
                 }
