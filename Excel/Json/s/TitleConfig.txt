@@ -1,6 +1,6 @@
-{"list":[{"_t":"TitleConfig","_id":10001,"Name":"称号1","Icon":10001,"AddProperty":"100203;50@100603;10","ValidityTime":120,"Des":""},
+{"list":[{"_t":"TitleConfig","_id":10001,"Name":"称号1","Icon":10001,"AddProperty":"100203;50@100603;10","ValidityTime":120,"Des":"血量+300"},
 {"_t":"TitleConfig","_id":10002,"Name":"称号2","Icon":10002,"AddProperty":"100203;50@100603;10","ValidityTime":120,"Des":"血量+300"},
-{"_t":"TitleConfig","_id":10003,"Name":"称号3","Icon":10003,"AddProperty":"100203;50@100603;10","ValidityTime":120,"Des":""},
+{"_t":"TitleConfig","_id":10003,"Name":"称号3","Icon":10003,"AddProperty":"100203;50@100603;10","ValidityTime":120,"Des":"血量+300"},
 {"_t":"TitleConfig","_id":10004,"Name":"称号4","Icon":10004,"AddProperty":"100203;50@100603;10","ValidityTime":120,"Des":"攻击穿透+2%"},
-{"_t":"TitleConfig","_id":10005,"Name":"称号5","Icon":10005,"AddProperty":"","ValidityTime":120,"Des":""},
+{"_t":"TitleConfig","_id":10005,"Name":"称号5","Icon":10005,"AddProperty":"","ValidityTime":120,"Des":"血量+300"},
 ]}
