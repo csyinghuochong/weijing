@@ -510,5 +510,8 @@ namespace ET
 		 public const ushort C2A_ActivityInfoRequest = 10507;
 		 public const ushort A2C_ActivityInfoResponse = 10508;
 		 public const ushort ActivityInfo = 10509;
+		 public const ushort C2M_TitleUseRequest = 10510;
+		 public const ushort M2C_TitleUseResponse = 10511;
+		 public const ushort M2C_TitleUpdateResult = 10512;
 	}
 }

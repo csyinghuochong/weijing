@@ -19,14 +19,44 @@ namespace ET
 
     public static class TitleComponentSystem
     {
-
 #if SERVER
-        public static List<HideProList> GetProList(this TitleComponent self)
+          public static List<HideProList> GetTreasurePro(this TitleComponent self)
         {
             List<HideProList> proList = new List<HideProList>();
+            int titleId = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.TitleID);
+            if (titleId == 0)
+            {
+                return proList;
+            }
+
+            TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titleId);
+            string[] attributeInfoList = titleConfig.AddProperty.Split('@');
+            for (int a = 0; a < attributeInfoList.Length; a++)
+            {
+                string[] attributeInfo = attributeInfoList[a].Split(',');
+                int numericType = int.Parse(attributeInfo[0]);
+
+                if (NumericHelp.GetNumericValueType(numericType) == 2)
+                {
+                    float fvalue = float.Parse(attributeInfo[1]);
+                    proList.Add(new HideProList() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+                }
+                else
+                {
+                    proList.Add(new HideProList() { HideID = numericType, HideValue = long.Parse(attributeInfo[1]) });
+                }
+            }
+
             return proList;
         }
+
+
 #endif
+
+        public static void OnLogin(this TitleComponent self)
+        {
+            self.OnCheckTitle();
+        }
 
         /// <summary>
         /// 移除过期称号
@@ -66,7 +96,8 @@ namespace ET
                 }
             }
 
-            self.TitleList.Add(new KeyValuePairInt() { KeyId = titleId, Value = TimeHelper.ServerNow() });
+            TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titleId);
+            self.TitleList.Add(new KeyValuePairInt() { KeyId = titleId, Value = TimeHelper.ServerNow() + titleConfig.ValidityTime * 1000 });
         }
 
     }

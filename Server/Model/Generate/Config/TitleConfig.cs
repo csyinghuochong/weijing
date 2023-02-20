@@ -87,8 +87,11 @@ namespace ET
 		/// <summary>额外属性</summary>
 		[ProtoMember(4)]
 		public string AddProperty { get; set; }
-		/// <summary>额外属性描述</summary>
+		/// <summary>有效期(秒)</summary>
 		[ProtoMember(5)]
+		public int ValidityTime { get; set; }
+		/// <summary>额外属性描述</summary>
+		[ProtoMember(6)]
 		public string Des { get; set; }
 
 	}

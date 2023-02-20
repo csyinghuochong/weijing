@@ -799,6 +799,9 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.ResetProperty();
 
+            //称号属性
+            List<HideProList> titlePros = unit.GetComponent<TitleComponent>().GetTreasurePro();
+
             //缓存列表
             Dictionary<int, long> UpdateProDicList = new Dictionary<int, long>();
 

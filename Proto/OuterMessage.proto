@@ -4415,3 +4415,26 @@ message ActivityInfo
 	int32 WeeklyTask = 1;
 	string ActivityContent = 2;
 }
+
+//激活称号
+//ResponseType M2C_TitleUseResponse
+message C2M_TitleUseRequest    // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 TitleId = 1;
+	int32 OperateType = 2; //
+}
+
+message M2C_TitleUseResponse    // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+message M2C_TitleUpdateResult // IActorMessage
+{
+	int64 ActorId = 93;
+	int64 UnitId = 1;
+	repeated KeyValuePairInt TitleList = 6;
+}

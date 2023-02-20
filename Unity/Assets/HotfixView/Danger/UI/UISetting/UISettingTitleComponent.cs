@@ -49,6 +49,7 @@ namespace ET
                 else
                 {
                     GameObject go = GameObject.Instantiate(bundleGameObject);
+                    UICommonHelper.SetParent(go, self.cellContainer1);
                     uISettingTitleItem = self.AddChild<UISettingTitleItemComponent, GameObject>(go);
                     self.UITitieList.Add(uISettingTitleItem);
                 }

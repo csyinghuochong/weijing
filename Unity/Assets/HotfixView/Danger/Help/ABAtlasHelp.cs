@@ -21,6 +21,7 @@ namespace ET
         TaskIcon,
         OtherIcon,
         PlayerIcon,
+        ChengHaoIcon,
         MulLanguageIcon,
     }
 

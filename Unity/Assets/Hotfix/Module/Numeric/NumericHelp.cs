@@ -28,6 +28,7 @@ namespace ET
             NumericType.TeamId,
             NumericType.HorseFightID,
             NumericType.HorseRide,
+            NumericType.TitleID,
         };
 
         //1 整数  2 浮点数
