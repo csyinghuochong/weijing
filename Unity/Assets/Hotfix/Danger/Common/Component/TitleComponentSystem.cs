@@ -20,7 +20,7 @@ namespace ET
     public static class TitleComponentSystem
     {
 #if SERVER
-          public static List<HideProList> GetTreasurePro(this TitleComponent self)
+          public static List<HideProList> GetTitlePro(this TitleComponent self)
         {
             List<HideProList> proList = new List<HideProList>();
             int titleId = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.TitleID);

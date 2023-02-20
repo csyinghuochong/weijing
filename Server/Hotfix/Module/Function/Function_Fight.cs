@@ -799,9 +799,6 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.ResetProperty();
 
-            //称号属性
-            List<HideProList> titlePros = unit.GetComponent<TitleComponent>().GetTreasurePro();
-
             //缓存列表
             Dictionary<int, long> UpdateProDicList = new Dictionary<int, long>();
 
@@ -1201,6 +1198,13 @@ namespace ET
             for (int i = 0; i < tianfuProList.Count; i++)
             {
                 AddUpdateProDicList(tianfuProList[i].HideID, tianfuProList[i].HideValue, UpdateProDicList);
+            }
+
+            //称号属性
+            List<HideProList> titlePros = unit.GetComponent<TitleComponent>().GetTitlePro();
+            for (int i = 0; i < titlePros.Count; i++)
+            {
+                AddUpdateProDicList(titlePros[i].HideID, titlePros[i].HideValue, UpdateProDicList);
             }
 
             //技能属性
