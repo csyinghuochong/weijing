@@ -33,7 +33,7 @@ namespace ET
 
         public void UpdatePullMonster()
         {
-            List<Unit> monsters = AIHelp.GetEnemyMonsters(this.TheUnitFrom, this.NowPosition, 5f);
+            List<Unit> monsters = AIHelp.GetEnemyMonsters(this.TheUnitFrom, this.NowPosition, (float)(1.5f *this.SkillConf.DamgeRange[0]));
             for (int i = monsters.Count - 1; i >= 0; i--)
             {
                 Unit unit = monsters[i];
@@ -42,14 +42,12 @@ namespace ET
                 {
                     continue;
                 }
-                if (this.HurtIds.Contains(monsters[i].Id))
+                if (this.LastHurtTimes.ContainsKey(monsters[i].Id))
                 {
                     continue;
                 }
 
-                this.OnCollisionUnit(unit);
-
-                this.HurtIds.Add(monsters[i].Id);
+                this.LastHurtTimes.Add(monsters[i].Id, TimeHelper.ServerNow());
                 BuffData buffData_2 = new BuffData();
                 buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(99002001);
                 buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
@@ -62,30 +60,33 @@ namespace ET
                 aIComponent.AIConfigId = 9;   //牵引AI
             }
 
-            for (int i = this.HurtIds.Count - 1; i >= 0; i--)
+            List<long> removeIds = new List<long>();
+            foreach((long uid, long time) in this.LastHurtTimes)
             {
-                Unit unit = this.TheUnitFrom.GetParent<UnitComponent>().Get(this.HurtIds[i]);
+                Unit unit = this.TheUnitFrom.GetParent<UnitComponent>().Get(uid);
                 if (unit == null)
                 {
+                    removeIds.Add(uid);
                     continue;
                 }
                 AIComponent aIComponent = unit.GetComponent<AIComponent>();
                 if (aIComponent == null)
                 {
+                    removeIds.Add(uid);
                     continue;
                 }
                 
-                if (Vector3.Distance(unit.Position, this.NowPosition) > 6)
+                if (Vector3.Distance(unit.Position, this.NowPosition) > (float)(2f * this.SkillConf.DamgeRange[0]))
                 {
                     unit.GetComponent<BuffManagerComponent>().BuffRemove(99002001);
                     unit.GetComponent<StateComponent>().StateTypeRemove(StateTypeEnum.BePulled);
                     aIComponent.TargetPoint.Clear();
-                    this.HurtIds.RemoveAt(i);
+                    removeIds.Add(uid);
                     continue;
                 }
                 if (aIComponent.TargetPoint.Count == 0)
                 {
-                    this.HurtIds.RemoveAt(i);
+                    removeIds.Add(uid);
                     continue;
                 }
                 //夹角大于20度认为不是直线移动，停止拉怪
@@ -100,6 +101,11 @@ namespace ET
                 //float angle_2 = Mathf.Rad2Deg(Mathf.Atan2(v2.x, v2.y));
                 //Log.Debug($" angle:  {angle_1} { angle_2}  {angle}");
                 aIComponent.TargetPoint[0] = this.NowPosition;
+            }
+
+            for (int i = 0; i < removeIds.Count; i++)
+            { 
+                this.LastHurtTimes.Remove(removeIds[i]);    
             }
         }
 
@@ -139,13 +145,12 @@ namespace ET
             this.NowPosition = this.NowPosition + move * dir;
             this.NowPosition.y = this.TargetPosition.y + 0.5f;
             this.UpdatePullMonster();
+            this.UpdateCheckPoint(this.NowPosition);
+            this.IsExcuteHurt = false;
+            this.BaseOnUpdate();
             //获取目标与自身的距离是否小于0.5f,小于触发将伤害,销毁自身
             dis = PositionHelper.Distance2D(NowPosition, this.TargetPosition);
             if (this.SkillConf.SkillMoveSpeed > 0f && dis < 0.5f)
-            {
-                this.SetSkillState(SkillState.Finished);
-            }
-            if (serverNow > this.SkillEndTime)
             {
                 this.SetSkillState(SkillState.Finished);
             }

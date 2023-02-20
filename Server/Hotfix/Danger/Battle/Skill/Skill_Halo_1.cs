@@ -22,7 +22,7 @@
             this.BaseOnUpdate();
 
             this.IsExcuteHurt = false;
-            this.UpdateCheckPoint();
+            this.UpdateCheckPoint(this.TheUnitFrom.Position);
             for (int i = HurtIds.Count - 1; i >= 0; i--)
             {
                 Unit unit = TheUnitFrom.Domain.GetComponent<UnitComponent>().Get(HurtIds[i]);

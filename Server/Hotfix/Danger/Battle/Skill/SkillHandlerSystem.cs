@@ -313,19 +313,19 @@ namespace ET
         }
 
         //目前只有冲锋技能用到。 
-        public static void UpdateCheckPoint(this SkillHandler self)
+        public static void UpdateCheckPoint(this SkillHandler self, Vector3 vector3)
         {
             switch (self.SkillConf.DamgeRangeType)
             {
                 case 0:
                 case 1:
-                    (self.ICheckShape[0] as Circle).s_position = self.TheUnitFrom.Position;
+                    (self.ICheckShape[0] as Circle).s_position = vector3;
                     break;
                 case 2:
-                    (self.ICheckShape[0] as Rectangle).s_position = self.TheUnitFrom.Position;
+                    (self.ICheckShape[0] as Rectangle).s_position = vector3;
                     break;
                 case 3:
-                    (self.ICheckShape[0] as Fan).s_position = self.TheUnitFrom.Position;
+                    (self.ICheckShape[0] as Fan).s_position = vector3;
                     break;
             }
         }

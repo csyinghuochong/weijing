@@ -26,7 +26,7 @@ namespace ET
             else
             {
                 //先触发伤害再跳过去
-                this.UpdateCheckPoint();
+                this.UpdateCheckPoint(this.TheUnitFrom.Position);
                 this.InitSelfBuff();
                 this.BaseOnUpdate();
             }
