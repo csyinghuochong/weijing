@@ -126,11 +126,13 @@ namespace ET
                 }
                 catch (RpcException)
                 {
+                    Log.Debug($"Remove_1:  {actorLocationSender.Id}");
                     self.Remove(actorLocationSender.Id);
                     throw;
                 }
                 catch (Exception e)
                 {
+                    Log.Debug($"Remove_2:  {actorLocationSender.Id}");
                     self.Remove(actorLocationSender.Id);
                     throw new Exception($"{stream.ToActorMessage()}", e);
                 }
