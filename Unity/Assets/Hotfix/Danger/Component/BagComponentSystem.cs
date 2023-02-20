@@ -341,8 +341,8 @@ namespace ET
                 ItemConfig itemConfig_b = ItemConfigCategory.Instance.Get(itemIdb);
                 int quliatya = itemConfig_a.ItemQuality;
                 int quliatyb = itemConfig_b.ItemQuality;
-                int jianDingLva = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar):0;
-                int jianDingLvb = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(b.ItemPar) : 0;
+                int jianDingLva = itemConfig_a.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar):0;
+                int jianDingLvb = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(b.ItemPar) ? int.Parse(b.ItemPar) : 0;
    
                 if (isBinginga == isBingingb)
                 {

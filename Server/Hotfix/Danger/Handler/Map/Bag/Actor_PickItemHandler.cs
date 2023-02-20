@@ -101,7 +101,10 @@ namespace ET
                 else if (teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                 {
                     owner = unit.DomainScene().GetComponent<UnitComponent>().Get(teamDungeonComponent.ItemFlags[unitDrop.Id]);
-                    m2C_SyncChatInfo.ChatInfo.ChatMsg = $"{owner.GetComponent<UserInfoComponent>().UserInfo.Name}拾取{itemConfig.ItemName}";
+                    if (owner != null)
+                    {
+                        m2C_SyncChatInfo.ChatInfo.ChatMsg = $"{owner.GetComponent<UserInfoComponent>().UserInfo.Name}拾取{itemConfig.ItemName}";
+                    }
                 }
                 if (owner == null)
                 {

@@ -192,8 +192,8 @@ namespace ET
                 ItemConfig itemConfig_b = ItemConfigCategory.Instance.Get(itemIdb);
                 int quliatya = itemConfig_a.ItemQuality;
                 int quliatyb = itemConfig_b.ItemQuality;
-                int jianDingLva = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar) : 0;
-                int jianDingLvb = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(b.ItemPar) : 0;
+                int jianDingLva = itemConfig_a.ItemSubType == 121 && !string.IsNullOrEmpty(a.ItemPar) ? int.Parse(a.ItemPar) : 0;
+                int jianDingLvb = itemConfig_b.ItemSubType == 121 && !string.IsNullOrEmpty(b.ItemPar) ? int.Parse(b.ItemPar) : 0;
 
                 if (isBinginga == isBingingb)
                 {
@@ -444,7 +444,11 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             for (int i = rewardItems.Count - 1; i >= 0; i--)
             {
-                if (rewardItems[i].ItemID == 0) { continue; }
+                if (rewardItems[i].ItemID == 0 || !ItemConfigCategory.Instance.Contain(rewardItems[i].ItemID)) 
+                { 
+                    continue;
+                }
+
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(rewardItems[i].ItemID);
                 UserDataType userDataType = ComHelp.GetItemToUserDataType(rewardItems[i].ItemID);
                 if (userDataType != UserDataType.None)
@@ -493,8 +497,12 @@ namespace ET
             for (int i = rewardItems.Count - 1; i >= 0; i--)
             {
                 int itemID = rewardItems[i].ItemID;
-                int leftNum = rewardItems[i].ItemNum;
+                if (itemID == 0 || !ItemConfigCategory.Instance.Contain(itemID))
+                {
+                    continue;
+                }
 
+                int leftNum = rewardItems[i].ItemNum;
                 UserDataType userDataType = ComHelp.GetItemToUserDataType(itemID);
                 if (userDataType == UserDataType.Gold && rewardItems[i].ItemNum > 1000000)
                 {

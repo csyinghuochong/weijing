@@ -53,6 +53,21 @@ namespace ET
 					bagInfos[i].GemIDNew = "0_0_0_0";
 					bagInfos[i].GemHole = "0_0_0_0";
 				}
+
+				//鉴定符错误
+				//ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfos[i].ItemID);
+				//if(itemConfig.ItemSubType == 121)
+				//{
+				//	try
+				//	{
+				//		int quality = int.Parse(bagInfos[i].ItemPar);
+				//	}
+				//	catch (Exception ex)
+				//	{
+				//		Log.Debug(ex.ToString()+ "_____" + bagInfos[i].ItemPar);
+				//	}
+				//	bagInfos[i].ItemPar = "99";
+				//}
 			}
 
 			response.BagInfos = bagInfos;
