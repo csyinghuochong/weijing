@@ -226,6 +226,9 @@
         //珍宝
         public const int ERR_ShouJIActived = 301601;                                    //已经激活
 
+        //称号
+        public const int ERR_TitleNoActived = 301701;                                   //称号未激活
+
         public static bool IsRpcNeedThrowException(int error)
         {
             if (error == 0)

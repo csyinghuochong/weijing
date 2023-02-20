@@ -11,6 +11,8 @@ namespace ET
 //#if SERVER
 //        [BsonIgnore]
 //#endif
-        public List<KeyValuePairInt> TitleList = new List<KeyValuePairInt>();   
+        public List<KeyValuePairInt> TitleList = new List<KeyValuePairInt>();
+
+        public M2C_TitleUpdateResult TitleUpdateResult = new M2C_TitleUpdateResult();
     }
 }

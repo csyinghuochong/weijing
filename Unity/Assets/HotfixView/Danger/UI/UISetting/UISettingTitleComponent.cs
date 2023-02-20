@@ -36,8 +36,6 @@ namespace ET
             }
 
             TitleComponent titleComponent = self.ZoneScene().GetComponent<TitleComponent>();
-            titleComponent.OnCheckTitle();
-
             for (int i = 0; i < titleComponent.TitleList.Count; i++)
             {
                 UISettingTitleItemComponent uISettingTitleItem = null;

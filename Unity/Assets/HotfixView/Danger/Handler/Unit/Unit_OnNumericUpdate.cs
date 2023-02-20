@@ -45,7 +45,7 @@
                     args.Unit.AddComponent<GameObjectComponent>();
                     break;
                 case NumericType.TitleID:
-
+                    args.Unit.GetComponent<HeroHeadBarComponent>()?.UpdateShow();
                     break;
                 case NumericType.ZeroClock:
                     zoneScene.GetComponent<UserInfoComponent>().ClearDayData();

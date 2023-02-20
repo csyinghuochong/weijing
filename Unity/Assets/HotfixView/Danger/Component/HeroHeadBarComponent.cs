@@ -52,6 +52,7 @@ namespace ET
         public GameObject ObjHp;
         public GameObject HeadBar;
         public GameObject BuffShieldValue;
+        public GameObject Img_ChengHao;
         public Transform UIPosition;
         public string HeadBarPath;
         public Vector2 LastPositon;
@@ -121,6 +122,7 @@ namespace ET
                     sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
                     ImageHpFill.GetComponent<Image>().sprite = sp;
                     this.BuffShieldValue = rc.Get<GameObject>("BuffShieldValue");
+                    this.Img_ChengHao = rc.Get<GameObject>("Img_ChengHao");
                     break;
                 case UnitType.Pet:
                     imageHp = canAttack ? "UI_pro_4_2": "UI_pro_3_4";
@@ -187,15 +189,26 @@ namespace ET
                 //判断自身是否有家族进行显示
                 if (infoComponent.UnionName.Length > 0)
                 {
-                    JiaZuShowSet.SetActive(true);
                     string text1 = numericComponent.GetAsInt(NumericType.UnionLeader) == 1 ? "家族组长" : "家族成员";
-                    Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = infoComponent.UnionName + text1;
+                    this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = infoComponent.UnionName + text1;
                 }
                 else
                 {
-                    JiaZuShowSet.SetActive(false);
+                    this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = String.Empty;
                 }
-
+                
+                int tilteid = numericComponent.GetAsInt(NumericType.TitleID);
+                if (tilteid > 0)
+                {
+                    TitleConfig titleConfig = TitleConfigCategory.Instance.Get(tilteid);
+                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ChengHaoIcon, titleConfig.Icon.ToString());
+                    this.Img_ChengHao.SetActive(true);
+                    this.Img_ChengHao.GetComponent<Image>().sprite = sp;
+                }
+                else
+                {
+                    this.Img_ChengHao.SetActive(false);
+                }
                 unit.GetComponent<GameObjectComponent>().OnUpdateHorse();
             }
             //显示怪物名称

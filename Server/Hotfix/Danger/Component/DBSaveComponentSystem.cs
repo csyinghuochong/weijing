@@ -204,6 +204,7 @@ namespace ET
             self.DBInterval++;
             unit.GetComponent<TaskComponent>().Check();
             unit.GetComponent<UserInfoComponent>().Check();
+            unit.GetComponent<TitleComponent>().OnCheckTitle(true);
             return false;
         }
     }

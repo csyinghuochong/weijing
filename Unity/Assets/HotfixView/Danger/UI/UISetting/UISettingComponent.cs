@@ -74,6 +74,15 @@ namespace ET
             }
         }
 
+        public static void OnTitleUse(this UISettingComponent self)
+        {
+            UI uI = self.UIPageView.UISubViewList[(int)SettingEnum.Title];
+            if (uI != null)
+            {
+                uI.GetComponent<UISettingTitleComponent>().OnUpdateUI();
+            }
+        }
+
         public static void OnClickPageButton(this UISettingComponent self, int page)
         {
             self.UIPageView.OnSelectIndex(page).Coroutine();

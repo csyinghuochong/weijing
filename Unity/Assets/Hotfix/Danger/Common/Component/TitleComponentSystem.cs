@@ -33,7 +33,7 @@ namespace ET
             string[] attributeInfoList = titleConfig.AddProperty.Split('@');
             for (int a = 0; a < attributeInfoList.Length; a++)
             {
-                string[] attributeInfo = attributeInfoList[a].Split(',');
+                string[] attributeInfo = attributeInfoList[a].Split(';');
                 int numericType = int.Parse(attributeInfo[0]);
 
                 if (NumericHelp.GetNumericValueType(numericType) == 2)
@@ -50,30 +50,40 @@ namespace ET
             return proList;
         }
 
-
-#endif
-
-        public static void OnLogin(this TitleComponent self)
-        {
-            self.OnCheckTitle();
-        }
-
         /// <summary>
         /// 移除过期称号
         /// </summary>
         /// <param name="self"></param>
-        public static void OnCheckTitle(this TitleComponent self)
+        public static void OnCheckTitle(this TitleComponent self, bool notice)
         {
+            bool update = false;
             long serverTime = TimeHelper.ServerNow();
             for (int i = self.TitleList.Count - 1; i >= 0; i--)
             {
                 if (self.TitleList[i].Value < serverTime)
                 {
+                    update = true;
                     self.TitleList.RemoveAt(i);
+                }
+            }
+            if (update && notice)
+            {
+                Unit unit = self.GetParent<Unit>();
+                self.TitleUpdateResult.TitleList = self.TitleList;
+                MessageHelper.SendToClient(unit, self.TitleUpdateResult);
+            }
+            if (update)
+            {
+                Unit unit = self.GetParent<Unit>(); 
+                int title = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TitleID);
+                if (title > 0 && !self.IsHaveTitle(title))
+                {
+                    unit.GetComponent<NumericComponent>().ApplyValue(NumericType.TitleID, 0, notice);
                 }
             }
         }
 
+#endif
         public static bool IsHaveTitle(this TitleComponent self, int titleId)
         {
             for (int i = 0; i < self.TitleList.Count; i++)
