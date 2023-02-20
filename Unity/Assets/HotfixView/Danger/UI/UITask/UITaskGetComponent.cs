@@ -370,7 +370,9 @@ namespace ET
         {
             int sceneType = SceneConfigCategory.Instance.Get(sceneId).MapType;
             int errorCode = ErrorCore.ERR_Success;
-            if (sceneType == SceneTypeEnum.MiJing || sceneType == SceneTypeEnum.BaoZang)
+            if (sceneType == SceneTypeEnum.MiJing 
+                || sceneType == SceneTypeEnum.BaoZang
+                || sceneType == SceneTypeEnum.Arena)
             {
                 errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), sceneType, sceneId);
             }

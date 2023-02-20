@@ -160,6 +160,9 @@ namespace ET
 							TransferHelper.BeforeTransfer(unit);
 							await TransferHelper.Transfer(unit, battleEnter.FubenInstanceId, (int)SceneTypeEnum.Battle, request.SceneId, FubenDifficulty.Normal, battleEnter.Camp.ToString());
 							break;
+						case SceneTypeEnum.Arena:
+
+							break;
 						case (int)SceneTypeEnum.TeamDungeon:
 							mapComponent = unit.DomainScene().GetComponent<MapComponent>();
 							sceneTypeEnum = mapComponent.SceneTypeEnum;
