@@ -142,5 +142,7 @@ namespace ET
 		 public const ushort T2M_TeamUpdateRequest = 20139;
 		 public const ushort A2F_ActivityUpdateRequest = 20140;
 		 public const ushort F2A_ActivityUpdateResponse = 20141;
+		 public const ushort M2Arena_ArenaEnterRequest = 20142;
+		 public const ushort Arena2M_ArenaEnterResponse = 20143;
 	}
 }

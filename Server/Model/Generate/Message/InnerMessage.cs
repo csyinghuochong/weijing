@@ -2418,4 +2418,42 @@ namespace ET
 
 	}
 
+//进入角斗场
+	[ResponseType(nameof(B2M_BattleEnterResponse))]
+	[Message(InnerOpcode.M2Arena_ArenaEnterRequest)]
+	[ProtoContract]
+	public partial class M2Arena_ArenaEnterRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public long UserID { get; set; }
+
+		[ProtoMember(2)]
+		public int SceneId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Arena2M_ArenaEnterResponse)]
+	[ProtoContract]
+	public partial class Arena2M_ArenaEnterResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(2)]
+		public long FubenInstanceId { get; set; }
+
+	}
+
 }

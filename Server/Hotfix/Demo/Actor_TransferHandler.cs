@@ -161,6 +161,7 @@ namespace ET
 							await TransferHelper.Transfer(unit, battleEnter.FubenInstanceId, (int)SceneTypeEnum.Battle, request.SceneId, FubenDifficulty.Normal, battleEnter.Camp.ToString());
 							break;
 						case SceneTypeEnum.Arena:
+							mapInstanceId = DBHelper.GetArenaServerId(unit.DomainZone());
 
 							break;
 						case (int)SceneTypeEnum.TeamDungeon:

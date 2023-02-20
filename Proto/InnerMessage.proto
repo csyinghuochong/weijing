@@ -1160,3 +1160,23 @@ message F2A_ActivityUpdateResponse // IActorResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//进入角斗场
+//ResponseType B2M_BattleEnterResponse
+message M2Arena_ArenaEnterRequest // IActorRequest
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+
+	int64 UserID = 1;
+	int32 SceneId = 2;
+}
+
+message Arena2M_ArenaEnterResponse // IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+
+	int64 FubenInstanceId = 2;
+}
