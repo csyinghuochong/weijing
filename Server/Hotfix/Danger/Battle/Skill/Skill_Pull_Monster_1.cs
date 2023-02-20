@@ -1,16 +1,17 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
 
-    //拉怪技能67000279 67000280
+    //拉怪技能:瞬间拉至自身/目标点
     public class Skill_Pull_Monster_1 : SkillHandler
     {
         //初始化
         public override void OnInit(SkillInfo skillId, Unit theUnitFrom)
         {
             this.BaseOnInit(skillId, theUnitFrom);
-
+            this.NowPosition = theUnitFrom.Position;
             OnExecute();
         }
 
@@ -18,6 +19,26 @@ namespace ET
         {
             
         }
+
+        public void InitPullMonster()
+        {
+            List<Unit> monsters = AIHelp.GetEnemyMonsters(this.TheUnitFrom, this.TargetPosition, (float)(this.SkillConf.DamgeRange[0]));
+         
+            for (int i = 0; i < monsters.Count; i++)
+            {
+                Unit unit = monsters[i];
+                AIComponent aIComponent = monsters[i].GetComponent<AIComponent>();
+                if (aIComponent == null)
+                {
+                    continue;
+                }
+                Vector3 dir = (unit.Position - this.TargetPosition).normalized;
+                unit.GetComponent<MoveComponent>().Stop();
+                unit.Position = this.TargetPosition + dir * Vector3.one;
+                unit.Stop(-2);
+            }
+        }
+
 
         public override void OnUpdate()
         {
@@ -31,25 +52,9 @@ namespace ET
             //只触发一次，需要多次触发的重写
             if (!this.IsExcuteHurt)
             {
-                this.IsExcuteHurt = true;
-
-                //2-10米内的怪随机拉一个到自身一米范围内
-                Unit monster = AIHelp.GetNearestEnemyMonster(this.TheUnitFrom, 2f, 10f);
-                if (monster == null)
-                {
-                    return;
-                }
-                Vector3 dir = (monster.Position - this.TheUnitFrom.Position).normalized;
-                monster.GetComponent<MoveComponent>().Stop();
-                monster.Position = this.TheUnitFrom.Position + dir * Vector3.one;
-                monster.Stop(-2);
+                this.InitPullMonster();
             }
-
-            //根据技能存在时间设置其结束状态
-            if (serverNow > this.SkillEndTime)
-            {
-                this.SetSkillState(SkillState.Finished);
-            }
+            this.BaseOnUpdate();
         }
 
         public override void OnFinished()

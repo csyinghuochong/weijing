@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ET
 {
+    //牵引拉怪
     public class Skill_Pull_Monster_2 : SkillHandler
     {
         //初始化
