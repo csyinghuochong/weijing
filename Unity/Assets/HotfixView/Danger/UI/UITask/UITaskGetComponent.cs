@@ -339,7 +339,7 @@ namespace ET
                 {
                     desStr += "\n提示:每天只能进入" + sceneConfig.DayEnterNum + "次";
                 }
-
+                
                 PopupTipHelp.OpenPopupTip(self.ZoneScene(), "进入地图", desStr,
                     () =>
                     {

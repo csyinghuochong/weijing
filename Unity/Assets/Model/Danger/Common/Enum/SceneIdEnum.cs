@@ -51,5 +51,6 @@ namespace ET
         public const int Battle = 12;           //阵营战场
         public const int TrialDungeon = 13;     //试炼副本
         public const int MiJing = 14;        //野外地图 [秘境]
+        public const int Arena = 15;
     }
 }
