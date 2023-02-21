@@ -152,6 +152,11 @@ namespace ET
 
         public static void OnLoadHorse(this GameObjectComponent self, GameObject go, long formId)
         {
+            if (self.IsDisposed)
+            {
+                GameObject.Destroy(go);
+                return;
+            }
             self.ObjectHorse = go;
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();

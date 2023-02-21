@@ -29,7 +29,8 @@ namespace ET
 			{
 				using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.BeiYong, unit.Id))
 				{
-					if (request.SceneType == SceneTypeEnum.Arena)
+					if (request.SceneType == SceneTypeEnum.Arena 
+						&& !GMHelp.GmAccount.Contains(unit.GetComponent<UserInfoComponent>().Account))
 					{
 						response.Error = ErrorCore.ERR_AlreadyFinish;
 						reply();
