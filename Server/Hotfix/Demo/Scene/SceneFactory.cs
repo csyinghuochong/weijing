@@ -95,6 +95,9 @@ namespace ET
                 case SceneType.Battle:
                     scene.AddComponent<BattleSceneComponent>();
                     break;
+                case SceneType.Arena:
+                    scene.AddComponent<ArenaSceneComponent>();
+                    break;
                 case SceneType.Fuben:           //临时副本
                     scene.AddComponent<MapComponent>();
                     scene.AddComponent<UnitComponent>();
