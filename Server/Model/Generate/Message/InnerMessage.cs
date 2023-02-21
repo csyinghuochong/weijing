@@ -2419,7 +2419,7 @@ namespace ET
 	}
 
 //进入角斗场
-	[ResponseType(nameof(B2M_BattleEnterResponse))]
+	[ResponseType(nameof(Arena2M_ArenaEnterResponse))]
 	[Message(InnerOpcode.M2Arena_ArenaEnterRequest)]
 	[ProtoContract]
 	public partial class M2Arena_ArenaEnterRequest: Object, IActorRequest

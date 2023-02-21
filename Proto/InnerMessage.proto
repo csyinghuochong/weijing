@@ -1162,7 +1162,7 @@ message F2A_ActivityUpdateResponse // IActorResponse
 }
 
 //进入角斗场
-//ResponseType B2M_BattleEnterResponse
+//ResponseType Arena2M_ArenaEnterResponse
 message M2Arena_ArenaEnterRequest // IActorRequest
 {
 	int32 RpcId = 90;
