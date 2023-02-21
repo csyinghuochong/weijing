@@ -513,5 +513,6 @@ namespace ET
 		 public const ushort C2M_TitleUseRequest = 10510;
 		 public const ushort M2C_TitleUseResponse = 10511;
 		 public const ushort M2C_TitleUpdateResult = 10512;
+		 public const ushort M2C_AreneInfoResult = 10513;
 	}
 }

@@ -221,6 +221,10 @@ namespace ET
                     UIHelper.Create(zoneScene, UIType.UIBattleMain).Coroutine();
                     uimain.GameObject.transform.localScale = Vector3.one;
                     break;
+                case (int)SceneTypeEnum.Arena:
+                    UIHelper.Create(zoneScene, UIType.UIArenaMain).Coroutine();
+                    uimain.GameObject.transform.localScale = Vector3.one;
+                    break;
                 case (int)SceneTypeEnum.TeamDungeon:
                     UIHelper.Create(zoneScene, UIType.UIEnterMapHint).Coroutine();
                     UIHelper.Create(zoneScene, UIType.UITeamMain).Coroutine();

@@ -6324,6 +6324,9 @@ namespace ET
 		[ProtoMember(6)]
 		public List<RewardItem> ReardListExcess = new List<RewardItem>();
 
+		[ProtoMember(7)]
+		public int Star { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_TeamDungeonOpenResult)]
@@ -9246,6 +9249,24 @@ namespace ET
 
 		[ProtoMember(6)]
 		public List<KeyValuePairInt> TitleList = new List<KeyValuePairInt>();
+
+	}
+
+	[Message(OuterOpcode.M2C_AreneInfoResult)]
+	[ProtoContract]
+	public partial class M2C_AreneInfoResult: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public int LeftPlayer { get; set; }
+
+		[ProtoMember(4)]
+		public string Message { get; set; }
 
 	}
 

@@ -3005,6 +3005,7 @@ message M2C_TeamDungeonSettlement // IActorMessage
 	repeated RewardItem RewardExtraItem = 4;			//额外奖励
 	repeated RewardItem ReardList = 5;		//奖励列表
 	repeated RewardItem ReardListExcess = 6;	//冒险家额外奖励
+	int32 Star = 7;
 }
 
 message M2C_TeamDungeonOpenResult // IActorMessage
@@ -4437,4 +4438,13 @@ message M2C_TitleUpdateResult // IActorMessage
 	int64 ActorId = 93;
 	int64 UnitId = 1;
 	repeated KeyValuePairInt TitleList = 6;
+}
+
+message M2C_AreneInfoResult // IActorMessage
+{
+	int64 ActorId = 1;
+	int64 UnitId = 2;
+
+	int32 LeftPlayer = 3;
+	string Message = 4;
 }
