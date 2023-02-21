@@ -46,6 +46,7 @@ namespace ET
     //303 累计合成宠物
     //304 累计宠物洗练
     //305 拥有N技能宠物一只
+    //306 击杀玩家
 
     public enum ChengJiuTargetEnum : int
     {
@@ -75,6 +76,7 @@ namespace ET
         TotalPetHeCheng_303 = 303,
         TotalPetXiLian_304 = 304,
         PetNSkill_305 = 305,
+        KillPlayerNumber_306 = 306,
     }
 
     public class ChengJiuComponent : Entity, IAwake, ITransfer, IUnitCache

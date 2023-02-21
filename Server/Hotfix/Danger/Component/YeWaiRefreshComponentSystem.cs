@@ -27,6 +27,7 @@ namespace ET
     {
         public override void Awake(YeWaiRefreshComponent self)
         {
+            self.LogTest = false;
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.RefreshMonsterTimer, self);
         }
     }
@@ -290,6 +291,11 @@ namespace ET
         {
             long time = TimeHelper.ServerNow();
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+
+            if (!self.LogTest)
+            {
+                self.LogTest = true;
+            }
 
             for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
             {
