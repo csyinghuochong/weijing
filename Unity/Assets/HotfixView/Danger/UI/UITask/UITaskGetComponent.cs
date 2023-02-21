@@ -369,13 +369,16 @@ namespace ET
         public static async ETTask RequestEnterFuben(this UITaskGetComponent self, int sceneId)
         {
             int sceneType = SceneConfigCategory.Instance.Get(sceneId).MapType;
-            int errorCode = ErrorCore.ERR_Success;
-            if (sceneType == SceneTypeEnum.MiJing 
-                || sceneType == SceneTypeEnum.BaoZang
-                || sceneType == SceneTypeEnum.Arena)
+            if (sceneType == SceneTypeEnum.Arena)
             {
-                errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), sceneType, sceneId);
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ArenaNumber)>0)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("次数不足！");
+                    return;
+                }
             }
+            int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), sceneType, sceneId);
             if (errorCode == ErrorCore.ERR_Success)
             { 
                 UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
