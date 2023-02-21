@@ -2456,4 +2456,23 @@ namespace ET
 
 	}
 
+//踢出掉线玩家
+	[Message(InnerOpcode.G2M_KickPlayerRequest)]
+	[ProtoContract]
+	public partial class G2M_KickPlayerRequest: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+		[ProtoMember(3)]
+		public long SceneId { get; set; }
+
+	}
+
 }

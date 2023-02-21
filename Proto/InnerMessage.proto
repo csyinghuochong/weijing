@@ -1180,3 +1180,12 @@ message Arena2M_ArenaEnterResponse // IActorResponse
 
 	int64 FubenInstanceId = 2;
 }
+
+//踢出掉线玩家
+message G2M_KickPlayerRequest // IActorLocationMessage
+{
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int64 UnitId = 2;
+	int64 SceneId = 3;
+}
