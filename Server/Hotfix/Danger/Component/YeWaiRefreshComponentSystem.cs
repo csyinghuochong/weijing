@@ -292,9 +292,19 @@ namespace ET
             long time = TimeHelper.ServerNow();
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
 
-            if (!self.LogTest)
+            if (!self.LogTest && mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
             {
                 self.LogTest = true;
+
+                Log.Debug($"野外定时怪[数量]：{self.DomainZone()} {self.RefreshMonsters.Count}");
+
+                for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
+                {
+                    if (self.RefreshMonsters[i].MonsterId == 72009003)
+                    {
+                        Log.Debug($"野外定时怪[火龙]：{self.DomainZone()} {self.RefreshMonsters[i].NextTime - TimeHelper.ServerNow()}");
+                    }
+                }
             }
 
             for (int i = self.RefreshMonsters.Count - 1; i >= 0; i--)
