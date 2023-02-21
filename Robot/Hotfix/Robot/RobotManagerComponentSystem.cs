@@ -9,6 +9,7 @@ namespace ET
     {
         public override void Awake(RobotManagerComponent self)
         {
+            self.RobotNumber.Clear();
             self.ZoneIndex = Game.Options.Process * 10000;
         }
     }
@@ -30,19 +31,25 @@ namespace ET
             try
             {
                 int robotNumber = 0;
-                List<Entity> ts = self.Children.Values.ToList();
-                for (int i = 0; i < ts.Count; i++)
+                //List<Entity> ts = self.Children.Values.ToList();
+                //for (int i = 0; i < ts.Count; i++)
+                //{
+                //    Scene robotScene = ts[i] as Scene;
+                //    BehaviourComponent behaviourComponent = robotScene.GetComponent<BehaviourComponent>();
+                //    if (behaviourComponent == null || behaviourComponent.RobotConfig.Id == robotId)
+                //    {
+                //        robotNumber++;
+                //    }
+                //}
+                if (!self.RobotNumber.ContainsKey(robotId))
                 {
-                    Scene robotScene = ts[i] as Scene;
-                    if (robotScene.GetComponent<BehaviourComponent>().RobotConfig.Id == robotId)
-                    {
-                        robotNumber++;
-                    }
+                    self.RobotNumber.Add(robotId, 0);
                 }
+                robotNumber = self.RobotNumber[robotId]++;
 
                 //同一个进程robotZone是自增的
                 zoneScene = SceneFactory.CreateZoneScene(robotZone, "Robot", self);
-                string account = $"{robotId}_{zone}_{robotNumber}_abe";
+                string account = $"{robotId}_{zone}_{robotNumber}_0221";
                 Log.Debug($"NewRobot  :{robotZone}  {account}");
                 bool innernet = ComHelp.IsInnerNet();
                 int registerCode = await LoginHelper.Register(zoneScene, !innernet, VersionMode.Beta, account, ComHelp.RobotPassWord);
