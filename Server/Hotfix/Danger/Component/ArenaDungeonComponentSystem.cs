@@ -46,7 +46,7 @@ namespace ET
                 arenaInfo.PlayerList[unitlist[i].Id] = arenaPlayerStatu;
             }
 
-            self.M2C_AreneInfoResult.LeftPlayer = unitlist.Count;//  + FubenHelp.GetUnitList(self.DomainScene(), UnitType.Monster).Count;
+            self.M2C_AreneInfoResult.LeftPlayer = unitlist.Count;
             MessageHelper.SendToClient(unitlist, self.M2C_AreneInfoResult);
         }
 

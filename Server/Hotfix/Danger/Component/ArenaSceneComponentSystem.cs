@@ -44,6 +44,7 @@ namespace ET
 
         public static void OnZeroClockUpdate(this ArenaSceneComponent self)
         {
+            self.AreneSceneOpen = false;    
             self.ArenaSceneClose = false;
             self.ArenaSceneOver = false;
             TimerComponent.Instance.Remove(ref self.Timer);
@@ -61,7 +62,12 @@ namespace ET
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1031);
             string[] openTimes = funtionConfig.OpenTime.Split('@');
             int openTime = int.Parse(openTimes[0].Split(';')[0]) * 60 + int.Parse(openTimes[0].Split(';')[1]);
-            
+            if (curTime < openTime)
+            {
+                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (openTime - curTime), TimerType.ArenaTimer, self);
+                return;
+            }
+
             int closeTime = int.Parse(openTimes[1].Split(';')[0]) * 60 + int.Parse(openTimes[1].Split(';')[1]);
             if (curTime < closeTime)
             {
@@ -76,8 +82,22 @@ namespace ET
             }
         }
 
+        public static void OnArenaOpen(this ArenaSceneComponent self)
+        {
+            if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
+            {
+                long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.ArenaOpen });
+            }
+        }
+
         public static void OnCheck(this ArenaSceneComponent self)
         {
+            if (!self.AreneSceneOpen)
+            { 
+                self.AreneSceneOpen = true;
+                self.OnArenaOpen();
+            }
             if (!self.ArenaSceneClose)
             {
                 self.ArenaSceneClose = true;

@@ -24,10 +24,11 @@ namespace ET
         public const int UnitDisconnect = 3;
         public const int BattleOpen = 3;
         public const int BattleNotice = 4;
-        public const int BattleClose = 5;
+        public const int BattleOver = 5;
         public const int TeamDungeon = 6;
         public const int YeWaiBoss = 7;
         public const int TeamExit = 8;
+        public const int ArenaOpen = 9;
     }
 
 }

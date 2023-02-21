@@ -28,6 +28,8 @@ namespace ET
 
         public long Timer;
 
+        public bool AreneSceneOpen;
+
         public bool ArenaSceneClose;
 
         public bool ArenaSceneOver;

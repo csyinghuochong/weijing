@@ -56,6 +56,23 @@ namespace ET
                         }
                     } 
                     break;
+                case NoticeType.ArenaOpen:
+                    using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
+                    {
+                        for (int i = 0; i < 2; i++)
+                        {
+                            int robotZone = robotManagerComponent.ZoneIndex++;
+                            int robotId = BattleHelper.GetBattleRobotId(5, 0);
+                            if (robotId == 0)
+                            {
+                                continue;
+                            }
+                            Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                            robotScene?.AddComponent<BehaviourComponent, int>(robotId);
+                            await TimerComponent.Instance.WaitAsync(1000);
+                        }
+                    }
+                    break;
                 case NoticeType.BattleOpen:
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
@@ -73,7 +90,7 @@ namespace ET
                         }
                     }
                     break;
-                case NoticeType.BattleClose:
+                case NoticeType.BattleOver:
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.RemoveRobot, 1))
                     {
                         ts = robotManagerComponent.Children.Values.ToList();

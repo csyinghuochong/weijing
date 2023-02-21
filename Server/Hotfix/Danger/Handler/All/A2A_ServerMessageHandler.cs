@@ -24,7 +24,7 @@ namespace ET
                         scene.GetComponent<FangChenMiComponent>().StopServer = true;
                         break;
                     case SceneType.Battle:
-                        if (request.MessageType == NoticeType.BattleClose)
+                        if (request.MessageType == NoticeType.BattleOver)
                         {
                             scene.GetComponent<BattleSceneComponent>().OnBattleOver().Coroutine();
                         }

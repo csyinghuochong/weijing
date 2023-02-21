@@ -99,10 +99,10 @@ namespace ET
             self.OnBattleOpen = false;
 
             long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
-            MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleClose });
+            MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOver });
 
             ServerMessageHelper.SendServerMessage(DBHelper.GetBattleServerId(self.DomainZone()),
-               NoticeType.BattleClose, "战场即将关闭。请退出战场").Coroutine();
+               NoticeType.BattleOver, "战场即将关闭。请退出战场").Coroutine();
         }
 
         public static async ETTask InitDayActivity(this ActivitySceneComponent self)
