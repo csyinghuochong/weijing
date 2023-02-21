@@ -86,6 +86,7 @@ namespace ET
         {
             if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
             {
+                Log.Debug($"OnArenaClose：{self.DomainZone()}");
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.ArenaOpen });
             }
@@ -122,7 +123,7 @@ namespace ET
 
         public static async ETTask OnArenaOver(this ArenaSceneComponent self)
         {
-            Log.Debug($"OnArenaClose： {self.OnArenaOver()}");
+            Log.Debug($"OnArenaClose：{self.DomainZone()}");
             foreach (var item in self.Children)
             {
                 Scene scene = item.Value as Scene;

@@ -20,6 +20,10 @@ namespace ET
         public static async ETTask RemoveRobot(this RobotManagerComponent self, Scene robotScene)
         {
             //self.ZoneIndex--;
+            if (self == null || robotScene.GetComponent<BehaviourComponent>() == null)
+            {
+                return;
+            }
             int robotId = robotScene.GetComponent<BehaviourComponent>().RobotConfig.Id;
             if (!self.RobotNumber.ContainsKey(robotId))
             {
