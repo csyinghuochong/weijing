@@ -57,12 +57,14 @@ namespace ET
                     } 
                     break;
                 case NoticeType.ArenaOpen:
+                    Log.Debug($"机器人数量[ArenaOpen]");
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
                         for (int i = 0; i < 2; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
                             int robotId = BattleHelper.GetBattleRobotId(5, 0);
+                            Log.Debug($"机器人数量[ArenaOpen]:{robotId}");
                             if (robotId == 0)
                             {
                                 continue;

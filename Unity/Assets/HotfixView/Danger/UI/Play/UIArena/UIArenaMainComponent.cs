@@ -1,20 +1,30 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace ET
 {
     public class UIArenaMainComponent : Entity, IAwake
     {
+        public GameObject TextVS;
+    }
+
+    [ObjectSystem]
+    public class UIArenaMainComponentAwake : AwakeSystem<UIArenaMainComponent>
+    {
+        public override void Awake(UIArenaMainComponent self)
+        {
+            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>(); 
+
+            self.TextVS = rc.Get<GameObject>("TextVS");
+        }
     }
 
     public static class UIArenaMainComponentSystem
     {
         public static void OnUpdateUI(this UIArenaMainComponent self, M2C_AreneInfoResult message)
-        { 
-            
+        {
+            self.TextVS.GetComponent<Text>().text = $"剩余人数： {message.LeftPlayer}";
         }
     }
 }

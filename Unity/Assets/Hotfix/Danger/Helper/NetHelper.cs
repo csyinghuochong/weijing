@@ -16,14 +16,20 @@
             return respone.Error;
         }
 
-        public static async ETTask<int> OnRobotEnter(Scene zoneScene)
+        public static async ETTask<int> RequstArenaEnter(Scene zoneScene)
         {
-            int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
-            int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, sceneId);
+            int sceneId = BattleHelper.GetSceneIdByType(SceneTypeEnum.Arena);
+            //FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1031);
+            //bool intime = FunctionHelp.IsInTime(funtionConfig.OpenTime);
+            //if (!intime)
+            //{
+            //    return ErrorCore.ERR_AlreadyFinish;
+            //}
+            int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Arena, sceneId);
             return errorCode;
         }
 
-        public static async ETTask<int> OnButtonEnter(Scene zoneScene)
+        public static async ETTask<int> RequstBattleEnter(Scene zoneScene)
         {
             int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
             if (sceneId == 0)

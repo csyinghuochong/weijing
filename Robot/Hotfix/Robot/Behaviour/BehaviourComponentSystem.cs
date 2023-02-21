@@ -63,6 +63,13 @@ namespace ET
                     self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
                     self.NewBehaviour = BehaviourType.Behaviour_YeWaiBoss;
                     break;
+                case 5:
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Arena, Value = "Behaviour_Arena" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_ZhuiJi, Value = "Behaviour_ZhuiJi" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Attack, Value = "Behaviour_Attack" });
+                    self.Behaviours.Add(new KeyValuePair() { KeyId = BehaviourType.Behaviour_Target, Value = "Behaviour_Target" });
+                    self.NewBehaviour = BehaviourType.Behaviour_Arena;
+                    break;
             }
 
             if (!ComHelp.IfNull(robotConfig.AIParameter))

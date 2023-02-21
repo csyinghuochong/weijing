@@ -8,6 +8,7 @@
 		{
 			MapComponent mapComponent = zoneScene.GetComponent<MapComponent>();
 			if (mapComponent.SceneTypeEnum == SceneTypeEnum.Battle
+			 || mapComponent.SceneTypeEnum == SceneTypeEnum.Arena
 			 || mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
 			{
 				await TimerComponent.Instance.WaitAsync(RandomHelper.RandomNumber(5000, 10000));

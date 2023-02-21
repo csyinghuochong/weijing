@@ -167,6 +167,8 @@ namespace ET
 						{
 							UnitFactory.CreatePet(unit, fightId);
 						}
+
+						unit.DomainScene().GetComponent<ArenaDungeonComponent>().OnUpdateRank();
 						break;
 					case (int)SceneTypeEnum.TeamDungeon:
 					case (int)SceneTypeEnum.BaoZang:

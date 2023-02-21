@@ -1,11 +1,12 @@
 ﻿namespace ET
 {
-    //战场
-    public class Behaviour_Battle : BehaviourHandler
+
+    //角斗场
+    public class Behaviour_Arena : BehaviourHandler
     {
         public override int BehaviourId()
         {
-            return BehaviourType.Behaviour_Battle;
+            return BehaviourType.Behaviour_Arena;
         }
 
         public override bool Check(BehaviourComponent aiComponent, AIConfig aiConfig)
@@ -16,21 +17,19 @@
         public override async ETTask Execute(BehaviourComponent aiComponent, AIConfig aiConfig, ETCancellationToken cancellationToken)
         {
             Scene zoneScene = aiComponent.ZoneScene();
-            await zoneScene.GetComponent<BagComponent>().CheckEquipList();
+            Log.Debug($"Behaviour_Arena: Execute");
             while (true)
             {
-                int sceneId = BattleHelper.GetBattFubenId(zoneScene.GetComponent<UserInfoComponent>().UserInfo.Lv);
-                int errorCode = await EnterFubenHelp.RequestTransfer(zoneScene, SceneTypeEnum.Battle, sceneId);
-
+                int errorCode = await NetHelper.RequstArenaEnter(zoneScene);
                 if (errorCode != 0)
                 {
-                    Log.Debug($"Behaviour_Battle: errorCode {errorCode}");
+                    Log.Debug($"Behaviour_Arena: errorCode {errorCode}");
                 }
                 // 因为协程可能被中断，任何协程都要传入cancellationToken，判断如果是中断则要返回
                 bool ret = await TimerComponent.Instance.WaitAsync(10000, cancellationToken);
                 if (!ret)
                 {
-                    Log.Debug("Behaviour_Battle: Exit1");
+                    Log.Debug("Behaviour_Arena: Exit1");
                     return;
                 }
             }

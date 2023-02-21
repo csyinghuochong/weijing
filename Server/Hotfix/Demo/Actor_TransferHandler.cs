@@ -29,14 +29,6 @@ namespace ET
 			{
 				using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.BeiYong, unit.Id))
 				{
-					if (request.SceneType == SceneTypeEnum.Arena 
-						&& !GMHelp.GmAccount.Contains(unit.GetComponent<UserInfoComponent>().Account))
-					{
-						response.Error = ErrorCore.ERR_AlreadyFinish;
-						reply();
-						return;
-					}
-
 					int oldScene = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
 					if (oldScene == request.SceneType && request.SceneType != SceneTypeEnum.LocalDungeon)
 					{

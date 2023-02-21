@@ -49,6 +49,12 @@ namespace ET
 						zoneScene.GetComponent<BehaviourComponent>().Start();
 						zoneScene.GetComponent<BehaviourComponent>().ChangeBehaviour(BehaviourType.Behaviour_Target);
 						break;
+					case SceneTypeEnum.Arena:
+						await TimerComponent.Instance.WaitAsync(20000);
+						zoneScene.GetComponent<SessionComponent>().Session.Dispose();
+						RobotManagerComponent robotManager = zoneScene.GetParent<RobotManagerComponent>();
+						robotManager.RemoveRobot(zoneScene).Coroutine();
+						break;
 					default:
 						EnterFubenHelp.RequestQuitFuben(unit.ZoneScene());
 						await TimerComponent.Instance.WaitAsync(1000);

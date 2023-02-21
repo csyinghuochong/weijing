@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ET
 {
@@ -44,19 +40,15 @@ namespace ET
 
         public static void OnZeroClockUpdate(this ArenaSceneComponent self)
         {
-            self.AreneSceneOpen = false;    
-            self.ArenaSceneClose = false;
-            self.ArenaSceneOver = false;
             TimerComponent.Instance.Remove(ref self.Timer);
             self.Timer = 0;
-            self.OnArenaOver().Coroutine();
+            self.AreneSceneStatu = 0;
             self.BeginTimer();
         }
 
         public static void BeginTimer(this ArenaSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
-
             int curTime = dateTime.Hour * 60 + dateTime.Minute;
 
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1031);
@@ -64,6 +56,7 @@ namespace ET
             int openTime = int.Parse(openTimes[0].Split(';')[0]) * 60 + int.Parse(openTimes[0].Split(';')[1]);
             if (curTime < openTime)
             {
+                self.AreneSceneStatu = 1;
                 self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (openTime - curTime), TimerType.ArenaTimer, self);
                 return;
             }
@@ -71,6 +64,7 @@ namespace ET
             int closeTime = int.Parse(openTimes[1].Split(';')[0]) * 60 + int.Parse(openTimes[1].Split(';')[1]);
             if (curTime < closeTime)
             {
+                self.AreneSceneStatu = 2;
                 self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow()+ TimeHelper.Minute * (closeTime- curTime), TimerType.ArenaTimer,self);
                 return;
             }
@@ -78,6 +72,7 @@ namespace ET
             int overTime = int.Parse(openTimes[2].Split(';')[0]) * 60 + int.Parse(openTimes[2].Split(';')[1]);
             if (curTime < overTime)
             {
+                self.AreneSceneStatu = 3;
                 self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (overTime - curTime), TimerType.ArenaTimer, self);
             }
         }
@@ -86,7 +81,7 @@ namespace ET
         {
             if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
             {
-                Log.Debug($"OnArenaClose：{self.DomainZone()}");
+                Log.Debug($"OnArenaOpen：{self.DomainZone()}");
                 long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
                 MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.ArenaOpen });
             }
@@ -94,19 +89,16 @@ namespace ET
 
         public static void OnCheck(this ArenaSceneComponent self)
         {
-            if (!self.AreneSceneOpen)
+            if (self.AreneSceneStatu == 1)
             { 
-                self.AreneSceneOpen = true;
                 self.OnArenaOpen();
             }
-            if (!self.ArenaSceneClose)
+            if (self.AreneSceneStatu == 2)
             {
-                self.ArenaSceneClose = true;
                 self.OnArenaClose();
             }
-            if (!self.ArenaSceneOver)
+            if (self.AreneSceneStatu == 3)
             {
-                self.ArenaSceneOver = true;
                 self.OnArenaOver().Coroutine();
             }
         }
@@ -128,6 +120,7 @@ namespace ET
             {
                 Scene scene = item.Value as Scene;
                 await scene.GetComponent<ArenaDungeonComponent>().OnArenaOver();
+                await TimerComponent.Instance.WaitAsync(60000);
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
             }

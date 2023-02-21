@@ -126,6 +126,27 @@ namespace ET
         }
 
         /// <summary>
+        /// 踢出还在副本的玩家
+        /// </summary>
+        /// <param name="self"></param>
+        public static  void KickOutPlayer(this ArenaDungeonComponent self)
+        {
+            List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            for (int i = 0; i < units.Count; i++)
+            {
+                if (units[i].Type != UnitType.Player)
+                {
+                    continue;
+                }
+                if (units[i].IsDisposed || units[i].IsRobot())
+                {
+                    continue;
+                }
+                TransferHelper.MainCityTransfer(units[i]).Coroutine();
+            }
+        }
+
+        /// <summary>
         /// 时间到
         /// </summary>
         /// <param name="sel"></param>
@@ -137,6 +158,7 @@ namespace ET
             {
                 Log.Debug($"OnArenaOver: {self.DomainZone()} {unitid} {ArenaPlayerStatu.RankId}");
             }
+            self.KickOutPlayer();
 
             //战场关闭之前退出的玩家
             self.SendReward(self.GetNoRankPlayers(), "1;1");
