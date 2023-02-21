@@ -78,6 +78,8 @@ namespace ET
                 int[] pistionId = new int[1] { int.Parse(monsterItem[1]) };
                 FubenHelp.CreateMonsterList(self.DomainScene(), pistionId);
             }
+
+
         }
 
         public static void OnAddRefreshList(this YeWaiRefreshComponent self, Unit unit, long reTime)
@@ -197,9 +199,9 @@ namespace ET
                 for (int t = 0; t < timers.Length; t++)
                 {
                     long leftTime = self.LeftTime(timers[t]);
-                    if (leftTime == 0)
+                    if (leftTime < 0)
                     {
-                        continue;
+                        leftTime += TimeHelper.OneDay;
                     }
 
                     self.RefreshMonsters.Add(new RefreshMonster()
@@ -238,9 +240,9 @@ namespace ET
             for (int t = 0; t < timers.Length; t++)
             {
                 long leftTime = self.LeftTime(timers[t]);
-                if (leftTime == 0)
+                if (leftTime < 0)
                 {
-                    continue;
+                    leftTime += TimeHelper.OneDay;
                 }
 
                 self.RefreshMonsters.Add(new RefreshMonster()
@@ -264,19 +266,15 @@ namespace ET
             int huor = dateTime.Hour;
             int minute = dateTime.Minute;
             int second = dateTime.Second;
-            int time1 = huor * 3600 + minute * 60 + second;
+            int curtime = huor * 3600 + minute * 60 + second;
 
             int targetHour = int.Parse(targetTime.Substring(0, 2));
             int targetMinute = int.Parse(targetTime.Substring(2, 2));
-            int time2 = targetHour * 3600 + targetMinute * 60;
-            if (time2 <= time1)
-            {
-                return 0;
-            }
-            return (time2 - time1) * 1000;
+            int dsttime = targetHour * 3600 + targetMinute * 60;
+            return (dsttime - curtime) * 1000;
         }
 
-        public static void Baozangzhixiufu(this YeWaiRefreshComponent self)
+        public static void BaozangzhiRefresh(this YeWaiRefreshComponent self)
         {
             self.RefreshMonsters.Clear();
 
@@ -292,9 +290,11 @@ namespace ET
             long time = TimeHelper.ServerNow();
             MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
 
-            if (!self.LogTest && mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
+            if (self.LogTest && mapComponent.SceneTypeEnum == SceneTypeEnum.BaoZang)
             {
-                self.LogTest = true;
+                self.LogTest = false;
+
+                //self.BaozangzhiRefresh();
 
                 Log.Debug($"野外定时怪[数量]：{self.DomainZone()} {self.RefreshMonsters.Count}");
 

@@ -27,8 +27,15 @@ namespace ET
 			//await Game.Scene.GetComponent<LocationProxyComponent>().UnLock(unitId, instanceId, m2m_TrasferUnitResponse.InstanceId);
 			try
 			{
-				using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.LoginAccount, unit.Id))
+				using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.BeiYong, unit.Id))
 				{
+					if (request.SceneType == SceneTypeEnum.Arena)
+					{
+						response.Error = ErrorCore.ERR_AlreadyFinish;
+						reply();
+						return;
+					}
+
 					int oldScene = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
 					if (oldScene == request.SceneType && request.SceneType != SceneTypeEnum.LocalDungeon)
 					{
