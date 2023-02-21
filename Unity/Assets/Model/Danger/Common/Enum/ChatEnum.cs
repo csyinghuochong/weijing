@@ -29,6 +29,7 @@ namespace ET
         public const int YeWaiBoss = 7;
         public const int TeamExit = 8;
         public const int ArenaOpen = 9;
+        public const int ArenaClose = 10;
     }
 
 }
