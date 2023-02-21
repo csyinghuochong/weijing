@@ -13,12 +13,141 @@ namespace ET
 
         public override void Awake(ArenaDungeonComponent self)
         {
-            self.Timer = 0;
         }
     }
 
     public static class ArenaDungeonComponentSystem
     {
+
+        /// <summary>
+        /// 战场关闭， 禁止进入
+        /// </summary>
+        /// <param name="self"></param>
+        public static void OnArenaClose(this ArenaDungeonComponent self)
+        {
+            self.OnUpdateRank();
+        }
+
+        public static void OnUpdateRank(this ArenaDungeonComponent self)
+        {
+            List<Unit> unitlist = FubenHelp.GetAliveUnitList(self.DomainScene(), UnitType.Player);
+
+            ArenaInfo arenaInfo = self.DomainScene().GetComponent<ArenaInfo>();
+            for (int i = 0; i < unitlist.Count; i++)
+            {
+                ArenaPlayerStatu arenaPlayerStatu = arenaInfo.PlayerList[unitlist[i].Id];
+                arenaPlayerStatu.RankId = unitlist.Count;
+                arenaInfo.PlayerList[unitlist[i].Id] = arenaPlayerStatu;
+            }
+
+            self.M2C_AreneInfoResult.LeftPlayer = unitlist.Count;
+            MessageHelper.SendToClient(unitlist, self.M2C_AreneInfoResult);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="players"></param>
+        /// <param name="start"></param>
+        /// <param name="end"></param>
+        /// <param name="rewardList"></param>
+        public static void SendReward(this ArenaDungeonComponent self, List<ArenaPlayerStatu> players,  string rewardList)
+        {
+            long serverTime = TimeHelper.ServerNow();
+
+            for (int i = 0; i < players.Count; i++)
+            {
+                MailInfo mailInfo = new MailInfo();
+                mailInfo.Status = 0;
+                mailInfo.Title = "角斗场排名奖励";
+                mailInfo.MailId = IdGenerater.Instance.GenerateId();
+
+                if (players[i].RankId > 0)
+                {
+                    mailInfo.Context = $"恭喜你在角斗场中获得第{players[i].RankId}名,获得如下奖励";
+                }
+                else
+                {
+                    mailInfo.Context = $"参与角斗场,获得如下奖励";
+                }
+                string[] needList = rewardList.Split('@');
+                for (int k = 0; k < needList.Length; k++)
+                {
+                    string[] itemInfo = needList[k].Split(';');
+                    if (itemInfo.Length < 2)
+                    {
+                        continue;
+                    }
+                    int itemId = int.Parse(itemInfo[0]);
+                    int itemNum = int.Parse(itemInfo[1]);
+                    mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.BattleWin}_{serverTime}" });
+                }
+                MailHelp.SendUserMail(self.DomainZone(), players[i].UnitId, mailInfo).Coroutine();
+            }
+        }
+
+        public static List<ArenaPlayerStatu> GetNoRankPlayers(this ArenaDungeonComponent self)
+        {
+            List<ArenaPlayerStatu> arenaPlayerStatus = new List<ArenaPlayerStatu>();    
+            ArenaInfo arenaInfo = self.DomainScene().GetComponent<ArenaInfo>();
+            foreach (var item in arenaInfo.PlayerList)
+            {
+                if (item.Value.RankId == 0)
+                {
+                    arenaPlayerStatus.Add(item.Value);
+                }
+            }
+            return arenaPlayerStatus;
+        }
+
+        public static List<ArenaPlayerStatu> GetRankPlayers(this ArenaDungeonComponent self, int start, int end)
+        {
+            List<ArenaPlayerStatu> arenaPlayerStatus = new List<ArenaPlayerStatu>();
+            ArenaInfo arenaInfo = self.DomainScene().GetComponent<ArenaInfo>();
+            foreach (var item in arenaInfo.PlayerList)
+            {
+                if (item.Value.RankId == 0)
+                {
+                    continue;
+                }
+                if (item.Value.RankId >= start && item.Value.RankId <= end)
+                {
+                    arenaPlayerStatus.Add((ArenaPlayerStatu)item.Value);
+                }
+            }
+            return arenaPlayerStatus;
+        }
+
+        /// <summary>
+        /// 时间到
+        /// </summary>
+        /// <param name="sel"></param>
+        /// <returns></returns>
+        public static async ETTask OnArenaOver(this ArenaDungeonComponent self)
+        {
+            ArenaInfo arenaInfo = self.DomainScene().GetComponent<ArenaInfo>();
+            foreach ((long unitid, ArenaPlayerStatu ArenaPlayerStatu) in arenaInfo.PlayerList)
+            {
+                Log.Debug($"OnArenaOver: {self.DomainZone()} {unitid} {ArenaPlayerStatu.RankId}");
+            }
+
+            //战场关闭之前退出的玩家
+            self.SendReward(self.GetNoRankPlayers(), "1;1");
+
+            //第一名玩家的奖励
+            self.SendReward(self.GetRankPlayers(1, 1), "");
+
+            //第2-30名玩家的奖励
+            self.SendReward(self.GetRankPlayers(2, 30), "");
+
+            await ETTask.CompletedTask;
+        }
+
+        public static void OnUnitDisconnect(this ArenaDungeonComponent self, long unitId)
+        {
+            self.OnUpdateRank();
+        }
 
         public static void OnKillEvent(this ArenaDungeonComponent self, Unit defend, Unit attack)
         {
@@ -26,7 +155,22 @@ namespace ET
             {
                 return;
             }
+            if (attack  ==null || attack.Type != UnitType.Player)
+            {
+                return;
+            }
 
+            ArenaInfo arenaInfo = self.DomainScene().GetComponent<ArenaInfo>();
+            if (!arenaInfo.PlayerList.ContainsKey(attack.Id))
+            {
+                Log.Debug($"ArenaDungeon:  {attack.Id}not found");
+                return;
+            }
+            ArenaPlayerStatu arenaPlayerStatu = arenaInfo.PlayerList[attack.Id];
+            arenaPlayerStatu.KillNumber = arenaPlayerStatu.KillNumber + 1;
+            arenaInfo.PlayerList[attack.Id] = arenaPlayerStatu;
+
+            self.OnUpdateRank();
         }
     }
 }

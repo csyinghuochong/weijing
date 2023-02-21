@@ -8,7 +8,8 @@ namespace ET
         {
             return sceneType != SceneTypeEnum.Battle 
                 && sceneType != SceneTypeEnum.TrialDungeon
-                && sceneType != SceneTypeEnum.Tower;
+                && sceneType != SceneTypeEnum.Tower
+                && sceneType != SceneTypeEnum.Arena;
         }
 
         public static bool ShowLeftButton(int sceneType)

@@ -294,21 +294,6 @@ namespace ET
 			return petNumber;
 		}
 
-		public static int GetAliveUnitNumber(Scene scene, int unitType)
-		{
-			int petNumber = 0;
-			List<Unit> units = GetUnitList(scene, unitType);
-			for (int i = 0; i < units.Count; i++)
-			{
-				if (units[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
-				{
-					petNumber++;
-				}
-			}
-
-			return petNumber;
-		}
-
 		public static List<Unit> GetUnitListByCamp(Scene scene, int unitType, int camp)
 		{
 			List<Unit> units = new List<Unit>();
@@ -316,6 +301,20 @@ namespace ET
 			for (int i = 0; i < allunits.Count; i++)
 			{
 				if (allunits[i].Type == unitType && allunits[i].GetBattleCamp() == camp)
+				{
+					units.Add(allunits[i]);
+				}
+			}
+			return units;
+		}
+
+		public static List<Unit> GetAliveUnitList(Scene scene, int unitType)
+		{
+			List<Unit> units = new List<Unit>();
+			List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
+			for (int i = 0; i < allunits.Count; i++)
+			{
+				if (allunits[i].Type == unitType || units[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
 				{
 					units.Add(allunits[i]);
 				}

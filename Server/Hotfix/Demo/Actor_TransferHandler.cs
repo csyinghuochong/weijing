@@ -172,6 +172,11 @@ namespace ET
 							mapInstanceId = DBHelper.GetArenaServerId(unit.DomainZone());
 							Arena2M_ArenaEnterResponse areneEnter = (Arena2M_ArenaEnterResponse)await ActorMessageSenderComponent.Instance.Call(
 							mapInstanceId, new M2Arena_ArenaEnterRequest() { UserID = unit.Id, SceneId = request.SceneId });
+							if (areneEnter.Error != ErrorCore.ERR_Success || areneEnter.FubenInstanceId == 0)
+							{
+								reply();
+								return;
+							}
 							TransferHelper.BeforeTransfer(unit);
 							await TransferHelper.Transfer(unit, areneEnter.FubenInstanceId, (int)SceneTypeEnum.Arena, request.SceneId, FubenDifficulty.Normal, "0");
 							break;

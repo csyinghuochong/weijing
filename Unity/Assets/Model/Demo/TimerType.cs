@@ -61,6 +61,7 @@
         public const int UIMainTimer = 1070;
         public const int ShenQiMakeTimer = 1063;
         public const int WatchTimer = 1064;
+        public const int ArenaTimer = 1065;
         // 不能超过10000
     }
 }

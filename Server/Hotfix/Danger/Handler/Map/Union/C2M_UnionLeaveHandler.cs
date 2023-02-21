@@ -3,7 +3,7 @@
 namespace ET
 {
     [ActorMessageHandler]
-    public class C2M_UnionLeaveHandler : AMActorLocationRpcHandler<Unit, C2M_UnionLeaveRequest, M2C_UnionLeaveResponse>
+    public class C2M_UniHandler : AMActorLocationRpcHandler<Unit, C2M_UnionLeaveRequest, M2C_UnionLeaveResponse>
     {
 
         protected override async ETTask Run(Unit unit, C2M_UnionLeaveRequest request, M2C_UnionLeaveResponse response, Action reply)

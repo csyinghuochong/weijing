@@ -32,6 +32,7 @@ namespace ET
             zoneScene.AddComponent<ShoujiComponent>();
             zoneScene.AddComponent<AttackComponent>();
             zoneScene.AddComponent<TitleComponent>();
+            zoneScene.AddComponent<BattleMessageComponent>();
 
             EventType.AfterCreateZoneScene.Instance.ZoneScene = zoneScene;
             Game.EventSystem.PublishClass(EventType.AfterCreateZoneScene.Instance);

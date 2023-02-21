@@ -190,6 +190,11 @@ namespace ET
                 TeamSceneComponent teamSceneComponent = scene.GetParent<TeamSceneComponent>();
                 teamSceneComponent.OnUnitDisconnect(scene, userId);
             }
+            if (sceneTypeEnum == (int)SceneTypeEnum.Arena)
+            {
+                ArenaDungeonComponent areneSceneComponent = scene.GetComponent<ArenaDungeonComponent>();
+                areneSceneComponent.OnUnitDisconnect(userId);
+            }
             return ErrorCode.ERR_Success;
         }
 

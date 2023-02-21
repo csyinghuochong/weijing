@@ -212,6 +212,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class AreneInfo : DisposeObject
+        {
+            public static readonly AreneInfo Instance = new AreneInfo();
+            public M2C_AreneInfoResult m2C_Battle;
+            public Scene ZoneScene;
+        }
+
         public class RolePetAdd : DisposeObject
         {
             public static readonly RolePetAdd Instance = new RolePetAdd();
