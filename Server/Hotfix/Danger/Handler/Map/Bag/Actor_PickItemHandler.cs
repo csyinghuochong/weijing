@@ -82,7 +82,6 @@ namespace ET
                 if (drops[i].DropType != 1 && itemConfig.ItemQuality >= 4)
                 {
                     teamDungeonComponent.AddTeamDropItem(unit, drops[i]);
-                    Log.Debug($"组队副本掉落橙装： { drops[i].ItemID}");
                     continue;
                 }
                 M2C_SyncChatInfo m2C_SyncChatInfo = FubenHelp.m2C_SyncChatInfo;

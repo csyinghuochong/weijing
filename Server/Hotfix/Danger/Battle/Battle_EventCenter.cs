@@ -157,6 +157,9 @@ namespace ET
                 case SceneTypeEnum.Battle:
                     domainScene.GetComponent<BattleDungeonComponent>().OnKillEvent(defendUnit, mainAttack);
                     break;
+                case SceneTypeEnum.Arena:
+                    domainScene.GetComponent<ArenaDungeonComponent>().OnKillEvent(defendUnit, mainAttack);
+                    break;
                 case SceneTypeEnum.TrialDungeon:
                     domainScene.GetComponent<TrialDungeonComponent>().OnKillEvent(defendUnit);
                     break;

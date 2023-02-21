@@ -59,6 +59,7 @@ namespace ET
                 case (int)SceneTypeEnum.TrialDungeon:
                 case (int)SceneTypeEnum.PetTianTi:
                 case (int)SceneTypeEnum.Battle:
+                case (int)SceneTypeEnum.Arena:
                     loadResName = backpngs[index];
                     sceneConfig = SceneConfigCategory.Instance.Get(chapterId);
                     loadResName = !ComHelp.IfNull(sceneConfig.LoadingRes) ? sceneConfig.LoadingRes : "MainCity";

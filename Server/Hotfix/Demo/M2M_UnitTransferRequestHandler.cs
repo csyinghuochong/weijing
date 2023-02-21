@@ -150,6 +150,9 @@ namespace ET
 							UnitFactory.CreatePet(unit, fightId);
 						}
 						break;
+					case SceneTypeEnum.Arena:
+
+						break;
 					case (int)SceneTypeEnum.TeamDungeon:
 					case (int)SceneTypeEnum.BaoZang:
 					case (int)SceneTypeEnum.MiJing:

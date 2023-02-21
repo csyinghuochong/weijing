@@ -162,7 +162,10 @@ namespace ET
 							break;
 						case SceneTypeEnum.Arena:
 							mapInstanceId = DBHelper.GetArenaServerId(unit.DomainZone());
-
+							Arena2M_ArenaEnterResponse areneEnter = (Arena2M_ArenaEnterResponse)await ActorMessageSenderComponent.Instance.Call(
+							mapInstanceId, new M2Arena_ArenaEnterRequest() { UserID = unit.Id, SceneId = request.SceneId });
+							TransferHelper.BeforeTransfer(unit);
+							await TransferHelper.Transfer(unit, areneEnter.FubenInstanceId, (int)SceneTypeEnum.Arena, request.SceneId, FubenDifficulty.Normal, String.Empty);
 							break;
 						case (int)SceneTypeEnum.TeamDungeon:
 							mapComponent = unit.DomainScene().GetComponent<MapComponent>();

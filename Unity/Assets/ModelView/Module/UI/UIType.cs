@@ -122,6 +122,7 @@ namespace ET
 		public const string UIFenXiang = "Main/FenXiang/UIFenXiang";
 		public const string UINewYear = "Main/NewYear/UINewYear";
 		public const string UIDeleteAccount = "Login/UIDeleteAccount";
+		public const string UIArenaMain = "Main/Arena/UIArenaMain";
 
 
 		public static Dictionary<string, string> keyValuePairs = new Dictionary<string, string>()

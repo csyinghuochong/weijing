@@ -50,6 +50,9 @@ namespace ET
                 case SceneTypeEnum.Battle:
                     UIHelper.Remove(args.ZoneScene, UIType.UIBattleMain);
                     break;
+                case SceneTypeEnum.Arena:
+                    
+                    break;
                 case SceneTypeEnum.TeamDungeon:
                     UIHelper.Remove(args.ZoneScene, UIType.UITeamMain);
                     break;

@@ -7,7 +7,7 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2Arena_ArenaEnterRequest request, Arena2M_ArenaEnterResponse response, Action reply)
         {
-            BattleInfo battleInfo = scene.GetComponent<BattleSceneComponent>().GetBattleInstanceId(request.SceneId);
+            BattleInfo battleInfo = scene.GetComponent<ArenaSceneComponent>().GetArenaInstanceId(request.SceneId);
             battleInfo.PlayerNumber++;
             response.FubenInstanceId = battleInfo.FubenInstanceId;
            
