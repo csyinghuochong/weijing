@@ -314,7 +314,7 @@ namespace ET
 			List<Unit> allunits = scene.GetComponent<UnitComponent>().GetAll();
 			for (int i = 0; i < allunits.Count; i++)
 			{
-				if (allunits[i].Type == unitType || units[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
+				if (allunits[i].Type == unitType && units[i].GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 0)
 				{
 					units.Add(allunits[i]);
 				}

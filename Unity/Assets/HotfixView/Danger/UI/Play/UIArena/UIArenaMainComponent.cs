@@ -17,6 +17,8 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>(); 
 
             self.TextVS = rc.Get<GameObject>("TextVS");
+
+            self.OnInitUI();
         }
     }
 
@@ -25,6 +27,15 @@ namespace ET
         public static void OnUpdateUI(this UIArenaMainComponent self, M2C_AreneInfoResult message)
         {
             self.TextVS.GetComponent<Text>().text = $"剩余人数： {message.LeftPlayer}";
+        }
+
+        public static void OnInitUI(this UIArenaMainComponent self)
+        { 
+            BattleMessageComponent battleMessageComponent = self.ZoneScene().GetComponent<BattleMessageComponent>();
+            if (battleMessageComponent.M2C_AreneInfoResult != null)
+            {
+                self.OnUpdateUI(battleMessageComponent.M2C_AreneInfoResult);
+            }
         }
     }
 }
