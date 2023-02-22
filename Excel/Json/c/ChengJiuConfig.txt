@@ -67,7 +67,7 @@
 {"_t":"ChengJiuConfig","_id":10000404,"ChengjiuType":1,"ChapterId":10,"Name":"组队挑战:4级","Icon":10000004,"RewardNum":3,"TargetType":20,"TargetID":0,"TargetValue":30,"Des":"挑战组队副本达到30次"},
 {"_t":"ChengJiuConfig","_id":10000405,"ChengjiuType":1,"ChapterId":10,"Name":"组队挑战:5级","Icon":10000004,"RewardNum":4,"TargetType":20,"TargetID":0,"TargetValue":50,"Des":"挑战组队副本达到50次"},
 {"_t":"ChengJiuConfig","_id":10000406,"ChengjiuType":1,"ChapterId":10,"Name":"组队挑战:6级","Icon":10000004,"RewardNum":4,"TargetType":20,"TargetID":0,"TargetValue":100,"Des":"挑战组队副本达到100次"},
-{"_t":"ChengJiuConfig","_id":10000501,"ChengjiuType":1,"ChapterId":10,"Name":"组队深渊挑战:1级","Icon":10000005,"RewardNum":3,"TargetType":f,"TargetID":0,"TargetValue":3,"Des":"挑战组队副本深渊模式达到3次"},
+{"_t":"ChengJiuConfig","_id":10000501,"ChengjiuType":1,"ChapterId":10,"Name":"组队深渊挑战:1级","Icon":10000005,"RewardNum":3,"TargetType":21,"TargetID":0,"TargetValue":3,"Des":"挑战组队副本深渊模式达到3次"},
 {"_t":"ChengJiuConfig","_id":10000502,"ChengjiuType":1,"ChapterId":10,"Name":"组队深渊挑战:2级","Icon":10000005,"RewardNum":3,"TargetType":21,"TargetID":0,"TargetValue":5,"Des":"挑战组队副本深渊模式达到5次"},
 {"_t":"ChengJiuConfig","_id":10000503,"ChengjiuType":1,"ChapterId":10,"Name":"组队深渊挑战:3级","Icon":10000005,"RewardNum":3,"TargetType":21,"TargetID":0,"TargetValue":10,"Des":"挑战组队副本深渊模式达到10次"},
 {"_t":"ChengJiuConfig","_id":10000504,"ChengjiuType":1,"ChapterId":10,"Name":"组队深渊挑战:4级","Icon":10000005,"RewardNum":4,"TargetType":21,"TargetID":0,"TargetValue":15,"Des":"挑战组队副本深渊模式达到15次"},
