@@ -150,6 +150,10 @@ namespace ET
                     HintHelp.GetInstance().ShowHintError(errorCode);
                     return errorCode;       
                 }
+                if (unit.GetComponent<SingingComponent>().IsSkillSinging(skillid))
+                {
+                    return ErrorCore.ERR_Success;
+                }
 
                 unit.GetComponent<SingingComponent>().BeginSkill();
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);

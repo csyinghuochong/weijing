@@ -196,7 +196,6 @@ namespace ET
 					}
 				}
 			}
-
 		}
 
 		private async ETTask<long> EnterWorldChatServer(Unit unit)
@@ -209,6 +208,18 @@ namespace ET
 				GateSessionActorId = unit.GetComponent<UnitGateComponent>().GateSessionActorId
 			});
 			return chat2G_EnterChat.ChatInfoUnitInstanceId;
+		}
+
+		private async ETTask EnterRankServer(Unit unit)
+		{
+			long rankServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Rank)).InstanceId;
+			Rank2G_EnterRank chat2G_EnterChat = (Rank2G_EnterRank)await MessageHelper.CallActor(rankServerId, new G2Rank_EnterRank()
+			{
+				UnitId = unit.Id,
+			});
+
+			unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RankID, chat2G_EnterChat.RankId, false,false);
+			unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetRankID, chat2G_EnterChat.PetRankId, false, false);
 		}
 	}
 }

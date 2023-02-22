@@ -103,6 +103,103 @@ namespace ET
             return (float)Math.Round(value, 2);
         }
 
+        public static void OnLogin(this PetComponent self)
+        {
+            self.CheckPetPingFen();
+            self.CheckPetZiZhi();
+        }
+
+        public static void CheckPetPingFen(this PetComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            int maxping = self.GetPetMaxPingFen();
+
+            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PegScoreToValue_307, 0, maxping);
+
+            int arrayping = self.GetPetArrayPingFen();
+            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PetArrayScoreToValue_308, 0, maxping);
+        }
+
+        public static void CheckPetZiZhi(this PetComponent self)
+        {
+            Unit unit = self.GetParent<Unit>();
+            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZiZhiToValue_311, 1, self.GetPetMaxZiZhi(1));
+            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZiZhiToValue_311, 2, self.GetPetMaxZiZhi(2));
+            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZiZhiToValue_311, 3, self.GetPetMaxZiZhi(3));
+            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZiZhiToValue_311, 4, self.GetPetMaxZiZhi(4));
+            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZiZhiToValue_311, 5, self.GetPetMaxZiZhi(5));
+        }
+
+        public static int GetPetMaxZiZhi(this PetComponent self, int zizhiType)
+        {
+            int maxPing = 0;
+            for (int i = 0; i < self.RolePetInfos.Count; i++)
+            {
+                int zishi = 0;
+                switch (zizhiType)
+                {
+                   
+                    case 1: //="获得宠物生命资质超过"&K386&"点"
+                        zishi = self.RolePetInfos[i].ZiZhi_Hp;
+                        break;
+                    case 2: //="获得宠物攻击资质超过"&K387&"点"
+                        zishi = self.RolePetInfos[i].ZiZhi_Act;
+                        break;
+                    case 3: //="获得宠物物防资质超过"&K388&"点"
+                        zishi = self.RolePetInfos[i].ZiZhi_Def;
+                        break;
+                    case 4: //="获得宠物魔防资质超过"&K389&"点"
+                        zishi = self.RolePetInfos[i].ZiZhi_Adf;
+                        break;
+                    case 5: //="获得宠物魔法资质超过"&K390&"点"
+                        zishi = self.RolePetInfos[i].ZiZhi_Act;
+                        break;
+                }
+
+                if (zishi >= maxPing)
+                {
+                    maxPing = zishi;
+                }
+            }
+            return maxPing;
+        }
+
+        public static int GetPetMaxPingFen(this PetComponent self)
+        {
+            int maxPing = 0;
+            for (int i = 0; i < self.RolePetInfos.Count; i++)
+            {
+                if (self.RolePetInfos[i].PetPingFen >= maxPing)
+                {
+                    maxPing = self.RolePetInfos[i].PetPingFen;
+                }
+            }
+            return maxPing;
+        }
+
+        public static int GetPetArrayPingFen(this PetComponent self)
+        {
+            int pingfen_1 = 0;
+            int pingfen_2 = 0;
+            for (int i = 0; i < self.TeamPetList.Count; i++)
+            {
+                RolePetInfo rolePetInfo = self.GetPetInfo(self.TeamPetList[i]);
+                if (rolePetInfo!= null)
+                {
+                    pingfen_1 += rolePetInfo.PetPingFen;
+                }
+            }
+            for (int i = 0; i < self.PetFormations.Count; i++)
+            {
+                RolePetInfo rolePetInfo = self.GetPetInfo(self.PetFormations[i]);
+                if (rolePetInfo != null)
+                {
+                    pingfen_2 += rolePetInfo.PetPingFen;
+                }
+            }
+            return Math.Max(pingfen_1, pingfen_2);
+        }
+
         /// <summary>
         /// 宠物洗炼
         /// </summary>
@@ -110,8 +207,10 @@ namespace ET
         /// <param name="rolePetInfo"></param>
         /// <param name="XiLianType"> 1 表示出生  2 表示洗炼 </param>
         /// <returns></returns>
-        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo,int XiLianType) {
+        public static RolePetInfo PetXiLian(this PetComponent self, RolePetInfo rolePetInfo,int XiLianType) 
+        {
 
+            Unit unit = self.GetParent<Unit>();
             PetConfig petConfig = PetConfigCategory.Instance.Get(rolePetInfo.ConfigId);
            
             rolePetInfo.PetPingFen = int.Parse(petConfig.Base_PingFen);
@@ -122,6 +221,9 @@ namespace ET
             rolePetInfo.ZiZhi_Adf = RandomHelper.RandomNumber(petConfig.ZiZhi_Adf_Min, petConfig.ZiZhi_Adf_Max);
             rolePetInfo.ZiZhi_ActSpeed = RandomHelper.RandomNumber(petConfig.ZiZhi_ActSpeed_Min, petConfig.ZiZhi_ActSpeed_Max);
             rolePetInfo.ZiZhi_ChengZhang = self.RandomNumberFloatKeep2((float)petConfig.ZiZhi_ChengZhang_Min, (float)petConfig.ZiZhi_ChengZhang_Max);
+
+            self.CheckPetPingFen();
+            self.CheckPetZiZhi();
 
             //表示出生创建
             if (XiLianType == 1)    

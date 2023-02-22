@@ -20,38 +20,42 @@ namespace ET
             if (bekill == null || bekill.IsDisposed)
                 return;
 
-            if (bekill.Type != UnitType.Monster)
-                return;
+            if (bekill.Type == UnitType.Player)
+            {
+                self.TriggerEvent(ChengJiuTargetEnum.KillPlayerNumber_209, 0, 1);
+            }
+            if (bekill.Type == UnitType.Monster)
+            {
+                int unitconfigId = bekill.ConfigId;
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitconfigId);
+                bool isBoss = monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss;
+                MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
+                int fubenDifficulty = (int)FubenDifficulty.None;
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
+                {
+                    fubenDifficulty = (int)self.GetParent<Unit>().DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
+                }
+                if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
+                {
+                    fubenDifficulty = (int)self.GetParent<Unit>().DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
+                }
 
-            int unitconfigId = bekill.ConfigId;
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitconfigId);
-            bool isBoss = monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss;
-            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
-            int fubenDifficulty = (int)FubenDifficulty.None;
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.CellDungeon)
-            {
-                fubenDifficulty = (int)self.GetParent<Unit>().DomainScene().GetComponent<CellDungeonComponent>().FubenDifficulty;
-            }
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.LocalDungeon)
-            {
-                fubenDifficulty = (int)self.GetParent<Unit>().DomainScene().GetComponent<LocalDungeonComponent>().FubenDifficulty;
-            }
+                self.TriggerEvent(ChengJiuTargetEnum.KillIDMonster_1, unitconfigId, 1);
+                self.TriggerEvent(ChengJiuTargetEnum.KillTotalMonster_2, 0, 1);
 
-            self.TriggerEvent(ChengJiuTargetEnum.KillIDMonster_1, unitconfigId, 1);
-            self.TriggerEvent(ChengJiuTargetEnum.KillTotalMonster_2, 0, 1);
-
-            if (isBoss)
-            {
-                self.TriggerEvent(ChengJiuTargetEnum.KillTotalBoss_3, 0, 1);
-                self.TriggerEvent(ChengJiuTargetEnum.KillNormalBoss_4, unitconfigId, 1);
-            }
-            if (fubenDifficulty >= (int)FubenDifficulty.TiaoZhan && isBoss) //挑战
-            {
-                self.TriggerEvent(ChengJiuTargetEnum.KillChallengeBoss_5, unitconfigId, 1);
-            }
-            if (fubenDifficulty == (int)FubenDifficulty.DiYu && isBoss) //地狱
-            {
-                self.TriggerEvent(ChengJiuTargetEnum.KillInfernalBoss_6, unitconfigId, 1);
+                if (isBoss)
+                {
+                    self.TriggerEvent(ChengJiuTargetEnum.KillTotalBoss_3, 0, 1);
+                    self.TriggerEvent(ChengJiuTargetEnum.KillNormalBoss_4, unitconfigId, 1);
+                }
+                if (fubenDifficulty >= (int)FubenDifficulty.TiaoZhan && isBoss) //挑战
+                {
+                    self.TriggerEvent(ChengJiuTargetEnum.KillChallengeBoss_5, unitconfigId, 1);
+                }
+                if (fubenDifficulty == (int)FubenDifficulty.DiYu && isBoss) //地狱
+                {
+                    self.TriggerEvent(ChengJiuTargetEnum.KillInfernalBoss_6, unitconfigId, 1);
+                }
             }
         }
 
@@ -95,8 +99,13 @@ namespace ET
         public static void OnGetGold(this ChengJiuComponent self, int coin)
         {
             if (coin < 0)
-                return;
-            self.TriggerEvent(ChengJiuTargetEnum.TotalCoinGet_201,0, coin);
+            {
+                self.TriggerEvent(ChengJiuTargetEnum.TotalCostGold_219, 0, coin * -1);
+            }
+            else
+            {
+                self.TriggerEvent(ChengJiuTargetEnum.TotalCoinGet_201, 0, coin);
+            }
         }
 
         public static void OnGetPet(this ChengJiuComponent self, RolePetInfo rolePetInfo)
@@ -177,15 +186,12 @@ namespace ET
                         break;
                     }
                 }
-                if (exist)
+                if (exist || self.ChengJiuCompleteList.Contains(chengjiuList[i]))
                 {
                     continue;
                 }
-                exist = self.ChengJiuCompleteList.Contains(chengjiuList[i]);
-                if (!exist)
-                {
-                    self.ChengJiuProgessList.Add(new ChengJiuInfo() { ChengJiuID = chengjiuList[i] });
-                }
+
+                self.ChengJiuProgessList.Add(new ChengJiuInfo() { ChengJiuID = chengjiuList[i] });
             }
 
             for (int i = self.ChengJiuProgessList.Count - 1; i >= 0; i--)
@@ -200,8 +206,15 @@ namespace ET
                 {
                     continue;
                 }
-                if (chengJiuTarget == ChengJiuTargetEnum.PlayerLevel_205 
-                 || chengJiuTarget == ChengJiuTargetEnum.SkillShuLianDu_208)
+                if (chengJiuTarget == ChengJiuTargetEnum.PlayerLevel_205
+                 || chengJiuTarget == ChengJiuTargetEnum.SkillShuLianDu_208
+                 || chengJiuTarget == ChengJiuTargetEnum.CombatToValue_211
+                 || chengJiuTarget == ChengJiuTargetEnum.ZodiacEquipNumber_215
+                 || chengJiuTarget == ChengJiuTargetEnum.PegScoreToValue_307
+                 || chengJiuTarget == ChengJiuTargetEnum.PetArrayScoreToValue_308
+                 || chengJiuTarget == ChengJiuTargetEnum.PetTianTiRank_309
+                 || chengJiuTarget == ChengJiuTargetEnum.ZiZhiToValue_311
+                 || chengJiuTarget == ChengJiuTargetEnum.ZiZhiUpValue_312)
                 {
                     chengJiuInfo.ChengJiuProgess = target_value;
                 }
@@ -209,11 +222,33 @@ namespace ET
                 {
                     chengJiuInfo.ChengJiuProgess += target_value;
                 }
-                if (chengJiuInfo.ChengJiuProgess >= chengJiuConfig.TargetValue)
+
+                switch (chengJiuTarget)
                 {
-                    self.TotalChengJiuPoint += chengJiuConfig.RewardNum;
-                    self.ChengJiuCompleteList.Add(chengJiuInfo.ChengJiuID);
-                    self.ChengJiuProgessList.RemoveAt(i);
+                    case ChengJiuTargetEnum.PetTianTiRank_309:
+                        if (chengJiuInfo.ChengJiuProgess <= chengJiuConfig.TargetValue)
+                        {
+                            self.TotalChengJiuPoint += chengJiuConfig.RewardNum;
+                            self.ChengJiuCompleteList.Add(chengJiuInfo.ChengJiuID);
+                            self.ChengJiuProgessList.RemoveAt(i);
+                        }
+                        break;
+                    case ChengJiuTargetEnum.ZiZhiUpValue_312:
+                        if (chengJiuInfo.ChengJiuProgess > chengJiuConfig.TargetValue)
+                        {
+                            self.TotalChengJiuPoint += chengJiuConfig.RewardNum;
+                            self.ChengJiuCompleteList.Add(chengJiuInfo.ChengJiuID);
+                            self.ChengJiuProgessList.RemoveAt(i);
+                        }
+                        break;
+                    default:
+                        if (chengJiuInfo.ChengJiuProgess >= chengJiuConfig.TargetValue)
+                        {
+                            self.TotalChengJiuPoint += chengJiuConfig.RewardNum;
+                            self.ChengJiuCompleteList.Add(chengJiuInfo.ChengJiuID);
+                            self.ChengJiuProgessList.RemoveAt(i);
+                        }
+                        break;
                 }
             }
         }

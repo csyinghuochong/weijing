@@ -58,10 +58,6 @@ namespace ET
                     break;
                 case NoticeType.ArenaOpen:
                     Log.Debug($"机器人数量[ArenaOpen]");
-                    if (message.Zone != 3)
-                    {
-                        return;
-                    }
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
                         for (int i = 0; i < 2; i++)

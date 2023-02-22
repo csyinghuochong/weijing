@@ -140,10 +140,12 @@ namespace ET
                 unit.GetComponent<TaskComponent>().OnZeroClockUpdate(false);
             }
 
+            unit.GetComponent<BagComponent>().OnLogin();
             unit.GetComponent<TaskComponent>().OnLogin();
             unit.GetComponent<HeroDataComponent>().OnLogin();
             unit.GetComponent<DBSaveComponent>().OnLogin();
             unit.GetComponent<RechargeComponent>().OnLogin();
+            unit.GetComponent<PetComponent>().OnLogin();
             unit.GetComponent<ActivityComponent>().OnLogin(self.UserInfo.Lv);
             unit.GetComponent<TitleComponent>().OnCheckTitle(false);
 
@@ -280,6 +282,10 @@ namespace ET
             {
                 Log.Warning($"增加货币[大额]:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}");
             }
+            if (gold > 0 && getWay == ItemGetWay.PaiMaiSell)
+            {
+                unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PaiMaiGetGoldNumber_217, 0, (int)gold);
+            }
 
             self.UpdateRoleData(Type, value, notice);
         }
@@ -393,6 +399,7 @@ namespace ET
                 case UserDataType.Combat:
                     self.UserInfo.Combat = int.Parse(value);
                     saveValue = self.UserInfo.Combat.ToString();
+                    unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.CombatToValue_211,0, self.UserInfo.Combat);
                     break;
                 case UserDataType.Vitality:
                     maxValue = unit.GetMaxHuoLi();
@@ -443,6 +450,7 @@ namespace ET
                 return;
             }
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RankID, Response.RankId);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetRankID, Response.PetRankId);
         }
 
         //增加经验

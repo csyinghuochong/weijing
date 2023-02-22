@@ -549,6 +549,7 @@ message M2R_PetRankUpdateRequest // IActorRequest
     int64 ActorId = 93;
     int64 EnemyId = 1;
     RankPetInfo RankPetInfo = 2;
+    int32 Win = 3;
 }
 
 message R2M_PetRankUpdateResponse // IActorResponse
@@ -556,6 +557,7 @@ message R2M_PetRankUpdateResponse // IActorResponse
     int32 RpcId = 90;
     int32 Error = 91;
     string Message = 92;
+    int32 SelfRank = 1;
 }
 
 //ResponseType R2M_RankUpdateResponse
@@ -573,6 +575,7 @@ message R2M_RankUpdateResponse // IActorResponse
     int32 Error = 91;
     string Message = 92;
     int32 RankId = 1; //战力排行
+    int32 PetRankId = 2;
 }
 
 //战力第一刷新
@@ -1188,4 +1191,47 @@ message G2M_KickPlayerRequest // IActorLocationMessage
 	int64 ActorId = 93;
 	int64 UnitId = 2;
 	int64 SceneId = 3;
+}
+
+//ResponseType R2M_GetSelfRankResponse
+message M2R_GetSelfRankRequest // IActorRequest
+{
+    int32 RpcId = 90;
+    int64 ActorId = 93;
+    int32 CampId = 1;
+}
+
+message R2M_GetSelfRankResponse // IActorResponse
+{
+    int32 RpcId = 90;
+    int32 Error = 91;
+    string Message = 92;
+    int32 RankId = 1; //战力排行
+    int32 PetRank = 2;
+}
+
+//排行榜刷新
+message R2M_RankUpdateMessage // IActorLocationMessage
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 RankId = 1;   
+	int32 PetRankId = 2;   
+}
+
+//ResponseType Rank2G_EnterRank
+message G2Rank_EnterRank //IActorRequest
+{
+	int32 RpcId = 90;
+	string Name = 1;
+	int64 UnitId = 2;
+}
+
+message Rank2G_EnterRank //IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int32 RankId = 1;   
+	int32 PetRankId = 2;   
 }

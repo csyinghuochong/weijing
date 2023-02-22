@@ -283,7 +283,7 @@ namespace ET
                 return;
             }
             int rankId = self.GetCombatRank(userId);
-            if (rankId == -1)
+            if (rankId <= 0)
             {
                 return;
             }
@@ -302,16 +302,30 @@ namespace ET
             }
         }
 
+        public static int GetPetRank(this RankSceneComponent self, long userId)
+        {
+            for (int i = 0; i < self.DBRankInfo.rankingPets.Count; i++)
+            {
+                RankPetInfo rankPetInfo = self.DBRankInfo.rankingPets[i];
+                if (rankPetInfo.UserId == userId)
+                {
+                    return rankPetInfo.RankId;
+                }
+
+            }
+            return 0;
+        }
+
         public static int GetCombatRank(this RankSceneComponent self, long usrerId)
         {
             for (int i = 0; i < self.DBRankInfo.rankingInfos.Count; i++)
             {
                 if (self.DBRankInfo.rankingInfos[i].UserId == usrerId)
                 {
-                    return i;
+                    return i + 1;
                 }
             }
-            return -1;
+            return 0;
         }
 
         public static void UpdateCampRankList(this RankSceneComponent self, int campId, RankingInfo rankingInfo)
@@ -430,28 +444,25 @@ namespace ET
                 }
             }
             //没找到对方或者高于对方排名，不更新排名
-            if (enemyRankPetInfo == null)
+            if (enemyRankPetInfo != null)
             {
-                return;
+                if (selfRankPetInfo != null)
+                {
+                    if (selfRankPetInfo.RankId > enemyRankPetInfo.RankId)
+                    {
+                        int selfRank = selfRankPetInfo.RankId;
+                        selfRankPetInfo.RankId = enemyRankPetInfo.RankId;
+                        enemyRankPetInfo.RankId = selfRank;
+                    }
+                }
+                else
+                {
+                    m2R_PetRankUpdateRequest.RankPetInfo.RankId = enemyRankPetInfo.RankId;
+                    self.DBRankInfo.rankingPets.Remove(enemyRankPetInfo);
+                    self.DBRankInfo.rankingPets.Add(m2R_PetRankUpdateRequest.RankPetInfo);
+                }
             }
 
-            if (selfRankPetInfo != null)
-            {
-                if (selfRankPetInfo.RankId < enemyRankPetInfo.RankId)
-                {
-                    return;
-                }
-                int selfRank = selfRankPetInfo.RankId;
-                selfRankPetInfo.RankId = enemyRankPetInfo.RankId;
-                enemyRankPetInfo.RankId = selfRank;
-            }
-            else
-            {
-                m2R_PetRankUpdateRequest.RankPetInfo.RankId = enemyRankPetInfo.RankId;
-                self.DBRankInfo.rankingPets.Remove(enemyRankPetInfo);
-                self.DBRankInfo.rankingPets.Add(m2R_PetRankUpdateRequest.RankPetInfo);
-            }
-           
             self.DBRankInfo.rankingPets.Sort(delegate (RankPetInfo a, RankPetInfo b)
             {
                 return a.RankId - b.RankId;
@@ -460,20 +471,6 @@ namespace ET
             {
                 self.DBRankInfo.rankingPets[i].RankId = i + 1;
             }
-        }
-
-        public static int GetPetRankIndex(this RankSceneComponent self, long userId)
-        {
-            for (int i = 0; i < self.DBRankInfo.rankingPets.Count; i++)
-            {
-                RankPetInfo rankPetInfo = self.DBRankInfo.rankingPets[i];
-                if (rankPetInfo.UserId == userId)
-                {
-                    return rankPetInfo.RankId;
-                }
-               
-            }
-            return 0;
         }
 
         public static List<RankPetInfo> GetRankPetList(this RankSceneComponent self, int rankNumber)

@@ -373,6 +373,27 @@ namespace ET
             return null;
         }
 
+        public static void OnLogin(this BagComponent self)
+        {
+            int zodiacnumber = self.GetZodiacnumber();
+            self.GetParent<Unit>().GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);
+        }
+
+        public static int GetZodiacnumber(this BagComponent self)
+        {
+            int number = 0;
+            for (int i = 0; i < self.EquipList.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(self.EquipList[i].ItemID);
+                if (itemConfig.EquipType == 101)
+                {
+                    number++;
+                }
+            }
+
+            return number;
+        }
+
         public static int GetWuqiItemId(this BagComponent self)
         {
             BagInfo bagInfo = self.GetEquipBySubType((int)ItemSubTypeEnum.Wuqi);
@@ -656,6 +677,11 @@ namespace ET
                         else {
                             //生肖洗炼
                             itemXiLian = XiLianHelper.XiLianShengXiao(useBagInfo);
+                        }
+
+                        for(int skill = 0; skill < itemXiLian.HideSkillLists.Count; skill++)
+                        {
+                            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.EquipActiveSkillId_222, itemXiLian.HideSkillLists[skill], 1);
                         }
 
                         useBagInfo.XiLianHideProLists = itemXiLian.XiLianHideProLists;              //基础属性洗炼

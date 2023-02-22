@@ -2054,6 +2054,7 @@ message MailInfo
 	int64 MailId = 5;
 	string Title = 6;
 	repeated BagInfo ItemList = 7;	
+	BagInfo ItemSell = 8;
 }
 
 //ResponseType M2C_ReceiveMailResponse
@@ -2194,6 +2195,7 @@ message ChengJiuInfo
 {
 	int32 ChengJiuID = 1;
 	int32 ChengJiuProgess = 2;
+	int64 ChengJiuProgessLong = 3;
 }
 
 //ResponseType M2C_ChengJiuListResponse

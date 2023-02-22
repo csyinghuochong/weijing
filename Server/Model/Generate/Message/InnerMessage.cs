@@ -1169,6 +1169,9 @@ namespace ET
 		[ProtoMember(2)]
 		public RankPetInfo RankPetInfo { get; set; }
 
+		[ProtoMember(3)]
+		public int Win { get; set; }
+
 	}
 
 	[Message(InnerOpcode.R2M_PetRankUpdateResponse)]
@@ -1183,6 +1186,9 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int SelfRank { get; set; }
 
 	}
 
@@ -1220,6 +1226,9 @@ namespace ET
 
 		[ProtoMember(1)]
 		public int RankId { get; set; }
+
+		[ProtoMember(2)]
+		public int PetRankId { get; set; }
 
 	}
 
@@ -2472,6 +2481,99 @@ namespace ET
 
 		[ProtoMember(3)]
 		public long SceneId { get; set; }
+
+	}
+
+	[ResponseType(nameof(R2M_GetSelfRankResponse))]
+	[Message(InnerOpcode.M2R_GetSelfRankRequest)]
+	[ProtoContract]
+	public partial class M2R_GetSelfRankRequest: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int CampId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.R2M_GetSelfRankResponse)]
+	[ProtoContract]
+	public partial class R2M_GetSelfRankResponse: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int RankId { get; set; }
+
+		[ProtoMember(2)]
+		public int PetRank { get; set; }
+
+	}
+
+//排行榜刷新
+	[Message(InnerOpcode.R2M_RankUpdateMessage)]
+	[ProtoContract]
+	public partial class R2M_RankUpdateMessage: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int RankId { get; set; }
+
+		[ProtoMember(2)]
+		public int PetRankId { get; set; }
+
+	}
+
+	[ResponseType(nameof(Rank2G_EnterRank))]
+	[Message(InnerOpcode.G2Rank_EnterRank)]
+	[ProtoContract]
+	public partial class G2Rank_EnterRank: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string Name { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Rank2G_EnterRank)]
+	[ProtoContract]
+	public partial class Rank2G_EnterRank: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int RankId { get; set; }
+
+		[ProtoMember(2)]
+		public int PetRankId { get; set; }
 
 	}
 

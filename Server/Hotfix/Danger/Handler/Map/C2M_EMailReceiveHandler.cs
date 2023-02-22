@@ -17,9 +17,28 @@ namespace ET
                 (mailServerId, new M2E_EMailReceiveRequest() { Id = unit.GetComponent<UserInfoComponent>().UserInfo.UserId, MailId = request.MailId });
 
             MailInfo mailInfo = g_SendChatRequest.MailInfo;
-            if (mailInfo != null)
+            if (mailInfo == null)
             {
-                unit.GetComponent<BagComponent>().OnAddItemData(mailInfo.ItemList, $"{ItemGetWay.ReceieMail}_{TimeHelper.ServerNow()}");
+                reply();
+                return;
+            }
+
+            for (int i = 0; i < mailInfo.ItemList.Count; i++)
+            {
+                if (!string.IsNullOrEmpty(mailInfo.ItemList[i].GetWay))
+                {
+                    unit.GetComponent<BagComponent>().OnAddItemData(mailInfo.ItemList[i], mailInfo.ItemList[i].GetWay);
+                }
+                else
+                {
+                    unit.GetComponent<BagComponent>().OnAddItemData(mailInfo.ItemList[i], $"{ItemGetWay.ReceieMail}_{TimeHelper.ServerNow()}");
+                }
+            }
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(mailInfo.ItemSell.ItemID);
+            if (itemConfig.ItemType == 3)
+            {
+                unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PaiMaiSellNumber_218, 0, 1); 
             }
 
             reply();

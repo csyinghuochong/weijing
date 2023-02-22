@@ -41,6 +41,10 @@ namespace ET
             {
                 index = 0;
             }
+            if (rolePetEgg.ItemId == 10010093)
+            {
+                unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.OpenZGPetEggNumber_306, 0, 1);
+            }
             response.PetInfo =  unit.GetComponent<PetComponent>().OnAddPet(petlists[index]);
             rolePetEgg.ItemId = 0;
             rolePetEgg.EndTime = 0;

@@ -242,6 +242,11 @@ namespace ET
                 }
 
                 unit1.GetComponent<TaskComponent>().OnPassTeamFuben();
+                unit1.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PassTeamFubenNumber_20, 0, 1);
+                if (self.FubenType == TeamFubenType.ShenYuan)
+                {
+                    unit1.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PassTeamShenYuanNumber_21, 0, 1);
+                }
                 if (unit1.GetComponent<UserInfoComponent>().UserInfo.UserId == idExtra)
                 {
                     unit1.GetComponent<BagComponent>().OnAddItemData(m2C_FubenSettlement.RewardExtraItem, string.Empty, $"{ItemGetWay.FubenGetReward}_{TimeHelper.ServerNow()}");

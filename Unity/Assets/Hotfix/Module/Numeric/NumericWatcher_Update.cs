@@ -25,7 +25,11 @@
 			Unit unit = args.Parent;
 			int no1_horse = 10004;
 #if SERVER
-			if (args.NewValue != 0) //没排名
+			if (args.NewValue == 1) //排行第一
+			{
+				unit.GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
+			}
+			else
 			{
 				unit.GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
 				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
@@ -35,18 +39,14 @@
 					numericComponent.ApplyValue(NumericType.HorseRide, 0);
 				}
 			}
-			else
-			{
-				unit.GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
-			}
 #else
-			if (args.NewValue != 0) //没排名
+			if (args.NewValue != 1) //排行第一
+			{	
+				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
+			}
+			else
 			{
 				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, false);
-			}
-			else
-			{
-				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
 			}
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
 			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;

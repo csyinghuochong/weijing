@@ -11,13 +11,21 @@ namespace ET
 
             TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
 
-            if (!taskComponent.ReceiveHuoYueIds.Contains(request.HuoYueId))
+            if (taskComponent.ReceiveHuoYueIds.Contains(request.HuoYueId))
             {
-                taskComponent.ReceiveHuoYueIds.Add(request.HuoYueId);
-                HuoYueRewardConfig huoYueRewardConfig = HuoYueRewardConfigCategory.Instance.Get(request.HuoYueId);
-                unit.GetComponent<BagComponent>().OnAddItemData(huoYueRewardConfig.RewardItems, $"{ItemGetWay.TaskCountry}_{TimeHelper.ServerNow()}");
+                reply();
+                return;
             }
-            
+
+            taskComponent.ReceiveHuoYueIds.Add(request.HuoYueId);
+            HuoYueRewardConfig huoYueRewardConfig = HuoYueRewardConfigCategory.Instance.Get(request.HuoYueId);
+            unit.GetComponent<BagComponent>().OnAddItemData(huoYueRewardConfig.RewardItems, $"{ItemGetWay.TaskCountry}_{TimeHelper.ServerNow()}");
+
+            if (huoYueRewardConfig.NeedPoint >= 100)
+            {
+                unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.HuoYue100Reward_221, 0, 1);
+            }
+
             reply();
             await ETTask.CompletedTask;
         }

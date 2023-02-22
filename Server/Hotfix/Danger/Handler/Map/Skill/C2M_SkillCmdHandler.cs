@@ -16,6 +16,7 @@ namespace ET
                 if (request.ItemId > 0 && m2C_SkillCmd.Error == ErrorCore.ERR_Success)
                 {
                     unit.GetComponent<BagComponent>().OnCostItemData($"{request.ItemId};1");
+                    unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.BattleUseItem_214, request.ItemId, 1);
                 }
                 response.Error = m2C_SkillCmd.Error;
 

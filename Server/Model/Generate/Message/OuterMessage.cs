@@ -4352,6 +4352,9 @@ namespace ET
 		[ProtoMember(7)]
 		public List<BagInfo> ItemList = new List<BagInfo>();
 
+		[ProtoMember(8)]
+		public BagInfo ItemSell { get; set; }
+
 	}
 
 	[ResponseType(nameof(M2C_ReceiveMailResponse))]
@@ -4637,6 +4640,9 @@ namespace ET
 
 		[ProtoMember(2)]
 		public int ChengJiuProgess { get; set; }
+
+		[ProtoMember(3)]
+		public long ChengJiuProgessLong { get; set; }
 
 	}
 
