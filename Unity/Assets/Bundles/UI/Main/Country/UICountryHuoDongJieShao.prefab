@@ -87,7 +87,7 @@ GameObject:
   - component: {fileID: 2667698009209415256}
   - component: {fileID: 6987605433142293171}
   m_Layer: 5
-  m_Name: Text (1)
+  m_Name: TextJieShao
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -250,7 +250,7 @@ GameObject:
   - component: {fileID: 2449430593851687905}
   - component: {fileID: 4937151446576952158}
   m_Layer: 5
-  m_Name: Text
+  m_Name: TextTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -374,6 +374,10 @@ MonoBehaviour:
   data:
   - key: BtnClose
     gameObject: {fileID: 8184709507591553571}
+  - key: TextJieShao
+    gameObject: {fileID: 460419616839545026}
+  - key: TextTitle
+    gameObject: {fileID: 2575042141029754288}
 --- !u!114 &-534576177172118522
 MonoBehaviour:
   m_ObjectHideFlags: 0
