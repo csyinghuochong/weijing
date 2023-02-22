@@ -869,7 +869,6 @@ namespace ET
                 int itemID = costItems[i].ItemID;
                 int itemNum = costItems[i].ItemNum;
 
-                Log.Warning($"消耗道具: {unit.Id} {itemID} {itemNum}");
                 //扣除金币
                 if (itemID == (int)UserDataType.Gold)
                 {
@@ -890,6 +889,7 @@ namespace ET
                     continue;
                 }
 
+                Log.Warning($"消耗道具: {unit.Id} {itemID} {itemNum}");
                 for (int k = self.BagItemList.Count - 1; k >= 0; k--)
                 {
                     BagInfo userBagInfo = self.BagItemList[k];

@@ -540,7 +540,7 @@ namespace ET
             else
             {
                 self.ZoneScene().GetComponent<SkillIndicatorComponent>()?.RecoveryEffect();
-                self.UIJoystickMoveComponent.ResetUI();
+                //self.UIJoystickMoveComponent.ResetUI();
             }
         }
 

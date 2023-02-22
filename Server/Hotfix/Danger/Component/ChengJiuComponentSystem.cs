@@ -256,7 +256,7 @@ namespace ET
                         break;
                 }
 
-                if (acitiveId > 0)
+                if (acitiveId > 0 && !self.GetParent<Unit>().IsRobot())
                 {
                     MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_ChengJiuActiveMessage() { ChengJiuId = acitiveId });
                 }
