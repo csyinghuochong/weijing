@@ -54,7 +54,7 @@ namespace ET
             FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1031);
             string[] openTimes = funtionConfig.OpenTime.Split('@');
             int openTime = int.Parse(openTimes[0].Split(';')[0]) * 60 + int.Parse(openTimes[0].Split(';')[1]);
-            if (curTime < openTime)
+            if (curTime < openTime && self.AreneSceneStatu== 0)
             {
                 self.AreneSceneStatu = 1;
                 self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (openTime - curTime), TimerType.ArenaTimer, self);
@@ -62,7 +62,7 @@ namespace ET
             }
 
             int closeTime = int.Parse(openTimes[1].Split(';')[0]) * 60 + int.Parse(openTimes[1].Split(';')[1]);
-            if (curTime < closeTime)
+            if (curTime < closeTime && self.AreneSceneStatu == 1)
             {
                 self.AreneSceneStatu = 2;
                 self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow()+ TimeHelper.Minute * (closeTime- curTime), TimerType.ArenaTimer,self);
@@ -70,7 +70,7 @@ namespace ET
             }
 
             int overTime = int.Parse(openTimes[2].Split(';')[0]) * 60 + int.Parse(openTimes[2].Split(';')[1]);
-            if (curTime < overTime)
+            if (curTime < overTime && self.AreneSceneStatu == 2)
             {
                 self.AreneSceneStatu = 3;
                 self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (overTime - curTime), TimerType.ArenaTimer, self);
@@ -101,6 +101,8 @@ namespace ET
             {
                 self.OnArenaOver().Coroutine();
             }
+
+            self.BeginTimer();
         }
 
         public static void OnArenaClose(this ArenaSceneComponent self)

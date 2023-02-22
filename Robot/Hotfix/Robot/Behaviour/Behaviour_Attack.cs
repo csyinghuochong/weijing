@@ -36,7 +36,8 @@ namespace ET
         {
             Scene zoneScene = aiComponent.ZoneScene();
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(zoneScene);
-            aiComponent.ZoneScene().GetComponent<BagComponent>().CheckBagIsFull();
+            BagComponent bagComponent1 = aiComponent.ZoneScene().GetComponent<BagComponent>();
+            bagComponent1.CheckBagIsFull();
             long instanceId = unit.InstanceId;
             while (true)
             {
@@ -62,7 +63,7 @@ namespace ET
                         {
                             Vector3 direction = target.Position - unit.Position;
                             float ange = Mathf.Rad2Deg(Mathf.Atan2(direction.x, direction.z));
-                            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillPro.SkillID);
+                            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(SkillHelp.GetWeaponSkill(skillPro.SkillID, bagComponent1.GetEquipType()));
                             float targetDistance = skillConfig.SkillZhishiType == 1 ? Vector3.Distance(unit.Position, target.Position) : 0;
                             unit.GetComponent<SkillManagerComponent>().SendUseSkill(skillPro.SkillID, 0, Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
                         }
