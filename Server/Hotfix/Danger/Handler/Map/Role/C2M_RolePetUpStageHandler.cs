@@ -40,6 +40,10 @@ namespace ET
                     //获取评分
                     int pingfen = ComHelp.PetPingJia(rolePetInfoXianJi);
                     petComponent.UpdatePetStage(rolePetInfo, pingfen);
+
+                    petComponent.CheckPetPingFen();
+                    petComponent.CheckPetZiZhi();
+
                     response.NewPetInfo = rolePetInfo;
                 }
                 else {

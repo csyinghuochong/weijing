@@ -92,6 +92,7 @@ namespace ET
 						{
 							scene.GetComponent<PetTianTiComponent>().MainUnit = unit;
 							scene.GetComponent<PetTianTiComponent>().GeneratePetFuben().Coroutine();
+							unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PetTianTiChallenge_310, 0, 1);
 						}
 						break;
 					case (int)SceneTypeEnum.LocalDungeon:

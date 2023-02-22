@@ -146,6 +146,7 @@ namespace ET
             unit.GetComponent<RechargeComponent>().OnLogin();
             unit.GetComponent<ActivityComponent>().OnLogin(self.UserInfo.Lv);
             unit.GetComponent<TitleComponent>().OnCheckTitle(false);
+            unit.GetComponent<PetComponent>().CheckPetPingFen();
 
             self.LastLoginTime = currentTime;
             self.UserName = self.UserInfo.Name;
@@ -280,6 +281,10 @@ namespace ET
             {
                 Log.Warning($"增加货币[大额]:{Type} {getWay} {unit.Id} {self.UserInfo.Name} {value}");
             }
+            if (gold > 0 && getWay == ItemGetWay.PaiMaiSell)
+            {
+                unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PaiMaiGetGoldNumber_217, 0, (int)gold);
+            }
 
             self.UpdateRoleData(Type, value, notice);
         }
@@ -393,6 +398,8 @@ namespace ET
                 case UserDataType.Combat:
                     self.UserInfo.Combat = int.Parse(value);
                     saveValue = self.UserInfo.Combat.ToString();
+                    unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.CombatToValue_211,0, self.UserInfo.Combat);
+                    unit.GetComponent<ChengJiuComponent>().OnAttributeUpdate();
                     break;
                 case UserDataType.Vitality:
                     maxValue = unit.GetMaxHuoLi();

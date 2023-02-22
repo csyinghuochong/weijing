@@ -205,6 +205,7 @@ namespace ET
                                 break;
                             case 15:    //附魔道具
                                 unit.GetComponent<BagComponent>().OnEquipFuMo(itemConfig.ItemUsePar);
+                                unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.FoMoNumber_213, 0, 1);
                                 break;
                             case 16: //附魔技能
                                 unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(int.Parse(itemConfig.ItemUsePar));
@@ -508,6 +509,8 @@ namespace ET
                         unit.GetComponent<BagComponent>().OnChangeItemLoc(useBagInfo, ItemLocType.ItemLocEquip, ItemLocType.ItemLocBag);
                         unit.GetComponent<SkillSetComponent>().OnWearEquip(useBagInfo);
                     }
+                    int zodiacnumber = unit.GetComponent<BagComponent>().GetZodiacnumber();
+                    unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);
                     useBagInfo.isBinging = true;
                     Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
                     m2c_bagUpdate.BagInfoUpdate.Add(useBagInfo);
@@ -583,6 +586,8 @@ namespace ET
                             string noticeContent = $"恭喜玩家<color=#B6FF00>{unit.GetComponent<UserInfoComponent>().UserName}</color>在拾取装备时,意外在装备上发现了隐藏技能:<color=#FFA313>{skillName}</color>";
                             ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
                         }
+
+                        unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JianDingEqipNumber_212, 0, 1);
                     }
                     else 
                     {
