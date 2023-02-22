@@ -399,7 +399,6 @@ namespace ET
                     self.UserInfo.Combat = int.Parse(value);
                     saveValue = self.UserInfo.Combat.ToString();
                     unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.CombatToValue_211,0, self.UserInfo.Combat);
-                    unit.GetComponent<ChengJiuComponent>().OnAttributeUpdate();
                     break;
                 case UserDataType.Vitality:
                     maxValue = unit.GetMaxHuoLi();
