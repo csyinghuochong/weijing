@@ -9,7 +9,7 @@ namespace ET
         protected override async ETTask Run(Scene scene, C2R_RankPetListRequest request, R2C_RankPetListResponse response, Action reply)
         {
             RankSceneComponent rankComponent = scene.GetComponent<RankSceneComponent>();
-            response.RankNumber = rankComponent.GetPetRankIndex(request.UserId);
+            response.RankNumber = rankComponent.GetPetRank(request.UserId);
             response.RankPetList = rankComponent.GetRankPetList((int)response.RankNumber);
 
             reply();

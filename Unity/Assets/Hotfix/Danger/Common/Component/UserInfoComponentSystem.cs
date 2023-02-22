@@ -450,6 +450,7 @@ namespace ET
                 return;
             }
             unit.GetComponent<NumericComponent>().ApplyValue(NumericType.RankID, Response.RankId);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.PetRankID, Response.PetRankId);
         }
 
         //增加经验

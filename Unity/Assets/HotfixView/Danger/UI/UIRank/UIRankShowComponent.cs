@@ -55,7 +55,6 @@ namespace ET
            
             long instanceid = self.InstanceId;
             string path = ABPathHelper.GetUGUIPath("Main/Rank/UIRankShowItem");
-            await ETTask.CompletedTask;
             GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != self.InstanceId)
             {

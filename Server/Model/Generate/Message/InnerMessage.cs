@@ -1227,6 +1227,9 @@ namespace ET
 		[ProtoMember(1)]
 		public int RankId { get; set; }
 
+		[ProtoMember(2)]
+		public int PetRankId { get; set; }
+
 	}
 
 //战力第一刷新
@@ -2533,10 +2536,44 @@ namespace ET
 		public int RankId { get; set; }
 
 		[ProtoMember(2)]
-		public int UpdateType { get; set; }
+		public int PetRankId { get; set; }
 
-		[ProtoMember(3)]
-		public string UpdateMessage { get; set; }
+	}
+
+	[ResponseType(nameof(Rank2G_EnterRank))]
+	[Message(InnerOpcode.G2Rank_EnterRank)]
+	[ProtoContract]
+	public partial class G2Rank_EnterRank: Object, IActorRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public string Name { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitId { get; set; }
+
+	}
+
+	[Message(InnerOpcode.Rank2G_EnterRank)]
+	[ProtoContract]
+	public partial class Rank2G_EnterRank: Object, IActorResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int RankId { get; set; }
+
+		[ProtoMember(2)]
+		public int PetRankId { get; set; }
 
 	}
 

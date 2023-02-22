@@ -14,7 +14,7 @@ namespace ET
                 scene.GetComponent<RankSceneComponent>().OnRecvPetRank(request);
             }
            
-            response.SelfRank = scene.GetComponent<RankSceneComponent>().GetPetRankIndex(request.RankPetInfo.UserId);
+            response.SelfRank = scene.GetComponent<RankSceneComponent>().GetPetRank(request.RankPetInfo.UserId);
 
             reply();
             await ETTask.CompletedTask;

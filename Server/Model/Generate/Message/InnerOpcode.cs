@@ -148,5 +148,7 @@ namespace ET
 		 public const ushort M2R_GetSelfRankRequest = 20145;
 		 public const ushort R2M_GetSelfRankResponse = 20146;
 		 public const ushort R2M_RankUpdateMessage = 20147;
+		 public const ushort G2Rank_EnterRank = 20148;
+		 public const ushort Rank2G_EnterRank = 20149;
 	}
 }

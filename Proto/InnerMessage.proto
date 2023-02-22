@@ -575,6 +575,7 @@ message R2M_RankUpdateResponse // IActorResponse
     int32 Error = 91;
     string Message = 92;
     int32 RankId = 1; //战力排行
+    int32 PetRankId = 2;
 }
 
 //战力第一刷新
@@ -1215,6 +1216,22 @@ message R2M_RankUpdateMessage // IActorLocationMessage
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	int32 RankId = 1;   
-	int32 UpdateType = 2;   //1战力 2宠物天梯
-	string UpdateMessage = 3;
+	int32 PetRankId = 2;   
+}
+
+//ResponseType Rank2G_EnterRank
+message G2Rank_EnterRank //IActorRequest
+{
+	int32 RpcId = 90;
+	string Name = 1;
+	int64 UnitId = 2;
+}
+
+message Rank2G_EnterRank //IActorResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int32 RankId = 1;   
+	int32 PetRankId = 2;   
 }
