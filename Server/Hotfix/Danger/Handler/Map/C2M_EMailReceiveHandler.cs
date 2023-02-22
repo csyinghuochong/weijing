@@ -35,10 +35,13 @@ namespace ET
                 }
             }
 
-            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(mailInfo.ItemSell.ItemID);
-            if (itemConfig.ItemType == 3)
+            if (mailInfo != null && mailInfo.ItemSell != null)
             {
-                unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PaiMaiSellNumber_218, 0, 1); 
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(mailInfo.ItemSell.ItemID);
+                if (itemConfig.ItemType == 3)
+                {
+                    unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.PaiMaiSellNumber_218, 0, 1);
+                }
             }
 
             reply();

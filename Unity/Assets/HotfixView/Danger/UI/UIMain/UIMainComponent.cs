@@ -598,7 +598,7 @@ namespace ET
             self.UIMainSkillComponent.OnSkillSetUpdate();
         }
 
-        public static async ETTask OnServerStop(this UIMainComponent self)
+        public static async ETTask OnStopServer(this UIMainComponent self)
         {
             PopupTipHelp.OpenPopupTip_2(self.ZoneScene(), "停服维护", "五分钟后停服维护，请暂时退出游戏！",
                () =>
@@ -620,7 +620,7 @@ namespace ET
             M2C_HorseNoticeInfo m2C_HorseNoticeInfo = self.ZoneScene().GetComponent<ChatComponent>().HorseNoticeInfo;
             if (m2C_HorseNoticeInfo.NoticeType == NoticeType.StopSever)
             {
-                self.OnServerStop().Coroutine();
+                self.OnStopServer().Coroutine();
                 return;
             }
             UI uI = UIHelper.GetUI(self.DomainScene(), UIType.UIHorseNotice);

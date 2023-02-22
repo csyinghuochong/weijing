@@ -31,6 +31,8 @@ namespace ET
                         { 
                             BehaviourComponent behaviourComponent = item.Value.GetComponent<BehaviourComponent>();
                             robotNumber[behaviourComponent.RobotConfig.Behaviour]++;
+
+                            Log.Debug($"机器人行为：      {behaviourComponent.Current}");
                         }
 
                         //1   任务机器人
