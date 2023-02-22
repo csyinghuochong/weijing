@@ -692,7 +692,6 @@ namespace ET
             GameObject mainSkill = rc.Get<GameObject>("UIMainSkill");
             UI uiskill = self.AddChild<UI, string, GameObject>("SubMainSkill", mainSkill);
             self.UIMainSkillComponent = uiskill.AddComponent<UIMainSkillComponent>();
-            self.UIMainSkillComponent.OnSkillSetUpdate();
 
             //摇杆
             self.JoystickMove = rc.Get<GameObject>("JoystickMove");
@@ -1010,6 +1009,7 @@ namespace ET
             self.UpdateNpcTaskUI();
             self.UIMapMini.OnEnterScene();
             self.UIMainSkillComponent.OnEnterScene(self.MainUnit);
+            self.UIMainSkillComponent.OnSkillSetUpdate();
             self.ZoneScene().GetComponent<RelinkComponent>().OnApplicationFocusHandler(true);
         }
 
