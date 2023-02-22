@@ -223,11 +223,14 @@ namespace ET
                     chengJiuInfo.ChengJiuProgess += target_value;
                 }
 
+
+                int acitiveId = 0;
                 switch (chengJiuTarget)
                 {
                     case ChengJiuTargetEnum.PetTianTiRank_309:
                         if (chengJiuInfo.ChengJiuProgess <= chengJiuConfig.TargetValue)
                         {
+                            acitiveId = chengJiuInfo.ChengJiuID;
                             self.TotalChengJiuPoint += chengJiuConfig.RewardNum;
                             self.ChengJiuCompleteList.Add(chengJiuInfo.ChengJiuID);
                             self.ChengJiuProgessList.RemoveAt(i);
@@ -236,6 +239,7 @@ namespace ET
                     case ChengJiuTargetEnum.ZiZhiUpValue_312:
                         if (chengJiuInfo.ChengJiuProgess > chengJiuConfig.TargetValue)
                         {
+                            acitiveId = chengJiuInfo.ChengJiuID;
                             self.TotalChengJiuPoint += chengJiuConfig.RewardNum;
                             self.ChengJiuCompleteList.Add(chengJiuInfo.ChengJiuID);
                             self.ChengJiuProgessList.RemoveAt(i);
@@ -244,11 +248,17 @@ namespace ET
                     default:
                         if (chengJiuInfo.ChengJiuProgess >= chengJiuConfig.TargetValue)
                         {
+                            acitiveId = chengJiuInfo.ChengJiuID;
                             self.TotalChengJiuPoint += chengJiuConfig.RewardNum;
                             self.ChengJiuCompleteList.Add(chengJiuInfo.ChengJiuID);
                             self.ChengJiuProgessList.RemoveAt(i);
                         }
                         break;
+                }
+
+                if (acitiveId > 0)
+                {
+                    MessageHelper.SendToClient(self.GetParent<Unit>(), new M2C_ChengJiuActiveMessage() { ChengJiuId = acitiveId });
                 }
             }
         }

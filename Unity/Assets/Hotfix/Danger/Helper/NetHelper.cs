@@ -68,6 +68,7 @@
             zoneScene.GetComponent<ShoujiComponent>().TreasureInfo = m2C_PaiMaiBuyResponse.TreasureInfo;
             zoneScene.GetComponent<ShoujiComponent>().ShouJiChapterInfos = m2C_PaiMaiBuyResponse.ShouJiChapterInfos;
             zoneScene.GetComponent<TitleComponent>().TitleList = m2C_PaiMaiBuyResponse.TitleList;
+            zoneScene.GetComponent<TitleComponent>().ShieldList = m2C_PaiMaiBuyResponse.ShieldList;
             await ETTask.CompletedTask;
         }
 

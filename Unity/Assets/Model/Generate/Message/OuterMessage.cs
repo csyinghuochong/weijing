@@ -4686,6 +4686,25 @@ namespace ET
 
 	}
 
+//激活成就
+	[Message(OuterOpcode.M2C_ChengJiuActiveMessage)]
+	[ProtoContract]
+	public partial class M2C_ChengJiuActiveMessage: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public int ChengJiuId { get; set; }
+
+	}
+
 	[ResponseType(nameof(M2C_ChengJiuRewardResponse))]
 	[Message(OuterOpcode.C2M_ChengJiuRewardRequest)]
 	[ProtoContract]
@@ -6672,6 +6691,9 @@ namespace ET
 
 		[ProtoMember(6)]
 		public List<KeyValuePairInt> TitleList = new List<KeyValuePairInt>();
+
+		[ProtoMember(7)]
+		public List<KeyValuePair> ShieldList = new List<KeyValuePair>();
 
 	}
 
@@ -9273,6 +9295,40 @@ namespace ET
 
 		[ProtoMember(4)]
 		public string Message { get; set; }
+
+	}
+
+	[ResponseType(nameof(M2C_TitleUseResponse))]
+	[Message(OuterOpcode.C2M_LifeShieldRequest)]
+	[ProtoContract]
+	public partial class C2M_LifeShieldRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperateType { get; set; }
+
+		[ProtoMember(2)]
+		public List<long> OperateBagID = new List<long>();
+
+	}
+
+	[Message(OuterOpcode.M2C_LifeShieldResponse)]
+	[ProtoContract]
+	public partial class M2C_LifeShieldResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<KeyValuePair> ShieldList = new List<KeyValuePair>();
 
 	}
 

@@ -11,7 +11,11 @@ namespace ET
 //#if SERVER
 //        [BsonIgnore]
 //#endif
+        //称号
         public List<KeyValuePairInt> TitleList = new List<KeyValuePairInt>();
+
+        //生命之盾
+        public List<KeyValuePair> ShieldList = new List<KeyValuePair>();
 
         public M2C_TitleUpdateResult TitleUpdateResult = new M2C_TitleUpdateResult();
     }

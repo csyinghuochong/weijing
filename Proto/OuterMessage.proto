@@ -2216,6 +2216,15 @@ message M2C_ChengJiuListResponse // IActorLocationResponse
 	repeated int32 AlreadReceivedId = 4;
 }
 
+//激活成就
+message M2C_ChengJiuActiveMessage // IActorMessage
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	int32 ChengJiuId = 1;
+}
+
 //ResponseType M2C_ChengJiuRewardResponse
 message C2M_ChengJiuRewardRequest // IActorLocationRequest
 {
@@ -3172,6 +3181,7 @@ message M2C_UserInfoInitResponse // IActorLocationResponse
 	repeated KeyValuePairInt TreasureInfo = 4;
 	repeated ShouJiChapterInfo ShouJiChapterInfos = 5;
 	repeated KeyValuePairInt TitleList = 6;
+	repeated KeyValuePair ShieldList = 7;
 }
 
 message RechargeInfo
@@ -4449,4 +4459,23 @@ message M2C_AreneInfoResult // IActorMessage
 
 	int32 LeftPlayer = 3;
 	string Message = 4;
+}
+
+
+//ResponseType M2C_TitleUseResponse
+message C2M_LifeShieldRequest    // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	
+	int32 OperateType = 1;    
+	repeated int64 OperateBagID = 2;	
+}
+
+message M2C_LifeShieldResponse    // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	
+	repeated KeyValuePair ShieldList = 1;
 }

@@ -14,6 +14,8 @@ namespace ET
             response.TreasureInfo = unit.GetComponent<ShoujiComponent>().TreasureInfo;
             response.ShouJiChapterInfos = unit.GetComponent<ShoujiComponent>().ShouJiChapterInfos;
             response.TitleList = unit.GetComponent<TitleComponent>().TitleList;
+            response.ShieldList = unit.GetComponent<TitleComponent>().ShieldList;
+
             reply();
             await ETTask.CompletedTask;
         }
