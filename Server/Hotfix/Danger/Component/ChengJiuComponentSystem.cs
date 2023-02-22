@@ -186,15 +186,12 @@ namespace ET
                         break;
                     }
                 }
-                if (exist)
+                if (exist || self.ChengJiuCompleteList.Contains(chengjiuList[i]))
                 {
                     continue;
                 }
-                exist = self.ChengJiuCompleteList.Contains(chengjiuList[i]);
-                if (!exist)
-                {
-                    self.ChengJiuProgessList.Add(new ChengJiuInfo() { ChengJiuID = chengjiuList[i] });
-                }
+
+                self.ChengJiuProgessList.Add(new ChengJiuInfo() { ChengJiuID = chengjiuList[i] });
             }
 
             for (int i = self.ChengJiuProgessList.Count - 1; i >= 0; i--)
@@ -215,7 +212,9 @@ namespace ET
                  || chengJiuTarget == ChengJiuTargetEnum.ZodiacEquipNumber_215
                  || chengJiuTarget == ChengJiuTargetEnum.PegScoreToValue_307
                  || chengJiuTarget == ChengJiuTargetEnum.PetArrayScoreToValue_308
-                 || chengJiuTarget == ChengJiuTargetEnum.PetTianTiRank_309)
+                 || chengJiuTarget == ChengJiuTargetEnum.PetTianTiRank_309
+                 || chengJiuTarget == ChengJiuTargetEnum.ZiZhiToValue_311
+                 || chengJiuTarget == ChengJiuTargetEnum.ZiZhiUpValue_312)
                 {
                     chengJiuInfo.ChengJiuProgess = target_value;
                 }
@@ -224,12 +223,32 @@ namespace ET
                     chengJiuInfo.ChengJiuProgess += target_value;
                 }
 
-                if ( (chengJiuTarget == ChengJiuTargetEnum.PetTianTiRank_309 && self.TotalChengJiuPoint > 0 && self.TotalChengJiuPoint <= chengJiuConfig.TargetValue) 
-                 ||  chengJiuInfo.ChengJiuProgess >= chengJiuConfig.TargetValue)
+                switch (chengJiuTarget)
                 {
-                    self.TotalChengJiuPoint += chengJiuConfig.RewardNum;
-                    self.ChengJiuCompleteList.Add(chengJiuInfo.ChengJiuID);
-                    self.ChengJiuProgessList.RemoveAt(i);
+                    case ChengJiuTargetEnum.PetTianTiRank_309:
+                        if (chengJiuInfo.ChengJiuProgess <= chengJiuConfig.TargetValue)
+                        {
+                            self.TotalChengJiuPoint += chengJiuConfig.RewardNum;
+                            self.ChengJiuCompleteList.Add(chengJiuInfo.ChengJiuID);
+                            self.ChengJiuProgessList.RemoveAt(i);
+                        }
+                        break;
+                    case ChengJiuTargetEnum.ZiZhiUpValue_312:
+                        if (chengJiuInfo.ChengJiuProgess > chengJiuConfig.TargetValue)
+                        {
+                            self.TotalChengJiuPoint += chengJiuConfig.RewardNum;
+                            self.ChengJiuCompleteList.Add(chengJiuInfo.ChengJiuID);
+                            self.ChengJiuProgessList.RemoveAt(i);
+                        }
+                        break;
+                    default:
+                        if (chengJiuInfo.ChengJiuProgess >= chengJiuConfig.TargetValue)
+                        {
+                            self.TotalChengJiuPoint += chengJiuConfig.RewardNum;
+                            self.ChengJiuCompleteList.Add(chengJiuInfo.ChengJiuID);
+                            self.ChengJiuProgessList.RemoveAt(i);
+                        }
+                        break;
                 }
             }
         }
