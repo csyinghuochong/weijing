@@ -59,13 +59,13 @@ namespace ET
 
         public static void On_Btn_HuoDong_Arena(this UICountryHuoDongComponent self)
         {
-            UITaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20000027);
+            UITaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20000035);
             self.OnBtn_Close();
         }
 
         public static void Btn_HuoDong_Baozang(this UICountryHuoDongComponent self)
         {
-            UITaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20000035);
+            UITaskViewHelp.Instance.OnGoToNpc(self.ZoneScene(), 20000027);
             self.OnBtn_Close();
         }
 

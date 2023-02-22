@@ -368,13 +368,20 @@ namespace ET
 
         public static async ETTask RequestEnterFuben(this UITaskGetComponent self, int sceneId)
         {
-            int sceneType = SceneConfigCategory.Instance.Get(sceneId).MapType;
+            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
+            int sceneType = sceneConfig.MapType;
             if (sceneType == SceneTypeEnum.Arena)
             {
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ArenaNumber)>0)
                 {
                     FloatTipManager.Instance.ShowFloatTip("次数不足！");
+                    return;
+                }
+                FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1031);
+                if (!FunctionHelp.IsInTime(funtionConfig.OpenTime))
+                {
+                    FloatTipManager.Instance.ShowFloatTip("不在活动时间内！");
                     return;
                 }
             }
