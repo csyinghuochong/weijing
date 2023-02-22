@@ -4462,8 +4462,8 @@ message M2C_AreneInfoResult // IActorMessage
 }
 
 
-//ResponseType M2C_TitleUseResponse
-message C2M_LifeShieldRequest    // IActorLocationRequest
+//ResponseType M2C_LifeShieldCostResponse
+message C2M_LifeShieldCostRequest    // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	
@@ -4471,7 +4471,7 @@ message C2M_LifeShieldRequest    // IActorLocationRequest
 	repeated int64 OperateBagID = 2;	
 }
 
-message M2C_LifeShieldResponse    // IActorLocationResponse
+message M2C_LifeShieldCostResponse    // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;

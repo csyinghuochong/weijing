@@ -9298,10 +9298,10 @@ namespace ET
 
 	}
 
-	[ResponseType(nameof(M2C_TitleUseResponse))]
-	[Message(OuterOpcode.C2M_LifeShieldRequest)]
+	[ResponseType(nameof(M2C_LifeShieldCostResponse))]
+	[Message(OuterOpcode.C2M_LifeShieldCostRequest)]
 	[ProtoContract]
-	public partial class C2M_LifeShieldRequest: Object, IActorLocationRequest
+	public partial class C2M_LifeShieldCostRequest: Object, IActorLocationRequest
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
@@ -9314,9 +9314,9 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_LifeShieldResponse)]
+	[Message(OuterOpcode.M2C_LifeShieldCostResponse)]
 	[ProtoContract]
-	public partial class M2C_LifeShieldResponse: Object, IActorLocationResponse
+	public partial class M2C_LifeShieldCostResponse: Object, IActorLocationResponse
 	{
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
