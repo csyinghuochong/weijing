@@ -370,16 +370,21 @@ namespace ET
                             langStr = GameSettingLanguge.LoadLocalization("绿色");
                             holeStr = holeStr + langStr + "、";
                             break;
-                            /*
-                            case "105":
-                                langStr = GameSettingLanguge.LoadLocalization("白色");
-                                holeStr = holeStr + langStr + "、";
-                                break;
-                            case "110":
-                                langStr = GameSettingLanguge.LoadLocalization("多彩");
-                                holeStr = holeStr + langStr + "、";
-                                break;
-                            */
+                        /*
+                        case "105":
+                            langStr = GameSettingLanguge.LoadLocalization("白色");
+                            holeStr = holeStr + langStr + "、";
+                            break;
+                        */
+                        case "110":
+                            langStr = GameSettingLanguge.LoadLocalization("任意");
+                            holeStr = holeStr + langStr + "、";
+                            break;
+                        case "111":
+                            langStr = GameSettingLanguge.LoadLocalization("任意");
+                            holeStr = holeStr + langStr + "、";
+                            break;
+
                     }
                 }
 
@@ -402,6 +407,10 @@ namespace ET
                 string langStr_2 = GameSettingLanguge.LoadLocalization("可镶嵌在");
                 string langStr_3 = GameSettingLanguge.LoadLocalization("孔位");
                 Text_ItemDes = Text_ItemDes + "\n" + "\n" + @"" + langStr_2 + holeStr + @langStr_3 + "";
+
+                if (itemconf.ItemSubType == 110) {
+                    Text_ItemDes = Text_ItemDes + "\n" + "\n" + @"提示:史诗宝石一旦镶嵌将无法卸下";
+                }
             }
 
             //宠物之核

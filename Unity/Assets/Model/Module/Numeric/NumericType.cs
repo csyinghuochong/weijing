@@ -468,20 +468,6 @@
         public const int Extra_Buff_MageReboundPro_Mul = Now_MageReboundPro * 100 + 12;            //属性Buff附加乘法
         */
 
-        public const int Now_ActReboundDamgePro = 2027;          //当前攻击反弹伤害比例
-        public const int Base_ActReboundDamgePro_Base = Now_ActReboundDamgePro * 100 + 1;              //属性累加
-        public const int Base_ActReboundDamgePro_Mul = Now_ActReboundDamgePro * 100 + 2;               //属性乘法
-        public const int Base_ActReboundDamgePro_Add = Now_ActReboundDamgePro * 100 + 3;                   //属性附加
-        public const int Extra_Buff_ActReboundDamgePro_Add = Now_ActReboundDamgePro * 100 + 11;            //属性Buff附加加法
-        public const int Extra_Buff_ActReboundDamgePro_Mul = Now_ActReboundDamgePro * 100 + 12;            //属性Buff附加乘法
-
-        public const int Now_MageReboundDamgePro = 2028;          //当前魔法反弹伤害比例
-        public const int Base_MageReboundDamgePro_Base = Now_MageReboundDamgePro * 100 + 1;              //属性累加
-        public const int Base_MageReboundDamgePro_Mul = Now_MageReboundDamgePro * 100 + 2;               //属性乘法
-        public const int Base_MageReboundDamgePro_Add = Now_MageReboundDamgePro * 100 + 3;                   //属性附加
-        public const int Extra_Buff_MageReboundDamgePro_Add = Now_MageReboundDamgePro * 100 + 11;            //属性Buff附加加法
-        public const int Extra_Buff_MageReboundDamgePro_Mul = Now_MageReboundDamgePro * 100 + 12;            //属性Buff附加乘法
-
         /*
         public const int Now_HuiXuePro = 2029;          //当前回血加成
         public const int Base_HuiXuePro_Base = Now_HuiXuePro * 100 + 1;                  //属性累加
@@ -490,6 +476,34 @@
         public const int Extra_Buff_HuiXuePro_Add = Now_HuiXuePro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_HuiXuePro_Mul = Now_HuiXuePro * 100 + 12;            //属性Buff附加乘法
         */
+
+        public const int Now_ZhanShaPro = 2025;          //当前斩杀比例  血量低于35%触发斩杀
+        public const int Base_ZhanShaPro_Base = Now_ZhanShaPro * 100 + 1;              //属性累加
+        public const int Base_ZhanShaPro_Mul = Now_ZhanShaPro * 100 + 2;               //属性乘法
+        public const int Base_ZhanShaPro_Add = Now_ZhanShaPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_ZhanShaPro_Add = Now_ZhanShaPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_ZhanShaPro_Mul = Now_ZhanShaPro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_ChaoFengPro = 2026;          //当前嘲讽比例  
+        public const int Base_ChaoFengPro_Base = Now_ChaoFengPro * 100 + 1;              //属性累加
+        public const int Base_ChaoFengPro_Mul = Now_ChaoFengPro * 100 + 2;               //属性乘法
+        public const int Base_ChaoFengPro_Add = Now_ChaoFengPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_ChaoFengPro_Add = Now_ChaoFengPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_ChaoFengPro_Mul = Now_ChaoFengPro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_PuGongAddPro = 2027;          //当前普攻加成比例  
+        public const int Base_PuGongAddPro_Base = Now_PuGongAddPro * 100 + 1;              //属性累加
+        public const int Base_PuGongAddPro_Mul = Now_PuGongAddPro * 100 + 2;               //属性乘法
+        public const int Base_PuGongAddPro_Add = Now_PuGongAddPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_PuGongAddPro_Add = Now_PuGongAddPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_PuGongAddPro_Mul = Now_PuGongAddPro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_HpToDamgeAddPro = 2028;          //当前血量转换普攻加成比例  (一般默认为0,有此状态为100%)
+        public const int Base_HpToDamgeAddPro_Base = Now_HpToDamgeAddPro * 100 + 1;              //属性累加
+        public const int Base_HpToDamgeAddPro_Mul = Now_HpToDamgeAddPro * 100 + 2;               //属性乘法
+        public const int Base_HpToDamgeAddPro_Add = Now_HpToDamgeAddPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_HpToDamgeAddPro_Add = Now_HpToDamgeAddPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_HpToDamgeAddPro_Mul = Now_HpToDamgeAddPro * 100 + 12;            //属性Buff附加乘法
 
         public const int Now_ActBossPro = 2030;                                            //当前BOSS普通攻击加成
         public const int Base_ActBossPro_Base = Now_ActBossPro * 100 + 1;                  //属性累加
@@ -676,33 +690,19 @@
         public const int Extra_Buff_ShuActAddPro_Add = Now_ShuActAddPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_ShuActAddPro_Mul = Now_ShuActAddPro * 100 + 12;            //属性Buff附加乘法
 
-        public const int Now_ZhanShaPro = 2025;          //当前斩杀比例  血量低于35%触发斩杀
-        public const int Base_ZhanShaPro_Base = Now_ZhanShaPro * 100 + 1;              //属性累加
-        public const int Base_ZhanShaPro_Mul = Now_ZhanShaPro * 100 + 2;               //属性乘法
-        public const int Base_ZhanShaPro_Add = Now_ZhanShaPro * 100 + 3;                   //属性附加
-        public const int Extra_Buff_ZhanShaPro_Add = Now_ZhanShaPro * 100 + 11;            //属性Buff附加加法
-        public const int Extra_Buff_ZhanShaPro_Mul = Now_ZhanShaPro * 100 + 12;            //属性Buff附加乘法
+        public const int Now_ActReboundDamgePro = 2055;          //当前攻击反弹伤害比例
+        public const int Base_ActReboundDamgePro_Base = Now_ActReboundDamgePro * 100 + 1;              //属性累加
+        public const int Base_ActReboundDamgePro_Mul = Now_ActReboundDamgePro * 100 + 2;               //属性乘法
+        public const int Base_ActReboundDamgePro_Add = Now_ActReboundDamgePro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_ActReboundDamgePro_Add = Now_ActReboundDamgePro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_ActReboundDamgePro_Mul = Now_ActReboundDamgePro * 100 + 12;            //属性Buff附加乘法
 
-        public const int Now_ChaoFengPro = 2026;          //当前嘲讽比例  
-        public const int Base_ChaoFengPro_Base = Now_ChaoFengPro * 100 + 1;              //属性累加
-        public const int Base_ChaoFengPro_Mul = Now_ChaoFengPro * 100 + 2;               //属性乘法
-        public const int Base_ChaoFengPro_Add = Now_ChaoFengPro * 100 + 3;                   //属性附加
-        public const int Extra_Buff_ChaoFengPro_Add = Now_ChaoFengPro * 100 + 11;            //属性Buff附加加法
-        public const int Extra_Buff_ChaoFengPro_Mul = Now_ChaoFengPro * 100 + 12;            //属性Buff附加乘法
-
-        public const int Now_PuGongAddPro = 2027;          //当前普攻加成比例  
-        public const int Base_PuGongAddPro_Base = Now_PuGongAddPro * 100 + 1;              //属性累加
-        public const int Base_PuGongAddPro_Mul = Now_PuGongAddPro * 100 + 2;               //属性乘法
-        public const int Base_PuGongAddPro_Add = Now_PuGongAddPro * 100 + 3;                   //属性附加
-        public const int Extra_Buff_PuGongAddPro_Add = Now_PuGongAddPro * 100 + 11;            //属性Buff附加加法
-        public const int Extra_Buff_PuGongAddPro_Mul = Now_PuGongAddPro * 100 + 12;            //属性Buff附加乘法
-
-        public const int Now_HpToDamgeAddPro = 2028;          //当前血量转换普攻加成比例  (一般默认为0,有此状态为100%)
-        public const int Base_HpToDamgeAddPro_Base = Now_HpToDamgeAddPro * 100 + 1;              //属性累加
-        public const int Base_HpToDamgeAddPro_Mul = Now_HpToDamgeAddPro * 100 + 2;               //属性乘法
-        public const int Base_HpToDamgeAddPro_Add = Now_HpToDamgeAddPro * 100 + 3;                   //属性附加
-        public const int Extra_Buff_HpToDamgeAddPro_Add = Now_HpToDamgeAddPro * 100 + 11;            //属性Buff附加加法
-        public const int Extra_Buff_HpToDamgeAddPro_Mul = Now_HpToDamgeAddPro * 100 + 12;            //属性Buff附加乘法
+        public const int Now_MageReboundDamgePro = 2056;          //当前魔法反弹伤害比例
+        public const int Base_MageReboundDamgePro_Base = Now_MageReboundDamgePro * 100 + 1;              //属性累加
+        public const int Base_MageReboundDamgePro_Mul = Now_MageReboundDamgePro * 100 + 2;               //属性乘法
+        public const int Base_MageReboundDamgePro_Add = Now_MageReboundDamgePro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_MageReboundDamgePro_Add = Now_MageReboundDamgePro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_MageReboundDamgePro_Mul = Now_MageReboundDamgePro * 100 + 12;            //属性Buff附加乘法
 
         //----------------抗性-------------
 

@@ -122,6 +122,7 @@ namespace ET
             {
                 return;
             }
+
             self.BagComponent.SendXieXiaGem(uIRoleGemComponent.XiangQianItem, uIRoleGemComponent.XiangQianIndex.ToString()).Coroutine();
 
             self.OnCloseTips();
@@ -249,7 +250,7 @@ namespace ET
                     return;
                 }
                 string itemgem = gemHolelist[uIRoleGemComponent.XiangQianIndex];
-                if (itemgem != itemConfig.ItemSubType.ToString())
+                if (itemgem != itemConfig.ItemSubType.ToString() && itemConfig.ItemSubType != 110 && itemConfig.ItemSubType != 111)
                 {
                     FloatTipManager.Instance.ShowFloatTip("宝石与孔位不符！");
                     return;

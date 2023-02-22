@@ -1167,16 +1167,17 @@ namespace ET
                         }
 
                         long gemValue = long.Parse(attributeInfo[1]);
-                        //宝石专精
-                        if (equipList[i].HideSkillLists.Contains(68000108))
-                        {
-                            gemValue = (long)((float)gemValue * 1.2f);
-                        }
 
                         //浮点数处理
                         if (NumericHelp.GetNumericValueType(gemPro) == 2)
                         {
-                            gemValue = gemValue * 10000;
+                            //gemValue = gemValue * 10000;
+                        }
+
+                        //宝石专精
+                        if (equipList[i].HideSkillLists.Contains(68000108))
+                        {
+                            gemValue = (long)((float)gemValue * 1.2f);
                         }
 
                         AddUpdateProDicList(gemPro, gemValue, UpdateProDicList);

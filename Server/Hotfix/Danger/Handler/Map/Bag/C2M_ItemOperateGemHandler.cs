@@ -27,6 +27,9 @@ namespace ET
             M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
             //通知客户端背包道具发生改变
             m2c_bagUpdate.BagInfoUpdate = new List<BagInfo>();
+
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(useBagInfo.ItemID);
+
             //镶嵌宝石
             if (request.OperateType == 9)
             {
@@ -35,8 +38,10 @@ namespace ET
                 long equipid = long.Parse(geminfos[0]);
                 int gemIndex = int.Parse(geminfos[1]);
 
-                //获取装备baginfo
                 BagInfo equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, equipid);
+
+                //获取装备baginfo
+                //
                 if (equipInfo == null)
                 {
                     equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, equipid);
@@ -47,6 +52,19 @@ namespace ET
                     reply();
                     return;
                 }
+
+                //判断孔位是否相符
+                string[] equipGeminfos = equipInfo.GemHole.Split('_');
+
+                if (equipGeminfos[gemIndex] != itemConfig.ItemSubType.ToString() && itemConfig.ItemSubType != 110 && itemConfig.ItemSubType != 111)
+                {
+                    response.Error = ErrorCore.ERR_ItemUseError;
+                    reply();
+                    return;
+                }
+
+
+
                 string[] gemIdList = equipInfo.GemIDNew.Split('_');
                 gemIdList[gemIndex] = useBagInfo.ItemID.ToString();
                 string gemIDNew = "";
@@ -65,9 +83,20 @@ namespace ET
             //卸下宝石
             if (request.OperateType == 10)
             {
+
                 int gemIndex = int.Parse(request.OperatePar);
                 string[] gemIdList = useBagInfo.GemIDNew.Split('_');
                 int gemItemId = int.Parse(gemIdList[gemIndex]);
+
+                //类型110的不能卸
+                ItemConfig gemItemConfig = ItemConfigCategory.Instance.Get(gemItemId);
+                if (gemItemConfig.ItemSubType == 110)
+                {
+                    response.Error = ErrorCore.ERR_GemNoError;
+                    reply();
+                    return;
+                }
+
                 gemIdList[gemIndex] = "0";
                 string gemIDNew = "";
                 for (int i = 0; i < gemIdList.Length; i++)

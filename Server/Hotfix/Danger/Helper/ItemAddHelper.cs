@@ -33,7 +33,7 @@ namespace ET
             //万能鉴定符固定为60
             if (bagInf0.ItemID == 11200000)
             {
-                bagInf0.ItemPar = "99";
+                bagInf0.ItemPar = "100";
                 return;
             }
 
@@ -48,8 +48,12 @@ namespace ET
                 minValuePro = 0.2f;
             }
             int minValue = (int)(minValuePro * 50f);
-            int maxValue = (int)(minValuePro * 100f);
-            bagInf0.ItemPar = RandomHelper.RandomNumber(minValue, maxValue).ToString();
+            int maxValue = (int)(minValuePro * 102f);
+            int randValue = RandomHelper.RandomNumber(minValue, maxValue);
+            if (randValue > 100) {
+                randValue = 100;
+            }
+            bagInf0.ItemPar = randValue.ToString();
         }
 
         public static void TreasureItem(BagInfo bagInfo)

@@ -71,6 +71,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_RoleNameRepeat, "角色名重复!");
             ErrorHintList.Add(ErrorCore.ERR_ShuLianDuNotEnough, "当前制造需求熟练度不足!");
             ErrorHintList.Add(ErrorCore.ERR_EquipType, "装备穿戴类型不符!");
+            ErrorHintList.Add(ErrorCore.ERR_GemNoError, "宝石一旦镶嵌无法卸载!");
             
             ErrorHintList.Add(ErrorCore.ERR_TeamIsFull, "队伍已满");
             ErrorHintList.Add(ErrorCore.ERR_LevelIsNot, "等级不足");
