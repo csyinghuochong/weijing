@@ -1208,3 +1208,13 @@ message R2M_GetSelfRankResponse // IActorResponse
     int32 RankId = 1; //战力排行
     int32 PetRank = 2;
 }
+
+//排行榜刷新
+message R2M_RankUpdateMessage // IActorLocationMessage
+{    
+	int32 RpcId = 90;
+	int64 ActorId = 93;
+	int32 RankId = 1;   
+	int32 UpdateType = 2;   //1战力 2宠物天梯
+	string UpdateMessage = 3;
+}

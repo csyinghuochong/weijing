@@ -140,13 +140,14 @@ namespace ET
                 unit.GetComponent<TaskComponent>().OnZeroClockUpdate(false);
             }
 
+            unit.GetComponent<BagComponent>().OnLogin();
             unit.GetComponent<TaskComponent>().OnLogin();
             unit.GetComponent<HeroDataComponent>().OnLogin();
             unit.GetComponent<DBSaveComponent>().OnLogin();
             unit.GetComponent<RechargeComponent>().OnLogin();
+            unit.GetComponent<PetComponent>().OnLogin();
             unit.GetComponent<ActivityComponent>().OnLogin(self.UserInfo.Lv);
             unit.GetComponent<TitleComponent>().OnCheckTitle(false);
-            unit.GetComponent<PetComponent>().CheckPetPingFen();
 
             self.LastLoginTime = currentTime;
             self.UserName = self.UserInfo.Name;

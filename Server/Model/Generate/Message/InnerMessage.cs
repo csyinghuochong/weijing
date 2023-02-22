@@ -2518,4 +2518,26 @@ namespace ET
 
 	}
 
+//排行榜刷新
+	[Message(InnerOpcode.R2M_RankUpdateMessage)]
+	[ProtoContract]
+	public partial class R2M_RankUpdateMessage: Object, IActorLocationMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(93)]
+		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int RankId { get; set; }
+
+		[ProtoMember(2)]
+		public int UpdateType { get; set; }
+
+		[ProtoMember(3)]
+		public string UpdateMessage { get; set; }
+
+	}
+
 }

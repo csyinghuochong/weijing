@@ -81,7 +81,8 @@
         public const int HorseFightID = 3079;                                       //出战的坐骑
         public const int HorseRide = 3080;                                          //骑乘状态
         public const int TitleID = 3081;                                              //称号
-        public const int ArenaNumber = 3082;
+        public const int ArenaNumber = 3082;                                           //角斗场次数
+        public const int PetRankID = 3083;                                          //宠物天梯排名
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

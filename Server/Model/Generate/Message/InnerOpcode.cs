@@ -147,5 +147,6 @@ namespace ET
 		 public const ushort G2M_KickPlayerRequest = 20144;
 		 public const ushort M2R_GetSelfRankRequest = 20145;
 		 public const ushort R2M_GetSelfRankResponse = 20146;
+		 public const ushort R2M_RankUpdateMessage = 20147;
 	}
 }

@@ -103,6 +103,12 @@ namespace ET
             return (float)Math.Round(value, 2);
         }
 
+        public static void OnLogin(this PetComponent self)
+        {
+            self.CheckPetPingFen();
+            self.CheckPetZiZhi();
+        }
+
         public static void CheckPetPingFen(this PetComponent self)
         {
             Unit unit = self.GetParent<Unit>();

@@ -373,6 +373,12 @@ namespace ET
             return null;
         }
 
+        public static void OnLogin(this BagComponent self)
+        {
+            int zodiacnumber = self.GetZodiacnumber();
+            self.GetParent<Unit>().GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.ZodiacEquipNumber_215, 0, zodiacnumber);
+        }
+
         public static int GetZodiacnumber(this BagComponent self)
         {
             int number = 0;

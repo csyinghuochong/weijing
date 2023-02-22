@@ -196,7 +196,6 @@ namespace ET
 					}
 				}
 			}
-
 		}
 
 		private async ETTask<long> EnterWorldChatServer(Unit unit)
