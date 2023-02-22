@@ -56,6 +56,7 @@ namespace ET
 		public const string UIRealName = "Main/RealName/UIRealName";
 		public const string UIRecharge = "Main/Recharge/UIRecharge";
 		public const string UIChengJiu = "Main/ChengJiu/UIChengJiu";
+		public const string UIChengJiuActivite = "Main/ChengJiu/UIChengJiuActivite";
 		public const string UISpirit = "Main/ChengJiu/UISpirit";
 		public const string UIChouKa = "Main/ChouKa/UIChouKa";
 		public const string UIChouKaReward = "Main/ChouKa/UIChouKaReward";
