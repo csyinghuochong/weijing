@@ -162,6 +162,17 @@ namespace ET
             }
         }
 
+        public static bool IsSkillSinging(this SingingComponent self, int skillid)
+        {
+            Unit unit = self.GetParent<Unit>();
+            if (self.c2M_SkillCmd != null && self.c2M_SkillCmd.SkillID == skillid
+             && unit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.Singing))
+            {
+                return true;
+            }
+            return false;
+        }
+
         public static  void WaitUseSkill(this SingingComponent self)
         {
             if (self.Type!=1)
