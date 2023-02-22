@@ -1169,7 +1169,7 @@ namespace ET
 		[ProtoMember(2)]
 		public RankPetInfo RankPetInfo { get; set; }
 
-		[ProtoMember(2)]
+		[ProtoMember(3)]
 		public int Win { get; set; }
 
 	}
