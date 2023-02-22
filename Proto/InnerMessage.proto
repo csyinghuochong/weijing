@@ -549,7 +549,7 @@ message M2R_PetRankUpdateRequest // IActorRequest
     int64 ActorId = 93;
     int64 EnemyId = 1;
     RankPetInfo RankPetInfo = 2;
-    int32 Win = 2;
+    int32 Win = 3;
 }
 
 message R2M_PetRankUpdateResponse // IActorResponse
