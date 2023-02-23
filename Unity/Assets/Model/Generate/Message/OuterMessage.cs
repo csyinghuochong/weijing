@@ -4063,6 +4063,9 @@ namespace ET
 		[ProtoMember(2)]
 		public List<int> TianFuList = new List<int>();
 
+		[ProtoMember(3)]
+		public List<KeyValuePair> ShieldList = new List<KeyValuePair>();
+
 	}
 
 	[ResponseType(nameof(M2C_SkillUp))]
@@ -6691,9 +6694,6 @@ namespace ET
 
 		[ProtoMember(6)]
 		public List<KeyValuePairInt> TitleList = new List<KeyValuePairInt>();
-
-		[ProtoMember(7)]
-		public List<KeyValuePair> ShieldList = new List<KeyValuePair>();
 
 	}
 

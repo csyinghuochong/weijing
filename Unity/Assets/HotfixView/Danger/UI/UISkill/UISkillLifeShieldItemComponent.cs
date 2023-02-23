@@ -1,0 +1,41 @@
+﻿using System;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace ET
+{
+    public class UISkillLifeShieldItemComponent : Entity,IAwake<GameObject>
+    {
+        public GameObject ImageDi;
+        public GameObject ImageIcon;
+        public GameObject TextName;
+
+        public int ShieldType;
+    }
+
+    public class UISkillLifeShieldItemComponentAwake : AwakeSystem<UISkillLifeShieldItemComponent, GameObject>
+    {
+        public override void Awake(UISkillLifeShieldItemComponent self, GameObject a)
+        {
+
+            self.ImageDi = a.transform.Find("ImageDi").gameObject;
+
+            self.ImageIcon = a.transform.Find("ImageIcon").gameObject;
+
+
+            self.TextName = a.transform.Find("TextName").gameObject;
+
+        }
+    }
+
+    public static class UISkillLifeShieldItemComponentSystem
+    {
+        public static void OnInitUI(this UISkillLifeShieldItemComponent self, int stype)
+        { 
+            self.ShieldType = stype;
+
+            int level =  self.ZoneScene().GetComponent<SkillSetComponent>().GetLifeShieldLevel(stype);
+        }
+    }
+
+}

@@ -139,6 +139,5 @@ namespace ET
             long endTime = titleConfig.ValidityTime == -1 ? -1 : TimeHelper.ServerNow() + titleConfig.ValidityTime * 1000;
             self.TitleList.Add(new KeyValuePairInt() { KeyId = titleId, Value = endTime });
         }
-
     }
 }

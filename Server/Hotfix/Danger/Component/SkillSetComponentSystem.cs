@@ -665,6 +665,19 @@ namespace ET
 			return sp;
 		}
 
+		public static int GetLifeShieldLevel(this SkillSetComponent self, int sType)
+		{
+			for (int i = 0; i < self.ShieldList.Count; i++)
+			{
+				if ((int)self.ShieldList[i].KeyId == sType)
+				{
+					return int.Parse(self.ShieldList[i].Value);
+				}
+			}
+
+			return 0;
+		}
+
 		/// <summary>
 		/// 重置技能点
 		/// </summary>

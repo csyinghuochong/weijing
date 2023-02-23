@@ -11,6 +11,7 @@ namespace ET
 
 			self.SkillList = m2C_SkillSet.SkillList;
 			self.TianFuList = m2C_SkillSet.TianFuList;
+			self.ShieldList = m2C_SkillSet.ShieldList;
 		}
 
 		public static int HaveSameTianFu(this SkillSetComponent self, int tianfuId)
@@ -498,6 +499,19 @@ namespace ET
 			userInfoComponent.UserInfo.OccTwo = 0;
 			HintHelp.GetInstance().DataUpdate(DataType.SkillReset);
 			return sp;
+		}
+
+		public static int GetLifeShieldLevel(this SkillSetComponent self, int sType)
+		{
+			for (int i = 0; i < self.ShieldList.Count; i++)
+			{
+				if ((int)self.ShieldList[i].KeyId == sType)
+				{
+					return int.Parse(self.ShieldList[i].Value);
+				}
+			}
+
+			return 0;
 		}
 
 		/// <summary>
