@@ -7,4 +7,5 @@
 {"_t":"ChengJiuRewardConfig","_id":7,"NeedPoint":1200,"RewardItems":"3;1000@10010083;50@10010043;5@10000143;10@10000132;100","Icon":10006,"Desc":"成就点数达到1200可领取对应奖励"},
 {"_t":"ChengJiuRewardConfig","_id":8,"NeedPoint":1350,"RewardItems":"3;1000@10010083;50@10010043;5@10000143;10@10010026;1","Icon":10006,"Desc":"成就点数达到1350可领取对应奖励"},
 {"_t":"ChengJiuRewardConfig","_id":9,"NeedPoint":1500,"RewardItems":"3;1000@10010083;50@10010043;5@10000143;10@10010026;1","Icon":10007,"Desc":"成就点数达到1500可领取对应奖励"},
+{"_t":"ChengJiuRewardConfig","_id":11,"NeedPoint":0,"RewardItems":"","Icon":0,"Desc":""},
 ]}

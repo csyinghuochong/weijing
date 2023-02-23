@@ -58,6 +58,7 @@ namespace ET
 
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ChengHaoIcon, titleConfig.Icon.ToString());
             self.RawImage.GetComponent<Image>().sprite = sp;
+            self.RawImage.GetComponent<Image>().SetNativeSize();
 
             self.Text_value.GetComponent<Text>().text = titleConfig.Des;
             self.OnUpdateUI();

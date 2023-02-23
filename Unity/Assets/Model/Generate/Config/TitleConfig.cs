@@ -99,6 +99,9 @@ namespace ET
 		/// <summary>额外属性描述</summary>
 		[ProtoMember(8)]
 		public string Des { get; set; }
+		/// <summary>缩放大小</summary>
+		[ProtoMember(9)]
+		public double size { get; set; }
 
 	}
 }

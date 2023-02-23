@@ -61,7 +61,7 @@ namespace ET
 
             self.Sprites.Clear();
             self.Image.gameObject.SetActive(true);
-
+            
             TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titleId);
             float scale = 2;
             self.Image.transform.localScale = Vector2.one * scale;  
@@ -88,6 +88,7 @@ namespace ET
                 self.Index = 0;
             }
             self.Image.sprite = self.Sprites[self.Index];
+            self.Image.GetComponent<Image>().SetNativeSize();
             self.Index++;
         }
     }
