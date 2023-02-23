@@ -63,7 +63,6 @@ namespace ET
             self.Image.gameObject.SetActive(true);
             
             TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titleId);
-            float scale = 2;
           
             long instanceId = self.InstanceId;
             for (int i = 0; i < titleConfig.AnimatorNumber; i++)
@@ -78,6 +77,8 @@ namespace ET
                 if (i == 0)
                 {
                     self.Image.sprite = self.Sprites[0];
+                    await TimerComponent.Instance.WaitFrameAsync();
+
                     self.Image.SetNativeSize();
                     self.Image.transform.localScale = Vector2.one * (float)titleConfig.size;
                 }
