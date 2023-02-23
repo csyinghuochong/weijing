@@ -9,6 +9,8 @@ namespace ET
         public GameObject Text_value;
         public GameObject ButtonActivite;
         public GameObject ObjGetText;
+        public GameObject UseSet;
+        public GameObject ChengHaoName;
         public GameObject GameObject;
         public int Title;
 
@@ -30,6 +32,8 @@ namespace ET
 
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.ObjGetText = rc.Get<GameObject>("ObjGetText");
+            self.UseSet = rc.Get<GameObject>("UseSet");
+            self.ChengHaoName = rc.Get<GameObject>("ChengHaoName");
 
             self.UIXuLieZhenComponent = self.AddChild<UIXuLieZhenComponent, GameObject>(self.RawImage);
         }
@@ -53,14 +57,15 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int titleId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TitleID);
             self.ButtonActivite.SetActive(titleId != self.Title);
+            self.UseSet.SetActive(titleId == self.Title);
         }
 
         public static void OnInitUI(this UISettingTitleItemComponent self, int titieInfoId, bool activeed)
         {
             self.Title = titieInfoId;
             TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titieInfoId);
-            self.Text_value.GetComponent<Text>().text = titleConfig.Name;
-
+            self.ChengHaoName.GetComponent<Text>().text = titleConfig.Name;
+            
             //Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ChengHaoIcon, titleConfig.Icon.ToString());
             //self.RawImage.GetComponent<Image>().sprite = sp;
             //self.RawImage.GetComponent<Image>().transform.localPosition = new Vector3(self.RawImage.GetComponent<Image>().transform.localPosition.x + (float)titleConfig.MoveX, self.RawImage.GetComponent<Image>().transform.localPosition.y + (float)titleConfig.MoveY, self.RawImage.GetComponent<Image>().transform.localPosition.z);

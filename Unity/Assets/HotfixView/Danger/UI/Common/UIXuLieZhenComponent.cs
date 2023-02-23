@@ -86,7 +86,7 @@ namespace ET
             }
 
             self.Index = 0;
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(250, TimerType.XuLieZhenTimer, self );
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(200, TimerType.XuLieZhenTimer, self );
         }
 
         public static void OnTimer(this UIXuLieZhenComponent self)

@@ -690,7 +690,7 @@
         public const int Base_ShuActAddPro_Add = Now_ShuActAddPro * 100 + 3;                   //属性附加
         public const int Extra_Buff_ShuActAddPro_Add = Now_ShuActAddPro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_ShuActAddPro_Mul = Now_ShuActAddPro * 100 + 12;            //属性Buff附加乘法
-
+  
         public const int Now_ActReboundDamgePro = 2055;          //当前攻击反弹伤害比例
         public const int Base_ActReboundDamgePro_Base = Now_ActReboundDamgePro * 100 + 1;              //属性累加
         public const int Base_ActReboundDamgePro_Mul = Now_ActReboundDamgePro * 100 + 2;               //属性乘法
