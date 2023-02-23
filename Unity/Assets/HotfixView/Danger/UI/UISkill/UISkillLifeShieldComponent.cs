@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISkillLiftShieldComponent : Entity, IAwake
+    public class UISkillLifeShieldComponent : Entity, IAwake
     {
         public GameObject Text_ShieldDesc;
         public GameObject Text_Progess;
@@ -21,9 +21,9 @@ namespace ET
     }
 
     [ObjectSystem]
-    public class UISkillLiftShieldComponentAwake : AwakeSystem<UISkillLiftShieldComponent>
+    public class UISkillLiftShieldComponentAwake : AwakeSystem<UISkillLifeShieldComponent>
     {
-        public override void Awake(UISkillLiftShieldComponent self)
+        public override void Awake(UISkillLifeShieldComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 

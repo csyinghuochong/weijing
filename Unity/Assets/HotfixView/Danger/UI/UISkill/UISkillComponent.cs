@@ -45,7 +45,7 @@ namespace ET
             pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillSet] = typeof(UISkillSetComponent);
             pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillMake] = typeof(UISkillMakeComponent);
             pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillTianFu] = typeof(UISkillTianFuComponent);
-            pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillLifeShield] = typeof(UISkillLiftShieldComponent);
+            pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillLifeShield] = typeof(UISkillLifeShieldComponent);
 
             self.UIPageView = pageViewComponent;
 
