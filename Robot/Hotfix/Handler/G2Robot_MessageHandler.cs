@@ -17,7 +17,7 @@ namespace ET
                 case NoticeType.TeamDungeon:
                     List<Entity> ts = robotManagerComponent.Children.Values.ToList();
                     Log.Debug($"机器人数量:{ts.Count}");
-                    if (ts.Count >= 200)
+                    if (ts.Count >= 150)
                     {
                         return;
                     }
