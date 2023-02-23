@@ -53,6 +53,17 @@ namespace ET
                                 continue;
                             }
                             break;
+                        case 4: //20级以上 补
+                            List<UserInfoComponent> userinfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(scene.DomainZone(), d => d.Id == dBMailInfos[i].Id);
+                            if (userinfoComponents.Count == 0)
+                            {
+                                continue;
+                            }
+                            if (userinfoComponents[0].UserInfo.Lv < 20)
+                            {
+                                continue;
+                            }
+                            break;
                         default:
                             break;
                     }
