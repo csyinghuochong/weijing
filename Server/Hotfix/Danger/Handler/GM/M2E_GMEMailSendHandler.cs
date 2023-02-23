@@ -31,29 +31,38 @@ namespace ET
                 for (int i = 0; i < dBMailInfos.Count; i++)
                 {
                     List<NumericComponent> numericInfoList = await Game.Scene.GetComponent<DBComponent>().Query<NumericComponent>(scene.DomainZone(), d => d.Id == dBMailInfos[i].Id);
+                    if (numericInfoList.Count == 0)
+                    {
+                        continue;
+                    }
+
                     switch (request.MailType)
                     {
-                        case 2: // 298 送  10000202 
-                            if (numericInfoList.Count == 0)
-                            {
-                                continue;
-                            }
-                            if (numericInfoList[0].GetAsLong(NumericType.RechargeNumber) < 298)
+                        case 2: // 充值>=6元 10011003
+                            if (numericInfoList[0].GetAsLong(NumericType.RechargeNumber) < 6)
                             {
                                 continue;
                             }
                             break;
-                        case 3: //800以上 补 10000205
-                            if (numericInfoList.Count == 0)
-                            {
-                                continue;
-                            }
-                            if (numericInfoList[0].GetAsLong(NumericType.RechargeNumber) < 800)
+                        case 3: //充值>=98  10011009
+                            if (numericInfoList[0].GetAsLong(NumericType.RechargeNumber) < 98)
                             {
                                 continue;
                             }
                             break;
-                        case 4: //20级以上 补
+                        case 4: //充值>=1300 10011011
+                            if (numericInfoList[0].GetAsLong(NumericType.RechargeNumber) < 1300)
+                            {
+                                continue;
+                            }
+                            break;
+                        case 5: //充值>= 5000  10011014
+                            if (numericInfoList[0].GetAsLong(NumericType.RechargeNumber) < 5000)
+                            {
+                                continue;
+                            }
+                            break;
+                        case 6: //20级以上 补
                             List<UserInfoComponent> userinfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(scene.DomainZone(), d => d.Id == dBMailInfos[i].Id);
                             if (userinfoComponents.Count == 0)
                             {

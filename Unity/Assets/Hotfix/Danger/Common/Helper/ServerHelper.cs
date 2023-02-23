@@ -120,7 +120,7 @@ namespace ET
                     serverItems_1.Add(new ServerItem() { ServerId = 15, ServerIp = "39.96.194.143:20435", ServerName = "金戈铁马", ServerOpenTime = 1676026800000, Show = 1 });
                     serverItems_1.Add(new ServerItem() { ServerId = 16, ServerIp = "39.96.194.143:20445", ServerName = "世外桃源", ServerOpenTime = 1676631600000, Show = 1 });
 
-                    serverItems_1.Add(new ServerItem() { ServerId = 17, ServerIp = "39.96.194.143:20455", ServerName = "先锋十三", ServerOpenTime = 1677236400000, Show = 1 });
+                    serverItems_1.Add(new ServerItem() { ServerId = 17, ServerIp = "39.96.194.143:20455", ServerName = "先锋十三", ServerOpenTime = 0, Show = 0 });
                 }
             }
 
