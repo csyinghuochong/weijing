@@ -207,6 +207,10 @@ namespace ET
 
         public static void OnXiaMa(this GameObjectComponent self)
         {
+            if (self.GameObject == null)
+            {
+                return;
+            }
             self.RecoverHorse();
             Unit unit = self.GetParent<Unit>();
             UICommonHelper.SetParent(self.GameObject, GlobalComponent.Instance.Unit.gameObject);

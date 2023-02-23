@@ -48,7 +48,7 @@
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Arena)
             {
                 //允许pk地图
-                return !self.IsSameTeam(defend) && !self.IsMasterOrPet(defend, petComponent);
+                return  !self.IsMasterOrPet(defend, petComponent);
             }
             if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.Battle)
             {
