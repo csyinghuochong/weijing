@@ -60,7 +60,7 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
             for (int i = self.TitleList.Count - 1; i >= 0; i--)
             {
-                if (self.TitleList[i].Value == serverTime)
+                if (self.TitleList[i].Value == -1) //永久称号
                 {
                     continue;
                 }
@@ -100,6 +100,31 @@ namespace ET
             return false;
         }
 
+        /// <summary>
+        /// 返回-1为永久称号
+        /// </summary>
+        /// <param name="self"></param>
+        /// <param name="titleId"></param>
+        /// <returns></returns>
+        public static long GetTitlLeftTime(this TitleComponent self, int titleId)
+        {
+            for (int i = 0; i < self.TitleList.Count; i++)
+            {
+                if (self.TitleList[i].KeyId != titleId)
+                {
+                    continue;
+                }
+                if (self.TitleList[i].Value == -1)
+                {
+                    return -1;
+                }
+                long leftTime = self.TitleList[i].Value - TimeHelper.ServerNow();
+                leftTime = Math.Max(leftTime, 0);
+                return leftTime;
+            }
+            return 0;
+        }
+
         public static void OnActiveTile(this TitleComponent self, int titleId)
         {
             for (int i = self.TitleList.Count - 1; i >= 0; i--)
@@ -111,7 +136,7 @@ namespace ET
             }
 
             TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titleId);
-            long endTime = titleConfig.ValidityTime == 0 ? 0 : TimeHelper.ServerNow() + titleConfig.ValidityTime * 1000;
+            long endTime = titleConfig.ValidityTime == -1 ? -1 : TimeHelper.ServerNow() + titleConfig.ValidityTime * 1000;
             self.TitleList.Add(new KeyValuePairInt() { KeyId = titleId, Value = endTime });
         }
 
