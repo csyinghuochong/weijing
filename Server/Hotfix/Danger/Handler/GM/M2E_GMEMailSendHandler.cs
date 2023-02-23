@@ -50,7 +50,7 @@ namespace ET
                             {
                                 continue;
                             }
-                            if (userinfoComponents[0].UserInfo.Lv < < int.Parse(request.Title))
+                            if (userinfoComponents[0].UserInfo.Lv < int.Parse(request.Title))
                             {
                                 continue;
                             }
