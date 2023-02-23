@@ -43,20 +43,26 @@ namespace ET
             await ETTask.CompletedTask;
         }
 
-        public static void OnInitUI(this UISettingTitleItemComponent self, KeyValuePairInt titieInfo)
+        public static void OnUpdateUI(this UISettingTitleItemComponent self)
         {
-            self.Title = titieInfo.KeyId;
-            TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titieInfo.KeyId);
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int titleId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TitleID);
+            self.ButtonActivite.SetActive(titleId != self.Title);
+        }
+
+        public static void OnInitUI(this UISettingTitleItemComponent self, int titieInfoId, bool activeed)
+        {
+            self.Title = titieInfoId;
+            TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titieInfoId);
             self.Text_value.GetComponent<Text>().text = titleConfig.Name;
 
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ChengHaoIcon, titleConfig.Icon.ToString());
             self.RawImage.GetComponent<Image>().sprite = sp;
 
             self.Text_value.GetComponent<Text>().text = titleConfig.Des;
+            self.OnUpdateUI();
 
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int titleId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TitleID);
-            self.ButtonActivite.SetActive(titleId != titieInfo.KeyId);
+            UICommonHelper.SetImageGray(self.RawImage, !activeed);
         }
     }
 }

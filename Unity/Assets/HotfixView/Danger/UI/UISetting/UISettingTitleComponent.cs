@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Linq;
 
 namespace ET
 {
@@ -19,44 +20,37 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.cellContainer1 = rc.Get<GameObject>("cellContainer1");
 
+            self.OnInitUI();
+
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
         }
     }
 
     public static class UISettingTitleComponentSystem
     {
-        public static void OnUpdateUI(this UISettingTitleComponent self)
+        public static void OnInitUI(this UISettingTitleComponent self)
         {
-            long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Setting/UISettingTitleItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
-            if (instanceid != self.InstanceId)
-            {
-                return;
-            }
-
             TitleComponent titleComponent = self.ZoneScene().GetComponent<TitleComponent>();
-            for (int i = 0; i < titleComponent.TitleList.Count; i++)
+
+            List<TitleConfig> titleConfigs = TitleConfigCategory.Instance.GetAll().Values.ToList();
+            for (int i = 0; i < titleConfigs.Count; i++)
             {
                 UISettingTitleItemComponent uISettingTitleItem = null;
-                if (i < self.UITitieList.Count)
-                {
-                    uISettingTitleItem = self.UITitieList[i];
-                    uISettingTitleItem.GameObject.SetActive(true);
-                }
-                else
-                {
-                    GameObject go = GameObject.Instantiate(bundleGameObject);
-                    UICommonHelper.SetParent(go, self.cellContainer1);
-                    uISettingTitleItem = self.AddChild<UISettingTitleItemComponent, GameObject>(go);
-                    self.UITitieList.Add(uISettingTitleItem);
-                }
-                uISettingTitleItem.OnInitUI(titleComponent.TitleList[i]);
+                GameObject go = GameObject.Instantiate(bundleGameObject);
+                UICommonHelper.SetParent(go, self.cellContainer1);
+                uISettingTitleItem = self.AddChild<UISettingTitleItemComponent, GameObject>(go);
+                self.UITitieList.Add(uISettingTitleItem);
+                uISettingTitleItem.OnInitUI(titleConfigs[i].Id, titleComponent.IsHaveTitle(titleConfigs[i].Id));
             }
+        }
 
-            for (int i = titleComponent.TitleList.Count; i < self.UITitieList.Count; i++)
+        public static void OnUpdateUI(this UISettingTitleComponent self)
+        {
+            for (int i = 0; i < self.UITitieList.Count; i++)
             {
-                self.UITitieList[i].GameObject.SetActive(false);
+                self.UITitieList[i].OnUpdateUI();
             }
         }
     }
