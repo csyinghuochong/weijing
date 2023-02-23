@@ -66,7 +66,7 @@ namespace ET
 
 
 
-        public static List<long> GetConstItems(this UISkillLifeShieldComponent)
+        public static List<long> GetConstItems(this UISkillLifeShieldComponent self)
         {
             return new List<long>();
         }
