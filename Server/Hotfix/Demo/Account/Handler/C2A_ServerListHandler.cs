@@ -9,10 +9,11 @@ namespace ET
     {
         protected override async ETTask Run(Session session, C2A_ServerList request, A2C_ServerList response, Action reply)
         {
+            long serverTime = TimeHelper.ServerNow();
             List<ServerItem> serverItems = ServerHelper.GetServerList(ComHelp.IsInnerNet(), session.DomainZone());
             for (int i = serverItems.Count - 1; i >= 0; i--)
             {
-                if (serverItems[i].Show == 0)
+                if (serverItems[i].Show == 0  || serverItems[i].ServerOpenTime > serverTime)
                 {
                     serverItems.RemoveAt(i);    
                 }
