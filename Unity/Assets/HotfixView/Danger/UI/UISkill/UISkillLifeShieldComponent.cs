@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,10 +19,12 @@ namespace ET
         public GameObject[] UICommonItem_List = new GameObject[5];
 
         public GameObject Btn_ZhuRu;
+
+        public int ShieldType;
     }
 
     [ObjectSystem]
-    public class UISkillLiftShieldComponentAwake : AwakeSystem<UISkillLifeShieldComponent>
+    public class UISkillLifeShieldComponentAwake : AwakeSystem<UISkillLifeShieldComponent>
     {
         public override void Awake(UISkillLifeShieldComponent self)
         {
@@ -45,6 +48,28 @@ namespace ET
             }
 
             self.Btn_ZhuRu = rc.Get<GameObject>("Btn_ZhuRu");
+
         }
+    }
+
+    public static class UISkillLifeShieldComponentSystem
+    {
+
+        public static async ETTask OnBtn_ZhuRu(this UISkillLifeShieldComponent self)
+        {
+            List<long> costs = self.GetConstItems ();
+            C2M_LifeShieldCostRequest  request = new C2M_LifeShieldCostRequest() { OperateType = self.ShieldType, OperateBagID = costs };
+            M2C_LifeShieldCostResponse response = (M2C_LifeShieldCostResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+
+            self.ZoneScene().GetComponent<TitleComponent>().ShieldList = response.ShieldList;   
+        }
+
+
+
+        public static List<long> GetConstItems(this UISkillLifeShieldComponent)
+        {
+            return new List<long>();
+        }
+
     }
 }

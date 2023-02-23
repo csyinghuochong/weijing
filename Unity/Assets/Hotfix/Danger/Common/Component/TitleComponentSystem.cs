@@ -60,6 +60,10 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
             for (int i = self.TitleList.Count - 1; i >= 0; i--)
             {
+                if (self.TitleList[i].Value == serverTime)
+                {
+                    continue;
+                }
                 if (self.TitleList[i].Value < serverTime)
                 {
                     update = true;
@@ -107,7 +111,8 @@ namespace ET
             }
 
             TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titleId);
-            self.TitleList.Add(new KeyValuePairInt() { KeyId = titleId, Value = TimeHelper.ServerNow() + titleConfig.ValidityTime * 1000 });
+            long endTime = titleConfig.ValidityTime == 0 ? 0 : TimeHelper.ServerNow() + titleConfig.ValidityTime * 1000;
+            self.TitleList.Add(new KeyValuePairInt() { KeyId = titleId, Value = endTime });
         }
 
     }
