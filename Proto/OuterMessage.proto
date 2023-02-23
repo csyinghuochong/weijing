@@ -1910,6 +1910,7 @@ message M2C_SkillInitResponse	// IActorLocationResponse
 	int32 Error = 92;
 	repeated SkillPro SkillList = 1;
 	repeated int32 TianFuList = 2;
+	repeated KeyValuePair ShieldList = 3;
 }
 
 
