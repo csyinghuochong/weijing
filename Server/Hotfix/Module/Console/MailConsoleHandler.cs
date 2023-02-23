@@ -18,10 +18,10 @@ namespace ET
                     Log.Console($"C must have mail zone userid items title");
                     break;
                 default:
-                    //mail 区服(0所有区服  1指定区服)  玩家ID(0所有玩家)  道具 邮件类型
-                    //mail  1 0 1; 10000  "清档补偿"
+                    //mail 区服(0所有区服  1指定区服)  玩家ID(0所有玩家)  道具 邮件类型 参数
+                    //mail 0 0 1;1 2 “6”
                     string[] mailInfo = content.Split(" ");
-                    if (mailInfo[0]!= "mail" && mailInfo.Length < 5)
+                    if (mailInfo[0]!= "mail" && mailInfo.Length < 6)
                     {
                         return;
                     }
@@ -48,12 +48,6 @@ namespace ET
                         zoneList.Add(int.Parse(mailInfo[1]));
                     }
 
-                    string titie = "邮件";
-                    if (mailInfo[4] == "1")
-                    {
-                        titie = "补偿！";
-                    }
-
                     for (int i = 0; i < zoneList.Count; i++)
                     {
                         int pyzone = StartZoneConfigCategory.Instance.Get(zoneList[i]).PhysicZone;
@@ -64,7 +58,7 @@ namespace ET
                                 //UserId = long.Parse(mailInfo[2]),
                                 UserName = mailInfo[2],
                                 Itemlist = mailInfo[3],
-                                Title = titie,    
+                                Title = mailInfo[5],    
                                 ActorId = zoneList[i],
                                 MailType = int.Parse(mailInfo[4]),
                             });
