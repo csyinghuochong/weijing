@@ -6137,7 +6137,7 @@ GameObject:
   - component: {fileID: 7399543701399444525}
   - component: {fileID: 8386478479723753238}
   m_Layer: 5
-  m_Name: UISkillLiftShield
+  m_Name: UISkillLifeShield
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -38,7 +38,7 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)SkillPageEnum.SkillSet] = ABPathHelper.GetUGUIPath("Main/Skill/UISkillSet");
             pageViewComponent.UISubViewPath[(int)SkillPageEnum.SkillMake] = ABPathHelper.GetUGUIPath("Main/Skill/UISkillMake");
             pageViewComponent.UISubViewPath[(int)SkillPageEnum.SkillTianFu] = ABPathHelper.GetUGUIPath("Main/Skill/UISkillTianFu");
-            pageViewComponent.UISubViewPath[(int)SkillPageEnum.SkillLifeShield] = ABPathHelper.GetUGUIPath("Main/Skill/UISkillLiftShield");
+            pageViewComponent.UISubViewPath[(int)SkillPageEnum.SkillLifeShield] = ABPathHelper.GetUGUIPath("Main/Skill/UISkillLifeShield");
             
 
             pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillLearn] = typeof(UISkillLearnComponent);
