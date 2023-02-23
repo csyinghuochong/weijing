@@ -198,8 +198,8 @@ namespace ET
                 {
                     this.Lal_JiaZuName.GetComponent<TextMeshProUGUI>().text = String.Empty;
                 }
-                
-                int tilteid = numericComponent.GetAsInt(NumericType.TitleID);
+
+                int tilteid = 10001; // numericComponent.GetAsInt(NumericType.TitleID);
                 this.UIXuLieZhenComponent.OnUpdateTitle(tilteid).Coroutine();
                 unit.GetComponent<GameObjectComponent>().OnUpdateHorse();
             }

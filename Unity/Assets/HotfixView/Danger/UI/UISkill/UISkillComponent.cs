@@ -11,6 +11,7 @@ namespace ET
         SkillSet = 1,
         SkillMake = 2,
         SkillTianFu = 3,
+        SkillLifeShield = 4,
 
         Number,
     }

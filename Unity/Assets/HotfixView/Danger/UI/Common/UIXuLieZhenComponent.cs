@@ -64,8 +64,7 @@ namespace ET
             
             TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titleId);
             float scale = 2;
-            self.Image.transform.localScale = Vector2.one * scale;  
-
+          
             long instanceId = self.InstanceId;
             for (int i = 0; i < titleConfig.AnimatorNumber; i++)
             {
@@ -75,8 +74,13 @@ namespace ET
                     return;
                 }
                 self.Sprites.Add(sprite);
-                self.Image.sprite = self.Sprites[0];
-                self.Image.SetNativeSize();
+
+                if (i == 0)
+                {
+                    self.Image.sprite = self.Sprites[0];
+                    self.Image.SetNativeSize();
+                    self.Image.transform.localScale = Vector2.one * scale;
+                }
             }
 
             self.Index = 0;
@@ -90,7 +94,6 @@ namespace ET
                 self.Index = 0;
             }
             self.Image.sprite = self.Sprites[self.Index];
-            self.Image.SetNativeSize();
             self.Index++;
         }
     }
