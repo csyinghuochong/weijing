@@ -81,11 +81,12 @@ namespace ET
 
                     self.Image.SetNativeSize();
                     self.Image.transform.localScale = Vector2.one * (float)titleConfig.size;
+                    self.Image.transform.localPosition = new Vector3((float)titleConfig.MoveX, 75 + (float)titleConfig.MoveY, self.Image.transform.localPosition.z);
                 }
             }
 
             self.Index = 0;
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.XuLieZhenTimer, self );
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(250, TimerType.XuLieZhenTimer, self );
         }
 
         public static void OnTimer(this UIXuLieZhenComponent self)

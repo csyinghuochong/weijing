@@ -102,6 +102,15 @@ namespace ET
 		/// <summary>缩放大小</summary>
 		[ProtoMember(9)]
 		public double size { get; set; }
+		/// <summary>X偏移</summary>
+		[ProtoMember(10)]
+		public double MoveX { get; set; }
+		/// <summary>Y便宜</summary>
+		[ProtoMember(11)]
+		public double MoveY { get; set; }
+		/// <summary>额外属性描述</summary>
+		[ProtoMember(12)]
+		public string GetDes { get; set; }
 
 	}
 }

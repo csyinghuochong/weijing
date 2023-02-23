@@ -8,7 +8,7 @@ namespace ET
         public GameObject RawImage;
         public GameObject Text_value;
         public GameObject ButtonActivite;
-
+        public GameObject ObjGetText;
         public GameObject GameObject;
         public int Title;
     }
@@ -27,6 +27,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.ButtonActivite, () => { self.OnButtonActivite().Coroutine(); });
 
             self.RawImage = rc.Get<GameObject>("RawImage");
+            self.ObjGetText = rc.Get<GameObject>("ObjGetText");
         }
     }
 
@@ -58,8 +59,10 @@ namespace ET
 
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ChengHaoIcon, titleConfig.Icon.ToString());
             self.RawImage.GetComponent<Image>().sprite = sp;
+            self.RawImage.GetComponent<Image>().transform.localPosition = new Vector3(self.RawImage.GetComponent<Image>().transform.localPosition.x + (float)titleConfig.MoveX, self.RawImage.GetComponent<Image>().transform.localPosition.y + (float)titleConfig.MoveY, self.RawImage.GetComponent<Image>().transform.localPosition.z);
             self.RawImage.GetComponent<Image>().SetNativeSize();
 
+            self.ObjGetText.GetComponent<Text>().text = titleConfig.GetDes;
             self.Text_value.GetComponent<Text>().text = titleConfig.Des;
             self.OnUpdateUI();
 
