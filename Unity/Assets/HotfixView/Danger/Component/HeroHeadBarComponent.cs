@@ -200,7 +200,7 @@ namespace ET
                 }
                 
                 int tilteid = numericComponent.GetAsInt(NumericType.TitleID);
-                this.UIXuLieZhenComponent.OnUpdateTitle(10001).Coroutine();
+                this.UIXuLieZhenComponent.OnUpdateTitle(tilteid).Coroutine();
                 unit.GetComponent<GameObjectComponent>().OnUpdateHorse();
             }
             //显示怪物名称
