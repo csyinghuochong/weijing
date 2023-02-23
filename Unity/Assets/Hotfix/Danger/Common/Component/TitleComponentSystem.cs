@@ -43,7 +43,17 @@ namespace ET
                 }
                 else
                 {
-                    proList.Add(new HideProList() { HideID = numericType, HideValue = long.Parse(attributeInfo[1]) });
+                    long lvalue = 0;
+                    try
+                    {
+                        lvalue = long.Parse(attributeInfo[1]);
+                    }
+                    catch(Exception ex)
+                    {
+                        Log.Debug(ex.ToString() + $": {titleId}");
+                    }
+
+                    proList.Add(new HideProList() { HideID = numericType, HideValue = lvalue });
                 }
             }
 
