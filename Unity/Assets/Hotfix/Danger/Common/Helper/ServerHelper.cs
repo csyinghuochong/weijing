@@ -43,13 +43,13 @@ namespace ET
 
         public static int GetOpenServerDay(bool innerNet, int zone)
         {
+            long serverNow = TimeHelper.ServerNow();
             long openSerTime = GetOpenServerTime(innerNet, zone);
-            if (openSerTime == 0)
+            if (openSerTime == 0 || serverNow < openSerTime)
             {
                 return 0;
             }
 
-            long serverNow = TimeHelper.ServerNow();
             int openserverDay = ComHelp.DateDiff_Time(serverNow, openSerTime);
             return openserverDay;
         }
