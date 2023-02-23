@@ -65,6 +65,7 @@ namespace ET
         public HeadBarUI HeadBarUI;
         public float LastTime;
         public long Timer;
+        public UIXuLieZhenComponent UIXuLieZhenComponent;
 
         public void  Awake( )
         {
@@ -123,6 +124,7 @@ namespace ET
                     ImageHpFill.GetComponent<Image>().sprite = sp;
                     this.BuffShieldValue = rc.Get<GameObject>("BuffShieldValue");
                     this.Img_ChengHao = rc.Get<GameObject>("Img_ChengHao");
+                    this.UIXuLieZhenComponent = this.AddChild<UIXuLieZhenComponent, GameObject>(this.Img_ChengHao);
                     break;
                 case UnitType.Pet:
                     imageHp = canAttack ? "UI_pro_4_2": "UI_pro_3_4";
@@ -198,17 +200,7 @@ namespace ET
                 }
                 
                 int tilteid = numericComponent.GetAsInt(NumericType.TitleID);
-                if (tilteid > 0)
-                {
-                    TitleConfig titleConfig = TitleConfigCategory.Instance.Get(tilteid);
-                    Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ChengHaoIcon, titleConfig.Icon.ToString());
-                    this.Img_ChengHao.SetActive(true);
-                    this.Img_ChengHao.GetComponent<Image>().sprite = sp;
-                }
-                else
-                {
-                    this.Img_ChengHao.SetActive(false);
-                }
+                this.UIXuLieZhenComponent.OnUpdateTitle(10001).Coroutine();
                 unit.GetComponent<GameObjectComponent>().OnUpdateHorse();
             }
             //显示怪物名称

@@ -87,11 +87,17 @@ namespace ET
 		/// <summary>额外属性</summary>
 		[ProtoMember(4)]
 		public string AddProperty { get; set; }
-		/// <summary>有效期(秒)</summary>
+		/// <summary>序列帧动画</summary>
 		[ProtoMember(5)]
+		public string AnimatorAsset { get; set; }
+		/// <summary>序列帧动画数量</summary>
+		[ProtoMember(6)]
+		public int AnimatorNumber { get; set; }
+		/// <summary>有效期(秒)</summary>
+		[ProtoMember(7)]
 		public int ValidityTime { get; set; }
 		/// <summary>额外属性描述</summary>
-		[ProtoMember(6)]
+		[ProtoMember(8)]
 		public string Des { get; set; }
 
 	}

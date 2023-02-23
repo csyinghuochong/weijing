@@ -34,5 +34,11 @@ namespace ET
             return prefab;
         }
 
+        public static async ETTask<Sprite> GetIconSpriteAsync(ABAtlasTypes types, string icon)
+        {
+            var path = ABPathHelper.GetAtlasPath_2(types.ToString(), icon);
+            Sprite prefab =await ResourcesComponent.Instance.LoadAssetAsync<Sprite>(path);
+            return prefab;
+        }
     }
 }
