@@ -158,8 +158,7 @@ namespace ET
             {
                 Log.Debug($"OnArenaOver: {self.DomainZone()} {unitid} {ArenaPlayerStatu.RankId}");
             }
-            self.KickOutPlayer();
-
+           
             //战场关闭之前退出的玩家
             self.SendReward(self.GetNoRankPlayers(), "1;100000@10010083;5@10010085;20");
             //第一名玩家的奖励
@@ -170,6 +169,8 @@ namespace ET
             self.SendReward(self.GetRankPlayers(6, 10), "1;150000@10010083;10@10010085;30");
             //第2-30名玩家的奖励
             self.SendReward(self.GetRankPlayers(11, 20), "1;150000@10010083;5@10010085;20");
+
+            self.KickOutPlayer();
 
             await ETTask.CompletedTask;
         }
