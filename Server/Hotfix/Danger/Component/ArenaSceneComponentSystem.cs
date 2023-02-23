@@ -117,7 +117,7 @@ namespace ET
 
         public static async ETTask OnArenaOver(this ArenaSceneComponent self)
         {
-            Log.Debug($"OnArenaClose：{self.DomainZone()}");
+            Log.Debug($"OnArenaOver：{self.DomainZone()}");
             foreach (var item in self.Children)
             {
                 Scene scene = item.Value as Scene;
