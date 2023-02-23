@@ -40,11 +40,18 @@ namespace ET
 
             for (int i = 0; i < 6; i++)
             {
-                self.ShieldUIList.Add(self.AddChild<UISkillLifeShieldItemComponent, GameObject>(rc.Get<GameObject>($"Shield_{i + 1}")));
+                UISkillLifeShieldItemComponent uISkillLifeShieldItem = self.AddChild<UISkillLifeShieldItemComponent, GameObject>(rc.Get<GameObject>($"Shield_{i + 1}"));
+                uISkillLifeShieldItem.OnInitUI(i + 1);
+                uISkillLifeShieldItem.SetClickHandler(self.OnClickShieldHandler);
+                self.ShieldUIList.Add(uISkillLifeShieldItem);
             }
+            self.ShieldUIList[0].OnButtonClick();
+
             for (int i = 0; i < 5; i++)
-            { 
-                self.CostUIlist.Add( self.AddChild<UIItemComponent, GameObject>(rc.Get<GameObject>($"UICommonItem_{i + 1}")) );
+            {
+                UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(rc.Get<GameObject>($"UICommonItem_{i + 1}"));
+                uIItemComponent.UpdateItem(null);
+                self.CostUIlist.Add(uIItemComponent);
             }
 
             self.Btn_ZhuRu = rc.Get<GameObject>("Btn_ZhuRu");
@@ -56,6 +63,24 @@ namespace ET
 
     public static class UISkillLifeShieldComponentSystem
     {
+
+        public static void OnClickShieldHandler(this UISkillLifeShieldComponent self, int shieldType)
+        {
+            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
+            int level = skillSetComponent.GetLifeShieldLevel(shieldType);
+            int shieldId = 0;
+            if (level == 0 || LifeShieldConfigCategory.Instance.GetShieldId(shieldType, level + 1) > 0)
+            {
+                shieldId = LifeShieldConfigCategory.Instance.GetShieldId(shieldType, level + 1);
+            }
+            else
+            {
+                shieldId = LifeShieldConfigCategory.Instance.GetShieldId(shieldType, level);
+            }
+
+            LifeShieldConfig lifeShieldConfig = LifeShieldConfigCategory.Instance.Get(shieldId);
+            self.Text_ShieldName.GetComponent<Text>().text = $"{lifeShieldConfig.ShieldName} {lifeShieldConfig.ShieldLevel}级";
+        }
 
         public static async ETTask OnBtn_ZhuRu(this UISkillLifeShieldComponent self)
         {
