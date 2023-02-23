@@ -9,8 +9,8 @@ namespace ET
     {
         SkillLearn = 0,
         SkillSet = 1,
-        SkillMake = 2,
-        SkillTianFu = 3,
+        SkillTianFu = 2,
+        SkillMake = 3,
         SkillLifeShield = 4,
 
         Number,
@@ -38,11 +38,14 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)SkillPageEnum.SkillSet] = ABPathHelper.GetUGUIPath("Main/Skill/UISkillSet");
             pageViewComponent.UISubViewPath[(int)SkillPageEnum.SkillMake] = ABPathHelper.GetUGUIPath("Main/Skill/UISkillMake");
             pageViewComponent.UISubViewPath[(int)SkillPageEnum.SkillTianFu] = ABPathHelper.GetUGUIPath("Main/Skill/UISkillTianFu");
+            pageViewComponent.UISubViewPath[(int)SkillPageEnum.SkillLifeShield] = ABPathHelper.GetUGUIPath("Main/Skill/UISkillLiftShield");
+            
 
             pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillLearn] = typeof(UISkillLearnComponent);
             pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillSet] = typeof(UISkillSetComponent);
             pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillMake] = typeof(UISkillMakeComponent);
             pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillTianFu] = typeof(UISkillTianFuComponent);
+            pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillLifeShield] = typeof(UISkillLiftShieldComponent);
 
             self.UIPageView = pageViewComponent;
 
