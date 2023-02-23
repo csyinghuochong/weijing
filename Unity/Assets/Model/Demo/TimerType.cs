@@ -28,7 +28,7 @@
         public const int BehaviourTimer = 1026;
         public const int UISingingTimer = 1027;
         public const int RefreshMonsterTimer = 1028;
-        public const int HeroHeadBarTimer = 1029;
+        public const int HeroHeadReviveTime = 1029;
         public const int OpenBoxTimer = 1030;
         public const int TowerTimer = 1031;
         public const int DeathTimer = 1032;
@@ -62,6 +62,7 @@
         public const int ShenQiMakeTimer = 1063;
         public const int WatchTimer = 1064;
         public const int ArenaTimer = 1065;
+        public const int HeroHeadTitleTime = 1066;
         // 不能超过10000
     }
 }

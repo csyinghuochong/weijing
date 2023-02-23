@@ -6,7 +6,7 @@ using UnityEngine.UI;
 namespace ET
 {
 
-    [Timer(TimerType.HeroHeadBarTimer)]
+    [Timer(TimerType.HeroHeadReviveTime)]
     public class HeroHeadBarTimer : ATimer<HeroHeadBarComponent>
     {
         public override void Run(HeroHeadBarComponent self)
@@ -288,7 +288,7 @@ namespace ET
                 rc.Get<GameObject>("Alive").SetActive(false);
                 rc.Get<GameObject>("Dead").SetActive(true);
                 TimerComponent.Instance.Remove(ref this.Timer);
-                this.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.HeroHeadBarTimer, this);
+                this.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.HeroHeadReviveTime, this);
             }
         }
 
