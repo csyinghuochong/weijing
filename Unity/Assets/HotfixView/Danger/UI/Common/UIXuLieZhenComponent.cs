@@ -52,10 +52,10 @@ namespace ET
     {
         public static async ETTask OnUpdateTitle(this UIXuLieZhenComponent self, int titleId)
         {
+            TimerComponent.Instance.Remove(ref self.Timer);
             if (titleId <= 0)
             { 
                 self.Image.gameObject.SetActive(false);
-                TimerComponent.Instance.Remove(ref self.Timer);
                 return;
             }
 
