@@ -75,10 +75,12 @@ namespace ET
                     return;
                 }
                 self.Sprites.Add(sprite);
+                self.Image.sprite = self.Sprites[0];
+                self.Image.SetNativeSize();
             }
 
             self.Index = 0;
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer( 500, TimerType.XuLieZhenTimer, self );
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.XuLieZhenTimer, self );
         }
 
         public static void OnTimer(this UIXuLieZhenComponent self)
@@ -88,7 +90,7 @@ namespace ET
                 self.Index = 0;
             }
             self.Image.sprite = self.Sprites[self.Index];
-            self.Image.GetComponent<Image>().SetNativeSize();
+            self.Image.SetNativeSize();
             self.Index++;
         }
     }
