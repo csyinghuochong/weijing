@@ -18,6 +18,7 @@ namespace ET
 
     public class UISkillComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Btn_Life;
         public UIPageViewComponent UIPageView;
     }
 
@@ -28,6 +29,9 @@ namespace ET
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
+
+            self.Btn_Life = rc.Get<GameObject>("Btn_Life");
+            self.Btn_Life.SetActive(false);
             UI uiPageView = self.AddChild<UI, string, GameObject>( "FunctionBtnSet", pageView);
             UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
 

@@ -540,7 +540,7 @@ namespace ET
             else
             {
                 self.ZoneScene().GetComponent<SkillIndicatorComponent>()?.RecoveryEffect();
-                self.UIJoystickMoveComponent.ResetUI();
+                self.UIJoystickMoveComponent.ResetUI(); //防止打开其他界面摇杆接受不到ui事件
             }
         }
 
