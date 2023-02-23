@@ -8,7 +8,7 @@ namespace ET
     {
         public override async ETTask<UI> OnCreate(UIComponent uiComponent)
         {
-            var path = ABPathHelper.GetUGUIPath(UIType.UIChengJiu);
+            var path = ABPathHelper.GetUGUIPath(UIType.UIChengJiuActivite);
             await ETTask.CompletedTask;
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);

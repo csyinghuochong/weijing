@@ -219,6 +219,13 @@ namespace ET
             public Scene ZoneScene;
         }
 
+        public class ChengJiuActive : DisposeObject
+        {
+            public static readonly ChengJiuActive Instance = new ChengJiuActive();
+            public M2C_ChengJiuActiveMessage m2C_ChengJiu;
+            public Scene ZoneScene;
+        }
+
         public class RolePetAdd : DisposeObject
         {
             public static readonly RolePetAdd Instance = new RolePetAdd();

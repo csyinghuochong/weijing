@@ -6,7 +6,9 @@
     {
         protected override void Run(Session session, M2C_ChengJiuActiveMessage message)
         {
-            HintHelp.GetInstance().ShowHint($"激活新的成就  {ChengJiuConfigCategory.Instance.Get(message.ChengJiuId).Name}！");
+            EventType.ChengJiuActive.Instance.m2C_ChengJiu = message;
+            EventType.ChengJiuActive.Instance.ZoneScene = session.ZoneScene();    
+            EventSystem.Instance.PublishClass(EventType.ChengJiuActive.Instance);
         }
     }
 }
