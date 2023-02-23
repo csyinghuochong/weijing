@@ -2006,6 +2006,12 @@ namespace ET
 		[ProtoMember(1)]
 		public ServerInfo ServerInfo { get; set; }
 
+		[ProtoMember(2)]
+		public int operareType { get; set; }
+
+		[ProtoMember(3)]
+		public string operateValue { get; set; }
+
 	}
 
 	[Message(InnerOpcode.M2F_ServerInfoUpdateResponse)]

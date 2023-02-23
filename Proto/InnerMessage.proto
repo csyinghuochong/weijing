@@ -958,6 +958,9 @@ message F2M_ServerInfoUpdateRequest // IActorRequest
 	int32 RpcId = 90;
 	int64 ActorId = 93;
 	ServerInfo ServerInfo = 1;
+
+	int32 operareType = 2;
+	string operateValue = 3;
 }
 
 message M2F_ServerInfoUpdateResponse // IActorResponse
