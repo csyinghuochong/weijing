@@ -147,7 +147,7 @@ namespace ET
 
                 if (battleInfo.PlayerList.Count < ComHelp.GetPlayerLimit(sceneId))
                 {
-                    battleInfo.PlayerList.Add(unitId, new ArenaPlayerStatu() {  });
+                    battleInfo.PlayerList.Add(unitId, new ArenaPlayerStatu() { UnitId = unitId });
                     return battleInfo.FubenInstanceId;
                 }
             }
@@ -167,7 +167,7 @@ namespace ET
             FubenHelp.CreateMonsterList(fubnescene, SceneConfigCategory.Instance.Get(sceneId).CreateMonsterPosi);
             battleInfo = fubnescene.AddComponent<ArenaInfo>();
             battleInfo.FubenId = fubenid;
-            battleInfo.PlayerList.Add(unitId, new ArenaPlayerStatu() { });
+            battleInfo.PlayerList.Add(unitId, new ArenaPlayerStatu() { UnitId = unitId });
             battleInfo.FubenInstanceId = fubenInstanceId;
             battleInfo.SceneId = sceneId;
             return battleInfo.FubenInstanceId;
