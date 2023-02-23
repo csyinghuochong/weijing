@@ -79,7 +79,7 @@ namespace ET
                 {
                     self.Image.sprite = self.Sprites[0];
                     self.Image.SetNativeSize();
-                    self.Image.transform.localScale = Vector2.one * scale;
+                    self.Image.transform.localScale = Vector2.one * (float)titleConfig.size;
                 }
             }
 
