@@ -62,7 +62,7 @@ namespace ET
             int sceneId = 6000001;
             SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
             int sceneType = sceneConfig.MapType;
-            if (sceneType == SceneTypeEnum.Arena)
+            if (sceneType != SceneTypeEnum.Arena)
             {
                 return;
             }
