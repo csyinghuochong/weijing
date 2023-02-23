@@ -44,7 +44,7 @@ namespace ET
     {
         public override void Destroy(UIXuLieZhenComponent self)
         {
-            TimerComponent.Instance.Remove(ref self.Timer);
+            TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
 
@@ -63,10 +63,13 @@ namespace ET
             self.Image.gameObject.SetActive(true);
 
             TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titleId);
+            float scale = 2;
+            self.Image.transform.localScale = Vector2.one * scale;  
+
             long instanceId = self.InstanceId;
             for (int i = 0; i < titleConfig.AnimatorNumber; i++)
             {
-                Sprite sprite = await ABAtlasHelp.GetIconSpriteAsync(ABAtlasTypes.ChengJiuIcon, $"{titleConfig.AnimatorAsset}/{i+1}");
+                Sprite sprite = await ABAtlasHelp.GetIconSpriteAsync(ABAtlasTypes.ChengHaoIcon, $"{titleConfig.AnimatorAsset}/{i+1}");
                 if (instanceId != self.InstanceId)
                 {
                     return;
