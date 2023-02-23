@@ -11,6 +11,8 @@ namespace ET
         public GameObject ObjGetText;
         public GameObject GameObject;
         public int Title;
+
+        public UIXuLieZhenComponent UIXuLieZhenComponent;
     }
 
     [ObjectSystem]
@@ -28,6 +30,8 @@ namespace ET
 
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.ObjGetText = rc.Get<GameObject>("ObjGetText");
+
+            self.UIXuLieZhenComponent = self.AddChild<UIXuLieZhenComponent, GameObject>(self.RawImage);
         }
     }
 
@@ -57,10 +61,11 @@ namespace ET
             TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titieInfoId);
             self.Text_value.GetComponent<Text>().text = titleConfig.Name;
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ChengHaoIcon, titleConfig.Icon.ToString());
-            self.RawImage.GetComponent<Image>().sprite = sp;
-            self.RawImage.GetComponent<Image>().transform.localPosition = new Vector3(self.RawImage.GetComponent<Image>().transform.localPosition.x + (float)titleConfig.MoveX, self.RawImage.GetComponent<Image>().transform.localPosition.y + (float)titleConfig.MoveY, self.RawImage.GetComponent<Image>().transform.localPosition.z);
-            self.RawImage.GetComponent<Image>().SetNativeSize();
+            //Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ChengHaoIcon, titleConfig.Icon.ToString());
+            //self.RawImage.GetComponent<Image>().sprite = sp;
+            //self.RawImage.GetComponent<Image>().transform.localPosition = new Vector3(self.RawImage.GetComponent<Image>().transform.localPosition.x + (float)titleConfig.MoveX, self.RawImage.GetComponent<Image>().transform.localPosition.y + (float)titleConfig.MoveY, self.RawImage.GetComponent<Image>().transform.localPosition.z);
+            //self.RawImage.GetComponent<Image>().SetNativeSize();
+            self.UIXuLieZhenComponent.OnUpdateTitle(titieInfoId).Coroutine();
 
             self.ObjGetText.GetComponent<Text>().text = titleConfig.GetDes;
             self.Text_value.GetComponent<Text>().text = titleConfig.Des;
