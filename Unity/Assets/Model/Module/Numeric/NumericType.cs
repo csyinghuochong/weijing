@@ -705,6 +705,41 @@
         public const int Extra_Buff_MageReboundDamgePro_Add = Now_MageReboundDamgePro * 100 + 11;            //属性Buff附加加法
         public const int Extra_Buff_MageReboundDamgePro_Mul = Now_MageReboundDamgePro * 100 + 12;            //属性Buff附加乘法
 
+        public const int Now_PlayerActDamgeSubPro = 2057;          //降低受到玩家普通攻击伤害比例
+        public const int Base_PlayerActDamgeSubPro_Base = Now_PlayerActDamgeSubPro * 100 + 1;              //属性累加
+        public const int Base_PlayerActDamgeSubPro_Mul = Now_PlayerActDamgeSubPro * 100 + 2;               //属性乘法
+        public const int Base_PlayerActDamgeSubPro_Add = Now_PlayerActDamgeSubPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_PlayerActDamgeSubPro_Add = Now_PlayerActDamgeSubPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_PlayerActDamgeSubPro_Mul = Now_PlayerActDamgeSubPro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_PlayerSkillDamgeSubPro = 2058;          //降低受到玩家技能攻击伤害比例
+        public const int Base_PlayerSkillDamgeSubPro_Base = Now_PlayerSkillDamgeSubPro * 100 + 1;              //属性累加
+        public const int Base_PlayerSkillDamgeSubPro_Mul = Now_PlayerSkillDamgeSubPro * 100 + 2;               //属性乘法
+        public const int Base_PlayerSkillDamgeSubPro_Add = Now_PlayerSkillDamgeSubPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_PlayerSkillDamgeSubPro_Add = Now_PlayerSkillDamgeSubPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_PlayerSkillDamgeSubPro_Mul = Now_PlayerSkillDamgeSubPro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_PlayerAllDamgeSubPro = 2059;          //降低受到玩家全部攻击伤害比例
+        public const int Base_PlayerAllDamgeSubPro_Base = Now_PlayerAllDamgeSubPro * 100 + 1;              //属性累加
+        public const int Base_PlayerAllDamgeSubPro_Mul = Now_PlayerAllDamgeSubPro * 100 + 2;               //属性乘法
+        public const int Base_PlayerAllDamgeSubPro_Add = Now_PlayerAllDamgeSubPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_PlayerAllDamgeSubPro_Add = Now_PlayerAllDamgeSubPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_PlayerAllDamgeSubPro_Mul = Now_PlayerAllDamgeSubPro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_PlayerCriSubPro = 2060;          //降低受到玩家暴击概率的比例
+        public const int Base_PlayerCriSubPro_Base = Now_PlayerCriSubPro * 100 + 1;              //属性累加
+        public const int Base_PlayerCriSubPro_Mul = Now_PlayerCriSubPro * 100 + 2;               //属性乘法
+        public const int Base_PlayerCriSubPro_Add = Now_PlayerCriSubPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_PlayerCriSubPro_Add = Now_PlayerCriSubPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_PlayerCriSubPro_Mul = Now_PlayerCriSubPro * 100 + 12;            //属性Buff附加乘法
+
+        public const int Now_PlayerHitSubPro = 2061;          //降低受到玩家命中概率的比例
+        public const int Base_PlayerHitSubPro_Base = Now_PlayerHitSubPro * 100 + 1;              //属性累加
+        public const int Base_PlayerHitSubPro_Mul = Now_PlayerHitSubPro * 100 + 2;               //属性乘法
+        public const int Base_PlayerHitSubPro_Add = Now_PlayerHitSubPro * 100 + 3;                   //属性附加
+        public const int Extra_Buff_PlayerHitSubPro_Add = Now_PlayerHitSubPro * 100 + 11;            //属性Buff附加加法
+        public const int Extra_Buff_PlayerHitSubPro_Mul = Now_PlayerHitSubPro * 100 + 12;            //属性Buff附加乘法
+
         //----------------抗性-------------
 
         public const int Now_Resistance_Shine_Pro = 2101;          //当前神圣抗性
