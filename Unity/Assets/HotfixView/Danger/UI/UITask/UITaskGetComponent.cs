@@ -402,13 +402,9 @@ namespace ET
                 Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
                 NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                 int taskLoopid = numericComponent.GetAsInt(NumericType.TaskLoopID);
-                if (taskLoopid > 0)
+                if (taskLoopid > 0 && taskComponent.GetTaskById(taskLoopid) == null)
                 {
-                    if (!taskComponent.RoleComoleteTaskList.Contains(taskLoopid)
-                     &&  taskComponent.GetTaskById(taskLoopid) == null)
-                    {
-                        addTaskids.Add(taskLoopid);
-                    }
+                    addTaskids.Add(taskLoopid);
                 }
             }
             return addTaskids;

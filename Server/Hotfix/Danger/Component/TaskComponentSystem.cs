@@ -273,7 +273,7 @@ namespace ET
             {
                 return ErrorCore.ERR_TaskCommited;
             }
-            if (!self.RoleComoleteTaskList.Contains(taskid))
+            if (!self.RoleComoleteTaskList.Contains(taskid) && taskConfig.TaskType != TaskTypeEnum.EveryDay)
             {
                 self.RoleComoleteTaskList.Add(taskid);
             }

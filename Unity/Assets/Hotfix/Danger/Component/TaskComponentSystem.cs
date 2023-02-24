@@ -325,22 +325,26 @@ namespace ET
         }
 
         //提交任务
-        public static async ETTask<int> SendCommitTask(this TaskComponent self, int taskId)
+        public static async ETTask<int> SendCommitTask(this TaskComponent self, int taskid)
         {
             try
             {
-                C2M_TaskCommitRequest c2M_CommitTaskRequest = new C2M_TaskCommitRequest() { TaskId = taskId };
+                C2M_TaskCommitRequest c2M_CommitTaskRequest = new C2M_TaskCommitRequest() { TaskId = taskid };
                 M2C_TaskCommitResponse m2C_CommitTaskResponse = (M2C_TaskCommitResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_CommitTaskRequest);
                 for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
                 {
-                    if (self.RoleTaskList[i].taskID == taskId)
+                    if (self.RoleTaskList[i].taskID == taskid)
                     {
                         self.RoleTaskList.RemoveAt(i);
                         break;
                     }
                 }
-                self.RoleComoleteTaskList.Add(taskId);
-                HintHelp.GetInstance().DataUpdate(DataType.TaskComplete, taskId.ToString());
+                TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
+                if (!self.RoleComoleteTaskList.Contains(taskid) && taskConfig.TaskType != TaskTypeEnum.EveryDay)
+                {
+                    self.RoleComoleteTaskList.Add(taskid);
+                }
+                HintHelp.GetInstance().DataUpdate(DataType.TaskComplete, taskid.ToString());
                 return m2C_CommitTaskResponse.Error;
             }
             catch (Exception e)
