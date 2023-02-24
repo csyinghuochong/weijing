@@ -110,6 +110,10 @@ namespace ET
 
         public static void AddLoadQueue(this GameObjectPoolComponent self,  string path, long formId, Action<GameObject, long> action)
         {
+            if (string.IsNullOrEmpty(path))
+            {
+                return;
+            }
             List<GameObject> poolGameObjects = null;
             self.ExternalReferences.TryGetValue(path, out poolGameObjects);
             if (poolGameObjects != null)

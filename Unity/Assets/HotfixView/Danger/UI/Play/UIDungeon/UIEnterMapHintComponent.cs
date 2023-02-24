@@ -57,12 +57,15 @@ namespace ET
                 }
             }
 
+            long instanceId = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(2000);
-
+            if (instanceId != self.InstanceId)
+            {
+                return;
+            }
             UICommonHelper.CrossFadeAlpha(self.Left.transform, 0f, 1f);
             UICommonHelper.DOLocalMove(self.Left.transform, new Vector3(2000, 0, 0), 0.75f).Coroutine();
 
-            long instanceId = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(1000);
             if (instanceId != self.InstanceId)
             {
