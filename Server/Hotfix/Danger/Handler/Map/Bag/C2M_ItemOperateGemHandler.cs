@@ -89,6 +89,12 @@ namespace ET
                 int gemItemId = int.Parse(gemIdList[gemIndex]);
 
                 //类型110的不能卸
+                if (!ItemConfigCategory.Instance.Contain(gemItemId))
+                {
+                    response.Error = ErrorCore.ERR_GemNoError;
+                    reply();
+                    return;
+                }
                 ItemConfig gemItemConfig = ItemConfigCategory.Instance.Get(gemItemId);
                 if (gemItemConfig.ItemSubType == 110)
                 {
