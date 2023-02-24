@@ -878,7 +878,7 @@ namespace ET
         public static void OnBagItemUpdate(this UIPetListComponent self)
         {
             List<BagInfo> bagInfos = self.ZoneScene().GetComponent<BagComponent>().GetItemsByLoc(ItemLocType.ItemPetHeXinBag);
-            self.PetHeXinSetComponent.OnUpdateItemList(bagInfos).Coroutine();
+            self.PetHeXinSetComponent.OnUpdateItemList(bagInfos);
         }
 
         public static void OnUpdatePetPoint(this UIPetListComponent self, RolePetInfo rolePetItem)
