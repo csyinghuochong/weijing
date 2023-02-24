@@ -901,7 +901,7 @@ namespace ET
             self.UpdateAttribute(self.LastSelectItem);
             self.PetHeXinSetComponent.SelectItemHandlder(null);
             self.PetHeXinSetComponent.UpdatePetHexinItem(eqipInfos);
-            self.PetHeXinSetComponent.OnUpdateItemList(bagInfos).Coroutine();
+            self.PetHeXinSetComponent.OnUpdateItemList(bagInfos);
         }
 
         public static void OnUpdatePetInfo(this UIPetListComponent self, RolePetInfo rolePetInfo)
