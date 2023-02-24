@@ -31,7 +31,8 @@ namespace ET
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
 
             self.Btn_Life = rc.Get<GameObject>("Btn_Life");
-            self.Btn_Life.SetActive(false);
+            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            self.Btn_Life.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
             UI uiPageView = self.AddChild<UI, string, GameObject>( "FunctionBtnSet", pageView);
             UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
 
