@@ -166,18 +166,19 @@ namespace ET
         {
             self.ShieldType = shieldType;
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
-            int level = skillSetComponent.GetLifeShieldLevel(shieldType);
-            int shieldId = 0;
-            if (level == 0 || LifeShieldConfigCategory.Instance.GetShieldId(shieldType, level + 1) > 0)
+            int curLv = skillSetComponent.GetLifeShieldLevel(shieldType);
+            int maxLv = LifeShieldConfigCategory.Instance.LifeShieldList[shieldType].Count;
+            int nextlifeId = 0;
+            if (curLv == maxLv)
             {
-                shieldId = LifeShieldConfigCategory.Instance.GetShieldId(shieldType, level + 1);
+                nextlifeId = LifeShieldConfigCategory.Instance.LifeShieldList[shieldType][curLv];
             }
             else
             {
-                shieldId = LifeShieldConfigCategory.Instance.GetShieldId(shieldType, level);
+                nextlifeId = LifeShieldConfigCategory.Instance.LifeShieldList[shieldType][curLv+1];
             }
 
-            LifeShieldConfig lifeShieldConfig = LifeShieldConfigCategory.Instance.Get(shieldId);
+            LifeShieldConfig lifeShieldConfig = LifeShieldConfigCategory.Instance.Get(nextlifeId);
             self.Text_ShieldName.GetComponent<Text>().text = $"{lifeShieldConfig.ShieldName} {lifeShieldConfig.ShieldLevel}级";
 
             for (int i = 0; i < self.ShieldUIList.Count; i++)

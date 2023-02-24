@@ -692,7 +692,7 @@ namespace ET
 				return;
 			}
 
-			int nextlifeId = LifeShieldConfigCategory.Instance.LifeShieldList[shieldType][curLv];
+			int nextlifeId = LifeShieldConfigCategory.Instance.LifeShieldList[shieldType][curLv + 1];
 			LifeShieldConfig lifeShieldConfig = LifeShieldConfigCategory.Instance.Get(nextlifeId);
 			if (curExp + addExp < lifeShieldConfig.ShieldExp)
 			{
