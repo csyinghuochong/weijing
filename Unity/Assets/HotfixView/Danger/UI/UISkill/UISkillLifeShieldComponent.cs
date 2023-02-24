@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UISkillLifeShieldComponent : Entity, IAwake
+    public class UISkillLifeShieldComponent : Entity, IAwake, IDestroy
     {
         public GameObject Text_ShieldDesc;
         public GameObject Text_Progess;
@@ -16,11 +16,13 @@ namespace ET
 
         public GameObject Btn_ZhuRu;
 
-        public int ShieldType;
-
         public List<UISkillLifeShieldItemComponent> ShieldUIList = new List<UISkillLifeShieldItemComponent>();
-        public List<UIItemComponent> CostUIlist = new List<UIItemComponent>();
+        public List<UIItemComponent> HuiShoulist = new List<UIItemComponent>();
         public List<UIItemComponent> ItemUIlist = new List<UIItemComponent>();
+
+        public BagComponent BagComponent;
+
+        public int ShieldType;
 
         public bool IsHoldDown;
     }
@@ -51,18 +53,113 @@ namespace ET
             {
                 UIItemComponent uIItemComponent = self.AddChild<UIItemComponent, GameObject>(rc.Get<GameObject>($"UICommonItem_{i + 1}"));
                 uIItemComponent.UpdateItem(null);
-                self.CostUIlist.Add(uIItemComponent);
+                self.HuiShoulist.Add(uIItemComponent);
             }
 
             self.Btn_ZhuRu = rc.Get<GameObject>("Btn_ZhuRu");
+            self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
-
-            self.UpdateBagUI();
+            self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
+            DataUpdateComponent.Instance.AddListener(DataType.HuiShouSelect, self);
         }
     }
 
+    [ObjectSystem]
+    public class UISkillLifeShieldComponentDestroy : DestroySystem<UISkillLifeShieldComponent>
+    {
+        public override void Destroy(UISkillLifeShieldComponent self)
+        {
+            DataUpdateComponent.Instance.RemoveListener(DataType.HuiShouSelect, self);
+        }
+    }
+
+
     public static class UISkillLifeShieldComponentSystem
     {
+
+        public static void OnUpdateUI(this UISkillLifeShieldComponent self)
+        {
+            self.UpdateBagUI();
+
+            for (int i = 0; i < self.HuiShoulist.Count; i++)
+            {
+                self.HuiShoulist[i].UpdateItem(null);
+                self.HuiShoulist[i].HideItemName();
+            }
+        }
+
+        public static void OnHuiShouSelect(this UISkillLifeShieldComponent self, string dataparams)
+        {
+            self.UpdateHuiShouInfo(dataparams);
+            self.UpdateBagSelected();
+        }
+
+        public static void UpdateHuiShouInfo(this UISkillLifeShieldComponent self, string dataparams)
+        {
+            string[] huishouInfo = dataparams.Split('_');
+            BagInfo bagInfo = self.BagComponent.GetBagInfo(long.Parse(huishouInfo[1]));
+            //1新增  2移除 
+            if (huishouInfo[0] == "1")
+            {
+                for (int i = 0; i < self.HuiShoulist.Count; i++)
+                {
+                    if (self.HuiShoulist[i].Baginfo == null)
+                    {
+                        continue;
+                    }
+                    if (self.HuiShoulist[i].Baginfo.BagInfoID == bagInfo.BagInfoID)
+                    {
+                        return;
+                    }
+                }
+                for (int i = 0; i < self.HuiShoulist.Count; i++)
+                {
+                    if (self.HuiShoulist[i].Baginfo == null)
+                    {
+                        self.HuiShoulist[i].UpdateItem(bagInfo, ItemOperateEnum.HuishouShow);
+                        self.HuiShoulist[i].Label_ItemName.SetActive(true);
+                        break;
+                    }
+                }
+            }
+            else
+            {
+                for (int i = 0; i < self.HuiShoulist.Count; i++)
+                {
+                    if (self.HuiShoulist[i].Baginfo == null)
+                    {
+                        continue;
+                    }
+                    if (self.HuiShoulist[i].Baginfo.BagInfoID == bagInfo.BagInfoID)
+                    {
+                        self.HuiShoulist[i].UpdateItem(null);
+                        self.HuiShoulist[i].Label_ItemName.SetActive(false);
+                    }
+                }
+            }
+        }
+
+        public static void UpdateBagSelected(this UISkillLifeShieldComponent self)
+        {
+            for (int i = 0; i < self.ItemUIlist.Count; i++)
+            {
+                UIItemComponent uIItemComponent = self.ItemUIlist[i];
+                BagInfo bagInfo = uIItemComponent.Baginfo;
+                if (bagInfo == null)
+                {
+                    continue;
+                }
+                bool have = false;
+                for (int h = 0; h < self.HuiShoulist.Count; h++)
+                {
+                    if (self.HuiShoulist[h].Baginfo != null && self.HuiShoulist[h].Baginfo == bagInfo)
+                    {
+                        have = true;
+                    }
+                }
+                uIItemComponent.Image_XuanZhong.SetActive(have);
+            }
+        }
 
         public static void OnClickShieldHandler(this UISkillLifeShieldComponent self, int shieldType)
         {
@@ -98,7 +195,7 @@ namespace ET
 
             List<BagInfo> allInfos = new List<BagInfo>();
             BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
-            allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Consume));
+            //allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Consume));
             allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Material));
             allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Equipment));
 
@@ -124,7 +221,7 @@ namespace ET
                     self.ItemUIlist.Add(uI_1);
                 }
                 uI_1.UpdateItem(allInfos[i], ItemOperateEnum.HuishouBag);
-                uI_1.Label_ItemName.SetActive(true);
+                uI_1.HideItemName();
             }
 
             for (int i = allInfos.Count; i < self.ItemUIlist.Count; i++)

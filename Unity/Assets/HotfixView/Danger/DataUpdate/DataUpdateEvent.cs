@@ -573,6 +573,11 @@ namespace ET
                     uiSkillMeltComponent.OnHuiShouSelect(DataParams);
                     continue;
                 }
+                if (component is UISkillLifeShieldComponent uiSkillLiftComponent)
+                {
+                    uiSkillLiftComponent.OnHuiShouSelect(DataParams);
+                    continue;
+                }
             }
 
         }
