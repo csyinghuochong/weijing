@@ -29,7 +29,7 @@ namespace ET
             self.Btn_HuoDong_LingzhuJieShao.GetComponent<Button>().onClick.AddListener(() => { self.Btn_HuoDong_LingzhuJieShao(); });
 
             self.Btn_HuoDong_Arena = rc.Get<GameObject>("Btn_HuoDong_Arena");
-            self.Btn_HuoDong_Arena.GetComponent<Button>().onClick.AddListener(() => { self.On_Btn_HuoDong_Arena().Coroutine(); });
+            self.Btn_HuoDong_Arena.GetComponent<Button>().onClick.AddListener(() => { self.On_Btn_HuoDong_Arena(); });
 
             self.Btn_HuoDong_ArenaJieShao = rc.Get<GameObject>("Btn_HuoDong_ArenaJieShao");
             self.Btn_HuoDong_ArenaJieShao.GetComponent<Button>().onClick.AddListener(() => { self.On_Btn_HuoDong_ArenaJieShao().Coroutine(); });
@@ -57,28 +57,17 @@ namespace ET
                 " 1.活动开启后,所有12级以上玩家均可进入。\n 2.活动开启10分钟后将禁止所有玩家进入此地图。\n 3.在角斗场内,玩家将互相发起挑战,坚持到最后1名的玩家将会\n 获得丰厚奖励。\n 4.在同一个角斗场内,人数最多达到20人。\n 5.20:00活动结束,如果场内剩余多人,则按照当前最低排名发放奖励。");
         }
 
-        public static async ETTask On_Btn_HuoDong_Arena(this UICountryHuoDongComponent self)
+        public static  void On_Btn_HuoDong_Arena(this UICountryHuoDongComponent self)
         {
-            int sceneId = 6000001;
-            SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
-            int sceneType = sceneConfig.MapType;
-            if (sceneType != SceneTypeEnum.Arena)
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(), "角斗场", "是否立即前往角斗场？", () =>
             {
-                return;
-            }
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (unit.GetComponent<NumericComponent>().GetAsLong(NumericType.ArenaNumber) > 0)
-            {
-                FloatTipManager.Instance.ShowFloatTip("次数不足！");
-                return;
-            }
-            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1031);
-            if (!FunctionHelp.IsInTime(funtionConfig.OpenTime))
-            {
-                FloatTipManager.Instance.ShowFloatTip("不在活动时间内！");
-                return;
-            }
-            int errorCode = await EnterFubenHelp.RequestTransfer(self.ZoneScene(), sceneType, sceneId);
+                self.RequestEnterArena().Coroutine();
+            }, null).Coroutine();
+        }
+
+        public static async ETTask RequestEnterArena(this UICountryHuoDongComponent self)
+        {
+            int errorCode = await ActivityTipHelper.RequestEnterArena(self.ZoneScene());
             if (errorCode == ErrorCore.ERR_Success)
             {
                 self.OnBtn_Close();

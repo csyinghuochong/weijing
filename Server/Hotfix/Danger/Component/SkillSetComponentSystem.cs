@@ -664,6 +664,16 @@ namespace ET
 			userInfoComponent.UserInfo.OccTwo = 0;
 			return sp;
 		}
+		
+		public static List<HideProList> GetShieldProLists(this SkillSetComponent self)
+        {
+			List<HideProList> prolist = new List<HideProList>();
+			for (int i = 0; i < self.LifeShieldList.Count; i++)
+			{ 
+			
+			}
+			return prolist;	
+        }
 
 		public static void OnShieldAddExp(this SkillSetComponent self, int shieldType, int addExp) 
 		{
