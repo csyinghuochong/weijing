@@ -212,6 +212,7 @@ namespace ET
 
             self.ZoneScene().GetComponent<SkillSetComponent>().LifeShieldList = response.ShieldList;
             self.OnUpdateUI();
+            self.OnClickShieldHandler(self.ShieldType);
         }
 
         public static void UpdateBagUI(this UISkillLifeShieldComponent self)
