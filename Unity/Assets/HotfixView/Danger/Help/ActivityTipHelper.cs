@@ -9,7 +9,31 @@ namespace ET
     public static class ActivityTipHelper
     {
 
+        public delegate void ActivityTipDelegate(Scene scene, int function);
 
+        public static Dictionary<int, ActivityTipDelegate> FunctionTipList = new Dictionary<int, ActivityTipDelegate>()
+        {
+            { 1031, null},
+        };
+
+        public static void OnActiviyTip(Scene ZoneScene, int function)
+        {
+            if (!FunctionTipList.ContainsKey(function))
+            {
+                return;
+            }
+
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(function);
+            PopupTipHelp.OpenPopupTip(ZoneScene, "角斗场", "是否立即前往角斗场？", () =>
+            {
+                switch (function)
+                {
+                    case 1031:
+                        RequestEnterArena(ZoneScene).Coroutine();
+                        break;
+                }
+            }, null).Coroutine();
+        }
 
         //竞技场
         public static async ETTask<int> RequestEnterArena(Scene ZoneScene)

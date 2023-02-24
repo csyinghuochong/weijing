@@ -794,7 +794,7 @@ namespace ET
             int curTime = dateTime.Hour * 60 + dateTime.Minute;
             self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
 
-            List<int> functonIds = new List<int>() { 1023, 1025 };
+            List<int> functonIds = new List<int>() { 1023, 1025, 1031 };
             for (int i= 0; i < functonIds.Count; i++)
             {
                 List<int> openTime =  FuntionConfigCategory.Instance.OpenTimeList[functonIds[i]];
@@ -828,6 +828,7 @@ namespace ET
                         break;
                     case 1025:
                         self.Btn_Battle.SetActive(inTime);
+                        break;
                         break;
                 }
             }
@@ -863,6 +864,12 @@ namespace ET
                             break;
                         case 1025:
                             self.Btn_Battle.SetActive(self.FunctionButtons[i].Value == "1");
+                            break;
+                        case 1031:
+                            if (self.FunctionButtons[i].Value == "1")
+                            {
+                                ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functionId);
+                            }
                             break;
                     }
                     self.FunctionButtons.RemoveAt(i);
