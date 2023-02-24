@@ -7,6 +7,26 @@ namespace ET
     public static class TaskHelp
     {
 
+        public static int GetLoopTaskId(int roleLv)
+        {
+            List<int> allTaskIds = new List<int>();
+            Dictionary<int, TaskConfig> keyValuePairs = TaskConfigCategory.Instance.GetAll();
+            foreach (var item in keyValuePairs)
+            {
+                if (item.Value.TaskType == TaskTypeEnum.EveryDay
+                    && roleLv >= item.Value.TaskLv
+                    && roleLv <= item.Value.TaskMaxLv)
+                {
+                    allTaskIds.Add(item.Key);
+                }
+            }
+            if (allTaskIds.Count == 0)
+            {
+                return 0;
+            }
+            return allTaskIds[RandomHelper.RandomNumber(0, allTaskIds.Count)];
+        }
+
         public static int GetWeeklyTaskId()
         { 
             List<int> taskids = new List<int>();

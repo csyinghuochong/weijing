@@ -65,7 +65,7 @@
         public const int Now_Lv = 3061;                                         //当前等级
         public const int BattleCamp = 3062;                                     //战斗阵营
         public const int TaskLoopNumber = 3063;                                 //赏金任务完成数量                          
-        public const int TaskLoopGiveId = 3064;
+        //public const int TaskLoopGiveId = 3064;
         public const int YueKaRemainTimes = 3066;                               //月卡剩余次数                    
         public const int TeamDungeonTimes = 3067;
         public const int Now_AI = 3068;
@@ -83,6 +83,7 @@
         public const int TitleID = 3081;                                              //称号
         public const int ArenaNumber = 3082;                                           //角斗场次数
         public const int PetRankID = 3083;                                          //宠物天梯排名
+        public const int TaskLoopID = 3084;                                         //赏金任务ID
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

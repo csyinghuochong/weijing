@@ -105,7 +105,7 @@ namespace ET
             numericComponent.ApplyValue(NumericType.ChouKa, 0, notice);
             numericComponent.ApplyValue(NumericType.ExpToGoldTimes, 0, notice);
             numericComponent.ApplyValue(NumericType.RechargeSign, 0, notice);
-            numericComponent.ApplyValue(NumericType.TaskLoopGiveId, 0, notice);
+            //numericComponent.ApplyValue(NumericType.TaskLoopGiveId, 0, notice);
             numericComponent.ApplyValue(NumericType.TeamDungeonTimes, 0, notice);
             numericComponent.ApplyValue(NumericType.TeamDungeonXieZhu, 0, notice);
             numericComponent.ApplyValue(NumericType.BattleTodayCamp, 0, notice);

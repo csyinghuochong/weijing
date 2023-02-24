@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -251,7 +252,6 @@ namespace ET
         //领取奖励
         public static int OnCommitTask(this TaskComponent self, int taskid)
         {
-
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(taskid);
             BagComponent bagComponent = self.GetParent<Unit>().GetComponent<BagComponent>();
             List<RewardItem> rewardItems = TaskHelp.GetTaskRewards(taskid, taskConfig);
@@ -292,6 +292,9 @@ namespace ET
             }
             if (taskConfig.TaskType == TaskTypeEnum.EveryDay)
             {
+                int roleLv = self.GetParent<Unit>().GetComponent<UserInfoComponent>().UserInfo.Lv;
+                NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+                numericComponent.Set(NumericType.TaskLoopID, TaskHelp.GetLoopTaskId(roleLv));
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.TaskLoop_14, 0, 1);
             }
             return ErrorCore.ERR_Success;
@@ -508,13 +511,16 @@ namespace ET
             }
 
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            int giveUpId = numericComponent.GetAsInt(NumericType.TaskLoopGiveId);
-            if (giveUpId > 0 && self.GetTaskList(TaskTypeEnum.EveryDay).Count == 0
-                && self.RoleComoleteTaskList.Contains(giveUpId))
+            if (numericComponent.GetAsInt(NumericType.TaskLoopID) == 0)
             {
-                numericComponent.Set(NumericType.TaskLoopGiveId,0, false);
+                self.UpdateDayTask(false);
             }
-
+            //int giveUpId = numericComponent.GetAsInt(NumericType. TaskLoopGiveId);
+            //if (giveUpId > 0 && self.GetTaskList(TaskTypeEnum.EveryDay).Count == 0
+            //    && self.RoleComoleteTaskList.Contains(giveUpId))
+            //{
+            //    numericComponent.Set(NumericType.TaskLoopGiveId,0, false);
+            //}
             self.TriggerTaskCountryEvent(  TaskCountryTargetType.Login_1, 0, 1, false );
         }
 
@@ -664,7 +670,7 @@ namespace ET
             UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
             if (userInfoComponent.UserInfo.HuoYue > 0 && self.TaskCountryList.Count == 0)
             {
-                Log.Debug($"每日更新任务ERROE:  {unit.Id} {notice} {self.DomainZone()} {userInfoComponent.UserInfo.HuoYue}");
+                Log.Debug($"更新活跃任务ERROE:  {unit.Id} {notice} {self.DomainZone()} {userInfoComponent.UserInfo.HuoYue}");
             }
             self.TaskCountryList.Clear();
             self.ReceiveHuoYueIds.Clear();
@@ -676,33 +682,43 @@ namespace ET
                 self.TaskCountryList.Add(new TaskPro() { taskID = taskCountryList[i] });
             }
             userInfoComponent.UpdateRoleData(UserDataType.HuoYue, (0 - userInfoComponent.UserInfo.HuoYue).ToString(), notice);
-            Log.Debug($"每日更新任务:  {unit.Id} {self.DomainZone()} {userInfoComponent.UserInfo.HuoYue} {self.TaskCountryList.Count}");
+            Log.Debug($"更新活跃任务:  {unit.Id} {self.DomainZone()} {userInfoComponent.UserInfo.HuoYue} {self.TaskCountryList.Count}");
         }
 
         public static void UpdateDayTask(this TaskComponent self, bool notice)
         {
             //清空每日任务
             Unit unit = self.GetParent<Unit>();
-
-            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            int taskLoop = self.GetTaskList(TaskTypeEnum.EveryDay).Count > 0 ? 1 : 0;
-            numericComponent.ApplyValue(NumericType.TaskLoopNumber, taskLoop, notice);
-
             System.DateTime dateTime = TimeHelper.DateTimeNow();
             for (int i = self.RoleTaskList.Count - 1; i >= 0; i--)
             {
                 TaskConfig taskConfig = TaskConfigCategory.Instance.Get(self.RoleTaskList[i].taskID);
                 if (taskConfig.TaskType == TaskTypeEnum.EveryDay)
                 {
+                    if (self.RoleComoleteTaskList.Contains(taskConfig.Id))
+                    {
+                        self.RoleComoleteTaskList.Remove(taskConfig.Id);
+                    }
                     self.RoleTaskList.RemoveAt(i);
                     continue;
                 }
-                if (taskConfig.TaskType == TaskTypeEnum.Weekly && dateTime.DayOfWeek == System.DayOfWeek.Sunday)
+                if (taskConfig.TaskType == TaskTypeEnum.Weekly
+                  && dateTime.DayOfWeek == System.DayOfWeek.Sunday)
                 {
+                    if (self.RoleComoleteTaskList.Contains(taskConfig.Id))
+                    {
+                        self.RoleComoleteTaskList.Remove(taskConfig.Id);
+                    }
                     self.RoleTaskList.RemoveAt(i);
                     continue;
                 }
             }
+
+            NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+            int roleLv = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+            numericComponent.ApplyValue(NumericType.TaskLoopNumber, 0, notice);
+            numericComponent.ApplyValue(NumericType.TaskLoopID, TaskHelp.GetLoopTaskId(roleLv), notice);
+            Log.Debug($"更新每日任务: {numericComponent.GetAsInt(NumericType.TaskLoopID)}");
         }
 
         /// <summary>
@@ -716,7 +732,7 @@ namespace ET
 
             self.UpdateCountryList(notice);
             self.UpdateDayTask(notice);
-
+           
             if (notice)
             {
                 M2C_TaskCountryUpdate m2C_TaskUpdate = self.m2C_TaskCountryUpdate;

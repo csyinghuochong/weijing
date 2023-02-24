@@ -4046,6 +4046,7 @@ message M2C_BattleInfoResult // IActorMessage
 message C2M_TaskLoopGetRequest    // IActorLocationRequest
 {
 	int32 RpcId = 90;
+	int32 TaskId = 1;
 }
 
 message M2C_TaskLoopGetResponse    // IActorLocationResponse

@@ -50,7 +50,7 @@ namespace ET
                     }
                     catch(Exception ex)
                     {
-                        Log.Debug(ex.ToString() + $": {titleId}");
+                        Log.Debug(ex.ToString() + $"报错称号: {titleId}");
                     }
 
                     proList.Add(new HideProList() { HideID = numericType, HideValue = lvalue });

@@ -8,12 +8,9 @@ namespace ET
     {
         public int NpcID;
         public int TaskId;
+        public int WeekTaskId = 0;
 
         //NpcID
-        public GameObject UIWeeklyTaskItem;
-        public GameObject ButtonWeeklyCommit;
-        public GameObject ButtonWeeklyGet;
-        public GameObject UIWeeklyTask;
         public GameObject ButtonJieRiReward;
         public GameObject TaskFubenList;
         public GameObject UITaskFubenItem;
@@ -27,8 +24,6 @@ namespace ET
         public GameObject Lab_NpcSpeak;
         public GameObject Lab_NpcName;
         public GameObject Img_button;
-        public GameObject UILoopTask;
-        public GameObject ButtonLoopTask;
         public GameObject Obj_Lab_MoNnengHint;
         public List<UI> TaskUIList;
     }
@@ -72,23 +67,9 @@ namespace ET
             self.ButtonJieRiReward.SetActive(false);
             ButtonHelp.AddListenerEx(self.ButtonJieRiReward, () => { self.OnButtonJieRiReward();  });
 
-            self.UIWeeklyTask = rc.Get<GameObject>("UIWeeklyTask");
-            self.UIWeeklyTask.SetActive(false);
-            self.ButtonWeeklyCommit = rc.Get<GameObject>("ButtonWeeklyCommit");
-            self.ButtonWeeklyGet = rc.Get<GameObject>("ButtonWeeklyGet");
-            self.UIWeeklyTaskItem = rc.Get<GameObject>("UIWeeklyTaskItem");
-            self.UIWeeklyTaskItem.SetActive(false);
-            self.ButtonWeeklyCommit.SetActive(false);
-            self.ButtonWeeklyGet.SetActive(false);
-            ButtonHelp.AddListenerEx(self.ButtonWeeklyGet, () => { self.OnButtonWeeklyGet(); });
-            ButtonHelp.AddListenerEx(self.ButtonWeeklyCommit, () => { self.OnButtonWeeklyCommit(); });
-
             self.Img_button = rc.Get<GameObject>("Img_button");
             self.Img_button.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseNpcTask(); });
 
-            self.UILoopTask = rc.Get<GameObject>("UILoopTask");
-            self.ButtonLoopTask = rc.Get<GameObject>("ButtonLoopTask");
-            ButtonHelp.AddListenerEx(self.ButtonLoopTask, () => { self.OnButtonLoopTask().Coroutine(); });
             DataUpdateComponent.Instance.AddListener(DataType.TaskGet, self);
         }
     }
@@ -173,9 +154,7 @@ namespace ET
             self.TaskFubenList.SetActive(false);
             self.ScrollView1.SetActive(false);
             self.EnergySkill.SetActive(false);
-            self.UILoopTask.SetActive(false);
             self.ButtonJieRiReward.SetActive(false);
-            self.UIWeeklyTask.SetActive(false);
 
             switch(npcConfig.NpcType)
             {
@@ -193,10 +172,8 @@ namespace ET
                         uITaskFubenItemComponent.OnInitData((int npcType, int fubenId) => { self.OnClickFubenItem(npcType, fubenId); }, npcConfig.NpcType, fubenList[i]);
                     }
                     break;
-                case 3://循环任务
-                    bool update = self.UpdataTask();
-                    self.ScrollView1.SetActive(update);
-                    self.UILoopTask.SetActive(!update);
+                case 3://循环任务 周任务 支线任务
+                    self.RequestWeeklyTask().Coroutine();
                     break;
                 case 4: //魔能老人
                     int costItemID = 12000006;
@@ -244,9 +221,6 @@ namespace ET
                         self.Lab_NpcSpeak.GetComponent<Text>().text = $"{speek} 下次领取时间:{riqi[0]}月{riqi[1]}日 {activityConfig.Par_4}";
                     }
                     break;
-                case 7:
-                    self.RequestWeeklyTask().Coroutine();
-                    break;
                 default:
                     self.ScrollView1.SetActive(true);
                     self.UpdataTask();
@@ -277,25 +251,28 @@ namespace ET
             {
                 return;   
             }
-            if (response.ActivityContent == "0")
-            {
-                return;
-            }
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
-            {
-                return;
-            }
+            self.WeekTaskId = int.Parse(response.ActivityContent);
 
-            self.UIWeeklyTask.SetActive(true);
-            TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
-            List<TaskPro> taskPros = taskComponent.GetTaskTypeList(TaskTypeEnum.Weekly);
-            TaskPro taskPro = taskPros.Count > 0 ? taskPros[0] : null;
-            self.ButtonWeeklyCommit.SetActive(taskPro != null && taskPro.taskStatus == (int)TaskStatuEnum.Completed);
-            self.ButtonWeeklyGet.SetActive(taskPro == null);
-            self.TaskId = int.Parse(response.ActivityContent);
-            self.UIWeeklyTaskItem.SetActive(true);
-            self.UIWeeklyTaskItem.transform.Find("TextFubenName").GetComponent<Text>().text = TaskConfigCategory.Instance.Get(self.TaskId).TaskName;
+            bool update = self.UpdataTask();
+            self.ScrollView1.SetActive(update);
+            //if (response.ActivityContent == "0")
+            //{
+            //    return;
+            //}
+            //AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            //if (!GMHelp.GmAccount.Contains(accountInfoComponent.Account))
+            //{
+            //    return;
+            //}
+            //self.UIWeeklyTask.SetActive(true);
+            //TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+            //List<TaskPro> taskPros = taskComponent.GetTaskTypeList(TaskTypeEnum.Weekly);
+            //TaskPro taskPro = taskPros.Count > 0 ? taskPros[0] : null;
+            //self.ButtonWeeklyCommit.SetActive(taskPro != null && taskPro.taskStatus == (int)TaskStatuEnum.Completed);
+            //self.ButtonWeeklyGet.SetActive(taskPro == null);
+            //self.TaskId = int.Parse(response.ActivityContent);
+            //self.UIWeeklyTaskItem.SetActive(true);
+            //self.UIWeeklyTaskItem.transform.Find("TextFubenName").GetComponent<Text>().text = TaskConfigCategory.Instance.Get(self.TaskId).TaskName;
         }
 
         public static  void OnClickBuChangItem(this UITaskGetComponent self, long userid)
@@ -406,6 +383,37 @@ namespace ET
             }
         }
 
+        public static List<int> GetAddtionTaskId(this UITaskGetComponent self, int npcId)
+        {
+            List<int> addTaskids = new List<int>();
+            if (NpcConfigCategory.Instance.Get(npcId).NpcType == 3)
+            {
+                TaskComponent taskComponent = self.ZoneScene().GetComponent<TaskComponent>();
+                int weeklyTask = self.WeekTaskId;
+                if (weeklyTask > 0)
+                {
+                    if (!taskComponent.RoleComoleteTaskList.Contains(weeklyTask) 
+                     && taskComponent.GetTaskById(weeklyTask) == null)
+                    {
+                        addTaskids.Add(weeklyTask);
+                    }
+                }
+
+                Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+                NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
+                int taskLoopid = numericComponent.GetAsInt(NumericType.TaskLoopID);
+                if (taskLoopid > 0)
+                {
+                    if (!taskComponent.RoleComoleteTaskList.Contains(taskLoopid)
+                     &&  taskComponent.GetTaskById(taskLoopid) == null)
+                    {
+                        addTaskids.Add(taskLoopid);
+                    }
+                }
+            }
+            return addTaskids;
+        }
+
         //如果当前有任务接取了还没完成，则什么都不显示
         public static bool UpdataTask(this UITaskGetComponent self)
         {
@@ -418,13 +426,14 @@ namespace ET
         
             //获取npc任务
             List<int> taskids = taskComponent.GetOpenTaskIds(self.NpcID);
+            taskids.AddRange(self.GetAddtionTaskId(self.NpcID));
+
             List<TaskPro> taskProCompleted = taskComponent.GetCompltedTaskByNpc(self.NpcID);
             for (int i = 0; i < taskProCompleted.Count; i++)
             {
                 taskids.Add(taskProCompleted[i].taskID);
             }
             //当前没有接取任务
-            long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Task/UITaskGetItem");
             var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             
