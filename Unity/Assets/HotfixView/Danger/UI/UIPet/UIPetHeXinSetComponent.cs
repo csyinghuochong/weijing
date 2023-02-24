@@ -102,12 +102,12 @@ namespace ET
             UICommonHelper.ShowAttributeItemList(itemConfig.ItemUsePar, self.AttributeListNode, self.TextAttributeItem);
         }
 
-        public static async ETTask OnUpdateItemList(this UIPetHeXinSetComponent self, List<BagInfo> bagInfos)
+        public static void  OnUpdateItemList(this UIPetHeXinSetComponent self, List<BagInfo> bagInfos)
         {
             self.BagInfo = null;
             long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/Common/UICommonItem");
-            var bundleGameObject = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
+            var bundleGameObject =  ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;

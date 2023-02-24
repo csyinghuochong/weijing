@@ -257,7 +257,7 @@ namespace ET
             }
             self.PetHeXinSetComponent.OnUpdateUI(self.LastSelectItem, position);
             self.PetHeXinSetComponent.UpdatePetHexinItem(eqipInfos);
-            self.PetHeXinSetComponent.OnUpdateItemList(bagInfos).Coroutine();
+            self.PetHeXinSetComponent.OnUpdateItemList(bagInfos);
         }
 
         public static void OnClickPageButton(this UIPetListComponent self, int page)
