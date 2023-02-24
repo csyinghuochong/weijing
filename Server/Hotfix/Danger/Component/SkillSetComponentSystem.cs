@@ -665,16 +665,78 @@ namespace ET
 			return sp;
 		}
 
-		public static int GetLifeShieldLevel(this SkillSetComponent self, int sType)
+		public static void OnShieldAddExp(this SkillSetComponent self, int shieldType, int addExp) 
 		{
-			for (int i = 0; i < self.ShieldList.Count; i++)
+			LifeShieldInfo keyValuePair = null;
+			for (int i = 0; i < self.LifeShieldList.Count; i++)
 			{
-				if ((int)self.ShieldList[i].KeyId == sType)
+				if ((int)self.LifeShieldList[i].ShieldType == shieldType)
 				{
-					return int.Parse(self.ShieldList[i].Value);
+					keyValuePair = self.LifeShieldList[i];
 				}
 			}
+			if (keyValuePair == null)
+			{
+				//默认0级 0经验
+				keyValuePair = new LifeShieldInfo() { ShieldType = shieldType, Level = 0, Exp = 0 };
+				self.LifeShieldList.Add(keyValuePair);
+			}
 
+			int curLv = keyValuePair.Level;
+			int curExp = keyValuePair.Exp;
+			int maxLv= LifeShieldConfigCategory.Instance.LifeShieldList[shieldType].Count;
+			if (curLv == maxLv)
+			{
+				curExp += addExp;
+				keyValuePair.Exp = curExp;
+				return;
+			}
+
+			int nextlifeId = LifeShieldConfigCategory.Instance.LifeShieldList[shieldType][curLv];
+			LifeShieldConfig lifeShieldConfig = LifeShieldConfigCategory.Instance.Get(nextlifeId);
+			if (curExp + addExp < lifeShieldConfig.ShieldExp)
+			{
+				curExp += addExp;
+				keyValuePair.Exp = curExp;
+				return;
+			}
+
+			//可以升级
+			keyValuePair.Level = (curLv + 1);
+			keyValuePair.Exp = (curExp + addExp - lifeShieldConfig.ShieldExp);
+		}
+
+		/// <summary>
+		/// 生命之盾之外的其他最小等级
+		/// </summary>
+		/// <param name="self"></param>
+		/// <returns></returns>
+		public static int GetOtherMinLevel(this SkillSetComponent self)
+		{
+			int minLevel = 0;
+			for (int i = 0; i < self.LifeShieldList.Count; i++)
+			{
+				if ((int)self.LifeShieldList[i].ShieldType == 6)
+				{
+					continue;
+				}
+				if (minLevel == 0 || self.LifeShieldList[i].Level < minLevel)
+				{
+					minLevel = self.LifeShieldList[i].Level;
+				}
+			}
+			return minLevel;
+		}
+
+		public static int GetLifeShieldLevel(this SkillSetComponent self, int sType)
+		{
+			for (int i = 0; i < self.LifeShieldList.Count; i++)
+			{
+				if ((int)self.LifeShieldList[i].ShieldType == sType)
+				{
+					return self.LifeShieldList[i].Level;
+				}
+			}
 			return 0;
 		}
 

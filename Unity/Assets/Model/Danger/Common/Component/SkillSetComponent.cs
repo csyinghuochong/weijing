@@ -9,7 +9,7 @@ namespace ET
         public List<SkillPro> SkillList = new List<SkillPro>();
 
         //生命之盾
-        public List<KeyValuePair> ShieldList = new List<KeyValuePair>();
+        public List<LifeShieldInfo> LifeShieldList = new List<LifeShieldInfo>();
 
         public M2C_UpdateSkillSet M2C_UpdateSkillSet = new M2C_UpdateSkillSet();    
     }

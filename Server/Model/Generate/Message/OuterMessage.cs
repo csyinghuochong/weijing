@@ -4064,7 +4064,25 @@ namespace ET
 		public List<int> TianFuList = new List<int>();
 
 		[ProtoMember(3)]
-		public List<KeyValuePair> ShieldList = new List<KeyValuePair>();
+		public List<LifeShieldInfo> ShieldList = new List<LifeShieldInfo>();
+
+	}
+
+	[Message(OuterOpcode.LifeShieldInfo)]
+	[ProtoContract]
+	public partial class LifeShieldInfo: Object
+	{
+		[ProtoMember(1)]
+		public int ShieldType { get; set; }
+
+		[ProtoMember(2)]
+		public int Level { get; set; }
+
+		[ProtoMember(3)]
+		public int Exp { get; set; }
+
+		[ProtoMember(4)]
+		public string Message { get; set; }
 
 	}
 
@@ -9328,7 +9346,7 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(1)]
-		public List<KeyValuePair> ShieldList = new List<KeyValuePair>();
+		public List<LifeShieldInfo> ShieldList = new List<LifeShieldInfo>();
 
 	}
 

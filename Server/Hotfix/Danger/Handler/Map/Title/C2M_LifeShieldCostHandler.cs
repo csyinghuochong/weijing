@@ -36,19 +36,23 @@ namespace ET
                 }
             }
 
-            TitleComponent titleComponent = unit.GetComponent<TitleComponent>();
+            SkillSetComponent skillsetComponent = unit.GetComponent<SkillSetComponent>();
             int addExp = costNumber * 10;
+
             //其他盾的等级要大于生命之盾
             if (request.OperateType == 6)
             {
                 reply();
                 return;
             }
-            
+
+            skillsetComponent.OnShieldAddExp(request.OperateType, addExp);
 
             //扣除装备
             bagComponent.OnCostItemData(petHexins, ItemLocType.ItemPetHeXinBag);
             bagComponent.OnCostItemData(bagidList, ItemLocType.ItemLocBag);
+
+            response.ShieldList = skillsetComponent.LifeShieldList;
             reply();
             await ETTask.CompletedTask;
         }

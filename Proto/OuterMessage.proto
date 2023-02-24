@@ -1910,9 +1910,16 @@ message M2C_SkillInitResponse	// IActorLocationResponse
 	int32 Error = 92;
 	repeated SkillPro SkillList = 1;
 	repeated int32 TianFuList = 2;
-	repeated KeyValuePair ShieldList = 3;
+	repeated LifeShieldInfo ShieldList = 3;
 }
 
+message LifeShieldInfo
+{
+	int32 ShieldType = 1;
+	int32 Level = 2;
+	int32 Exp = 3;
+	string Message = 4;
+}
 
 //ResponseType M2C_SkillUp
 //技能升级
@@ -4477,5 +4484,5 @@ message M2C_LifeShieldCostResponse    // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 	
-	repeated KeyValuePair ShieldList = 1;
+	repeated LifeShieldInfo ShieldList = 1;
 }

@@ -57,6 +57,7 @@ namespace ET
             }
 
             self.Btn_ZhuRu = rc.Get<GameObject>("Btn_ZhuRu");
+            ButtonHelp.AddListenerEx(self.Btn_ZhuRu, () => { self.OnBtn_ZhuRu().Coroutine(); });
             self.BagComponent = self.ZoneScene().GetComponent<BagComponent>();
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
@@ -163,6 +164,7 @@ namespace ET
 
         public static void OnClickShieldHandler(this UISkillLifeShieldComponent self, int shieldType)
         {
+            self.ShieldType = shieldType;
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
             int level = skillSetComponent.GetLifeShieldLevel(shieldType);
             int shieldId = 0;
@@ -177,15 +179,25 @@ namespace ET
 
             LifeShieldConfig lifeShieldConfig = LifeShieldConfigCategory.Instance.Get(shieldId);
             self.Text_ShieldName.GetComponent<Text>().text = $"{lifeShieldConfig.ShieldName} {lifeShieldConfig.ShieldLevel}级";
+
+            for (int i = 0; i < self.ShieldUIList.Count; i++)
+            {
+                self.ShieldUIList[i].SetSelected(shieldType);
+            }
         }
 
         public static async ETTask OnBtn_ZhuRu(this UISkillLifeShieldComponent self)
         {
             List<long> costs = self.GetConstItems ();
+            if (costs.Count == 0 || self.ShieldType == 0)
+            {
+                return;
+            }
             C2M_LifeShieldCostRequest  request = new C2M_LifeShieldCostRequest() { OperateType = self.ShieldType, OperateBagID = costs };
             M2C_LifeShieldCostResponse response = (M2C_LifeShieldCostResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
-            self.ZoneScene().GetComponent<SkillSetComponent>().ShieldList = response.ShieldList;   
+            self.ZoneScene().GetComponent<SkillSetComponent>().LifeShieldList = response.ShieldList;
+            self.OnUpdateUI();
         }
 
         public static void UpdateBagUI(this UISkillLifeShieldComponent self)
@@ -252,7 +264,15 @@ namespace ET
 
         public static List<long> GetConstItems(this UISkillLifeShieldComponent self)
         {
-            return new List<long>();
+            List<long> constids = new List<long>();
+            for (int h = 0; h < self.HuiShoulist.Count; h++)
+            {
+                if (self.HuiShoulist[h].Baginfo != null)
+                {
+                    constids.Add(self.HuiShoulist[h].Baginfo.BagInfoID);
+                }
+            }
+            return constids;
         }
 
     }

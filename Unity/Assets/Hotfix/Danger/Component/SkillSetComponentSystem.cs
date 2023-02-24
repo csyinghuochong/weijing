@@ -11,7 +11,7 @@ namespace ET
 
 			self.SkillList = m2C_SkillSet.SkillList;
 			self.TianFuList = m2C_SkillSet.TianFuList;
-			self.ShieldList = m2C_SkillSet.ShieldList;
+			self.LifeShieldList = m2C_SkillSet.ShieldList;
 		}
 
 		public static int HaveSameTianFu(this SkillSetComponent self, int tianfuId)
@@ -503,11 +503,11 @@ namespace ET
 
 		public static int GetLifeShieldLevel(this SkillSetComponent self, int sType)
 		{
-			for (int i = 0; i < self.ShieldList.Count; i++)
+			for (int i = 0; i < self.LifeShieldList.Count; i++)
 			{
-				if ((int)self.ShieldList[i].KeyId == sType)
+				if ((int)self.LifeShieldList[i].ShieldType == sType)
 				{
-					return int.Parse(self.ShieldList[i].Value);
+					return self.LifeShieldList[i].Level;
 				}
 			}
 
