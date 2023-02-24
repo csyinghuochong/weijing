@@ -103,6 +103,7 @@ namespace ET
             bool canget = FunctionHelp.CheckTaskOn(unit, TaskConfigCategory.Instance.Get(taskId));
             if (!canget)
             {
+                Log.Debug($"CanNotGetTask: {unit.DomainZone()} {unit.Id} {taskId}");
                 return null;
             }
             if (self.IsHaveTask(taskId))

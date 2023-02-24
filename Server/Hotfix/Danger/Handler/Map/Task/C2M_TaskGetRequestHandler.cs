@@ -10,7 +10,7 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_TaskGetRequest request, M2C_TaskGetResponse response, Action reply)
         {
             TaskConfig taskConfig = TaskConfigCategory.Instance.Get(request.TaskId);
-            if (taskConfig.TargetType == TaskTypeEnum.EveryDay)
+            if (taskConfig.TaskType == TaskTypeEnum.EveryDay)
             {
                 TaskComponent taskComponent = unit.GetComponent<TaskComponent>();
                 if (taskComponent.GetTaskList(TaskTypeEnum.EveryDay).Count > 0)
