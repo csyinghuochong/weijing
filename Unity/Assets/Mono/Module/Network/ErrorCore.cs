@@ -121,9 +121,10 @@
         public const int ERR_InMakeCD = 300304;
         public const int ERR_MakeTypeError = 300305;
         public const int ERR_RoleNameRepeat = 300306;
-        public const int ERR_ShuLianDuNotEnough = 300307;                            //熟练度不足
-        public const int ERR_EquipType = 300308;                                 //装备类型不符
-        public const int ERR_GemNoError = 300309;                                 //道具使用失败
+        public const int ERR_ShuLianDuNotEnough = 300307;                           //熟练度不足
+        public const int ERR_EquipType = 300308;                                    //装备类型不符
+        public const int ERR_GemNoError = 300309;                                   //道具使用失败
+        public const int ERR_GemShiShiNumFull = 300310;                             //镶嵌史诗宝石达到上限
 
         //队伍
         public const int ERR_TeamIsFull = 300401;                                   //队伍已满

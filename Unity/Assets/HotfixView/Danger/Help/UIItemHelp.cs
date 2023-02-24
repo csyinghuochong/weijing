@@ -409,7 +409,7 @@ namespace ET
                 Text_ItemDes = Text_ItemDes + "\n" + "\n" + @"" + langStr_2 + holeStr + @langStr_3 + "";
 
                 if (itemconf.ItemSubType == 110) {
-                    Text_ItemDes = Text_ItemDes + "\n" + "\n" + @"提示:史诗宝石一旦镶嵌将无法卸下";
+                    Text_ItemDes = Text_ItemDes + "\n" + "\n" + @"提示:史诗宝石一旦镶嵌将无法卸下\n身上最多可镶嵌4颗史诗宝石";
                 }
             }
 
@@ -560,6 +560,30 @@ namespace ET
                 text.GetComponent<Text>().text = itemConfig.ItemName;
                 Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ItemIcon, itemConfig.Icon);
                 icon.GetComponent<Image>().sprite = sp;
+
+                int equipShiShiGemNum = 0;
+                List<BagInfo> equipList = zoneScene.GetComponent<BagComponent>().GetEquipList();
+                for (int i = 0; i < equipList.Count; i++)
+                {
+                    string[] gemList = equipList[i].GemIDNew.Split('_');
+                    for (int y = 0; y < gemList.Length; y++)
+                    {
+                        if (ComHelp.IfNull(gemList[y]) == false)
+                        {
+                            ItemConfig gemItemCof = ItemConfigCategory.Instance.Get(int.Parse(gemList[y]));
+                            if (gemItemCof.ItemSubType == 110)
+                            {
+                                equipShiShiGemNum += 1;
+                            }
+                        }
+                    }
+                }
+
+                if (itemConfig.ItemSubType == 110 && equipShiShiGemNum > 4)
+                {
+                    text.GetComponent<Text>().text += "(超过4个,属性无效)";
+                }
+
             }
             else
             {

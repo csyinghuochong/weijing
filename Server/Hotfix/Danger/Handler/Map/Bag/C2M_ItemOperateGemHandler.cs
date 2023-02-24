@@ -41,7 +41,6 @@ namespace ET
                 BagInfo equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocEquip, equipid);
 
                 //获取装备baginfo
-                //
                 if (equipInfo == null)
                 {
                     equipInfo = unit.GetComponent<BagComponent>().GetItemByLoc(ItemLocType.ItemLocBag, equipid);
@@ -63,6 +62,29 @@ namespace ET
                     return;
                 }
 
+                //史诗宝石最多镶嵌4个
+                if (itemConfig.ItemSubType == 110) {
+
+                    int equipShiShiGemNum = 0;
+                    for (int i = 0; i < unit.GetComponent<BagComponent>().EquipList.Count; i++) {
+                        string[] gemList = unit.GetComponent<BagComponent>().EquipList[i].GemIDNew.Split('_');
+                        for (int y = 0; y < gemList.Length; y++) {
+                            if (ComHelp.IfNull(gemList[y]) == false)
+                            {
+                                ItemConfig gemItemCof = ItemConfigCategory.Instance.Get(int.Parse(gemList[y]));
+                                if (gemItemCof.ItemSubType == 110) {
+                                    equipShiShiGemNum += 1;
+                                }
+                            }
+                        }
+                    }
+
+                    if (equipShiShiGemNum >= 4) {
+                        response.Error = ErrorCore.ERR_GemShiShiNumFull;
+                        reply();
+                        return;
+                    }
+                }
 
 
                 string[] gemIdList = equipInfo.GemIDNew.Split('_');

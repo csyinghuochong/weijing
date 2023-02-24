@@ -9,6 +9,7 @@ namespace ET
         public GameObject Text_ChengJiuDesc;
         public GameObject Text_ChengJiuPoint;
         public GameObject Text_ChengJiuName;
+        public GameObject ChengJiuIcon;
     }
 
     [ObjectSystem]
@@ -21,6 +22,7 @@ namespace ET
             self.Text_ChengJiuDesc = rc.Get<GameObject>("Text_ChengJiuDesc");
             self.Text_ChengJiuPoint = rc.Get<GameObject>("Text_ChengJiuPoint");
             self.Text_ChengJiuName = rc.Get<GameObject>("Text_ChengJiuName");
+            self.ChengJiuIcon = rc.Get<GameObject>("ChengJiuIcon");
         }
     }
 
@@ -32,6 +34,8 @@ namespace ET
             self.Text_ChengJiuDesc.GetComponent<Text>().text = chengJiuConfig.Des;
             self.Text_ChengJiuPoint.GetComponent<Text>().text = chengJiuConfig.RewardNum.ToString();
             self.Text_ChengJiuName.GetComponent<Text>().text = chengJiuConfig.Name;
+            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ChengJiuIcon, chengJiuConfig.Icon.ToString());
+            self.ChengJiuIcon.GetComponent<Image>().sprite = sp;
 
             long instanceId = self.InstanceId;
             await TimerComponent.Instance.WaitAsync(3000);

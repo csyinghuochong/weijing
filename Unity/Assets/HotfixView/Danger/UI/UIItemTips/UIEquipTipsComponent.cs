@@ -537,6 +537,7 @@ namespace ET
                         int.Parse(gemHoles[gemNumber]), int.Parse(gemIds[gemNumber]));
                     gemNumber += (gemHoles[i] != "0" ? 1 : 0);
                 }
+
             }
             else
             {

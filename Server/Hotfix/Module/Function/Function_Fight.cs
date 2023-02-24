@@ -1025,6 +1025,9 @@ namespace ET
             int equipMinAdfSum = 0;
             int equipMaxAdfSum = 0;
 
+            //史诗宝石数量
+            int equipShiShiGemNum = 0;
+
             for (int i = 0; i < equipList.Count; i++)
             {
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(equipList[i].ItemID);
@@ -1139,11 +1142,22 @@ namespace ET
                     //Log.Debug($"GemIDNew==null  unit.Id: {unit.Id} BagInfoID:{equipList[i].BagInfoID}");
                 }
                 string[] gemList = equipList[i].GemIDNew.Split('_');
+
                 for (int z = 0; z < gemList.Length; z++) {
 
                     int gemID = int.Parse(gemList[z]);
                     if (gemID == 0)
                     {
+                        continue;
+                    }
+
+                    //史诗宝石数量最多4个
+                    ItemConfig itemGemCof = ItemConfigCategory.Instance.Get(gemID);
+                    if (itemGemCof.ItemSubType == 110) {
+                        equipShiShiGemNum += 1;
+                    }
+
+                    if (equipShiShiGemNum > 4 && itemGemCof.ItemSubType == 110) {
                         continue;
                     }
 
