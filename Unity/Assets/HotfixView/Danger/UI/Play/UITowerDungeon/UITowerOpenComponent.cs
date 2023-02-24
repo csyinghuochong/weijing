@@ -103,7 +103,7 @@ namespace ET
             {
                 return;
             }
-            ui.GetComponent<UITowerFightRewardComponent>().OnUpdateUI(message);
+            ui.GetComponent<UITowerFightRewardComponent>()?.OnUpdateUI(message);
         }
 
         public static void OnUpdateUI(this UITowerOpenComponent self, int towerId)

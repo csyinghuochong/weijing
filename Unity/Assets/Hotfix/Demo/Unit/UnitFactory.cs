@@ -118,7 +118,11 @@ namespace ET
 		public static Unit CreateDropItem(Entity currentScene, DropInfo dropinfo)
 		{
 			UnitComponent unitComponent = currentScene.GetComponent<UnitComponent>();
-			long unitId = dropinfo.DropType == 1 ? IdGenerater.Instance.GenerateId() : dropinfo.UnitId;
+			long unitId = dropinfo.UnitId == 0 ? IdGenerater.Instance.GenerateId() : dropinfo.UnitId;
+			if (unitComponent.Get(unitId) != null)
+			{
+				return null;
+			}
 			Unit unit = unitComponent.AddChildWithId<Unit, int>(unitId, 1);
 			unit.Type = UnitType.DropItem;
 			unitComponent.Add(unit);

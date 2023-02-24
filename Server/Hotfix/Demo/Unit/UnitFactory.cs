@@ -463,6 +463,7 @@ namespace ET
                             X = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f),
                             Y = bekill.Position.y,
                             Z = bekill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
+                            UnitId = IdGenerater.Instance.GenerateId(),
                         };
                         m2C_CreateDropItems.Drops.Add(dropInfo);
                         beAttack.GetComponent<UnitInfoComponent>().Drops.Add(dropInfo);
@@ -514,6 +515,7 @@ namespace ET
                         X = beKill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f),
                         Y = beKill.Position.y,
                         Z = beKill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f),
+                        UnitId = IdGenerater.Instance.GenerateId(),
                     };
                     m2C_CreateDropItems.Drops.Add(dropInfo);
                     main.GetComponent<UnitInfoComponent>().Drops.Add(dropInfo);
