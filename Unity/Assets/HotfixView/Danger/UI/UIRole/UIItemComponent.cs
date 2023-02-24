@@ -97,6 +97,10 @@ namespace ET
 
         public static void SetSelected(this UIItemComponent self, BagInfo bagInfo)
         {
+            if (self.Baginfo == null)
+            {
+                return;
+            }
             self.Image_XuanZhong.SetActive(self.Baginfo != null && self.Baginfo.BagInfoID == bagInfo.BagInfoID );
         }
 
