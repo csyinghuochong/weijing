@@ -829,6 +829,13 @@ namespace ET
                     case 1025:
                         self.Btn_Battle.SetActive(inTime);
                         break;
+                    case 1031:
+                        if (inTime)
+                        {
+                            ActivityTipHelper.OnActiviyTip(self.ZoneScene(), functonIds[i]);
+                        }
+                        break;
+                    default:
                         break;
                 }
             }
