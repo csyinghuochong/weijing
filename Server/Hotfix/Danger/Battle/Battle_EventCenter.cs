@@ -98,14 +98,14 @@ namespace ET
             }
             for (int i = 0; i < allAttackIds.Count; i++)
             {
-                Unit beAttack = domainScene.GetComponent<UnitComponent>().Get(allAttackIds[i]);
-                if (beAttack == null || beAttack.Type != UnitType.Player)
+                Unit attackUnit = domainScene.GetComponent<UnitComponent>().Get(allAttackIds[i]);
+                if (attackUnit == null || attackUnit.Type != UnitType.Player)
                 {
                     continue;
                 }
-                beAttack.GetComponent<TaskComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
-                beAttack.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
-                beAttack.GetComponent<PetComponent>().OnKillUnit(defendUnit);
+                attackUnit.GetComponent<TaskComponent>().OnKillUnit(defendUnit, sceneTypeEnum);
+                attackUnit.GetComponent<ChengJiuComponent>().OnKillUnit(defendUnit);
+                attackUnit.GetComponent<PetComponent>().OnKillUnit(defendUnit);
             }
 
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)

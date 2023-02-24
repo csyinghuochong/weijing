@@ -18,7 +18,6 @@ namespace ET
                     PopupTipHelp.OpenPopupTip(ZoneScene, "角斗场", "是否立即前往角斗场？", () =>
                     {
                         RequestEnterArena(ZoneScene).Coroutine();
-
                     }, null).Coroutine();
                     break;
             }

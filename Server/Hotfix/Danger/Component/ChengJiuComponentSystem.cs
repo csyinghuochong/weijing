@@ -15,18 +15,19 @@ namespace ET
     public static class ChengJiuComponentSystem
     {
         //击杀怪物可触发多种类型的成就
-        public static void OnKillUnit(this ChengJiuComponent self, Unit bekill)
+        public static void OnKillUnit(this ChengJiuComponent self, Unit defend)
         {
-            if (bekill == null || bekill.IsDisposed)
+            if (defend == null || defend.IsDisposed)
                 return;
 
-            if (bekill.Type == UnitType.Player)
+            if (defend.Type == UnitType.Player)
             {
                 self.TriggerEvent(ChengJiuTargetEnum.KillPlayerNumber_209, 0, 1);
+                LogHelper.KillPlayerInfo(self.GetParent<Unit>(),  defend);
             }
-            if (bekill.Type == UnitType.Monster)
+            if (defend.Type == UnitType.Monster)
             {
-                int unitconfigId = bekill.ConfigId;
+                int unitconfigId = defend.ConfigId;
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitconfigId);
                 bool isBoss = monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss;
                 MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
