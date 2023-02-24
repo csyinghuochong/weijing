@@ -180,7 +180,20 @@ namespace ET
 
             LifeShieldConfig lifeShieldConfig = LifeShieldConfigCategory.Instance.Get(nextlifeId);
             self.Text_ShieldName.GetComponent<Text>().text = $"{lifeShieldConfig.ShieldName} {lifeShieldConfig.ShieldLevel}级";
+            self.Text_ShieldDesc.GetComponent<Text>().text = lifeShieldConfig.AddProperty;
 
+            LifeShieldInfo lifeShieldInfo = skillSetComponent.GetLifeShieldByType(shieldType);
+            int curExp = lifeShieldInfo != null ? lifeShieldInfo.Exp : 0;
+
+            if (curLv == maxLv)
+            { 
+                self.Text_Progess.GetComponent<Text>().text = $"已满级";
+            }
+            else
+            {
+                self.Text_Progess.GetComponent<Text>().text = $"{curExp}/{lifeShieldConfig.ShieldExp}";
+            }
+             
             for (int i = 0; i < self.ShieldUIList.Count; i++)
             {
                 self.ShieldUIList[i].SetSelected(shieldType);

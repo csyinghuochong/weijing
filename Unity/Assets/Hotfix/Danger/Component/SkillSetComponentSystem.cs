@@ -501,6 +501,41 @@ namespace ET
 			return sp;
 		}
 
+		public static LifeShieldInfo GetLifeShieldByType(this SkillSetComponent self, int sType)
+		{
+			for (int i = 0; i < self.LifeShieldList.Count; i++)
+			{
+				if ((int)self.LifeShieldList[i].ShieldType == sType)
+				{
+					return self.LifeShieldList[i];
+				}
+			}
+
+			return null;
+		}
+
+		/// <summary>
+		/// 生命之盾之外的其他最小等级
+		/// </summary>
+		/// <param name="self"></param>
+		/// <returns></returns>
+		public static int GetOtherMinLevel(this SkillSetComponent self)
+		{
+			int minLevel = 0;
+			for (int i = 0; i < self.LifeShieldList.Count; i++)
+			{
+				if ((int)self.LifeShieldList[i].ShieldType == 6)
+				{
+					continue;
+				}
+				if (minLevel == 0 || self.LifeShieldList[i].Level < minLevel)
+				{
+					minLevel = self.LifeShieldList[i].Level;
+				}
+			}
+			return minLevel;
+		}
+
 		public static int GetLifeShieldLevel(this SkillSetComponent self, int sType)
 		{
 			for (int i = 0; i < self.LifeShieldList.Count; i++)
