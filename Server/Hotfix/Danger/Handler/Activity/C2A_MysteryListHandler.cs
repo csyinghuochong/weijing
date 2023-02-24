@@ -8,7 +8,14 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, C2A_MysteryListRequest request, A2C_MysteryListResponse response, Action reply)
         {
-            response.MysteryItemInfos = scene.GetComponent<ActivitySceneComponent>().DBDayActivityInfo.MysteryItemInfos;
+            ActivitySceneComponent activitySceneComponent = scene.GetComponent<ActivitySceneComponent>();
+            if (activitySceneComponent.DBDayActivityInfo.MysteryItemInfos.Count == 0)
+            {
+                Log.Debug($"神秘商品为空: {scene.DomainZone()}");
+                int openServerDay = DBHelper.GetOpenServerDay(scene.DomainZone());
+                activitySceneComponent.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
+            }
+            response.MysteryItemInfos = activitySceneComponent.DBDayActivityInfo.MysteryItemInfos;
 
             reply();
             await ETTask.CompletedTask;

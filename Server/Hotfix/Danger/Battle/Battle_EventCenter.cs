@@ -92,7 +92,7 @@ namespace ET
             {
                 allAttackIds = defendUnit.GetComponent<AIComponent>().BeAttackPlayerList;
             }
-            else if (mainAttack != null)
+            if (mainAttack != null && !allAttackIds.Contains(mainAttack.Id))
             {
                 allAttackIds.Add(mainAttack.Id);
             }
