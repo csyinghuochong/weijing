@@ -11,7 +11,7 @@ namespace ET
             ActivitySceneComponent activitySceneComponent = scene.GetComponent<ActivitySceneComponent>();
             if (activitySceneComponent.DBDayActivityInfo.MysteryItemInfos.Count == 0)
             {
-                Log.Debug($"神秘商品为空: {scene.DomainZone()}");
+                Log.Debug($"神秘商店为空: {scene.DomainZone()}");
                 int openServerDay = DBHelper.GetOpenServerDay(scene.DomainZone());
                 activitySceneComponent.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
             }

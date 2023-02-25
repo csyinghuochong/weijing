@@ -173,6 +173,7 @@ namespace ET
             {
                 self.OnBattleOpen = false;
                 self.OnBattleClose = false;
+                Log.Debug($"神秘商品刷新: {self.DomainZone()}");
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
             }
             if (hour == 0 && dayOfWeek == DayOfWeek.Monday)
