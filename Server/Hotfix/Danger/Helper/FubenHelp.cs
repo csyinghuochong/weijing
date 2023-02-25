@@ -84,9 +84,7 @@ namespace ET
 				{
 					float range = (float)monsterPosition.CreateRange;
 					MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterPosition.MonsterID);
-					Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-					Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
-					Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
+					Vector3 vector3 = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
 					UnitFactory.CreateMonster(scene, monsterPosition.MonsterID, vector3, new CreateMonsterInfo()
 					{
 						Camp = monsterConfig.MonsterCamp,
@@ -112,9 +110,7 @@ namespace ET
 				{
 					float range = (float)monsterPosition.CreateRange;
 					MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterPosition.MonsterID);
-					Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-					Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
-					Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
+					Vector3 vector3 = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
 					UnitFactory.CreateMonster(scene, monsterPosition.MonsterID, vector3, new CreateMonsterInfo()
 					{
 						PlayerLevel = playerLv,
@@ -219,9 +215,7 @@ namespace ET
 					for (int c = 0; c < cmcount; c++)
 					{
 						float range = float.Parse(mcount[1]);
-						Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-						Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
-						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
+						Vector3 vector3 = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
 						UnitFactory.CreateMonster(scene, monsterid, vector3, new CreateMonsterInfo()
 						{ 
 							Camp = monsterConfig.MonsterCamp
@@ -247,9 +241,7 @@ namespace ET
 					for (int c = 0; c < cmcount; c++)
 					{
 						float range = float.Parse(mcount[1]);
-						Vector3 form = new Vector3(float.Parse(position[0]), float.Parse(position[1]), float.Parse(position[2]));
-						Vector3 to = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
-						Vector3 vector3 = scene.GetComponent<MapComponent>().GetCanReachPath(form, to);
+						Vector3 vector3 = new Vector3(float.Parse(position[0]) + RandomHelper.RandomNumberFloat(-1 * range, range), float.Parse(position[1]), float.Parse(position[2]) + RandomHelper.RandomNumberFloat(-1 * range, range));
 						UnitFactory.CreateMonster(scene, monsterid, vector3,  new CreateMonsterInfo() {
 							PlayerLevel = playerLv, AttributeParams = mondels[4] + ";" + mondels[5],
 							Camp = monsterConfig.MonsterCamp
