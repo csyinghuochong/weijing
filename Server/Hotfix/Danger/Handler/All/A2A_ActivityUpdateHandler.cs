@@ -38,7 +38,10 @@ namespace ET
                     }
                     break;
                 case SceneType.Arena:
-                    scene.GetComponent<ArenaSceneComponent>().OnZeroClockUpdate();
+                    if (activityType == 0)
+                    {
+                        scene.GetComponent<ArenaSceneComponent>().OnZeroClockUpdate();
+                    }
                     break;
                 case SceneType.PaiMai:
                     //更新快捷购买列表价格
