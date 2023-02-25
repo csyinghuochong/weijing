@@ -40,7 +40,7 @@ namespace ET
             self.Image_RewardJiuDi = rc.Get<GameObject>("Image_RewardJiuDi");
 
             self.Btn_LingQu = rc.Get<GameObject>("Btn_LingQu");
-            self.Btn_LingQu.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_LingQu(); });
+            self.Btn_LingQu.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_LingQu().Coroutine(); });
 
             self.ItemListNode = rc.Get<GameObject>("ItemListNode");
             self.RewardListNode = rc.Get<GameObject>("RewardListNode");

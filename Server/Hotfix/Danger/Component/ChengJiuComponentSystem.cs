@@ -113,7 +113,7 @@ namespace ET
         {
             self.TriggerEvent(ChengJiuTargetEnum.PetIdNumber_301, rolePetInfo.ConfigId, 1);
             self.TriggerEvent(ChengJiuTargetEnum.TotalPetNumber_302, 0, 1);
-            self.TriggerEvent(ChengJiuTargetEnum.PetNSkill_305, rolePetInfo.PetSkill.Count, 1);
+            self.TriggerEvent(ChengJiuTargetEnum.PetNSkill_305, 0, rolePetInfo.PetSkill.Count);
         }
 
         public static void OnPetHeCheng(this ChengJiuComponent self, RolePetInfo rolePetInfo)
@@ -215,7 +215,8 @@ namespace ET
                  || chengJiuTarget == ChengJiuTargetEnum.PetArrayScoreToValue_308
                  || chengJiuTarget == ChengJiuTargetEnum.PetTianTiRank_309
                  || chengJiuTarget == ChengJiuTargetEnum.ZiZhiToValue_311
-                 || chengJiuTarget == ChengJiuTargetEnum.ZiZhiUpValue_312)
+                 || chengJiuTarget == ChengJiuTargetEnum.ZiZhiUpValue_312
+                 || chengJiuTarget == ChengJiuTargetEnum.PetNSkill_305)
                 {
                     chengJiuInfo.ChengJiuProgess = target_value;
                 }

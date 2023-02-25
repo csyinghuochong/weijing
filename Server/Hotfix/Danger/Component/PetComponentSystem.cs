@@ -524,6 +524,7 @@ namespace ET
 
         public static void UpdatePetAttribute(this PetComponent self, RolePetInfo rolePetInfo, bool updateUnit = false)
         {
+            rolePetInfo.PetPingFen = ComHelp.PetPingJia(rolePetInfo);
             //获取宠物资质
             float actPro = self.GetZiZhiAddPro(1,rolePetInfo.ZiZhi_Act);
             float magePro = self.GetZiZhiAddPro(1, rolePetInfo.ZiZhi_MageAct);
