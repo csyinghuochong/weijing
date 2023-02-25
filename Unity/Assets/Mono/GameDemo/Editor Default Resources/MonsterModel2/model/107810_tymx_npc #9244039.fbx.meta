@@ -1,148 +1,354 @@
 fileFormatVersion: 2
 guid: 92f12798bc655f04cbda723ea38cad87
-timeCreated: 1537688315
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: 107800_tymx_npc_mo
-    100002: 107800_tymx_npc_mo 1
-    100004: 107800_tymx_npc_mo_0
-    100006: 107810_tymx_npc
-    100008: //RootNode
-    100010: Bone002
-    100012: Bone003
-    100014: Bone004
-    100016: Bone005
-    100018: Bone006
-    100020: Bone007
-    100022: Bone008
-    100024: Bone009
-    100026: Bone010
-    100028: Bone011
-    100030: Bone012
-    100032: Bone013
-    100034: Bone015
-    100036: Bone016
-    100038: Bone017
-    100040: Bone018
-    100042: Bone019
-    100044: Bone020
-    100046: Bone021
-    100048: Bone022
-    100050: Bone023
-    100052: Bone024
-    100054: Bone025
-    100056: Bone026
-    100058: Bone027
-    100060: Bone028
-    100062: Bone029
-    100064: Bone030
-    100066: Bone031
-    100068: Bone032
-    100070: Bone033
-    100072: Bone034
-    100074: Bone035
-    100076: Bone036
-    100078: Dummy001
-    100080: Dummy002
-    100082: Dummy003
-    400000: 107800_tymx_npc_mo
-    400002: 107800_tymx_npc_mo 1
-    400004: 107800_tymx_npc_mo_0
-    400006: 107810_tymx_npc
-    400008: //RootNode
-    400010: Bone002
-    400012: Bone003
-    400014: Bone004
-    400016: Bone005
-    400018: Bone006
-    400020: Bone007
-    400022: Bone008
-    400024: Bone009
-    400026: Bone010
-    400028: Bone011
-    400030: Bone012
-    400032: Bone013
-    400034: Bone015
-    400036: Bone016
-    400038: Bone017
-    400040: Bone018
-    400042: Bone019
-    400044: Bone020
-    400046: Bone021
-    400048: Bone022
-    400050: Bone023
-    400052: Bone024
-    400054: Bone025
-    400056: Bone026
-    400058: Bone027
-    400060: Bone028
-    400062: Bone029
-    400064: Bone030
-    400066: Bone031
-    400068: Bone032
-    400070: Bone033
-    400072: Bone034
-    400074: Bone035
-    400076: Bone036
-    400078: Dummy001
-    400080: Dummy002
-    400082: Dummy003
-    4300000: 107800_tymx_npc_mo_0
-    7400000: idle
-    7400002: touch
-    7400004: call
-    7400006: call_enter
-    9500000: //RootNode
-    13700000: 107800_tymx_npc_mo_0
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: 107800_tymx_npc_mo
+  - first:
+      1: 100002
+    second: 107800_tymx_npc_mo 1
+  - first:
+      1: 100004
+    second: 107800_tymx_npc_mo_0
+  - first:
+      1: 100006
+    second: 107810_tymx_npc
+  - first:
+      1: 100008
+    second: //RootNode
+  - first:
+      1: 100010
+    second: Bone002
+  - first:
+      1: 100012
+    second: Bone003
+  - first:
+      1: 100014
+    second: Bone004
+  - first:
+      1: 100016
+    second: Bone005
+  - first:
+      1: 100018
+    second: Bone006
+  - first:
+      1: 100020
+    second: Bone007
+  - first:
+      1: 100022
+    second: Bone008
+  - first:
+      1: 100024
+    second: Bone009
+  - first:
+      1: 100026
+    second: Bone010
+  - first:
+      1: 100028
+    second: Bone011
+  - first:
+      1: 100030
+    second: Bone012
+  - first:
+      1: 100032
+    second: Bone013
+  - first:
+      1: 100034
+    second: Bone015
+  - first:
+      1: 100036
+    second: Bone016
+  - first:
+      1: 100038
+    second: Bone017
+  - first:
+      1: 100040
+    second: Bone018
+  - first:
+      1: 100042
+    second: Bone019
+  - first:
+      1: 100044
+    second: Bone020
+  - first:
+      1: 100046
+    second: Bone021
+  - first:
+      1: 100048
+    second: Bone022
+  - first:
+      1: 100050
+    second: Bone023
+  - first:
+      1: 100052
+    second: Bone024
+  - first:
+      1: 100054
+    second: Bone025
+  - first:
+      1: 100056
+    second: Bone026
+  - first:
+      1: 100058
+    second: Bone027
+  - first:
+      1: 100060
+    second: Bone028
+  - first:
+      1: 100062
+    second: Bone029
+  - first:
+      1: 100064
+    second: Bone030
+  - first:
+      1: 100066
+    second: Bone031
+  - first:
+      1: 100068
+    second: Bone032
+  - first:
+      1: 100070
+    second: Bone033
+  - first:
+      1: 100072
+    second: Bone034
+  - first:
+      1: 100074
+    second: Bone035
+  - first:
+      1: 100076
+    second: Bone036
+  - first:
+      1: 100078
+    second: Dummy001
+  - first:
+      1: 100080
+    second: Dummy002
+  - first:
+      1: 100082
+    second: Dummy003
+  - first:
+      4: 400000
+    second: 107800_tymx_npc_mo
+  - first:
+      4: 400002
+    second: 107800_tymx_npc_mo 1
+  - first:
+      4: 400004
+    second: 107800_tymx_npc_mo_0
+  - first:
+      4: 400006
+    second: 107810_tymx_npc
+  - first:
+      4: 400008
+    second: //RootNode
+  - first:
+      4: 400010
+    second: Bone002
+  - first:
+      4: 400012
+    second: Bone003
+  - first:
+      4: 400014
+    second: Bone004
+  - first:
+      4: 400016
+    second: Bone005
+  - first:
+      4: 400018
+    second: Bone006
+  - first:
+      4: 400020
+    second: Bone007
+  - first:
+      4: 400022
+    second: Bone008
+  - first:
+      4: 400024
+    second: Bone009
+  - first:
+      4: 400026
+    second: Bone010
+  - first:
+      4: 400028
+    second: Bone011
+  - first:
+      4: 400030
+    second: Bone012
+  - first:
+      4: 400032
+    second: Bone013
+  - first:
+      4: 400034
+    second: Bone015
+  - first:
+      4: 400036
+    second: Bone016
+  - first:
+      4: 400038
+    second: Bone017
+  - first:
+      4: 400040
+    second: Bone018
+  - first:
+      4: 400042
+    second: Bone019
+  - first:
+      4: 400044
+    second: Bone020
+  - first:
+      4: 400046
+    second: Bone021
+  - first:
+      4: 400048
+    second: Bone022
+  - first:
+      4: 400050
+    second: Bone023
+  - first:
+      4: 400052
+    second: Bone024
+  - first:
+      4: 400054
+    second: Bone025
+  - first:
+      4: 400056
+    second: Bone026
+  - first:
+      4: 400058
+    second: Bone027
+  - first:
+      4: 400060
+    second: Bone028
+  - first:
+      4: 400062
+    second: Bone029
+  - first:
+      4: 400064
+    second: Bone030
+  - first:
+      4: 400066
+    second: Bone031
+  - first:
+      4: 400068
+    second: Bone032
+  - first:
+      4: 400070
+    second: Bone033
+  - first:
+      4: 400072
+    second: Bone034
+  - first:
+      4: 400074
+    second: Bone035
+  - first:
+      4: 400076
+    second: Bone036
+  - first:
+      4: 400078
+    second: Dummy001
+  - first:
+      4: 400080
+    second: Dummy002
+  - first:
+      4: 400082
+    second: Dummy003
+  - first:
+      43: 4300000
+    second: 107800_tymx_npc_mo_0
+  - first:
+      74: 7400000
+    second: idle
+  - first:
+      74: 7400002
+    second: touch
+  - first:
+      74: 7400004
+    second: call
+  - first:
+      74: 7400006
+    second: call_enter
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: 107800_tymx_npc_mo_0
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -152,14 +358,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

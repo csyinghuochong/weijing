@@ -1,105 +1,225 @@
 fileFormatVersion: 2
 guid: 039f10591d6a8b849bafc0161ff342c9
-timeCreated: 1537687665
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: 105300_xng_npc_mo
-    100002: 105300_xng_npc_mo_0
-    100004: 105310_xng_npc
-    100006: //RootNode
-    100008: Bone001
-    100010: Bone002
-    100012: Bone002(mirrored)
-    100014: Bone003
-    100016: Bone003(mirrored)
-    100018: Bone005
-    100020: Bone006
-    100022: Bone008
-    100024: Bone008(mirrored)
-    100026: Bone010
-    100028: Bone011
-    100030: Bone013
-    100032: Point001
-    100034: Point002
-    100036: Point003
-    100038: Point004
-    400000: 105300_xng_npc_mo
-    400002: 105300_xng_npc_mo_0
-    400004: 105310_xng_npc
-    400006: //RootNode
-    400008: Bone001
-    400010: Bone002
-    400012: Bone002(mirrored)
-    400014: Bone003
-    400016: Bone003(mirrored)
-    400018: Bone005
-    400020: Bone006
-    400022: Bone008
-    400024: Bone008(mirrored)
-    400026: Bone010
-    400028: Bone011
-    400030: Bone013
-    400032: Point001
-    400034: Point002
-    400036: Point003
-    400038: Point004
-    4300000: 105300_xng_npc_mo_0
-    7400000: idle
-    7400002: touch
-    7400004: speak
-    7400006: call
-    7400008: call_enter
-    9500000: //RootNode
-    13700000: 105300_xng_npc_mo_0
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: 105300_xng_npc_mo
+  - first:
+      1: 100002
+    second: 105300_xng_npc_mo_0
+  - first:
+      1: 100004
+    second: 105310_xng_npc
+  - first:
+      1: 100006
+    second: //RootNode
+  - first:
+      1: 100008
+    second: Bone001
+  - first:
+      1: 100010
+    second: Bone002
+  - first:
+      1: 100012
+    second: Bone002(mirrored)
+  - first:
+      1: 100014
+    second: Bone003
+  - first:
+      1: 100016
+    second: Bone003(mirrored)
+  - first:
+      1: 100018
+    second: Bone005
+  - first:
+      1: 100020
+    second: Bone006
+  - first:
+      1: 100022
+    second: Bone008
+  - first:
+      1: 100024
+    second: Bone008(mirrored)
+  - first:
+      1: 100026
+    second: Bone010
+  - first:
+      1: 100028
+    second: Bone011
+  - first:
+      1: 100030
+    second: Bone013
+  - first:
+      1: 100032
+    second: Point001
+  - first:
+      1: 100034
+    second: Point002
+  - first:
+      1: 100036
+    second: Point003
+  - first:
+      1: 100038
+    second: Point004
+  - first:
+      4: 400000
+    second: 105300_xng_npc_mo
+  - first:
+      4: 400002
+    second: 105300_xng_npc_mo_0
+  - first:
+      4: 400004
+    second: 105310_xng_npc
+  - first:
+      4: 400006
+    second: //RootNode
+  - first:
+      4: 400008
+    second: Bone001
+  - first:
+      4: 400010
+    second: Bone002
+  - first:
+      4: 400012
+    second: Bone002(mirrored)
+  - first:
+      4: 400014
+    second: Bone003
+  - first:
+      4: 400016
+    second: Bone003(mirrored)
+  - first:
+      4: 400018
+    second: Bone005
+  - first:
+      4: 400020
+    second: Bone006
+  - first:
+      4: 400022
+    second: Bone008
+  - first:
+      4: 400024
+    second: Bone008(mirrored)
+  - first:
+      4: 400026
+    second: Bone010
+  - first:
+      4: 400028
+    second: Bone011
+  - first:
+      4: 400030
+    second: Bone013
+  - first:
+      4: 400032
+    second: Point001
+  - first:
+      4: 400034
+    second: Point002
+  - first:
+      4: 400036
+    second: Point003
+  - first:
+      4: 400038
+    second: Point004
+  - first:
+      43: 4300000
+    second: 105300_xng_npc_mo_0
+  - first:
+      74: 7400000
+    second: idle
+  - first:
+      74: 7400002
+    second: touch
+  - first:
+      74: 7400004
+    second: speak
+  - first:
+      74: 7400006
+    second: call
+  - first:
+      74: 7400008
+    second: call_enter
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: 105300_xng_npc_mo_0
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -109,14 +229,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -1,78 +1,144 @@
 fileFormatVersion: 2
 guid: 3990ef3307251014ba52623e1e0dc827
-timeCreated: 1537687895
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: 110700_sd_npc_mo
-    100002: 110700_sd_npc_mo_0
-    100004: //RootNode
-    100006: 110710_sd_npc
-    100008: Bone001
-    100010: Bone002
-    100012: Bone004
-    100014: Bone005
-    400000: 110700_sd_npc_mo
-    400002: 110700_sd_npc_mo_0
-    400004: //RootNode
-    400006: 110710_sd_npc
-    400008: Bone001
-    400010: Bone002
-    400012: Bone004
-    400014: Bone005
-    4300000: 110700_sd_npc_mo_0
-    7400000: idle
-    7400002: touch
-    9500000: //RootNode
-    13700000: 110700_sd_npc_mo_0
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: 110700_sd_npc_mo
+  - first:
+      1: 100002
+    second: 110700_sd_npc_mo_0
+  - first:
+      1: 100004
+    second: //RootNode
+  - first:
+      1: 100006
+    second: 110710_sd_npc
+  - first:
+      1: 100008
+    second: Bone001
+  - first:
+      1: 100010
+    second: Bone002
+  - first:
+      1: 100012
+    second: Bone004
+  - first:
+      1: 100014
+    second: Bone005
+  - first:
+      4: 400000
+    second: 110700_sd_npc_mo
+  - first:
+      4: 400002
+    second: 110700_sd_npc_mo_0
+  - first:
+      4: 400004
+    second: //RootNode
+  - first:
+      4: 400006
+    second: 110710_sd_npc
+  - first:
+      4: 400008
+    second: Bone001
+  - first:
+      4: 400010
+    second: Bone002
+  - first:
+      4: 400012
+    second: Bone004
+  - first:
+      4: 400014
+    second: Bone005
+  - first:
+      43: 4300000
+    second: 110700_sd_npc_mo_0
+  - first:
+      74: 7400000
+    second: idle
+  - first:
+      74: 7400002
+    second: touch
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: 110700_sd_npc_mo_0
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -82,14 +148,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -1,92 +1,186 @@
 fileFormatVersion: 2
 guid: df9fb7d8355171c4fb237e5b69d2df44
-timeCreated: 1537688671
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: 105000_bsg_npc_mo
-    100002: 105000_bsg_npc_mo 1
-    100004: 105000_bsg_npc_mo_0
-    100006: 105010_bsg_npc
-    100008: //RootNode
-    100010: Bone001
-    100012: Bone001(mirrored)
-    100014: Bone002
-    100016: Bone002(mirrored)
-    100018: Bone003
-    100020: Bone003(mirrored)
-    100022: Bone005
-    100024: Bone005(mirrored)
-    100026: Bone007
-    100028: Bone007(mirrored)
-    400000: 105000_bsg_npc_mo
-    400002: 105000_bsg_npc_mo 1
-    400004: 105000_bsg_npc_mo_0
-    400006: 105010_bsg_npc
-    400008: //RootNode
-    400010: Bone001
-    400012: Bone001(mirrored)
-    400014: Bone002
-    400016: Bone002(mirrored)
-    400018: Bone003
-    400020: Bone003(mirrored)
-    400022: Bone005
-    400024: Bone005(mirrored)
-    400026: Bone007
-    400028: Bone007(mirrored)
-    4300000: 105000_bsg_npc_mo_0
-    7400000: idle
-    7400002: touch
-    9500000: //RootNode
-    13700000: 105000_bsg_npc_mo_0
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: 105000_bsg_npc_mo
+  - first:
+      1: 100002
+    second: 105000_bsg_npc_mo 1
+  - first:
+      1: 100004
+    second: 105000_bsg_npc_mo_0
+  - first:
+      1: 100006
+    second: 105010_bsg_npc
+  - first:
+      1: 100008
+    second: //RootNode
+  - first:
+      1: 100010
+    second: Bone001
+  - first:
+      1: 100012
+    second: Bone001(mirrored)
+  - first:
+      1: 100014
+    second: Bone002
+  - first:
+      1: 100016
+    second: Bone002(mirrored)
+  - first:
+      1: 100018
+    second: Bone003
+  - first:
+      1: 100020
+    second: Bone003(mirrored)
+  - first:
+      1: 100022
+    second: Bone005
+  - first:
+      1: 100024
+    second: Bone005(mirrored)
+  - first:
+      1: 100026
+    second: Bone007
+  - first:
+      1: 100028
+    second: Bone007(mirrored)
+  - first:
+      4: 400000
+    second: 105000_bsg_npc_mo
+  - first:
+      4: 400002
+    second: 105000_bsg_npc_mo 1
+  - first:
+      4: 400004
+    second: 105000_bsg_npc_mo_0
+  - first:
+      4: 400006
+    second: 105010_bsg_npc
+  - first:
+      4: 400008
+    second: //RootNode
+  - first:
+      4: 400010
+    second: Bone001
+  - first:
+      4: 400012
+    second: Bone001(mirrored)
+  - first:
+      4: 400014
+    second: Bone002
+  - first:
+      4: 400016
+    second: Bone002(mirrored)
+  - first:
+      4: 400018
+    second: Bone003
+  - first:
+      4: 400020
+    second: Bone003(mirrored)
+  - first:
+      4: 400022
+    second: Bone005
+  - first:
+      4: 400024
+    second: Bone005(mirrored)
+  - first:
+      4: 400026
+    second: Bone007
+  - first:
+      4: 400028
+    second: Bone007(mirrored)
+  - first:
+      43: 4300000
+    second: 105000_bsg_npc_mo_0
+  - first:
+      74: 7400000
+    second: idle
+  - first:
+      74: 7400002
+    second: touch
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: 105000_bsg_npc_mo_0
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -96,14 +190,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

@@ -1,148 +1,385 @@
 fileFormatVersion: 2
 guid: 51a62acea3d43824bbda006806a31d3a
-timeCreated: 1450803459
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 18
-  fileIDToRecycleName:
-    100000: Bip01
-    100002: Bip01_F_Tasset
-    100004: Bip01_F_Tasset02
-    100006: Bip01_Head
-    100008: Bip01_Jaw
-    100010: Bip01_L_Calf
-    100012: Bip01_L_Clavicle
-    100014: Bip01_L_Finger0
-    100016: Bip01_L_Finger01
-    100018: Bip01_L_Finger1
-    100020: Bip01_L_Finger11
-    100022: Bip01_L_Finger2
-    100024: Bip01_L_Finger21
-    100026: Bip01_L_Finger3
-    100028: Bip01_L_Finger31
-    100030: Bip01_L_Foot
-    100032: Bip01_L_Forearm
-    100034: Bip01_L_Hand
-    100036: Bip01_L_Tasset
-    100038: Bip01_L_Thigh
-    100040: Bip01_L_Toe0
-    100042: Bip01_L_UpperArm
-    100044: Bip01_Neck
-    100046: Bip01_Pelvis
-    100048: Bip01_R_Calf
-    100050: Bip01_R_Clavicle
-    100052: Bip01_R_Finger0
-    100054: Bip01_R_Finger01
-    100056: Bip01_R_Finger1
-    100058: Bip01_R_Finger11
-    100060: Bip01_R_Finger2
-    100062: Bip01_R_Finger21
-    100064: Bip01_R_Finger3
-    100066: Bip01_R_Finger31
-    100068: Bip01_R_Foot
-    100070: Bip01_R_Forearm
-    100072: Bip01_R_Hand
-    100074: Bip01_R_Tasset
-    100076: Bip01_R_Thigh
-    100078: Bip01_R_Toe0
-    100080: Bip01_R_UpperArm
-    100082: Bip01_Spine
-    100084: Bip01_Spine1
-    100086: Bip01_Spine2
-    100088: root
-    100090: tag_leftarm
-    100092: tag_lefthand
-    100094: tag_righthand
-    100096: //RootNode
-    100098: unbound_thrall
-    100100: Unbound_Thrall_mu
-    100102: Unbound_Thrall_multi_
-    400000: Bip01
-    400002: Bip01_F_Tasset
-    400004: Bip01_F_Tasset02
-    400006: Bip01_Head
-    400008: Bip01_Jaw
-    400010: Bip01_L_Calf
-    400012: Bip01_L_Clavicle
-    400014: Bip01_L_Finger0
-    400016: Bip01_L_Finger01
-    400018: Bip01_L_Finger1
-    400020: Bip01_L_Finger11
-    400022: Bip01_L_Finger2
-    400024: Bip01_L_Finger21
-    400026: Bip01_L_Finger3
-    400028: Bip01_L_Finger31
-    400030: Bip01_L_Foot
-    400032: Bip01_L_Forearm
-    400034: Bip01_L_Hand
-    400036: Bip01_L_Tasset
-    400038: Bip01_L_Thigh
-    400040: Bip01_L_Toe0
-    400042: Bip01_L_UpperArm
-    400044: Bip01_Neck
-    400046: Bip01_Pelvis
-    400048: Bip01_R_Calf
-    400050: Bip01_R_Clavicle
-    400052: Bip01_R_Finger0
-    400054: Bip01_R_Finger01
-    400056: Bip01_R_Finger1
-    400058: Bip01_R_Finger11
-    400060: Bip01_R_Finger2
-    400062: Bip01_R_Finger21
-    400064: Bip01_R_Finger3
-    400066: Bip01_R_Finger31
-    400068: Bip01_R_Foot
-    400070: Bip01_R_Forearm
-    400072: Bip01_R_Hand
-    400074: Bip01_R_Tasset
-    400076: Bip01_R_Thigh
-    400078: Bip01_R_Toe0
-    400080: Bip01_R_UpperArm
-    400082: Bip01_Spine
-    400084: Bip01_Spine1
-    400086: Bip01_Spine2
-    400088: root
-    400090: tag_leftarm
-    400092: tag_lefthand
-    400094: tag_righthand
-    400096: //RootNode
-    400098: unbound_thrall
-    400100: Unbound_Thrall_mu
-    400102: Unbound_Thrall_multi_
-    4300000: Unbound_Thrall_mu
-    4300002: Unbound_Thrall_multi_
-    7400000: Die1
-    7400002: Idle
-    7400004: Run
-    7400006: Spawn1
-    7400008: Special_Blast
-    7400010: Walk
-    9500000: //RootNode
-    13700000: Unbound_Thrall_mu
-    13700002: Unbound_Thrall_multi_
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: Bip01
+  - first:
+      1: 100002
+    second: Bip01_F_Tasset
+  - first:
+      1: 100004
+    second: Bip01_F_Tasset02
+  - first:
+      1: 100006
+    second: Bip01_Head
+  - first:
+      1: 100008
+    second: Bip01_Jaw
+  - first:
+      1: 100010
+    second: Bip01_L_Calf
+  - first:
+      1: 100012
+    second: Bip01_L_Clavicle
+  - first:
+      1: 100014
+    second: Bip01_L_Finger0
+  - first:
+      1: 100016
+    second: Bip01_L_Finger01
+  - first:
+      1: 100018
+    second: Bip01_L_Finger1
+  - first:
+      1: 100020
+    second: Bip01_L_Finger11
+  - first:
+      1: 100022
+    second: Bip01_L_Finger2
+  - first:
+      1: 100024
+    second: Bip01_L_Finger21
+  - first:
+      1: 100026
+    second: Bip01_L_Finger3
+  - first:
+      1: 100028
+    second: Bip01_L_Finger31
+  - first:
+      1: 100030
+    second: Bip01_L_Foot
+  - first:
+      1: 100032
+    second: Bip01_L_Forearm
+  - first:
+      1: 100034
+    second: Bip01_L_Hand
+  - first:
+      1: 100036
+    second: Bip01_L_Tasset
+  - first:
+      1: 100038
+    second: Bip01_L_Thigh
+  - first:
+      1: 100040
+    second: Bip01_L_Toe0
+  - first:
+      1: 100042
+    second: Bip01_L_UpperArm
+  - first:
+      1: 100044
+    second: Bip01_Neck
+  - first:
+      1: 100046
+    second: Bip01_Pelvis
+  - first:
+      1: 100048
+    second: Bip01_R_Calf
+  - first:
+      1: 100050
+    second: Bip01_R_Clavicle
+  - first:
+      1: 100052
+    second: Bip01_R_Finger0
+  - first:
+      1: 100054
+    second: Bip01_R_Finger01
+  - first:
+      1: 100056
+    second: Bip01_R_Finger1
+  - first:
+      1: 100058
+    second: Bip01_R_Finger11
+  - first:
+      1: 100060
+    second: Bip01_R_Finger2
+  - first:
+      1: 100062
+    second: Bip01_R_Finger21
+  - first:
+      1: 100064
+    second: Bip01_R_Finger3
+  - first:
+      1: 100066
+    second: Bip01_R_Finger31
+  - first:
+      1: 100068
+    second: Bip01_R_Foot
+  - first:
+      1: 100070
+    second: Bip01_R_Forearm
+  - first:
+      1: 100072
+    second: Bip01_R_Hand
+  - first:
+      1: 100074
+    second: Bip01_R_Tasset
+  - first:
+      1: 100076
+    second: Bip01_R_Thigh
+  - first:
+      1: 100078
+    second: Bip01_R_Toe0
+  - first:
+      1: 100080
+    second: Bip01_R_UpperArm
+  - first:
+      1: 100082
+    second: Bip01_Spine
+  - first:
+      1: 100084
+    second: Bip01_Spine1
+  - first:
+      1: 100086
+    second: Bip01_Spine2
+  - first:
+      1: 100088
+    second: root
+  - first:
+      1: 100090
+    second: tag_leftarm
+  - first:
+      1: 100092
+    second: tag_lefthand
+  - first:
+      1: 100094
+    second: tag_righthand
+  - first:
+      1: 100096
+    second: //RootNode
+  - first:
+      1: 100098
+    second: unbound_thrall
+  - first:
+      1: 100100
+    second: Unbound_Thrall_mu
+  - first:
+      1: 100102
+    second: Unbound_Thrall_multi_
+  - first:
+      4: 400000
+    second: Bip01
+  - first:
+      4: 400002
+    second: Bip01_F_Tasset
+  - first:
+      4: 400004
+    second: Bip01_F_Tasset02
+  - first:
+      4: 400006
+    second: Bip01_Head
+  - first:
+      4: 400008
+    second: Bip01_Jaw
+  - first:
+      4: 400010
+    second: Bip01_L_Calf
+  - first:
+      4: 400012
+    second: Bip01_L_Clavicle
+  - first:
+      4: 400014
+    second: Bip01_L_Finger0
+  - first:
+      4: 400016
+    second: Bip01_L_Finger01
+  - first:
+      4: 400018
+    second: Bip01_L_Finger1
+  - first:
+      4: 400020
+    second: Bip01_L_Finger11
+  - first:
+      4: 400022
+    second: Bip01_L_Finger2
+  - first:
+      4: 400024
+    second: Bip01_L_Finger21
+  - first:
+      4: 400026
+    second: Bip01_L_Finger3
+  - first:
+      4: 400028
+    second: Bip01_L_Finger31
+  - first:
+      4: 400030
+    second: Bip01_L_Foot
+  - first:
+      4: 400032
+    second: Bip01_L_Forearm
+  - first:
+      4: 400034
+    second: Bip01_L_Hand
+  - first:
+      4: 400036
+    second: Bip01_L_Tasset
+  - first:
+      4: 400038
+    second: Bip01_L_Thigh
+  - first:
+      4: 400040
+    second: Bip01_L_Toe0
+  - first:
+      4: 400042
+    second: Bip01_L_UpperArm
+  - first:
+      4: 400044
+    second: Bip01_Neck
+  - first:
+      4: 400046
+    second: Bip01_Pelvis
+  - first:
+      4: 400048
+    second: Bip01_R_Calf
+  - first:
+      4: 400050
+    second: Bip01_R_Clavicle
+  - first:
+      4: 400052
+    second: Bip01_R_Finger0
+  - first:
+      4: 400054
+    second: Bip01_R_Finger01
+  - first:
+      4: 400056
+    second: Bip01_R_Finger1
+  - first:
+      4: 400058
+    second: Bip01_R_Finger11
+  - first:
+      4: 400060
+    second: Bip01_R_Finger2
+  - first:
+      4: 400062
+    second: Bip01_R_Finger21
+  - first:
+      4: 400064
+    second: Bip01_R_Finger3
+  - first:
+      4: 400066
+    second: Bip01_R_Finger31
+  - first:
+      4: 400068
+    second: Bip01_R_Foot
+  - first:
+      4: 400070
+    second: Bip01_R_Forearm
+  - first:
+      4: 400072
+    second: Bip01_R_Hand
+  - first:
+      4: 400074
+    second: Bip01_R_Tasset
+  - first:
+      4: 400076
+    second: Bip01_R_Thigh
+  - first:
+      4: 400078
+    second: Bip01_R_Toe0
+  - first:
+      4: 400080
+    second: Bip01_R_UpperArm
+  - first:
+      4: 400082
+    second: Bip01_Spine
+  - first:
+      4: 400084
+    second: Bip01_Spine1
+  - first:
+      4: 400086
+    second: Bip01_Spine2
+  - first:
+      4: 400088
+    second: root
+  - first:
+      4: 400090
+    second: tag_leftarm
+  - first:
+      4: 400092
+    second: tag_lefthand
+  - first:
+      4: 400094
+    second: tag_righthand
+  - first:
+      4: 400096
+    second: //RootNode
+  - first:
+      4: 400098
+    second: unbound_thrall
+  - first:
+      4: 400100
+    second: Unbound_Thrall_mu
+  - first:
+      4: 400102
+    second: Unbound_Thrall_multi_
+  - first:
+      43: 4300000
+    second: Unbound_Thrall_mu
+  - first:
+      43: 4300002
+    second: Unbound_Thrall_multi_
+  - first:
+      74: 7400000
+    second: Die1
+  - first:
+      74: 7400002
+    second: Idle
+  - first:
+      74: 7400004
+    second: Run
+  - first:
+      74: 7400006
+    second: Spawn1
+  - first:
+      74: 7400008
+    second: Special_Blast
+  - first:
+      74: 7400010
+    second: Walk
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: Unbound_Thrall_mu
+  - first:
+      137: 13700002
+    second: Unbound_Thrall_multi_
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
+    resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
-    animationRotationError: .5
-    animationPositionError: .5
-    animationScaleError: .5
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
       name: Die1
       takeName: Die1
+      internalID: 0
       firstFrame: 0
       lastFrame: 20
       wrapMode: 0
@@ -150,6 +387,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -270,9 +508,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Idle
       takeName: Idle
+      internalID: 0
       firstFrame: 0
       lastFrame: 50
       wrapMode: 0
@@ -280,6 +520,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -400,9 +641,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Run
       takeName: Run
+      internalID: 0
       firstFrame: 0
       lastFrame: 50
       wrapMode: 0
@@ -410,6 +653,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 1
       loopBlend: 0
       loopBlendOrientation: 0
@@ -530,9 +774,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Spawn1
       takeName: Spawn1
+      internalID: 0
       firstFrame: 0
       lastFrame: 50
       wrapMode: 0
@@ -540,6 +786,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -660,9 +907,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Special_Blast
       takeName: Special_Blast
+      internalID: 0
       firstFrame: 0
       lastFrame: 50
       wrapMode: 0
@@ -670,6 +919,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -790,9 +1040,11 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
     - serializedVersion: 16
       name: Walk
       takeName: Walk
+      internalID: 0
       firstFrame: 0
       lastFrame: 50
       wrapMode: 0
@@ -800,6 +1052,7 @@ ModelImporter:
       level: 0
       cycleOffset: 0
       loop: 0
+      hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
@@ -920,44 +1173,72 @@ ModelImporter:
         weight: 1
       maskType: 0
       maskSource: {instanceID: 0}
-    isReadable: 1
+      additiveReferencePoseFrame: 0
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
-    splitTangentsAcrossUV: 1
     normalImportMode: 0
-    tangentImportMode: 1
+    tangentImportMode: 4
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
+    serializedVersion: 3
     human: []
     skeleton: []
-    armTwist: .5
-    foreArmTwist: .5
-    upperLegTwist: .5
-    legTwist: .5
-    armStretch: .0500000007
-    legStretch: .0500000007
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 

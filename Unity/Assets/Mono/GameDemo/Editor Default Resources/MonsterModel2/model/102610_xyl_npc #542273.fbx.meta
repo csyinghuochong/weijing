@@ -1,110 +1,240 @@
 fileFormatVersion: 2
 guid: b2b6ac96d408ffe438792eeebed08e90
-timeCreated: 1537688477
-licenseType: Pro
 ModelImporter:
-  serializedVersion: 19
-  fileIDToRecycleName:
-    100000: 102600_xyl_npc_mo_low
-    100002: 102600_xyl_npc_mo_low_0
-    100004: 102610_xyl_npc
-    100006: //RootNode
-    100008: B_B01
-    100010: B_B02
-    100012: B_B03
-    100014: B_B04
-    100016: B_B05
-    100018: B_B06
-    100020: B_B07
-    100022: B_B08
-    100024: B_B09
-    100026: B_B10
-    100028: B_H01
-    100030: B_H02
-    100032: B_H03
-    100034: B_H04
-    100036: B_H05
-    100038: B_H06
-    100040: B_ROOT
-    100042: B_W01
-    100044: B_W02
-    100046: B_W03
-    400000: 102600_xyl_npc_mo_low
-    400002: 102600_xyl_npc_mo_low_0
-    400004: 102610_xyl_npc
-    400006: //RootNode
-    400008: B_B01
-    400010: B_B02
-    400012: B_B03
-    400014: B_B04
-    400016: B_B05
-    400018: B_B06
-    400020: B_B07
-    400022: B_B08
-    400024: B_B09
-    400026: B_B10
-    400028: B_H01
-    400030: B_H02
-    400032: B_H03
-    400034: B_H04
-    400036: B_H05
-    400038: B_H06
-    400040: B_ROOT
-    400042: B_W01
-    400044: B_W02
-    400046: B_W03
-    4300000: 102600_xyl_npc_mo_low_0
-    7400000: idle
-    7400002: walk
-    9500000: //RootNode
-    13700000: 102600_xyl_npc_mo_low_0
+  serializedVersion: 20200
+  internalIDToNameTable:
+  - first:
+      1: 100000
+    second: 102600_xyl_npc_mo_low
+  - first:
+      1: 100002
+    second: 102600_xyl_npc_mo_low_0
+  - first:
+      1: 100004
+    second: 102610_xyl_npc
+  - first:
+      1: 100006
+    second: //RootNode
+  - first:
+      1: 100008
+    second: B_B01
+  - first:
+      1: 100010
+    second: B_B02
+  - first:
+      1: 100012
+    second: B_B03
+  - first:
+      1: 100014
+    second: B_B04
+  - first:
+      1: 100016
+    second: B_B05
+  - first:
+      1: 100018
+    second: B_B06
+  - first:
+      1: 100020
+    second: B_B07
+  - first:
+      1: 100022
+    second: B_B08
+  - first:
+      1: 100024
+    second: B_B09
+  - first:
+      1: 100026
+    second: B_B10
+  - first:
+      1: 100028
+    second: B_H01
+  - first:
+      1: 100030
+    second: B_H02
+  - first:
+      1: 100032
+    second: B_H03
+  - first:
+      1: 100034
+    second: B_H04
+  - first:
+      1: 100036
+    second: B_H05
+  - first:
+      1: 100038
+    second: B_H06
+  - first:
+      1: 100040
+    second: B_ROOT
+  - first:
+      1: 100042
+    second: B_W01
+  - first:
+      1: 100044
+    second: B_W02
+  - first:
+      1: 100046
+    second: B_W03
+  - first:
+      4: 400000
+    second: 102600_xyl_npc_mo_low
+  - first:
+      4: 400002
+    second: 102600_xyl_npc_mo_low_0
+  - first:
+      4: 400004
+    second: 102610_xyl_npc
+  - first:
+      4: 400006
+    second: //RootNode
+  - first:
+      4: 400008
+    second: B_B01
+  - first:
+      4: 400010
+    second: B_B02
+  - first:
+      4: 400012
+    second: B_B03
+  - first:
+      4: 400014
+    second: B_B04
+  - first:
+      4: 400016
+    second: B_B05
+  - first:
+      4: 400018
+    second: B_B06
+  - first:
+      4: 400020
+    second: B_B07
+  - first:
+      4: 400022
+    second: B_B08
+  - first:
+      4: 400024
+    second: B_B09
+  - first:
+      4: 400026
+    second: B_B10
+  - first:
+      4: 400028
+    second: B_H01
+  - first:
+      4: 400030
+    second: B_H02
+  - first:
+      4: 400032
+    second: B_H03
+  - first:
+      4: 400034
+    second: B_H04
+  - first:
+      4: 400036
+    second: B_H05
+  - first:
+      4: 400038
+    second: B_H06
+  - first:
+      4: 400040
+    second: B_ROOT
+  - first:
+      4: 400042
+    second: B_W01
+  - first:
+      4: 400044
+    second: B_W02
+  - first:
+      4: 400046
+    second: B_W03
+  - first:
+      43: 4300000
+    second: 102600_xyl_npc_mo_low_0
+  - first:
+      74: 7400000
+    second: idle
+  - first:
+      74: 7400002
+    second: walk
+  - first:
+      95: 9500000
+    second: //RootNode
+  - first:
+      137: 13700000
+    second: 102600_xyl_npc_mo_low_0
+  externalObjects: {}
   materials:
-    importMaterials: 1
+    materialImportMode: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
     resampleCurves: 1
     optimizeGameObjects: 0
     motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
     animationScaleError: 0.5
     animationWrapMode: 0
     extraExposedTransformPaths: []
+    extraUserProperties: []
     clipAnimations: []
-    isReadable: 1
+    isReadable: 0
   meshes:
     lODScreenPercentages: []
     globalScale: 1
     meshCompression: 0
     addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 0
     importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    fileIdsGeneration: 1
     swapUVChannels: 0
     generateSecondaryUV: 0
     useFileUnits: 1
-    optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 0
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
     secondaryUVPackMargin: 4
     useFileScale: 1
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0
     tangentImportMode: 3
+    normalCalculationMode: 0
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 1
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
   importAnimation: 1
-  copyAvatar: 0
   humanDescription:
-    serializedVersion: 2
+    serializedVersion: 3
     human: []
     skeleton: []
     armTwist: 0.5
@@ -114,14 +244,17 @@ ModelImporter:
     armStretch: 0.05
     legStretch: 0.05
     feetSpacing: 0
+    globalScale: 1
     rootMotionBoneName: 
-    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
     hasTranslationDoF: 0
     hasExtraRoot: 0
     skeletonHasParents: 1
   lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
   animationType: 2
   humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 0
   additionalBone: 0
   userData: 
   assetBundleName: 
