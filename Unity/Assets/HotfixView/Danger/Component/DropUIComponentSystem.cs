@@ -125,16 +125,15 @@ namespace ET
             }
             try
             {
-                Texture2D targetTex = new Texture2D((int)sprite.textureRect.width, (int)sprite.textureRect.height);
-                var pixels = sprite.texture.GetPixels(
-                    (int)sprite.textureRect.x,
-                    (int)sprite.textureRect.y,
-                    (int)sprite.textureRect.width,
-                    (int)sprite.textureRect.height);
-                targetTex.SetPixels(pixels);
-                targetTex.Apply();
-
-                self.ModelMesh.material.mainTexture = targetTex;
+                //Texture2D targetTex = new Texture2D((int)sprite.textureRect.width, (int)sprite.textureRect.height);
+                //var pixels = sprite.texture.GetPixels(
+                //    (int)sprite.textureRect.x,
+                //    (int)sprite.textureRect.y,
+                //    (int)sprite.textureRect.width,
+                //    (int)sprite.textureRect.height);
+                //targetTex.SetPixels(pixels);
+                //targetTex.Apply();
+                self.ModelMesh.material.mainTexture = sprite.texture;
             }
             catch (Exception e)
             {
