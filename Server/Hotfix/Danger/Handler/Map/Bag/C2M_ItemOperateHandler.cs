@@ -260,7 +260,6 @@ namespace ET
                                 string[] monsters = itemConfig.ItemUsePar.Split('@');
                                 for (int c = 0; c < monsters.Length; c++)
                                 {
-                                    await TimerComponent.Instance.WaitAsync(1);
                                     //1;20;70010101,70010102
                                     string[] lelveparams = monsters[c].Split(";");
                                     int level_1 = int.Parse(lelveparams[0]);

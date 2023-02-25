@@ -369,23 +369,14 @@ namespace ET
             self.UIRoleHead.OnUpdateCombat();
         }
 
-        public static async ETTask ShowPing(this UIMainComponent self)
+        public static void  ShowPing(this UIMainComponent self)
         {
             if (self.Fps.activeSelf)
             {
                 return;
             }
             self.Fps.SetActive(true);
-            long instanceid = self.InstanceId;
-            for (int i = 0; i < 1000; i++)
-            {
-                await TimerComponent.Instance.WaitAsync(2000);
-                if (instanceid != self.InstanceId)
-                {
-                    break;
-                }
-                self.TextPing.GetComponent<Text>().text = $"延迟: {self.ZoneScene().GetComponent<SessionComponent>().Session.GetComponent<PingComponent>().Ping}";
-            }
+            self.TextPing.GetComponent<Text>().text = $"延迟: {self.ZoneScene().GetComponent<SessionComponent>().Session.GetComponent<PingComponent>().Ping}";
         }
 
         public static void OnBagItemAdd(this UIMainComponent self, string dataPaams)

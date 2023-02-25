@@ -128,6 +128,12 @@ namespace ET
             return assets;
         }
 
+        public static List<string> GetBossSkillEffect(this UILoadingComponent self)
+        {
+            List<string> effects = new List<string>();
+            return effects;
+        }
+
         public static List<string> GetRoleSkillEffect(this UILoadingComponent self)
         {
             List<string> effects = new List<string>();

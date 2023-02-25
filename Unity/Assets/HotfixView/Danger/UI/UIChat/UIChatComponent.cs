@@ -208,12 +208,6 @@ namespace ET
                     EnterFubenHelp.EnterFubenRequest(self.DomainScene(), FubenDifficulty.Normal, int.Parse(commands[1])).Coroutine();
                     return;
                 }
-                if (commands[1].Contains("pg"))
-                {
-                    UI uimain = UIHelper.GetUI(self.DomainScene(), UIType.UIMain);
-                    uimain.GetComponent<UIMainComponent>().ShowPing().Coroutine();
-                    return;
-                }
                 if (commands[1].Contains("alltask"))
                 {
                     List<TaskConfig> tasks = TaskConfigCategory.Instance.GetAll().Values.ToList();

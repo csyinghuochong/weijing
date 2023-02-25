@@ -214,7 +214,7 @@ namespace ET
             self.Image_fps.SetActive(fps.activeSelf);
             if (fps.activeSelf)
             {
-                uimain.GetComponent<UIMainComponent>().ShowPing().Coroutine();
+                uimain.GetComponent<UIMainComponent>().ShowPing();
             }
         }
 
