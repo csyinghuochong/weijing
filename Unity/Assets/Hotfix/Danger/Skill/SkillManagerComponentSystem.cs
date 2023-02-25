@@ -157,7 +157,8 @@ namespace ET
 
                 unit.GetComponent<SingingComponent>().BeginSkill();
                 SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillid);
-                if (checksing && skillConfig.SkillFrontSingTime > 0)
+                SkillSetComponent skillSetComponent = unit.ZoneScene().GetComponent<SkillSetComponent>();
+                if (checksing && skillConfig.SkillFrontSingTime > 0 && !skillSetComponent.IsSkillSingingCancel(skillConfig.Id))
                 {
                     unit.GetComponent<SingingComponent>().BeforeSkillSing(skillCmd);
                     unit.ZoneScene().GetComponent<AttackComponent>().RemoveTimer();

@@ -144,6 +144,28 @@ namespace ET
 			return tianfuIds;
 		}
 
+		public static bool IsSkillSingingCancel(this SkillSetComponent self, int skillId)
+		{
+			List<int> tianfuids = self.GetTianFuIdsByType(TianFuProEnum.SkillSingingCancel);
+			if (tianfuids.Count == 0)
+				return false;
+
+			for (int i = 0; i < tianfuids.Count; i++)
+			{
+				string[] addPropreListStr = TalentConfigCategory.Instance.Get(tianfuids[i]).AddPropreListStr.Split('@');
+				for (int k = 0; k < addPropreListStr.Length; k++)
+				{
+					string[] properInfo = addPropreListStr[k].Split(';');
+
+					if (!properInfo[1].Contains(skillId.ToString()))
+					{
+						return true;
+					}
+				}
+			}
+			return false;
+		}
+
 		public static Dictionary<int, float> GetSkillPropertyAdd(this SkillSetComponent self, int skillId)
 		{
 			List<int> tianfuids = self.GetTianFuIdsByType(TianFuProEnum.SkillPropertyAdd);

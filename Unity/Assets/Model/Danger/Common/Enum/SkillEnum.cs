@@ -148,6 +148,7 @@ namespace ET
         public const string RolePropertyAdd = "RolePropertyAdd";
         public const string ReplaceSkillId = "ReplaceSkillId";
         public const string BuffPropertyAdd = "BuffPropertyAdd";
+        public const string SkillSingingCancel = "SkillSingingCancel";
     }
 
     public class SkillCDItem
