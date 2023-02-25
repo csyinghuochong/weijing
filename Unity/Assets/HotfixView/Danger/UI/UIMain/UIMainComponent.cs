@@ -918,16 +918,16 @@ namespace ET
 
         public static void SetFenBianLv1(this UIMainComponent self)
         {
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            float dishu = GMHelp.IsTestPlayer(accountInfoComponent.Account) ? 0.8f : 1f;
-            Screen.SetResolution((int)(UIComponent.Instance.ResolutionWidth * dishu), (int)(UIComponent.Instance.ResolutionHeight * dishu), true);
+            //AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            //float dishu = GMHelp.IsTestPlayer(accountInfoComponent.Account) ? 0.8f : 1f;
+            Screen.SetResolution((int)(UIComponent.Instance.ResolutionWidth ), (int)(UIComponent.Instance.ResolutionHeight), true);
         }
 
         public static void SetFenBianLv2(this UIMainComponent self)
         {
-            AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            float dishu = GMHelp.IsTestPlayer(accountInfoComponent.Account) ? 0.8f : 1f;
-            Screen.SetResolution((int)(UIComponent.Instance.ResolutionWidth * 0.8f * dishu), (int)(UIComponent.Instance.ResolutionHeight * 0.8f * dishu), true);
+            //AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
+            //float dishu = GMHelp.IsTestPlayer(accountInfoComponent.Account) ? 0.8f : 1f;
+            Screen.SetResolution((int)(UIComponent.Instance.ResolutionWidth * 0.8f), (int)(UIComponent.Instance.ResolutionHeight * 0.8f), true);
         }
 
         public static void RegisterReddot(this UIMainComponent self)
