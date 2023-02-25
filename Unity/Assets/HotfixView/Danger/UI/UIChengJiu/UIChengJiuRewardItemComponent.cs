@@ -4,8 +4,9 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIChengJiuRewardItemComponent : Entity, IAwake
+    public class UIChengJiuRewardItemComponent : Entity, IAwake<GameObject>
     {
+        public GameObject Received;
         public GameObject XuanZhong;
         public GameObject ChengJiuNum;
         public GameObject ChengJiuIcon;
@@ -13,15 +14,17 @@ namespace ET
 
         public Action<int> ClickHandler;
         public int ChengJiuRewardId;
+        public GameObject GameObject;
     }
 
     [ObjectSystem]
-    public class UIChengJiuRewardItemComponentAwakeSystem : AwakeSystem<UIChengJiuRewardItemComponent>
+    public class UIChengJiuRewardItemComponentAwakeSystem : AwakeSystem<UIChengJiuRewardItemComponent, GameObject>
     {
 
-        public override void Awake(UIChengJiuRewardItemComponent self)
+        public override void Awake(UIChengJiuRewardItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.XuanZhong = rc.Get<GameObject>("XuanZhong");
             self.XuanZhong.SetActive(false);
@@ -29,6 +32,7 @@ namespace ET
             self.ChengJiuNum = rc.Get<GameObject>("ChengJiuNum");
             self.ChengJiuIcon = rc.Get<GameObject>("ChengJiuIcon");
             self.DiButton = rc.Get<GameObject>("DiButton");
+            self.Received = rc.Get<GameObject>("Received");
             self.DiButton.GetComponent<Button>().onClick.AddListener(() => { self.OnClick_DiButton(); });
         }
     }
@@ -50,14 +54,17 @@ namespace ET
             self.ClickHandler = action;
         }
 
-        public static void OnInitData(this UIChengJiuRewardItemComponent self, ChengJiuRewardConfig chengJiuRewardConfig)
+        public static void OnInitData(this UIChengJiuRewardItemComponent self, ChengJiuRewardConfig chengJiuRewardConfig, bool received)
         {
+
             self.ChengJiuRewardId = chengJiuRewardConfig.Id;
 
             self.ChengJiuNum.GetComponent<Text>().text = chengJiuRewardConfig.NeedPoint.ToString();
 
             Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.ChengJiuIcon, chengJiuRewardConfig.Icon.ToString());
             self.ChengJiuIcon.GetComponent<Image>().sprite = sp;
+
+            self.Received.SetActive(received);
         }
 
     }

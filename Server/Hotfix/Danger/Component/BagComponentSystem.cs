@@ -227,10 +227,30 @@ namespace ET
             });
         }
 
+        public static void CheckValiedItem(this BagComponent self, List<BagInfo> bagInfos)
+        {
+            for (int i = bagInfos.Count -1; i >= 0; i--)
+            {
+                if (!ItemConfigCategory.Instance.Contain(bagInfos[i].ItemID))
+                {
+                    bagInfos.RemoveAt(i);
+                }
+            }
+        }
+
         //获取自身所有的道具
         public static List<BagInfo> GetAllItems(this BagComponent self)
         {
             List<BagInfo> bagList = new List<BagInfo>();
+
+            self.CheckValiedItem(self.GemList);
+            self.CheckValiedItem(self.BagItemList);
+            self.CheckValiedItem(self.BagItemPetHeXin);
+            self.CheckValiedItem(self.Warehouse1);
+            self.CheckValiedItem(self.Warehouse2);
+            self.CheckValiedItem(self.Warehouse3);
+            self.CheckValiedItem(self.Warehouse4);
+
             bagList.AddRange(self.GemList);
             bagList.AddRange(self.BagItemList);
             bagList.AddRange(self.BagItemPetHeXin);

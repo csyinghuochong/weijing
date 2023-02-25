@@ -17,8 +17,8 @@ namespace ET
         public GameObject RewardListNode;
 
         public int RewardId;
-        public List<UI> RewardUIList;
-        public List<UI> ItemUIList;
+        public List<UIChengJiuRewardItemComponent> RewardUIList = new List<UIChengJiuRewardItemComponent>();
+        public List<UIItemComponent> ItemUIList = new List<UIItemComponent>();
 
         public ChengJiuComponent ChengJiuComponent;
     }
@@ -28,8 +28,8 @@ namespace ET
     {
         public override void Awake(UIChengJiuRewardComponent self)
         {
-            self.RewardUIList = new List<UI>();
-            self.ItemUIList = new List<UI>();
+            self.RewardUIList.Clear();
+            self.ItemUIList.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             
@@ -49,7 +49,7 @@ namespace ET
 
             self.GetParent<UI>().OnUpdateUI = () => { self.OnUpdateUI(); };
 
-            self.InitRewardUIList().Coroutine();
+            self.InitRewardUIList();
         }
     }
     
@@ -61,23 +61,23 @@ namespace ET
             self.Text_TotalPoint.GetComponent<Text>().text = self.ChengJiuComponent.TotalChengJiuPoint.ToString();
         }
 
-        public static async ETTask InitRewardUIList(this UIChengJiuRewardComponent self)
+        public static void  InitRewardUIList(this UIChengJiuRewardComponent self)
         {
             List<ChengJiuRewardConfig> rewardConfigs  = ChengJiuRewardConfigCategory.Instance.GetAll().Values.ToList();
             string path = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuRewardItem");
-            await ETTask.CompletedTask;
             GameObject bundleObj =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+
             for (int i = 0; i < rewardConfigs.Count; i++)
             {
                 GameObject skillItem = GameObject.Instantiate(bundleObj);
                 UICommonHelper.SetParent(skillItem, self.RewardListNode);
-                UI uI = self.AddChild<UI, string, GameObject>( "UIChengJiuRewardItem_" + i, skillItem);
-                UIChengJiuRewardItemComponent uc = uI.AddComponent<UIChengJiuRewardItemComponent>();
-                uc.OnInitData(rewardConfigs[i]);
+                UIChengJiuRewardItemComponent uc = self.AddChild<UIChengJiuRewardItemComponent, GameObject>( skillItem);
+                uc.OnInitData(rewardConfigs[i], chengJiuComponent.AlreadReceivedId.Contains(rewardConfigs[i].Id));
                 uc.SetClickHanlder((int rewardId) => { self.OnClickRewardItem(rewardId); });
-                self.RewardUIList.Add(uI);
+                self.RewardUIList.Add(uc);
             }
-            self.RewardUIList[0].GetComponent<UIChengJiuRewardItemComponent>().OnClick_DiButton();
+            self.RewardUIList[0].OnClick_DiButton();
         }
 
         public static void OnClickRewardItem(this UIChengJiuRewardComponent self, int rewardId)
@@ -86,13 +86,13 @@ namespace ET
 
             for (int i = 0; i < self.RewardUIList.Count; i++)
             {
-                self.RewardUIList[i].GetComponent<UIChengJiuRewardItemComponent>().SetSelected(rewardId);
+                self.RewardUIList[i].SetSelected(rewardId);
             }
             self.OnUpdateSlectInfo(rewardId);
             self.OnUdapteItemList(rewardId).Coroutine();
         }
 
-        public static void OnBtn_LingQu(this UIChengJiuRewardComponent self)
+        public static async ETTask OnBtn_LingQu(this UIChengJiuRewardComponent self)
         {
             ChengJiuRewardConfig chengJiuConfig = ChengJiuRewardConfigCategory.Instance.Get(self.RewardId);
             if (self.ChengJiuComponent.TotalChengJiuPoint < chengJiuConfig.NeedPoint)
@@ -105,7 +105,12 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("已经领取过该奖励！");
                 return;
             }
-            self.ChengJiuComponent.ReceivedReward(self.RewardId).Coroutine();
+
+            await  self.ChengJiuComponent.ReceivedReward(self.RewardId);
+            for (int i = 0; i < self.RewardUIList.Count; i++)
+            {
+                self.RewardUIList[i].Received.SetActive(true);
+            }
         }
 
         public static async ETTask OnUdapteItemList(this UIChengJiuRewardComponent self, int rewardId)
@@ -126,8 +131,8 @@ namespace ET
                 string[] itemInfo = itemList[i].Split(';');
                 int itemID = int.Parse(itemInfo[0]);
                 int itemNum= int.Parse(itemInfo[1]);
-               
-                UI ui_item = null;
+
+                UIItemComponent ui_item = null;
                 if (i < self.ItemUIList.Count)
                 {
                     ui_item = self.ItemUIList[i];
@@ -137,12 +142,11 @@ namespace ET
                 {
                     GameObject bagSpace = GameObject.Instantiate(bundleGameObject);
                     UICommonHelper.SetParent(bagSpace, self.ItemListNode);
-                    ui_item = self.AddChild<UI, string, GameObject>("UIItem_" + i.ToString(), bagSpace);
-                    UIItemComponent uIItemComponent = ui_item.AddComponent<UIItemComponent>();
-                    uIItemComponent.Label_ItemName.SetActive(true);
+                    ui_item = self.AddChild<UIItemComponent, GameObject>( bagSpace);
+                    ui_item.Label_ItemName.SetActive(true);
                     self.ItemUIList.Add(ui_item);
                 }
-                ui_item.GetComponent<UIItemComponent>().UpdateItem(new BagInfo() {  ItemID = itemID, ItemNum = itemNum }, ItemOperateEnum.None);
+                ui_item.UpdateItem(new BagInfo() {  ItemID = itemID, ItemNum = itemNum }, ItemOperateEnum.None);
             }
 
             for (int i = itemList.Length; i < self.ItemUIList.Count; i++)
