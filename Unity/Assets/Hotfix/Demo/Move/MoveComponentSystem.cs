@@ -339,13 +339,12 @@ namespace ET
             self.TargetPosition = self.Targets[targetCount - 1];
             unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
             unit.GetComponent<StateComponent>().SetRigidityEndTime(0);
+            HintHelp.GetInstance().ShowHint($"触发被动技能:{skillConfig.SkillName} 打断移动");
             await TimerComponent.Instance.WaitAsync((long)(skillConfig.SkillRigidity * 1000));
             if (unit.IsDisposed || !self.MoveWait)
             {
                 return;
             }
-            Log.Debug($" MoveToAsync2 {skillConfig.SkillRigidity}" );
-
             MoveHelper.MoveToAsync2(unit, self.TargetPosition, self.YaoganMove).Coroutine();
         }
 #endif
