@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -6,7 +7,7 @@ namespace ET
     {
         public static bool ShowRightTopButton(int sceneType)
         {
-            return sceneType != SceneTypeEnum.Battle 
+            return sceneType != SceneTypeEnum.Battle
                 && sceneType != SceneTypeEnum.TrialDungeon
                 && sceneType != SceneTypeEnum.Tower
                 && sceneType != SceneTypeEnum.Arena;
@@ -40,6 +41,14 @@ namespace ET
                 return true;
             }
             return SceneConfigCategory.Instance.Get(sceneId).ifShowMinMap == 1;
+        }
+
+        public static List<int> GetMonsterList(int sceneType, int sceneId)
+        {
+            return new List<int>();
+
+            //FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonster);
+            //FubenHelp.CreateMonsterList(fubnescene, sceneConfigs[i].CreateMonsterPosi);
         }
     }
 }

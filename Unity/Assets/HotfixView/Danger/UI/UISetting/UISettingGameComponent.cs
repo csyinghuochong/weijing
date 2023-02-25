@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
+
     public class UISettingGameComponent : Entity, IAwake
     {
         public GameObject Smooth;
@@ -209,13 +210,8 @@ namespace ET
         public static void OnBtn_Fps(this UISettingGameComponent self)
         {
             UI uimain = UIHelper.GetUI(self.DomainScene(), UIType.UIMain);
-            GameObject fps = uimain.GetComponent<UIMainComponent>().Fps;
-            fps.SetActive(!fps.activeSelf);
-            self.Image_fps.SetActive(fps.activeSelf);
-            if (fps.activeSelf)
-            {
-                uimain.GetComponent<UIMainComponent>().ShowPing();
-            }
+            self.Image_fps.SetActive(!self.Image_fps.activeSelf);
+            uimain.GetComponent<UIMainComponent>().ShowPing();
         }
 
         public static async ETTask SendGameSetting(this UISettingGameComponent self)
@@ -302,7 +298,7 @@ namespace ET
         {
             string oldValue = self.userInfoComponent.GetGameSettingValue(GameSettingEnum.Smooth);
             self.Smooth.transform.Find("Image_Click").gameObject.SetActive(oldValue == "1");
-            Application.targetFrameRate = oldValue == "1" ? 60 : 30;
+            Application.targetFrameRate = oldValue == "1" ? 30 : 30;
         }
 
         public static void CheckSensitiveWords(this UISettingGameComponent self)

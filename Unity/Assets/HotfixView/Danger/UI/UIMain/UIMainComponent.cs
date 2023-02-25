@@ -21,6 +21,22 @@ namespace ET
         }
     }
 
+    [Timer(TimerType.UIMainFPSTimer)]
+    public class UIMainFPSTimer : ATimer<UIMainComponent>
+    {
+        public override void Run(UIMainComponent self)
+        {
+            try
+            {
+                self.UpdatePing();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
         public GameObject Button_NewYear;
@@ -35,7 +51,7 @@ namespace ET
         public GameObject Btn_PetFormation;
         public GameObject Btn_GM;
         public GameObject Btn_Task;
-        public GameObject TextPing;
+        public Text TextPing;
         public GameObject MailHintTip;
         public GameObject Btn_Union;
         public GameObject UIStall;
@@ -95,7 +111,9 @@ namespace ET
 
         public List<KeyValuePair> FunctionButtons = new List<KeyValuePair>();
         public Unit MainUnit;
-        public long Timer;
+
+        public long TimerFunctiuon;
+        public long TimerPing;
     }
 
     [ObjectSystem]
@@ -169,7 +187,7 @@ namespace ET
             //self.bagButton.GetComponent<Button>().onClick.AddListener(() => { self.OnOpenBag(); });
             ButtonHelp.AddListenerEx(self.bagButton, () => { self.OnOpenBag(); });
 
-            self.TextPing = rc.Get<GameObject>("TextPing");
+            self.TextPing = rc.Get<GameObject>("TextPing").GetComponent<Text>();
             self.Button_Horse.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             self.buttonReturn = rc.Get<GameObject>("Btn_RerurnBuilding");
@@ -342,8 +360,8 @@ namespace ET
             DataUpdateComponent.Instance.RemoveListener(DataType.TeamUpdate, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.OnActiveTianFu, self);
             DataUpdateComponent.Instance.RemoveListener(DataType.MainHeroMove, self);
-            TimerComponent.Instance?.Remove(ref self.Timer);
-
+            TimerComponent.Instance?.Remove(ref self.TimerFunctiuon);
+            TimerComponent.Instance?.Remove(ref self.TimerPing);
             self.UnRegisterRedot();
         }
     }
@@ -369,6 +387,23 @@ namespace ET
             self.UIRoleHead.OnUpdateCombat();
         }
 
+        public static void UpdatePing(this UIMainComponent self)
+        {
+            long ping = self.ZoneScene().GetComponent<SessionComponent>().Session.GetComponent<PingComponent>().Ping;
+            self.TextPing.text= $"延迟: {ping}";
+            if (ping <= 200)
+            {
+                self.TextPing.color = Color.green;
+                return;
+            }
+            if (ping <= 500)
+            {
+                self.TextPing.color = Color.yellow;
+                return;
+            }
+            self.TextPing.color = Color.red;
+        }
+
         public static void  ShowPing(this UIMainComponent self)
         {
             if (self.Fps.activeSelf)
@@ -376,7 +411,8 @@ namespace ET
                 return;
             }
             self.Fps.SetActive(true);
-            self.TextPing.GetComponent<Text>().text = $"延迟: {self.ZoneScene().GetComponent<SessionComponent>().Session.GetComponent<PingComponent>().Ping}";
+            TimerComponent.Instance?.Remove(ref self.TimerPing);
+            self.TimerPing = TimerComponent.Instance.NewRepeatedTimer(5000, TimerType.UIMainFPSTimer, self);
         }
 
         public static void OnBagItemAdd(this UIMainComponent self, string dataPaams)
@@ -831,7 +867,7 @@ namespace ET
                 }
             }
             
-            TimerComponent.Instance.Remove(ref self.Timer);
+            TimerComponent.Instance.Remove(ref self.TimerFunctiuon);
             if (self.FunctionButtons.Count > 0)
             {
                 self.FunctionButtons.Sort(delegate (KeyValuePair a, KeyValuePair b)
@@ -841,7 +877,7 @@ namespace ET
                     return (int)(endTime_1 - endTime_2);     
                 });
 
-                self.Timer = TimerComponent.Instance.NewOnceTimer(long.Parse(self.FunctionButtons[0].Value2), TimerType.UIMainTimer, self);
+                self.TimerFunctiuon = TimerComponent.Instance.NewOnceTimer(long.Parse(self.FunctionButtons[0].Value2), TimerType.UIMainTimer, self);
             }
         }
 
@@ -873,10 +909,10 @@ namespace ET
                     self.FunctionButtons.RemoveAt(i);
                 }
             }
-            TimerComponent.Instance.Remove(ref self.Timer);
+            TimerComponent.Instance.Remove(ref self.TimerFunctiuon);
             if (self.FunctionButtons.Count > 0)
             {
-                self.Timer = TimerComponent.Instance.NewOnceTimer(long.Parse(self.FunctionButtons[0].Value2), TimerType.UIMainTimer, self);
+                self.TimerFunctiuon = TimerComponent.Instance.NewOnceTimer(long.Parse(self.FunctionButtons[0].Value2), TimerType.UIMainTimer, self);
             }
         }
 

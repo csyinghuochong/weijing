@@ -63,6 +63,7 @@
         public const int WatchTimer = 1064;
         public const int ArenaTimer = 1065;
         public const int XuLieZhenTimer = 1066;
+        public const int UIMainFPSTimer = 1067;
         // 不能超过10000
     }
 }

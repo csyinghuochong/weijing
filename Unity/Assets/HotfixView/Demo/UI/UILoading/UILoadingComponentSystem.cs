@@ -65,12 +65,14 @@ namespace ET
                     loadResName = !ComHelp.IfNull(sceneConfig.LoadingRes) ? sceneConfig.LoadingRes : "MainCity";
                     self.PreLoadAssets.AddRange( self.GetRoleSkillEffect() );
                     self.PreLoadAssets.AddRange( self.GetCommonAssets( ) );
+                    self.PreLoadAssets.AddRange(self.GetBossSkillEffect());
                     break;
                 case (int)SceneTypeEnum.LocalDungeon:
                     loadResName = backpngs[index];
                     self.PreLoadAssets.AddRange(self.GetRoleSkillEffect());
                     self.PreLoadAssets.AddRange(self.GetCommonAssets());
                     self.PreLoadAssets.AddRange(self.GetLocalDungeonMonsters());
+                    self.PreLoadAssets.AddRange(self.GetBossSkillEffect());
                     break;
                 default:
                     loadResName = backpngs[index];
@@ -93,6 +95,18 @@ namespace ET
                 uimain.GetComponent<UIMainComponent>().BeginEnterScene(lastScene);
             }
         }
+
+        public static List<string> GetBossSkillEffect(this UILoadingComponent self)
+        {
+            List<string> effects = new List<string>();
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            int mapid = mapComponent.SceneId;
+
+
+            return effects;
+        }
+
+
 
         public static List<string> GetLocalDungeonMonsters(this UILoadingComponent self)
         {
@@ -126,12 +140,6 @@ namespace ET
                 }
             }
             return assets;
-        }
-
-        public static List<string> GetBossSkillEffect(this UILoadingComponent self)
-        {
-            List<string> effects = new List<string>();
-            return effects;
         }
 
         public static List<string> GetRoleSkillEffect(this UILoadingComponent self)
