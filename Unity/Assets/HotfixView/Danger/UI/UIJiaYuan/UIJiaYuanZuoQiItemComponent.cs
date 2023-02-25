@@ -106,6 +106,7 @@ namespace ET
             gameObject.transform.localPosition = new Vector2(zuoQiConfig.Id % 10 * 1000, 0);
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
 
+
             //显示属性和来源
             self.LabProDes.GetComponent<Text>().text = self.ZuoQiConfig.Des;
             self.Lab_LaiYuan.GetComponent<Text>().text = self.ZuoQiConfig.GetDes;

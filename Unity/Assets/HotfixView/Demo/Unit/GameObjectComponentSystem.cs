@@ -198,8 +198,14 @@ namespace ET
             go.SetActive(true);
             go.transform.localPosition = unit.Position;
             go.transform.rotation = unit.Rotation;
+
             UICommonHelper.SetParent(self.GameObject, HoreseHelper.GetHorseNode(self.ObjectHorse));
             self.GameObject.transform.localScale = HoreseHelper.GetRoleScale(go, horseId) * Vector3.one;
+            //特殊处理
+            if (horseId == 10008)
+            {
+                self.GameObject.transform.localRotation = Quaternion.Euler(0, 90, 0);
+            }
             unit.GetComponent<FsmComponent>().SetHorseState();
             unit.GetComponent<AnimatorComponent>().UpdateAnimator(go);
             self.ShowRoleDi(false);
