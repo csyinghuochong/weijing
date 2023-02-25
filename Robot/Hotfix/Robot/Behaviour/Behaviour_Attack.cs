@@ -68,16 +68,15 @@ namespace ET
                             unit.GetComponent<SkillManagerComponent>().SendUseSkill(skillPro.SkillID, 0, Mathf.FloorToInt(ange), target.Id, targetDistance).Coroutine();
                         }
                     }
-
-                    int maxHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
-                    int curHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp);
-                    if (curHp < maxHp * 0.75)
-                    {
-                        UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
-                        ItemConfig itemConfig = ItemConfigCategory.Instance.Get(BattleHelper.GetYaoShuiItemID(userInfo.Lv));
-                        unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
-                            (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();
-                    }
+                    //int maxHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_MaxHp);
+                    //int curHp = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp);
+                    //if (curHp < maxHp * 0.75)
+                    //{
+                    //    UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
+                    //    ItemConfig itemConfig = ItemConfigCategory.Instance.Get(BattleHelper.GetYaoShuiItemID(userInfo.Lv));
+                    //    unit.GetComponent<SkillManagerComponent>().SendUseSkill(int.Parse(itemConfig.ItemUsePar), itemConfig.Id,
+                    //        (int)Quaternion.QuaternionToEuler(unit.Rotation).y, 0, 0).Coroutine();
+                    //}
                 }
                 else
                 {

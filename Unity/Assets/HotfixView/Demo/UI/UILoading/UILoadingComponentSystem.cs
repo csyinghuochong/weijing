@@ -65,14 +65,13 @@ namespace ET
                     loadResName = !ComHelp.IfNull(sceneConfig.LoadingRes) ? sceneConfig.LoadingRes : "MainCity";
                     self.PreLoadAssets.AddRange( self.GetRoleSkillEffect() );
                     self.PreLoadAssets.AddRange( self.GetCommonAssets( ) );
-                    self.PreLoadAssets.AddRange(self.GetBossSkillEffect());
+                    self.PreLoadAssets.AddRange(self.GetSceneDungeonMonsters());
                     break;
                 case (int)SceneTypeEnum.LocalDungeon:
                     loadResName = backpngs[index];
                     self.PreLoadAssets.AddRange(self.GetRoleSkillEffect());
                     self.PreLoadAssets.AddRange(self.GetCommonAssets());
                     self.PreLoadAssets.AddRange(self.GetLocalDungeonMonsters());
-                    self.PreLoadAssets.AddRange(self.GetBossSkillEffect());
                     break;
                 default:
                     loadResName = backpngs[index];
@@ -96,50 +95,77 @@ namespace ET
             }
         }
 
-        public static List<string> GetBossSkillEffect(this UILoadingComponent self)
-        {
-            List<string> effects = new List<string>();
-            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
-            int mapid = mapComponent.SceneId;
-
-
-            return effects;
-        }
-
-
-
-        public static List<string> GetLocalDungeonMonsters(this UILoadingComponent self)
+        public static List<string> GetMonstersModelAndEffect(this UILoadingComponent self,  List<int> monsterIds)
         {
             List<string> assets = new List<string>();
 
-            int mapid = self.ZoneScene().GetComponent<MapComponent>().SceneId;
-            DungeonConfig chapterSonConfig = DungeonConfigCategory.Instance.Get(mapid);
-            string createMonster = chapterSonConfig.CreateMonster;
-            if (chapterSonConfig.MonsterGroup != 0)
+            for (int i = 0; i < monsterIds.Count; i++)
             {
-                MonsterGroupConfig monsterGroupConfig = MonsterGroupConfigCategory.Instance.Get(chapterSonConfig.MonsterGroup);
-                createMonster = createMonster + "@"  + monsterGroupConfig.CreateMonster;
-            }
+                int monsterId = monsterIds[i];
 
-            string[] monsters = createMonster.Split('@');
-            for (int i = 0; i < monsters.Length; i++)
-            {
-                if (monsters[i] == "0")
-                {
-                    continue;
-                }
-
-                string[] mondels = monsters[i].Split(';');
-                string[] monsterid = mondels[2].Split(',');
-                int monsterId = int.Parse(monsterid[0]);
                 MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(monsterId);
                 var path = ABPathHelper.GetUnitPath("Monster/" + monsterCof.MonsterModelID);
                 if (!assets.Contains(path))
                 {
                     assets.Add(path);
                 }
+
+                if (monsterCof.MonsterType != MonsterTypeEnum.Boss)
+                {
+                    continue;
+                }
+                int[] aiSkillIDList = monsterCof.SkillID;
+                if (aiSkillIDList == null)
+                {
+                    continue;
+                }
+                for (int s = 0; s < aiSkillIDList.Length; s++)
+                {
+                    if (aiSkillIDList[s] == 0)
+                    {
+                        continue;
+                    }
+                    if (!SkillConfigCategory.Instance.Contain(aiSkillIDList[s]))
+                    {
+                        continue;
+                    }
+
+                    SkillConfig skillConfig = SkillConfigCategory.Instance.Get(aiSkillIDList[s]);
+                    int effectId = skillConfig.SkillEffectID[0];
+                    if (effectId == 0)
+                    {
+                        continue;
+                    }
+
+                    string effectName = $"SkillEffect/{EffectConfigCategory.Instance.Get(effectId).EffectName}";
+                    effectName = ABPathHelper.GetEffetPath(effectName);
+                    if (!assets.Contains(effectName))
+                    {
+                        assets.Add(effectName);
+                    }
+                }
             }
             return assets;
+        }
+
+        public static List<string> GetLocalDungeonMonsters(this UILoadingComponent self)
+        {
+            int mapid = self.ZoneScene().GetComponent<MapComponent>().SceneId;
+            List<int> monsterIds = SceneConfigHelper.GetLocalDungeonMonsters(mapid);
+            return self.GetMonstersModelAndEffect(monsterIds);
+        }
+
+        public static List<string> GetSceneDungeonMonsters(this UILoadingComponent self)
+        {
+            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            if (!SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum)
+              || mapComponent.SceneTypeEnum!= SceneTypeEnum.TeamDungeon)
+            {
+                return new List<string>();
+            }
+            int mapid = mapComponent.SceneId;
+            List<int> monsterIds = SceneConfigHelper.GetSceneMonsterList(mapid);
+            return self.GetMonstersModelAndEffect(monsterIds);
         }
 
         public static List<string> GetRoleSkillEffect(this UILoadingComponent self)
