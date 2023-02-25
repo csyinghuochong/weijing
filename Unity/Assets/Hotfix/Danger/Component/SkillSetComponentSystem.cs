@@ -501,6 +501,22 @@ namespace ET
 			return sp;
 		}
 
+		public static int GetLifeShieldShowId(this SkillSetComponent self, int shieldType)
+		{
+			int curLv = self.GetLifeShieldLevel(shieldType);
+			int maxLv = LifeShieldConfigCategory.Instance.LifeShieldList[shieldType].Count;
+			int nextlifeId = 0;
+			if (curLv == maxLv)
+			{
+				nextlifeId = LifeShieldConfigCategory.Instance.LifeShieldList[shieldType][curLv];
+			}
+			else
+			{
+				nextlifeId = LifeShieldConfigCategory.Instance.LifeShieldList[shieldType][curLv + 1];
+			}
+			return nextlifeId;
+		}
+
 		public static LifeShieldInfo GetLifeShieldByType(this SkillSetComponent self, int sType)
 		{
 			for (int i = 0; i < self.LifeShieldList.Count; i++)

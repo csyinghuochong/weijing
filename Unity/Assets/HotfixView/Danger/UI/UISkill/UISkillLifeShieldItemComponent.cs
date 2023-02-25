@@ -47,11 +47,19 @@ namespace ET
             self.ClickHandler(self.ShieldType);
         }
 
+        public static void OnUpdateUI(this UISkillLifeShieldItemComponent self)
+        {
+            int level = self.ZoneScene().GetComponent<SkillSetComponent>().GetLifeShieldLevel(self.ShieldType);
+
+            UICommonHelper.SetImageGray(self.ImageIcon, level == 0);
+        }
+
         public static void OnInitUI(this UISkillLifeShieldItemComponent self, int stype)
         { 
             self.ShieldType = stype;
 
-            int level =  self.ZoneScene().GetComponent<SkillSetComponent>().GetLifeShieldLevel(stype);
+            int showId = self.ZoneScene().GetComponent<SkillSetComponent>().GetLifeShieldShowId(self.ShieldType);
+            self.TextName.GetComponent<Text>().text = LifeShieldConfigCategory.Instance.Get(showId).ShieldName;
         }
     }
 

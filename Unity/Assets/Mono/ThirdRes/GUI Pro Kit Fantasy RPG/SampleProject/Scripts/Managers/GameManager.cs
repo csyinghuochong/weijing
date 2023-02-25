@@ -16,7 +16,7 @@ namespace FantasyRPG
             if (isSetScreenSize) SetScreenSize();
         }
 
-        public void SetTargetFrameRate(int framerate = 60)
+        public void SetTargetFrameRate(int framerate = 30)
         {
             isSetFrameRate = true;
             Application.targetFrameRate = framerate;

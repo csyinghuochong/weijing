@@ -81,11 +81,20 @@ namespace ET
         public static void OnUpdateUI(this UISkillLifeShieldComponent self)
         {
             self.UpdateBagUI();
+            self.OnUpdateShieldUI();
 
             for (int i = 0; i < self.HuiShoulist.Count; i++)
             {
                 self.HuiShoulist[i].UpdateItem(null);
                 self.HuiShoulist[i].HideItemName();
+            }
+        }
+
+        public static void OnUpdateShieldUI(this UISkillLifeShieldComponent self)
+        {
+            for (int i = 0; i < self.ShieldUIList.Count; i++)
+            {
+                self.ShieldUIList[i].OnUpdateUI();
             }
         }
 
@@ -168,16 +177,8 @@ namespace ET
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
             int curLv = skillSetComponent.GetLifeShieldLevel(shieldType);
             int maxLv = LifeShieldConfigCategory.Instance.LifeShieldList[shieldType].Count;
-            int nextlifeId = 0;
-            if (curLv == maxLv)
-            {
-                nextlifeId = LifeShieldConfigCategory.Instance.LifeShieldList[shieldType][curLv];
-            }
-            else
-            {
-                nextlifeId = LifeShieldConfigCategory.Instance.LifeShieldList[shieldType][curLv+1];
-            }
-
+            int nextlifeId = skillSetComponent.GetLifeShieldShowId(shieldType);
+           
             LifeShieldConfig lifeShieldConfig = LifeShieldConfigCategory.Instance.Get(nextlifeId);
             self.Text_ShieldName.GetComponent<Text>().text = $"{lifeShieldConfig.ShieldName} {lifeShieldConfig.ShieldLevel}级";
             self.Text_ShieldDesc.GetComponent<Text>().text = lifeShieldConfig.AddProperty;
