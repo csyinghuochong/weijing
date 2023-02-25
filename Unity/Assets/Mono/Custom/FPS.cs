@@ -60,7 +60,6 @@ class FPS : MonoBehaviour
             totalFps = totalFps / TickCount.Count;
             TickCount.Clear();
             this.gameObject.GetComponent<Text>().text = $"平均帧数: {totalFps}";
-            Debug.LogWarning($"平均帧数: {totalFps}");
         }
         else
         {

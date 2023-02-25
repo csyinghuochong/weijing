@@ -35,7 +35,7 @@ public class BuildingCheck : MonoBehaviour
        
         foreach (var item in m_ZMeshDic)
         {
-            item.Value.material = m_ZMDic[item.Key];
+            item.Value.sharedMaterial = m_ZMDic[item.Key];
         }
         m_CameraPos = new Vector3(_camera.transform.position.x, _camera.transform.position.y, _camera.transform.position.z - 5);
         RaycastHit[] hit = Physics.RaycastAll(m_CameraPos, m_Pos.position - m_CameraPos, 13);
@@ -53,9 +53,9 @@ public class BuildingCheck : MonoBehaviour
                     if (!m_ZMDic.ContainsKey(m.gameObject.name))
                     {
                         m_ZMeshDic.Add(m.gameObject.name, m);
-                        m_ZMDic.Add(m.gameObject.name, m.material);
+                        m_ZMDic.Add(m.gameObject.name, m.sharedMaterial);
                     }
-                    m.material = m_TMm;
+                    m.sharedMaterial = m_TMm;
                 }
             }
         }

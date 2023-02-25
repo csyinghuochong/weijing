@@ -37,6 +37,9 @@ namespace ET
                         scene.GetComponent<RankSceneComponent>().OnHour12Update();
                     }
                     break;
+                case SceneType.Arena:
+                    scene.GetComponent<ArenaSceneComponent>().OnZeroClockUpdate();
+                    break;
                 case SceneType.PaiMai:
                     //更新快捷购买列表价格
                     if (activityType == 0)

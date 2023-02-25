@@ -125,9 +125,7 @@ namespace ET
                     paramss = "Login";
                     break;
                 case (int)SceneTypeEnum.MainCityScene:
-                    AccountInfoComponent accountInfo = scene.GetComponent<AccountInfoComponent>();
-                    bool istest = GMHelp.IsTestPlayer(accountInfo.Account);
-                    paramss = istest ? "101_test" : chapterId.ToString();
+                    paramss =chapterId.ToString();
                     break;
                 case (int)SceneTypeEnum.CellDungeon:
                     paramss = ChapterSonConfigCategory.Instance.Get(scene.GetComponent<MapComponent>().SonSceneId).MapID.ToString();

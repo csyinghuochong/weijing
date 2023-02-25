@@ -157,11 +157,11 @@ namespace ET
                         break;
                     }
                 }
-                if (skinMR.material.mainTexture != null)
+                if (skinMR.sharedMaterial.mainTexture != null)
                 {
-                    diffuseTextureList.Add(skinMR.material.mainTexture as Texture2D);
-                    diffuseTextureWidth += skinMR.material.mainTexture.width;
-                    diffuseTextureHeight += skinMR.material.mainTexture.height;
+                    diffuseTextureList.Add(skinMR.sharedMaterial.mainTexture as Texture2D);
+                    diffuseTextureWidth += skinMR.sharedMaterial.mainTexture.width;
+                    diffuseTextureHeight += skinMR.sharedMaterial.mainTexture.height;
                 }
             }
 
@@ -189,7 +189,7 @@ namespace ET
             }
 
             // 设置漫反射贴图和UV
-            newSkinMR.material.mainTexture = newDiffuseTexture;
+            newSkinMR.sharedMaterial.mainTexture = newDiffuseTexture;
             newSkinMR.sharedMesh.uv = newUVs;
             skinnedMeshRenderers.Clear();
 

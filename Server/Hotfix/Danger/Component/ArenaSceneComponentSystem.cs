@@ -40,6 +40,7 @@ namespace ET
 
         public static void OnZeroClockUpdate(this ArenaSceneComponent self)
         {
+            Log.Debug("Arena:  OnZeroClockUpdate");
             TimerComponent.Instance.Remove(ref self.Timer);
             self.Timer = 0;
             self.AreneSceneStatu = 0;

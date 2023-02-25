@@ -34,6 +34,7 @@ namespace ET
             self.MapIdList.Add(DBHelper.GetPaiMaiServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetRankServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetFubenCenterId(self.DomainZone()));
+            self.MapIdList.Add(DBHelper.GetArenaServerId(self.DomainZone()));
 
             self.InitDayActivity().Coroutine();
         }

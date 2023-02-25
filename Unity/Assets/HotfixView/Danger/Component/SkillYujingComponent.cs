@@ -157,8 +157,8 @@ namespace ET
                     break;
             }
 
-            Quad_1.GetComponent<MeshRenderer>().material.SetColor("_TintColor", skillIndicatorItem.EnemyColor ? colorred : colorgreen);
-            Quad_2.GetComponent<MeshRenderer>().material.SetColor("_TintColor", skillIndicatorItem.EnemyColor ? colorred : colorgreen);
+            Quad_1.GetComponent<MeshRenderer>().sharedMaterial.SetColor("_TintColor", skillIndicatorItem.EnemyColor ? colorred : colorgreen);
+            Quad_2.GetComponent<MeshRenderer>().sharedMaterial.SetColor("_TintColor", skillIndicatorItem.EnemyColor ? colorred : colorgreen);
 
             skillIndicatorItem.GameObject.SetActive(true);
             UICommonHelper.SetParent(skillIndicatorItem.GameObject, GlobalComponent.Instance.Unit.gameObject);

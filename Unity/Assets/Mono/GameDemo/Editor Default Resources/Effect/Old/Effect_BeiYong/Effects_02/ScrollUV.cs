@@ -29,6 +29,6 @@ public class ScrollUV : MonoBehaviour {
 			}
 		}
 		
-		this.GetComponent<Renderer>().material.mainTextureOffset = offset;
+		this.GetComponent<Renderer>().sharedMaterial.mainTextureOffset = offset;
 	}
 }

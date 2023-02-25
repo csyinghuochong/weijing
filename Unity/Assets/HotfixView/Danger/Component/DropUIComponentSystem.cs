@@ -133,7 +133,9 @@ namespace ET
                 //    (int)sprite.textureRect.height);
                 //targetTex.SetPixels(pixels);
                 //targetTex.Apply();
-                self.ModelMesh.material.mainTexture = sprite.texture;
+
+                //对于多个模型使用共享材质，应用Renderer.shareMaterial 来保证修改的是和其他物体共享的材质，
+                self.ModelMesh.sharedMaterial.mainTexture = sprite.texture;
             }
             catch (Exception e)
             {
