@@ -4484,6 +4484,7 @@ message M2C_LifeShieldCostResponse    // IActorLocationResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
-	
-	repeated LifeShieldInfo ShieldList = 1;
+
+	repeated LifeShieldInfo ShieldList = 1;	
+	int32 AddExp = 2;
 }
