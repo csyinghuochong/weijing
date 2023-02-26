@@ -229,6 +229,11 @@ namespace ET
 
             for (int i = 0; i < allInfos.Count; i++)
             {
+                if (!ConfigHelper.ItemAddShieldExp.ContainsKey(allInfos[i].ItemID))
+                {
+                    continue;
+                }
+
                 UIItemComponent uI_1 = null;
                 if (i < self.ItemUIlist.Count)
                 {
