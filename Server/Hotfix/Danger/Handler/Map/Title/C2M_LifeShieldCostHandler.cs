@@ -14,8 +14,7 @@ namespace ET
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
             int addExp =  0;
             List<long> bagidList = new List<long>();
-            List<long> petHexins = new List<long>();
-           
+        
             for (int i = 0; i < request.OperateBagID.Count; i++)
             {
                 BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID[i]);
@@ -45,7 +44,6 @@ namespace ET
             skillsetComponent.OnShieldAddExp(request.OperateType, addExp);
 
             //扣除装备
-            bagComponent.OnCostItemData(petHexins, ItemLocType.ItemPetHeXinBag);
             bagComponent.OnCostItemData(bagidList, ItemLocType.ItemLocBag);
 
             response.ShieldList = skillsetComponent.LifeShieldList;
