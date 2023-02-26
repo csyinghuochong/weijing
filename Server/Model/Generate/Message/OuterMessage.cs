@@ -8465,6 +8465,9 @@ namespace ET
 		[ProtoMember(90)]
 		public int RpcId { get; set; }
 
+		[ProtoMember(1)]
+		public int TaskId { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_TaskLoopGetResponse)]
@@ -9347,6 +9350,9 @@ namespace ET
 
 		[ProtoMember(1)]
 		public List<LifeShieldInfo> ShieldList = new List<LifeShieldInfo>();
+
+		[ProtoMember(2)]
+		public int AddExp { get; set; }
 
 	}
 
