@@ -12,32 +12,28 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_LifeShieldCostRequest request, M2C_LifeShieldCostResponse response, Action reply)
         {
             BagComponent bagComponent = unit.GetComponent<BagComponent>();
-            int costNumber = 0;
+            int addExp =  0;
             List<long> bagidList = new List<long>();
             List<long> petHexins = new List<long>();
-            List<BagInfo> bagInfoList = new List<BagInfo>();    
+           
             for (int i = 0; i < request.OperateBagID.Count; i++)
             {
                 BagInfo bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemLocBag, request.OperateBagID[i]);
-                if (bagInfo != null)
+                if (bagInfo == null)
                 {
-                    costNumber += bagInfo.ItemNum;
-                    bagidList.Add(request.OperateBagID[i]);
-                    bagInfoList.Add(bagInfo);
                     continue;
                 }
-                bagInfo = bagComponent.GetItemByLoc(ItemLocType.ItemPetHeXinBag, request.OperateBagID[i]);
-                if (bagInfo != null)
+                if (!ConfigHelper.ItemAddShieldExp.ContainsKey(bagInfo.ItemID))
                 {
-                    costNumber += bagInfo.ItemNum;
-                    petHexins.Add(request.OperateBagID[i]);
-                    bagInfoList.Add(bagInfo);
                     continue;
                 }
+
+                addExp += ConfigHelper.ItemAddShieldExp[bagInfo.ItemID] * bagInfo.ItemNum;
+
+                bagidList.Add(request.OperateBagID[i]);
             }
 
             SkillSetComponent skillsetComponent = unit.GetComponent<SkillSetComponent>();
-            int addExp = costNumber * 10;
 
             //其他盾的等级要大于生命之盾
             if (request.OperateType == 6)
