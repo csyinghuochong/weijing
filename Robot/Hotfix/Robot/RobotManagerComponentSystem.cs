@@ -17,7 +17,7 @@ namespace ET
     public static class RobotManagerComponentSystem
     {
 
-        public static async ETTask RemoveRobot(this RobotManagerComponent self, Scene robotScene)
+        public static async ETTask RemoveRobot(this RobotManagerComponent self, Scene robotScene, string exitType)
         {
             //self.ZoneIndex--;
             if (self == null || robotScene.GetComponent<BehaviourComponent>() == null)
@@ -25,7 +25,7 @@ namespace ET
                 return;
             }
             int robotId = robotScene.GetComponent<BehaviourComponent>().RobotConfig.Id;
-            if (!self.RobotNumber.ContainsKey(robotId))
+            if (self.RobotNumber.ContainsKey(robotId))
             {
                 self.RobotNumber[robotId]--;
                 if (self.RobotNumber[robotId] < 0)
@@ -33,6 +33,7 @@ namespace ET
                     self.RobotNumber[robotId] = 0;
                 }
             }
+            Log.Debug($"机器人退出： {exitType}");
             robotScene.GetComponent<SessionComponent>().Session.Dispose();
             await TimerComponent.Instance.WaitAsync(200);
             robotScene.Dispose();

@@ -16,7 +16,6 @@ namespace ET
             {
                 case NoticeType.TeamDungeon:
                     List<Entity> ts = robotManagerComponent.Children.Values.ToList();
-                    Log.Debug($"机器人数量:{ts.Count}");
                     if (ts.Count >= 150)
                     {
                         return;
@@ -33,6 +32,7 @@ namespace ET
                         if (behaviourComponent != null)
                         {
                             behaviourComponent.MessageValue = message.Message;
+                            behaviourComponent.CreateTimer = TimeHelper.ClientNow();
                         }
                         await TimerComponent.Instance.WaitAsync(200);
                     }
@@ -115,7 +115,7 @@ namespace ET
                             {
                                 continue;
                             }
-                            robotManagerComponent.RemoveRobot(robotScene).Coroutine();
+                            robotManagerComponent.RemoveRobot(robotScene, "战场结束").Coroutine();
                             await TimerComponent.Instance.WaitAsync(1000);
                         }
                     }

@@ -176,10 +176,10 @@ namespace ET
             self.Current = 0;
         }
 
-        public static void Exit(this BehaviourComponent self)
+        public static void Exit(this BehaviourComponent self, string btype)
         {
             Scene zoneScene = self.ZoneScene();
-            zoneScene.Parent.GetComponent<RobotManagerComponent>().RemoveRobot(zoneScene).Coroutine();
+            zoneScene.GetParent<RobotManagerComponent>().RemoveRobot(zoneScene, btype).Coroutine();
         }
     }
 }

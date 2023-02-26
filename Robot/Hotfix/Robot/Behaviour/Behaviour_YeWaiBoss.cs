@@ -19,7 +19,7 @@ namespace ET
             if (Vector3.Distance(unit.Position, aiComponent.TargetPosition)< 0.5f
                 && AIHelp.GetNearestEnemy(unit) == null)
             {
-                aiComponent.Exit();
+                aiComponent.Exit("找不到野外BOSS");
                 return false;   
             }
             return aiComponent.NewBehaviour == BehaviourId();

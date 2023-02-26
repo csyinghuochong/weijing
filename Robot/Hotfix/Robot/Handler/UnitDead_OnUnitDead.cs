@@ -53,7 +53,7 @@ namespace ET
 						await TimerComponent.Instance.WaitAsync(20000);
 						zoneScene.GetComponent<SessionComponent>().Session.Dispose();
 						RobotManagerComponent robotManager = zoneScene.GetParent<RobotManagerComponent>();
-						robotManager.RemoveRobot(zoneScene).Coroutine();
+						robotManager.RemoveRobot(zoneScene, "角斗场死亡").Coroutine();
 						break;
 					default:
 						EnterFubenHelp.RequestQuitFuben(unit.ZoneScene());

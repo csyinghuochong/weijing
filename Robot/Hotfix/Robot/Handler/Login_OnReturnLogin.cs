@@ -12,7 +12,7 @@
                 Log.Debug("robotManager == null_111");
                 return;
             }
-            robotManager.RemoveRobot(args.ZoneScene).Coroutine();
+            robotManager.RemoveRobot(args.ZoneScene, "掉线退出").Coroutine();
         }
     }
 }

@@ -26,6 +26,8 @@ namespace ET
 
         public RobotConfig RobotConfig;
 
+        public long CreateTimer;
+
         /// <summary>
         /// 攻击范围，范围内攻击
         /// </summary>

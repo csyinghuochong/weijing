@@ -11,7 +11,7 @@
            
             RobotManagerComponent robotManager = args.ZoneScene.GetParent<RobotManagerComponent>();
             Log.Debug("robotManager == null_222");
-            robotManager.RemoveRobot(args.ZoneScene).Coroutine();
+            robotManager.RemoveRobot(args.ZoneScene, "掉线退出").Coroutine();
         }
     }
 }

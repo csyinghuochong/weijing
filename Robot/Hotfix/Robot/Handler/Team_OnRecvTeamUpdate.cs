@@ -11,9 +11,8 @@ namespace ET
             TeamInfo teamInfo = args.ZoneScene.GetComponent<TeamComponent>().GetSelfTeam();
             if (teamInfo == null)
             {
-                Log.Debug("队伍解算");
                 RobotManagerComponent robotManager = args.ZoneScene.GetParent<RobotManagerComponent>();
-                robotManager.RemoveRobot(args.ZoneScene).Coroutine();
+                robotManager.RemoveRobot(args.ZoneScene, "队伍解算").Coroutine();
             }
 
         }
