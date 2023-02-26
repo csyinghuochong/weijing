@@ -53,6 +53,10 @@ namespace ET
                                 continue;
                             }
                             Scene robotScene = await robotManagerComponent.NewRobot(message.Zone, robotZone, robotId);
+                            if (robotScene == null)
+                            {
+                                continue;
+                            }
                             BehaviourComponent behaviourComponent = robotScene?.AddComponent<BehaviourComponent, int>(robotId);
                             behaviourComponent.TargetPosition = targetPosition;
                             behaviourComponent.MessageValue = message.Message;

@@ -71,7 +71,7 @@ namespace ET
                 {
                     A2C_CreateRoleData g2cCreateRole = await LoginHelper.CreateRole(zoneScene, 1, self.Parent.GetComponent<RandNameComponent>().GetRandomName());
                     AccountInfoComponent playerComponent = zoneScene.GetComponent<AccountInfoComponent>();
-                    if (playerComponent == null)
+                    if (playerComponent == null || g2cCreateRole.createRoleInfo == null)
                     {
                         return null;
                     }

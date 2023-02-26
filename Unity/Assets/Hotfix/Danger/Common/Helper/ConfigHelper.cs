@@ -9,6 +9,13 @@ namespace ET
     public static class ConfigHelper
     {
 
+        //生命之盾
+        public static Dictionary<int, int> ItemAddShieldExp = new Dictionary<int, int>()
+        {
+            { 1, 0},
+            { 2, 0},
+        };
+
         //游戏公告
         public static List<WorldSayConfig> WorldSayList = new List<ET.WorldSayConfig>
         {
