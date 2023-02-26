@@ -27,9 +27,13 @@ namespace ET
                     continue;
                 }
 
-                addExp += ConfigHelper.ItemAddShieldExp[bagInfo.ItemID] * bagInfo.ItemNum;
-
+                int addValue = ConfigHelper.ItemAddShieldExp[bagInfo.ItemID];
+                if (addValue > 10) {
+                    addValue = RandomHelper.NextInt((int)(addValue * 0.8f), (int)(addValue * 1.2f));
+                }
+                addExp += addValue * bagInfo.ItemNum;
                 bagidList.Add(request.OperateBagID[i]);
+                response.AddExp = addExp;
             }
 
             SkillSetComponent skillsetComponent = unit.GetComponent<SkillSetComponent>();

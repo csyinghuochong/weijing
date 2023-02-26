@@ -180,7 +180,7 @@ namespace ET
             int nextlifeId = skillSetComponent.GetLifeShieldShowId(shieldType);
            
             LifeShieldConfig lifeShieldConfig = LifeShieldConfigCategory.Instance.Get(nextlifeId);
-            self.Text_ShieldName.GetComponent<Text>().text = $"{lifeShieldConfig.ShieldName} {lifeShieldConfig.ShieldLevel}级";
+            self.Text_ShieldName.GetComponent<Text>().text = $"{lifeShieldConfig.ShieldName}";
             self.Text_ShieldDesc.GetComponent<Text>().text = lifeShieldConfig.AddProperty;
 
             LifeShieldInfo lifeShieldInfo = skillSetComponent.GetLifeShieldByType(shieldType);
@@ -193,6 +193,7 @@ namespace ET
             else
             {
                 self.Text_Progess.GetComponent<Text>().text = $"{curExp}/{lifeShieldConfig.ShieldExp}";
+                self.ImageProgess.GetComponent<Image>().fillAmount = (float)(curExp) / (float)(lifeShieldConfig.ShieldExp);
             }
              
             for (int i = 0; i < self.ShieldUIList.Count; i++)
@@ -211,6 +212,10 @@ namespace ET
             C2M_LifeShieldCostRequest  request = new C2M_LifeShieldCostRequest() { OperateType = self.ShieldType, OperateBagID = costs };
             M2C_LifeShieldCostResponse response = (M2C_LifeShieldCostResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
+            if (response.AddExp > 0)
+            {
+                FloatTipManager.Instance.ShowFloatTip("注入成功!本次增加" + response.AddExp + "点魂值");
+            }
             self.ZoneScene().GetComponent<SkillSetComponent>().LifeShieldList = response.ShieldList;
             self.OnUpdateUI();
             self.OnClickShieldHandler(self.ShieldType);

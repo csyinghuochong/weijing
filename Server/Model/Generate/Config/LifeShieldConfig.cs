@@ -81,10 +81,10 @@ namespace ET
 		/// <summary>生命之盾类型</summary>
 		[ProtoMember(2)]
 		public int ShieldType { get; set; }
-		/// <summary>生命之盾名字</summary>
+		/// <summary>名字</summary>
 		[ProtoMember(3)]
 		public string ShieldName { get; set; }
-		/// <summary>生命之盾等级2</summary>
+		/// <summary>等级</summary>
 		[ProtoMember(4)]
 		public int ShieldLevel { get; set; }
 		/// <summary>生命之盾经验</summary>
