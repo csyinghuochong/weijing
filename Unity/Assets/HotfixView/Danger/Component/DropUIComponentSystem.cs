@@ -135,7 +135,7 @@ namespace ET
                 //targetTex.Apply();
 
                 //对于多个模型使用共享材质，应用Renderer.shareMaterial 来保证修改的是和其他物体共享的材质，
-                self.ModelMesh.sharedMaterial.mainTexture = sprite.texture;
+                self.ModelMesh.material.mainTexture = sprite.texture;
             }
             catch (Exception e)
             {
