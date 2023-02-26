@@ -38,7 +38,7 @@ namespace ET
                     }
                     break;
                 case SceneType.Arena:
-                    if (activityType == 0)
+                    if (activityType == 15)
                     {
                         scene.GetComponent<ArenaSceneComponent>().OnZeroClockUpdate();
                     }

@@ -14,6 +14,25 @@ namespace ET
 
         public static void KillPlayerInfo(Unit attack, Unit defend)
         {
+            if (attack.IsRobot() || defend.IsRobot())
+            {
+                return;
+            }
+            int zone = attack.DomainZone();
+            ServerItem serverItem  = ServerHelper.GetGetServerItem(false, zone);
+            if (serverItem == null)
+            {
+                return;
+            }
+            
+            MapComponent mapComponent = attack.DomainScene().GetComponent<MapComponent>();
+            if (!SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
+            {
+                return;
+            }
+            string serverName = serverItem.ServerName;
+            string sceneName = SceneConfigCategory.Instance.Get(mapComponent.SceneId).Name;
+
             UserInfoComponent attackUserinfo = attack.GetComponent<UserInfoComponent>();
             UserInfoComponent defendUserinfo = defend.GetComponent<UserInfoComponent>();
             string attackName = attackUserinfo.UserInfo.Name;
@@ -23,7 +42,7 @@ namespace ET
             int attackOcc = attackUserinfo.UserInfo.OccTwo > 0 ? attackUserinfo.UserInfo.OccTwo : attackUserinfo.UserInfo.Occ;
             int defendOcc = defendUserinfo.UserInfo.OccTwo > 0 ? defendUserinfo.UserInfo.OccTwo : defendUserinfo.UserInfo.Occ;
 
-            string log = $"{attackName} 等级({attackUserinfo.UserInfo.Lv}) 职业:({attackOcc}) 战力:({attackUserinfo.UserInfo.Combat}) 击杀了： {defendName} 等级({defendUserinfo.UserInfo.Lv}) 职业:({defendOcc}) 战力:({defendUserinfo.UserInfo.Combat})";
+            string log = $"{serverName}：{sceneName}： {attackName} 等级({attackUserinfo.UserInfo.Lv}) 职业:({attackOcc}) 战力:({attackUserinfo.UserInfo.Combat}) 击杀了： {defendName} 等级({defendUserinfo.UserInfo.Lv}) 职业:({defendOcc}) 战力:({defendUserinfo.UserInfo.Combat})";
 
             string filePath = "../Logs/WJ_KillPlayer.txt";
             if (File.Exists(filePath))
