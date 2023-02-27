@@ -40,7 +40,7 @@
 				}
 			}
 #else
-			if (args.NewValue != 1) //排行第一
+			if (args.NewValue == 1) //排行第一
 			{	
 				unit.ZoneScene().GetComponent<UserInfoComponent>().OnHorseActive(no1_horse, true);
 			}
