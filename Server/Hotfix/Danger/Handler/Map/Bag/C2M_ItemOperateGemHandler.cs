@@ -95,7 +95,7 @@ namespace ET
                     gemIDNew = gemIDNew + gemIdList[i] + "_";
                 }
                 equipInfo.GemIDNew = gemIDNew.Substring(0, gemIDNew.Length - 1);
-
+                equipInfo.isBinging = true;
                 m2c_bagUpdate.BagInfoUpdate.Add(equipInfo);
                 //消耗宝石
                 unit.GetComponent<BagComponent>().OnCostItemData(useBagInfo.BagInfoID, 1);
