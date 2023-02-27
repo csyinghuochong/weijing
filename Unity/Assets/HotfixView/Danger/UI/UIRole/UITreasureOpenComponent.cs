@@ -245,6 +245,13 @@ namespace ET
             //}
             //self.BagInfo.HideProLists.Clear();
             //self.BagInfo.HideProLists.Add(new HideProList() { HideID = response.ReardItem.ItemID, HideValue = response.ReardItem.ItemNum });
+            BagComponent bagComponent = self.ZoneScene().GetComponent<BagComponent>();
+            if (bagComponent.GetLeftSpace() < 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                return;
+            }
+            
             self.OnStartTurn().Coroutine();
             self.ZoneScene().GetComponent<BagComponent>().SendUseItem(self.BagInfo).Coroutine();
         }

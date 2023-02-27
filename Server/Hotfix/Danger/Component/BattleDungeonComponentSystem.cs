@@ -49,14 +49,9 @@ namespace ET
             {
                 attack.GetComponent<NumericComponent>().ApplyChange(null, NumericType.BattleTodayKill, 1, 0);
             }
-            //int score = GlobalValueConfigCategory.Instance.Get(57).Value2;
-            //if (self.CampKillNumber_1 > score || self.CampKillNumber_2 > score)
-            //{
-            //    self.SendReward();
-            //}
         }
 
-        public static  void SendReward(this BattleDungeonComponent self)
+        public static void SendReward(this BattleDungeonComponent self, BattleInfo battleInfo)
         {
             if (self.SendReward)
             {
@@ -73,19 +68,11 @@ namespace ET
                 winCamp = CampEnum.CampPlayer_2;
             }
             GlobalValueConfig globalValueConfig = GlobalValueConfigCategory.Instance.Get(56);
-            List<Unit> units = self.DomainScene().GetComponent<UnitComponent>().GetAll();
+            List<long> winPlayers = winCamp == 1 ? battleInfo.Camp1Player: battleInfo.Camp2Player;
+        
             long serverTime = TimeHelper.ServerNow();
-            for (int i = 0; i < units.Count; i++)
+            for (int i = 0; i < winPlayers.Count; i++)
             {
-                if (units[i].Type != UnitType.Player)
-                {
-                    continue;
-                }
-                if (units[i].GetBattleCamp()!=winCamp)
-                {
-                    continue;
-                }
-
                 MailInfo mailInfo = new MailInfo();
                 mailInfo.Status = 0;
                 mailInfo.Context = "战场奖励";
@@ -103,8 +90,13 @@ namespace ET
                     int itemNum = int.Parse(itemInfo[1]);
                     mailInfo.ItemList.Add(new BagInfo() { ItemID = itemId, ItemNum = itemNum, GetWay = $"{ItemGetWay.BattleWin}_{serverTime}" });
                 }
-                units[i].GetComponent<TaskComponent>().OnWinCampBattle();
-                MailHelp.SendUserMail(self.DomainZone(), units[i].Id, mailInfo).Coroutine();
+
+                Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(winPlayers[i]);
+                if (unit != null)
+                {
+                    unit.GetComponent<TaskComponent>().OnWinCampBattle();
+                }
+                MailHelp.SendUserMail(self.DomainZone(), winPlayers[i], mailInfo).Coroutine();
             }
         }
 
@@ -130,9 +122,9 @@ namespace ET
             await ETTask.CompletedTask;
         }
 
-        public static async ETTask OnBattleOver(this BattleDungeonComponent self)
+        public static async ETTask OnBattleOver(this BattleDungeonComponent self, BattleInfo battleInfo)
         {
-            self.SendReward();
+            self.SendReward(battleInfo);
             await self.KickOutPlayer();
         }
     }

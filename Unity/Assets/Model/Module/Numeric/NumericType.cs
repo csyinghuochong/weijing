@@ -70,7 +70,7 @@
         public const int TeamDungeonTimes = 3067;
         public const int Now_AI = 3068;
         public const int TrialDungeonId = 3069;
-        public const int BattleTodayCamp = 3071;                                   //今日战场
+        //public const int BattleTodayCamp = 3071;                                   //今日战场
         public const int TeamId = 3072;
         public const int BattleTodayKill = 3073;                                   //战场击杀人数
         public const int PetExtendNumber = 3074;                                    //宠物扩展数量

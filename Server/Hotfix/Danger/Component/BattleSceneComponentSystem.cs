@@ -1,12 +1,32 @@
-﻿namespace ET
+﻿using System;
+
+namespace ET
 {
+
+    [Timer(TimerType.BattleSceneTimer)]
+    public class BattleSceneTimer : ATimer<BattleSceneComponent>
+    {
+        public override void Run(BattleSceneComponent self)
+        {
+            try
+            {
+                self.OnCheck();
+            }
+            catch (Exception e)
+            {
+                Log.Error($"move timer error: {self.Id}\n{e}");
+            }
+        }
+    }
+
 
     [ObjectSystem]
     public class BattleSceneComponentAwakeSystem : AwakeSystem<BattleSceneComponent>
     {
         public override void Awake(BattleSceneComponent self)
         {
-              self.BattleInfos.Clear();
+            self.BattleInfos.Clear();
+            self.CheckTimer();
         }
     }
 
@@ -15,17 +35,101 @@
         public override void Destroy(BattleSceneComponent self)
         {
             self.BattleInfos.Clear();
+            TimerComponent.Instance.Remove(ref self.Timer);
         }
     }
 
     public static class BattleSceneComponentSystem
     {
+        public static void OnCheck(this BattleSceneComponent self)
+        {
+            if (self.BattleSceneStatu == 1)
+            {
+                self.OnBattleOpen();
+            }
+            if (self.BattleSceneStatu == 2)
+            {
+                self.OnBattleOver().Coroutine();
+            }
+            
+            self.BeginTimer();
+        }
+
+        public static void OnZeroClockUpdate(this BattleSceneComponent self)
+        {
+            Log.Debug("Battle:  OnZeroClockUpdate");
+            TimerComponent.Instance.Remove(ref self.Timer);
+            self.Timer = 0;
+            self.BattleSceneStatu = 0;
+            self.BeginTimer();
+        }
+
+        public static void CheckTimer(this BattleSceneComponent self)
+        {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            int curTime = dateTime.Hour * 60 + dateTime.Minute;
+            long openTime = FunctionHelp.GetOpenTime(1025);
+            int closeTime = FunctionHelp.GetCloseTime(1025);
+            if (curTime < openTime)
+            {
+                self.BattleSceneStatu = 0;
+            }
+            else if (curTime < closeTime)
+            {
+                self.BattleSceneStatu = 1;
+            }
+            else
+            {
+                return;
+            }
+            
+            TimerComponent.Instance.Remove(ref self.Timer);
+            self.BeginTimer();
+        }
+
+        public static void BeginTimer(this BattleSceneComponent self)
+        {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            long curTime = dateTime.Hour * 60 + dateTime.Minute;
+
+            long openTime = FunctionHelp.GetOpenTime(1025);
+            if (curTime < openTime && self.BattleSceneStatu == 0)
+            {
+                self.BattleSceneStatu = 1;
+                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (openTime - curTime), TimerType.BattleSceneTimer, self);
+                return;
+            }
+
+            int closeTime = FunctionHelp.GetCloseTime(1025);
+            if (curTime < closeTime && self.BattleSceneStatu == 1)
+            {
+                self.BattleSceneStatu = 2;
+                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (closeTime - curTime), TimerType.BattleSceneTimer, self);
+                return;
+            }
+        }
+
+        public static void  OnBattleOpen(this BattleSceneComponent self)
+        {
+            Log.Debug($"OnBattleOpen : {self.DomainZone()}");
+            if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
+            {
+                long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOpen });
+            }
+        }
+
         public static async ETTask OnBattleOver(this BattleSceneComponent self)
         {
+            Log.Debug($"OnBattleOver : {self.DomainZone()}");
+
+            long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
+            MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOver });
+
             for (int i = 0; i < self.BattleInfos.Count;i++)
             {
                 Scene scene = Game.Scene.Get(self.BattleInfos[i].FubenId);
-                await scene.GetComponent<BattleDungeonComponent>().OnBattleOver();
+                await scene.GetComponent<BattleDungeonComponent>().OnBattleOver(self.BattleInfos[i]);
                 await TimerComponent.Instance.WaitAsync(60000 + self.DomainZone() * 10000);
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
@@ -33,11 +137,11 @@
             self.BattleInfos.Clear();
         }
 
-        public static BattleInfo GetBattleInstanceId(this BattleSceneComponent self, int sceneId)
+        public static (long ,int) GetBattleInstanceId(this BattleSceneComponent self, long unitid, int sceneId)
         {
+            int camp = 0;
             BattleInfo battleInfo = null;
-            int number = self.BattleInfos.Count;
-            for(int i = 0; i < self.BattleInfos.Count; i++)
+            for (int i = 0; i < self.BattleInfos.Count; i++)
             {
                 battleInfo = self.BattleInfos[i];
                 if (battleInfo.SceneId != sceneId)
@@ -46,7 +150,17 @@
                 }
                 if (battleInfo.PlayerNumber < ComHelp.GetPlayerLimit(sceneId))
                 {
-                    return battleInfo;
+                    battleInfo.PlayerNumber++;
+                    camp = battleInfo.PlayerNumber % 2 + 1;
+                    if (camp == 1)
+                    {
+                        battleInfo.Camp1Player.Add(unitid);
+                    }
+                    else
+                    {
+                        battleInfo.Camp2Player.Add(unitid);
+                    }
+                    return (battleInfo.FubenInstanceId, camp);
                 }
             }
             
@@ -68,8 +182,20 @@
             battleInfo.PlayerNumber = 0;
             battleInfo.FubenInstanceId = fubenInstanceId;
             battleInfo.SceneId = sceneId;
+
+            battleInfo.PlayerNumber++;
+            camp = battleInfo.PlayerNumber % 2 + 1;
+            if (camp == 1)
+            {
+                battleInfo.Camp1Player.Add(unitid);
+            }
+            else
+            {
+                battleInfo.Camp2Player.Add(unitid);
+            }
+
             self.BattleInfos.Add(battleInfo);
-            return battleInfo;
+            return (battleInfo.FubenInstanceId, camp);
         }
     }
 }

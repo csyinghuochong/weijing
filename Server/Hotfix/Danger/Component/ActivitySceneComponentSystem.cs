@@ -27,14 +27,14 @@ namespace ET
     {
         public override void Awake(ActivitySceneComponent self)
         {
-            self.OnBattleOpen = false;
-            self.OnBattleClose = false;
+           
             self.MapIdList.Clear();
             self.MapIdList.Add(DBHelper.GetGateServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetPaiMaiServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetRankServerId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetFubenCenterId(self.DomainZone()));
             self.MapIdList.Add(DBHelper.GetArenaServerId(self.DomainZone()));
+            self.MapIdList.Add(DBHelper.GetBattleServerId(self.DomainZone()));
 
             self.InitDayActivity().Coroutine();
         }
@@ -61,56 +61,26 @@ namespace ET
                 self.DBDayActivityInfo.LastHour = dateTime.Hour;
                 self.NoticeActivityUpdate_Hour(dateTime.DayOfWeek, dateTime.Hour).Coroutine();
             }
-            if (!self.OnBattleOpen)
-            {
-                int openTime = FunctionHelp.GetOpenTime(1025);
-                int curMinte = dateTime.Hour * 60 + dateTime.Minute;
-                if (curMinte == openTime - 1)
-                {
-                    self.OnBattleOpen();
-                }
-            }
-            if (!self.OnBattleClose)
-            {
-                int closeTime = FunctionHelp.GetCloseTime(1025);
-                int curMinte = dateTime.Hour * 60 + dateTime.Minute;
-                if (curMinte == closeTime - 1)
-                {
-                    self.OnBattleClose();
-                }
-            }
+ 
             self.SaveDB();
         }
 
-        public static void  OnBattleOpen(this ActivitySceneComponent self)
+        public static async ETTask CheckArenaTTTT(this ActivitySceneComponent self)
         {
-            self.OnBattleOpen = true;
-            self.OnBattleClose = false;
+            DateTime dateTime = TimeHelper.DateTimeNow();
 
-            if (DBHelper.GetOpenServerDay(self.DomainZone()) > 0)
+            if (dateTime.Hour == 19 && dateTime.Minute == 30)
             {
-                long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
-                MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOpen });
+                A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
+                         (DBHelper.GetArenaServerId(self.DomainZone()), new A2A_ActivityUpdateRequest() { ActivityType = 19, OpenDay = 1 });
             }
-        }
-
-        public static  void OnBattleClose(this ActivitySceneComponent self)
-        {
-            self.OnBattleClose = true;
-            self.OnBattleOpen = false;
-
-            long robotSceneId = StartSceneConfigCategory.Instance.GetBySceneName(203, "Robot01").InstanceId;
-            MessageHelper.SendActor(robotSceneId, new G2Robot_MessageRequest() { Zone = self.DomainZone(), MessageType = NoticeType.BattleOver });
-
-            ServerMessageHelper.SendServerMessage(DBHelper.GetBattleServerId(self.DomainZone()),
-               NoticeType.BattleOver, "战场即将关闭。请退出战场").Coroutine();
         }
 
         public static async ETTask InitDayActivity(this ActivitySceneComponent self)
         {
             int zone = self.DomainZone();
             long dbCacheId = DBHelper.GetDbCacheId(zone);
-            await TimerComponent.Instance.WaitAsync(zone * 100);
+            await TimerComponent.Instance.WaitAsync(zone * 200);
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = self.DomainZone(), Component = DBHelper.DBDayActivityInfo });
             if (d2GGetUnit.Component == null)
             {
@@ -132,7 +102,7 @@ namespace ET
             self.SaveDB();
 
             //每日活动
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(30000, TimerType.ActivityTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000, TimerType.ActivityTimer, self);
         }
 
         public static  void SaveDB(this ActivitySceneComponent self)
@@ -172,8 +142,6 @@ namespace ET
 
             if (hour == 0)
             {
-                self.OnBattleOpen = false;
-                self.OnBattleClose = false;
                 Log.Debug($"神秘商品刷新: {self.DomainZone()}");
                 self.DBDayActivityInfo.MysteryItemInfos = MysteryShopHelper.InitMysteryItemInfos(openServerDay);
             }

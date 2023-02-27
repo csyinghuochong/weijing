@@ -129,10 +129,11 @@ namespace ET
 						scene.GetComponent<LocalDungeonComponent>().GenerateFubenScene(request.ChapterId);
 						break;
 					case (int)SceneTypeEnum.Battle:
-						int todayCamp = numericComponent.GetAsInt(NumericType.BattleTodayCamp);
-						todayCamp = todayCamp > 0 ? todayCamp : int.Parse(request.ParamInfo);
+						//int todayCamp = numericComponent.GetAsInt(NumericType.BattleTodayCamp);
+						//todayCamp = todayCamp > 0 ? todayCamp : int.Parse(request.ParamInfo);
+						int todayCamp = int.Parse(request.ParamInfo);
 						numericComponent.Set(NumericType.BattleCamp, todayCamp); //1 2
-						numericComponent.Set(NumericType.BattleTodayCamp, todayCamp); //1 2
+						//numericComponent.Set(NumericType.BattleTodayCamp, todayCamp); //1 2
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
 						sceneConfig = SceneConfigCategory.Instance.Get(request.ChapterId);
 						int startIndex = todayCamp == 1 ? 0 : 3;

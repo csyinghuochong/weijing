@@ -3,7 +3,7 @@
 namespace ET
 {
 
-    [Timer(TimerType.ArenaTimer)]
+    [Timer(TimerType.ArenaSceneTimer)]
     public class ArenaTimer : ATimer<ArenaSceneComponent>
     {
         public override void Run(ArenaSceneComponent self)
@@ -24,7 +24,7 @@ namespace ET
     {
         public override void Awake(ArenaSceneComponent self)
         {
-            self.OnZeroClockUpdate();
+            self.CheckTimer();
         }
     }
 
@@ -47,6 +47,37 @@ namespace ET
             self.BeginTimer();
         }
 
+        public static void CheckTimer(this ArenaSceneComponent self)
+        {
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            int curTime = dateTime.Hour * 60 + dateTime.Minute;
+
+            FuntionConfig funtionConfig = FuntionConfigCategory.Instance.Get(1031);
+            string[] openTimes = funtionConfig.OpenTime.Split('@');
+            int openTime = int.Parse(openTimes[0].Split(';')[0]) * 60 + int.Parse(openTimes[0].Split(';')[1]);
+            int closeTime = int.Parse(openTimes[1].Split(';')[0]) * 60 + int.Parse(openTimes[1].Split(';')[1]);
+            int overTime = int.Parse(openTimes[2].Split(';')[0]) * 60 + int.Parse(openTimes[2].Split(';')[1]);
+
+            if (curTime < openTime)
+            {
+                self.AreneSceneStatu = 0;
+            }
+            else if (curTime < closeTime)
+            {
+                self.AreneSceneStatu = 1;
+            }
+            else if (curTime < overTime)
+            {
+                self.AreneSceneStatu = 2;
+            }
+            else
+            {
+                return;
+            }
+            TimerComponent.Instance.Remove(ref self.Timer);
+            self.BeginTimer();
+        }
+
         public static void BeginTimer(this ArenaSceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
@@ -58,7 +89,7 @@ namespace ET
             if (curTime < openTime && self.AreneSceneStatu== 0)
             {
                 self.AreneSceneStatu = 1;
-                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (openTime - curTime), TimerType.ArenaTimer, self);
+                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (openTime - curTime), TimerType.ArenaSceneTimer, self);
                 return;
             }
 
@@ -66,7 +97,7 @@ namespace ET
             if (curTime < closeTime && self.AreneSceneStatu == 1)
             {
                 self.AreneSceneStatu = 2;
-                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow()+ TimeHelper.Minute * (closeTime- curTime), TimerType.ArenaTimer,self);
+                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow()+ TimeHelper.Minute * (closeTime- curTime), TimerType.ArenaSceneTimer,self);
                 return;
             }
 
@@ -74,7 +105,7 @@ namespace ET
             if (curTime < overTime && self.AreneSceneStatu == 2)
             {
                 self.AreneSceneStatu = 3;
-                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (overTime - curTime), TimerType.ArenaTimer, self);
+                self.Timer = TimerComponent.Instance.NewOnceTimer(TimeHelper.ServerNow() + TimeHelper.Minute * (overTime - curTime), TimerType.ArenaSceneTimer, self);
             }
         }
 

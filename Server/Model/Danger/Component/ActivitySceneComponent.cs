@@ -14,8 +14,5 @@ namespace ET
 
         public long Timer;
 
-        public bool OnBattleOpen;
-
-        public bool OnBattleClose;
     }
 }

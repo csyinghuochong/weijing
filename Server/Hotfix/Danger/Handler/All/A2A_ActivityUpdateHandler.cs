@@ -38,9 +38,15 @@ namespace ET
                     }
                     break;
                 case SceneType.Arena:
-                    if (activityType == 15)
+                    if (activityType == 0)
                     {
                         scene.GetComponent<ArenaSceneComponent>().OnZeroClockUpdate();
+                    }
+                    break;
+                case SceneType.Battle:
+                    if (activityType == 0)
+                    {
+                        scene.GetComponent<BattleSceneComponent>().OnZeroClockUpdate();
                     }
                     break;
                 case SceneType.PaiMai:
