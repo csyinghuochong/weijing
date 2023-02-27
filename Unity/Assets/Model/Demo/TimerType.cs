@@ -59,12 +59,12 @@
         public const int TowerOpenTimer = 1068;
         public const int JoystickTimer = 1069;
         public const int UIMainTimer = 1070;
-        public const int ShenQiMakeTimer = 1063;
-        public const int WatchTimer = 1064;
-        public const int ArenaSceneTimer = 1065;
-        public const int XuLieZhenTimer = 1066;
-        public const int UIMainFPSTimer = 1067;
-        public const int BattleSceneTimer = 1068;
+        public const int ShenQiMakeTimer = 1071;
+        public const int WatchTimer = 1072;
+        public const int ArenaSceneTimer = 1073;
+        public const int XuLieZhenTimer = 1074;
+        public const int UIMainFPSTimer = 1075;
+        public const int BattleSceneTimer = 1076;
         // 不能超过10000
     }
 }
