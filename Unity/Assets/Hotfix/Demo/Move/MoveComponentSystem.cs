@@ -327,7 +327,7 @@ namespace ET
                 return;
             }
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-            if (skillConfig.IfStopMove != 0)
+            if (skillConfig.IfStopMove != 0 || skillConfig.PassiveSkillType == 0)
             {
                 return;
             }
