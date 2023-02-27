@@ -614,11 +614,10 @@ namespace ET
             }
 
             //藏宝图
-            if (itemconf.ItemSubType == 127) {
-
+            if (itemconf.ItemSubType == 127 && !string.IsNullOrEmpty(self.BagInfo.ItemPar)) 
+            {
                 int sceneID = int.Parse(self.BagInfo.ItemPar.Split('@')[0]);
                 self.ItemDes.GetComponent<Text>().text =  $"前往地图:{DungeonConfigCategory.Instance.Get(sceneID).ChapterName}开启藏宝图!";
-
             }
 
             string langStr = GameSettingLanguge.LoadLocalization("使用等级");
