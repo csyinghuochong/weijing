@@ -148,6 +148,15 @@ namespace ET
                 {
                     continue;
                 }
+                if (battleInfo.Camp1Player.Contains(unitid))
+                {
+                    return (battleInfo.FubenInstanceId, 1);
+                }
+                if (battleInfo.Camp2Player.Contains(unitid))
+                {
+                    return (battleInfo.FubenInstanceId, 2);
+                }
+
                 if (battleInfo.PlayerNumber < ComHelp.GetPlayerLimit(sceneId))
                 {
                     battleInfo.PlayerNumber++;
