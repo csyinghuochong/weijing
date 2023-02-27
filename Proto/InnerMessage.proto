@@ -161,6 +161,7 @@ message Center2A_RegisterAccount // IActorResponse
     int32 RpcId = 90;
     int32 Error = 91;
     string Message = 92;
+    int64 AccountId = 1;
 }
 
 //ResponseType C2C_CenterServerInfoRespone

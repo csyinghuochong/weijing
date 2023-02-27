@@ -256,8 +256,16 @@ namespace ET
             }
         }
 
-        public static void InitBuff(this BuffManagerComponent self)
+        public static void InitBuff(this BuffManagerComponent self, int sceneType)
         {
+            if (sceneType == SceneTypeEnum.Arena)
+            {
+                BuffData buffData_2 = new BuffData();
+                buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(99002002);
+                buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
+                self.GetParent<Unit>().GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, self.GetParent<Unit>(), null);
+            }
+
             UnitInfoComponent unitInfoComponent = self.GetParent<Unit>().GetComponent<UnitInfoComponent>();
             for (int i = 0; i < unitInfoComponent.Buffs.Count; i++)
             {

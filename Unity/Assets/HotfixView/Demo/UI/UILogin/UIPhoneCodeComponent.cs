@@ -79,6 +79,8 @@ namespace ET
         public static void OnCommitCodeHandler(this UIPhoneCodeComponent self, string phone)
         {
             Log.Debug($"OnCommitCodeHandler : {phone}");
+
+            self.OnRquestBingPhone(phone).Coroutine();
         }
 
         public static async ETTask OnRquestBingPhone(this UIPhoneCodeComponent self, string phone)
@@ -94,7 +96,9 @@ namespace ET
             {
                 Center2C_PhoneBinging m2C_Reload = await session.Call(new C2Center_PhoneBinging()
                 {
-                    
+                    Account = accountInfoComponent.Account,
+                    AccountId = accountInfoComponent.AccountId, 
+                    PhoneNumber = phone,    
                 }) as Center2C_PhoneBinging;
             }
             session.Dispose();

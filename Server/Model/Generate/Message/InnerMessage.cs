@@ -350,6 +350,9 @@ namespace ET
 		[ProtoMember(92)]
 		public string Message { get; set; }
 
+		[ProtoMember(1)]
+		public long AccountId { get; set; }
+
 	}
 
 	[ResponseType(nameof(C2C_CenterServerInfoRespone))]

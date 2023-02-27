@@ -266,7 +266,7 @@ namespace ET
 						break;
 				}
 
-				unit.GetComponent<BuffManagerComponent>().InitBuff();
+				unit.GetComponent<BuffManagerComponent>().InitBuff(request.SceneType);
 				unit.GetComponent<DBSaveComponent>().Activeted();
 				unit.GetComponent<SkillPassiveComponent>().Activeted();
 				unit.OnUpdateHorseRide();

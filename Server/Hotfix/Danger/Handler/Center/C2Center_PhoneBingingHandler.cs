@@ -12,6 +12,13 @@ namespace ET
         {
             using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Register, request.Account.Trim().GetHashCode()))
             {
+                if (request.AccountId == 0 || string.IsNullOrEmpty(request.Account) || string.IsNullOrEmpty(request.PhoneNumber))
+                {
+                    response.Error = ErrorCore.ERR_NetWorkError;
+                    reply();
+                    return;
+                }
+
                 List<DBCenterAccountInfo> resultAccounts = await Game.Scene.GetComponent<DBComponent>().Query<DBCenterAccountInfo>(session.DomainZone(),
                     _account => _account.Account.Equals(request.PhoneNumber));
                 if (resultAccounts.Count > 0)
@@ -38,9 +45,11 @@ namespace ET
                     return;
                 }
                 DBCenterAccountInfo dBCenterAccountInfo = resultAccounts[0];
-                if (dBCenterAccountInfo.PlayerInfo.PhoneNumber.Equals(request.PhoneNumber))
+                if (!string.IsNullOrWhiteSpace(dBCenterAccountInfo.PlayerInfo.PhoneNumber)
+                   && dBCenterAccountInfo.PlayerInfo.PhoneNumber.Equals(request.PhoneNumber))
                 {
                     Log.Error($"PhoneBinging: resultAccounts.Count");
+                    response.Error = ErrorCore.ERR_BingPhoneError_2;
                     reply();
                     return;
                 }
