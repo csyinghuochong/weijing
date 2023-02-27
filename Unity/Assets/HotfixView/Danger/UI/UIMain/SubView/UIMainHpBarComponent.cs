@@ -15,6 +15,7 @@ namespace ET
         public GameObject Img_BossHp;
         public GameObject MonsterNode;
         public GameObject BossNode;
+        public GameObject Lab_Owner;
 
         public long LockMonsterId;
         public long LockBossId;
@@ -40,6 +41,7 @@ namespace ET
             self.Img_BossHp = rc.Get<GameObject>("Img_BossHp");
             self.MonsterNode = rc.Get<GameObject>("MonsterNode");
             self.BossNode = rc.Get<GameObject>("BossNode");
+            self.Lab_Owner = rc.Get<GameObject>("Lab_Owner");
 
             self.MonsterNode.SetActive(false);
             self.BossNode.SetActive(false);
