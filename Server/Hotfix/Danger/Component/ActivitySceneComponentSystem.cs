@@ -102,7 +102,7 @@ namespace ET
             self.SaveDB();
 
             //每日活动
-            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000, TimerType.ActivityTimer, self);
+            self.Timer = TimerComponent.Instance.NewRepeatedTimer(60000 + self.DomainZone() * 1000, TimerType.ActivityTimer, self);
         }
 
         public static  void SaveDB(this ActivitySceneComponent self)
