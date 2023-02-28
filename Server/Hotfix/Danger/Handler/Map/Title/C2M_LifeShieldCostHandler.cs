@@ -50,6 +50,8 @@ namespace ET
             //扣除装备
             bagComponent.OnCostItemData(bagidList, ItemLocType.ItemLocBag);
 
+            Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, true, true);
+
             response.ShieldList = skillsetComponent.LifeShieldList;
             reply();
             await ETTask.CompletedTask;
