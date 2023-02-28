@@ -171,6 +171,12 @@ namespace ET
             bool ifMonsterBoss_Def = false;
             bool petfuben = false;
 
+            bool playerPKStatus = false;
+            if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Player) {
+                playerPKStatus = true;
+            }
+
+
             //计算是否闪避
             int defendUnitLv = 0;
             defendUnit.GetComponent<SkillManagerComponent>().InterruptSing(0,false);
@@ -263,6 +269,12 @@ namespace ET
 
             float initHitPro = 0.9f;
             float HitPro = initHitPro + HitLvPro + addHitPro + attackPet_hit - (addDodgePro + DodgeLvPro + defendPet_dodge);
+
+            //pk命中
+            if (playerPKStatus) {
+                HitPro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerHitSubPro);
+            }
+
             //最低命中
             if (HitPro <= 0.75f) {
                 HitPro = 0.75f;
@@ -344,7 +356,7 @@ namespace ET
 
                 //查看对应武器
                 float weaponAddAct = 0;
-                switch (UnitHelper.GetWeaponType(attackUnit))
+                switch(UnitHelper.GetWeaponType(attackUnit))
                 {
                     //刀
                     case 1:
@@ -572,8 +584,24 @@ namespace ET
                     }
                 }
 
+                //pk相关
+                if (playerPKStatus) {
+                    //玩家之间PK伤害降低80%
+                    damgePro -= 0.2f;
+                    damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerAllDamgeSubPro);
+                    //普通攻击降低
+                    if (skillconfig.SkillActType == 0)
+                    {
+                        damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerActDamgeSubPro);
+                    }
+                    //技能伤害降低
+                    if (skillconfig.SkillActType == 1)
+                    {
+                        damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerSkillDamgeSubPro);
+                    }
+                }
+
                 damgePro = damgePro < 0 ? 0 : damgePro;
-                //Log.Info("damge = " + damge + " damgePro = " + damgePro);
                 damge = (int)(damge * damgePro);
 
                 //格挡值抵消
@@ -612,6 +640,13 @@ namespace ET
                     addResPro += addResLvPro;
 
                     float CriPro = addCriPro + attackPet_cri - addResPro ;
+
+                    //pk命中
+                    if (playerPKStatus)
+                    {
+                        CriPro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerCriSubPro);
+                    }
+
 
                     if (CriPro <= 0f)
                     {
@@ -1221,7 +1256,7 @@ namespace ET
             {
                 AddUpdateProDicList(lifeShieldList[i].HideID, lifeShieldList[i].HideValue, UpdateProDicList);
             }
-            
+
             //称号属性
             List<HideProList> titlePros = unit.GetComponent<TitleComponent>().GetTitlePro();
             for (int i = 0; i < titlePros.Count; i++)
@@ -1298,23 +1333,6 @@ namespace ET
             double BaseDamgeSub = occBaseDamgeSubAdd + BaseDamgeSub_EquipSuit;
 
             //更新基础属性
-            /*
-            numericComponent.Set(NumericType.Base_MaxHp_Base, BaseHp, notice);
-            numericComponent.Set(NumericType.Base_MinAct_Base, BaseMinAct, notice);
-            numericComponent.Set(NumericType.Base_MaxAct_Base, BaseMaxAct, notice);
-            numericComponent.Set(NumericType.Base_MinDef_Base, BaseMinDef, notice);
-            numericComponent.Set(NumericType.Base_MaxDef_Base, BaseMaxDef, notice);
-            numericComponent.Set(NumericType.Base_MinAdf_Base, BaseMinAdf, notice);
-            numericComponent.Set(NumericType.Base_MaxAdf_Base, BaseMaxAdf, notice);
-            numericComponent.Set(NumericType.Base_Speed_Base, BaseMoveSpeed, notice);
-            numericComponent.Set(NumericType.Base_Cri_Base, BaseCri, notice);
-            numericComponent.Set(NumericType.Base_Hit_Base, BaseHit, notice);
-            numericComponent.Set(NumericType.Base_Dodge_Base, BaseDodge, notice);
-            numericComponent.Set(NumericType.Base_ActDamgeSubPro_Base, BaseDefSub, notice);
-            numericComponent.Set(NumericType.Base_MageDamgeSubPro_Base, BaseAdfSub, notice);
-            numericComponent.Set(NumericType.Base_DamgeSubPro_Base, BaseDamgeSubAdd, notice);
-            */
-
             AddUpdateProDicList((int)NumericType.Base_MaxHp_Base, BaseHp, UpdateProDicList);
             AddUpdateProDicList((int)NumericType.Base_MinAct_Base, BaseMinAct, UpdateProDicList);
             AddUpdateProDicList((int)NumericType.Base_MaxAct_Base, BaseMaxAct, UpdateProDicList);
