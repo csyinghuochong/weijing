@@ -52,6 +52,8 @@ namespace ET
             int level = self.ZoneScene().GetComponent<SkillSetComponent>().GetLifeShieldLevel(self.ShieldType);
 
             UICommonHelper.SetImageGray(self.ImageIcon, level == 0);
+            int showId = self.ZoneScene().GetComponent<SkillSetComponent>().GetLifeShieldShowId(self.ShieldType);
+            self.TextName.GetComponent<Text>().text = LifeShieldConfigCategory.Instance.Get(showId).ShieldName;
         }
 
         public static void OnInitUI(this UISkillLifeShieldItemComponent self, int stype)

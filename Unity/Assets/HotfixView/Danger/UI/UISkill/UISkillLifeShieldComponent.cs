@@ -108,6 +108,11 @@ namespace ET
         {
             string[] huishouInfo = dataparams.Split('_');
             BagInfo bagInfo = self.BagComponent.GetBagInfo(long.Parse(huishouInfo[1]));
+            if (bagInfo == null)
+            {
+                return;
+            }
+
             //1新增  2移除 
             if (huishouInfo[0] == "1")
             {
@@ -230,8 +235,8 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("注入成功!本次增加" + response.AddExp + "点魂值");
             }
             self.ZoneScene().GetComponent<SkillSetComponent>().LifeShieldList = response.ShieldList;
-            self.OnUpdateUI();
             self.OnClickShieldHandler(self.ShieldType);
+            self.OnUpdateUI();
         }
 
         public static void UpdateBagUI(this UISkillLifeShieldComponent self)
@@ -245,6 +250,7 @@ namespace ET
             allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Material));
             allInfos.AddRange(bagComponent.GetItemsByType(ItemTypeEnum.Equipment));
 
+            int number = 0;
             for (int i = 0; i < allInfos.Count; i++)
             {
                 if (!ConfigHelper.ItemAddShieldExp.ContainsKey(allInfos[i].ItemID))
@@ -253,9 +259,9 @@ namespace ET
                 }
 
                 UIItemComponent uI_1 = null;
-                if (i < self.ItemUIlist.Count)
+                if (number < self.ItemUIlist.Count)
                 {
-                    uI_1 = self.ItemUIlist[i];
+                    uI_1 = self.ItemUIlist[number];
                     uI_1.GameObject.SetActive(true);
                 }
                 else
@@ -273,9 +279,10 @@ namespace ET
                 }
                 uI_1.UpdateItem(allInfos[i], ItemOperateEnum.HuishouBag);
                 uI_1.HideItemName();
+                number++;
             }
 
-            for (int i = allInfos.Count; i < self.ItemUIlist.Count; i++)
+            for (int i = number; i < self.ItemUIlist.Count; i++)
             {
                 self.ItemUIlist[i].GameObject.SetActive(false);
             }
