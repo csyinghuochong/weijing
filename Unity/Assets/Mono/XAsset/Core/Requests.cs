@@ -633,9 +633,8 @@ namespace libx
         {
             if (assetBundle == null)
                 return;
-
-            string name_1 = Assets.GetOriginalAssetName(assetBundle.name);
-            UnityEngine.Debug.Log($"释放资源: {name_1}");
+            //string name_1 = Assets.GetOriginalAssetName(assetBundle.name);
+            //UnityEngine.Debug.Log($"释放资源: {name_1}");
             assetBundle.Unload(true);
             assetBundle = null;
         }

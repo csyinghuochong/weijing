@@ -1215,6 +1215,13 @@ namespace ET
                 AddUpdateProDicList(tianfuProList[i].HideID, tianfuProList[i].HideValue, UpdateProDicList);
             }
 
+            //生命护盾
+            List<HideProList> lifeShieldList = unit.GetComponent<SkillSetComponent>().GetShieldProLists();
+            for (int i = 0; i < lifeShieldList.Count; i++)
+            {
+                AddUpdateProDicList(lifeShieldList[i].HideID, lifeShieldList[i].HideValue, UpdateProDicList);
+            }
+            
             //称号属性
             List<HideProList> titlePros = unit.GetComponent<TitleComponent>().GetTitlePro();
             for (int i = 0; i < titlePros.Count; i++)

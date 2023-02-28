@@ -689,12 +689,49 @@ namespace ET
 		
 		public static List<HideProList> GetShieldProLists(this SkillSetComponent self)
         {
-			List<HideProList> prolist = new List<HideProList>();
+			List<HideProList> proList = new List<HideProList>();
 			for (int i = 0; i < self.LifeShieldList.Count; i++)
-			{ 
-			
+			{
+				if (self.LifeShieldList[i].Level == 0)
+				{
+					continue;
+				}
+
+				int lifeShiledid = LifeShieldConfigCategory.Instance.GetShieldId(self.LifeShieldList[i].ShieldType, self.LifeShieldList[i].Level);
+				if (lifeShiledid == 0)
+				{
+					continue;
+				}
+
+				LifeShieldConfig lifeShieldConfig = LifeShieldConfigCategory.Instance.Get(lifeShiledid);
+				string[] attributeInfoList = lifeShieldConfig.AddProperty.Split('@');
+				for (int a = 0; a < attributeInfoList.Length; a++)
+				{
+					string[] attributeInfo = attributeInfoList[a].Split(';');
+					int numericType = int.Parse(attributeInfo[0]);
+
+					if (NumericHelp.GetNumericValueType(numericType) == 2)
+					{
+						float fvalue = float.Parse(attributeInfo[1]);
+						proList.Add(new HideProList() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+					}
+					else
+					{
+						long lvalue = 0;
+						try
+						{
+							lvalue = long.Parse(attributeInfo[1]);
+						}
+						catch (Exception ex)
+						{
+							Log.Debug(ex.ToString() + $"报错LifeShield: {lifeShiledid}");
+						}
+
+						proList.Add(new HideProList() { HideID = numericType, HideValue = lvalue });
+					}
+				}
 			}
-			return prolist;	
+			return proList;	
         }
 
 		public static void OnShieldAddExp(this SkillSetComponent self, int shieldType, int addExp) 
