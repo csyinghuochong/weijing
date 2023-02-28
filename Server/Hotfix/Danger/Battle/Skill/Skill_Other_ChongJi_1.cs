@@ -69,6 +69,7 @@ namespace ET
             //Log.Debug($"OnFinished {speed_mul}");
             //TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Mul, Mathf.Max(0, speed_mul));
             TheUnitFrom.GetComponent<NumericComponent>().Set(NumericType.Extra_Buff_Speed_Add, 0);
+            this.Clear();
         }
     }
 }

@@ -159,6 +159,7 @@ namespace ET
         public override void OnFinished()
         {
             this.FinishPullMonster();
+            this.Clear();
         }
     }
 }

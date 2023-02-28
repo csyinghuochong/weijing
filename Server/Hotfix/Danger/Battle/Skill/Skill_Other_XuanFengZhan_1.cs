@@ -44,7 +44,7 @@ namespace ET
 
         public override void OnFinished()
         {
-
+            this.Clear();
         }
     }
 }

@@ -39,6 +39,7 @@
             }
 
             this.EndSkillEffect();
+            this.SkillInfo = null;
         }
     }
 }

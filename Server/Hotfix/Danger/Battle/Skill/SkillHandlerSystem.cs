@@ -335,6 +335,12 @@ namespace ET
             return self.SkillState;
         }
 
+        public static void Clear(this SkillHandler self)
+        {
+            self.ICheckShape = null;
+            self.SkillInfo = null;
+        }
+
         //1：自身
         //2：队友
         //3：己方【同阵营】

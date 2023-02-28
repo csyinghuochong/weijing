@@ -42,7 +42,7 @@
 
         public override void OnFinished()
         {
-            
+            this.Clear();
         }
 
     }
