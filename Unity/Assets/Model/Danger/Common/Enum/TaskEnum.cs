@@ -84,6 +84,8 @@ namespace ET
 
     //101： 战场胜利
     //102： 战场击杀玩家数量
+    //103:  战场存在时间
+    //104:  战场死亡
     public enum TaskCountryTargetType
     { 
         Login_1 =1,
@@ -104,9 +106,9 @@ namespace ET
         ChouKa_16 = 16,
         JianDing_17 = 17,
 
-
         BattleWin_101 = 101,
         BattleKillPlayer_102 = 102,
         BattleExist_103 = 103,
+        BattleDead_104 = 104,
     }
 }

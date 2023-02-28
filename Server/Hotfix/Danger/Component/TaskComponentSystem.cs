@@ -419,6 +419,7 @@ namespace ET
             if (bekill.Type == UnitType.Player && sceneType == SceneTypeEnum.Battle)
             {
                 self.TriggerTaskCountryEvent(TaskCountryTargetType.BattleKillPlayer_102, 0, 1);
+                bekill.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.BattleDead_104, 0, 1);
             }
             if (bekill.Type == UnitType.Monster)
             {

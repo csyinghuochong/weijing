@@ -326,15 +326,16 @@ namespace ET
             {
                 return;
             }
-            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
-            if (skillConfig.IfStopMove != 0 || skillConfig.PassiveSkillType == 0)
-            {
-                return;
-            }
             if (Vector3.Distance(unit.Position, self.Targets[targetCount - 1]) < 2f)
             {
                 return;
             }
+            SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
+            if (skillConfig.IfStopMove != 1)
+            {
+                return;
+            }
+
             self.MoveWait = true;
             self.TargetPosition = self.Targets[targetCount - 1];
             unit.GetComponent<StateComponent>().SetNetWaitEndTime(0);
