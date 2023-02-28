@@ -4488,3 +4488,20 @@ message M2C_LifeShieldCostResponse    // IActorLocationResponse
 	repeated LifeShieldInfo ShieldList = 1;	
 	int32 AddExp = 2;
 }
+
+//ResponseType M2C_ItemSplitResponse
+message C2M_ItemSplitRequest // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 OperateType = 1;				
+	int64 OperateBagID = 2;				
+	string OperatePar = 3;			//拆分数量
+}
+
+message M2C_ItemSplitResponse // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	string Message = 91;
+	int32 Error = 92;
+	string OperatePar = 1;
+}

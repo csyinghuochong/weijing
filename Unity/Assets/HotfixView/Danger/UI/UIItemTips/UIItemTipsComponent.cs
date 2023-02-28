@@ -7,6 +7,7 @@ namespace ET
     public class UIItemTipsComponent : Entity, IAwake
     {
 
+        public GameObject Btn_Split;
         public GameObject ImageQualityLine;
         public GameObject ImageQualityBg;
         public GameObject TextBtn_Use;
@@ -72,13 +73,15 @@ namespace ET
 
             self.Btn_Use = rc.Get<GameObject>("Btn_Use");
             self.Btn_Sell = rc.Get<GameObject>("Btn_Sell");
+            self.Btn_Split = rc.Get<GameObject>("Btn_Split");
             self.Obj_Lab_EquipBangDing = rc.Get<GameObject>("Lab_BangDing");
             self.Obj_Img_EquipBangDing = rc.Get<GameObject>("Img_BangDing");
 
             ButtonHelp.AddListenerEx(self.Imagebg, () => { self.OnCloseTips(); });
             ButtonHelp.AddListenerEx(self.Btn_Sell, () => { self.OnClickSell(); });
-            ButtonHelp.AddListenerEx(self.Btn_Use, () => { self.OnClickUse().Coroutine(); });
-           
+            ButtonHelp.AddListenerEx(self.Btn_Use, () => { self.OnClickUse().Coroutine(); });     
+            ButtonHelp.AddListenerEx(self.Btn_Split, () => { self.OnBtn_Split().Coroutine(); });
+
             self.Btn_StoreHouse = rc.Get<GameObject>("Btn_StoreHouse");
             ButtonHelp.AddListenerEx(self.Btn_StoreHouse, () => { self.OnBtn_StoreHouse(); });
             self.Btn_StoreHouse.SetActive(false);
@@ -193,6 +196,14 @@ namespace ET
         {
             self.ZoneScene().GetComponent<BagComponent>().SendXiangQianGem(self.BagInfo, usrPar).Coroutine();
             //注销Tips
+            self.OnCloseTips();
+        }
+
+        public static async ETTask OnBtn_Split(this UIItemTipsComponent self)
+        {
+            UI uI = await UIHelper.Create(self.ZoneScene(), UIType.UIRoleBagSplit);
+            uI.GetComponent<UIRoleBagSplitComponent>().OnInitUI(self.BagInfo);
+
             self.OnCloseTips();
         }
 
@@ -506,6 +517,7 @@ namespace ET
             self.Obj_Btn_HuiShouCancle.SetActive(false);
             self.Obj_Btn_XieXiaGemSet.SetActive(false);
             self.Btn_Use.SetActive(itemType != (int)ItemTypeEnum.Material);
+            self.Btn_Split.SetActive(itemType == (int)ItemTypeEnum.Material);
 
             //显示按钮
             switch ((ItemOperateEnum)equipTipsType)

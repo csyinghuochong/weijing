@@ -207,6 +207,14 @@ namespace ET
 
         }
 
+        //拆分道具
+        public static async ETTask<int> SendSplitItem(this BagComponent self, BagInfo bagInfo, int splitnumber)
+        {
+            C2M_ItemSplitRequest  c2M_ItemSplit = new C2M_ItemSplitRequest() { OperateBagID = bagInfo.BagInfoID, OperatePar = splitnumber.ToString() };
+            M2C_ItemSplitResponse m2C_ItemSplitResponse= (M2C_ItemSplitResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_ItemSplit);
+            return m2C_ItemSplitResponse.Error; 
+        }
+
         //使用道具
         public static async ETTask<int> SendUseItem(this BagComponent self, BagInfo bagInfo, string par = "")
         {

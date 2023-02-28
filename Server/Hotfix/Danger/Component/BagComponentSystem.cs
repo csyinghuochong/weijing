@@ -476,6 +476,25 @@ namespace ET
             }
         }
 
+        public static void OnAddItemDataNewCell(this BagComponent self, int itemid, int itemnumber, string getType)
+        {
+            BagInfo useBagInfo = new BagInfo();
+            useBagInfo.ItemID = itemid;
+            useBagInfo.ItemNum = itemnumber;
+            ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemid);
+            useBagInfo.Loc = itemCof.ItemType == (int)ItemTypeEnum.PetHeXin ? (int)ItemLocType.ItemPetHeXinBag : (int)ItemLocType.ItemLocBag;
+            useBagInfo.BagInfoID = IdGenerater.Instance.GenerateId();
+            useBagInfo.GemHole = "0_0_0_0";
+            useBagInfo.GemIDNew = "0_0_0_0";
+            useBagInfo.GetWay = getType;
+            self.GetItemByLoc((ItemLocType)useBagInfo.Loc).Add(useBagInfo);
+
+            M2C_RoleBagUpdate m2c_bagUpdate = new M2C_RoleBagUpdate();
+            m2c_bagUpdate.BagInfoAdd.Add(useBagInfo);
+            //通知客户端背包道具发生改变
+            MessageHelper.SendToClient(self.GetParent<Unit>(), m2c_bagUpdate);
+        }
+
         //添加背包道具道具[支持同时添加多个]
         public static bool OnAddItemData(this BagComponent self, List<RewardItem> rewardItems, string makeUserID, string getWay, bool notice = true, bool gm = false)
         {

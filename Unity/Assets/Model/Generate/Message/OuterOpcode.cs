@@ -518,5 +518,7 @@ namespace ET
 		 public const ushort M2C_AreneInfoResult = 10515;
 		 public const ushort C2M_LifeShieldCostRequest = 10516;
 		 public const ushort M2C_LifeShieldCostResponse = 10517;
+		 public const ushort C2M_ItemSplitRequest = 10518;
+		 public const ushort M2C_ItemSplitResponse = 10519;
 	}
 }
