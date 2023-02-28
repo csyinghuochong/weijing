@@ -7,6 +7,7 @@ namespace ET
 {
     public class UIRoleBagSplitComponent : Entity, IAwake
     {
+        public GameObject ButtonClose;
         public InputField InputField;
         public GameObject Btn_CostNum;
         public GameObject Btn_AddNum;
@@ -34,6 +35,9 @@ namespace ET
 
             self.Btn_Split = rc.Get<GameObject>("Btn_Split");
             self.Btn_Split.GetComponent<Button>().onClick.AddListener(self.OnBtn_Split);
+
+            self.ButtonClose = rc.Get<GameObject>("ButtonClose");
+            self.ButtonClose.GetComponent<Button>().onClick.AddListener(() => { UIHelper.Remove(self.ZoneScene(), UIType.UIRoleBagSplit); });
 
             self.UICommonItem = self.AddChild<UIItemComponent, GameObject>(rc.Get<GameObject>("UICommonItem"));
             self.UICommonItem.Label_ItemNum.SetActive(false);
