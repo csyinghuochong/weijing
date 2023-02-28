@@ -109,7 +109,7 @@ namespace ET
             await  self.ChengJiuComponent.ReceivedReward(self.RewardId);
             for (int i = 0; i < self.RewardUIList.Count; i++)
             {
-                self.RewardUIList[i].Received.SetActive(true);
+                self.RewardUIList[i].SetSelected(self.RewardId);
             }
         }
 

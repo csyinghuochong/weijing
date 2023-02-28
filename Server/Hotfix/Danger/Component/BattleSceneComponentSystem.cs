@@ -130,7 +130,7 @@ namespace ET
             {
                 Scene scene = Game.Scene.Get(self.BattleInfos[i].FubenId);
                 await scene.GetComponent<BattleDungeonComponent>().OnBattleOver(self.BattleInfos[i]);
-                await TimerComponent.Instance.WaitAsync(60000 + self.DomainZone() * 10000);
+                await TimerComponent.Instance.WaitAsync(60000 + self.DomainZone() * 1000);
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
             }
