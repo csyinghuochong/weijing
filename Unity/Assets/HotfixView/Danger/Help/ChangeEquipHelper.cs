@@ -189,7 +189,7 @@ namespace ET
             }
 
             // 设置漫反射贴图和UV
-            newSkinMR.sharedMaterial.mainTexture = newDiffuseTexture;
+            newSkinMR.material.mainTexture = newDiffuseTexture;
             newSkinMR.sharedMesh.uv = newUVs;
             skinnedMeshRenderers.Clear();
 
