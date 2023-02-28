@@ -209,6 +209,19 @@ namespace ET
             {
                 return;
             }
+
+            SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
+            if (self.ShieldType == 6)
+            {
+                int hplv = skillSetComponent.GetLifeShieldLevel(self.ShieldType);
+                int otlv = skillSetComponent.GetOtherMinLevel();
+                if (hplv < otlv)
+                {
+                    FloatTipManager.Instance.ShowFloatTip("请先升级其他护盾！");
+                    return;
+                }
+            }
+
             C2M_LifeShieldCostRequest  request = new C2M_LifeShieldCostRequest() { OperateType = self.ShieldType, OperateBagID = costs };
             M2C_LifeShieldCostResponse response = (M2C_LifeShieldCostResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
