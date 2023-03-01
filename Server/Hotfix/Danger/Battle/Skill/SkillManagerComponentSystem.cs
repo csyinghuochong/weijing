@@ -394,8 +394,12 @@ namespace ET
             if (zhudong)
             {
                 SkillPassiveComponent skillPassiveComponent = unit.GetComponent<SkillPassiveComponent>();
-                skillPassiveComponent.OnTrigegerPassiveSkill(weaponSkillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7, skillcmd.TargetID, skillcmd.SkillID);
-                skillPassiveComponent.OnTrigegerPassiveSkill(weaponSkillConfig.SkillRangeSize <= 4 ? SkillPassiveTypeEnum.AckDistance_9 : SkillPassiveTypeEnum.AckDistance_10, skillcmd.TargetID, skillcmd.SkillID);
+                if (skillPassiveComponent == null)
+                {
+                    Log.Debug($"skillPassiveComponent == null: {unit.Type}");
+                }
+                skillPassiveComponent?.OnTrigegerPassiveSkill(weaponSkillConfig.SkillActType == 0 ? SkillPassiveTypeEnum.AckGaiLv_1 : SkillPassiveTypeEnum.SkillGaiLv_7, skillcmd.TargetID, skillcmd.SkillID);
+                skillPassiveComponent?.OnTrigegerPassiveSkill(weaponSkillConfig.SkillRangeSize <= 4 ? SkillPassiveTypeEnum.AckDistance_9 : SkillPassiveTypeEnum.AckDistance_10, skillcmd.TargetID, skillcmd.SkillID);
             }
             self.TriggerAddSkill(skillcmd, skillList[0].WeaponSkillID);
             return m2C_Skill;

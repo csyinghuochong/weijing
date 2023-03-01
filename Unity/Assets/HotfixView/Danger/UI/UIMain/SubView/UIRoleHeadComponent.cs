@@ -72,7 +72,6 @@ namespace ET
 
         public static void OnUpdateCombat(this UIRoleHeadComponent self)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             long combat = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Combat;
             self.Lab_Combat.GetComponent<Text>().text = $"战力: {combat}";
         }

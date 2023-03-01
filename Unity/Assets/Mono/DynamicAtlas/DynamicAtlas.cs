@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -383,7 +384,15 @@ namespace GFrame
         public void AddTexture(int posX, int posY, Texture2D srcTex)
         {
             //可以把一张贴图画到另一张贴图上
-            Graphics.CopyTexture(srcTex, 0, 0, 0, 0, srcTex.width, srcTex.height, m_Texture, 0, 0, posX, posY);
+            try
+            {
+                Graphics.CopyTexture(srcTex, 0, 0, 0, 0, srcTex.width, srcTex.height, m_Texture, 0, 0, posX, posY);
+            }
+            catch (Exception ex)
+            {
+                UnityEngine.Debug.Log($"AddTextureError: {srcTex.name}");
+                UnityEngine.Debug.Log(ex.ToString());
+            }
         }
 
         public void RemoveTexture(Rect rect)
