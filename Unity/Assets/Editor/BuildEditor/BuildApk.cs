@@ -146,7 +146,8 @@ public class MyEditorScript
 			postionList += $"1;{vector3.x.ToString("F2")},{vector3.y.ToString("F2")},{vector3.z.ToString("F2")};{monsterId};1";
 			if (i != gameObject.transform.childCount - 1)
 			{
-				postionList += "@";
+				//postionList += "@";
+				postionList += "\r\n";
 			}
 			//postionList += "\r\n";
 		}
