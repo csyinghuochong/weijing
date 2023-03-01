@@ -31,8 +31,8 @@ namespace ET
             GameObject pageView = rc.Get<GameObject>("SubViewNode");
 
             self.Btn_Life = rc.Get<GameObject>("Btn_Life");
+            self.Btn_Life.SetActive(true);
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            self.Btn_Life.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
             UI uiPageView = self.AddChild<UI, string, GameObject>( "FunctionBtnSet", pageView);
             UIPageViewComponent pageViewComponent = uiPageView.AddComponent<UIPageViewComponent>();
 
@@ -45,7 +45,6 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)SkillPageEnum.SkillTianFu] = ABPathHelper.GetUGUIPath("Main/Skill/UISkillTianFu");
             pageViewComponent.UISubViewPath[(int)SkillPageEnum.SkillLifeShield] = ABPathHelper.GetUGUIPath("Main/Skill/UISkillLifeShield");
             
-
             pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillLearn] = typeof(UISkillLearnComponent);
             pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillSet] = typeof(UISkillSetComponent);
             pageViewComponent.UISubViewType[(int)SkillPageEnum.SkillMake] = typeof(UISkillMakeComponent);

@@ -586,7 +586,7 @@ namespace ET
                             ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
                         }
 
-                        unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JianDingEqipNumber_212, 0, 1);
+                        unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.JianDingEqipNumber_212, int.Parse(qulitylv), 1);
                     }
                     else 
                     {

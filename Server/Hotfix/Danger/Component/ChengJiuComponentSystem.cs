@@ -203,28 +203,40 @@ namespace ET
                 {
                     continue;
                 }
-                if (target_id != chengJiuConfig.TargetID)
+                
+                switch (chengJiuTarget)
                 {
-                    continue;
+                    case ChengJiuTargetEnum.PlayerLevel_205:
+                    case ChengJiuTargetEnum.SkillShuLianDu_208:
+                    case ChengJiuTargetEnum.CombatToValue_211:
+                    case ChengJiuTargetEnum.ZodiacEquipNumber_215:
+                    case ChengJiuTargetEnum.PetNSkill_305:
+                    case ChengJiuTargetEnum.PegScoreToValue_307:
+                    case ChengJiuTargetEnum.PetArrayScoreToValue_308:
+                    case ChengJiuTargetEnum.PetTianTiRank_309:
+                    case ChengJiuTargetEnum.ZiZhiToValue_311:
+                    case ChengJiuTargetEnum.ZiZhiUpValue_312:
+                        if (target_id != chengJiuConfig.TargetID)
+                        {
+                            continue;
+                        }
+                        chengJiuInfo.ChengJiuProgess = target_value;
+                        break;
+                    case ChengJiuTargetEnum.JianDingEqipNumber_212:
+                        if (target_id < chengJiuConfig.TargetID)
+                        {
+                            continue;
+                        }
+                        chengJiuInfo.ChengJiuProgess += target_value;
+                        break;
+                    default:
+                        if (target_id != chengJiuConfig.TargetID)
+                        {
+                            continue;
+                        }
+                        chengJiuInfo.ChengJiuProgess += target_value;
+                        break;
                 }
-                if (chengJiuTarget == ChengJiuTargetEnum.PlayerLevel_205
-                 || chengJiuTarget == ChengJiuTargetEnum.SkillShuLianDu_208
-                 || chengJiuTarget == ChengJiuTargetEnum.CombatToValue_211
-                 || chengJiuTarget == ChengJiuTargetEnum.ZodiacEquipNumber_215
-                 || chengJiuTarget == ChengJiuTargetEnum.PegScoreToValue_307
-                 || chengJiuTarget == ChengJiuTargetEnum.PetArrayScoreToValue_308
-                 || chengJiuTarget == ChengJiuTargetEnum.PetTianTiRank_309
-                 || chengJiuTarget == ChengJiuTargetEnum.ZiZhiToValue_311
-                 || chengJiuTarget == ChengJiuTargetEnum.ZiZhiUpValue_312
-                 || chengJiuTarget == ChengJiuTargetEnum.PetNSkill_305)
-                {
-                    chengJiuInfo.ChengJiuProgess = target_value;
-                }
-                else
-                {
-                    chengJiuInfo.ChengJiuProgess += target_value;
-                }
-
 
                 int acitiveId = 0;
                 switch (chengJiuTarget)
