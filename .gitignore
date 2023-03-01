@@ -2,13 +2,11 @@
 .project
 .pydevproject
 .sconsign.dblite
-.csproj
-.asset
+.cspro
 .bytes
 
 *.pyc
 *.suo
-*.asset
 
 .settings/
 .localhistory/
