@@ -39,6 +39,9 @@ namespace ET
 
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
+        public GameObject DoMoveLeft;
+        public GameObject DoMoveRight;
+        public GameObject DoMoveBottom;
         public GameObject Button_NewYear;
         public GameObject Button_FenXiang;
         public GameObject FunctionSetBtn;
@@ -123,6 +126,11 @@ namespace ET
         public override void Awake(UIMainComponent self)
         {
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+
+            Transform transform = self.GetParent<UI>().GameObject.transform;
+            self.DoMoveLeft = transform.Find("DoMoveLeft").gameObject;
+            self.DoMoveRight = transform.Find("DoMoveRight").gameObject;
+            self.DoMoveBottom = transform.Find("DoMoveBottom").gameObject;
 
             self.Btn_PetFormation = rc.Get<GameObject>("Btn_PetFormation");
             ButtonHelp.AddListenerEx(self.Btn_PetFormation, () => { UIHelper.Create(self.ZoneScene(), UIType.UIPetChallenge).Coroutine(); });
@@ -564,7 +572,10 @@ namespace ET
 
         public static void ShowMainUI(this UIMainComponent self, bool show)
         {
-            self.GetParent<UI>().GameObject.SetActive(show);
+            //self.GetParent<UI>().GameObject.SetActive(show);
+            self.DoMoveLeft.SetActive(show);
+            self.DoMoveRight.SetActive(show);
+            self.DoMoveBottom.SetActive(show);
             if (show)
             {
                 self.UIMainChat.UpdatePosition().Coroutine();
@@ -572,7 +583,7 @@ namespace ET
             else
             {
                 self.ZoneScene().GetComponent<SkillIndicatorComponent>()?.RecoveryEffect();
-                self.UIJoystickMoveComponent.ResetUI(); //防止打开其他界面摇杆接受不到ui事件
+                //self.UIJoystickMoveComponent.ResetUI(); //防止打开其他界面摇杆接受不到ui事件
             }
         }
 
