@@ -98,7 +98,7 @@ namespace ET
             self.ButtonPhone = rc.Get<GameObject>("ButtonPhone");
             ButtonHelp.AddListenerEx(self.ButtonPhone, self.OnButtonPhone);
             AccountInfoComponent accountInfoComponent = self.ZoneScene().GetComponent<AccountInfoComponent>();
-            self.ButtonPhone.SetActive(GMHelp.GmAccount.Contains(accountInfoComponent.Account));
+            self.ButtonPhone.SetActive(true);
 
             self.Smooth = rc.Get<GameObject>("Smooth");
             ButtonHelp.AddListenerEx(self.Smooth.transform.Find("Btn_Click").gameObject, self.OnSmooth);

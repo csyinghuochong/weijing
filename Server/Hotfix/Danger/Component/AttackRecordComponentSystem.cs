@@ -26,7 +26,7 @@ namespace ET
     {
         public static void BeAttacking(this AttackRecordComponent self, Unit attack, long hurtvalue)
         {
-            if (hurtvalue >= 0 ) //|| self.DropType != 1)
+            if (hurtvalue >= 0 || self.DropType != 3)
             {
                 return;
             }
@@ -40,7 +40,11 @@ namespace ET
             {
                 attackId = attack.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
             }
-            if (attackId > 0 && !self.BeAttackPlayerList.ContainsKey(attackId))
+            if (attackId == 0)
+            {
+                return;
+            }
+            if ( !self.BeAttackPlayerList.ContainsKey(attackId))
             {
                 self.BeAttackPlayerList.Add(attackId, 0);
             }

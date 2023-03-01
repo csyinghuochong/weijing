@@ -30,6 +30,7 @@ namespace ET
             self.DelaySkillList.Clear();
             self.SkillCDs.Clear();
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.SkillTimer, self);
+            self.FangunSkillId = int.Parse(GlobalValueConfigCategory.Instance.Get(2).Value);
         }
     }
 
@@ -403,7 +404,7 @@ namespace ET
         public static SkillCDItem AddSkillCD(this SkillManagerComponent self, int skillid, SkillConfig weaponConfig, bool zhudong)
         {
             SkillCDItem skillCd = null;
-            if (skillid == GlobalValueConfigCategory.Instance.FangunSkillId)
+            if (skillid == self.FangunSkillId)
             {
                 skillCd = self.UpdateFangunSkillCD();
             }
@@ -527,7 +528,7 @@ namespace ET
 
             if (self.FangunComboNumber >= 3)
             {
-                int fangunskill = GlobalValueConfigCategory.Instance.FangunSkillId;
+                int fangunskill = self.FangunSkillId;
                 self.FangunComboNumber = 0;
                 skillcd = new SkillCDItem();
                 skillcd.SkillID = fangunskill;

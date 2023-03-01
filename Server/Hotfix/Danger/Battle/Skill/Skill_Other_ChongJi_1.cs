@@ -58,8 +58,11 @@ namespace ET
                 this.SetSkillState(SkillState.Finished);
                 return;
             }
-            this.UpdateCheckPoint(this.TheUnitFrom.Position);
-            this.ExcuteSkillAction();
+            if (this.ICheckShape != null)
+            {
+                this.UpdateCheckPoint(this.TheUnitFrom.Position);
+                this.ExcuteSkillAction();
+            }
         }
 
         public override void OnFinished()

@@ -24,7 +24,7 @@ namespace ET
         {
             DayMonsterList.Clear();
             JianDingFuQulity = this.Get(44).Value2;
-            FangunSkillId = this.Get(2).Value2;
+            FangunSkillId = int.Parse(this.Get(2).Value);
 
             string[] dayrefresh = this.Get(79).Value.Split('@');
             for (int i = 0; i < dayrefresh.Length; i++)

@@ -10,6 +10,7 @@ namespace ET
         public long SkillPublicCDTime;      //公共CD
         public int FangunComboNumber;
         public long FangunLastTime;
+        public int FangunSkillId;
         public long Timer;
 
         public M2C_SkillCmd M2C_SkillCmd = new M2C_SkillCmd();
