@@ -220,7 +220,7 @@ namespace ET
             {
                 int hplv = skillSetComponent.GetLifeShieldLevel(self.ShieldType);
                 int otlv = skillSetComponent.GetOtherMinLevel();
-                if (hplv <= otlv)
+                if (otlv <= hplv)
                 {
                     FloatTipManager.Instance.ShowFloatTip("请先升级其他护盾！");
                     return;
