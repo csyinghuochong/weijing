@@ -27,7 +27,7 @@ namespace ET
             Unit enemyUnit = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(mastaerAttackId);
             if (enemyUnit == null || !enemyUnit.IsCanBeAttack())
             {
-                mastaerAttackId = master.GetComponent<HeroDataComponent>().AttackingId;
+                mastaerAttackId = master.GetComponent<AttackRecordComponent>().AttackingId;
                 enemyUnit = aiComponent.DomainScene().GetComponent<UnitComponent>().Get(mastaerAttackId);
             }
             if (enemyUnit == null || !enemyUnit.IsCanBeAttack())

@@ -37,6 +37,7 @@ namespace ET
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
             
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
+            unit.AddComponent<AttackRecordComponent>(true);
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
             HeroDataComponent heroDataComponent = unit.AddComponent<HeroDataComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
@@ -155,7 +156,7 @@ namespace ET
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
-
+            unit.AddComponent<AttackRecordComponent>(true);
             unitInfoComponent.PlayerName = master.GetComponent<UnitInfoComponent>().PlayerName;
             unit.GetComponent<NumericComponent>().Set(NumericType.MasterId, master.Id);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
@@ -190,7 +191,7 @@ namespace ET
             unit.AddComponent<UnitInfoComponent>(true);
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
-
+            unit.AddComponent<AttackRecordComponent>(true);
             unit.ConfigId = petinfo.ConfigId;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
@@ -229,7 +230,7 @@ namespace ET
             unit.AddComponent<MoveComponent>();
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
-
+            unit.AddComponent<AttackRecordComponent>(true);
             unitInfoComponent.PlayerName = petinfo.PlayerName;
             unitInfoComponent.StallName = petinfo.PetName;
             numericComponent.Set(NumericType.MasterId, master.Id);
@@ -395,17 +396,17 @@ namespace ET
             {
                 Log.Debug($"BOSS掉落为空{monsterCof.Id}  {main.Id}");
             }
-            List<long> beattackIds = new List<long>();
-            if (bekill.GetComponent<AIComponent>() != null)
-            {
-                beattackIds = bekill.GetComponent<AIComponent>().BeAttackPlayerList;
-            }
-            else if(main!=null)
+
+            List<long> beattackIds = bekill.GetComponent<AttackRecordComponent>().GetBeAttackPlayerList();
+
+            if(!beattackIds.Contains(main.Id))
             {
                 beattackIds.Add(main.Id);
             }
-            // 0 公共掉落 2保护掉落   1私有掉落
-            if (monsterCof.DropType == 0 || monsterCof.DropType == 2) 
+            // 0 公共掉落 2保护掉落   1私有掉落 3 归属掉落
+            if (monsterCof.DropType == 0 
+                || monsterCof.DropType == 2
+                || monsterCof.DropType == 3) 
             {
                 long serverTime = TimeHelper.ServerNow();
                 for (int i = 0; i < droplist.Count; i++)
@@ -417,18 +418,30 @@ namespace ET
                     DropComponent dropComponent = dropitem.AddComponent<DropComponent>();
                     dropComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
                     dropComponent.IfDamgeDrop = monsterCof.IfDamgeDrop;
-                    if (bekill.GetComponent<AIComponent>() != null)
-                    {
-                        dropComponent.BeAttackPlayerList = bekill.GetComponent<AIComponent>().BeAttackPlayerList;
-                    }
+                    dropComponent.BeAttackPlayerList = beattackIds;
+                    dropComponent.DropType = monsterCof.DropType;   
                     //掉落归属问题 掉落类型为2 原来为： 最后一刀 修改为 第一拾取权限为优先攻击他的人,如果这个人死了，那么拾取权限清空，下一次伤害是谁归属权就是谁。
-                    long ownderId = main!=null ? main.Id : 0;
-                    if (monsterCof.DropType == 2 && beattackIds.Count > 0 && unitComponent.Get(beattackIds[0])!=null)
+
+                    long ownderId = main != null ? main.Id : 0;
+                    switch (monsterCof.DropType)
                     {
-                        ownderId = beattackIds[0];
+                        case 2:
+                            if (beattackIds.Count > 0 && unitComponent.Get(beattackIds[0]) != null)
+                            {
+                                ownderId = beattackIds[0];
+                            }
+                            dropComponent.OwnerId = monsterCof.DropType == 0 ? 0 : ownderId;
+                            dropComponent.ProtectTime = monsterCof.DropType == 0 ? 0 : serverTime + 30000;
+                            break;
+                        case 3:
+                            long belongid = bekill.GetComponent<NumericComponent>().GetAsLong(NumericType.BossBelongID);
+                            if (belongid > 0)
+                            {
+                                ownderId = belongid;
+                            }
+                            dropComponent.OwnerId = belongid;
+                            break;
                     }
-                    dropComponent.OwnerId = monsterCof.DropType == 0 ? 0 : ownderId;
-                    dropComponent.ProtectTime = monsterCof.DropType == 0 ? 0 : serverTime + 30000;
                     float dropX = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);
                     float dropY = bekill.Position.y;
                     float dropZ = bekill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f);
@@ -475,7 +488,7 @@ namespace ET
 
         public static void CreateDropItems(Unit main, Unit beKill, int dropType,  int dropId, string par)
         {
-            // 0 公共掉落 2保护掉落   1私有掉落
+            // 0 公共掉落 2保护掉落   1私有掉落  3 归属掉落
             if (dropType == 0) 
             {
                 List<RewardItem> droplist = new List<RewardItem>();
@@ -491,13 +504,14 @@ namespace ET
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
                     dropitem.AddComponent<UnitInfoComponent>(true);
                     dropitem.Type = UnitType.DropItem;
-                    DropComponent dropCheckComponent = dropitem.AddComponent<DropComponent>();
-                    dropCheckComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
+                    DropComponent dropComponent = dropitem.AddComponent<DropComponent>();
+                    dropComponent.SetItemInfo(droplist[i].ItemID, droplist[i].ItemNum);
                     float dropX = beKill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);
                     float dropY = beKill.Position.y;
                     float dropZ = beKill.Position.z + RandomHelper.RandomNumberFloat(-1f, 1f);
                     dropitem.Position = new UnityEngine.Vector3(dropX, dropY, dropZ);
                     dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
+                    dropComponent.DropType = dropType;
                 }
             }
             if (dropType == 1)

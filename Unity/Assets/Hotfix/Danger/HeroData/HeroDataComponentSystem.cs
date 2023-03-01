@@ -9,8 +9,7 @@ namespace ET
     {
         public override void Awake(HeroDataComponent self)
         {
-            self.AttackingId = 0;
-            self.BeAttackId = 0;
+
         }
     }
 
@@ -20,12 +19,6 @@ namespace ET
     public static class HeroDataComponentSystem
     {
 #if SERVER
-        public static void BeforeTransfer(this HeroDataComponent self)
-        {
-            self.AttackingId = 0;
-            self.BeAttackId = 0;
-        }
-
         public static void CheckNumeric(this HeroDataComponent self)
         {
             Unit unit = self.GetParent<Unit>();
@@ -125,6 +118,7 @@ namespace ET
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             numericComponent.NumericDic[NumericType.Now_Dead] = 0;
             numericComponent.NumericDic[NumericType.Now_Damage] = 0;
+            numericComponent.NumericDic[NumericType.BossBelongID] = 0;
             numericComponent.NumericDic[NumericType.Now_Shield_HP] = 0;
             numericComponent.NumericDic[NumericType.Now_Shield_MaxHP] = 0;
             numericComponent.NumericDic[NumericType.Now_Shield_DamgeCostPro] = 0;
@@ -254,6 +248,11 @@ namespace ET
                 {
                     args.Attack.GetComponent<AIComponent>().ChangeTarget(0);
                     args.Attack.GetComponent<SkillManagerComponent>().OnFinish(true);
+                }
+                List<Unit> units = FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Monster);
+                for (int i = 0; i < units.Count; i++)
+                {
+                    units[i].GetComponent<AttackRecordComponent>()?.OnRemoveAttackByUnit(unit.Id);
                 }
             }
             if (unit.Type == UnitType.Pet)

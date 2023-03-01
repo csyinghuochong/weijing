@@ -29,7 +29,6 @@ namespace ET
             self.IsRetreat = false;
             self.AIConfigId = aiConfigId;
             self.AISkillIDList.Clear();
-            self.BeAttackPlayerList.Clear();
             self.TargetPoint.Clear();
             self.TargetZhuiJi = Vector3.zero;
 
@@ -237,20 +236,7 @@ namespace ET
 
         public static void BeAttacking(this AIComponent self, Unit attack)
         {
-            long attackId = 0;
-            if (attack.Type == UnitType.Player)
-            {
-                attackId = attack.Id;
-            }
-            if (attack.Type == UnitType.Pet)
-            {
-                attackId = attack.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-            }
-            if (attackId > 0 &&!self.BeAttackPlayerList.Contains(attackId))
-            {
-                self.BeAttackPlayerList.Add(attackId);
-            }
-
+   
             //0.1的概率概率转移仇恨
             float moveActPro = 0.1f;
             moveActPro = moveActPro * (1+ attack.GetComponent<NumericComponent>().GetAsFloat(NumericType.Now_ChaoFengPro));

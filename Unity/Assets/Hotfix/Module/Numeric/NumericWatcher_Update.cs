@@ -115,6 +115,7 @@
 	[NumericWatcher((int)NumericType.BattleTodayKill)]
 	[NumericWatcher((int)NumericType.PetExtendNumber)]
 	[NumericWatcher((int)NumericType.TitleID)]
+	[NumericWatcher((int)NumericType.BossBelongID)] 
 	public class NumericWatcher_Update : INumericWatcher
 	{
 		public void Run(EventType.NumericChangeEvent args)

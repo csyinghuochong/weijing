@@ -81,6 +81,17 @@ namespace ET
             self.BossNode.SetActive(false);
         }
 
+        public static void OnUpdateBelongID(this UIMainHpBarComponent self, long bossid, long belongid)
+        {
+            self.Lab_Owner.text = string.Empty;
+            //if (self.LockMonsterId != bossid)
+            //{
+            //    return;
+            //}
+            Unit unitbelong = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(belongid);
+            self.Lab_Owner.text = $"归属者： {unitbelong.GetComponent<UnitInfoComponent>().PlayerName}";
+        }
+
         public static void OnLockUnit(this UIMainHpBarComponent self, Unit unit)
         {
             self.LockMonsterId = unit.Id;

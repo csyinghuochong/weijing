@@ -315,6 +315,12 @@ namespace ET
         //目前只有冲锋技能用到。 
         public static void UpdateCheckPoint(this SkillHandler self, Vector3 vector3)
         {
+            if (self.ICheckShape == null)
+            {
+                Log.Debug($"self.ICheckShape == null: {self.SkillConf.SkillName}");
+                return;
+            }
+
             switch (self.SkillConf.DamgeRangeType)
             {
                 case 0:

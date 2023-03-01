@@ -84,6 +84,7 @@
         public const int ArenaNumber = 3082;                                           //角斗场次数
         public const int PetRankID = 3083;                                          //宠物天梯排名
         public const int TaskLoopID = 3084;                                         //赏金任务ID
+        public const int BossBelongID = 3085;                                       //归属ID
 
         public const int Max = 10000;
         public const int Now_MaxHp = 1002;                                       //生命总值

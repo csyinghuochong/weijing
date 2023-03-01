@@ -16,12 +16,15 @@ namespace ET
 
         public int JianDingFuQulity = 0;
 
+        public int FangunSkillId = 0;
+
         public List<DayMonsters> DayMonsterList = new List<DayMonsters>();
 
         public override void AfterEndInit()
         {
             DayMonsterList.Clear();
             JianDingFuQulity = this.Get(44).Value2;
+            FangunSkillId = this.Get(2).Value2;
 
             string[] dayrefresh = this.Get(79).Value.Split('@');
             for (int i = 0; i < dayrefresh.Length; i++)

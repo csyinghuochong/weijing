@@ -12,7 +12,7 @@ namespace ET
             List<DropInfo> drops = request.ItemIds;
             List<long> removeIds = new List<long>();
             long serverTime = TimeHelper.ServerNow();
-            //DropType ==  0 公共掉落 2保护掉落   1私有掉落
+            //DropType ==  0 公共掉落 2保护掉落   1私有掉落 3 归属掉落
             for (int i = 0; i < drops.Count; i++)
             {
                 Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);
@@ -24,9 +24,20 @@ namespace ET
                         continue;
                     }
                     dropComponent = unitDrop.GetComponent<DropComponent>();
-                    if (dropComponent.OwnerId!=0 && dropComponent.OwnerId!=unit.Id && serverTime < dropComponent.ProtectTime)
+                    int dropType = dropComponent.DropType;
+                    if (dropType == 2)
                     {
-                        return ErrorCore.ERR_ItemDropProtect;
+                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
+                        {
+                            return ErrorCore.ERR_ItemDropProtect;
+                        }
+                    }
+                    if (dropType == 3)
+                    {
+                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
+                        {
+                            return ErrorCore.ERR_ItemDropProtect;
+                        }
                     }
                 }
                 int addItemID = dropComponent !=null ? dropComponent.ItemID : drops[i].ItemID;
@@ -68,9 +79,20 @@ namespace ET
                         continue;
                     }
                     dropComponent = unitDrop.GetComponent<DropComponent>();
-                    if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
+                    int dropType = dropComponent.DropType;
+                    if (dropType == 2)
                     {
-                        return ErrorCore.ERR_ItemDropProtect;
+                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
+                        {
+                            return ErrorCore.ERR_ItemDropProtect;
+                        }
+                    }
+                    if (dropType == 3)
+                    {
+                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
+                        {
+                            return ErrorCore.ERR_ItemDropProtect;
+                        }
                     }
                 }
 

@@ -87,11 +87,7 @@ namespace ET
             }
 
             //队友共享
-            List<long> allAttackIds = new List<long>();
-            if (defendUnit.GetComponent<AIComponent>() != null)
-            {
-                allAttackIds = defendUnit.GetComponent<AIComponent>().BeAttackPlayerList;
-            }
+            List<long> allAttackIds = defendUnit.GetComponent<AttackRecordComponent>().GetBeAttackPlayerList();
             if (mainAttack != null && !allAttackIds.Contains(mainAttack.Id))
             {
                 allAttackIds.Add(mainAttack.Id);

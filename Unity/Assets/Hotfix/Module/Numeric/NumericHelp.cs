@@ -29,6 +29,7 @@ namespace ET
             NumericType.HorseFightID,
             NumericType.HorseRide,
             NumericType.TitleID,
+            NumericType.BossBelongID,
         };
 
         //1 整数  2 浮点数

@@ -21,6 +21,11 @@
                         uI.GetComponent<UIMainComponent>().UIStall.SetActive(stallType == 1);
                     }
                     break;
+                case NumericType.BossBelongID:
+                    long bossbelongid = args.Unit.GetComponent<NumericComponent>().GetAsLong(NumericType.BossBelongID);
+                    UI uImain = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIMain);
+                    uImain.GetComponent<UIMainComponent>().UIMainHpBar.OnUpdateBelongID(args.Unit.Id, bossbelongid);
+                    break;
                 case NumericType.PetChouKa:
                     UI uipet = UIHelper.GetUI(args.Unit.ZoneScene(), UIType.UIPetEgg);
                     uipet?.GetComponent<UIPetEggComponent>().UpdateChouKaTime();

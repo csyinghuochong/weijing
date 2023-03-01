@@ -8,8 +8,6 @@ namespace ET
     /// </summary>
     public class HeroDataComponent:Entity, IAwake, ITransfer
     {
-
-        public long AttackingId;
         public long BeAttackId;
 
         public Vector3 BornPostion;

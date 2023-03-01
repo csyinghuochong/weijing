@@ -105,8 +105,7 @@ namespace ET
                                 AccountName = request.AccountName,
                                 Password = request.Password
                             });
-                            //AccountId = saveAccount.AccountId;
-                            AccountId = long.Parse(saveAccount.Message);
+                            AccountId = saveAccount.AccountId;
                         }
                         else
                         {

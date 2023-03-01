@@ -39,11 +39,6 @@ namespace ET
         public long TargetID;
         public bool StopAI;
 
-        /// <summary>
-        /// 怪物ID
-        /// </summary>
-        public List<long> BeAttackPlayerList = new List<long>();
-
         public C2M_SkillCmd c2M_SkillCmd = new C2M_SkillCmd();
 
         public List<Vector3> TargetPoint = new List<Vector3>();

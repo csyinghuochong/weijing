@@ -47,9 +47,6 @@ namespace ET
                 return;
             }
 
-            attackUnit.GetComponent<HeroDataComponent>().AttackingId = defendUnit.Id;
-            defendUnit.GetComponent<HeroDataComponent>().BeAttackId = attackUnit.Id;    
-
             int DamgeType = 0;      //伤害类型
             defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.BeHurt_3, attackUnit.Id);
 
@@ -233,6 +230,7 @@ namespace ET
                 //玩家
                 case UnitType.Player:
                     attackUnitLv = attackUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
+                    attackUnit.GetComponent<AttackRecordComponent>().AttackingId = defendUnit.Id;
                     break;
             }
 
@@ -689,6 +687,10 @@ namespace ET
                 if (defendUnit.IsDisposed)
                 {
                     return;
+                }
+                if (defendUnit.Type == UnitType.Monster && ifMonsterBoss_Act)
+                {
+                    defendUnit.GetComponent<AttackRecordComponent>().BeAttacking(attackUnit, damge);
                 }
                 //即将死亡
                 if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Hp) + damge <= 0)

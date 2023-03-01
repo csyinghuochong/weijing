@@ -107,7 +107,6 @@
             // 删除Mailbox,让发给Unit的ActorLocation消息重发
             unit.RemoveComponent<MailBoxComponent>();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
-            unit.GetComponent<HeroDataComponent>()?.BeforeTransfer();
             unit.GetComponent<BuffManagerComponent>().BeforeTransfer();
             EventType.NumericChangeEvent.Instance.Attack = null;
             unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(EventType.NumericChangeEvent.Instance);

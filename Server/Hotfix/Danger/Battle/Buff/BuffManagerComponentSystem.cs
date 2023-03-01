@@ -25,7 +25,7 @@ namespace ET
     {
         public override void Awake(BuffManagerComponent self)
         {
-
+            self.m_Buffs.Clear();
         }
     }
 

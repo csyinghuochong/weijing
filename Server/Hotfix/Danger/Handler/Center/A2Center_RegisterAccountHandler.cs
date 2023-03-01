@@ -30,7 +30,7 @@ namespace ET
                 Log.Info($"注册三方账号: {MongoHelper.ToJson(newAccount)}");
                 await Game.Scene.GetComponent<DBComponent>().Save(scene.DomainZone(), newAccount);
                 newAccount.Dispose();
-                response.Message = newAccount.Id.ToString();
+                response.AccountId = newAccount.Id;
                 //发送创建回执
                 reply();
             }

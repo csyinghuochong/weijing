@@ -26,10 +26,9 @@ namespace ET
     {
         public override void Awake(SkillManagerComponent self)
         {
-            self.FangunSkillId = int.Parse(GlobalValueConfigCategory.Instance.Get(2).Value);
-            self.DelaySkillList = new List<SkillInfo>();
-            self.SkillCDs = new Dictionary<int, SkillCDItem>();
-            self.Skills = new List<SkillHandler>();
+            self.Skills.Clear();
+            self.DelaySkillList.Clear();
+            self.SkillCDs.Clear();
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(100, TimerType.SkillTimer, self);
         }
     }
@@ -404,7 +403,7 @@ namespace ET
         public static SkillCDItem AddSkillCD(this SkillManagerComponent self, int skillid, SkillConfig weaponConfig, bool zhudong)
         {
             SkillCDItem skillCd = null;
-            if (skillid == self.FangunSkillId)
+            if (skillid == GlobalValueConfigCategory.Instance.FangunSkillId)
             {
                 skillCd = self.UpdateFangunSkillCD();
             }
@@ -528,11 +527,12 @@ namespace ET
 
             if (self.FangunComboNumber >= 3)
             {
+                int fangunskill = GlobalValueConfigCategory.Instance.FangunSkillId;
                 self.FangunComboNumber = 0;
                 skillcd = new SkillCDItem();
-                skillcd.SkillID = self.FangunSkillId;
+                skillcd.SkillID = fangunskill;
                 skillcd.CDEndTime = newTime + 10000;
-                self.SkillCDs.Add(self.FangunSkillId, skillcd);
+                self.SkillCDs.Add(fangunskill, skillcd);
 
                 //Unit unit = self.GetParent<Unit>();
                 //BuffData buffData_2 = new BuffData();

@@ -33,8 +33,9 @@ namespace ET
 				unit.AddComponent<MoveComponent>();
 				unit.AddComponent<MailBoxComponent>();
 				unit.AddComponent<ObjectWait>();
-				unit.AddComponent<SkillManagerComponent>();
-				unit.AddComponent<BuffManagerComponent>();
+				unit.AddComponent<SkillManagerComponent>(true);
+				unit.AddComponent<BuffManagerComponent>(true);
+				unit.AddComponent<AttackRecordComponent>(true);
 				NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
 				numericComponent.Set(NumericType.BattleCamp, CampEnum.CampPlayer_1);
 				unit.GetComponent<HeroDataComponent>().CheckNumeric();
