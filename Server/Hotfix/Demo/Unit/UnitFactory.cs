@@ -398,8 +398,7 @@ namespace ET
             }
 
             List<long> beattackIds = bekill.GetComponent<AttackRecordComponent>().GetBeAttackPlayerList();
-
-            if(!beattackIds.Contains(main.Id))
+            if(main!=null && !beattackIds.Contains(main.Id))
             {
                 beattackIds.Add(main.Id);
             }

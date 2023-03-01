@@ -194,6 +194,7 @@ namespace ET
                     break;
                 //宠物
                 case UnitType.Pet:
+                    defendUnit.GetComponent<AIComponent>()?.BeAttacking(attackUnit);
                     PetConfig petCof = PetConfigCategory.Instance.Get(defendUnit.ConfigId);
                     defendUnitLv = petCof.PetLv;
                     defend_def += numericComponentAttack.GetAsLong(NumericType.Now_PetAllDef);

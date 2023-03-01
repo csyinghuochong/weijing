@@ -58,7 +58,7 @@ namespace ET
                 this.SetSkillState(SkillState.Finished);
                 return;
             }
-            if (this.ICheckShape != null)
+            if (this.ICheckShape.Count > 0)
             {
                 this.UpdateCheckPoint(this.TheUnitFrom.Position);
                 this.ExcuteSkillAction();

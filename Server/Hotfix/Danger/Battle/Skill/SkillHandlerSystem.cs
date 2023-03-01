@@ -24,6 +24,7 @@ namespace ET
             self.SkillExcuteHurtTime = self.SkillBeginTime + (long)(1000 * self.SkillConf.SkillDelayTime);
             self.SkillEndTime = self.SkillBeginTime + self.SkillConf.SkillLiveTime + (long)(1000* self.GetTianfuProAdd((int)SkillAttributeEnum.AddSkillLiveTime));
             self.TargetPosition = new Vector3(skillcmd.PosX, skillcmd.PosY, skillcmd.PosZ); //获取起始坐标
+            self.ICheckShape = null;
             self.ICheckShape = new List<Shape>();
             self.ICheckShape.Add( self.CreateCheckShape(self.SkillInfo.TargetAngle) );
             self.NowPosition = self.TargetPosition;              //获取技能起始的坐标点
@@ -315,7 +316,7 @@ namespace ET
         //目前只有冲锋技能用到。 
         public static void UpdateCheckPoint(this SkillHandler self, Vector3 vector3)
         {
-            if (self.ICheckShape == null)
+            if (self.ICheckShape == null || self.ICheckShape.Count == 0)
             {
                 Log.Debug($"self.ICheckShape == null: {self.SkillConf.SkillName}");
                 return;
@@ -343,7 +344,7 @@ namespace ET
 
         public static void Clear(this SkillHandler self)
         {
-            self.ICheckShape = null;
+            self.ICheckShape.Clear();
             self.SkillInfo = null;
         }
 
