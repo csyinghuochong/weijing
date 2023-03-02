@@ -4505,3 +4505,12 @@ message M2C_ItemSplitResponse // IActorLocationResponse
 	int32 Error = 92;
 	string OperatePar = 1;
 }
+
+//副本击杀boss
+message M2C_TeamDungeonKillBossMessage // IActorMessage
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+	repeated int KillBossList = 1;	
+}

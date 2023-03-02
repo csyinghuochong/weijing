@@ -108,7 +108,6 @@
             unit.RemoveComponent<MailBoxComponent>();
             unit.GetComponent<SkillPassiveComponent>()?.Stop();
             unit.GetComponent<BuffManagerComponent>().BeforeTransfer();
-            unit.GetComponent<HeroDataComponent>().BeforeTransfer();
 
             EventType.NumericChangeEvent.Instance.Attack = null;
             unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(EventType.NumericChangeEvent.Instance);

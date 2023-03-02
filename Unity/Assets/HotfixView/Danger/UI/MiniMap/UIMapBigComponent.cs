@@ -166,7 +166,7 @@ namespace ET
             }
         }
 
-        public static void ShowBossList(this UIMapBigComponent self)
+        public static void ShowLocalBossList(this UIMapBigComponent self)
         {
             DungeonConfig chapterSonConfig = DungeonConfigCategory.Instance.Get(self.SceneId);
             self.CreateMonsterList(chapterSonConfig.CreateMonster);
@@ -176,6 +176,46 @@ namespace ET
                 MonsterGroupConfig monsterGroupConfig = MonsterGroupConfigCategory.Instance.Get(chapterSonConfig.MonsterGroup);
                 self.CreateMonsterList(monsterGroupConfig.CreateMonster);
             }
+        }
+
+        public static void ShowTeamBossList(this UIMapBigComponent self)
+        {
+            SceneConfig chapterSonConfig = SceneConfigCategory.Instance.Get(self.SceneId);
+            self.CreateMonsterList(chapterSonConfig.CreateMonster);
+
+            if (chapterSonConfig.CreateMonsterPosi != null)
+            {
+                for (int i = 0; i < chapterSonConfig.CreateMonsterPosi.Length; i++)
+                {
+                    int monsterId = chapterSonConfig.CreateMonsterPosi[i];
+                    while (monsterId != 0)
+                    {
+                        monsterId = self.CreateMonsterByPos(monsterId);
+                    }
+                }
+            }
+        }
+
+        public static int CreateMonsterByPos(this UIMapBigComponent self, int monsterId)
+        {
+            MonsterPositionConfig monsterPosition = MonsterPositionConfigCategory.Instance.Get(monsterId);
+            int monsterid = monsterPosition.MonsterID;
+            string[] position = monsterPosition.Position.Split(',');
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
+            if (monsterConfig.MonsterType != (int)MonsterTypeEnum.Boss)
+            {
+                return monsterPosition.NextID; ;
+            }
+            Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[2]), 0);
+            Vector3 npcPos = self.GetWordToUIPositon(vector3);
+
+            GameObject gameObject = GameObject.Instantiate(self.bossIcon);
+            gameObject.SetActive(true);
+            gameObject.transform.SetParent(self.bossIcon.transform.parent);
+            gameObject.transform.localScale = Vector3.one;
+            gameObject.transform.localPosition = npcPos;
+            gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
+            return monsterPosition.NextID;
         }
 
         public static void CreateMonsterList(this UIMapBigComponent self, string createMonster)
@@ -192,8 +232,7 @@ namespace ET
                 string[] mtype = mondels[0].Split(',');
                 string[] position = mondels[1].Split(',');
                 string[] monsterid = mondels[2].Split(',');
-                string[] mcount = mondels[3].Split(',');
-
+               
                 if (mtype[0] != "1" && mtype[0] != "2")   
                 {
                     continue;
@@ -231,9 +270,12 @@ namespace ET
                 npcList = DungeonConfigCategory.Instance.Get(self.SceneId).NpcList;
                 self.MapName.GetComponent<Text>().text = DungeonConfigCategory.Instance.Get(self.SceneId).ChapterName;
                 self.ShowChuansong();
-                self.ShowBossList();
+                self.ShowLocalBossList();
             }
-
+            if (mapComponent.SceneTypeEnum == SceneTypeEnum.TeamDungeon)
+            {
+                self.ShowTeamBossList();
+            }
             if (npcList == null)
             {
                 return;

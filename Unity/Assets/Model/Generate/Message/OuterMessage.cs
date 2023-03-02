@@ -9393,4 +9393,23 @@ namespace ET
 
 	}
 
+//副本击杀boss
+	[Message(OuterOpcode.M2C_TeamDungeonKillBossMessage)]
+	[ProtoContract]
+	public partial class M2C_TeamDungeonKillBossMessage: Object, IActorMessage
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+		[ProtoMember(1)]
+		public List<int> KillBossList = new List<int>();
+
+	}
+
 }

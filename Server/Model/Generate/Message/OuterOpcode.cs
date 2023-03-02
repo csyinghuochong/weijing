@@ -520,5 +520,6 @@ namespace ET
 		 public const ushort M2C_LifeShieldCostResponse = 10517;
 		 public const ushort C2M_ItemSplitRequest = 10518;
 		 public const ushort M2C_ItemSplitResponse = 10519;
+		 public const ushort M2C_TeamDungeonKillBossMessage = 10520;
 	}
 }
