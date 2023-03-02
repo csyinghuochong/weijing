@@ -92,7 +92,9 @@ namespace ET
             { (int)NumericType.Now_ZhenShi, 1 },    //真实伤害
             { (int)NumericType.Now_HuShiDef, 1 },
             { (int)NumericType.Now_HuShiAdf, 1 },
-            
+            { (int)NumericType.Now_ActQiangDuAdd, 0.5f },
+            { (int)NumericType.Now_MageQiangDuAdd, 0.5f },
+
         };
 
         //攻击部分
