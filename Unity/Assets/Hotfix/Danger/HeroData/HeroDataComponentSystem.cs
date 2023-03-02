@@ -18,7 +18,13 @@ namespace ET
     /// </summary>
     public static class HeroDataComponentSystem
     {
+
 #if SERVER
+         public static void BeforeTransfer(this HeroDataComponent self)
+        {
+            self.BeAttackId = 0;
+        }
+
         public static void CheckNumeric(this HeroDataComponent self)
         {
             Unit unit = self.GetParent<Unit>();
