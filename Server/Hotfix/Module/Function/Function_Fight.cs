@@ -204,8 +204,7 @@ namespace ET
                 //玩家
                 case UnitType.Player:
                     defendUnitLv = defendUnit.GetComponent<UserInfoComponent>().UserInfo.Lv;
-                    defendUnit.GetComponent<HeroDataComponent>().BeAttackId = attackUnit.Id;
-                    //defendUnit.GetComponent<AttackRecordComponent>().BeAttackId = attackUnit.Id;
+                    defendUnit.GetComponent<AttackRecordComponent>().BeAttackId = attackUnit.Id;
                     break;
             }
 

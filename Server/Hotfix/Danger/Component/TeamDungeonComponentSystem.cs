@@ -29,6 +29,7 @@ namespace ET
             self.BoxReward.Clear();
             self.ItemFlags.Clear();
             self.TeamDropItems.Clear();
+            self.KillBossList.Clear();
         }
     }
 

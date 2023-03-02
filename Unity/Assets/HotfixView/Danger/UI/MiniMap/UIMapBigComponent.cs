@@ -199,7 +199,6 @@ namespace ET
         public static int CreateMonsterByPos(this UIMapBigComponent self, int monsterId)
         {
             MonsterPositionConfig monsterPosition = MonsterPositionConfigCategory.Instance.Get(monsterId);
-            int mtype = monsterPosition.Type;
             int monsterid = monsterPosition.MonsterID;
             string[] position = monsterPosition.Position.Split(',');
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);

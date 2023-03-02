@@ -20,10 +20,6 @@ namespace ET
     {
 
 #if SERVER
-         public static void BeforeTransfer(this HeroDataComponent self)
-        {
-            self.BeAttackId = 0;
-        }
 
         public static void CheckNumeric(this HeroDataComponent self)
         {
