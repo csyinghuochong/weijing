@@ -27,11 +27,8 @@ namespace ET
     [ObjectSystem]
     public class UIPaiMaiDuiHuanComponetAwakeSystem : AwakeSystem<UIPaiMaiDuiHuanComponet>
     {
-        public override async void Awake(UIPaiMaiDuiHuanComponet self)
+        public override  void Awake(UIPaiMaiDuiHuanComponet self)
         {
-            //初始化数据
-            await self.Init();
-
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
 
             self.Lab_RmbNum = rc.Get<GameObject>("Lab_RmbNum");
@@ -58,7 +55,9 @@ namespace ET
             self.Lab_RmbNum.GetComponent<InputField>().text = self.ExchangeZuanShi.ToString();
 
             self.Lab_RmbNum.GetComponent<InputField>().onValueChanged.AddListener((string str) => { self.OnBtn_BuyNum_jia(0); });
-
+            
+            //初始化数据
+            self.Init().Coroutine();
         }
     }
 
@@ -70,6 +69,10 @@ namespace ET
             //初始化兑换值
             C2R_DBServerInfoRequest c2A_ServerExchangeValue = new C2R_DBServerInfoRequest() { };
             R2C_DBServerInfoResponse a2C_ServerExchangeValue = (R2C_DBServerInfoResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2A_ServerExchangeValue);
+            if (self.IsDisposed)
+            {
+                return;
+            }
             self.ExchangeValue = a2C_ServerExchangeValue.ServerInfo.ExChangeGold;
         }
 

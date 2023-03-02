@@ -130,6 +130,10 @@ namespace ET
 
             C2M_PaiMaiXiaJiaRequest c2M_PaiMaiBuyRequest = new C2M_PaiMaiXiaJiaRequest() {  PaiMaiItemInfoId = self.PaiMaiItemInfoId };
             M2C_PaiMaiXiaJiaResponse m2C_PaiMaiBuyResponse = (M2C_PaiMaiXiaJiaResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
+            if (self.IsDisposed)
+            {
+                return;
+            }
 
             for (int i = self.PaiMaiItemInfos.Count - 1; i >= 0; i--)
             {
@@ -179,8 +183,12 @@ namespace ET
             C2P_PaiMaiListRequest c2M_PaiMaiBuyRequest = new C2P_PaiMaiListRequest() {  PaiMaiType = 1,
                 UserId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId };
             P2C_PaiMaiListResponse m2C_PaiMaiBuyResponse = (P2C_PaiMaiListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_PaiMaiBuyRequest);
-            self.PaiMaiItemInfos = m2C_PaiMaiBuyResponse.PaiMaiItemInfos;
+            if (self.IsDisposed)
+            {
+                return;
+            }
 
+            self.PaiMaiItemInfos = m2C_PaiMaiBuyResponse.PaiMaiItemInfos;
             self.UpdateSellItemUILIist(self.UIPageButton.CurrentIndex).Coroutine();
         }
 
@@ -225,7 +233,6 @@ namespace ET
             {
                 self.BagItemUILIist[i].GameObject.SetActive(false);
             }
-
         }
 
         public static void OnPaiBuyShangJia(this UIPaiMaiSellComponent self, PaiMaiItemInfo paiMaiItemInfo)
