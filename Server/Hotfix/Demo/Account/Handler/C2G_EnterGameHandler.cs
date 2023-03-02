@@ -89,15 +89,18 @@ namespace ET
 							{
 								GateSessionActorId = session.InstanceId
 							});
-							if (reqEnter.Error == ErrorCode.ERR_Success)
-							{
-								Log.Debug($"LoginTest C2G_EnterGame 二次登录成功; player.Id： {player.Id} request.UserID:{request.UserID}");
-								reply();
-								return;
-							}
-							Log.Error($"LoginTest C2G_EnterGame 二次登录失败 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
+                            if (reqEnter.Error == ErrorCode.ERR_Success)
+                            {
+                                Log.Debug($"LoginTest C2G_EnterGame 二次登录成功; player.Id： {player.Id} request.UserID:{request.UserID}");
+                                reply();
+                                return;
+                            }
+
+                            Log.Warning($"LoginTest C2G_EnterGame 二次登录失败 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
 							response.Error = ErrorCore.ERR_ReEnterGameError;
 							await DisconnectHelper.KickPlayer(player, true);
+							await DisconnectHelper.KickPlayer(session.DomainZone(), request.UserID);
+
 							reply();
 							session?.Disconnect().Coroutine();
 							return;

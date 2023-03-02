@@ -4514,3 +4514,11 @@ message M2C_TeamDungeonKillBossMessage // IActorMessage
 	string Message = 92;
 	repeated int KillBossList = 1;	
 }
+
+
+message M2C_KickPlayerMessage // IActorMessage
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}

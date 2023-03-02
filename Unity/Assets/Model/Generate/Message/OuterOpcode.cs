@@ -521,5 +521,6 @@ namespace ET
 		 public const ushort C2M_ItemSplitRequest = 10518;
 		 public const ushort M2C_ItemSplitResponse = 10519;
 		 public const ushort M2C_TeamDungeonKillBossMessage = 10520;
+		 public const ushort M2C_KickPlayerMessage = 10521;
 	}
 }

@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Collections.Generic;
 
 namespace ET
 {
@@ -9,6 +9,8 @@ namespace ET
     {
         protected override async ETTask Run(Scene scene, M2F_FubenCenterListRequest request, F2M_FubenCenterListResponse response, Action reply)
         {
+            response.FubenInstanceList = scene.GetComponent<FubenCenterComponent>().FubenInstanceList;
+
             reply();
             await ETTask.CompletedTask;
         }
