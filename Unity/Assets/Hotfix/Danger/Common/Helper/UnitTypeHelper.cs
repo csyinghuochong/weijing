@@ -57,14 +57,16 @@
             return self.GetBattleCamp() != defend.GetBattleCamp() && !self.IsSameTeam(defend);
         }
 
-        public static int GetTeamId(this Unit self)
+        public static long GetTeamId(this Unit self)
         {
             return self.GetComponent<NumericComponent>().GetAsInt(NumericType.TeamId);
         }
 
         public static bool IsSameTeam(this Unit self, Unit other)
         {
-            return self.GetTeamId() == other.GetTeamId() && self.GetTeamId() != 0;
+            long teamid_1 = self.GetTeamId();
+            long teamid_2 = other.GetTeamId();
+            return teamid_1 == teamid_2 && teamid_1 != 0;
         }
 
         public static bool IsMasterOrPet(this Unit self, Unit defend, PetComponent petComponent)

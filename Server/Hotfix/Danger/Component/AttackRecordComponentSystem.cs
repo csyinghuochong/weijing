@@ -26,7 +26,7 @@ namespace ET
     {
         public static void BeAttacking(this AttackRecordComponent self, Unit attack, long hurtvalue)
         {
-            if (hurtvalue >= 0 || self.DropType != 3)
+            if (hurtvalue >= 0)
             {
                 return;
             }

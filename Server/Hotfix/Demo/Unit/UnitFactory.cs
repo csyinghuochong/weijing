@@ -402,6 +402,7 @@ namespace ET
             {
                 beattackIds.Add(main.Id);
             }
+            //1只要造成伤害就有 2是保护掉落 最后一刀 3是那个按照伤害统计
             // 0 公共掉落 2保护掉落   1私有掉落 3 归属掉落
             if (monsterCof.DropType == 0 
                 || monsterCof.DropType == 2
