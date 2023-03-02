@@ -10349,7 +10349,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3055922815140601351}
   - component: {fileID: 3055922815140601353}
-  - component: {fileID: 2638035783131195658}
+  - component: {fileID: 1453680824408714873}
   m_Layer: 5
   m_Name: CenterShow
   m_TagString: Untagged
@@ -10384,7 +10384,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3055922815140601350}
   m_CullTransparentMesh: 0
---- !u!114 &2638035783131195658
+--- !u!114 &1453680824408714873
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10393,7 +10393,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3055922815140601350}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a24f2f53f0df841d3a41c3922f6b6f9a, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -10414,7 +10414,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-  atlasGroup: 1024
 --- !u!1 &3055922815158134943
 GameObject:
   m_ObjectHideFlags: 0
@@ -14359,7 +14358,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3055922815930500070}
   - component: {fileID: 3055922815930500072}
-  - component: {fileID: 114631524805489616}
+  - component: {fileID: 4028631107847918071}
   m_Layer: 5
   m_Name: Thumb
   m_TagString: Untagged
@@ -14394,7 +14393,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3055922815930500069}
   m_CullTransparentMesh: 0
---- !u!114 &114631524805489616
+--- !u!114 &4028631107847918071
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14403,7 +14402,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3055922815930500069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a24f2f53f0df841d3a41c3922f6b6f9a, type: 3}
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
@@ -14424,7 +14423,6 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
-  atlasGroup: 1024
 --- !u!1 &3055922815931965908
 GameObject:
   m_ObjectHideFlags: 0
