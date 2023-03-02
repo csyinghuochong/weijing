@@ -54,7 +54,9 @@ namespace ET
                 {
                     //深渊模式
                     self.ShenYuanSet.SetActive(true);
+                    
                 }
+                self.titleText.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(dungeonId).Name;
             }
 
             long instanceId = self.InstanceId;
