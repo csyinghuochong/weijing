@@ -37,7 +37,7 @@ namespace ET
         {
             self.UISet.SetActive(false);
             UI uiHelp =await  UIHelper.Create( self.ZoneScene(), UIType.UIRankReward );
-            if (uiHelp != null)
+            if (!self.IsDisposed && uiHelp != null)
             {
                 uiHelp.GetComponent<UIRankRewardComponent>().ClickOnClose = self.OpenShow;
             }
@@ -50,16 +50,16 @@ namespace ET
 
         public static async ETTask OnUpdateUI(this UIRankShowComponent self)
         {
+            long instanceid = self.InstanceId;
             C2R_RankListRequest c2M_RankListRequest = new C2R_RankListRequest();
             R2C_RankListResponse r2C_Response = (R2C_RankListResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_RankListRequest);
-           
-            long instanceid = self.InstanceId;
-            string path = ABPathHelper.GetUGUIPath("Main/Rank/UIRankShowItem");
-            GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             if (instanceid != self.InstanceId)
             {
                 return;
             }
+
+            string path = ABPathHelper.GetUGUIPath("Main/Rank/UIRankShowItem");
+            GameObject bundleObj = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             long selfId = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.UserId;
             int myRank = -1;
             for (int i = 0; i < r2C_Response.RankList.Count; i++)

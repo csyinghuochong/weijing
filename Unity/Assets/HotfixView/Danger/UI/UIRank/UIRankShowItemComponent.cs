@@ -57,8 +57,16 @@ namespace ET
         {
             C2F_WatchPlayerRequest c2M_SkillSet = new C2F_WatchPlayerRequest() { UserId = self.RankingInfo.UserId };
             F2C_WatchPlayerResponse m2C_SkillSet = (F2C_WatchPlayerResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2M_SkillSet);
+            if (self.IsDisposed)
+            {
+                return;
+            }
 
             UI uI = await UIHelper.Create(self.DomainScene(), UIType.UIWatch);
+            if (self.IsDisposed)
+            {
+                return;
+            }
             uI.GetComponent<UIWatchComponent>().OnUpdateUI(m2C_SkillSet);
         }
 
