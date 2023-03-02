@@ -15,8 +15,7 @@ namespace ET
             "15091509079",
             "18652422521",
             "18319670288",
-            "18407228910",
-            "wxoyHedv-3R1NlOglrdTMG9Xzsal-E", //月残缺先锋4
+            "18407228910", //月残缺先锋4
         };
 
         public static List<long> BanChatPlayer = new List<long>()
