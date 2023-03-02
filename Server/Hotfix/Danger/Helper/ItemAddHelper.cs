@@ -56,7 +56,7 @@ namespace ET
             bagInf0.ItemPar = randValue.ToString();
         }
 
-        public static void TreasureItem(BagInfo bagInfo)
+        public static void TreasureItem(Unit unit, BagInfo bagInfo)
         {
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
@@ -84,7 +84,7 @@ namespace ET
             }
 
             bagInfo.ItemPar = $"{dungeonid}@{"TaskMove_6"}@{rewardList[0].ItemID + ";" + rewardList[0].ItemNum}";
-
+            Log.Debug($"生成藏宝图:  {unit.Id} {unit.GetComponent<UserInfoComponent>().UserName} {rewardList[0].ItemID}");
         }
 
 

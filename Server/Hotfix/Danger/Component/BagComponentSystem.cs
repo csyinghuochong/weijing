@@ -741,12 +741,12 @@ namespace ET
                     //藏宝图
                     if (itemCof.ItemSubType == 113 || itemCof.ItemSubType == 127)
                     {
-                        ItemAddHelper.TreasureItem(useBagInfo);
+                        ItemAddHelper.TreasureItem(unit, useBagInfo);
                     }
                     //鉴定符
                     if (itemCof.ItemSubType == 121)
                     {
-                        int shuliandu = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
+                        int shuliandu = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeShuLianDu);
                         ItemAddHelper.JianDingFuItem(useBagInfo, shuliandu, getType);
                     }
 
