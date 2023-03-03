@@ -158,6 +158,7 @@ namespace ET
             UpdateBlood();
             //更新显示
             UpdateShow();
+            OnUpdateHorse();
             if (HeadBar.GetComponent<HeadBarUI>() == null)
             {
                 HeadBar.AddComponent<HeadBarUI>();
@@ -169,13 +170,15 @@ namespace ET
             this.HeadBar.transform.localPosition = unit.MainHero ? new Vector3(0f, 120f, 0f) : HeadBar.transform.localPosition;
         }
 
-        public void OnUpdateHorse(int houseId)
+        public void OnUpdateHorse(  )
         {
             if (this.HeadBar == null)
             {
                 return;
             }
-            this.HeadBar.transform.localPosition = houseId > 0 ? new Vector3(0f, 180f, 0f): new Vector3(0f, 120f, 0f);
+            NumericComponent numericComponent = this.GetParent<Unit>().GetComponent<NumericComponent>();
+            int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
+            this.HeadBar.transform.localPosition = horseRide > 0 ? new Vector3(0f, 180f, 0f): new Vector3(0f, 120f, 0f);
         }
 
         //更新显示
@@ -201,7 +204,6 @@ namespace ET
 
                 int tilteid = numericComponent.GetAsInt(NumericType.TitleID);
                 this.UIXuLieZhenComponent.OnUpdateTitle(tilteid).Coroutine();
-                unit.GetComponent<GameObjectComponent>().OnUpdateHorse();
             }
             //显示怪物名称
             if (unit.Type == UnitType.Monster)

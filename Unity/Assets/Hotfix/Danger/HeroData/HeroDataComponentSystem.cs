@@ -74,6 +74,7 @@ namespace ET
             numericComponent.Set((int)NumericType.Now_Dead , 0, false);
             numericComponent.Set((int)NumericType.Now_Damage, 0, false);
             numericComponent.Set((int)NumericType.Now_Stall, 0, false);
+            numericComponent.Set((int)NumericType.TeamId, 0, false);
             numericComponent.Set((int)NumericType.Now_Hp, numericComponent.GetAsLong((int)NumericType.Now_MaxHp), false);
             numericComponent.Set((int)NumericType.Now_Weapon, unit.GetComponent<BagComponent>().GetWuqiItemId(), false);
         }

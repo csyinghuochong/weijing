@@ -152,7 +152,7 @@ namespace ET
 
         public static void OnLoadHorse(this GameObjectComponent self, GameObject go, long formId)
         {
-            if (self.IsDisposed)
+            if (self.IsDisposed || self.InstanceId!= formId)
             {
                 GameObject.Destroy(go);
                 return;
@@ -174,7 +174,6 @@ namespace ET
             {
                 self.OnXiaMa();
             }
-            self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseRide);
         }
 
         public static void ShowRoleDi(this GameObjectComponent self, bool show)
@@ -245,7 +244,6 @@ namespace ET
             {
                 self.OnXiaMa();
             }
-            self.GetParent<Unit>().GetComponent<HeroHeadBarComponent>().OnUpdateHorse(horseRide);
         }
 
         public static void OnAddCollider(this GameObjectComponent self, GameObject go)
@@ -289,6 +287,7 @@ namespace ET
                     unit.AddComponent<HeroHeadBarComponent>();
                     unit.AddComponent<EffectViewComponent>();               //添加特效组建
                     unit.AddComponent<SkillYujingComponent>(true);
+                    self.OnUpdateHorse();
                     //血条UI组件
                     NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
                     self.OnUnitStallUpdate(numericComponent.GetAsInt(NumericType.Now_Stall));

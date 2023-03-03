@@ -74,8 +74,8 @@
                     args.Unit.GetComponent<HeroHeadBarComponent>()?.UpdateAI();
                     break;
                 case NumericType.HorseRide:
-                   
                     args.Unit.GetComponent<GameObjectComponent>()?.OnUpdateHorse();
+                    args.Unit.GetComponent<HeroHeadBarComponent>()?.OnUpdateHorse();
                     break;
                 case NumericType.HorseFightID:
                     if (args.Unit.MainHero)
