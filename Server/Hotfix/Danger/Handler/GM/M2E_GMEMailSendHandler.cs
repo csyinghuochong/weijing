@@ -35,7 +35,16 @@ namespace ET
                     {
                         continue;
                     }
-                    
+                    List<UserInfoComponent> userinfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(scene.DomainZone(), d => d.Id == dBMailInfos[i].Id);
+                    if (userinfoComponents.Count == 0)
+                    {
+                        continue;
+                    }
+                    if (userinfoComponents[0].UserInfo.RobotId > 0)
+                    {
+                        continue;
+                    }
+
                     switch (request.MailType)
                     {
                         case 2: // 充值>=6元 10011003
@@ -45,11 +54,6 @@ namespace ET
                             }
                             break;
                         case 3: //20级以上 补
-                            List<UserInfoComponent> userinfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(scene.DomainZone(), d => d.Id == dBMailInfos[i].Id);
-                            if (userinfoComponents.Count == 0)
-                            {
-                                continue;
-                            }
                             if (userinfoComponents[0].UserInfo.Lv < int.Parse(request.Title))
                             {
                                 continue;

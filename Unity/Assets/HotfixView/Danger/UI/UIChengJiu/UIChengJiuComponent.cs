@@ -8,8 +8,9 @@ namespace ET
     { 
         Reward = 0,
         ChengJiu = 1,
-        Spirit = 2,
-        Number = 3,
+        JingLing = 2,
+        Spirit = 3,
+        Number,
     }
 
     public class UIChengJiuComponent : Entity, IAwake, IDestroy
@@ -38,10 +39,12 @@ namespace ET
             pageViewComponent.UISubViewType = new Type[(int)ChengJiuPageEnum.Number];
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.Reward] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuReward");
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.ChengJiu] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuShow");
+            pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.JingLing] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuJingLing");
             pageViewComponent.UISubViewPath[(int)ChengJiuPageEnum.Spirit] = ABPathHelper.GetUGUIPath("Main/ChengJiu/UISpiritShow");
 
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.Reward] = typeof(UIChengJiuRewardComponent);
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.ChengJiu] = typeof(UIChengJiuShowComponent);
+            pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.JingLing] = typeof(UIChengJiuJingLingComponent);
             pageViewComponent.UISubViewType[(int)ChengJiuPageEnum.Spirit] = typeof(UISpiritShowComponent);
             self.UIPageView = pageViewComponent;
 
