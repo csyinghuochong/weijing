@@ -118,13 +118,15 @@ namespace ET
                 {
                     owner = unit;
                 }
-                //已经有归属了
-                else if (teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
+                else
                 {
-                    owner = unit.DomainScene().GetComponent<UnitComponent>().Get(teamDungeonComponent.ItemFlags[unitDrop.Id]);
-                    if (owner != null)
+                    if (teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                     {
-                        m2C_SyncChatInfo.ChatInfo.ChatMsg = $"{owner.GetComponent<UserInfoComponent>().UserInfo.Name}拾取{itemConfig.ItemName}";
+                        owner = unit.DomainScene().GetComponent<UnitComponent>().Get(teamDungeonComponent.ItemFlags[unitDrop.Id]);
+                        if (owner != null)
+                        {
+                            m2C_SyncChatInfo.ChatInfo.ChatMsg = $"{owner.GetComponent<UserInfoComponent>().UserInfo.Name}拾取{itemConfig.ItemName}";
+                        }
                     }
                 }
                 if (owner == null)
@@ -155,7 +157,7 @@ namespace ET
                 rewardItems.Add(new RewardItem() { ItemID = addItemID, ItemNum = addItemNum });
 
                 bool success = owner.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
-                if (!success && !teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
+                if (!success && unitDrop!=null && !teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                 {
                     teamDungeonComponent.ItemFlags.Add(unitDrop.Id, owner.Id);
                     continue;
