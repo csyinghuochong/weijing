@@ -4705,6 +4705,9 @@ namespace ET
 		[ProtoMember(4)]
 		public List<int> AlreadReceivedId = new List<int>();
 
+		[ProtoMember(5)]
+		public List<int> JingLingList = new List<int>();
+
 	}
 
 //激活成就

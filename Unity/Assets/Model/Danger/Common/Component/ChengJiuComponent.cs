@@ -136,5 +136,7 @@ namespace ET
         public int TotalChengJiuPoint = 0;
         public List<int> AlreadReceivedId = new List<int>();
         public List<int> ChengJiuCompleteList = new List<int>();
+
+        public List<int> JingLingList = new List<int>();
     }
 }

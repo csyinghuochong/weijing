@@ -2222,6 +2222,7 @@ message M2C_ChengJiuListResponse // IActorLocationResponse
 	repeated int32 ChengJiuCompleteList = 2;
 	int32 TotalChengJiuPoint = 3;
 	repeated int32 AlreadReceivedId = 4;
+	repeated int32 JingLingList = 5;
 }
 
 //激活成就
