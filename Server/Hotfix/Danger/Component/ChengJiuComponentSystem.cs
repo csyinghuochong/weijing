@@ -163,6 +163,15 @@ namespace ET
             }
         }
 
+        public static void OnActiveJingLing(this ChengJiuComponent self, int jid)
+        {
+            if (self.JingLingList.Contains(jid))
+            {
+                return;
+            }
+            self.JingLingList.Add(jid);
+        }
+
         public static void TriggerEvent(this ChengJiuComponent self, ChengJiuTargetEnum chengJiuTarget, int target_id, int target_value=1)
         {
             int chengJiuTargetInt = (int)chengJiuTarget;

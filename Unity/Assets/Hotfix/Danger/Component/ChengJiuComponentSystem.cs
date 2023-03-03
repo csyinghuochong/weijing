@@ -42,6 +42,15 @@ namespace ET
         {
             return ChengJiuHelper.Instance.ChengJiuTypeData[typeid].ChengJiuChapterTask[subType];
         }
+
+        public static void OnActiveJingLing(this ChengJiuComponent self, int jid)
+        {
+            if (self.JingLingList.Contains(jid))
+            {
+                return;
+            }
+            self.JingLingList.Add(jid);
+        }
     }
 
 }

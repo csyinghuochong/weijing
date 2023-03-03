@@ -349,6 +349,9 @@ namespace ET
                             case 128://激活称号
                                 unit.GetComponent<TitleComponent>().OnActiveTile(int.Parse(itemConfig.ItemUsePar));
                                 break;
+                            case 129://激活精灵
+                                unit.GetComponent<ChengJiuComponent>().OnActiveJingLing(int.Parse(itemConfig.ItemUsePar));
+                                break;
                         }
 
                         //扣除道具

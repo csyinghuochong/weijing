@@ -4470,7 +4470,6 @@ message M2C_AreneInfoResult // IActorMessage
 	string Message = 4;
 }
 
-
 //ResponseType M2C_LifeShieldCostResponse
 message C2M_LifeShieldCostRequest    // IActorLocationRequest
 {
@@ -4516,8 +4515,23 @@ message M2C_TeamDungeonKillBossMessage // IActorMessage
 	repeated int KillBossList = 1;	
 }
 
-
 message M2C_KickPlayerMessage // IActorMessage
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
+
+//出战精灵
+//ResponseType M2C_JingLingUseResponse
+message C2M_JingLingUseRequest    // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int32 JingLingId = 1;
+	int32 OperateType = 2; //
+}
+
+message M2C_JingLingUseResponse    // IActorLocationResponse
 {
 	int32 RpcId = 90;
 	int32 Error = 91;
