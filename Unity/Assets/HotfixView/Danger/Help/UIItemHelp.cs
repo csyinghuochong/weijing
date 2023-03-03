@@ -622,13 +622,6 @@ namespace ET
             double equip_DamgeSub = equipconf.Equip_DamgeSub;
             double equip_Speed = equipconf.Equip_Speed;
             double equip_Lucky = equipconf.Equip_Lucky;
-
-            int equip_Power = 0;
-            int equip_Agility = 0;
-            int equip_Intellect = 0;
-            int equip_Stamina = 0;
-            int equip_Constitution = 0;
-
             /*
             HideProList hide1 = new HideProList();
             hide1.HideID = (int)NumericType.Base_MaxAct_Base;
