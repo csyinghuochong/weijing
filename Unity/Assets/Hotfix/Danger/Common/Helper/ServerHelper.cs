@@ -57,6 +57,7 @@ namespace ET
         public static List<ServerItem> GetServerList(bool innerNet, int zone)
         {
             string ip = innerNet ?  "127.0.0.1" : "39.96.194.143";
+            //string ip = innerNet ? "127.0.0.1" : "weijinggame.weijinggame.com";
             List<ServerItem> serverItems_1 = new List<ServerItem>();
 
             if (ComHelp.IsBanHaoZone(zone))

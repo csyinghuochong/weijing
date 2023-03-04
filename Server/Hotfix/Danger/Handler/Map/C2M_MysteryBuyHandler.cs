@@ -35,7 +35,7 @@ namespace ET
 
                 long chargeServerId = StartSceneConfigCategory.Instance.GetBySceneName(unit.DomainZone(), Enum.GetName(SceneType.Activity)).InstanceId;
                 request.MysteryItemInfo.ItemID = mysteryConfig.SellItemID;
-                request.MysteryItemInfo.ItemNumber = mysteryConfig.BuyNumMax;
+                request.MysteryItemInfo.ItemNumber = 1;
                 A2M_MysteryBuyResponse r_GameStatusResponse = (A2M_MysteryBuyResponse)await ActorMessageSenderComponent.Instance.Call
                     (chargeServerId, new M2A_MysteryBuyRequest()
                     {
