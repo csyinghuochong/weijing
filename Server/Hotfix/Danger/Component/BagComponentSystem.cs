@@ -580,9 +580,9 @@ namespace ET
 
                 //最大堆叠数量
                 ItemConfig itemCof = ItemConfigCategory.Instance.Get(itemID);
-                if (itemCof.ItemQuality >= 4 || (itemCof.Id >= 16000101 && itemCof.Id<= 16000312) || (itemCof.Id >= 10030011 && itemCof.Id <= 10030019))
+                if (itemCof.EquipType == 101 || itemCof.ItemQuality >= 4 || (itemCof.Id >= 16000101 && itemCof.Id<= 16000312) || (itemCof.Id >= 10030011 && itemCof.Id <= 10030019))
                 {
-                    Log.Warning($"[获取道具]itemCof.ItemQuality >= 4 {unit.Id} {itemID} {rewardItems[i].ItemNum} {getType}");
+                    Log.Warning($"[获取道具] {unit.Id} {itemID} {rewardItems[i].ItemNum} {getType}");
                 }
                 if (leftNum >= 99)
                 {
