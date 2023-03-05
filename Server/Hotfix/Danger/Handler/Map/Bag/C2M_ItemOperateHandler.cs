@@ -556,7 +556,7 @@ namespace ET
                     int rolelv = useInfo.Lv;
                     string qulitylv = "";
                     bool ifItem = false;
-                    if (baginfoId == 0)        
+                    if (baginfoId == 0 && itemConfig!= null)        
                     {
                         //金币鉴定，扣除金币
                         qulitylv = itemConfig.UseLv.ToString();
