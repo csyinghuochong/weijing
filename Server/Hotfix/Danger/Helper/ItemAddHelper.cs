@@ -133,7 +133,9 @@ namespace ET
             if (JianDingPro >= 1.5f)
             {
                 JianDingPro = 1.5f;
-                addJianDingPro += 0.1f;
+                addJianDingPro += 0.2f;
+            } else if (JianDingPro >= 1f) {
+                addJianDingPro += 0.2f * (JianDingPro - 0.5f);
             }
 
             if (JianDingPro <= 0.5f)
@@ -144,7 +146,7 @@ namespace ET
             int randomNum = 0;
             float randomFloat = RandomHelper.RandFloat01() + addJianDingPro;
 
-            Log.Info("randomFloat == " + randomFloat + "  JianDingPro = " + JianDingPro);
+            Log.Info("randomFloat == " + randomFloat + "  JianDingPro = " + JianDingPro + "addJianDingPro = " + addJianDingPro);
 
             randomFloat = randomFloat * JianDingPro;
 
@@ -188,8 +190,12 @@ namespace ET
 
             for (int i = 0; i < randomNum; i++)
             {
-                //随机值
-                int randomValueInt = RandomHelper.RandomNumber(1, equipCof.OneProRandomValue);
+                //随机值(高品质保底属性)
+                int minNum = 1;
+                if (JianDingPro > 1f) {
+                    minNum = (int)((float)equipCof.OneProRandomValue * (JianDingPro - 1f) * 0.68f);
+                }
+                int randomValueInt = RandomHelper.RandomNumber2(minNum, equipCof.OneProRandomValue);
                 randomValueInt = (int)(randomValueInt * JianDingPro);
                 if (randomValueInt > equipCof.OneProRandomValue)
                 {
@@ -215,7 +221,7 @@ namespace ET
                 }
 
                 //随机属性类型
-                int randomIDInt = RandomHelper.RandomNumber(1, 5);
+                int randomIDInt = RandomHelper.RandomNumber2(1, 5);
                 //
                 int proID = 105101;
                 switch (randomIDInt)

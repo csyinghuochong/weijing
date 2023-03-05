@@ -122,6 +122,7 @@ namespace ET
         /// xilianType  洗炼类型   0 普通掉落  1 装备洗炼功能   2 (不显示广播消息)
         public static ItemXiLianResult XiLianItem(Unit unit, BagInfo bagInfo, int xilianType, int xilianLv)
         {
+
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
             //获取装备等级和装备类型
             int equipID = itemConfig.ItemEquipID;
@@ -439,6 +440,14 @@ namespace ET
                     {
                         //获取单条触发概率
                         HideProListConfig hideProListConfig = HideProListConfigCategory.Instance.Get(hintProListID);
+
+                        //获取当前洗炼家等级 洗炼家等级不满足直接跳出
+                        int xilianLevel = XiLianHelper.GetXiLianId(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ItemXiLianDu));
+                        if (xilianLevel < hideProListConfig.NeedXiLianLv) {
+                            //立即跳出循环
+                            break;
+                        }
+
                         double triggerPro = hideProListConfig.TriggerPro;
                         //判定当条属性位置是否激活
                         //string itemSubType = Game_PublicClassVar.Get_function_DataSet.DataSet_ReadData("ItemSubType", "ID", itemID, "Item_Template");

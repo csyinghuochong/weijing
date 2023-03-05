@@ -72,6 +72,18 @@ namespace ET
             return value;
         }
 
+        /// <summary>
+        /// 获取lower与Upper之间的随机数,包含下限和上限
+        /// </summary>
+        /// <param name="lower"></param>
+        /// <param name="upper"></param>
+        /// <returns></returns>
+        public static int RandomNumber2(int lower, int upper)
+        {
+            int value = random.Next(lower, upper+1);
+            return value;
+        }
+
         public static long NextLong(long minValue,long maxValue)
         {
             if (minValue > maxValue)

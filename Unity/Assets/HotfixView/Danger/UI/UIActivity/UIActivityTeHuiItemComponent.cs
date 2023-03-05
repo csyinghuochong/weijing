@@ -52,6 +52,7 @@ namespace ET
             if (errorCode == ErrorCore.ERR_Success)
             {
                 self.ImageReceived.SetActive(true);
+                self.ButtonBuy.SetActive(false);
             }
         }
 

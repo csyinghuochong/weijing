@@ -130,7 +130,7 @@ namespace ET
                         //子类符合对应关系
                         int itemSubType = itemConfig.ItemSubType;
                         //生肖特殊处理
-                        if (itemConfig.ItemType == 3 && itemConfig.ItemSubType > 1101 && itemConfig.ItemSubType < 1600) {
+                        if (itemConfig.ItemType == 3 && itemConfig.ItemSubType >= 1101 && itemConfig.ItemSubType < 1600) {
                             itemSubType = 1100;
                         }
                         self.PaiMaiList[i].GameObject.SetActive(itemConfig.ItemType == typeid && itemSubType == subtypeid);
