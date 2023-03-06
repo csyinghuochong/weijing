@@ -96,7 +96,7 @@ namespace ET
                                 return;
                             }
 
-                            Log.Warning($"LoginTest C2G_EnterGame 二次登录失败 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
+                            Log.Warning($"LoginTest C2G_EnterGame 二次登录失败1 player.Id： {player.Id} request.UserID{request.UserID}  player.UnitId: {player.UnitId}");
 							response.Error = ErrorCore.ERR_ReEnterGameError;
 							await DisconnectHelper.KickPlayer(player, true);
 							await DisconnectHelper.KickPlayer(session.DomainZone(), request.UserID);
@@ -107,9 +107,10 @@ namespace ET
 						}
 						catch (Exception e)
 						{
-							Log.Error($"LoginTest C2G_EnterGame 二次登录失败player.Id： {player.Id}  request.UserID{request.UserID}  player.UnitId: {player.UnitId}" + e.ToString());
+							Log.Error($"LoginTest C2G_EnterGame 二次登录失败2 player.Id： {player.Id}  request.UserID{request.UserID}  player.UnitId: {player.UnitId}" + e.ToString());
 							response.Error = ErrorCore.ERR_ReEnterGameError2;
 							await DisconnectHelper.KickPlayer(player, true);
+							await DisconnectHelper.KickPlayer(session.DomainZone(), request.UserID);
 							reply();
 							session?.Disconnect().Coroutine();
 							throw;

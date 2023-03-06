@@ -48,12 +48,7 @@ namespace ET
             self.DuiHuan_Gold = rc.Get<GameObject>("DuiHuan_Gold");
             self.Lab_DuiHuanGoldProShow = rc.Get<GameObject>("Lab_DuiHuanGoldProShow");
             self.Lab_DuiHuanZuanShiProShow = rc.Get<GameObject>("Lab_DuiHuanZuanShiProShow");
-            self.ExchangeZuanShi = 100;
-            self.Lab_DuiHuanGoldProShow.GetComponent<Text>().text = (self.ExchangeValue * self.ExchangeZuanShi).ToString();
-            self.Lab_DuiHuanZuanShiProShow.GetComponent<Text>().text = self.ExchangeZuanShi.ToString();
-            self.DuiHuan_Gold.GetComponent<Text>().text  = (self.ExchangeValue * self.ExchangeZuanShi).ToString();
-            self.Lab_RmbNum.GetComponent<InputField>().text = self.ExchangeZuanShi.ToString();
-
+          
             self.Lab_RmbNum.GetComponent<InputField>().onValueChanged.AddListener((string str) => { self.OnBtn_BuyNum_jia(0); });
             
             //初始化数据
@@ -74,6 +69,12 @@ namespace ET
                 return;
             }
             self.ExchangeValue = a2C_ServerExchangeValue.ServerInfo.ExChangeGold;
+
+            self.ExchangeZuanShi = 100;
+            self.Lab_DuiHuanGoldProShow.GetComponent<Text>().text = (self.ExchangeValue * self.ExchangeZuanShi).ToString();
+            self.Lab_DuiHuanZuanShiProShow.GetComponent<Text>().text = self.ExchangeZuanShi.ToString();
+            self.DuiHuan_Gold.GetComponent<Text>().text = (self.ExchangeValue * self.ExchangeZuanShi).ToString();
+            self.Lab_RmbNum.GetComponent<InputField>().text = self.ExchangeZuanShi.ToString();
         }
 
         public static void OnBtn_BuyNum_jia(this UIPaiMaiDuiHuanComponet self, int num)

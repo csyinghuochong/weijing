@@ -20,16 +20,16 @@ namespace ET
                     Log.Console($"C must have chaxun zone unitid");
                     break;
                 default:
-                    //chaxun 1 ""
+                    //kickout 1    1
                     string[] chaxunInfo = content.Split(" ");
-                    if (chaxunInfo[0] != "chaxun")
+                    if (chaxunInfo[0] != "kickout")
                     {
                         return;
                     }
 
                     int zone = int.Parse(chaxunInfo[1]);
                     int pyzone = StartZoneConfigCategory.Instance.Get(zone).PhysicZone;
-                    long unitid = int.Parse(chaxunInfo[2]);
+                    long unitid = long.Parse(chaxunInfo[2]);
 
                     DisconnectHelper.KickPlayer(pyzone, unitid).Coroutine();
                     break;
