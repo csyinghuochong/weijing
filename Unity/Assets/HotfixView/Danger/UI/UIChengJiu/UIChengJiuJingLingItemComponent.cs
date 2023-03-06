@@ -64,7 +64,6 @@ namespace ET
             self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
             self.ChengHaoName.GetComponent<Text>().text = jingLingConfig.Name;
 
-
             var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
             GameObject bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             GameObject gameObject = UnityEngine.Object.Instantiate(bundleGameObject);
@@ -74,6 +73,9 @@ namespace ET
             gameObject.transform.Find("Camera").localPosition = new Vector3(0f, 40f, 200f);
             gameObject.transform.localPosition = new Vector2(jingLingConfig.Id % 10 * 1000, 0);
             gameObject.transform.Find("Model").localRotation = Quaternion.Euler(0f, -45f, 0f);
+
+            self.Text_value.GetComponent<Text>().text = jingLingConfig.Des;
+            self.ObjGetText.GetComponent<Text>().text = jingLingConfig.GetDes;
 
         }
 
