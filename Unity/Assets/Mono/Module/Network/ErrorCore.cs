@@ -114,6 +114,7 @@
         public const int ERR_NotRealName = 300202;                                  //登录时,未实名认证
         public const int ERR_GMError = 300203;
         public const int ERR_AlreadyReceived = 300204;                              //领取过奖励
+        public const int ERR_RealNameFail = 300205;                              //实名认证失败
 
         public const int ERR_MailFull = 300301;                                     //邮箱已满
         public const int ERR_CreateRoleName = 300302;

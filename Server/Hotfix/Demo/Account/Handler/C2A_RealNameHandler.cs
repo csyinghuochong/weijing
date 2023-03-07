@@ -10,6 +10,7 @@ namespace ET
         {
             if (string.IsNullOrEmpty(request.IdCardNO) || string.IsNullOrEmpty(request.Name))
             {
+                response.Error = ErrorCore.ERR_RealNameFail;
                 reply();
                 return;
             }
@@ -48,6 +49,7 @@ namespace ET
             }
             if (result_check == null)
             {
+                response.Error = ErrorCore.ERR_RealNameFail;
                 reply();
                 return;
             }
