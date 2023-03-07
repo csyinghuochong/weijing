@@ -51,7 +51,7 @@ namespace ET
 
             self.TextCoundown = rc.Get<GameObject>("TextCoundown");
             self.ButtonTiaozhan = rc.Get<GameObject>("ButtonTiaozhan");
-            ButtonHelp.AddListenerEx(self.ButtonTiaozhan, () => { self.OnButtonTiaozhan().Coroutine(); });
+            ButtonHelp.AddListenerEx(self.ButtonTiaozhan, () => { self.OnButtonTiaozhan(); });
 
             self.BeginTimer();
         }
@@ -71,7 +71,7 @@ namespace ET
             self.Timer = TimerComponent.Instance.NewRepeatedTimer(1000, TimerType.TrialMainTimer, self);
         }
 
-        public static async ETTask OnButtonTiaozhan(this UITrialMainComponent self)
+        public static void OnButtonTiaozhan(this UITrialMainComponent self)
         {
             NumericComponent numericComponent = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<NumericComponent>();
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
@@ -86,6 +86,15 @@ namespace ET
                 return;
             }
             self.LastTiaoZhan = TimeHelper.ServerNow();
+
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(),"系统提示", "是否重新开始挑战,开始后倒计时和怪物血量将自动初始化", () => 
+            {
+                self.RequestTiaozhan().Coroutine();
+            }, null).Coroutine();
+        }
+
+        public static async ETTask RequestTiaozhan(this UITrialMainComponent self)
+        {
             C2M_TrialDungeonBeginRequest request = new C2M_TrialDungeonBeginRequest();
             M2C_TrialDungeonBeginResponse response = (M2C_TrialDungeonBeginResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
             if (response.Error != ErrorCore.ERR_Success)
