@@ -1000,14 +1000,21 @@ message M2C_UnitStateUpdate // IActorMessage
 
 message M2C_UnitBuffUpdate // IActorMessage
 {
-	int32 RpcId = 90;
-	int64 ActorId = 93;
 	int32 BuffID = 1;
 	int64 UnitIdBelongTo = 2;
 	int32 BuffOperateType = 4;
 	repeated float TargetPostion = 5;
 	int64 BuffEndTime = 6;
 	string Spellcaster = 7;
+	int32 UnitType = 8;
+	int32 UnitConfigId = 9;
+	int32 SkillId = 10;
+}
+
+message M2C_UnitBuffRemove // IActorMessage
+{
+	int32 BuffID = 1;
+	int64 UnitIdBelongTo = 2;
 }
 
 //ResponseType G2C_OffLine

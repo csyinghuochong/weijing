@@ -63,10 +63,11 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_Occ_Hint_1, "转职失败!请先将角色等级提升至18级");
             ErrorHintList.Add(ErrorCore.ERR_Occ_Hint_2, "请不要重复进行转职噢");
             ErrorHintList.Add(ErrorCore.ERR_NotRealName, "请先实名认证");
+            ErrorHintList.Add(ErrorCore.ERR_RealNameFail, "实名认证失败!");
             ErrorHintList.Add(ErrorCore.ERR_WordChat, "世界频道发消息 1分钟1次");
             ErrorHintList.Add(ErrorCore.ERR_InMakeCD, "制作冷却中!");
             ErrorHintList.Add(ErrorCore.ERR_MakeTypeError, "制作类型不符!");
-
+           
             ErrorHintList.Add(ErrorCore.ERR_CreateRoleName, "角色名非法!");
             ErrorHintList.Add(ErrorCore.ERR_RoleNameRepeat, "角色名重复!");
             ErrorHintList.Add(ErrorCore.ERR_ShuLianDuNotEnough, "当前制造需求熟练度不足!");

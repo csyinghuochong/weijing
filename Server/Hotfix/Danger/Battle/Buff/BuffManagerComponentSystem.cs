@@ -90,8 +90,10 @@ namespace ET
                     self.m_Buffs.RemoveAt(i);
                 }
             }
-
-            MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitBuffUpdate() { UnitIdBelongTo = self.GetParent<Unit>().Id, BuffID = buffId, BuffOperateType = 2 });
+            M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;
+            m2C_UnitBuffUpdate.UnitIdBelongTo = self.GetParent<Unit>().Id;
+            m2C_UnitBuffUpdate.BuffID = buffId;
+            MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffUpdate);
         }
 
         public static void BulletFactory(this BuffManagerComponent self, BuffData buffData, Unit from, SkillHandler skillHandler)
@@ -187,7 +189,10 @@ namespace ET
 
                 if (remove)
                 {
-                    MessageHelper.Broadcast(self.GetParent<Unit>(), new M2C_UnitBuffUpdate() { UnitIdBelongTo = unit.Id, BuffID = tempBuffConfig.Id, BuffOperateType = 2 });
+                    M2C_UnitBuffRemove m2C_UnitBuffUpdate = self.m2C_UnitBuffRemove;
+                    m2C_UnitBuffUpdate.UnitIdBelongTo = unit.Id;
+                    m2C_UnitBuffUpdate.BuffID = tempBuffConfig.Id;
+                    MessageHelper.Broadcast(self.GetParent<Unit>(), m2C_UnitBuffUpdate);
                     buffHandler.BuffState = BuffState.Finished;
                     ObjectPool.Instance.Recycle(buffHandler);
                     buffHandler.OnFinished();
@@ -220,7 +225,10 @@ namespace ET
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.x);
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.y);
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.z);
-                m2C_UnitBuffUpdate.Spellcaster = from.GetComponent<UnitInfoComponent>().PlayerName; 
+                m2C_UnitBuffUpdate.Spellcaster = from.GetComponent<UnitInfoComponent>().PlayerName;
+                m2C_UnitBuffUpdate.UnitType = from.Type;
+                m2C_UnitBuffUpdate.UnitConfigId = from.ConfigId;    
+                m2C_UnitBuffUpdate.SkillId = buffData.SkillConfig.Id;
                 if (unit.GetComponent<AOIEntity>() == null)
                 {
                     Log.Error($"unit.GetComponent<AOIEntity>() == null  {unit.Type} {unit.ConfigId}  {unit.Id}  {unit.IsDisposed}");

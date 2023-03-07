@@ -2151,12 +2151,6 @@ namespace ET
 	[ProtoContract]
 	public partial class M2C_UnitBuffUpdate: Object, IActorMessage
 	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
 		[ProtoMember(1)]
 		public int BuffID { get; set; }
 
@@ -2174,6 +2168,27 @@ namespace ET
 
 		[ProtoMember(7)]
 		public string Spellcaster { get; set; }
+
+		[ProtoMember(8)]
+		public int UnitType { get; set; }
+
+		[ProtoMember(9)]
+		public int UnitConfigId { get; set; }
+
+		[ProtoMember(10)]
+		public int SkillId { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_UnitBuffRemove)]
+	[ProtoContract]
+	public partial class M2C_UnitBuffRemove: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public int BuffID { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitIdBelongTo { get; set; }
 
 	}
 
