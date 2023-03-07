@@ -28,11 +28,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _Splat0:
-        m_Texture: {fileID: 2800000, guid: cdf6193aabb264d459334b76074ba22a, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2e7b69e58d0494af797a7ec22f26d1a1, type: 3}
         m_Scale: {x: 100, y: 100}
         m_Offset: {x: 0, y: 0}
     - _Splat1:
-        m_Texture: {fileID: 2800000, guid: 0a2b29eba49d04e4abf0b30d92bfdd40, type: 3}
+        m_Texture: {fileID: 2800000, guid: c72f81965a2b341eaa756a23ba4d9335, type: 3}
         m_Scale: {x: 40, y: 40}
         m_Offset: {x: 0, y: 0}
     - _Splat2:
@@ -40,7 +40,7 @@ Material:
         m_Scale: {x: 30, y: 30}
         m_Offset: {x: 0, y: 0}
     - _Splat3:
-        m_Texture: {fileID: 2800000, guid: 2dc47424b9f259f4e99c7e44438f9419, type: 3}
+        m_Texture: {fileID: 2800000, guid: 4f80df6480b624bbfbb5a8bd6d148e5a, type: 3}
         m_Scale: {x: 17, y: 17}
         m_Offset: {x: 0, y: 0}
     m_Floats: []
