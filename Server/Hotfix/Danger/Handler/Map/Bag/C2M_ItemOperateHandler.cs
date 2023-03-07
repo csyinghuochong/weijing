@@ -345,6 +345,7 @@ namespace ET
                             case 127: //藏宝图
                                 string rewardItem = useBagInfo.ItemPar.Split('@')[2];
                                 unit.GetComponent<BagComponent>().OnAddItemData(rewardItem, $"{ItemGetWay.TreasureMap}_{TimeHelper.ServerNow()}");
+                                unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.TreasureMapNumber_210, 0, 1);
                                 break;
                             case 128://激活称号
                                 unit.GetComponent<TitleComponent>().OnActiveTile(int.Parse(itemConfig.ItemUsePar));

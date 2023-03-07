@@ -97,7 +97,7 @@ namespace ET
 
         public static void SetSelected(this UIItemComponent self, BagInfo bagInfo)
         {
-            if (self.Baginfo == null)
+            if (self.Baginfo == null || bagInfo == null)
             {
                 return;
             }

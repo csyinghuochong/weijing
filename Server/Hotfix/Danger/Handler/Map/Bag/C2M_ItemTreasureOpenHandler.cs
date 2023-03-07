@@ -31,8 +31,6 @@ namespace ET
             response.ReardItem = rewardItems[0];
             useBagInfo.HideProLists.Clear();
             useBagInfo.HideProLists.Add(new HideProList() { HideID = rewardItems[0].ItemID, HideValue = rewardItems[0].ItemNum });
-
-            unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.TreasureMapNumber_210, 0, 1);
             reply();
             await ETTask.CompletedTask;
         }
