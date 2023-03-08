@@ -463,12 +463,15 @@ namespace ET
             
             float expAdd = ComHelp.GetExpAdd(self.UserInfo.Lv, serverInfo);
 
-            //读取数据
-            self.UserInfo.Exp = self.UserInfo.Exp + (int)(addValue * (1.0f + expAdd));
+            //等级达到上限,则无法获得经验
+            if (self.UserInfo.Lv >= GlobalValueConfigCategory.Instance.Get(41).Value2)
+            {
+                return;
+            }
 
+            self.UserInfo.Exp = self.UserInfo.Exp + (int)(addValue * (1.0f + expAdd));
             //判定是否升级
-            if (self.UserInfo.Lv >= GlobalValueConfigCategory.Instance.Get(41).Value2
-                || self.UserInfo.Lv >= serverInfo.WorldLv)
+            if (self.UserInfo.Lv >= serverInfo.WorldLv)
             {
                 return;
             }
