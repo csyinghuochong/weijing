@@ -44,7 +44,6 @@ namespace ET
 
     public static class TeamDungeonComponentSystem
     {
-
         public static void Check(this TeamDungeonComponent self)
         {
             if (self.TeamDropItems.Count == 0)
@@ -98,9 +97,16 @@ namespace ET
                     if (ret)
                     {
                         FubenHelp.SendPickMessage(unit, teamDropItem.DropInfo, needIds, randomNumbers);
+                        self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
+                    }
+                    else
+                    {
+                        if (!self.ItemFlags.ContainsKey(teamDropItem.DropInfo.UnitId))
+                        {
+                            self.ItemFlags.Add(teamDropItem.DropInfo.UnitId, unit.Id);
+                        }
                     }
                 }
-                self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
             }
         }
 

@@ -100,8 +100,8 @@ namespace ET
                 int addItemNum = dropComponent != null ? dropComponent.ItemNum : drops[i].ItemNum;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
                 //紫色品质通知客户端抉择
-                //DropType ==  0 公共掉落 2保护掉落   1私有掉落
-                if (drops[i].DropType != 1 && itemConfig.ItemQuality >= 4)
+                //DropType ==   0 公共掉落 1私有掉落 2保护掉落   3 归属掉落
+                if (drops[i].DropType == 0 && itemConfig.ItemQuality >= 4 && !teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                 {
                     teamDungeonComponent.AddTeamDropItem(unit, drops[i]);
                     continue;
@@ -163,13 +163,14 @@ namespace ET
                     continue;
                 }
 
-                //移除掉落
-                if (drops[i].DropType != 1)
+                if (success)
                 {
-                    owner.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);
+                    if (drops[i].DropType != 1)
+                    {
+                        owner.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);
+                    }
+                    MessageHelper.SendToClient(allPlayer, m2C_SyncChatInfo);
                 }
-
-                MessageHelper.SendToClient(allPlayer, m2C_SyncChatInfo);
             }
 
             return ErrorCode.ERR_Success;
