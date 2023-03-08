@@ -188,11 +188,13 @@ namespace ET
             numericComponent.Set(NumericType.BattleCamp, roleCamp);
             numericComponent.Set(NumericType.MasterId, masterId);
             unit.AddComponent<MoveComponent>();
-            unit.AddComponent<UnitInfoComponent>(true);
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
             unit.AddComponent<AttackRecordComponent>(true);
             unit.ConfigId = petinfo.ConfigId;
+            unitInfoComponent.StallName = petinfo.PetName;
+            unitInfoComponent.PlayerName = petinfo.PlayerName;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Position = postion;

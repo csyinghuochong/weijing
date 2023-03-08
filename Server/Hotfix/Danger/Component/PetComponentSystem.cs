@@ -79,6 +79,7 @@ namespace ET
         //获取新宠物
         public static RolePetInfo GenerateNewPet(this PetComponent self, int petId, int skinId)
         {
+            Unit unit = self.GetParent<Unit>();
             PetConfig petConfig = PetConfigCategory.Instance.Get(petId);
             RolePetInfo newpet = new RolePetInfo();
             newpet.Id = IdGenerater.Instance.GenerateId();
@@ -92,6 +93,7 @@ namespace ET
             newpet.PetHeXinList = new List<long>() { 0, 0, 0 };
             newpet.AddPropretyNum = 0;
             newpet.AddPropretyValue = "0_0_0_0";
+            newpet.PlayerName = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
             return newpet;
         }
 

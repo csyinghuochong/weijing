@@ -110,7 +110,6 @@ namespace ET
         public static void OnFubenResult(this UIPetMainComponent self, M2C_FubenSettlement m2C_FubenSettlement)
         {
             self.M2C_FubenSettlement = m2C_FubenSettlement;
-
         }
 
         public static void OnUnitHpUpdate(this UIPetMainComponent self, Unit unit)
@@ -150,6 +149,7 @@ namespace ET
                     gameObject.SetActive(true);
 
                     gameObject.transform.Find("Lal_Name").GetComponent<TextMeshProUGUI>().text = PetConfigCategory.Instance.Get(entities[i].ConfigId).PetName;
+                    gameObject.transform.Find("Lal_Lv").GetComponent<TextMeshProUGUI>().text = "";
                     self.HpList.Add(entities[i].Id, gameObject);
                     continue;
                 }

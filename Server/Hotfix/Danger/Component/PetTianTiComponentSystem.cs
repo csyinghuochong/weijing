@@ -59,6 +59,7 @@ namespace ET
                     RolePetInfo petInfo = petComponent.GenerateNewPet(petlist[0], 0);
                     petComponent.PetXiLian(petInfo, 1);
                     petComponent.UpdatePetAttribute(petInfo, false);
+                    petInfo.PlayerName = "机器人";
                     Unit petunit = UnitFactory.CreateTianTiPet(unit.DomainScene(), 0,
                        CampEnum.CampPlayer_2,  petInfo, AIHelp.Formation_2[k]);
                     petunit.GetComponent<AIComponent>().StopAI = true;
