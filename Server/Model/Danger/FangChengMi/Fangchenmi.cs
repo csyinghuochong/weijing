@@ -14,7 +14,7 @@ namespace ET
 		public int errcode;
 		public string errmsg;
 
-		public RealNameData realNameData;
+		public RealNameData data;
 	}
 
 	public sealed class RealNameData

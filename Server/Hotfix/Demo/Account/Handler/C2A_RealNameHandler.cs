@@ -20,8 +20,8 @@ namespace ET
             DBAccountInfo accountInfo = d2GGetUnit.Component as DBAccountInfo;
 
             RealNameCode result_check = new RealNameCode();
-            result_check.realNameData = new RealNameData();
-            result_check.realNameData.result = new RealNameResult();
+            result_check.data = new RealNameData();
+            result_check.data.result = new RealNameResult();
             using ListComponent<string> testCard = new ListComponent<string>();
             for (int i = 0; i < 30; i++)
             {
@@ -31,7 +31,7 @@ namespace ET
             if (ComHelp.IsInnerNet() || testCard.Contains(request.IdCardNO))
             {
                 result_check.errcode = 0;
-                result_check.realNameData.result.status = 0;
+                result_check.data.result.status = 0;
             }
             else
             {
@@ -50,14 +50,14 @@ namespace ET
                     idNum = request.IdCardNO,
                 }, EType.Check);
             }
-            if (result_check == null || result_check.realNameData == null || result_check.realNameData.result == null)
+            if (result_check == null || result_check.data == null || result_check.data.result == null)
             {
                 response.Error = ErrorCore.ERR_RealNameFail;
                 reply();
                 return;
             }
 
-            if (result_check.errcode == 0 && result_check.realNameData.result.status == 0)  //认证成功
+            if (result_check.errcode == 0 && result_check.data.result.status == 0)  //认证成功
             {
                 Log.Debug($"OnDoFangchenmi  sucess");
                 PlayerInfo playerInfo = new PlayerInfo();
