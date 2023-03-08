@@ -327,7 +327,7 @@ namespace ET
             {
                 if (component is UIMailComponent uimailComponent)
                 {
-                    uimailComponent.OnMailUpdate().Coroutine();
+                    uimailComponent.OnMailUpdate();
                     continue;
                 }
             }

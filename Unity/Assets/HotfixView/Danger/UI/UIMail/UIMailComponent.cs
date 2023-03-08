@@ -6,6 +6,7 @@ namespace ET
 {
     public class UIMailComponent : Entity, IAwake, IDestroy
     {
+        public GameObject ButtonOneKey;
         public GameObject ButtonGet;
         public GameObject MailListNode;
         public GameObject Btn_Close;
@@ -17,8 +18,8 @@ namespace ET
         public GameObject Obj_NoMail;
 
         public MailComponent MailComponent;
-        public List<UI> MailListUI;
-        public List<UI> RewardListUI;
+        public List<UIMailItemComponent> MailListUI = new List<UIMailItemComponent>();
+        public List<UIItemComponent> RewardListUI = new List<UIItemComponent>();
     }
 
     [ObjectSystem]
@@ -26,8 +27,8 @@ namespace ET
     {
         public override void Awake(UIMailComponent self)
         {
-            self.MailListUI = new List<UI>();
-            self.RewardListUI = new List<UI>();
+            self.MailListUI.Clear();
+            self.RewardListUI.Clear();
 
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.MailListNode = rc.Get<GameObject>("MailListNode");
@@ -39,9 +40,12 @@ namespace ET
             self.ButtonGet = rc.Get<GameObject>("ButtonGet");
             self.Obj_MailContent = rc.Get<GameObject>("MailContent");
             self.Obj_NoMail = rc.Get<GameObject>("NoMail");
+            self.ButtonOneKey = rc.Get<GameObject>("ButtonOneKey");
 
             self.Btn_Close.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseMail(); });
             ButtonHelp.AddListenerEx(self.ButtonGet, self.OnButtonGet);
+
+            ButtonHelp.AddListenerEx(self.ButtonOneKey, () => { self.OnButtonOneKey().Coroutine(); });
 
             self.MailComponent = self.ZoneScene().GetComponent<MailComponent>();
 
@@ -77,10 +81,27 @@ namespace ET
             self.MailComponent.SendReceiveMail().Coroutine();
         }
 
+        public static async ETTask OnButtonOneKey(this UIMailComponent self)
+        {
+            long instanceid = self.InstanceId;
+            while(self.MailComponent.MailInfoList.Count > 0)
+            {
+                int errorCode = await self.MailComponent.SendReceiveMail();
+                if (errorCode != 0)
+                {
+                    break;
+                }
+                if (instanceid != self.InstanceId)
+                {
+                    break;
+                }
+            }
+        }
+
         public static void OnSelectMail(this UIMailComponent self)
         {
             self.UpdateMailSelected();
-            self.UpdateMailContent().Coroutine();
+            self.UpdateMailContent();
         }
 
         public static void UpdateMailSelected(this UIMailComponent self)
@@ -96,11 +117,11 @@ namespace ET
 
             for (int I = 0; I < self.MailListUI.Count; I++)
             {
-                self.MailListUI[I].GetComponent<UIMailItemComponent>().SetSelected(self.MailComponent.SelectMail);
+                self.MailListUI[I].SetSelected(self.MailComponent.SelectMail);
             }
         }
 
-        public static async ETTask UpdateMailContent(this UIMailComponent self)
+        public static  void UpdateMailContent(this UIMailComponent self)
         {
             for (int i = 0; i < self.RewardListUI.Count; i++)
             {
@@ -111,11 +132,10 @@ namespace ET
             self.TextMailContent.GetComponent<Text>().text = mailInfos.Context;
 
             var path = ABPathHelper.GetUGUIPath("Main/Role/UIItem");
-            await ETTask.CompletedTask;
             var bundleGameObject =ResourcesComponent.Instance.LoadAsset<GameObject>(path);
             for (int i = 0; i < mailInfos.ItemList.Count; i++)
             {
-                UI ui_2 = null;
+                UIItemComponent ui_2 = null;
                 if (i < self.RewardListUI.Count)
                 {
                     ui_2 = self.RewardListUI[i];
@@ -126,21 +146,19 @@ namespace ET
                     GameObject itemSpace = GameObject.Instantiate(bundleGameObject);
                     itemSpace.SetActive(true);
                     UICommonHelper.SetParent(itemSpace, self.RewardList);
-                    ui_2 = self.AddChild<UI, string, GameObject>( "reardItem_" + i.ToString(), itemSpace);
-                    ui_2.AddComponent<UIItemComponent>();
+                    ui_2 = self.AddChild<UIItemComponent, GameObject>( itemSpace);
                     self.RewardListUI.Add(ui_2);
                 }
-
-                ui_2.GetComponent<UIItemComponent>().UpdateItem(mailInfos.ItemList[i], ItemOperateEnum.MailReward);
+                ui_2.UpdateItem(mailInfos.ItemList[i], ItemOperateEnum.MailReward);
             }
         }
 
-        public static async ETTask OnMailUpdate(this UIMailComponent self)
+        public static  void OnMailUpdate(this UIMailComponent self)
         {
             for (int I = 0; I < self.MailListUI.Count; I++)
             {
                 self.MailListUI[I].GameObject.SetActive(false);
-                self.MailListUI[I].GetComponent<UIMailItemComponent>().ResetUI();
+                self.MailListUI[I].ResetUI();
             }
 
             //增删改
@@ -155,11 +173,10 @@ namespace ET
             self.MailContent.SetActive(true);
             self.Obj_NoMail.SetActive(false);
 
-            await ETTask.CompletedTask;
             GameObject mailItem =ResourcesComponent.Instance.LoadAsset<GameObject>(ABPathHelper.GetUGUIPath("Main/Mail/UIMailItem"));
             for (int i = 0; i < mailInfos.Count; i++)
             {
-                UI ui_2 = null;
+                UIMailItemComponent ui_2 = null;
                 if (i < self.MailListUI.Count)
                 {
                     ui_2 = self.MailListUI[i];
@@ -170,12 +187,11 @@ namespace ET
                     GameObject itemSpace = GameObject.Instantiate(mailItem);
                     itemSpace.SetActive(true);
                     UICommonHelper.SetParent(itemSpace, self.MailListNode);
-                    ui_2 = self.AddChild<UI, string, GameObject>( "mail_" + i.ToString(), itemSpace);
-                    UIMailItemComponent uIItemComponent = ui_2.AddComponent<UIMailItemComponent>();
-                    uIItemComponent.SetClickHandler(() => { self.OnSelectMail(); });
+                    ui_2 = self.AddChild<UIMailItemComponent, GameObject>(itemSpace);
+                    ui_2.SetClickHandler(() => { self.OnSelectMail(); });
                     self.MailListUI.Add(ui_2);
                 }
-                ui_2.GetComponent<UIMailItemComponent>().OnUpdateUI(mailInfos[i]);
+                ui_2.OnUpdateUI(mailInfos[i]);
             }
 
             self.MailComponent.SelectMail = mailInfos[0];

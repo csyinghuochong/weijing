@@ -15,21 +15,23 @@ namespace ET
     public static  class MailComponentSystem
     {
 
-        public static async ETTask SendReceiveMail(this MailComponent self)
+        public static async ETTask<int> SendReceiveMail(this MailComponent self)
         {
             if (self.SelectMail == null)
-                return;
+            {
+                return ErrorCore.ERR_NetWorkError;
+            }
 
             if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() < self.SelectMail.ItemList.Count)
             {
                 HintHelp.GetInstance().ShowHintError(ErrorCore.ERR_BagIsFull);
-                return;
+                return ErrorCore.ERR_BagIsFull;
             }
             C2M_ReceiveMailRequest c2E_ReceiveMailRequest = new C2M_ReceiveMailRequest() { MailId = self.SelectMail.MailId };
             M2C_ReceiveMailResponse sendChatResponse = (M2C_ReceiveMailResponse)await self.DomainScene().GetComponent<SessionComponent>().Session.Call(c2E_ReceiveMailRequest);
             if (sendChatResponse.Error != 0)
             {
-                return;
+                return sendChatResponse.Error;
             }
 
             for (int i = self.MailInfoList.Count - 1; i >= 0; i--)
@@ -41,6 +43,7 @@ namespace ET
             }
 
             HintHelp.GetInstance().DataUpdate(DataType.OnMailUpdate);
+            return ErrorCore.ERR_Success;
         }
 
         public static async ETTask SendGetMailList(this MailComponent self)

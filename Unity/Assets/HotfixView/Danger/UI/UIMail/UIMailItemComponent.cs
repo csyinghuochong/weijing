@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace ET
 {
-    public class UIMailItemComponent : Entity, IAwake
+    public class UIMailItemComponent : Entity, IAwake<GameObject>
     {
         public GameObject TextConent;
         public GameObject ImageButton;
@@ -13,14 +13,17 @@ namespace ET
 
         public MailInfo MailInfo;
         public Action ActionClick;
+
+        public GameObject GameObject;
     }
 
     [ObjectSystem]
-    public class UIMailItemComponentAwakeSystem : AwakeSystem<UIMailItemComponent>
+    public class UIMailItemComponentAwakeSystem : AwakeSystem<UIMailItemComponent, GameObject>
     {
-        public override void Awake(UIMailItemComponent self)
+        public override void Awake(UIMailItemComponent self, GameObject gameObject)
         {
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
 
             self.TextConent = rc.Get<GameObject>("TextConent");
             self.ImageButton = rc.Get<GameObject>("ImageButton");
