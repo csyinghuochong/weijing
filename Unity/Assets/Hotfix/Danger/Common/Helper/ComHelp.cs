@@ -86,11 +86,6 @@ namespace ET
 
         }
 
-        public static int BagMaxCapacity()
-        {
-            return GlobalValueConfigCategory.Instance.Get(3).Value2;
-        }
-
         public static int StoreCapacity()
         {
             return GlobalValueConfigCategory.Instance.Get(4).Value2;

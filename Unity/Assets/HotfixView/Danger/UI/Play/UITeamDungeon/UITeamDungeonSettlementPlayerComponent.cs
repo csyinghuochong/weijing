@@ -7,6 +7,7 @@ namespace ET
 {
     public class UITeamDungeonSettlementPlayerComponent : Entity, IAwake<GameObject>
     {
+        public GameObject ImageIcon;
         public GameObject Text_Name;
         public GameObject Text_Level;
         public GameObject Text_Damage;
@@ -24,6 +25,7 @@ namespace ET
             self.Text_Level = gameObject.transform.Find("Text_Level").gameObject;
             self.Text_Damage = gameObject.transform.Find("Text_Damage").gameObject;
             self.ItemNode = gameObject.transform.Find("ItemNode").gameObject;
+            self.ImageIcon = gameObject.transform.Find("ImageIcon").gameObject;
 
             self.ItemNode.SetActive(false);
         }
@@ -37,6 +39,7 @@ namespace ET
             self.Text_Name.GetComponent<Text>().text = teamPlayerInfo.PlayerName;
             self.Text_Level.GetComponent<Text>().text = $"等级：{teamPlayerInfo.PlayerLv}";
             self.Text_Damage.GetComponent<Text>().text = $"伤害：{teamPlayerInfo.Damage}";
+            UICommonHelper.ShowOccIcon(self.ImageIcon, teamPlayerInfo.Occ);
 
             self.ItemNode.SetActive(rewardItems!=null);
             if (rewardItems != null)

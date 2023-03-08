@@ -628,7 +628,7 @@ namespace ET
         public static void  CheckBagIsFull(this BagComponent self)
         {
             List<BagInfo> bagList = self.GetBagList();
-            if (bagList.Count >= ComHelp.BagMaxCapacity())
+            if (bagList.Count >= GlobalValueConfigCategory.Instance.BagMaxCapacity)
             {
                 self.SendSellItem(bagList[0]).Coroutine();
             }
@@ -678,14 +678,14 @@ namespace ET
                     cellNumber += (rewardItems[i].ItemNum % ItemPileSum > 0 ? 1 : 0);
                 }
             }
-            if (cellNumber + self.GetBagList().Count > ComHelp.BagMaxCapacity())
+            if (cellNumber + self.GetBagList().Count > GlobalValueConfigCategory.Instance.BagMaxCapacity)
                 return false;
             return true;
         }
 
         public static int GetLeftSpace(this BagComponent self)
         {
-            return ComHelp.BagMaxCapacity() - self.GetBagList().Count;
+            return GlobalValueConfigCategory.Instance.BagMaxCapacity - self.GetBagList().Count;
         }
 
         public static int GetPetHeXinLeftSpace(this BagComponent self)

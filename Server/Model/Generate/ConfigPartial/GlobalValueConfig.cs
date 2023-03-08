@@ -18,6 +18,8 @@ namespace ET
 
         public int FangunSkillId = 0;
 
+        public int BagMaxCapacity = 0;
+
         public List<DayMonsters> DayMonsterList = new List<DayMonsters>();
 
         public override void AfterEndInit()
@@ -25,6 +27,7 @@ namespace ET
             DayMonsterList.Clear();
             JianDingFuQulity = this.Get(44).Value2;
             FangunSkillId = int.Parse(this.Get(2).Value);
+            BagMaxCapacity = this.Get(3).Value2;
 
             string[] dayrefresh = this.Get(79).Value.Split('@');
             for (int i = 0; i < dayrefresh.Length; i++)
