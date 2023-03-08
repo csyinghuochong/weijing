@@ -72,6 +72,7 @@ namespace ET
             int openserverDay = DBHelper.GetOpenServerDay(self.DomainZone());
             int worldLv = ComHelp.GetWorldLv(openserverDay);
             self.DBServerInfo.ServerInfo.WorldLv = worldLv;
+            Log.Debug($"UpdateWorldLv: {self.DomainZone()} {worldLv}");
         }
 
         public static async ETTask BroadcastWorldLv(this RankSceneComponent self)

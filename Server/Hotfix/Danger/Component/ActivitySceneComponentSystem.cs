@@ -63,15 +63,16 @@ namespace ET
             }
  
             self.SaveDB();
+            //self.CheckArenaTTTT().Coroutine();
         }
 
         public static async ETTask CheckArenaTTTT(this ActivitySceneComponent self)
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
 
-            if (dateTime.Hour == 15 && dateTime.Minute == 45)
+            if (dateTime.Hour == 16 && (dateTime.Minute == 20 || dateTime.Minute == 21))
             {
-                Log.Debug("更新世界等级");
+                Log.Debug($"更新世界等级: {self.DomainZone()}");
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
                          (DBHelper.GetRankServerId(self.DomainZone()), new A2A_ActivityUpdateRequest() { ActivityType = 12, OpenDay = 1 });
             }
