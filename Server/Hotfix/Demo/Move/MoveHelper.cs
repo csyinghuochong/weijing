@@ -23,6 +23,10 @@ namespace ET
             unit.Domain.GetComponent<MapComponent>().SearchPath(unit, target, list);
 
             List<Vector3> path = list;
+            if (path.Count == 0)
+            {
+                return -1;
+            }
             if (path.Count < 2 && yaogan)
             {
                 unit.SendStop(-1);
