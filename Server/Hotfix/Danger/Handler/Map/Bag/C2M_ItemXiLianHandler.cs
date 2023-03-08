@@ -63,6 +63,15 @@ namespace ET
                     MessageHelper.SendToClient(unit, m2c_bagUpdate);
                 }
 
+                for (int i = 0; i < response.ItemXiLianResults.Count; i++)
+                {
+                    ItemXiLianResult itemXiLianResult = response.ItemXiLianResults[i];
+                    for (int skill = 0; skill < itemXiLianResult.HideSkillLists.Count; skill++)
+                    {
+                        unit.GetComponent<ChengJiuComponent>().TriggerEvent(ChengJiuTargetEnum.EquipActiveSkillId_222, itemXiLianResult.HideSkillLists[skill], 1);
+                    }
+                }
+
                 unit.GetComponent<ChengJiuComponent>().OnEquipXiLian(request.Times);
                 unit.GetComponent<TaskComponent>().OnEquipXiLian(request.Times);
 

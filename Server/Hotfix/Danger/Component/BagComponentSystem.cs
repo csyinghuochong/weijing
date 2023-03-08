@@ -714,7 +714,8 @@ namespace ET
                         {
                             itemXiLian = XiLianHelper.XiLianItem(unit, useBagInfo, xilianType, xilianLevel);
                         }
-                        else {
+                        else
+                        {
                             //生肖洗炼
                             itemXiLian = XiLianHelper.XiLianShengXiao(useBagInfo);
                         }
