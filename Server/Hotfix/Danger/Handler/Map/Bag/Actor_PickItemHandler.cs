@@ -55,7 +55,7 @@ namespace ET
                     unit.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);       //移除掉落ID
                     removeIds.Add(drops[i].UnitId);
                 }
-                FubenHelp.SendPickMessage(unit, drops[i]);
+                FubenHelp.SendFubenPickMessage(unit, drops[i]);
             }
             
             return ErrorCore.ERR_Success;

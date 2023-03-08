@@ -96,7 +96,7 @@ namespace ET
                     Log.Debug($"TeamDungeonComponent.DropInfo： {unit.Id}  {teamDropItem.DropInfo.ItemID} {teamDropItem.DropInfo.ItemNum} {ret}");
                     if (ret)
                     {
-                        FubenHelp.SendPickMessage(unit, teamDropItem.DropInfo, needIds, randomNumbers);
+                        FubenHelp.SendTeamPickMessage(unit, teamDropItem.DropInfo, needIds, randomNumbers);
                         self.DomainScene().GetComponent<UnitComponent>().Remove(teamDropItem.DropInfo.UnitId);       //移除掉落ID
                     }
                     else

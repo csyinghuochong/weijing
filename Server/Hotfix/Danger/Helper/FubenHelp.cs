@@ -328,7 +328,7 @@ namespace ET
 			return units;
 		}
 
-		public static void SendPickMessage(Unit unit, DropInfo dropInfo,List<long> ids,  List<int> points)
+		public static void SendTeamPickMessage(Unit unit, DropInfo dropInfo,List<long> ids,  List<int> points)
 		{
 			m2C_SyncChatInfo.ChatInfo = new ChatInfo();
 			m2C_SyncChatInfo.ChatInfo.PlayerLevel = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
@@ -359,7 +359,7 @@ namespace ET
 			MessageHelper.SendToClient(GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
 		}
 
-		public static void SendPickMessage(Unit unit, DropInfo dropInfo)
+		public static void SendFubenPickMessage(Unit unit, DropInfo dropInfo)
 		{
 			UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
 			m2C_SyncChatInfo.ChatInfo = new ChatInfo();
@@ -375,7 +375,8 @@ namespace ET
 			}
 			string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
 			m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{unit.GetComponent<UserInfoComponent>().UserInfo.Name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>";
-			MessageHelper.SendToClient(GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
+			//MessageHelper.SendToClient(GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
+			MessageHelper.SendToClient(unit, m2C_SyncChatInfo);
 		}
 	}
 }
