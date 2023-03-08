@@ -16,15 +16,24 @@ namespace ET
                 return;
             }
 
+            EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(request.MakeId);
             ItemLocType locType = ItemLocType.ItemLocBag;
             int costItemId = 0;
             if (request.BagInfoID != 0)
             {
                 BagInfo useBagInfo = unit.GetComponent<BagComponent>().GetItemByLoc(locType, request.BagInfoID);
-                costItemId = useBagInfo.ItemID;
+                if (useBagInfo != null)
+                {
+                    costItemId = useBagInfo.ItemID;
+                }
             }
 
-            EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(request.MakeId);
+            if (costItemId == 0 && equipMakeConfig.ProficiencyType == 0) {
+                response.Error = ErrorCore.ERR_ItemNotEnoughError;
+                reply();
+                return;
+            }
+
             if (unit.GetComponent<UserInfoComponent>().UserInfo.Gold < equipMakeConfig.MakeNeedGold)
             {
                 response.Error = ErrorCore.ERR_GoldNotEnoughError;
@@ -38,6 +47,9 @@ namespace ET
                 reply();
                 return;
             }
+
+            //制造图纸查看当前背包是否已经有图纸了
+
 
             List<RewardItem> costItems = new List<RewardItem>();
             string neadItems = equipMakeConfig.NeedItems;
@@ -89,7 +101,7 @@ namespace ET
             int newMakeId = MakeHelper.GetNewMakeID(unit.GetComponent<NumericComponent>().GetAsInt(NumericType.MakeType), request.MakeId,
                 unit.GetComponent<UserInfoComponent>().UserInfo.MakeList);
             //宝石不领悟
-            if (equipMakeConfig.ProficiencyType != 4 && newMakeId != 0)
+            if (equipMakeConfig.ProficiencyType != 4 && equipMakeConfig.ProficiencyType != 5 && newMakeId != 0)
             {
                 unit.GetComponent<UserInfoComponent>().UserInfo.MakeList.Add(newMakeId);
                 response.NewMakeId = newMakeId;
