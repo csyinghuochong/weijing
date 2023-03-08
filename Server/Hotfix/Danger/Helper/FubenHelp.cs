@@ -142,7 +142,7 @@ namespace ET
 			//1;37.65,0,3.2;70005005;1@138.43,0,0.06;70005010;1
 			for (int i = 0; i < monsters.Length; i++)
 			{
-				if (monsters[i] == "0")
+				if (ComHelp.IfNull(monsters[i]))
 				{
 					continue;
 				}

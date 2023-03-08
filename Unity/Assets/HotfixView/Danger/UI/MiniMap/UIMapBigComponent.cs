@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -223,34 +224,41 @@ namespace ET
             string[] monsters = createMonster.Split('@');
             for (int i = 0; i < monsters.Length; i++)
             {
-                if (monsters[i] == "0")
+                if (ComHelp.IfNull(monsters[i]))
                 {
                     continue;
                 }
-                //1;37.65,0,3.2;70005005;1
-                string[] mondels = monsters[i].Split(';');
-                string[] mtype = mondels[0].Split(',');
-                string[] position = mondels[1].Split(',');
-                string[] monsterid = mondels[2].Split(',');
-               
-                if (mtype[0] != "1" && mtype[0] != "2")   
+                try
                 {
-                    continue;
-                }
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(int.Parse(monsterid[0]));
-                if (monsterConfig.MonsterType != (int)MonsterTypeEnum.Boss)
-                {
-                    continue;
-                }
-                Vector3 vector3 = new Vector3(float.Parse(position[0]),  float.Parse(position[2]), 0);
-                Vector3 npcPos = self.GetWordToUIPositon(vector3);
+                    //1;37.65,0,3.2;70005005;1
+                    string[] mondels = monsters[i].Split(';');
+                    string[] mtype = mondels[0].Split(',');
+                    string[] position = mondels[1].Split(',');
+                    string[] monsterid = mondels[2].Split(',');
 
-                GameObject gameObject = GameObject.Instantiate(self.bossIcon);
-                gameObject.SetActive(true);
-                gameObject.transform.SetParent(self.bossIcon.transform.parent);
-                gameObject.transform.localScale = Vector3.one;
-                gameObject.transform.localPosition = npcPos;
-                gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
+                    if (mtype[0] != "1" && mtype[0] != "2")
+                    {
+                        continue;
+                    }
+                    MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(int.Parse(monsterid[0]));
+                    if (monsterConfig.MonsterType != (int)MonsterTypeEnum.Boss)
+                    {
+                        continue;
+                    }
+                    Vector3 vector3 = new Vector3(float.Parse(position[0]), float.Parse(position[2]), 0);
+                    Vector3 npcPos = self.GetWordToUIPositon(vector3);
+
+                    GameObject gameObject = GameObject.Instantiate(self.bossIcon);
+                    gameObject.SetActive(true);
+                    gameObject.transform.SetParent(self.bossIcon.transform.parent);
+                    gameObject.transform.localScale = Vector3.one;
+                    gameObject.transform.localPosition = npcPos;
+                    gameObject.transform.Find("Text").GetComponent<Text>().text = monsterConfig.MonsterName;
+                }
+                catch (Exception ex)
+                {
+                    Log.Debug(monsters[i] + "  " + ex.ToString());
+                }
             }
         }
 

@@ -74,12 +74,12 @@ namespace ET
                     Password = accountInfo.Password,
                     PlayerInfo = playerInfo,
                 });
-                response.ErrorCode = ErrorCore.ERR_Success;
+                response.Error = ErrorCore.ERR_Success;
             }
             else
             {
                 Log.Debug($"OnDoFangchenmi  fail");
-                response.ErrorCode = ErrorCore.ERR_RealNameFail;
+                response.Error = ErrorCore.ERR_RealNameFail;
             }
             reply();
         }
