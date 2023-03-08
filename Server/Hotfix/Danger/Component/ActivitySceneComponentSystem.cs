@@ -69,10 +69,11 @@ namespace ET
         {
             DateTime dateTime = TimeHelper.DateTimeNow();
 
-            if (dateTime.Hour == 19 && dateTime.Minute == 30)
+            if (dateTime.Hour == 15 && dateTime.Minute == 45)
             {
+                Log.Debug("更新世界等级");
                 A2A_ActivityUpdateResponse m2m_TrasferUnitResponse = (A2A_ActivityUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                         (DBHelper.GetArenaServerId(self.DomainZone()), new A2A_ActivityUpdateRequest() { ActivityType = 19, OpenDay = 1 });
+                         (DBHelper.GetRankServerId(self.DomainZone()), new A2A_ActivityUpdateRequest() { ActivityType = 12, OpenDay = 1 });
             }
         }
 
