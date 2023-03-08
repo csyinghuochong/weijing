@@ -17,7 +17,7 @@ namespace ET
             , "http://api2.wlc.nppa.gov.cn/behavior/collection/loginout" };
 
 
-        public static RealNameResult OnDoFangchenmi(object args, EType eType)
+        public static RealNameCode OnDoFangchenmi(object args, EType eType)
         {
 
             var url = normalUrls[(int)eType];
@@ -65,10 +65,10 @@ namespace ET
             Log.Debug($"Fangchenmi res {res}");
             //object data_result = Newtonsoft.Json.JsonConvert.DeserializeObject<object>(res);
             // 反序列化json
-            RealNameResult result_1 = null;
+            RealNameCode result_1 = null;
             try
             {
-                result_1 = BsonSerializer.Deserialize<RealNameResult>(res);
+                result_1 = BsonSerializer.Deserialize<RealNameCode>(res);
             }
             catch (Exception ex)
             {

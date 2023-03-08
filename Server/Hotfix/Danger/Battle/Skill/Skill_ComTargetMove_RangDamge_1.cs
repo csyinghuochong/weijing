@@ -37,7 +37,6 @@ namespace ET
             {
                 BuffData buffData = new BuffData();
                 buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(6);
-                buffData.BuffClassScript = buffData.BuffConfig.BuffScript;
                 buffData.SkillConfig = this.SkillConf;
                 buffData.TargetAngle = starAngle + i * delta;
                 TheUnitFrom.GetComponent<BuffManagerComponent>().BulletFactory(buffData, TheUnitFrom, this);

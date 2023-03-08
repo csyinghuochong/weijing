@@ -27,7 +27,6 @@
                 //有可能有多个子弹
                 BuffData buffData = new BuffData();
                 buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(6);
-                buffData.BuffClassScript = buffData.BuffConfig.BuffScript;
                 buffData.TargetAngle = starAngle + i * delta;
                 buffData.SkillConfig = this.SkillConf;
                 this.TheUnitFrom.GetComponent<BuffManagerComponent>().BuffFactory(buffData);

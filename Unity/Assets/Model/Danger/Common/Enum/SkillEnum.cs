@@ -189,9 +189,6 @@ namespace ET
     {
         public SkillBuffConfig BuffConfig;
 
-        //必填项
-        public string BuffClassScript;
-
         public SkillConfig SkillConfig;
 
         //buff角度

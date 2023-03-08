@@ -19,7 +19,9 @@ namespace ET
             D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.AccountId, Component = DBHelper.DBAccountInfo });
             DBAccountInfo accountInfo = d2GGetUnit.Component as DBAccountInfo;
 
-            RealNameResult result_check = new RealNameResult();
+            RealNameCode result_check = new RealNameCode();
+            result_check.realNameData = new RealNameData();
+            result_check.realNameData.result = new RealNameResult();
             using ListComponent<string> testCard = new ListComponent<string>();
             for (int i = 0; i < 30; i++)
             {
@@ -29,6 +31,7 @@ namespace ET
             if (ComHelp.IsInnerNet() || testCard.Contains(request.IdCardNO))
             {
                 result_check.errcode = 0;
+                result_check.realNameData.result.status = 0;
             }
             else
             {
@@ -47,17 +50,17 @@ namespace ET
                     idNum = request.IdCardNO,
                 }, EType.Check);
             }
-            if (result_check == null)
+            if (result_check == null || result_check.realNameData == null || result_check.realNameData.result == null)
             {
                 response.Error = ErrorCore.ERR_RealNameFail;
                 reply();
                 return;
             }
-            Log.Debug($"OnDoFangchenmi  {result_check.errcode}");
-          
-            PlayerInfo playerInfo = new PlayerInfo();
-            if (result_check.errcode == 0)  //认证成功
+
+            if (result_check.errcode == 0 && result_check.realNameData.result.status == 0)  //认证成功
             {
+                Log.Debug($"OnDoFangchenmi  sucess");
+                PlayerInfo playerInfo = new PlayerInfo();
                 playerInfo.Name = request.Name;
                 playerInfo.IdCardNo = request.IdCardNO;
                 playerInfo.RealName = 1;
@@ -71,8 +74,13 @@ namespace ET
                     Password = accountInfo.Password,
                     PlayerInfo = playerInfo,
                 });
+                response.ErrorCode = ErrorCore.ERR_Success;
             }
-            response.ErrorCode = result_check.errcode;
+            else
+            {
+                Log.Debug($"OnDoFangchenmi  fail");
+                response.ErrorCode = ErrorCore.ERR_RealNameFail;
+            }
             reply();
         }
     } 

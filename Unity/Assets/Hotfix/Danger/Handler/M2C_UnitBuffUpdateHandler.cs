@@ -23,7 +23,6 @@ namespace ET
                     BuffData buffData = new BuffData();
                     buffData.TargetAngle = 0;
                     buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get((int)message.BuffID);
-                    buffData.BuffClassScript = buffData.BuffConfig.BuffScript;
                     buffData.TargetPosition = new Vector3(message.TargetPostion[0], message.TargetPostion[1], message.TargetPostion[2] );
                     buffData.Spellcaster = message.Spellcaster;
                     buffData.BuffEndTime = message.BuffEndTime;

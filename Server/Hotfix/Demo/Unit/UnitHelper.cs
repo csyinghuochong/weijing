@@ -326,7 +326,6 @@ namespace ET
             {
                 BuffData buffData_2 = new BuffData();
                 buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(zuoqiCof.MoveBuffID);
-                buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
                 self.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, self, null);
             }
             if (horseRide == 0)

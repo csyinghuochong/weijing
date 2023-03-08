@@ -99,7 +99,8 @@ namespace ET
         public static void BulletFactory(this BuffManagerComponent self, BuffData buffData, Unit from, SkillHandler skillHandler)
         {
             Unit to = self.GetParent<Unit>();
-            BuffHandler buffHandler = (BuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[buffData.BuffClassScript]);
+            string BuffClassScript = buffData.BuffConfig.BuffScript;
+            BuffHandler buffHandler = (BuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[BuffClassScript]);
             buffHandler.OnInit(buffData, from, to, skillHandler);
             self.m_Buffs.Insert(0, buffHandler);     //添加至buff列表中
 
@@ -207,7 +208,8 @@ namespace ET
             //添加Buff
             if (addBufStatus == 1)
             {
-                buffHandler = (BuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[buffData.BuffClassScript]);
+                string BuffClassScript = buffData.BuffConfig.BuffScript;
+                buffHandler = (BuffHandler)ObjectPool.Instance.Fetch(BuffDispatcherComponent.Instance.BuffTypes[BuffClassScript]);
                 buffHandler.OnInit(buffData, from, unit, skillHandler);
                 self.m_Buffs.Insert(0, buffHandler);     //添加至buff列表中
                 self.AddTimer();
@@ -270,7 +272,7 @@ namespace ET
             {
                 BuffData buffData_2 = new BuffData();
                 buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(99002002);
-                buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
+             
                 self.GetParent<Unit>().GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, self.GetParent<Unit>(), null);
             }
 
@@ -279,7 +281,6 @@ namespace ET
             {
                 BuffData buffData_1 = new BuffData();
                 buffData_1.BuffConfig = SkillBuffConfigCategory.Instance.Get(unitInfoComponent.Buffs[i].KeyId);
-                buffData_1.BuffClassScript = buffData_1.BuffConfig.BuffScript;
                 buffData_1.BuffEndTime = long.Parse(unitInfoComponent.Buffs[i].Value2);
                 self.BuffFactory(buffData_1, self.GetParent<Unit>(), null, true);
             }

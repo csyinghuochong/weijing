@@ -393,7 +393,6 @@ namespace ET
                 return;
             
             BuffData buffData = new BuffData();
-            buffData.BuffClassScript = skillBuffConfig.BuffScript;
             buffData.SkillConfig = self.SkillConf;
             buffData.BuffConfig = skillBuffConfig;
             uu.GetComponent<BuffManagerComponent>().BuffFactory(buffData, self.TheUnitFrom, self);

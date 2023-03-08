@@ -9,10 +9,28 @@ using System.Linq;
 namespace ET
 {
 	//"{\"errcode\":1005,\"errmsg\":\"SYS REQ IP ERROR\"}"
-	public sealed class RealNameResult
+	public sealed class RealNameCode
 	{
 		public int errcode;
 		public string errmsg;
+
+		public RealNameData realNameData;
+	}
+
+	public sealed class RealNameData
+	{
+		public RealNameResult result;
+	}
+
+	public sealed class RealNameResult
+	{
+		//认证结果
+		//0：认证成功
+		//1：认证中
+		//2：认证失败
+		public int status;
+		//已通过实名认证用户的唯一标识
+		public string pi;
 	}
 
     public static class InitValueDefs

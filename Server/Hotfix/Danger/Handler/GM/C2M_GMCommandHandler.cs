@@ -42,7 +42,6 @@ namespace ET
 				{
 					BuffData buffData_1 = new BuffData();
 					buffData_1.BuffConfig = SkillBuffConfigCategory.Instance.Get(90106002);
-					buffData_1.BuffClassScript = buffData_1.BuffConfig.BuffScript;
 					unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, unit, null);
 					return;
 				}
@@ -50,7 +49,6 @@ namespace ET
 				{
 					BuffData buffData_2 = new BuffData();
 					buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(90106003);
-					buffData_2.BuffClassScript = buffData_2.BuffConfig.BuffScript;
 					unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, unit, null);
 					return;
 				}

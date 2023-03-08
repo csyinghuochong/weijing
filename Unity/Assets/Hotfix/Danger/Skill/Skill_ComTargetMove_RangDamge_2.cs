@@ -23,7 +23,6 @@
             {
                 BuffData buffData = new BuffData();
                 buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get(7);
-                buffData.BuffClassScript = buffData.BuffConfig.BuffScript;
                 angle += 120;
                 buffData.TargetAngle = angle;
                 buffData.SkillConfig = this.SkillConf;

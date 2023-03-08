@@ -241,7 +241,6 @@ namespace ET
                 {
                     BuffData buffData_1 = new BuffData();
                     buffData_1.BuffConfig = SkillBuffConfigCategory.Instance.Get(buffId);
-                    buffData_1.BuffClassScript = buffData_1.BuffConfig.BuffScript;
                     unit.GetComponent<BuffManagerComponent>().BuffFactory(buffData_1, unit, null);
                 }
                 return;
