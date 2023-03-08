@@ -87,7 +87,7 @@ namespace ET
             }
             self.LastTiaoZhan = TimeHelper.ServerNow();
 
-            PopupTipHelp.OpenPopupTip(self.ZoneScene(),"系统提示", "是否重新开始挑战,开始后倒计时和怪物血量将自动初始化", () => 
+            PopupTipHelp.OpenPopupTip(self.ZoneScene(),"系统提示", "是否重新开始挑战,开始后倒计时和怪物生命将自动初始化", () => 
             {
                 self.RequestTiaozhan().Coroutine();
             }, null).Coroutine();

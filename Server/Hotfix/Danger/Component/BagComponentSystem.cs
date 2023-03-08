@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 
 namespace ET
 {
@@ -751,10 +752,10 @@ namespace ET
                     }
 
                     //拾取到橙色装备
-                    if (itemCof.ItemQuality >= 5 && getType == ItemGetWay.PickItem)
+                    if (itemCof.ItemType == 3 && itemCof.ItemQuality >= 5 && getType == ItemGetWay.PickItem)
                     {
                         string name = unit.GetComponent<UserInfoComponent>().UserInfo.Name;
-                        string noticeContent = $"恭喜玩家 {name} 获得传承装备: {itemCof.ItemName}";
+                        string noticeContent = $"恭喜玩家 {name} 获得装备: <color=#{ComHelp.QualityReturnColor(5)}>{itemCof.ItemName}</color>";
                         ServerMessageHelper.SendBroadMessage(self.DomainZone(), NoticeType.Notice, noticeContent);
                     }
 
