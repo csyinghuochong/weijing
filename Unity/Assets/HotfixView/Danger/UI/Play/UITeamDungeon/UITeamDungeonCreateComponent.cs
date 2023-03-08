@@ -61,14 +61,12 @@ namespace ET
                 {
                     continue;
                 }
-
-                AccountInfoComponent accountInfoComponent1 = self.ZoneScene().GetComponent<AccountInfoComponent>();
-                bool isGmaccount = GMHelp.GmAccount.Contains(accountInfoComponent1.Account);
-                if (!isGmaccount && sceneConfig[i].Id >= 110005)
-                {
-                    continue;
-                }
-
+                //AccountInfoComponent accountInfoComponent1 = self.ZoneScene().GetComponent<AccountInfoComponent>();
+                //bool isGmaccount = GMHelp.GmAccount.Contains(accountInfoComponent1.Account);
+                //if (!isGmaccount && sceneConfig[i].Id >= 110005)
+                //{
+                //    continue;
+                //}
                 self.FubenIdList.Add(sceneConfig[i].Id);
                 GameObject item = GameObject.Instantiate(TeamdungeonItem);
                 UICommonHelper.SetParent(item, TeamdungeonList);
