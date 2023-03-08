@@ -110,8 +110,8 @@ namespace ET
             self.Lab_ChapIndex.GetComponent<Text>().text = $"第{levelIndex + 1}关";
             self.Lab_EnterLevel.GetComponent<Text>().text = "挑战等级:" + chapterConfig.EnterLv.ToString();
 
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, chapterConfig.BossIcon.ToString());
-            self.ImageBossIcon.GetComponent<Image>().sprite = sp;
+            //Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.MonsterIcon, chapterConfig.BossIcon.ToString());
+            //self.ImageBossIcon.GetComponent<Image>().sprite = sp;
         }
     }
 

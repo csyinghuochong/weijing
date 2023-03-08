@@ -230,7 +230,7 @@ namespace ET
                 m2C_UnitBuffUpdate.Spellcaster = from.GetComponent<UnitInfoComponent>().PlayerName;
                 m2C_UnitBuffUpdate.UnitType = from.Type;
                 m2C_UnitBuffUpdate.UnitConfigId = from.ConfigId;    
-                m2C_UnitBuffUpdate.SkillId = buffData.SkillConfig.Id;
+                m2C_UnitBuffUpdate.SkillId = buffData.SkillConfig!=null ? buffData.SkillConfig.Id : 0;
                 if (unit.GetComponent<AOIEntity>() == null)
                 {
                     Log.Error($"unit.GetComponent<AOIEntity>() == null  {unit.Type} {unit.ConfigId}  {unit.Id}  {unit.IsDisposed}");
