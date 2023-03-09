@@ -26,25 +26,25 @@ namespace ET
         /// </summary>
         /// <param name="attackUnit"></param>
         /// <param name="defendUnit"></param>
-        public void Fight(Unit attackUnit, Unit defendUnit, SkillHandler skillHandler)
+        public bool Fight(Unit attackUnit, Unit defendUnit, SkillHandler skillHandler)
         {
             SkillConfig skillconfig = skillHandler.SkillConf;
             //已死亡
             if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
             {
-                return;
+                return false;
             }
             //无敌buff，不受伤害
             if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDi))
             {
-                return;
+                return false;
             }
 
             if (attackUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.MiaoSha))
             {
                 long hp = defendUnit.GetComponent<NumericComponent>().GetAsLong(NumericType.Now_Hp)+1;
                 defendUnit.GetComponent<NumericComponent>().ApplyChange(attackUnit, NumericType.Now_Hp, hp * -1, skillconfig.Id);
-                return;
+                return true;
             }
 
             int DamgeType = 0;      //伤害类型
@@ -688,7 +688,7 @@ namespace ET
                 }
                 if (defendUnit.IsDisposed)
                 {
-                    return;
+                    return false;
                 }
                 if (defendUnit.Type == UnitType.Monster && ifMonsterBoss_Act)
                 {
@@ -740,9 +740,9 @@ namespace ET
                 //闪避触发被动技能
                 defendUnit.GetComponent<SkillPassiveComponent>().OnTrigegerPassiveSkill(SkillPassiveTypeEnum.ShanBi_5, attackUnit.Id);
             }
+            return ifHit;
         }
 
-      
         //暴击等级等属性转换成实际暴击率的方法
         public static float LvProChange(long value, int lv) {
             float proValue = (float)value / (float)(7500 + lv * 250);

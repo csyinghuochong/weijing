@@ -184,11 +184,14 @@ namespace ET
                 return;
             }
 
-            //触发Buff
-            self.TriggerSkillBuff(uu);
-
             //触发伤害
-            self.TriggeSkillHurt(uu);
+            bool ishit = self.TriggeSkillHurt(uu);
+
+            //触发Buff
+            if (ishit)
+            {
+                self.TriggerSkillBuff(uu);
+            }
         }
 
         //目标附加Buff
@@ -231,17 +234,17 @@ namespace ET
             return false;
         }
 
-        public static void TriggeSkillHurt(this SkillHandler self,  Unit uu)
+        public static bool  TriggeSkillHurt(this SkillHandler self,  Unit uu)
         {
             bool canAttack = self.TheUnitFrom.IsCanAttackUnit(uu);
             if (!canAttack)
             {
-                return;
+                return true;
             }
             //技能伤害为0不执行
             if (self.SkillConf.ActDamge == 0 && self.SkillConf.DamgeValue == 0) 
             {
-                return;
+                return true;
             }
             bool clearnTemporary = false;
             if (self.SkillParValueHpUpAct!=null)
@@ -270,12 +273,12 @@ namespace ET
                 }
             }
 
-            Function_Fight.GetInstance().Fight(self.TheUnitFrom, uu, self);
-
+            bool ishit =  Function_Fight.GetInstance().Fight(self.TheUnitFrom, uu, self);
             if (clearnTemporary)
             {
                 self.ActTargetTemporaryAddPro = 0;      //清空
             }
+            return ishit;
         }
 
         public static Shape CreateCheckShape(this SkillHandler self, int targetAngle)
@@ -355,7 +358,7 @@ namespace ET
         //5：全部
         public static void SkillBuff(this SkillHandler self, int buffID, Unit uu)
         {
-            if (uu == null || !uu.IsCanBeAttack())
+            if (uu == null || uu.IsDisposed || !uu.IsCanBeAttack())
             {
                 return;
             }
