@@ -1276,6 +1276,13 @@ namespace ET
                 AddUpdateProDicList(skillProList[i].HideID, skillProList[i].HideValue, UpdateProDicList);
             }
 
+            //坐骑属性
+            List<HideProList> zuoqiPros = unit.GetComponent<UserInfoComponent>().GetZuoQiPro();
+            for (int i = 0; i < zuoqiPros.Count; i++)
+            {
+                AddUpdateProDicList(zuoqiPros[i].HideID, zuoqiPros[i].HideValue, UpdateProDicList);
+            }
+
             //收集属性
             List<HideProList> shoujiProList = unit.GetComponent<ShoujiComponent>().GetProList();
             for (int i = 0; i < shoujiProList.Count; i++)

@@ -23,40 +23,36 @@ namespace ET
           public static List<HideProList> GetTitlePro(this TitleComponent self)
         {
             List<HideProList> proList = new List<HideProList>();
-            int titleId = self.GetParent<Unit>().GetComponent<NumericComponent>().GetAsInt(NumericType.TitleID);
-            if (titleId == 0)
+
+            for (int i = self.TitleList.Count - 1; i >= 0; i--)
             {
-                return proList;
-            }
-
-            TitleConfig titleConfig = TitleConfigCategory.Instance.Get(titleId);
-            string[] attributeInfoList = titleConfig.AddProperty.Split('@');
-            for (int a = 0; a < attributeInfoList.Length; a++)
-            {
-                string[] attributeInfo = attributeInfoList[a].Split(';');
-                int numericType = int.Parse(attributeInfo[0]);
-
-                if (NumericHelp.GetNumericValueType(numericType) == 2)
+                TitleConfig titleConfig = TitleConfigCategory.Instance.Get(self.TitleList[i].KeyId);
+                string[] attributeInfoList = titleConfig.AddProperty.Split('@');
+                for (int a = 0; a < attributeInfoList.Length; a++)
                 {
-                    float fvalue = float.Parse(attributeInfo[1]);
-                    proList.Add(new HideProList() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
-                }
-                else
-                {
-                    long lvalue = 0;
-                    try
-                    {
-                        lvalue = long.Parse(attributeInfo[1]);
-                    }
-                    catch(Exception ex)
-                    {
-                        Log.Debug(ex.ToString() + $"报错称号: {titleId}");
-                    }
+                    string[] attributeInfo = attributeInfoList[a].Split(';');
+                    int numericType = int.Parse(attributeInfo[0]);
 
-                    proList.Add(new HideProList() { HideID = numericType, HideValue = lvalue });
+                    if (NumericHelp.GetNumericValueType(numericType) == 2)
+                    {
+                        float fvalue = float.Parse(attributeInfo[1]);
+                        proList.Add(new HideProList() { HideID = numericType, HideValue = (long)(fvalue * 10000) });
+                    }
+                    else
+                    {
+                        long lvalue = 0;
+                        try
+                        {
+                            lvalue = long.Parse(attributeInfo[1]);
+                        }
+                        catch (Exception ex)
+                        {
+                            Log.Debug(ex.ToString() + $"报错称号: {self.TitleList[i].KeyId}");
+                        }
+                        proList.Add(new HideProList() { HideID = numericType, HideValue = lvalue });
+                    }
                 }
             }
-
             return proList;
         }
 
