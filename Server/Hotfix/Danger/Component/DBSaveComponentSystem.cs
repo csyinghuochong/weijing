@@ -183,7 +183,7 @@ namespace ET
             {
                 scene.GetComponent<UnitComponent>().Remove(fightId.Id);
             }
-            if (ComHelp.IsSingleFuben(sceneTypeEnum))
+            if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
             {
                 //动态删除副本
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();

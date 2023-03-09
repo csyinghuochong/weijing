@@ -212,7 +212,7 @@ namespace ET
             }
 
             bool drop = true;
-            if (ComHelp.IsSingleFuben(sceneType))
+            if (SceneConfigHelper.IsSingleFuben(sceneType))
             {
                 drop = main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || beKill.IsBoss();
             }

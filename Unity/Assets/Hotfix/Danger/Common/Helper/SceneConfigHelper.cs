@@ -5,6 +5,25 @@ namespace ET
 {
     public static class SceneConfigHelper
     {
+        /// <summary>
+        /// 单人副本
+        /// </summary>
+        /// <param name="sceneTypeEnum"></param>
+        /// <returns></returns>
+        public static bool IsSingleFuben(int sceneTypeEnum)
+        {
+            return sceneTypeEnum == SceneTypeEnum.CellDungeon
+                || sceneTypeEnum == SceneTypeEnum.PetTianTi
+                || sceneTypeEnum == SceneTypeEnum.Tower
+                || sceneTypeEnum == SceneTypeEnum.LocalDungeon
+                || sceneTypeEnum == SceneTypeEnum.PetDungeon
+                || sceneTypeEnum == SceneTypeEnum.RandomTower
+                || sceneTypeEnum == SceneTypeEnum.TrialDungeon
+                || sceneTypeEnum == SceneTypeEnum.JiaYuan;
+        }
+
+
+
         public static bool ShowRightTopButton(int sceneType)
         {
             return sceneType != SceneTypeEnum.Battle

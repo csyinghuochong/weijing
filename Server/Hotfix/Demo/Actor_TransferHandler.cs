@@ -120,6 +120,19 @@ namespace ET
 							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.RandomTower, request.SceneId, 0, "0");
 							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
 							break;
+						case (int)SceneTypeEnum.JiaYuan:
+							//动态创建副本
+							fubenid = IdGenerater.Instance.GenerateId();
+							fubenInstanceId = IdGenerater.Instance.GenerateInstanceId();
+							fubnescene = SceneFactory.Create(Game.Scene, fubenid, fubenInstanceId, unit.DomainZone(), "JiaYuan" + fubenid.ToString(), SceneType.Fuben);
+							//fubnescene.AddComponent<JiaYuanComponent>().FubenDifficulty = request.Difficulty;
+							mapComponent = fubnescene.GetComponent<MapComponent>();
+							mapComponent.SetMapInfo((int)SceneTypeEnum.JiaYuan, request.SceneId, 0);
+							mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
+							TransferHelper.BeforeTransfer(unit);
+							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.JiaYuan, request.SceneId, request.Difficulty, "0");
+							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
+							break;
 						case (int)SceneTypeEnum.Tower:
 							//动态创建副本
 							fubenid = IdGenerater.Instance.GenerateId();

@@ -301,7 +301,7 @@ namespace ET
             }
             bool drop = true;
             MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(bekill.ConfigId);
-            if (ComHelp.IsSingleFuben(sceneType) && main!=null && main.Type == UnitType.Player)
+            if (SceneConfigHelper.IsSingleFuben(sceneType) && main!=null && main.Type == UnitType.Player)
             {
                 drop = main.GetComponent<UserInfoComponent>().UserInfo.PiLao > 0 || bekill.IsBoss();
 

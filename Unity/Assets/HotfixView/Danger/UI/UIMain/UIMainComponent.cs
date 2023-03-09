@@ -39,6 +39,7 @@ namespace ET
 
     public class UIMainComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Button_JiaYuan;
         public GameObject DoMoveLeft;
         public GameObject DoMoveRight;
         public GameObject DoMoveBottom;
@@ -155,6 +156,10 @@ namespace ET
             self.Button_HongBao = rc.Get<GameObject>("Button_HongBao");
             ButtonHelp.AddListenerEx(self.Button_HongBao, () => { self.OnButton_HongBao(); });
             self.Button_HongBao.SetActive(false);
+
+            self.Button_JiaYuan = rc.Get<GameObject>("Btn_JiaYuan");
+            ButtonHelp.AddListenerEx(self.Button_JiaYuan, () => { self.OnButton_JiaYuan(); });
+            self.Button_JiaYuan.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             self.Button_Tower = rc.Get<GameObject>("Button_Tower");
             ButtonHelp.AddListenerEx(self.Button_Tower, () => { self.OnButton_Tower(); });
@@ -1131,7 +1136,7 @@ namespace ET
 
         public static void OnButton_JiaYuan(this UIMainComponent self)
         {
-            UIHelper.Create(self.DomainScene(), UIType.UIJiaYuan).Coroutine();
+            EnterFubenHelp.RequestTransfer(self.ZoneScene(), SceneTypeEnum.JiaYuan, 102).Coroutine();
         }
 
         public static void OnButton_ZhenYing(this UIMainComponent self)

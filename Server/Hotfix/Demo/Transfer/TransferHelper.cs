@@ -14,7 +14,7 @@
             Scene scene = unit.DomainScene();
             TransferHelper.BeforeTransfer(unit);
             await TransferHelper.Transfer(unit, mapInstanceId, (int)SceneTypeEnum.MainCityScene, ComHelp.MainCityID(), 0, "0");
-            if (ComHelp.IsSingleFuben(sceneTypeEnum))
+            if (SceneConfigHelper.IsSingleFuben(sceneTypeEnum))
             {
                 TransferHelper.NoticeFubenCenter(scene, 2).Coroutine();
                 scene.Dispose();
