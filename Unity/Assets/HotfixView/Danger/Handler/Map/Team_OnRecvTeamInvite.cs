@@ -20,7 +20,29 @@
         protected override void Run(object cls)
         {
             EventType.RecvTeamDungeonOpen args = (EventType.RecvTeamDungeonOpen)cls;
-            PopupTipHelp.OpenPopupTip(args.ZoneScene, "组队邀请", $"是否进入副本",
+            Scene zoneScene = args.ZoneScene;
+            TeamComponent teamComponent = zoneScene.GetComponent<TeamComponent>();
+            UserInfo userInfo = zoneScene.GetComponent<UserInfoComponent>().UserInfo;
+            TeamInfo teamInfo = teamComponent.GetSelfTeam();
+            if (teamInfo == null)
+            {
+                return;
+            }
+            int robotNumber = 0;
+            for (int i = 0; i < teamInfo.PlayerList.Count; i++)
+            {
+                if (teamInfo.PlayerList[i].RobotId > 0)
+                {
+                    robotNumber++;
+                }
+            }
+
+            string tip = string.Empty;
+            if (robotNumber > 0)
+            {
+                tip = "队伍内有人机,掉率加成为0,和其他玩家组队爆率将获得大幅度提升.";
+            }
+            PopupTipHelp.OpenPopupTip(args.ZoneScene, "组队邀请", $"{tip}是否进入副本",
                 () =>
                 {
                     RunAsync(args).Coroutine();
