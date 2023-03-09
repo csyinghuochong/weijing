@@ -119,7 +119,7 @@ namespace ET
                 {
                     mainAttack.GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
                     UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, 1);
-                } 
+                }
             }
             switch (sceneTypeEnum)
             {

@@ -648,9 +648,10 @@ namespace ET
 						//每个掉落
 						//获取每个掉落的概率
 						//string dropChance = "100000";
-						float randomdrop = RandomHelper.RandomNumberFloat(0, 1000000);
+						float randomdrop = RandomHelper.RandomNumber2(0, 1000000);
 						float dropChanceData = dropChance * dropProValue;     //概率附加
 
+						//展示掉落
 						if (all)
 						{
 							dropChanceData = randomdrop + 1f;
@@ -686,12 +687,14 @@ namespace ET
 							Log.Info("randomdrop = " + randomdrop +" dropChanceData = " + dropChanceData);
 						}
 						*/
-						if (randomdrop <= dropChanceData)
+
+                        if (randomdrop <= dropChanceData)
 						{
 							//Debug.Log("掉落成功！掉落成功！掉落成功！掉落成功！掉落成功！掉落成功！ dropID = " + dropID);
 							//掉落成功
 							//获取掉落数量
 							//判定概率是否大于100%,大于100则掉落数量变多（此处触发BUG不能直接成掉落系数,要加算法）
+							/*
 							if (dropChanceData > 1000000)
 							{
 								//dropMinNum_Int = (int)(dropMinNum_Int * dropProValue);
@@ -710,16 +713,48 @@ namespace ET
                                 {
                                     dropMaxNum = 1;
                                 }
-
                             }
+							*/
+
 							//随机掉落数量
-							int itemDropNum = RandomHelper.RandomNumber(dropMinNum, dropMaxNum);
+							int itemDropNum = RandomHelper.RandomNumber2(dropMinNum, dropMaxNum);
 							randomSet = itemDropNum;
 
-							//读取掉落道具ID
-							//string itemID = function_DataSet.DataSet_ReadData("DropItemID" + i.ToString(), "ID", dropID,"Drop_Template");
-							//Debug.Log("Str4444 = " + i);
-							switch (dropType)
+							if (dropItemID == 10000143) {
+
+								Log.Info("143  dropChanceData :" + dropChanceData);
+
+							}
+
+                            /*
+							int xunhuanNum = (int)(dropChanceData / 1000000f) + 1;
+							int xunhuanValue = 1000000;
+							*/
+                            //判定概率是否大于100%,大于100则掉落数量变多
+                            if (dropChanceData > 1000000)
+							{
+								int costValue = (int)dropChanceData;
+                                //最多10倍掉落
+                                for (int z = 1; z <= 10; z++)
+								{
+									costValue -= 1000000;
+									if (costValue > 0)
+									{
+                                        int random = RandomHelper.RandomNumber2(0, 1000000);
+										if (random <= costValue) {
+                                            int addNum = RandomHelper.RandomNumber2(dropMinNum, dropMaxNum);
+											itemDropNum += addNum;
+                                        }
+                                    }
+									else {
+										break;
+									}
+								}
+							}
+                            //读取掉落道具ID
+                            //string itemID = function_DataSet.DataSet_ReadData("DropItemID" + i.ToString(), "ID", dropID,"Drop_Template");
+                            //Debug.Log("Str4444 = " + i);
+                            switch (dropType)
 							{
 								//发送道具到地上实体
 								case 1:
@@ -742,42 +777,10 @@ namespace ET
 												dropItemList.Add(new RewardItem() { ItemID = dropItemID, ItemNum = 1 });
 											}
 										}
-
 									}
 									break;
 								//发送道具到背包
 								case 2:
-									//Debug.Log("Str5555 = " + i);
-									//获取道具的极品值
-									/*
-									float HideDropPro = 0;
-									if (monsterID != 0)
-									{
-										HideDropPro = 0; /// float.Parse(function_DataSet.DataSet_ReadData("HideDropPro", "ID", monsterID, "Monster_Template"));
-									}
-									*/
-									//Debug.Log("Str6666 = " + i);
-									//Debug.Log("HideDropPro = " + HideDropPro);
-									//Debug.Log("itemID = " + itemID + "itemDropNum = " + itemDropNum + "HideDropPro = " + HideDropPro);
-									/*
-									bool ifDrop = true;   // Function_Role.GetInstance().SendRewardToBag(itemID, itemDropNum, "0", HideDropPro, "0", true, "12");
-														  //Debug.Log("Str7777 = " + i);
-														  //背包满了的话直接掉落到地上
-									if (!ifDrop)
-									{
-										//背包满了执行掉落地上
-										//dropItemList.Add(itemID);
-										if (itemDropNum != 0)
-										{
-											for (int n = 1; n <= itemDropNum; n++)
-											{
-												//执行掉落
-												dropItemList.Add(new RewardItem() { ItemID = dropItemID, ItemNum = 1 });
-											}
-										}
-										//Debug.Log("Str8888 = " + i);
-									}
-									*/
 
 									//如果是金币掉落显示掉落数量为1
 									if (dropItemID == 1)
@@ -799,7 +802,6 @@ namespace ET
 										}
 
 									}
-
 
 									break;
 							}

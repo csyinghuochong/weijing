@@ -345,21 +345,21 @@ namespace ET
             {
                 if (playerNumer == 1)
                 {
-                    dropAdd_Pro -= 0.25f;
+                    dropAdd_Pro -= 0.35f;
                 }
                 if (playerNumer == 2)
                 {
-                    //dropAdd_Pro -= 0.3f;
+                    dropAdd_Pro += 0.8f;
                 }
                 if (playerNumer == 3)
                 {
-                    dropAdd_Pro += 0.25f;
+                    dropAdd_Pro += 1.5f;
                 }
 
                 MapComponent mapComponent = bekill.DomainScene().GetComponent<MapComponent>();
                 if (mapComponent.FubenDifficulty == TeamFubenType.ShenYuan)
                 {
-                    dropAdd_Pro += 0.5f;
+                    dropAdd_Pro += 1.5f;
                 }
             }
 
