@@ -15,8 +15,6 @@ namespace ET
 
     public static class UserInfoComponentSystem
     {
-
-#if SERVER
         public static void Check(this UserInfoComponent self)
         {
             self.TotalOnLineTime++;
@@ -42,7 +40,7 @@ namespace ET
             self.UpdateRoleData(UserDataType.FangRong, (coefficient * lingDiConfig.HoureExp).ToString(), notice);
             self.UpdateRoleData(UserDataType.RongYu, (coefficient * lingDiConfig.HoureHonor).ToString(), notice);
         }
-         
+
         public static void OpenAll(this UserInfoComponent self)
         {
             self.UserInfo.FubenPassList.Clear();
@@ -50,17 +48,17 @@ namespace ET
             Dictionary<int, ChapterConfig> keyValuePairs = ChapterConfigCategory.Instance.GetAll();
             foreach (var item in keyValuePairs)
             {
-                self.UserInfo.FubenPassList.Add( new FubenPassInfo()
-                { 
-                     FubenId  = item.Key,
-                     Difficulty = (int)FubenDifficulty.DiYu
+                self.UserInfo.FubenPassList.Add(new FubenPassInfo()
+                {
+                    FubenId = item.Key,
+                    Difficulty = (int)FubenDifficulty.DiYu
                 });
             }
         }
 
         public static int GetTiLiIndex(this UserInfoComponent self, int hour_1)
         {
-            if (hour_1 <6)
+            if (hour_1 < 6)
             {
                 return 1;
             }
@@ -87,10 +85,10 @@ namespace ET
             {
                 return 0;
             }
-            return index_2 - index_1;   
+            return index_2 - index_1;
         }
 
-        public static void  OnLogin(this UserInfoComponent self, string remoteIp, string deviceName)
+        public static void OnLogin(this UserInfoComponent self, string remoteIp, string deviceName)
         {
             //跨天登录，则重新请求
             self.RemoteAddress = remoteIp;
@@ -98,7 +96,7 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             long currentTime = TimeHelper.ServerNow();
             DateTime dateTime = TimeInfo.Instance.ToDateTime(currentTime);
-            long lastLoginTime =  self.LastLoginTime;
+            long lastLoginTime = self.LastLoginTime;
             if (lastLoginTime != 0)
             {
                 DateTime lastdateTime = TimeInfo.Instance.ToDateTime(lastLoginTime);
@@ -160,7 +158,7 @@ namespace ET
         /// <param name="notice"></param>
         public static void OnHourUpdate(this UserInfoComponent self, int hour, bool notice)
         {
-            if (hour ==0 || hour == 6 || hour == 12 || hour == 20)
+            if (hour == 0 || hour == 6 || hour == 12 || hour == 20)
             {
                 self.RecoverPiLao(30, notice);
             }
@@ -183,7 +181,7 @@ namespace ET
             Unit unit = self.GetParent<Unit>();
             int updatevalue = unit.GetMaxHuoLi() - self.UserInfo.Vitality;
             self.UpdateRoleData(UserDataType.Vitality, updatevalue.ToString(), notice);
-            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1,  notice);
+            unit.GetComponent<NumericComponent>().ApplyValue(NumericType.ZeroClock, 1, notice);
             self.ClearDayData();
             self.LastLoginTime = TimeHelper.ServerNow();
         }
@@ -198,7 +196,7 @@ namespace ET
         /// </summary>
         /// <param name="self"></param>
         /// <param name="beKill"></param>
-        public static  void OnKillUnit(this UserInfoComponent self, Unit beKill, int sceneType, int sceneId)
+        public static void OnKillUnit(this UserInfoComponent self, Unit beKill, int sceneType, int sceneId)
         {
             Unit main = self.GetParent<Unit>();
             if (beKill.Type != UnitType.Monster)
@@ -227,7 +225,7 @@ namespace ET
             self.UpdateRoleData(UserDataType.Exp, addexp.ToString());
         }
 
-        public static void  UpdateRoleDataBroadcast(this UserInfoComponent self, UserDataType Type, string value)
+        public static void UpdateRoleDataBroadcast(this UserInfoComponent self, UserDataType Type, string value)
         {
             Unit unit = self.GetParent<Unit>();
             M2C_RoleDataBroadcast m2C_BroadcastRoleData = self.m2C_RoleDataBroadcast;
@@ -266,7 +264,7 @@ namespace ET
         public static void UpdateRoleMoneyAdd(this UserInfoComponent self, UserDataType Type, string value, bool notice = true, int getWay = ItemGetWay.System, string paramsifo = "")
         {
             Unit unit = self.GetParent<Unit>();
-            long gold =  long.Parse(value);
+            long gold = long.Parse(value);
             if (gold < 0)
             {
                 Log.Warning($"增加货币出错:{Type}  {unit.Id} {self.UserInfo.Name}  {value} {getWay}");
@@ -297,7 +295,7 @@ namespace ET
             long gold = long.Parse(value);
             if (gold > 0)
             {
-                Log.Warning($"扣除货币出错:{Type} {getWay} {unit.Id} {self.UserInfo.Name}  {value}"); 
+                Log.Warning($"扣除货币出错:{Type} {getWay} {unit.Id} {self.UserInfo.Name}  {value}");
             }
             else
             {
@@ -312,7 +310,7 @@ namespace ET
         }
 
         //需要通知客户端
-        public static  void UpdateRoleData(this UserInfoComponent self, UserDataType Type, string value,  bool notice = true)
+        public static void UpdateRoleData(this UserInfoComponent self, UserDataType Type, string value, bool notice = true)
         {
             Unit unit = self.GetParent<Unit>();
             string saveValue = "";
@@ -370,7 +368,7 @@ namespace ET
                     unit.GetComponent<NumericComponent>().ApplyChange(null, NumericType.MaoXianExp, long.Parse(value), 0);
                     break;
                 case UserDataType.Recharge:
-                    RechargeHelp.SendDiamondToUnit(unit, int.Parse(value),"道具");
+                    RechargeHelp.SendDiamondToUnit(unit, int.Parse(value), "道具");
                     break;
                 case UserDataType.PiLao:
                     int maxValue = unit.IsYueKaStates() ? int.Parse(GlobalValueConfigCategory.Instance.Get(26).Value) : int.Parse(GlobalValueConfigCategory.Instance.Get(10).Value);
@@ -443,10 +441,10 @@ namespace ET
             rankPetInfo.Combat = userInfoComponent.UserInfo.Combat;
             rankPetInfo.Occ = userInfoComponent.UserInfo.Occ;
             R2M_RankUpdateResponse Response = (R2M_RankUpdateResponse)await ActorMessageSenderComponent.Instance.Call
-                     (mapInstanceId, new M2R_RankUpdateRequest() 
+                     (mapInstanceId, new M2R_RankUpdateRequest()
                      {
-                            CampId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CampId),
-                            RankingInfo = rankPetInfo
+                         CampId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.CampId),
+                         RankingInfo = rankPetInfo
                      });
             if (unit.IsDisposed)
             {
@@ -460,7 +458,7 @@ namespace ET
         public static void Role_AddExp(this UserInfoComponent self, long addValue, bool notice)
         {
             ServerInfo serverInfo = self.DomainScene().GetComponent<ServerInfoComponent>().ServerInfo;
-            
+
             float expAdd = ComHelp.GetExpAdd(self.UserInfo.Lv, serverInfo);
 
             //等级达到上限,则无法获得经验
@@ -475,7 +473,7 @@ namespace ET
             {
                 return;
             }
-            ExpConfig xiulianconf1 =  ExpConfigCategory.Instance.Get(self.UserInfo.Lv);
+            ExpConfig xiulianconf1 = ExpConfigCategory.Instance.Get(self.UserInfo.Lv);
             long upNeedExp = xiulianconf1.UpExp;
 
             if (self.UserInfo.Exp >= upNeedExp)
@@ -558,20 +556,6 @@ namespace ET
             }
             return proList;
         }
-#endif
-
-        public static long GetMakeTime(this UserInfoComponent self, int makeId)
-        {
-            List<KeyValuePairInt> makeList = self.UserInfo.MakeIdList;
-            for (int i = 0; i < makeList.Count; i++)
-            {
-                if (makeList[i].KeyId == makeId)
-                {
-                    return makeList[i].Value;
-                }
-            }
-            return 0;
-        }
 
         public static void OnMakeItem(this UserInfoComponent self, int makeId)
         {
@@ -579,7 +563,7 @@ namespace ET
             List<KeyValuePairInt> makeList = self.UserInfo.MakeIdList;
 
             bool have = false;
-            long endTime = TimeHelper.ServerNow() + equipMakeConfig.MakeTime * 1000; 
+            long endTime = TimeHelper.ServerNow() + equipMakeConfig.MakeTime * 1000;
             for (int i = 0; i < makeList.Count; i++)
             {
                 if (makeList[i].KeyId == makeId)
@@ -608,8 +592,8 @@ namespace ET
             }
             if (!have)
             {
-                self.UserInfo.OpenChestList.Add(new KeyValuePair(){ KeyId= fubenId, Value = monsterId.ToString() });
-            }    
+                self.UserInfo.OpenChestList.Add(new KeyValuePair() { KeyId = fubenId, Value = monsterId.ToString() });
+            }
         }
 
         public static bool IsCheskOpen(this UserInfoComponent self, int fubenId, int monsterId)
@@ -667,7 +651,7 @@ namespace ET
             return 0;
         }
 
-        public static void ClearFubenTimes(this UserInfoComponent self, int  sceneId)
+        public static void ClearFubenTimes(this UserInfoComponent self, int sceneId)
         {
             for (int i = 0; i < self.UserInfo.DayFubenTimes.Count; i++)
             {
@@ -689,7 +673,7 @@ namespace ET
                     return;
                 }
             }
-            self.UserInfo.DayFubenTimes.Add(new KeyValuePairInt() { KeyId = sceneId, Value =1 });
+            self.UserInfo.DayFubenTimes.Add(new KeyValuePairInt() { KeyId = sceneId, Value = 1 });
         }
 
         public static void OnDayItemUse(this UserInfoComponent self, int itemId)
@@ -715,67 +699,6 @@ namespace ET
                 }
             }
             return 0;
-        }
-
-        public static string GetGameSettingValue(this UserInfoComponent self, GameSettingEnum gameSettingEnum)
-        {
-            for (int i = 0; i < self.UserInfo.GameSettingInfos.Count; i++)
-            {
-                if (self.UserInfo.GameSettingInfos[i].KeyId == (int)gameSettingEnum)
-                    return self.UserInfo.GameSettingInfos[i].Value;
-            }
-            switch (gameSettingEnum)
-            {
-                case GameSettingEnum.Music:
-                    return "1";
-                case GameSettingEnum.Sound:
-                    return "0";
-                case GameSettingEnum.YanGan:
-                    return "1";
-                case GameSettingEnum.MusicVolume:
-                    return "1";
-                case GameSettingEnum.SoundVolume:
-                    return "1";
-                case GameSettingEnum.FenBianlLv:
-                    return "1";
-                case GameSettingEnum.Shadow:
-                    return "0";
-                default:
-                    return "0";
-            }
-        }
-
-        public static void UpdateGameSetting(this UserInfoComponent self, List<KeyValuePair> gameSettingInfos)
-        {
-            for (int i = 0; i < gameSettingInfos.Count; i++)
-            {
-                bool exist = false;
-                for (int k = 0; k < self.UserInfo.GameSettingInfos.Count; k++)
-                {
-                    if (self.UserInfo.GameSettingInfos[k].KeyId == gameSettingInfos[i].KeyId)
-                    {
-                        exist = true;
-                        self.UserInfo.GameSettingInfos[k].Value = gameSettingInfos[i].Value;
-                        break;
-                    }
-                }
-                if (!exist)
-                {
-                    self.UserInfo.GameSettingInfos.Add(gameSettingInfos[i]);
-                }
-            }
-        }
-
-        public static FubenPassInfo GetPassInfoByID(this UserInfoComponent self, int levelid)
-        {
-            for (int i = 0; i < self.UserInfo.FubenPassList.Count; i++)
-            {
-                if (self.UserInfo.FubenPassList[i].FubenId == levelid)
-                {
-                    return self.UserInfo.FubenPassList[i];
-                }
-            }
-            return null;
         }
 
         public static void OnFubenSettlement(this UserInfoComponent self, int levelid, int difficulty)
@@ -839,7 +762,7 @@ namespace ET
             {
                 self.UserInfo.HorseIds.Add(horseId);
             }
-            if(!active && self.UserInfo.HorseIds.Contains(horseId))
+            if (!active && self.UserInfo.HorseIds.Contains(horseId))
             {
                 self.UserInfo.HorseIds.Remove(horseId);
             }
