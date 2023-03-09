@@ -40,9 +40,9 @@
             string tip = string.Empty;
             if (robotNumber > 0)
             {
-                tip = "队伍内有人机,掉率加成为0,和其他玩家组队爆率将获得大幅度提升.";
+                tip = "<color=#FDFB47>队伍内有人机,副本掉率将降低!</color>\n建议:和其他玩家组队爆率将获得大幅度提升\n";
             }
-            PopupTipHelp.OpenPopupTip(args.ZoneScene, "组队邀请", $"{tip}是否进入副本",
+            PopupTipHelp.OpenPopupTip(args.ZoneScene, "组队邀请", $"{tip}是否进入副本？",
                 () =>
                 {
                     RunAsync(args).Coroutine();

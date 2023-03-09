@@ -1094,7 +1094,7 @@ namespace ET
                 float addPro = 0;
 
                 if (equipList[i].HideSkillLists.Contains(68000104)) {
-                    addPro = 0.1f;
+                    addPro = 0.2f;
                 }
 
                 //虚弱属性
