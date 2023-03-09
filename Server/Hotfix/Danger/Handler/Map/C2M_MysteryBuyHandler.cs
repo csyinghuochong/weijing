@@ -51,7 +51,7 @@ namespace ET
 
                 unit.GetComponent<UserInfoComponent>().OnMysteryBuy(mysteryId);
                 unit.GetComponent<BagComponent>().OnCostItemData($"{mysteryConfig.SellType};{mysteryConfig.SellValue}");
-                unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.SellItemID};{mysteryConfig.BuyNumMax}",
+                unit.GetComponent<BagComponent>().OnAddItemData($"{mysteryConfig.SellItemID};{1}",
                     $"{ItemGetWay.MysteryBuy}_{TimeHelper.ServerNow()}");
 
                 reply();
