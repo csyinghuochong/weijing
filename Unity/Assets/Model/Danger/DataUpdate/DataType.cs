@@ -83,8 +83,6 @@
 
         public const int OnActiveTianFu = 30;
 
-        public const int BuffUpdate = 32;
-
         /// <summary>
         /// 组队更新
         /// </summary>
@@ -110,5 +108,6 @@
         public const int SkillBeging = 39;
 
         public const int SkillFinish = 40;
+
     }
 }

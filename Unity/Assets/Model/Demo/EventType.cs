@@ -599,5 +599,15 @@ namespace ET
             public Scene ZoneScene;
             public BagInfo BagInfo;
         }
+
+        public class BuffUpdate : DisposeObject
+        {
+            public static readonly BuffUpdate Instance = new BuffUpdate();
+            public ABuffHandler ABuffHandler;
+            public int OperateType;
+
+            public Scene ZoneScene;
+            public Unit Unit;
+        }
     }
 }

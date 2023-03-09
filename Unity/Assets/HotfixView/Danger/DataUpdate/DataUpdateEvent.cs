@@ -41,7 +41,6 @@ namespace ET
             DataUpdatelegateDics.Add(DataType.PetFenJieUpdate, OnPetFenJieUpdate);
             DataUpdatelegateDics.Add(DataType.EquipHuiShow, OnEquipHuiShow);
             DataUpdatelegateDics.Add(DataType.BagItemAdd, OnBagItemAdd);
-            DataUpdatelegateDics.Add(DataType.BuffUpdate, OnBuffUpdate);
             DataUpdatelegateDics.Add(DataType.TeamUpdate, OnTeamUpdate);
             DataUpdatelegateDics.Add(DataType.FriendUpdate, OnFriendUpdate);
             DataUpdatelegateDics.Add(DataType.FriendChat, OnFriendChat);
@@ -180,18 +179,6 @@ namespace ET
                 }
             }
 
-        }
-
-        public void OnBuffUpdate(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)
-        {
-            foreach (var component in dataUpdateComponentDic.Values)
-            {
-                if (component is UIMainBuffComponent uiComponent)
-                {
-                    uiComponent.OnBuffUpdate(DataParams);
-                    continue;
-                }
-            }
         }
 
         public void OnBagItemAdd(Dictionary<long, Entity> dataUpdateComponentDic, string DataParams)

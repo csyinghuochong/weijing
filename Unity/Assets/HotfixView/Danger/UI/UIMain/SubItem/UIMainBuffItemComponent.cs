@@ -91,15 +91,15 @@ namespace ET
             self.EndTime = TimeHelper.ClientNow() + self.BuffTime;
         }
 
-        public static void OnAddBuff(this UIMainBuffItemComponent self, int buffId, ABuffHandler buffHandler)
+        public static void OnAddBuff(this UIMainBuffItemComponent self, ABuffHandler buffHandler)
         {
             long endTime = buffHandler.BuffData.BuffEndTime;
-            SkillBuffConfig skillBuffConfig = SkillBuffConfigCategory.Instance.Get(buffId);
+            SkillBuffConfig skillBuffConfig = buffHandler.BuffData.BuffConfig;
             self.BuffTime = skillBuffConfig.BuffTime;
             self.TextBuffName.GetComponent<Text>().text = skillBuffConfig.BuffName;
             self.SpellCast = buffHandler.BuffData.Spellcaster;
             self.EndTime = endTime;
-            self.BuffID = buffId;
+            self.BuffID = buffHandler.BuffData.BuffConfig.Id;
 
             string bufficon = skillBuffConfig.BuffIcon;
             if (ComHelp.IfNull(bufficon))

@@ -8,17 +8,19 @@
             this.BaseOnBuffInit(buffData,  theUnitBelongto);
             this.OnExecute();
 
-            if (!this.TheUnitBelongto.MainHero)
-            {
-                return;
-            }
             //if (buffData.BuffConfig.IfShowIconTips == 0)
             //{
             //    return;
             //}
-            EventType.DataUpdate.Instance.DataType = DataType.BuffUpdate;
-            EventType.DataUpdate.Instance.DataParams = $"{buffData.BuffConfig.Id}@1";
-            EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
+            if (this.TheUnitBelongto.MainHero || this.TheUnitBelongto.IsBoss())
+            {
+                EventType.BuffUpdate.Instance.Unit = this.TheUnitBelongto;
+                EventType.BuffUpdate.Instance.ZoneScene = this.TheUnitBelongto.ZoneScene();
+                EventType.BuffUpdate.Instance.ABuffHandler = this;
+                EventType.BuffUpdate.Instance.OperateType = 1;
+                //EventType.DataUpdate.Instance.DataParams = $"{buffData.BuffConfig.Id}@1";
+                EventSystem.Instance.PublishClass(EventType.BuffUpdate.Instance);
+            }
         }
 
         public override void OnExecute()
@@ -26,7 +28,6 @@
             EffectInstanceId = this.PlayBuffEffects();
             this.BuffState = BuffState.Running;
         }
-
 
         public override void OnReset()
         {
@@ -37,17 +38,18 @@
             EventType.SkillEffectReset.Instance.EffectInstanceId = this.EffectInstanceId;
             EventSystem.Instance.PublishClass(EventType.SkillEffectReset.Instance);
 
-            if (!this.TheUnitBelongto.MainHero)
-            {
-                return;
-            }
             //if (this.BuffData.BuffConfig.IfShowIconTips == 0)
             //{
             //    return;
             //}
-            EventType.DataUpdate.Instance.DataType = DataType.BuffUpdate;
-            EventType.DataUpdate.Instance.DataParams = $"{this.BuffData.BuffConfig.Id}@3";
-            EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
+            if (this.TheUnitBelongto.MainHero || this.TheUnitBelongto.IsBoss())
+            {
+                EventType.BuffUpdate.Instance.Unit = this.TheUnitBelongto;
+                EventType.BuffUpdate.Instance.ZoneScene = this.TheUnitBelongto.ZoneScene();
+                EventType.BuffUpdate.Instance.ABuffHandler = this;
+                EventType.BuffUpdate.Instance.OperateType = 3;
+                EventSystem.Instance.PublishClass(EventType.BuffUpdate.Instance);
+            }
         }
 
         public override void OnUpdate()
@@ -69,14 +71,14 @@
             //{
             //    return;
             //}
-            if (!this.TheUnitBelongto.MainHero)
+            if (this.TheUnitBelongto.MainHero || this.TheUnitBelongto.IsBoss())
             {
-                return;
+                EventType.BuffUpdate.Instance.Unit = this.TheUnitBelongto;
+                EventType.BuffUpdate.Instance.ZoneScene = this.TheUnitBelongto.ZoneScene();
+                EventType.BuffUpdate.Instance.ABuffHandler = this;
+                EventType.BuffUpdate.Instance.OperateType = 2;
+                EventSystem.Instance.PublishClass(EventType.BuffUpdate.Instance);
             }
-
-            EventType.DataUpdate.Instance.DataType = DataType.BuffUpdate;
-            EventType.DataUpdate.Instance.DataParams = $"{this.BuffData.BuffConfig.Id}@2";
-            EventSystem.Instance.PublishClass(EventType.DataUpdate.Instance);
         }
     }
 }

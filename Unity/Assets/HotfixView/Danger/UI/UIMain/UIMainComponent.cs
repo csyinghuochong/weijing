@@ -751,9 +751,15 @@ namespace ET
             self.UIJoystickComponent = fixedJoystickUI.AddComponent<UIJoystickComponent>();
 
             GameObject UIMainBuff = rc.Get<GameObject>("UIMainBuff");
-            UI ui_mainbuff = self.AddChild<UI, string, GameObject>("UIMainBuff", UIMainBuff);
-            self.UIMainBuffComponent = ui_mainbuff.AddComponent<UIMainBuffComponent>();
-            UIMainBuff.SetActive(!GlobalHelp.IsBanHaoMode);
+            self.UIMainBuffComponent = self.AddChild<UIMainBuffComponent, GameObject>(UIMainBuff);
+
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            List<ABuffHandler> aBuffs = unit.GetComponent<BuffManagerComponent>().m_Buffs;
+            for (int i = 0; i < aBuffs.Count; i++)
+            {
+                ABuffHandler buffHandler = aBuffs[i];
+                self.UIMainBuffComponent.OnAddBuff(buffHandler);
+            }
 
             GameObject UIOpenBox = rc.Get<GameObject>("UIOpenBox");
             UI uiopenbox = self.AddChild<UI, string, GameObject>("UIMainBuff", UIOpenBox);

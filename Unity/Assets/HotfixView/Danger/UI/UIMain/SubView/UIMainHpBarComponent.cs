@@ -22,6 +22,8 @@ namespace ET
         public Vector3 Vector3 =  new Vector3(1, 1, 1);
         public RenderTexture RenderTexture;
         public UIModelDynamicComponent UIModelShowComponent;
+
+        public UIMainBuffComponent UIMainBuffComponent;
     }
 
     [ObjectSystem]
@@ -49,6 +51,9 @@ namespace ET
             self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
             self.RenderTexture.Create();
             self.RawImage.GetComponent<RawImage>().texture = self.RenderTexture;
+
+            GameObject UIMainBuff = rc.Get<GameObject>("UIMainBuff");
+            self.UIMainBuffComponent = self.AddChild<UIMainBuffComponent, GameObject>(UIMainBuff);
 
             //模型展示界面
             var path = ABPathHelper.GetUGUIPath("Common/UIModelDynamic");
@@ -207,6 +212,7 @@ namespace ET
                     self.Lab_Owner.text = "";
                 }
 
+                self.UIMainBuffComponent.ResetUI();
             }
         }
 

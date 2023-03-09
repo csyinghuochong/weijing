@@ -36,7 +36,7 @@ namespace ET
                     {
                         continue;
                     }
-                    string[] attributeInfo = attributeInfoList[a].Split(';');
+                    string[] attributeInfo = attributeInfoList[a].Split(',');
                     int numericType = int.Parse(attributeInfo[0]);
 
                     if (NumericHelp.GetNumericValueType(numericType) == 2)

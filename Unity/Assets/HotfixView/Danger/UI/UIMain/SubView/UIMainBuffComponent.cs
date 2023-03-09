@@ -20,28 +20,26 @@ namespace ET
         }
     }
 
-    public class UIMainBuffComponent : Entity, IAwake, IDestroy
+    public class UIMainBuffComponent : Entity, IAwake<GameObject>, IDestroy
     {
         public long Timer;
         public GameObject UIMainBuffItem;
         public List<UIMainBuffItemComponent> MainBuffUIList = new List<UIMainBuffItemComponent>();
         public List<UIMainBuffItemComponent> CacheUIList = new List<UIMainBuffItemComponent>();
+        public GameObject GameObject;
     }
 
     [ObjectSystem]
-    public class UIMainBuffComponentAwakeSystem : AwakeSystem<UIMainBuffComponent>
+    public class UIMainBuffComponentAwakeSystem : AwakeSystem<UIMainBuffComponent, GameObject>
     {
-        public override void Awake(UIMainBuffComponent self)
+        public override void Awake(UIMainBuffComponent self, GameObject gameObject)
         {
             self.MainBuffUIList.Clear();
             self.CacheUIList.Clear();
-
-            ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
+            self.GameObject = gameObject;
+            ReferenceCollector rc = gameObject.GetComponent<ReferenceCollector>();
             self.UIMainBuffItem = rc.Get<GameObject>("UIMainBuffItem");
             self.UIMainBuffItem.SetActive(false);
-
-            self.OnInitBuff();
-            DataUpdateComponent.Instance.AddListener(DataType.BuffUpdate, self);
         }
     }
 
@@ -50,7 +48,6 @@ namespace ET
     {
         public override void Destroy(UIMainBuffComponent self)
         {
-            DataUpdateComponent.Instance.RemoveListener(DataType.BuffUpdate, self);
             TimerComponent.Instance?.Remove(ref self.Timer);
         }
     }
@@ -79,22 +76,20 @@ namespace ET
             }
         }
 
-        public static void OnBuffUpdate(this UIMainBuffComponent self, string dataParams)
+        public static void OnBuffUpdate(this UIMainBuffComponent self, ABuffHandler aBuffHandler, int operatetype)
         {
             //1添加  2移除 3重置
-            string[] operateParams = dataParams.Split('@');
-            int buffId = int.Parse(operateParams[0]);
-            switch (int.Parse(operateParams[1]))
+
+            switch (operatetype)
             {
                 case 1:
-                    Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-                    self.OnAddBuff(buffId, unit.GetComponent<BuffManagerComponent>().GetBuffById(buffId));
+                    self.OnAddBuff(aBuffHandler);
                     break;
                 case 2:
-                    self.OnRemoveBuff(buffId);
+                    self.OnRemoveBuff(aBuffHandler.BuffData.BuffConfig.Id);
                     break;
                 case 3:
-                    self.OnResetBuff(buffId);
+                    self.OnResetBuff(aBuffHandler.BuffData.BuffConfig.Id);
                     break;
             }
         }
@@ -114,22 +109,7 @@ namespace ET
             }
         }
 
-        public static void OnInitBuff(this UIMainBuffComponent self)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            List<ABuffHandler> aBuffs = unit.GetComponent<BuffManagerComponent>().m_Buffs;
-            for (int i = 0; i < aBuffs.Count; i++)
-            {
-                ABuffHandler buffHandler = aBuffs[i];
-                if (buffHandler.mSkillBuffConf.IfShowIconTips == 0)
-                {
-                    return;
-                }
-                self.OnAddBuff(buffHandler.mSkillBuffConf.Id, buffHandler);
-            }
-        }
-
-        public static void OnAddBuff(this UIMainBuffComponent self, int buffID, ABuffHandler buffHandler)
+        public static void OnAddBuff(this UIMainBuffComponent self,  ABuffHandler buffHandler)
         {
             UIMainBuffItemComponent ui_buff = self.CacheUIList.Count > 0 ? self.CacheUIList[0] : null ;
             if (ui_buff == null)
@@ -142,8 +122,8 @@ namespace ET
             }
             self.MainBuffUIList.Add(ui_buff);
             ui_buff.GameObject.SetActive(true);
-            ui_buff.OnAddBuff(buffID, buffHandler);
-            UICommonHelper.SetParent(ui_buff.GameObject, self.GetParent<UI>().GameObject);
+            ui_buff.OnAddBuff( buffHandler);
+            UICommonHelper.SetParent(ui_buff.GameObject, self.GameObject);
             if (self.Timer == 0)
             {
                 self.Timer = TimerComponent.Instance.NewRepeatedTimer(500, TimerType.MainBuffTimer, self);
