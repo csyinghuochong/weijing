@@ -52,6 +52,7 @@ namespace ET
             ButtonHelp.AddEventTriggers(parentImage, (PointerEventData pdata) => { self.PointerDown(pdata); }, EventTriggerType.PointerDown);
             ButtonHelp.AddEventTriggers(parentImage, (PointerEventData pdata) => { self.PointerUp(pdata); }, EventTriggerType.PointerUp);
             self.Camera.targetTexture = rc;
+
         }
 
         public static void ReleaseRenderTexture(this UIModelDynamicComponent self)

@@ -58,6 +58,7 @@ namespace ET
             self.UIModelShowComponent.OnInitUI(self.RawImage, self.RenderTexture);
             //配置摄像机位置[0,115,257]
             showMode.transform.Find("Camera").localPosition = new Vector3(0f, 200, 378f);
+
         }
     }
 
@@ -89,7 +90,14 @@ namespace ET
             //    return;
             //}
             Unit unitbelong = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(belongid);
-            self.Lab_Owner.text = $"归属者： {unitbelong.GetComponent<UnitInfoComponent>().PlayerName}";
+            self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().PlayerName}";
+            if (unitbelong.GetComponent<UnitInfoComponent>().PlayerName == UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<UnitInfoComponent>().PlayerName)
+            {
+                self.Lab_Owner.color = new Color(148f/255f,1,0);      //绿色
+            }
+            else {
+                self.Lab_Owner.color = new Color(255f / 255f, 99f / 255f, 66f / 255f);      //红色
+            }
         }
 
         public static void OnLockUnit(this UIMainHpBarComponent self, Unit unit)
@@ -189,6 +197,16 @@ namespace ET
                 self.Lab_BossName.GetComponent<Text>().text = monsterConfig.MonsterName;
                 self.UpdateModelShowView(configid);
                 self.OnUpdateHP(unit);
+
+                //掉落类型为3,名字上移
+                if (monsterConfig.DropType == 3)
+                {
+                    self.Lab_BossName.transform.localPosition = new Vector3(self.Lab_BossName.transform.localPosition.x, 385, self.Lab_BossName.transform.localPosition.z);
+                }
+                else {
+                    self.Lab_Owner.text = "";
+                }
+
             }
         }
 
