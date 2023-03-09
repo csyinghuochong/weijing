@@ -160,15 +160,10 @@ namespace ET
             self.ObjectHorse = go;
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            int horseId = numericComponent.GetAsInt(NumericType.HorseFightID);
-            if (horseId == 0)
-            {
-                return;
-            }
             int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
             if (horseRide != 0)
             {
-                self.OnShangMa(go, horseId);
+                self.OnShangMa(go, horseRide);
             }
             else
             {
@@ -228,15 +223,11 @@ namespace ET
         {
             Unit unit = self.GetParent<Unit>();
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
-            int horseId = numericComponent.GetAsInt(NumericType.HorseFightID);
-            if (horseId == 0)
-            {
-                return;
-            }
+
             int horseRide = numericComponent.GetAsInt(NumericType.HorseRide);
             if (horseRide != 0)
             {
-                ZuoQiShowConfig zuoQiShowConfig = ZuoQiShowConfigCategory.Instance.Get(horseId);
+                ZuoQiShowConfig zuoQiShowConfig = ZuoQiShowConfigCategory.Instance.Get(horseRide);
                 self.HorseAssetsPath = ABPathHelper.GetUnitPath($"ZuoQi/{zuoQiShowConfig.ModelID}");
                 GameObjectPoolComponent.Instance.AddLoadQueue(self.HorseAssetsPath, self.InstanceId, self.OnLoadHorse);
             }

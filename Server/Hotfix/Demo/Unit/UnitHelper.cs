@@ -312,28 +312,6 @@ namespace ET
                 numericComponent.GetAsFloat(NumericType.Born_Z));
         }
 
-        public static void OnUpdateHorseRide(this Unit self)
-        {
-            int horseId = self.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseFightID);
-            if (horseId==0)
-            {
-                return;
-            }
-
-            int horseRide = self.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseRide);
-            ZuoQiShowConfig zuoqiCof = ZuoQiShowConfigCategory.Instance.Get(horseId);
-            if (horseRide == 1)
-            {
-                BuffData buffData_2 = new BuffData();
-                buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(zuoqiCof.MoveBuffID);
-                self.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, self, null);
-            }
-            if (horseRide == 0)
-            {
-                self.GetComponent<BuffManagerComponent>().BuffRemove(zuoqiCof.MoveBuffID);
-            }
-        }
-
         public static void RecordPostion(this Unit self, int sceneType, int sceneId)
         {
             bool record = false;

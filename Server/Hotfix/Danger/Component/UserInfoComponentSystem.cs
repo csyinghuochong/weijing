@@ -665,6 +665,32 @@ namespace ET
             return 0;
         }
 
+        public static string GetGameSettingValue(this UserInfoComponent self, GameSettingEnum gameSettingEnum)
+        {
+            for (int i = 0; i < self.UserInfo.GameSettingInfos.Count; i++)
+            {
+                if (self.UserInfo.GameSettingInfos[i].KeyId == (int)gameSettingEnum)
+                    return self.UserInfo.GameSettingInfos[i].Value;
+            }
+            switch (gameSettingEnum)
+            {
+                case GameSettingEnum.Music:
+                    return "1";
+                case GameSettingEnum.Sound:
+                    return "0";
+                case GameSettingEnum.YanGan:
+                    return "1";
+                case GameSettingEnum.MusicVolume:
+                    return "1";
+                case GameSettingEnum.SoundVolume:
+                    return "1";
+                case GameSettingEnum.FenBianlLv:
+                    return "1";
+                default:
+                    return "0";
+            }
+        }
+
         public static void OnFubenSettlement(this UserInfoComponent self, int levelid, int difficulty)
         {
             FubenPassInfo fubenPassInfo = null;

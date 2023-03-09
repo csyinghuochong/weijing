@@ -85,7 +85,7 @@
 
 #if SERVER
 			Unit unit = args.Parent;
-			unit.OnUpdateHorseRide();
+			unit.OnUpdateHorseRide((int)args.OldValue);
 #else
 			EventType.UnitNumericUpdate.Instance.OldValue = args.OldValue;
 			EventType.UnitNumericUpdate.Instance.Unit = args.Parent;

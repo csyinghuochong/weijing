@@ -90,6 +90,7 @@ namespace ET
         Smooth,         //0 30帧 1 60帧
         Click,
         Shadow,
+        RandomHorese,  //随机坐骑
     }
 
     //1：普通

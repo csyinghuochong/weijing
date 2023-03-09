@@ -11,10 +11,7 @@ namespace ET
 		{
 			//读取数据库
 			UserInfo userInfo = unit.GetComponent<UserInfoComponent>().GetUserInfo();
-			if (userInfo.GameSettingInfos == null)
-			{
-				userInfo.GameSettingInfos = new List<KeyValuePair >();
-			}
+
 			for (int i = 0; i < request.GameSettingInfos.Count; i++)
 			{
 				bool exist = false;

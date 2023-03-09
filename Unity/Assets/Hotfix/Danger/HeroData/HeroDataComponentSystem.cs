@@ -62,6 +62,10 @@ namespace ET
             {
                 numericComponent.Set(NumericType.ChouKaOneTime, TimeHelper.ServerNow());
             }
+            if (numericComponent.GetAsInt(NumericType.HorseRide) == 1)
+            {
+                numericComponent.Set(NumericType.HorseRide, numericComponent.GetAsInt(NumericType.HorseFightID));
+            }
         }
 
         public static void OnLogin(this HeroDataComponent self)

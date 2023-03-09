@@ -3,8 +3,25 @@ using System.Collections.Generic;
 
 namespace ET
 {
-    public static  class ZuoQiHelper
+    public static  class UserHorseHelper
     {
+        public static void OnUpdateHorseRide(this Unit self, int oldHorse)
+        {
+            if (oldHorse > 0)
+            {
+                ZuoQiShowConfig zuoqiCof = ZuoQiShowConfigCategory.Instance.Get(oldHorse);
+                self.GetComponent<BuffManagerComponent>().BuffRemove(zuoqiCof.MoveBuffID);
+            }
+            int horseRide = self.GetComponent<NumericComponent>().GetAsInt(NumericType.HorseRide);
+            if (horseRide > 1)
+            {
+                ZuoQiShowConfig zuoqiCof = ZuoQiShowConfigCategory.Instance.Get(horseRide);
+                BuffData buffData_2 = new BuffData();
+                buffData_2.BuffConfig = SkillBuffConfigCategory.Instance.Get(zuoqiCof.MoveBuffID);
+                self.GetComponent<BuffManagerComponent>().BuffFactory(buffData_2, self, null);
+            }
+        }
+
         public static List<HideProList> GetZuoQiPro(this UserInfoComponent self)
         {
             List<HideProList> proList = new List<HideProList>();

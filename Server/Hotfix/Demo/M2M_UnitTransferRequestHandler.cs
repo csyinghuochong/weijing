@@ -270,7 +270,7 @@ namespace ET
 				unit.GetComponent<BuffManagerComponent>().InitBuff(request.SceneType);
 				unit.GetComponent<DBSaveComponent>().Activeted();
 				unit.GetComponent<SkillPassiveComponent>().Activeted();
-				unit.OnUpdateHorseRide();
+				unit.OnUpdateHorseRide(0);
 				//Function_Fight.GetInstance().UnitUpdateProperty_Base(unit, false, true);
 				unit.SingleScene = request.SceneType == SceneTypeEnum.LocalDungeon || request.SceneType == SceneTypeEnum.PetDungeon;
 				response.NewInstanceId = unit.InstanceId;
