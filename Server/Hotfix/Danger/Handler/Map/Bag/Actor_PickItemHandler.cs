@@ -102,12 +102,14 @@ namespace ET
                 //紫色品质通知客户端抉择
                 //DropType ==   0 公共掉落 1私有掉落 2保护掉落   3 归属掉落
                 if (drops[i].DropType == 0 && itemConfig.ItemQuality >= 4 
-                    && itemConfig.ItemType != 1 && itemConfig.ItemSubType != 1
+                    && itemConfig.ItemType != 2 && itemConfig.ItemSubType != 1
                     && !teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                 {
-                    teamDungeonComponent.AddTeamDropItem(unit, drops[i]);
+                    teamDungeonComponent.AddTeamDropItem(unit, drops[i]);   //这个地方通知客户端弹窗需求还是放弃
                     continue;
                 }
+
+                //普通道具直接随机分配
                 M2C_SyncChatInfo m2C_SyncChatInfo = FubenHelp.m2C_SyncChatInfo;
                 m2C_SyncChatInfo.ChatInfo = new ChatInfo();
                 m2C_SyncChatInfo.ChatInfo.PlayerLevel = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
