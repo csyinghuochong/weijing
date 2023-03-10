@@ -2114,9 +2114,21 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.M2C_UnitBuffUpdate)]
+//message M2C_BuffInfo // IActorMessage
+//{
+//    int32 RpcId = 90;
+//    int64 ActorId = 93;
+//    int64 UnitId = 1; //要发送到的目标UnitId
+//    int64 SkillId = 96; //目标技能Id
+//    string BBKey = 2; //黑板键，此键对应值将会被设置为Buff层数
+//    int64 TheUnitBelongToId = 95; //Buff归属的UnitId
+//    int64 TheUnitFromId = 91; //Buff来自的UnitId
+//    int32 BuffLayers = 3; //Buff层数
+//    float BuffMaxLimitTime = 4; //Buff最大持续到的时间点
+//}
+	[Message(OuterOpcode.UnitBuffInfo)]
 	[ProtoContract]
-	public partial class M2C_UnitBuffUpdate: Object, IActorMessage
+	public partial class UnitBuffInfo: Object
 	{
 		[ProtoMember(1)]
 		public int BuffID { get; set; }
@@ -2147,21 +2159,9 @@ namespace ET
 
 	}
 
-//message M2C_BuffInfo // IActorMessage
-//{
-//    int32 RpcId = 90;
-//    int64 ActorId = 93;
-//    int64 UnitId = 1; //要发送到的目标UnitId
-//    int64 SkillId = 96; //目标技能Id
-//    string BBKey = 2; //黑板键，此键对应值将会被设置为Buff层数
-//    int64 TheUnitBelongToId = 95; //Buff归属的UnitId
-//    int64 TheUnitFromId = 91; //Buff来自的UnitId
-//    int32 BuffLayers = 3; //Buff层数
-//    float BuffMaxLimitTime = 4; //Buff最大持续到的时间点
-//}
-	[Message(OuterOpcode.M2C_BuffInfo)]
+	[Message(OuterOpcode.M2C_UnitBuffUpdate)]
 	[ProtoContract]
-	public partial class M2C_BuffInfo: Object
+	public partial class M2C_UnitBuffUpdate: Object, IActorMessage
 	{
 		[ProtoMember(1)]
 		public int BuffID { get; set; }

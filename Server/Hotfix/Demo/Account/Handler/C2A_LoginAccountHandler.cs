@@ -260,13 +260,16 @@ namespace ET
 
                         d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = account.UserList[i], Component = DBHelper.NumericComponent });
                         NumericComponent numericComponent = d2GGetUnit.Component as NumericComponent;
-                        roleList.WeaponId = 0;// numericComponent.GetAsInt(NumericType.Now_Weapon);
+                        roleList.WeaponId = numericComponent.GetAsInt(NumericType.Now_Weapon);
                         response.RoleLists.Add(roleList);
                     }
-
                     response.PlayerInfo = centerPlayerInfo;
                     response.AccountId = account.Id;
                     response.Token = Token;
+                    for (int r = 0; r < response.PlayerInfo.RechargeInfos.Count; r++)
+                    {
+                        response.PlayerInfo.RechargeInfos[r].OrderInfo = String.Empty;
+                    }
                     account?.Dispose();
                     reply();
                 }

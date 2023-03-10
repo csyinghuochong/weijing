@@ -99,8 +99,8 @@ namespace ET
 		 public const ushort M2C_TransferMap = 10096;
 		 public const ushort C2M_UnitStateUpdate = 10097;
 		 public const ushort M2C_UnitStateUpdate = 10098;
-		 public const ushort M2C_UnitBuffUpdate = 10099;
-		 public const ushort M2C_BuffInfo = 10100;
+		 public const ushort UnitBuffInfo = 10099;
+		 public const ushort M2C_UnitBuffUpdate = 10100;
 		 public const ushort M2C_UnitBuffRemove = 10101;
 		 public const ushort C2G_OffLine = 10102;
 		 public const ushort G2C_OffLine = 10103;
