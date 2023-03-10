@@ -207,9 +207,11 @@ namespace ET
                 if (monsterConfig.DropType == 3)
                 {
                     self.Lab_BossName.transform.localPosition = new Vector3(self.Lab_BossName.transform.localPosition.x, 385, self.Lab_BossName.transform.localPosition.z);
+                    self.Lab_Owner.gameObject.SetActive(true);
                 }
                 else {
                     self.Lab_Owner.text = "";
+                    self.Lab_Owner.gameObject.SetActive(false);
                 }
 
                 self.UIMainBuffComponent.ResetUI();
