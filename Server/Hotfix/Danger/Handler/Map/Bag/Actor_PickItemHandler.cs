@@ -100,7 +100,7 @@ namespace ET
                 int addItemNum = dropComponent != null ? dropComponent.ItemNum : drops[i].ItemNum;
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
 
-                bool teshuItem = itemConfig.ItemQuality == 5 && itemConfig.ItemType == 2 && itemConfig.ItemSubType == 1;
+                bool teshuItem = itemConfig.ItemQuality >= 4 && itemConfig.ItemType == 2 && itemConfig.ItemSubType == 1;
 
                 //紫色品质通知客户端抉择
                 //DropType ==   0 公共掉落 1私有掉落 2保护掉落   3 归属掉落
@@ -141,7 +141,15 @@ namespace ET
                     List<int> randomNumbers = new List<int>();
                     for (int p = 0; p < allPlayer.Count; p++)
                     {
-                        randomNumbers.Add(RandomHelper.RandomNumber(1, 100));
+                        if (teshuItem && allPlayer[p].IsRobot())
+                        {
+                            randomNumbers.Add(0);
+                        }
+                        else
+                        {
+                            randomNumbers.Add(RandomHelper.RandomNumber(1, 100));
+                        }
+                        
                         if (randomNumbers[p] > maxNumber)
                         {
                             maxNumber = randomNumbers[p];
