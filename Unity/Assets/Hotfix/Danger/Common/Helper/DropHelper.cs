@@ -648,7 +648,7 @@ namespace ET
 						//每个掉落
 						//获取每个掉落的概率
 						//string dropChance = "100000";
-						int randomdrop = RandomHelper.RandomNumber2(0, 1000000);
+						int randomdrop = RandomHelper.RandomNumber(0, 1000000+1);
 						int dropChanceData = (int)(dropChance * dropProValue);     //概率附加
 
 						//展示掉落
@@ -717,7 +717,7 @@ namespace ET
 							*/
 
 							//随机掉落数量
-							int itemDropNum = RandomHelper.RandomNumber2(dropMinNum, dropMaxNum);
+							int itemDropNum = RandomHelper.RandomNumber(dropMinNum, dropMaxNum+1);
 							randomSet = itemDropNum;
 
 							if (dropItemID == 10000143) {
@@ -740,9 +740,9 @@ namespace ET
 									costValue -= 1000000;
 									if (costValue > 0)
 									{
-                                        int random = RandomHelper.RandomNumber2(0, 1000000);
+                                        int random = RandomHelper.RandomNumber(0, 1000000+1);
 										if (random <= costValue) {
-                                            int addNum = RandomHelper.RandomNumber2(dropMinNum, dropMaxNum);
+                                            int addNum = RandomHelper.RandomNumber(dropMinNum, dropMaxNum+1);
 											itemDropNum += addNum;
                                         }
                                     }
