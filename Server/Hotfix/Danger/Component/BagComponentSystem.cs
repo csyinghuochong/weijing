@@ -503,6 +503,11 @@ namespace ET
             int petHeXinNumber = 0;
             int getType = int.Parse(getWay.Split('_')[0]);
             Unit unit = self.GetParent<Unit>();
+            if (unit.IsRobot() && getType == ItemGetWay.PickItem)
+            {
+                return true;
+            }
+
             for (int i = rewardItems.Count - 1; i >= 0; i--)
             {
                 if (rewardItems[i].ItemID == 0 || !ItemConfigCategory.Instance.Contain(rewardItems[i].ItemID)) 
