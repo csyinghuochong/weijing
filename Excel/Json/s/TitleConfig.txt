@@ -11,5 +11,5 @@
 {"_t":"TitleConfig","_id":10011,"Name":"九霄风云","Icon":10011,"AddProperty":"202103;0.02","AnimatorAsset":"10011","AnimatorNumber":40,"ValidityTime":-1,"Des":"重击率+2%","size":2,"MoveX":0,"MoveY":0,"GetDes":"积分系统获取"},
 {"_t":"TitleConfig","_id":10013,"Name":"名震八方","Icon":10013,"AddProperty":"200303;0.01","AnimatorAsset":"10013","AnimatorNumber":11,"ValidityTime":-1,"Des":"闪避率+1%","size":2,"MoveX":0,"MoveY":0,"GetDes":"签到系统获取"},
 {"_t":"TitleConfig","_id":10014,"Name":"世人笑我太疯癫","Icon":10014,"AddProperty":"100402;0.02","AnimatorAsset":"10014","AnimatorNumber":9,"ValidityTime":-1,"Des":"攻击提升2%","size":2,"MoveX":0,"MoveY":0,"GetDes":"积分系统获取"},
-{"_t":"TitleConfig","_id":10015,"Name":"一刃横天","Icon":10015,"AddProperty":"120703;100","AnimatorAsset":"10015","AnimatorNumber":10,"ValidityTime":-1,"Des":"法术强度+100","size":2,"MoveX":0,"MoveY":0,"GetDes":"积分系统获取"},
+{"_t":"TitleConfig","_id":10015,"Name":"一刃横天","Icon":10015,"AddProperty":"100403;150","AnimatorAsset":"10015","AnimatorNumber":10,"ValidityTime":-1,"Des":"攻击+150","size":2,"MoveX":0,"MoveY":0,"GetDes":"积分系统获取"},
 ]}
