@@ -345,7 +345,7 @@ namespace ET
             {
                 if (playerNumer == 1)
                 {
-                    dropAdd_Pro -= 0.35f;
+                    dropAdd_Pro -= 0.25f;
                 }
                 if (playerNumer == 2)
                 {
