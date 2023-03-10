@@ -410,10 +410,12 @@ namespace ET
                 || monsterCof.DropType == 2
                 || monsterCof.DropType == 3) 
             {
+   
                 long serverTime = TimeHelper.ServerNow();
+                Scene DomainScene = main != null ? main.DomainScene() : bekill.DomainScene();
                 for (int i = 0; i < droplist.Count; i++)
                 {
-                    UnitComponent unitComponent = bekill.DomainScene().GetComponent<UnitComponent>();
+                    UnitComponent unitComponent = DomainScene.GetComponent<UnitComponent>();
                     Unit dropitem = unitComponent.AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1);
                     dropitem.AddComponent<UnitInfoComponent>(true);
                     dropitem.Type = UnitType.DropItem;
@@ -441,7 +443,7 @@ namespace ET
                             {
                                 ownderId = belongid;
                             }
-                            dropComponent.OwnerId = belongid;
+                            dropComponent.OwnerId = ownderId;
                             break;
                     }
                     float dropX = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);

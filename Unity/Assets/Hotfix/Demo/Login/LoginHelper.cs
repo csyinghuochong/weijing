@@ -393,6 +393,7 @@ namespace ET
             {
                 IPAddress[] xxc = Dns.GetHostEntry("weijinggame.weijinggame.com").AddressList;
                 string address = $"{xxc[0]}:{GetAccountPort(versionMode)}";
+                //string address = $"39.96.194.143:{GetAccountPort(versionMode)}";
                 A2C_ServerList r2CSelectServer;
                 Session session = zoneScene.GetComponent<NetKcpComponent>().Create(NetworkHelper.ToIPEndPoint(address));
                 {

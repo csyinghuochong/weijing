@@ -99,7 +99,7 @@ namespace ET
             if (sendUnit.Type == UnitType.DropItem)
             {
                 DropComponent dropComponent = sendUnit.GetComponent<DropComponent>();
-                if (dropComponent.IfDamgeDrop == 1 && dropComponent.BeAttackPlayerList.Contains(unit.Id))
+                if (dropComponent.IfDamgeDrop == 1 && !dropComponent.BeAttackPlayerList.Contains(unit.Id))
                 {
                     return;
                 }
