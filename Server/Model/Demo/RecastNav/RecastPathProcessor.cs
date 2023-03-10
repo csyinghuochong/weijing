@@ -36,9 +36,9 @@ namespace ET
         /// </summary>
         public int MapId;
 
-        public void CalculatePath(Vector3 from, Vector3 to, List<Vector3> result)
+        public void CalculatePath(Vector3 from, Vector3 to, List<Vector3> result, int unitType)
         {
-            if (RecastInterface.FindPath(this.MapId, from, to))
+            if (RecastInterface.FindPath(this.MapId, from, to, unitType))
             {
                 RecastInterface.Smooth(this.MapId, 2f, 0.5f);
                 {

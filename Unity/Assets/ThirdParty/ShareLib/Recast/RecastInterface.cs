@@ -102,7 +102,7 @@ namespace ET
         /// <param name="spos">起点三维坐标</param>
         /// <param name="epos">终点三维坐标</param>
         /// <returns></returns>
-        public static bool FindPath(int id, Vector3 spos, Vector3 epos)
+        public static bool FindPath(int id, Vector3 spos, Vector3 epos, int unitType)
         {
             {
                 float[] fixPos = fixposition(id, spos);
@@ -125,7 +125,7 @@ namespace ET
                 }
                 else
                 {
-                    Console.WriteLine(string.Concat("错误:", ($"Recast寻路 FindPath Error：- 终点非法 - epos:{epos} - MapId:{id}")));
+                    Console.WriteLine(string.Concat("错误:", ($"Recast寻路 FindPath Error：- 终点非法 - epos:{epos} - MapId:{id} --unitType{unitType}")));
                 }
 
                 EPos = epos;
