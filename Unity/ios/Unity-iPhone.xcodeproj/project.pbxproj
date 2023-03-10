@@ -3253,7 +3253,7 @@
 				TargetAttributes = {
 					1D6058900D05DD3D006BFB54 = {
 						DevelopmentTeam = 3R4T6JWJ98;
-						ProvisioningStyle = Manual;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.GameControllers.appletvos = {
 								enabled = 1;
@@ -4218,12 +4218,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Unity-iPhone/Base.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3R4T6JWJ98;
+				DEVELOPMENT_TEAM = 3R4T6JWJ98;
 				ENABLE_BITCODE = NO;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -4255,7 +4253,6 @@
 				PROVISIONING_PROFILE = "$(PROVISIONING_PROFILE_APP)";
 				PROVISIONING_PROFILE_APP = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = weijing_profile_20230107;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4276,12 +4273,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Unity-iPhone/Base.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3R4T6JWJ98;
+				DEVELOPMENT_TEAM = 3R4T6JWJ98;
 				ENABLE_BITCODE = NO;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
@@ -4310,7 +4305,6 @@
 				PROVISIONING_PROFILE = "$(PROVISIONING_PROFILE_APP)";
 				PROVISIONING_PROFILE_APP = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = weijing_profile_20230107;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4451,13 +4445,11 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Unity-iPhone/Base.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3R4T6JWJ98;
+				DEVELOPMENT_TEAM = 3R4T6JWJ98;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				INFOPLIST_FILE = Info.plist;
@@ -4485,7 +4477,6 @@
 				PROVISIONING_PROFILE = "$(PROVISIONING_PROFILE_APP)";
 				PROVISIONING_PROFILE_APP = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = weijing_profile_20230107;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -4573,12 +4564,10 @@
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CODE_SIGN_ENTITLEMENTS = "Unity-iPhone/Base.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = YES;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = 3R4T6JWJ98;
+				DEVELOPMENT_TEAM = 3R4T6JWJ98;
 				ENABLE_ON_DEMAND_RESOURCES = NO;
 				GCC_ENABLE_CPP_EXCEPTIONS = NO;
 				INFOPLIST_FILE = Info.plist;
@@ -4606,7 +4595,6 @@
 				PROVISIONING_PROFILE = "$(PROVISIONING_PROFILE_APP)";
 				PROVISIONING_PROFILE_APP = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = weijing_profile_20230107;
 				SDKROOT = iphoneos;
 				SUPPORTED_PLATFORMS = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
