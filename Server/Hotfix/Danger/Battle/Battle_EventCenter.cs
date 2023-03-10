@@ -106,12 +106,17 @@ namespace ET
 
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
+                int realPlayer = 0;
                 List<Unit> units = FubenHelp.GetUnitList(domainScene, UnitType.Player);
                 for (int k = 0; k < units.Count; k++)
                 {
                     units[k].GetComponent<UserInfoComponent>().OnKillUnit(defendUnit, sceneTypeEnum, sceneId);
+                    if (units[k].GetComponent<UserInfoComponent>().UserInfo.RobotId == 0)
+                    {
+                        realPlayer++;
+                    }
                 }
-                UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, units.Count);
+                UnitFactory.CreateDropItems(defendUnit, mainAttack, sceneTypeEnum, realPlayer);
             }
             else
             {

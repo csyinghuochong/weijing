@@ -106,7 +106,7 @@ message A2C_CreateRoleData // IResponse
 	int32 RpcId = 90;
 	int32 Error = 91;
 	string Message = 92;
-	CreateRoleListInfo createRoleInfo = 1;
+	CreateRoleInfo createRoleInfo = 1;
 }
 
 //ResponseType A2C_DeleteRoleData
@@ -321,14 +321,14 @@ message KeyValuePairInt
 	int64 Value = 2;
 }
 
-message CreateRoleListInfo
+message CreateRoleInfo
 {
-	int32 XuHaoID = 1;
 	int64 UserID  = 2;
-	string PlayerName = 3;
 	int32 PlayerLv = 4;
 	int32 PlayerOcc = 5;
 	int32 WeaponId = 6;
+	string PlayerName = 7;
+	int32 OccTwo = 8;
 }
 
 message UnitInfo
@@ -496,10 +496,12 @@ message A2C_LoginAccount // IResponse
 	string Message = 92;
 	string Token = 1;
 	int64 AccountId = 2;
-	repeated CreateRoleListInfo RoleLists = 4;
-	PlayerInfo PlayerInfo = 5;
+	
 	int32 QueueNumber = 6;
 	string QueueAddres = 7;
+	
+	PlayerInfo PlayerInfo = 8;
+	repeated CreateRoleInfo RoleLists = 9;
 }
 
 message A2C_Disconnect	//IMessage
@@ -583,21 +585,6 @@ message G2C_HeartBeat // IResponse
     int32 RpcId = 90;
     int32 Error = 91;
     string Message = 92;
-}
-
-message M2C_BuffInfo // IActorMessage
-{
-    int32 RpcId = 90;
-    int64 ActorId = 93;
-    int64 UnitId = 1; //要发送到的目标UnitId
-    int64 SkillId = 96; //目标技能Id
-
-    string BBKey = 2; //黑板键，此键对应值将会被设置为Buff层数
-
-    int64 TheUnitBelongToId = 95; //Buff归属的UnitId
-    int64 TheUnitFromId = 91; //Buff来自的UnitId
-    int32 BuffLayers = 3; //Buff层数
-    float BuffMaxLimitTime = 4; //Buff最大持续到的时间点
 }
 
 //ResponseType C2R_TestCall
@@ -999,6 +986,34 @@ message M2C_UnitStateUpdate // IActorMessage
 }
 
 message M2C_UnitBuffUpdate // IActorMessage
+{
+	int32 BuffID = 1;
+	int64 UnitIdBelongTo = 2;
+	int32 BuffOperateType = 4;
+	repeated float TargetPostion = 5;
+	int64 BuffEndTime = 6;
+	string Spellcaster = 7;
+	int32 UnitType = 8;
+	int32 UnitConfigId = 9;
+	int32 SkillId = 10;
+}
+
+//message M2C_BuffInfo // IActorMessage
+//{
+//    int32 RpcId = 90;
+//    int64 ActorId = 93;
+//    int64 UnitId = 1; //要发送到的目标UnitId
+//    int64 SkillId = 96; //目标技能Id
+
+//    string BBKey = 2; //黑板键，此键对应值将会被设置为Buff层数
+
+//    int64 TheUnitBelongToId = 95; //Buff归属的UnitId
+//    int64 TheUnitFromId = 91; //Buff来自的UnitId
+//    int32 BuffLayers = 3; //Buff层数
+//    float BuffMaxLimitTime = 4; //Buff最大持续到的时间点
+//}
+
+message M2C_BuffInfo
 {
 	int32 BuffID = 1;
 	int64 UnitIdBelongTo = 2;

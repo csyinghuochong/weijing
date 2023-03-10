@@ -16,7 +16,7 @@ namespace ET
         public GameObject RoleOcc;
         public GameObject NoRole;
         public GameObject Role;
-        public CreateRoleListInfo CreateRoleInfo;
+        public CreateRoleInfo CreateRoleInfo;
     }
 
     [ObjectSystem]
@@ -51,9 +51,9 @@ namespace ET
                 self.ObjRoleName.GetComponent<Text>().text = self.CreateRoleInfo.PlayerName;
                 self.ObjRoleLv.GetComponent<Text>().text = GameSettingLanguge.LoadLocalization("等级:") + self.CreateRoleInfo.PlayerLv.ToString();
                 self.ObjRoleLv.SetActive(true);
-                if (self.CreateRoleInfo.XuHaoID > 0)
+                if (self.CreateRoleInfo.OccTwo > 0)
                 {
-                    OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(self.CreateRoleInfo.XuHaoID);
+                    OccupationTwoConfig occupationTwo = OccupationTwoConfigCategory.Instance.Get(self.CreateRoleInfo.OccTwo);
                     self.RoleOcc.GetComponent<Text>().text = $"职业:{occupationTwo.OccupationName}";
                 }
                 else
@@ -106,7 +106,7 @@ namespace ET
         }
 
         //更新选中状态
-        public static void UpdateSelectStatus(this UICreateRoleListComponent self, CreateRoleListInfo createRoleListInfo)
+        public static void UpdateSelectStatus(this UICreateRoleListComponent self, CreateRoleInfo createRoleListInfo)
         {
 
             //Log.Info("self.SelectXuHaoID = " + self.SelectXuHaoID);

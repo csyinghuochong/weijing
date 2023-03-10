@@ -218,7 +218,7 @@ namespace ET
 		public string Message { get; set; }
 
 		[ProtoMember(1)]
-		public CreateRoleListInfo createRoleInfo { get; set; }
+		public CreateRoleInfo createRoleInfo { get; set; }
 
 	}
 
@@ -634,18 +634,12 @@ namespace ET
 
 	}
 
-	[Message(OuterOpcode.CreateRoleListInfo)]
+	[Message(OuterOpcode.CreateRoleInfo)]
 	[ProtoContract]
-	public partial class CreateRoleListInfo: Object
+	public partial class CreateRoleInfo: Object
 	{
-		[ProtoMember(1)]
-		public int XuHaoID { get; set; }
-
 		[ProtoMember(2)]
 		public long UserID { get; set; }
-
-		[ProtoMember(3)]
-		public string PlayerName { get; set; }
 
 		[ProtoMember(4)]
 		public int PlayerLv { get; set; }
@@ -655,6 +649,12 @@ namespace ET
 
 		[ProtoMember(6)]
 		public int WeaponId { get; set; }
+
+		[ProtoMember(7)]
+		public string PlayerName { get; set; }
+
+		[ProtoMember(8)]
+		public int OccTwo { get; set; }
 
 	}
 
@@ -1025,17 +1025,17 @@ namespace ET
 		[ProtoMember(2)]
 		public long AccountId { get; set; }
 
-		[ProtoMember(4)]
-		public List<CreateRoleListInfo> RoleLists = new List<CreateRoleListInfo>();
-
-		[ProtoMember(5)]
-		public PlayerInfo PlayerInfo { get; set; }
-
 		[ProtoMember(6)]
 		public int QueueNumber { get; set; }
 
 		[ProtoMember(7)]
 		public string QueueAddres { get; set; }
+
+		[ProtoMember(8)]
+		public PlayerInfo PlayerInfo { get; set; }
+
+		[ProtoMember(9)]
+		public List<CreateRoleInfo> RoleLists = new List<CreateRoleInfo>();
 
 	}
 
@@ -1213,39 +1213,6 @@ namespace ET
 
 		[ProtoMember(92)]
 		public string Message { get; set; }
-
-	}
-
-	[Message(OuterOpcode.M2C_BuffInfo)]
-	[ProtoContract]
-	public partial class M2C_BuffInfo: Object, IActorMessage
-	{
-		[ProtoMember(90)]
-		public int RpcId { get; set; }
-
-		[ProtoMember(93)]
-		public long ActorId { get; set; }
-
-		[ProtoMember(1)]
-		public long UnitId { get; set; }
-
-		[ProtoMember(96)]
-		public long SkillId { get; set; }
-
-		[ProtoMember(2)]
-		public string BBKey { get; set; }
-
-		[ProtoMember(95)]
-		public long TheUnitBelongToId { get; set; }
-
-		[ProtoMember(91)]
-		public long TheUnitFromId { get; set; }
-
-		[ProtoMember(3)]
-		public int BuffLayers { get; set; }
-
-		[ProtoMember(4)]
-		public float BuffMaxLimitTime { get; set; }
 
 	}
 
@@ -2150,6 +2117,51 @@ namespace ET
 	[Message(OuterOpcode.M2C_UnitBuffUpdate)]
 	[ProtoContract]
 	public partial class M2C_UnitBuffUpdate: Object, IActorMessage
+	{
+		[ProtoMember(1)]
+		public int BuffID { get; set; }
+
+		[ProtoMember(2)]
+		public long UnitIdBelongTo { get; set; }
+
+		[ProtoMember(4)]
+		public int BuffOperateType { get; set; }
+
+		[ProtoMember(5)]
+		public List<float> TargetPostion = new List<float>();
+
+		[ProtoMember(6)]
+		public long BuffEndTime { get; set; }
+
+		[ProtoMember(7)]
+		public string Spellcaster { get; set; }
+
+		[ProtoMember(8)]
+		public int UnitType { get; set; }
+
+		[ProtoMember(9)]
+		public int UnitConfigId { get; set; }
+
+		[ProtoMember(10)]
+		public int SkillId { get; set; }
+
+	}
+
+//message M2C_BuffInfo // IActorMessage
+//{
+//    int32 RpcId = 90;
+//    int64 ActorId = 93;
+//    int64 UnitId = 1; //要发送到的目标UnitId
+//    int64 SkillId = 96; //目标技能Id
+//    string BBKey = 2; //黑板键，此键对应值将会被设置为Buff层数
+//    int64 TheUnitBelongToId = 95; //Buff归属的UnitId
+//    int64 TheUnitFromId = 91; //Buff来自的UnitId
+//    int32 BuffLayers = 3; //Buff层数
+//    float BuffMaxLimitTime = 4; //Buff最大持续到的时间点
+//}
+	[Message(OuterOpcode.M2C_BuffInfo)]
+	[ProtoContract]
+	public partial class M2C_BuffInfo: Object
 	{
 		[ProtoMember(1)]
 		public int BuffID { get; set; }

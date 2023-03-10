@@ -66,11 +66,11 @@ namespace ET
         */
 
         //获取角色创建列表信息
-        public CreateRoleListInfo GetRoleListInfo(UserInfo userInfo,int xuhaoID,long userID) 
+        public CreateRoleInfo GetRoleListInfo(UserInfo userInfo,long userID) 
         {
-            CreateRoleListInfo roleList = new CreateRoleListInfo();
+            CreateRoleInfo roleList = new CreateRoleInfo();
 
-            roleList.XuHaoID = userInfo.OccTwo;
+            roleList.OccTwo =  userInfo.OccTwo;
             roleList.UserID = userID;
             roleList.PlayerName = userInfo.Name;
             roleList.PlayerLv = userInfo.Lv;

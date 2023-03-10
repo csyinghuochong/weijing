@@ -59,7 +59,7 @@ namespace ET
     //[ObjectSystem]
     public static class UILobbyComponentSystem
     {
-        public static void OnCreateRoleData(this UILobbyComponent self, CreateRoleListInfo roleinfo)
+        public static void OnCreateRoleData(this UILobbyComponent self, CreateRoleInfo roleinfo)
         {
             self.SeletRoleInfo = roleinfo;
 
@@ -92,8 +92,8 @@ namespace ET
                     ui_1 = self.AddChild<UI, string, GameObject>("RoleList" + i, go);
                     ui_1.AddComponent<UICreateRoleListComponent>();
                 }
-  
-                CreateRoleListInfo CreateRoleList = null;
+
+                CreateRoleInfo CreateRoleList = null;
                 if (i < self.PlayerComponent.CreateRoleList.Count)
                 {
                     CreateRoleList = self.PlayerComponent.CreateRoleList[i];

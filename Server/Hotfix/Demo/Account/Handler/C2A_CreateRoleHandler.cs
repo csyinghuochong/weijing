@@ -87,7 +87,7 @@ namespace ET
 						d2GSave = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = newAccount.Id, Component = newAccount, ComponentType = DBHelper.DBAccountInfo });
 
 						//返回角色信息
-						CreateRoleListInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userInfo, newAccount.UserList.Count - 1, userId);
+						CreateRoleInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userInfo,  userId);
 						response.createRoleInfo = roleList;
 						reply();
 					}

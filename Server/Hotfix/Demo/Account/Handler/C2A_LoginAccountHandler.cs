@@ -249,25 +249,26 @@ namespace ET
                     string Token = TimeHelper.ServerNow().ToString() + RandomHelper.RandomNumber(int.MinValue, int.MaxValue).ToString();
                     session.DomainScene().GetComponent<TokenComponent>().Remove(account.Id);    //Token也是保留十分钟
                     session.DomainScene().GetComponent<TokenComponent>().Add(account.Id, Token);
-                   
+
+                    response.RoleLists.Clear();
                     long dbCacheId = DBHelper.GetDbCacheId(session.DomainZone());
                     for (int i = 0; i < account.UserList.Count; i++)
                     {
                         D2G_GetComponent d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = account.UserList[i], Component = DBHelper.UserInfoComponent });
                         UserInfoComponent userinfo = d2GGetUnit.Component as UserInfoComponent;
-                        CreateRoleListInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userinfo.UserInfo, i, account.UserList[i]);
+                        CreateRoleInfo roleList = Function_Role.GetInstance().GetRoleListInfo(userinfo.UserInfo,  account.UserList[i]);
 
                         d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = account.UserList[i], Component = DBHelper.NumericComponent });
                         NumericComponent numericComponent = d2GGetUnit.Component as NumericComponent;
-                        roleList.WeaponId = numericComponent.GetAsInt(NumericType.Now_Weapon);
+                        roleList.WeaponId = 0;// numericComponent.GetAsInt(NumericType.Now_Weapon);
                         response.RoleLists.Add(roleList);
                     }
+
                     response.PlayerInfo = centerPlayerInfo;
                     response.AccountId = account.Id;
                     response.Token = Token;
-                    reply();
                     account?.Dispose();
-
+                    reply();
                 }
             }
 
