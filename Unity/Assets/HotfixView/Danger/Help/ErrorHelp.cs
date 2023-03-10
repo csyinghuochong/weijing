@@ -113,7 +113,7 @@ namespace ET
 
             ErrorHintList.Add(ErrorCore.ERR_Union_Same_Name, "已经存在同名的家族");
 
-            ErrorHintList.Add(ErrorCore.ERR_RoleYueKaRepeat, "月卡重复开启");
+            ErrorHintList.Add(ErrorCore.ERR_RoleYueKaRepeat, "周卡重复开启");
             ErrorHintList.Add(ErrorCore.ERR_AlreadyFinish, "活动已经结束");
             ErrorHintList.Add(ErrorCore.ERR_MysteryItem_Max, "此道具每日购买次数已达上限");
 

@@ -648,13 +648,13 @@ namespace ET
 						//每个掉落
 						//获取每个掉落的概率
 						//string dropChance = "100000";
-						float randomdrop = RandomHelper.RandomNumber2(0, 1000000);
-						float dropChanceData = dropChance * dropProValue;     //概率附加
+						int randomdrop = RandomHelper.RandomNumber2(0, 1000000);
+						int dropChanceData = (int)(dropChance * dropProValue);     //概率附加
 
 						//展示掉落
 						if (all)
 						{
-							dropChanceData = randomdrop + 1f;
+							dropChanceData = randomdrop + 1;
 						}
 
 						//怪物ID
