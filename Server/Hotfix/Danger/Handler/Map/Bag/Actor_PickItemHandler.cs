@@ -101,7 +101,9 @@ namespace ET
                 ItemConfig itemConfig = ItemConfigCategory.Instance.Get(addItemID);
                 //紫色品质通知客户端抉择
                 //DropType ==   0 公共掉落 1私有掉落 2保护掉落   3 归属掉落
-                if (drops[i].DropType == 0 && itemConfig.ItemQuality >= 4 && !teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
+                if (drops[i].DropType == 0 && itemConfig.ItemQuality >= 4 
+                    && itemConfig.ItemType != 1 && itemConfig.ItemSubType != 1
+                    && !teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                 {
                     teamDungeonComponent.AddTeamDropItem(unit, drops[i]);
                     continue;
