@@ -64,7 +64,7 @@ namespace ET
         public const long DizzinessImmune = 1 << 14; 
 
         /// <summary>
-        /// 无敌
+        /// 无敌 （对怪有效）
         /// </summary>
         public const long WuDi = 1 << 18;
         /// <summary>
@@ -76,5 +76,10 @@ namespace ET
         /// 霸体 buff 霸体效果，免疫眩晕和禁锢状态
         /// </summary>
         public const long BaTi = 1 << 20;
+
+        /// <summary>
+        /// 无敌 （对怪物有效）
+        /// </summary>
+        public const long WuDiMonster = 1 << 21;
     }
 }

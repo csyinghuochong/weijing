@@ -28,6 +28,12 @@ namespace ET
         /// <param name="defendUnit"></param>
         public bool Fight(Unit attackUnit, Unit defendUnit, SkillHandler skillHandler)
         {
+            bool playerPKStatus = false;
+            if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Player)
+            {
+                playerPKStatus = true;
+            }
+
             SkillConfig skillconfig = skillHandler.SkillConf;
             //已死亡
             if (defendUnit.GetComponent<NumericComponent>().GetAsInt(NumericType.Now_Dead) == 1)
@@ -35,7 +41,7 @@ namespace ET
                 return false;
             }
             //无敌buff，不受伤害
-            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDi))
+            if (defendUnit.GetComponent<StateComponent>().StateTypeGet(StateTypeEnum.WuDi) && playerPKStatus == false)
             {
                 return false;
             }
@@ -168,10 +174,7 @@ namespace ET
             bool ifMonsterBoss_Def = false;
             bool petfuben = false;
 
-            bool playerPKStatus = false;
-            if (attackUnit.Type == UnitType.Player && defendUnit.Type == UnitType.Player) {
-                playerPKStatus = true;
-            }
+
 
 
             //计算是否闪避
@@ -587,7 +590,7 @@ namespace ET
                 //pk相关
                 if (playerPKStatus) {
                     //玩家之间PK伤害降低80%
-                    damgePro -= 0.2f;
+                    damgePro -= 0.3f;
                     damgePro -= numericComponentDefend.GetAsFloat(NumericType.Now_PlayerAllDamgeSubPro);
                     //普通攻击降低
                     if (skillconfig.SkillActType == 0)
