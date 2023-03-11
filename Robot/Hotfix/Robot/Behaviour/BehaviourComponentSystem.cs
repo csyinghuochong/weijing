@@ -104,7 +104,7 @@ namespace ET
     {
         public static int GetBehaviour(this BehaviourComponent self)
         {
-            return self.RobotConfig.Behaviour;
+            return self.RobotConfig != null ? self.RobotConfig.Behaviour : 0;
         }
 
         public static void ChangeBehaviour(this BehaviourComponent self, int behaviour)

@@ -115,6 +115,7 @@ namespace ET
                             {
                                 continue;
                             }
+                            robotScene.GetComponent<AttackComponent>().RemoveTimer();
                             robotManagerComponent.RemoveRobot(robotScene, "战场结束").Coroutine();
                             await TimerComponent.Instance.WaitAsync(1000);
                         }

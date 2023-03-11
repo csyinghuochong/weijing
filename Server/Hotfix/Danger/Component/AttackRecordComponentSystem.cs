@@ -11,9 +11,11 @@ namespace ET
     {
         public override void Awake(AttackRecordComponent self)
         {
+            self.DropType = 0;
+            self.AttackingId = 0;
+            self.BeAttackId = 0;
             self.BeAttackPlayerList.Clear();
 
-            self.DropType = 0;
             if (self.GetParent<Unit>().Type != UnitType.Monster)
             {
                 return;

@@ -37,7 +37,7 @@ namespace ET
             MapComponent mapComponent = scene.GetComponent<MapComponent>();
             
             Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), 1001);
-            unit.AddComponent<AttackRecordComponent>(true);
+            unit.AddComponent<AttackRecordComponent>();
             NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
             HeroDataComponent heroDataComponent = unit.AddComponent<HeroDataComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);

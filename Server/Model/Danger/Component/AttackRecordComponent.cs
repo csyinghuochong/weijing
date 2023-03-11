@@ -19,8 +19,5 @@ namespace ET
         /// </summary>
         public Dictionary<long, long> BeAttackPlayerList = new Dictionary<long, long>();
 
-        public long LastTime;
-
-        public List<KeyValuePairInt> ValuePairInts = new List<KeyValuePairInt>();
     }
 }
