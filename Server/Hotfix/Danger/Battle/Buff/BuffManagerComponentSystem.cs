@@ -227,7 +227,7 @@ namespace ET
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.x);
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.y);
                 m2C_UnitBuffUpdate.TargetPostion.Add(buffHandler.TargetPosition.z);
-                m2C_UnitBuffUpdate.Spellcaster = from.GetComponent<UnitInfoComponent>().PlayerName;
+                m2C_UnitBuffUpdate.Spellcaster = from.GetComponent<UnitInfoComponent>().UnitName;
                 m2C_UnitBuffUpdate.UnitType = from.Type;
                 m2C_UnitBuffUpdate.UnitConfigId = from.ConfigId;    
                 m2C_UnitBuffUpdate.SkillId = buffData.SkillConfig!=null ? buffData.SkillConfig.Id : 0;

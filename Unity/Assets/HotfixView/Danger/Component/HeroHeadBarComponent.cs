@@ -248,8 +248,8 @@ namespace ET
             if (this.GetParent<Unit>().Type == UnitType.Pet) 
             {
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
-                ObjName.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.StallName;
-                this.Lal_NameOwner.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.PlayerName }的宠物";
+                ObjName.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
+                this.Lal_NameOwner.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的宠物";
             }
         }
 
@@ -374,7 +374,7 @@ namespace ET
             //显示玩家名称
             if (stallType == 0)
             {
-                self.ObjName.GetComponent<TextMeshProUGUI>().text = infoComponent.PlayerName;
+                self.ObjName.GetComponent<TextMeshProUGUI>().text = infoComponent.UnitName;
                 self.ShopShowSet.SetActive(false);
                 self.PlayerNameSet.SetActive(true);
             }

@@ -14,7 +14,7 @@ namespace ET
         public GameObject UseSet;
         public GameObject ChengHaoName;
         public GameObject GameObject;
-        public int Title;
+        public int JingLingId;
 
         public RenderTexture RenderTexture;
         public UIModelDynamicComponent UIModelShowComponent;
@@ -31,7 +31,7 @@ namespace ET
             self.Text_value = rc.Get<GameObject>("Text_value");
 
             self.ButtonActivite = rc.Get<GameObject>("ButtonActivite");
-            ButtonHelp.AddListenerEx(self.ButtonActivite, () => {  });
+            ButtonHelp.AddListenerEx(self.ButtonActivite, () => { self.OnButtonActivite().Coroutine();  });
 
             self.RawImage = rc.Get<GameObject>("RawImage");
             self.ObjGetText = rc.Get<GameObject>("ObjGetText");
@@ -55,9 +55,23 @@ namespace ET
     public static class UIChengJiuJingLingItemComponentSystem
     {
 
+        public static async ETTask OnButtonActivite(this UIChengJiuJingLingItemComponent self)
+        {
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
+            if (!chengJiuComponent.JingLingList.Contains(self.JingLingId))
+            {
+                FloatTipManager.Instance.ShowFloatTip("请先激活改精灵！");
+                return;
+            }
+
+
+            await ETTask.CompletedTask;
+        }
+
         public static void OnInitUI(this UIChengJiuJingLingItemComponent self, int jid, bool active)
         {
             JingLingConfig jingLingConfig = JingLingConfigCategory.Instance.Get(jid);
+            self.JingLingId = jid;
             self.RenderTexture = null;
             self.RenderTexture = new RenderTexture(256, 256, 16, RenderTextureFormat.ARGB32);
             self.RenderTexture.Create();
@@ -77,6 +91,7 @@ namespace ET
             self.Text_value.GetComponent<Text>().text = jingLingConfig.Des;
             self.ObjGetText.GetComponent<Text>().text = jingLingConfig.GetDes;
 
+            UICommonHelper.SetRawImageGray(self.RawImage, !active);
         }
 
         public static void OnUpdateUI(this UIChengJiuJingLingItemComponent self)

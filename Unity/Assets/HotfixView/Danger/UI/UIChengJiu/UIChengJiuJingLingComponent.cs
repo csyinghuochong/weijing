@@ -30,6 +30,7 @@ namespace ET
         {
             var path = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuJinglingItem");
             var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             
             List<JingLingConfig> titleConfigs = JingLingConfigCategory.Instance.GetAll().Values.ToList();
             for (int i = 0; i < titleConfigs.Count; i++)
@@ -39,7 +40,7 @@ namespace ET
                 UICommonHelper.SetParent(go, self.cellContainer1);
                 uISettingTitleItem = self.AddChild<UIChengJiuJingLingItemComponent, GameObject>(go);
                 self.JingLingUIItems.Add(uISettingTitleItem);
-                uISettingTitleItem.OnInitUI(titleConfigs[i].Id, false);
+                uISettingTitleItem.OnInitUI(titleConfigs[i].Id, chengJiuComponent.JingLingList.Contains(titleConfigs[i].Id));
             }
         }
 

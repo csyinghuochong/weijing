@@ -28,7 +28,6 @@ namespace ET
             NumericComponent nc = unit.GetComponent<NumericComponent>();
             unitInfo.UnitId = unit.Id;
             unitInfo.ConfigId = unit.ConfigId;
-            //unitInfo.Type = (int)unit.Type;
             Vector3 position = unit.Position;
             unitInfo.X = position.x;
             unitInfo.Y = position.y;
@@ -69,20 +68,28 @@ namespace ET
                 unitInfo.Vs.Add(value);
             }
 
-            //携带的buff
-            unitInfo.Buffs = unit.GetComponent<BuffManagerComponent>().GetMessageBuff();
-            unitInfo.Skills = unit.GetComponent<SkillManagerComponent>().GetMessageSkill();
-            //设置数据
-            UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
-            unitInfo.PlayerName = userInfoComponent.UserInfo.Name;
-            unitInfo.PlayerOcc = userInfoComponent.UserInfo.Occ;
-            unitInfo.UserId = userInfoComponent.UserInfo.UserId;
-            unitInfo.ConfigId = userInfoComponent.UserInfo.Occ;
-            unitInfo.UnionName = string.IsNullOrWhiteSpace(userInfoComponent.UserInfo.UnionName) ? "" : userInfoComponent.UserInfo.UnionName;
-            unitInfo.StallName = unitInfoComponent.StallName;
+            switch (unit.Type)
+            {
+                case UnitType.Player:
+                    //携带的buff
+                    unitInfo.Buffs = unit.GetComponent<BuffManagerComponent>().GetMessageBuff();
+                    unitInfo.Skills = unit.GetComponent<SkillManagerComponent>().GetMessageSkill();
+                    //设置数据
+                    UserInfoComponent userInfoComponent = unit.GetComponent<UserInfoComponent>();
+                    unitInfo.UnitName = userInfoComponent.UserInfo.Name;
+                    unitInfo.ConfigId = userInfoComponent.UserInfo.Occ;
+                    unitInfo.UnionName = string.IsNullOrWhiteSpace(userInfoComponent.UserInfo.UnionName) ? "" : userInfoComponent.UserInfo.UnionName;
+                    unitInfo.StallName = unitInfoComponent.StallName;
+                    break;
+                case UnitType.JingLing:
+                    unitInfo.MasterName = unitInfoComponent.MasterName;
+                    unitInfo.UnitName = unitInfoComponent.UnitName;
+                    break;
+            }
             return unitInfo;
         }
 
+     
         /// <summary>
         /// 获取看见unit的玩家，主要用于广播
         /// </summary>
@@ -115,6 +122,7 @@ namespace ET
             switch (sendUnit.Type)
             {
                 case UnitType.Player:
+                case UnitType.JingLing:
                     createUnits.Units.Add(CreateUnitInfo(sendUnit));
                     break;
                 case UnitType.Monster:
@@ -202,8 +210,8 @@ namespace ET
             rolePetInfo.Y = unit.Position.y;
             rolePetInfo.Z = unit.Position.z;
 
-            rolePetInfo.PlayerName = unit.GetComponent<UnitInfoComponent>().PlayerName;
-            rolePetInfo.PetName = unit.GetComponent<UnitInfoComponent>().StallName;
+            rolePetInfo.PlayerName = unit.GetComponent<UnitInfoComponent>().MasterName;
+            rolePetInfo.PetName = unit.GetComponent<UnitInfoComponent>().UnitName;
 
             NumericComponent nc = unit.GetComponent<NumericComponent>();
             foreach ((int key, long value) in nc.NumericDic)

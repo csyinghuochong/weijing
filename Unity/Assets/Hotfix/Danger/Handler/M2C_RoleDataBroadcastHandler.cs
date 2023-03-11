@@ -16,7 +16,7 @@
             {
                 //更新角色名称
                 case (int)UserDataType.Name:
-                    unit.GetComponent<UnitInfoComponent>().PlayerName = message.UpdateTypeValue;
+                    unit.GetComponent<UnitInfoComponent>().UnitName = message.UpdateTypeValue;
                     break;
                 case (int)UserDataType.Lv:
                     //int.Parse(message.UpdateTypeValue);

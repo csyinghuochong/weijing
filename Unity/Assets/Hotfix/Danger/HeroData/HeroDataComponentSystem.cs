@@ -375,6 +375,11 @@ namespace ET
             }
         }
 
+        public static void InitJingLing(this HeroDataComponent self, int jinglingid, bool notice)
+        { 
+            
+        }
+
         /// <summary>
         /// 角色属性模块初始化
         /// </summary>

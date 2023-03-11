@@ -13,6 +13,8 @@ namespace ET
             response.ChengJiuCompleteList = chengJiuComponent.ChengJiuCompleteList;
             response.TotalChengJiuPoint = chengJiuComponent.TotalChengJiuPoint;
             response.AlreadReceivedId = chengJiuComponent.AlreadReceivedId;
+            response.JingLingList = chengJiuComponent.JingLingList;
+            
             reply();
             await ETTask.CompletedTask;
         }

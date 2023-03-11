@@ -42,7 +42,7 @@ namespace ET
             HeroDataComponent heroDataComponent = unit.AddComponent<HeroDataComponent>();
             UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
             unitInfoComponent.EnergySkillId = createMonsterInfo.SkillId;
-            unitInfoComponent.PlayerName = monsterConfig.MonsterName;
+            unitInfoComponent.UnitName = monsterConfig.MonsterName;
             unit.Type = UnitType.Monster;
             unit.Position = vector3;
             unit.ConfigId = monsterConfig.Id;
@@ -157,7 +157,7 @@ namespace ET
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
             unit.AddComponent<AttackRecordComponent>(true);
-            unitInfoComponent.PlayerName = master.GetComponent<UnitInfoComponent>().PlayerName;
+            unitInfoComponent.UnitName = master.GetComponent<UnitInfoComponent>().UnitName;
             unit.GetComponent<NumericComponent>().Set(NumericType.MasterId, master.Id);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
             numericComponent.Set(NumericType.TeamId, master.GetTeamId());
@@ -193,8 +193,8 @@ namespace ET
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
             unit.AddComponent<AttackRecordComponent>(true);
             unit.ConfigId = petinfo.ConfigId;
-            unitInfoComponent.StallName = petinfo.PetName;
-            unitInfoComponent.PlayerName = petinfo.PlayerName;
+            unitInfoComponent.UnitName = petinfo.PetName;
+            unitInfoComponent.MasterName = petinfo.PlayerName;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
             unit.Position = postion;
@@ -233,8 +233,8 @@ namespace ET
             unit.AddComponent<SkillManagerComponent>();
             unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
             unit.AddComponent<AttackRecordComponent>(true);
-            unitInfoComponent.PlayerName = petinfo.PlayerName;
-            unitInfoComponent.StallName = petinfo.PetName;
+            unitInfoComponent.MasterName = petinfo.PlayerName;
+            unitInfoComponent.UnitName = petinfo.PetName;
             numericComponent.Set(NumericType.MasterId, master.Id);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
             numericComponent.Set(NumericType.TeamId, master.GetTeamId());
@@ -258,6 +258,44 @@ namespace ET
             return unit;
         }
 
+        public static Unit CreateJingLing(Unit master, int jinglingId)
+        {
+            Scene scene = master.DomainScene();
+            Unit unit = scene.GetComponent<UnitComponent>().AddChildWithId<Unit, int>(IdGenerater.Instance.GenerateId(), jinglingId);
+            scene.GetComponent<UnitComponent>().Add(unit);
+            unit.AddComponent<ObjectWait>();
+            NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
+            UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
+            unit.AddComponent<MoveComponent>();
+            unit.AddComponent<SkillManagerComponent>();
+            unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId);
+            unit.AddComponent<AttackRecordComponent>(true);
+            unitInfoComponent.MasterName = master.GetComponent<UserInfoComponent>().UserInfo.Name;
+            unitInfoComponent.UnitName = JingLingConfigCategory.Instance.Get(jinglingId).Name;
+            numericComponent.Set(NumericType.MasterId, master.Id);
+            numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
+            numericComponent.Set(NumericType.TeamId, master.GetTeamId());
+            unit.ConfigId = jinglingId;
+            unit.AddComponent<StateComponent>();         //添加状态组件
+            unit.AddComponent<BuffManagerComponent>();      //添加
+            unit.Position = new Vector3(master.Position.x + RandomHelper.RandFloat01() * 1f, master.Position.y, master.Position.z + RandomHelper.RandFloat01() * 1f);
+            unit.Type = UnitType.JingLing;
+
+            AIComponent aIComponent = unit.AddComponent<AIComponent, int>(2);     //AI行为树序号
+            aIComponent.InitJingLing(jinglingId);
+
+            //添加其他组件
+            unit.AddComponent<HeroDataComponent>().InitJingLing(jinglingId, false);
+            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+
+            if (scene.GetComponent<MapComponent>().SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
+            {
+                unit.AddComponent<SkillPassiveComponent>().UpdateJingLingSkill(jinglingId);
+                unit.GetComponent<SkillPassiveComponent>().Activeted();
+            }
+
+            return unit;
+        }
 
         public static List<RewardItem> AI_MonsterDrop(Unit unit, int monsterID, float dropProValue, bool all)
         {

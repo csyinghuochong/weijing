@@ -10,8 +10,8 @@ namespace ET
 	        Unit unit = unitComponent.AddChildWithId<Unit, int>(unitInfo.UnitId, (int)unitInfo.ConfigId);
 	        unitComponent.Add(unit);
 			unit.MainHero = mainHero;
-			unit.Type = UnitType.Player;
-			unit.ConfigId = unitInfo.PlayerOcc;
+			unit.Type = unitInfo.UnitType;
+			unit.ConfigId = unitInfo.ConfigId;
 			
 	        NumericComponent numericComponent = unit.AddComponent<NumericComponent>();
 	        for (int i = 0; i < unitInfo.Ks.Count; ++i)
@@ -27,9 +27,10 @@ namespace ET
 			unit.AddComponent<SingingComponent>();
 
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
-			unitInfoComponent.PlayerName = unitInfo.PlayerName;
+			unitInfoComponent.UnitName = unitInfo.UnitName;
 			unitInfoComponent.StallName = unitInfo.StallName;
-			unitInfoComponent.UnionName = string.IsNullOrEmpty(unitInfo.UnionName) ? "" : unitInfo.UnionName;
+			unitInfoComponent.MasterName = unitInfo.MasterName;
+			unitInfoComponent.UnionName = unitInfo.UnionName;
 
 			unit.Position = new Vector3(unitInfo.X, unitInfo.Y, unitInfo.Z);
 			unit.Forward = new Vector3(unitInfo.ForwardX, unitInfo.ForwardY, unitInfo.ForwardZ);
@@ -106,8 +107,8 @@ namespace ET
 			unit.AddComponent<SkillManagerComponent>();
 
 			UnitInfoComponent unitInfoComponent = unit.AddComponent<UnitInfoComponent>(true);
-			unitInfoComponent.StallName = rolePetInfo.PetName;
-			unitInfoComponent.PlayerName = rolePetInfo.PlayerName;
+			unitInfoComponent.UnitName = rolePetInfo.PetName;
+			unitInfoComponent.MasterName = rolePetInfo.PlayerName;
 			unit.Position = new Vector3(rolePetInfo.X, rolePetInfo.Y, rolePetInfo.Z);
 			unit.AddComponent<MoveComponent>();
 

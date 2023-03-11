@@ -152,6 +152,11 @@ namespace ET
             }
         }
 
+        public static void UpdateJingLingSkill(this SkillPassiveComponent self,  int jinglingid)
+        { 
+            
+        }
+
         public static void UpdatePetPassiveSkill(this SkillPassiveComponent self, RolePetInfo rolePetInfo)
         {
             self.SkillPassiveInfos.Clear();

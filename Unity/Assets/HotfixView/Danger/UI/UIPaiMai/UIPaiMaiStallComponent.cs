@@ -92,7 +92,7 @@ namespace ET
             }
             else
             {
-                self.Lab_Name.GetComponent<InputField>().text = unit.GetComponent<UnitInfoComponent>().PlayerName + "的摊位";
+                self.Lab_Name.GetComponent<InputField>().text = unit.GetComponent<UnitInfoComponent>().UnitName + "的摊位";
             }
             self.RequestStallInfo().Coroutine();
         }

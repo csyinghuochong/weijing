@@ -666,52 +666,40 @@ namespace ET
 		public long UnitId { get; set; }
 
 		[ProtoMember(2)]
-		public int ConfigId { get; set; }
+		public int UnitType { get; set; }
 
 		[ProtoMember(3)]
-		public float X { get; set; }
+		public int ConfigId { get; set; }
 
 		[ProtoMember(4)]
-		public float Y { get; set; }
-
-		[ProtoMember(5)]
-		public float Z { get; set; }
-
-		[ProtoMember(6)]
-		public List<int> Ks = new List<int>();
-
-		[ProtoMember(7)]
-		public List<long> Vs = new List<long>();
-
-		[ProtoMember(8)]
-		public string PlayerName { get; set; }
-
-		[ProtoMember(9)]
-		public int PlayerOcc { get; set; }
-
-		[ProtoMember(10)]
 		public int RoleCamp { get; set; }
 
-		[ProtoMember(12)]
-		public long UserId { get; set; }
+		[ProtoMember(6)]
+		public float X { get; set; }
 
-		[ProtoMember(13)]
-		public float ForwardX { get; set; }
+		[ProtoMember(7)]
+		public float Y { get; set; }
+
+		[ProtoMember(8)]
+		public float Z { get; set; }
+
+		[ProtoMember(9)]
+		public List<int> Ks = new List<int>();
+
+		[ProtoMember(10)]
+		public List<long> Vs = new List<long>();
 
 		[ProtoMember(14)]
-		public float ForwardY { get; set; }
+		public float ForwardX { get; set; }
 
 		[ProtoMember(15)]
-		public float ForwardZ { get; set; }
+		public float ForwardY { get; set; }
 
 		[ProtoMember(16)]
-		public MoveInfo MoveInfo { get; set; }
+		public float ForwardZ { get; set; }
 
 		[ProtoMember(17)]
-		public string StallName { get; set; }
-
-		[ProtoMember(18)]
-		public string UnionName { get; set; }
+		public MoveInfo MoveInfo { get; set; }
 
 		[ProtoMember(19)]
 		public List<KeyValuePair> Buffs = new List<KeyValuePair>();
@@ -720,7 +708,16 @@ namespace ET
 		public List<SkillInfo> Skills = new List<SkillInfo>();
 
 		[ProtoMember(21)]
-		public int UnitType { get; set; }
+		public string UnitName { get; set; }
+
+		[ProtoMember(22)]
+		public string MasterName { get; set; }
+
+		[ProtoMember(23)]
+		public string StallName { get; set; }
+
+		[ProtoMember(24)]
+		public string UnionName { get; set; }
 
 	}
 

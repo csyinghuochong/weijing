@@ -148,7 +148,7 @@ namespace ET
 						unit.AddComponent<DBSaveComponent>();
 						unit.AddComponent<SkillPassiveComponent>().UpdatePassiveSkill();
 						unit.GetComponent<UserInfoComponent>().OnLogin(session.RemoteAddress.ToString(), request.DeviceName);
-						unit.GetComponent<UnitInfoComponent>().PlayerName = unit.GetComponent<UserInfoComponent>().UserName;
+						unit.GetComponent<UnitInfoComponent>().UnitName = unit.GetComponent<UserInfoComponent>().UserName;
 						unit.GetComponent<DBSaveComponent>().UpdateCacheDB();
 						if (session.DomainZone() == 0)
 						{

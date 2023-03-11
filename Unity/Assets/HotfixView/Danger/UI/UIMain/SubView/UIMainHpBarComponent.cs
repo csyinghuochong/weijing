@@ -95,8 +95,8 @@ namespace ET
             //    return;
             //}
             Unit unitbelong = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(belongid);
-            self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().PlayerName}";
-            if (unitbelong.GetComponent<UnitInfoComponent>().PlayerName == UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<UnitInfoComponent>().PlayerName)
+            self.Lab_Owner.text = $"掉落归属:{unitbelong.GetComponent<UnitInfoComponent>().UnitName}";
+            if (unitbelong.GetComponent<UnitInfoComponent>().UnitName == UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<UnitInfoComponent>().UnitName)
             {
                 self.Lab_Owner.color = new Color(148f/255f,1,0);      //绿色
             }

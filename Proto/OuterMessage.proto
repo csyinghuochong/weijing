@@ -334,28 +334,30 @@ message CreateRoleInfo
 message UnitInfo
 {
 	int64 UnitId  = 1;
-	int32 ConfigId = 2;
-	float X = 3;
-	float Y = 4;
-	float Z = 5;
-	repeated int32 Ks = 6;
-	repeated int64 Vs = 7;
-	string PlayerName = 8;
-	int32 PlayerOcc = 9;
-	int32 RoleCamp = 10;
-	int64 UserId = 12;
+	int32 UnitType = 2;
+	int32 ConfigId = 3;
+	int32 RoleCamp = 4;
 
-	float ForwardX = 13;
-	float ForwardY = 14;
-	float ForwardZ = 15;
-	MoveInfo MoveInfo = 16;
+	float X = 6;
+	float Y = 7;
+	float Z = 8;
+	repeated int32 Ks = 9;
+	repeated int64 Vs = 10;
 
-	string StallName = 17;
-	string UnionName = 18;
+	float ForwardX = 14;
+	float ForwardY = 15;
+	float ForwardZ = 16;
+	MoveInfo MoveInfo = 17;
+
 	repeated KeyValuePair Buffs = 19;
 	repeated SkillInfo Skills = 20;
 
-	int32 UnitType = 21;
+	string UnitName = 21;		//自身名字
+	string MasterName = 22;		//主人名字
+	string StallName = 23;
+	string UnionName = 24;
+	string ExtendPar = 25;          //扩展参数
+
 }
 
 message M2C_CreateUnits // IActorMessage

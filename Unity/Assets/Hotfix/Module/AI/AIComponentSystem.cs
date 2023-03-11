@@ -181,6 +181,14 @@ namespace ET
             self.StopAI = false;
         }
 
+        public static void InitJingLing(this AIComponent self, int jinglingid)
+        {
+            self.ChaseRange = 100;
+            self.ActRange = 5;
+            self.AISkillIDList.Add(66001012);
+            self.ActDistance = 6;
+        }
+
         /// <summary>
         /// 相关数据也可以传入Unit. 从Unit获取
         /// </summary>
