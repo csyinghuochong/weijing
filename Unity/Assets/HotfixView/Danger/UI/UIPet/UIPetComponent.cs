@@ -10,12 +10,14 @@ namespace ET
         PetList = 0,
         PetHeCheng = 1,
         PetXiLian = 2,
-        PetUpStar = 3,
-        Number = 4,
+        PetTuJian = 3,
+        PetUpStar = 4,
+        Number,
     }
 
     public class UIPetComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Btn_TuJian;
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
         public GameObject Btn_Close;
@@ -42,10 +44,13 @@ namespace ET
             pageViewComponent.UISubViewPath[(int)PetPageEnum.PetList] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetList");
             pageViewComponent.UISubViewPath[(int)PetPageEnum.PetHeCheng] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetHeCheng");
             pageViewComponent.UISubViewPath[(int)PetPageEnum.PetXiLian] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetXiLian");
+            pageViewComponent.UISubViewPath[(int)PetPageEnum.PetTuJian] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetTuJian");
             pageViewComponent.UISubViewPath[(int)PetPageEnum.PetUpStar] = ABPathHelper.GetUGUIPath("Main/Pet/UIPetUpStar");
+
             pageViewComponent.UISubViewType[(int)PetPageEnum.PetList] = typeof(UIPetListComponent);
             pageViewComponent.UISubViewType[(int)PetPageEnum.PetHeCheng] = typeof(UIPetHeChengComponent);
             pageViewComponent.UISubViewType[(int)PetPageEnum.PetXiLian] = typeof(UIPetXiLianComponent);
+            pageViewComponent.UISubViewType[(int)PetPageEnum.PetTuJian] = typeof(UIPetTuJianComponent);
             pageViewComponent.UISubViewType[(int)PetPageEnum.PetUpStar] = typeof(UIPetUpStarComponent);
             self.UIPageView = pageViewComponent;
 
@@ -54,6 +59,9 @@ namespace ET
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
+
+            self.Btn_TuJian = rc.Get<GameObject>("Btn_TuJian");
+            self.Btn_TuJian.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));
