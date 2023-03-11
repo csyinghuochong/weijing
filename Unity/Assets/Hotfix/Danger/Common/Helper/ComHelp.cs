@@ -159,9 +159,13 @@ namespace ET
                 addfloat = addfloat * 5f;
             }
             */
-
-            fightValueFloat = addfloat * 5f + 1;
-
+            if (addfloat > 0)
+            {
+                fightValueFloat = addfloat * 5f + 1;
+            }
+            else {
+                fightValueFloat = petinfo.ZiZhi_ChengZhang;
+            }
             //fightValueFloat = petinfo.ZiZhi_ChengZhang * 5f;
 
             //宠物技能评分
