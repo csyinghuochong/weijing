@@ -76,7 +76,8 @@ namespace ET
                 {
                     if (unitDrop == null)
                     {
-                        continue;
+                        Log.Error($"OnTeamPick:unitDrop == null {unit.Id}");
+						 continue;
                     }
                     dropComponent = unitDrop.GetComponent<DropComponent>();
                     int dropType = dropComponent.DropType;
@@ -185,9 +186,13 @@ namespace ET
                     }
                     MessageHelper.SendToClient(allPlayer, m2C_SyncChatInfo);
                 }
+                if(!success)
+                {
+                    return owner.Id == unit.Id ?  ErrorCore.ERR_BagIsFull : ErrorCore.ERR_ItemDropProtect;
+                }
             }
 
-            return ErrorCode.ERR_Success;
+            return ErrorCore.ERR_Success;
         }
 
         protected override async ETTask Run(Unit unit, Actor_PickItemRequest request, Actor_PickItemResponse response, Action reply)

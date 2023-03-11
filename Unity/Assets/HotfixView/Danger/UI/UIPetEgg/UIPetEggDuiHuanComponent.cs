@@ -66,6 +66,11 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("道具不足！");
                 return;
             }
+            if (bagComponent.GetLeftSpace() <= 1)
+            {
+                FloatTipManager.Instance.ShowFloatTip("背包空间不足！");
+                return;
+            }
 
             C2M_PetEggDuiHuanRequest request = new C2M_PetEggDuiHuanRequest() { ChouKaId = index };
             M2C_PetEggDuiHuanResponse response = (M2C_PetEggDuiHuanResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
