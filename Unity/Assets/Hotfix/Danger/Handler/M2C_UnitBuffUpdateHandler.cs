@@ -19,13 +19,15 @@ namespace ET
             switch (message.BuffOperateType)
             {
                 case 1: //增加
-                        //触发Buff
                     BuffData buffData = new BuffData();
                     buffData.TargetAngle = 0;
                     buffData.BuffConfig = SkillBuffConfigCategory.Instance.Get((int)message.BuffID);
                     buffData.TargetPosition = new Vector3(message.TargetPostion[0], message.TargetPostion[1], message.TargetPostion[2] );
                     buffData.Spellcaster = message.Spellcaster;
                     buffData.BuffEndTime = message.BuffEndTime;
+                    buffData.UnitType = message.UnitType;
+                    buffData.UnitConfigId = message.UnitConfigId;
+                    buffData.SkillId = message.SkillId;
                     msgUnitBelongTo.GetComponent<BuffManagerComponent>().BuffFactory(buffData);
                     break;
                 case 2: //移除

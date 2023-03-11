@@ -19,6 +19,8 @@ namespace ET
         public long EndTime;
         public string SpellCast;
         public string showTimeStr;
+        public string BuffIcon;
+        public ABAtlasTypes aBAtlasTypes;
     }
 
 
@@ -59,7 +61,7 @@ namespace ET
             RectTransform canvas = UIEventComponent.Instance.UILayers[(int)UILayer.Mid].gameObject.GetComponent<RectTransform>();
             Camera uiCamera = self.DomainScene().GetComponent<UIComponent>().UICamera;
             RectTransformUtility.ScreenPointToLocalPointInRectangle(canvas, pdata.position, uiCamera, out localPoint);
-            skillTips.GetComponent<UIBuffTipsComponent>().OnUpdateData(self.BuffID, new Vector3(localPoint.x, localPoint.y, 0f), self.showTimeStr, self.SpellCast);
+            skillTips.GetComponent<UIBuffTipsComponent>().OnUpdateData(self.BuffID, new Vector3(localPoint.x, localPoint.y, 0f), self.showTimeStr, self.SpellCast, self.aBAtlasTypes, self.BuffIcon);
         }
 
         public static void BeforeRemove(this UIMainBuffItemComponent self)
@@ -102,11 +104,25 @@ namespace ET
             self.BuffID = buffHandler.BuffData.BuffConfig.Id;
 
             string bufficon = skillBuffConfig.BuffIcon;
+            //Buff表BuffIcon为0时,显示图标显示为对应的技能图标,如果没找到对应资源,
+            //释放者是怪物,那么就显示怪物的头像Icon,最后还是没找到显示默认图标b001
+            ABAtlasTypes aBAtlasTypes = ABAtlasTypes.RoleSkillIcon;
+            if (ComHelp.IfNull(bufficon) && buffHandler.BuffData.SkillId != 0)
+            {
+                bufficon = SkillConfigCategory.Instance.Get(buffHandler.BuffData.SkillId).SkillIcon;
+            }
+            if (ComHelp.IfNull(bufficon) && buffHandler.BuffData.UnitType == UnitType.Monster)
+            {
+                aBAtlasTypes = ABAtlasTypes.MonsterIcon;
+                bufficon = MonsterConfigCategory.Instance.Get(buffHandler.BuffData.UnitConfigId).MonsterHeadIcon;
+            }
             if (ComHelp.IfNull(bufficon))
             {
-                bufficon = "68000105";
+                bufficon = "b001";
             }
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, bufficon);
+            self.aBAtlasTypes = aBAtlasTypes;
+            self.BuffIcon = bufficon;
+            Sprite sp = ABAtlasHelp.GetIconSprite(aBAtlasTypes, bufficon);
             self.ImgBufflIcon.GetComponent<Image>().sprite = sp;
         }
 

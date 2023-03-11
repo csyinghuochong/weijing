@@ -44,17 +44,13 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), UIType.UISkillTips);
         }
 
-        public static void OnUpdateData(this UIBuffTipsComponent self, int buffid, Vector3 vector3,string showStr, string spellcast)
+        public static void OnUpdateData(this UIBuffTipsComponent self, int buffid, Vector3 vector3,string showStr, string spellcast, ABAtlasTypes aBAtlasTypes, string bufficon)
         {
             self.BuffId = buffid;
             SkillBuffConfig skillBufConfig = SkillBuffConfigCategory.Instance.Get(buffid);
 
-            string bufficon = skillBufConfig.BuffIcon;
-            if (ComHelp.IfNull(bufficon))
-            {
-                bufficon = "68000105";
-            }
-            Sprite sp = ABAtlasHelp.GetIconSprite(ABAtlasTypes.RoleSkillIcon, bufficon);
+          
+            Sprite sp = ABAtlasHelp.GetIconSprite(aBAtlasTypes, bufficon);
             self.Image_SkillIcon.GetComponent<Image>().sprite = sp;
         
             self.Lab_SkillName.GetComponent<Text>().text = skillBufConfig.BuffName;

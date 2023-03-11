@@ -199,6 +199,10 @@ namespace ET
         public Vector3 TargetPosition;
 
         public string Spellcaster;
+
+        public int UnitType;
+        public int UnitConfigId;
+        public int SkillId;
     }
 
     public enum SkillState
