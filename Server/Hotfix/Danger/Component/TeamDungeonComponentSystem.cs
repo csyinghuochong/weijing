@@ -26,10 +26,12 @@ namespace ET
         public override void Awake(TeamDungeonComponent self)
         {
             self.EnterTime = 0;
+            self.TeamInfo = null;
             self.BoxReward.Clear();
             self.ItemFlags.Clear();
             self.TeamDropItems.Clear();
             self.KillBossList.Clear();
+            self.TeamPlayers.Clear();
         }
     }
 
@@ -44,6 +46,15 @@ namespace ET
 
     public static class TeamDungeonComponentSystem
     {
+
+        public static void InitPlayerList(this TeamDungeonComponent self)
+        {
+            for (int i = 0; i < self.TeamInfo.PlayerList.Count; i++)
+            {
+                self.TeamPlayers.Add(self.TeamInfo.PlayerList[i].UserID, self.TeamInfo.PlayerList[i]);
+            }
+        }
+
         public static void Check(this TeamDungeonComponent self)
         {
             if (self.TeamDropItems.Count == 0)

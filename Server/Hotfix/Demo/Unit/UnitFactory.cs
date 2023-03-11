@@ -482,6 +482,7 @@ namespace ET
                                 ownderId = belongid;
                             }
                             dropComponent.OwnerId = ownderId;
+                            dropComponent.ProtectTime = monsterCof.DropType == 0 ? 0 : serverTime + 30000;
                             break;
                     }
                     float dropX = bekill.Position.x + RandomHelper.RandomNumberFloat(-1f, 1f);

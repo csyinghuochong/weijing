@@ -34,7 +34,7 @@ namespace ET
                     }
                     if (dropType == 3)
                     {
-                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
+                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
                         {
                             return ErrorCore.ERR_ItemDropProtect;
                         }
@@ -67,7 +67,7 @@ namespace ET
             long serverTime = TimeHelper.ServerNow();
 
             TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
-            List<Unit> allPlayer = unit.GetUnitList(UnitType.Player);
+            
             for (int i = 0; i < drops.Count; i++)
             {
                 Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);
@@ -118,78 +118,76 @@ namespace ET
                 m2C_SyncChatInfo.ChatInfo.PlayerLevel = unit.GetComponent<UserInfoComponent>().UserInfo.Lv;
                 m2C_SyncChatInfo.ChatInfo.Occ = unit.GetComponent<UserInfoComponent>().UserInfo.Occ;
                 m2C_SyncChatInfo.ChatInfo.ChannelId = (int)ChannelEnum.Pick;
+                string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
+                string numShow = "";
+                if (itemConfig.Id == 1)
+                {
+                    numShow = unitDrop.GetComponent<DropComponent>().ItemNum.ToString();
+                }
 
                 Unit owner = null;
-              
                 if (drops[i].DropType == 1)
                 {
                     owner = unit;
                 }
                 else
                 {
+                    //已经分配过的
                     if (teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                     {
                         owner = unit.DomainScene().GetComponent<UnitComponent>().Get(teamDungeonComponent.ItemFlags[unitDrop.Id]);
-                        if (owner != null)
+                        m2C_SyncChatInfo.ChatInfo.ChatMsg = $"{teamDungeonComponent.TeamPlayers[teamDungeonComponent.ItemFlags[unitDrop.Id]].PlayerName}拾取{itemConfig.ItemName}";
+                    }
+                    else
+                    {
+                        int maxRollpoint = 0;
+                        long maxPlayerId = 0;
+                        Dictionary<long, TeamPlayerInfo> allPlayer = teamDungeonComponent.TeamPlayers;
+                        foreach((long uid, TeamPlayerInfo TeamPlayerInfo) in allPlayer)
                         {
-                            m2C_SyncChatInfo.ChatInfo.ChatMsg = $"{owner.GetComponent<UserInfoComponent>().UserInfo.Name}拾取{itemConfig.ItemName}";
+                            int rollpoint = 0;
+                            if (teshuItem && TeamPlayerInfo.RobotId > 0)
+                            {
+                                rollpoint = 0;
+                            }
+                            else
+                            {
+                                rollpoint = (RandomHelper.RandomNumber(1, 100));
+                            }
+
+                            if (rollpoint >= maxRollpoint)
+                            {
+                                maxRollpoint = rollpoint;
+                                maxPlayerId = uid;
+                            }
+                            m2C_SyncChatInfo.ChatInfo.ChatMsg += $"{TeamPlayerInfo.PlayerName}:{rollpoint}点";
+                            m2C_SyncChatInfo.ChatInfo.ChatMsg += "  ";
                         }
+                        
+                        teamDungeonComponent.ItemFlags.Add(unitDrop.Id, maxPlayerId);
+                        owner = unit.DomainScene().GetComponent<UnitComponent>().Get(maxPlayerId);
+                        m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{teamDungeonComponent.TeamPlayers[maxPlayerId].PlayerName}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>({m2C_SyncChatInfo.ChatInfo.ChatMsg})";
                     }
                 }
                 if (owner == null)
                 {
-                    int maxNumber = 0;
-                    List<int> randomNumbers = new List<int>();
-                    for (int p = 0; p < allPlayer.Count; p++)
-                    {
-                        if (teshuItem && allPlayer[p].IsRobot())
-                        {
-                            randomNumbers.Add(0);
-                        }
-                        else
-                        {
-                            randomNumbers.Add(RandomHelper.RandomNumber(1, 100));
-                        }
-                        
-                        if (randomNumbers[p] > maxNumber)
-                        {
-                            maxNumber = randomNumbers[p];
-                        }
-                        m2C_SyncChatInfo.ChatInfo.ChatMsg += $"{allPlayer[p].GetComponent<UserInfoComponent>().UserInfo.Name}:{randomNumbers[p]}点";
-                        m2C_SyncChatInfo.ChatInfo.ChatMsg += (p == allPlayer.Count - 1 ? "" : "  ");
-                    }
-                    owner = allPlayer[randomNumbers.IndexOf(maxNumber)];
-                    string colorValue = ComHelp.QualityReturnColor(itemConfig.ItemQuality);
-                    string numShow = "";
-                    if (itemConfig.Id == 1)
-                    {
-                        numShow = unitDrop.GetComponent<DropComponent>().ItemNum.ToString();
-                    }
-                    m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{owner.GetComponent<UserInfoComponent>().UserInfo.Name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>({m2C_SyncChatInfo.ChatInfo.ChatMsg})";
+                    return ErrorCore.ERR_ItemBelongOther;
                 }
 
                 List<RewardItem> rewardItems = new List<RewardItem>();
                 rewardItems.Add(new RewardItem() { ItemID = addItemID, ItemNum = addItemNum });
 
                 bool success = owner.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
-                if (!success && unitDrop!=null && !teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
+                if (!success)
                 {
-                    teamDungeonComponent.ItemFlags.Add(unitDrop.Id, owner.Id);
-                    continue;
+                    return owner.Id == unit.Id ? ErrorCore.ERR_BagIsFull : ErrorCore.ERR_ItemDropProtect;
                 }
 
-                if (success)
+                if (drops[i].DropType != 1)
                 {
-                    if (drops[i].DropType != 1)
-                    {
-                        owner.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);
-                    }
-                    MessageHelper.SendToClient(allPlayer, m2C_SyncChatInfo);
+                    owner.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);
                 }
-                if(!success)
-                {
-                    return owner.Id == unit.Id ?  ErrorCore.ERR_BagIsFull : ErrorCore.ERR_ItemDropProtect;
-                }
+                MessageHelper.SendToClient(FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
             }
 
             return ErrorCore.ERR_Success;
