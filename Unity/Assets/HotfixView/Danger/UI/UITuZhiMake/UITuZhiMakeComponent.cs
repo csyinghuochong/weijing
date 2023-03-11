@@ -39,7 +39,7 @@ namespace ET
             self.Btn_Make = rc.Get<GameObject>("Btn_Make");
             self.Btn_CloseUI = rc.Get<GameObject>("Btn_CloseUI");
             self.Btn_CloseUI.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseMake(); });
-            self.Btn_Make.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Make().Coroutine(); });
+            self.Btn_Make.GetComponent<Button>().onClick.AddListener(() => { self.OnBtn_Make(); });
 
             self.NeedListNode = rc.Get<GameObject>("NeedListNode");
             self.MakeINeedNode = rc.Get<GameObject>("MakeINeedNode");
@@ -73,7 +73,7 @@ namespace ET
             UIHelper.Remove(self.DomainScene(), UIType.UITuZhiMake);
         }
 
-        public static async ETTask OnBtn_Make(this UITuZhiMakeComponent self)
+        public static void OnBtn_Make(this UITuZhiMakeComponent self)
         {
             EquipMakeConfig equipMakeConfig = EquipMakeConfigCategory.Instance.Get(self.MakeId);
             List<RewardItem> costItems = new List<RewardItem>();
@@ -99,6 +99,44 @@ namespace ET
                 return;
             }
 
+            //检测装备宝石
+            bool haveGem = false;
+            for (int i = 0; i < costItems.Count; i++)
+            {
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(costItems[i].ItemID);
+                if (itemConfig.ItemType != ItemTypeEnum.Equipment)
+                {
+                    continue;
+                }
+                BagInfo bagInfo = self.ZoneScene().GetComponent<BagComponent>().GetBagInfo(costItems[i].ItemID);
+                string[] gemids = bagInfo.GemIDNew.Split('_');
+
+                for (int g = 0; g < gemids.Length; g++)
+                {
+                    if (gemids[g] != "0")
+                    {
+                        haveGem = true;
+                        break;
+                    }
+                }
+            }
+
+            if (haveGem)
+            {
+                PopupTipHelp.OpenPopupTip(self.ZoneScene(), "系统提示", "制造道具的装备材料中包含宝石,请问是否继续制造此道具",
+                    () =>
+                    {
+                        self.RequestEquipMake().Coroutine();
+                    }, null).Coroutine();
+            }
+            else
+            {
+                self.RequestEquipMake().Coroutine();
+            }
+        }
+
+        public static async ETTask RequestEquipMake(this UITuZhiMakeComponent self)
+        {
             await NetHelper.RequestEquipMake(self.ZoneScene(), self.BagInfo.BagInfoID, self.MakeId);
             self.OnBagItemUpdate().Coroutine();
             //关闭制造界面

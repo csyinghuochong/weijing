@@ -8,6 +8,7 @@
         public const int DropItem = 3;              //掉落
         public const int Chuansong = 4;             //传送
         public const int Pet = 5;                   //宠物
-        public const int Bullet = 6;                //弹道
+        public const int JingLing = 6;              //精灵
+        //public const int Bullet = 7;              //弹道
     }
 }
