@@ -107,6 +107,11 @@ namespace ET
             //Buff表BuffIcon为0时,显示图标显示为对应的技能图标,如果没找到对应资源,
             //释放者是怪物,那么就显示怪物的头像Icon,最后还是没找到显示默认图标b001
             ABAtlasTypes aBAtlasTypes = ABAtlasTypes.RoleSkillIcon;
+
+            if (!ComHelp.IfNull(bufficon) && skillBuffConfig.BuffIconType.Equals("ItemIcon"))
+            {
+                aBAtlasTypes = ABAtlasTypes.ItemIcon;
+            }
             if (ComHelp.IfNull(bufficon) && buffHandler.BuffData.SkillId != 0)
             {
                 bufficon = SkillConfigCategory.Instance.Get(buffHandler.BuffData.SkillId).SkillIcon;

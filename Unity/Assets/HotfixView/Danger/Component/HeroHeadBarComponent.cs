@@ -102,7 +102,6 @@ namespace ET
                 return;
             }
             this.HeadBar = gameObject;
-            this.HeadBar.SetActive(true);
             Unit unit = this.GetParent<Unit>();
             ReferenceCollector rc = this.HeadBar.GetComponent<ReferenceCollector>();
 
@@ -168,6 +167,7 @@ namespace ET
             this.HeadBarUI.HeadPos = UIPosition;
             this.HeadBarUI.HeadBar = HeadBar;
             this.HeadBar.transform.localPosition = unit.MainHero ? new Vector3(0f, 120f, 0f) : HeadBar.transform.localPosition;
+            this.HeadBar.SetActive(true);
         }
 
         public void OnUpdateHorse(  )

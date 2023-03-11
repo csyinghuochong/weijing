@@ -76,8 +76,8 @@ namespace ET
                 {
                     if (unitDrop == null)
                     {
-                        Log.Error($"OnTeamPick:unitDrop == null {unit.Id}");
-						 continue;
+                        Log.Debug($"OnTeamPick:unitDrop == null {unit.Id}");
+						continue;
                     }
                     dropComponent = unitDrop.GetComponent<DropComponent>();
                     int dropType = dropComponent.DropType;
@@ -221,7 +221,7 @@ namespace ET
                     request.ItemIds.RemoveAt(i);
                 }
             }
-
+            Log.Warning($"Actor_PickItemRequest: {unit.Id} {request.ItemIds.Count}");
             int sceneTypeEnum = unit.DomainScene().GetComponent<MapComponent>().SceneTypeEnum;
             if (sceneTypeEnum == SceneTypeEnum.TeamDungeon)
             {
