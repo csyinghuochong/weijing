@@ -134,8 +134,8 @@ namespace ET
             {
                 return;
             }
-            //霸体状态
-            if (stateComponent.StateTypeGet(StateTypeEnum.BaTi))
+            //霸体状态和无敌状态免疫眩晕和沉默的buff
+            if (stateComponent.StateTypeGet(StateTypeEnum.BaTi) || stateComponent.StateTypeGet(StateTypeEnum.WuDi))
             {
                 if (newType == StateTypeEnum.Shackle || newType == StateTypeEnum.Dizziness)
                 {
