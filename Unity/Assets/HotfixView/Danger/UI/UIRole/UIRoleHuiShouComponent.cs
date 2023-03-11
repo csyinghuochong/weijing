@@ -330,7 +330,7 @@ namespace ET
                     number++;
                 }
 
-                if (number >= 5)
+                if (number >= 8)
                 {
                     break;
                 }

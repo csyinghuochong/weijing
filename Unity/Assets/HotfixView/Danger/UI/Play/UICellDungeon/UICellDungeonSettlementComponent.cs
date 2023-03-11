@@ -164,7 +164,7 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             if (index >= 3 && !unit.IsYueKaStates())
             {
-                FloatTipManager.Instance.ShowFloatTip("月卡用户才能开启！");
+                FloatTipManager.Instance.ShowFloatTip("周卡用户才能开启！");
                 return;
             }
 
