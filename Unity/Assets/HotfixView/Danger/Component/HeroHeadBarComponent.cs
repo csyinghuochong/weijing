@@ -86,7 +86,7 @@ namespace ET
             {
                 HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIMonsterHp");
             }
-            if (m_Hero.Type == UnitType.Pet)
+            if (m_Hero.Type == UnitType.Pet || m_Hero.Type == UnitType.JingLing)
             {
                 HeadBarPath = ABPathHelper.GetUGUIPath("Battle/UIPetHp");
             }
@@ -126,6 +126,7 @@ namespace ET
                     this.UIXuLieZhenComponent = this.AddChild<UIXuLieZhenComponent, GameObject>(this.Img_ChengHao);
                     break;
                 case UnitType.Pet:
+                case UnitType.JingLing:
                     imageHp = canAttack ? "UI_pro_4_2": "UI_pro_3_4";
                     ImageHpFill = rc.Get<GameObject>("ImageHpFill");
                     sp = rc.Get<GameObject>(imageHp).GetComponent<Image>().sprite;
@@ -149,7 +150,7 @@ namespace ET
                 rc.Get<GameObject>("Alive").SetActive(true);
                 rc.Get<GameObject>("Dead").SetActive(false);
             }
-            if (unit.Type == UnitType.Pet)
+            if (unit.Type == UnitType.Pet || unit.Type == UnitType.JingLing)
             {
                 this.Lal_NameOwner = rc.Get<GameObject>("Lal_NameOwner");
             }
@@ -250,6 +251,12 @@ namespace ET
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
                 ObjName.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
                 this.Lal_NameOwner.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的宠物";
+            }
+            if (this.GetParent<Unit>().Type == UnitType.JingLing)
+            {
+                UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
+                ObjName.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
+                this.Lal_NameOwner.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的精灵";
             }
         }
 

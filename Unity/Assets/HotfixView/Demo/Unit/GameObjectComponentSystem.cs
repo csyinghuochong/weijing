@@ -112,6 +112,11 @@ namespace ET
                     path = ABPathHelper.GetUnitPath("Monster/DorrWay_1");
                     GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                     break;
+                case UnitType.JingLing:
+                    JingLingConfig jingLing = JingLingConfigCategory.Instance.Get(unit.ConfigId);
+                    path = ABPathHelper.GetUnitPath("JingLing/" + jingLing.Assets);
+                    GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                    break;
             }
         }
 
@@ -405,6 +410,17 @@ namespace ET
                     unit.UpdateUIType = HeadBarType.TransferUI;
                     unit.AddComponent<TransferUIComponent>().OnInitUI(unit.ConfigId).Coroutine();
                     unit.GetComponent<ChuansongComponent>().ChuanSongOpen = true;
+                    break;
+                case UnitType.JingLing:
+                    unit.UpdateUIType = HeadBarType.HeroHeadBar;
+                    go.transform.name = unit.Id.ToString();
+                    unit.AddComponent<EffectViewComponent>();            //添加特效组建
+                    unit.AddComponent<AnimatorComponent>();
+                    unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件
+                    unit.AddComponent<FsmComponent>();                 //当前状态组建
+                    unit.AddComponent<HeroHeadBarComponent>();         //血条UI组件
+                    break;
+                default:
                     break;
             }
         }

@@ -129,6 +129,9 @@ namespace ET
     {
 #if SERVER
         public List<ChengJiuInfo> ChengJiuProgessList = new List<ChengJiuInfo>();
+
+        public int JingLingId = 0;                                         
+        public long JingLingUnitId = 0;
 #else
         public Dictionary<int, ChengJiuInfo> ChengJiuProgessList = new Dictionary<int, ChengJiuInfo>();
 #endif

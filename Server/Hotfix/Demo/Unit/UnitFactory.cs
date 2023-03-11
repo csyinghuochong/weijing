@@ -285,7 +285,7 @@ namespace ET
             aIComponent.InitJingLing(jinglingId);
 
             //添加其他组件
-            unit.AddComponent<HeroDataComponent>().InitJingLing(jinglingId, false);
+            unit.AddComponent<HeroDataComponent>().InitJingLing(master, jinglingId, false);
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
 
             if (scene.GetComponent<MapComponent>().SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)

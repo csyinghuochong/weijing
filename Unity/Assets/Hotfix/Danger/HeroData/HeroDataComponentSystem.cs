@@ -375,9 +375,12 @@ namespace ET
             }
         }
 
-        public static void InitJingLing(this HeroDataComponent self, int jinglingid, bool notice)
-        { 
-            
+        public static void InitJingLing(this HeroDataComponent self, Unit master, int jinglingid, bool notice)
+        {
+            NumericComponent masterNumericComponent = master.GetComponent<NumericComponent>();
+
+            NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
+            numericComponent.NumericDic = masterNumericComponent.NumericDic;
         }
 
         /// <summary>

@@ -36,6 +36,7 @@ namespace ET
             unitInfo.ForwardX = forward.x;
             unitInfo.ForwardY = forward.y;
             unitInfo.ForwardZ = forward.z;
+            unitInfo.UnitType = unit.Type;
 
             MoveComponent moveComponent = unit.GetComponent<MoveComponent>();
             if (moveComponent != null)

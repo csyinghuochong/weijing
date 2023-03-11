@@ -19,17 +19,18 @@ namespace ET
             ReferenceCollector rc = self.GetParent<UI>().GameObject.GetComponent<ReferenceCollector>();
             self.cellContainer1 = rc.Get<GameObject>("cellContainer1");
 
-            self.OnInitUI();
+            self.OnInitUI().Coroutine();
             self.GetParent<UI>().OnUpdateUI = self.OnUpdateUI;
         }
     }
 
     public static class UIChengJiuJingLingComponentSystem
     {
-        public static void OnInitUI(this UIChengJiuJingLingComponent self)
+        public static async ETTask OnInitUI(this UIChengJiuJingLingComponent self)
         {
+            long instanceid = self.InstanceId;
             var path = ABPathHelper.GetUGUIPath("Main/ChengJiu/UIChengJiuJinglingItem");
-            var bundleGameObject = ResourcesComponent.Instance.LoadAsset<GameObject>(path);
+            var bundleGameObject =await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             ChengJiuComponent chengJiuComponent = self.ZoneScene().GetComponent<ChengJiuComponent>();
             
             List<JingLingConfig> titleConfigs = JingLingConfigCategory.Instance.GetAll().Values.ToList();
@@ -41,6 +42,15 @@ namespace ET
                 uISettingTitleItem = self.AddChild<UIChengJiuJingLingItemComponent, GameObject>(go);
                 self.JingLingUIItems.Add(uISettingTitleItem);
                 uISettingTitleItem.OnInitUI(titleConfigs[i].Id, chengJiuComponent.JingLingList.Contains(titleConfigs[i].Id));
+
+                if (i % 2 == 0)
+                {
+                    await TimerComponent.Instance.WaitFrameAsync();
+                }
+                if (instanceid != self.InstanceId)
+                {
+                    break;
+                }
             }
         }
 
