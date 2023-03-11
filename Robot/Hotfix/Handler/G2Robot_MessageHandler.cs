@@ -44,7 +44,7 @@ namespace ET
                         string[] messageInfo = message.Message.Split('@');
                         string[] positionInfo = messageInfo[1].Split(";");
                         Vector3 targetPosition = new Vector3(float.Parse(positionInfo[0]), float.Parse(positionInfo[1]), float.Parse(positionInfo[2]));
-                        for (int i = 0; i < 2; i++)
+                        for (int i = 0; i < 1; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
                             int robotId = BattleHelper.GetBattleRobotId(4, int.Parse(messageInfo[2]));
@@ -68,7 +68,7 @@ namespace ET
                     Log.Debug($"机器人数量[ArenaOpen]");
                     using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.NewRobot, 1))
                     {
-                        for (int i = 0; i < 2; i++)
+                        for (int i = 0; i < 1; i++)
                         {
                             int robotZone = robotManagerComponent.ZoneIndex++;
                             int robotId = BattleHelper.GetBattleRobotId(5, 0);
