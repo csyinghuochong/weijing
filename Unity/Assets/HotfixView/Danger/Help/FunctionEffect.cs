@@ -37,6 +37,7 @@ namespace ET
             playEffectBuffData.EffectPosition = Vector3.zero;
             playEffectBuffData.TargetAngle = 0;
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;
+            playEffectBuffData.InstanceId = 1;
             unit.GetComponent<EffectViewComponent>()?.EffectFactory(playEffectBuffData);
         }
 
@@ -48,6 +49,7 @@ namespace ET
             playEffectBuffData.EffectPosition = Vector3.zero;
             playEffectBuffData.TargetAngle = 0;
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;
+            playEffectBuffData.InstanceId = 1;
             unit.GetComponent<EffectViewComponent>()?.EffectFactory(playEffectBuffData);
         }
 
@@ -59,10 +61,8 @@ namespace ET
             playEffectBuffData.EffectPosition = Vector3.zero;
             playEffectBuffData.TargetAngle = 0;
             playEffectBuffData.EffectTypeEnum = EffectTypeEnum.SkillEffect;
-            AEffectHandler aeEffect = unit.GetComponent<EffectViewComponent>()?.EffectFactory(playEffectBuffData);
-            //aeEffect.EffectObj.transform.SetParent(unit.GetComponent<GameObjectComponent>().GameObject.transform);
-            //aeEffect.EffectObj.transform.localPosition = Vector3.zero;
+            playEffectBuffData.InstanceId = 1;
+            unit.GetComponent<EffectViewComponent>()?.EffectFactory(playEffectBuffData);
         }
-
     }
 }
