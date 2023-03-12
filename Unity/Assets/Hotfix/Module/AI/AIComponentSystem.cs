@@ -74,7 +74,7 @@ namespace ET
                 return;
             }
 
-            Unit unit = self.GetParent<Unit>();
+            
             var oneAI = AIConfigCategory.Instance.AIConfigs[self.AIConfigId];
             foreach (AIConfig aiConfig in oneAI.Values)
             {

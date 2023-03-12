@@ -12,6 +12,10 @@
             {
                 return false;
             }
+            if (self.IsYeWaiMonster() && defend.IsYeWaiMonster())
+            {
+                return false;
+            }
 
             MapComponent mapComponent = null;
             PetComponent petComponent = null;
@@ -55,6 +59,12 @@
                 return self.GetBattleCamp() != defend.GetBattleCamp();
             }
             return self.GetBattleCamp() != defend.GetBattleCamp() && !self.IsSameTeam(defend);
+        }
+
+        public static bool IsYeWaiMonster(this Unit self)
+        {
+            long masterId = self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
+            return self.Type == UnitType.Monster && masterId == 0;   
         }
 
         public static long GetTeamId(this Unit self)
