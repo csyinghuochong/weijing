@@ -66,7 +66,7 @@ namespace ET
                 return;
             }
 
-            self.ZoneScene().GetComponent<AttackComponent>().RemoveTimer();
+            self.ZoneScene().GetComponent<AttackComponent>()?.RemoveTimer();
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             if (self.DisconnectType == 0 && mapComponent.SceneTypeEnum >= SceneTypeEnum.MainCityScene)
             {

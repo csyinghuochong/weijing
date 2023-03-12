@@ -62,7 +62,12 @@ namespace ET
             //初始化参数
             self.DBServerInfo = dBServerInfo;
             self.UpdateExchangeGold(DBHelper.GetOpenServerDay(self.DomainZone()));
-            self.UpdateWorldLv();
+            //上午重启不刷新世界等级
+            DateTime dateTime = TimeHelper.DateTimeNow();
+            if (self.DBServerInfo.ServerInfo.WorldLv == 0|| dateTime.Hour >= 12)
+            {
+                self.UpdateWorldLv();
+            }
             self.BroadcastWorldLv().Coroutine();
         }
 

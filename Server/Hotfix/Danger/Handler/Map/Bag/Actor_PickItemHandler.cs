@@ -34,7 +34,7 @@ namespace ET
                     }
                     if (dropType == 3)
                     {
-                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
+                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
                         {
                             return ErrorCore.ERR_ItemDropProtect;
                         }
@@ -90,7 +90,7 @@ namespace ET
                     }
                     if (dropType == 3)
                     {
-                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
+                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
                         {
                             return ErrorCore.ERR_ItemDropProtect;
                         }
