@@ -267,7 +267,7 @@ namespace ET
             MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
             int[] npcList = null;
 
-            if (mapComponent.SceneTypeEnum == (int)SceneTypeEnum.MainCityScene)
+            if (SceneConfigHelper.UseSceneConfig(mapComponent.SceneTypeEnum))
             {
                 npcList = SceneConfigCategory.Instance.Get(self.SceneId).NpcList;
                 self.MapName.GetComponent<Text>().text = SceneConfigCategory.Instance.Get(self.SceneId).Name;
