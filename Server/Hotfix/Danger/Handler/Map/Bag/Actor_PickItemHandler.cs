@@ -76,7 +76,7 @@ namespace ET
                 {
                     if (unitDrop == null)
                     {
-                        Log.Debug($"OnTeamPick:unitDrop == null {unit.Id}");
+                        Log.Debug($"OnTeamPick:unitDrop == null {unit.Id} {drops[i].ItemID}");
 						continue;
                     }
                     dropComponent = unitDrop.GetComponent<DropComponent>();
@@ -136,7 +136,10 @@ namespace ET
                     if (teamDungeonComponent.ItemFlags.ContainsKey(unitDrop.Id))
                     {
                         owner = unit.DomainScene().GetComponent<UnitComponent>().Get(teamDungeonComponent.ItemFlags[unitDrop.Id]);
-                        m2C_SyncChatInfo.ChatInfo.ChatMsg = $"{teamDungeonComponent.TeamPlayers[teamDungeonComponent.ItemFlags[unitDrop.Id]].PlayerName}拾取{itemConfig.ItemName}";
+
+                        string pick_name = teamDungeonComponent.TeamPlayers[teamDungeonComponent.ItemFlags[unitDrop.Id]].PlayerName;
+                        pick_name += (owner == null ? "(未在副本中)" : string.Empty);
+                        m2C_SyncChatInfo.ChatInfo.ChatMsg = $"{pick_name}拾取{itemConfig.ItemName}";
                     }
                     else
                     {
@@ -166,26 +169,30 @@ namespace ET
                         
                         teamDungeonComponent.ItemFlags.Add(unitDrop.Id, maxPlayerId);
                         owner = unit.DomainScene().GetComponent<UnitComponent>().Get(maxPlayerId);
-                        m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{teamDungeonComponent.TeamPlayers[maxPlayerId].PlayerName}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>({m2C_SyncChatInfo.ChatInfo.ChatMsg})";
+                        string pick_name = teamDungeonComponent.TeamPlayers[teamDungeonComponent.ItemFlags[unitDrop.Id]].PlayerName;
+                        pick_name += (owner == null ? "(未在副本中)" : string.Empty);
+                        m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{pick_name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>({m2C_SyncChatInfo.ChatInfo.ChatMsg})";
                     }
                 }
-                if (owner == null)
+
+                //if (owner == null)
+                //{
+                //    return ErrorCore.ERR_ItemBelongOther;
+                //}
+                if (owner != null)
                 {
-                    return ErrorCore.ERR_ItemBelongOther;
+                    List<RewardItem> rewardItems = new List<RewardItem>();
+                    rewardItems.Add(new RewardItem() { ItemID = addItemID, ItemNum = addItemNum });
+
+                    bool success = owner.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
+                    if (!success)
+                    {
+                        return owner.Id == unit.Id ? ErrorCore.ERR_BagIsFull : ErrorCore.ERR_ItemDropProtect;
+                    }
                 }
-
-                List<RewardItem> rewardItems = new List<RewardItem>();
-                rewardItems.Add(new RewardItem() { ItemID = addItemID, ItemNum = addItemNum });
-
-                bool success = owner.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
-                if (!success)
-                {
-                    return owner.Id == unit.Id ? ErrorCore.ERR_BagIsFull : ErrorCore.ERR_ItemDropProtect;
-                }
-
                 if (drops[i].DropType != 1)
                 {
-                    owner.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);
+                    unit.DomainScene().GetComponent<UnitComponent>().Remove(unitDrop.Id);
                 }
                 MessageHelper.SendToClient(FubenHelp.GetUnitList(unit.DomainScene(), UnitType.Player), m2C_SyncChatInfo);
             }
