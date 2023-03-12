@@ -139,7 +139,7 @@ namespace ET
 
                         string pick_name = teamDungeonComponent.TeamPlayers[teamDungeonComponent.ItemFlags[unitDrop.Id]].PlayerName;
                         pick_name += (owner == null ? "(未在副本中)" : string.Empty);
-                        m2C_SyncChatInfo.ChatInfo.ChatMsg = $"{pick_name}拾取{itemConfig.ItemName}";
+                        m2C_SyncChatInfo.ChatInfo.ChatMsg = m2C_SyncChatInfo.ChatInfo.ChatMsg + $"{pick_name}拾取{itemConfig.ItemName}";
                     }
                     else
                     {

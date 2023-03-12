@@ -66,8 +66,10 @@ namespace ET
                 return;
             }
 
-            self.ZoneScene().GetComponent<AttackComponent>()?.RemoveTimer();
-            MapComponent mapComponent = self.ZoneScene().GetComponent<MapComponent>();
+            Scene zonescene = self.DomainScene();
+            AttackComponent AttackComponent = zonescene.GetComponent<AttackComponent>();
+            AttackComponent?.RemoveTimer();
+            MapComponent mapComponent = self.DomainScene().GetComponent<MapComponent>();
             if (self.DisconnectType == 0 && mapComponent.SceneTypeEnum >= SceneTypeEnum.MainCityScene)
             {
                 EventType.BeginRelink.Instance.ZoneScene = self.DomainScene();
