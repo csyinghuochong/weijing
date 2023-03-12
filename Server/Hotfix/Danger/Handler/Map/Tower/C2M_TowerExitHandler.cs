@@ -17,8 +17,15 @@ namespace ET
                     unitComponent.Remove(allunits[i].Id);
                 }
             }
-
-            unit.DomainScene().GetComponent<TowerComponent>().OnTowerOver("TowerExit");
+            TowerComponent towerComponent = unit.DomainScene().GetComponent<TowerComponent>();
+            if (towerComponent.TowerId == 0)
+            {
+                towerComponent.OnEmptyReward();
+            }
+            else
+            {
+                towerComponent.OnTowerOver("TowerExit");
+            }
             reply();
             await ETTask.CompletedTask;
         }

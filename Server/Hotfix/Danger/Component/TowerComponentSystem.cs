@@ -43,6 +43,15 @@ namespace ET
             }
         }
 
+        public static void OnEmptyReward(this TowerComponent self)
+        {
+            M2C_FubenSettlement message = new M2C_FubenSettlement();
+            message.BattleResult = 2;
+            message.RewardExp = 0;
+            message.RewardGold = 0;
+            MessageHelper.SendToClient(self.MainUnit, message);
+        }
+
         public static void OnTowerOver(this TowerComponent self, string way)
         {
             if (self.TowerId == 0)

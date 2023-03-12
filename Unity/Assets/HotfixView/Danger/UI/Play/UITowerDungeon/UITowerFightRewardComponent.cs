@@ -33,7 +33,15 @@ namespace ET
             Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
             int towerId = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.TowerId);
             TowerConfig towerConfig = TowerConfigCategory.Instance.Get(towerId);
-            self.Text_Ceng.GetComponent<Text>().text = $"你当前成功完成挑战{towerConfig.CengNum}波,获得奖励如下:";
+
+            if (message.BattleResult == CombatResultEnum.Fail)
+            {
+                self.Text_Ceng.GetComponent<Text>().text = $"挑战失败";
+            }
+            else
+            {
+                self.Text_Ceng.GetComponent<Text>().text = $"你当前成功完成挑战{towerConfig.CengNum}波,获得奖励如下:";
+            }
 
             string rewardList = $"1;{message.RewardGold}@2;{message.RewardExp}";
             UICommonHelper.ShowItemList(rewardList, self.ItemListNode, self, 1);
