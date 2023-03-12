@@ -63,8 +63,7 @@
 
         public static bool IsYeWaiMonster(this Unit self)
         {
-            long masterId = self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId);
-            return self.Type == UnitType.Monster && masterId == 0;   
+            return self.Type == UnitType.Monster && self.GetComponent<NumericComponent>().GetAsLong(NumericType.MasterId) == 0;   
         }
 
         public static long GetTeamId(this Unit self)
