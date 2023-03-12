@@ -223,7 +223,7 @@ namespace ET
             ButtonHelp.AddListenerEx(self.duihuaButton, () => { self.MoveToNpcDialog(); });
 
             self.shiquButton = rc.Get<GameObject>("Btn_ShiQu");
-            self.shiquButton.GetComponent<Button>().onClick.AddListener(() => { self.OnShiquItem(); });
+            ButtonHelp.AddListenerEx(self.shiquButton, self.OnShiquItem);
             //ButtonHelp.AddListenerEx(self.shiquButton, () => { self.OnShiquItem(); });
 
             self.petButton = rc.Get<GameObject>("Btn_Pet");

@@ -491,6 +491,19 @@ namespace ET
                     dropitem.Position = new UnityEngine.Vector3(dropX, dropY, dropZ);
                     dropitem.AddComponent<AOIEntity, int, Vector3>(9 * 1000, dropitem.Position);
                 }
+
+                if (monsterCof.DropType == 3)
+                {
+                    long belongid = bekill.GetComponent<NumericComponent>().GetAsLong(NumericType.BossBelongID);
+                    Log.Warning($"BOSS归属掉落日志：{monsterCof.MonsterName}");
+                    Log.Warning($"BOSS归属者ID: {bekill.DomainZone()} {belongid}");
+                    Log.Warning("BOSS伤害日志：");
+                    Dictionary<long, long> keyValuePairsHurt = bekill.GetComponent<AttackRecordComponent>().BeAttackPlayerList;
+                    foreach ((long uid, long hurt) in keyValuePairsHurt)
+                    {
+                        Log.Warning($"{uid} {hurt}");
+                    }
+                }
             }
             if (monsterCof.DropType == 1)
             {
