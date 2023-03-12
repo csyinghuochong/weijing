@@ -17,12 +17,18 @@ namespace ET
 
             if (request.ReplyCode == 1) //同意
             {
-                dBFriendInfo.FriendList.Add(request.FriendID);
+                if (!dBFriendInfo.FriendList.Contains(request.FriendID))
+                {
+                    dBFriendInfo.FriendList.Add(request.FriendID);
+                }
 
                 //对方也同样标记
                 d2GGetUnit = (D2G_GetComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new G2D_GetComponent() { UnitId = request.FriendID, Component = DBHelper.DBFriendInfo });
                 DBFriendInfo dBFriendInfo_2 = d2GGetUnit.Component as DBFriendInfo;
-                dBFriendInfo_2.FriendList.Add(request.UserID);
+                if (!dBFriendInfo_2.FriendList.Contains(request.UserID))
+                {
+                    dBFriendInfo_2.FriendList.Add(request.UserID);
+                }
                 D2M_SaveComponent d2GSave_2 = (D2M_SaveComponent)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2D_SaveComponent() { UnitId = request.FriendID, Component = dBFriendInfo_2, ComponentType = DBHelper.DBFriendInfo });
             }
             
