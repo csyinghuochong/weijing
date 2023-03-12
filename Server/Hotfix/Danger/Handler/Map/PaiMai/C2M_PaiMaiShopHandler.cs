@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -10,21 +11,23 @@ namespace ET
 		//拍卖快捷列表购买道具
 		protected override async ETTask Run(Unit unit, C2M_PaiMaiShopRequest request, M2C_PaiMaiShopResponse response, Action reply)
 		{
-			if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
-			{
-				response.Error = ErrorCore.ERR_BagIsFull;
-				reply();
-				return;
-			}
-			if (request.BuyNum < 0)
+			PaiMaiSellConfig paiMaiSellConfig = PaiMaiSellConfigCategory.Instance.Get(request.PaiMaiId);
+			if (paiMaiSellConfig == null)
 			{
 				response.Error = ErrorCore.ERR_NetWorkError;
 				reply();
 				return;
 			}
 
-			PaiMaiSellConfig paiMaiSellConfig = PaiMaiSellConfigCategory.Instance.Get(request.PaiMaiId);
-			if (paiMaiSellConfig == null)
+			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiSellConfig.ItemID);
+			int cell = Mathf.CeilToInt(request.BuyNum / itemConfig.ItemPileSum);
+			if (unit.GetComponent<BagComponent>().GetSpaceNumber() < cell)
+			{
+				response.Error = ErrorCore.ERR_BagIsFull;
+				reply();
+				return;
+			}
+			if (request.BuyNum < 0)
 			{
 				response.Error = ErrorCore.ERR_NetWorkError;
 				reply();

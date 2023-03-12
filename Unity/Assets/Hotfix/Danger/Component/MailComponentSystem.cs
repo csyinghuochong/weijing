@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace ET
 {
@@ -22,7 +23,14 @@ namespace ET
                 return ErrorCore.ERR_NetWorkError;
             }
 
-            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() < self.SelectMail.ItemList.Count)
+            int needcell = 1;
+            for(int i = 0; i < self.SelectMail.ItemList.Count; i++)
+            {
+                BagInfo bagInfo = self.SelectMail.ItemList[i];  
+                ItemConfig itemConfig = ItemConfigCategory.Instance.Get(bagInfo.ItemID);
+                needcell += Mathf.CeilToInt(bagInfo.ItemNum / itemConfig.ItemPileSum);
+            }
+            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() < needcell)
             {
                 HintHelp.GetInstance().ShowHintError(ErrorCore.ERR_BagIsFull);
                 return ErrorCore.ERR_BagIsFull;

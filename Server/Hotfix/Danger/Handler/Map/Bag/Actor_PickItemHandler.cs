@@ -13,7 +13,7 @@ namespace ET
             List<long> removeIds = new List<long>();
             long serverTime = TimeHelper.ServerNow();
             //DropType ==  0 公共掉落 2保护掉落   1私有掉落 3 归属掉落
-            for (int i = 0; i < drops.Count; i++)
+            for (int i = drops.Count - 1; i >= 0; i--)
             {
                 Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);
                 DropComponent dropComponent = null;
@@ -68,7 +68,7 @@ namespace ET
 
             TeamDungeonComponent teamDungeonComponent = unit.DomainScene().GetComponent<TeamDungeonComponent>();
             
-            for (int i = 0; i < drops.Count; i++)
+            for (int i = drops.Count - 1; i >= 0; i--)
             {
                 Unit unitDrop = unit.DomainScene().GetComponent<UnitComponent>().Get(drops[i].UnitId);
                 DropComponent dropComponent = null;
@@ -90,7 +90,7 @@ namespace ET
                     }
                     if (dropType == 3)
                     {
-                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
+                        if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id && serverTime < dropComponent.ProtectTime)
                         {
                             return ErrorCore.ERR_ItemDropProtect;
                         }
