@@ -152,20 +152,6 @@ namespace ET
             //    skills.Add(petConfig.ActSkillID);
             //}
 
-            string[] zhuanzhuskills = petConfig.ZhuanZhuSkillID.Split(';');
-            for (int i = 0; i < zhuanzhuskills.Length; i++)
-            {
-                if (ComHelp.IfNull(zhuanzhuskills[i]))
-                {
-                    continue;
-                }
-                int zhuanzhuskill = int.Parse(zhuanzhuskills[i]);
-                if (!skills.Contains(zhuanzhuskill))
-                {
-                    skills.Add(zhuanzhuskill);
-                }
-            }
-
             string[] baseskill = petConfig.BaseSkillID.Split(';');  
             for (int i = 0; i < baseskill.Length; i++)
             {
@@ -177,6 +163,20 @@ namespace ET
                 if (!skills.Contains(baseskillid))
                 {
                     skills.Add(baseskillid);
+                }
+            }
+
+            string[] zhuanzhuskills = petConfig.RandomSkillID.Split(';');
+            for (int i = 0; i < zhuanzhuskills.Length; i++)
+            {
+                if (ComHelp.IfNull(zhuanzhuskills[i]))
+                {
+                    continue;
+                }
+                int zhuanzhuskill = int.Parse(zhuanzhuskills[i]);
+                if (!skills.Contains(zhuanzhuskill))
+                {
+                    skills.Add(zhuanzhuskill);
                 }
             }
 
