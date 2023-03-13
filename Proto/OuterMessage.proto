@@ -3844,6 +3844,8 @@ message C2M_ExpToGoldRequest // IActorLocationRequest
 {
 	int32 RpcId = 90;
 	int64 ActorId = 93;
+
+	int32 OperateType = 1;  //1 兑换金币  2 兑换道具
 }
 
 message M2C_ExpToGoldResponse // IActorLocationResponse

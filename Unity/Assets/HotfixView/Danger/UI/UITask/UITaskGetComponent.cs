@@ -11,6 +11,7 @@ namespace ET
         public int WeekTaskId = 0;
 
         //NpcID
+        public GameObject ButtonExpDuiHuan;
         public GameObject ButtonJieRiReward;
         public GameObject TaskFubenList;
         public GameObject UITaskFubenItem;
@@ -67,6 +68,10 @@ namespace ET
             self.ButtonJieRiReward.SetActive(false);
             ButtonHelp.AddListenerEx(self.ButtonJieRiReward, () => { self.OnButtonJieRiReward();  });
 
+            self.ButtonExpDuiHuan = rc.Get<GameObject>("ButtonExpDuiHuan");
+            self.ButtonExpDuiHuan.SetActive(false);
+            ButtonHelp.AddListenerEx(self.ButtonExpDuiHuan, () => { self.OnButtonExpDuiHuan().Coroutine(); });
+
             self.Img_button = rc.Get<GameObject>("Img_button");
             self.Img_button.GetComponent<Button>().onClick.AddListener(() => { self.OnCloseNpcTask(); });
 
@@ -98,6 +103,16 @@ namespace ET
         public static void OnCloseNpcTask(this UITaskGetComponent self)
         {
             UIHelper.Remove(self.ZoneScene(), UIType.UITaskGet);
+        }
+
+        public static async ETTask OnButtonExpDuiHuan(this UITaskGetComponent self)
+        {
+            C2M_ExpToGoldRequest request = new C2M_ExpToGoldRequest() { OperateType = 2 };
+            M2C_ExpToGoldResponse response = (M2C_ExpToGoldResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
+            if (response.Error == ErrorCore.ERR_Success)
+            {
+                FloatTipManager.Instance.ShowFloatTip("兑换成功！");
+            }
         }
 
         public static void OnButtonJieRiReward(this UITaskGetComponent self)
@@ -155,10 +170,10 @@ namespace ET
             self.ScrollView1.SetActive(false);
             self.EnergySkill.SetActive(false);
             self.ButtonJieRiReward.SetActive(false);
+            self.ButtonExpDuiHuan.SetActive(false);
 
-            switch(npcConfig.NpcType)
+            switch (npcConfig.NpcType)
             {
-
                 case 1://神兽兑换
                 case 2: //挑戰之地
                     self.TaskFubenList.SetActive(true);
@@ -221,7 +236,10 @@ namespace ET
                         self.Lab_NpcSpeak.GetComponent<Text>().text = $"{speek} 下次领取时间:{riqi[0]}月{riqi[1]}日 {activityConfig.Par_4}";
                     }
                     break;
-                default:
+                case 8:  //经验兑换
+                    self.ButtonExpDuiHuan.SetActive(true);
+                    break;
+                default:  //周长任务
                     self.ScrollView1.SetActive(true);
                     self.UpdataTask();
                     break;

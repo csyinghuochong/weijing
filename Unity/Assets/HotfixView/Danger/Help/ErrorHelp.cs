@@ -96,6 +96,7 @@ namespace ET
             ErrorHintList.Add(ErrorCore.ERR_NotFindLevel, "未找到对应关卡");
             ErrorHintList.Add(ErrorCore.ERR_TiLiNoEnough, "体力不足");
             ErrorHintList.Add(ErrorCore.ERR_LevelNotOpen, "请先通关前置关卡");
+            ErrorHintList.Add(ErrorCore.ERR_ExpNoEnough, "经验不足");
             ErrorHintList.Add(ErrorCore.ERR_LevelNoEnough, "等级不足");
             ErrorHintList.Add(ErrorCore.ERR_LevelNormalNoPass, "普通关卡未通关");
             ErrorHintList.Add(ErrorCore.ERR_LevelChallengeNoPass, "挑战关卡未通关");

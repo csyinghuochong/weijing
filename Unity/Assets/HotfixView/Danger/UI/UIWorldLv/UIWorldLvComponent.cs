@@ -116,7 +116,7 @@ namespace ET
 
         public static async ETTask RequestExpToGold(this UIWorldLvComponent self)
         {
-            C2M_ExpToGoldRequest request = new C2M_ExpToGoldRequest();
+            C2M_ExpToGoldRequest request = new C2M_ExpToGoldRequest() {  OperateType = 1};
             M2C_ExpToGoldResponse response = (M2C_ExpToGoldResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
 
             self.UpdateDuiHuanTimes();

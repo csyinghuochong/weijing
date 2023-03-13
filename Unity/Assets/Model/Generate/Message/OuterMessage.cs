@@ -719,6 +719,9 @@ namespace ET
 		[ProtoMember(24)]
 		public string UnionName { get; set; }
 
+		[ProtoMember(25)]
+		public string ExtendPar { get; set; }
+
 	}
 
 	[Message(OuterOpcode.M2C_CreateUnits)]
@@ -8023,6 +8026,9 @@ namespace ET
 
 		[ProtoMember(93)]
 		public long ActorId { get; set; }
+
+		[ProtoMember(1)]
+		public int OperateType { get; set; }
 
 	}
 
