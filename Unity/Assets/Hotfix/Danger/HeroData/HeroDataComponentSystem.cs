@@ -400,7 +400,10 @@ namespace ET
             NumericComponent masterNumericComponent = master.GetComponent<NumericComponent>();
 
             NumericComponent numericComponent = self.GetParent<Unit>().GetComponent<NumericComponent>();
-            numericComponent.NumericDic = masterNumericComponent.NumericDic;
+            foreach ((int ntype, long value) in masterNumericComponent.NumericDic)
+            {
+                numericComponent.Set(ntype, value, false);
+            }
         }
 
         /// <summary>

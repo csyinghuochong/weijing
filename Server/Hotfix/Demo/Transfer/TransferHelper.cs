@@ -111,11 +111,18 @@
 
             EventType.NumericChangeEvent.Instance.Attack = null;
             unit.GetComponent<HeroDataComponent>().OnKillZhaoHuan(EventType.NumericChangeEvent.Instance);
+            UnitComponent unitComponent = unit.DomainScene().GetComponent<UnitComponent>();
             RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
             if (fightId != null)
             {
-                unit.DomainScene().GetComponent<UnitComponent>().Remove(fightId.Id);
+                unitComponent.Remove(fightId.Id);
             }
+            long jinglingUnitId = unit.GetComponent<ChengJiuComponent>().JingLingUnitId;
+            if (jinglingUnitId != 0 && unitComponent.Get(jinglingUnitId)!=null)
+            {
+                unitComponent.Remove(jinglingUnitId);
+            }
+            unit.GetComponent<ChengJiuComponent>().JingLingUnitId = 0;
         }
 
         /// <summary>

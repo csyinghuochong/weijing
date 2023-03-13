@@ -124,7 +124,7 @@
             if (self.GetComponent<MoveComponent>() == null)
                 return false;
             if (self.Type == UnitType.Npc || self.Type == UnitType.DropItem
-                || self.Type == UnitType.Chuansong)
+                || self.Type == UnitType.Chuansong || self.Type == UnitType.JingLing)
                 return false;
 
             NumericComponent numericComponent = self.GetComponent<NumericComponent>();

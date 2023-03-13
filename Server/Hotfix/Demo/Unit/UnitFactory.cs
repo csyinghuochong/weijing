@@ -272,9 +272,7 @@ namespace ET
             unit.AddComponent<AttackRecordComponent>(true);
             unitInfoComponent.MasterName = master.GetComponent<UserInfoComponent>().UserInfo.Name;
             unitInfoComponent.UnitName = JingLingConfigCategory.Instance.Get(jinglingId).Name;
-            numericComponent.Set(NumericType.MasterId, master.Id);
-            numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp());
-            numericComponent.Set(NumericType.TeamId, master.GetTeamId());
+           
             unit.ConfigId = jinglingId;
             unit.AddComponent<StateComponent>();         //添加状态组件
             unit.AddComponent<BuffManagerComponent>();      //添加
@@ -286,8 +284,12 @@ namespace ET
 
             //添加其他组件
             unit.AddComponent<HeroDataComponent>().InitJingLing(master, jinglingId, false);
-            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
+            numericComponent.Set(NumericType.MasterId, master.Id, false);
+            numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp(), false);
+            numericComponent.Set(NumericType.TeamId, master.GetTeamId(), false);
+            numericComponent.Set(NumericType.Base_Speed_Base, 30000, false);
 
+            unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
             if (scene.GetComponent<MapComponent>().SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
             {
                 unit.AddComponent<SkillPassiveComponent>().UpdateJingLingSkill(jinglingId);

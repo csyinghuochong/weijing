@@ -13,12 +13,19 @@ namespace ET
         protected override async ETTask Run(Unit unit, C2M_JingLingUseRequest request, M2C_JingLingUseResponse response, Action reply)
         {
             ChengJiuComponent chengJiuComponent = unit.GetComponent<ChengJiuComponent>();
-            chengJiuComponent.JingLingId = request.JingLingId;
-            if (unit.GetParent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId)!=null)
+            if (chengJiuComponent.JingLingId == request.JingLingId)
             {
-                unit.GetParent<UnitComponent>().Remove(chengJiuComponent.JingLingUnitId);
+                if (unit.GetParent<UnitComponent>().Get(chengJiuComponent.JingLingUnitId) != null)
+                {
+                    unit.GetParent<UnitComponent>().Remove(chengJiuComponent.JingLingUnitId);
+                }
+                chengJiuComponent.JingLingId = 0;
+                chengJiuComponent.JingLingUnitId = 0;
+                reply();
+                return;
             }
-            chengJiuComponent.JingLingUnitId = 0;
+
+            chengJiuComponent.JingLingId = request.JingLingId;
             chengJiuComponent.JingLingUnitId = UnitFactory.CreateJingLing(unit, chengJiuComponent.JingLingId).Id;
           
             reply();
