@@ -62,7 +62,8 @@ namespace ET
             {
                 self.Lab_GanDiName.GetComponent<Text>().text = $"{rankingInfo.PlayerName}({rankingInfo.PlayerLv}级)";
             }
-            else {
+            else 
+            {
                 self.Lab_GanDiName.GetComponent<Text>().text = "暂无上榜";
             }
 
@@ -90,6 +91,7 @@ namespace ET
                 FloatTipManager.Instance.ShowFloatTip("低于世界等级无法兑换");
                 return;
             }
+          
             //低于20%经验无法兑换
             ExpConfig expCof = ExpConfigCategory.Instance.Get(userInfo.Lv);
             int costExp = (int)(expCof.UpExp * 0.2f);
