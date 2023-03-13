@@ -31,45 +31,83 @@ namespace ET
                 Game.Scene.GetComponent<DBComponent>().InitDatabase(startZoneConfig);
             }
 
-            Dictionary<long, UserInfoComponent> keyValuePairs = new Dictionary<long, UserInfoComponent>();    
+            Dictionary<long, UserInfoComponent> UserinfoComponetDict = new Dictionary<long, UserInfoComponent>();    
             List<UserInfoComponent> userInfoComponents = await Game.Scene.GetComponent<DBComponent>().Query<UserInfoComponent>(zone, d => d.Id > 0);
             foreach (var entity in userInfoComponents)
             {
-                keyValuePairs.Add(entity.Id, entity as UserInfoComponent);
-                if ((entity.UserInfo.Gold > 1000000 || entity.UserInfo.Diamond > 10000) && !entity.Account.Contains("_"))
+                UserinfoComponetDict.Add(entity.Id, entity as UserInfoComponent);
+                if ((entity.UserInfo.Gold > 1000000 || entity.UserInfo.Diamond > 10000))
                 {
-                    Log.Warning($"Gold:{entity.UserInfo.Gold}  Diamond:{entity.UserInfo.Diamond}  ID:{entity.Id}  Account:{entity.Account} Name: {entity.UserInfo.Name}  Lv:{entity.UserInfo.Lv} ");
+                    //Log.Warning($"Gold:{entity.UserInfo.Gold}  Diamond:{entity.UserInfo.Diamond}  ID:{entity.Id}  Account:{entity.Account} Name: {entity.UserInfo.Name}  Lv:{entity.UserInfo.Lv} ");
                 }
 
                 if (entity.UserInfo.AccInfoID == 1682231745157595380)
                 {
-                    Log.Warning($"Gold:{entity.Id} ");
+                    //Log.Warning($"Gold:{entity.Id} ");
                 }
             }
 
-            List<ActivityComponent> activityComponents = await Game.Scene.GetComponent<DBComponent>().Query<ActivityComponent>(zone, d => d.Id > 0);
-            foreach (var entity in activityComponents)
+            Dictionary<long, NumericComponent> NumericComponentDict = new Dictionary<long, NumericComponent>();
+            List<NumericComponent> NumericComponents = await Game.Scene.GetComponent<DBComponent>().Query<NumericComponent>(zone, d => d.Id > 0);
+            foreach (var entity in NumericComponents)
             {
+                NumericComponentDict.Add(entity.Id, entity as NumericComponent);
             }
 
-            List<BagComponent> bagComponents = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(zone, d => d.Id > 0);
-            foreach (var entity in bagComponents)
+            List<PetComponent> petComponents = await Game.Scene.GetComponent<DBComponent>().Query<PetComponent>(zone, d => d.Id > 0);
+            foreach (var entity in petComponents)
             {
-                long itemNumber = 0;
-                UserInfoComponent userInfo= keyValuePairs[entity.Id];
-                List<BagInfo> baginfos = entity.GetAllItems();
-                for (int i= 0; i < baginfos.Count; i++)
+                string shenshou = string.Empty;
+                for (int pet = 0; pet < entity.RolePetInfos.Count; pet++)
                 {
-                    if (baginfos[i].ItemID == 10020001)
+                    if (entity.RolePetInfos[pet].ConfigId == 2000001)
                     {
-                        itemNumber += baginfos[i].ItemNum;
+                        shenshou += "2000001 ";
+                    }
+                    if (entity.RolePetInfos[pet].ConfigId == 2000002)
+                    {
+                        shenshou += "2000002 ";
+                    }
+                    if (entity.RolePetInfos[pet].ConfigId == 2000003)
+                    {
+                        shenshou += "2000003 ";
                     }
                 }
-                if (itemNumber > 1)
+
+                if (string.IsNullOrEmpty(shenshou))
                 {
-                    Log.Warning($"{itemNumber} ID:{userInfo.Id}  Account:{userInfo.Account} Name: {userInfo.UserInfo.Name}  Lv:{userInfo.UserInfo.Lv} ");
+                    continue;
                 }
+
+                UserInfoComponent userInfo = UserinfoComponetDict[entity.Id];
+                string servername = ServerHelper.GetGetServerItem(false, zone).ServerName;
+
+                string userName = userInfo.UserInfo.Name;
+                int userlv = userInfo.UserInfo.Lv ;
+                long recharget = NumericComponentDict[entity.Id].GetAsLong(NumericType.RechargeNumber);
+                long diamond = userInfo.UserInfo.Diamond;
+
+                Log.Warning($"{servername} 玩家:{userName}  等级: {userlv}  充值额度:{recharget}  当前钻石{diamond}  拥有神兽:{shenshou}");
             }
+
+            //List<BagComponent> bagComponents = await Game.Scene.GetComponent<DBComponent>().Query<BagComponent>(zone, d => d.Id > 0);
+            //foreach (var entity in bagComponents)
+            //{
+            //    long itemNumber = 0;
+            //    UserInfoComponent userInfo= keyValuePairs[entity.Id];
+            //    List<BagInfo> baginfos = entity.GetAllItems();
+            //    for (int i= 0; i < baginfos.Count; i++)
+            //    {
+            //        if (baginfos[i].ItemID == 10020001)
+            //        {
+            //            itemNumber += baginfos[i].ItemNum;
+            //        }
+            //    }
+            //    if (itemNumber > 1)
+            //    {
+            //        Log.Warning($"{itemNumber} ID:{userInfo.Id}  Account:{userInfo.Account} Name: {userInfo.UserInfo.Name}  Lv:{userInfo.UserInfo.Lv} ");
+            //    }
+            //}
         }
 
         public static async ETTask QueryAccount(int newzone, long userid)
