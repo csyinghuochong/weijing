@@ -202,6 +202,9 @@ namespace libx
                     _duplicated.Add(asset);                                 //公用的bundle
                 }
             }
+
+            //T_Platypus_A.png:   6afdfb058aa2a68a8ff0b34bb2f1845d.unity3d
+            //T_Platypus_A.mat:   2418cb22545ad2f668dea7bac8888782.unity3d
         }
 
         private Dictionary<string, List<string>> GetBundles()

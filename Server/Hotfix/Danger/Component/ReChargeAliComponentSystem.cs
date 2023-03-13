@@ -154,7 +154,7 @@ namespace ET
                     Log.Debug("支付宝支付失败");
                 }
                 //输出验证结果
-                Log.Debug("验签结果：" + (result == true ? "支付成功" : "支付失败"));
+ 
                 //输出当前订单的的信息
                 if (aliPayResultDic.ContainsKey("trade_status"))
                 {

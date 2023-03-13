@@ -389,12 +389,6 @@ namespace ET
             self.SkillIndicatorComponent.OnMainHeroMove();
         }
 
-        public static bool IsHaveHongBao(this UIMainComponent self)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            return unit.GetComponent<NumericComponent>().GetAsInt(NumericType.HongBao) == 0;
-        }
-
         public static void OnUpdateCombat(this UIMainComponent self)
         {
             self.UIRoleHead.OnUpdateCombat();
@@ -481,7 +475,7 @@ namespace ET
             //更新等级实例化特效
             if (userDataType == UserDataType.Lv)
             {
-                FunctionEffect.GetInstance().PlaySelfEffect(UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()), 60000002);
+                FunctionEffect.GetInstance().PlaySelfEffect(self.MainUnit, 60000002);
                 FloatTipManager.Instance.ShowFloatTipDi(GameSettingLanguge.LoadLocalization("恭喜你!等级提升至:") + userInfo.Lv);
 
                 self.UpdateShowRoleExp();
@@ -1046,6 +1040,7 @@ namespace ET
             self.Btn_TopRight_2.SetActive(SceneConfigHelper.ShowRightTopButton(sceneTypeEnum));
             self.buttonReturn.SetActive(sceneTypeEnum != SceneTypeEnum.MainCityScene);
             self.LevelGuideMini.SetActive(sceneTypeEnum == SceneTypeEnum.CellDungeon);
+            self.UIJoystickMoveComponent.AfterEnterScene();
             if(!SceneConfigHelper.ShowLeftButton(sceneTypeEnum))
             {
                 self.FunctionSetBtn.SetActive(false);

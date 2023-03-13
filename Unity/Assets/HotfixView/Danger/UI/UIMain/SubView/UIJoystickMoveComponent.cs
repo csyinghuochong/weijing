@@ -39,6 +39,9 @@ namespace ET
         public float LastShowTip;
 
         public long Timer;
+
+        public Unit MainUnit;
+        public NumericComponent NumericComponent;
     }
 
     [ObjectSystem]
@@ -73,6 +76,7 @@ namespace ET
 
             self.CenterShow.SetActive(false);
             self.Thumb.SetActive(false);
+            self.AfterEnterScene();
         }
     }
 
@@ -92,7 +96,7 @@ namespace ET
 
         public static void BeginDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit unit = self.MainUnit;
             if (unit == null || unit.IsDisposed)
             {
                 return;
@@ -139,7 +143,7 @@ namespace ET
 
         public static void OnMainHeroMove(this UIJoystickMoveComponent self)
         {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit unit = self.MainUnit;
             Vector3 newv3 = unit.Position + unit.Rotation * Vector3.forward * 3f;
             int obstruct = self.CheckObstruct(newv3);
             if (obstruct == 0)
@@ -164,9 +168,10 @@ namespace ET
                 return;
             }
 
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit unit = self.MainUnit;
+            float speed = self.NumericComponent.GetAsFloat(NumericType.Now_Speed);
             Quaternion rotation = Quaternion.Euler(0, direction, 0);
-            Vector3 newv3 = unit.Position + rotation * Vector3.forward * 4f;
+            Vector3 newv3 = unit.Position + rotation * Vector3.forward * 2f * (speed / 5f);
             int obstruct = self.CheckObstruct(newv3);
             if (obstruct!= 0)
             {
@@ -238,12 +243,18 @@ namespace ET
             self.CenterShow.SetActive(false);
             self.Thumb.SetActive(false);
             TimerComponent.Instance?.Remove(ref self.Timer);
-        } 
+        }
+
+        public static void AfterEnterScene(this UIJoystickMoveComponent self)
+        {
+            self.MainUnit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            self.NumericComponent = self.MainUnit.GetComponent<NumericComponent>();
+        }
 
         public static void EndDrag(this UIJoystickMoveComponent self, PointerEventData pdata)
         {
             self.ResetUI();
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit unit = self.MainUnit;  
             if (unit == null)
             {
                 return;

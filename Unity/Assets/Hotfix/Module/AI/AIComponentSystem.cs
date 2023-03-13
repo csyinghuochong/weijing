@@ -262,7 +262,11 @@ namespace ET
             if (self.GetParent<Unit>().Type == UnitType.Pet)
             {
                 bool gaiLv = RandomHelper.RandFloat01() < 0.1f;
-                if (self.TargetID == 0 && gaiLv)
+                if (self.TargetID != 0 && gaiLv)
+                {
+                    self.ChangeTarget(attack.Id);
+                }
+                if (self.TargetID == 0)
                 {
                     self.ChangeTarget(attack.Id);
                 }
@@ -274,11 +278,15 @@ namespace ET
                 //2.攻击时有概率转换自己为攻击目标（近战攻击10 %，远程攻击5 %）。
                 //3.如果转换攻击目标，6秒内不在转换攻击目标
                 float gaiLv = RandomHelper.RandFloat01();
-                if (self.ActDistance <= 4 && gaiLv <= 0.1f)
+                if (self.TargetID != 0 && self.ActDistance <= 4 && gaiLv <= 0.1f)
                 {
                     self.ChangeTarget(attack.Id);
                 }
-                if (self.ActDistance > 4 && gaiLv <= 0.05f)
+                if (self.TargetID != 0 && self.ActDistance > 4 && gaiLv <= 0.05f)
+                {
+                    self.ChangeTarget(attack.Id);
+                }
+                if (self.TargetID == 0)
                 {
                     self.ChangeTarget(attack.Id);
                 }
