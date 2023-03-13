@@ -1,4 +1,5 @@
 ﻿using System;
+using UnityEngine;
 
 namespace ET
 {
@@ -22,7 +23,16 @@ namespace ET
                 return;
             }
 
-            long needGold = paiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;
+            ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
+            int cell = Mathf.CeilToInt(paiMaiItemInfo.BagInfo.ItemNum / itemConfig.ItemPileSum);
+            if (unit.GetComponent<BagComponent>().GetSpaceNumber() < cell)
+            {
+                response.Error = ErrorCore.ERR_BagIsFull;
+                reply();
+                return;
+            }
+
+            long needGold = (long)paiMaiItemInfo.Price * paiMaiItemInfo.BagInfo.ItemNum;
             if (paiMaiItemInfo.BagInfo.ItemNum < 0 || needGold < 0)
             {
                 reply();

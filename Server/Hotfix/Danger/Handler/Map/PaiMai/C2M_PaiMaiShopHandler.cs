@@ -21,13 +21,13 @@ namespace ET
 
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiSellConfig.ItemID);
 			int cell = Mathf.CeilToInt(request.BuyNum / itemConfig.ItemPileSum);
-			if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
+			if (unit.GetComponent<BagComponent>().GetSpaceNumber() < cell)
 			{
 				response.Error = ErrorCore.ERR_BagIsFull;
 				reply();
 				return;
 			}
-			if (request.BuyNum < 0) // || request.BuyNum > 1000)
+			if (request.BuyNum < 0 || request.BuyNum > 1000)
 			{
 				response.Error = ErrorCore.ERR_NetWorkError;
 				reply();

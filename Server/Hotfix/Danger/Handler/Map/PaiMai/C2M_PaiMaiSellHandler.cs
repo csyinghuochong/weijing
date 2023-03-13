@@ -39,7 +39,7 @@ namespace ET
 					reply();
 					return;
 				}
-				int gold = request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price;
+				long gold = (long)request.PaiMaiItemInfo.BagInfo.ItemNum * request.PaiMaiItemInfo.Price;
 				if (gold < 0)
 				{
 					reply();
