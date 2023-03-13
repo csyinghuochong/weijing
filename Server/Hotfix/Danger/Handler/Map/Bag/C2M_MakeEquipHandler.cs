@@ -77,7 +77,7 @@ namespace ET
                 return;
             }
 
-            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub( UserDataType.Gold, (equipMakeConfig.MakeNeedGold * -1).ToString(), true, ItemGetWay.SkillMake);
+            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, (equipMakeConfig.MakeNeedGold * -1).ToString(), true, ItemGetWay.SkillMake);
             unit.GetComponent<UserInfoComponent>().UpdateRoleData(UserDataType.Vitality, (equipMakeConfig.CostVitality * -1).ToString());
             if (request.BagInfoID == 0)
             {
