@@ -251,12 +251,18 @@ namespace ET
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
                 ObjName.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
                 this.Lal_NameOwner.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的宠物";
+                this.ObjHp.SetActive(true);
+                ReferenceCollector rc = this.HeadBar.GetComponent<ReferenceCollector>();
+                rc.Get<GameObject>("Img_Di").SetActive(true);
             }
             if (this.GetParent<Unit>().Type == UnitType.JingLing)
             {
                 UnitInfoComponent unitInfoComponent = this.GetParent<Unit>().GetComponent<UnitInfoComponent>();
                 ObjName.GetComponent<TextMeshProUGUI>().text = unitInfoComponent.UnitName;
                 this.Lal_NameOwner.GetComponent<TextMeshProUGUI>().text = $"{unitInfoComponent.MasterName }的精灵";
+                this.ObjHp.SetActive(false);
+                ReferenceCollector rc = this.HeadBar.GetComponent<ReferenceCollector>();
+                rc.Get<GameObject>("Img_Di").SetActive(false);
             }
         }
 
