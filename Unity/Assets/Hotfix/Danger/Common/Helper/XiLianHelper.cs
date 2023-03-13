@@ -148,12 +148,13 @@ namespace ET
             float equipJiPinSkillPro = 0.05f;
 
             //如果是打造装备 特殊技能属性调高
+            /*
             if (xilianType == 2) {
                 equipJiPinPro = 1f;
                 equipJiPinAddPro = 2f;
                 equipJiPinSkillPro = 0.1f;
             }
-
+            */
             //-------------------测试-------------------
             //附加额外的极品属性
             //equipJiPinPro = 1f;
@@ -556,7 +557,7 @@ namespace ET
                     }
 
                     //打造类型不弹出任何广播
-                    if (xilianType != 2)
+                    if (xilianType != 2 && noticeContent!="")
                     {
                         ServerMessageHelper.SendBroadMessage(unit.DomainZone(), NoticeType.Notice, noticeContent);
                     }
