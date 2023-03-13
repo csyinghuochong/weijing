@@ -21,18 +21,19 @@ namespace ET
 
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiSellConfig.ItemID);
 			int cell = Mathf.CeilToInt(request.BuyNum / itemConfig.ItemPileSum);
-			if (unit.GetComponent<BagComponent>().GetSpaceNumber() < cell)
+			if (unit.GetComponent<BagComponent>().GetSpaceNumber() < 1)
 			{
 				response.Error = ErrorCore.ERR_BagIsFull;
 				reply();
 				return;
 			}
-			if (request.BuyNum < 0)
+			if (request.BuyNum < 0) // || request.BuyNum > 1000)
 			{
 				response.Error = ErrorCore.ERR_NetWorkError;
 				reply();
 				return;
 			}
+
 
 			using (await CoroutineLockComponent.Instance.Wait(CoroutineLockType.Buy, unit.Id))
 			{
@@ -56,7 +57,7 @@ namespace ET
 				}
 
 				//消耗金币
-				long costGold = r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price * request.BuyNum;
+				long costGold = (long)r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price * request.BuyNum;
 				if (costGold > 0 && unit.GetComponent<UserInfoComponent>().UserInfo.Gold >= costGold)
 				{
 					//发送金币
@@ -66,7 +67,7 @@ namespace ET
 					List<RewardItem> rewardItems = new List<RewardItem>();
 					rewardItems.Add(new RewardItem() { ItemID = paiMaiSellConfig.ItemID, ItemNum = request.BuyNum });
 					unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
-					Log.Warning($"拍卖行购买道具 : {unit.Id}  {paiMaiSellConfig.ItemID}  {request.BuyNum}");
+					Log.Warning($"拍卖行购买道具 : {unit.Id}  {paiMaiSellConfig.ItemID}  {request.BuyNum}  {r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price}");
 				}
 				else
 				{

@@ -919,13 +919,13 @@ namespace ET
                 if (itemID == (int)UserDataType.Gold)
                 {
                     itemNum = -1 * itemNum;
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, itemNum.ToString(), true, 34);// ItemGetWay.CostItem);
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Gold, itemNum.ToString(), true, ItemGetWay.CostItem);
                     continue;
                 }
                 if (itemID == (int)UserDataType.Diamond)
                 {
                     itemNum = -1 * itemNum;
-                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, itemNum.ToString(), true, 34);// ItemGetWay.CostItem);
+                    unit.GetComponent<UserInfoComponent>().UpdateRoleMoneySub(UserDataType.Diamond, itemNum.ToString(), true, ItemGetWay.CostItem);
                     continue;
                 }
                 if (itemID == (int)UserDataType.RongYu)
