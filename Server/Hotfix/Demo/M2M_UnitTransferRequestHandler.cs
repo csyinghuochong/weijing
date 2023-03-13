@@ -63,11 +63,7 @@ namespace ET
 						// 加入aoi
 						unit.AddComponent<AOIEntity, int, Vector3>(40 * 1000, unit.Position);
 						scene.GetComponent<CellDungeonComponent>().GenerateFubenScene(false);
-						RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
-						if (fightId != null)
-						{
-							UnitFactory.CreatePet(unit, fightId);
-						}
+						TransferHelper.AfterTransfer(unit);
 						break;
 					case (int)SceneTypeEnum.PetDungeon:
 					case (int)SceneTypeEnum.PetTianTi:
@@ -121,11 +117,7 @@ namespace ET
 						MessageHelper.SendToClient(unit, m2CCreateUnits);
 						// 加入aoi
 						unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
-						fightId = unit.GetComponent<PetComponent>().GetFightPet();
-						if (fightId != null)
-						{
-							UnitFactory.CreatePet(unit, fightId);
-						}
+						TransferHelper.AfterTransfer(unit);
 						scene.GetComponent<LocalDungeonComponent>().MainUnit = unit;
 						scene.GetComponent<LocalDungeonComponent>().GenerateFubenScene(request.ChapterId);
 						break;
@@ -147,11 +139,7 @@ namespace ET
 						// 加入aoi
 						unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
 
-						fightId = unit.GetComponent<PetComponent>().GetFightPet();
-						if (fightId != null)
-						{
-							UnitFactory.CreatePet(unit, fightId);
-						}
+						TransferHelper.AfterTransfer(unit);
 						break;
 					case SceneTypeEnum.Arena:
 						unit.AddComponent<PathfindingComponent, string>(scene.GetComponent<MapComponent>().NavMeshId.ToString());
@@ -165,11 +153,7 @@ namespace ET
 						MessageHelper.SendToClient(unit, m2CCreateUnits);
 						// 加入aoi
 						unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
-						fightId = unit.GetComponent<PetComponent>().GetFightPet();
-						if (fightId != null)
-						{
-							UnitFactory.CreatePet(unit, fightId);
-						}
+						TransferHelper.AfterTransfer(unit);
 						unit.DomainScene().GetComponent<ArenaDungeonComponent>().OnUpdateRank();
 						break;
 					case (int)SceneTypeEnum.JiaYuan:
@@ -230,11 +214,7 @@ namespace ET
 							scene.GetComponent<TrialDungeonComponent>().GenerateFuben(int.Parse(request.ParamInfo));
 							unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TrialFuben_12, 0, 1);
 						}
-						fightId = unit.GetComponent<PetComponent>().GetFightPet();
-						if (fightId != null)
-						{
-							UnitFactory.CreatePet(unit, fightId);
-						}
+						TransferHelper.AfterTransfer(unit);
 						break;
 					case (int)SceneTypeEnum.MainCityScene:
 						sceneConfig = SceneConfigCategory.Instance.Get(ComHelp.MainCityID());
@@ -259,11 +239,7 @@ namespace ET
 
 						// 加入aoi
 						unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
-						fightId = unit.GetComponent<PetComponent>().GetFightPet();
-						if (fightId != null)
-						{
-							UnitFactory.CreatePet(unit, fightId);
-						}
+						TransferHelper.AfterTransfer(unit);
 						break;
 				}
 

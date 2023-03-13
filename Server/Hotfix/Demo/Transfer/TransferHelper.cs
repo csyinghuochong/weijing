@@ -100,6 +100,20 @@
             //unit.Dispose();
         }
 
+        public static void AfterTransfer(Unit unit)
+        {
+            RolePetInfo fightId = unit.GetComponent<PetComponent>().GetFightPet();
+            if (fightId != null)
+            {
+                UnitFactory.CreatePet(unit, fightId);
+            }
+            int jinglingid  = unit.GetComponent<ChengJiuComponent>().JingLingId;
+            if (jinglingid != 0)
+            {
+                unit.GetComponent<ChengJiuComponent>().JingLingUnitId = UnitFactory.CreateJingLing(unit, jinglingid).Id;
+            }
+        }
+
         public static void BeforeTransfer(Unit unit)
         {
             //删除unit,让其它进程发送过来的消息找不到actor，重发
