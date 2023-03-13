@@ -169,7 +169,7 @@ namespace ET
                         
                         teamDungeonComponent.ItemFlags.Add(unitDrop.Id, maxPlayerId);
                         owner = unit.DomainScene().GetComponent<UnitComponent>().Get(maxPlayerId);
-                        string pick_name = teamDungeonComponent.TeamPlayer[maxPlayerId].PlayerName;
+                        string pick_name = teamDungeonComponent.TeamPlayers[maxPlayerId].PlayerName;
                         pick_name += (owner == null ? "(未在副本中)" : string.Empty);
                         m2C_SyncChatInfo.ChatInfo.ChatMsg = $"<color=#FDD376>{pick_name}</color>拾取<color=#{colorValue}>{numShow}{itemConfig.ItemName}</color>({m2C_SyncChatInfo.ChatInfo.ChatMsg})";
                     }
