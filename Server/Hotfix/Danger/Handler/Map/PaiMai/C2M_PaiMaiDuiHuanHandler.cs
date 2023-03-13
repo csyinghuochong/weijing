@@ -12,8 +12,14 @@ namespace ET
             long dbCacheId = DBHelper.GetRankServerId(unit.DomainZone());
             R2M_DBServerInfoResponse d2GGetUnit = (R2M_DBServerInfoResponse)await ActorMessageSenderComponent.Instance.Call(dbCacheId, new M2R_DBServerInfoRequest() { });
             long diamond = request.DiamondsNumber;
-            if (request.DiamondsNumber < 0)
+            if (request.DiamondsNumber <= 0)
             {
+                reply();
+                return;
+            }
+
+            //服务器限制,单次最多兑换100000钻石
+            if (request.DiamondsNumber > 100000) {
                 reply();
                 return;
             }

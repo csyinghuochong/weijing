@@ -210,9 +210,19 @@ namespace ET
         //改变当前购买数量
         public static void OnClickChangeBuyNum(this UIPaiMaiShopComponent self, int num) {
 
+            if (num > 0 && self.BuyNum >= 100) {
+                FloatTipManager.Instance.ShowFloatTip("单次购买数量最多为100");
+                return;
+            }
+
             self.BuyNum += num;
             if (self.BuyNum <= 1) {
                 self.BuyNum = 1;
+            }
+
+            //单词购买最多100个
+            if (self.BuyNum > 100) {
+                self.BuyNum = 100;
             }
 
             //数量显示

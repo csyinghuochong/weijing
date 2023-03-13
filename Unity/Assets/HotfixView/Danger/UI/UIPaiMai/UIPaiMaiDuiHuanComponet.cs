@@ -79,13 +79,26 @@ namespace ET
 
         public static void OnBtn_BuyNum_jia(this UIPaiMaiDuiHuanComponet self, int num)
         {
+
             long max = self.ZoneScene().GetComponent<UserInfoComponent>().UserInfo.Diamond;
             long diamondsNumber = long.Parse(self.Lab_RmbNum.GetComponent<InputField>().text);
+
+            if (num > 0 && diamondsNumber>=10000)
+            {
+                FloatTipManager.Instance.ShowFloatTip("兑换单次最多兑换10000钻石哦！");
+                return;
+            }
+
             diamondsNumber += num;
             if (diamondsNumber < 100)
                 diamondsNumber = 100;
             if (diamondsNumber > max)
                 diamondsNumber = max;
+            //单次兑换最多10000
+            if (diamondsNumber > 10000) {
+                diamondsNumber = 10000;
+            }
+
             self.Lab_RmbNum.GetComponent<InputField>().text = diamondsNumber.ToString();
             self.DuiHuan_Gold.GetComponent<Text>().text = (self.ExchangeValue * diamondsNumber).ToString();
         }

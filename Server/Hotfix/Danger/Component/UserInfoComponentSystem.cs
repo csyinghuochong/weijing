@@ -461,12 +461,6 @@ namespace ET
 
             float expAdd = ComHelp.GetExpAdd(self.UserInfo.Lv, serverInfo);
 
-            //等级达到上限,则无法获得经验
-            if (self.UserInfo.Lv >= GlobalValueConfigCategory.Instance.Get(41).Value2)
-            {
-                return;
-            }
-
             self.UserInfo.Exp = self.UserInfo.Exp + (int)(addValue * (1.0f + expAdd));
             //判定是否升级
             if (self.UserInfo.Lv >= serverInfo.WorldLv)
@@ -475,6 +469,12 @@ namespace ET
             }
             ExpConfig xiulianconf1 = ExpConfigCategory.Instance.Get(self.UserInfo.Lv);
             long upNeedExp = xiulianconf1.UpExp;
+
+            //等级达到上限,则无法获得经验
+            if (self.UserInfo.Lv >= GlobalValueConfigCategory.Instance.Get(41).Value2 && self.UserInfo.Exp >= upNeedExp)
+            {
+                return;
+            }
 
             if (self.UserInfo.Exp >= upNeedExp)
             {

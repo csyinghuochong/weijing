@@ -287,7 +287,7 @@ namespace ET
             numericComponent.Set(NumericType.MasterId, master.Id, false);
             numericComponent.Set(NumericType.BattleCamp, master.GetBattleCamp(), false);
             numericComponent.Set(NumericType.TeamId, master.GetTeamId(), false);
-            numericComponent.Set(NumericType.Base_Speed_Base, 30000, false);
+            numericComponent.Set(NumericType.Base_Speed_Base, 50000, false);
 
             unit.AddComponent<AOIEntity, int, Vector3>(9 * 1000, unit.Position);
             if (scene.GetComponent<MapComponent>().SceneTypeEnum != (int)SceneTypeEnum.MainCityScene)
