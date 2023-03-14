@@ -311,7 +311,7 @@ namespace ET
             }
             catch (Exception ex)
             {
-                Log.Debug("无效的player: " + ex.ToString());
+                Log.Debug("无效的Monster: " + ex.ToString());
             }
             return false;
         }

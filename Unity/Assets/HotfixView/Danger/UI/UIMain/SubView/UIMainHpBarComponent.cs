@@ -17,13 +17,13 @@ namespace ET
         public GameObject BossNode;
         public Text Lab_Owner;
 
-        public long LockMonsterId;
         public long LockBossId;
         public Vector3 Vector3 =  new Vector3(1, 1, 1);
         public RenderTexture RenderTexture;
         public UIModelDynamicComponent UIModelShowComponent;
 
         public UIMainBuffComponent UIMainBuffComponent;
+        public LockTargetComponent LockTargetComponent;
     }
 
     [ObjectSystem]
@@ -64,6 +64,7 @@ namespace ET
             //配置摄像机位置[0,115,257]
             showMode.transform.Find("Camera").localPosition = new Vector3(0f, 200, 378f);
 
+            self.LockTargetComponent = self.ZoneScene().GetComponent<LockTargetComponent>();
         }
     }
 
@@ -107,8 +108,6 @@ namespace ET
 
         public static void OnLockUnit(this UIMainHpBarComponent self, Unit unit)
         {
-            self.LockMonsterId = unit.Id;
-
             int configid = unit.ConfigId;
             MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(configid);
             if (monsterConfig.MonsterType == (int)MonsterTypeEnum.Boss)
@@ -133,6 +132,11 @@ namespace ET
 
         public static void OnUpdateHP(this UIMainHpBarComponent self, Unit unit)
         {
+            if (self.LockTargetComponent.LastLockId != unit.Id
+              && self.LockBossId != unit.Id)
+            {
+                return;
+            }
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float curhp = numericComponent.GetAsLong(NumericType.Now_Hp);
             float blood = curhp / numericComponent.GetAsLong(NumericType.Now_MaxHp);
@@ -141,7 +145,7 @@ namespace ET
             }
 
             self.Vector3.x = blood;
-            if (self.LockMonsterId == unit.Id)
+            if (self.LockTargetComponent.LastLockId == unit.Id)
             {
                 //更新怪物血条
                 self.Img_MonsterHp.transform.localScale = self.Vector3;
@@ -155,13 +159,13 @@ namespace ET
 
         public static void OnUnitDead(this UIMainHpBarComponent self, long unitid)
         {
-            if (self.LockMonsterId == unitid)
+            if (self.LockTargetComponent.LastLockId == unitid)
             {
                 self.MonsterNode.SetActive(false);
             }
             if (self.LockBossId == unitid)
             {
-                self.MonsterNode.SetActive(false);
+                self.BossNode.SetActive(false);
             }
         }
 

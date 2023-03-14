@@ -122,7 +122,6 @@ namespace ET
                 uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnLockUnit(unitTarget);
                 MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitTarget.ConfigId);
                 self.SetEffectSize((float)monsterConfig.SelectSize);
-
             }
         }
 
