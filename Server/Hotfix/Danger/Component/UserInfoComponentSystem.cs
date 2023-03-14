@@ -530,15 +530,14 @@ namespace ET
                 //{
                 //    continue;
                 //}
-
                 if (dayMonster.Count <= i)
                 {
                     dayMonster.Add(0);
                 }
-                if (dayMonster[i] >= dayMonsterConfig[i].TotalNumber)
-                {
-                    continue; 
-                }
+                //if (dayMonster[i] >= dayMonsterConfig[i].TotalNumber)
+                //{
+                //    continue; 
+                //}
 
                 dayMonster[i]++;
                 int randomIndex = RandomHelper.RandomByWeight(dayMonsterConfig[i].Weights);
