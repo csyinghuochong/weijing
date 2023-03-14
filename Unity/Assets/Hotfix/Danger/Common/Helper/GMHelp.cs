@@ -25,7 +25,7 @@ namespace ET
 
         public static bool IsTestPlayer(string account)
         {
-            return account == "18407228910"
+            return account == "18652422521"
                 || account == "tcg01";
         }
 
