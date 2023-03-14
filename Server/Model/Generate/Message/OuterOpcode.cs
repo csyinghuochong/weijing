@@ -525,5 +525,7 @@ namespace ET
 		 public const ushort M2C_KickPlayerMessage = 10522;
 		 public const ushort C2M_JingLingUseRequest = 10523;
 		 public const ushort M2C_JingLingUseResponse = 10524;
+		 public const ushort C2M_JingLingCatchRequest = 10525;
+		 public const ushort M2C_JingLingCatchResponse = 10526;
 	}
 }

@@ -9496,4 +9496,39 @@ namespace ET
 
 	}
 
+//抓捕精灵
+	[ResponseType(nameof(M2C_JingLingCatchResponse))]
+	[Message(OuterOpcode.C2M_JingLingCatchRequest)]
+	[ProtoContract]
+	public partial class C2M_JingLingCatchRequest: Object, IActorLocationRequest
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(1)]
+		public long JingLingId { get; set; }
+
+		[ProtoMember(2)]
+		public int ItemId { get; set; }
+
+		[ProtoMember(5)]
+		public string OperateType { get; set; }
+
+	}
+
+	[Message(OuterOpcode.M2C_JingLingCatchResponse)]
+	[ProtoContract]
+	public partial class M2C_JingLingCatchResponse: Object, IActorLocationResponse
+	{
+		[ProtoMember(90)]
+		public int RpcId { get; set; }
+
+		[ProtoMember(91)]
+		public int Error { get; set; }
+
+		[ProtoMember(92)]
+		public string Message { get; set; }
+
+	}
+
 }

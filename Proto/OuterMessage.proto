@@ -4566,3 +4566,20 @@ message M2C_JingLingUseResponse    // IActorLocationResponse
 	int32 Error = 91;
 	string Message = 92;
 }
+
+//抓捕精灵
+//ResponseType M2C_JingLingCatchResponse
+message C2M_JingLingCatchRequest    // IActorLocationRequest
+{
+	int32 RpcId = 90;
+	int64 JingLingId = 1;
+	int32 ItemId = 2;
+	string OperateType = 5; 
+}
+
+message M2C_JingLingCatchResponse    // IActorLocationResponse
+{
+	int32 RpcId = 90;
+	int32 Error = 91;
+	string Message = 92;
+}
