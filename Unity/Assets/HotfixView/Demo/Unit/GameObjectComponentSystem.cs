@@ -70,11 +70,23 @@ namespace ET
                     Unit master = unit.GetParent<UnitComponent>().Get(masterId);
 
                     if (userMaterModel == 1 && master != null
-                        && master.GetComponent<GameObjectComponent>()!= null
+                        && master.GetComponent<GameObjectComponent>() != null
                         && master.GetComponent<GameObjectComponent>().GameObject != null)
                     {
                         GameObject gameObject = GameObject.Instantiate(master.GetComponent<GameObjectComponent>().GameObject);
                         self.OnLoadGameObject(gameObject, self.InstanceId);
+                    }
+                    else if (monsterCof.MonsterSonType == 58)
+                    {
+                        path = ABPathHelper.GetUnitPath("Pet/" + monsterCof.MonsterModelID);
+                        GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                        self.UnitAssetsPath = path;
+                    }
+                    else if (monsterCof.MonsterSonType == 58)
+                    {
+                        path = ABPathHelper.GetUnitPath("JingLing/" + monsterCof.MonsterModelID);
+                        GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
+                        self.UnitAssetsPath = path;
                     }
                     else
                     {
@@ -329,11 +341,15 @@ namespace ET
                     //52 能量台子 无AI
                     //54 场景怪 有AI 显示名称
                     //55 宝箱类 无AI
+                    //56 宝箱类 刷新地图后即可刷新
+                    //57 宠物蛋 直接掉落进背包
+                    //58 宠物实体
+                    //59 精灵实体
                     if (monsterCof.MonsterSonType == 51)
                     {
                         unit.UpdateUIType = -1;
                     }
-                    if (monsterCof.MonsterSonType == 52)
+                    else if (monsterCof.MonsterSonType == 52)
                     {
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
                         unit.AddComponent<UISceneItemComponent>().InitTableData(unit.GetComponent<UnitInfoComponent>().EnergySkillId).Coroutine();
@@ -343,13 +359,19 @@ namespace ET
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
                         unit.AddComponent<UISceneItemComponent>().InitSceneData().Coroutine();         //血条UI组件
                     }
+                    else if (monsterCof.MonsterSonType == 58 || monsterCof.MonsterSonType == 59)
+                    {
+                        unit.UpdateUIType = HeadBarType.SceneItemUI;
+                        unit.AddComponent<UISceneItemComponent>().InitSceneData().Coroutine();         //血条UI组件
+                        LayerHelp.ChangeLayer(go.transform, LayerEnum.Box);
+                    }
                     else if (unit.IsChest())
                     {
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
                         unit.AddComponent<UISceneItemComponent>().InitSceneData().Coroutine();         //血条UI组件
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Box);
                     }
-                    else if (monsterCof.MonsterType != (int)MonsterTypeEnum.SceneItem )
+                    else if (monsterCof.MonsterType != (int)MonsterTypeEnum.SceneItem)
                     {
                         unit.UpdateUIType = HeadBarType.HeroHeadBar;
                         unit.AddComponent<HeroTransformComponent>();       //获取角色绑点组件

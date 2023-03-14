@@ -129,6 +129,7 @@ namespace ET
 							mapComponent = fubnescene.GetComponent<MapComponent>();
 							mapComponent.SetMapInfo((int)SceneTypeEnum.JiaYuan, request.SceneId, 0);
 							mapComponent.NavMeshId = SceneConfigCategory.Instance.Get(request.SceneId).MapID.ToString();
+							FubenHelp.CreateNpc(fubnescene, request.SceneId);
 							TransferHelper.BeforeTransfer(unit);
 							await TransferHelper.Transfer(unit, fubenInstanceId, (int)SceneTypeEnum.JiaYuan, request.SceneId, request.Difficulty, "0");
 							TransferHelper.NoticeFubenCenter(fubnescene, 1).Coroutine();
