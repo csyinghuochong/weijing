@@ -17,7 +17,6 @@ namespace ET
 
     public class UIPetComponent : Entity, IAwake, IDestroy
     {
-        public GameObject Btn_TuJian;
         public GameObject SubViewNode;
         public GameObject FunctionSetBtn;
         public GameObject Btn_Close;
@@ -59,9 +58,6 @@ namespace ET
 
             self.FunctionSetBtn = rc.Get<GameObject>("FunctionSetBtn");
             UI pageButton = self.AddChild<UI, string, GameObject>("FunctionSetBtn", self.FunctionSetBtn);
-
-            self.Btn_TuJian = rc.Get<GameObject>("Btn_TuJian");
-            self.Btn_TuJian.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             //IOS适配
             IPHoneHelper.SetPosition(self.FunctionSetBtn, new Vector2(300f, 316f));

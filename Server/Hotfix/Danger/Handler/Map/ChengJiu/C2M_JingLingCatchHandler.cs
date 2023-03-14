@@ -7,6 +7,7 @@ namespace ET
     {
         protected override async ETTask Run(Unit unit, C2M_JingLingCatchRequest request, M2C_JingLingCatchResponse response, Action reply)
         {
+
             reply();
             await ETTask.CompletedTask;
         }
