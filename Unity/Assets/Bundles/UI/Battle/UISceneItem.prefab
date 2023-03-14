@@ -205,6 +205,8 @@ MonoBehaviour:
   data:
   - key: Lal_Name
     gameObject: {fileID: 7701078629787446898}
+  - key: Lal_Desc
+    gameObject: {fileID: 5218915362588543881}
 --- !u!1 &5218915362588543881
 GameObject:
   m_ObjectHideFlags: 0
@@ -286,9 +288,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 111111
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 6154ac36b8edda441ae83445153c7124, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: 2100000, guid: f59960495e2c43749988e0bc277d9f3d, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}

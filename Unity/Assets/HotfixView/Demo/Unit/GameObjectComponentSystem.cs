@@ -82,7 +82,7 @@ namespace ET
                         GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);
                         self.UnitAssetsPath = path;
                     }
-                    else if (monsterCof.MonsterSonType == 58)
+                    else if (monsterCof.MonsterSonType == 59)
                     {
                         path = ABPathHelper.GetUnitPath("JingLing/" + monsterCof.MonsterModelID);
                         GameObjectPoolComponent.Instance.AddLoadQueue(path, self.InstanceId, self.OnLoadGameObject);

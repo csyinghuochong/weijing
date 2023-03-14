@@ -58,7 +58,7 @@ namespace ET
             }
             else if (monsterConfig.MonsterSonType == 58 || monsterConfig.MonsterSonType == 59)
             {
-                path = ABPathHelper.GetUGUIPath("Battle/UISceneItem");
+                path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
                 self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("RoleBoneSet/Head");
             }
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
@@ -87,7 +87,8 @@ namespace ET
                     break;
                 case 58:
                 case 59:
-                    self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.MonsterName;
+                    self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = monsterConfig.MonsterName;
+                    self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = "抓捕难度：容易";
                     break;
                 default:
                     break;
