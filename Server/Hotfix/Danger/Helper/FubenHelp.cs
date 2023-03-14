@@ -267,6 +267,24 @@ namespace ET
 			}
 		}
 
+		public static void CreateNpc(Scene scene, int sceneId)
+		{
+			SceneConfig sceneConfig = SceneConfigCategory.Instance.Get(sceneId);
+			int[] npcs = sceneConfig.NpcList;
+			if (npcs == null)
+			{
+				return;
+			}
+			for (int i = 0; i < npcs.Length; i++)
+			{
+				if (npcs[i] == 0)
+				{
+					continue;
+				}
+				UnitFactory.CreateNpc(scene, npcs[i]);
+			}
+		}
+
 		public static bool IsAllMonsterDead(Scene scene, Unit main)
 		{
 			List<Unit> units = scene.GetComponent<UnitComponent>().GetAll();

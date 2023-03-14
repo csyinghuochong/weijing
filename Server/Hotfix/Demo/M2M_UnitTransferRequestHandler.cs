@@ -214,10 +214,7 @@ namespace ET
 							scene.GetComponent<TrialDungeonComponent>().GenerateFuben(int.Parse(request.ParamInfo));
 							unit.GetComponent<TaskComponent>().TriggerTaskCountryEvent(TaskCountryTargetType.TrialFuben_12, 0, 1);
 						}
-						if (request.SceneType == SceneTypeEnum.JiaYuan)
-						{
-							scene.GetComponent<JiaYuanComponent>().CreateNpc(request.ChapterId);
-						}
+						FubenHelp.CreateNpc(scene, request.ChapterId);
 						TransferHelper.AfterTransfer(unit);
 						break;
 					case (int)SceneTypeEnum.MainCityScene:
