@@ -43,10 +43,6 @@ namespace ET
                 case 0:
                 case 1:
                     int sendGold = (int)(10000 + expCof.RoseGoldPro * 10);
-                    userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, sendGold.ToString(), true, 32);
-                    userInfoComponent.UpdateRoleData(UserDataType.Exp, (costExp * -1).ToString());
-                    Log.Debug($"Gold:  {userInfoComponent.Id} {sendGold} excharge");
-
                     sendGold = (int)(10000 + expCof.RoseGoldPro * 10);
                     userInfoComponent.UpdateRoleMoneyAdd(UserDataType.Gold, sendGold.ToString(), true, 32);
                     
