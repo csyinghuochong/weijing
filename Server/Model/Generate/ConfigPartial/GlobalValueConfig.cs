@@ -32,6 +32,8 @@ namespace ET
 
         public List<DayJingLing> DayJingLingList = new List<DayJingLing>();
 
+        public Dictionary<int, int> ZhuaPuItem = new Dictionary<int, int>();
+
         public override void AfterEndInit()
         {
             DayMonsterList.Clear();
@@ -76,6 +78,13 @@ namespace ET
                 dayJingLing.GaiLv = gaiLv;
                 dayJingLing.TotalNumber = total;    
                 DayJingLingList.Add(dayJingLing);
+            }
+
+            string[] zhuabuItems = this.Get(82).Value.Split('@');
+            for (int i = 0; i < zhuabuItems.Length; i++)
+            {
+                string[] zhubuids = zhuabuItems[i].Split(';');
+                ZhuaPuItem.Add(int.Parse(zhubuids[0]), int.Parse(zhubuids[1]));
             }
         }
     }

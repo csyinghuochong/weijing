@@ -82,6 +82,7 @@
         public const int ERR_NoPayValueError = 200022;                              //赞助额度不足
         public const int ERR_ItemNoUseTime = 200023;                                //道具使用次数不足
         public const int ERR_ItemBelongOther = 200024;                              //道具归属别人
+        public const int ERR_ZhuaBuFail = 200025;
 
         //登录
         public const int ERR_AccountAlreadyRegister = 200101;                       //表示账号已经被注册

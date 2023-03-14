@@ -107,6 +107,10 @@ namespace ET
                         for (int i = 0; i < ts.Count; i++)
                         {
                             Scene robotScene = ts[i] as Scene;
+                            if (robotScene.GetComponent<BehaviourComponent>() == null)
+                            {
+                                continue;
+                            }
                             if (robotScene.GetComponent<BehaviourComponent>().GetBehaviour() != 3)
                             {
                                 continue;

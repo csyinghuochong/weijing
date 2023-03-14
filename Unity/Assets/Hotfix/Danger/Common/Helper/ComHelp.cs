@@ -571,6 +571,31 @@ namespace ET
 
         }
 
+
+        public static int GetZhuPuGaiLv(int monsterid, int itemid, int jiacheng)
+        {
+            if (monsterid == 0)
+            {
+                return 0;
+            }
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
+            int[] Parameter = monsterConfig.Parameter;
+            if (Parameter == null || Parameter.Length < 2)
+            {
+                return 0;
+            }
+            int gailv = Parameter[1];
+            if (itemid > 0)
+            {
+                gailv += GlobalValueConfigCategory.Instance.ZhuaPuItem[itemid];
+            }
+            if (jiacheng == 2)
+            {
+                gailv += 500;
+            }
+            return gailv;
+        }
+
         /// <summary>
         /// 根据出生日期，计算精确的年龄
         /// </summary>

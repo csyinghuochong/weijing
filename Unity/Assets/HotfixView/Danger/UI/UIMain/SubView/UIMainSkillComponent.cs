@@ -129,9 +129,20 @@ namespace ET
         {
             UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
             uimain.GetComponent<UIMainComponent>().JoystickMove.SetActive(true);
+            long lockTargetId = self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId;
+            if (lockTargetId == 0)
+            {
+                return;
+            }
+            Unit unit = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(lockTargetId);
+            if (unit == null || unit.Type!=UnitType.Monster)
+            {
+                return;
+            }
 
             //创建UI
             UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIZhuaPu);
+            ui.GetComponent<UIZhuaPuComponent>().OnInitUI(unit);
         }
 
         public static void OnShiquItem(this UIMainSkillComponent self)

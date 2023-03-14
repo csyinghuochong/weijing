@@ -36,7 +36,7 @@ namespace ET
                     {
                         if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
                         {
-                            return ErrorCore.ERR_ItemDropProtect;
+                            return ErrorCore.ERR_ItemBelongOther;
                         }
                     }
                 }
@@ -92,7 +92,7 @@ namespace ET
                     {
                         if (dropComponent.OwnerId != 0 && dropComponent.OwnerId != unit.Id)
                         {
-                            return ErrorCore.ERR_ItemDropProtect;
+                            return ErrorCore.ERR_ItemBelongOther;
                         }
                     }
                 }
@@ -175,10 +175,6 @@ namespace ET
                     }
                 }
 
-                //if (owner == null)
-                //{
-                //    return ErrorCore.ERR_ItemBelongOther;
-                //}
                 if (owner != null)
                 {
                     List<RewardItem> rewardItems = new List<RewardItem>();
@@ -187,7 +183,7 @@ namespace ET
                     bool success = owner.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PickItem}_{TimeHelper.ServerNow()}");
                     if (!success)
                     {
-                        return owner.Id == unit.Id ? ErrorCore.ERR_BagIsFull : ErrorCore.ERR_ItemDropProtect;
+                        return owner.Id == unit.Id ? ErrorCore.ERR_BagIsFull : ErrorCore.ERR_ItemBelongOther;
                     }
                 }
                 if (drops[i].DropType != 1)
