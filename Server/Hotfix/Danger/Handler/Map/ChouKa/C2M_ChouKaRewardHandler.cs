@@ -20,11 +20,16 @@ namespace ET
                 return;
             }
             TakeCardRewardConfig rewardConfig = TakeCardRewardConfigCategory.Instance.Get(request.RewardId);
+            if (unit.GetComponent<NumericComponent>().GetAsInt(NumericType.ChouKa) < rewardConfig.RoseLvLimit)
+            {
+                reply();
+                return;
+            }
             userInfoComponent.UserInfo.ChouKaRewardIds.Add(request.RewardId);
 
             int randomZuanshi = RandomHelper.RandomNumber(rewardConfig.RewardDiamond[0], rewardConfig.RewardDiamond[1]);
             unit.GetComponent<BagComponent>().OnAddItemData(rewardConfig.RewardItems, $"{ItemGetWay.ChouKa}_{TimeHelper.ServerNow()}");
-            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(  UserDataType.Diamond, randomZuanshi.ToString());
+            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd(  UserDataType.Diamond, randomZuanshi.ToString(),true, ItemGetWay.ChouKa);
 
             reply();
             await ETTask.CompletedTask;

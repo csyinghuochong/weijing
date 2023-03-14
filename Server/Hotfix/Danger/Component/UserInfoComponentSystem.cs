@@ -261,7 +261,7 @@ namespace ET
         }
 
         //加金币
-        public static void UpdateRoleMoneyAdd(this UserInfoComponent self, UserDataType Type, string value, bool notice = true, int getWay = ItemGetWay.System, string paramsifo = "")
+        public static void UpdateRoleMoneyAdd(this UserInfoComponent self, UserDataType Type, string value, bool notice, int getWay, string paramsifo = "")
         {
             Unit unit = self.GetParent<Unit>();
             long gold = long.Parse(value);
@@ -521,23 +521,22 @@ namespace ET
 
         public static int GetRandomJingLingId(this UserInfoComponent self)
         {
-            List<int> dayMonster = self.UserInfo.DayJingLing;
-
             List<DayJingLing> dayMonsterConfig = GlobalValueConfigCategory.Instance.DayJingLingList;
-            for (int i = 0; i < dayMonsterConfig.Count; i++)
+            List<int> dayMonster = self.UserInfo.DayJingLing;
+            for(int i = 0; i < dayMonsterConfig.Count; i++)
             {
-                //if (RandomHelper.RandFloat01() > dayMonsterConfig[i].GaiLv)
-                //{
-                //    continue;
-                //}
+                if (RandomHelper.RandFloat01() > dayMonsterConfig[i].GaiLv)
+                {
+                    continue;
+                }
                 if (dayMonster.Count <= i)
                 {
                     dayMonster.Add(0);
                 }
-                //if (dayMonster[i] >= dayMonsterConfig[i].TotalNumber)
-                //{
-                //    continue; 
-                //}
+                if (dayMonster[i] >= dayMonsterConfig[i].TotalNumber)
+                {
+                    continue;
+                }
 
                 dayMonster[i]++;
                 int randomIndex = RandomHelper.RandomByWeight(dayMonsterConfig[i].Weights);

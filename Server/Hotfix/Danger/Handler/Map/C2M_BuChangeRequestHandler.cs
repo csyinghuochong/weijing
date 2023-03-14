@@ -20,7 +20,7 @@ namespace ET
             int rechargeNum = unit.GetComponent<NumericComponent>().GetAsInt(NumericType.RechargeNumber);
             rechargeNum += centerAccount.BuChangRecharge;
             unit.GetComponent<NumericComponent>().ApplyValue( NumericType.RechargeNumber, rechargeNum);
-            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd( UserDataType.Diamond, centerAccount.BuChangDiamond.ToString());
+            unit.GetComponent<UserInfoComponent>().UpdateRoleMoneyAdd( UserDataType.Diamond, centerAccount.BuChangDiamond.ToString(), true, ItemGetWay.BuChang);
             response.PlayerInfo = centerAccount.PlayerInfo;
             reply();
             await ETTask.CompletedTask;
