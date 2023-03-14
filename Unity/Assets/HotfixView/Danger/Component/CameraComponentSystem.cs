@@ -83,7 +83,6 @@ namespace ET
 			UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene()).GetComponent<HeroHeadBarComponent>().HeadBar.SetActive(false);
 		}
 
-
 		public static void SetBuildExit(this CameraComponent self)
 		{
 			Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());

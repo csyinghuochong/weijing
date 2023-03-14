@@ -69,7 +69,7 @@ namespace ET
 
             //获取玩家携带的技能
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
-            for (int i = 0; i < UIMainEvent.SkillButtonNumber; i++)
+            for (int i = 0; i < 10; i++)
             {
                 string name = "UI_MainRoseSkill_" + (i + 1);
                 GameObject go = self.UI_RoseSkillSet.transform.GetChild(i).gameObject;
@@ -87,9 +87,51 @@ namespace ET
     public static class UIMainSkillComponentSystem
     {
 
+        public static void OnLockUnit(this UIMainSkillComponent self, Unit unitlock)
+        {
+            if (unitlock == null || unitlock.Type != UnitType.Monster)
+            {
+                self.Button_ZhuaPu.SetActive(false);
+                return;
+            }
+            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitlock.ConfigId);
+            self.Button_ZhuaPu.SetActive(monsterConfig.MonsterSonType == 58 || monsterConfig.MonsterSonType == 59);
+        }
+
         public static void OnButton_ZhuaPu(this UIMainSkillComponent self)
         {
-            Log.Debug("111");
+            long lockTargetId = self.ZoneScene().GetComponent<LockTargetComponent>().LastLockId;
+            if (lockTargetId == 0)
+            {
+                return;
+            }
+            Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            Unit unit = main.GetParent<UnitComponent>().Get(lockTargetId);
+            if (unit == null)
+            {
+                return;
+            }
+            if (PositionHelper.Distance2D(main, unit) > 3)
+            {
+                FloatTipManager.Instance.ShowFloatTip("距离过远！");
+                return;
+            }
+
+            UIHelper.CurrentNpcId = unit.ConfigId;
+            UIHelper.CurrentNpcUI = UIType.UIZhuaPu;
+            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+            uimain.GetComponent<UIMainComponent>().JoystickMove.SetActive(false);
+            CameraComponent cameraComponent = self.ZoneScene().CurrentScene().GetComponent<CameraComponent>();
+            cameraComponent.SetBuildEnter(unit, () => { self.OnBuildEnter().Coroutine(); });
+        }
+
+        public static async ETTask OnBuildEnter(this UIMainSkillComponent self)
+        {
+            UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+            uimain.GetComponent<UIMainComponent>().JoystickMove.SetActive(true);
+
+            //创建UI
+            UI ui = await UIHelper.Create(self.ZoneScene(), UIType.UIZhuaPu);
         }
 
         public static void OnShiquItem(this UIMainSkillComponent self)
@@ -264,7 +306,7 @@ namespace ET
         public static void OnSkillSetUpdate(this UIMainSkillComponent self)
         {
             SkillSetComponent skillSetComponent = self.ZoneScene().GetComponent<SkillSetComponent>();
-            for (int i = 0; i < UIMainEvent.SkillButtonNumber; i++)
+            for (int i = 0; i < 10; i++)
             {
                 UISkillGridComponent skillgrid = self.UISkillGirdList[i];
                 SkillPro skillid = skillSetComponent.GetByPosition(i + 1);

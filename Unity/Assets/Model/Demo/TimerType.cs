@@ -65,6 +65,7 @@
         public const int XuLieZhenTimer = 1074;
         public const int UIMainFPSTimer = 1075;
         public const int BattleSceneTimer = 1076;
+        public const int UIZhuaPuTimer = 1077;
         // 不能超过10000
     }
 }

@@ -24,7 +24,7 @@ namespace ET
             }
 
             ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiItemInfo.BagInfo.ItemID);
-            int cell = Mathf.CeilToInt(paiMaiItemInfo.BagInfo.ItemNum / itemConfig.ItemPileSum);
+            int cell = Mathf.CeilToInt(paiMaiItemInfo.BagInfo.ItemNum * 1f / itemConfig.ItemPileSum);
             if (unit.GetComponent<BagComponent>().GetSpaceNumber() < cell)
             {
                 response.Error = ErrorCore.ERR_BagIsFull;

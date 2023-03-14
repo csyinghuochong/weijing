@@ -20,7 +20,7 @@ namespace ET
 			}
 
 			ItemConfig itemConfig = ItemConfigCategory.Instance.Get(paiMaiSellConfig.ItemID);
-			int cell = Mathf.CeilToInt(request.BuyNum / itemConfig.ItemPileSum);
+			int cell = Mathf.CeilToInt(request.BuyNum * 1f / itemConfig.ItemPileSum);
 			if (unit.GetComponent<BagComponent>().GetSpaceNumber() < cell)
 			{
 				response.Error = ErrorCore.ERR_BagIsFull;
@@ -66,8 +66,8 @@ namespace ET
 					//添加道具
 					List<RewardItem> rewardItems = new List<RewardItem>();
 					rewardItems.Add(new RewardItem() { ItemID = paiMaiSellConfig.ItemID, ItemNum = request.BuyNum });
-					unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
-					Log.Warning($"拍卖行购买道具 : {unit.Id}  {paiMaiSellConfig.ItemID}  {request.BuyNum}  {r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price}");
+					bool result =  unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, string.Empty, $"{ItemGetWay.PaiMaiShop}_{TimeHelper.ServerNow()}");
+					Log.Warning($"拍卖行购买道具 : {unit.Id}  {paiMaiSellConfig.ItemID}  {request.BuyNum}  {r_PaiMaiShopResponse.PaiMaiShopItemInfo.Price} {cell} {result}");
 				}
 				else
 				{

@@ -188,7 +188,7 @@ namespace ET
 					}
 				}
 
-				if (mtype[0] == "1")    //固定位置刷怪
+				if (mtype[0] == "1")//固定位置刷怪
 				{
 					for (int c = 0; c < int.Parse(mcount[0]); c++)
 					{
@@ -223,7 +223,7 @@ namespace ET
 						}
 					}
 				}
-				if (mtype[0] == "2")
+				if (mtype[0] == "2") //随机位置
 				{
 					int cmcount = int.Parse(mcount[0]);
 					for (int c = 0; c < cmcount; c++)

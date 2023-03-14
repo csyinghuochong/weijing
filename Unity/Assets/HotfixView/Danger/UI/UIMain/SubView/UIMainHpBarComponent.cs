@@ -139,6 +139,11 @@ namespace ET
             }
             NumericComponent numericComponent = unit.GetComponent<NumericComponent>();
             float curhp = numericComponent.GetAsLong(NumericType.Now_Hp);
+            float maxHp = numericComponent.GetAsLong(NumericType.Now_MaxHp);
+            if (maxHp == 0)
+            {
+                return;
+            }
             float blood = curhp / numericComponent.GetAsLong(NumericType.Now_MaxHp);
             if (blood < 0) {
                 blood = 0;

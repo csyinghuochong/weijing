@@ -118,9 +118,10 @@ namespace ET
             
             if (unitTarget.Type == UnitType.Monster)
             {
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitTarget.ConfigId);
                 UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
                 uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnLockUnit(unitTarget);
-                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitTarget.ConfigId);
+                uimain.GetComponent<UIMainComponent>().UIMainSkillComponent.OnLockUnit(unitTarget);
                 self.SetEffectSize((float)monsterConfig.SelectSize);
             }
         }
