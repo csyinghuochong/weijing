@@ -53,7 +53,7 @@ namespace ET
                     int dropid = int.Parse(droplist[0]);
                     List<RewardItem> rewardItems = new List<RewardItem>();
                     DropHelper.DropIDToDropItem_2(dropid, rewardItems);
-                    unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, $"{ItemGetWay.DuiHuan}_{TimeHelper.ServerNow()}");
+                    unit.GetComponent<BagComponent>().OnAddItemData(rewardItems, String.Empty, $"{ItemGetWay.DuiHuan}_{TimeHelper.ServerNow()}");
                     break;
                 default:
                     break;
