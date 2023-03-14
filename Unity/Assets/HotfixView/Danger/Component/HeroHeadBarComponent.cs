@@ -158,7 +158,7 @@ namespace ET
             UpdateBlood();
             //更新显示
             UpdateShow();
-            OnUpdateHorse();
+           
             if (HeadBar.GetComponent<HeadBarUI>() == null)
             {
                 HeadBar.AddComponent<HeadBarUI>();
@@ -167,7 +167,10 @@ namespace ET
             this.HeadBarUI.enabled = !unit.MainHero;
             this.HeadBarUI.HeadPos = UIPosition;
             this.HeadBarUI.HeadBar = HeadBar;
-            this.HeadBar.transform.localPosition = unit.MainHero ? new Vector3(0f, 120f, 0f) : HeadBar.transform.localPosition;
+            if (unit.MainHero)
+            {
+                OnUpdateHorse();
+            }
             this.HeadBar.SetActive(true);
         }
 
