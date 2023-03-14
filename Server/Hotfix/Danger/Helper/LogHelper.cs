@@ -68,6 +68,7 @@ namespace ET
 
         public static void LoginInfo(string log)
         {
+            log = TimeHelper.DateTimeNow().ToString() + " " + log;
             string filePath = "../Logs/WJ_login.txt";
             if (File.Exists(filePath))
             {
