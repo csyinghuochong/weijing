@@ -8,6 +8,8 @@ namespace ET
 {
     public class UIMainSkillComponent : Entity, IAwake, IDestroy
     {
+        public GameObject Button_ZhuaPu;
+        public GameObject shiquButton;
         public GameObject Btn_Target;
         public GameObject Btn_CancleSkill;
         public GameObject UI_MainRose_attack;
@@ -48,6 +50,12 @@ namespace ET
             self.Btn_Target = rc.Get<GameObject>("Btn_Target");
             self.Btn_Target.GetComponent<Button>().onClick.AddListener(() => { self.OnLockTargetUnit(); });
 
+            self.shiquButton = rc.Get<GameObject>("Btn_ShiQu");
+            ButtonHelp.AddListenerEx(self.shiquButton, self.OnShiquItem);
+
+            self.Button_ZhuaPu = rc.Get<GameObject>("Button_ZhuaPu");
+            ButtonHelp.AddListenerEx(self.Button_ZhuaPu, self.OnButton_ZhuaPu);
+
             self.Btn_CancleSkill.SetActive(false);
             ButtonHelp.AddEventTriggers(self.Btn_CancleSkill, (PointerEventData pdata) => { self.OnEnterCancelButton(); }, EventTriggerType.PointerEnter);
 
@@ -77,6 +85,76 @@ namespace ET
 
     public static class UIMainSkillComponentSystem
     {
+
+        public static void OnButton_ZhuaPu(this UIMainSkillComponent self)
+        {
+            Log.Debug("111");
+        }
+
+        public static void OnShiquItem(this UIMainSkillComponent self)
+        {
+            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() == 0)
+            {
+                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_BagIsFull);
+                return;
+            }
+            Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (main.GetComponent<SkillManagerComponent>().IsSkillMoveTime())
+            {
+                return;
+            }
+            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
+            if (ids.Count > 0)
+            {
+                self.RequestShiQu(ids).Coroutine();
+                return;
+            }
+            else
+            {
+                Unit unit = MapHelper.GetNearItem(self.ZoneScene());
+                if (unit != null)
+                {
+                    Vector3 dir = (main.Position - unit.Position).normalized;
+                    Vector3 tar = unit.Position + dir * 1f;
+                    self.MoveToShiQu(tar).Coroutine();
+                    return;
+                }
+            }
+
+            long chestId = MapHelper.GetChestBox(self.ZoneScene());
+            if (chestId != 0)
+            {
+                self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickChest(chestId);
+            }
+        }
+
+        public static async ETTask RequestShiQu(this UIMainSkillComponent self, List<DropInfo> ids)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            if (!unit.GetComponent<MoveComponent>().IsArrived())
+            {
+                self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
+            }
+
+            unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmShiQuItem);
+            MapHelper.SendShiquItem(self.ZoneScene(), ids).Coroutine();
+
+            unit.GetComponent<StateComponent>().SetNetWaitEndTime(TimeHelper.ClientNow() + 200);
+            await TimerComponent.Instance.WaitAsync(200);
+            unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
+        }
+
+        public static async ETTask MoveToShiQu(this UIMainSkillComponent self, Vector3 position)
+        {
+            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
+            int value = await unit.MoveToAsync2(position, true);
+            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
+            if (value == 0 && ids.Count > 0)
+            {
+                self.RequestShiQu(ids).Coroutine();
+            }
+        }
+
 
         public static void OnSkillBeging(this UIMainSkillComponent self, string dataParams)
         { 

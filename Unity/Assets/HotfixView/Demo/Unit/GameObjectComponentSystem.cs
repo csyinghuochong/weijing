@@ -320,7 +320,7 @@ namespace ET
                     MonsterConfig monsterCof = MonsterConfigCategory.Instance.Get(unit.ConfigId);
                     if (monsterCof.AI != 0)
                     {
-                        LayerHelp.ChangeLayer(go.transform, LayerEnum.Player);
+                        LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                         self.OnAddCollider(go);
                         unit.AddComponent<EffectViewComponent>(true);            //添加特效组建
                         unit.AddComponent<AnimatorComponent>(true);
@@ -361,9 +361,10 @@ namespace ET
                     }
                     else if (monsterCof.MonsterSonType == 58 || monsterCof.MonsterSonType == 59)
                     {
+                        self.OnAddCollider(go);
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
                         unit.AddComponent<UISceneItemComponent>();         //血条UI组件
-                        LayerHelp.ChangeLayer(go.transform, LayerEnum.Box);
+                        LayerHelp.ChangeLayer(go.transform, LayerEnum.Monster);
                     }
                     else if (unit.IsChest())
                     {

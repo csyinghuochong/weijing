@@ -107,19 +107,22 @@ namespace ET
         public static void LockTargetUnitId(this LockTargetComponent self, long unitId)
         {
             self.LastLockId = unitId;
-            if (self.LastLockId != 0)
+            if (self.LastLockId == 0)
             {
-                self.CheckLockEffect();
-                Unit unitTarget = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.LastLockId);
-                UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
-                self.LockUnitEffect.SetActive(true);
-                if (unitTarget.Type == UnitType.Monster)
-                {
-                    UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
-                    uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnLockUnit(unitTarget);
-                    MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitTarget.ConfigId);
-                    self.SetEffectSize((float)monsterConfig.SelectSize);
-                }
+                return;
+            }
+            self.CheckLockEffect();
+            Unit unitTarget = self.ZoneScene().CurrentScene().GetComponent<UnitComponent>().Get(self.LastLockId);
+            UICommonHelper.SetParent(self.LockUnitEffect, unitTarget.GetComponent<GameObjectComponent>().GameObject);
+            self.LockUnitEffect.SetActive(true);
+            
+            if (unitTarget.Type == UnitType.Monster)
+            {
+                UI uimain = UIHelper.GetUI(self.ZoneScene(), UIType.UIMain);
+                uimain.GetComponent<UIMainComponent>().UIMainHpBar.OnLockUnit(unitTarget);
+                MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(unitTarget.ConfigId);
+                self.SetEffectSize((float)monsterConfig.SelectSize);
+
             }
         }
 

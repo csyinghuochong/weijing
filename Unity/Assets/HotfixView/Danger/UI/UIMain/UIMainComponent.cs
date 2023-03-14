@@ -76,7 +76,6 @@ namespace ET
         public GameObject chengjiuButton;
         public GameObject adventureBtn;
         public GameObject duihuaButton;
-        public GameObject shiquButton;
         public GameObject petButton;
         public GameObject roleSkillBtn;
         public GameObject miniMapButton;
@@ -201,7 +200,6 @@ namespace ET
             ButtonHelp.AddListenerEx(self.bagButton, () => { self.OnOpenBag(); });
 
             self.TextPing = rc.Get<GameObject>("TextPing").GetComponent<Text>();
-            self.Button_Horse.SetActive(GMHelp.GmAccount.Contains(self.ZoneScene().GetComponent<AccountInfoComponent>().Account));
 
             self.buttonReturn = rc.Get<GameObject>("Btn_RerurnBuilding");
             //self.buttonReturn.GetComponent<Button>().onClick.AddListener(() => { self.OnClickReturnButton(); });
@@ -222,8 +220,6 @@ namespace ET
             //self.duihuaButton.GetComponent<Button>().onClick.AddListener(() => { self.MoveToNpcDialog(); });
             ButtonHelp.AddListenerEx(self.duihuaButton, () => { self.MoveToNpcDialog(); });
 
-            self.shiquButton = rc.Get<GameObject>("Btn_ShiQu");
-            ButtonHelp.AddListenerEx(self.shiquButton, self.OnShiquItem);
             //ButtonHelp.AddListenerEx(self.shiquButton, () => { self.OnShiquItem(); });
 
             self.petButton = rc.Get<GameObject>("Btn_Pet");
@@ -1287,70 +1283,6 @@ namespace ET
         public static void OnShowFubenIndex(this UIMainComponent self)
         {
             UIHelper.Create(self.DomainScene(), UIType.UICellDungeonCell).Coroutine();
-        }
-
-        public static void OnShiquItem(this UIMainComponent self)
-        {
-            if (self.ZoneScene().GetComponent<BagComponent>().GetLeftSpace() == 0)
-            {
-                ErrorHelp.Instance.ErrorHint(ErrorCore.ERR_BagIsFull);
-                return;
-            }
-            Unit main = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (main.GetComponent<SkillManagerComponent>().IsSkillMoveTime())
-            {
-                return;
-            }
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
-            if (ids.Count > 0)
-            {
-                self.RequestShiQu(ids).Coroutine();
-                return;
-            }
-            else
-            {
-                Unit unit = MapHelper.GetNearItem(self.ZoneScene());
-                if (unit != null)
-                {
-                    Vector3 dir = (main.Position - unit.Position).normalized;
-                    Vector3 tar = unit.Position + dir * 1f;
-                    self.MoveToShiQu(tar).Coroutine();
-                    return;
-                }
-            }
-
-            long chestId = MapHelper.GetChestBox(self.ZoneScene());
-            if (chestId != 0)
-            {
-                self.ZoneScene().CurrentScene().GetComponent<OperaComponent>().OnClickChest(chestId);
-            }
-        }
-
-        public static async ETTask RequestShiQu(this UIMainComponent self, List<DropInfo> ids)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            if (!unit.GetComponent<MoveComponent>().IsArrived())
-            {
-                self.ZoneScene().GetComponent<SessionComponent>().Session.Send(new C2M_Stop());
-            }
-            
-            unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmShiQuItem);
-            MapHelper.SendShiquItem(self.ZoneScene(), ids).Coroutine();
-
-            unit.GetComponent<StateComponent>().SetNetWaitEndTime(TimeHelper.ClientNow()+ 200);
-            await TimerComponent.Instance.WaitAsync(200);
-            unit.GetComponent<FsmComponent>().ChangeState(FsmStateEnum.FsmIdleState);
-        }
-
-        public static async ETTask MoveToShiQu(this UIMainComponent self, Vector3 position)
-        {
-            Unit unit = UnitHelper.GetMyUnitFromZoneScene(self.ZoneScene());
-            int value = await unit.MoveToAsync2(position, true);
-            List<DropInfo> ids = MapHelper.GetCanShiQu(self.ZoneScene());
-            if (value == 0 && ids.Count > 0)
-            {
-                self.RequestShiQu(ids).Coroutine();
-            }
         }
 
         public static void OnClickSkillButton(this UIMainComponent self)

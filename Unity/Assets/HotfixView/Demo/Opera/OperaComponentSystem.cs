@@ -33,6 +33,7 @@ namespace ET
             self.npcMask = 1 << LayerMask.NameToLayer(LayerEnum.NPC.ToString());
             self.boxMask = 1 << LayerMask.NameToLayer(LayerEnum.Box.ToString());
             self.playerMask = 1 << LayerMask.NameToLayer(LayerEnum.Player.ToString());
+            self.monsterMask = 1 << LayerMask.NameToLayer(LayerEnum.Monster.ToString());
 
             Init init = GameObject.Find("Global").GetComponent<Init>();
             self.EditorMode = init.EditorMode;
@@ -171,7 +172,8 @@ namespace ET
             if (self.IsPointerOverGameObject(Input.mousePosition)
                 || self.CheckBox()
                 || self.CheckNpc()
-                || self.CheckPlayer())
+                || self.CheckPlayer()
+                || self.CheckMonster())
             {
                 return;
             }
@@ -291,6 +293,32 @@ namespace ET
                     uI.GetComponent<UIWatchMenuComponent>().OnUpdateUI(MenuEnumType.Main, unit.Id).Coroutine();
                 }
             }
+        }
+
+        public static bool CheckMonster(this OperaComponent self)
+        {
+            RaycastHit Hit;
+            Ray Ray = self.mainCamera.ScreenPointToRay(Input.mousePosition);
+            bool hit = Physics.Raycast(Ray, out Hit, 100, self.monsterMask);
+            if (!hit)
+                return false;
+            string obname = Hit.collider.gameObject.name;
+            try
+            {
+                long unitid = long.Parse(obname);
+                self.OnClickMonsterItem(unitid);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Log.Debug("无效的player: " + ex.ToString());
+            }
+            return false;
+        }
+
+        public static void OnClickMonsterItem(this OperaComponent self, long unitid)
+        {
+            Unit unit = self.DomainScene().GetComponent<UnitComponent>().Get(unitid);
             if (unit.Type == UnitType.Monster)
             {
                 self.ZoneScene().GetComponent<LockTargetComponent>().LockTargetUnitId(unitid);
