@@ -18,19 +18,30 @@ namespace ET
                 return;
             }
 
+            //背包已满
+            if (unit.GetComponent<BagComponent>().IsBagFull()) {
+                response.Error = ErrorCore.ERR_BagIsFull;
+                reply();
+                return;
+            }
+
             //满级经验兑换效验等级
             GlobalValueConfig globalCof = GlobalValueConfigCategory.Instance.Get(41);
             if (request.OperateType == 2) {
                 if (userInfo.Lv < globalCof.Value2) {
-                    response.Error = ErrorCore.ERR_LevelNoEnough;
+                    response.Error = ErrorCore.ERR_ExpNoEnough;
                     reply();
                     return;
                 }
             }
 
             //低于20%经验无法兑换
+            float costPro = 0.2f;
+            if (request.OperateType == 2) {
+                costPro = 0.3f;
+            }
             ExpConfig expCof = ExpConfigCategory.Instance.Get(userInfo.Lv);
-            int costExp = (int)(expCof.UpExp * 0.2f);
+            int costExp = (int)(expCof.UpExp * costPro);
             if (userInfo.Exp < costExp||costExp <= 0)
             {
                 response.Error = ErrorCore.ERR_LevelNoEnough;
