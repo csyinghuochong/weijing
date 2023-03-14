@@ -352,23 +352,23 @@ namespace ET
                     else if (monsterCof.MonsterSonType == 52)
                     {
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
-                        unit.AddComponent<UISceneItemComponent>().InitTableData(unit.GetComponent<UnitInfoComponent>().EnergySkillId).Coroutine();
+                        unit.AddComponent<UISceneItemComponent>();
                     }
                     else if (monsterCof.MonsterSonType == 54)
                     {
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
-                        unit.AddComponent<UISceneItemComponent>().InitSceneData().Coroutine();         //血条UI组件
+                        unit.AddComponent<UISceneItemComponent>();         //血条UI组件
                     }
                     else if (monsterCof.MonsterSonType == 58 || monsterCof.MonsterSonType == 59)
                     {
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
-                        unit.AddComponent<UISceneItemComponent>().InitSceneData().Coroutine();         //血条UI组件
+                        unit.AddComponent<UISceneItemComponent>();         //血条UI组件
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Box);
                     }
                     else if (unit.IsChest())
                     {
                         unit.UpdateUIType = HeadBarType.SceneItemUI;
-                        unit.AddComponent<UISceneItemComponent>().InitSceneData().Coroutine();         //血条UI组件
+                        unit.AddComponent<UISceneItemComponent>();         //血条UI组件
                         LayerHelp.ChangeLayer(go.transform, LayerEnum.Box);
                     }
                     else if (monsterCof.MonsterType != (int)MonsterTypeEnum.SceneItem)

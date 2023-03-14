@@ -109,10 +109,7 @@ namespace ET
         {
             C2M_ExpToGoldRequest request = new C2M_ExpToGoldRequest() { OperateType = 2 };
             M2C_ExpToGoldResponse response = (M2C_ExpToGoldResponse)await self.ZoneScene().GetComponent<SessionComponent>().Session.Call(request);
-            if (response.Error == ErrorCore.ERR_Success)
-            {
-                FloatTipManager.Instance.ShowFloatTip("兑换成功！");
-            }
+           
         }
 
         public static void OnButtonJieRiReward(this UITaskGetComponent self)

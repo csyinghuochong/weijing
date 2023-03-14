@@ -28,6 +28,8 @@ namespace ET
             self.MyUnit = self.GetParent<Unit>();
             self.UICamera = GameObject.Find("Global/UI/UICamera").GetComponent<Camera>();
             self.MainCamera = GameObject.Find("Global/Main Camera").GetComponent<Camera>();
+
+            self.OnInitUI().Coroutine();
         }
     }
 
@@ -47,17 +49,23 @@ namespace ET
             if (monsterConfig.MonsterSonType == 52)
             {
                 path = ABPathHelper.GetUGUIPath("Battle/UIEnergyTable");
+                self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("UIPosition");
             }
             else if (monsterConfig.MonsterSonType == 54 || self.MyUnit.IsChest())
             {
                 path = ABPathHelper.GetUGUIPath("Battle/UISceneItem");
+                self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("UIPosition");
+            }
+            else if (monsterConfig.MonsterSonType == 58 || monsterConfig.MonsterSonType == 59)
+            {
+                path = ABPathHelper.GetUGUIPath("Battle/UISceneItem");
+                self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("RoleBoneSet/Head");
             }
             GameObject prefab = await ResourcesComponent.Instance.LoadAssetAsync<GameObject>(path);
             self.HeadBar = UnityEngine.Object.Instantiate(prefab, GlobalComponent.Instance.Unit, true);
-            self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Low]);
+            self.HeadBar.transform.SetParent(UIEventComponent.Instance.UILayers[(int)UILayer.Blood]);
             self.HeadBar.transform.localScale = Vector3.one;
-            self.UIPosition = self.MyUnit.GetComponent<GameObjectComponent>().GameObject.transform.Find("UIPosition");
-
+            
             if (self.HeadBar.GetComponent<HeadBarUI>() == null)
             {
                 self.HeadBar.AddComponent<HeadBarUI>();
@@ -65,26 +73,33 @@ namespace ET
             self.HeadBarUI = self.HeadBar.GetComponent<HeadBarUI>();
             self.HeadBarUI.HeadPos = self.UIPosition;
             self.HeadBarUI.HeadBar = self.HeadBar;
-            //self.LateUpdate();
+
+            switch (monsterConfig.MonsterSonType)
+            {
+                case 52:
+                    self.InitTableData(self.MyUnit.GetComponent<UnitInfoComponent>().EnergySkillId);
+                    break;
+                case 54:
+                case 55:
+                case 56:
+                case 57:
+                    self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.MonsterName;
+                    break;
+                case 58:
+                case 59:
+                    self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.MonsterName;
+                    break;
+                default:
+                    break;
+            }
         }
 
-        public static async ETTask InitTableData(this UISceneItemComponent self, int skillId)
+        public static  void InitTableData(this UISceneItemComponent self, int skillId)
         {
-            await self.OnInitUI();
-
             SkillConfig skillConfig = SkillConfigCategory.Instance.Get(skillId);
 
             self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<TextMeshProUGUI>().text = skillConfig.SkillName;
             self.HeadBar.Get<GameObject>("Lal_Desc").GetComponent<TextMeshProUGUI>().text = skillConfig.SkillDescribe;
-        }
-
-        public static async ETTask InitSceneData(this UISceneItemComponent self)
-        {
-            await self.OnInitUI();
-
-            int configId = self.GetParent<Unit>().ConfigId;
-            MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(configId);
-            self.HeadBar.Get<GameObject>("Lal_Name").GetComponent<Text>().text = monsterConfig.MonsterName;
         }
 
         public static void LateUpdate(this UISceneItemComponent self)
