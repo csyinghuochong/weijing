@@ -605,6 +605,10 @@ namespace ET
 		[ProtoMember(33)]
 		public List<KeyValuePairInt> DayMonsters = new List<KeyValuePairInt>();
 
+//随机精灵每日刷新 global80
+		[ProtoMember(34)]
+		public List<int> DayJingLing = new List<int>();
+
 	}
 
 	[Message(OuterOpcode.KeyValuePair)]

@@ -11,6 +11,14 @@ namespace ET
         public int TotalNumber;
     }
 
+    public struct DayJingLing
+    {
+        public List<int> MonsterId;
+        public List<int> Weights;
+        public float GaiLv;
+        public int TotalNumber;
+    }
+
     public partial class GlobalValueConfigCategory
     {
 
@@ -21,6 +29,8 @@ namespace ET
         public int BagMaxCapacity = 0;
 
         public List<DayMonsters> DayMonsterList = new List<DayMonsters>();
+
+        public List<DayJingLing> DayJingLingList = new List<DayJingLing>();
 
         public override void AfterEndInit()
         {
@@ -42,6 +52,30 @@ namespace ET
                     GaiLv = gaiLv,
                     TotalNumber = total
                 });
+            }
+
+            string[] jinglingfresh = this.Get(80).Value.Split('@');
+            for (int i = 0; i < jinglingfresh.Length; i++)
+            {
+                string[] itemInfo = jinglingfresh[i].Split(';');
+                float gaiLv = float.Parse(itemInfo[0]);
+                int total = int.Parse(itemInfo[1]);
+
+                DayJingLing dayJingLing = new DayJingLing();
+                dayJingLing.MonsterId = new List<int>();
+                dayJingLing.Weights = new List<int>();
+
+                string[] monsterIist = itemInfo[2].Split('&');
+                for (int m = 0; m < monsterIist.Length; m++)
+                {
+                    string[] monsterid = monsterIist[m].Split(',');
+                    dayJingLing.Weights.Add(int.Parse(monsterid[0]));
+                    dayJingLing.MonsterId.Add(int.Parse(monsterid[1]));
+                }
+
+                dayJingLing.GaiLv = gaiLv;
+                dayJingLing.TotalNumber = total;    
+                DayJingLingList.Add(dayJingLing);
             }
         }
     }

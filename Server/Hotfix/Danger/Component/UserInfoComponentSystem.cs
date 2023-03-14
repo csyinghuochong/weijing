@@ -483,11 +483,9 @@ namespace ET
             }
         }
 
-        public static int GetRandomMonsterId(this UserInfoComponent self, int monsterId)
+        public static int GetRandomMonsterId(this UserInfoComponent self)
         {
-            Unit mainUnit = self.GetParent<Unit>();
-            UserInfoComponent userInfoComponent = mainUnit.GetComponent<UserInfoComponent>();
-            List<KeyValuePairInt> dayMonster = userInfoComponent.UserInfo.DayMonsters;
+            List<KeyValuePairInt> dayMonster = self.UserInfo.DayMonsters;
             List<DayMonsters> dayMonsterConfig = GlobalValueConfigCategory.Instance.DayMonsterList;
 
             for (int i = 0; i < dayMonsterConfig.Count; i++)
@@ -518,7 +516,36 @@ namespace ET
                 }
             }
 
-            return monsterId;
+            return 0;
+        }
+
+        public static int GetRandomJingLingId(this UserInfoComponent self)
+        {
+            List<int> dayMonster = self.UserInfo.DayJingLing;
+
+            List<DayJingLing> dayMonsterConfig = GlobalValueConfigCategory.Instance.DayJingLingList;
+            for (int i = 0; i < dayMonsterConfig.Count; i++)
+            {
+                //if (RandomHelper.RandFloat01() > dayMonsterConfig[i].GaiLv)
+                //{
+                //    continue;
+                //}
+
+                if (dayMonster.Count <= i)
+                {
+                    dayMonster.Add(0);
+                }
+                if (dayMonster[i] >= dayMonsterConfig[i].TotalNumber)
+                {
+                    continue; 
+                }
+
+                dayMonster[i]++;
+                int randomIndex = RandomHelper.RandomByWeight(dayMonsterConfig[i].Weights);
+                return dayMonsterConfig[i].MonsterId[randomIndex];
+            }
+
+            return 0;
         }
 
         public static void OnMakeItem(this UserInfoComponent self, int makeId)
@@ -753,6 +780,7 @@ namespace ET
             self.UserInfo.MysteryItems.Clear();
             self.UserInfo.DayItemUse.Clear();
             self.UserInfo.DayMonsters.Clear();
+            self.UserInfo.DayJingLing.Clear();
         }
 
     }

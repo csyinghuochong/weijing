@@ -275,6 +275,7 @@ namespace ET
             self.UserInfo.MysteryItems.Clear();
             self.UserInfo.DayItemUse.Clear();
             self.UserInfo.DayMonsters.Clear();
+            self.UserInfo.DayJingLing.Clear();
         }
 
     }

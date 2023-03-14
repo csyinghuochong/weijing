@@ -159,16 +159,26 @@ namespace ET
 				}
 
 				MonsterConfig monsterConfig = MonsterConfigCategory.Instance.Get(monsterid);
-				if (sceneType == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterType == MonsterTypeEnum.Normal)
+				if (sceneType == SceneTypeEnum.LocalDungeon)
 				{
-					Unit mainUnit = scene.GetComponent<LocalDungeonComponent>().MainUnit;
-					monsterid = mainUnit.GetComponent<UserInfoComponent>().GetRandomMonsterId(monsterid);
-				}
-				if (mapComponent.SceneTypeEnum == SceneTypeEnum.LocalDungeon && monsterConfig.MonsterSonType == 55)
-				{
-					Unit mainUnit = scene.GetComponent<LocalDungeonComponent>().MainUnit;
-					UserInfoComponent userInfoComponent = mainUnit.GetComponent<UserInfoComponent>();
-					if (userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterid))
+					LocalDungeonComponent localDungeonComponent = scene.GetComponent<LocalDungeonComponent>();
+					UserInfoComponent userInfoComponent = localDungeonComponent.MainUnit.GetComponent<UserInfoComponent>();
+
+					int randomId = 0;
+					if (monsterConfig.MonsterType == MonsterTypeEnum.Normal && localDungeonComponent.RandomMonster == 0)
+					{
+						randomId = userInfoComponent.GetRandomMonsterId();
+						monsterid = randomId >  0 ? randomId : monsterid;
+						localDungeonComponent.RandomMonster = randomId;
+					}
+					if (monsterConfig.MonsterType == MonsterTypeEnum.Normal && localDungeonComponent.RandomJingLing == 0 && randomId == 0)
+					{
+						randomId = userInfoComponent.GetRandomJingLingId();
+						monsterid = randomId > 0 ? randomId : monsterid;
+						localDungeonComponent.RandomJingLing = randomId;
+					}
+
+					if (monsterConfig.MonsterSonType == 55 && userInfoComponent.IsCheskOpen(mapComponent.SceneId, monsterid))
 					{
 						return;
 					}

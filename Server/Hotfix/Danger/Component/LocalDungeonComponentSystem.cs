@@ -25,7 +25,9 @@ namespace ET
     {
         public override void Awake(LocalDungeonComponent self)
         {
-            self.RefreshMonsters.Clear();   
+            self.RefreshMonsters.Clear();
+            self.RandomJingLing = 0;
+            self.RandomMonster = 0;
         }
     }
 

@@ -7,9 +7,12 @@ namespace ET
     {
         public long Timer;
         public int DungeonId;
-        public Unit MainUnit;
         public int FubenDifficulty;
 
+        public int RandomMonster;
+        public int RandomJingLing;
+
+        public Unit MainUnit;
         public List<RefreshMonster> RefreshMonsters = new List<RefreshMonster>();
     }
 }

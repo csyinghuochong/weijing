@@ -306,6 +306,9 @@ message UserInfo
 
 	//剧情副本每日刷新 global79
 	repeated KeyValuePairInt DayMonsters = 33;
+
+	//随机精灵每日刷新 global80
+	repeated int32 DayJingLing = 34;
 }
 
 message KeyValuePair
