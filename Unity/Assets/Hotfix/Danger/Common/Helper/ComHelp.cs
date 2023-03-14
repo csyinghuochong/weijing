@@ -16,7 +16,7 @@ namespace ET
 
         public const string RobotPassWord = "et@#robot";
 
-        public const int Version = 20230311;
+        public const int Version = 20230314;
 
         //宠物魔法技能
         public static List<int> PetMagicSkill = new List<int>(2) { };
