@@ -55,6 +55,7 @@ namespace ET
 
             self.Button_ZhuaPu = rc.Get<GameObject>("Button_ZhuaPu");
             ButtonHelp.AddListenerEx(self.Button_ZhuaPu, self.OnButton_ZhuaPu);
+            self.Button_ZhuaPu.SetActive(false);
 
             self.Btn_CancleSkill.SetActive(false);
             ButtonHelp.AddEventTriggers(self.Btn_CancleSkill, (PointerEventData pdata) => { self.OnEnterCancelButton(); }, EventTriggerType.PointerEnter);
