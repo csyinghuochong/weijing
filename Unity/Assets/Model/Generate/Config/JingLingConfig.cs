@@ -114,6 +114,12 @@ namespace ET
 		/// <summary>额外属性描述</summary>
 		[ProtoMember(13)]
 		public string GetDes { get; set; }
+		/// <summary>功能类型</summary>
+		[ProtoMember(14)]
+		public int FunctionType { get; set; }
+		/// <summary>功能参数</summary>
+		[ProtoMember(15)]
+		public string FunctionValue { get; set; }
 
 	}
 }
